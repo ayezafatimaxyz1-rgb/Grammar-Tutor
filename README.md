@@ -7,10 +7,12 @@ Launch website for the **Sarwar's English Lab** (Instagram: [@english.with.mahmo
 A static site — no build step, no dependencies to install.
 
 ```
-index.html      Landing page (offer bar, courses, hero, tips, quiz, Instagram feed preview, reviews, about)
-css/styles.css  Styling (navy/cream academic theme, responsive)
-js/script.js    Mobile nav, course data + countdown + enroll modal, grammar tip generator, interactive quiz, feed grid
+index.html      Landing page (offer bar, hero, courses, grammar tip, quiz, why-follow, reviews, about)
+css/styles.css  Styling (navy/gold academic theme, responsive)
+js/script.js    Mobile nav, course data + countdown + enroll modal, grammar tip generator, interactive quiz
 ```
+
+Page order is deliberately Courses → Grammar Tip → Quiz right after the hero, since courses are the primary focus.
 
 ## Running locally
 
@@ -39,7 +41,6 @@ Update per course in the `courses` array in `js/script.js`:
 
 - The WhatsApp number (`0301-5095042` / `923015095042` international format) and Instagram handle (`english.with.mahmood.sarwar`) are already the real ones — double check them in `js/script.js` (`WHATSAPP_NUMBER`, `INSTAGRAM_HANDLE`) before going live.
 - The course dates/prices are current as of when this site was built — refresh them before each new batch (see above).
-- Swap in real Instagram post screenshots/graphics for the "From the feed" grid if you'd like actual thumbnails instead of the styled placeholder cards.
 
 ## Deploying
 

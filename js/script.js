@@ -414,36 +414,3 @@ courseModal.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !courseModal.hidden) closeCourseModal();
 });
-
-// ===== Instagram-style feed grid =====
-const feedPosts = [
-  { cat: 'Grammar Basics', title: 'Affect vs. Effect', gradient: 'linear-gradient(160deg,#14213d,#3a4d78)' },
-  { cat: 'Common Mistakes', title: "Their / There / They're", gradient: 'linear-gradient(160deg,#1f3358,#b8863f)' },
-  { cat: 'Tenses', title: 'Present Perfect Simple', gradient: 'linear-gradient(160deg,#14213d,#5b6478)' },
-  { cat: 'Punctuation', title: 'The Oxford Comma', gradient: 'linear-gradient(160deg,#3a4d78,#14213d)' },
-  { cat: 'Word Choice', title: 'Who vs. Whom', gradient: 'linear-gradient(160deg,#b8863f,#14213d)' },
-  { cat: 'Writing Tips', title: 'Fixing Comma Splices', gradient: 'linear-gradient(160deg,#14213d,#d9b978)' },
-];
-
-const feedGrid = document.getElementById('feed-grid');
-
-feedPosts.forEach((post) => {
-  const a = document.createElement('a');
-  a.className = 'feed-post';
-  a.style.background = post.gradient;
-  a.href = 'https://instagram.com/english.with.mahmood.sarwar';
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.setAttribute('aria-label', `${post.title} — view on Instagram`);
-  a.innerHTML = `
-    <span class="feed-post-overlay">
-      <i class="fa-regular fa-heart"></i>
-      <i class="fa-regular fa-comment"></i>
-    </span>
-    <span>
-      <span class="feed-post-cat">${post.cat}</span>
-      <span class="feed-post-title">${post.title}</span>
-    </span>
-  `;
-  feedGrid.appendChild(a);
-});
