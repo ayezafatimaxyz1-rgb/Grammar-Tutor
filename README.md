@@ -7,12 +7,12 @@ Launch website for the **Sarwar's English Lab** (Instagram: [@english.with.mahmo
 A static site — no build step, no dependencies to install.
 
 ```
-index.html      Landing page (offer bar, hero, courses, grammar tip, quiz, why-follow, reviews, about)
+index.html      Landing page (offer bar, hero, courses, watch & follow, why choose us, reviews, about)
 css/styles.css  Styling (navy/gold academic theme, responsive)
-js/script.js    Mobile nav, course data + countdown + enroll modal, grammar tip generator, interactive quiz
+js/script.js    Mobile nav, course data + countdown + enroll modal
 ```
 
-Page order is deliberately Courses → Grammar Tip → Quiz right after the hero, since courses are the primary focus.
+Page order is deliberately Courses right after the hero, since courses are the primary focus.
 
 ## Running locally
 
