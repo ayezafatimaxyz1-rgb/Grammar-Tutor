@@ -17,6 +17,48 @@ mainNav.querySelectorAll('a').forEach((link) => {
 // ===== Footer year =====
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// ===== Instagram DM helper =====
+// Instagram has no public URL parameter to pre-fill a DM's text (unlike
+// WhatsApp's wa.me/...?text=), so the closest we can do is copy the
+// starter message to the clipboard right as the chat opens, and tell
+// the visitor to paste it.
+let toastTimer;
+function showToast(text) {
+  let toast = document.getElementById('site-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'site-toast';
+    toast.className = 'site-toast';
+    toast.setAttribute('role', 'status');
+    document.body.appendChild(toast);
+  }
+  toast.textContent = text;
+  toast.classList.add('visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
+}
+
+function wireInstagramMessageCopy(link, getMessage) {
+  if (!link) return;
+  link.addEventListener('click', () => {
+    const message = getMessage();
+    if (!message) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(message)
+        .then(() => showToast('Message copied — paste it into the Instagram chat that opens!'))
+        .catch(() => showToast(`Send us: "${message}"`));
+    } else {
+      showToast(`Send us: "${message}"`);
+    }
+  });
+}
+
+const FOOTER_IG_MESSAGE = "Hi! I'd like to know more about your courses.";
+wireInstagramMessageCopy(
+  document.querySelector('.footer-social a[aria-label="Message on Instagram"]'),
+  () => FOOTER_IG_MESSAGE
+);
+
 // ===== Courses =====
 const WHATSAPP_NUMBER = '923015095042';
 const INSTAGRAM_HANDLE = 'english.with.mahmood.sarwar';
@@ -181,6 +223,8 @@ const modalCountdownValue = document.getElementById('modal-countdown-value');
 const modalWhatsapp = document.getElementById('modal-whatsapp');
 const modalInstagram = document.getElementById('modal-instagram');
 
+wireInstagramMessageCopy(modalInstagram, () => modalInstagram.dataset.igMessage);
+
 function updateModalCountdown() {
   const course = courses.find((c) => c.id === modalCourseId);
   if (!course) return;
@@ -232,6 +276,7 @@ function openCourseModal(courseId) {
   const message = `Hi! I'd like to enroll in the ${course.name} (${course.schedule}). Please share the next steps and payment details.`;
   modalWhatsapp.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   modalInstagram.href = `https://ig.me/m/${INSTAGRAM_HANDLE}`;
+  modalInstagram.dataset.igMessage = message;
 
   courseModal.hidden = false;
   document.body.style.overflow = 'hidden';

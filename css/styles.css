@@ -462,6 +462,31 @@ section { padding: 64px 0; }
 .modal-actions .btn { flex: 1; justify-content: center; min-width: 200px; }
 .modal-disclaimer { font-size: 0.78rem; color: var(--muted); margin: 0; }
 
+/* ===== Toast (Instagram message-copied confirmation) ===== */
+.site-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(16px);
+  background: var(--navy);
+  color: var(--gold-light);
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 300;
+  max-width: min(90vw, 420px);
+  text-align: center;
+}
+.site-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 /* ===== Watch & follow resources ===== */
 .resources-section { background: var(--white); }
 .resource-icons {
