@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sarwar's English Lab — Learn English Grammar Daily</title>
+<meta name="description" content="Sarwar's English Lab teaches clear, no-jargon English grammar through daily Instagram lessons, quizzes, and tips. Follow along and level up your English.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-mark"><i class="fa-solid fa-feather-pointed"></i></span>
+      <span class="brand-name">Sarwar's English Lab</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#tips">Grammar Tips</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#feed">Instagram Feed</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-primary btn-sm" href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i> Follow
+      </a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" id="top">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Now on Instagram</p>
+        <h1>Master English Grammar,<br>one post at a time.</h1>
+        <p class="lead">
+          Sarwar's English Lab breaks down English grammar into short, clear,
+          no-jargon lessons — built for learners, students, and anyone tired of
+          textbooks that make grammar feel harder than it is.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener">
+            <i class="fa-brands fa-instagram"></i> Follow on Instagram
+          </a>
+          <a class="btn btn-outline" href="#quiz">
+            <i class="fa-solid fa-circle-question"></i> Try a Quick Quiz
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>500+</strong><span>Grammar lessons</span></div>
+          <div><strong>Daily</strong><span>New posts</span></div>
+          <div><strong>Free</strong><span>Always</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ig-header">
+              <span class="ig-avatar"><i class="fa-solid fa-feather-pointed"></i></span>
+              <span class="ig-handle">sarwars.english.lab</span>
+              <i class="fa-solid fa-ellipsis"></i>
+            </div>
+            <div class="ig-post-image">
+              <span class="post-rule">It's <em>vs</em> Its</span>
+              <span class="post-sub">Swipe to learn the difference</span>
+            </div>
+            <div class="ig-icons">
+              <i class="fa-regular fa-heart"></i>
+              <i class="fa-regular fa-comment"></i>
+              <i class="fa-regular fa-paper-plane"></i>
+            </div>
+            <div class="ig-caption"><strong>sarwars.english.lab</strong> Save this for later ✨ #grammartips</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="value-props" id="tips">
+    <div class="container">
+      <h2 class="section-title">Why learners follow along</h2>
+      <div class="value-grid">
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Bite-sized lessons</h3>
+          <p>Every post covers one grammar point — no long lectures, no confusion. Just clear rules you'll actually remember.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-comments"></i></div>
+          <h3>Real-world examples</h3>
+          <p>Grammar shown the way people actually write and speak, so it sticks in conversations, emails, and exams alike.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+          <h3>Practice that sticks</h3>
+          <p>Quizzes, prompts, and challenges turn passive scrolling into active practice — the fastest way to actually improve.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tip-of-day">
+    <div class="container tip-inner">
+      <div class="tip-card" id="tip-card">
+        <p class="tip-label"><i class="fa-solid fa-lightbulb"></i> Grammar Tip</p>
+        <p class="tip-text" id="tip-text">Loading a tip…</p>
+        <button class="btn btn-outline btn-sm" id="tip-btn">
+          <i class="fa-solid fa-rotate"></i> Show Another Tip
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="quiz-section" id="quiz">
+    <div class="container">
+      <h2 class="section-title">Test yourself</h2>
+      <p class="section-sub">A quick multiple-choice quiz, styled like our Instagram story quizzes. No sign-up needed.</p>
+
+      <div class="quiz-card" id="quiz-card">
+        <div class="quiz-progress">
+          <span id="quiz-progress-text">Question 1 of 5</span>
+          <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        </div>
+        <h3 class="quiz-question" id="quiz-question">Loading question…</h3>
+        <div class="quiz-options" id="quiz-options"></div>
+        <p class="quiz-feedback" id="quiz-feedback" aria-live="polite"></p>
+        <div class="quiz-actions">
+          <span class="quiz-score">Score: <strong id="quiz-score">0</strong>/<span id="quiz-total">5</span></span>
+          <button class="btn btn-primary btn-sm" id="quiz-next" disabled>Next Question <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="feed-section" id="feed">
+    <div class="container">
+      <h2 class="section-title">From the feed</h2>
+      <p class="section-sub">A peek at recent lessons — the full archive lives on Instagram.</p>
+
+      <div class="feed-grid" id="feed-grid"></div>
+
+      <div class="feed-cta">
+        <a class="btn btn-primary" href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i> See more on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <h2 class="section-title">What learners say</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"I've tried grammar books that put me to sleep. These posts actually explain things in a way I remember while I'm scrolling."</p>
+          <div class="review-author">
+            <span class="avatar-initial">A</span>
+            <div><strong>Amina R.</strong><span>IELTS candidate</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Short, clear, and genuinely useful. My writing mistakes dropped noticeably after a month of following along."</p>
+          <div class="review-author">
+            <span class="avatar-initial">D</span>
+            <div><strong>Daniyal K.</strong><span>University student</span></div>
+          </div>
+        </div>
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+          <p>"I share these posts with my own ESL students now. They explain tricky rules better than most textbooks I've used."</p>
+          <div class="review-author">
+            <span class="avatar-initial">S</span>
+            <div><strong>Sofia M.</strong><span>ESL teacher</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="about">
+    <div class="container about-inner">
+      <div class="about-visual" aria-hidden="true">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <div class="about-copy">
+        <h2 class="section-title">About Sarwar's English Lab</h2>
+        <p>
+          Sarwar's English Lab is an Instagram-first grammar classroom for anyone learning
+          or refining their English — students preparing for exams, professionals polishing
+          their writing, and lifelong learners who just want grammar to finally make sense.
+        </p>
+        <p>
+          Every lesson is written to be understood in under a minute, with examples pulled
+          from real writing and conversation rather than dusty textbook sentences.
+        </p>
+        <a class="btn btn-outline" href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i> Join the community
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="container cta-inner">
+      <h2>Ready to make grammar click?</h2>
+      <p>New lessons drop regularly. Follow along so you never miss one.</p>
+      <a class="btn btn-light" href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener">
+        <i class="fa-brands fa-instagram"></i> Follow @sarwars.english.lab
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark"><i class="fa-solid fa-feather-pointed"></i></span>
+      <span class="brand-name">Sarwar's English Lab</span>
+      <p>Clear, no-jargon English grammar lessons — daily on Instagram.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a href="#tips">Grammar Tips</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#feed">Instagram Feed</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </div>
+    <div class="footer-social">
+      <h4>Follow along</h4>
+      <a href="https://instagram.com/sarwars.english.lab" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="mailto:hello@sarwarsenglishlab.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Sarwar's English Lab. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
