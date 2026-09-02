@@ -499,14 +499,12 @@ section { padding: 64px 0; }
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 2.1rem;
-  color: var(--white);
+  background: var(--white);
+  border: 1px solid var(--border);
   box-shadow: var(--shadow);
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 .resource-icon-btn:hover { transform: translateY(-4px); }
-.resource-icon-btn.youtube { background: #ff0000; }
-.resource-icon-btn.whatsapp { background: #25d366; }
 
 .orientations { margin-top: 40px; text-align: center; }
 .orientations-label {
