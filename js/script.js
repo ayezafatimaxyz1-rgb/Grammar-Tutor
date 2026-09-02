@@ -78,15 +78,26 @@ wireInstagramMessageCopy(
 // ===== Floating chat button =====
 const fabWrap = document.getElementById('fab-wrap');
 const fabToggle = document.getElementById('fab-toggle');
-const fabMenu = document.getElementById('fab-menu');
 const fabIconOpen = document.getElementById('fab-icon-open');
 const fabIconClose = document.getElementById('fab-icon-close');
+const fabStepChannel = document.getElementById('fab-step-channel');
+const fabStepCourse = document.getElementById('fab-step-course');
+const fabBackBtn = document.getElementById('fab-back-btn');
+const fabCourseList = document.getElementById('fab-course-list');
+let fabChannel = null;
+
+function resetFabSteps() {
+  fabChannel = null;
+  fabStepChannel.hidden = false;
+  fabStepCourse.hidden = true;
+}
 
 function setFabOpen(open) {
   fabWrap.classList.toggle('open', open);
   fabToggle.setAttribute('aria-expanded', String(open));
   fabIconOpen.hidden = open;
   fabIconClose.hidden = !open;
+  if (!open) resetFabSteps();
 }
 
 fabToggle.addEventListener('click', () => {
@@ -103,11 +114,15 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && fabWrap.classList.contains('open')) setFabOpen(false);
 });
 
-fabMenu.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => setFabOpen(false));
-});
+fabBackBtn.addEventListener('click', resetFabSteps);
 
-wireInstagramMessageCopy(document.getElementById('fab-instagram'), () => FOOTER_IG_MESSAGE);
+document.querySelectorAll('#fab-step-channel [data-channel]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    fabChannel = btn.dataset.channel;
+    fabStepChannel.hidden = true;
+    fabStepCourse.hidden = false;
+  });
+});
 
 // ===== Courses =====
 const WHATSAPP_NUMBER = '923015095042';
@@ -174,6 +189,34 @@ const courses = [
     offerEndsAt: '2026-09-10T23:59:59',
   },
 ];
+
+// Populate the floating chat button's course picker now that `courses` exists.
+fabCourseList.innerHTML = courses
+  .map((c) => `<button type="button" class="fab-course-item" data-course-id="${c.id}">${c.name}</button>`)
+  .join('') + `<button type="button" class="fab-course-item fab-course-item-general" data-course-id="general">Something else</button>`;
+
+fabCourseList.addEventListener('click', (event) => {
+  const trigger = event.target.closest('[data-course-id]');
+  if (!trigger) return;
+  const course = courses.find((c) => c.id === trigger.dataset.courseId);
+  const message = course
+    ? `Hi! I'd like to know more about the ${course.name} (${course.schedule}). Could you share the schedule, pricing, and enrollment details?`
+    : FOOTER_IG_MESSAGE;
+
+  if (fabChannel === 'whatsapp') {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
+  } else if (fabChannel === 'instagram') {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(message)
+        .then(() => showToast('Message copied! Paste it into the Instagram chat that just opened.'))
+        .catch(() => showToast(`Send us: "${message}"`));
+    } else {
+      showToast(`Send us: "${message}"`);
+    }
+    window.open(`https://ig.me/m/${INSTAGRAM_HANDLE}`, '_blank', 'noopener');
+  }
+  setFabOpen(false);
+});
 
 function formatPKR(amount) {
   return `Rs. ${amount.toLocaleString('en-PK')}`;
