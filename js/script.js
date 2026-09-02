@@ -24,18 +24,34 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // the visitor to paste it.
 let toastTimer;
 function showToast(text) {
+  let overlay = document.getElementById('site-toast-overlay');
   let toast = document.getElementById('site-toast');
-  if (!toast) {
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'site-toast-overlay';
+    overlay.className = 'site-toast-overlay';
+
     toast = document.createElement('div');
     toast.id = 'site-toast';
     toast.className = 'site-toast';
     toast.setAttribute('role', 'status');
-    document.body.appendChild(toast);
+    toast.innerHTML = `
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span class="site-toast-text"></span>
+    `;
+    overlay.appendChild(toast);
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', hideToast);
   }
-  toast.textContent = text;
-  toast.classList.add('visible');
+  toast.querySelector('.site-toast-text').textContent = text;
+  overlay.classList.add('visible');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('visible'), 3500);
+  toastTimer = setTimeout(hideToast, 4500);
+}
+
+function hideToast() {
+  const overlay = document.getElementById('site-toast-overlay');
+  if (overlay) overlay.classList.remove('visible');
 }
 
 function wireInstagramMessageCopy(link, getMessage) {
@@ -45,7 +61,7 @@ function wireInstagramMessageCopy(link, getMessage) {
     if (!message) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(message)
-        .then(() => showToast('Message copied — paste it into the Instagram chat that opens!'))
+        .then(() => showToast('Message copied! Paste it into the Instagram chat that just opened.'))
         .catch(() => showToast(`Send us: "${message}"`));
     } else {
       showToast(`Send us: "${message}"`);
