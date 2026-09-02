@@ -360,6 +360,11 @@ section { padding: 64px 0; }
   padding: 3px 8px;
   border-radius: 6px;
 }
+.course-installment {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
 .course-countdown {
   font-size: 0.78rem;
   color: var(--muted);
@@ -537,6 +542,38 @@ section { padding: 64px 0; }
 .orientation-link i { color: #d6001c; }
 .orientation-link:hover { border-color: var(--gold-dark); background: var(--white); }
 
+/* ===== Why choose us (success stats) ===== */
+.stats-section { background: var(--navy); }
+.stats-section .section-title { color: var(--white); }
+.stats-section .section-sub { color: rgba(255, 255, 255, 0.75); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 36px;
+}
+.stat-card {
+  text-align: center;
+  padding: 32px 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+}
+.stat-card strong {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.stat-card span {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
 /* ===== Tip of the day ===== */
 .tip-of-day { padding: 56px 0; }
 .tip-inner { display: flex; justify-content: center; }
@@ -697,6 +734,7 @@ section { padding: 64px 0; }
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
   .value-grid, .reviews-grid, .courses-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr; }
   .about-inner { grid-template-columns: 1fr; text-align: center; }
   .about-copy .section-title { text-align: center; }
   .about-visual { max-width: 220px; margin: 0 auto; }

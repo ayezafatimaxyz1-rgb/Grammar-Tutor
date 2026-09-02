@@ -231,7 +231,8 @@ const courses = [
     ],
     schedule: 'Fri–Sun · 6:00–7:30 PM',
     mode: 'Online / On-campus (xSEL Academy)',
-    duration: '2 months · or Rs. 5,000/month',
+    duration: '2 months',
+    installment: 'Or 2 monthly installments of Rs. 5,000 (Rs. 10,000 total)',
     startDate: 'Sept 19, 2026',
     priceOriginal: 10000,
     priceDiscounted: 9000,
@@ -250,7 +251,8 @@ const courses = [
     ],
     schedule: 'Mon–Thu · 8:00–9:00 PM',
     mode: 'Online / On-campus (xSEL Academy)',
-    duration: '2 months · or Rs. 5,000/month',
+    duration: '2 months',
+    installment: 'Or 2 monthly installments of Rs. 5,000 (Rs. 10,000 total)',
     startDate: 'Sept 12, 2026',
     priceOriginal: 10000,
     priceDiscounted: 9000,
@@ -321,6 +323,7 @@ courses.forEach((course) => {
       <span class="course-price-new">${formatPKR(course.priceDiscounted)}</span>
       <span class="course-price-off">10% OFF</span>
     </div>
+    ${course.installment ? `<p class="course-installment">${course.installment}</p>` : ''}
     <p class="course-countdown" data-countdown-for="${course.id}"></p>
     <button class="btn btn-primary" type="button" data-open-course="${course.id}">
       View Details &amp; Enroll
@@ -409,6 +412,16 @@ function openCourseModal(courseId) {
     <span class="course-price-new">${formatPKR(course.priceDiscounted)}</span>
     <span class="course-price-off">10% OFF</span>
   `;
+
+  const existingInstallment = document.getElementById('modal-installment');
+  if (existingInstallment) existingInstallment.remove();
+  if (course.installment) {
+    const installmentEl = document.createElement('p');
+    installmentEl.id = 'modal-installment';
+    installmentEl.className = 'course-installment';
+    installmentEl.textContent = course.installment;
+    modalPrice.insertAdjacentElement('afterend', installmentEl);
+  }
 
   updateModalCountdown();
 
