@@ -75,6 +75,40 @@ wireInstagramMessageCopy(
   () => FOOTER_IG_MESSAGE
 );
 
+// ===== Floating chat button =====
+const fabWrap = document.getElementById('fab-wrap');
+const fabToggle = document.getElementById('fab-toggle');
+const fabMenu = document.getElementById('fab-menu');
+const fabIconOpen = document.getElementById('fab-icon-open');
+const fabIconClose = document.getElementById('fab-icon-close');
+
+function setFabOpen(open) {
+  fabWrap.classList.toggle('open', open);
+  fabToggle.setAttribute('aria-expanded', String(open));
+  fabIconOpen.hidden = open;
+  fabIconClose.hidden = !open;
+}
+
+fabToggle.addEventListener('click', () => {
+  setFabOpen(!fabWrap.classList.contains('open'));
+});
+
+document.addEventListener('click', (event) => {
+  if (fabWrap.classList.contains('open') && !fabWrap.contains(event.target)) {
+    setFabOpen(false);
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && fabWrap.classList.contains('open')) setFabOpen(false);
+});
+
+fabMenu.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => setFabOpen(false));
+});
+
+wireInstagramMessageCopy(document.getElementById('fab-instagram'), () => FOOTER_IG_MESSAGE);
+
 // ===== Courses =====
 const WHATSAPP_NUMBER = '923015095042';
 const INSTAGRAM_HANDLE = 'english.with.mahmood.sarwar';
