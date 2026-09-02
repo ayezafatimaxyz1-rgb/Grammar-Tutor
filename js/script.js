@@ -48,7 +48,16 @@ tipBtn.addEventListener('click', showRandomTip);
 showRandomTip();
 
 // ===== Quiz =====
-const quizQuestions = [
+function shuffleArray(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+const rawQuizQuestions = [
   {
     question: "Which sentence uses “fewer” correctly?",
     options: [
@@ -96,6 +105,21 @@ const quizQuestions = [
     explanation: "English generally avoids stacking two negatives. “Don't have any” expresses the same idea correctly.",
   },
 ];
+
+// Reshuffle question order and each question's answer order on every load/reopen/retake.
+function buildQuizQuestions() {
+  return shuffleArray(rawQuizQuestions).map((q) => {
+    const shuffledOptions = shuffleArray(q.options.map((text, i) => ({ text, correct: i === q.correctIndex })));
+    return {
+      question: q.question,
+      explanation: q.explanation,
+      options: shuffledOptions.map((o) => o.text),
+      correctIndex: shuffledOptions.findIndex((o) => o.correct),
+    };
+  });
+}
+
+let quizQuestions = buildQuizQuestions();
 
 let currentQuestion = 0;
 let score = 0;
@@ -174,6 +198,7 @@ quizNextBtn.addEventListener('click', () => {
     restartBtn.type = 'button';
     restartBtn.innerHTML = '<i class="fa-solid fa-rotate-left"></i> Retake Quiz';
     restartBtn.addEventListener('click', () => {
+      quizQuestions = buildQuizQuestions();
       currentQuestion = 0;
       score = 0;
       quizScoreEl.textContent = '0';
@@ -194,23 +219,23 @@ const INSTAGRAM_HANDLE = 'english.with.mahmood.sarwar';
 
 const courses = [
   {
-    id: 'spoken-english',
+    id: 'fog-2',
     badge: '10% Early-Bird',
-    name: 'Spoken English Course',
-    tagline: 'A complete 2-month speaking journey — fast-track fluent, confident speaking.',
+    name: 'Fundamentals of Grammar 2.0',
+    tagline: 'A complete basic-to-advanced grammar course for CSS/PMS, MDCAT, IBA & one-paper exams.',
     features: [
-      'Online + on-site classes',
-      'Interactive activities & guided speaking drills',
-      'Listening comprehension with authentic audio/video',
-      'Focused pronunciation improvement',
+      'For CSS/PMS, MDCAT, IBA & all one-paper exams',
+      'In-class practice & reading tasks',
+      'Practice exercises after every class',
+      'Quiz after each module',
     ],
-    schedule: 'Mon–Thu · 6:00–7:00 PM',
-    mode: 'Online + On-site',
-    duration: '2 months',
-    startDate: 'Sept 15, 2026',
-    priceOriginal: 15000,
-    priceDiscounted: 13500,
-    offerEndsAt: '2026-09-10T23:59:59',
+    schedule: 'Fri–Sun · 6:00–7:30 PM',
+    mode: 'Online / On-campus (xSEL Academy)',
+    duration: '2 months · or Rs. 5,000/month',
+    startDate: 'Sept 19, 2026',
+    priceOriginal: 10000,
+    priceDiscounted: 9000,
+    offerEndsAt: '2026-09-06T23:59:59',
   },
   {
     id: 'precis-composition',
@@ -232,23 +257,23 @@ const courses = [
     offerEndsAt: '2026-09-08T23:59:59',
   },
   {
-    id: 'fog-2',
+    id: 'spoken-english',
     badge: '10% Early-Bird',
-    name: 'Fundamentals of Grammar 2.0',
-    tagline: 'A complete basic-to-advanced grammar course for CSS/PMS, MDCAT, IBA & one-paper exams.',
+    name: 'Spoken English Course',
+    tagline: 'A complete 2-month speaking journey — fast-track fluent, confident speaking.',
     features: [
-      'For CSS/PMS, MDCAT, IBA & all one-paper exams',
-      'In-class practice & reading tasks',
-      'Practice exercises after every class',
-      'Quiz after each module',
+      'Online + on-site classes',
+      'Interactive activities & guided speaking drills',
+      'Listening comprehension with authentic audio/video',
+      'Focused pronunciation improvement',
     ],
-    schedule: 'Fri–Sun · 6:00–7:30 PM',
-    mode: 'Online / On-campus (xSEL Academy)',
-    duration: '2 months · or Rs. 5,000/month',
-    startDate: 'Sept 19, 2026',
-    priceOriginal: 10000,
-    priceDiscounted: 9000,
-    offerEndsAt: '2026-09-06T23:59:59',
+    schedule: 'Mon–Thu · 6:00–7:00 PM',
+    mode: 'Online + On-site',
+    duration: '2 months',
+    startDate: 'Sept 15, 2026',
+    priceOriginal: 15000,
+    priceDiscounted: 13500,
+    offerEndsAt: '2026-09-10T23:59:59',
   },
 ];
 
@@ -264,9 +289,10 @@ function formatCountdown(targetIso) {
   const hours = Math.floor((totalSeconds % 86400) / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
-  if (days > 0) return `${days}d ${hours}h ${minutes}m`;
-  if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
-  return `${minutes}m ${seconds}s`;
+  const pad = (n) => String(n).padStart(2, '0');
+  return days > 0
+    ? `${days}d ${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`
+    : `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
 }
 
 const coursesGrid = document.getElementById('courses-grid');
