@@ -227,7 +227,7 @@ function tickCountdowns() {
     const remaining = formatCountdown(course.offerEndsAt);
     el.innerHTML = remaining
       ? `Offer ends in <strong>${remaining}</strong>`
-      : `<strong>Enrollment open</strong> — message us for the next batch date`;
+      : `<strong>Enrollment open.</strong> Message us for the next batch date`;
   });
 
   if (modalCourseId) updateModalCountdown();
