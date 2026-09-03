@@ -119,6 +119,7 @@ fabBackBtn.addEventListener('click', resetFabSteps);
 document.querySelectorAll('#fab-step-channel [data-channel]').forEach((btn) => {
   btn.addEventListener('click', () => {
     fabChannel = btn.dataset.channel;
+    wireFabCourseLinks(fabChannel);
     fabStepChannel.hidden = true;
     fabStepCourse.hidden = false;
   });
@@ -191,21 +192,34 @@ const courses = [
 ];
 
 // Populate the floating chat button's course picker now that `courses` exists.
+// These are real links (not JS-driven window.open) so the redirect to
+// WhatsApp/Instagram is a genuine browser navigation — reliable even in
+// contexts (sandboxed previews, some mobile browsers) where a script-
+// triggered window.open can get silently blocked.
 fabCourseList.innerHTML = courses
-  .map((c) => `<button type="button" class="fab-course-item" data-course-id="${c.id}">${c.name}</button>`)
-  .join('') + `<button type="button" class="fab-course-item fab-course-item-general" data-course-id="general">Something else</button>`;
+  .map((c) => `<a class="fab-course-item" href="#" target="_blank" rel="noopener" data-course-id="${c.id}">${c.name}</a>`)
+  .join('') + `<a class="fab-course-item fab-course-item-general" href="#" target="_blank" rel="noopener" data-course-id="general">Something else</a>`;
+
+function wireFabCourseLinks(channel) {
+  fabCourseList.querySelectorAll('a[data-course-id]').forEach((link) => {
+    const course = courses.find((c) => c.id === link.dataset.courseId);
+    const message = course
+      ? `Hi! I'd like to know more about the ${course.name} (${course.schedule}). Could you share the schedule, pricing, and enrollment details?`
+      : FOOTER_IG_MESSAGE;
+    if (channel === 'whatsapp') {
+      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    } else {
+      link.href = `https://ig.me/m/${INSTAGRAM_HANDLE}`;
+      link.dataset.igMessage = message;
+    }
+  });
+}
 
 fabCourseList.addEventListener('click', (event) => {
-  const trigger = event.target.closest('[data-course-id]');
+  const trigger = event.target.closest('a[data-course-id]');
   if (!trigger) return;
-  const course = courses.find((c) => c.id === trigger.dataset.courseId);
-  const message = course
-    ? `Hi! I'd like to know more about the ${course.name} (${course.schedule}). Could you share the schedule, pricing, and enrollment details?`
-    : FOOTER_IG_MESSAGE;
-
-  if (fabChannel === 'whatsapp') {
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
-  } else if (fabChannel === 'instagram') {
+  if (fabChannel === 'instagram') {
+    const message = trigger.dataset.igMessage;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(message)
         .then(() => showToast('Message copied! Paste it into the Instagram chat that just opened.'))
@@ -213,7 +227,6 @@ fabCourseList.addEventListener('click', (event) => {
     } else {
       showToast(`Send us: "${message}"`);
     }
-    window.open(`https://ig.me/m/${INSTAGRAM_HANDLE}`, '_blank', 'noopener');
   }
   setFabOpen(false);
 });
