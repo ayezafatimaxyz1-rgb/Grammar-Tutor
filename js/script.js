@@ -139,96 +139,6 @@ document.querySelectorAll('#fab-step-channel [data-channel]').forEach((btn) => {
   });
 });
 
-// ===== Courses =====
-const WHATSAPP_NUMBER = '923015095042';
-const INSTAGRAM_HANDLE = 'english.with.mahmood.sarwar';
-
-const courses = [
-  {
-    id: 'fog-2',
-    badge: '10% Early-Bird',
-    name: 'Fundamentals of Grammar 2.0',
-    tagline: 'A complete basic-to-advanced grammar course for CSS/PMS, MDCAT, IBA & one-paper exams.',
-    features: [
-      'For CSS/PMS, MDCAT, IBA & all one-paper exams',
-      'In-class practice & reading tasks',
-      'Practice exercises after every class',
-      'Quiz after each module',
-    ],
-    schedule: 'Fri–Sun · 6:00–7:30 PM',
-    mode: 'Online / On-campus (xSEL Academy)',
-    duration: '2 months',
-    installment: 'Or 2 monthly installments of Rs. 5,000 (Rs. 10,000 total)',
-    startDate: 'Sept 19, 2026',
-    priceOriginal: 10000,
-    priceDiscounted: 9000,
-    offerEndsAt: '2026-09-06T23:59:59',
-  },
-  {
-    id: 'precis-composition',
-    badge: '10% Early-Bird',
-    name: 'Precis & Composition',
-    tagline: 'Exam-focused writing and comprehension — built for competitive exams.',
-    features: [
-      '40+ hours of live classes',
-      'Exam-oriented practice & guidance',
-      'Interactive lessons',
-      'Vocabulary and reading tasks',
-    ],
-    schedule: 'Mon–Thu · 8:00–9:00 PM',
-    mode: 'Online / On-campus (xSEL Academy)',
-    duration: '2 months',
-    installment: 'Or 2 monthly installments of Rs. 5,000 (Rs. 10,000 total)',
-    startDate: 'Sept 12, 2026',
-    priceOriginal: 10000,
-    priceDiscounted: 9000,
-    offerEndsAt: '2026-09-08T23:59:59',
-  },
-  {
-    id: 'spoken-english',
-    badge: '10% Early-Bird',
-    name: 'Spoken English Course',
-    tagline: 'A complete 2-month speaking journey — fast-track fluent, confident speaking.',
-    features: [
-      'Online + on-site classes',
-      'Interactive activities & guided speaking drills',
-      'Listening comprehension with authentic audio/video',
-      'Focused pronunciation improvement',
-    ],
-    schedule: 'Mon–Thu · 6:00–7:00 PM',
-    mode: 'Online + On-site',
-    duration: '2 months',
-    startDate: 'Sept 15, 2026',
-    priceOriginal: 15000,
-    priceDiscounted: 13500,
-    offerEndsAt: '2026-09-10T23:59:59',
-  },
-];
-
-// Populate the floating chat button's course picker now that `courses` exists.
-// These are real links (not JS-driven window.open) so the redirect to
-// WhatsApp/Instagram is a genuine browser navigation — reliable even in
-// contexts (sandboxed previews, some mobile browsers) where a script-
-// triggered window.open can get silently blocked.
-fabCourseList.innerHTML = courses
-  .map((c) => `<a class="fab-course-item" href="#" target="_blank" rel="noopener" data-course-id="${c.id}">${c.name}</a>`)
-  .join('') + `<a class="fab-course-item fab-course-item-general" href="#" target="_blank" rel="noopener" data-course-id="general">Something else</a>`;
-
-function wireFabCourseLinks(channel) {
-  fabCourseList.querySelectorAll('a[data-course-id]').forEach((link) => {
-    const course = courses.find((c) => c.id === link.dataset.courseId);
-    const message = course
-      ? `Hi! I'd like to know more about the ${course.name} (${course.schedule}). Could you share the schedule, pricing, and enrollment details?`
-      : FOOTER_IG_MESSAGE;
-    if (channel === 'whatsapp') {
-      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-    } else {
-      link.href = `https://ig.me/m/${INSTAGRAM_HANDLE}`;
-      link.dataset.igMessage = message;
-    }
-  });
-}
-
 fabCourseList.addEventListener('click', (event) => {
   const trigger = event.target.closest('a[data-course-id]');
   if (!trigger) return;
@@ -245,8 +155,24 @@ fabCourseList.addEventListener('click', (event) => {
   setFabOpen(false);
 });
 
+// ===== Shared course-related state =====
+// Populated by loadCourses() below, from content/courses.json — the file
+// the /admin content panel edits. Everything that needs course data reads
+// from this array rather than a hardcoded list.
+const WHATSAPP_NUMBER = '923015095042';
+const INSTAGRAM_HANDLE = 'english.with.mahmood.sarwar';
+let courses = [];
+
+function slugify(str) {
+  return String(str)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
 function formatPKR(amount) {
-  return `Rs. ${amount.toLocaleString('en-PK')}`;
+  return `Rs. ${Number(amount).toLocaleString('en-PK')}`;
 }
 
 function formatCountdown(targetIso) {
@@ -263,42 +189,22 @@ function formatCountdown(targetIso) {
     : `${pad(hours)}h ${pad(minutes)}m ${pad(seconds)}s`;
 }
 
+function wireFabCourseLinks(channel) {
+  fabCourseList.querySelectorAll('a[data-course-id]').forEach((link) => {
+    const course = courses.find((c) => c.id === link.dataset.courseId);
+    const message = course
+      ? `Hi! I'd like to know more about the ${course.name} (${course.schedule}). Could you share the schedule, pricing, and enrollment details?`
+      : FOOTER_IG_MESSAGE;
+    if (channel === 'whatsapp') {
+      link.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+    } else {
+      link.href = `https://ig.me/m/${INSTAGRAM_HANDLE}`;
+      link.dataset.igMessage = message;
+    }
+  });
+}
+
 const coursesGrid = document.getElementById('courses-grid');
-
-courses.forEach((course) => {
-  const card = document.createElement('div');
-  card.className = 'course-card';
-  card.innerHTML = `
-    <span class="course-badge">${course.badge}</span>
-    <h3>${course.name}</h3>
-    <p class="course-tagline">${course.tagline}</p>
-    <ul class="course-features">
-      ${course.features.slice(0, 3).map((f) => `
-        <li>
-          <svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>${f}</span>
-        </li>
-      `).join('')}
-    </ul>
-    <div class="course-schedule">
-      <span>${course.schedule}</span>
-      <span>${course.mode.split(' (')[0]}</span>
-    </div>
-    <div class="course-price-row">
-      <span class="course-price-old">${formatPKR(course.priceOriginal)}</span>
-      <span class="course-price-new">${formatPKR(course.priceDiscounted)}</span>
-      <span class="course-price-off">10% OFF</span>
-    </div>
-    ${course.installment ? `<p class="course-installment">${course.installment}</p>` : ''}
-    <p class="course-countdown" data-countdown-for="${course.id}"></p>
-    <button class="btn btn-primary" type="button" data-open-course="${course.id}">
-      View Details &amp; Enroll
-    </button>
-  `;
-  coursesGrid.appendChild(card);
-});
-
-// ===== Countdown ticking (sticky bar + course cards) =====
 const offerCountdownEl = document.getElementById('offer-countdown');
 let modalCourseId = null;
 
@@ -326,9 +232,6 @@ function tickCountdowns() {
 
   if (modalCourseId) updateModalCountdown();
 }
-
-tickCountdowns();
-setInterval(tickCountdowns, 1000);
 
 // ===== Course modal =====
 const courseModal = document.getElementById('course-modal');
@@ -422,3 +325,123 @@ courseModal.addEventListener('click', (event) => {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !courseModal.hidden) closeCourseModal();
 });
+
+// ===== Content loaders =====
+// Each section's content lives in content/*.json — the files the /admin
+// panel edits. A load failure leaves that section as it shipped rather
+// than breaking the rest of the page.
+
+async function loadCourses() {
+  try {
+    const res = await fetch('content/courses.json', { cache: 'no-cache' });
+    const data = await res.json();
+    courses = (data.courses || []).map((c) => ({ ...c, id: slugify(c.name) }));
+  } catch (err) {
+    console.error('Could not load content/courses.json', err);
+    return;
+  }
+
+  courses.forEach((course) => {
+    const card = document.createElement('div');
+    card.className = 'course-card';
+    card.innerHTML = `
+      <span class="course-badge">${course.badge}</span>
+      <h3>${course.name}</h3>
+      <p class="course-tagline">${course.tagline}</p>
+      <ul class="course-features">
+        ${course.features.slice(0, 3).map((f) => `
+          <li>
+            <svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>${f}</span>
+          </li>
+        `).join('')}
+      </ul>
+      <div class="course-schedule">
+        <span>${course.schedule}</span>
+        <span>${course.mode.split(' (')[0]}</span>
+      </div>
+      <div class="course-price-row">
+        <span class="course-price-old">${formatPKR(course.priceOriginal)}</span>
+        <span class="course-price-new">${formatPKR(course.priceDiscounted)}</span>
+        <span class="course-price-off">10% OFF</span>
+      </div>
+      ${course.installment ? `<p class="course-installment">${course.installment}</p>` : ''}
+      <p class="course-countdown" data-countdown-for="${course.id}"></p>
+      <button class="btn btn-primary" type="button" data-open-course="${course.id}">
+        View Details &amp; Enroll
+      </button>
+    `;
+    coursesGrid.appendChild(card);
+  });
+
+  fabCourseList.innerHTML = courses
+    .map((c) => `<a class="fab-course-item" href="#" target="_blank" rel="noopener" data-course-id="${c.id}">${c.name}</a>`)
+    .join('') + `<a class="fab-course-item fab-course-item-general" href="#" target="_blank" rel="noopener" data-course-id="general">Something else</a>`;
+
+  tickCountdowns();
+  setInterval(tickCountdowns, 1000);
+}
+
+async function loadTestimonials() {
+  const grid = document.getElementById('reviews-grid');
+  if (!grid) return;
+  try {
+    const res = await fetch('content/testimonials.json', { cache: 'no-cache' });
+    const data = await res.json();
+    const testimonials = data.testimonials || [];
+    const starSvg = '<svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;stroke:none;fill:currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg>';
+    grid.innerHTML = testimonials.map((t) => {
+      const letters = (t.handle || '').replace(/^[^a-zA-Z]+/, '');
+      const initial = (letters.charAt(0) || '?').toUpperCase();
+      return `
+        <div class="review-card">
+          <div class="stars">${starSvg.repeat(5)}</div>
+          <p>"${t.quote}"</p>
+          <div class="review-author">
+            <span class="avatar-initial">${initial}</span>
+            <div><strong>${t.handle}</strong><span>${t.label}</span></div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  } catch (err) {
+    console.error('Could not load content/testimonials.json', err);
+  }
+}
+
+async function loadStats() {
+  const grid = document.getElementById('stats-grid');
+  if (!grid) return;
+  try {
+    const res = await fetch('content/stats.json', { cache: 'no-cache' });
+    const data = await res.json();
+    const stats = data.stats || [];
+    grid.innerHTML = stats.map((s) => `
+      <div class="stat-card">
+        <strong>${s.number}</strong>
+        <span>${s.label}</span>
+      </div>
+    `).join('');
+  } catch (err) {
+    console.error('Could not load content/stats.json', err);
+  }
+}
+
+async function loadAbout() {
+  const p1 = document.getElementById('about-paragraph-1');
+  const p2 = document.getElementById('about-paragraph-2');
+  if (!p1 || !p2) return;
+  try {
+    const res = await fetch('content/about.json', { cache: 'no-cache' });
+    const data = await res.json();
+    p1.textContent = data.paragraph1 || '';
+    p2.textContent = data.paragraph2 || '';
+  } catch (err) {
+    console.error('Could not load content/about.json', err);
+  }
+}
+
+loadCourses();
+loadTestimonials();
+loadStats();
+loadAbout();

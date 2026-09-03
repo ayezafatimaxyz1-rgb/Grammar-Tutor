@@ -1,0 +1,86 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+site_url: https://sarwars-english-lab.example
+display_url: https://sarwars-english-lab.example
+
+collections:
+  - name: "courses"
+    label: "Courses & Prices"
+    files:
+      - name: "courses"
+        label: "Course List"
+        file: "content/courses.json"
+        fields:
+          - label: "Courses"
+            name: "courses"
+            widget: "list"
+            summary: "{{fields.name}} — Rs. {{fields.priceDiscounted}}"
+            fields:
+              - { label: "Badge (small tag on the card)", name: "badge", widget: "string", default: "10% Early-Bird" }
+              - { label: "Course Name", name: "name", widget: "string" }
+              - { label: "Short Description", name: "tagline", widget: "text" }
+              - label: "What's Included (bullet points)"
+                name: "features"
+                widget: "list"
+                field: { label: "Point", name: "point", widget: "string" }
+              - { label: "Schedule (e.g. Mon–Thu · 6:00–7:00 PM)", name: "schedule", widget: "string" }
+              - { label: "Mode (Online / On-campus / etc.)", name: "mode", widget: "string" }
+              - { label: "Duration (e.g. 2 months)", name: "duration", widget: "string" }
+              - { label: "Installment Note (leave blank if none)", name: "installment", widget: "string", required: false }
+              - { label: "Start Date (shown as text, e.g. Sept 19, 2026)", name: "startDate", widget: "string" }
+              - { label: "Original Price (Rs.)", name: "priceOriginal", widget: "number", value_type: "int" }
+              - { label: "Discounted / Early-Bird Price (Rs.)", name: "priceDiscounted", widget: "number", value_type: "int" }
+              - label: "Early-Bird Offer Ends At"
+                name: "offerEndsAt"
+                widget: "datetime"
+                format: "YYYY-MM-DDTHH:mm:ss"
+                date_format: "YYYY-MM-DD"
+                time_format: "HH:mm"
+                picker_utc: false
+                hint: "After this date/time, the countdown switches to \"Enrollment open\"."
+
+  - name: "testimonials"
+    label: "Testimonials"
+    files:
+      - name: "testimonials"
+        label: "Testimonials"
+        file: "content/testimonials.json"
+        fields:
+          - label: "Reviews"
+            name: "testimonials"
+            widget: "list"
+            summary: "{{fields.handle}}"
+            fields:
+              - { label: "Quote", name: "quote", widget: "text" }
+              - { label: "Instagram Handle (include the @)", name: "handle", widget: "string" }
+              - { label: "Label (e.g. Instagram student)", name: "label", widget: "string" }
+
+  - name: "stats"
+    label: "Why Choose Us — Stats"
+    files:
+      - name: "stats"
+        label: "Stats"
+        file: "content/stats.json"
+        fields:
+          - label: "Stat Tiles"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.number}} — {{fields.label}}"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+  - name: "about"
+    label: "About Section"
+    files:
+      - name: "about"
+        label: "About Text"
+        file: "content/about.json"
+        fields:
+          - { label: "Paragraph 1", name: "paragraph1", widget: "text" }
+          - { label: "Paragraph 2", name: "paragraph2", widget: "text" }
