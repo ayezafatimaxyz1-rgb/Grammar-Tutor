@@ -784,8 +784,13 @@ section { padding: 64px 0; }
   border-radius: var(--radius-lg);
   display: grid;
   place-items: center;
-  color: var(--navy);
-  font-size: 3.2rem;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.about-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 .about-copy .section-title { text-align: left; }
 
@@ -836,9 +841,9 @@ section { padding: 64px 0; }
 @media (max-width: 900px) {
   .reviews-grid, .courses-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: 1fr; }
-  .about-inner { grid-template-columns: 1fr; text-align: center; }
+  .about-inner { grid-template-columns: 1fr; }
   .about-copy .section-title { text-align: center; }
-  .about-visual { max-width: 220px; margin: 0 auto; }
+  .about-visual { max-width: 240px; margin: 0 auto 6px; }
   .footer-inner { grid-template-columns: 1fr; }
   .modal-meta { grid-template-columns: 1fr; }
 }
