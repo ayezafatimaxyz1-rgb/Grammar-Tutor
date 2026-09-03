@@ -1,3 +1,17 @@
+// ===== Anchor-link scroll offset =====
+// The header is sticky and its height changes (the offer bar can wrap to
+// two lines on narrow screens), so keep the scroll offset in sync instead
+// of hardcoding it — otherwise section headings land hidden underneath it.
+function updateScrollOffset() {
+  const header = document.querySelector('.site-header');
+  if (header) {
+    document.documentElement.style.scrollPaddingTop = `${header.offsetHeight + 16}px`;
+  }
+}
+updateScrollOffset();
+window.addEventListener('resize', updateScrollOffset);
+window.addEventListener('load', updateScrollOffset);
+
 // ===== Mobile nav toggle =====
 const navToggle = document.getElementById('nav-toggle');
 const mainNav = document.getElementById('main-nav');
