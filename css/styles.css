@@ -836,6 +836,14 @@ section { padding: 64px 0; }
   font-size: 0.82rem;
   text-align: center;
 }
+.footer-bottom p { margin: 0; }
+.footer-bottom p.footer-credit {
+  margin-top: 6px;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.8rem;
+}
+.footer-credit a { color: rgba(255,255,255,0.75); }
+.footer-credit a:hover { color: var(--gold-light); }
 
 /* ===== Responsive ===== */
 @media (max-width: 900px) {
