@@ -1,6 +1,9 @@
 backend:
   name: git-gateway
-  branch: main
+  # NOTE: must match whatever branch Netlify is actually deploying from.
+  # Currently the work-in-progress branch — change to "main" once this
+  # branch is merged for the real launch.
+  branch: claude/english-grammar-website-ux3hb9
 
 media_folder: "assets/uploads"
 public_folder: "/assets/uploads"
