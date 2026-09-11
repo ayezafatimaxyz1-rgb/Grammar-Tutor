@@ -1,0 +1,7 @@
+{
+  "stats": [
+    { "number": "30", "label": "Successful FOG Batches" },
+    { "number": "25", "label": "Successful Precis Batches" },
+    { "number": "25", "label": "Successful Spoken English Batches" }
+  ]
+}
