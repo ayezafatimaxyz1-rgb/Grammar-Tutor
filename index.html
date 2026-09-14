@@ -1,0 +1,1548 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Digital Whiteboard</title>
+<style>
+:root{
+  --bg:#eef0f4; --panel:#ffffff; --panel-2:#f6f7f9; --text:#14161a; --muted:#6b7280;
+  --border:#dfe3ea; --board:#ffffff; --board-line:#e9edf3; --accent:#2563eb; --accent-t:#ffffff;
+  --danger:#e11d48; --shadow:0 6px 24px rgba(16,20,30,.12); --chip:#eef1f6;
+}
+html[data-theme="dark"]{
+  --bg:#0a0b0d; --panel:#141619; --panel-2:#1b1e23; --text:#f2f3f5; --muted:#9aa3af;
+  --border:#282c33; --board:#0f1114; --board-line:#1d2127; --accent:#4f8cff; --accent-t:#06101f;
+  --danger:#ff5c7a; --shadow:0 6px 24px rgba(0,0,0,.5); --chip:#20242a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{
+  margin:0;background:var(--bg);color:var(--text);overflow:hidden;
+  font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,sans-serif;
+  transition:background .2s ease,color .2s ease;
+  touch-action:none;overscroll-behavior:none;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+
+/* ---------- top bar ---------- */
+.topbar{
+  display:flex;align-items:center;gap:8px;padding:8px 10px;
+  padding-top:max(8px,env(safe-area-inset-top));
+  background:var(--panel);border-bottom:1px solid var(--border);z-index:30;flex:0 0 auto;
+}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.brand .dot{width:18px;height:18px;border-radius:6px;background:var(--accent);display:inline-block}
+.brand span.t{font-size:14px}
+.spacer{flex:1}
+.tgroup{display:flex;align-items:center;gap:4px;background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:4px}
+.tbtn{
+  width:38px;height:38px;border-radius:9px;display:grid;place-items:center;
+  color:var(--muted);transition:background .15s,color .15s,transform .1s;
+}
+.tbtn:hover{background:var(--chip);color:var(--text)}
+.tbtn:active{transform:scale(.94)}
+.tbtn.on{background:var(--accent);color:var(--accent-t)}
+.tbtn.rec{color:var(--danger)}
+.tbtn[disabled]{opacity:.35;cursor:default}
+.tbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.wide{width:auto;padding:0 12px;gap:7px;font-weight:600;font-size:13px}
+
+/* ---------- workspace ---------- */
+.work{position:relative;flex:1;min-height:0;display:flex}
+#stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+
+/* ---------- floating tool rail (right, like an IWB) ---------- */
+.rail{
+  position:absolute;top:50%;right:12px;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;padding:6px;z-index:20;
+  background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);
+}
+.rail .sep{height:1px;background:var(--border);margin:2px 4px}
+
+/* ---------- options popover ---------- */
+.pop{
+  position:absolute;z-index:40;background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;box-shadow:var(--shadow);padding:12px;min-width:230px;display:none;
+}
+.pop.open{display:block}
+.pop h4{margin:0 0 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);position:relative}
+.sw.on{box-shadow:0 0 0 3px var(--accent);border-color:var(--panel)}
+.sizes{display:flex;gap:8px;align-items:center}
+.size{width:34px;height:34px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);display:grid;place-items:center}
+.size i{display:block;border-radius:50%;background:var(--text)}
+.size.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.seg{display:flex;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;overflow:hidden;width:100%}
+.seg button{flex:1;padding:8px 6px;font-size:12.5px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--accent);color:var(--accent-t)}
+.mini{font-size:12px;color:var(--muted)}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;user-select:none}
+.chk input{width:17px;height:17px;accent-color:var(--accent)}
+
+/* ---------- bottom page bar ---------- */
+.pagebar{
+  display:flex;align-items:center;gap:8px;padding:7px 10px;
+  padding-bottom:max(7px,env(safe-area-inset-bottom));
+  background:var(--panel);border-top:1px solid var(--border);z-index:30;flex:0 0 auto;
+}
+.pages{display:flex;gap:6px;overflow-x:auto;flex:1;padding:2px;scrollbar-width:thin}
+.pages::-webkit-scrollbar{height:5px}
+.pages::-webkit-scrollbar-thumb{background:var(--border);border-radius:9px}
+.pchip{
+  flex:0 0 auto;min-width:46px;height:34px;border-radius:9px;border:1px solid var(--border);
+  background:var(--panel-2);color:var(--muted);font-weight:700;font-size:13px;padding:0 10px;
+}
+.pchip.on{background:var(--accent);color:var(--accent-t);border-color:var(--accent)}
+
+/* ---------- recording pill ---------- */
+.recpill{
+  position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:35;display:none;
+  align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);
+  border-radius:999px;padding:6px 8px 6px 14px;box-shadow:var(--shadow);font-weight:700;font-size:13px;
+}
+.recpill.show{display:flex}
+.blink{width:10px;height:10px;border-radius:50%;background:var(--danger);animation:bl 1.1s infinite}
+.recpill.paused .blink{animation:none;opacity:.45}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
+.pillbtn{padding:6px 11px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border);font-weight:700;font-size:12.5px}
+.pillbtn.stop{background:var(--danger);color:#fff;border-color:transparent}
+
+/* ---------- modal ---------- */
+.backdrop{position:fixed;inset:0;background:rgba(8,10,14,.55);backdrop-filter:blur(3px);z-index:60;display:none;align-items:center;justify-content:center;padding:16px}
+.backdrop.open{display:flex}
+.modal{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);width:min(680px,100%);max-height:88vh;overflow:auto;padding:16px}
+.modal h3{margin:0 0 4px;font-size:17px}
+.modal p{margin:0 0 12px;color:var(--muted);font-size:13px}
+.modal video{width:100%;border-radius:12px;background:#000;display:block;margin-bottom:12px}
+.btn{padding:10px 14px;border-radius:11px;background:var(--panel-2);border:1px solid var(--border);font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--text)}
+.btn.primary{background:var(--accent);color:var(--accent-t);border-color:transparent}
+.btn.ghost{background:transparent}
+kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width:2px;border-radius:6px;padding:1px 6px;font:600 11.5px ui-monospace,Menlo,Consolas,monospace}
+.klist{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px;font-size:13px}
+.klist div{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:4px 0;border-bottom:1px dashed var(--border)}
+
+/* ---------- text editor overlay ---------- */
+#textedit{
+  position:absolute;z-index:25;display:none;background:transparent;border:1.5px dashed var(--accent);
+  border-radius:6px;padding:2px 4px;outline:none;resize:none;overflow:hidden;white-space:pre;
+  font-family:inherit;line-height:1.25;min-width:40px;
+}
+/* ---------- toast ---------- */
+#toast{
+  position:absolute;bottom:16px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--panel);border:1px solid var(--border);box-shadow:var(--shadow);
+  border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;z-index:50;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+}
+#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:760px){
+  .brand span.t{display:none}
+  .hide-sm{display:none !important}
+  .rail{right:8px;padding:5px;gap:5px;border-radius:14px}
+  .tbtn{width:36px;height:36px}
+  .topbar{gap:6px;padding:6px 8px;padding-top:max(6px,env(safe-area-inset-top))}
+  .pop{min-width:210px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ================= TOP BAR ================= -->
+  <div class="topbar">
+    <div class="brand"><i class="dot"></i><span class="t">Whiteboard</span></div>
+
+    <div class="tgroup">
+      <button class="tbtn" id="undo" title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg></button>
+      <button class="tbtn" id="redo" title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/></svg></button>
+    </div>
+
+    <div class="tgroup hide-sm">
+      <button class="tbtn" id="zoomout" title="Zoom out"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/></svg></button>
+      <button class="tbtn wide" id="zoomfit" title="Fit to screen"><span id="zoomlbl">100%</span></button>
+      <button class="tbtn" id="zoomin" title="Zoom in"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M20 20l-3.5-3.5"/></svg></button>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="tgroup">
+      <button class="tbtn" id="recbtn" title="Record the board with your voice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4" fill="currentColor" stroke="none"/></svg></button>
+      <button class="tbtn" id="recopt" title="Recording options"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
+    </div>
+
+    <div class="tgroup">
+      <button class="tbtn" id="savebtn" title="Export / Save"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 20h16"/></svg></button>
+      <button class="tbtn" id="themebtn" title="Toggle black / white theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16" fill="currentColor" stroke="none"/></svg></button>
+      <button class="tbtn" id="helpbtn" title="Shortcuts &amp; help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.8-.9 1.4v.4"/><path d="M12 17h.01"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ================= WORKSPACE ================= -->
+  <div class="work" id="work">
+    <canvas id="stage"></canvas>
+    <textarea id="textedit" spellcheck="false"></textarea>
+
+    <!-- tool rail -->
+    <div class="rail">
+      <button class="tbtn" data-tool="pen" title="Marker (P)"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4z"/><path d="m13.6 6.4 4 4"/></svg></button>
+      <button class="tbtn" data-tool="marker" title="Highlighter (M)"><svg viewBox="0 0 24 24"><path d="M4 20h6"/><path d="m9 15 8-8 3.5 3.5-8 8H9z"/><path d="M9 15v3.5"/></svg></button>
+      <button class="tbtn" data-tool="eraser" title="Eraser (E)"><svg viewBox="0 0 24 24"><path d="m15 4 5 5-9 9H6l-2-2z"/><path d="M8.5 10.5 14 16"/><path d="M11 20h9"/></svg></button>
+      <button class="tbtn" data-tool="shape" title="Shapes (R)"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="10" height="10" rx="1.5"/><circle cx="15.5" cy="15.5" r="5"/></svg></button>
+      <button class="tbtn" data-tool="text" title="Text (T)"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5"/><path d="M12 5v14"/><path d="M9 19h6"/></svg></button>
+      <button class="tbtn" id="imgbtn" title="Add photo from gallery (I)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></svg></button>
+      <div class="sep"></div>
+      <button class="tbtn" data-tool="select" title="Select &amp; move (V)"><svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 1.6L10.4 19z"/></svg></button>
+      <button class="tbtn" data-tool="pan" title="Pan (H / hold Space)"><svg viewBox="0 0 24 24"><path d="M9 11V5.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M12.2 11V4.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M15.4 11.4V7.6a1.6 1.6 0 0 1 3.2 0V15a6 6 0 0 1-6 6h-1a5 5 0 0 1-4.3-2.5L5 14.4a1.6 1.6 0 0 1 2.6-1.9L9 14.2V11"/></svg></button>
+      <div class="sep"></div>
+      <button class="tbtn" id="clearbtn" title="Clear this page"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4.8h6V7"/><path d="M6.5 7 7.5 20h9L17.5 7"/><path d="M10.5 10.5v6M13.5 10.5v6"/></svg></button>
+    </div>
+
+    <!-- popovers -->
+    <div class="pop" id="penpop">
+      <h4>Marker colour</h4>
+      <div class="swatches" id="swatches"></div>
+      <h4 style="margin-top:14px">Thickness</h4>
+      <div class="sizes" id="sizes"></div>
+      <h4 style="margin-top:14px">Opacity <span class="mini" id="opval">100%</span></h4>
+      <input type="range" id="opacity" min="10" max="100" value="100">
+    </div>
+
+    <div class="pop" id="eraserpop">
+      <h4>Eraser mode</h4>
+      <div class="seg" id="eraserseg">
+        <button data-mode="pixel" class="on">Erase ink</button>
+        <button data-mode="object">Erase object</button>
+      </div>
+      <h4 style="margin-top:14px">Size <span class="mini" id="ersizeval">28 px</span></h4>
+      <input type="range" id="ersize" min="8" max="160" value="28">
+    </div>
+
+    <div class="pop" id="shapepop">
+      <h4>Shape</h4>
+      <div class="row" id="shapes"></div>
+      <h4 style="margin-top:14px">Colour</h4>
+      <div class="swatches" id="shswatches"></div>
+      <label class="chk" style="margin-top:12px"><input type="checkbox" id="shfill"> Filled shape</label>
+    </div>
+
+    <div class="pop" id="textpop">
+      <h4>Text size <span class="mini" id="tsval">44 px</span></h4>
+      <input type="range" id="tsize" min="16" max="160" value="44">
+      <h4 style="margin-top:14px">Colour</h4>
+      <div class="swatches" id="txswatches"></div>
+    </div>
+
+    <div class="pop" id="recpop">
+      <h4>What to record</h4>
+      <div class="seg" id="recseg">
+        <button data-src="board" class="on">Whiteboard</button>
+        <button data-src="screen">Whole screen</button>
+      </div>
+      <label class="chk" style="margin-top:12px"><input type="checkbox" id="micchk" checked> Record my voice (microphone)</label>
+      <label class="chk" style="margin-top:8px"><input type="checkbox" id="syschk"> Include system / tab audio</label>
+      <p class="mini" id="recnote" style="margin:10px 0 0"></p>
+    </div>
+
+    <div class="pop" id="savepop">
+      <h4>Export</h4>
+      <div class="row" style="flex-direction:column;align-items:stretch;gap:8px">
+        <button class="btn" id="expPng">Current page as PNG</button>
+        <button class="btn" id="expAll">All pages as PNG</button>
+        <button class="btn" id="expJson">Save board file (.json)</button>
+        <button class="btn" id="impJson">Open board file…</button>
+      </div>
+    </div>
+
+    <!-- recording pill -->
+    <div class="recpill" id="recpill">
+      <i class="blink"></i><span id="rectime">00:00</span>
+      <button class="pillbtn" id="recpause">Pause</button>
+      <button class="pillbtn stop" id="recstop">Stop</button>
+    </div>
+
+    <div id="toast"></div>
+  </div>
+
+  <!-- ================= PAGE BAR ================= -->
+  <div class="pagebar">
+    <button class="tbtn" id="prevpage" title="Previous page (←)"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
+    <div class="pages" id="pages"></div>
+    <button class="tbtn" id="nextpage" title="Next page (→)"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button class="tbtn" id="addpage" title="Add page"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button class="tbtn" id="delpage" title="Delete page"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+  </div>
+</div>
+
+<!-- recording result modal -->
+<div class="backdrop" id="vidback">
+  <div class="modal">
+    <h3>Recording ready</h3>
+    <p id="vidmeta">Preview it below, then save it to your device.</p>
+    <video id="vidprev" controls playsinline></video>
+    <div class="row">
+      <a class="btn primary" id="viddl" download="whiteboard-recording.webm">Download video</a>
+      <button class="btn" id="vidopen">Open in new tab</button>
+      <button class="btn ghost" id="vidclose">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- help modal -->
+<div class="backdrop" id="helpback">
+  <div class="modal">
+    <h3>Digital Whiteboard</h3>
+    <p>Works with mouse, pen and touch. Everything is saved in this browser automatically.</p>
+    <div class="klist">
+      <div><span>Marker</span><kbd>P</kbd></div>
+      <div><span>Highlighter</span><kbd>M</kbd></div>
+      <div><span>Eraser</span><kbd>E</kbd></div>
+      <div><span>Shapes</span><kbd>R</kbd></div>
+      <div><span>Text</span><kbd>T</kbd></div>
+      <div><span>Select / move</span><kbd>V</kbd></div>
+      <div><span>Pan</span><kbd>H</kbd> / <kbd>Space</kbd></div>
+      <div><span>Add photo</span><kbd>I</kbd></div>
+      <div><span>Undo / Redo</span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></div>
+      <div><span>Delete selection</span><kbd>Del</kbd></div>
+      <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
+      <div><span>New page</span><kbd>Ctrl+N</kbd></div>
+      <div><span>Zoom</span><kbd>Ctrl+scroll</kbd> / pinch</div>
+      <div><span>Fit to screen</span><kbd>0</kbd></div>
+      <div><span>Black / white theme</span><kbd>D</kbd></div>
+      <div><span>Start / stop recording</span><kbd>Ctrl+Shift+R</kbd></div>
+    </div>
+    <div class="row" style="margin-top:14px"><button class="btn primary" id="helpclose">Got it</button></div>
+  </div>
+</div>
+
+<input type="file" id="filepick" accept="image/*" multiple hidden>
+<input type="file" id="jsonpick" accept="application/json,.json" hidden>
+
+<script>
+"use strict";
+/* =====================================================================
+   Digital Whiteboard — single file app (desktop + mobile)
+   ===================================================================== */
+
+const $  = (s) => document.querySelector(s);
+const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+const PAGE_W = 1920, PAGE_H = 1080;          // fixed board size (world units)
+const STORE_KEY = "digital-whiteboard-v1";
+
+const PALETTE = [
+  "#111827", "#e11d48", "#2563eb", "#16a34a", "#f59e0b",
+  "#9333ea", "#06b6d4", "#f97316", "#ec4899", "#ffffff"
+];
+const SIZES = [3, 6, 11, 18, 28];
+
+const state = {
+  pages: [newPage()],
+  cur: 0,
+  tool: "pen",
+  color: PALETTE[0],
+  size: 6,
+  opacity: 1,
+  eraserMode: "pixel",
+  eraserSize: 28,
+  shape: "rect",
+  shapeFill: false,
+  shapeColor: PALETTE[2],
+  textColor: PALETTE[0],
+  textSize: 44,
+  view: { s: 1, x: 0, y: 0 },
+  sel: null,
+  theme: "light"
+};
+
+function newPage(){ return { items: [], hist: [], redo: [] }; }
+function page(){ return state.pages[state.cur]; }
+
+/* ---------------- canvas & sizing ---------------- */
+const cv  = $("#stage");
+const ctx = cv.getContext("2d");
+let DPR = 1, VW = 0, VH = 0;
+
+function resize(){
+  const r = $("#work").getBoundingClientRect();
+  DPR = Math.min(window.devicePixelRatio || 1, 2.5);
+  VW = Math.max(1, Math.round(r.width));
+  VH = Math.max(1, Math.round(r.height));
+  cv.width  = Math.round(VW * DPR);
+  cv.height = Math.round(VH * DPR);
+  cv.style.width  = VW + "px";
+  cv.style.height = VH + "px";
+  draw();
+}
+window.addEventListener("resize", () => { resize(); clampView(); });
+window.addEventListener("orientationchange", () => setTimeout(() => { resize(); fitView(); }, 250));
+
+/* ---------------- view transform ---------------- */
+function fitView(){
+  const pad = 24;
+  const s = Math.min((VW - pad*2) / PAGE_W, (VH - pad*2) / PAGE_H);
+  state.view.s = s;
+  state.view.x = (VW - PAGE_W * s) / 2;
+  state.view.y = (VH - PAGE_H * s) / 2;
+  updateZoomLabel(); draw();
+}
+function clampView(){
+  const v = state.view;
+  v.s = Math.min(8, Math.max(0.08, v.s));
+  const w = PAGE_W * v.s, h = PAGE_H * v.s, m = 120;
+  v.x = Math.min(VW - m, Math.max(m - w, v.x));
+  v.y = Math.min(VH - m, Math.max(m - h, v.y));
+  updateZoomLabel(); draw();
+}
+function zoomAt(sx, sy, factor){
+  const v = state.view;
+  const ns = Math.min(8, Math.max(0.08, v.s * factor));
+  const k = ns / v.s;
+  v.x = sx - (sx - v.x) * k;
+  v.y = sy - (sy - v.y) * k;
+  v.s = ns;
+  clampView();
+}
+const toWorld = (sx, sy) => ({ x: (sx - state.view.x) / state.view.s, y: (sy - state.view.y) / state.view.s });
+const toScreen = (wx, wy) => ({ x: wx * state.view.s + state.view.x, y: wy * state.view.s + state.view.y });
+function updateZoomLabel(){ $("#zoomlbl").textContent = Math.round(state.view.s * 100) + "%"; }
+
+/* ---------------- item helpers ---------------- */
+const imgCache = new Map();
+function getImage(src, onload){
+  if (imgCache.has(src)) return imgCache.get(src);
+  const im = new Image();
+  im.onload = () => { onload && onload(); draw(); };
+  im.src = src;
+  imgCache.set(src, im);
+  return im;
+}
+
+const INK_DARK = PALETTE[0], INK_LIGHT = PALETTE[9];
+function isAutoInk(c){ return c === INK_DARK || c === INK_LIGHT; }
+// ink drawn with the default marker flips with the board so notes stay readable;
+// a colour the user picked on purpose is never changed
+function inkOf(it){
+  if (it.auto) return state.theme === "dark" ? INK_LIGHT : INK_DARK;
+  return it.color;
+}
+function bboxOf(it){
+  if (it.type === "image") return { x: it.x, y: it.y, w: it.w, h: it.h };
+  if (it.type === "text"){
+    const m = measureText(it);
+    return { x: it.x, y: it.y, w: m.w, h: m.h };
+  }
+  if (it.type === "shape"){
+    const x = Math.min(it.x1, it.x2), y = Math.min(it.y1, it.y2);
+    return { x, y, w: Math.abs(it.x2 - it.x1), h: Math.abs(it.y2 - it.y1) };
+  }
+  if (it.type === "stroke"){
+    let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
+    for (const p of it.pts){ a = Math.min(a, p.x); b = Math.min(b, p.y); c = Math.max(c, p.x); d = Math.max(d, p.y); }
+    const pad = it.size / 2;
+    return { x: a - pad, y: b - pad, w: (c - a) + pad*2, h: (d - b) + pad*2 };
+  }
+  return { x:0, y:0, w:0, h:0 };
+}
+
+function measureText(it){
+  ctx.save();
+  ctx.font = textFont(it);
+  const lines = String(it.text).split("\n");
+  let w = 0;
+  for (const L of lines) w = Math.max(w, ctx.measureText(L || " ").width);
+  ctx.restore();
+  return { w: w + 12, h: lines.length * it.size * 1.25 + 8, lines };
+}
+function textFont(it){
+  return "600 " + it.size + "px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Helvetica,Arial,sans-serif";
+}
+
+/* ---------------- drawing ---------------- */
+let pending = false;
+function draw(){ if (pending) return; pending = true; requestAnimationFrame(render); }
+
+let cursorPos = null, drawingItem = null, marquee = null;
+
+function render(){
+  pending = false;
+  const v = state.view;
+  const cs = getComputedStyle(document.documentElement);
+  const bg    = cs.getPropertyValue("--bg").trim();
+  const board = cs.getPropertyValue("--board").trim();
+  const bl    = cs.getPropertyValue("--board-line").trim();
+  const accent= cs.getPropertyValue("--accent").trim();
+
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.clearRect(0, 0, VW, VH);
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, VW, VH);
+
+  ctx.save();
+  ctx.translate(v.x, v.y); ctx.scale(v.s, v.s);
+
+  // board sheet
+  ctx.save();
+  ctx.shadowColor = "rgba(0,0,0,.18)"; ctx.shadowBlur = 26 / v.s; ctx.shadowOffsetY = 6 / v.s;
+  ctx.fillStyle = board; ctx.fillRect(0, 0, PAGE_W, PAGE_H);
+  ctx.restore();
+
+  ctx.save();
+  ctx.beginPath(); ctx.rect(0, 0, PAGE_W, PAGE_H); ctx.clip();
+
+  // faint grid so the surface reads as a board
+  ctx.strokeStyle = bl; ctx.lineWidth = 1 / v.s;
+  ctx.beginPath();
+  for (let x = 80; x < PAGE_W; x += 80){ ctx.moveTo(x, 0); ctx.lineTo(x, PAGE_H); }
+  for (let y = 80; y < PAGE_H; y += 80){ ctx.moveTo(0, y); ctx.lineTo(PAGE_W, y); }
+  ctx.stroke();
+
+  const items = page().items;
+  for (const it of items) paintItem(ctx, it);
+  if (drawingItem) paintItem(ctx, drawingItem);
+
+  ctx.restore(); // unclip
+
+  // selection UI
+  if (state.sel && items.includes(state.sel)){
+    const b = bboxOf(state.sel);
+    ctx.save();
+    ctx.strokeStyle = accent; ctx.lineWidth = 1.6 / v.s;
+    ctx.setLineDash([7 / v.s, 5 / v.s]);
+    ctx.strokeRect(b.x, b.y, b.w, b.h);
+    ctx.setLineDash([]);
+    const hs = 9 / v.s;
+    for (const h of handles(b)){
+      ctx.fillStyle = accent; ctx.fillRect(h.x - hs/2, h.y - hs/2, hs, hs);
+    }
+    ctx.restore();
+  }
+  ctx.restore(); // untransform
+
+  if (marquee){
+    ctx.save();
+    ctx.strokeStyle = accent; ctx.setLineDash([6,4]); ctx.lineWidth = 1.4;
+    ctx.strokeRect(marquee.x, marquee.y, marquee.w, marquee.h);
+    ctx.restore();
+  }
+
+  // eraser / brush cursor ring
+  if (cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "marker")){
+    const r = (state.tool === "eraser" ? state.eraserSize : state.size) * state.view.s / 2;
+    if (r > 2){
+      ctx.save();
+      ctx.beginPath(); ctx.arc(cursorPos.x, cursorPos.y, r, 0, Math.PI * 2);
+      ctx.strokeStyle = state.tool === "eraser" ? accent
+        : (isAutoInk(state.color) ? inkOf({ auto:true }) : state.color);
+      ctx.lineWidth = 1.4; ctx.globalAlpha = .85; ctx.stroke();
+      ctx.restore();
+    }
+  }
+}
+
+function handles(b){
+  return [
+    { x: b.x,           y: b.y,           k: "nw" },
+    { x: b.x + b.w,     y: b.y,           k: "ne" },
+    { x: b.x,           y: b.y + b.h,     k: "sw" },
+    { x: b.x + b.w,     y: b.y + b.h,     k: "se" }
+  ];
+}
+
+function paintItem(c, it){
+  c.save();
+  if (it.type === "stroke"){
+    if (it.erase){
+      c.globalCompositeOperation = "destination-out";
+      c.strokeStyle = "rgba(0,0,0,1)";
+    } else {
+      c.globalCompositeOperation = it.tool === "marker" ? (state.theme === "dark" ? "screen" : "multiply") : "source-over";
+      c.strokeStyle = inkOf(it);
+      let a = it.alpha == null ? 1 : it.alpha;
+      // a translucent highlighter over a black board needs more punch to read
+      if (it.tool === "marker" && state.theme === "dark") a = Math.min(0.92, a * 1.7);
+      c.globalAlpha = a;
+    }
+    c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
+    const p = it.pts;
+    c.beginPath();
+    if (p.length === 1){
+      c.arc(p[0].x, p[0].y, it.size / 2, 0, Math.PI * 2);
+      c.fillStyle = it.erase ? "#000" : inkOf(it); c.fill();
+    } else {
+      c.moveTo(p[0].x, p[0].y);
+      for (let i = 1; i < p.length - 1; i++){
+        const mx = (p[i].x + p[i+1].x) / 2, my = (p[i].y + p[i+1].y) / 2;
+        c.quadraticCurveTo(p[i].x, p[i].y, mx, my);
+      }
+      c.lineTo(p[p.length-1].x, p[p.length-1].y);
+      c.stroke();
+    }
+  } else if (it.type === "image"){
+    const im = getImage(it.src);
+    if (im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
+  } else if (it.type === "text"){
+    c.font = textFont(it); c.fillStyle = inkOf(it); c.textBaseline = "top";
+    const lines = String(it.text).split("\n");
+    lines.forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
+  } else if (it.type === "shape"){
+    c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
+    c.strokeStyle = inkOf(it); c.fillStyle = inkOf(it);
+    c.globalAlpha = it.alpha == null ? 1 : it.alpha;
+    const x1 = it.x1, y1 = it.y1, x2 = it.x2, y2 = it.y2;
+    c.beginPath();
+    if (it.shape === "rect"){
+      c.rect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
+      it.fill ? c.fill() : c.stroke();
+    } else if (it.shape === "ellipse"){
+      c.ellipse((x1+x2)/2, (y1+y2)/2, Math.abs(x2-x1)/2, Math.abs(y2-y1)/2, 0, 0, Math.PI*2);
+      it.fill ? c.fill() : c.stroke();
+    } else if (it.shape === "line"){
+      c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+    } else if (it.shape === "arrow"){
+      c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+      const a = Math.atan2(y2 - y1, x2 - x1), L = Math.max(14, it.size * 3.2);
+      c.beginPath();
+      c.moveTo(x2, y2); c.lineTo(x2 - L * Math.cos(a - .42), y2 - L * Math.sin(a - .42));
+      c.moveTo(x2, y2); c.lineTo(x2 - L * Math.cos(a + .42), y2 - L * Math.sin(a + .42));
+      c.stroke();
+    }
+  }
+  c.restore();
+}
+
+/* ---------------- history (undo / redo) ---------------- */
+function pushOp(op){ const p = page(); p.hist.push(op); p.redo.length = 0; syncHistoryButtons(); save(); }
+
+function applyOp(op, undo){
+  const p = page();
+  if (op.kind === "add"){
+    if (undo){ const i = p.items.indexOf(op.item); if (i > -1) p.items.splice(i, 1); }
+    else { p.items.splice(Math.min(op.index, p.items.length), 0, op.item); }
+  } else if (op.kind === "del"){
+    if (undo){ op.entries.slice().sort((a,b)=>a.index-b.index).forEach(e => p.items.splice(Math.min(e.index, p.items.length), 0, e.item)); }
+    else { op.entries.forEach(e => { const i = p.items.indexOf(e.item); if (i > -1) p.items.splice(i, 1); }); }
+  } else if (op.kind === "mod"){
+    Object.assign(op.item, undo ? op.before : op.after);
+  }
+}
+function undo(){
+  const p = page(); if (!p.hist.length) return;
+  const op = p.hist.pop(); applyOp(op, true); p.redo.push(op);
+  state.sel = null; syncHistoryButtons(); save(); draw();
+}
+function redo(){
+  const p = page(); if (!p.redo.length) return;
+  const op = p.redo.pop(); applyOp(op, false); p.hist.push(op);
+  syncHistoryButtons(); save(); draw();
+}
+function syncHistoryButtons(){
+  $("#undo").disabled = !page().hist.length;
+  $("#redo").disabled = !page().redo.length;
+}
+function addItem(it){ page().items.push(it); pushOp({ kind:"add", item: it, index: page().items.length - 1 }); }
+function deleteItems(list){
+  if (!list.length) return;
+  const p = page();
+  const entries = list.map(it => ({ item: it, index: p.items.indexOf(it) })).filter(e => e.index > -1);
+  entries.forEach(e => p.items.splice(p.items.indexOf(e.item), 1));
+  pushOp({ kind:"del", entries });
+  state.sel = null; draw();
+}
+
+/* ---------------- hit testing ---------------- */
+function distToSeg(p, a, b){
+  const dx = b.x - a.x, dy = b.y - a.y;
+  const len = dx*dx + dy*dy;
+  let t = len ? ((p.x - a.x) * dx + (p.y - a.y) * dy) / len : 0;
+  t = Math.max(0, Math.min(1, t));
+  const cx = a.x + t * dx, cy = a.y + t * dy;
+  return Math.hypot(p.x - cx, p.y - cy);
+}
+function hitStroke(it, p, r){
+  const pts = it.pts;
+  const tol = r + it.size / 2;
+  if (pts.length === 1) return Math.hypot(p.x - pts[0].x, p.y - pts[0].y) <= tol;
+  for (let i = 0; i < pts.length - 1; i++) if (distToSeg(p, pts[i], pts[i+1]) <= tol) return true;
+  return false;
+}
+function hitItem(it, p, r){
+  if (it.type === "stroke") return !it.erase && hitStroke(it, p, r);
+  const b = bboxOf(it);
+  return p.x >= b.x - r && p.x <= b.x + b.w + r && p.y >= b.y - r && p.y <= b.y + b.h + r;
+}
+function pickAt(p){
+  const items = page().items;
+  for (let i = items.length - 1; i >= 0; i--) if (hitItem(items[i], p, 4)) return items[i];
+  return null;
+}
+function handleAt(sp){
+  if (!state.sel) return null;
+  const b = bboxOf(state.sel);
+  for (const h of handles(b)){
+    const s = toScreen(h.x, h.y);
+    if (Math.hypot(sp.x - s.x, sp.y - s.y) <= 14) return h.k;
+  }
+  return null;
+}
+
+/* ---------------- pointer input ---------------- */
+const pointers = new Map();
+let action = null;         // {mode:'draw'|'pan'|'move'|'resize'|'shape'|'erase-obj'|'marquee'}
+let pinch = null;
+let spaceDown = false;
+
+function localPt(e){
+  const r = cv.getBoundingClientRect();
+  return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+
+cv.addEventListener("pointerdown", (e) => {
+  if (editing){ commitText(); if (state.tool === "text") return; }
+  const sp = localPt(e);
+  pointers.set(e.pointerId, sp);
+  try { cv.setPointerCapture(e.pointerId); } catch (err){}
+  closePops();
+
+  if (pointers.size === 2){                       // pinch begins → cancel any stroke
+    if (action && action.mode === "draw" && drawingItem) drawingItem = null;
+    action = null;
+    const [a, b] = Array.from(pointers.values());
+    pinch = { d: Math.hypot(a.x-b.x, a.y-b.y), c: { x:(a.x+b.x)/2, y:(a.y+b.y)/2 } };
+    draw(); return;
+  }
+  if (pointers.size > 2) return;
+
+  const wp = toWorld(sp.x, sp.y);
+  const panning = state.tool === "pan" || spaceDown || e.button === 1 || (e.pointerType === "mouse" && e.button === 2);
+
+  if (panning){ action = { mode:"pan", sx: sp.x, sy: sp.y, vx: state.view.x, vy: state.view.y }; return; }
+
+  if (state.tool === "select"){
+    const hk = handleAt(sp);
+    if (hk && state.sel){
+      const b = bboxOf(state.sel);
+      action = { mode:"resize", k: hk, before: snapshot(state.sel), box: b, start: wp };
+      return;
+    }
+    const hit = pickAt(wp);
+    state.sel = hit;
+    if (hit) action = { mode:"move", item: hit, before: snapshot(hit), start: wp };
+    else action = { mode:"marquee", sx: sp.x, sy: sp.y };
+    draw(); return;
+  }
+
+  if (state.tool === "text"){ openTextEditor(wp); return; }
+
+  if (state.tool === "eraser" && state.eraserMode === "object"){
+    action = { mode:"erase-obj", hits: [] };
+    eraseObjectsAt(wp);
+    return;
+  }
+
+  if (state.tool === "shape"){
+    drawingItem = {
+      type:"shape", shape: state.shape, color: state.shapeColor, size: state.size,
+      fill: state.shapeFill, auto: isAutoInk(state.shapeColor),
+      x1: wp.x, y1: wp.y, x2: wp.x, y2: wp.y, alpha: state.opacity
+    };
+    action = { mode:"shape", start: wp, shift:false };
+    return;
+  }
+
+  // pen / highlighter / pixel eraser
+  const erasing = state.tool === "eraser";
+  drawingItem = {
+    type:"stroke", tool: state.tool, erase: erasing,
+    color: state.color, auto: isAutoInk(state.color),
+    alpha: state.tool === "marker" ? Math.min(state.opacity, .45) : state.opacity,
+    size: erasing ? state.eraserSize : state.size * pressureScale(e),
+    pts: [wp]
+  };
+  action = { mode:"draw" };
+  draw();
+});
+
+function pressureScale(e){
+  if (e.pointerType === "pen" && e.pressure > 0 && e.pressure < 1) return 0.45 + e.pressure * 0.9;
+  return 1;
+}
+function snapshot(it){
+  if (it.type === "image" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
+  if (it.type === "shape") return { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2 };
+  if (it.type === "stroke") return { pts: it.pts.map(p => ({ x:p.x, y:p.y })) };
+  return {};
+}
+
+cv.addEventListener("pointermove", (e) => {
+  const sp = localPt(e);
+  cursorPos = sp;
+  if (pointers.has(e.pointerId)) pointers.set(e.pointerId, sp);
+
+  if (pointers.size === 2 && pinch){
+    const [a, b] = Array.from(pointers.values());
+    const d = Math.hypot(a.x-b.x, a.y-b.y), c = { x:(a.x+b.x)/2, y:(a.y+b.y)/2 };
+    if (pinch.d > 0){
+      const v = state.view;
+      const k = d / pinch.d;
+      const ns = Math.min(8, Math.max(0.08, v.s * k));
+      const kk = ns / v.s;
+      v.x = c.x - (c.x - v.x) * kk + (c.x - pinch.c.x);
+      v.y = c.y - (c.y - v.y) * kk + (c.y - pinch.c.y);
+      v.s = ns;
+      clampView();
+    }
+    pinch = { d, c };
+    return;
+  }
+
+  if (!action){ if (state.tool === "eraser" || state.tool === "pen" || state.tool === "marker") draw(); return; }
+  const wp = toWorld(sp.x, sp.y);
+
+  if (action.mode === "pan"){
+    state.view.x = action.vx + (sp.x - action.sx);
+    state.view.y = action.vy + (sp.y - action.sy);
+    clampView(); return;
+  }
+  if (action.mode === "draw" && drawingItem){
+    const pts = drawingItem.pts, last = pts[pts.length - 1];
+    if (Math.hypot(wp.x - last.x, wp.y - last.y) * state.view.s > 1.1){
+      if (e.getCoalescedEvents){
+        const co = e.getCoalescedEvents();
+        if (co.length > 1){
+          const r = cv.getBoundingClientRect();
+          for (const ce of co) pts.push(toWorld(ce.clientX - r.left, ce.clientY - r.top));
+        } else pts.push(wp);
+      } else pts.push(wp);
+      draw();
+    }
+    return;
+  }
+  if (action.mode === "shape" && drawingItem){
+    drawingItem.x2 = wp.x; drawingItem.y2 = wp.y;
+    if (e.shiftKey){
+      const d = Math.max(Math.abs(wp.x - action.start.x), Math.abs(wp.y - action.start.y));
+      drawingItem.x2 = action.start.x + Math.sign(wp.x - action.start.x || 1) * d;
+      drawingItem.y2 = action.start.y + Math.sign(wp.y - action.start.y || 1) * d;
+    }
+    draw(); return;
+  }
+  if (action.mode === "erase-obj"){ eraseObjectsAt(wp); return; }
+  if (action.mode === "move"){
+    const dx = wp.x - action.start.x, dy = wp.y - action.start.y;
+    action.start = wp;
+    moveItem(action.item, dx, dy); draw(); return;
+  }
+  if (action.mode === "resize"){
+    resizeSel(action, wp); draw(); return;
+  }
+  if (action.mode === "marquee"){
+    marquee = { x: Math.min(action.sx, sp.x), y: Math.min(action.sy, sp.y), w: Math.abs(sp.x-action.sx), h: Math.abs(sp.y-action.sy) };
+    draw(); return;
+  }
+});
+
+function moveItem(it, dx, dy){
+  if (it.type === "stroke"){ it.pts.forEach(p => { p.x += dx; p.y += dy; }); }
+  else if (it.type === "shape"){ it.x1 += dx; it.y1 += dy; it.x2 += dx; it.y2 += dy; }
+  else { it.x += dx; it.y += dy; }
+}
+function resizeSel(a, wp){
+  const it = state.sel; if (!it) return;
+  const b = a.box;
+  let nx = b.x, ny = b.y, nw = b.w, nh = b.h;
+  if (a.k === "se"){ nw = wp.x - b.x; nh = wp.y - b.y; }
+  if (a.k === "ne"){ nw = wp.x - b.x; nh = (b.y + b.h) - wp.y; ny = wp.y; }
+  if (a.k === "sw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = wp.y - b.y; }
+  if (a.k === "nw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = (b.y + b.h) - wp.y; ny = wp.y; }
+  nw = Math.max(16, nw); nh = Math.max(16, nh);
+  if (it.type === "image"){
+    const ar = (a.before.w || 1) / (a.before.h || 1);
+    nh = nw / ar;
+    if (a.k === "ne" || a.k === "nw") ny = b.y + b.h - nh;
+    it.x = nx; it.y = ny; it.w = nw; it.h = nh;
+  } else if (it.type === "text"){
+    it.size = Math.max(10, Math.round(a.before.size * (nw / Math.max(1, b.w))));
+    it.x = nx; it.y = ny;
+  } else if (it.type === "shape"){
+    it.x1 = nx; it.y1 = ny; it.x2 = nx + nw; it.y2 = ny + nh;
+  } else if (it.type === "stroke"){
+    const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
+    it.pts = a.before.pts.map(p => ({ x: nx + (p.x - b.x) * sx, y: ny + (p.y - b.y) * sy }));
+  }
+}
+function eraseObjectsAt(wp){
+  const r = state.eraserSize / 2;
+  const items = page().items;
+  const doomed = items.filter(it => !it.erase && hitItem(it, wp, r));
+  if (!doomed.length) return;
+  doomed.forEach(it => {
+    const i = items.indexOf(it);
+    if (i > -1){ action.hits.push({ item: it, index: i }); items.splice(i, 1); }
+  });
+  draw();
+}
+
+function endPointer(e){
+  if (pointers.has(e.pointerId)) pointers.delete(e.pointerId);
+  if (pointers.size < 2) pinch = null;
+  if (!action) return;
+
+  if (action.mode === "draw" && drawingItem){
+    if (drawingItem.pts.length) addItem(drawingItem);
+    drawingItem = null;
+  } else if (action.mode === "shape" && drawingItem){
+    const w = Math.abs(drawingItem.x2 - drawingItem.x1), h = Math.abs(drawingItem.y2 - drawingItem.y1);
+    if (w > 4 || h > 4) addItem(drawingItem);
+    drawingItem = null;
+  } else if (action.mode === "erase-obj"){
+    if (action.hits.length) pushOp({ kind:"del", entries: action.hits });
+  } else if (action.mode === "move" || action.mode === "resize"){
+    const it = action.item || state.sel;
+    if (it) pushOp({ kind:"mod", item: it, before: action.before, after: snapshot(it) });
+  } else if (action.mode === "marquee" && marquee){
+    const a = toWorld(marquee.x, marquee.y), b = toWorld(marquee.x + marquee.w, marquee.y + marquee.h);
+    const inside = page().items.filter(it => { const bb = bboxOf(it); return bb.x >= a.x && bb.y >= a.y && bb.x + bb.w <= b.x && bb.y + bb.h <= b.y; });
+    state.sel = inside[inside.length - 1] || null;
+  }
+  marquee = null; action = null;
+  save(); draw();
+}
+cv.addEventListener("pointerup", endPointer);
+cv.addEventListener("pointercancel", endPointer);
+cv.addEventListener("pointerleave", () => { cursorPos = null; draw(); });
+cv.addEventListener("contextmenu", (e) => e.preventDefault());
+
+cv.addEventListener("wheel", (e) => {
+  e.preventDefault();
+  const sp = localPt(e);
+  if (e.ctrlKey || e.metaKey){ zoomAt(sp.x, sp.y, Math.exp(-e.deltaY * 0.0022)); }
+  else { state.view.x -= e.deltaX; state.view.y -= e.deltaY; clampView(); }
+}, { passive: false });
+
+/* ---------------- text tool ---------------- */
+const te = $("#textedit");
+let editing = null;   // {item|null, x, y}
+
+function openTextEditor(wp, item){
+  if (editing) commitText();
+  editing = { item: item || null, x: item ? item.x : wp.x, y: item ? item.y : wp.y };
+  const size = item ? item.size : state.textSize;
+  const color = item ? inkOf(item) : (isAutoInk(state.textColor) ? inkOf({ auto:true }) : state.textColor);
+  const s = toScreen(editing.x, editing.y);
+  te.style.display = "block";
+  te.style.left = s.x + "px";
+  te.style.top  = s.y + "px";
+  te.style.fontSize = (size * state.view.s) + "px";
+  te.style.fontWeight = "600";
+  te.style.color = color;
+  te.value = item ? item.text : "";
+  autoGrow();
+  setTimeout(() => { te.focus(); te.setSelectionRange(te.value.length, te.value.length); }, 10);
+  if (item){ const i = page().items.indexOf(item); if (i > -1){ page().items.splice(i,1); editing.reinsert = { item, index: i }; draw(); } }
+}
+function autoGrow(){
+  te.style.width = "10px"; te.style.height = "10px";
+  te.style.width  = Math.max(60, te.scrollWidth + 14) + "px";
+  te.style.height = (te.scrollHeight + 6) + "px";
+}
+te.addEventListener("input", autoGrow);
+te.addEventListener("keydown", (e) => {
+  e.stopPropagation();
+  if (e.key === "Escape"){ te.blur(); }
+});
+te.addEventListener("blur", commitText);
+function commitText(){
+  if (!editing) return;
+  const txt = te.value.replace(/\s+$/, "");
+  const ed = editing; editing = null;
+  te.style.display = "none"; te.value = "";
+  if (ed.reinsert){
+    const p = page();
+    if (txt){
+      const it = ed.reinsert.item; const before = { text: it.text };
+      it.text = txt; p.items.splice(ed.reinsert.index, 0, it);
+      pushOp({ kind:"mod", item: it, before, after: { text: txt } });
+    } else {
+      pushOp({ kind:"del", entries: [{ item: ed.reinsert.item, index: ed.reinsert.index }] });
+    }
+  } else if (txt){
+    addItem({ type:"text", text: txt, x: ed.x, y: ed.y, color: state.textColor,
+              auto: isAutoInk(state.textColor), size: state.textSize });
+  }
+  draw();
+}
+cv.addEventListener("dblclick", (e) => {
+  const sp = localPt(e);
+  const hit = pickAt(toWorld(sp.x, sp.y));
+  if (hit && hit.type === "text"){ setTool("select"); state.sel = hit; openTextEditor(null, hit); }
+});
+
+/* ---------------- images ---------------- */
+function placeImage(src){
+  const im = new Image();
+  im.onload = () => {
+    const maxW = PAGE_W * 0.55, maxH = PAGE_H * 0.55;
+    let w = im.naturalWidth, h = im.naturalHeight;
+    const k = Math.min(maxW / w, maxH / h, 1);
+    w *= k; h *= k;
+    const jitter = (page().items.filter(i => i.type === "image").length % 6) * 28;
+    const it = { type:"image", src, x: (PAGE_W - w)/2 + jitter, y: (PAGE_H - h)/2 + jitter, w, h };
+    imgCache.set(src, im);
+    addItem(it);
+    setTool("select"); state.sel = it;
+    toast("Photo added — drag to move, corners to resize");
+    draw();
+  };
+  im.onerror = () => toast("That image could not be loaded");
+  im.src = src;
+}
+function readFiles(files){
+  Array.from(files).filter(f => f.type.startsWith("image/")).forEach(f => {
+    const fr = new FileReader();
+    fr.onload = () => placeImage(fr.result);
+    fr.readAsDataURL(f);
+  });
+}
+$("#imgbtn").addEventListener("click", () => $("#filepick").click());
+$("#filepick").addEventListener("change", (e) => { readFiles(e.target.files); e.target.value = ""; });
+window.addEventListener("paste", (e) => {
+  const items = e.clipboardData && e.clipboardData.items; if (!items) return;
+  const files = Array.from(items).filter(i => i.kind === "file").map(i => i.getAsFile()).filter(Boolean);
+  if (files.length){ e.preventDefault(); readFiles(files); }
+});
+["dragover","drop"].forEach(ev => window.addEventListener(ev, (e) => {
+  e.preventDefault();
+  if (ev === "drop" && e.dataTransfer && e.dataTransfer.files.length) readFiles(e.dataTransfer.files);
+}));
+
+/* ---------------- pages ---------------- */
+function renderPages(){
+  const wrap = $("#pages"); wrap.innerHTML = "";
+  state.pages.forEach((p, i) => {
+    const b = document.createElement("button");
+    b.className = "pchip" + (i === state.cur ? " on" : "");
+    b.textContent = i + 1;
+    b.title = "Go to page " + (i + 1);
+    b.addEventListener("click", () => gotoPage(i));
+    wrap.appendChild(b);
+  });
+  const chip = wrap.children[state.cur];
+  if (chip) chip.scrollIntoView({ inline:"center", block:"nearest", behavior:"smooth" });
+  $("#prevpage").disabled = state.cur === 0;
+  $("#nextpage").disabled = state.cur === state.pages.length - 1;
+  $("#delpage").disabled = state.pages.length <= 1;
+}
+function gotoPage(i){
+  if (i < 0 || i >= state.pages.length || i === state.cur) return;
+  commitText();
+  state.cur = i; state.sel = null;
+  renderPages(); syncHistoryButtons(); save(); draw();
+}
+$("#prevpage").addEventListener("click", () => gotoPage(state.cur - 1));
+$("#nextpage").addEventListener("click", () => gotoPage(state.cur + 1));
+$("#addpage").addEventListener("click", () => {
+  state.pages.splice(state.cur + 1, 0, newPage());
+  state.cur += 1; state.sel = null;
+  renderPages(); syncHistoryButtons(); save(); draw();
+  toast("Page " + (state.cur + 1) + " added");
+});
+$("#delpage").addEventListener("click", () => {
+  if (state.pages.length <= 1) return;
+  if (!confirm("Delete page " + (state.cur + 1) + "?")) return;
+  state.pages.splice(state.cur, 1);
+  state.cur = Math.max(0, state.cur - 1);
+  renderPages(); syncHistoryButtons(); save(); draw();
+});
+$("#clearbtn").addEventListener("click", () => {
+  const p = page();
+  if (!p.items.length) return;
+  if (!confirm("Clear everything on this page?")) return;
+  deleteItems(p.items.slice());
+  toast("Page cleared — Ctrl+Z brings it back");
+});
+
+/* ---------------- tools & popovers ---------------- */
+const POP_FOR = { pen:"#penpop", marker:"#penpop", eraser:"#eraserpop", shape:"#shapepop", text:"#textpop" };
+
+function setTool(t, evt){
+  commitText();
+  const same = state.tool === t;
+  state.tool = t;
+  $$(".rail .tbtn[data-tool]").forEach(b => b.classList.toggle("on", b.dataset.tool === t));
+  if (t !== "select") state.sel = null;
+  cv.style.cursor = t === "pan" ? "grab" : (t === "select" ? "default" : "crosshair");
+  const sel = POP_FOR[t];
+  if (sel && (same || evt)) togglePop(sel, $(".rail .tbtn[data-tool='" + t + "']"), same);
+  else closePops();
+  draw();
+}
+$$(".rail .tbtn[data-tool]").forEach(b => b.addEventListener("click", (e) => setTool(b.dataset.tool, e)));
+
+function closePops(){ $$(".pop").forEach(p => p.classList.remove("open")); }
+function togglePop(sel, anchor, force){
+  const p = $(sel);
+  const wasOpen = p.classList.contains("open");
+  closePops();
+  if (wasOpen && !force) return;
+  p.classList.add("open");
+  positionPop(p, anchor);
+}
+function positionPop(p, anchor){
+  const wr = $("#work").getBoundingClientRect();
+  const ar = anchor.getBoundingClientRect();
+  p.style.visibility = "hidden"; p.classList.add("open");
+  const pw = p.offsetWidth, ph = p.offsetHeight;
+  let left = ar.left - wr.left - pw - 10;
+  if (left < 8) left = Math.max(8, ar.right - wr.left + 10);
+  if (left + pw > wr.width - 8) left = wr.width - pw - 8;
+  let top = ar.top - wr.top + ar.height / 2 - ph / 2;
+  top = Math.max(8, Math.min(wr.height - ph - 8, top));
+  p.style.left = left + "px"; p.style.top = top + "px";
+  p.style.visibility = "visible";
+}
+document.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".pop") || e.target.closest(".rail") || e.target.closest(".topbar")) return;
+  closePops();
+}, true);
+
+/* swatch / size builders */
+function buildSwatches(host, get, set){
+  const el = $(host); el.innerHTML = "";
+  PALETTE.forEach(c => {
+    const b = document.createElement("button");
+    b.className = "sw" + (get() === c ? " on" : "");
+    b.style.background = c;
+    b.title = c;
+    b.addEventListener("click", () => { set(c); buildSwatches(host, get, set); draw(); save(); });
+    el.appendChild(b);
+  });
+}
+function buildSizes(){
+  const el = $("#sizes"); el.innerHTML = "";
+  SIZES.forEach(s => {
+    const b = document.createElement("button");
+    b.className = "size" + (state.size === s ? " on" : "");
+    const i = document.createElement("i");
+    const d = Math.max(4, Math.min(22, s));
+    i.style.width = d + "px"; i.style.height = d + "px";
+    b.appendChild(i);
+    b.addEventListener("click", () => { state.size = s; buildSizes(); save(); });
+    el.appendChild(b);
+  });
+}
+function buildShapes(){
+  const el = $("#shapes"); el.innerHTML = "";
+  const defs = [
+    ["rect",   '<rect x="4" y="6" width="16" height="12" rx="2"/>'],
+    ["ellipse",'<ellipse cx="12" cy="12" rx="8" ry="6.5"/>'],
+    ["line",   '<path d="M5 18 19 6"/>'],
+    ["arrow",  '<path d="M5 18 19 6"/><path d="M13 6h6v6"/>']
+  ];
+  defs.forEach(([k, svg]) => {
+    const b = document.createElement("button");
+    b.className = "tbtn" + (state.shape === k ? " on" : "");
+    b.innerHTML = '<svg viewBox="0 0 24 24">' + svg + '</svg>';
+    b.addEventListener("click", () => { state.shape = k; buildShapes(); save(); });
+    el.appendChild(b);
+  });
+}
+
+$("#opacity").addEventListener("input", (e) => { state.opacity = e.target.value / 100; $("#opval").textContent = e.target.value + "%"; save(); });
+$("#ersize").addEventListener("input", (e) => { state.eraserSize = +e.target.value; $("#ersizeval").textContent = e.target.value + " px"; draw(); save(); });
+$("#tsize").addEventListener("input", (e) => { state.textSize = +e.target.value; $("#tsval").textContent = e.target.value + " px"; save(); });
+$("#shfill").addEventListener("change", (e) => { state.shapeFill = e.target.checked; save(); });
+$$("#eraserseg button").forEach(b => b.addEventListener("click", () => {
+  state.eraserMode = b.dataset.mode;
+  $$("#eraserseg button").forEach(x => x.classList.toggle("on", x === b));
+  save();
+}));
+
+/* ---------------- zoom controls ---------------- */
+$("#zoomin").addEventListener("click", () => zoomAt(VW/2, VH/2, 1.25));
+$("#zoomout").addEventListener("click", () => zoomAt(VW/2, VH/2, 0.8));
+$("#zoomfit").addEventListener("click", fitView);
+
+/* ---------------- theme ---------------- */
+function setTheme(t){
+  state.theme = t;
+  document.documentElement.dataset.theme = t;
+  $("meta[name=theme-color]").setAttribute("content", t === "dark" ? "#0a0b0d" : "#ffffff");
+  // keep ink visible when the board flips colour
+  const dark = PALETTE[0], light = PALETTE[9];
+  if (t === "dark" && state.color === dark) state.color = light;
+  if (t === "light" && state.color === light) state.color = dark;
+  if (t === "dark" && state.textColor === dark) state.textColor = light;
+  if (t === "light" && state.textColor === light) state.textColor = dark;
+  buildSwatches("#swatches", () => state.color, (c) => state.color = c);
+  buildSwatches("#txswatches", () => state.textColor, (c) => state.textColor = c);
+  save(); draw();
+}
+$("#themebtn").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
+
+/* ---------------- render a page to an offscreen canvas ---------------- */
+function renderPageTo(c, p, w, h){
+  const cs = getComputedStyle(document.documentElement);
+  c.save();
+  c.setTransform(1, 0, 0, 1, 0, 0);
+  c.fillStyle = cs.getPropertyValue("--board").trim() || "#fff";
+  c.fillRect(0, 0, w, h);
+  c.scale(w / PAGE_W, h / PAGE_H);
+  for (const it of p.items) paintItem(c, it);
+  if (p === page() && drawingItem) paintItem(c, drawingItem);
+  c.restore();
+}
+function pageToCanvas(p, w){
+  const h = Math.round(w * PAGE_H / PAGE_W);
+  const off = document.createElement("canvas");
+  off.width = w; off.height = h;
+  renderPageTo(off.getContext("2d"), p, w, h);
+  return off;
+}
+function downloadBlob(blob, name){
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 20000);
+}
+function stamp(){
+  const d = new Date(), p = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + p(d.getMonth()+1) + p(d.getDate()) + "-" + p(d.getHours()) + p(d.getMinutes()) + p(d.getSeconds());
+}
+
+/* ---------------- export ---------------- */
+$("#savebtn").addEventListener("click", () => togglePop("#savepop", $("#savebtn")));
+$("#expPng").addEventListener("click", () => {
+  pageToCanvas(page(), PAGE_W).toBlob(b => { downloadBlob(b, "whiteboard-page" + (state.cur+1) + "-" + stamp() + ".png"); toast("PNG saved"); });
+  closePops();
+});
+$("#expAll").addEventListener("click", () => {
+  state.pages.forEach((p, i) => setTimeout(() => {
+    pageToCanvas(p, PAGE_W).toBlob(b => downloadBlob(b, "whiteboard-page" + (i+1) + "-" + stamp() + ".png"));
+  }, i * 350));
+  toast("Exporting " + state.pages.length + " page(s)");
+  closePops();
+});
+$("#expJson").addEventListener("click", () => {
+  const data = JSON.stringify({ v: 1, pages: state.pages.map(p => ({ items: p.items })) });
+  downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json");
+  toast("Board file saved"); closePops();
+});
+$("#impJson").addEventListener("click", () => { $("#jsonpick").click(); closePops(); });
+$("#jsonpick").addEventListener("change", (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const fr = new FileReader();
+  fr.onload = () => {
+    try {
+      const d = JSON.parse(fr.result);
+      if (!d.pages || !d.pages.length) throw 0;
+      state.pages = d.pages.map(p => ({ items: p.items || [], hist: [], redo: [] }));
+      state.cur = 0; state.sel = null;
+      renderPages(); syncHistoryButtons(); fitView(); save();
+      toast("Board opened");
+    } catch (err){ toast("That file could not be opened"); }
+  };
+  fr.readAsText(f);
+  e.target.value = "";
+});
+
+/* ---------------- screen / board recording with voice ---------------- */
+const rec = {
+  on: false, paused: false, recorder: null, chunks: [],
+  stream: null, tracks: [], ac: null, loop: 0, t0: 0, acc: 0, timer: 0,
+  canvas: null, src: "board", mic: true, sys: false
+};
+const canScreen = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
+const canMedia  = !!(navigator.mediaDevices && window.MediaRecorder);
+
+$("#recopt").addEventListener("click", () => togglePop("#recpop", $("#recopt")));
+$$("#recseg button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.src === "screen" && !canScreen){ toast("Screen capture is not available on this device"); return; }
+  rec.src = b.dataset.src;
+  $$("#recseg button").forEach(x => x.classList.toggle("on", x === b));
+  save();
+}));
+$("#micchk").addEventListener("change", e => { rec.mic = e.target.checked; save(); });
+$("#syschk").addEventListener("change", e => { rec.sys = e.target.checked; save(); });
+
+function pickMime(){
+  const list = [
+    "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus",
+    "video/webm;codecs=h264,opus", "video/webm", "video/mp4;codecs=h264,aac", "video/mp4"
+  ];
+  for (const m of list) if (window.MediaRecorder && MediaRecorder.isTypeSupported(m)) return m;
+  return "";
+}
+
+async function startRec(){
+  if (!canMedia){ toast("Recording is not supported in this browser"); return; }
+  try {
+    let videoStream;
+    if (rec.src === "screen"){
+      videoStream = await navigator.mediaDevices.getDisplayMedia({
+        video: { frameRate: 30 }, audio: rec.sys
+      });
+    } else {
+      rec.canvas = document.createElement("canvas");
+      rec.canvas.width = 1600; rec.canvas.height = 900;
+      const rc = rec.canvas.getContext("2d");
+      const tick = () => {
+        if (!rec.on && !rec.starting) return;
+        if (!rec.paused) renderPageTo(rc, page(), 1600, 900);
+        rec.loop = requestAnimationFrame(tick);
+      };
+      rec.starting = true; tick();
+      videoStream = rec.canvas.captureStream(30);
+    }
+    rec.tracks = videoStream.getTracks().slice();
+
+    // audio mixing (microphone + optional system audio)
+    const audioSources = [];
+    let micStream = null;
+    rec.micBlocked = false;
+    if (rec.mic){
+      try {
+        micStream = await navigator.mediaDevices.getUserMedia({
+          audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+        });
+        rec.tracks.push(...micStream.getTracks());
+        audioSources.push(micStream);
+      } catch (err){ rec.micBlocked = true; }
+    }
+    const sysAudio = videoStream.getAudioTracks();
+    if (sysAudio.length) audioSources.push(new MediaStream(sysAudio));
+
+    let audioTracks = [];
+    if (audioSources.length === 1){
+      audioTracks = audioSources[0].getAudioTracks();
+    } else if (audioSources.length > 1){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      rec.ac = new AC();
+      const dest = rec.ac.createMediaStreamDestination();
+      audioSources.forEach(s => rec.ac.createMediaStreamSource(s).connect(dest));
+      audioTracks = dest.stream.getAudioTracks();
+    }
+
+    const mixed = new MediaStream([...videoStream.getVideoTracks(), ...audioTracks]);
+    const mime = pickMime();
+    rec.recorder = new MediaRecorder(mixed, Object.assign(
+      { videoBitsPerSecond: 4500000, audioBitsPerSecond: 128000 }, mime ? { mimeType: mime } : {}
+    ));
+    rec.chunks = [];
+    rec.recorder.ondataavailable = (e) => { if (e.data && e.data.size) rec.chunks.push(e.data); };
+    rec.recorder.onstop = finishRec;
+    rec.recorder.start(1000);
+
+    videoStream.getVideoTracks()[0].addEventListener("ended", () => { if (rec.on) stopRec(); });
+
+    rec.on = true; rec.starting = false; rec.paused = false;
+    rec.t0 = Date.now(); rec.acc = 0;
+    rec.mimeUsed = rec.recorder.mimeType || mime || "video/webm";
+    $("#recbtn").classList.add("on", "rec");
+    $("#recpill").classList.add("show");
+    $("#recpause").textContent = "Pause";
+    rec.timer = setInterval(tickTime, 250); tickTime();
+    closePops();
+    toast((rec.src === "screen" ? "Screen recording started" : "Board recording started")
+          + (rec.micBlocked ? " — microphone blocked, no voice" : (rec.mic ? " with voice" : "")));
+  } catch (err){
+    rec.starting = false;
+    cancelAnimationFrame(rec.loop);
+    if (err && err.name === "NotAllowedError") toast("Recording permission was declined");
+    else toast("Could not start recording");
+  }
+}
+function tickTime(){
+  const ms = rec.acc + (rec.paused ? 0 : Date.now() - rec.t0);
+  const s = Math.floor(ms / 1000);
+  const m = String(Math.floor(s / 60)).padStart(2, "0");
+  $("#rectime").textContent = m + ":" + String(s % 60).padStart(2, "0");
+}
+function stopRec(){
+  if (!rec.on) return;
+  try { if (rec.recorder.state !== "inactive") rec.recorder.stop(); } catch (e){}
+  rec.on = false;
+  clearInterval(rec.timer);
+  cancelAnimationFrame(rec.loop);
+  rec.tracks.forEach(t => { try { t.stop(); } catch (e){} });
+  if (rec.ac){ try { rec.ac.close(); } catch (e){} rec.ac = null; }
+  $("#recbtn").classList.remove("on", "rec");
+  $("#recpill").classList.remove("show", "paused");
+}
+function finishRec(){
+  if (!rec.chunks.length){ toast("Nothing was recorded"); return; }
+  const type = (rec.mimeUsed || "video/webm").split(";")[0];
+  const blob = new Blob(rec.chunks, { type });
+  rec.chunks = [];
+  const url = URL.createObjectURL(blob);
+  const ext = type.includes("mp4") ? "mp4" : "webm";
+  const name = "whiteboard-recording-" + stamp() + "." + ext;
+  const v = $("#vidprev"), dl = $("#viddl");
+  v.src = url; dl.href = url; dl.download = name;
+  v.onloadedmetadata = () => {                    // MediaRecorder webm has no duration header
+    if (v.duration === Infinity){
+      v.currentTime = 1e6;
+      v.ontimeupdate = () => { v.ontimeupdate = null; v.currentTime = 0; };
+    }
+  };
+  $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent + " · " + ext.toUpperCase();
+  $("#vidopen").onclick = () => window.open(url, "_blank");
+  $("#vidback").classList.add("open");
+}
+$("#recbtn").addEventListener("click", () => rec.on ? stopRec() : startRec());
+$("#recstop").addEventListener("click", stopRec);
+$("#recpause").addEventListener("click", () => {
+  if (!rec.on) return;
+  if (rec.paused){
+    rec.recorder.resume(); rec.paused = false; rec.t0 = Date.now();
+    $("#recpause").textContent = "Pause"; $("#recpill").classList.remove("paused");
+  } else {
+    rec.recorder.pause(); rec.paused = true; rec.acc += Date.now() - rec.t0;
+    $("#recpause").textContent = "Resume"; $("#recpill").classList.add("paused");
+  }
+});
+$("#vidclose").addEventListener("click", () => { $("#vidprev").pause(); $("#vidback").classList.remove("open"); });
+$("#vidback").addEventListener("click", (e) => { if (e.target === $("#vidback")) $("#vidclose").click(); });
+
+/* ---------------- help ---------------- */
+$("#helpbtn").addEventListener("click", () => $("#helpback").classList.add("open"));
+$("#helpclose").addEventListener("click", () => $("#helpback").classList.remove("open"));
+$("#helpback").addEventListener("click", (e) => { if (e.target === $("#helpback")) $("#helpback").classList.remove("open"); });
+
+/* ---------------- toast ---------------- */
+let toastT = 0;
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+/* ---------------- persistence ---------------- */
+let saveT = 0;
+function save(){
+  clearTimeout(saveT);
+  saveT = setTimeout(() => {
+    try {
+      localStorage.setItem(STORE_KEY, JSON.stringify({
+        v: 1, cur: state.cur,
+        pages: state.pages.map(p => ({ items: p.items })),
+        prefs: {
+          theme: state.theme, color: state.color, size: state.size, opacity: state.opacity,
+          eraserMode: state.eraserMode, eraserSize: state.eraserSize, shape: state.shape,
+          shapeFill: state.shapeFill, shapeColor: state.shapeColor,
+          textColor: state.textColor, textSize: state.textSize,
+          recSrc: rec.src, mic: rec.mic, sys: rec.sys
+        }
+      }));
+    } catch (e){ /* quota full — keep drawing anyway */ }
+  }, 400);
+}
+function load(){
+  let d = null;
+  try { d = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); } catch (e){}
+  const pref = (d && d.prefs) || {};
+  if (d && d.pages && d.pages.length){
+    state.pages = d.pages.map(p => ({ items: p.items || [], hist: [], redo: [] }));
+    state.cur = Math.min(d.cur || 0, state.pages.length - 1);
+  }
+  Object.assign(state, {
+    color: pref.color || state.color, size: pref.size || state.size,
+    opacity: pref.opacity == null ? 1 : pref.opacity,
+    eraserMode: pref.eraserMode || state.eraserMode, eraserSize: pref.eraserSize || state.eraserSize,
+    shape: pref.shape || state.shape, shapeFill: !!pref.shapeFill,
+    shapeColor: pref.shapeColor || state.shapeColor,
+    textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize
+  });
+  rec.src = canScreen ? (pref.recSrc || "board") : "board";
+  rec.mic = pref.mic !== false;
+  rec.sys = !!pref.sys;
+  const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  state.theme = pref.theme || (sysDark ? "dark" : "light");
+}
+
+/* ---------------- keyboard ---------------- */
+window.addEventListener("keydown", (e) => {
+  if (e.target === te) return;
+  const mod = e.ctrlKey || e.metaKey;
+  if (e.code === "Space" && !spaceDown){ spaceDown = true; cv.style.cursor = "grab"; }
+  if (mod && e.key.toLowerCase() === "z" && !e.shiftKey){ e.preventDefault(); undo(); return; }
+  if (mod && (e.key.toLowerCase() === "y" || (e.shiftKey && e.key.toLowerCase() === "z"))){ e.preventDefault(); redo(); return; }
+  if (mod && e.shiftKey && e.key.toLowerCase() === "r"){ e.preventDefault(); rec.on ? stopRec() : startRec(); return; }
+  if (mod && e.key.toLowerCase() === "s"){ e.preventDefault(); $("#expPng").click(); return; }
+  if (mod && e.key.toLowerCase() === "n"){ e.preventDefault(); $("#addpage").click(); return; }
+  if (mod) return;
+  switch (e.key){
+    case "p": case "P": setTool("pen"); break;
+    case "m": case "M": setTool("marker"); break;
+    case "e": case "E": setTool("eraser"); break;
+    case "r": case "R": setTool("shape"); break;
+    case "t": case "T": setTool("text"); break;
+    case "v": case "V": setTool("select"); break;
+    case "h": case "H": setTool("pan"); break;
+    case "i": case "I": $("#imgbtn").click(); break;
+    case "d": case "D": setTheme(state.theme === "dark" ? "light" : "dark"); break;
+    case "0": fitView(); break;
+    case "ArrowLeft":  gotoPage(state.cur - 1); break;
+    case "ArrowRight": gotoPage(state.cur + 1); break;
+    case "Delete": case "Backspace":
+      if (state.sel){ e.preventDefault(); deleteItems([state.sel]); } break;
+    case "Escape": closePops(); state.sel = null; draw(); break;
+  }
+});
+window.addEventListener("keyup", (e) => {
+  if (e.code === "Space"){ spaceDown = false; cv.style.cursor = state.tool === "pan" ? "grab" : (state.tool === "select" ? "default" : "crosshair"); }
+});
+window.addEventListener("beforeunload", (e) => {
+  if (rec.on){ e.preventDefault(); e.returnValue = ""; }
+});
+
+/* ---------------- boot ---------------- */
+function boot(){
+  load();
+  setTheme(state.theme);
+  buildSwatches("#swatches",   () => state.color,      c => state.color = c);
+  buildSwatches("#shswatches", () => state.shapeColor, c => state.shapeColor = c);
+  buildSwatches("#txswatches", () => state.textColor,  c => state.textColor = c);
+  buildSizes(); buildShapes();
+
+  $("#opacity").value = Math.round(state.opacity * 100); $("#opval").textContent = Math.round(state.opacity * 100) + "%";
+  $("#ersize").value = state.eraserSize; $("#ersizeval").textContent = state.eraserSize + " px";
+  $("#tsize").value = state.textSize;    $("#tsval").textContent = state.textSize + " px";
+  $("#shfill").checked = state.shapeFill;
+  $("#micchk").checked = rec.mic;
+  $("#syschk").checked = rec.sys;
+  $$("#eraserseg button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.eraserMode));
+  $$("#recseg button").forEach(b => b.classList.toggle("on", b.dataset.src === rec.src));
+  $("#recnote").textContent = canMedia
+    ? (canScreen ? "Whiteboard mode records the board itself in full quality. Whole screen asks which window to share."
+                 : "This device records the whiteboard itself. Whole-screen capture needs a desktop browser.")
+    : "Recording needs a modern browser (Chrome, Edge, Firefox or Safari 15+).";
+  if (!canScreen) $("#recseg button[data-src=screen]").disabled = true;
+  $("#recbtn").disabled = !canMedia;
+
+  $("#undo").addEventListener("click", undo);
+  $("#redo").addEventListener("click", redo);
+
+  renderPages(); syncHistoryButtons();
+  resize(); fitView();
+  setTool(state.tool);
+
+  if (matchMedia("(pointer: coarse)").matches && !localStorage.getItem(STORE_KEY + "-seen")){
+    setTimeout(() => toast("Pinch to zoom · tap a tool twice for its options"), 900);
+    try { localStorage.setItem(STORE_KEY + "-seen", "1"); } catch (e){}
+  }
+
+  // preload any stored images so the first paint is complete
+  state.pages.forEach(p => p.items.forEach(it => { if (it.type === "image") getImage(it.src); }));
+}
+boot();
+</script>
+</body>
+</html>
