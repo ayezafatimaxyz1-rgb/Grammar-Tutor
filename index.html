@@ -289,7 +289,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     <p id="vidmeta">Preview it below, then save it to your device.</p>
     <video id="vidprev" controls playsinline></video>
     <div class="row">
-      <a class="btn primary" id="viddl" download="whiteboard-recording.webm">Download video</a>
+      <button class="btn primary" id="viddl">Download video</button>
       <button class="btn" id="vidopen">Open in new tab</button>
       <button class="btn ghost" id="vidclose">Close</button>
     </div>
@@ -1174,7 +1174,8 @@ $("#zoomfit").addEventListener("click", fitView);
 function setTheme(t){
   state.theme = t;
   document.documentElement.dataset.theme = t;
-  $("meta[name=theme-color]").setAttribute("content", t === "dark" ? "#0a0b0d" : "#ffffff");
+  const mc = $("meta[name=theme-color]");
+  if (mc) mc.setAttribute("content", t === "dark" ? "#0a0b0d" : "#ffffff");
   // keep ink visible when the board flips colour
   const dark = PALETTE[0], light = PALETTE[9];
   if (t === "dark" && state.color === dark) state.color = light;
@@ -1206,12 +1207,32 @@ function pageToCanvas(p, w){
   renderPageTo(off.getContext("2d"), p, w, h);
   return off;
 }
-function downloadBlob(blob, name){
+// Saving a file: when the board is embedded in a host that mediates downloads
+// (claude.ai artifacts), ask the host; a plain page saves the file itself.
+let dlHost;
+async function saveHost(){
+  if (dlHost !== undefined) return dlHost;
+  try { dlHost = (window.claude && typeof claude.use === "function") ? await claude.use("downloads") : null; }
+  catch (e){ dlHost = null; }
+  return dlHost;
+}
+async function downloadBlob(blob, name){
+  const host = await saveHost();
+  if (host){
+    try { await host.save({ filename: name, data: blob }); return true; }
+    catch (err){
+      if (err && err.code === "declined") return false;
+      if (err && (err.code === "rate_limited")){ toast("Another save is already waiting"); return false; }
+      toast("This device could not save the file");
+      return false;
+    }
+  }
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url; a.download = name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 20000);
+  return true;
 }
 function stamp(){
   const d = new Date(), p = (n) => String(n).padStart(2, "0");
@@ -1221,7 +1242,9 @@ function stamp(){
 /* ---------------- export ---------------- */
 $("#savebtn").addEventListener("click", () => togglePop("#savepop", $("#savebtn")));
 $("#expPng").addEventListener("click", () => {
-  pageToCanvas(page(), PAGE_W).toBlob(b => { downloadBlob(b, "whiteboard-page" + (state.cur+1) + "-" + stamp() + ".png"); toast("PNG saved"); });
+  pageToCanvas(page(), PAGE_W).toBlob(async b => {
+    if (await downloadBlob(b, "whiteboard-page" + (state.cur+1) + "-" + stamp() + ".png")) toast("PNG saved");
+  });
   closePops();
 });
 $("#expAll").addEventListener("click", () => {
@@ -1233,8 +1256,9 @@ $("#expAll").addEventListener("click", () => {
 });
 $("#expJson").addEventListener("click", () => {
   const data = JSON.stringify({ v: 1, pages: state.pages.map(p => ({ items: p.items })) });
-  downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json");
-  toast("Board file saved"); closePops();
+  downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json")
+    .then(ok => { if (ok) toast("Board file saved"); });
+  closePops();
 });
 $("#impJson").addEventListener("click", () => { $("#jsonpick").click(); closePops(); });
 $("#jsonpick").addEventListener("change", (e) => {
@@ -1386,7 +1410,14 @@ function finishRec(){
   const ext = type.includes("mp4") ? "mp4" : "webm";
   const name = "whiteboard-recording-" + stamp() + "." + ext;
   const v = $("#vidprev"), dl = $("#viddl");
-  v.src = url; dl.href = url; dl.download = name;
+  v.src = url;
+  rec.lastBlob = blob; rec.lastName = name;
+  dl.onclick = async () => {
+    dl.disabled = true;
+    const ok = await downloadBlob(rec.lastBlob, rec.lastName);
+    dl.disabled = false;
+    if (ok) toast("Video saved");
+  };
   v.onloadedmetadata = () => {                    // MediaRecorder webm has no duration header
     if (v.duration === Infinity){
       v.currentTime = 1e6;
@@ -1395,6 +1426,7 @@ function finishRec(){
   };
   $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent + " · " + ext.toUpperCase();
   $("#vidopen").onclick = () => window.open(url, "_blank");
+  $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
   $("#vidback").classList.add("open");
 }
 $("#recbtn").addEventListener("click", () => rec.on ? stopRec() : startRec());

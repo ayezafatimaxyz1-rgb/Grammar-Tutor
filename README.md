@@ -62,6 +62,9 @@ Tap a tool a second time to open its options panel.
   Settings, Pages, deploy from the `main` branch) and open the URL. Add it to the home screen
   for a full screen app.
 
+When the board is embedded in a host that mediates file saving, it asks the host to save
+exports and recordings; opened as a normal page it saves them itself.
+
 Recording and microphone capture need a secure context, so use `https://` or `localhost`.
 Screen capture of the whole screen is a desktop browser feature; on phones the whiteboard
 records itself, which is what you usually want anyway.
