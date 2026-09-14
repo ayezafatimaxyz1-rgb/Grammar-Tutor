@@ -67,7 +67,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* ---------- options popover ---------- */
 .pop{
   position:absolute;z-index:40;background:var(--panel);border:1px solid var(--border);
-  border-radius:16px;box-shadow:var(--shadow);padding:12px;min-width:230px;display:none;
+  border-radius:16px;box-shadow:var(--shadow);padding:12px;display:none;
+  min-width:230px;max-width:min(300px,calc(100vw - 96px));
 }
 .pop.open{display:block}
 .pop h4{margin:0 0 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
@@ -150,7 +151,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   .rail{right:8px;padding:5px;gap:5px;border-radius:14px}
   .tbtn{width:36px;height:36px}
   .topbar{gap:6px;padding:6px 8px;padding-top:max(6px,env(safe-area-inset-top))}
-  .pop{min-width:210px}
+  .pop{min-width:200px}
 }
 </style>
 </head>
@@ -214,6 +215,10 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div class="sizes" id="sizes"></div>
       <h4 style="margin-top:14px">Opacity <span class="mini" id="opval">100%</span></h4>
       <input type="range" id="opacity" min="10" max="100" value="100">
+      <label class="chk" style="margin-top:14px" title="Shortcut: S">
+        <input type="checkbox" id="snapchk" checked> Tidy my sketches into shapes
+      </label>
+      <p class="mini" style="margin:6px 0 0">Draw a rough box, circle, triangle or line and it is redrawn cleanly. Undo keeps the sketch.</p>
     </div>
 
     <div class="pop" id="eraserpop">
@@ -316,6 +321,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>New page</span><kbd>Ctrl+N</kbd></div>
       <div><span>Zoom</span><kbd>Ctrl+scroll</kbd> / pinch</div>
       <div><span>Fit to screen</span><kbd>0</kbd></div>
+      <div><span>Tidy sketches into shapes</span><kbd>S</kbd></div>
       <div><span>Black / white theme</span><kbd>D</kbd></div>
       <div><span>Start / stop recording</span><kbd>Ctrl+Shift+R</kbd></div>
     </div>
@@ -352,6 +358,7 @@ const state = {
   size: 6,
   opacity: 1,
   eraserMode: "pixel",
+  snap: true,
   eraserSize: 28,
   shape: "rect",
   shapeFill: false,
@@ -441,6 +448,7 @@ function bboxOf(it){
     return { x: it.x, y: it.y, w: m.w, h: m.h };
   }
   if (it.type === "shape"){
+    if (it.pts) return rawBox(it.pts);
     const x = Math.min(it.x1, it.x2), y = Math.min(it.y1, it.y2);
     return { x, y, w: Math.abs(it.x2 - it.x1), h: Math.abs(it.y2 - it.y1) };
   }
@@ -606,6 +614,10 @@ function paintItem(c, it){
       it.fill ? c.fill() : c.stroke();
     } else if (it.shape === "line"){
       c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
+    } else if (it.shape === "poly"){
+      it.pts.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
+      c.closePath();
+      it.fill ? c.fill() : c.stroke();
     } else if (it.shape === "arrow"){
       c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
       const a = Math.atan2(y2 - y1, x2 - x1), L = Math.max(14, it.size * 3.2);
@@ -629,6 +641,9 @@ function applyOp(op, undo){
   } else if (op.kind === "del"){
     if (undo){ op.entries.slice().sort((a,b)=>a.index-b.index).forEach(e => p.items.splice(Math.min(e.index, p.items.length), 0, e.item)); }
     else { op.entries.forEach(e => { const i = p.items.indexOf(e.item); if (i > -1) p.items.splice(i, 1); }); }
+  } else if (op.kind === "swap"){
+    const i = p.items.indexOf(undo ? op.to : op.from);
+    if (i > -1) p.items[i] = undo ? op.from : op.to;
   } else if (op.kind === "mod"){
     Object.assign(op.item, undo ? op.before : op.after);
   }
@@ -692,6 +707,129 @@ function handleAt(sp){
   }
   return null;
 }
+
+
+/* ---------------- shape recognition ----------------
+   A freehand stroke is measured once it is finished. If it clearly wants to
+   be a line, rectangle, ellipse or polygon, it is replaced by that shape.
+   Undo puts the original sketch back, so nothing is ever lost. */
+
+function rawBox(pts){
+  let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
+  for (const p of pts){ a = Math.min(a,p.x); b = Math.min(b,p.y); c = Math.max(c,p.x); d = Math.max(d,p.y); }
+  return { x:a, y:b, w:c-a, h:d-b };
+}
+function pathLength(pts){
+  let L = 0;
+  for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i].x-pts[i-1].x, pts[i].y-pts[i-1].y);
+  return L;
+}
+// Ramer–Douglas–Peucker: keep only the points that carry the shape
+function rdp(pts, eps){
+  if (pts.length < 3) return pts.slice();
+  const a = pts[0], b = pts[pts.length-1];
+  let maxD = -1, idx = 0;
+  for (let i = 1; i < pts.length - 1; i++){
+    const d = distToSeg(pts[i], a, b);
+    if (d > maxD){ maxD = d; idx = i; }
+  }
+  if (maxD > eps){
+    const left = rdp(pts.slice(0, idx + 1), eps), right = rdp(pts.slice(idx), eps);
+    return left.slice(0, -1).concat(right);
+  }
+  return [a, b];
+}
+function cornersOf(pts, eps){
+  // start at the point furthest from the middle so a corner never lands on the seam
+  const bb = rawBox(pts), cx = bb.x + bb.w/2, cy = bb.y + bb.h/2;
+  let far = 0, fd = -1;
+  pts.forEach((p, i) => { const d = Math.hypot(p.x-cx, p.y-cy); if (d > fd){ fd = d; far = i; } });
+  const rot = pts.slice(far).concat(pts.slice(0, far));
+  rot.push(rot[0]);
+  let c = rdp(rot, eps);
+  c.pop();                                   // drop the repeated closing point
+  // merge corners that sit on top of each other, then drop the ones that are not turns
+  const merged = [];
+  for (const p of c){
+    const q = merged[merged.length-1];
+    if (!q || Math.hypot(p.x-q.x, p.y-q.y) > eps * 1.6) merged.push(p);
+  }
+  const out = [];
+  for (let i = 0; i < merged.length; i++){
+    const prev = merged[(i - 1 + merged.length) % merged.length];
+    const cur = merged[i], next = merged[(i + 1) % merged.length];
+    const a1 = Math.atan2(prev.y-cur.y, prev.x-cur.x), a2 = Math.atan2(next.y-cur.y, next.x-cur.x);
+    let turn = Math.abs(a1 - a2) * 180 / Math.PI;
+    if (turn > 180) turn = 360 - turn;
+    if (turn < 168) out.push(cur);           // a real corner, not a point along a side
+  }
+  return out.length >= 3 ? out : merged;
+}
+function snapAngle(a, z){
+  const dx = z.x - a.x, dy = z.y - a.y;
+  const len = Math.hypot(dx, dy);
+  const ang = Math.atan2(dy, dx) * 180 / Math.PI;
+  const step = 15, near = Math.round(ang / step) * step;
+  if (Math.abs(ang - near) > 6) return z;     // free angle, leave it alone
+  const r = near * Math.PI / 180;
+  return { x: a.x + Math.cos(r) * len, y: a.y + Math.sin(r) * len };
+}
+function edgesAxisAligned(corners, tol){
+  for (let i = 0; i < corners.length; i++){
+    const a = corners[i], b = corners[(i + 1) % corners.length];
+    let ang = Math.abs(Math.atan2(b.y-a.y, b.x-a.x) * 180 / Math.PI) % 90;
+    if (Math.min(ang, 90 - ang) > tol) return false;
+  }
+  return true;
+}
+
+function recognize(src){
+  const pts = src.pts;
+  if (pts.length < 5) return null;
+  const bb = rawBox(pts);
+  const diag = Math.hypot(bb.w, bb.h);
+  if (diag < 110) return null;                            // small marks stay as written
+  const L = pathLength(pts);
+  if (L < diag * 0.7 || L > diag * 9) return null;        // a dot, or a long scribble
+  const first = pts[0], last = pts[pts.length - 1];
+  const chord = Math.hypot(last.x - first.x, last.y - first.y);
+  const mk = (o) => Object.assign({
+    type: "shape", color: src.color, auto: src.auto, size: src.size,
+    alpha: src.alpha == null ? 1 : src.alpha, fill: false
+  }, o);
+
+  if (chord > Math.max(diag * 0.3, 26)){                  // open stroke
+    if (chord / L > 0.93){
+      const z = snapAngle(first, last);
+      return mk({ shape:"line", x1: first.x, y1: first.y, x2: z.x, y2: z.y });
+    }
+    return null;
+  }
+
+  // closed stroke: circle-ish, or a polygon
+  const cx = bb.x + bb.w/2, cy = bb.y + bb.h/2;
+  const rx = Math.max(bb.w/2, 1), ry = Math.max(bb.h/2, 1);
+  let err = 0;
+  for (const p of pts) err += Math.abs(Math.hypot((p.x-cx)/rx, (p.y-cy)/ry) - 1);
+  err /= pts.length;
+
+  const corners = cornersOf(pts, Math.max(9, diag * 0.055));
+  // a box drawn almost square, or a circle drawn almost round, was meant to be exact
+  let box = { x1: bb.x, y1: bb.y, x2: bb.x + bb.w, y2: bb.y + bb.h };
+  if (Math.abs(bb.w - bb.h) / Math.max(bb.w, bb.h) < 0.12){
+    const side = (bb.w + bb.h) / 2, mx = bb.x + bb.w/2, my = bb.y + bb.h/2;
+    box = { x1: mx - side/2, y1: my - side/2, x2: mx + side/2, y2: my + side/2 };
+  }
+
+  if (err < 0.11 && corners.length > 4) return mk(Object.assign({ shape:"ellipse" }, box));
+  if (corners.length === 4 && edgesAxisAligned(corners, 15)) return mk(Object.assign({ shape:"rect" }, box));
+  if (corners.length >= 3 && corners.length <= 7)
+    return mk(Object.assign({ shape:"poly", pts: corners.map(p => ({ x:p.x, y:p.y })) }, box));
+  if (err < 0.17) return mk(Object.assign({ shape:"ellipse" }, box));
+  return null;
+}
+
+const SHAPE_NAME = { line:"a line", rect:"a rectangle", ellipse:"an ellipse", poly:"a shape" };
 
 /* ---------------- pointer input ---------------- */
 const pointers = new Map();
@@ -776,7 +914,9 @@ function pressureScale(e){
 }
 function snapshot(it){
   if (it.type === "image" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
-  if (it.type === "shape") return { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2 };
+  if (it.type === "shape") return it.pts
+    ? { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2, pts: it.pts.map(p => ({ x:p.x, y:p.y })) }
+    : { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2 };
   if (it.type === "stroke") return { pts: it.pts.map(p => ({ x:p.x, y:p.y })) };
   return {};
 }
@@ -849,9 +989,27 @@ cv.addEventListener("pointermove", (e) => {
   }
 });
 
+let snapToldOnce = false;
+function snapToShape(raw){
+  const clean = recognize(raw);
+  if (!clean) return;
+  const items = page().items, i = items.indexOf(raw);
+  if (i < 0) return;
+  items[i] = clean;
+  if (state.sel === raw) state.sel = clean;
+  pushOp({ kind:"swap", from: raw, to: clean });
+  if (!snapToldOnce){
+    snapToldOnce = true;
+    toast("Snapped to " + (SHAPE_NAME[clean.shape] || "a shape") + " — undo keeps your sketch");
+  }
+}
+
 function moveItem(it, dx, dy){
   if (it.type === "stroke"){ it.pts.forEach(p => { p.x += dx; p.y += dy; }); }
-  else if (it.type === "shape"){ it.x1 += dx; it.y1 += dy; it.x2 += dx; it.y2 += dy; }
+  else if (it.type === "shape"){
+    it.x1 += dx; it.y1 += dy; it.x2 += dx; it.y2 += dy;
+    if (it.pts) it.pts.forEach(p => { p.x += dx; p.y += dy; });
+  }
   else { it.x += dx; it.y += dy; }
 }
 function resizeSel(a, wp){
@@ -872,6 +1030,10 @@ function resizeSel(a, wp){
     it.size = Math.max(10, Math.round(a.before.size * (nw / Math.max(1, b.w))));
     it.x = nx; it.y = ny;
   } else if (it.type === "shape"){
+    if (it.pts){
+      const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
+      it.pts = a.before.pts.map(p => ({ x: nx + (p.x - b.x) * sx, y: ny + (p.y - b.y) * sy }));
+    }
     it.x1 = nx; it.y1 = ny; it.x2 = nx + nw; it.y2 = ny + nh;
   } else if (it.type === "stroke"){
     const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
@@ -896,7 +1058,11 @@ function endPointer(e){
   if (!action) return;
 
   if (action.mode === "draw" && drawingItem){
-    if (drawingItem.pts.length) addItem(drawingItem);
+    if (drawingItem.pts.length){
+      const raw = drawingItem;
+      addItem(raw);
+      if (state.snap && raw.tool === "pen" && !raw.erase) snapToShape(raw);
+    }
     drawingItem = null;
   } else if (action.mode === "shape" && drawingItem){
     const w = Math.abs(drawingItem.x2 - drawingItem.x1), h = Math.abs(drawingItem.y2 - drawingItem.y1);
@@ -1100,11 +1266,21 @@ function positionPop(p, anchor){
   const ar = anchor.getBoundingClientRect();
   p.style.visibility = "hidden"; p.classList.add("open");
   const pw = p.offsetWidth, ph = p.offsetHeight;
-  let left = ar.left - wr.left - pw - 10;
-  if (left < 8) left = Math.max(8, ar.right - wr.left + 10);
-  if (left + pw > wr.width - 8) left = wr.width - pw - 8;
-  let top = ar.top - wr.top + ar.height / 2 - ph / 2;
-  top = Math.max(8, Math.min(wr.height - ph - 8, top));
+  let left, top;
+
+  if (ar.bottom <= wr.top + 4){                 // anchored in the top bar: hang underneath it
+    left = ar.right - wr.left - pw;
+    top = 10;
+  } else {                                      // anchored in the side rail: sit beside it
+    left = ar.left - wr.left - pw - 10;
+    top = ar.top - wr.top + ar.height / 2 - ph / 2;
+  }
+  // never let the panel cover the button that opened it
+  const limit = ar.left - wr.left - 8;
+  if (left + pw > limit) left = limit - pw;
+  left = Math.max(8, Math.min(wr.width - pw - 8, left));
+  top = Math.max(8, Math.min(Math.max(8, wr.height - ph - 8), top));
+
   p.style.left = left + "px"; p.style.top = top + "px";
   p.style.visibility = "visible";
 }
@@ -1155,6 +1331,11 @@ function buildShapes(){
   });
 }
 
+$("#snapchk").addEventListener("change", (e) => {
+  state.snap = e.target.checked;
+  toast(state.snap ? "Sketches will be tidied into shapes" : "Sketches stay exactly as drawn");
+  save();
+});
 $("#opacity").addEventListener("input", (e) => { state.opacity = e.target.value / 100; $("#opval").textContent = e.target.value + "%"; save(); });
 $("#ersize").addEventListener("input", (e) => { state.eraserSize = +e.target.value; $("#ersizeval").textContent = e.target.value + " px"; draw(); save(); });
 $("#tsize").addEventListener("input", (e) => { state.textSize = +e.target.value; $("#tsval").textContent = e.target.value + " px"; save(); });
@@ -1467,7 +1648,7 @@ function save(){
         pages: state.pages.map(p => ({ items: p.items })),
         prefs: {
           theme: state.theme, color: state.color, size: state.size, opacity: state.opacity,
-          eraserMode: state.eraserMode, eraserSize: state.eraserSize, shape: state.shape,
+          eraserMode: state.eraserMode, eraserSize: state.eraserSize, snap: state.snap, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
           textColor: state.textColor, textSize: state.textSize,
           recSrc: rec.src, mic: rec.mic, sys: rec.sys
@@ -1488,6 +1669,7 @@ function load(){
     color: pref.color || state.color, size: pref.size || state.size,
     opacity: pref.opacity == null ? 1 : pref.opacity,
     eraserMode: pref.eraserMode || state.eraserMode, eraserSize: pref.eraserSize || state.eraserSize,
+    snap: pref.snap !== false,
     shape: pref.shape || state.shape, shapeFill: !!pref.shapeFill,
     shapeColor: pref.shapeColor || state.shapeColor,
     textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize
@@ -1519,6 +1701,7 @@ window.addEventListener("keydown", (e) => {
     case "v": case "V": setTool("select"); break;
     case "h": case "H": setTool("pan"); break;
     case "i": case "I": $("#imgbtn").click(); break;
+    case "s": case "S": $("#snapchk").checked = !state.snap; $("#snapchk").dispatchEvent(new Event("change")); break;
     case "d": case "D": setTheme(state.theme === "dark" ? "light" : "dark"); break;
     case "0": fitView(); break;
     case "ArrowLeft":  gotoPage(state.cur - 1); break;
@@ -1548,6 +1731,7 @@ function boot(){
   $("#ersize").value = state.eraserSize; $("#ersizeval").textContent = state.eraserSize + " px";
   $("#tsize").value = state.textSize;    $("#tsval").textContent = state.textSize + " px";
   $("#shfill").checked = state.shapeFill;
+  $("#snapchk").checked = state.snap;
   $("#micchk").checked = rec.mic;
   $("#syschk").checked = rec.sys;
   $$("#eraserseg button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.eraserMode));

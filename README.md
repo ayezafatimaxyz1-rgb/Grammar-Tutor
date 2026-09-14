@@ -11,6 +11,11 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Eraser in two modes: erase ink (pixel eraser) or erase a whole object
 * Shapes: rectangle, ellipse, line and arrow, filled or outlined (hold Shift for square/circle)
 * Text boxes, double click any text to edit it again
+* Shape recognition: draw a rough box, circle, triangle, diamond or line freehand and it is
+  redrawn as a clean shape. A box drawn almost square becomes a square, a nearly round circle
+  becomes a circle, and a nearly level line becomes level. Handwriting, small marks, curves and
+  scribbles are left exactly as drawn. Undo once to keep your original sketch. Toggle it in the
+  marker panel or with `S`.
 * Select tool to move, resize and delete anything on the board
 * Unlimited undo and redo per page
 
@@ -49,6 +54,7 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 | New page | `Ctrl+N` |
 | Previous / next page | `←` / `→` |
 | Fit to screen | `0` |
+| Tidy sketches into shapes | `S` |
 | Black / white theme | `D` |
 | Start or stop recording | `Ctrl+Shift+R` |
 | Save page as PNG | `Ctrl+S` |
