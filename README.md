@@ -30,8 +30,13 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   nearly round circle becomes a circle, and a nearly level line becomes level. Handwriting, small
   marks, curves, checkmarks and scribbles are left exactly as drawn. Undo once to keep your
   original sketch. Toggle it in the marker panel or with `S`.
-* Text boxes flow onto new lines as you type instead of running off in one long line, and a tap
-  somewhere else starts the next one right there
+* Text has no box: tap anywhere, high or low, and type. The line keeps going as far as you write
+  and only Enter starts a new one. A tap somewhere else starts the next piece of text right there.
+* Handwriting becomes typed text: print letters or numbers with the pen and they are typed out a
+  moment after you stop. A to Z, 0 to 9, words and whole numbers. Ink that is not writing (a tick,
+  an underline, an arrow, a scribble) is left alone, and undo brings your writing back. Auto works
+  out letters from numbers by what you are writing; set Letters or Numbers when a lone mark could
+  be an O or a zero.
 * Select tool to move, resize and delete anything on the board
 * Unlimited undo and redo per page
 * Stylus only mode, so a resting palm does not draw on a tablet
@@ -57,6 +62,10 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Your voice is mixed in, with a live level meter while you record, so you can see it working
 * Test my voice records three seconds and plays it back, before you commit to a recording
 * Voice changer: Normal, Deep, High, Robot, Echo and Radio, applied as you record
+* A **?** button next to Test my voice reports exactly what is true: secure address, whether the
+  surrounding page allows the microphone, the browser permission, how many microphones were found,
+  and whether recording is supported. When a page embeds the board and withholds the microphone,
+  no browser setting can help and the board now says so instead of sending you round in circles.
 * Voice notes: record just your voice and leave it on the board as something to tap and play.
   This works on a phone, where a screen recording usually cannot.
 * If the microphone is blocked, the board says so and explains how to allow it, instead of
@@ -93,6 +102,15 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 | Save page as PNG | `Ctrl+S` |
 
 Tap a tool a second time to open its options panel.
+
+## If the microphone will not work
+
+A page that embeds this board can withhold the microphone, and no setting on your side changes
+that. Press the **?** beside Test my voice: if it says the surrounding page withholds it, open the
+board from its own address instead. The quickest way is GitHub Pages: repository **Settings**,
+**Pages**, deploy from the `main` branch, root folder. The board is then at
+`https://<your-username>.github.io/<repository>/` with nothing embedding it, and the microphone,
+recording and downloads all work normally. Voice notes often work even inside an embedding page.
 
 ## Opening it
 

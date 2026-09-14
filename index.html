@@ -171,7 +171,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 #textedit{
   position:absolute;z-index:25;display:none;background:transparent;border:1.5px dashed var(--accent);
   border-radius:6px;padding:2px 4px;outline:none;resize:none;overflow:hidden;white-space:pre;
-  font-family:inherit;line-height:1.25;min-width:40px;
+  font-family:inherit;line-height:1.25;min-width:40px;max-width:none;
 }
 /* ---------- toast ---------- */
 .edgebtn{
@@ -273,6 +273,15 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
         <input type="checkbox" id="snapchk" checked> Tidy marker sketches into shapes
       </label>
       <p class="mini" style="margin:6px 0 0">Draw a rough box, circle, triangle or line with the marker and it is redrawn cleanly. Undo keeps the sketch. The pen is for writing and is never changed.</p>
+      <label class="chk" style="margin-top:10px" title="Shortcut: Shift+H">
+        <input type="checkbox" id="hwchk" checked> Turn my writing into typed text
+      </label>
+      <div class="seg" id="hwmode" style="margin-top:8px">
+        <button data-mode="auto" class="on">Auto</button>
+        <button data-mode="letter">Letters</button>
+        <button data-mode="digit">Numbers</button>
+      </div>
+      <p class="mini" style="margin:6px 0 0">Print letters or numbers with the pen and they are typed out. A lone mark can be an O or a zero, so pick Letters or Numbers when you are writing a whole alphabet or counting.</p>
       <label class="chk" style="margin-top:10px">
         <input type="checkbox" id="styluschk"> Stylus only, ignore my palm
       </label>
@@ -297,6 +306,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     </div>
 
     <div class="pop" id="textpop">
+      <p class="mini" style="margin:0 0 10px">Tap anywhere and type. The line keeps going as far as you write; Enter starts a new one.</p>
       <h4>Text size <span class="mini" id="tsval">44 px</span></h4>
       <input type="range" id="tsize" min="16" max="160" value="44">
       <h4 style="margin-top:14px">Colour</h4>
@@ -316,6 +326,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div class="fxrow" id="fxrow"></div>
       <div class="row" style="margin-top:10px;gap:8px">
         <button class="btn" id="mictest">Test my voice</button>
+        <button class="btn" id="miccheck" title="Why is my voice not recording?">?</button>
         <div class="meter"><i id="meterbar"></i></div>
       </div>
       <button class="btn" id="voicenote" style="margin-top:8px;width:100%;justify-content:center">Record a voice note on the board</button>
@@ -377,6 +388,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   <div class="modal">
     <h3>Microphone</h3>
     <p id="micmsg"></p>
+    <ul id="micfacts" style="line-height:1.8;padding-left:18px;font-size:13.5px;margin:0 0 12px"></ul>
     <ul class="mini" id="micsteps" style="line-height:1.7;padding-left:18px"></ul>
     <div class="row" style="margin-top:14px">
       <button class="btn primary" id="micretry">Try again</button>
@@ -410,6 +422,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Fit the board to screen</span><kbd>0</kbd></div>
       <div><span>Fullscreen</span><kbd>F</kbd></div>
       <div><span>Tidy sketches into shapes</span><kbd>S</kbd></div>
+      <div><span>Writing into typed text</span><kbd>Shift</kbd>+<kbd>H</kbd></div>
       <div><span>Black / white theme</span><kbd>D</kbd></div>
       <div><span>Start / stop recording</span><kbd>Ctrl+Shift+R</kbd></div>
     </div>
@@ -449,6 +462,8 @@ const state = {
   opacity: 1,
   eraserMode: "pixel",
   stylusOnly: false,
+  hw: true,
+  hwMode: "auto",
   voiceFx: "none",
   snap: true,
   eraserSize: 28,
@@ -593,9 +608,10 @@ function wrapText(it){
   if (it._key === key) return it._lines;
   ctx.save();
   ctx.font = textFont(it);
-  const limit = it.maxW || 700;
   const lines = [];
+  const limit = it.maxW;                       // only older boards carry a width
   for (const para of String(it.text).split("\n")){
+    if (!limit){ lines.push(para); continue; }
     if (!para){ lines.push(""); continue; }
     let line = "";
     for (const word of para.split(/(\s+)/)){
@@ -863,6 +879,16 @@ function applyOp(op, undo){
   } else if (op.kind === "del"){
     if (undo){ op.entries.slice().sort((a,b)=>a.index-b.index).forEach(e => p.items.splice(Math.min(e.index, p.items.length), 0, e.item)); }
     else { op.entries.forEach(e => { const i = p.items.indexOf(e.item); if (i > -1) p.items.splice(i, 1); }); }
+  } else if (op.kind === "hw"){
+    if (undo){
+      if (op.added){ const i = p.items.indexOf(op.added); if (i > -1) p.items.splice(i, 1); }
+      if (op.target){ op.target.text = op.before.text; op.target._key = null; }
+      op.removed.forEach(e => p.items.splice(Math.min(e.index, p.items.length), 0, e.item));
+    } else {
+      op.removed.forEach(e => { const i = p.items.indexOf(e.item); if (i > -1) p.items.splice(i, 1); });
+      if (op.target){ op.target.text = op.after.text; op.target._key = null; }
+      if (op.added) p.items.push(op.added);
+    }
   } else if (op.kind === "swap"){
     const i = p.items.indexOf(undo ? op.to : op.from);
     if (i > -1) p.items[i] = undo ? op.from : op.to;
@@ -934,6 +960,403 @@ function handleAt(sp){
 
 
 
+
+/* ---------------- handwriting to text ----------------
+   Ink is rasterised into a small normalised picture and compared against the
+   same picture drawn from real font glyphs. No model, no network: the browser
+   already knows what an A looks like. */
+
+const HW_N = 26;                       // bitmap side
+const HW_UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const HW_DIGITS = "0123456789";
+// lowercase letters that do not simply look like a small capital
+const HW_LOWER = "abdefghijmnqrty";
+// letters written the same way in both cases: the size of the mark decides
+const HW_SAMECASE = "COPSUVWXZK";
+let hwTemplates = null;
+
+// A character is described by where its edges run, not by which pixels are
+// dark: a thin pen stroke and a thick printed stem then look the same. The
+// picture is normalised to 64x64, its gradients are binned into four
+// directions over an 8x8 grid, and that 256 number description is compared.
+const HW_G = 64, HW_CELLS = 8, HW_DIRS = 4;
+
+
+/* Printed letterforms as pen strokes, the way a hand draws them. Coordinates
+   run 0..width across and 0..1 down, so each letter keeps its own proportions.
+   These sit alongside the font glyphs as templates. */
+function hwArc(cx, cy, rx, ry, a0, a1, n){
+  const o = []; n = n || 16;
+  for (let i = 0; i <= n; i++){ const a = a0 + (a1-a0)*i/n; o.push({ x: cx + Math.cos(a)*rx, y: cy + Math.sin(a)*ry }); }
+  return o;
+}
+function hwLine(x1, y1, x2, y2){
+  const o = [];
+  for (let i = 0; i <= 6; i++){ const t = i/6; o.push({ x: x1 + (x2-x1)*t, y: y1 + (y2-y1)*t }); }
+  return o;
+}
+const T2 = Math.PI*2, QQ = Math.PI/2;
+const HW_FORMS = {
+  "0": [hwArc(.31,.5,.29,.49,0,T2,22)],
+  "1": [[...hwLine(.06,.2,.3,.02), ...hwLine(.3,.02,.3,1)]],
+  "2": [[...hwArc(.32,.29,.27,.27,Math.PI+.5,T2+.7,12), ...hwLine(.55,.42,.05,1)], hwLine(.05,1,.62,1)],
+  "3": [hwArc(.28,.26,.25,.26,Math.PI+.6,T2+.9,14), hwArc(.27,.74,.28,.26,Math.PI+.9,T2+.9,14)],
+  "4": [hwLine(.48,.02,.04,.68), hwLine(.04,.68,.62,.68), hwLine(.48,.28,.48,1)],
+  "5": [[...hwLine(.58,.04,.12,.04), ...hwLine(.12,.04,.1,.44)], hwArc(.32,.7,.26,.3,Math.PI+.8,T2+.9,14)],
+  "6": [[...hwArc(.32,.66,.27,.34,-.35,T2-.35,22)], hwLine(.55,.06,.18,.42)],
+  "7": [hwLine(.03,.04,.62,.04), hwLine(.62,.04,.22,1)],
+  "8": [hwArc(.31,.25,.24,.25,0,T2,18), hwArc(.31,.74,.29,.26,0,T2,18)],
+  "9": [hwArc(.33,.3,.26,.28,0,T2,18), hwLine(.59,.3,.42,1)],
+  A: [hwLine(.02,1,.37,.02), hwLine(.37,.02,.72,1), hwLine(.14,.68,.6,.68)],
+  B: [hwLine(.08,.02,.08,1), hwArc(.08,.27,.28,.25,-QQ,QQ,12), hwArc(.08,.75,.32,.25,-QQ,QQ,12)],
+  C: [hwArc(.38,.5,.32,.48,.62,T2-.62,20)],
+  D: [hwLine(.08,.02,.08,1), hwArc(.08,.51,.38,.49,-QQ,QQ,16)],
+  E: [hwLine(.08,.02,.08,1), hwLine(.08,.02,.58,.02), hwLine(.08,.5,.5,.5), hwLine(.08,1,.58,1)],
+  F: [hwLine(.08,.02,.08,1), hwLine(.08,.02,.58,.02), hwLine(.08,.48,.5,.48)],
+  G: [hwArc(.38,.5,.32,.48,.5,T2-.72,20), hwLine(.7,.52,.42,.52)],
+  H: [hwLine(.04,.02,.04,1), hwLine(.62,.02,.62,1), hwLine(.04,.5,.62,.5)],
+  I: [hwLine(.08,.02,.08,1)],
+  J: [hwLine(.42,.02,.42,.78), hwArc(.22,.78,.2,.22,0,Math.PI,10)],
+  K: [hwLine(.06,.02,.06,1), hwLine(.58,.03,.08,.54), hwLine(.18,.46,.62,1)],
+  L: [hwLine(.08,.02,.08,1), hwLine(.08,1,.56,1)],
+  M: [hwLine(.03,1,.03,.03), hwLine(.03,.03,.38,.62), hwLine(.38,.62,.73,.03), hwLine(.73,.03,.73,1)],
+  N: [hwLine(.04,1,.04,.03), hwLine(.04,.03,.6,1), hwLine(.6,1,.6,.03)],
+  O: [hwArc(.38,.5,.36,.48,0,T2,24)],
+  P: [hwLine(.08,.02,.08,1), hwArc(.08,.29,.32,.27,-QQ,QQ,12)],
+  Q: [hwArc(.38,.5,.36,.48,0,T2,24), hwLine(.46,.74,.76,1.02)],
+  R: [hwLine(.08,.02,.08,1), hwArc(.08,.29,.32,.27,-QQ,QQ,12), hwLine(.14,.56,.62,1)],
+  S: [[...hwArc(.32,.28,.24,.26,.5,Math.PI+.7,14), ...hwArc(.31,.74,.26,.26,Math.PI+.5,T2+.8,14)]],
+  T: [hwLine(.02,.03,.68,.03), hwLine(.35,.03,.35,1)],
+  U: [[...hwLine(.04,.02,.04,.7), ...hwArc(.34,.7,.3,.3,Math.PI,0,14), ...hwLine(.64,.7,.64,.02)]],
+  V: [hwLine(.02,.02,.34,1), hwLine(.34,1,.66,.02)],
+  W: [hwLine(.02,.02,.22,1), hwLine(.22,1,.44,.4), hwLine(.44,.4,.66,1), hwLine(.66,1,.86,.02)],
+  X: [hwLine(.03,.02,.63,1), hwLine(.63,.02,.03,1)],
+  Y: [hwLine(.03,.02,.33,.52), hwLine(.63,.02,.33,.52), hwLine(.33,.52,.33,1)],
+  Z: [hwLine(.03,.03,.62,.03), hwLine(.62,.03,.03,1), hwLine(.03,1,.62,1)]
+};
+// a few letters are commonly written a second way
+const HW_ALT = {
+  "1": [hwLine(.18,.02,.18,1)],
+  "7": [hwLine(.03,.04,.62,.04), hwLine(.62,.04,.22,1), hwLine(.18,.55,.5,.55)],
+  J: [[...hwLine(.42,.02,.42,.78), ...hwArc(.22,.78,.2,.22,0,Math.PI,10)], hwLine(.2,.02,.62,.02)],
+  I: [hwLine(.22,.02,.22,1), hwLine(.04,.02,.4,.02), hwLine(.04,1,.4,1)],
+  G: [hwArc(.38,.5,.32,.48,.5,T2-.6,20), [...hwLine(.66,.5,.42,.5), ...hwLine(.66,.5,.66,.86)]],
+  Q: [hwArc(.38,.5,.36,.48,0,T2,24), hwLine(.5,.62,.8,.96)],
+  W: [hwLine(.02,.02,.18,1), hwLine(.18,1,.35,.42), hwLine(.35,.42,.52,1), hwLine(.52,1,.68,.02)],
+  M: [hwLine(.03,1,.03,.03), hwLine(.03,.03,.3,.66), hwLine(.3,.66,.57,.03), hwLine(.57,.03,.57,1)],
+  U: [hwLine(.04,.02,.04,.7), [...hwArc(.34,.7,.3,.3,Math.PI,0,14)], hwLine(.64,.7,.64,.02)]
+};
+
+function hwDescribe(cvs){
+  const w = cvs.width, h = cvs.height;
+  const d = cvs.getContext("2d").getImageData(0, 0, w, h).data;
+  let x0 = w, y0 = h, x1 = -1, y1 = -1;
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++){
+    if (d[(y*w + x)*4 + 3] > 40){
+      if (x < x0) x0 = x; if (x > x1) x1 = x;
+      if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+  }
+  if (x1 < 0) return null;
+  const bw = x1 - x0 + 1, bh = y1 - y0 + 1;
+  const pad = 6, box = HW_G - pad*2;
+  const k = Math.min(box / bw, box / bh);
+  const small = document.createElement("canvas");
+  small.width = HW_G; small.height = HW_G;
+  const sc = small.getContext("2d");
+  sc.imageSmoothingEnabled = true;
+  sc.setTransform(k, 0, 0, k, (HW_G - bw*k)/2 - x0*k, (HW_G - bh*k)/2 - y0*k);
+  sc.drawImage(cvs, 0, 0);
+  const sd = sc.getImageData(0, 0, HW_G, HW_G).data;
+  const a = new Float32Array(HW_G*HW_G);
+  for (let i = 0; i < a.length; i++) a[i] = sd[i*4 + 3] / 255;
+
+  const feat = new Float32Array(HW_CELLS*HW_CELLS*HW_DIRS);
+  const cell = HW_G / HW_CELLS;
+  for (let y = 1; y < HW_G-1; y++) for (let x = 1; x < HW_G-1; x++){
+    const gx = a[y*HW_G + x+1] - a[y*HW_G + x-1];
+    const gy = a[(y+1)*HW_G + x] - a[(y-1)*HW_G + x];
+    const mag = Math.hypot(gx, gy);
+    if (mag < 0.08) continue;
+    let ang = Math.atan2(gy, gx);
+    if (ang < 0) ang += Math.PI;                        // direction, not sign
+    const db = ang / (Math.PI / HW_DIRS);
+    const d0 = Math.floor(db) % HW_DIRS, d1 = (d0 + 1) % HW_DIRS, fd = db - Math.floor(db);
+    // spread over neighbouring cells so a small wobble does not change the answer
+    const cx = x / cell - 0.5, cy = y / cell - 0.5;
+    const ix = Math.floor(cx), iy = Math.floor(cy), fx = cx - ix, fy = cy - iy;
+    for (let oy = 0; oy <= 1; oy++) for (let ox = 0; ox <= 1; ox++){
+      const gxc = ix + ox, gyc = iy + oy;
+      if (gxc < 0 || gyc < 0 || gxc >= HW_CELLS || gyc >= HW_CELLS) continue;
+      const sw = (ox ? fx : 1-fx) * (oy ? fy : 1-fy) * mag;
+      const base = (gyc*HW_CELLS + gxc) * HW_DIRS;
+      feat[base + d0] += sw * (1 - fd);
+      feat[base + d1] += sw * fd;
+    }
+  }
+  let sum = 0;
+  for (let i = 0; i < feat.length; i++) sum += feat[i]*feat[i];
+  const norm = Math.sqrt(sum) || 1;
+  for (let i = 0; i < feat.length; i++) feat[i] /= norm;
+  return { f: feat, ar: bw / bh };
+}
+
+function buildHwTemplates(){
+  if (hwTemplates) return hwTemplates;
+  hwTemplates = [];
+  const fonts = [
+    "600 150px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+    "400 150px Georgia, 'Times New Roman', serif",
+    "700 150px 'Trebuchet MS', Verdana, sans-serif",
+    "400 150px 'Comic Sans MS', 'Segoe Print', cursive"
+  ];
+  const chars = (HW_DIGITS + HW_UPPER).split("");
+  const cvs = document.createElement("canvas");
+  cvs.width = 220; cvs.height = 240;
+  const c = cvs.getContext("2d");
+  for (const ch of chars){
+    for (const font of fonts){
+      c.clearRect(0, 0, cvs.width, cvs.height);
+      c.fillStyle = "#000"; c.font = font;
+      c.textBaseline = "middle"; c.textAlign = "center";
+      c.fillText(ch, 110, 120);
+      const t = hwDescribe(cvs);
+      if (t) hwTemplates.push({ ch, f: t.f, ar: t.ar });
+    }
+  }
+  // the same letters drawn as pen strokes, which is what the board receives
+  for (const [ch, forms] of Object.entries(HW_FORMS)) addStrokeTemplate(ch, forms);
+  for (const [ch, forms] of Object.entries(HW_ALT))   addStrokeTemplate(ch, forms);
+  return hwTemplates;
+}
+function addStrokeTemplate(ch, forms){
+  const t = hwFromStrokes(forms.map(st => st.map(q => ({ x: q.x * 300, y: q.y * 300 }))));
+  if (t) hwTemplates.push({ ch, f: t.f, ar: t.ar, marks: forms.length });
+}
+
+function hwFromStrokes(strokes){
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const st of strokes) for (const p of st){
+    x0 = Math.min(x0, p.x); y0 = Math.min(y0, p.y);
+    x1 = Math.max(x1, p.x); y1 = Math.max(y1, p.y);
+  }
+  if (!isFinite(x0)) return null;
+  const bw = Math.max(1, x1-x0), bh = Math.max(1, y1-y0);
+  const big = 200, pad = 16;
+  const k = Math.min((big-pad*2) / bw, (big-pad*2) / bh);
+  const cvs = document.createElement("canvas");
+  cvs.width = big; cvs.height = big;
+  const c = cvs.getContext("2d");
+  c.strokeStyle = "#000";
+  c.lineWidth = Math.max(7, big * 0.05);
+  c.lineCap = "round"; c.lineJoin = "round";
+  c.setTransform(k, 0, 0, k, (big - bw*k)/2 - x0*k, (big - bh*k)/2 - y0*k);
+  for (const st of strokes){
+    c.beginPath();
+    if (st.length === 1){ c.moveTo(st[0].x, st[0].y); c.lineTo(st[0].x + 0.01, st[0].y); }
+    else { c.moveTo(st[0].x, st[0].y); for (let i = 1; i < st.length; i++) c.lineTo(st[i].x, st[i].y); }
+    c.stroke();
+  }
+  const t = hwDescribe(cvs);
+  if (t) t.box = { x: x0, y: y0, w: bw, h: bh };
+  return t;
+}
+
+// returns {ch, score, margin, box} or null
+function hwRecognise(strokes, prefer){
+  const t = hwFromStrokes(strokes);
+  if (!t) return null;
+  const tps = buildHwTemplates();
+  const best = {};                       // best score per character
+  for (const tp of tps){
+    let dot = 0;
+    for (let i = 0; i < t.f.length; i++) dot += t.f[i] * tp.f[i];
+    // a tall narrow mark is not a wide one, however similar the edges look
+    const arPen = Math.min(0.26, Math.abs(Math.log((t.ar + .08) / (tp.ar + .08))) * 0.22);
+    let sc = dot - arPen;
+    if (tp.marks) sc += tp.marks === strokes.length ? 0.02 : -Math.min(0.03, Math.abs(tp.marks - strokes.length) * 0.012);
+    if (prefer === "digit" && HW_DIGITS.includes(tp.ch)) sc += 0.05;
+    if (prefer === "letter" && !HW_DIGITS.includes(tp.ch)) sc += 0.05;
+    if (best[tp.ch] == null || sc > best[tp.ch]) best[tp.ch] = sc;
+  }
+  const ranked = Object.entries(best).sort((a, b) => b[1] - a[1]);
+  if (!ranked.length) return null;
+  let [ch, score] = ranked[0];
+  const isDigit = (c) => HW_DIGITS.includes(c);
+
+  // O and 0, I and 1, S and 5 are the same mark. What is being written
+  // alongside decides, and a lone round mark is read by how narrow it is.
+  const HW_PAIRS = [["O","0"],["Q","0"],["I","1"],["S","5"],["Z","2"],["B","8"],["G","6"],["D","0"]];
+  const partner = (c) => {
+    for (const [a, b] of HW_PAIRS){ if (a === c) return b; if (b === c) return a; }
+    return null;
+  };
+  const top = ranked[0][1];
+  const swapTo = (c) => {
+    const sc = best[c];
+    if (sc != null && top - sc < 0.25){ ch = c; score = sc; return true; }
+    return false;
+  };
+  const twin = partner(ch);
+  let swapped = false;
+  if (twin){
+    // written beside digits it is a digit, beside letters a letter, and on its
+    // own it is the letter, which is what people write most
+    if (prefer === "digit" && !isDigit(ch)) swapped = swapTo(twin);
+    else if (prefer === "letter" && isDigit(ch)) swapped = swapTo(twin);
+    else if (!prefer && isDigit(ch)) swapped = swapTo(twin);
+  }
+  if (!swapped && prefer){
+    // still measured against the best score, never against the one just chosen
+    const close = ranked.filter(([c, sc]) => top - sc < 0.075);
+    if (close.length > 1){
+      const pick = close.find(([c]) => (prefer === "digit") === isDigit(c));
+      if (pick){ ch = pick[0]; score = pick[1]; }
+    }
+  }
+  const runner = ranked.find(([c]) => c.toUpperCase() !== ch.toUpperCase());
+  return { ch, score, margin: score - (runner ? runner[1] : 0), box: t.box, ar: t.ar };
+}
+
+/* ---------------- handwriting: grouping strokes into words ---------------- */
+let hwPending = null;      // strokes being collected for one character
+let hwTimer = 0;
+let hwRun = null;          // the word or number being built up
+let hwToldOnce = false;
+
+function hwBox(strokes){
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const st of strokes) for (const p of st){
+    x0 = Math.min(x0, p.x); y0 = Math.min(y0, p.y);
+    x1 = Math.max(x1, p.x); y1 = Math.max(y1, p.y);
+  }
+  return { x:x0, y:y0, w:x1-x0, h:y1-y0 };
+}
+
+// Everything written on one line is collected, then split into letters at the
+// blank columns between them. Deciding letter by letter cannot work: the two
+// posts of an H are far apart until the crossbar joins them.
+function hwFeed(stroke){
+  const b = hwBox([stroke.pts]);
+  if (hwPending){
+    const p = hwPending.box;
+    const sameLine = Math.abs((b.y + b.h/2) - (p.y + p.h/2)) < Math.max(p.h, b.h) * 0.85;
+    const near = b.x - (p.x + p.w) < Math.max(p.h, b.h) * 2.2;
+    if (sameLine && near && performance.now() - hwPending.t < 4000){
+      hwPending.items.push(stroke);
+      hwPending.box = hwBox(hwPending.items.map(i => i.pts));
+      hwPending.t = performance.now();
+      hwArm(); return;
+    }
+    hwFlush();
+  }
+  hwPending = { items: [stroke], box: b, t: performance.now() };
+  hwArm();
+}
+function hwArm(){
+  clearTimeout(hwTimer);
+  // a pause means the writing is finished, but a pause only counts once the pen
+  // is off the board: a slow second mark must not split the letter in two
+  hwTimer = setTimeout(function check(){
+    if (action && action.mode === "draw"){ hwTimer = setTimeout(check, 200); return; }
+    hwFlush();
+  }, 430);
+}
+function hwHold(){ clearTimeout(hwTimer); }
+
+// split the ink into letters at the columns where there is no ink at all
+function hwSegment(strokes){
+  const box = hwBox(strokes.map(s => s.pts));
+  const h = Math.max(1, box.h), binW = Math.max(1.5, h * 0.028);
+  const n = Math.max(1, Math.ceil(box.w / binW) + 1);
+  const cover = new Uint8Array(n);
+  const mark = (x) => { const i = Math.round((x - box.x) / binW); if (i >= 0 && i < n) cover[i] = 1; };
+  for (const st of strokes){
+    const pts = st.pts;
+    for (let i = 0; i < pts.length; i++){
+      mark(pts[i].x);
+      if (i){                                   // fill in along the segment
+        const a = pts[i-1], b = pts[i], steps = Math.ceil(Math.abs(b.x - a.x) / binW);
+        for (let k = 1; k < steps; k++) mark(a.x + (b.x - a.x) * k / steps);
+      }
+    }
+  }
+  // printed letters touch nothing beside them, so even a narrow blank splits
+  const gapBins = Math.max(1, Math.round(h * 0.035 / binW));
+  const ranges = [];
+  let i = 0;
+  while (i < n){
+    while (i < n && !cover[i]) i++;
+    if (i >= n) break;
+    const from = i;
+    let last = i, run = 0;
+    while (i < n){
+      if (cover[i]){ last = i; run = 0; }
+      else if (++run > gapBins) break;
+      i++;
+    }
+    ranges.push({ a: box.x + (from - 0.5) * binW, b: box.x + (last + 0.5) * binW });
+  }
+  if (!ranges.length) return [];
+  return ranges.map(r => ({
+    range: r,
+    items: strokes.filter(st => {
+      const sb = hwBox([st.pts]), c = sb.x + sb.w/2;
+      return c >= r.a - binW && c <= r.b + binW;
+    })
+  })).filter(g => g.items.length);
+}
+
+function hwFlush(){
+  clearTimeout(hwTimer);
+  const group = hwPending;
+  hwPending = null;
+  if (!group) return;
+  const items = page().items;
+  const strokes = group.items.filter(st => items.includes(st));
+  if (!strokes.length) return;
+
+  const letters = hwSegment(strokes);
+  if (!letters.length) return;
+  const lineH = hwBox(strokes.map(s => s.pts)).h;
+
+  let text = "", used = [], prefer = state.hwMode === "auto" ? null : state.hwMode;
+  let prevRight = null, capH = 0;
+  for (const g of letters){
+    const hit = hwRecognise(g.items.map(i => i.pts), prefer);
+    if (!hit || hit.score < 0.62) continue;          // not a letter: leave that ink alone
+    let ch = hit.ch;
+    const bx = hit.box;
+    capH = Math.max(capH, bx.h);
+    // only a clearly smaller mark is a small letter; a slightly short S is not
+    if (HW_SAMECASE.includes(ch) && bx.h < capH * 0.68) ch = ch.toLowerCase();
+    if (prevRight != null && bx.x - prevRight > lineH * 0.55) text += " ";
+    text += ch;
+    used.push(...g.items);
+    prevRight = bx.x + bx.w;
+    if (state.hwMode === "auto") prefer = HW_DIGITS.includes(ch) ? "digit" : "letter";
+  }
+  if (!text.trim() || !used.length) return;
+
+  const box = hwBox(used.map(i => i.pts));
+  const removed = used.map(st => ({ item: st, index: items.indexOf(st) }))
+                      .filter(e => e.index > -1)
+                      .sort((a, b) => a.index - b.index);
+  removed.slice().reverse().forEach(e => items.splice(e.index, 1));
+  const size = Math.max(12, box.h / 0.72);
+  const it = {
+    type:"text", text, x: box.x - size * 0.06, y: box.y - size * 0.17,
+    color: state.textColor, auto: isAutoInk(state.textColor), size
+  };
+  items.push(it);
+  pushOp({ kind:"hw", removed, added: it });
+  draw();
+  if (!hwToldOnce){
+    hwToldOnce = true;
+    toast("Your writing is being typed out — turn it off in the pen panel, or undo");
+  }
+}
+
 /* ---------------- voice ----------------
    One place that asks for the microphone, one chain of effects, used by both
    the board recorder and voice notes. */
@@ -947,38 +1370,104 @@ const VOICE_FX = [
   ["radio", "Radio"]
 ];
 
+// What is actually true about the microphone here. Guessing produced the
+// wrong advice before, so every message below is driven by these facts.
+async function micFacts(){
+  const f = {
+    secure: !!window.isSecureContext,
+    embedded: window.top !== window.self,
+    api: !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia),
+    recorder: !!window.MediaRecorder,
+    policy: "unknown",
+    permission: "unknown",
+    inputs: -1
+  };
+  try {
+    const fp = document.featurePolicy || document.permissionsPolicy;
+    if (fp && fp.allowsFeature) f.policy = fp.allowsFeature("microphone") ? "allowed" : "blocked";
+  } catch (e){}
+  try {
+    const st = await navigator.permissions.query({ name: "microphone" });
+    f.permission = st.state;
+  } catch (e){}
+  try {
+    const dev = await navigator.mediaDevices.enumerateDevices();
+    f.inputs = dev.filter(d => d.kind === "audioinput").length;
+  } catch (e){}
+  return f;
+}
+
 async function askMic(){
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
-    micTrouble("This browser cannot reach a microphone.");
+    micTrouble("This browser cannot reach a microphone at all.", await micFacts());
     return null;
   }
   try {
+    getAC();                                  // resume audio while the tap is still live
     return await navigator.mediaDevices.getUserMedia({
       audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
     });
   } catch (err){
-    const name = err && err.name;
-    if (name === "NotAllowedError" || name === "SecurityError"){
-      micTrouble(window.top !== window.self
-        ? "This board is running inside another page, which blocks the microphone. Open it in its own tab and try again."
-        : "The microphone is blocked for this site. Allow it, then try again.");
-    } else if (name === "NotFoundError" || name === "OverconstrainedError"){
-      micTrouble("No microphone was found on this device.");
-    } else if (!window.isSecureContext){
-      micTrouble("A microphone only works over https. Open the board on an https address.");
-    } else micTrouble("The microphone could not be started. Close other apps using it and try again.");
+    const f = await micFacts();
+    const name = (err && err.name) || "";
+    let msg;
+    if (f.policy === "blocked"){
+      msg = "The page this board is embedded in does not hand over the microphone. " +
+            "That is decided by the page doing the embedding, not by your settings, so allowing the " +
+            "microphone will not change it. Use a standalone copy of the board to record, or record a " +
+            "voice note here instead.";
+    } else if (!f.secure){
+      msg = "A microphone only works on a secure address. Open the board on an https link or on localhost.";
+    } else if (f.inputs === 0){
+      msg = "No microphone was found on this device.";
+    } else if (name === "NotAllowedError" || name === "SecurityError"){
+      msg = f.permission === "granted"
+        ? "Permission is granted, but the microphone would not start. Another app or tab is probably holding it. Close those and try again."
+        : (f.embedded
+            ? "The microphone was refused for this board. It is embedded in another page, which can withhold it even when your browser permission is on."
+            : "The microphone is blocked for this site. Allow it, then try again.");
+    } else if (name === "NotReadableError" || name === "AbortError"){
+      msg = "Another app is using the microphone. Close it and try again.";
+    } else msg = "The microphone could not be started (" + (name || "unknown error") + ").";
+    micTrouble(msg, f);
     return null;
   }
 }
-function micTrouble(msg){
+
+function micTrouble(msg, facts){
   $("#micmsg").textContent = msg;
   $("#micsilent").hidden = true;
+  const row = (ok, label, value) =>
+    '<li><b style="color:' + (ok ? "var(--accent)" : "var(--danger)") + '">' + (ok ? "✓" : "✗") +
+    '</b> ' + label + ' <span class="mini">' + value + '</span></li>';
+  const f = facts || {};
+  $("#micfacts").innerHTML =
+    row(f.secure, "Secure address", f.secure ? "yes" : "no, https is required") +
+    row(f.api, "Microphone available to this page", f.api ? "yes" : "no") +
+    row(f.policy !== "blocked", "Allowed by the surrounding page",
+        f.policy === "blocked" ? "no, the embedding page withholds it" : (f.policy === "allowed" ? "yes" : "cannot tell")) +
+    row(f.permission !== "denied", "Browser permission", f.permission) +
+    row(f.inputs !== 0, "Microphones found", f.inputs < 0 ? "cannot tell" : String(f.inputs)) +
+    row(f.recorder, "Recording supported", f.recorder ? "yes" : "no") +
+    row(!f.embedded, "Running on its own", f.embedded ? "no, inside another page" : "yes");
   $("#micsteps").innerHTML =
     "<li><b>iPhone or iPad:</b> tap <b>aA</b> in the address bar, choose <b>Website Settings</b>, set Microphone to Allow. " +
     "If it is not listed, check Settings › Safari › Microphone, then reload.</li>" +
     "<li><b>Android or desktop Chrome:</b> tap the padlock in the address bar, turn Microphone on, then reload.</li>" +
-    "<li>Add the board to your home screen for a full screen app with its own permission.</li>";
+    "<li>If the line above says the surrounding page withholds the microphone, no setting on your side will help. " +
+    "Open the board from its own web address, or use <b>Record a voice note</b>, which many pages still allow.</li>";
   $("#micback").classList.add("open");
+}
+
+async function voiceCheck(){
+  const f = await micFacts();
+  let head = "Everything needed for recording looks in place.";
+  if (!f.secure) head = "This address is not secure, so the microphone cannot be used.";
+  else if (f.policy === "blocked") head = "The page that embeds this board withholds the microphone.";
+  else if (f.permission === "denied") head = "Your browser is blocking the microphone for this site.";
+  else if (f.inputs === 0) head = "No microphone was found.";
+  else if (!f.recorder) head = "This browser cannot record.";
+  micTrouble(head, f);
 }
 
 // pitch shifting without a library: two delay lines swept in opposite
@@ -1689,6 +2178,7 @@ cv.addEventListener("pointerdown", (e) => {
     return;
   }
 
+  hwHold();                                  // the letter is not finished yet
   // pen / marker / highlighter / pixel eraser
   const erasing = state.tool === "eraser";
   const nib = state.tool === "ink";
@@ -1878,6 +2368,7 @@ function endPointer(e){
       const raw = drawingItem;
       addItem(raw);
       if (state.snap && raw.tool === "pen" && !raw.erase) snapToShape(raw);   // the nib never snaps
+      if (state.hw && raw.tool === "ink" && !raw.erase) hwFeed(raw);
     }
     drawingItem = null;
   } else if (action.mode === "shape" && drawingItem){
@@ -1940,10 +2431,9 @@ function openTextEditor(wp, item){
   te.style.fontSize = (size * state.view.s) + "px";
   te.style.fontWeight = "600";
   te.style.color = color;
-  // as wide as the space left on screen, so a sentence keeps flowing
-  const room = (VW - s.x - 28) / state.view.s;
-  editing.maxW = item ? (item.maxW || room) : Math.max(220, Math.min(room, 760));
-  te.style.width = (editing.maxW * state.view.s) + "px";
+  editing.maxW = item ? item.maxW : 0;          // no box: the line grows as you type
+  te.style.whiteSpace = editing.maxW ? "pre-wrap" : "pre";
+  te.style.width = editing.maxW ? (editing.maxW * state.view.s) + "px" : "auto";
   te.value = item ? item.text : "";
   autoGrow();
   setTimeout(() => {
@@ -1952,6 +2442,10 @@ function openTextEditor(wp, item){
   if (item){ const i = page().items.indexOf(item); if (i > -1){ page().items.splice(i,1); editing.reinsert = { item, index: i }; draw(); } }
 }
 function autoGrow(){
+  if (!editing || !editing.maxW){
+    te.style.width = "20px";
+    te.style.width = (te.scrollWidth + 16) + "px";
+  }
   te.style.height = "10px";
   te.style.height = (te.scrollHeight + 6) + "px";
 }
@@ -1977,8 +2471,10 @@ function commitText(){
       pushOp({ kind:"del", entries: [{ item: ed.reinsert.item, index: ed.reinsert.index }] });
     }
   } else if (txt){
-    addItem({ type:"text", text: txt, x: ed.x, y: ed.y, color: state.textColor,
-              auto: isAutoInk(state.textColor), size: state.textSize, maxW: ed.maxW });
+    const it = { type:"text", text: txt, x: ed.x, y: ed.y, color: state.textColor,
+                 auto: isAutoInk(state.textColor), size: state.textSize };
+    if (ed.maxW) it.maxW = ed.maxW;
+    addItem(it);
   }
   draw();
 }
@@ -2169,6 +2665,7 @@ function renderPages(){
 }
 function gotoPage(i){
   if (i < 0 || i >= state.pages.length || i === state.cur) return;
+  hwFlush(); hwRun = null;
   commitText();
   state.cur = i; state.sel = null;
   renderPages(); syncHistoryButtons(); save(); draw();
@@ -2207,6 +2704,7 @@ $("#clearbtn").addEventListener("click", () => {
 const POP_FOR = { ink:"#penpop", pen:"#penpop", marker:"#penpop", eraser:"#eraserpop", shape:"#shapepop", text:"#textpop" };
 
 function setTool(t, evt){
+  hwFlush(); hwRun = null;
   commitText();
   const same = state.tool === t;
   state.tool = t;
@@ -2321,6 +2819,12 @@ function buildShapes(){
   }
 }
 
+$("#hwchk").addEventListener("change", (e) => {
+  state.hw = e.target.checked;
+  hwFlush(); hwRun = null;
+  toast(state.hw ? "Printed letters and numbers will be typed out" : "Your handwriting stays as ink");
+  save();
+});
 $("#styluschk").addEventListener("change", (e) => {
   state.stylusOnly = e.target.checked;
   toast(state.stylusOnly ? "Only a stylus will draw now" : "Finger and stylus both draw");
@@ -2335,6 +2839,11 @@ $("#opacity").addEventListener("input", (e) => { state.opacity = e.target.value 
 $("#ersize").addEventListener("input", (e) => { state.eraserSize = +e.target.value; $("#ersizeval").textContent = e.target.value + " px"; draw(); save(); });
 $("#tsize").addEventListener("input", (e) => { state.textSize = +e.target.value; $("#tsval").textContent = e.target.value + " px"; save(); });
 $("#shfill").addEventListener("change", (e) => { state.shapeFill = e.target.checked; save(); });
+$$("#hwmode button").forEach(b => b.addEventListener("click", () => {
+  state.hwMode = b.dataset.mode;
+  $$("#hwmode button").forEach(x => x.classList.toggle("on", x === b));
+  hwFlush(); hwRun = null; save();
+}));
 $$("#eraserseg button").forEach(b => b.addEventListener("click", () => {
   state.eraserMode = b.dataset.mode;
   $$("#eraserseg button").forEach(x => x.classList.toggle("on", x === b));
@@ -2604,6 +3113,7 @@ async function testMic(){
   };
 }
 $("#mictest").addEventListener("click", testMic);
+$("#miccheck").addEventListener("click", voiceCheck);
 $("#syschk").addEventListener("change", e => { rec.sys = e.target.checked; save(); });
 
 function pickMime(){
@@ -2617,6 +3127,17 @@ function pickMime(){
 
 async function startRec(){
   if (!canMedia){ toast("Recording is not supported in this browser"); return; }
+  // the microphone has to be asked for first: on iOS the permission is tied to
+  // the tap, and anything else awaited first loses it
+  let preMic = null;
+  if (rec.mic){
+    preMic = await askMic();
+    if (!preMic){
+      rec.micBlocked = true;
+      $("#micsilent").hidden = false;
+      return;
+    }
+  }
   try {
     let videoStream;
     if (rec.src === "screen"){
@@ -2644,19 +3165,9 @@ async function startRec(){
     rec.tracks = videoStream.getTracks().slice();
 
     // audio mixing (microphone + optional system audio)
-    let micStream = null;
+    const micStream = preMic;
     rec.micBlocked = false;
-    if (rec.mic){
-      micStream = await askMic();
-      if (micStream) rec.tracks.push(...micStream.getTracks());
-      else {
-        rec.micBlocked = true;
-        videoStream.getTracks().forEach(t => { try { t.stop(); } catch (e){} });
-        cancelAnimationFrame(rec.loop); rec.starting = false;
-        $("#micsilent").hidden = false;                 // offer to go ahead without it
-        return;
-      }
-    }
+    if (micStream) rec.tracks.push(...micStream.getTracks());
     // everything audible goes through one mixer: the microphone, any system
     // audio, and the sound of a video playing on the board
     const ac = getAC();
@@ -2706,6 +3217,7 @@ async function startRec(){
   } catch (err){
     rec.starting = false;
     cancelAnimationFrame(rec.loop);
+    if (preMic) preMic.getTracks().forEach(t => { try { t.stop(); } catch (e){} });
     if (err && err.name === "NotAllowedError") toast("Recording permission was declined");
     else toast("Could not start recording");
   }
@@ -2810,7 +3322,8 @@ function save(){
         prefs: {
           theme: state.theme, color: state.color, size: state.size, opacity: state.opacity,
           eraserMode: state.eraserMode, eraserSize: state.eraserSize, snap: state.snap,
-          stylusOnly: state.stylusOnly, docMode: state.docMode, voiceFx: state.voiceFx, shape: state.shape,
+          stylusOnly: state.stylusOnly, hw: state.hw, hwMode: state.hwMode, docMode: state.docMode,
+          voiceFx: state.voiceFx, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
           textColor: state.textColor, textSize: state.textSize,
           recSrc: rec.src, mic: rec.mic, sys: rec.sys
@@ -2831,7 +3344,8 @@ function load(){
     color: pref.color || state.color, size: pref.size || state.size,
     opacity: pref.opacity == null ? 1 : pref.opacity,
     eraserMode: pref.eraserMode || state.eraserMode, eraserSize: pref.eraserSize || state.eraserSize,
-    snap: pref.snap !== false, stylusOnly: !!pref.stylusOnly, docMode: !!pref.docMode,
+    snap: pref.snap !== false, stylusOnly: !!pref.stylusOnly, hw: pref.hw !== false,
+    hwMode: pref.hwMode || "auto", docMode: !!pref.docMode,
     voiceFx: pref.voiceFx || "none",
     shape: pref.shape || state.shape, shapeFill: !!pref.shapeFill,
     shapeColor: pref.shapeColor || state.shapeColor,
@@ -2857,13 +3371,16 @@ window.addEventListener("keydown", (e) => {
   if (mod) return;
   switch (e.key){
     case "w": case "W": setTool("ink"); break;
+    case "h": case "H":
+      if (e.shiftKey){ $("#hwchk").checked = !state.hw; $("#hwchk").dispatchEvent(new Event("change")); }
+      else setTool("pan");
+      break;
     case "p": case "P": setTool("pen"); break;
     case "m": case "M": setTool("marker"); break;
     case "e": case "E": setTool("eraser"); break;
     case "r": case "R": setTool("shape"); break;
     case "t": case "T": setTool("text"); break;
     case "v": case "V": setTool("select"); break;
-    case "h": case "H": setTool("pan"); break;
     case "i": case "I": $("#imgbtn").click(); break;
     case "s": case "S": $("#snapchk").checked = !state.snap; $("#snapchk").dispatchEvent(new Event("change")); break;
     case "f": case "F": if (fsSupported) toggleFullscreen(); break;
@@ -2899,6 +3416,8 @@ function boot(){
   $("#shfill").checked = state.shapeFill;
   $("#snapchk").checked = state.snap;
   $("#styluschk").checked = state.stylusOnly;
+  $("#hwchk").checked = state.hw;
+  $$("#hwmode button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.hwMode));
   $("#micchk").checked = rec.mic;
   buildFx();
   $("#syschk").checked = rec.sys;
