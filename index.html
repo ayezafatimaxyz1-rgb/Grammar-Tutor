@@ -169,9 +169,10 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
 /* ---------- text editor overlay ---------- */
 #textedit{
-  position:absolute;z-index:25;display:none;background:transparent;border:1.5px dashed var(--accent);
-  border-radius:6px;padding:2px 4px;outline:none;resize:none;overflow:hidden;white-space:pre;
-  font-family:inherit;line-height:1.25;min-width:40px;max-width:none;
+  position:absolute;z-index:25;display:none;background:transparent;border:0;
+  padding:2px 4px;outline:none;resize:none;overflow:hidden;white-space:pre;
+  font-family:inherit;line-height:1.25;min-width:24px;max-width:none;
+  caret-color:var(--accent);
 }
 /* ---------- toast ---------- */
 .edgebtn{
@@ -892,6 +893,8 @@ function applyOp(op, undo){
   } else if (op.kind === "swap"){
     const i = p.items.indexOf(undo ? op.to : op.from);
     if (i > -1) p.items[i] = undo ? op.from : op.to;
+  } else if (op.kind === "modmany"){
+    op.entries.forEach(e => Object.assign(e.item, undo ? e.before : e.after));
   } else if (op.kind === "mod"){
     Object.assign(op.item, undo ? op.before : op.after);
   }
@@ -2160,7 +2163,14 @@ cv.addEventListener("pointerdown", (e) => {
     draw(); return;
   }
 
-  if (state.tool === "text"){ openTextEditor(wp); return; }   // commits the previous box first
+  if (state.tool === "text"){
+    // the browser moves focus to the canvas when the tap completes, which would
+    // take it straight back off the text, so stop that and re-assert it after
+    e.preventDefault();
+    openTextEditor(wp);                         // commits the previous text first
+    cv.addEventListener("pointerup", keepTextFocus, { once: true });
+    return;
+  }
 
   if (state.tool === "eraser" && state.eraserMode === "object"){
     action = { mode:"erase-obj", hits: [] };
@@ -2295,7 +2305,7 @@ cv.addEventListener("pointermove", (e) => {
   }
 });
 
-let snapToldOnce = false;
+let snapToldOnce = false, docToldOnce = false;
 function snapToShape(raw){
   const clean = recognize(raw);
   if (!clean) return;
@@ -2379,7 +2389,28 @@ function endPointer(e){
     if (action.hits.length) pushOp({ kind:"del", entries: action.hits });
   } else if (action.mode === "move" || action.mode === "resize"){
     const it = action.item || state.sel;
-    if (it) pushOp({ kind:"mod", item: it, before: action.before, after: snapshot(it) });
+    if (it){
+      const after = snapshot(it);
+      const entries = [{ item: it, before: action.before, after }];
+      if (it.doc){
+        // the rest of the document follows, so every page keeps the same
+        // framing and flipping through does not jump
+        const k = (after.w || 1) / (action.before.w || 1);
+        const cx = after.x + after.w/2, cy = after.y + after.h/2;
+        for (const pg of state.pages) for (const other of pg.items){
+          if (other === it || other.doc !== it.doc) continue;
+          const before = snapshot(other);
+          const w = other.w * k, h = other.h * k;
+          const next = { x: cx - w/2, y: cy - h/2, w, h };
+          entries.push({ item: other, before, after: next });
+          Object.assign(other, next);
+        }
+      }
+      if (entries.length > 1){
+        pushOp({ kind:"modmany", entries });
+        if (!docToldOnce){ docToldOnce = true; toast("Every page of this document now sits the same way"); }
+      } else pushOp({ kind:"mod", item: it, before: action.before, after });
+    }
   } else if (action.mode === "marquee" && marquee){
     const a = toWorld(marquee.x, marquee.y), b = toWorld(marquee.x + marquee.w, marquee.y + marquee.h);
     const inside = page().items.filter(it => { const bb = bboxOf(it); return bb.x >= a.x && bb.y >= a.y && bb.x + bb.w <= b.x && bb.y + bb.h <= b.y; });
@@ -2419,6 +2450,11 @@ const te = $("#textedit");
 let editing = null;   // {item|null, x, y}
 
 let reopening = false;
+function keepTextFocus(){
+  if (!editing || document.activeElement === te) return;
+  try { te.focus({ preventScroll: true }); } catch (e){ te.focus(); }
+  te.setSelectionRange(te.value.length, te.value.length);
+}
 function openTextEditor(wp, item){
   if (editing){ reopening = true; commitText(); }
   editing = { item: item || null, x: item ? item.x : wp.x, y: item ? item.y : wp.y };
@@ -2436,9 +2472,14 @@ function openTextEditor(wp, item){
   te.style.width = editing.maxW ? (editing.maxW * state.view.s) + "px" : "auto";
   te.value = item ? item.text : "";
   autoGrow();
+  // focus inside the tap itself: iOS only opens the keyboard for a focus that
+  // happens while the gesture is still live, never one on a timer
+  try { te.focus({ preventScroll: true }); } catch (e){ te.focus(); }
+  te.setSelectionRange(te.value.length, te.value.length);
   setTimeout(() => {
-    te.focus(); te.setSelectionRange(te.value.length, te.value.length); reopening = false;
-  }, 10);
+    if (document.activeElement !== te){ try { te.focus(); } catch (e){} }
+    reopening = false;
+  }, 0);
   if (item){ const i = page().items.indexOf(item); if (i > -1){ page().items.splice(i,1); editing.reinsert = { item, index: i }; draw(); } }
 }
 function autoGrow(){
@@ -2478,12 +2519,36 @@ function commitText(){
   }
   draw();
 }
+const isSpeck = (it) => {
+  if (!it || it.type !== "stroke" || it.pts.length > 3) return false;
+  const b = bboxOf(it);
+  return b.w <= 12 && b.h <= 12;
+};
 cv.addEventListener("dblclick", (e) => {
   const sp = localPt(e);
-  const hit = pickAt(toWorld(sp.x, sp.y));
+  let hit = pickAt(toWorld(sp.x, sp.y));
+  if (isSpeck(hit)) hit = null;               // the taps themselves leave dots
   if (hit && hit.type === "video"){ toggleVideo(hit); return; }
   if (hit && hit.type === "audio"){ toggleAudio(hit); return; }
-  if (hit && hit.type === "text"){ setTool("select"); state.sel = hit; openTextEditor(null, hit); }
+  if (!hit){                                   // empty board: start typing right here
+    e.preventDefault();
+    if (drawingItem){ drawingItem = null; draw(); }
+    const specks = [];
+    for (let i = page().items.length - 1; i >= 0 && specks.length < 2; i--){
+      if (!isSpeck(page().items[i])) break;
+      specks.push(page().items[i]);
+    }
+    if (specks.length) deleteItems(specks);
+    openTextEditor(toWorld(sp.x, sp.y));
+    setTimeout(keepTextFocus, 0);
+    return;
+  }
+  if (hit && hit.type === "text"){
+    e.preventDefault();
+    setTool("select"); state.sel = hit; openTextEditor(null, hit);
+    setTimeout(keepTextFocus, 0);
+    return;
+  }
 });
 
 /* ---------------- images ---------------- */
@@ -2583,12 +2648,22 @@ async function importPdf(file){
   } catch (e){ return toast("That PDF could not be opened"); }
 
   const total = doc.numPages;
+  const docId = "d" + Date.now().toString(36);
   const startAt = state.pages.length - 1;
   // one board page per PDF page, created up front so you can move through them
   for (let i = 0; i < total - (page().items.length ? 0 : 1); i++) state.pages.push(newPage());
   state.cur = page().items.length ? startAt + 1 : startAt;
   const firstBoard = state.cur;
   renderPages();
+
+  // one rectangle for the whole document, worked out once: pages of different
+  // shapes then sit in the same place, so flipping through does not jump and
+  // the zoom you set holds for every page
+  const anchor = (() => {
+    const mid = toWorld(VW / 2, VH / 2);
+    const w = VW * 0.94 / state.view.s, h = VH * 0.94 / state.view.s;
+    return { cx: mid.x, cy: mid.y, w, h };
+  })();
 
   const render1 = async (n) => {
     const pg = await doc.getPage(n);
@@ -2610,10 +2685,9 @@ async function importPdf(file){
 
     const board = state.pages[firstBoard + n - 1];
     if (!board) return;
-    const fit = Math.min(VW * 0.94 / cvs.width, VH * 0.94 / cvs.height) / state.view.s;
+    const fit = Math.min(anchor.w / cvs.width, anchor.h / cvs.height);
     const w = cvs.width * fit, h = cvs.height * fit;
-    const mid0 = toWorld(VW / 2, VH / 2);
-    board.items.push(Object.assign({ type:"image", x: mid0.x - w/2, y: mid0.y - h/2, w, h },
+    board.items.push(Object.assign({ type:"image", doc: docId, x: anchor.cx - w/2, y: anchor.cy - h/2, w, h },
                                    mid ? { mid } : { src: url }));
     if (board === page()) draw();
   };

@@ -30,7 +30,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   nearly round circle becomes a circle, and a nearly level line becomes level. Handwriting, small
   marks, curves, checkmarks and scribbles are left exactly as drawn. Undo once to keep your
   original sketch. Toggle it in the marker panel or with `S`.
-* Text has no box: tap anywhere, high or low, and type. The line keeps going as far as you write
+* Text has no box and no outline: tap anywhere, high or low, and type. Double tap on empty board
+  with any tool in hand to start typing there without switching tools first. The line keeps going as far as you write
   and only Enter starts a new one. A tap somewhere else starts the next piece of text right there.
 * Handwriting becomes typed text: print letters or numbers with the pen and they are typed out a
   moment after you stop. A to Z, 0 to 9, words and whole numbers. Ink that is not writing (a tick,
@@ -51,6 +52,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * A video sits on the board with its own play button, and you can write on it while it plays
 * A PDF becomes one board page per page, so you can annotate a worksheet or a handout. The first
   page appears straight away and the rest arrive while you are already writing.
+* Size or move one page of a document and every other page of it follows, each keeping its own
+  shape, so flipping through never jumps. The zoom you set stays as you turn pages.
 * Document mode turns pages by scrolling, by a two finger swipe, or with the arrows at the
   edges of the board. It switches on by itself when you open a PDF.
 * Drag to move, corner handles to resize, Del to remove
