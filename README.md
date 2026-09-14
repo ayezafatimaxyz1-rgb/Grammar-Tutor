@@ -12,6 +12,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Fullscreen with `F`, and the percentage button brings everything back into view
 
 **Drawing**
+* Pen for writing: a fine nib that thins and thickens with the speed of your hand, and is
+  never turned into a shape
 * Marker with 10 colours, 5 thicknesses and an opacity slider
 * Highlighter that blends with whatever is underneath
 * Eraser in two modes: erase ink (pixel eraser) or erase a whole object
@@ -32,6 +34,7 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   somewhere else starts the next one right there
 * Select tool to move, resize and delete anything on the board
 * Unlimited undo and redo per page
+* Stylus only mode, so a resting palm does not draw on a tablet
 
 **Pages**
 * Next and back buttons plus numbered page chips along the bottom
@@ -41,14 +44,24 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Add a photo from the gallery or camera roll, a video, or a PDF, from one button
 * Paste or drag and drop works too
 * A video sits on the board with its own play button, and you can write on it while it plays
-* A PDF becomes one board page per page, so you can annotate a worksheet or a handout
+* A PDF becomes one board page per page, so you can annotate a worksheet or a handout. The first
+  page appears straight away and the rest arrive while you are already writing.
+* Document mode turns pages by scrolling, by a two finger swipe, or with the arrows at the
+  edges of the board. It switches on by itself when you open a PDF.
 * Drag to move, corner handles to resize, Del to remove
 * Media is kept in the browser's own storage, so big files do not fill up the saved board.
   Saving a `.json` board file packs the media inside it, so the file opens on another device.
 
-**Recording with voice**
+**Voice and recording**
 * Record the whiteboard itself, or the whole screen on desktop
-* Microphone is mixed in, so you can narrate while you teach
+* Your voice is mixed in, with a live level meter while you record, so you can see it working
+* Test my voice records three seconds and plays it back, before you commit to a recording
+* Voice changer: Normal, Deep, High, Robot, Echo and Radio, applied as you record
+* Voice notes: record just your voice and leave it on the board as something to tap and play.
+  This works on a phone, where a screen recording usually cannot.
+* If the microphone is blocked, the board says so and explains how to allow it, instead of
+  quietly giving you a silent video
+* The sound of a video playing on the board is recorded too
 * Optional system/tab audio, pause and resume, live timer
 * Preview when you stop, then download the video
 

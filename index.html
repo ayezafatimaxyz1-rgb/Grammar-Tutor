@@ -68,6 +68,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   position:absolute;top:50%;right:10px;transform:translateY(-50%);
   display:flex;flex-direction:column;gap:6px;padding:6px;z-index:20;
   background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);
+  /* stays between the top bar and the page bar, and scrolls if the screen is short */
+  max-height:calc(100% - 132px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
+}
+.rail::-webkit-scrollbar{display:none}
+@media (max-height:560px){
+  .rail .tbtn{width:32px;height:32px}
+  .rail{gap:3px;padding:4px;max-height:calc(100% - 126px)}
+  .rail .sep{margin:1px 4px}
 }
 .rail .sep{height:1px;background:var(--border);margin:2px 4px}
 
@@ -106,6 +114,12 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .seg button{flex:1;padding:8px 6px;font-size:12.5px;font-weight:600;color:var(--muted)}
 .seg button.on{background:var(--accent);color:var(--accent-t)}
 .mini{font-size:12px;color:var(--muted)}
+.fxrow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.fxbtn{padding:8px 4px;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);font-size:12.5px;font-weight:600;color:var(--muted)}
+.fxbtn.on{background:var(--accent);color:var(--accent-t);border-color:transparent}
+.meter{flex:1;height:10px;border-radius:6px;background:var(--panel-2);border:1px solid var(--border);overflow:hidden;min-width:70px}
+.meter i{display:block;height:100%;width:0%;background:var(--accent);transition:width .07s linear}
+.recpill .meter{width:54px;flex:none;min-width:0}
 .chk{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;user-select:none}
 .chk input{width:17px;height:17px;accent-color:var(--accent)}
 
@@ -160,6 +174,17 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   font-family:inherit;line-height:1.25;min-width:40px;
 }
 /* ---------- toast ---------- */
+.edgebtn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:25;display:none;
+  width:44px;height:74px;border-radius:14px;background:var(--panel);border:1px solid var(--border);
+  box-shadow:var(--shadow);color:var(--muted);place-items:center;
+}
+.edgebtn.show{display:grid}
+.edgebtn:hover{color:var(--text)}
+.edgebtn.prev{left:10px}
+.edgebtn.next{right:74px}
+.edgebtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+@media (max-width:760px){ .edgebtn{width:38px;height:62px} .edgebtn.next{right:60px} }
 #toast{
   position:absolute;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);
   background:var(--panel);border:1px solid var(--border);box-shadow:var(--shadow);
@@ -222,6 +247,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
     <!-- tool rail -->
     <div class="rail">
+      <button class="tbtn" data-tool="ink" title="Pen — for writing (W)"><svg viewBox="0 0 24 24"><path d="M4.5 19.5 7 13l7.4-7.4a2 2 0 0 1 2.8 0l1.2 1.2a2 2 0 0 1 0 2.8L11 17z"/><path d="m7 13 4 4"/><path d="M4.5 19.5 6 18.6"/></svg></button>
       <button class="tbtn" data-tool="pen" title="Marker (P)"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4z"/><path d="m13.6 6.4 4 4"/></svg></button>
       <button class="tbtn" data-tool="marker" title="Highlighter (M)"><svg viewBox="0 0 24 24"><path d="M4 20h6"/><path d="m9 15 8-8 3.5 3.5-8 8H9z"/><path d="M9 15v3.5"/></svg></button>
       <button class="tbtn" data-tool="eraser" title="Eraser (E)"><svg viewBox="0 0 24 24"><path d="m15 4 5 5-9 9H6l-2-2z"/><path d="M8.5 10.5 14 16"/><path d="M11 20h9"/></svg></button>
@@ -244,9 +270,12 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <h4 style="margin-top:14px">Opacity <span class="mini" id="opval">100%</span></h4>
       <input type="range" id="opacity" min="10" max="100" value="100">
       <label class="chk" style="margin-top:14px" title="Shortcut: S">
-        <input type="checkbox" id="snapchk" checked> Tidy my sketches into shapes
+        <input type="checkbox" id="snapchk" checked> Tidy marker sketches into shapes
       </label>
-      <p class="mini" style="margin:6px 0 0">Draw a rough box, circle, triangle or line and it is redrawn cleanly. Undo keeps the sketch.</p>
+      <p class="mini" style="margin:6px 0 0">Draw a rough box, circle, triangle or line with the marker and it is redrawn cleanly. Undo keeps the sketch. The pen is for writing and is never changed.</p>
+      <label class="chk" style="margin-top:10px">
+        <input type="checkbox" id="styluschk"> Stylus only, ignore my palm
+      </label>
     </div>
 
     <div class="pop" id="eraserpop">
@@ -282,6 +311,14 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       </div>
       <label class="chk" style="margin-top:12px"><input type="checkbox" id="micchk" checked> Record my voice (microphone)</label>
       <label class="chk" style="margin-top:8px"><input type="checkbox" id="syschk"> Include system / tab audio</label>
+
+      <h4 style="margin-top:14px">Voice</h4>
+      <div class="fxrow" id="fxrow"></div>
+      <div class="row" style="margin-top:10px;gap:8px">
+        <button class="btn" id="mictest">Test my voice</button>
+        <div class="meter"><i id="meterbar"></i></div>
+      </div>
+      <button class="btn" id="voicenote" style="margin-top:8px;width:100%;justify-content:center">Record a voice note on the board</button>
       <p class="mini" id="recnote" style="margin:10px 0 0"></p>
     </div>
 
@@ -298,9 +335,13 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     <!-- recording pill -->
     <div class="recpill" id="recpill">
       <i class="blink"></i><span id="rectime">00:00</span>
+      <div class="meter" title="Your voice"><i id="reclevel"></i></div>
       <button class="pillbtn" id="recpause">Pause</button>
       <button class="pillbtn stop" id="recstop">Stop</button>
     </div>
+
+    <button class="edgebtn prev" id="edgeprev" title="Previous page"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
+    <button class="edgebtn next" id="edgenext" title="Next page"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
 
     <div id="toast"></div>
 
@@ -309,6 +350,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     <button class="tbtn" id="prevpage" title="Previous page (←)"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
     <div class="pages" id="pages"></div>
     <button class="tbtn" id="nextpage" title="Next page (→)"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button class="tbtn" id="docmode" title="Turn pages by scrolling"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></button>
     <button class="tbtn" id="addpage" title="Add page"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     <button class="tbtn" id="delpage" title="Delete page"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
   </div>
@@ -330,12 +372,27 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   </div>
 </div>
 
+<!-- microphone help -->
+<div class="backdrop" id="micback">
+  <div class="modal">
+    <h3>Microphone</h3>
+    <p id="micmsg"></p>
+    <ul class="mini" id="micsteps" style="line-height:1.7;padding-left:18px"></ul>
+    <div class="row" style="margin-top:14px">
+      <button class="btn primary" id="micretry">Try again</button>
+      <button class="btn" id="micsilent" hidden>Record without my voice</button>
+      <button class="btn ghost" id="micclose">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- help modal -->
 <div class="backdrop" id="helpback">
   <div class="modal">
     <h3>Digital Whiteboard</h3>
     <p>Works with mouse, pen and touch. Everything is saved in this browser automatically. Drop a photo, a video or a PDF straight onto the board; a PDF becomes one board page per page, ready to write on.</p>
     <div class="klist">
+      <div><span>Pen (writing)</span><kbd>W</kbd></div>
       <div><span>Marker</span><kbd>P</kbd></div>
       <div><span>Highlighter</span><kbd>M</kbd></div>
       <div><span>Eraser</span><kbd>E</kbd></div>
@@ -347,6 +404,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Undo / Redo</span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></div>
       <div><span>Delete selection</span><kbd>Del</kbd></div>
       <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
+      <div><span>Turn pages by scrolling</span>document mode</div>
       <div><span>New page</span><kbd>Ctrl+N</kbd></div>
       <div><span>Zoom</span><kbd>Ctrl+scroll</kbd> / pinch</div>
       <div><span>Fit the board to screen</span><kbd>0</kbd></div>
@@ -390,6 +448,8 @@ const state = {
   size: 6,
   opacity: 1,
   eraserMode: "pixel",
+  stylusOnly: false,
+  voiceFx: "none",
   snap: true,
   eraserSize: 28,
   shape: "rect",
@@ -399,15 +459,31 @@ const state = {
   textSize: 44,
   view: { s: 1, x: 0, y: 0 },
   sel: null,
+  docMode: false,
   theme: "light"
 };
 
 function newPage(){ return { items: [], hist: [], redo: [] }; }
 function page(){ return state.pages[state.cur]; }
 
+/* ---------------- theme colours, read once per theme ---------------- */
+let THEME = { board:"#ffffff", accent:"#2563eb" };
+function readTheme(){
+  const cs = getComputedStyle(document.documentElement);
+  THEME = {
+    board: cs.getPropertyValue("--board").trim() || "#ffffff",
+    accent: cs.getPropertyValue("--accent").trim() || "#2563eb"
+  };
+}
+
 /* ---------------- canvas & sizing ---------------- */
 const cv  = $("#stage");
 const ctx = cv.getContext("2d");
+// everything already on the board is kept on this layer and simply blitted each
+// frame, so drawing a new stroke does not repaint the whole board
+const layer = document.createElement("canvas");
+const lctx = layer.getContext("2d");
+let layerDirty = true;
 let DPR = 1, VW = 0, VH = 0;
 
 function resize(){
@@ -419,6 +495,7 @@ function resize(){
   cv.height = Math.round(VH * DPR);
   cv.style.width  = VW + "px";
   cv.style.height = VH + "px";
+  layer.width = cv.width; layer.height = cv.height;
   draw();
 }
 window.addEventListener("resize", () => { resize(); clampView(); });
@@ -488,7 +565,7 @@ function inkOf(it){
   return it.color;
 }
 function bboxOf(it){
-  if (it.type === "image" || it.type === "video") return { x: it.x, y: it.y, w: it.w, h: it.h };
+  if (it.type === "image" || it.type === "video" || it.type === "audio") return { x: it.x, y: it.y, w: it.w, h: it.h };
   if (it.type === "text"){
     const m = measureText(it);
     return { x: it.x, y: it.y, w: m.w, h: m.h };
@@ -549,57 +626,70 @@ function textFont(it){
 
 /* ---------------- drawing ---------------- */
 let pending = false;
-function draw(){ if (pending) return; pending = true; requestAnimationFrame(render); }
+function draw(dirty){
+  if (dirty !== false) layerDirty = true;
+  if (pending) return;
+  pending = true;
+  requestAnimationFrame(render);
+}
 
 let cursorPos = null, drawingItem = null, marquee = null;
+
+function paintLayer(){
+  const v = state.view;
+  lctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  lctx.clearRect(0, 0, VW, VH);
+  lctx.save();
+  lctx.translate(v.x, v.y); lctx.scale(v.s, v.s);
+  for (const it of page().items) paintItem(lctx, it);
+  // an eraser stroke in progress has to rub out on the same layer as the ink
+  if (drawingItem && drawingItem.erase) paintItem(lctx, drawingItem);
+  lctx.restore();
+  layerDirty = false;
+}
 
 function render(){
   pending = false;
   const v = state.view;
-  const cs = getComputedStyle(document.documentElement);
-  const board = cs.getPropertyValue("--board").trim();
-  const accent= cs.getPropertyValue("--accent").trim();
+  if (drawingItem && drawingItem.erase) layerDirty = true;
+  if (layerDirty) paintLayer();
+
+  // board colour first, then the ink on top: erasing takes away ink, never board
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = THEME.board;
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  ctx.drawImage(layer, 0, 0);
 
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  ctx.fillStyle = board; ctx.fillRect(0, 0, VW, VH);
-
   ctx.save();
   ctx.translate(v.x, v.y); ctx.scale(v.s, v.s);
+  if (drawingItem && !drawingItem.erase) paintItem(ctx, drawingItem);
 
   const items = page().items;
-  for (const it of items) paintItem(ctx, it);
-  if (drawingItem) paintItem(ctx, drawingItem);
-
-  // selection UI
   if (state.sel && items.includes(state.sel)){
     const b = bboxOf(state.sel);
-    ctx.save();
-    ctx.strokeStyle = accent; ctx.lineWidth = 1.6 / v.s;
+    ctx.strokeStyle = THEME.accent; ctx.lineWidth = 1.6 / v.s;
     ctx.setLineDash([7 / v.s, 5 / v.s]);
     ctx.strokeRect(b.x, b.y, b.w, b.h);
     ctx.setLineDash([]);
     const hs = 9 / v.s;
-    for (const h of handles(b)){
-      ctx.fillStyle = accent; ctx.fillRect(h.x - hs/2, h.y - hs/2, hs, hs);
-    }
-    ctx.restore();
+    for (const h of handles(b)){ ctx.fillStyle = THEME.accent; ctx.fillRect(h.x - hs/2, h.y - hs/2, hs, hs); }
   }
-  ctx.restore(); // untransform
+  ctx.restore();
 
   if (marquee){
     ctx.save();
-    ctx.strokeStyle = accent; ctx.setLineDash([6,4]); ctx.lineWidth = 1.4;
+    ctx.strokeStyle = THEME.accent; ctx.setLineDash([6,4]); ctx.lineWidth = 1.4;
     ctx.strokeRect(marquee.x, marquee.y, marquee.w, marquee.h);
     ctx.restore();
   }
 
-  // eraser / brush cursor ring
-  if (cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "marker")){
-    const r = (state.tool === "eraser" ? state.eraserSize : state.size) * state.view.s / 2;
+  if (cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker")){
+    const r = (state.tool === "eraser" ? state.eraserSize : state.size) * v.s / 2;
     if (r > 2){
       ctx.save();
       ctx.beginPath(); ctx.arc(cursorPos.x, cursorPos.y, r, 0, Math.PI * 2);
-      ctx.strokeStyle = state.tool === "eraser" ? accent
+      ctx.strokeStyle = state.tool === "eraser" ? THEME.accent
         : (isAutoInk(state.color) ? inkOf({ auto:true }) : state.color);
       ctx.lineWidth = 1.4; ctx.globalAlpha = .85; ctx.stroke();
       ctx.restore();
@@ -618,7 +708,32 @@ function handles(b){
 
 function paintItem(c, it){
   c.save();
-  if (it.type === "stroke"){
+  if (it.type === "stroke" && it.tool === "ink" && !it.erase){
+    // a nib stroke is a filled ribbon, so the line thins and thickens like ink
+    c.fillStyle = inkOf(it);
+    c.globalAlpha = it.alpha == null ? 1 : it.alpha;
+    const pts = it.pts;
+    if (pts.length === 1){
+      c.beginPath(); c.arc(pts[0].x, pts[0].y, Math.max(.6, (pts[0].w || it.size) / 2), 0, Math.PI*2); c.fill();
+    } else {
+      const left = [], right = [];
+      for (let i = 0; i < pts.length; i++){
+        const a = pts[Math.max(0, i-1)], b = pts[Math.min(pts.length-1, i+1)], p = pts[i];
+        let dx = b.x - a.x, dy = b.y - a.y;
+        const len = Math.hypot(dx, dy) || 1; dx /= len; dy /= len;
+        const w = Math.max(.4, (p.w || it.size) / 2);
+        left.push({ x: p.x - dy*w, y: p.y + dx*w });
+        right.push({ x: p.x + dy*w, y: p.y - dx*w });
+      }
+      c.beginPath();
+      c.moveTo(left[0].x, left[0].y);
+      for (let i = 1; i < left.length; i++) c.lineTo(left[i].x, left[i].y);
+      for (let i = right.length - 1; i >= 0; i--) c.lineTo(right[i].x, right[i].y);
+      c.closePath(); c.fill();
+      const cap = (p) => { c.beginPath(); c.arc(p.x, p.y, Math.max(.4, (p.w || it.size)/2), 0, Math.PI*2); c.fill(); };
+      cap(pts[0]); cap(pts[pts.length-1]);
+    }
+  } else if (it.type === "stroke"){
     if (it.erase){
       c.globalCompositeOperation = "destination-out";
       c.strokeStyle = "rgba(0,0,0,1)";
@@ -650,6 +765,38 @@ function paintItem(c, it){
     const im = src && getImage(src);
     if (im && im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
     else { c.fillStyle = "rgba(128,128,128,.15)"; c.fillRect(it.x, it.y, it.w, it.h); }
+  } else if (it.type === "audio"){
+    const a = audioFor(it);
+    const playing = a && !a.paused && !a.ended;
+    const r = it.h / 2;
+    c.fillStyle = inkOf(it.auto === false ? it : { auto:true });
+    c.globalAlpha = 0.1;
+    c.beginPath(); c.roundRect ? c.roundRect(it.x, it.y, it.w, it.h, r) : c.rect(it.x, it.y, it.w, it.h); c.fill();
+    c.globalAlpha = 1;
+    c.strokeStyle = inkOf({ auto:true }); c.lineWidth = 1.5;
+    c.beginPath(); c.roundRect ? c.roundRect(it.x, it.y, it.w, it.h, r) : c.rect(it.x, it.y, it.w, it.h); c.stroke();
+    // play button
+    const bx = it.x + r, by = it.y + r, br = r * 0.62;
+    c.fillStyle = THEME.accent;
+    c.beginPath(); c.arc(bx, by, br, 0, Math.PI*2); c.fill();
+    c.fillStyle = "#ffffff";
+    if (playing){
+      c.fillRect(bx - br*0.34, by - br*0.42, br*0.24, br*0.84);
+      c.fillRect(bx + br*0.10, by - br*0.42, br*0.24, br*0.84);
+    } else {
+      c.beginPath(); c.moveTo(bx - br*0.26, by - br*0.42); c.lineTo(bx + br*0.44, by); c.lineTo(bx - br*0.26, by + br*0.42); c.closePath(); c.fill();
+    }
+    // a simple bar chart of the sound, filled as it plays
+    const n = Math.max(6, Math.floor((it.w - r*2 - 18) / 8));
+    const prog = a && a.duration ? a.currentTime / a.duration : 0;
+    for (let i = 0; i < n; i++){
+      const hh = (0.25 + 0.75 * Math.abs(Math.sin(i * 1.7))) * (it.h * 0.42);
+      c.fillStyle = inkOf({ auto:true });
+      c.globalAlpha = (i / n) <= prog ? 1 : 0.32;
+      const x = it.x + r*2 + 4 + i*8;
+      c.fillRect(x, by - hh/2, 4, hh);
+    }
+    c.globalAlpha = 1;
   } else if (it.type === "video"){
     const v = videoFor(it);
     if (v && v.readyState >= 2){
@@ -785,6 +932,234 @@ function handleAt(sp){
 
 
 
+
+
+/* ---------------- voice ----------------
+   One place that asks for the microphone, one chain of effects, used by both
+   the board recorder and voice notes. */
+
+const VOICE_FX = [
+  ["none",  "Normal"],
+  ["deep",  "Deep"],
+  ["high",  "High"],
+  ["robot", "Robot"],
+  ["echo",  "Echo"],
+  ["radio", "Radio"]
+];
+
+async function askMic(){
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    micTrouble("This browser cannot reach a microphone.");
+    return null;
+  }
+  try {
+    return await navigator.mediaDevices.getUserMedia({
+      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+    });
+  } catch (err){
+    const name = err && err.name;
+    if (name === "NotAllowedError" || name === "SecurityError"){
+      micTrouble(window.top !== window.self
+        ? "This board is running inside another page, which blocks the microphone. Open it in its own tab and try again."
+        : "The microphone is blocked for this site. Allow it, then try again.");
+    } else if (name === "NotFoundError" || name === "OverconstrainedError"){
+      micTrouble("No microphone was found on this device.");
+    } else if (!window.isSecureContext){
+      micTrouble("A microphone only works over https. Open the board on an https address.");
+    } else micTrouble("The microphone could not be started. Close other apps using it and try again.");
+    return null;
+  }
+}
+function micTrouble(msg){
+  $("#micmsg").textContent = msg;
+  $("#micsilent").hidden = true;
+  $("#micsteps").innerHTML =
+    "<li><b>iPhone or iPad:</b> tap <b>aA</b> in the address bar, choose <b>Website Settings</b>, set Microphone to Allow. " +
+    "If it is not listed, check Settings › Safari › Microphone, then reload.</li>" +
+    "<li><b>Android or desktop Chrome:</b> tap the padlock in the address bar, turn Microphone on, then reload.</li>" +
+    "<li>Add the board to your home screen for a full screen app with its own permission.</li>";
+  $("#micback").classList.add("open");
+}
+
+// pitch shifting without a library: two delay lines swept in opposite
+// directions and crossfaded, which moves the pitch and leaves the speed alone
+function pitchShift(ac, semitones){
+  const input = ac.createGain(), output = ac.createGain();
+  const ratio = Math.pow(2, semitones / 12);
+  const window = 0.12;
+  const period = window / Math.abs(1 - ratio);
+  const len = Math.max(64, Math.round(period * ac.sampleRate));
+  const saw = ac.createBuffer(1, len, ac.sampleRate), sd = saw.getChannelData(0);
+  const fade = ac.createBuffer(1, len, ac.sampleRate), fd = fade.getChannelData(0);
+  for (let i = 0; i < len; i++){
+    const t = i / len;
+    sd[i] = ratio < 1 ? t : 1 - t;
+    fd[i] = 0.5 * (1 - Math.cos(2 * Math.PI * t));
+  }
+  const nodes = [];
+  for (let k = 0; k < 2; k++){
+    const d = ac.createDelay(1), g = ac.createGain();
+    const mod = ac.createBufferSource(), modGain = ac.createGain(), fader = ac.createBufferSource();
+    d.delayTime.value = 0; g.gain.value = 0;
+    mod.buffer = saw; mod.loop = true; modGain.gain.value = window;
+    mod.connect(modGain); modGain.connect(d.delayTime);
+    fader.buffer = fade; fader.loop = true; fader.connect(g.gain);
+    input.connect(d); d.connect(g); g.connect(output);
+    const offset = k === 0 ? 0 : period / 2;
+    mod.start(ac.currentTime, offset); fader.start(ac.currentTime, offset);
+    nodes.push(mod, fader);
+  }
+  return { input, output, stop(){ nodes.forEach(n => { try { n.stop(); } catch (e){} }); } };
+}
+
+// returns {input, output, stop} for the chosen effect
+function voiceChain(ac, fx){
+  const input = ac.createGain(), output = ac.createGain();
+  if (!fx || fx === "none"){ input.connect(output); return { input, output, stop(){} }; }
+
+  if (fx === "deep" || fx === "high"){
+    const sh = pitchShift(ac, fx === "deep" ? -5 : 5);
+    input.connect(sh.input); sh.output.connect(output);
+    if (fx === "deep"){
+      const lp = ac.createBiquadFilter(); lp.type = "lowshelf"; lp.frequency.value = 220; lp.gain.value = 4;
+      sh.output.disconnect(); sh.output.connect(lp); lp.connect(output);
+    }
+    return { input, output, stop: sh.stop };
+  }
+  if (fx === "robot"){
+    const ring = ac.createGain(); ring.gain.value = 0;
+    const osc = ac.createOscillator(); osc.type = "sine"; osc.frequency.value = 52;
+    osc.connect(ring.gain); osc.start();
+    const sh = pitchShift(ac, -2);
+    input.connect(sh.input); sh.output.connect(ring); ring.connect(output);
+    return { input, output, stop(){ try { osc.stop(); } catch (e){} sh.stop(); } };
+  }
+  if (fx === "echo"){
+    const d = ac.createDelay(1), fb = ac.createGain(), wet = ac.createGain();
+    d.delayTime.value = 0.23; fb.gain.value = 0.34; wet.gain.value = 0.55;
+    input.connect(output);
+    input.connect(d); d.connect(fb); fb.connect(d); d.connect(wet); wet.connect(output);
+    return { input, output, stop(){} };
+  }
+  if (fx === "radio"){
+    const bp = ac.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 1500; bp.Q.value = 1.1;
+    const sh = ac.createWaveShaper();
+    const curve = new Float32Array(1024);
+    for (let i = 0; i < 1024; i++){ const x = i / 512 - 1; curve[i] = Math.tanh(x * 2.4); }
+    sh.curve = curve;
+    input.connect(bp); bp.connect(sh); sh.connect(output);
+    return { input, output, stop(){} };
+  }
+  input.connect(output);
+  return { input, output, stop(){} };
+}
+
+// a live level readout, so you can see that sound is arriving
+function meterFor(ac, node){
+  const an = ac.createAnalyser();
+  an.fftSize = 512;
+  node.connect(an);
+  const buf = new Uint8Array(an.fftSize);
+  return () => {
+    an.getByteTimeDomainData(buf);
+    let peak = 0;
+    for (let i = 0; i < buf.length; i++) peak = Math.max(peak, Math.abs(buf[i] - 128));
+    return Math.min(1, peak / 90);
+  };
+}
+
+
+/* ---------------- voice notes ----------------
+   Records just your voice and leaves it on the board as something you can tap
+   and play. Works on a phone, where a screen recording usually cannot. */
+
+let noteRec = null;
+async function recordVoiceNote(){
+  if (noteRec) return stopVoiceNote();
+  const stream = await askMic();
+  if (!stream) return;
+  const ac = getAC();
+  const src = ac.createMediaStreamSource(stream);
+  const fx = voiceChain(ac, state.voiceFx);
+  const dest = ac.createMediaStreamDestination();
+  src.connect(fx.input); fx.output.connect(dest);
+  const level = meterFor(ac, fx.output);
+
+  const mime = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/aac", ""]
+    .find(m => !m || (window.MediaRecorder && MediaRecorder.isTypeSupported(m)));
+  let mr;
+  try { mr = new MediaRecorder(dest.stream, mime ? { mimeType: mime } : {}); }
+  catch (e){ return toast("This browser cannot record audio"); }
+
+  const chunks = [];
+  mr.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+  mr.onstop = async () => {
+    clearInterval(noteRec.timer);
+    stream.getTracks().forEach(t => t.stop());
+    fx.stop();
+    $("#recpill").classList.remove("show");
+    $("#voicenote").textContent = "Record a voice note on the board";
+    const blob = new Blob(chunks, { type: (mr.mimeType || "audio/webm").split(";")[0] });
+    noteRec = null;
+    if (!blob.size) return toast("Nothing was recorded");
+    const mid = await dbPut(blob);
+    const url = URL.createObjectURL(blob);
+    if (mid) mediaURL.set(mid, url);
+    const mid0 = toWorld(VW / 2, VH / 2);
+    const w = Math.min(360, VW * 0.6) / state.view.s;
+    const it = Object.assign({ type:"audio", x: mid0.x - w/2, y: mid0.y - 34, w, h: 68, secs: noteRec2secs },
+                             mid ? { mid } : { src: url });
+    addItem(it);
+    setTool("select"); state.sel = it; draw();
+    toast("Voice note added — tap it to play");
+  };
+  mr.start(400);
+  noteRec = { mr, t0: Date.now(), level };
+  $("#voicenote").textContent = "Stop the voice note";
+  $("#recpill").classList.add("show");
+  $("#recpause").hidden = true;
+  $("#recstop").textContent = "Stop note";
+  closePops();
+  noteRec.timer = setInterval(() => {
+    const s = Math.floor((Date.now() - noteRec.t0) / 1000);
+    noteRec2secs = s;
+    $("#rectime").textContent = String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0");
+    $("#reclevel").style.width = Math.round(level() * 100) + "%";
+  }, 150);
+  toast("Recording your voice…");
+}
+let noteRec2secs = 0;
+function stopVoiceNote(){
+  if (!noteRec) return;
+  try { noteRec.mr.stop(); } catch (e){}
+  $("#recpause").hidden = false;
+  $("#recstop").textContent = "Stop";
+}
+
+const audioEls = new Map();
+function audioFor(it){
+  const src = srcOf(it);
+  if (!src) return null;
+  const key = it.mid || it.src;
+  let a = audioEls.get(key);
+  if (!a){
+    a = new Audio(src);
+    a.preload = "metadata";
+    a.addEventListener("play", startVideoLoop);
+    a.addEventListener("timeupdate", draw);
+    a.addEventListener("pause", draw);
+    a.addEventListener("ended", draw);
+    audioEls.set(key, a);
+  }
+  return a;
+}
+function toggleAudio(it){
+  const a = audioFor(it);
+  if (!a) return;
+  if (a.paused){ getAC(); a.play().catch(() => toast("Tap it once more to play")); }
+  else a.pause();
+  draw();
+}
 
 /* ---------------- media store ----------------
    Photos, videos and PDF pages are kept as blobs in IndexedDB, which has room
@@ -1237,6 +1612,7 @@ const SHAPE_NAME = { line:"a line", arrow:"an arrow", rect:"a rectangle", ellips
 
 /* ---------------- pointer input ---------------- */
 const pointers = new Map();
+let sawStylus = false;
 let action = null;         // {mode:'draw'|'pan'|'move'|'resize'|'shape'|'erase-obj'|'marquee'}
 let pinch = null;
 let spaceDown = false;
@@ -1263,17 +1639,21 @@ cv.addEventListener("pointerdown", (e) => {
   if (pointers.size > 2) return;
 
   const wp = toWorld(sp.x, sp.y);
-  const panning = state.tool === "pan" || spaceDown || e.button === 1 || (e.pointerType === "mouse" && e.button === 2);
+  if (e.pointerType === "pen") sawStylus = true;
+  const palm = state.stylusOnly && sawStylus && e.pointerType === "touch";
+  const panning = palm || state.tool === "pan" || spaceDown || e.button === 1 || (e.pointerType === "mouse" && e.button === 2);
 
   if (panning){ action = { mode:"pan", sx: sp.x, sy: sp.y, vx: state.view.x, vy: state.view.y }; return; }
 
   if (state.tool === "select" || state.tool === "pan"){
     for (let i = page().items.length - 1; i >= 0; i--){
       const it = page().items[i];
-      if (it.type !== "video") continue;
-      const btn = videoButton(it);
-      if (Math.hypot(wp.x - btn.x, wp.y - btn.y) <= btn.r * 1.25){
-        toggleVideo(it); action = null; return;
+      if (it.type === "video"){
+        const btn = videoButton(it);
+        if (Math.hypot(wp.x - btn.x, wp.y - btn.y) <= btn.r * 1.25){ toggleVideo(it); action = null; return; }
+      } else if (it.type === "audio"){
+        const r = it.h / 2;
+        if (Math.hypot(wp.x - (it.x + r), wp.y - (it.y + r)) <= r){ toggleAudio(it); action = null; return; }
       }
     }
   }
@@ -1309,16 +1689,18 @@ cv.addEventListener("pointerdown", (e) => {
     return;
   }
 
-  // pen / highlighter / pixel eraser
+  // pen / marker / highlighter / pixel eraser
   const erasing = state.tool === "eraser";
+  const nib = state.tool === "ink";
+  const base = nib ? Math.max(1.5, state.size * 0.62) : state.size;
   drawingItem = {
     type:"stroke", tool: state.tool, erase: erasing,
     color: state.color, auto: isAutoInk(state.color),
     alpha: state.tool === "marker" ? Math.min(state.opacity, .45) : state.opacity,
-    size: erasing ? state.eraserSize : state.size * pressureScale(e),
-    pts: [wp]
+    size: erasing ? state.eraserSize : base * (nib ? 1 : pressureScale(e)),
+    pts: [nib ? { x: wp.x, y: wp.y, w: base * pressureScale(e) } : wp]
   };
-  action = { mode:"draw" };
+  action = { mode:"draw", w: base * pressureScale(e), t: performance.now() };
   draw();
 });
 
@@ -1327,7 +1709,7 @@ function pressureScale(e){
   return 1;
 }
 function snapshot(it){
-  if (it.type === "image" || it.type === "video" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
+  if (it.type === "image" || it.type === "video" || it.type === "audio" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
   if (it.type === "shape") return it.pts
     ? { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2, pts: it.pts.map(p => ({ x:p.x, y:p.y })) }
     : { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2 };
@@ -1343,6 +1725,14 @@ cv.addEventListener("pointermove", (e) => {
   if (pointers.size === 2 && pinch){
     const [a, b] = Array.from(pointers.values());
     const d = Math.hypot(a.x-b.x, a.y-b.y), c = { x:(a.x+b.x)/2, y:(a.y+b.y)/2 };
+    if (state.docMode && state.pages.length > 1 && Math.abs(d - pinch.d) < 30){
+      pinch.dy = (pinch.dy || 0) + (c.y - pinch.c.y);
+      if (Math.abs(pinch.dy) > 70){
+        const dir = pinch.dy < 0 ? 1 : -1;
+        pinch.dy = 0;
+        if (turnPage(dir)){ pinch = { d, c }; return; }
+      }
+    }
     if (pinch.d > 0){
       const v = state.view;
       const k = d / pinch.d;
@@ -1357,7 +1747,10 @@ cv.addEventListener("pointermove", (e) => {
     return;
   }
 
-  if (!action){ if (state.tool === "eraser" || state.tool === "pen" || state.tool === "marker") draw(); return; }
+  if (!action){
+    if (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker") draw(false);
+    return;
+  }
   const wp = toWorld(sp.x, sp.y);
 
   if (action.mode === "pan"){
@@ -1367,15 +1760,24 @@ cv.addEventListener("pointermove", (e) => {
   }
   if (action.mode === "draw" && drawingItem){
     const pts = drawingItem.pts, last = pts[pts.length - 1];
-    if (Math.hypot(wp.x - last.x, wp.y - last.y) * state.view.s > 1.1){
-      if (e.getCoalescedEvents){
+    const moved = Math.hypot(wp.x - last.x, wp.y - last.y);
+    if (moved * state.view.s > 1.1){
+      if (drawingItem.tool === "ink"){
+        // faster movement gives a thinner line, the way a nib behaves
+        const now = performance.now();
+        const speed = moved / Math.max(8, now - action.t) * 16;
+        action.t = now;
+        const target = drawingItem.size * Math.max(.42, Math.min(1.45, 1.35 - speed * .16)) * pressureScale(e);
+        action.w = action.w + (target - action.w) * .35;
+        pts.push({ x: wp.x, y: wp.y, w: action.w });
+      } else if (e.getCoalescedEvents){
         const co = e.getCoalescedEvents();
         if (co.length > 1){
           const r = cv.getBoundingClientRect();
           for (const ce of co) pts.push(toWorld(ce.clientX - r.left, ce.clientY - r.top));
         } else pts.push(wp);
       } else pts.push(wp);
-      draw();
+      draw(false);                       // live ink only: the board stays cached
     }
     return;
   }
@@ -1435,7 +1837,7 @@ function resizeSel(a, wp){
   if (a.k === "sw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = wp.y - b.y; }
   if (a.k === "nw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = (b.y + b.h) - wp.y; ny = wp.y; }
   nw = Math.max(16, nw); nh = Math.max(16, nh);
-  if (it.type === "image" || it.type === "video"){
+  if (it.type === "image" || it.type === "video" || it.type === "audio"){
     const ar = (a.before.w || 1) / (a.before.h || 1);
     nh = nw / ar;
     if (a.k === "ne" || a.k === "nw") ny = b.y + b.h - nh;
@@ -1475,7 +1877,7 @@ function endPointer(e){
     if (drawingItem.pts.length){
       const raw = drawingItem;
       addItem(raw);
-      if (state.snap && raw.tool === "pen" && !raw.erase) snapToShape(raw);
+      if (state.snap && raw.tool === "pen" && !raw.erase) snapToShape(raw);   // the nib never snaps
     }
     drawingItem = null;
   } else if (action.mode === "shape" && drawingItem){
@@ -1497,14 +1899,28 @@ function endPointer(e){
 }
 cv.addEventListener("pointerup", endPointer);
 cv.addEventListener("pointercancel", endPointer);
-cv.addEventListener("pointerleave", () => { cursorPos = null; draw(); });
+cv.addEventListener("pointerleave", () => { cursorPos = null; draw(false); });
 cv.addEventListener("contextmenu", (e) => e.preventDefault());
 
+let pageTurnAt = 0;
+function turnPage(dir){
+  const now = performance.now();
+  if (now - pageTurnAt < 420) return true;
+  const next = state.cur + dir;
+  if (next < 0 || next >= state.pages.length) return false;
+  pageTurnAt = now;
+  gotoPage(next);
+  return true;
+}
 cv.addEventListener("wheel", (e) => {
   e.preventDefault();
   const sp = localPt(e);
-  if (e.ctrlKey || e.metaKey){ zoomAt(sp.x, sp.y, Math.exp(-e.deltaY * 0.0022)); }
-  else { state.view.x -= e.deltaX; state.view.y -= e.deltaY; clampView(); }
+  if (e.ctrlKey || e.metaKey){ zoomAt(sp.x, sp.y, Math.exp(-e.deltaY * 0.0022)); return; }
+  // in document mode a scroll moves through the pages, like a reader
+  if (state.docMode && state.pages.length > 1 && Math.abs(e.deltaY) > Math.abs(e.deltaX) * 1.5 && Math.abs(e.deltaY) > 4){
+    if (turnPage(e.deltaY > 0 ? 1 : -1)) return;
+  }
+  state.view.x -= e.deltaX; state.view.y -= e.deltaY; clampView();
 }, { passive: false });
 
 /* ---------------- text tool ---------------- */
@@ -1570,6 +1986,7 @@ cv.addEventListener("dblclick", (e) => {
   const sp = localPt(e);
   const hit = pickAt(toWorld(sp.x, sp.y));
   if (hit && hit.type === "video"){ toggleVideo(hit); return; }
+  if (hit && hit.type === "audio"){ toggleAudio(hit); return; }
   if (hit && hit.type === "text"){ setTool("select"); state.sel = hit; openTextEditor(null, hit); }
 });
 
@@ -1664,40 +2081,57 @@ async function importPdf(file){
   toast("Opening the PDF…");
   try { lib = await loadPdfLib(); }
   catch (e){ return toast("Opening a PDF needs an internet connection the first time"); }
+  let doc;
   try {
-    const data = new Uint8Array(await file.arrayBuffer());
-    const doc = await lib.getDocument({ data }).promise;
-    const total = doc.numPages;
-    for (let n = 1; n <= total; n++){
-      const pg = await doc.getPage(n);
-      const base = pg.getViewport({ scale: 1 });
-      const scale = Math.min(2200 / base.width, 2200 / base.height, 3);
-      const vp = pg.getViewport({ scale });
-      const cvs = document.createElement("canvas");
-      cvs.width = Math.round(vp.width); cvs.height = Math.round(vp.height);
-      const c2 = cvs.getContext("2d");
-      c2.fillStyle = "#ffffff"; c2.fillRect(0, 0, cvs.width, cvs.height);
-      await pg.render({ canvasContext: c2, viewport: vp }).promise;
-      const blob = await new Promise(r => cvs.toBlob(r, "image/jpeg", 0.9));
-      const mid = await dbPut(blob);
-      if (mid) mediaURL.set(mid, URL.createObjectURL(blob));
+    doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+  } catch (e){ return toast("That PDF could not be opened"); }
 
-      if (n > 1 || page().items.length){            // one PDF page per board page
-        state.pages.splice(state.cur + 1, 0, newPage());
-        state.cur += 1;
-      }
-      const fit = Math.min(VW * 0.92 / cvs.width, VH * 0.92 / cvs.height) / state.view.s;
-      const w = cvs.width * fit, h = cvs.height * fit;
-      const mid0 = toWorld(VW / 2, VH / 2);
-      const it = { type:"image", mid, x: mid0.x - w/2, y: mid0.y - h/2, w, h };
-      page().items.push(it);
-      pushOp({ kind:"add", item: it, index: page().items.length - 1 });
-      renderPages(); draw();
-      if (total > 1) toast("PDF page " + n + " of " + total);
+  const total = doc.numPages;
+  const startAt = state.pages.length - 1;
+  // one board page per PDF page, created up front so you can move through them
+  for (let i = 0; i < total - (page().items.length ? 0 : 1); i++) state.pages.push(newPage());
+  state.cur = page().items.length ? startAt + 1 : startAt;
+  const firstBoard = state.cur;
+  renderPages();
+
+  const render1 = async (n) => {
+    const pg = await doc.getPage(n);
+    const base = pg.getViewport({ scale: 1 });
+    // a whiteboard never needs more than screen resolution, and this is the
+    // difference between a slow import and an instant one
+    const target = Math.max(VW, VH) * Math.min(2, DPR);
+    const scale = Math.min(target / Math.max(base.width, base.height), 2.2);
+    const vp = pg.getViewport({ scale });
+    const cvs = document.createElement("canvas");
+    cvs.width = Math.round(vp.width); cvs.height = Math.round(vp.height);
+    const c2 = cvs.getContext("2d", { alpha:false });
+    c2.fillStyle = "#ffffff"; c2.fillRect(0, 0, cvs.width, cvs.height);
+    await pg.render({ canvasContext: c2, viewport: vp }).promise;
+    const blob = await new Promise(r => cvs.toBlob(r, "image/jpeg", 0.82));
+    const mid = await dbPut(blob);
+    const url = URL.createObjectURL(blob);
+    if (mid) mediaURL.set(mid, url);
+
+    const board = state.pages[firstBoard + n - 1];
+    if (!board) return;
+    const fit = Math.min(VW * 0.94 / cvs.width, VH * 0.94 / cvs.height) / state.view.s;
+    const w = cvs.width * fit, h = cvs.height * fit;
+    const mid0 = toWorld(VW / 2, VH / 2);
+    board.items.push(Object.assign({ type:"image", x: mid0.x - w/2, y: mid0.y - h/2, w, h },
+                                   mid ? { mid } : { src: url }));
+    if (board === page()) draw();
+  };
+
+  try {
+    await render1(1);                       // show page one immediately
+    setTool("ink"); state.docMode = true; renderPages(); save();
+    toast(total === 1 ? "PDF added — write on it" : total + " pages — scroll or tap › for the next one");
+    for (let n = 2; n <= total; n++){
+      await new Promise(r => setTimeout(r, 0));   // keep the board responsive
+      await render1(n);
     }
-    setTool("pen");
-    toast(total + (total === 1 ? " page added — write on it" : " pages added — write on them"));
-  } catch (err){ toast("That PDF could not be opened"); }
+    save();
+  } catch (e){ toast("Some pages of that PDF could not be drawn"); }
 }
 
 $("#imgbtn").addEventListener("click", () => $("#filepick").click());
@@ -1728,6 +2162,10 @@ function renderPages(){
   $("#prevpage").disabled = state.cur === 0;
   $("#nextpage").disabled = state.cur === state.pages.length - 1;
   $("#delpage").disabled = state.pages.length <= 1;
+  $("#docmode").classList.toggle("on", state.docMode);
+  const many = state.pages.length > 1;
+  $("#edgeprev").classList.toggle("show", many && state.cur > 0);
+  $("#edgenext").classList.toggle("show", many && state.cur < state.pages.length - 1);
 }
 function gotoPage(i){
   if (i < 0 || i >= state.pages.length || i === state.cur) return;
@@ -1735,6 +2173,13 @@ function gotoPage(i){
   state.cur = i; state.sel = null;
   renderPages(); syncHistoryButtons(); save(); draw();
 }
+$("#edgeprev").addEventListener("click", () => gotoPage(state.cur - 1));
+$("#edgenext").addEventListener("click", () => gotoPage(state.cur + 1));
+$("#docmode").addEventListener("click", () => {
+  state.docMode = !state.docMode;
+  renderPages(); save();
+  toast(state.docMode ? "Scroll or swipe to turn the page" : "Scroll pans the board again");
+});
 $("#prevpage").addEventListener("click", () => gotoPage(state.cur - 1));
 $("#nextpage").addEventListener("click", () => gotoPage(state.cur + 1));
 $("#addpage").addEventListener("click", () => {
@@ -1759,7 +2204,7 @@ $("#clearbtn").addEventListener("click", () => {
 });
 
 /* ---------------- tools & popovers ---------------- */
-const POP_FOR = { pen:"#penpop", marker:"#penpop", eraser:"#eraserpop", shape:"#shapepop", text:"#textpop" };
+const POP_FOR = { ink:"#penpop", pen:"#penpop", marker:"#penpop", eraser:"#eraserpop", shape:"#shapepop", text:"#textpop" };
 
 function setTool(t, evt){
   commitText();
@@ -1876,6 +2321,11 @@ function buildShapes(){
   }
 }
 
+$("#styluschk").addEventListener("change", (e) => {
+  state.stylusOnly = e.target.checked;
+  toast(state.stylusOnly ? "Only a stylus will draw now" : "Finger and stylus both draw");
+  save();
+});
 $("#snapchk").addEventListener("change", (e) => {
   state.snap = e.target.checked;
   toast(state.snap ? "Sketches will be tidied into shapes" : "Sketches stay exactly as drawn");
@@ -1900,6 +2350,7 @@ $("#zoomfit").addEventListener("click", fitView);
 function setTheme(t){
   state.theme = t;
   document.documentElement.dataset.theme = t;
+  readTheme();
   const mc = $("meta[name=theme-color]");
   if (mc) mc.setAttribute("content", t === "dark" ? "#0a0b0d" : "#ffffff");
   // keep ink visible when the board flips colour
@@ -1935,10 +2386,9 @@ if (fsSupported){
 /* ---------------- render a page to an offscreen canvas ---------------- */
 // paint a page onto any canvas through the given view (scale + offset)
 function paintPage(c, p, w, h, view){
-  const cs = getComputedStyle(document.documentElement);
   c.save();
   c.setTransform(1, 0, 0, 1, 0, 0);
-  c.fillStyle = cs.getPropertyValue("--board").trim() || "#fff";
+  c.fillStyle = THEME.board;
   c.fillRect(0, 0, w, h);
   c.translate(view.x, view.y); c.scale(view.s, view.s);
   for (const it of p.items) paintItem(c, it);
@@ -2094,6 +2544,66 @@ $$("#recseg button").forEach(b => b.addEventListener("click", () => {
   save();
 }));
 $("#micchk").addEventListener("change", e => { rec.mic = e.target.checked; save(); });
+$("#voicenote").addEventListener("click", recordVoiceNote);
+$("#micclose").addEventListener("click", () => $("#micback").classList.remove("open"));
+$("#micsilent").addEventListener("click", () => {
+  $("#micback").classList.remove("open");
+  $("#micsilent").hidden = true;
+  rec.mic = false; $("#micchk").checked = false;
+  startRec();
+});
+$("#micretry").addEventListener("click", () => { $("#micback").classList.remove("open"); testMic(); });
+function buildFx(){
+  const el = $("#fxrow"); el.innerHTML = "";
+  for (const [k, label] of VOICE_FX){
+    const b = document.createElement("button");
+    b.className = "fxbtn" + (state.voiceFx === k ? " on" : "");
+    b.textContent = label;
+    b.addEventListener("click", () => {
+      state.voiceFx = k;
+      $$("#fxrow .fxbtn").forEach(x => x.classList.toggle("on", x === b));
+      save();
+      if (k !== "none") toast(label + " voice — press Test to hear it");
+    });
+    el.appendChild(b);
+  }
+}
+
+// record three seconds, show the level, then play it back through the effect
+let testing = false;
+async function testMic(){
+  if (testing) return;
+  const stream = await askMic();
+  if (!stream) return;
+  testing = true;
+  const ac = getAC();
+  const src = ac.createMediaStreamSource(stream);
+  const fx = voiceChain(ac, state.voiceFx);
+  const dest = ac.createMediaStreamDestination();
+  src.connect(fx.input); fx.output.connect(dest);
+  const level = meterFor(ac, fx.output);
+  const mime = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", ""]
+    .find(m => !m || (window.MediaRecorder && MediaRecorder.isTypeSupported(m)));
+  const mr = new MediaRecorder(dest.stream, mime ? { mimeType: mime } : {});
+  const chunks = []; let peak = 0;
+  mr.ondataavailable = e => { if (e.data && e.data.size) chunks.push(e.data); };
+  const meter = setInterval(() => { const l = level(); peak = Math.max(peak, l); $("#meterbar").style.width = Math.round(l*100) + "%"; }, 80);
+  $("#mictest").textContent = "Listening… say something";
+  mr.start();
+  setTimeout(() => { try { mr.stop(); } catch (e){} }, 3000);
+  mr.onstop = () => {
+    clearInterval(meter);
+    stream.getTracks().forEach(t => t.stop());
+    fx.stop(); testing = false;
+    $("#meterbar").style.width = "0%";
+    $("#mictest").textContent = "Test my voice";
+    if (peak < 0.05) return micTrouble("The microphone is on, but no sound reached it. Check that nothing else is using it, and that you are not muted.");
+    const url = URL.createObjectURL(new Blob(chunks, { type: "audio/webm" }));
+    const a = new Audio(url); a.play();
+    toast("That is how you sound");
+  };
+}
+$("#mictest").addEventListener("click", testMic);
 $("#syschk").addEventListener("change", e => { rec.sys = e.target.checked; save(); });
 
 function pickMime(){
@@ -2134,29 +2644,40 @@ async function startRec(){
     rec.tracks = videoStream.getTracks().slice();
 
     // audio mixing (microphone + optional system audio)
-    const audioSources = [];
     let micStream = null;
     rec.micBlocked = false;
     if (rec.mic){
-      try {
-        micStream = await navigator.mediaDevices.getUserMedia({
-          audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
-        });
-        rec.tracks.push(...micStream.getTracks());
-        audioSources.push(micStream);
-      } catch (err){ rec.micBlocked = true; }
+      micStream = await askMic();
+      if (micStream) rec.tracks.push(...micStream.getTracks());
+      else {
+        rec.micBlocked = true;
+        videoStream.getTracks().forEach(t => { try { t.stop(); } catch (e){} });
+        cancelAnimationFrame(rec.loop); rec.starting = false;
+        $("#micsilent").hidden = false;                 // offer to go ahead without it
+        return;
+      }
     }
-    const sysAudio = videoStream.getAudioTracks();
-    if (sysAudio.length) audioSources.push(new MediaStream(sysAudio));
-
     // everything audible goes through one mixer: the microphone, any system
     // audio, and the sound of a video playing on the board
     const ac = getAC();
     rec.dest = ac.createMediaStreamDestination();
-    audioSources.forEach(src => ac.createMediaStreamSource(src).connect(rec.dest));
+    let voiced = false;
+    if (micStream){                                   // the voice goes through the effect
+      const node = ac.createMediaStreamSource(micStream);
+      rec.fx = voiceChain(ac, state.voiceFx);
+      node.connect(rec.fx.input);
+      rec.fx.output.connect(rec.dest);
+      rec.level = meterFor(ac, rec.fx.output);
+      voiced = true;
+    }
+    const sysAudioTracks = videoStream.getAudioTracks();
+    if (sysAudioTracks.length){
+      ac.createMediaStreamSource(new MediaStream(sysAudioTracks)).connect(rec.dest);
+      voiced = true;
+    }
     rec.taps = new Set();
     for (const v of videoEls.values()) if (!v.paused && !v.ended) tapVideoForRecording(v);
-    const audioTracks = (audioSources.length || rec.taps.size) ? rec.dest.stream.getAudioTracks() : [];
+    const audioTracks = (voiced || rec.taps.size) ? rec.dest.stream.getAudioTracks() : [];
 
     const mixed = new MediaStream([...videoStream.getVideoTracks(), ...audioTracks]);
     const mime = pickMime();
@@ -2173,10 +2694,12 @@ async function startRec(){
     rec.on = true; rec.starting = false; rec.paused = false;
     rec.t0 = Date.now(); rec.acc = 0;
     rec.mimeUsed = rec.recorder.mimeType || mime || "video/webm";
+    rec.hadAudio = mixed.getAudioTracks().length > 0;
     $("#recbtn").classList.add("on", "rec");
     $("#recpill").classList.add("show");
     $("#recpause").textContent = "Pause";
-    rec.timer = setInterval(tickTime, 250); tickTime();
+    rec.peak = 0; rec.warned = false; rec.checkAt = Date.now() + 3500;
+  rec.timer = setInterval(tickTime, 150); tickTime();
     closePops();
     toast((rec.src === "screen" ? "Screen recording started" : "Board recording started")
           + (rec.micBlocked ? " — microphone blocked, no voice" : (rec.mic ? " with voice" : "")));
@@ -2192,6 +2715,16 @@ function tickTime(){
   const s = Math.floor(ms / 1000);
   const m = String(Math.floor(s / 60)).padStart(2, "0");
   $("#rectime").textContent = m + ":" + String(s % 60).padStart(2, "0");
+  if (rec.level){
+    const lv = rec.level();
+    $("#reclevel").style.width = Math.round(lv * 100) + "%";
+    // judge on the loudest moment so far, not on one quiet tick
+    rec.peak = Math.max(rec.peak || 0, lv);
+    if (!rec.warned && !rec.paused && Date.now() > rec.checkAt){
+      rec.warned = true;
+      if (rec.peak < 0.06) toast("No sound is reaching the microphone — try Test my voice in the record menu");
+    }
+  }
 }
 function stopRec(){
   if (!rec.on) return;
@@ -2203,6 +2736,9 @@ function stopRec(){
   // leave the shared audio context alive so board videos keep their sound
   rec.taps.forEach(v => { try { v._node.disconnect(rec.dest); } catch (e){} });
   rec.taps.clear(); rec.dest = null;
+  if (rec.fx){ rec.fx.stop(); rec.fx = null; }
+  rec.level = null;
+  $("#reclevel").style.width = "0%";
   $("#recbtn").classList.remove("on", "rec");
   $("#recpill").classList.remove("show", "paused");
 }
@@ -2229,13 +2765,14 @@ function finishRec(){
       v.ontimeupdate = () => { v.ontimeupdate = null; v.currentTime = 0; };
     }
   };
-  $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent + " · " + ext.toUpperCase();
+  $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent
+    + " · " + ext.toUpperCase() + (rec.hadAudio ? " · with sound" : " · no sound was captured");
   $("#vidopen").onclick = () => window.open(url, "_blank");
   $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
   $("#vidback").classList.add("open");
 }
 $("#recbtn").addEventListener("click", () => rec.on ? stopRec() : startRec());
-$("#recstop").addEventListener("click", stopRec);
+$("#recstop").addEventListener("click", () => { if (noteRec) stopVoiceNote(); else stopRec(); });
 $("#recpause").addEventListener("click", () => {
   if (!rec.on) return;
   if (rec.paused){
@@ -2272,7 +2809,8 @@ function save(){
         pages: state.pages.map(p => ({ items: p.items })),
         prefs: {
           theme: state.theme, color: state.color, size: state.size, opacity: state.opacity,
-          eraserMode: state.eraserMode, eraserSize: state.eraserSize, snap: state.snap, shape: state.shape,
+          eraserMode: state.eraserMode, eraserSize: state.eraserSize, snap: state.snap,
+          stylusOnly: state.stylusOnly, docMode: state.docMode, voiceFx: state.voiceFx, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
           textColor: state.textColor, textSize: state.textSize,
           recSrc: rec.src, mic: rec.mic, sys: rec.sys
@@ -2293,7 +2831,8 @@ function load(){
     color: pref.color || state.color, size: pref.size || state.size,
     opacity: pref.opacity == null ? 1 : pref.opacity,
     eraserMode: pref.eraserMode || state.eraserMode, eraserSize: pref.eraserSize || state.eraserSize,
-    snap: pref.snap !== false,
+    snap: pref.snap !== false, stylusOnly: !!pref.stylusOnly, docMode: !!pref.docMode,
+    voiceFx: pref.voiceFx || "none",
     shape: pref.shape || state.shape, shapeFill: !!pref.shapeFill,
     shapeColor: pref.shapeColor || state.shapeColor,
     textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize
@@ -2317,6 +2856,7 @@ window.addEventListener("keydown", (e) => {
   if (mod && e.key.toLowerCase() === "n"){ e.preventDefault(); $("#addpage").click(); return; }
   if (mod) return;
   switch (e.key){
+    case "w": case "W": setTool("ink"); break;
     case "p": case "P": setTool("pen"); break;
     case "m": case "M": setTool("marker"); break;
     case "e": case "E": setTool("eraser"); break;
@@ -2346,6 +2886,7 @@ window.addEventListener("beforeunload", (e) => {
 /* ---------------- boot ---------------- */
 function boot(){
   load();
+  readTheme();
   setTheme(state.theme);
   buildSwatches("#swatches",   () => state.color,      c => state.color = c);
   buildSwatches("#shswatches", () => state.shapeColor, c => state.shapeColor = c);
@@ -2357,7 +2898,9 @@ function boot(){
   $("#tsize").value = state.textSize;    $("#tsval").textContent = state.textSize + " px";
   $("#shfill").checked = state.shapeFill;
   $("#snapchk").checked = state.snap;
+  $("#styluschk").checked = state.stylusOnly;
   $("#micchk").checked = rec.mic;
+  buildFx();
   $("#syschk").checked = rec.sys;
   $$("#eraserseg button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.eraserMode));
   $$("#recseg button").forEach(b => b.classList.toggle("on", b.dataset.src === rec.src));
