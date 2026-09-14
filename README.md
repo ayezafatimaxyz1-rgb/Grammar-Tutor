@@ -5,17 +5,25 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 
 ## Features
 
+**The board**
+* The whole screen is the board, edge to edge, with no page frame and no grid
+* Controls float on the board itself: tools down the right side, pages along the bottom
+* The surface keeps going in every direction, so pan and zoom instead of running out of room
+* Fullscreen with `F`, and the percentage button brings everything back into view
+
 **Drawing**
 * Marker with 10 colours, 5 thicknesses and an opacity slider
 * Highlighter that blends with whatever is underneath
 * Eraser in two modes: erase ink (pixel eraser) or erase a whole object
 * Shapes: rectangle, ellipse, line and arrow, filled or outlined (hold Shift for square/circle)
-* Text boxes, double click any text to edit it again
-* Shape recognition: draw a rough box, circle, triangle, diamond or line freehand and it is
-  redrawn as a clean shape. A box drawn almost square becomes a square, a nearly round circle
-  becomes a circle, and a nearly level line becomes level. Handwriting, small marks, curves and
-  scribbles are left exactly as drawn. Undo once to keep your original sketch. Toggle it in the
-  marker panel or with `S`.
+* Text, double click any text to edit it again
+* Shape recognition: draw a rough box, circle, triangle, diamond, arrow or line freehand and it
+  is redrawn cleanly the moment you lift the pen. A box drawn almost square becomes a square, a
+  nearly round circle becomes a circle, and a nearly level line becomes level. Handwriting, small
+  marks, curves, checkmarks and scribbles are left exactly as drawn. Undo once to keep your
+  original sketch. Toggle it in the marker panel or with `S`.
+* Text boxes flow onto new lines as you type instead of running off in one long line, and a tap
+  somewhere else starts the next one right there
 * Select tool to move, resize and delete anything on the board
 * Unlimited undo and redo per page
 
@@ -41,7 +49,7 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 **Other**
 * Pinch to zoom and two finger pan on touch, `Ctrl` + scroll on desktop
 * Everything autosaves in the browser, so a refresh does not lose work
-* Export the current page or all pages as PNG, or save the whole board as a `.json` file you can open later
+* Export the current page or all pages as PNG, trimmed to what you actually drew, or save the whole board as a `.json` file you can open later
 
 ## Keyboard shortcuts
 
@@ -53,7 +61,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 | Undo / Redo | `Ctrl+Z` / `Ctrl+Y` |
 | New page | `Ctrl+N` |
 | Previous / next page | `←` / `→` |
-| Fit to screen | `0` |
+| Fit the board to screen | `0` |
+| Fullscreen | `F` |
 | Tidy sketches into shapes | `S` |
 | Black / white theme | `D` |
 | Start or stop recording | `Ctrl+Shift+R` |

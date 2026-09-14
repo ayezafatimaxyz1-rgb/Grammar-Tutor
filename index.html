@@ -27,19 +27,27 @@ body{
   touch-action:none;overscroll-behavior:none;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-#app{position:fixed;inset:0;display:flex;flex-direction:column}
+#app{position:fixed;inset:0}
+.work{position:absolute;inset:0}
 
 /* ---------- top bar ---------- */
 .topbar{
-  display:flex;align-items:center;gap:8px;padding:8px 10px;
-  padding-top:max(8px,env(safe-area-inset-top));
-  background:var(--panel);border-bottom:1px solid var(--border);z-index:30;flex:0 0 auto;
+  position:absolute;left:10px;right:10px;top:max(10px,env(safe-area-inset-top));
+  display:flex;align-items:center;gap:8px;z-index:30;pointer-events:none;
 }
-.brand{display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+.topbar > *{pointer-events:auto}
+.brand{
+  display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
+  background:var(--panel);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow);padding:9px 12px;
+}
 .brand .dot{width:18px;height:18px;border-radius:6px;background:var(--accent);display:inline-block}
 .brand span.t{font-size:14px}
 .spacer{flex:1}
-.tgroup{display:flex;align-items:center;gap:4px;background:var(--panel-2);border:1px solid var(--border);border-radius:12px;padding:4px}
+.tgroup{
+  display:flex;align-items:center;gap:4px;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;padding:4px;box-shadow:var(--shadow);
+}
 .tbtn{
   width:38px;height:38px;border-radius:9px;display:grid;place-items:center;
   color:var(--muted);transition:background .15s,color .15s,transform .1s;
@@ -53,12 +61,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .wide{width:auto;padding:0 12px;gap:7px;font-weight:600;font-size:13px}
 
 /* ---------- workspace ---------- */
-.work{position:relative;flex:1;min-height:0;display:flex}
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
 
 /* ---------- floating tool rail (right, like an IWB) ---------- */
 .rail{
-  position:absolute;top:50%;right:12px;transform:translateY(-50%);
+  position:absolute;top:50%;right:10px;transform:translateY(-50%);
   display:flex;flex-direction:column;gap:6px;padding:6px;z-index:20;
   background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);
 }
@@ -90,11 +97,13 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 
 /* ---------- bottom page bar ---------- */
 .pagebar{
-  display:flex;align-items:center;gap:8px;padding:7px 10px;
-  padding-bottom:max(7px,env(safe-area-inset-bottom));
-  background:var(--panel);border-top:1px solid var(--border);z-index:30;flex:0 0 auto;
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:max(10px,env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:6px;padding:5px;z-index:30;
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  box-shadow:var(--shadow);max-width:calc(100vw - 20px);
 }
-.pages{display:flex;gap:6px;overflow-x:auto;flex:1;padding:2px;scrollbar-width:thin}
+.pages{display:flex;gap:6px;overflow-x:auto;padding:2px;scrollbar-width:thin;max-width:min(44vw,380px)}
 .pages::-webkit-scrollbar{height:5px}
 .pages::-webkit-scrollbar-thumb{background:var(--border);border-radius:9px}
 .pchip{
@@ -138,7 +147,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 }
 /* ---------- toast ---------- */
 #toast{
-  position:absolute;bottom:16px;left:50%;transform:translateX(-50%) translateY(20px);
+  position:absolute;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);
   background:var(--panel);border:1px solid var(--border);box-shadow:var(--shadow);
   border-radius:999px;padding:9px 16px;font-size:13px;font-weight:600;z-index:50;
   opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
@@ -146,11 +155,15 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 @media (max-width:760px){
-  .brand span.t{display:none}
+  .brand{display:none}
   .hide-sm{display:none !important}
-  .rail{right:8px;padding:5px;gap:5px;border-radius:14px}
-  .tbtn{width:36px;height:36px}
-  .topbar{gap:6px;padding:6px 8px;padding-top:max(6px,env(safe-area-inset-top))}
+  .rail{right:7px;padding:4px;gap:4px;border-radius:14px}
+  .tgroup{gap:3px;padding:3px;border-radius:11px}
+  #fsbtn{display:none}          /* phones have their own fullscreen, and iOS has no API */
+  .brand{padding:8px 10px}
+  .topbar{left:7px;right:7px;gap:6px}
+  .tbtn{width:35px;height:35px}
+
   .pop{min-width:200px}
 }
 </style>
@@ -158,6 +171,9 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 <body>
 <div id="app">
 
+  <!-- ================= THE BOARD ================= -->
+  <div class="work" id="work">
+    <canvas id="stage"></canvas>
   <!-- ================= TOP BAR ================= -->
   <div class="topbar">
     <div class="brand"><i class="dot"></i><span class="t">Whiteboard</span></div>
@@ -167,10 +183,10 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <button class="tbtn" id="redo" title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/></svg></button>
     </div>
 
-    <div class="tgroup hide-sm">
-      <button class="tbtn" id="zoomout" title="Zoom out"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/></svg></button>
-      <button class="tbtn wide" id="zoomfit" title="Fit to screen"><span id="zoomlbl">100%</span></button>
-      <button class="tbtn" id="zoomin" title="Zoom in"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M20 20l-3.5-3.5"/></svg></button>
+    <div class="tgroup">
+      <button class="tbtn hide-sm" id="zoomout" title="Zoom out"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/></svg></button>
+      <button class="tbtn wide" id="zoomfit" title="Fit the board to the screen (0)"><span id="zoomlbl">100%</span></button>
+      <button class="tbtn hide-sm" id="zoomin" title="Zoom in"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M20 20l-3.5-3.5"/></svg></button>
     </div>
 
     <div class="spacer"></div>
@@ -182,14 +198,12 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
     <div class="tgroup">
       <button class="tbtn" id="savebtn" title="Export / Save"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 20h16"/></svg></button>
+      <button class="tbtn" id="fsbtn" title="Fullscreen (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
       <button class="tbtn" id="themebtn" title="Toggle black / white theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16" fill="currentColor" stroke="none"/></svg></button>
       <button class="tbtn" id="helpbtn" title="Shortcuts &amp; help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.8-.9 1.4v.4"/><path d="M12 17h.01"/></svg></button>
     </div>
   </div>
 
-  <!-- ================= WORKSPACE ================= -->
-  <div class="work" id="work">
-    <canvas id="stage"></canvas>
     <textarea id="textedit" spellcheck="false"></textarea>
 
     <!-- tool rail -->
@@ -275,7 +289,6 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     </div>
 
     <div id="toast"></div>
-  </div>
 
   <!-- ================= PAGE BAR ================= -->
   <div class="pagebar">
@@ -285,6 +298,8 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     <button class="tbtn" id="addpage" title="Add page"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
     <button class="tbtn" id="delpage" title="Delete page"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
   </div>
+  </div>
+
 </div>
 
 <!-- recording result modal -->
@@ -320,7 +335,8 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
       <div><span>New page</span><kbd>Ctrl+N</kbd></div>
       <div><span>Zoom</span><kbd>Ctrl+scroll</kbd> / pinch</div>
-      <div><span>Fit to screen</span><kbd>0</kbd></div>
+      <div><span>Fit the board to screen</span><kbd>0</kbd></div>
+      <div><span>Fullscreen</span><kbd>F</kbd></div>
       <div><span>Tidy sketches into shapes</span><kbd>S</kbd></div>
       <div><span>Black / white theme</span><kbd>D</kbd></div>
       <div><span>Start / stop recording</span><kbd>Ctrl+Shift+R</kbd></div>
@@ -341,8 +357,10 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 const $  = (s) => document.querySelector(s);
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-const PAGE_W = 1920, PAGE_H = 1080;          // fixed board size (world units)
+// The board has no edges: world units are screen pixels at 100%, and the
+// view can be panned and zoomed anywhere on it.
 const STORE_KEY = "digital-whiteboard-v1";
+const noCache = (k, v) => k.charAt(0) === "_" ? undefined : v;
 
 const PALETTE = [
   "#111827", "#e11d48", "#2563eb", "#16a34a", "#f59e0b",
@@ -393,20 +411,34 @@ window.addEventListener("resize", () => { resize(); clampView(); });
 window.addEventListener("orientationchange", () => setTimeout(() => { resize(); fitView(); }, 250));
 
 /* ---------------- view transform ---------------- */
+// bounding box of everything on a page, in world units
+function contentBox(p){
+  const items = (p || page()).items;
+  if (!items.length) return null;
+  let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
+  for (const it of items){
+    const bb = bboxOf(it);
+    a = Math.min(a, bb.x); b = Math.min(b, bb.y);
+    c = Math.max(c, bb.x + bb.w); d = Math.max(d, bb.y + bb.h);
+  }
+  return { x:a, y:b, w:c-a, h:d-b };
+}
+// bring the whole page into view, or go back to 100% on an empty board
 function fitView(){
-  const pad = 24;
-  const s = Math.min((VW - pad*2) / PAGE_W, (VH - pad*2) / PAGE_H);
+  const box = contentBox();
+  if (!box || box.w < 1 || box.h < 1){
+    state.view.s = 1; state.view.x = 0; state.view.y = 0;
+    updateZoomLabel(); draw(); return;
+  }
+  const pad = 60;
+  const s = Math.min(Math.min((VW - pad*2) / box.w, (VH - pad*2) / box.h), 2);
   state.view.s = s;
-  state.view.x = (VW - PAGE_W * s) / 2;
-  state.view.y = (VH - PAGE_H * s) / 2;
+  state.view.x = (VW - box.w * s) / 2 - box.x * s;
+  state.view.y = (VH - box.h * s) / 2 - box.y * s;
   updateZoomLabel(); draw();
 }
 function clampView(){
-  const v = state.view;
-  v.s = Math.min(8, Math.max(0.08, v.s));
-  const w = PAGE_W * v.s, h = PAGE_H * v.s, m = 120;
-  v.x = Math.min(VW - m, Math.max(m - w, v.x));
-  v.y = Math.min(VH - m, Math.max(m - h, v.y));
+  state.view.s = Math.min(8, Math.max(0.1, state.view.s));
   updateZoomLabel(); draw();
 }
 function zoomAt(sx, sy, factor){
@@ -461,10 +493,34 @@ function bboxOf(it){
   return { x:0, y:0, w:0, h:0 };
 }
 
-function measureText(it){
+// text wraps inside its own width instead of running off in one long line
+function wrapText(it){
+  const key = it.text + "|" + it.size + "|" + (it.maxW || 0);
+  if (it._key === key) return it._lines;
   ctx.save();
   ctx.font = textFont(it);
-  const lines = String(it.text).split("\n");
+  const limit = it.maxW || 700;
+  const lines = [];
+  for (const para of String(it.text).split("\n")){
+    if (!para){ lines.push(""); continue; }
+    let line = "";
+    for (const word of para.split(/(\s+)/)){
+      const next = line + word;
+      if (line && ctx.measureText(next).width > limit){
+        lines.push(line.replace(/\s+$/, ""));
+        line = word.replace(/^\s+/, "");
+      } else line = next;
+    }
+    lines.push(line);
+  }
+  ctx.restore();
+  it._key = key; it._lines = lines;
+  return lines;
+}
+function measureText(it){
+  const lines = wrapText(it);
+  ctx.save();
+  ctx.font = textFont(it);
   let w = 0;
   for (const L of lines) w = Math.max(w, ctx.measureText(L || " ").width);
   ctx.restore();
@@ -484,39 +540,18 @@ function render(){
   pending = false;
   const v = state.view;
   const cs = getComputedStyle(document.documentElement);
-  const bg    = cs.getPropertyValue("--bg").trim();
   const board = cs.getPropertyValue("--board").trim();
-  const bl    = cs.getPropertyValue("--board-line").trim();
   const accent= cs.getPropertyValue("--accent").trim();
 
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
-  ctx.clearRect(0, 0, VW, VH);
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, VW, VH);
+  ctx.fillStyle = board; ctx.fillRect(0, 0, VW, VH);
 
   ctx.save();
   ctx.translate(v.x, v.y); ctx.scale(v.s, v.s);
 
-  // board sheet
-  ctx.save();
-  ctx.shadowColor = "rgba(0,0,0,.18)"; ctx.shadowBlur = 26 / v.s; ctx.shadowOffsetY = 6 / v.s;
-  ctx.fillStyle = board; ctx.fillRect(0, 0, PAGE_W, PAGE_H);
-  ctx.restore();
-
-  ctx.save();
-  ctx.beginPath(); ctx.rect(0, 0, PAGE_W, PAGE_H); ctx.clip();
-
-  // faint grid so the surface reads as a board
-  ctx.strokeStyle = bl; ctx.lineWidth = 1 / v.s;
-  ctx.beginPath();
-  for (let x = 80; x < PAGE_W; x += 80){ ctx.moveTo(x, 0); ctx.lineTo(x, PAGE_H); }
-  for (let y = 80; y < PAGE_H; y += 80){ ctx.moveTo(0, y); ctx.lineTo(PAGE_W, y); }
-  ctx.stroke();
-
   const items = page().items;
   for (const it of items) paintItem(ctx, it);
   if (drawingItem) paintItem(ctx, drawingItem);
-
-  ctx.restore(); // unclip
 
   // selection UI
   if (state.sel && items.includes(state.sel)){
@@ -598,8 +633,7 @@ function paintItem(c, it){
     if (im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
   } else if (it.type === "text"){
     c.font = textFont(it); c.fillStyle = inkOf(it); c.textBaseline = "top";
-    const lines = String(it.text).split("\n");
-    lines.forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
+    wrapText(it).forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
   } else if (it.type === "shape"){
     c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
     c.strokeStyle = inkOf(it); c.fillStyle = inkOf(it);
@@ -788,9 +822,10 @@ function recognize(src){
   if (pts.length < 5) return null;
   const bb = rawBox(pts);
   const diag = Math.hypot(bb.w, bb.h);
-  if (diag < 110) return null;                            // small marks stay as written
+  // measured on screen, so it behaves the same however far you are zoomed in
+  if (diag * state.view.s < 70) return null;              // small marks stay as written
   const L = pathLength(pts);
-  if (L < diag * 0.7 || L > diag * 9) return null;        // a dot, or a long scribble
+  if (L < diag * 0.7 || L > diag * 11) return null;       // a dot, or a long scribble
   const first = pts[0], last = pts[pts.length - 1];
   const chord = Math.hypot(last.x - first.x, last.y - first.y);
   const mk = (o) => Object.assign({
@@ -798,11 +833,13 @@ function recognize(src){
     alpha: src.alpha == null ? 1 : src.alpha, fill: false
   }, o);
 
-  if (chord > Math.max(diag * 0.3, 26)){                  // open stroke
-    if (chord / L > 0.93){
+  if (chord > Math.max(diag * 0.34, 26)){                 // open stroke
+    if (chord / L > 0.90){
       const z = snapAngle(first, last);
       return mk({ shape:"line", x1: first.x, y1: first.y, x2: z.x, y2: z.y });
     }
+    const arrow = asArrow(pts, diag);                     // shaft, then a head
+    if (arrow) return mk(arrow);
     return null;
   }
 
@@ -813,7 +850,7 @@ function recognize(src){
   for (const p of pts) err += Math.abs(Math.hypot((p.x-cx)/rx, (p.y-cy)/ry) - 1);
   err /= pts.length;
 
-  const corners = cornersOf(pts, Math.max(9, diag * 0.055));
+  const corners = cornersOf(pts, Math.max(7, diag * 0.05));
   // a box drawn almost square, or a circle drawn almost round, was meant to be exact
   let box = { x1: bb.x, y1: bb.y, x2: bb.x + bb.w, y2: bb.y + bb.h };
   if (Math.abs(bb.w - bb.h) / Math.max(bb.w, bb.h) < 0.12){
@@ -821,15 +858,32 @@ function recognize(src){
     box = { x1: mx - side/2, y1: my - side/2, x2: mx + side/2, y2: my + side/2 };
   }
 
-  if (err < 0.11 && corners.length > 4) return mk(Object.assign({ shape:"ellipse" }, box));
+  if (err < 0.13 && corners.length > 4) return mk(Object.assign({ shape:"ellipse" }, box));
   if (corners.length === 4 && edgesAxisAligned(corners, 15)) return mk(Object.assign({ shape:"rect" }, box));
-  if (corners.length >= 3 && corners.length <= 7)
+  if (corners.length >= 3 && corners.length <= 8)
     return mk(Object.assign({ shape:"poly", pts: corners.map(p => ({ x:p.x, y:p.y })) }, box));
-  if (err < 0.17) return mk(Object.assign({ shape:"ellipse" }, box));
+  if (err < 0.2) return mk(Object.assign({ shape:"ellipse" }, box));
   return null;
 }
 
-const SHAPE_NAME = { line:"a line", rect:"a rectangle", ellipse:"an ellipse", poly:"a shape" };
+// an arrow drawn in one go: a long shaft, then a short barb folded back
+function asArrow(pts, diag){
+  const c = rdp(pts, Math.max(7, diag * 0.05));
+  if (c.length < 3 || c.length > 4) return null;
+  const shaft = Math.hypot(c[1].x-c[0].x, c[1].y-c[0].y);
+  let head = 0;
+  for (let i = 1; i < c.length - 1; i++) head += Math.hypot(c[i+1].x-c[i].x, c[i+1].y-c[i].y);
+  if (shaft < diag * 0.55 || head > shaft * 0.5) return null;
+  const a1 = Math.atan2(c[1].y-c[0].y, c[1].x-c[0].x);
+  const a2 = Math.atan2(c[2].y-c[1].y, c[2].x-c[1].x);
+  let turn = Math.abs((a2 - a1) * 180 / Math.PI) % 360;
+  if (turn > 180) turn = 360 - turn;
+  if (turn < 105 || turn > 170) return null;              // a barb, not a corner or a fold
+  const z = snapAngle(c[0], c[1]);
+  return { shape:"arrow", x1: c[0].x, y1: c[0].y, x2: z.x, y2: z.y };
+}
+
+const SHAPE_NAME = { line:"a line", arrow:"an arrow", rect:"a rectangle", ellipse:"an ellipse", poly:"a shape" };
 
 /* ---------------- pointer input ---------------- */
 const pointers = new Map();
@@ -843,7 +897,7 @@ function localPt(e){
 }
 
 cv.addEventListener("pointerdown", (e) => {
-  if (editing){ commitText(); if (state.tool === "text") return; }
+  if (editing && state.tool !== "text") commitText();
   const sp = localPt(e);
   pointers.set(e.pointerId, sp);
   try { cv.setPointerCapture(e.pointerId); } catch (err){}
@@ -877,7 +931,7 @@ cv.addEventListener("pointerdown", (e) => {
     draw(); return;
   }
 
-  if (state.tool === "text"){ openTextEditor(wp); return; }
+  if (state.tool === "text"){ openTextEditor(wp); return; }   // commits the previous box first
 
   if (state.tool === "eraser" && state.eraserMode === "object"){
     action = { mode:"erase-obj", hits: [] };
@@ -1097,8 +1151,9 @@ cv.addEventListener("wheel", (e) => {
 const te = $("#textedit");
 let editing = null;   // {item|null, x, y}
 
+let reopening = false;
 function openTextEditor(wp, item){
-  if (editing) commitText();
+  if (editing){ reopening = true; commitText(); }
   editing = { item: item || null, x: item ? item.x : wp.x, y: item ? item.y : wp.y };
   const size = item ? item.size : state.textSize;
   const color = item ? inkOf(item) : (isAutoInk(state.textColor) ? inkOf({ auto:true }) : state.textColor);
@@ -1109,14 +1164,19 @@ function openTextEditor(wp, item){
   te.style.fontSize = (size * state.view.s) + "px";
   te.style.fontWeight = "600";
   te.style.color = color;
+  // as wide as the space left on screen, so a sentence keeps flowing
+  const room = (VW - s.x - 28) / state.view.s;
+  editing.maxW = item ? (item.maxW || room) : Math.max(220, Math.min(room, 760));
+  te.style.width = (editing.maxW * state.view.s) + "px";
   te.value = item ? item.text : "";
   autoGrow();
-  setTimeout(() => { te.focus(); te.setSelectionRange(te.value.length, te.value.length); }, 10);
+  setTimeout(() => {
+    te.focus(); te.setSelectionRange(te.value.length, te.value.length); reopening = false;
+  }, 10);
   if (item){ const i = page().items.indexOf(item); if (i > -1){ page().items.splice(i,1); editing.reinsert = { item, index: i }; draw(); } }
 }
 function autoGrow(){
-  te.style.width = "10px"; te.style.height = "10px";
-  te.style.width  = Math.max(60, te.scrollWidth + 14) + "px";
+  te.style.height = "10px";
   te.style.height = (te.scrollHeight + 6) + "px";
 }
 te.addEventListener("input", autoGrow);
@@ -1124,7 +1184,7 @@ te.addEventListener("keydown", (e) => {
   e.stopPropagation();
   if (e.key === "Escape"){ te.blur(); }
 });
-te.addEventListener("blur", commitText);
+te.addEventListener("blur", () => { if (!reopening) commitText(); });
 function commitText(){
   if (!editing) return;
   const txt = te.value.replace(/\s+$/, "");
@@ -1133,15 +1193,16 @@ function commitText(){
   if (ed.reinsert){
     const p = page();
     if (txt){
-      const it = ed.reinsert.item; const before = { text: it.text };
-      it.text = txt; p.items.splice(ed.reinsert.index, 0, it);
-      pushOp({ kind:"mod", item: it, before, after: { text: txt } });
+      const it = ed.reinsert.item; const before = { text: it.text, maxW: it.maxW };
+      it.text = txt; it.maxW = ed.maxW; it._key = null;
+      p.items.splice(ed.reinsert.index, 0, it);
+      pushOp({ kind:"mod", item: it, before, after: { text: txt, maxW: ed.maxW } });
     } else {
       pushOp({ kind:"del", entries: [{ item: ed.reinsert.item, index: ed.reinsert.index }] });
     }
   } else if (txt){
     addItem({ type:"text", text: txt, x: ed.x, y: ed.y, color: state.textColor,
-              auto: isAutoInk(state.textColor), size: state.textSize });
+              auto: isAutoInk(state.textColor), size: state.textSize, maxW: ed.maxW });
   }
   draw();
 }
@@ -1155,12 +1216,13 @@ cv.addEventListener("dblclick", (e) => {
 function placeImage(src){
   const im = new Image();
   im.onload = () => {
-    const maxW = PAGE_W * 0.55, maxH = PAGE_H * 0.55;
+    const maxW = VW / state.view.s * 0.6, maxH = VH / state.view.s * 0.6;
     let w = im.naturalWidth, h = im.naturalHeight;
     const k = Math.min(maxW / w, maxH / h, 1);
     w *= k; h *= k;
+    const mid = toWorld(VW / 2, VH / 2);
     const jitter = (page().items.filter(i => i.type === "image").length % 6) * 28;
-    const it = { type:"image", src, x: (PAGE_W - w)/2 + jitter, y: (PAGE_H - h)/2 + jitter, w, h };
+    const it = { type:"image", src, x: mid.x - w/2 + jitter, y: mid.y - h/2 + jitter, w, h };
     imgCache.set(src, im);
     addItem(it);
     setTool("select"); state.sel = it;
@@ -1268,18 +1330,23 @@ function positionPop(p, anchor){
   const pw = p.offsetWidth, ph = p.offsetHeight;
   let left, top;
 
-  if (ar.bottom <= wr.top + 4){                 // anchored in the top bar: hang underneath it
-    left = ar.right - wr.left - pw;
-    top = 10;
-  } else {                                      // anchored in the side rail: sit beside it
-    left = ar.left - wr.left - pw - 10;
-    top = ar.top - wr.top + ar.height / 2 - ph / 2;
+  const aL = ar.left - wr.left, aR = ar.right - wr.left;
+  const aT = ar.top - wr.top,  aB = ar.bottom - wr.top;
+
+  if (anchor.closest(".topbar")){               // a top bar menu hangs under its button
+    left = aR - pw;
+    top = aB + 10;
+  } else {                                      // a rail tool opens beside the rail
+    left = aL - pw - 10;
+    top = aT + ar.height / 2 - ph / 2;
   }
-  // never let the panel cover the button that opened it
-  const limit = ar.left - wr.left - 8;
-  if (left + pw > limit) left = limit - pw;
-  left = Math.max(8, Math.min(wr.width - pw - 8, left));
+  left = Math.max(8, Math.min(Math.max(8, wr.width - pw - 8), left));
   top = Math.max(8, Math.min(Math.max(8, wr.height - ph - 8), top));
+
+  // whatever the clamping did, never end up sitting on the button that opened it
+  const hitsV = !(top + ph <= aT || top >= aB);
+  const hitsH = !(left + pw <= aL - 6 || left >= aR + 6);
+  if (hitsV && hitsH) left = Math.max(8, aL - 6 - pw);
 
   p.style.left = left + "px"; p.style.top = top + "px";
   p.style.visibility = "visible";
@@ -1369,23 +1436,54 @@ function setTheme(t){
 }
 $("#themebtn").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
 
+/* ---------------- fullscreen ---------------- */
+const fsSupported = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+function toggleFullscreen(){
+  const el = document.documentElement;
+  const on = document.fullscreenElement || document.webkitFullscreenElement;
+  const go = on ? (document.exitFullscreen || document.webkitExitFullscreen).bind(document)
+                : (el.requestFullscreen || el.webkitRequestFullscreen).bind(el);
+  Promise.resolve(go()).catch(() => toast("Fullscreen was blocked by the browser"));
+}
+if (fsSupported){
+  $("#fsbtn").addEventListener("click", toggleFullscreen);
+  document.addEventListener("fullscreenchange", () => {
+    const on = !!document.fullscreenElement;
+    $("#fsbtn").classList.toggle("on", on);
+    setTimeout(resize, 120);
+  });
+} else $("#fsbtn").hidden = true;
+
 /* ---------------- render a page to an offscreen canvas ---------------- */
-function renderPageTo(c, p, w, h){
+// paint a page onto any canvas through the given view (scale + offset)
+function paintPage(c, p, w, h, view){
   const cs = getComputedStyle(document.documentElement);
   c.save();
   c.setTransform(1, 0, 0, 1, 0, 0);
   c.fillStyle = cs.getPropertyValue("--board").trim() || "#fff";
   c.fillRect(0, 0, w, h);
-  c.scale(w / PAGE_W, h / PAGE_H);
+  c.translate(view.x, view.y); c.scale(view.s, view.s);
   for (const it of p.items) paintItem(c, it);
   if (p === page() && drawingItem) paintItem(c, drawingItem);
   c.restore();
 }
-function pageToCanvas(p, w){
-  const h = Math.round(w * PAGE_H / PAGE_W);
+// an export is the page's own content, trimmed and padded; an empty page
+// exports whatever is currently on screen
+function pageToCanvas(p, scale){
+  const pad = 60;
+  const box = contentBox(p);
+  const k = scale || 2;
   const off = document.createElement("canvas");
-  off.width = w; off.height = h;
-  renderPageTo(off.getContext("2d"), p, w, h);
+  if (!box){
+    off.width = Math.round(VW * k); off.height = Math.round(VH * k);
+    paintPage(off.getContext("2d"), p, off.width, off.height,
+              { s: state.view.s * k, x: state.view.x * k, y: state.view.y * k });
+    return off;
+  }
+  off.width  = Math.max(2, Math.round((box.w + pad*2) * k));
+  off.height = Math.max(2, Math.round((box.h + pad*2) * k));
+  paintPage(off.getContext("2d"), p, off.width, off.height,
+            { s: k, x: (pad - box.x) * k, y: (pad - box.y) * k });
   return off;
 }
 // Saving a file: when the board is embedded in a host that mediates downloads
@@ -1423,20 +1521,20 @@ function stamp(){
 /* ---------------- export ---------------- */
 $("#savebtn").addEventListener("click", () => togglePop("#savepop", $("#savebtn")));
 $("#expPng").addEventListener("click", () => {
-  pageToCanvas(page(), PAGE_W).toBlob(async b => {
+  pageToCanvas(page()).toBlob(async b => {
     if (await downloadBlob(b, "whiteboard-page" + (state.cur+1) + "-" + stamp() + ".png")) toast("PNG saved");
   });
   closePops();
 });
 $("#expAll").addEventListener("click", () => {
   state.pages.forEach((p, i) => setTimeout(() => {
-    pageToCanvas(p, PAGE_W).toBlob(b => downloadBlob(b, "whiteboard-page" + (i+1) + "-" + stamp() + ".png"));
+    pageToCanvas(p).toBlob(b => downloadBlob(b, "whiteboard-page" + (i+1) + "-" + stamp() + ".png"));
   }, i * 350));
   toast("Exporting " + state.pages.length + " page(s)");
   closePops();
 });
 $("#expJson").addEventListener("click", () => {
-  const data = JSON.stringify({ v: 1, pages: state.pages.map(p => ({ items: p.items })) });
+  const data = JSON.stringify({ v: 1, pages: state.pages.map(p => ({ items: p.items })) }, noCache);
   downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json")
     .then(ok => { if (ok) toast("Board file saved"); });
   closePops();
@@ -1497,11 +1595,17 @@ async function startRec(){
       });
     } else {
       rec.canvas = document.createElement("canvas");
-      rec.canvas.width = 1600; rec.canvas.height = 900;
+      const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+      const k = Math.min(2, 1600 / Math.max(VW, VH));
+      rec.canvas.width = even(VW * k); rec.canvas.height = even(VH * k);
       const rc = rec.canvas.getContext("2d");
       const tick = () => {
         if (!rec.on && !rec.starting) return;
-        if (!rec.paused) renderPageTo(rc, page(), 1600, 900);
+        if (!rec.paused){
+          const kx = rec.canvas.width / VW, ky = rec.canvas.height / VH;
+          paintPage(rc, page(), rec.canvas.width, rec.canvas.height,
+                    { s: state.view.s * kx, x: state.view.x * kx, y: state.view.y * ky });
+        }
         rec.loop = requestAnimationFrame(tick);
       };
       rec.starting = true; tick();
@@ -1653,7 +1757,7 @@ function save(){
           textColor: state.textColor, textSize: state.textSize,
           recSrc: rec.src, mic: rec.mic, sys: rec.sys
         }
-      }));
+      }, noCache));
     } catch (e){ /* quota full — keep drawing anyway */ }
   }, 400);
 }
@@ -1702,6 +1806,7 @@ window.addEventListener("keydown", (e) => {
     case "h": case "H": setTool("pan"); break;
     case "i": case "I": $("#imgbtn").click(); break;
     case "s": case "S": $("#snapchk").checked = !state.snap; $("#snapchk").dispatchEvent(new Event("change")); break;
+    case "f": case "F": if (fsSupported) toggleFullscreen(); break;
     case "d": case "D": setTheme(state.theme === "dark" ? "light" : "dark"); break;
     case "0": fitView(); break;
     case "ArrowLeft":  gotoPage(state.cur - 1); break;
@@ -1747,7 +1852,8 @@ function boot(){
   $("#redo").addEventListener("click", redo);
 
   renderPages(); syncHistoryButtons();
-  resize(); fitView();
+  resize();
+  if (contentBox()) fitView(); else { state.view.s = 1; state.view.x = 0; state.view.y = 0; updateZoomLabel(); }
   setTool(state.tool);
 
   if (matchMedia("(pointer: coarse)").matches && !localStorage.getItem(STORE_KEY + "-seen")){
