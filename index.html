@@ -78,6 +78,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   min-width:230px;max-width:min(300px,calc(100vw - 96px));
 }
 .pop.open{display:block}
+.wide-pop{min-width:288px;max-width:min(320px,calc(100vw - 88px));max-height:min(66vh,470px)}
+.pop.wide-pop.open{display:flex;flex-direction:column}
+.pophead{flex:0 0 auto;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:8px}
+.shapescroll{overflow-y:auto;flex:1;margin:0 -4px;padding:0 4px;scrollbar-width:thin}
+.shapescroll h4{position:sticky;top:0;background:var(--panel);padding:6px 0 5px;margin:0;z-index:1}
+.shapegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:6px}
+.shbtn{
+  aspect-ratio:1;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);
+  display:grid;place-items:center;padding:5px;color:var(--text);
+  transition:border-color .12s,background .12s;
+}
+.shbtn:hover{background:var(--chip)}
+.shbtn.on{border-color:var(--accent);box-shadow:0 0 0 1.5px var(--accent) inset;color:var(--accent)}
+.shbtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
 .pop h4{margin:0 0 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
@@ -213,7 +227,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <button class="tbtn" data-tool="eraser" title="Eraser (E)"><svg viewBox="0 0 24 24"><path d="m15 4 5 5-9 9H6l-2-2z"/><path d="M8.5 10.5 14 16"/><path d="M11 20h9"/></svg></button>
       <button class="tbtn" data-tool="shape" title="Shapes (R)"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="10" height="10" rx="1.5"/><circle cx="15.5" cy="15.5" r="5"/></svg></button>
       <button class="tbtn" data-tool="text" title="Text (T)"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5"/><path d="M12 5v14"/><path d="M9 19h6"/></svg></button>
-      <button class="tbtn" id="imgbtn" title="Add photo from gallery (I)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></svg></button>
+      <button class="tbtn" id="imgbtn" title="Add a photo, video or PDF (I)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></svg></button>
       <div class="sep"></div>
       <button class="tbtn" data-tool="select" title="Select &amp; move (V)"><svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 1.6L10.4 19z"/></svg></button>
       <button class="tbtn" data-tool="pan" title="Pan (H / hold Space)"><svg viewBox="0 0 24 24"><path d="M9 11V5.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M12.2 11V4.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M15.4 11.4V7.6a1.6 1.6 0 0 1 3.2 0V15a6 6 0 0 1-6 6h-1a5 5 0 0 1-4.3-2.5L5 14.4a1.6 1.6 0 0 1 2.6-1.9L9 14.2V11"/></svg></button>
@@ -245,12 +259,12 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <input type="range" id="ersize" min="8" max="160" value="28">
     </div>
 
-    <div class="pop" id="shapepop">
-      <h4>Shape</h4>
-      <div class="row" id="shapes"></div>
-      <h4 style="margin-top:14px">Colour</h4>
-      <div class="swatches" id="shswatches"></div>
-      <label class="chk" style="margin-top:12px"><input type="checkbox" id="shfill"> Filled shape</label>
+    <div class="pop wide-pop" id="shapepop">
+      <div class="pophead">
+        <div class="swatches" id="shswatches"></div>
+        <label class="chk" style="margin-top:10px"><input type="checkbox" id="shfill"> Filled shape</label>
+      </div>
+      <div class="shapescroll" id="shapes"></div>
     </div>
 
     <div class="pop" id="textpop">
@@ -320,7 +334,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 <div class="backdrop" id="helpback">
   <div class="modal">
     <h3>Digital Whiteboard</h3>
-    <p>Works with mouse, pen and touch. Everything is saved in this browser automatically.</p>
+    <p>Works with mouse, pen and touch. Everything is saved in this browser automatically. Drop a photo, a video or a PDF straight onto the board; a PDF becomes one board page per page, ready to write on.</p>
     <div class="klist">
       <div><span>Marker</span><kbd>P</kbd></div>
       <div><span>Highlighter</span><kbd>M</kbd></div>
@@ -329,7 +343,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Text</span><kbd>T</kbd></div>
       <div><span>Select / move</span><kbd>V</kbd></div>
       <div><span>Pan</span><kbd>H</kbd> / <kbd>Space</kbd></div>
-      <div><span>Add photo</span><kbd>I</kbd></div>
+      <div><span>Add photo, video or PDF</span><kbd>I</kbd></div>
       <div><span>Undo / Redo</span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></div>
       <div><span>Delete selection</span><kbd>Del</kbd></div>
       <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
@@ -345,7 +359,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   </div>
 </div>
 
-<input type="file" id="filepick" accept="image/*" multiple hidden>
+<input type="file" id="filepick" accept="image/*,video/*,application/pdf,.pdf" multiple hidden>
 <input type="file" id="jsonpick" accept="application/json,.json" hidden>
 
 <script>
@@ -474,15 +488,18 @@ function inkOf(it){
   return it.color;
 }
 function bboxOf(it){
-  if (it.type === "image") return { x: it.x, y: it.y, w: it.w, h: it.h };
+  if (it.type === "image" || it.type === "video") return { x: it.x, y: it.y, w: it.w, h: it.h };
   if (it.type === "text"){
     const m = measureText(it);
     return { x: it.x, y: it.y, w: m.w, h: m.h };
   }
   if (it.type === "shape"){
-    if (it.pts) return rawBox(it.pts);
-    const x = Math.min(it.x1, it.x2), y = Math.min(it.y1, it.y2);
-    return { x, y, w: Math.abs(it.x2 - it.x1), h: Math.abs(it.y2 - it.y1) };
+    let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
+    for (const sp of shapePaths(it)) for (const p of sp.pts){
+      a = Math.min(a,p.x); b = Math.min(b,p.y); c = Math.max(c,p.x); d = Math.max(d,p.y);
+    }
+    const pad = (it.size || 2) / 2;
+    return { x:a-pad, y:b-pad, w:(c-a)+pad*2, h:(d-b)+pad*2 };
   }
   if (it.type === "stroke"){
     let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
@@ -629,37 +646,61 @@ function paintItem(c, it){
       c.stroke();
     }
   } else if (it.type === "image"){
-    const im = getImage(it.src);
-    if (im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
+    const src = srcOf(it);
+    const im = src && getImage(src);
+    if (im && im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
+    else { c.fillStyle = "rgba(128,128,128,.15)"; c.fillRect(it.x, it.y, it.w, it.h); }
+  } else if (it.type === "video"){
+    const v = videoFor(it);
+    if (v && v.readyState >= 2){
+      try { c.drawImage(v, it.x, it.y, it.w, it.h); } catch (e){}
+    } else {
+      c.fillStyle = "#11141a"; c.fillRect(it.x, it.y, it.w, it.h);
+    }
+    // play / pause badge, and a progress line while it runs
+    const b = videoButton(it);
+    c.globalAlpha = 0.82; c.fillStyle = "#0b0d11";
+    c.beginPath(); c.arc(b.x, b.y, b.r, 0, Math.PI*2); c.fill();
+    c.globalAlpha = 1; c.fillStyle = "#ffffff";
+    if (v && !v.paused && !v.ended){
+      const w = b.r * 0.24, h = b.r * 0.8;
+      c.fillRect(b.x - w*1.6, b.y - h/2, w, h);
+      c.fillRect(b.x + w*0.6, b.y - h/2, w, h);
+    } else {
+      c.beginPath();
+      c.moveTo(b.x - b.r*0.3, b.y - b.r*0.44);
+      c.lineTo(b.x + b.r*0.5, b.y);
+      c.lineTo(b.x - b.r*0.3, b.y + b.r*0.44);
+      c.closePath(); c.fill();
+    }
+    if (v && v.duration){
+      const p = Math.min(1, v.currentTime / v.duration);
+      c.fillStyle = "rgba(255,255,255,.3)";
+      c.fillRect(it.x, it.y + it.h - 5, it.w, 5);
+      c.fillStyle = "#ffffff";
+      c.fillRect(it.x, it.y + it.h - 5, it.w * p, 5);
+    }
   } else if (it.type === "text"){
     c.font = textFont(it); c.fillStyle = inkOf(it); c.textBaseline = "top";
     wrapText(it).forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
   } else if (it.type === "shape"){
     c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
     c.strokeStyle = inkOf(it); c.fillStyle = inkOf(it);
-    c.globalAlpha = it.alpha == null ? 1 : it.alpha;
-    const x1 = it.x1, y1 = it.y1, x2 = it.x2, y2 = it.y2;
-    c.beginPath();
-    if (it.shape === "rect"){
-      c.rect(Math.min(x1,x2), Math.min(y1,y2), Math.abs(x2-x1), Math.abs(y2-y1));
-      it.fill ? c.fill() : c.stroke();
-    } else if (it.shape === "ellipse"){
-      c.ellipse((x1+x2)/2, (y1+y2)/2, Math.abs(x2-x1)/2, Math.abs(y2-y1)/2, 0, 0, Math.PI*2);
-      it.fill ? c.fill() : c.stroke();
-    } else if (it.shape === "line"){
-      c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
-    } else if (it.shape === "poly"){
-      it.pts.forEach((p, i) => i ? c.lineTo(p.x, p.y) : c.moveTo(p.x, p.y));
-      c.closePath();
-      it.fill ? c.fill() : c.stroke();
-    } else if (it.shape === "arrow"){
-      c.moveTo(x1, y1); c.lineTo(x2, y2); c.stroke();
-      const a = Math.atan2(y2 - y1, x2 - x1), L = Math.max(14, it.size * 3.2);
-      c.beginPath();
-      c.moveTo(x2, y2); c.lineTo(x2 - L * Math.cos(a - .42), y2 - L * Math.sin(a - .42));
-      c.moveTo(x2, y2); c.lineTo(x2 - L * Math.cos(a + .42), y2 - L * Math.sin(a + .42));
-      c.stroke();
+    const alpha = it.alpha == null ? 1 : it.alpha;
+    c.globalAlpha = alpha;
+    const path = new Path2D();
+    for (const sp of shapePaths(it)){
+      if (!sp.pts.length) continue;
+      path.moveTo(sp.pts[0].x, sp.pts[0].y);
+      for (let i = 1; i < sp.pts.length; i++) path.lineTo(sp.pts[i].x, sp.pts[i].y);
+      if (sp.closed) path.closePath();
     }
+    if (it.fill && shapeIsFillable(it)){
+      c.globalAlpha = alpha * 0.22; c.fill(path, "evenodd"); c.globalAlpha = alpha;
+    }
+    const def = SHAPE_LIB[it.shape];
+    if (def && def.dash) c.setLineDash([it.size * 2.6, it.size * 2.2]);
+    c.stroke(path);
   }
   c.restore();
 }
@@ -742,6 +783,315 @@ function handleAt(sp){
   return null;
 }
 
+
+
+
+/* ---------------- media store ----------------
+   Photos, videos and PDF pages are kept as blobs in IndexedDB, which has room
+   for them; the board itself only remembers an id. Boards saved by older
+   versions stored the picture inline, and those still load. */
+
+let mediaDB = null;
+function openDB(){
+  if (mediaDB) return mediaDB;
+  mediaDB = new Promise((res) => {
+    let rq;
+    try { rq = indexedDB.open("whiteboard-media", 1); }
+    catch (e){ return res(null); }
+    rq.onupgradeneeded = () => { if (!rq.result.objectStoreNames.contains("media")) rq.result.createObjectStore("media"); };
+    rq.onsuccess = () => res(rq.result);
+    rq.onerror = () => res(null);
+  });
+  return mediaDB;
+}
+async function dbPut(blob){
+  const db = await openDB();
+  const id = "m" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  if (!db) return null;
+  await new Promise((res) => {
+    const tx = db.transaction("media", "readwrite");
+    tx.objectStore("media").put(blob, id);
+    tx.oncomplete = res; tx.onerror = res; tx.onabort = res;
+  });
+  return id;
+}
+async function dbGet(id){
+  const db = await openDB();
+  if (!db) return null;
+  return new Promise((res) => {
+    const rq = db.transaction("media", "readonly").objectStore("media").get(id);
+    rq.onsuccess = () => res(rq.result || null);
+    rq.onerror = () => res(null);
+  });
+}
+
+const mediaURL = new Map();          // id -> object URL (or null when it is gone)
+function srcOf(it){
+  if (it.src) return it.src;                       // inline, from an older board
+  if (!it.mid) return null;
+  if (mediaURL.has(it.mid)) return mediaURL.get(it.mid);
+  mediaURL.set(it.mid, null);                      // claim it so we only fetch once
+  dbGet(it.mid).then(blob => {
+    if (blob) mediaURL.set(it.mid, URL.createObjectURL(blob));
+    draw();
+  });
+  return null;
+}
+
+/* ---------------- video elements ---------------- */
+const videoEls = new Map();
+function videoFor(it){
+  const src = srcOf(it);
+  if (!src) return null;
+  const key = it.mid || it.src;
+  let v = videoEls.get(key);
+  if (!v){
+    v = document.createElement("video");
+    v.src = src; v.preload = "metadata"; v.playsInline = true;
+    v.setAttribute("playsinline", ""); v.crossOrigin = "anonymous";
+    v.addEventListener("loadeddata", draw);
+    v.addEventListener("play", startVideoLoop);
+    v.addEventListener("timeupdate", draw);
+    v.addEventListener("pause", draw);
+    v.addEventListener("ended", draw);
+    videoEls.set(key, v);
+  }
+  return v;
+}
+let videoLoop = 0;
+function startVideoLoop(){
+  if (videoLoop) return;
+  const tick = () => {
+    const playing = [...videoEls.values()].some(v => !v.paused && !v.ended);
+    draw();
+    if (playing) videoLoop = requestAnimationFrame(tick);
+    else { videoLoop = 0; draw(); }
+  };
+  videoLoop = requestAnimationFrame(tick);
+}
+function videoButton(it){                           // play / pause hit area, in world units
+  const r = Math.max(16, Math.min(it.w, it.h) * 0.11);
+  return { x: it.x + r * 1.25, y: it.y + it.h - r * 1.25, r };
+}
+function toggleVideo(it){
+  const v = videoFor(it);
+  if (!v) return;
+  if (v.paused){
+    if (rec.on) tapVideoForRecording(v);
+    v.play().catch(() => toast("Tap the video once more to start it"));
+  } else v.pause();
+  draw();
+}
+
+/* ---------------- shape library ----------------
+   Every shape is described once, in a 0..1 unit box (or along a vector for
+   the arrow family). The same description draws the shape on the board and
+   the little preview in the picker, so the two can never drift apart. */
+
+const U = (x, y) => ({ x, y });
+function P(...xy){ const p = []; for (let i = 0; i < xy.length; i += 2) p.push(U(xy[i], xy[i+1])); return { pts:p, closed:true }; }
+function O(...xy){ const p = []; for (let i = 0; i < xy.length; i += 2) p.push(U(xy[i], xy[i+1])); return { pts:p, closed:false }; }
+function arcPts(cx, cy, rx, ry, a0, a1, n){
+  const p = []; n = n || Math.max(8, Math.round(Math.abs(a1-a0) * 14));
+  for (let i = 0; i <= n; i++){ const a = a0 + (a1-a0) * i / n; p.push(U(cx + Math.cos(a)*rx, cy + Math.sin(a)*ry)); }
+  return p;
+}
+const TAU = Math.PI * 2, Q = Math.PI / 2;
+function circleP(cx, cy, rx, ry){ return { pts: arcPts(cx, cy, rx, ry, 0, TAU, 56), closed:true }; }
+function regular(n, rot){ 
+  const p = [], r0 = rot == null ? -Q : rot;
+  for (let i = 0; i < n; i++){ const a = r0 + i * TAU / n; p.push(U(.5 + Math.cos(a)*.5, .5 + Math.sin(a)*.5)); }
+  return { pts:p, closed:true };
+}
+function starP(n, inner){
+  const p = [];
+  for (let i = 0; i < n*2; i++){ const r = (i % 2 ? inner : 1) * .5, a = -Q + i * Math.PI / n;
+    p.push(U(.5 + Math.cos(a)*r, .5 + Math.sin(a)*r)); }
+  return { pts:p, closed:true };
+}
+// r is a fraction of the shorter side, so corners stay round at any box shape
+function radii(r, ar){
+  ar = ar || 1;
+  return ar >= 1 ? { rx: r/ar, ry: r } : { rx: r, ry: r*ar };
+}
+function roundRectP(r, ar){
+  const { rx, ry } = radii(r, ar), p = [];
+  p.push(...arcPts(1-rx, ry, rx, ry, -Q, 0, 8));
+  p.push(...arcPts(1-rx, 1-ry, rx, ry, 0, Q, 8));
+  p.push(...arcPts(rx, 1-ry, rx, ry, Q, Math.PI, 8));
+  p.push(...arcPts(rx, ry, rx, ry, Math.PI, Math.PI*1.5, 8));
+  return { pts:p, closed:true };
+}
+function speechP(ar){
+  const H = .74, { rx, ry } = radii(.18, ar), r2 = ry * H, p = [];
+  p.push(...arcPts(1-rx, r2, rx, r2, -Q, 0, 8));
+  p.push(...arcPts(1-rx, H-r2, rx, r2, 0, Q, 8));
+  p.push(U(.44, H), U(.28, 1), U(.24, H));          // the tail
+  p.push(...arcPts(rx, H-r2, rx, r2, Q, Math.PI, 8));
+  p.push(...arcPts(rx, r2, rx, r2, Math.PI, Math.PI*1.5, 8));
+  return { pts:p, closed:true };
+}
+function braceP(dir){                       // dir 1 = a left brace, arms to the right
+  const p = [
+    ...arcPts(1, .25, .5, .25, -Q, -Math.PI, 10),
+    ...arcPts(0, .25, .5, .25, 0, Q, 10),
+    ...arcPts(0, .75, .5, .25, -Q, 0, 10),
+    ...arcPts(1, .75, .5, .25, Math.PI, Q, 10)
+  ];
+  return { pts: dir > 0 ? p : p.map(q => U(1 - q.x, q.y)), closed:false };
+}
+// head for the arrow family, drawn along +X at distance d
+function headAt(d, w, back){ return O(d-back, -w, d, 0, d-back, w); }
+
+const SHAPE_LIB = {
+  /* --- basic --- */
+  rect:      { cat:"Basic", label:"Rectangle", make: () => [P(0,0, 1,0, 1,1, 0,1)] },
+  square:    { cat:"Basic", label:"Square", square:true, make: () => [P(0,0, 1,0, 1,1, 0,1)] },
+  roundrect: { cat:"Basic", label:"Rounded box", make: (ar) => [roundRectP(.16, ar)] },
+  circle:    { cat:"Basic", label:"Circle", square:true, make: () => [circleP(.5,.5,.5,.5)] },
+  ellipse:   { cat:"Basic", label:"Ellipse", make: () => [circleP(.5,.5,.5,.5)] },
+  triangle:  { cat:"Basic", label:"Triangle", make: () => [P(.5,0, 1,1, 0,1)] },
+  righttri:  { cat:"Basic", label:"Right triangle", make: () => [P(0,0, 0,1, 1,1)] },
+  diamond:   { cat:"Basic", label:"Diamond", make: () => [P(.5,0, 1,.5, .5,1, 0,.5)] },
+  parallel:  { cat:"Basic", label:"Parallelogram", make: () => [P(.25,0, 1,0, .75,1, 0,1)] },
+  trapezoid: { cat:"Basic", label:"Trapezoid", make: () => [P(.25,0, .75,0, 1,1, 0,1)] },
+  pentagon:  { cat:"Basic", label:"Pentagon", make: () => [regular(5)] },
+  hexagon:   { cat:"Basic", label:"Hexagon", make: () => [regular(6, 0)] },
+  octagon:   { cat:"Basic", label:"Octagon", make: () => [regular(8, -Q - Math.PI/8)] },
+  semicircle:{ cat:"Basic", label:"Half circle", make: () => [{ pts:[...arcPts(.5,1,.5,1,Math.PI,TAU,28), U(.5,1)], closed:true }] },
+  pieslice:  { cat:"Basic", label:"Quarter", make: () => [{ pts:[U(0,1), ...arcPts(0,1,1,1,-Q,0,22)], closed:true }] },
+  ring:      { cat:"Basic", label:"Ring", square:true, make: () => [circleP(.5,.5,.5,.5), circleP(.5,.5,.28,.28)] },
+  cross:     { cat:"Basic", label:"Cross", make: () => [P(.35,0, .65,0, .65,.35, 1,.35, 1,.65, .65,.65, .65,1, .35,1, .35,.65, 0,.65, 0,.35, .35,.35)] },
+  cube:      { cat:"Basic", label:"Cube", make: () => [P(0,.25, .75,.25, .75,1, 0,1), O(0,.25, .25,0, 1,0, .75,.25), O(1,0, 1,.75, .75,1)] },
+
+  /* --- arrows and lines (drawn along the drag) --- */
+  line:      { cat:"Arrows", label:"Line", vec:true, make: () => [O(0,0, 1,0)] },
+  dashed:    { cat:"Arrows", label:"Dashed line", vec:true, dash:true, make: () => [O(0,0, 1,0)] },
+  arrow:     { cat:"Arrows", label:"Arrow", vec:true, make: () => [O(0,0, 1,0), headAt(1, .09, .12)] },
+  arrow2:    { cat:"Arrows", label:"Double arrow", vec:true, make: () => [O(0,0, 1,0), headAt(1,.09,.12), { pts: headAt(0,.09,-.12).pts, closed:false }] },
+  dasharrow: { cat:"Arrows", label:"Dashed arrow", vec:true, dash:true, make: () => [O(0,0, 1,0), headAt(1,.09,.12)] },
+  blockarrow:{ cat:"Arrows", label:"Block arrow", vec:true, make: () => [P(0,-.08, .7,-.08, .7,-.2, 1,0, .7,.2, .7,.08, 0,.08)] },
+  chevron:   { cat:"Arrows", label:"Chevron", vec:true, make: () => [O(0,-.22, .3,0, 0,.22)] },
+  elbow:     { cat:"Arrows", label:"Elbow arrow", vec:true, make: () => [O(0,0, .6,0, .6,-.45), { pts:[U(.52,-.35), U(.6,-.5), U(.68,-.35)], closed:false }] },
+  curvearrow:{ cat:"Arrows", label:"Curved arrow", vec:true, make: () => {
+                 const c = arcPts(.5,.28,.5,.42,Math.PI,TAU,26);
+                 return [{ pts:c, closed:false }, { pts:[U(.86,-.06), U(1,.02), U(.88,.14)], closed:false }]; } },
+  uturn:     { cat:"Arrows", label:"U turn", vec:true, make: () => {
+                 const c = [U(0,.2), ...arcPts(.7,0,.3,.2,Q,-Q,20), U(0,-.2)];
+                 return [{ pts:c, closed:false }, { pts:[U(.1,-.3), U(0,-.2), U(.1,-.1)], closed:false }]; } },
+  zigzag:    { cat:"Arrows", label:"Zigzag", vec:true, make: () => [O(0,0, .17,-.16, .33,.16, .5,-.16, .67,.16, .83,-.16, 1,0)] },
+  wave:      { cat:"Arrows", label:"Wave", vec:true, make: () => {
+                 const p = []; for (let i = 0; i <= 40; i++){ const t = i/40; p.push(U(t, Math.sin(t*TAU*1.5)*.12)); }
+                 return [{ pts:p, closed:false }]; } },
+
+  /* --- stars and symbols --- */
+  star4:     { cat:"Symbols", label:"4 point star", square:true, make: () => [starP(4, .38)] },
+  star5:     { cat:"Symbols", label:"5 point star", square:true, make: () => [starP(5, .47)] },
+  star6:     { cat:"Symbols", label:"6 point star", square:true, make: () => [starP(6, .55)] },
+  star8:     { cat:"Symbols", label:"8 point star", square:true, make: () => [starP(8, .6)] },
+  burst:     { cat:"Symbols", label:"Burst", square:true, make: () => [starP(12, .72)] },
+  heart:     { cat:"Symbols", label:"Heart", make: () => {
+                 const p = [];
+                 for (let i = 0; i <= 72; i++){
+                   const t = i/72*TAU;
+                   const x = Math.pow(Math.sin(t), 3);                       // -1 .. 1
+                   const y = (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t)) / 16;
+                   p.push(U(.5 + x*.5, (1.0625 - y) / 1.375));               // y: 5/16 .. -17/16
+                 }
+                 return [{ pts:p, closed:true }]; } },
+  cloud:     { cat:"Symbols", label:"Cloud", make: () => {
+                 const p = [...arcPts(.26,.62,.26,.3,Math.PI,TAU*.75,14), ...arcPts(.5,.44,.26,.3,Math.PI*1.15,TAU*.78,14),
+                            ...arcPts(.76,.62,.24,.28,Math.PI*1.3,TAU,16)];
+                 p.push(U(.9,.92), U(.12,.92));
+                 return [{ pts:p, closed:true }]; } },
+  moon:      { cat:"Symbols", label:"Moon", make: () => [{ pts:[...arcPts(.5,.5,.5,.5,Q,Math.PI*1.5,26), ...arcPts(.28,.5,.46,.38,Math.PI*1.5,Q,26)], closed:true }] },
+  sun:       { cat:"Symbols", label:"Sun", square:true, make: () => {
+                 const out = [circleP(.5,.5,.28,.28)];
+                 for (let i = 0; i < 8; i++){ const a = i*TAU/8;
+                   out.push(O(.5+Math.cos(a)*.36, .5+Math.sin(a)*.36, .5+Math.cos(a)*.5, .5+Math.sin(a)*.5)); }
+                 return out; } },
+  lightning: { cat:"Symbols", label:"Lightning", make: () => [P(.55,0, .2,.55, .45,.55, .3,1, .8,.4, .52,.4, .78,0)] },
+  check:     { cat:"Symbols", label:"Tick", make: () => [O(.05,.55, .38,.9, .95,.12)] },
+  xmark:     { cat:"Symbols", label:"Cross out", make: () => [O(.06,.06, .94,.94), O(.94,.06, .06,.94)] },
+  plus:      { cat:"Symbols", label:"Plus", make: () => [O(.5,.06, .5,.94), O(.06,.5, .94,.5)] },
+  minus:     { cat:"Symbols", label:"Minus", make: () => [O(.06,.5, .94,.5)] },
+  equals:    { cat:"Symbols", label:"Equals", make: () => [O(.06,.34, .94,.34), O(.06,.66, .94,.66)] },
+  shield:    { cat:"Symbols", label:"Shield", make: () => [{ pts:[U(.5,0), U(1,.16), ...arcPts(.5,.5,.5,.5,-.35,Math.PI+.35,20).slice(6), U(0,.16)], closed:true }] },
+
+  /* --- flowchart --- */
+  stadium:   { cat:"Flowchart", label:"Start / end", make: (ar) => [roundRectP(.5, ar)] },
+  document:  { cat:"Flowchart", label:"Document", make: () => {
+                 const p = [U(0,0), U(1,0), U(1,.84)];
+                 for (let i = 0; i <= 18; i++){ const t = i/18; p.push(U(1-t, .84 + Math.sin(t*TAU)* .13)); }
+                 return [{ pts:p, closed:true }]; } },
+  database:  { cat:"Flowchart", label:"Database", make: () => [
+                 { pts:[...arcPts(.5,.14,.5,.14,Math.PI,TAU,18), U(1,.86), ...arcPts(.5,.86,.5,.14,0,Math.PI,18), U(0,.14)], closed:true },
+                 { pts:arcPts(.5,.14,.5,.14,0,Math.PI,18), closed:false }] },
+  manual:    { cat:"Flowchart", label:"Manual input", make: () => [P(0,.22, 1,0, 1,1, 0,1)] },
+  predefined:{ cat:"Flowchart", label:"Subprocess", make: () => [P(0,0, 1,0, 1,1, 0,1), O(.14,0, .14,1), O(.86,0, .86,1)] },
+  display:   { cat:"Flowchart", label:"Display", make: () => [{ pts:[U(.14,0), U(.82,0), ...arcPts(.82,.5,.18,.5,-Q,Q,16), U(.14,1), U(0,.5)], closed:true }] },
+  delay:     { cat:"Flowchart", label:"Delay", make: () => [{ pts:[U(0,0), U(.6,0), ...arcPts(.6,.5,.4,.5,-Q,Q,18), U(0,1)], closed:true }] },
+  card:      { cat:"Flowchart", label:"Card", make: () => [P(.18,0, 1,0, 1,1, 0,1, 0,.18)] },
+  merge:     { cat:"Flowchart", label:"Merge", make: () => [P(0,0, 1,0, .5,1)] },
+  offpage:   { cat:"Flowchart", label:"Off page", make: () => [P(0,0, 1,0, 1,.7, .5,1, 0,.7)] },
+  storage:   { cat:"Flowchart", label:"Storage", make: () => [{ pts:[...arcPts(.18,.5,.18,.5,Q,Math.PI*1.5,16), U(1,0), ...arcPts(.82,.5,.18,.5,-Q,Q,16), U(.18,1)], closed:true }] },
+
+  /* --- callouts and teaching --- */
+  speech:    { cat:"Callouts", label:"Speech bubble", make: (ar) => [speechP(ar)] },
+  thought:   { cat:"Callouts", label:"Thought bubble", make: () => [
+                 circleP(.52,.4,.46,.36), circleP(.22,.82,.1,.1), circleP(.08,.95,.06,.05)] },
+  banner:    { cat:"Callouts", label:"Banner", make: () => [P(0,0, 1,0, .88,.5, 1,1, 0,1, .12,.5)] },
+  tag:       { cat:"Callouts", label:"Tag", make: () => [P(0,0, .78,0, 1,.5, .78,1, 0,1), circleP(.16,.5,.07,.07)] },
+  frame:     { cat:"Callouts", label:"Frame", make: () => [P(0,0, 1,0, 1,1, 0,1), P(.08,.08, .92,.08, .92,.92, .08,.92)] },
+  braceL:    { cat:"Callouts", label:"Brace left", make: () => [braceP(1)] },
+  braceR:    { cat:"Callouts", label:"Brace right", make: () => [braceP(-1)] },
+  bracketL:  { cat:"Callouts", label:"Bracket left", make: () => [O(.75,0, .2,0, .2,1, .75,1)] },
+  bracketR:  { cat:"Callouts", label:"Bracket right", make: () => [O(.25,0, .8,0, .8,1, .25,1)] },
+  grid:      { cat:"Callouts", label:"Table", make: () => {
+                 const out = [P(0,0, 1,0, 1,1, 0,1)];
+                 for (let i = 1; i < 3; i++){ out.push(O(i/3,0, i/3,1)); out.push(O(0,i/3, 1,i/3)); }
+                 return out; } },
+  numberline:{ cat:"Callouts", label:"Number line", make: () => {
+                 const out = [O(0,.5, 1,.5)];
+                 for (let i = 0; i <= 8; i++){ const x = i/8; out.push(O(x,.34, x,.66)); }
+                 return out; } },
+  underline: { cat:"Callouts", label:"Double rule", make: () => [O(0,.38, 1,.38), O(0,.62, 1,.62)] }
+};
+
+const SHAPE_CATS = ["Basic", "Arrows", "Symbols", "Flowchart", "Callouts"];
+
+// the shape's outline in world units, cached until its box changes
+function shapePaths(it){
+  if (it.pts) return [{ pts: it.pts, closed: true }];
+  const def = SHAPE_LIB[it.shape] || SHAPE_LIB.rect;
+  const key = it.shape + "|" + it.x1 + "|" + it.y1 + "|" + it.x2 + "|" + it.y2;
+  if (it._pk === key) return it._paths;
+  const { x1, y1, x2, y2 } = it;
+  let out;
+  if (def.vec){
+    const dx = x2-x1, dy = y2-y1, len = Math.hypot(dx, dy) || 1;
+    const cos = dx/len, sin = dy/len;
+    out = def.make().map(sp => ({ closed: sp.closed, pts: sp.pts.map(p => ({
+      x: x1 + p.x*len*cos - p.y*len*sin,
+      y: y1 + p.x*len*sin + p.y*len*cos })) }));
+  } else {
+    let bx = Math.min(x1,x2), by = Math.min(y1,y2), bw = Math.abs(x2-x1), bh = Math.abs(y2-y1);
+    if (def.square){                       // grows from the corner you started at
+      const side = Math.max(bw, bh);
+      bx = x2 >= x1 ? x1 : x1 - side;
+      by = y2 >= y1 ? y1 : y1 - side;
+      bw = bh = side;
+    }
+    const ar = (bw || 1) / (bh || 1);
+    out = def.make(ar).map(sp => ({ closed: sp.closed, pts: sp.pts.map(p => ({ x: bx + p.x*bw, y: by + p.y*bh })) }));
+  }
+  it._pk = key; it._paths = out;
+  return out;
+}
+function shapeIsFillable(it){
+  const def = SHAPE_LIB[it.shape];
+  return !!def && !def.vec && def.make()[0].closed;
+}
 
 /* ---------------- shape recognition ----------------
    A freehand stroke is measured once it is finished. If it clearly wants to
@@ -917,6 +1267,16 @@ cv.addEventListener("pointerdown", (e) => {
 
   if (panning){ action = { mode:"pan", sx: sp.x, sy: sp.y, vx: state.view.x, vy: state.view.y }; return; }
 
+  if (state.tool === "select" || state.tool === "pan"){
+    for (let i = page().items.length - 1; i >= 0; i--){
+      const it = page().items[i];
+      if (it.type !== "video") continue;
+      const btn = videoButton(it);
+      if (Math.hypot(wp.x - btn.x, wp.y - btn.y) <= btn.r * 1.25){
+        toggleVideo(it); action = null; return;
+      }
+    }
+  }
   if (state.tool === "select"){
     const hk = handleAt(sp);
     if (hk && state.sel){
@@ -967,7 +1327,7 @@ function pressureScale(e){
   return 1;
 }
 function snapshot(it){
-  if (it.type === "image" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
+  if (it.type === "image" || it.type === "video" || it.type === "text") return { x: it.x, y: it.y, w: it.w, h: it.h, size: it.size };
   if (it.type === "shape") return it.pts
     ? { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2, pts: it.pts.map(p => ({ x:p.x, y:p.y })) }
     : { x1: it.x1, y1: it.y1, x2: it.x2, y2: it.y2 };
@@ -1075,7 +1435,7 @@ function resizeSel(a, wp){
   if (a.k === "sw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = wp.y - b.y; }
   if (a.k === "nw"){ nw = (b.x + b.w) - wp.x; nx = wp.x; nh = (b.y + b.h) - wp.y; ny = wp.y; }
   nw = Math.max(16, nw); nh = Math.max(16, nh);
-  if (it.type === "image"){
+  if (it.type === "image" || it.type === "video"){
     const ar = (a.before.w || 1) / (a.before.h || 1);
     nh = nw / ar;
     if (a.k === "ne" || a.k === "nw") ny = b.y + b.h - nh;
@@ -1084,11 +1444,11 @@ function resizeSel(a, wp){
     it.size = Math.max(10, Math.round(a.before.size * (nw / Math.max(1, b.w))));
     it.x = nx; it.y = ny;
   } else if (it.type === "shape"){
-    if (it.pts){
-      const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
-      it.pts = a.before.pts.map(p => ({ x: nx + (p.x - b.x) * sx, y: ny + (p.y - b.y) * sy }));
-    }
-    it.x1 = nx; it.y1 = ny; it.x2 = nx + nw; it.y2 = ny + nh;
+    const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
+    const map = (px, py) => ({ x: nx + (px - b.x) * sx, y: ny + (py - b.y) * sy });
+    if (it.pts) it.pts = a.before.pts.map(p => map(p.x, p.y));
+    const p1 = map(a.before.x1, a.before.y1), p2 = map(a.before.x2, a.before.y2);
+    it.x1 = p1.x; it.y1 = p1.y; it.x2 = p2.x; it.y2 = p2.y;
   } else if (it.type === "stroke"){
     const sx = nw / Math.max(1, b.w), sy = nh / Math.max(1, b.h);
     it.pts = a.before.pts.map(p => ({ x: nx + (p.x - b.x) * sx, y: ny + (p.y - b.y) * sy }));
@@ -1209,21 +1569,27 @@ function commitText(){
 cv.addEventListener("dblclick", (e) => {
   const sp = localPt(e);
   const hit = pickAt(toWorld(sp.x, sp.y));
+  if (hit && hit.type === "video"){ toggleVideo(hit); return; }
   if (hit && hit.type === "text"){ setTool("select"); state.sel = hit; openTextEditor(null, hit); }
 });
 
 /* ---------------- images ---------------- */
-function placeImage(src){
+// where a new item should sit: middle of what you are looking at, fitted to the view
+function dropBox(natW, natH){
+  const maxW = VW / state.view.s * 0.6, maxH = VH / state.view.s * 0.6;
+  const k = Math.min(maxW / natW, maxH / natH, 1);
+  const w = natW * k, h = natH * k;
+  const mid = toWorld(VW / 2, VH / 2);
+  const n = page().items.filter(i => i.type === "image" || i.type === "video").length % 6;
+  return { x: mid.x - w/2 + n*28, y: mid.y - h/2 + n*28, w, h };
+}
+
+function placeImage(src, mid){
   const im = new Image();
   im.onload = () => {
-    const maxW = VW / state.view.s * 0.6, maxH = VH / state.view.s * 0.6;
-    let w = im.naturalWidth, h = im.naturalHeight;
-    const k = Math.min(maxW / w, maxH / h, 1);
-    w *= k; h *= k;
-    const mid = toWorld(VW / 2, VH / 2);
-    const jitter = (page().items.filter(i => i.type === "image").length % 6) * 28;
-    const it = { type:"image", src, x: mid.x - w/2 + jitter, y: mid.y - h/2 + jitter, w, h };
-    imgCache.set(src, im);
+    const b = dropBox(im.naturalWidth, im.naturalHeight);
+    const it = Object.assign({ type:"image" }, b, mid ? { mid } : { src });
+    if (src) imgCache.set(src, im);
     addItem(it);
     setTool("select"); state.sel = it;
     toast("Photo added — drag to move, corners to resize");
@@ -1232,13 +1598,108 @@ function placeImage(src){
   im.onerror = () => toast("That image could not be loaded");
   im.src = src;
 }
-function readFiles(files){
-  Array.from(files).filter(f => f.type.startsWith("image/")).forEach(f => {
-    const fr = new FileReader();
-    fr.onload = () => placeImage(fr.result);
-    fr.readAsDataURL(f);
-  });
+
+function placeVideo(mid, url){
+  const v = document.createElement("video");
+  v.preload = "metadata"; v.playsInline = true; v.src = url;
+  const go = () => {
+    const b = dropBox(v.videoWidth || 640, v.videoHeight || 360);
+    const it = Object.assign({ type:"video", mid }, b);
+    addItem(it);
+    setTool("select"); state.sel = it;
+    toast("Video added — tap the play button on it");
+    draw();
+  };
+  v.addEventListener("loadedmetadata", go, { once:true });
+  v.addEventListener("error", () => toast("That video could not be read"), { once:true });
 }
+
+async function addFile(file){
+  try {
+    if (file.type.startsWith("image/")){
+      const mid = await dbPut(file);
+      const url = mid ? URL.createObjectURL(file) : null;
+      if (mid){ mediaURL.set(mid, url); placeImage(url, mid); }
+      else {                                        // no IndexedDB: keep it inline
+        const fr = new FileReader();
+        fr.onload = () => placeImage(fr.result);
+        fr.readAsDataURL(file);
+      }
+    } else if (file.type.startsWith("video/")){
+      const mid = await dbPut(file);
+      if (!mid) return toast("This browser cannot store videos");
+      const url = URL.createObjectURL(file);
+      mediaURL.set(mid, url);
+      placeVideo(mid, url);
+    } else if (file.type === "application/pdf" || /\.pdf$/i.test(file.name)){
+      await importPdf(file);
+    } else toast("Add a photo, a video or a PDF");
+  } catch (err){ toast("That file could not be added"); }
+}
+function readFiles(files){ Array.from(files).forEach(addFile); }
+
+/* ---------------- PDF import ----------------
+   Each page of the PDF becomes its own whiteboard page, so you can write on
+   top of it. The renderer is fetched on first use and then cached. */
+let pdfLib = null;
+function loadPdfLib(){
+  if (pdfLib) return pdfLib;
+  pdfLib = new Promise((res, rej) => {
+    if (window.pdfjsLib) return res(window.pdfjsLib);
+    const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+    const sc = document.createElement("script");
+    sc.src = base + "pdf.min.js";
+    sc.onload = () => {
+      if (!window.pdfjsLib) return rej(new Error("no lib"));
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+      res(window.pdfjsLib);
+    };
+    sc.onerror = () => rej(new Error("offline"));
+    document.head.appendChild(sc);
+  }).catch(err => { pdfLib = null; throw err; });
+  return pdfLib;
+}
+async function importPdf(file){
+  let lib;
+  toast("Opening the PDF…");
+  try { lib = await loadPdfLib(); }
+  catch (e){ return toast("Opening a PDF needs an internet connection the first time"); }
+  try {
+    const data = new Uint8Array(await file.arrayBuffer());
+    const doc = await lib.getDocument({ data }).promise;
+    const total = doc.numPages;
+    for (let n = 1; n <= total; n++){
+      const pg = await doc.getPage(n);
+      const base = pg.getViewport({ scale: 1 });
+      const scale = Math.min(2200 / base.width, 2200 / base.height, 3);
+      const vp = pg.getViewport({ scale });
+      const cvs = document.createElement("canvas");
+      cvs.width = Math.round(vp.width); cvs.height = Math.round(vp.height);
+      const c2 = cvs.getContext("2d");
+      c2.fillStyle = "#ffffff"; c2.fillRect(0, 0, cvs.width, cvs.height);
+      await pg.render({ canvasContext: c2, viewport: vp }).promise;
+      const blob = await new Promise(r => cvs.toBlob(r, "image/jpeg", 0.9));
+      const mid = await dbPut(blob);
+      if (mid) mediaURL.set(mid, URL.createObjectURL(blob));
+
+      if (n > 1 || page().items.length){            // one PDF page per board page
+        state.pages.splice(state.cur + 1, 0, newPage());
+        state.cur += 1;
+      }
+      const fit = Math.min(VW * 0.92 / cvs.width, VH * 0.92 / cvs.height) / state.view.s;
+      const w = cvs.width * fit, h = cvs.height * fit;
+      const mid0 = toWorld(VW / 2, VH / 2);
+      const it = { type:"image", mid, x: mid0.x - w/2, y: mid0.y - h/2, w, h };
+      page().items.push(it);
+      pushOp({ kind:"add", item: it, index: page().items.length - 1 });
+      renderPages(); draw();
+      if (total > 1) toast("PDF page " + n + " of " + total);
+    }
+    setTool("pen");
+    toast(total + (total === 1 ? " page added — write on it" : " pages added — write on them"));
+  } catch (err){ toast("That PDF could not be opened"); }
+}
+
 $("#imgbtn").addEventListener("click", () => $("#filepick").click());
 $("#filepick").addEventListener("change", (e) => { readFiles(e.target.files); e.target.value = ""; });
 window.addEventListener("paste", (e) => {
@@ -1308,7 +1769,7 @@ function setTool(t, evt){
   if (t !== "select") state.sel = null;
   cv.style.cursor = t === "pan" ? "grab" : (t === "select" ? "default" : "crosshair");
   const sel = POP_FOR[t];
-  if (sel && (same || evt)) togglePop(sel, $(".rail .tbtn[data-tool='" + t + "']"), same);
+  if (sel && evt) togglePop(sel, $(".rail .tbtn[data-tool='" + t + "']"), same);
   else closePops();
   draw();
 }
@@ -1381,21 +1842,38 @@ function buildSizes(){
     el.appendChild(b);
   });
 }
+// the preview is drawn from the same description as the shape itself
+function shapeIcon(key){
+  const def = SHAPE_LIB[key];
+  const probe = def.vec ? { shape:key, x1:12, y1:70, x2:88, y2:30 }
+                        : { shape:key, x1:10, y1:10, x2:90, y2:90 };
+  const d = shapePaths(probe).map(sp =>
+    "M" + sp.pts.map(p => p.x.toFixed(1) + "," + p.y.toFixed(1)).join("L") + (sp.closed ? "Z" : "")
+  ).join(" ");
+  return '<svg viewBox="-4 -4 108 108" aria-hidden="true"><path d="' + d + '"/></svg>';
+}
 function buildShapes(){
   const el = $("#shapes"); el.innerHTML = "";
-  const defs = [
-    ["rect",   '<rect x="4" y="6" width="16" height="12" rx="2"/>'],
-    ["ellipse",'<ellipse cx="12" cy="12" rx="8" ry="6.5"/>'],
-    ["line",   '<path d="M5 18 19 6"/>'],
-    ["arrow",  '<path d="M5 18 19 6"/><path d="M13 6h6v6"/>']
-  ];
-  defs.forEach(([k, svg]) => {
-    const b = document.createElement("button");
-    b.className = "tbtn" + (state.shape === k ? " on" : "");
-    b.innerHTML = '<svg viewBox="0 0 24 24">' + svg + '</svg>';
-    b.addEventListener("click", () => { state.shape = k; buildShapes(); save(); });
-    el.appendChild(b);
-  });
+  for (const cat of SHAPE_CATS){
+    const keys = Object.keys(SHAPE_LIB).filter(k => SHAPE_LIB[k].cat === cat);
+    if (!keys.length) continue;
+    const h = document.createElement("h4"); h.textContent = cat; el.appendChild(h);
+    const grid = document.createElement("div"); grid.className = "shapegrid";
+    for (const k of keys){
+      const b = document.createElement("button");
+      b.className = "shbtn" + (state.shape === k ? " on" : "");
+      b.title = SHAPE_LIB[k].label;
+      b.innerHTML = shapeIcon(k);
+      b.addEventListener("click", () => {
+        state.shape = k;
+        $$("#shapes .shbtn").forEach(x => x.classList.toggle("on", x === b));
+        toast(SHAPE_LIB[k].label + " — now drag on the board");
+        save();
+      });
+      grid.appendChild(b);
+    }
+    el.appendChild(grid);
+  }
 }
 
 $("#snapchk").addEventListener("change", (e) => {
@@ -1533,11 +2011,28 @@ $("#expAll").addEventListener("click", () => {
   toast("Exporting " + state.pages.length + " page(s)");
   closePops();
 });
-$("#expJson").addEventListener("click", () => {
-  const data = JSON.stringify({ v: 1, pages: state.pages.map(p => ({ items: p.items })) }, noCache);
-  downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json")
-    .then(ok => { if (ok) toast("Board file saved"); });
+$("#expJson").addEventListener("click", async () => {
   closePops();
+  const media = state.pages.reduce((n, p) => n + p.items.filter(i => i.mid).length, 0);
+  if (media) toast("Packing " + media + " photo" + (media > 1 ? "s" : "") + " and video…");
+  const pages = [];
+  for (const p of state.pages){
+    const items = [];
+    for (const it of p.items){
+      if (!it.mid){ items.push(it); continue; }
+      const blob = await dbGet(it.mid);                 // embed it so the file travels
+      if (!blob){ items.push(it); continue; }
+      const url = await new Promise(r => { const f = new FileReader(); f.onload = () => r(f.result); f.onerror = () => r(null); f.readAsDataURL(blob); });
+      const copy = Object.assign({}, it);
+      delete copy.mid;
+      if (url) copy.src = url;
+      items.push(copy);
+    }
+    pages.push({ items });
+  }
+  const data = JSON.stringify({ v: 2, pages }, noCache);
+  if (await downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json"))
+    toast("Board file saved");
 });
 $("#impJson").addEventListener("click", () => { $("#jsonpick").click(); closePops(); });
 $("#jsonpick").addEventListener("change", (e) => {
@@ -1551,6 +2046,15 @@ $("#jsonpick").addEventListener("change", (e) => {
       state.cur = 0; state.sel = null;
       renderPages(); syncHistoryButtons(); fitView(); save();
       toast("Board opened");
+      // move any embedded media into the store so it is not re-saved inline
+      state.pages.forEach(pg => pg.items.forEach(async (it) => {
+        if (!it.src || it.type === "text") return;
+        try {
+          const blob = await (await fetch(it.src)).blob();
+          const mid = await dbPut(blob);
+          if (mid){ mediaURL.set(mid, URL.createObjectURL(blob)); it.mid = mid; delete it.src; save(); draw(); }
+        } catch (e){}
+      }));
     } catch (err){ toast("That file could not be opened"); }
   };
   fr.readAsText(f);
@@ -1558,7 +2062,23 @@ $("#jsonpick").addEventListener("change", (e) => {
 });
 
 /* ---------------- screen / board recording with voice ---------------- */
+let audioCtx = null;
+function getAC(){
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === "suspended") audioCtx.resume();
+  return audioCtx;
+}
+function tapVideoForRecording(v){
+  if (!rec.dest) return;
+  try {
+    const ac = getAC();
+    if (!v._node){ v._node = ac.createMediaElementSource(v); v._node.connect(ac.destination); }
+    v._node.connect(rec.dest);
+    rec.taps.add(v);
+  } catch (e){ /* already routed elsewhere */ }
+}
 const rec = {
+  taps: new Set(), dest: null,
   on: false, paused: false, recorder: null, chunks: [],
   stream: null, tracks: [], ac: null, loop: 0, t0: 0, acc: 0, timer: 0,
   canvas: null, src: "board", mic: true, sys: false
@@ -1629,16 +2149,14 @@ async function startRec(){
     const sysAudio = videoStream.getAudioTracks();
     if (sysAudio.length) audioSources.push(new MediaStream(sysAudio));
 
-    let audioTracks = [];
-    if (audioSources.length === 1){
-      audioTracks = audioSources[0].getAudioTracks();
-    } else if (audioSources.length > 1){
-      const AC = window.AudioContext || window.webkitAudioContext;
-      rec.ac = new AC();
-      const dest = rec.ac.createMediaStreamDestination();
-      audioSources.forEach(s => rec.ac.createMediaStreamSource(s).connect(dest));
-      audioTracks = dest.stream.getAudioTracks();
-    }
+    // everything audible goes through one mixer: the microphone, any system
+    // audio, and the sound of a video playing on the board
+    const ac = getAC();
+    rec.dest = ac.createMediaStreamDestination();
+    audioSources.forEach(src => ac.createMediaStreamSource(src).connect(rec.dest));
+    rec.taps = new Set();
+    for (const v of videoEls.values()) if (!v.paused && !v.ended) tapVideoForRecording(v);
+    const audioTracks = (audioSources.length || rec.taps.size) ? rec.dest.stream.getAudioTracks() : [];
 
     const mixed = new MediaStream([...videoStream.getVideoTracks(), ...audioTracks]);
     const mime = pickMime();
@@ -1682,7 +2200,9 @@ function stopRec(){
   clearInterval(rec.timer);
   cancelAnimationFrame(rec.loop);
   rec.tracks.forEach(t => { try { t.stop(); } catch (e){} });
-  if (rec.ac){ try { rec.ac.close(); } catch (e){} rec.ac = null; }
+  // leave the shared audio context alive so board videos keep their sound
+  rec.taps.forEach(v => { try { v._node.disconnect(rec.dest); } catch (e){} });
+  rec.taps.clear(); rec.dest = null;
   $("#recbtn").classList.remove("on", "rec");
   $("#recpill").classList.remove("show", "paused");
 }

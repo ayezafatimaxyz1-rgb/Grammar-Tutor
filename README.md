@@ -15,7 +15,13 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Marker with 10 colours, 5 thicknesses and an opacity slider
 * Highlighter that blends with whatever is underneath
 * Eraser in two modes: erase ink (pixel eraser) or erase a whole object
-* Shapes: rectangle, ellipse, line and arrow, filled or outlined (hold Shift for square/circle)
+* A library of 69 shapes across five groups: Basic (square, circle, polygons, cube, ring, cross…),
+  Arrows (plain, double, dashed, block, chevron, elbow, curved, U turn, zigzag, wave), Symbols
+  (stars, heart, cloud, moon, sun, lightning, tick, cross out…), Flowchart (start/end, document,
+  database, decision, subprocess, off page…) and Callouts (speech and thought bubbles, banner,
+  tag, frame, braces, brackets, table, number line). Square and circle stay perfectly square
+  whichever way you drag, so no Shift key is needed on a touch screen. Any closed shape can be
+  filled, and you can write on top of any of them with the pen.
 * Text, double click any text to edit it again
 * Shape recognition: draw a rough box, circle, triangle, diamond, arrow or line freehand and it
   is redrawn cleanly the moment you lift the pen. A box drawn almost square becomes a square, a
@@ -31,9 +37,14 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Next and back buttons plus numbered page chips along the bottom
 * Add and delete pages, arrow keys also move between them
 
-**Photos**
-* Add photo from the gallery or camera roll, or paste, or drag and drop
+**Photos, videos and PDFs**
+* Add a photo from the gallery or camera roll, a video, or a PDF, from one button
+* Paste or drag and drop works too
+* A video sits on the board with its own play button, and you can write on it while it plays
+* A PDF becomes one board page per page, so you can annotate a worksheet or a handout
 * Drag to move, corner handles to resize, Del to remove
+* Media is kept in the browser's own storage, so big files do not fill up the saved board.
+  Saving a `.json` board file packs the media inside it, so the file opens on another device.
 
 **Recording with voice**
 * Record the whiteboard itself, or the whole screen on desktop
@@ -57,7 +68,7 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 | --- | --- |
 | Marker / Highlighter / Eraser | `P` / `M` / `E` |
 | Shapes / Text / Select / Pan | `R` / `T` / `V` / `H` |
-| Add photo | `I` |
+| Add photo, video or PDF | `I` |
 | Undo / Redo | `Ctrl+Z` / `Ctrl+Y` |
 | New page | `Ctrl+N` |
 | Previous / next page | `←` / `→` |
@@ -79,6 +90,9 @@ Tap a tool a second time to open its options panel.
 
 When the board is embedded in a host that mediates file saving, it asks the host to save
 exports and recordings; opened as a normal page it saves them itself.
+
+Opening a PDF fetches a renderer from a CDN the first time, so that one feature needs an
+internet connection. Everything else works offline.
 
 Recording and microphone capture need a secure context, so use `https://` or `localhost`.
 Screen capture of the whole screen is a desktop browser feature; on phones the whiteboard
