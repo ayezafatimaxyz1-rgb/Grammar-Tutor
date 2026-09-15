@@ -323,6 +323,14 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <label class="chk" style="margin-top:12px"><input type="checkbox" id="micchk" checked> Record my voice (microphone)</label>
       <label class="chk" style="margin-top:8px"><input type="checkbox" id="syschk"> Include system / tab audio</label>
 
+      <h4 style="margin-top:14px">Video quality</h4>
+      <div class="seg" id="qualseg">
+        <button data-q="720">720p</button>
+        <button data-q="1080" class="on">1080p</button>
+        <button data-q="source">Sharp</button>
+      </div>
+      <p class="mini" id="qualnote" style="margin:6px 0 0"></p>
+
       <h4 style="margin-top:14px">Voice</h4>
       <div class="fxrow" id="fxrow"></div>
       <div class="row" style="margin-top:10px;gap:8px">
@@ -507,8 +515,9 @@ function resize(){
   DPR = Math.min(window.devicePixelRatio || 1, 2.5);
   VW = Math.max(1, Math.round(r.width));
   VH = Math.max(1, Math.round(r.height));
-  cv.width  = Math.round(VW * DPR);
-  cv.height = Math.round(VH * DPR);
+  const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+  cv.width  = even(VW * DPR);
+  cv.height = even(VH * DPR);
   cv.style.width  = VW + "px";
   cv.style.height = VH + "px";
   layer.width = cv.width; layer.height = cv.height;
@@ -652,6 +661,10 @@ function draw(dirty){
 
 let cursorPos = null, drawingItem = null, marquee = null;
 
+// while the board is being recorded, the cursor ring, the selection handles and
+// the marquee are editor furniture and stay out of the video
+function recClean(){ return false; }   // the recording is built separately now
+
 function paintLayer(){
   const v = state.view;
   lctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -683,7 +696,7 @@ function render(){
   if (drawingItem && !drawingItem.erase) paintItem(ctx, drawingItem);
 
   const items = page().items;
-  if (state.sel && items.includes(state.sel)){
+  if (state.sel && !recClean() && items.includes(state.sel)){
     const b = bboxOf(state.sel);
     ctx.strokeStyle = THEME.accent; ctx.lineWidth = 1.6 / v.s;
     ctx.setLineDash([7 / v.s, 5 / v.s]);
@@ -694,14 +707,14 @@ function render(){
   }
   ctx.restore();
 
-  if (marquee){
+  if (!recClean() && marquee){
     ctx.save();
     ctx.strokeStyle = THEME.accent; ctx.setLineDash([6,4]); ctx.lineWidth = 1.4;
     ctx.strokeRect(marquee.x, marquee.y, marquee.w, marquee.h);
     ctx.restore();
   }
 
-  if (cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker")){
+  if (!recClean() && cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker")){
     const r = (state.tool === "eraser" ? state.eraserSize : state.size) * v.s / 2;
     if (r > 2){
       ctx.save();
@@ -3360,6 +3373,17 @@ $$("#recseg button").forEach(b => b.addEventListener("click", () => {
   save();
 }));
 $("#micchk").addEventListener("change", e => { rec.mic = e.target.checked; save(); });
+$$("#qualseg button").forEach(b => b.addEventListener("click", () => {
+  rec.quality = b.dataset.q;
+  $$("#qualseg button").forEach(x => x.classList.toggle("on", x === b));
+  showQualityNote(); save();
+}));
+function showQualityNote(){
+  const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+  const cap = { "720": 720, "1080": 1080, "source": 1440 }[rec.quality] || 1080;
+  const scale = cv.height > cap ? cap / cv.height : 1;
+  $("#qualnote").textContent = "Records at " + even(cv.width * scale) + "×" + even(cv.height * scale);
+}
 $("#voicenote").addEventListener("click", recordVoiceNote);
 $("#micclose").addEventListener("click", () => $("#micback").classList.remove("open"));
 $("#micsilent").addEventListener("click", () => {
@@ -3452,21 +3476,47 @@ async function startRec(){
         video: { frameRate: 30 }, audio: rec.sys
       });
     } else {
-      rec.canvas = document.createElement("canvas");
+      // The recording is built from the same cached ink layer the screen uses,
+      // never by reading back the live canvas: reading a canvas while it is
+      // being captured forces the GPU to stall on every frame, which is what
+      // made both the board and the video stutter.
+      const srcW = cv.width, srcH = cv.height;
       const even = (n) => Math.max(2, Math.round(n / 2) * 2);
-      const k = Math.min(2, 1600 / Math.max(VW, VH));
-      rec.canvas.width = even(VW * k); rec.canvas.height = even(VH * k);
-      const rc = rec.canvas.getContext("2d");
-      const tick = () => {
+      const cap = { "720": 720, "1080": 1080, "source": 1440 }[rec.quality] || 1080;
+      const scale = srcH > cap ? cap / srcH : 1;
+      rec.outW = even(srcW * scale); rec.outH = even(srcH * scale);
+
+      rec.canvas = document.createElement("canvas");
+      rec.canvas.width = rec.outW; rec.canvas.height = rec.outH;
+      const rc = rec.canvas.getContext("2d", { alpha:false });
+      rc.imageSmoothingQuality = "high";
+      const k = rec.outW / srcW;
+      let lastFrame = 0;
+      const tick = (now) => {
         if (!rec.on && !rec.starting) return;
-        if (!rec.paused){
-          const kx = rec.canvas.width / VW, ky = rec.canvas.height / VH;
-          paintPage(rc, page(), rec.canvas.width, rec.canvas.height,
-                    { s: state.view.s * kx, x: state.view.x * kx, y: state.view.y * ky });
-        }
         rec.loop = requestAnimationFrame(tick);
+        // the stream takes thirty frames a second; drawing more is wasted work
+        // that slows the board down while it is being recorded
+        if (now - lastFrame < 31) return;
+        lastFrame = now || 0;
+        if (!rec.paused){
+          const v = state.view;
+          rc.setTransform(1, 0, 0, 1, 0, 0);
+          rc.fillStyle = THEME.board;
+          rc.fillRect(0, 0, rec.outW, rec.outH);
+          rc.drawImage(layer, 0, 0, srcW, srcH, 0, 0, rec.outW, rec.outH);
+          // an eraser stroke is already rubbed into the layer, so only live ink
+          // is drawn on top
+          if (drawingItem && !drawingItem.erase){
+            rc.save();
+            rc.setTransform(DPR * k, 0, 0, DPR * k, 0, 0);
+            rc.translate(v.x, v.y); rc.scale(v.s, v.s);
+            paintItem(rc, drawingItem);
+            rc.restore();
+          }
+        }
       };
-      rec.starting = true; tick();
+      rec.starting = true; tick(performance.now());
       videoStream = rec.canvas.captureStream(30);
     }
     rec.tracks = videoStream.getTracks().slice();
@@ -3499,8 +3549,10 @@ async function startRec(){
 
     const mixed = new MediaStream([...videoStream.getVideoTracks(), ...audioTracks]);
     const mime = pickMime();
+    const px = (rec.outW || 1920) * (rec.outH || 1080);
+    const bits = Math.max(6000000, Math.min(24000000, Math.round(px * 30 * 0.14)));
     rec.recorder = new MediaRecorder(mixed, Object.assign(
-      { videoBitsPerSecond: 4500000, audioBitsPerSecond: 128000 }, mime ? { mimeType: mime } : {}
+      { videoBitsPerSecond: bits, audioBitsPerSecond: 160000 }, mime ? { mimeType: mime } : {}
     ));
     rec.chunks = [];
     rec.recorder.ondataavailable = (e) => { if (e.data && e.data.size) rec.chunks.push(e.data); };
@@ -3585,7 +3637,8 @@ function finishRec(){
     }
   };
   $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent
-    + " · " + ext.toUpperCase() + (rec.hadAudio ? " · with sound" : " · no sound was captured");
+    + " · " + (rec.outW ? rec.outW + "×" + rec.outH : ext.toUpperCase())
+    + (rec.hadAudio ? " · with sound" : " · no sound was captured");
   $("#vidopen").onclick = () => window.open(url, "_blank");
   $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
   $("#vidback").classList.add("open");
@@ -3633,7 +3686,7 @@ function save(){
           voiceFx: state.voiceFx, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
           textColor: state.textColor, textSize: state.textSize,
-          recSrc: rec.src, mic: rec.mic, sys: rec.sys
+          recSrc: rec.src, mic: rec.mic, sys: rec.sys, quality: rec.quality
         }
       }, noCache));
     } catch (e){ /* quota full — keep drawing anyway */ }
@@ -3659,6 +3712,7 @@ function load(){
     textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize
   });
   rec.src = canScreen ? (pref.recSrc || "board") : "board";
+  rec.quality = pref.quality || "1080";
   rec.mic = pref.mic !== false;
   rec.sys = !!pref.sys;
   const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -3730,6 +3784,8 @@ function boot(){
   $("#syschk").checked = rec.sys;
   $$("#eraserseg button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.eraserMode));
   $$("#recseg button").forEach(b => b.classList.toggle("on", b.dataset.src === rec.src));
+  $$("#qualseg button").forEach(b => b.classList.toggle("on", b.dataset.q === rec.quality));
+  showQualityNote();
   $("#recnote").textContent = canMedia
     ? (canScreen ? "Whiteboard mode records the board itself in full quality. Whole screen asks which window to share."
                  : "This device records the whiteboard itself. Whole-screen capture needs a desktop browser.")

@@ -67,6 +67,9 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 
 **Voice and recording**
 * Record the whiteboard itself, or the whole screen on desktop
+* Quality is yours to pick: 720p, 1080p or Sharp. The picture is built from the same drawing the
+  screen uses rather than redrawn at a smaller size, so the video is as sharp as the board, and
+  the bitrate scales with the picture so thin ink stays thin instead of turning to mush.
 * Your voice is mixed in, with a live level meter while you record, so you can see it working
 * Test my voice records three seconds and plays it back, before you commit to a recording
 * Voice changer: Normal, Deep, High, Robot, Echo and Radio, applied as you record
