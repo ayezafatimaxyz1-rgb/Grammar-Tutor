@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>Teaching Studio</title>
+<title>Digital Whiteboard</title>
 <style>
 :root{
   --bg:#eef0f4; --panel:#ffffff; --panel-2:#f6f7f9; --text:#14161a; --muted:#6b7280;
@@ -27,90 +27,83 @@ body{
   touch-action:none;overscroll-behavior:none;
 }
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-#app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--bg)}
-.middle{flex:1;min-height:0;display:flex;position:relative}
-.work{position:relative;flex:1;min-width:0}
+#app{position:fixed;inset:0}
+.work{position:absolute;inset:0}
 
 /* ---------- top bar ---------- */
 .topbar{
-  display:flex;align-items:center;gap:8px;padding:8px 10px;
-  padding-top:max(8px,env(safe-area-inset-top));
-  background:var(--panel);border-bottom:1px solid var(--border);z-index:40;flex:0 0 auto;
+  position:absolute;left:10px;right:10px;top:max(10px,env(safe-area-inset-top));
+  display:flex;align-items:center;gap:8px;z-index:30;pointer-events:none;
 }
-.brand{gap:8px;padding-left:8px}
-.brand .dot{width:16px;height:16px;border-radius:5px;background:var(--accent);flex:0 0 auto}
-#projtitle{
-  background:transparent;border:0;outline:none;color:var(--text);font:600 14px inherit;
-  width:150px;padding:4px 2px;border-bottom:1px solid transparent;
+.topbar > *{pointer-events:auto}
+.brand{
+  display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:.2px;white-space:nowrap;
+  background:var(--panel);border:1px solid var(--border);border-radius:12px;
+  box-shadow:var(--shadow);padding:9px 12px;
 }
-#projtitle:focus{border-bottom-color:var(--accent)}
-.savestate{font-size:12px;color:var(--muted);white-space:nowrap;min-width:54px}
-.savestate.busy{color:var(--accent)}
+.brand .dot{width:18px;height:18px;border-radius:6px;background:var(--accent);display:inline-block}
+.brand span.t{font-size:14px}
 .spacer{flex:1}
-.tgroup{display:flex;align-items:center;gap:4px;background:var(--panel-2);border:1px solid var(--border);border-radius:11px;padding:4px}
-.tbtn{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;color:var(--muted);
-  transition:background .15s,color .15s,transform .1s}
+.tgroup{
+  display:flex;align-items:center;gap:4px;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;padding:4px;box-shadow:var(--shadow);
+}
+.tbtn{
+  width:38px;height:38px;border-radius:9px;display:grid;place-items:center;
+  color:var(--muted);transition:background .15s,color .15s,transform .1s;
+}
 .tbtn:hover{background:var(--chip);color:var(--text)}
 .tbtn:active{transform:scale(.94)}
 .tbtn.on{background:var(--accent);color:var(--accent-t)}
+.tbtn.rec{color:var(--danger)}
 .tbtn[disabled]{opacity:.35;cursor:default}
-.tbtn.small{width:28px;height:28px}
 .tbtn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.tbtn.wide{width:auto;padding:0 12px;gap:7px;font-weight:600;font-size:13px}
-.act{
-  display:flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:11px;
-  border:1px solid var(--border);background:var(--panel-2);font-weight:650;font-size:13.5px;color:var(--text);
-}
-.act:hover{background:var(--chip)}
-.act svg{width:17px;height:17px;fill:currentColor;stroke:none}
-.act.primary{background:var(--accent);color:var(--accent-t);border-color:transparent}
-.act.rec .pip{width:11px;height:11px;border-radius:50%;background:var(--danger);display:block}
-.act.rec.on{background:var(--danger);color:#fff;border-color:transparent}
-.act.rec.on .pip{background:#fff;animation:bl 1.1s infinite}
+.wide{width:auto;padding:0 12px;gap:7px;font-weight:600;font-size:13px}
 
-/* ---------- left toolbar ---------- */
-.rail{
-  flex:0 0 auto;display:flex;flex-direction:column;gap:5px;padding:8px 7px;z-index:30;
-  background:var(--panel);border-right:1px solid var(--border);overflow-y:auto;scrollbar-width:none;
-}
-.rail::-webkit-scrollbar{display:none}
-.rail .sep{height:1px;background:var(--border);margin:3px 4px}
-
-/* ---------- canvas ---------- */
+/* ---------- workspace ---------- */
 #stage{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
 
-/* ---------- right properties panel ---------- */
-.props{
-  flex:0 0 272px;width:272px;display:flex;flex-direction:column;z-index:30;
-  background:var(--panel);border-left:1px solid var(--border);
+/* ---------- floating tool rail (right, like an IWB) ---------- */
+.rail{
+  position:absolute;top:50%;right:10px;transform:translateY(-50%);
+  display:flex;flex-direction:column;gap:6px;padding:6px;z-index:20;
+  background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow);
+  /* stays between the top bar and the page bar, and scrolls if the screen is short */
+  max-height:calc(100% - 132px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;
 }
-.props.hide{display:none}
-.propshead{
-  display:flex;align-items:center;justify-content:space-between;gap:8px;
-  padding:10px 10px 10px 14px;border-bottom:1px solid var(--border);
-  font-weight:700;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);
+.rail::-webkit-scrollbar{display:none}
+@media (max-height:560px){
+  .rail .tbtn{width:32px;height:32px}
+  .rail{gap:3px;padding:4px;max-height:calc(100% - 126px)}
+  .rail .sep{margin:1px 4px}
 }
-.propsbody{flex:1;overflow-y:auto;padding:12px;scrollbar-width:thin}
-.pop{display:none}
+.rail .sep{height:1px;background:var(--border);margin:2px 4px}
+
+/* ---------- options popover ---------- */
+.pop{
+  position:absolute;z-index:40;background:var(--panel);border:1px solid var(--border);
+  border-radius:16px;box-shadow:var(--shadow);padding:12px;display:none;
+  min-width:230px;max-width:min(300px,calc(100vw - 96px));
+}
 .pop.open{display:block}
-.pop.wide-pop.open{display:flex;flex-direction:column;max-height:none}
-.wide-pop{min-width:0;max-width:none;max-height:none}
+.wide-pop{min-width:288px;max-width:min(320px,calc(100vw - 88px));max-height:min(66vh,470px)}
+.pop.wide-pop.open{display:flex;flex-direction:column}
 .pophead{flex:0 0 auto;padding-bottom:10px;border-bottom:1px solid var(--border);margin-bottom:8px}
-.shapescroll{overflow-y:auto;max-height:44vh;margin:0 -4px;padding:0 4px;scrollbar-width:thin}
+.shapescroll{overflow-y:auto;flex:1;margin:0 -4px;padding:0 4px;scrollbar-width:thin}
 .shapescroll h4{position:sticky;top:0;background:var(--panel);padding:6px 0 5px;margin:0;z-index:1}
 .shapegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-bottom:6px}
-.shbtn{aspect-ratio:1;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);
-  display:grid;place-items:center;padding:5px;color:var(--text);transition:border-color .12s,background .12s}
+.shbtn{
+  aspect-ratio:1;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);
+  display:grid;place-items:center;padding:5px;color:var(--text);
+  transition:border-color .12s,background .12s;
+}
 .shbtn:hover{background:var(--chip)}
 .shbtn.on{border-color:var(--accent);box-shadow:0 0 0 1.5px var(--accent) inset;color:var(--accent)}
 .shbtn svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
 .pop h4{margin:0 0 8px;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.fld{display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.fld input{background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:7px 8px;color:var(--text);font:inherit;font-size:13px;width:100%}
 .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.sw{width:100%;aspect-ratio:1;border-radius:50%;border:2px solid var(--border)}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--border);position:relative}
 .sw.on{box-shadow:0 0 0 3px var(--accent);border-color:var(--panel)}
 .sizes{display:flex;gap:8px;align-items:center}
 .size{width:34px;height:34px;border-radius:9px;background:var(--panel-2);border:1px solid var(--border);display:grid;place-items:center}
@@ -118,10 +111,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .size.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent) inset}
 input[type=range]{width:100%;accent-color:var(--accent)}
 .seg{display:flex;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;overflow:hidden;width:100%}
-.seg.wrap{flex-wrap:wrap;border:0;background:none;gap:5px}
-.seg.wrap button{flex:1 0 28%;border:1px solid var(--border);border-radius:9px;background:var(--panel-2)}
 .seg button{flex:1;padding:8px 6px;font-size:12.5px;font-weight:600;color:var(--muted)}
-.seg button.on{background:var(--accent);color:var(--accent-t);border-color:transparent}
+.seg button.on{background:var(--accent);color:var(--accent-t)}
 .mini{font-size:12px;color:var(--muted)}
 .fxrow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .fxbtn{padding:8px 4px;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);font-size:12.5px;font-weight:600;color:var(--muted)}
@@ -129,77 +120,37 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .meter{flex:1;height:10px;border-radius:6px;background:var(--panel-2);border:1px solid var(--border);overflow:hidden;min-width:70px}
 .meter i{display:block;height:100%;width:0%;background:var(--accent);transition:width .07s linear}
 .recpill .meter{width:54px;flex:none;min-width:0}
-.chk{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;user-select:none;color:var(--text)}
+.chk{display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;user-select:none}
 .chk input{width:17px;height:17px;accent-color:var(--accent)}
-.btn{padding:9px 12px;border-radius:10px;background:var(--panel-2);border:1px solid var(--border);font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:7px;color:var(--text);justify-content:center}
-.btn:hover{background:var(--chip)}
-.btn.primary{background:var(--accent);color:var(--accent-t);border-color:transparent}
-.btn.ghost{background:transparent}
 
-/* ---------- scenes + timeline ---------- */
-.bottom{flex:0 0 auto;background:var(--panel);border-top:1px solid var(--border);z-index:35;
-  padding-bottom:env(safe-area-inset-bottom)}
-.scenerow{display:flex;align-items:center;gap:6px;padding:7px 10px}
-.pages{display:flex;gap:6px;overflow-x:auto;padding:2px;scrollbar-width:thin;flex:1}
+/* ---------- bottom page bar ---------- */
+.pagebar{
+  position:absolute;left:50%;transform:translateX(-50%);
+  bottom:max(10px,env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:6px;padding:5px;z-index:30;
+  background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  box-shadow:var(--shadow);max-width:calc(100vw - 20px);
+}
+.pages{display:flex;gap:6px;overflow-x:auto;padding:2px;scrollbar-width:thin;max-width:min(44vw,380px)}
 .pages::-webkit-scrollbar{height:5px}
 .pages::-webkit-scrollbar-thumb{background:var(--border);border-radius:9px}
-.pchip{flex:0 0 auto;height:34px;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);
-  color:var(--muted);font-weight:600;font-size:12.5px;padding:0 11px;white-space:nowrap;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.pchip{
+  flex:0 0 auto;min-width:46px;height:34px;border-radius:9px;border:1px solid var(--border);
+  background:var(--panel-2);color:var(--muted);font-weight:700;font-size:13px;padding:0 10px;
+}
 .pchip.on{background:var(--accent);color:var(--accent-t);border-color:var(--accent)}
-.timeline{display:none;border-top:1px solid var(--border);padding:8px 10px 10px;max-height:168px;overflow-y:auto}
-.timeline.open{display:block}
-.track{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.tname{width:74px;flex:0 0 auto;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.tlane{position:relative;flex:1;height:26px;background:var(--panel-2);border:1px solid var(--border);border-radius:7px;overflow:hidden}
-.ev{position:absolute;top:3px;height:18px;border-radius:5px;background:var(--accent);opacity:.85;
-  min-width:6px;cursor:grab;border:0;padding:0}
-.ev.audio{background:#16a34a}
-.ev.cam{background:#f59e0b}
-.ev.sel{outline:2px solid var(--text);opacity:1}
-.playhead{position:absolute;top:0;bottom:0;width:2px;background:var(--danger);pointer-events:none}
-
-/* ---------- play bar ---------- */
-.playbar{
-  position:absolute;left:50%;transform:translateX(-50%);bottom:14px;display:none;z-index:36;
-  align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);
-  border-radius:14px;box-shadow:var(--shadow);padding:6px 10px;
-}
-body.replaying .playbar{display:flex}
-.playbar .tcode{font:600 12.5px ui-monospace,Menlo,Consolas,monospace;color:var(--muted);min-width:82px}
-.speeds{width:auto}
-.speeds button{padding:6px 9px;font-size:12px}
-
-/* ---------- focus mode ---------- */
-body.focus .topbar,body.focus .rail,body.focus .props,body.focus .bottom{display:none}
-.focusout{
-  position:absolute;left:14px;bottom:14px;z-index:40;display:none;align-items:center;gap:7px;
-  padding:8px 13px;border-radius:999px;background:var(--panel);border:1px solid var(--border);
-  box-shadow:var(--shadow);font-weight:600;font-size:13px;color:var(--muted);opacity:.45;transition:opacity .15s;
-}
-body.focus .focusout{display:flex}
-.focusout:hover{opacity:1;color:var(--text)}
-.focusout svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
-body.replaying .rail,body.replaying .props{pointer-events:none;opacity:.5}
-
-/* ---------- edge scene buttons ---------- */
-.edgebtn{position:absolute;top:50%;transform:translateY(-50%);z-index:25;display:none;
-  width:40px;height:66px;border-radius:12px;background:var(--panel);border:1px solid var(--border);
-  box-shadow:var(--shadow);color:var(--muted);place-items:center}
-.edgebtn.show{display:grid}
-.edgebtn:hover{color:var(--text)}
-.edgebtn.prev{left:10px}
-.edgebtn.next{right:10px}
-.edgebtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- recording pill ---------- */
-.recpill{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:35;display:none;
+.recpill{
+  position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:35;display:none;
   align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);
-  border-radius:999px;padding:6px 8px 6px 14px;box-shadow:var(--shadow);font-weight:700;font-size:13px}
+  border-radius:999px;padding:6px 8px 6px 14px;box-shadow:var(--shadow);font-weight:700;font-size:13px;
+}
 .recpill.show{display:flex}
 .blink{width:10px;height:10px;border-radius:50%;background:var(--danger);animation:bl 1.1s infinite}
 .recpill.paused .blink{animation:none;opacity:.45}
 @keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
-.pillbtn{padding:6px 11px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border);font-weight:700;font-size:12.5px;color:var(--text)}
+.pillbtn{padding:6px 11px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border);font-weight:700;font-size:12.5px}
 .pillbtn.stop{background:var(--danger);color:#fff;border-color:transparent}
 
 /* ---------- modal ---------- */
@@ -234,19 +185,6 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 .edgebtn.prev{left:10px}
 .edgebtn.next{right:74px}
 .edgebtn svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-@media (max-width:900px){
-  .props{position:absolute;right:0;top:0;bottom:0;width:250px;flex:0 0 250px;box-shadow:var(--shadow)}
-}
-@media (max-width:820px){
-  /* the top bar keeps only what a creator needs while filming */
-  .brand,#projtitle,.savestate,.topbar .tgroup:nth-of-type(2){display:none}
-  .act span{display:none}
-  .act{padding:0 11px;height:36px}
-  .topbar{gap:6px;padding:6px 8px}
-  .props{flex:0 0 232px;width:232px}
-  .rail{padding:6px 5px;gap:4px}
-  .tbtn{width:34px;height:34px}
-}
 @media (max-width:760px){ .edgebtn{width:38px;height:62px} .edgebtn.next{right:60px} }
 #toast{
   position:absolute;bottom:74px;left:50%;transform:translateX(-50%) translateY(20px);
@@ -256,19 +194,6 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 }
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-@media (max-width:900px){
-  .props{position:absolute;right:0;top:0;bottom:0;width:250px;flex:0 0 250px;box-shadow:var(--shadow)}
-}
-@media (max-width:820px){
-  /* the top bar keeps only what a creator needs while filming */
-  .brand,#projtitle,.savestate,.topbar .tgroup:nth-of-type(2){display:none}
-  .act span{display:none}
-  .act{padding:0 11px;height:36px}
-  .topbar{gap:6px;padding:6px 8px}
-  .props{flex:0 0 232px;width:232px}
-  .rail{padding:6px 5px;gap:4px}
-  .tbtn{width:34px;height:34px}
-}
 @media (max-width:760px){
   .brand{display:none}
   .hide-sm{display:none !important}
@@ -286,11 +211,12 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 <body>
 <div id="app">
 
+  <!-- ================= THE BOARD ================= -->
+  <div class="work" id="work">
+    <canvas id="stage"></canvas>
   <!-- ================= TOP BAR ================= -->
-  <header class="topbar">
-    <div class="tgroup brand"><i class="dot"></i>
-      <input id="projtitle" value="Untitled lesson" spellcheck="false" aria-label="Lesson title">
-    </div>
+  <div class="topbar">
+    <div class="brand"><i class="dot"></i><span class="t">Whiteboard</span></div>
 
     <div class="tgroup">
       <button class="tbtn" id="undo" title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg></button>
@@ -299,84 +225,46 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
     <div class="tgroup">
       <button class="tbtn hide-sm" id="zoomout" title="Zoom out"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M20 20l-3.5-3.5"/></svg></button>
-      <button class="tbtn wide" id="zoomfit" title="Fit the lesson to the screen (0)"><span id="zoomlbl">100%</span></button>
+      <button class="tbtn wide" id="zoomfit" title="Fit the board to the screen (0)"><span id="zoomlbl">100%</span></button>
       <button class="tbtn hide-sm" id="zoomin" title="Zoom in"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M8 11h6M11 8v6M20 20l-3.5-3.5"/></svg></button>
     </div>
 
-    <span class="savestate" id="savestate">Saved</span>
     <div class="spacer"></div>
 
     <div class="tgroup">
-      <button class="tbtn" id="fsbtn" title="Focus mode (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
-      <button class="tbtn" id="themebtn" title="Board colour (D)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16" fill="currentColor" stroke="none"/></svg></button>
-      <button class="tbtn" id="helpbtn" title="Shortcuts"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.8-.9 1.4v.4"/><path d="M12 17h.01"/></svg></button>
+      <button class="tbtn" id="recbtn" title="Record the board with your voice"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.4" fill="currentColor" stroke="none"/></svg></button>
+      <button class="tbtn" id="recopt" title="Recording options"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></button>
     </div>
 
-    <button class="act rec" id="recbtn" title="Record narration (Ctrl+Shift+R)"><i class="pip"></i><span>Record</span></button>
-    <button class="act" id="previewbtn" title="Replay the lesson"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg><span>Preview</span></button>
-    <button class="act primary" id="exportbtn" title="Export"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 20h16"/></svg><span>Export</span></button>
-  </header>
+    <div class="tgroup">
+      <button class="tbtn" id="savebtn" title="Export / Save"><svg viewBox="0 0 24 24"><path d="M12 3v12"/><path d="m7.5 10.5 4.5 4.5 4.5-4.5"/><path d="M4 20h16"/></svg></button>
+      <button class="tbtn" id="fsbtn" title="Fullscreen (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+      <button class="tbtn" id="themebtn" title="Toggle black / white theme"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16" /><path d="M12 4a8 8 0 0 1 0 16" fill="currentColor" stroke="none"/></svg></button>
+      <button class="tbtn" id="helpbtn" title="Shortcuts &amp; help"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.8-.9 1.4v.4"/><path d="M12 17h.01"/></svg></button>
+    </div>
+  </div>
 
-  <div class="middle">
-    <!-- ================= LEFT TOOLBAR ================= -->
-    <nav class="rail" id="rail">
-      <button class="tbtn" data-tool="ink" title="Pen — writing (W)"><svg viewBox="0 0 24 24"><path d="M4.5 19.5 7 13l7.4-7.4a2 2 0 0 1 2.8 0l1.2 1.2a2 2 0 0 1 0 2.8L11 17z"/><path d="m7 13 4 4"/></svg></button>
-      <button class="tbtn" data-tool="pen" title="Teaching marker (P)"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4z"/><path d="m13.6 6.4 4 4"/></svg></button>
+    <textarea id="textedit" spellcheck="false"></textarea>
+
+    <!-- tool rail -->
+    <div class="rail">
+      <button class="tbtn" data-tool="ink" title="Pen — for writing (W)"><svg viewBox="0 0 24 24"><path d="M4.5 19.5 7 13l7.4-7.4a2 2 0 0 1 2.8 0l1.2 1.2a2 2 0 0 1 0 2.8L11 17z"/><path d="m7 13 4 4"/><path d="M4.5 19.5 6 18.6"/></svg></button>
+      <button class="tbtn" data-tool="pen" title="Marker (P)"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4z"/><path d="m13.6 6.4 4 4"/></svg></button>
       <button class="tbtn" data-tool="marker" title="Highlighter (M)"><svg viewBox="0 0 24 24"><path d="M4 20h6"/><path d="m9 15 8-8 3.5 3.5-8 8H9z"/><path d="M9 15v3.5"/></svg></button>
       <button class="tbtn" data-tool="eraser" title="Eraser (E)"><svg viewBox="0 0 24 24"><path d="m15 4 5 5-9 9H6l-2-2z"/><path d="M8.5 10.5 14 16"/><path d="M11 20h9"/></svg></button>
-      <button class="tbtn" data-tool="shape" title="Shapes and arrows (R)"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="10" height="10" rx="1.5"/><circle cx="15.5" cy="15.5" r="5"/></svg></button>
+      <button class="tbtn" data-tool="shape" title="Shapes (R)"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="10" height="10" rx="1.5"/><circle cx="15.5" cy="15.5" r="5"/></svg></button>
       <button class="tbtn" data-tool="text" title="Text (T)"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5"/><path d="M12 5v14"/><path d="M9 19h6"/></svg></button>
-      <button class="tbtn" id="imgbtn" title="Photo, video or PDF (I)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></svg></button>
+      <button class="tbtn" id="imgbtn" title="Add a photo, video or PDF (I)"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="10" r="1.6"/><path d="m4 17 5-4.5 4 3.5 3-2.5 4 3.5"/></svg></button>
       <div class="sep"></div>
-      <button class="tbtn" data-tool="frame" title="Camera frame (F key adds one)"><svg viewBox="0 0 24 24"><path d="M3 8h18M3 16h18M8 3v18M16 3v18"/></svg></button>
-      <button class="tbtn" data-tool="select" title="Select and move (V)"><svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 1.6L10.4 19z"/></svg></button>
+      <button class="tbtn" data-tool="select" title="Select &amp; move (V)"><svg viewBox="0 0 24 24"><path d="m5 3 14 8-6 1.6L10.4 19z"/></svg></button>
       <button class="tbtn" data-tool="pan" title="Pan (H / hold Space)"><svg viewBox="0 0 24 24"><path d="M9 11V5.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M12.2 11V4.6a1.6 1.6 0 0 1 3.2 0V11"/><path d="M15.4 11.4V7.6a1.6 1.6 0 0 1 3.2 0V15a6 6 0 0 1-6 6h-1a5 5 0 0 1-4.3-2.5L5 14.4a1.6 1.6 0 0 1 2.6-1.9L9 14.2V11"/></svg></button>
       <div class="sep"></div>
-      <button class="tbtn" id="clearbtn" title="Clear this scene"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4.8h6V7"/><path d="M6.5 7 7.5 20h9L17.5 7"/><path d="M10.5 10.5v6M13.5 10.5v6"/></svg></button>
-    </nav>
-
-    <!-- ================= CANVAS ================= -->
-    <div class="work" id="work">
-      <canvas id="stage"></canvas>
-      <textarea id="textedit" spellcheck="false"></textarea>
-
-      <button class="edgebtn prev" id="edgeprev" title="Previous scene"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
-      <button class="edgebtn next" id="edgenext" title="Next scene"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
-
-      <div class="recpill" id="recpill">
-        <i class="blink"></i><span id="rectime">00:00</span>
-        <div class="meter" title="Your voice"><i id="reclevel"></i></div>
-        <button class="pillbtn" id="recpause">Pause</button>
-        <button class="pillbtn stop" id="recstop">Stop</button>
-      </div>
-
-      <div class="playbar" id="playbar">
-        <button class="tbtn" id="playbtn" title="Play / pause"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg></button>
-        <span class="tcode" id="playtime">0:00 / 0:00</span>
-        <div class="seg speeds" id="speeds">
-          <button data-sp="0.5">0.5&times;</button><button data-sp="1" class="on">1&times;</button>
-          <button data-sp="1.5">1.5&times;</button><button data-sp="2">2&times;</button>
-        </div>
-        <label class="chk"><input type="checkbox" id="autocam" checked> Auto camera</label>
-        <button class="pillbtn stop" id="exitplay">Exit</button>
-      </div>
-
-      <button class="focusout" id="focusout" title="Leave focus mode (F or Esc)">
-        <svg viewBox="0 0 24 24"><path d="M9 4H4v5M15 4h5v5M9 20H4v-5M15 20h5v-5"/></svg><span>Exit focus</span>
-      </button>
-
-      <div id="toast"></div>
+      <button class="tbtn" id="clearbtn" title="Clear this page"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M9 7V4.8h6V7"/><path d="M6.5 7 7.5 20h9L17.5 7"/><path d="M10.5 10.5v6M13.5 10.5v6"/></svg></button>
     </div>
 
-    <!-- ================= PROPERTIES ================= -->
-    <aside class="props" id="props">
-      <div class="propshead">
-        <span id="propstitle">Pen</span>
-        <button class="tbtn small" id="propsclose" title="Hide panel"><svg viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg></button>
-      </div>
-      <div class="propsbody">
-        <section class="pop" id="penpop">
-<h4>Marker colour</h4>
+    <!-- popovers -->
+    <div class="pop" id="penpop">
+      <h4>Marker colour</h4>
       <div class="swatches" id="swatches"></div>
       <h4 style="margin-top:14px">Thickness</h4>
       <div class="sizes" id="sizes"></div>
@@ -398,32 +286,36 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <label class="chk" style="margin-top:10px">
         <input type="checkbox" id="styluschk"> Stylus only, ignore my palm
       </label>
-        </section>
-        <section class="pop" id="eraserpop">
-<h4>Eraser mode</h4>
+    </div>
+
+    <div class="pop" id="eraserpop">
+      <h4>Eraser mode</h4>
       <div class="seg" id="eraserseg">
         <button data-mode="pixel" class="on">Erase ink</button>
         <button data-mode="object">Erase object</button>
       </div>
       <h4 style="margin-top:14px">Size <span class="mini" id="ersizeval">28 px</span></h4>
       <input type="range" id="ersize" min="8" max="160" value="28">
-        </section>
-        <section class="pop wide-pop" id="shapepop">
-<div class="pophead">
+    </div>
+
+    <div class="pop wide-pop" id="shapepop">
+      <div class="pophead">
         <div class="swatches" id="shswatches"></div>
         <label class="chk" style="margin-top:10px"><input type="checkbox" id="shfill"> Filled shape</label>
       </div>
       <div class="shapescroll" id="shapes"></div>
-        </section>
-        <section class="pop" id="textpop">
-<p class="mini" style="margin:0 0 10px">Tap anywhere and type. The line keeps going as far as you write; Enter starts a new one.</p>
+    </div>
+
+    <div class="pop" id="textpop">
+      <p class="mini" style="margin:0 0 10px">Tap anywhere and type. The line keeps going as far as you write; Enter starts a new one.</p>
       <h4>Text size <span class="mini" id="tsval">44 px</span></h4>
       <input type="range" id="tsize" min="16" max="160" value="44">
       <h4 style="margin-top:14px">Colour</h4>
       <div class="swatches" id="txswatches"></div>
-        </section>
-        <section class="pop" id="recpop">
-<h4>What to record</h4>
+    </div>
+
+    <div class="pop" id="recpop">
+      <h4>What to record</h4>
       <div class="seg" id="recseg">
         <button data-src="board" class="on">Whiteboard</button>
         <button data-src="screen">Whole screen</button>
@@ -439,91 +331,43 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
         <div class="meter"><i id="meterbar"></i></div>
       </div>
       <button class="btn" id="voicenote" style="margin-top:8px;width:100%;justify-content:center">Record a voice note on the board</button>
-      <button class="btn" id="screenrec" style="margin-top:8px;width:100%;justify-content:center">Record the screen as it happens</button>
-      <p class="mini" style="margin:6px 0 0">The Record button at the top records your voice and times what you write, so the lesson can be replayed and exported. This one is a plain screen capture instead.</p>
       <p class="mini" id="recnote" style="margin:10px 0 0"></p>
-        </section>
-        <section class="pop" id="savepop">
-<h4>Export</h4>
+    </div>
+
+    <div class="pop" id="savepop">
+      <h4>Export</h4>
       <div class="row" style="flex-direction:column;align-items:stretch;gap:8px">
-        <button class="btn primary" id="expVideo">Lesson video (plays it through)</button>
-        <button class="btn" id="expPng">This scene as PNG</button>
+        <button class="btn" id="expPng">Current page as PNG</button>
         <button class="btn" id="expAll">All pages as PNG</button>
         <button class="btn" id="expJson">Save board file (.json)</button>
         <button class="btn" id="impJson">Open board file…</button>
       </div>
-        </section>
+    </div>
 
-        <section class="pop" id="selpop">
-          <h4>Selected object</h4>
-          <div class="grid2">
-            <label class="fld">X<input type="number" id="selx"></label>
-            <label class="fld">Y<input type="number" id="sely"></label>
-            <label class="fld">W<input type="number" id="selw"></label>
-            <label class="fld">H<input type="number" id="selh"></label>
-          </div>
-          <h4 style="margin-top:12px">Opacity <span class="mini" id="selopval">100%</span></h4>
-          <input type="range" id="selop" min="10" max="100" value="100">
-          <h4 style="margin-top:12px">Order</h4>
-          <div class="row">
-            <button class="btn" id="tofront">Bring to front</button>
-            <button class="btn" id="toback">Send to back</button>
-          </div>
-          <h4 style="margin-top:12px">Appears as</h4>
-          <div class="seg" id="animseg">
-            <button data-anim="draw" class="on">Draw</button>
-            <button data-anim="fade">Fade</button>
-            <button data-anim="pop">Pop</button>
-          </div>
-          <h4 style="margin-top:12px">Starts at <span class="mini" id="selt0">0:00</span></h4>
-          <input type="range" id="seltime" min="0" max="100" value="0">
-          <div class="row" style="margin-top:12px">
-            <button class="btn" id="duplicate">Duplicate</button>
-            <button class="btn" id="deletesel">Delete</button>
-          </div>
-        </section>
+    <!-- recording pill -->
+    <div class="recpill" id="recpill">
+      <i class="blink"></i><span id="rectime">00:00</span>
+      <div class="meter" title="Your voice"><i id="reclevel"></i></div>
+      <button class="pillbtn" id="recpause">Pause</button>
+      <button class="pillbtn stop" id="recstop">Stop</button>
+    </div>
 
-        <section class="pop" id="scenepop">
-          <h4>Video format</h4>
-          <div class="seg wrap" id="formatseg">
-            <button data-f="16:9" class="on">16:9</button><button data-f="9:16">9:16</button>
-            <button data-f="1:1">1:1</button><button data-f="4:5">4:5</button><button data-f="full">Off</button>
-          </div>
-          <p class="mini" style="margin:8px 0 0">The dimmed edge is outside the video. Anything inside the frame is safe.</p>
-          <h4 style="margin-top:14px">Board</h4>
-          <div class="seg wrap" id="bgseg">
-            <button data-bg="white" class="on">White</button><button data-bg="warm">Warm</button>
-            <button data-bg="dark">Dark</button><button data-bg="board">Blackboard</button>
-            <button data-bg="grid">Grid</button><button data-bg="dots">Dots</button>
-            <button data-bg="lined">Lined</button><button data-bg="graph">Graph</button>
-          </div>
-          <h4 style="margin-top:14px">Scene</h4>
-          <div class="row" style="flex-direction:column;align-items:stretch;gap:8px">
-            <button class="btn" id="renamescene">Rename scene</button>
-            <button class="btn" id="dupscene">Duplicate scene</button>
-            <button class="btn" id="addframe">Add camera frame here</button>
-          </div>
-        </section>
-      </div>
-    </aside>
+    <button class="edgebtn prev" id="edgeprev" title="Previous page"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
+    <button class="edgebtn next" id="edgenext" title="Next page"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
+
+    <div id="toast"></div>
+
+  <!-- ================= PAGE BAR ================= -->
+  <div class="pagebar">
+    <button class="tbtn" id="prevpage" title="Previous page (←)"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
+    <div class="pages" id="pages"></div>
+    <button class="tbtn" id="nextpage" title="Next page (→)"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
+    <button class="tbtn" id="docmode" title="Turn pages by scrolling"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></button>
+    <button class="tbtn" id="addpage" title="Add page"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+    <button class="tbtn" id="delpage" title="Delete page"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
+  </div>
   </div>
 
-  <!-- ================= SCENES + TIMELINE ================= -->
-  <footer class="bottom">
-    <div class="scenerow">
-      <button class="tbtn" id="prevpage" title="Previous scene (←)"><svg viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></svg></button>
-      <div class="pages" id="pages"></div>
-      <button class="tbtn" id="nextpage" title="Next scene (→)"><svg viewBox="0 0 24 24"><path d="m10 6 6 6-6 6"/></svg></button>
-      <button class="tbtn" id="addpage" title="New scene (Ctrl+N)"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
-      <button class="tbtn" id="docmode" title="Turn scenes by scrolling"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></button>
-      <button class="tbtn" id="delpage" title="Delete scene"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button>
-      <div class="spacer"></div>
-      <button class="tbtn wide" id="tltoggle" title="Show the timeline"><span>Timeline</span></button>
-    </div>
-    <div class="timeline" id="timeline">
-      <div class="tracks" id="tracks"></div>
-    </div>
-  </footer>
 </div>
 
 <!-- recording result modal -->
@@ -604,7 +448,6 @@ const $$ = (s) => Array.from(document.querySelectorAll(s));
 const STORE_KEY = "digital-whiteboard-v1";
 const noCache = (k, v) => k.charAt(0) === "_" ? undefined : v;
 
-let sceneSeq = 1;
 const PALETTE = [
   "#111827", "#e11d48", "#2563eb", "#16a34a", "#f59e0b",
   "#9333ea", "#06b6d4", "#f97316", "#ec4899", "#ffffff"
@@ -614,7 +457,7 @@ const SIZES = [3, 6, 11, 18, 28];
 const state = {
   pages: [newPage()],
   cur: 0,
-  tool: "ink",
+  tool: "pen",
   color: PALETTE[0],
   size: 6,
   opacity: 1,
@@ -632,225 +475,12 @@ const state = {
   textSize: 44,
   view: { s: 1, x: 0, y: 0 },
   sel: null,
-  t: 0,                       // lesson clock, milliseconds
-  title: "Untitled lesson",
-  format: "16:9",
-  bg: "white",
-  audio: null,
   docMode: false,
   theme: "light"
 };
 
-function newPage(name){ return { name: name || ("Scene " + (sceneSeq++)), items: [], frames: [], hist: [], redo: [] }; }
+function newPage(){ return { items: [], hist: [], redo: [] }; }
 function page(){ return state.pages[state.cur]; }
-
-
-/* ---------------- lesson clock ----------------
-   Every mark carries the time it was made, because the project is not a
-   picture of a lesson: it is the lesson, replayable. While narration is
-   running the clock follows the recording exactly so the two line up. Outside
-   a recording, long idle gaps are squeezed so a replay has no dead air. */
-
-let lastTick = performance.now();
-function clock(){
-  const now = performance.now();
-  if (rec.on && !rec.paused) state.t = rec.clockBase + (now - rec.startedAt);
-  else state.t += Math.min(now - lastTick, 900);
-  lastTick = now;
-  return Math.round(state.t);
-}
-function stampDuration(it){
-  if (it.dur != null) return it.dur;
-  if (it.type === "stroke") it.dur = Math.max(240, it.pts.length ? (it.pts[it.pts.length-1].t || 0) : 0);
-  else if (it.type === "text") it.dur = Math.min(2600, Math.max(320, String(it.text).length * 55));
-  else if (it.type === "shape") it.dur = 560;
-  else if (it.type === "image") it.dur = 420;
-  else it.dur = 320;
-  return it.dur;
-}
-// how far through its own appearance an item is at lesson time t
-function itemPhase(it, t){
-  const t0 = it.t0 == null ? 0 : it.t0;
-  if (t >= t0 + stampDuration(it)) return 1;
-  if (t <= t0) return 0;
-  return (t - t0) / stampDuration(it);
-}
-function lessonStart(){
-  let first = Infinity;
-  for (const pg of state.pages) for (const it of pg.items) first = Math.min(first, it.t0 || 0);
-  return first === Infinity ? 0 : Math.max(0, first - 150);
-}
-function lessonLength(){
-  let end = 0;
-  for (const pg of state.pages) for (const it of pg.items) end = Math.max(end, (it.t0 || 0) + stampDuration(it));
-  if (state.audio && state.audio.dur) end = Math.max(end, state.audio.dur);
-  return end;
-}
-
-
-/* ---------------- replay ----------------
-   The lesson plays back from the stored marks: writing redraws itself at the
-   speed it was written, narration runs alongside, and the camera follows the
-   work the way a teacher's hand leads the eye. */
-
-const replay = {
-  on:false, t:0, speed:1, raf:0, last:0, audio:null,
-  auto:true, sceneStarts:[], endsAt:0, playing:false
-};
-
-function sceneTimes(){
-  return state.pages.map(pg => {
-    let first = Infinity, last = 0;
-    for (const it of pg.items){ first = Math.min(first, it.t0 || 0); last = Math.max(last, (it.t0 || 0) + stampDuration(it)); }
-    return { first: first === Infinity ? 0 : first, last };
-  });
-}
-function sceneAt(t){
-  let idx = 0;
-  replay.sceneStarts.forEach((s, i) => { if (s.first <= t) idx = i; });
-  return idx;
-}
-
-async function startReplay(fromT){
-  if (replay.on) return stopReplay();
-  hwFlush(); commitText(); closePanels();
-  replay.sceneStarts = sceneTimes();
-  replay.endsAt = lessonLength() + 400;
-  if (!replay.endsAt){ toast("Write something first, then press Replay"); return; }
-  replay.t = fromT == null ? lessonStart() : fromT;
-  replay.on = true; replay.playing = true;
-  replay.last = performance.now();
-  replay.viewFrom = { s: state.view.s, x: state.view.x, y: state.view.y };
-  state.sel = null;
-  document.body.classList.add("replaying");
-  if (state.audio) {
-    const src = srcOf(state.audio);
-    if (src){
-      replay.audio = new Audio(src);
-      replay.audio.playbackRate = replay.speed;
-      replay.audio.currentTime = replay.t / 1000;
-      replay.audio.play().catch(() => {});
-    }
-  }
-  syncReplayUI();
-  replay.raf = requestAnimationFrame(replayFrame);
-}
-function pauseReplay(){
-  replay.playing = false;
-  if (replay.audio) replay.audio.pause();
-  syncReplayUI();
-}
-function resumeReplay(){
-  if (!replay.on) return startReplay(replay.t);
-  replay.playing = true; replay.last = performance.now();
-  if (replay.audio){ replay.audio.currentTime = replay.t / 1000; replay.audio.play().catch(()=>{}); }
-  syncReplayUI();
-  replay.raf = requestAnimationFrame(replayFrame);
-}
-function stopReplay(){
-  replay.on = false; replay.playing = false;
-  cancelAnimationFrame(replay.raf);
-  if (replay.audio){ replay.audio.pause(); replay.audio = null; }
-  document.body.classList.remove("replaying");
-  if (replay.viewFrom) Object.assign(state.view, replay.viewFrom);
-  syncReplayUI(); updateZoomLabel(); draw();
-}
-function seekReplay(t){
-  replay.t = Math.max(0, Math.min(t, replay.endsAt || lessonLength()));
-  if (replay.audio) replay.audio.currentTime = replay.t / 1000;
-  const want = sceneAt(replay.t);
-  if (want !== state.cur){ state.cur = want; renderScenes(); }
-  syncReplayUI(); draw();
-}
-
-function replayFrame(){
-  if (!replay.on || !replay.playing) return;
-  const now = performance.now();
-  replay.t += (now - replay.last) * replay.speed;
-  replay.last = now;
-
-  const want = sceneAt(replay.t);
-  if (want !== state.cur){ state.cur = want; renderScenes(); }
-  if (replay.auto) followCamera(replay.t);
-  syncReplayUI();
-  draw();
-
-  if (replay.t >= replay.endsAt){
-    if (exporting) return finishExport();
-    pauseReplay();
-    return;
-  }
-  replay.raf = requestAnimationFrame(replayFrame);
-}
-
-/* ---------------- camera ----------------
-   Keeps whatever is being written in view, moving gently. A frame drawn on the
-   board acts as a fixed camera position and wins over the automatic one. */
-function activeBox(t){
-  const items = page().items.filter(it => (it.t0 || 0) <= t && (it.t0 || 0) + stampDuration(it) > t - 5000);
-  const list = items.length ? items : page().items.filter(it => (it.t0 || 0) <= t);
-  if (!list.length) return null;
-  let a = Infinity, b = Infinity, c = -Infinity, d = -Infinity;
-  for (const it of list){
-    const bb = bboxOf(it);
-    a = Math.min(a, bb.x); b = Math.min(b, bb.y);
-    c = Math.max(c, bb.x + bb.w); d = Math.max(d, bb.y + bb.h);
-  }
-  return { x:a, y:b, w:Math.max(40, c-a), h:Math.max(40, d-b) };
-}
-function frameAt(t){
-  const frames = (page().frames || []).filter(f => f.t == null || f.t <= t);
-  return frames.length ? frames[frames.length-1] : null;
-}
-function cameraTargetFor(t){
-  const f = frameAt(t);
-  const box = f ? { x:f.x, y:f.y, w:f.w, h:f.h } : activeBox(t);
-  if (!box) return null;
-  const safe = safeRect();
-  const pad = f ? 1.02 : 1.35;
-  const s = Math.min(safe.w / (box.w * pad), safe.h / (box.h * pad), f ? 4 : 1.9);
-  return {
-    s,
-    x: safe.x + safe.w/2 - (box.x + box.w/2) * s,
-    y: safe.y + safe.h/2 - (box.y + box.h/2) * s
-  };
-}
-function followCamera(t){
-  const tgt = cameraTargetFor(t);
-  if (!tgt) return;
-  const v = state.view, k = 0.07;                 // gentle, never snappy
-  v.s += (tgt.s - v.s) * k;
-  v.x += (tgt.x - v.x) * k;
-  v.y += (tgt.y - v.y) * k;
-  updateZoomLabel();
-}
-
-/* ---------------- video safe frame ---------------- */
-const FORMATS = { "16:9":16/9, "9:16":9/16, "1:1":1, "4:5":4/5, "full":0 };
-function safeRect(){
-  const ar = FORMATS[state.format] || 0;
-  if (!ar) return { x:0, y:0, w:VW, h:VH };
-  let w = VW, h = w / ar;
-  if (h > VH){ h = VH; w = h * ar; }
-  w *= 0.96; h *= 0.96;
-  return { x: (VW - w)/2, y: (VH - h)/2, w, h };
-}
-function paintSafeFrame(c){
-  if (!state.format || state.format === "full") return;
-  const r = safeRect();
-  c.save();
-  c.setTransform(DPR, 0, 0, DPR, 0, 0);
-  c.fillStyle = state.theme === "dark" ? "rgba(0,0,0,.38)" : "rgba(28,34,48,.13)";
-  c.beginPath();
-  c.rect(0, 0, VW, VH);
-  c.rect(r.x, r.y, r.w, r.h);
-  c.fill("evenodd");
-  c.strokeStyle = THEME.accent; c.lineWidth = 1.5;
-  c.setLineDash([8, 6]);
-  c.strokeRect(r.x + .75, r.y + .75, r.w - 1.5, r.h - 1.5);
-  c.setLineDash([]);
-  c.restore();
-}
 
 /* ---------------- theme colours, read once per theme ---------------- */
 let THEME = { board:"#ffffff", accent:"#2563eb" };
@@ -858,7 +488,6 @@ function readTheme(){
   const cs = getComputedStyle(document.documentElement);
   THEME = {
     board: cs.getPropertyValue("--board").trim() || "#ffffff",
-    line: cs.getPropertyValue("--board-line").trim() || "#e9edf3",
     accent: cs.getPropertyValue("--accent").trim() || "#2563eb"
   };
 }
@@ -1014,12 +643,6 @@ function textFont(it){
 
 /* ---------------- drawing ---------------- */
 let pending = false;
-let panelPending = false;
-function refreshPanel(){
-  if (panelPending) return;
-  panelPending = true;
-  requestAnimationFrame(() => { panelPending = false; syncPanel(); syncSelPanel(); });
-}
 function draw(dirty){
   if (dirty !== false) layerDirty = true;
   if (pending) return;
@@ -1035,13 +658,7 @@ function paintLayer(){
   lctx.clearRect(0, 0, VW, VH);
   lctx.save();
   lctx.translate(v.x, v.y); lctx.scale(v.s, v.s);
-  for (const it of page().items){
-    if (replay.on){
-      const ph = itemPhase(it, replay.t);
-      if (ph <= 0) continue;
-      paintItem(lctx, it, ph);
-    } else paintItem(lctx, it);
-  }
+  for (const it of page().items) paintItem(lctx, it);
   // an eraser stroke in progress has to rub out on the same layer as the ink
   if (drawingItem && drawingItem.erase) paintItem(lctx, drawingItem);
   lctx.restore();
@@ -1055,7 +672,9 @@ function render(){
   if (layerDirty) paintLayer();
 
   // board colour first, then the ink on top: erasing takes away ink, never board
-  paintBackground(ctx, cv.width, cv.height, { s: v.s * DPR, x: v.x * DPR, y: v.y * DPR });
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = THEME.board;
+  ctx.fillRect(0, 0, cv.width, cv.height);
   ctx.drawImage(layer, 0, 0);
 
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -1082,10 +701,7 @@ function render(){
     ctx.restore();
   }
 
-  paintFrames(ctx);
-  paintSafeFrame(ctx);
-
-  if (!replay.on && cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker")){
+  if (cursorPos && (state.tool === "eraser" || state.tool === "pen" || state.tool === "ink" || state.tool === "marker")){
     const r = (state.tool === "eraser" ? state.eraserSize : state.size) * v.s / 2;
     if (r > 2){
       ctx.save();
@@ -1107,28 +723,13 @@ function handles(b){
   ];
 }
 
-// points of a stroke up to the moment `ph` of its own drawing
-function upTo(pts, ph, dur){
-  if (ph >= 1) return pts;
-  if (pts.length < 2) return pts;
-  const last = pts[pts.length-1];
-  if (last.t != null){
-    // the stroke is spread across its whole slot, so a quick flick still reads
-    const cut = ph * (last.t || dur || 1), out = [];
-    for (const p of pts){ if ((p.t || 0) <= cut) out.push(p); else break; }
-    return out.length ? out : [pts[0]];
-  }
-  return pts.slice(0, Math.max(2, Math.ceil(pts.length * ph)));
-}
-function paintItem(c, it, ph){
-  ph = ph == null ? 1 : ph;
-  if (ph <= 0) return;
+function paintItem(c, it){
   c.save();
   if (it.type === "stroke" && it.tool === "ink" && !it.erase){
     // a nib stroke is a filled ribbon, so the line thins and thickens like ink
     c.fillStyle = inkOf(it);
     c.globalAlpha = it.alpha == null ? 1 : it.alpha;
-    const pts = upTo(it.pts, ph, it.dur);
+    const pts = it.pts;
     if (pts.length === 1){
       c.beginPath(); c.arc(pts[0].x, pts[0].y, Math.max(.6, (pts[0].w || it.size) / 2), 0, Math.PI*2); c.fill();
     } else {
@@ -1162,7 +763,7 @@ function paintItem(c, it, ph){
       c.globalAlpha = a;
     }
     c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
-    const p = upTo(it.pts, ph, it.dur);
+    const p = it.pts;
     c.beginPath();
     if (p.length === 1){
       c.arc(p[0].x, p[0].y, it.size / 2, 0, Math.PI * 2);
@@ -1177,7 +778,6 @@ function paintItem(c, it, ph){
       c.stroke();
     }
   } else if (it.type === "image"){
-    if (ph < 1) c.globalAlpha = ph;
     const src = srcOf(it);
     const im = src && getImage(src);
     if (im && im.complete && im.naturalWidth) c.drawImage(im, it.x, it.y, it.w, it.h);
@@ -1246,31 +846,20 @@ function paintItem(c, it, ph){
     }
   } else if (it.type === "text"){
     c.font = textFont(it); c.fillStyle = inkOf(it); c.textBaseline = "top";
-    let lines = wrapText(it);
-    if (ph < 1){
-      const keep = Math.ceil(String(it.text).length * ph);
-      let left = keep;
-      lines = lines.map(L => { const take = Math.max(0, Math.min(L.length, left)); left -= L.length; return L.slice(0, take); });
-    }
-    lines.forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
+    wrapText(it).forEach((L, i) => c.fillText(L, it.x + 6, it.y + 4 + i * it.size * 1.25));
   } else if (it.type === "shape"){
     c.lineWidth = it.size; c.lineCap = "round"; c.lineJoin = "round";
     c.strokeStyle = inkOf(it); c.fillStyle = inkOf(it);
     const alpha = it.alpha == null ? 1 : it.alpha;
     c.globalAlpha = alpha;
     const path = new Path2D();
-    const subs = shapePaths(it);
-    const total = subs.reduce((n, sp) => n + sp.pts.length, 0) || 1;
-    let budget = ph >= 1 ? Infinity : Math.max(2, Math.ceil(total * ph));
-    for (const sp of subs){
-      if (!sp.pts.length || budget <= 0) continue;
-      const take = budget === Infinity ? sp.pts : sp.pts.slice(0, Math.max(2, Math.min(sp.pts.length, budget)));
-      budget -= sp.pts.length;
-      path.moveTo(take[0].x, take[0].y);
-      for (let i = 1; i < take.length; i++) path.lineTo(take[i].x, take[i].y);
-      if (sp.closed && take.length === sp.pts.length) path.closePath();
+    for (const sp of shapePaths(it)){
+      if (!sp.pts.length) continue;
+      path.moveTo(sp.pts[0].x, sp.pts[0].y);
+      for (let i = 1; i < sp.pts.length; i++) path.lineTo(sp.pts[i].x, sp.pts[i].y);
+      if (sp.closed) path.closePath();
     }
-    if (it.fill && shapeIsFillable(it) && ph >= 1){
+    if (it.fill && shapeIsFillable(it)){
       c.globalAlpha = alpha * 0.22; c.fill(path, "evenodd"); c.globalAlpha = alpha;
     }
     const def = SHAPE_LIB[it.shape];
@@ -1304,9 +893,6 @@ function applyOp(op, undo){
   } else if (op.kind === "swap"){
     const i = p.items.indexOf(undo ? op.to : op.from);
     if (i > -1) p.items[i] = undo ? op.from : op.to;
-  } else if (op.kind === "order"){
-    const i = p.items.indexOf(op.item);
-    if (i > -1){ p.items.splice(i, 1); p.items.splice(undo ? op.from : op.to, 0, op.item); }
   } else if (op.kind === "modmany"){
     op.entries.forEach(e => Object.assign(e.item, undo ? e.before : e.after));
   } else if (op.kind === "mod"){
@@ -1327,12 +913,7 @@ function syncHistoryButtons(){
   $("#undo").disabled = !page().hist.length;
   $("#redo").disabled = !page().redo.length;
 }
-function addItem(it){
-  if (it.t0 == null) it.t0 = clock();
-  stampDuration(it);
-  page().items.push(it);
-  pushOp({ kind:"add", item: it, index: page().items.length - 1 });
-}
+function addItem(it){ page().items.push(it); pushOp({ kind:"add", item: it, index: page().items.length - 1 }); }
 function deleteItems(list){
   if (!list.length) return;
   const p = page();
@@ -2579,15 +2160,9 @@ cv.addEventListener("pointerdown", (e) => {
     state.sel = hit;
     if (hit) action = { mode:"move", item: hit, before: snapshot(hit), start: wp };
     else action = { mode:"marquee", sx: sp.x, sy: sp.y };
-    draw(); refreshPanel(); return;
+    draw(); return;
   }
 
-  if (state.tool === "frame"){
-    drawingItem = { type:"shape", shape:"rect", color: THEME.accent, size: 2, alpha: .9,
-                    x1: wp.x, y1: wp.y, x2: wp.x, y2: wp.y, ghost: true };
-    action = { mode:"shape", start: wp, frame: true };
-    return;
-  }
   if (state.tool === "text"){
     // the browser moves focus to the canvas when the tap completes, which would
     // take it straight back off the text, so stop that and re-assert it after
@@ -2606,7 +2181,7 @@ cv.addEventListener("pointerdown", (e) => {
   if (state.tool === "shape"){
     drawingItem = {
       type:"shape", shape: state.shape, color: state.shapeColor, size: state.size,
-      t0: clock(), fill: state.shapeFill, auto: isAutoInk(state.shapeColor),
+      fill: state.shapeFill, auto: isAutoInk(state.shapeColor),
       x1: wp.x, y1: wp.y, x2: wp.x, y2: wp.y, alpha: state.opacity
     };
     action = { mode:"shape", start: wp, shift:false };
@@ -2619,13 +2194,13 @@ cv.addEventListener("pointerdown", (e) => {
   const nib = state.tool === "ink";
   const base = nib ? Math.max(1.5, state.size * 0.62) : state.size;
   drawingItem = {
-    t0: clock(), type:"stroke", tool: state.tool, erase: erasing,
+    type:"stroke", tool: state.tool, erase: erasing,
     color: state.color, auto: isAutoInk(state.color),
     alpha: state.tool === "marker" ? Math.min(state.opacity, .45) : state.opacity,
     size: erasing ? state.eraserSize : base * (nib ? 1 : pressureScale(e)),
-    pts: [nib ? { x: wp.x, y: wp.y, w: base * pressureScale(e), t: 0 } : { x: wp.x, y: wp.y, t: 0 }]
+    pts: [nib ? { x: wp.x, y: wp.y, w: base * pressureScale(e) } : wp]
   };
-  action = { mode:"draw", w: base * pressureScale(e), t: performance.now(), t0: performance.now() };
+  action = { mode:"draw", w: base * pressureScale(e), t: performance.now() };
   draw();
 });
 
@@ -2687,7 +2262,6 @@ cv.addEventListener("pointermove", (e) => {
     const pts = drawingItem.pts, last = pts[pts.length - 1];
     const moved = Math.hypot(wp.x - last.x, wp.y - last.y);
     if (moved * state.view.s > 1.1){
-      const tp = Math.round(performance.now() - action.t0);
       if (drawingItem.tool === "ink"){
         // faster movement gives a thinner line, the way a nib behaves
         const now = performance.now();
@@ -2695,14 +2269,14 @@ cv.addEventListener("pointermove", (e) => {
         action.t = now;
         const target = drawingItem.size * Math.max(.42, Math.min(1.45, 1.35 - speed * .16)) * pressureScale(e);
         action.w = action.w + (target - action.w) * .35;
-        pts.push({ x: wp.x, y: wp.y, w: action.w, t: tp });
+        pts.push({ x: wp.x, y: wp.y, w: action.w });
       } else if (e.getCoalescedEvents){
         const co = e.getCoalescedEvents();
         if (co.length > 1){
           const r = cv.getBoundingClientRect();
-          for (const ce of co){ const q = toWorld(ce.clientX - r.left, ce.clientY - r.top); q.t = tp; pts.push(q); }
-        } else pts.push({ x: wp.x, y: wp.y, t: tp });
-      } else pts.push({ x: wp.x, y: wp.y, t: tp });
+          for (const ce of co) pts.push(toWorld(ce.clientX - r.left, ce.clientY - r.top));
+        } else pts.push(wp);
+      } else pts.push(wp);
       draw(false);                       // live ink only: the board stays cached
     }
     return;
@@ -2809,9 +2383,7 @@ function endPointer(e){
     drawingItem = null;
   } else if (action.mode === "shape" && drawingItem){
     const w = Math.abs(drawingItem.x2 - drawingItem.x1), h = Math.abs(drawingItem.y2 - drawingItem.y1);
-    if (action.frame){
-      if (w > 30 && h > 30) addFrame({ x: Math.min(drawingItem.x1, drawingItem.x2), y: Math.min(drawingItem.y1, drawingItem.y2), w, h });
-    } else if (w > 4 || h > 4) addItem(drawingItem);
+    if (w > 4 || h > 4) addItem(drawingItem);
     drawingItem = null;
   } else if (action.mode === "erase-obj"){
     if (action.hits.length) pushOp({ kind:"del", entries: action.hits });
@@ -2845,7 +2417,7 @@ function endPointer(e){
     state.sel = inside[inside.length - 1] || null;
   }
   marquee = null; action = null;
-  save(); draw(); refreshPanel();
+  save(); draw();
 }
 cv.addEventListener("pointerup", endPointer);
 cv.addEventListener("pointercancel", endPointer);
@@ -3150,10 +2722,9 @@ function renderPages(){
   state.pages.forEach((p, i) => {
     const b = document.createElement("button");
     b.className = "pchip" + (i === state.cur ? " on" : "");
-    b.textContent = (i + 1) + ". " + (p.name || ("Scene " + (i+1)));
-    b.title = "Go to " + (p.name || ("Scene " + (i+1)));
+    b.textContent = i + 1;
+    b.title = "Go to page " + (i + 1);
     b.addEventListener("click", () => gotoPage(i));
-    b.addEventListener("dblclick", () => renameScene(i));
     wrap.appendChild(b);
   });
   const chip = wrap.children[state.cur];
@@ -3165,14 +2736,6 @@ function renderPages(){
   const many = state.pages.length > 1;
   $("#edgeprev").classList.toggle("show", many && state.cur > 0);
   $("#edgenext").classList.toggle("show", many && state.cur < state.pages.length - 1);
-}
-const renderScenes = () => renderPages();
-function renameScene(i){
-  const pg = state.pages[i];
-  const name = prompt("Name this scene", pg.name || ("Scene " + (i+1)));
-  if (name == null) return;
-  pg.name = name.trim() || pg.name;
-  renderPages(); save();
 }
 function gotoPage(i){
   if (i < 0 || i >= state.pages.length || i === state.cur) return;
@@ -3222,36 +2785,54 @@ function setTool(t, evt){
   $$(".rail .tbtn[data-tool]").forEach(b => b.classList.toggle("on", b.dataset.tool === t));
   if (t !== "select") state.sel = null;
   cv.style.cursor = t === "pan" ? "grab" : (t === "select" ? "default" : "crosshair");
-  syncPanel();
+  const sel = POP_FOR[t];
+  if (sel && evt) togglePop(sel, $(".rail .tbtn[data-tool='" + t + "']"), same);
+  else closePops();
   draw();
 }
 $$(".rail .tbtn[data-tool]").forEach(b => b.addEventListener("click", (e) => setTool(b.dataset.tool, e)));
 
-const PANEL_TITLE = { penpop:"Pen", eraserpop:"Eraser", shapepop:"Shapes", textpop:"Text",
-  recpop:"Record", savepop:"Export", selpop:"Object", scenepop:"Scene" };
-
-function closePanels(){ $$(".propsbody .pop").forEach(p => p.classList.remove("open")); }
-function showPanel(id){
-  closePanels();
-  const el = $("#" + id);
-  if (!el) return;
-  el.classList.add("open");
-  $("#propstitle").textContent = PANEL_TITLE[id] || "";
-  $("#props").classList.remove("hide");
+function closePops(){ $$(".pop").forEach(p => p.classList.remove("open")); }
+function togglePop(sel, anchor, force){
+  const p = $(sel);
+  const wasOpen = p.classList.contains("open");
+  closePops();
+  if (wasOpen && !force) return;
+  p.classList.add("open");
+  positionPop(p, anchor);
 }
-// kept so the rest of the code can ask for a panel by its old name
-function togglePop(sel, anchor, force){ showPanel(sel.replace("#", "")); }
-function closePops(){ closePanels(); }
-function positionPop(){}
+function positionPop(p, anchor){
+  const wr = $("#work").getBoundingClientRect();
+  const ar = anchor.getBoundingClientRect();
+  p.style.visibility = "hidden"; p.classList.add("open");
+  const pw = p.offsetWidth, ph = p.offsetHeight;
+  let left, top;
 
-// the panel follows what you are doing: a tool, a selected object, or the scene
-function syncPanel(){
-  if (state.sel) return showPanel("selpop");
-  const forTool = { ink:"penpop", pen:"penpop", marker:"penpop", eraser:"eraserpop",
-                    shape:"shapepop", text:"textpop" };
-  showPanel(forTool[state.tool] || "scenepop");
+  const aL = ar.left - wr.left, aR = ar.right - wr.left;
+  const aT = ar.top - wr.top,  aB = ar.bottom - wr.top;
+
+  if (anchor.closest(".topbar")){               // a top bar menu hangs under its button
+    left = aR - pw;
+    top = aB + 10;
+  } else {                                      // a rail tool opens beside the rail
+    left = aL - pw - 10;
+    top = aT + ar.height / 2 - ph / 2;
+  }
+  left = Math.max(8, Math.min(Math.max(8, wr.width - pw - 8), left));
+  top = Math.max(8, Math.min(Math.max(8, wr.height - ph - 8), top));
+
+  // whatever the clamping did, never end up sitting on the button that opened it
+  const hitsV = !(top + ph <= aT || top >= aB);
+  const hitsH = !(left + pw <= aL - 6 || left >= aR + 6);
+  if (hitsV && hitsH) left = Math.max(8, aL - 6 - pw);
+
+  p.style.left = left + "px"; p.style.top = top + "px";
+  p.style.visibility = "visible";
 }
-$("#propsclose").addEventListener("click", () => $("#props").classList.toggle("hide"));
+document.addEventListener("pointerdown", (e) => {
+  if (e.target.closest(".pop") || e.target.closest(".rail") || e.target.closest(".topbar")) return;
+  closePops();
+}, true);
 
 /* swatch / size builders */
 function buildSwatches(host, get, set){
@@ -3377,19 +2958,21 @@ function toggleFullscreen(){
   Promise.resolve(go()).catch(() => toast("Fullscreen was blocked by the browser"));
 }
 if (fsSupported){
+  $("#fsbtn").addEventListener("click", toggleFullscreen);
   document.addEventListener("fullscreenchange", () => {
     const on = !!document.fullscreenElement;
     $("#fsbtn").classList.toggle("on", on);
     setTimeout(resize, 120);
   });
-}
+} else $("#fsbtn").hidden = true;
 
 /* ---------------- render a page to an offscreen canvas ---------------- */
 // paint a page onto any canvas through the given view (scale + offset)
 function paintPage(c, p, w, h, view){
   c.save();
-  paintBackground(c, w, h, view);
   c.setTransform(1, 0, 0, 1, 0, 0);
+  c.fillStyle = THEME.board;
+  c.fillRect(0, 0, w, h);
   c.translate(view.x, view.y); c.scale(view.s, view.s);
   for (const it of p.items) paintItem(c, it);
   if (p === page() && drawingItem) paintItem(c, drawingItem);
@@ -3447,8 +3030,7 @@ function stamp(){
 }
 
 /* ---------------- export ---------------- */
-$("#expVideo").addEventListener("click", () => { closePanels(); exportVideo(); });
-$("#exportbtn").addEventListener("click", () => showPanel("savepop"));
+$("#savebtn").addEventListener("click", () => togglePop("#savepop", $("#savebtn")));
 $("#expPng").addEventListener("click", () => {
   pageToCanvas(page()).toBlob(async b => {
     if (await downloadBlob(b, "whiteboard-page" + (state.cur+1) + "-" + stamp() + ".png")) toast("PNG saved");
@@ -3479,10 +3061,9 @@ $("#expJson").addEventListener("click", async () => {
       if (url) copy.src = url;
       items.push(copy);
     }
-    pages.push({ name: p.name, frames: p.frames || [], items });
+    pages.push({ items });
   }
-  const data = JSON.stringify({ v: 3, title: state.title, format: state.format, bg: state.bg,
-                                t: state.t, audio: state.audio, pages }, noCache);
+  const data = JSON.stringify({ v: 2, pages }, noCache);
   if (await downloadBlob(new Blob([data], { type: "application/json" }), "whiteboard-" + stamp() + ".json"))
     toast("Board file saved");
 });
@@ -3538,6 +3119,7 @@ const rec = {
 const canScreen = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
 const canMedia  = !!(navigator.mediaDevices && window.MediaRecorder);
 
+$("#recopt").addEventListener("click", () => togglePop("#recpop", $("#recopt")));
 $$("#recseg button").forEach(b => b.addEventListener("click", () => {
   if (b.dataset.src === "screen" && !canScreen){ toast("Screen capture is not available on this device"); return; }
   rec.src = b.dataset.src;
@@ -3546,7 +3128,6 @@ $$("#recseg button").forEach(b => b.addEventListener("click", () => {
 }));
 $("#micchk").addEventListener("change", e => { rec.mic = e.target.checked; save(); });
 $("#voicenote").addEventListener("click", recordVoiceNote);
-$("#screenrec").addEventListener("click", () => rec.on ? stopRec() : startRec());
 $("#micclose").addEventListener("click", () => $("#micback").classList.remove("open"));
 $("#micsilent").addEventListener("click", () => {
   $("#micback").classList.remove("open");
@@ -3776,15 +3357,9 @@ function finishRec(){
   $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
   $("#vidback").classList.add("open");
 }
-$("#recbtn").addEventListener("click", () => narr ? stopNarration() : startNarration());
-$("#recstop").addEventListener("click", () => { if (noteRec) stopVoiceNote(); else if (narr) stopNarration(); else stopRec(); });
+$("#recbtn").addEventListener("click", () => rec.on ? stopRec() : startRec());
+$("#recstop").addEventListener("click", () => { if (noteRec) stopVoiceNote(); else stopRec(); });
 $("#recpause").addEventListener("click", () => {
-  if (narr){
-    if (rec.paused){ narr.mr.resume(); rec.paused = false; rec.clockBase = state.t; rec.startedAt = performance.now();
-      $("#recpause").textContent = "Pause"; $("#recpill").classList.remove("paused"); }
-    else { narr.mr.pause(); rec.paused = true; $("#recpause").textContent = "Resume"; $("#recpill").classList.add("paused"); }
-    return;
-  }
   if (!rec.on) return;
   if (rec.paused){
     rec.recorder.resume(); rec.paused = false; rec.t0 = Date.now();
@@ -3799,13 +3374,6 @@ $("#vidback").addEventListener("click", (e) => { if (e.target === $("#vidback"))
 
 /* ---------------- help ---------------- */
 $("#helpbtn").addEventListener("click", () => $("#helpback").classList.add("open"));
-function toggleFocus(on){
-  document.body.classList.toggle("focus", on == null ? undefined : on);
-  setTimeout(resize, 60);
-  if (document.body.classList.contains("focus")) toast("Focus mode — press F or Esc to come back");
-}
-$("#fsbtn").addEventListener("click", () => toggleFocus());
-$("#focusout").addEventListener("click", () => toggleFocus(false));
 $("#helpclose").addEventListener("click", () => $("#helpback").classList.remove("open"));
 $("#helpback").addEventListener("click", (e) => { if (e.target === $("#helpback")) $("#helpback").classList.remove("open"); });
 
@@ -3822,11 +3390,9 @@ function save(){
   clearTimeout(saveT);
   saveT = setTimeout(() => {
     try {
-      markSaving();
       localStorage.setItem(STORE_KEY, JSON.stringify({
-        v: 3, cur: state.cur, title: state.title, t: state.t,
-        format: state.format, bg: state.bg, audio: state.audio,
-        pages: state.pages.map(p => ({ name: p.name, items: p.items, frames: p.frames || [] })),
+        v: 1, cur: state.cur,
+        pages: state.pages.map(p => ({ items: p.items })),
         prefs: {
           theme: state.theme, color: state.color, size: state.size, opacity: state.opacity,
           eraserMode: state.eraserMode, eraserSize: state.eraserSize, snap: state.snap,
@@ -3845,17 +3411,8 @@ function load(){
   try { d = JSON.parse(localStorage.getItem(STORE_KEY) || "null"); } catch (e){}
   const pref = (d && d.prefs) || {};
   if (d && d.pages && d.pages.length){
-    state.pages = d.pages.map((p, i) => ({ name: p.name || ("Scene " + (i+1)), items: p.items || [],
-                                           frames: p.frames || [], hist: [], redo: [] }));
+    state.pages = d.pages.map(p => ({ items: p.items || [], hist: [], redo: [] }));
     state.cur = Math.min(d.cur || 0, state.pages.length - 1);
-    sceneSeq = state.pages.length + 1;
-  }
-  if (d){
-    state.title = d.title || state.title;
-    state.t = d.t || 0;
-    state.format = d.format || state.format;
-    state.bg = d.bg || state.bg;
-    state.audio = d.audio || null;
   }
   Object.assign(state, {
     color: pref.color || state.color, size: pref.size || state.size,
@@ -3875,406 +3432,6 @@ function load(){
   state.theme = pref.theme || (sysDark ? "dark" : "light");
 }
 
-
-/* ---------------- studio controls ---------------- */
-const fmt = (ms) => {
-  const t = Math.max(0, Math.round(ms / 1000));
-  return Math.floor(t / 60) + ":" + String(t % 60).padStart(2, "0");
-};
-function syncReplayUI(){
-  const from = lessonStart(), total = (replay.endsAt || lessonLength()) - from;
-  $("#playtime").textContent = fmt(replay.t - from) + " / " + fmt(total);
-  $("#playbtn").innerHTML = replay.playing
-    ? '<svg viewBox="0 0 24 24"><rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/></svg>'
-    : '<svg viewBox="0 0 24 24"><path d="M7 4.5v15l13-7.5z"/></svg>';
-  $$("#playbtn svg *").forEach(el => { el.setAttribute("fill", "currentColor"); el.setAttribute("stroke", "none"); });
-  drawPlayhead();
-}
-$("#previewbtn").addEventListener("click", () => replay.on ? stopReplay() : startReplay());
-$("#playbtn").addEventListener("click", () => replay.playing ? pauseReplay() : resumeReplay());
-$("#exitplay").addEventListener("click", stopReplay);
-$$("#speeds button").forEach(b => b.addEventListener("click", () => {
-  replay.speed = +b.dataset.sp;
-  $$("#speeds button").forEach(x => x.classList.toggle("on", x === b));
-  if (replay.audio) replay.audio.playbackRate = replay.speed;
-}));
-$("#autocam").addEventListener("change", (e) => { replay.auto = e.target.checked; });
-
-/* ---------------- object properties ---------------- */
-function syncSelPanel(){
-  const it = state.sel;
-  if (!it) return;
-  const b = bboxOf(it);
-  const set = (id, v) => { const el = $(id); if (document.activeElement !== el) el.value = Math.round(v); };
-  set("#selx", b.x); set("#sely", b.y); set("#selw", b.w); set("#selh", b.h);
-  const op = Math.round((it.alpha == null ? 1 : it.alpha) * 100);
-  $("#selop").value = op; $("#selopval").textContent = op + "%";
-  $("#selt0").textContent = fmt(it.t0 || 0);
-  const span = Math.max(4000, lessonLength());
-  $("#seltime").max = span; $("#seltime").value = Math.min(it.t0 || 0, span);
-  $$("#animseg button").forEach(x => x.classList.toggle("on", x.dataset.anim === (it.anim || "draw")));
-}
-function nudgeSel(fn){
-  const it = state.sel; if (!it) return;
-  const before = snapshot(it);
-  fn(it);
-  pushOp({ kind:"mod", item: it, before, after: snapshot(it) });
-  draw(); syncSelPanel();
-}
-["#selx","#sely","#selw","#selh"].forEach(id => $(id).addEventListener("change", () => {
-  const it = state.sel; if (!it) return;
-  const b = bboxOf(it), nx = +$("#selx").value, ny = +$("#sely").value;
-  const nw = Math.max(4, +$("#selw").value), nh = Math.max(4, +$("#selh").value);
-  nudgeSel(() => {
-    moveItem(it, nx - b.x, ny - b.y);
-    const a = { before: Object.assign(snapshot(it), { x:nx, y:ny, w:b.w, h:b.h }) };
-    resizeSel({ before: a.before, box: { x:nx, y:ny, w:b.w, h:b.h }, k:"se" }, { x: nx + nw, y: ny + nh });
-  });
-}));
-$("#selop").addEventListener("input", (e) => {
-  const it = state.sel; if (!it) return;
-  it.alpha = e.target.value / 100;
-  $("#selopval").textContent = e.target.value + "%";
-  draw(); save();
-});
-$("#tofront").addEventListener("click", () => {
-  const it = state.sel, items = page().items, i = items.indexOf(it);
-  if (i < 0) return;
-  items.splice(i, 1); items.push(it);
-  pushOp({ kind:"order", item: it, from: i, to: items.length - 1 }); draw();
-});
-$("#toback").addEventListener("click", () => {
-  const it = state.sel, items = page().items, i = items.indexOf(it);
-  if (i < 0) return;
-  items.splice(i, 1); items.unshift(it);
-  pushOp({ kind:"order", item: it, from: i, to: 0 }); draw();
-});
-$$("#animseg button").forEach(b => b.addEventListener("click", () => {
-  if (!state.sel) return;
-  state.sel.anim = b.dataset.anim;
-  $$("#animseg button").forEach(x => x.classList.toggle("on", x === b));
-  save();
-}));
-$("#seltime").addEventListener("input", (e) => {
-  const it = state.sel; if (!it) return;
-  it.t0 = +e.target.value;
-  $("#selt0").textContent = fmt(it.t0);
-  drawTimeline(); save();
-});
-$("#duplicate").addEventListener("click", () => {
-  const it = state.sel; if (!it) return;
-  const copy = JSON.parse(JSON.stringify(it, noCache));
-  copy.t0 = clock();
-  moveItem(copy, 24, 24);
-  addItem(copy); state.sel = copy; draw(); refreshPanel();
-});
-$("#deletesel").addEventListener("click", () => { if (state.sel) deleteItems([state.sel]); refreshPanel(); });
-
-/* ---------------- scene properties ---------------- */
-$$("#formatseg button").forEach(b => b.addEventListener("click", () => {
-  state.format = b.dataset.f;
-  $$("#formatseg button").forEach(x => x.classList.toggle("on", x === b));
-  save(); draw();
-  if (state.format !== "full") toast(state.format + " frame — everything inside it is in the video");
-}));
-$$("#bgseg button").forEach(b => b.addEventListener("click", () => {
-  state.bg = b.dataset.bg;
-  $$("#bgseg button").forEach(x => x.classList.toggle("on", x === b));
-  const dark = state.bg === "dark" || state.bg === "board";
-  setTheme(dark ? "dark" : "light");
-  save(); draw();
-}));
-$("#renamescene").addEventListener("click", () => renameScene(state.cur));
-$("#dupscene").addEventListener("click", () => {
-  const copy = { name: (page().name || "Scene") + " copy",
-                 items: JSON.parse(JSON.stringify(page().items, noCache)),
-                 frames: (page().frames || []).slice(), hist: [], redo: [] };
-  state.pages.splice(state.cur + 1, 0, copy);
-  state.cur++; renderScenes(); save(); draw();
-  toast("Scene duplicated");
-});
-$("#addframe").addEventListener("click", () => {
-  const a = toWorld(VW * 0.1, VH * 0.1), b = toWorld(VW * 0.9, VH * 0.9);
-  addFrame({ x:a.x, y:a.y, w:b.x-a.x, h:b.y-a.y });
-});
-function addFrame(box){
-  const pg = page();
-  pg.frames = pg.frames || [];
-  pg.frames.push(Object.assign({ name: "Frame " + (pg.frames.length + 1), t: clock() }, box));
-  save(); draw(); drawTimeline();
-  toast("Camera frame added — the replay will move to it");
-}
-
-/* ---------------- board backgrounds ---------------- */
-function paintBackground(c, w, h, view){
-  c.save();
-  c.setTransform(1, 0, 0, 1, 0, 0);
-  c.fillStyle = THEME.board;
-  c.fillRect(0, 0, w, h);
-  const bg = state.bg || "white";
-  if (bg === "warm"){ c.fillStyle = "rgba(255,247,230,.85)"; c.fillRect(0, 0, w, h); }
-  if (bg === "grid" || bg === "dots" || bg === "lined" || bg === "graph"){
-    const step = (bg === "graph" ? 40 : 80) * view.s;
-    if (step > 6){
-      c.strokeStyle = THEME.line; c.fillStyle = THEME.line; c.lineWidth = 1;
-      const ox = view.x % step, oy = view.y % step;
-      c.beginPath();
-      if (bg === "dots"){
-        for (let x = ox; x < w; x += step) for (let y = oy; y < h; y += step){ c.moveTo(x, y); c.arc(x, y, 1.3, 0, Math.PI*2); }
-        c.fill();
-      } else {
-        if (bg !== "lined") for (let x = ox; x < w; x += step){ c.moveTo(x, 0); c.lineTo(x, h); }
-        for (let y = oy; y < h; y += step){ c.moveTo(0, y); c.lineTo(w, y); }
-        c.stroke();
-      }
-    }
-  }
-  c.restore();
-}
-
-/* ---------------- timeline ---------------- */
-let tlDrag = null;
-function drawTimeline(){
-  if (!$("#timeline").classList.contains("open")) return;
-  const from = lessonStart();
-  const total = Math.max(4000, lessonLength() - from);
-  const tracks = [
-    { name:"Narration", rows: state.audio ? [{ t0:0, dur: state.audio.dur || total, cls:"audio", label:"Narration" }] : [] },
-    { name:"Writing",   rows: page().items.filter(i => i.type === "stroke").map(i => ({ item:i, t0:i.t0||0, dur:stampDuration(i), cls:"" })) },
-    { name:"Objects",   rows: page().items.filter(i => i.type !== "stroke").map(i => ({ item:i, t0:i.t0||0, dur:stampDuration(i), cls:"" })) },
-    { name:"Camera",    rows: (page().frames||[]).map(f => ({ frame:f, t0:f.t||0, dur:900, cls:"cam", label:f.name })) }
-  ];
-  const host = $("#tracks");
-  host.innerHTML = "";
-  for (const tr of tracks){
-    const row = document.createElement("div"); row.className = "track";
-    const nm = document.createElement("div"); nm.className = "tname"; nm.textContent = tr.name;
-    const lane = document.createElement("div"); lane.className = "tlane";
-    for (const ev of tr.rows){
-      const b = document.createElement("button");
-      b.className = "ev " + ev.cls + (ev.item && ev.item === state.sel ? " sel" : "");
-      b.style.left = ((ev.t0 - from) / total * 100) + "%";
-      b.style.width = Math.max(0.6, ev.dur / total * 100) + "%";
-      b.title = (ev.label || (ev.item && ev.item.type) || "") + " at " + fmt(ev.t0) + " — drag to move";
-      if (ev.item || ev.frame){
-        b.addEventListener("pointerdown", (e) => {
-          b.setPointerCapture(e.pointerId);
-          tlDrag = { el:b, ev, lane, total, x0: e.clientX, t0: ev.t0 };
-          if (ev.item){ state.sel = ev.item; setTool("select"); refreshPanel(); draw(); }
-        });
-      }
-      lane.appendChild(b);
-    }
-    const head = document.createElement("div"); head.className = "playhead"; head.dataset.head = "1";
-    lane.appendChild(head);
-    row.append(nm, lane); host.appendChild(row);
-  }
-  drawPlayhead();
-}
-function drawPlayhead(){
-  const from = lessonStart();
-  const total = Math.max(4000, (replay.endsAt || lessonLength()) - from);
-  $$("#tracks .playhead").forEach(h => {
-    h.style.left = ((replay.on ? replay.t - from : 0) / total * 100) + "%";
-    h.style.display = replay.on ? "block" : "none";
-  });
-}
-window.addEventListener("pointermove", (e) => {
-  if (!tlDrag) return;
-  const w = tlDrag.lane.getBoundingClientRect().width || 1;
-  const dt = (e.clientX - tlDrag.x0) / w * tlDrag.total;
-  const t = Math.max(0, Math.round(tlDrag.t0 + dt));
-  if (tlDrag.ev.item) tlDrag.ev.item.t0 = t;
-  if (tlDrag.ev.frame) tlDrag.ev.frame.t = t;
-  tlDrag.el.style.left = (t / tlDrag.total * 100) + "%";
-  if (tlDrag.ev.item === state.sel) syncSelPanel();
-});
-window.addEventListener("pointerup", () => { if (tlDrag){ tlDrag = null; save(); drawTimeline(); } });
-$("#tltoggle").addEventListener("click", () => {
-  const open = $("#timeline").classList.toggle("open");
-  $("#tltoggle").classList.toggle("on", open);
-  if (open) drawTimeline();
-  resize();
-});
-
-/* ---------------- project title and save state ---------------- */
-$("#projtitle").addEventListener("input", (e) => { state.title = e.target.value; save(); });
-let saveTimer = 0;
-function markSaving(){
-  $("#savestate").textContent = "Saving…";
-  $("#savestate").classList.add("busy");
-  clearTimeout(saveTimer);
-  saveTimer = setTimeout(() => {
-    $("#savestate").textContent = "Saved";
-    $("#savestate").classList.remove("busy");
-  }, 600);
-}
-
-
-/* ---------------- narration ----------------
-   Voice is recorded on its own and the lesson clock follows it, so whatever is
-   written while talking lands at the moment it was said. */
-let narr = null;
-async function startNarration(){
-  if (narr) return stopNarration();
-  const stream = await askMic();
-  if (!stream) return;
-  const ac = getAC();
-  const src = ac.createMediaStreamSource(stream);
-  const fx = voiceChain(ac, state.voiceFx);
-  const dest = ac.createMediaStreamDestination();
-  src.connect(fx.input); fx.output.connect(dest);
-  rec.level = meterFor(ac, fx.output);
-  const mime = ["audio/webm;codecs=opus","audio/webm","audio/mp4",""]
-    .find(m => !m || (window.MediaRecorder && MediaRecorder.isTypeSupported(m)));
-  let mr;
-  try { mr = new MediaRecorder(dest.stream, mime ? { mimeType: mime } : {}); }
-  catch (e){ return toast("This browser cannot record audio"); }
-  const chunks = [];
-  mr.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
-  mr.onstop = async () => {
-    clearInterval(narr.timer);
-    stream.getTracks().forEach(t => t.stop());
-    fx.stop();
-    const dur = Date.now() - narr.wall;
-    narr = null; rec.on = false; rec.level = null;
-    $("#recbtn").classList.remove("on");
-    $("#recpill").classList.remove("show");
-    $("#reclevel").style.width = "0%";
-    const blob = new Blob(chunks, { type: (mr.mimeType || "audio/webm").split(";")[0] });
-    if (!blob.size) return toast("Nothing was recorded");
-    const mid = await dbPut(blob);
-    if (mid) mediaURL.set(mid, URL.createObjectURL(blob));
-    state.audio = { mid, dur };
-    save(); drawTimeline();
-    toast("Narration saved — press Preview to watch the lesson back");
-  };
-  mr.start(500);
-  rec.on = true; rec.paused = false;
-  rec.clockBase = state.t; rec.startedAt = performance.now();
-  rec.peak = 0; rec.warned = false; rec.checkAt = Date.now() + 3500;
-  narr = { mr, wall: Date.now(), timer: 0 };
-  $("#recbtn").classList.add("on");
-  $("#recpill").classList.add("show");
-  $("#recpause").hidden = false;
-  narr.timer = setInterval(() => {
-    const ms = Date.now() - narr.wall;
-    $("#rectime").textContent = fmt(ms);
-    if (rec.level){
-      const lv = rec.level();
-      $("#reclevel").style.width = Math.round(lv * 100) + "%";
-      rec.peak = Math.max(rec.peak, lv);
-      if (!rec.warned && Date.now() > rec.checkAt){
-        rec.warned = true;
-        if (rec.peak < 0.06) toast("No sound is reaching the microphone — check it in the Record panel");
-      }
-    }
-  }, 150);
-  toast("Recording — write and explain, it is all being timed");
-}
-function stopNarration(){ if (narr){ try { narr.mr.stop(); } catch (e){} } }
-
-/* ---------------- camera frames on the board ---------------- */
-function paintFrames(c){
-  const frames = page().frames || [];
-  if (!frames.length || replay.on) return;
-  const v = state.view;
-  c.save();
-  c.setTransform(DPR, 0, 0, DPR, 0, 0);
-  c.translate(v.x, v.y); c.scale(v.s, v.s);
-  c.strokeStyle = THEME.accent; c.globalAlpha = .75;
-  c.lineWidth = 2 / v.s; c.setLineDash([10 / v.s, 7 / v.s]);
-  c.font = (13 / v.s) + "px -apple-system, system-ui, sans-serif";
-  c.textBaseline = "bottom";
-  frames.forEach((f) => {
-    c.strokeRect(f.x, f.y, f.w, f.h);
-    c.fillStyle = THEME.accent;
-    c.setLineDash([]);
-    c.fillText(f.name, f.x + 4 / v.s, f.y - 5 / v.s);
-    c.setLineDash([10 / v.s, 7 / v.s]);
-  });
-  c.restore();
-}
-
-/* ---------------- export the lesson as video ---------------- */
-let exporting = null;
-async function exportVideo(){
-  if (exporting) return;
-  if (!lessonLength()) return toast("Write something first");
-  const ar = FORMATS[state.format] || 16/9;
-  const H = ar >= 1 ? 1080 : 1920;
-  const W = Math.round(H * ar / 2) * 2;
-  const out = document.createElement("canvas");
-  out.width = W; out.height = Math.round(H / 2) * 2;
-  const oc = out.getContext("2d");
-
-  const stream = out.captureStream(30);
-  const ac = getAC();
-  let audioTracks = [];
-  if (state.audio && srcOf(state.audio)){
-    const dest = ac.createMediaStreamDestination();
-    exporting = { dest };
-    audioTracks = dest.stream.getAudioTracks();
-  } else exporting = {};
-  const mixed = new MediaStream([...stream.getVideoTracks(), ...audioTracks]);
-  const mime = pickMime();
-  const mr = new MediaRecorder(mixed, Object.assign({ videoBitsPerSecond: 6000000 }, mime ? { mimeType: mime } : {}));
-  const chunks = [];
-  mr.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
-  mr.onstop = () => {
-    const type = (mr.mimeType || "video/webm").split(";")[0];
-    const blob = new Blob(chunks, { type });
-    rec.lastBlob = blob;
-    rec.lastName = (state.title || "lesson").replace(/[^\w -]/g, "") + "." + (type.includes("mp4") ? "mp4" : "webm");
-    const url = URL.createObjectURL(blob);
-    const v = $("#vidprev"), dl = $("#viddl");
-    v.src = url;
-    v.onloadedmetadata = () => { if (v.duration === Infinity){ v.currentTime = 1e6; v.ontimeupdate = () => { v.ontimeupdate = null; v.currentTime = 0; }; } };
-    dl.onclick = async () => { if (await downloadBlob(rec.lastBlob, rec.lastName)) toast("Video saved"); };
-    $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + fmt(replay.endsAt) + " · " + state.format;
-    $("#vidopen").onclick = () => window.open(url, "_blank");
-    $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
-    $("#vidback").classList.add("open");
-    exporting = null;
-  };
-  exporting.mr = mr;
-  exporting.frames = 0;
-  exporting.loop = () => {
-    if (!exporting) return;
-    const r = safeRect();
-    if (!exporting) return;
-    oc.drawImage(cv, r.x * DPR, r.y * DPR, r.w * DPR, r.h * DPR, 0, 0, out.width, out.height);
-    exporting.frames++;
-    exporting.raf = requestAnimationFrame(exporting.loop);
-  };
-  exporting.loop();                       // one frame before recording starts
-  mr.start(250);
-  exporting.speedWas = replay.speed;
-  replay.speed = 1;                       // a lesson video always plays at its own pace
-  toast("Recording the lesson… it plays through once");
-  await startReplay();
-  if (exporting && state.audio && replay.audio && exporting.dest){
-    try {
-      const node = ac.createMediaElementSource(replay.audio);
-      node.connect(exporting.dest); node.connect(ac.destination);
-    } catch (e){}
-  }
-  exporting.raf = requestAnimationFrame(exporting.loop);
-}
-function finishExport(){
-  if (!exporting || exporting.ending) return;
-  exporting.ending = true;
-  // let the last frames and the final chunk land before closing the file
-  setTimeout(() => {
-    cancelAnimationFrame(exporting.raf);
-    try { exporting.mr.requestData(); } catch (e){}
-    try { exporting.mr.stop(); } catch (e){}
-    replay.speed = exporting.speedWas || 1;
-    $$("#speeds button").forEach(x => x.classList.toggle("on", +x.dataset.sp === replay.speed));
-    stopReplay();
-  }, 450);
-}
-
 /* ---------------- keyboard ---------------- */
 window.addEventListener("keydown", (e) => {
   if (e.target === te) return;
@@ -4283,9 +3440,6 @@ window.addEventListener("keydown", (e) => {
   if (mod && e.key.toLowerCase() === "z" && !e.shiftKey){ e.preventDefault(); undo(); return; }
   if (mod && (e.key.toLowerCase() === "y" || (e.shiftKey && e.key.toLowerCase() === "z"))){ e.preventDefault(); redo(); return; }
   if (mod && e.shiftKey && e.key.toLowerCase() === "r"){ e.preventDefault(); rec.on ? stopRec() : startRec(); return; }
-  if (mod && (e.key === "=" || e.key === "+")){ e.preventDefault(); zoomAt(VW/2, VH/2, 1.25); return; }
-  if (mod && e.key === "-"){ e.preventDefault(); zoomAt(VW/2, VH/2, 0.8); return; }
-  if (mod && e.key === "0"){ e.preventDefault(); state.view.s = 1; state.view.x = 0; state.view.y = 0; clampView(); return; }
   if (mod && e.key.toLowerCase() === "s"){ e.preventDefault(); $("#expPng").click(); return; }
   if (mod && e.key.toLowerCase() === "n"){ e.preventDefault(); $("#addpage").click(); return; }
   if (mod) return;
@@ -4303,19 +3457,14 @@ window.addEventListener("keydown", (e) => {
     case "v": case "V": setTool("select"); break;
     case "i": case "I": $("#imgbtn").click(); break;
     case "s": case "S": $("#snapchk").checked = !state.snap; $("#snapchk").dispatchEvent(new Event("change")); break;
-    case "f": case "F": toggleFocus(); break;
-    case " ": break;
+    case "f": case "F": if (fsSupported) toggleFullscreen(); break;
     case "d": case "D": setTheme(state.theme === "dark" ? "light" : "dark"); break;
     case "0": fitView(); break;
     case "ArrowLeft":  gotoPage(state.cur - 1); break;
     case "ArrowRight": gotoPage(state.cur + 1); break;
     case "Delete": case "Backspace":
       if (state.sel){ e.preventDefault(); deleteItems([state.sel]); } break;
-    case "Escape":
-      if (document.body.classList.contains("focus")) toggleFocus(false);
-      else if (replay.on) stopReplay();
-      state.sel = null; refreshPanel(); draw();
-      break;
+    case "Escape": closePops(); state.sel = null; draw(); break;
   }
 });
 window.addEventListener("keyup", (e) => {
@@ -4358,11 +3507,7 @@ function boot(){
   $("#undo").addEventListener("click", undo);
   $("#redo").addEventListener("click", redo);
 
-  $("#projtitle").value = state.title || "Untitled lesson";
-  $$("#formatseg button").forEach(b => b.classList.toggle("on", b.dataset.f === state.format));
-  $$("#bgseg button").forEach(b => b.classList.toggle("on", b.dataset.bg === (state.bg || "white")));
-  $("#savestate").textContent = "Saved";
-  renderPages(); syncHistoryButtons(); syncPanel(); syncReplayUI();
+  renderPages(); syncHistoryButtons();
   resize();
   if (contentBox()) fitView(); else { state.view.s = 1; state.view.x = 0; state.view.y = 0; updateZoomLabel(); }
   setTool(state.tool);

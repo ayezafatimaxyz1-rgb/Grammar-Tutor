@@ -1,102 +1,137 @@
-# Teaching Studio
+# Digital Whiteboard
 
-A browser whiteboard built for people who explain things on video: teachers, tutors, course
-creators and faceless educational channels. It is not a brainstorming board. Everything in it
-serves one workflow.
+A single file interactive whiteboard that runs in any modern browser, on desktop and on phones.
+Open `index.html` and it works. No build step, no server, no dependencies.
 
-**Write → explain → animate → replay → export**
+## Features
 
-The project is not a recording of a lesson. It *is* the lesson: every stroke keeps the moment and
-the speed it was drawn, so the board can play the whole explanation back, follow it with a camera,
-and turn it into a video.
+**The board**
+* The whole screen is the board, edge to edge, with no page frame and no grid
+* Controls float on the board itself: tools down the right side, pages along the bottom
+* The surface keeps going in every direction, so pan and zoom instead of running out of room
+* Fullscreen with `F`, and the percentage button brings everything back into view
 
-Open `index.html`. No build step, no server, no dependencies.
+**Drawing**
+* Pen for writing: a fine nib that thins and thickens with the speed of your hand, and is
+  never turned into a shape
+* Marker with 10 colours, 5 thicknesses and an opacity slider
+* Highlighter that blends with whatever is underneath
+* Eraser in two modes: erase ink (pixel eraser) or erase a whole object
+* A library of 69 shapes across five groups: Basic (square, circle, polygons, cube, ring, cross…),
+  Arrows (plain, double, dashed, block, chevron, elbow, curved, U turn, zigzag, wave), Symbols
+  (stars, heart, cloud, moon, sun, lightning, tick, cross out…), Flowchart (start/end, document,
+  database, decision, subprocess, off page…) and Callouts (speech and thought bubbles, banner,
+  tag, frame, braces, brackets, table, number line). Square and circle stay perfectly square
+  whichever way you drag, so no Shift key is needed on a touch screen. Any closed shape can be
+  filled, and you can write on top of any of them with the pen.
+* Text, double click any text to edit it again
+* Shape recognition: draw a rough box, circle, triangle, diamond, arrow or line freehand and it
+  is redrawn cleanly the moment you lift the pen. A box drawn almost square becomes a square, a
+  nearly round circle becomes a circle, and a nearly level line becomes level. Handwriting, small
+  marks, curves, checkmarks and scribbles are left exactly as drawn. Undo once to keep your
+  original sketch. Toggle it in the marker panel or with `S`.
+* Text has no box and no outline: tap anywhere, high or low, and type. Double tap on empty board
+  with any tool in hand to start typing there without switching tools first. The line keeps going as far as you write
+  and only Enter starts a new one. A tap somewhere else starts the next piece of text right there.
+* Handwriting becomes typed text: print letters or numbers with the pen and they are typed out a
+  moment after you stop. A to Z, 0 to 9, words and whole numbers. Ink that is not writing (a tick,
+  an underline, an arrow, a scribble) is left alone, and undo brings your writing back. Auto works
+  out letters from numbers by what you are writing; set Letters or Numbers when a lone mark could
+  be an O or a zero.
+* Select tool to move, resize and delete anything on the board
+* Unlimited undo and redo per page
+* Stylus only mode, so a resting palm does not draw on a tablet
 
-## The layout
+**Pages**
+* Next and back buttons plus numbered page chips along the bottom
+* Add and delete pages, arrow keys also move between them
 
-* **Top bar** — lesson title, undo, redo, zoom, save state, Record, Preview, Export
-* **Left toolbar** — pen, marker, highlighter, eraser, shapes, text, media, camera frame, select, pan
-* **Centre** — the infinite canvas with a video-safe frame drawn on it
-* **Right panel** — properties for whatever you are doing: the tool, the selected object, or the scene
-* **Bottom** — scenes, and a timeline with narration, writing, objects and camera tracks
+**Photos, videos and PDFs**
+* Add a photo from the gallery or camera roll, a video, or a PDF, from one button
+* Paste or drag and drop works too
+* A video sits on the board with its own play button, and you can write on it while it plays
+* A PDF becomes one board page per page, so you can annotate a worksheet or a handout. The first
+  page appears straight away and the rest arrive while you are already writing.
+* Size or move one page of a document and every other page of it follows, each keeping its own
+  shape, so flipping through never jumps. The zoom you set stays as you turn pages.
+* Document mode turns pages by scrolling, by a two finger swipe, or with the arrows at the
+  edges of the board. It switches on by itself when you open a PDF.
+* Drag to move, corner handles to resize, Del to remove
+* Media is kept in the browser's own storage, so big files do not fill up the saved board.
+  Saving a `.json` board file packs the media inside it, so the file opens on another device.
 
-## Recording a lesson
+**Voice and recording**
+* Record the whiteboard itself, or the whole screen on desktop
+* Your voice is mixed in, with a live level meter while you record, so you can see it working
+* Test my voice records three seconds and plays it back, before you commit to a recording
+* Voice changer: Normal, Deep, High, Robot, Echo and Radio, applied as you record
+* A **?** button next to Test my voice reports exactly what is true: secure address, whether the
+  surrounding page allows the microphone, the browser permission, how many microphones were found,
+  and whether recording is supported. When a page embeds the board and withholds the microphone,
+  no browser setting can help and the board now says so instead of sending you round in circles.
+* Voice notes: record just your voice and leave it on the board as something to tap and play.
+  This works on a phone, where a screen recording usually cannot.
+* If the microphone is blocked, the board says so and explains how to allow it, instead of
+  quietly giving you a silent video
+* The sound of a video playing on the board is recorded too
+* Optional system/tab audio, pause and resume, live timer
+* Preview when you stop, then download the video
 
-1. Press **Record**. Your voice is recorded and the lesson clock starts.
-2. Write and explain. Every mark is timed against the narration.
-3. Press stop, then **Preview**: the writing redraws itself in the order you wrote it, the
-   narration plays with it, and the camera follows the work. 0.5×, 1×, 1.5× and 2×.
-4. **Export → Lesson video** plays it through once and hands you the file, cropped to the video
-   format you chose.
+**Theme**
+* White board and black board, switched with one button or the `D` key
+* Ink written with the default marker flips colour with the board so it stays readable.
+  A colour you picked yourself is never changed.
 
-If a mark landed at the wrong moment, open the timeline and drag it.
+**Other**
+* Pinch to zoom and two finger pan on touch, `Ctrl` + scroll on desktop
+* Everything autosaves in the browser, so a refresh does not lose work
+* Export the current page or all pages as PNG, trimmed to what you actually drew, or save the whole board as a `.json` file you can open later
 
-## What is in this version
-
-**Canvas** — infinite pan and zoom, mouse wheel, trackpad, pinch, two finger pan, `Space`+drag,
-`Ctrl`+`+`/`-`/`0`, fit to content.
-
-**Pen** — a nib whose width follows the speed of your hand, with pressure where the device reports
-it. Stylus-only mode ignores a resting palm. Writing is never straightened or converted unless you
-ask.
-
-**Marker** — thicker ink that also tidies a rough box, circle, triangle, arrow or line into a clean
-shape when you want it.
-
-**Highlighter, eraser** (ink or whole object), **text** you can start anywhere by tapping or double
-tapping, **69 shapes** across basic, arrows, symbols, flowchart and callouts.
-
-**Handwriting to text** — print letters or numbers and they are typed out. 94% of characters over a
-432 character test. Undo brings the writing back.
-
-**Media** — photos, video and PDFs. A PDF becomes one scene per page, the first page arrives at once
-and the rest stream in. Size one page and every page of that document follows.
-
-**Scenes and frames** — scenes are the sections of the lesson; a camera frame is a position the
-replay moves to. Rename, duplicate, reorder, delete.
-
-**Video formats** — 16:9, 9:16, 1:1, 4:5, with the area outside the frame dimmed so you can see
-what is in shot.
-
-**Backgrounds** — plain, warm, dark, blackboard, grid, dots, lined, graph.
-
-**Voice** — narration with a live level meter, a voice test, voice effects, and voice notes you can
-leave on the board. A `?` button reports exactly why the microphone is not working when it is not.
-
-**Focus mode** — hides everything but the board while you film.
-
-**Autosave** with a save state in the top bar, and a project file that carries scenes, frames,
-timings, narration and media so it opens on another machine.
-
-## Keyboard
+## Keyboard shortcuts
 
 | Action | Key |
 | --- | --- |
-| Pen / marker / highlighter | `W` / `P` / `M` |
-| Eraser / shapes / text | `E` / `R` / `T` |
-| Select / pan | `V` / `H` or `Space` |
-| Photo, video or PDF | `I` |
-| Undo / redo | `Ctrl+Z` / `Ctrl+Y` |
-| New scene | `Ctrl+N` |
-| Previous / next scene | `←` / `→` |
-| Zoom | `Ctrl` `+` / `-` / `0` |
-| Fit to content | `0` |
-| Focus mode | `F` |
-| Board colour | `D` |
-| Record | `Ctrl+Shift+R` |
+| Marker / Highlighter / Eraser | `P` / `M` / `E` |
+| Shapes / Text / Select / Pan | `R` / `T` / `V` / `H` |
+| Add photo, video or PDF | `I` |
+| Undo / Redo | `Ctrl+Z` / `Ctrl+Y` |
+| New page | `Ctrl+N` |
+| Previous / next page | `←` / `→` |
+| Fit the board to screen | `0` |
+| Fullscreen | `F` |
 | Tidy sketches into shapes | `S` |
-| Writing into typed text | `Shift+H` |
+| Black / white theme | `D` |
+| Start or stop recording | `Ctrl+Shift+R` |
+| Save page as PNG | `Ctrl+S` |
 
-## Not in this version
+Tap a tool a second time to open its options panel.
 
-The spec describes much more than the first milestone. Deliberately left for later: connectors that
-stay attached, the equation and graph and table tools, diagram blocks, the subject element
-libraries, a layers panel, alignment and distribution, templates, brand settings, version history,
-the AI assistant, and linking a tablet to a laptop. The MVP was built first, in full, because the
-replay has to feel right before anything is stacked on top of it.
+## If the microphone will not work
 
-## Notes
+A page that embeds this board can withhold the microphone, and no setting on your side changes
+that. Press the **?** beside Test my voice: if it says the surrounding page withholds it, open the
+board from its own address instead. The quickest way is GitHub Pages: repository **Settings**,
+**Pages**, deploy from the `main` branch, root folder. The board is then at
+`https://<your-username>.github.io/<repository>/` with nothing embedding it, and the microphone,
+recording and downloads all work normally. Voice notes often work even inside an embedding page.
 
-PDF rendering fetches a renderer from a CDN the first time, so that one feature needs a connection.
-Recording needs an `https://` address or `localhost`. A page that embeds the board can withhold the
-microphone; press the `?` in the Record panel and it will tell you.
+## Opening it
+
+* **Desktop:** double click `index.html`.
+* **Phone or tablet:** put the file on any static host (GitHub Pages works: repository
+  Settings, Pages, deploy from the `main` branch) and open the URL. Add it to the home screen
+  for a full screen app.
+
+When the board is embedded in a host that mediates file saving, it asks the host to save
+exports and recordings; opened as a normal page it saves them itself.
+
+Opening a PDF fetches a renderer from a CDN the first time, so that one feature needs an
+internet connection. Everything else works offline.
+
+Recording and microphone capture need a secure context, so use `https://` or `localhost`.
+Screen capture of the whole screen is a desktop browser feature; on phones the whiteboard
+records itself, which is what you usually want anyway.
+
+## Browser support
+
+Chrome, Edge, Firefox and Safari 15+. Video is saved as WebM, or MP4 on Safari.
