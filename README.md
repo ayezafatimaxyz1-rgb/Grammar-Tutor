@@ -72,6 +72,18 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 
 **Voice and recording**
 * Record the whiteboard itself, or the whole screen on desktop
+* Pick what the video is for and the board marks out the frame that goes into it:
+  **YouTube** (16:9), **Reel** (9:16, which is also YouTube Shorts and TikTok), **Post** (1:1) or
+  **Board** (whatever shape your screen is). Everything outside the frame is dimmed, so you can see
+  at a glance what is in shot, and the frame never appears in the video itself. A phone held upright
+  starts on Reel, a laptop starts on YouTube.
+* The file comes out at the real size the site wants: 1920x1080 for YouTube, 1080x1920 for a Reel,
+  1080x1080 for a post, with no black bars and nothing cropped off after you upload. 720p and Sharp
+  give 1280x720 / 2560x1440 lying down and 720x1280 / 1440x2560 standing up.
+* Whole-screen capture is cut to the same shape, taking the middle of the screen.
+* Fit to view fits your work into the frame, not just onto the screen
+* Videos are saved as MP4 where the browser can, because Instagram and TikTok will not take a WebM
+  upload. Browsers that cannot record MP4 yet save WebM and the board says so.
 * Quality is yours to pick: 720p, 1080p or Sharp. The picture is built from the same drawing the
   screen uses rather than redrawn at a smaller size, so the video is as sharp as the board, and
   the bitrate scales with the picture so thin ink stays thin instead of turning to mush.

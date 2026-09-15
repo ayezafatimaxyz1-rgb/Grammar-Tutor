@@ -159,7 +159,7 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .modal{background:var(--panel);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);width:min(680px,100%);max-height:88vh;overflow:auto;padding:16px}
 .modal h3{margin:0 0 4px;font-size:17px}
 .modal p{margin:0 0 12px;color:var(--muted);font-size:13px}
-.modal video{width:100%;border-radius:12px;background:#000;display:block;margin-bottom:12px}
+.modal video{width:100%;max-height:54vh;object-fit:contain;border-radius:12px;background:#000;display:block;margin-bottom:12px}
 .btn{padding:10px 14px;border-radius:11px;background:var(--panel-2);border:1px solid var(--border);font-weight:600;font-size:13.5px;display:inline-flex;align-items:center;gap:7px;text-decoration:none;color:var(--text)}
 .btn.primary{background:var(--accent);color:var(--accent-t);border-color:transparent}
 .btn.ghost{background:transparent}
@@ -323,6 +323,16 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <label class="chk" style="margin-top:12px"><input type="checkbox" id="micchk" checked> Record my voice (microphone)</label>
       <label class="chk" style="margin-top:8px"><input type="checkbox" id="syschk"> Include system / tab audio</label>
 
+      <h4 style="margin-top:14px">Made for</h4>
+      <div class="seg" id="fmtseg">
+        <button data-f="wide" class="on">YouTube</button>
+        <button data-f="reel">Reel</button>
+        <button data-f="square">Post</button>
+        <button data-f="full">Board</button>
+      </div>
+      <p class="mini" id="fmtnote" style="margin:6px 0 0"></p>
+      <label class="chk" style="margin-top:8px"><input type="checkbox" id="guidechk" checked> Show the frame on the board</label>
+
       <h4 style="margin-top:14px">Video quality</h4>
       <div class="seg" id="qualseg">
         <button data-q="720">720p</button>
@@ -384,6 +394,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
     <h3>Recording ready</h3>
     <p id="vidmeta">Preview it below, then save it to your device.</p>
     <video id="vidprev" controls playsinline></video>
+    <p class="mini" id="vidwarn" hidden style="margin:-4px 0 12px"></p>
     <div class="row">
       <button class="btn primary" id="viddl">Download video</button>
       <button class="btn" id="vidopen">Open in new tab</button>
@@ -412,6 +423,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
   <div class="modal">
     <h3>Digital Whiteboard</h3>
     <p>Works with mouse, pen and touch. Everything is saved in this browser automatically. Drop a photo, a video or a PDF straight onto the board; a PDF becomes one board page per page, ready to write on.</p>
+    <p>Recording it: pick what the video is for and the board shows the frame that goes into it — 16:9 for YouTube, 9:16 for Reels, Shorts and TikTok, or square for a post. Write inside the frame and the file comes out at the right size, ready to upload.</p>
     <div class="klist">
       <div><span>Pen (writing)</span><kbd>W</kbd></div>
       <div><span>Marker</span><kbd>P</kbd></div>
@@ -434,6 +446,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Writing into typed text</span><kbd>Shift</kbd>+<kbd>H</kbd></div>
       <div><span>Black / white theme</span><kbd>D</kbd></div>
       <div><span>Start / stop recording</span><kbd>Ctrl+Shift+R</kbd></div>
+      <div><span>Shape of the video</span>YouTube · Reel · Post</div>
     </div>
     <div class="row" style="margin-top:14px"><button class="btn primary" id="helpclose">Got it</button></div>
   </div>
@@ -484,6 +497,7 @@ const state = {
   view: { s: 1, x: 0, y: 0 },
   sel: null,
   docMode: false,
+  recGuide: true,
   theme: "light"
 };
 
@@ -491,12 +505,13 @@ function newPage(){ return { items: [], hist: [], redo: [] }; }
 function page(){ return state.pages[state.cur]; }
 
 /* ---------------- theme colours, read once per theme ---------------- */
-let THEME = { board:"#ffffff", accent:"#2563eb" };
+let THEME = { board:"#ffffff", accent:"#2563eb", accentText:"#ffffff" };
 function readTheme(){
   const cs = getComputedStyle(document.documentElement);
   THEME = {
     board: cs.getPropertyValue("--board").trim() || "#ffffff",
-    accent: cs.getPropertyValue("--accent").trim() || "#2563eb"
+    accent: cs.getPropertyValue("--accent").trim() || "#2563eb",
+    accentText: cs.getPropertyValue("--accent-t").trim() || "#ffffff"
   };
 }
 
@@ -555,6 +570,48 @@ function contentBox(p){
   }
   return { x:a, y:b, w:c-a, h:d-b };
 }
+/* ---------------- video framing ----------------
+   A video for YouTube is 16:9 and one for Reels, Shorts or TikTok is 9:16, but
+   a board is whatever shape the screen is. So the board keeps its own shape and
+   the part that goes into the video is marked out on it: write inside the frame
+   and what you record is exactly what the site wants, with no black bars and
+   nothing cropped off by surprise. */
+const REC_FORMATS = {
+  wide:   { label:"YouTube",  ar: 16/9, note:"16:9 — YouTube, and any normal video" },
+  reel:   { label:"Reel",     ar: 9/16, note:"9:16 — Instagram Reels, YouTube Shorts, TikTok" },
+  square: { label:"Post",     ar: 1,    note:"1:1 — an Instagram or Facebook post" },
+  full:   { label:"Board",    ar: 0,    note:"the whole board, whatever shape your screen is" }
+};
+function recFormat(){ return REC_FORMATS[rec.format] || REC_FORMATS.full; }
+// the biggest rectangle of that shape that fits on the board, in screen pixels
+function frameRect(ar){
+  if (!ar) return { x:0, y:0, w:VW, h:VH };
+  let w = VW, h = w / ar;
+  if (h > VH){ h = VH; w = h * ar; }
+  w = Math.floor(w); h = Math.floor(h);
+  return { x: Math.round((VW - w) / 2), y: Math.round((VH - h) / 2), w, h };
+}
+// the finished video: the short side is the quality you picked, so 1080p is
+// 1920x1080 lying down and 1080x1920 standing up
+function recSize(){
+  const even = (n) => Math.max(2, Math.round(n / 2) * 2);
+  const q = { "720": 720, "1080": 1080, "source": 1440 }[rec.quality] || 1080;
+  const ar = recFormat().ar;
+  if (!ar){
+    const scale = cv.height > q ? q / cv.height : 1;
+    return { w: even(cv.width * scale), h: even(cv.height * scale) };
+  }
+  return ar >= 1 ? { w: even(q * ar), h: even(q) } : { w: even(q), h: even(q / ar) };
+}
+// nothing is cropped when the board already is that shape, and then the guide
+// would just be furniture in the way
+function showFrame(){
+  const ar = recFormat().ar;
+  if (!ar || state.recGuide === false) return false;
+  const F = frameRect(ar);
+  return F.w < VW - 1 || F.h < VH - 1;
+}
+
 // bring the whole page into view, or go back to 100% on an empty board
 function fitView(){
   const box = contentBox();
@@ -563,10 +620,12 @@ function fitView(){
     updateZoomLabel(); draw(); return;
   }
   const pad = 60;
-  const s = Math.min(Math.min((VW - pad*2) / box.w, (VH - pad*2) / box.h), 2);
+  // fit into the part that gets recorded, so "fit to view" also means "fit in shot"
+  const F = frameRect(showFrame() ? recFormat().ar : 0);
+  const s = Math.min(Math.min((F.w - pad*2) / box.w, (F.h - pad*2) / box.h), 2);
   state.view.s = s;
-  state.view.x = (VW - box.w * s) / 2 - box.x * s;
-  state.view.y = (VH - box.h * s) / 2 - box.y * s;
+  state.view.x = F.x + (F.w - box.w * s) / 2 - box.x * s;
+  state.view.y = F.y + (F.h - box.h * s) / 2 - box.y * s;
   updateZoomLabel(); draw();
 }
 function clampView(){
@@ -727,6 +786,44 @@ function render(){
     ctx.save();
     ctx.strokeStyle = THEME.accent; ctx.setLineDash([6,4]); ctx.lineWidth = 1.4;
     ctx.strokeRect(marquee.x, marquee.y, marquee.w, marquee.h);
+    ctx.restore();
+  }
+
+  if (showFrame()){
+    const F = frameRect(recFormat().ar);
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    ctx.save();
+    // everything outside the frame is dimmed, so what is in shot is obvious
+    ctx.fillStyle = state.theme === "dark" ? "rgba(0,0,0,.5)" : "rgba(15,23,42,.13)";
+    ctx.fillRect(0, 0, VW, F.y);
+    ctx.fillRect(0, F.y + F.h, VW, Math.max(0, VH - F.y - F.h));
+    ctx.fillRect(0, F.y, F.x, F.h);
+    ctx.fillRect(F.x + F.w, F.y, Math.max(0, VW - F.x - F.w), F.h);
+    ctx.strokeStyle = THEME.accent; ctx.globalAlpha = rec.on ? 1 : .75;
+    ctx.lineWidth = 2; ctx.setLineDash(rec.on ? [] : [9, 7]);
+    ctx.strokeRect(F.x + 1, F.y + 1, F.w - 2, F.h - 2);
+    ctx.setLineDash([]);
+    // corner ticks, the way a camera marks its frame
+    const t = Math.min(26, F.w / 8, F.h / 8);
+    ctx.globalAlpha = 1; ctx.lineWidth = 4; ctx.lineCap = "round";
+    ctx.beginPath();
+    for (const [cx, cy, sx, sy] of [[F.x, F.y, 1, 1], [F.x + F.w, F.y, -1, 1],
+                                    [F.x, F.y + F.h, 1, -1], [F.x + F.w, F.y + F.h, -1, -1]]){
+      ctx.moveTo(cx + sx * t, cy); ctx.lineTo(cx, cy); ctx.lineTo(cx, cy + sy * t);
+    }
+    ctx.stroke();
+    if (!rec.on){
+      const sz = recSize();
+      const label = recFormat().label + "  " + sz.w + "×" + sz.h;
+      ctx.font = "600 12px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif";
+      const w = ctx.measureText(label).width + 16;
+      const bx = F.x + 8, by = Math.max(4, F.y + 8);
+      ctx.fillStyle = THEME.accent; ctx.globalAlpha = .92;
+      if (ctx.roundRect){ ctx.beginPath(); ctx.roundRect(bx, by, w, 22, 7); ctx.fill(); }
+      else ctx.fillRect(bx, by, w, 22);
+      ctx.globalAlpha = 1; ctx.fillStyle = THEME.accentText || "#fff";
+      ctx.fillText(label, bx + 8, by + 15);
+    }
     ctx.restore();
   }
 
@@ -3378,7 +3475,7 @@ const rec = {
   taps: new Set(), dest: null,
   on: false, paused: false, recorder: null, chunks: [],
   stream: null, tracks: [], ac: null, loop: 0, t0: 0, acc: 0, timer: 0,
-  canvas: null, src: "board", mic: true, sys: false
+  canvas: null, src: "board", mic: true, sys: false, format: "wide"
 };
 const canScreen = !!(navigator.mediaDevices && navigator.mediaDevices.getDisplayMedia);
 const canMedia  = !!(navigator.mediaDevices && window.MediaRecorder);
@@ -3396,11 +3493,22 @@ $$("#qualseg button").forEach(b => b.addEventListener("click", () => {
   $$("#qualseg button").forEach(x => x.classList.toggle("on", x === b));
   showQualityNote(); save();
 }));
+$$("#fmtseg button").forEach(b => b.addEventListener("click", () => {
+  rec.format = b.dataset.f;
+  $$("#fmtseg button").forEach(x => x.classList.toggle("on", x === b));
+  showQualityNote(); save(); draw(false);
+}));
+$("#guidechk").addEventListener("change", e => { state.recGuide = e.target.checked; save(); draw(false); });
 function showQualityNote(){
-  const even = (n) => Math.max(2, Math.round(n / 2) * 2);
-  const cap = { "720": 720, "1080": 1080, "source": 1440 }[rec.quality] || 1080;
-  const scale = cv.height > cap ? cap / cv.height : 1;
-  $("#qualnote").textContent = "Records at " + even(cv.width * scale) + "×" + even(cv.height * scale);
+  const sz = recSize();
+  $("#qualnote").textContent = "Records at " + sz.w + "×" + sz.h;
+  const f = recFormat();
+  $("#fmtnote").textContent = f.ar
+    ? f.note + ". Everything inside the frame on the board goes into the video."
+    : f.note + ".";
+  const g = $("#guidechk");
+  g.checked = state.recGuide !== false; g.disabled = !f.ar;
+  g.parentElement.style.opacity = f.ar ? 1 : .45;
 }
 $("#voicenote").addEventListener("click", recordVoiceNote);
 $("#micclose").addEventListener("click", () => $("#micback").classList.remove("open"));
@@ -3465,10 +3573,15 @@ $("#mictest").addEventListener("click", testMic);
 $("#miccheck").addEventListener("click", voiceCheck);
 $("#syschk").addEventListener("change", e => { rec.sys = e.target.checked; save(); });
 
+// MP4 first: Instagram and TikTok will not take a WebM upload at all, and MP4
+// is the one file that plays and uploads everywhere. WebM is the fallback for
+// browsers that cannot record MP4 yet.
 function pickMime(){
   const list = [
+    "video/mp4;codecs=avc1.4d002a,mp4a.40.2", "video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+    "video/mp4;codecs=h264,aac", "video/mp4",
     "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus",
-    "video/webm;codecs=h264,opus", "video/webm", "video/mp4;codecs=h264,aac", "video/mp4"
+    "video/webm;codecs=h264,opus", "video/webm"
   ];
   for (const m of list) if (window.MediaRecorder && MediaRecorder.isTypeSupported(m)) return m;
   return "";
@@ -3488,21 +3601,56 @@ async function startRec(){
     }
   }
   try {
-    let videoStream;
+    let videoStream, displayStream = null;
+    const fmt = recFormat();
     if (rec.src === "screen"){
-      videoStream = await navigator.mediaDevices.getDisplayMedia({
+      displayStream = await navigator.mediaDevices.getDisplayMedia({
         video: { frameRate: 30 }, audio: rec.sys
       });
+      videoStream = displayStream;
+      if (fmt.ar){
+        // a shared screen is whatever shape it is, so the middle of it is cut
+        // to the shape the site wants rather than handing over black bars
+        const sz = recSize();
+        rec.outW = sz.w; rec.outH = sz.h;
+        const vid = document.createElement("video");
+        vid.srcObject = displayStream; vid.muted = true; vid.playsInline = true;
+        try { await vid.play(); } catch (e){}
+        rec.srcVideo = vid;
+        rec.canvas = document.createElement("canvas");
+        rec.canvas.width = rec.outW; rec.canvas.height = rec.outH;
+        const rc = rec.canvas.getContext("2d", { alpha:false });
+        sharpen(rc);
+        let lastFrame = 0;
+        const tick = (now) => {
+          if (!rec.on && !rec.starting) return;
+          rec.loop = requestAnimationFrame(tick);
+          if (now - lastFrame < 31) return;
+          lastFrame = now || 0;
+          if (rec.paused) return;
+          const vw = vid.videoWidth, vh = vid.videoHeight;
+          if (!vw || !vh) return;
+          const want = rec.outW / rec.outH;
+          let sw = vw, sh = vw / want;
+          if (sh > vh){ sh = vh; sw = vh * want; }
+          rc.drawImage(vid, (vw - sw) / 2, (vh - sh) / 2, sw, sh, 0, 0, rec.outW, rec.outH);
+        };
+        rec.starting = true; tick(performance.now());
+        videoStream = rec.canvas.captureStream(30);
+      } else {
+        rec.outW = 0; rec.outH = 0;
+      }
     } else {
       // The recording is built from the same cached ink layer the screen uses,
       // never by reading back the live canvas: reading a canvas while it is
       // being captured forces the GPU to stall on every frame, which is what
       // made both the board and the video stutter.
-      const srcW = cv.width, srcH = cv.height;
-      const even = (n) => Math.max(2, Math.round(n / 2) * 2);
-      const cap = { "720": 720, "1080": 1080, "source": 1440 }[rec.quality] || 1080;
-      const scale = srcH > cap ? cap / srcH : 1;
-      rec.outW = even(srcW * scale); rec.outH = even(srcH * scale);
+      // only the part of the board inside the frame goes into the video
+      const F = frameRect(fmt.ar);
+      const sx = Math.round(F.x * DPR), sy = Math.round(F.y * DPR);
+      const srcW = Math.round(F.w * DPR), srcH = Math.round(F.h * DPR);
+      const sz = recSize();
+      rec.outW = sz.w; rec.outH = sz.h;
 
       rec.canvas = document.createElement("canvas");
       rec.canvas.width = rec.outW; rec.canvas.height = rec.outH;
@@ -3522,12 +3670,13 @@ async function startRec(){
           rc.setTransform(1, 0, 0, 1, 0, 0);
           rc.fillStyle = THEME.board;
           rc.fillRect(0, 0, rec.outW, rec.outH);
-          rc.drawImage(layer, 0, 0, srcW, srcH, 0, 0, rec.outW, rec.outH);
+          rc.drawImage(layer, sx, sy, srcW, srcH, 0, 0, rec.outW, rec.outH);
           // an eraser stroke is already rubbed into the layer, so only live ink
           // is drawn on top
           if (drawingItem && !drawingItem.erase){
             rc.save();
-            rc.setTransform(DPR * k, 0, 0, DPR * k, 0, 0);
+            rc.setTransform(k, 0, 0, k, -sx * k, -sy * k);
+            rc.scale(DPR, DPR);
             rc.translate(v.x, v.y); rc.scale(v.s, v.s);
             paintItem(rc, drawingItem);
             rc.restore();
@@ -3537,7 +3686,7 @@ async function startRec(){
       rec.starting = true; tick(performance.now());
       videoStream = rec.canvas.captureStream(30);
     }
-    rec.tracks = videoStream.getTracks().slice();
+    rec.tracks = (displayStream || videoStream).getTracks().slice();
 
     // audio mixing (microphone + optional system audio)
     const micStream = preMic;
@@ -3556,7 +3705,7 @@ async function startRec(){
       rec.level = meterFor(ac, rec.fx.output);
       voiced = true;
     }
-    const sysAudioTracks = videoStream.getAudioTracks();
+    const sysAudioTracks = (displayStream || videoStream).getAudioTracks();
     if (sysAudioTracks.length){
       ac.createMediaStreamSource(new MediaStream(sysAudioTracks)).connect(rec.dest);
       voiced = true;
@@ -3577,7 +3726,8 @@ async function startRec(){
     rec.recorder.onstop = finishRec;
     rec.recorder.start(1000);
 
-    videoStream.getVideoTracks()[0].addEventListener("ended", () => { if (rec.on) stopRec(); });
+    (displayStream || videoStream).getVideoTracks()[0]
+      .addEventListener("ended", () => { if (rec.on) stopRec(); });
 
     rec.on = true; rec.starting = false; rec.paused = false;
     rec.t0 = Date.now(); rec.acc = 0;
@@ -3622,6 +3772,7 @@ function stopRec(){
   clearInterval(rec.timer);
   cancelAnimationFrame(rec.loop);
   rec.tracks.forEach(t => { try { t.stop(); } catch (e){} });
+  if (rec.srcVideo){ try { rec.srcVideo.pause(); rec.srcVideo.srcObject = null; } catch (e){} rec.srcVideo = null; }
   // leave the shared audio context alive so board videos keep their sound
   rec.taps.forEach(v => { try { v._node.disconnect(rec.dest); } catch (e){} });
   rec.taps.clear(); rec.dest = null;
@@ -3638,7 +3789,8 @@ function finishRec(){
   rec.chunks = [];
   const url = URL.createObjectURL(blob);
   const ext = type.includes("mp4") ? "mp4" : "webm";
-  const name = "whiteboard-recording-" + stamp() + "." + ext;
+  const tag = recFormat().ar ? recFormat().label.toLowerCase() : "board";
+  const name = "whiteboard-" + tag + "-" + stamp() + "." + ext;
   const v = $("#vidprev"), dl = $("#viddl");
   v.src = url;
   rec.lastBlob = blob; rec.lastName = name;
@@ -3654,9 +3806,17 @@ function finishRec(){
       v.ontimeupdate = () => { v.ontimeupdate = null; v.currentTime = 0; };
     }
   };
-  $("#vidmeta").textContent = Math.round(blob.size / 1048576 * 10) / 10 + " MB · " + $("#rectime").textContent
+  const sizeTxt = blob.size >= 1048576
+    ? Math.round(blob.size / 1048576 * 10) / 10 + " MB"
+    : Math.max(1, Math.round(blob.size / 1024)) + " KB";
+  $("#vidmeta").textContent = sizeTxt + " · " + $("#rectime").textContent
     + " · " + (rec.outW ? rec.outW + "×" + rec.outH : ext.toUpperCase())
+    + (recFormat().ar ? " · " + recFormat().label : "") + " · " + ext.toUpperCase()
     + (rec.hadAudio ? " · with sound" : " · no sound was captured");
+  const warn = $("#vidwarn");
+  warn.hidden = !(ext === "webm" && recFormat().ar && rec.format !== "wide");
+  warn.textContent = "This browser saved a WebM file. Instagram and TikTok only take MP4, so convert it "
+    + "first, or record in Chrome or Safari, which save MP4 directly. YouTube takes WebM as it is.";
   $("#vidopen").onclick = () => window.open(url, "_blank");
   $("#vidopen").hidden = !!(window.claude && typeof claude.use === "function");
   $("#vidback").classList.add("open");
@@ -3704,7 +3864,8 @@ function save(){
           voiceFx: state.voiceFx, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
           textColor: state.textColor, textSize: state.textSize,
-          recSrc: rec.src, mic: rec.mic, sys: rec.sys, quality: rec.quality
+          recSrc: rec.src, mic: rec.mic, sys: rec.sys, quality: rec.quality,
+          recFormat: rec.format, recGuide: state.recGuide
         }
       }, noCache));
     } catch (e){ /* quota full — keep drawing anyway */ }
@@ -3731,6 +3892,11 @@ function load(){
   });
   rec.src = canScreen ? (pref.recSrc || "board") : "board";
   rec.quality = pref.quality || "1080";
+  // a phone held upright is already the shape of a Reel, a laptop is the shape
+  // of a YouTube video, so the first suggestion matches the screen in hand
+  rec.format = REC_FORMATS[pref.recFormat] ? pref.recFormat
+             : (window.innerHeight > window.innerWidth ? "reel" : "wide");
+  state.recGuide = pref.recGuide !== false;
   rec.mic = pref.mic !== false;
   rec.sys = !!pref.sys;
   const sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -3803,9 +3969,10 @@ function boot(){
   $$("#eraserseg button").forEach(b => b.classList.toggle("on", b.dataset.mode === state.eraserMode));
   $$("#recseg button").forEach(b => b.classList.toggle("on", b.dataset.src === rec.src));
   $$("#qualseg button").forEach(b => b.classList.toggle("on", b.dataset.q === rec.quality));
+  $$("#fmtseg button").forEach(b => b.classList.toggle("on", b.dataset.f === rec.format));
   showQualityNote();
   $("#recnote").textContent = canMedia
-    ? (canScreen ? "Whiteboard mode records the board itself in full quality. Whole screen asks which window to share."
+    ? (canScreen ? "Whiteboard mode records the board itself in full quality. Whole screen asks which window to share, and is cut to the shape you picked."
                  : "This device records the whiteboard itself. Whole-screen capture needs a desktop browser.")
     : "Recording needs a modern browser (Chrome, Edge, Firefox or Safari 15+).";
   if (!canScreen) $("#recseg button[data-src=screen]").disabled = true;
