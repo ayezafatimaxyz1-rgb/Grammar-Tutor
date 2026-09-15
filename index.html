@@ -294,8 +294,13 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
         <button data-mode="pixel" class="on">Erase ink</button>
         <button data-mode="object">Erase object</button>
       </div>
+      <p class="mini" style="margin:10px 0 0">The eraser goes through writing, shapes and text. Photos, videos and PDF pages stay where they are — move or delete those with the select tool.</p>
       <h4 style="margin-top:14px">Size <span class="mini" id="ersizeval">28 px</span></h4>
       <input type="range" id="ersize" min="8" max="160" value="28">
+      <h4 style="margin-top:14px">Clear the page</h4>
+      <button class="btn" id="wipeink" style="width:100%;justify-content:center">Rub out everything written</button>
+      <button class="btn" id="wipeall" style="width:100%;justify-content:center;margin-top:8px">Remove everything, files too</button>
+      <p class="mini" id="wipenote" style="margin:8px 0 0"></p>
     </div>
 
     <div class="pop wide-pop" id="shapepop">
@@ -436,6 +441,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Add photo, video or PDF</span><kbd>I</kbd></div>
       <div><span>Undo / Redo</span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></div>
       <div><span>Delete selection</span><kbd>Del</kbd></div>
+      <div><span>Rub out everything written</span><kbd>Shift</kbd>+<kbd>E</kbd></div>
       <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
       <div><span>Turn pages by scrolling</span>document mode</div>
       <div><span>New page</span><kbd>Ctrl+N</kbd></div>
@@ -501,6 +507,9 @@ const state = {
   theme: "light"
 };
 
+// a photo, a video or a page of a PDF is something you put on the board, not
+// something you wrote on it: the eraser goes through writing, never through these
+function isMedia(it){ return it.type === "image" || it.type === "video" || it.type === "audio"; }
 function newPage(){ return { items: [], hist: [], redo: [] }; }
 function page(){ return state.pages[state.cur]; }
 
@@ -522,6 +531,14 @@ const ctx = cv.getContext("2d");
 // frame, so drawing a new stroke does not repaint the whole board
 const layer = document.createElement("canvas");
 const lctx = layer.getContext("2d");
+// Writing lives on its own sheets above the photos, videos and PDF pages, so
+// the eraser rubs out ink and never takes a bite out of the picture underneath.
+// The highlighter gets a sheet of its own because it has to blend with whatever
+// it is drawn over, which a plain sheet of ink must not do.
+const inkc = document.createElement("canvas");
+const ictx = inkc.getContext("2d");
+const hlc  = document.createElement("canvas");
+const hctx = hlc.getContext("2d");
 let layerDirty = true;
 let DPR = 1, VW = 0, VH = 0;
 
@@ -543,9 +560,11 @@ function resize(){
   cv.style.width  = VW + "px";
   cv.style.height = VH + "px";
   layer.width = cv.width; layer.height = cv.height;
+  inkc.width = cv.width; inkc.height = cv.height;
+  hlc.width = cv.width; hlc.height = cv.height;
   // resizing a canvas resets its context, so the resampling quality used for
   // photos and PDF pages has to be asked for again every time
-  sharpen(ctx); sharpen(lctx);
+  sharpen(ctx); sharpen(lctx); sharpen(ictx); sharpen(hctx);
   draw();
 }
 // pictures are rarely shown at exactly their own size: without this the browser
@@ -740,16 +759,57 @@ let cursorPos = null, drawingItem = null, marquee = null;
 // the marquee are editor furniture and stay out of the video
 function recClean(){ return false; }   // the recording is built separately now
 
+// which sheet a thing belongs on: the highlighter blends, everything else does
+// not, and an eraser stroke goes on both so it rubs out either
+function isHighlighter(it){ return it.type === "stroke" && it.tool === "marker" && !it.erase; }
+function sheetsNeeded(items, live){
+  let hl = false, ink = false;
+  const look = (it) => {
+    if (!it || isMedia(it) || it.erase) return;
+    if (isHighlighter(it)) hl = true; else ink = true;
+  };
+  for (const it of items) look(it);
+  look(live);
+  return { hl, ink };
+}
 function paintLayer(){
   const v = state.view;
+  const items = page().items;
+  // live ink is drawn straight onto the screen in render(), which is what keeps
+  // drawing off the repaint path; only an eraser has to go through the sheets
+  const liveErase = drawingItem && drawingItem.erase ? drawingItem : null;
+  const need = sheetsNeeded(items, null);
+
   lctx.setTransform(DPR, 0, 0, DPR, 0, 0);
   lctx.clearRect(0, 0, VW, VH);
   lctx.save();
   lctx.translate(v.x, v.y); lctx.scale(v.s, v.s);
-  for (const it of page().items) paintItem(lctx, it);
-  // an eraser stroke in progress has to rub out on the same layer as the ink
-  if (drawingItem && drawingItem.erase) paintItem(lctx, drawingItem);
+  for (const it of items) if (isMedia(it)) paintItem(lctx, it);
   lctx.restore();
+
+  const sheet = (c, mine) => {
+    c.setTransform(DPR, 0, 0, DPR, 0, 0);
+    c.clearRect(0, 0, VW, VH);
+    c.save();
+    c.translate(v.x, v.y); c.scale(v.s, v.s);
+    for (const it of items){
+      if (isMedia(it)) continue;
+      if (it.erase || mine(it)) paintItem(c, it);
+    }
+    if (liveErase) paintItem(c, liveErase);
+    c.restore();
+  };
+  lctx.setTransform(1, 0, 0, 1, 0, 0);
+  if (need.hl){
+    sheet(hctx, isHighlighter);
+    lctx.globalCompositeOperation = state.theme === "dark" ? "screen" : "multiply";
+    lctx.drawImage(hlc, 0, 0);
+    lctx.globalCompositeOperation = "source-over";
+  }
+  if (need.ink){
+    sheet(ictx, (it) => !isHighlighter(it));
+    lctx.drawImage(inkc, 0, 0);
+  }
   layerDirty = false;
 }
 
@@ -2690,11 +2750,19 @@ function resizeSel(a, wp){
     it.pts = a.before.pts.map(p => ({ x: nx + (p.x - b.x) * sx, y: ny + (p.y - b.y) * sy }));
   }
 }
+let mediaHint = false;
 function eraseObjectsAt(wp){
   const r = state.eraserSize / 2;
   const items = page().items;
-  const doomed = items.filter(it => !it.erase && hitItem(it, wp, r));
-  if (!doomed.length) return;
+  const doomed = items.filter(it => !it.erase && !isMedia(it) && hitItem(it, wp, r));
+  if (!doomed.length){
+    // say why nothing happened, once, rather than let it look broken
+    if (!mediaHint && items.some(it => isMedia(it) && hitItem(it, wp, r))){
+      mediaHint = true;
+      toast("Photos, videos and PDF pages are not erased — pick one with the select tool to remove it");
+    }
+    return;
+  }
   doomed.forEach(it => {
     const i = items.indexOf(it);
     if (i > -1){ action.hits.push({ item: it, index: i }); items.splice(i, 1); }
@@ -3125,13 +3193,36 @@ $("#delpage").addEventListener("click", () => {
   state.cur = Math.max(0, state.cur - 1);
   renderPages(); syncHistoryButtons(); save(); draw();
 });
-$("#clearbtn").addEventListener("click", () => {
+$("#clearbtn").addEventListener("click", clearPage);
+function clearPage(){
   const p = page();
-  if (!p.items.length) return;
-  if (!confirm("Clear everything on this page?")) return;
+  if (!p.items.length){ toast("This page is already empty"); return; }
+  if (!confirm("Remove everything on this page, photos and PDF pages included?")) return;
   deleteItems(p.items.slice());
+  closePops();
   toast("Page cleared — Ctrl+Z brings it back");
-});
+}
+// wipe the board clean without losing the worksheet you were writing on
+function clearInk(){
+  const p = page();
+  const written = p.items.filter(it => !isMedia(it));
+  if (!written.length){ toast("Nothing is written on this page"); return; }
+  const kept = p.items.length - written.length;
+  deleteItems(written);
+  closePops();
+  toast(kept ? "Writing rubbed out, " + kept + (kept === 1 ? " file" : " files") + " kept — Ctrl+Z brings it back"
+             : "Page cleared — Ctrl+Z brings it back");
+}
+$("#wipeink").addEventListener("click", clearInk);
+$("#wipeall").addEventListener("click", clearPage);
+function showWipeNote(){
+  const p = page();
+  const written = p.items.filter(it => !isMedia(it)).length;
+  const files = p.items.length - written;
+  $("#wipenote").textContent = files
+    ? written + (written === 1 ? " thing" : " things") + " written, over " + files + (files === 1 ? " file" : " files") + " on this page"
+    : written + (written === 1 ? " thing" : " things") + " written on this page";
+}
 
 /* ---------------- tools & popovers ---------------- */
 const POP_FOR = { ink:"#penpop", pen:"#penpop", marker:"#penpop", eraser:"#eraserpop", shape:"#shapepop", text:"#textpop" };
@@ -3157,6 +3248,7 @@ function togglePop(sel, anchor, force){
   const wasOpen = p.classList.contains("open");
   closePops();
   if (wasOpen && !force) return;
+  if (sel === "#eraserpop") showWipeNote();
   p.classList.add("open");
   positionPop(p, anchor);
 }
@@ -3328,13 +3420,38 @@ if (fsSupported){
 /* ---------------- render a page to an offscreen canvas ---------------- */
 // paint a page onto any canvas through the given view (scale + offset)
 function paintPage(c, p, w, h, view){
+  const live = (p === page() && drawingItem) ? drawingItem : null;
+  const items = p.items;
   c.save();
   c.setTransform(1, 0, 0, 1, 0, 0);
   c.fillStyle = THEME.board;
   c.fillRect(0, 0, w, h);
   c.translate(view.x, view.y); c.scale(view.s, view.s);
-  for (const it of p.items) paintItem(c, it);
-  if (p === page() && drawingItem) paintItem(c, drawingItem);
+  for (const it of items) if (isMedia(it)) paintItem(c, it);
+  c.restore();
+
+  // the writing goes on its own sheets first, so an eraser stroke saved on the
+  // page cannot cut a hole through the picture below it
+  const need = sheetsNeeded(items, live);
+  const sheet = (mine) => {
+    const off = document.createElement("canvas");
+    off.width = Math.max(1, Math.round(w)); off.height = Math.max(1, Math.round(h));
+    const oc = off.getContext("2d"); sharpen(oc);
+    oc.translate(view.x, view.y); oc.scale(view.s, view.s);
+    for (const it of items){
+      if (isMedia(it)) continue;
+      if (it.erase || mine(it)) paintItem(oc, it);
+    }
+    if (live && (live.erase || mine(live))) paintItem(oc, live);
+    return off;
+  };
+  c.save(); c.setTransform(1, 0, 0, 1, 0, 0);
+  if (need.hl){
+    c.globalCompositeOperation = state.theme === "dark" ? "screen" : "multiply";
+    c.drawImage(sheet(isHighlighter), 0, 0);
+    c.globalCompositeOperation = "source-over";
+  }
+  if (need.ink) c.drawImage(sheet((it) => !isHighlighter(it)), 0, 0);
   c.restore();
 }
 // an export is the page's own content, trimmed and padded; an empty page
@@ -3922,7 +4039,10 @@ window.addEventListener("keydown", (e) => {
       break;
     case "p": case "P": setTool("pen"); break;
     case "m": case "M": setTool("marker"); break;
-    case "e": case "E": setTool("eraser"); break;
+    case "e": case "E":
+      if (e.shiftKey) clearInk();              // rub the page clean, keep the files
+      else setTool("eraser");
+      break;
     case "r": case "R": setTool("shape"); break;
     case "t": case "T": setTool("text"); break;
     case "v": case "V": setTool("select"); break;

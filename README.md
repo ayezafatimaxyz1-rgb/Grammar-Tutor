@@ -20,7 +20,14 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   never turned into a shape
 * Marker with 10 colours, 5 thicknesses and an opacity slider
 * Highlighter that blends with whatever is underneath
-* Eraser in two modes: erase ink (pixel eraser) or erase a whole object
+* Eraser in two modes: erase ink (pixel eraser) or erase a whole object. Either way it goes through
+  writing, shapes and text only: photos, videos and PDF pages are never rubbed out or cut into, so
+  you can wipe your working off a worksheet and the worksheet is still there. To remove a file,
+  pick it with the select tool and press Del.
+* **Rub out everything written** clears the page of writing, shapes and text in one go and leaves
+  the photos, videos and PDF pages behind, so the same worksheet is ready for the next take. It is
+  in the eraser panel, or `Shift`+`E`, and one undo brings it all back. **Remove everything, files
+  too** is next to it, and the bin in the tool rail does the same.
 * A library of 107 shapes across five groups: Basic (square, circle, polygons, cube, ring, cross…),
   Arrows (plain, double, dashed, block, chevron, elbow, curved, U turn, zigzag, wave), Symbols
   (stars, heart, cloud, moon, sun, lightning, tick, cross out…), Flowchart (start/end, document,
