@@ -1922,10 +1922,147 @@ const SHAPE_LIB = {
                  const out = [O(0,.5, 1,.5)];
                  for (let i = 0; i <= 8; i++){ const x = i/8; out.push(O(x,.34, x,.66)); }
                  return out; } },
-  underline: { cat:"Callouts", label:"Double rule", make: () => [O(0,.38, 1,.38), O(0,.62, 1,.62)] }
+  underline: { cat:"Callouts", label:"Double rule", make: () => [O(0,.38, 1,.38), O(0,.62, 1,.62)] },
+
+  /* --- maths --- */
+  axes:      { cat:"Maths", label:"Axes", make: () => [
+                 O(.5,1, .5,.03), { pts:[U(.44,.13), U(.5,.03), U(.56,.13)], closed:false },
+                 O(0,.5, .97,.5), { pts:[U(.87,.44), U(.97,.5), U(.87,.56)], closed:false }] },
+  quadrant:  { cat:"Maths", label:"Grid axes", make: () => {
+                 const out = [O(.5,1, .5,.03), O(0,.5, .97,.5)];
+                 for (let i = 1; i <= 4; i++){
+                   const t = i / 5;
+                   out.push(O(t,.47, t,.53), O(1-t,.47, 1-t,.53), O(.47,t, .53,t), O(.47,1-t, .53,1-t));
+                 }
+                 return out; } },
+  angle:     { cat:"Maths", label:"Angle", make: () => [
+                 O(.04,1, .96,1), O(.04,1, .86,.12), { pts: arcPts(.04,1,.42,.42,-0.82,0,10), closed:false }] },
+  rightangle:{ cat:"Maths", label:"Right angle", make: () => [
+                 O(.06,.02, .06,.98), O(.06,.98, .98,.98), P(.06,.8, .24,.8, .24,.98, .06,.98)] },
+  protractor:{ cat:"Maths", label:"Protractor", make: () => {
+                 const out = [{ pts: arcPts(.5,.96,.48,.9,Math.PI,TAU,20), closed:false }, O(.02,.96, .98,.96)];
+                 for (let i = 1; i < 6; i++){
+                   const a = Math.PI + i * Math.PI / 6;
+                   out.push(O(.5 + Math.cos(a)*.38, .96 + Math.sin(a)*.72, .5 + Math.cos(a)*.48, .96 + Math.sin(a)*.9));
+                 }
+                 return out; } },
+  radius:    { cat:"Maths", label:"Radius", square:true, make: () => [
+                 circleP(.5,.5,.48,.48), O(.5,.5, .84,.16), circleP(.5,.5,.03,.03)] },
+  diameter:  { cat:"Maths", label:"Diameter", square:true, make: () => [circleP(.5,.5,.48,.48), O(.02,.5, .98,.5)] },
+  fraction:  { cat:"Maths", label:"Fraction", make: () => [
+                 O(.05,.5, .95,.5), P(.22,.06, .78,.06, .78,.4, .22,.4), P(.22,.6, .78,.6, .78,.94, .22,.94)] },
+  sqrt:      { cat:"Maths", label:"Square root", make: () => [
+                 O(.02,.62, .16,.62, .34,.97, .52,.06, .98,.06), O(.98,.06, .98,.2)] },
+  sigma:     { cat:"Maths", label:"Sum", make: () => [O(.92,.04, .08,.04, .52,.5, .08,.96, .92,.96)] },
+  integral:  { cat:"Maths", label:"Integral", make: () => {
+                 // a long eased S, with a small hook at each end
+                 const p = [...arcPts(.78,.09,.08,.06, Math.PI*1.9, Math.PI, 8)];
+                 for (let i = 0; i <= 20; i++){
+                   const t = i / 20;
+                   p.push(U(.5 + .2 * Math.cos(Math.PI * t), .09 + t * .82));
+                 }
+                 p.push(...arcPts(.22,.91,.08,.06, 0, Math.PI*0.9, 8));
+                 return [{ pts:p, closed:false }]; } },
+  matrix:    { cat:"Maths", label:"Matrix", make: () => [
+                 O(.22,.02, .06,.02, .06,.98, .22,.98), O(.78,.02, .94,.02, .94,.98, .78,.98),
+                 circleP(.36,.32,.05,.05), circleP(.64,.32,.05,.05), circleP(.36,.68,.05,.05), circleP(.64,.68,.05,.05)] },
+  cone:      { cat:"Maths", label:"Cone", make: () => [
+                 { pts:[U(.5,.02), ...arcPts(.5,.82,.46,.16,0,Math.PI,14), U(.5,.02)], closed:true },
+                 { pts: arcPts(.5,.82,.46,.16,Math.PI,TAU,14), closed:false }] },
+  sphere:    { cat:"Maths", label:"Sphere", square:true, make: () => [
+                 circleP(.5,.5,.48,.48), { pts: arcPts(.5,.5,.48,.17,0,Math.PI,16), closed:false },
+                 { pts: arcPts(.5,.5,.48,.17,Math.PI,TAU,16), closed:false }] },
+
+  /* --- chemistry --- */
+  benzene:   { cat:"Chemistry", label:"Benzene", square:true, make: () => [regular(6, 0), circleP(.5,.5,.27,.27)] },
+  benzene2:  { cat:"Chemistry", label:"Benzene bonds", square:true, make: () => {
+                 const out = [regular(6, 0)];
+                 const r = regular(6, 0).pts;
+                 for (let i = 0; i < 6; i += 2){
+                   const a = r[i], b = r[(i+1) % 6];
+                   const mx = (a.x+b.x)/2 - .5, my = (a.y+b.y)/2 - .5;
+                   const k = .86;
+                   out.push(O(.5 + (a.x-.5)*k - mx*.12, .5 + (a.y-.5)*k - my*.12,
+                              .5 + (b.x-.5)*k - mx*.12, .5 + (b.y-.5)*k - my*.12));
+                 }
+                 return out; } },
+  testtube:  { cat:"Chemistry", label:"Test tube", make: () => [
+                 { pts:[U(.28,.02), U(.28,.8), ...arcPts(.5,.8,.22,.18,Math.PI,0,12), U(.72,.02)], closed:false },
+                 O(.24,.02, .76,.02)] },
+  beaker:    { cat:"Chemistry", label:"Beaker", make: () => [
+                 O(.16,.04, .2,.94), O(.2,.94, .8,.94), O(.8,.94, .84,.04),
+                 O(.1,.04, .32,.04), O(.68,.04, .9,.04), O(.24,.52, .78,.52)] },
+  flask:     { cat:"Chemistry", label:"Flask", make: () => [
+                 { pts:[U(.38,.02), U(.38,.38), U(.06,.94), U(.94,.94), U(.62,.38), U(.62,.02)], closed:true },
+                 O(.32,.02, .68,.02), O(.2,.72, .8,.72)] },
+  atom:      { cat:"Chemistry", label:"Atom", square:true, make: () => {
+                 const out = [circleP(.5,.5,.1,.1)];
+                 for (let i = 0; i < 3; i++){
+                   const a = i * Math.PI / 3, c = Math.cos(a), s2 = Math.sin(a), pts = [];
+                   for (let k = 0; k <= 30; k++){
+                     const t = k / 30 * TAU, x = Math.cos(t)*.48, y = Math.sin(t)*.19;
+                     pts.push(U(.5 + x*c - y*s2, .5 + x*s2 + y*c));
+                   }
+                   out.push({ pts, closed:true });
+                 }
+                 return out; } },
+  bond2:     { cat:"Chemistry", label:"Double bond", vec:true, make: () => [O(0,-.05, 1,-.05), O(0,.05, 1,.05)] },
+  bond3:     { cat:"Chemistry", label:"Triple bond", vec:true, make: () => [O(0,-.08, 1,-.08), O(0,0, 1,0), O(0,.08, 1,.08)] },
+  equilib:   { cat:"Chemistry", label:"Equilibrium", vec:true, make: () => [
+                 O(0,-.06, 1,-.06), { pts:[U(.88,-.14), U(1,-.06)], closed:false },
+                 O(0,.06, 1,.06), { pts:[U(.12,.14), U(0,.06)], closed:false }] },
+  funnel:    { cat:"Chemistry", label:"Funnel", make: () => [
+                 O(.04,.04, .96,.04), O(.04,.04, .44,.56), O(.96,.04, .56,.56),
+                 O(.44,.56, .44,.98), O(.56,.56, .56,.98)] },
+  electron:  { cat:"Chemistry", label:"Shell", square:true, make: () => [
+                 circleP(.5,.5,.14,.14), circleP(.5,.5,.48,.48),
+                 circleP(.5,.02,.05,.05), circleP(.98,.5,.05,.05), circleP(.5,.98,.05,.05)] },
+
+  /* --- physics --- */
+  spring:    { cat:"Physics", label:"Spring", vec:true, make: () => {
+                 const p = [U(0,0), U(.08,0)];
+                 for (let i = 0; i < 6; i++){
+                   const x = .08 + i * .14;
+                   p.push(U(x + .035, -.16), U(x + .105, .16));
+                 }
+                 p.push(U(.92,0), U(1,0));
+                 return [{ pts:p, closed:false }]; } },
+  resistor:  { cat:"Physics", label:"Resistor", vec:true, make: () => [
+                 O(0,0, .22,0), P(.22,-.12, .78,-.12, .78,.12, .22,.12), O(.78,0, 1,0)] },
+  battery:   { cat:"Physics", label:"Battery", vec:true, make: () => [
+                 O(0,0, .38,0), O(.38,-.2, .38,.2), O(.5,-.1, .5,.1),
+                 O(.62,-.2, .62,.2), O(.74,-.1, .74,.1), O(.74,0, 1,0)] },
+  capacitor: { cat:"Physics", label:"Capacitor", vec:true, make: () => [
+                 O(0,0, .44,0), O(.44,-.18, .44,.18), O(.56,-.18, .56,.18), O(.56,0, 1,0)] },
+  bulb:      { cat:"Physics", label:"Bulb", vec:true, make: () => [
+                 O(0,0, .3,0), { pts: arcPts(.5,0,.2,.2,0,TAU,20), closed:true },
+                 O(.36,-.14, .64,.14), O(.64,-.14, .36,.14), O(.7,0, 1,0)] },
+  switchsym: { cat:"Physics", label:"Switch", vec:true, make: () => [
+                 O(0,0, .34,0), O(.34,0, .72,-.22), O(.66,0, 1,0),
+                 { pts: arcPts(.34,0,.04,.04,0,TAU,8), closed:true },
+                 { pts: arcPts(.66,0,.04,.04,0,TAU,8), closed:true }] },
+  lensconv:  { cat:"Physics", label:"Convex lens", make: () => [
+                 // both faces bulge outward, which is what makes it convex
+                 { pts:[...arcPts(1.45,.5,1.35,1.35, Math.PI-0.38, Math.PI+0.38, 16),
+                        ...arcPts(-.45,.5,1.35,1.35, -0.38, 0.38, 16)], closed:true }] },
+  lensconc:  { cat:"Physics", label:"Concave lens", make: () => [
+                 P(.18,.02, .82,.02, .62,.5, .82,.98, .18,.98, .38,.5)] },
+  prism:     { cat:"Physics", label:"Prism", make: () => [
+                 P(.5,.04, .96,.94, .04,.94), O(.02,.52, .34,.52), O(.66,.6, .98,.72)] },
+  pulley:    { cat:"Physics", label:"Pulley", make: () => [
+                 circleP(.5,.32,.3,.3), circleP(.5,.32,.06,.06),
+                 O(.2,.32, .2,.98), O(.8,.32, .8,.98)] },
+  incline:   { cat:"Physics", label:"Incline", make: () => [
+                 P(.02,.96, .98,.96, .98,.2), P(.6,.52, .78,.4, .88,.56, .7,.68)] },
+  magnet:    { cat:"Physics", label:"Magnet", make: () => [
+                 { pts:[U(.04,.98), U(.04,.5), ...arcPts(.5,.5,.46,.46,Math.PI,TAU,16), U(.96,.98),
+                        U(.7,.98), U(.7,.5), ...arcPts(.5,.5,.2,.2,TAU,Math.PI,12), U(.3,.98)], closed:true }] },
+  wavephys:  { cat:"Physics", label:"Ray", vec:true, make: () => [
+                 O(0,0, 1,0), { pts:[U(.44,-.08), U(.56,0), U(.44,.08)], closed:false },
+                 { pts:[U(.88,-.08), U(1,0), U(.88,.08)], closed:false }] }
 };
 
-const SHAPE_CATS = ["Basic", "Arrows", "Symbols", "Flowchart", "Callouts"];
+const SHAPE_CATS = ["Basic", "Arrows", "Maths", "Chemistry", "Physics", "Symbols", "Flowchart", "Callouts"];
 
 // the shape's outline in world units, cached until its box changes
 function shapePaths(it){
@@ -2075,12 +2212,83 @@ function recognize(src){
     box = { x1: mx - side/2, y1: my - side/2, x2: mx + side/2, y2: my + side/2 };
   }
 
+  // a hexagon sits as close to a circle as makes no difference on radius alone,
+  // so ask whether the ink actually runs along straight edges first
+  if (corners.length >= 5 && corners.length <= 8){
+    const even = regularise(corners);
+    // straight edges or a curve? whichever the ink actually follows
+    if (even && polyFit(pts, even) < circleFit(pts, bb) * 0.75)
+      return mk(Object.assign({ shape:"poly", pts: even }, box));
+  }
   if (err < 0.13 && corners.length > 4) return mk(Object.assign({ shape:"ellipse" }, box));
   if (corners.length === 4 && edgesAxisAligned(corners, 15)) return mk(Object.assign({ shape:"rect" }, box));
-  if (corners.length >= 3 && corners.length <= 8)
-    return mk(Object.assign({ shape:"poly", pts: corners.map(p => ({ x:p.x, y:p.y })) }, box));
+  if (corners.length >= 3 && corners.length <= 8){
+    const reg = regularise(corners);      // an even triangle, square, pentagon, hexagon
+    return mk(Object.assign({ shape:"poly", pts: (reg || corners).map(p => ({ x:p.x, y:p.y })) }, box));
+  }
   if (err < 0.2) return mk(Object.assign({ shape:"ellipse" }, box));
   return null;
+}
+
+// how closely the ink follows the straight edges of a polygon, as a fraction
+// of its size: small means it was drawn with edges, not as a curve
+function polyFit(pts, corners){
+  const bb = rawBox(pts), diag = Math.hypot(bb.w, bb.h) || 1;
+  let sum = 0;
+  for (const p of pts){
+    let best = Infinity;
+    for (let i = 0; i < corners.length; i++){
+      const a = corners[i], b = corners[(i + 1) % corners.length];
+      best = Math.min(best, distToSeg(p, a, b));
+    }
+    sum += best;
+  }
+  return (sum / pts.length) / diag;
+}
+
+// the same measure against the best fitting ellipse, for comparison
+function circleFit(pts, bb){
+  const cx = bb.x + bb.w/2, cy = bb.y + bb.h/2;
+  const rx = Math.max(1, bb.w/2), ry = Math.max(1, bb.h/2);
+  const diag = Math.hypot(bb.w, bb.h) || 1;
+  let sum = 0;
+  for (const p of pts){
+    const r = Math.hypot((p.x - cx) / rx, (p.y - cy) / ry);
+    sum += Math.abs(r - 1) * ((rx + ry) / 2);
+  }
+  return (sum / pts.length) / diag;
+}
+
+// A figure drawn with even sides is almost always meant to be even: an
+// equilateral triangle, a square, a regular pentagon, a benzene hexagon.
+function regularise(corners){
+  const n = corners.length;
+  if (n < 3 || n > 8) return null;
+  let cx = 0, cy = 0;
+  corners.forEach(p => { cx += p.x; cy += p.y; });
+  cx /= n; cy /= n;
+  const rs = corners.map(p => Math.hypot(p.x - cx, p.y - cy));
+  const mean = rs.reduce((a, b) => a + b, 0) / n;
+  if (!mean) return null;
+  if (rs.some(r => Math.abs(r - mean) / mean > 0.18)) return null;      // not evenly spaced out
+
+  const angs = corners.map(p => Math.atan2(p.y - cy, p.x - cx)).sort((a, b) => a - b);
+  const step = Math.PI * 2 / n;
+  for (let i = 0; i < n; i++){
+    let gap = angs[(i + 1) % n] - angs[i];
+    if (gap < 0) gap += Math.PI * 2;
+    if (Math.abs(gap - step) > step * 0.3) return null;                 // corners not evenly around
+  }
+  // keep the orientation it was drawn at
+  let rot = 0;
+  angs.forEach((a, i) => { rot += a - i * step; });
+  rot /= n;
+  const out = [];
+  for (let i = 0; i < n; i++){
+    const a = rot + i * step;
+    out.push({ x: cx + Math.cos(a) * mean, y: cy + Math.sin(a) * mean });
+  }
+  return out;
 }
 
 // an arrow drawn in one go: a long shaft, then a short barb folded back
@@ -2737,11 +2945,36 @@ function renderPages(){
   $("#edgeprev").classList.toggle("show", many && state.cur > 0);
   $("#edgenext").classList.toggle("show", many && state.cur < state.pages.length - 1);
 }
+// the biggest picture on a page: a PDF page, a worksheet, a photo
+function anchorPic(pg){
+  let best = null, area = 0;
+  for (const it of (pg.items || [])){
+    if (it.type !== "image" && it.type !== "video") continue;
+    const a = it.w * it.h;
+    if (a > area){ area = a; best = it; }
+  }
+  return best;
+}
 function gotoPage(i){
   if (i < 0 || i >= state.pages.length || i === state.cur) return;
   hwFlush(); hwRun = null;
   commitText();
+
+  // hold the framing: whatever size you zoomed this page to, the next one
+  // arrives at the same size in the same place on screen
+  const from = anchorPic(page());
+  const held = from ? { s: state.view.s, w: from.w, at: toScreen(from.x, from.y) } : null;
+
   state.cur = i; state.sel = null;
+
+  const to = anchorPic(page());
+  if (held && to && to.w > 0){
+    const s2 = held.s * held.w / to.w;
+    state.view.s = s2;
+    state.view.x = held.at.x - to.x * s2;
+    state.view.y = held.at.y - to.y * s2;
+    updateZoomLabel();
+  }
   renderPages(); syncHistoryButtons(); save(); draw();
 }
 $("#edgeprev").addEventListener("click", () => gotoPage(state.cur - 1));

@@ -17,7 +17,7 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Marker with 10 colours, 5 thicknesses and an opacity slider
 * Highlighter that blends with whatever is underneath
 * Eraser in two modes: erase ink (pixel eraser) or erase a whole object
-* A library of 69 shapes across five groups: Basic (square, circle, polygons, cube, ring, cross…),
+* A library of 107 shapes across five groups: Basic (square, circle, polygons, cube, ring, cross…),
   Arrows (plain, double, dashed, block, chevron, elbow, curved, U turn, zigzag, wave), Symbols
   (stars, heart, cloud, moon, sun, lightning, tick, cross out…), Flowchart (start/end, document,
   database, decision, subprocess, off page…) and Callouts (speech and thought bubbles, banner,
@@ -26,7 +26,9 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   filled, and you can write on top of any of them with the pen.
 * Text, double click any text to edit it again
 * Shape recognition: draw a rough box, circle, triangle, diamond, arrow or line freehand and it
-  is redrawn cleanly the moment you lift the pen. A box drawn almost square becomes a square, a
+  is redrawn cleanly the moment you lift the pen. A figure drawn with even sides becomes an even
+  one: an equilateral triangle, a square, a regular pentagon, a benzene hexagon. Circles and ovals
+  stay curves. A box drawn almost square becomes a square, a
   nearly round circle becomes a circle, and a nearly level line becomes level. Handwriting, small
   marks, curves, checkmarks and scribbles are left exactly as drawn. Undo once to keep your
   original sketch. Toggle it in the marker panel or with `S`.
@@ -53,7 +55,10 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * A PDF becomes one board page per page, so you can annotate a worksheet or a handout. The first
   page appears straight away and the rest arrive while you are already writing.
 * Size or move one page of a document and every other page of it follows, each keeping its own
-  shape, so flipping through never jumps. The zoom you set stays as you turn pages.
+  shape, so flipping through never jumps.
+* Whatever size you zoom a page or a photo to, next and back bring the following one up at the
+  same size in the same place on screen. It works for pages of different shapes and for photos
+  that are not the same size as each other.
 * Document mode turns pages by scrolling, by a two finger swipe, or with the arrows at the
   edges of the board. It switches on by itself when you open a PDF.
 * Drag to move, corner handles to resize, Del to remove
