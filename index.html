@@ -115,6 +115,8 @@ input[type=range]{width:100%;accent-color:var(--accent)}
 .seg button.on{background:var(--accent);color:var(--accent-t)}
 .mini{font-size:12px;color:var(--muted)}
 .fxrow{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.fxrow.four{grid-template-columns:repeat(4,1fr)}
+.fxrow.four .fxbtn{padding:9px 2px;font-size:12px}
 .fxbtn{padding:8px 4px;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);font-size:12.5px;font-weight:600;color:var(--muted)}
 .fxbtn.on{background:var(--accent);color:var(--accent-t);border-color:transparent}
 .meter{flex:1;height:10px;border-radius:6px;background:var(--panel-2);border:1px solid var(--border);overflow:hidden;min-width:70px}
@@ -248,9 +250,9 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
     <!-- tool rail -->
     <div class="rail">
-      <button class="tbtn" data-tool="ink" title="Pen — for writing (W)"><svg viewBox="0 0 24 24"><path d="M4.5 19.5 7 13l7.4-7.4a2 2 0 0 1 2.8 0l1.2 1.2a2 2 0 0 1 0 2.8L11 17z"/><path d="m7 13 4 4"/><path d="M4.5 19.5 6 18.6"/></svg></button>
-      <button class="tbtn" data-tool="pen" title="Marker (P)"><svg viewBox="0 0 24 24"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4z"/><path d="m13.6 6.4 4 4"/></svg></button>
-      <button class="tbtn" data-tool="marker" title="Highlighter (M)"><svg viewBox="0 0 24 24"><path d="M4 20h6"/><path d="m9 15 8-8 3.5 3.5-8 8H9z"/><path d="M9 15v3.5"/></svg></button>
+      <button class="tbtn" data-tool="ink" title="Pen — a fine nib for writing (W)"><svg viewBox="0 0 24 24"><path d="M17.8 3.4 20.6 6.2 10.9 15.9 6.8 17.2 8.1 13.1z" fill="currentColor" stroke="none"/><path d="M6.8 17.2 3.6 20.4"/><path d="M3.6 20.4h5.1" stroke-width="1.4"/></svg></button>
+      <button class="tbtn" data-tool="pen" title="Marker — a thick line (P)"><svg viewBox="0 0 24 24"><path d="M17.4 3.3 20.7 6.6 13.9 13.4 9 14.9l1.5-4.9z" fill="currentColor" stroke="none"/><path d="M3.4 20.1c3.2-3.4 6.4-3.4 9.6 0" stroke-width="3.4"/></svg></button>
+      <button class="tbtn" data-tool="marker" title="Highlighter — see-through colour (M)"><svg viewBox="0 0 24 24"><path d="M3.2 9.1h17.6v6H3.2z" fill="currentColor" stroke="none" opacity=".32"/><path d="M4.5 5h15"/><path d="M4.5 12.1h11.5"/><path d="M4.5 19.2h15"/></svg></button>
       <button class="tbtn" data-tool="eraser" title="Eraser (E)"><svg viewBox="0 0 24 24"><path d="m15 4 5 5-9 9H6l-2-2z"/><path d="M8.5 10.5 14 16"/><path d="M11 20h9"/></svg></button>
       <button class="tbtn" data-tool="shape" title="Shapes (R)"><svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="10" height="10" rx="1.5"/><circle cx="15.5" cy="15.5" r="5"/></svg></button>
       <button class="tbtn" data-tool="text" title="Text (T)"><svg viewBox="0 0 24 24"><path d="M5 6.5V5h14v1.5"/><path d="M12 5v14"/><path d="M9 19h6"/></svg></button>
@@ -313,10 +315,20 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
 
     <div class="pop" id="textpop">
       <p class="mini" style="margin:0 0 10px">Tap anywhere and type. The line keeps going as far as you write; Enter starts a new one.</p>
-      <h4>Text size <span class="mini" id="tsval">44 px</span></h4>
-      <input type="range" id="tsize" min="16" max="160" value="44">
+      <h4>Style</h4>
+      <div class="fxrow four" id="tfontrow"></div>
+      <h4 style="margin-top:14px">Size</h4>
+      <div class="seg" id="tsizeseg">
+        <button data-s="26">Small</button>
+        <button data-s="44" class="on">Medium</button>
+        <button data-s="76">Large</button>
+        <button data-s="120">Huge</button>
+      </div>
+      <input type="range" id="tsize" min="16" max="200" value="44" style="margin-top:10px">
+      <p class="mini" id="tsval" style="margin:4px 0 0">44 px</p>
       <h4 style="margin-top:14px">Colour</h4>
       <div class="swatches" id="txswatches"></div>
+      <p class="mini" id="tselnote" style="margin:10px 0 0"></p>
     </div>
 
     <div class="pop" id="recpop">
@@ -442,6 +454,7 @@ kbd{background:var(--panel-2);border:1px solid var(--border);border-bottom-width
       <div><span>Undo / Redo</span><kbd>Ctrl+Z</kbd> <kbd>Ctrl+Y</kbd></div>
       <div><span>Delete selection</span><kbd>Del</kbd></div>
       <div><span>Rub out everything written</span><kbd>Shift</kbd>+<kbd>E</kbd></div>
+      <div><span>Text styles</span>Clean · Hand · Serif · Typed</div>
       <div><span>Previous / next page</span><kbd>←</kbd> <kbd>→</kbd></div>
       <div><span>Turn pages by scrolling</span>document mode</div>
       <div><span>New page</span><kbd>Ctrl+N</kbd></div>
@@ -500,6 +513,7 @@ const state = {
   shapeColor: PALETTE[2],
   textColor: PALETTE[0],
   textSize: 44,
+  textStyle: "clean",
   view: { s: 1, x: 0, y: 0 },
   sel: null,
   docMode: false,
@@ -708,7 +722,7 @@ function bboxOf(it){
 
 // text wraps inside its own width instead of running off in one long line
 function wrapText(it){
-  const key = it.text + "|" + it.size + "|" + (it.maxW || 0);
+  const key = it.text + "|" + it.size + "|" + (it.font || "clean") + "|" + (it.maxW || 0);
   if (it._key === key) return it._lines;
   ctx.save();
   ctx.font = textFont(it);
@@ -740,8 +754,24 @@ function measureText(it){
   ctx.restore();
   return { w: w + 12, h: lines.length * it.size * 1.25 + 8, lines };
 }
+// four ways of lettering, all built from fonts every device already has, so
+// nothing has to be downloaded and a saved board opens the same anywhere
+const TEXT_FONTS = {
+  clean:  { label:"Clean",  weight:600, style:"normal",
+            family:"-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Helvetica,Arial,sans-serif" },
+  // the slant is what keeps this one looking handwritten on a device with no
+  // handwriting face of its own to fall back on
+  hand:   { label:"Hand",   weight:700, style:"italic",
+            family:"Caveat,'Bradley Hand','Segoe Print','Chalkboard SE','Comic Sans MS','Segoe Script',cursive" },
+  serif:  { label:"Serif",  weight:600, style:"normal",
+            family:"Georgia,'Iowan Old Style','Times New Roman',serif" },
+  typed:  { label:"Typed",  weight:700, style:"normal",
+            family:"'Courier New',ui-monospace,SFMono-Regular,Menlo,monospace" }
+};
+function fontOf(it){ return TEXT_FONTS[it && it.font] || TEXT_FONTS.clean; }
 function textFont(it){
-  return "600 " + it.size + "px -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,Helvetica,Arial,sans-serif";
+  const f = fontOf(it);
+  return f.style + " " + f.weight + " " + it.size + "px " + f.family;
 }
 
 /* ---------------- drawing ---------------- */
@@ -1080,9 +1110,10 @@ function applyOp(op, undo){
     const i = p.items.indexOf(undo ? op.to : op.from);
     if (i > -1) p.items[i] = undo ? op.from : op.to;
   } else if (op.kind === "modmany"){
-    op.entries.forEach(e => Object.assign(e.item, undo ? e.before : e.after));
+    op.entries.forEach(e => { Object.assign(e.item, undo ? e.before : e.after); e.item._key = null; });
   } else if (op.kind === "mod"){
     Object.assign(op.item, undo ? op.before : op.after);
+    op.item._key = null;                      // a size or a style change re-measures
   }
 }
 function undo(){
@@ -1535,7 +1566,8 @@ function hwFlush(){
   const size = Math.max(12, box.h / 0.72);
   const it = {
     type:"text", text, x: box.x - size * 0.06, y: box.y - size * 0.17,
-    color: state.textColor, auto: isAutoInk(state.textColor), size
+    color: state.textColor, auto: isAutoInk(state.textColor), size,
+    font: state.textStyle
   };
   items.push(it);
   pushOp({ kind:"hw", removed, added: it });
@@ -2552,6 +2584,7 @@ cv.addEventListener("pointerdown", (e) => {
     }
     const hit = pickAt(wp);
     state.sel = hit;
+    adoptTextStyle(hit);
     if (hit) action = { mode:"move", item: hit, before: snapshot(hit), start: wp };
     else action = { mode:"marquee", sx: sp.x, sy: sp.y };
     draw(); return;
@@ -2859,15 +2892,20 @@ function keepTextFocus(){
 }
 function openTextEditor(wp, item){
   if (editing){ reopening = true; commitText(); }
-  editing = { item: item || null, x: item ? item.x : wp.x, y: item ? item.y : wp.y };
+  editing = { item: item || null, x: item ? item.x : wp.x, y: item ? item.y : wp.y,
+              size: item ? item.size : state.textSize,
+              font: item ? (item.font || "clean") : state.textStyle };
   const size = item ? item.size : state.textSize;
+  const font = fontOf(item || { font: state.textStyle });
   const color = item ? inkOf(item) : (isAutoInk(state.textColor) ? inkOf({ auto:true }) : state.textColor);
   const s = toScreen(editing.x, editing.y);
   te.style.display = "block";
   te.style.left = s.x + "px";
   te.style.top  = s.y + "px";
   te.style.fontSize = (size * state.view.s) + "px";
-  te.style.fontWeight = "600";
+  te.style.fontFamily = font.family;
+  te.style.fontWeight = font.weight;
+  te.style.fontStyle = font.style;
   te.style.color = color;
   editing.maxW = item ? item.maxW : 0;          // no box: the line grows as you type
   te.style.whiteSpace = editing.maxW ? "pre-wrap" : "pre";
@@ -2915,7 +2953,8 @@ function commitText(){
     }
   } else if (txt){
     const it = { type:"text", text: txt, x: ed.x, y: ed.y, color: state.textColor,
-                 auto: isAutoInk(state.textColor), size: state.textSize };
+                 auto: isAutoInk(state.textColor), size: ed.size || state.textSize,
+                 font: ed.font || state.textStyle };
     if (ed.maxW) it.maxW = ed.maxW;
     addItem(it);
   }
@@ -3249,6 +3288,7 @@ function togglePop(sel, anchor, force){
   closePops();
   if (wasOpen && !force) return;
   if (sel === "#eraserpop") showWipeNote();
+  if (sel === "#textpop") syncTextPanel();
   p.classList.add("open");
   positionPop(p, anchor);
 }
@@ -3362,7 +3402,74 @@ $("#snapchk").addEventListener("change", (e) => {
 });
 $("#opacity").addEventListener("input", (e) => { state.opacity = e.target.value / 100; $("#opval").textContent = e.target.value + "%"; save(); });
 $("#ersize").addEventListener("input", (e) => { state.eraserSize = +e.target.value; $("#ersizeval").textContent = e.target.value + " px"; draw(); save(); });
-$("#tsize").addEventListener("input", (e) => { state.textSize = +e.target.value; $("#tsval").textContent = e.target.value + " px"; save(); });
+$("#tsize").addEventListener("input", (e) => setTextSize(+e.target.value));
+$$("#tsizeseg button").forEach(b => b.addEventListener("click", () => setTextSize(+b.dataset.s)));
+// a size or a style is for the next thing you type, and for the piece of text
+// you have picked up, so changing one in front of you actually changes it
+function setTextSize(n){
+  state.textSize = Math.min(200, Math.max(16, Math.round(n)));
+  restyle({ size: state.textSize });
+  syncTextPanel(); save();
+}
+function setTextStyle(k){
+  if (!TEXT_FONTS[k]) return;
+  state.textStyle = k;
+  restyle({ font: k });
+  syncTextPanel(); save();
+}
+// what you are typing right now, and the piece of text you have picked up,
+// both follow the panel, so a style is something you can see before you commit
+function restyle(change){
+  if (editing){
+    Object.assign(editing, change);
+    const f = fontOf({ font: editing.font });
+    te.style.fontSize = (editing.size * state.view.s) + "px";
+    te.style.fontFamily = f.family;
+    te.style.fontWeight = f.weight;
+    te.style.fontStyle = f.style;
+    autoGrow();
+    return;
+  }
+  const it = state.sel;
+  if (!it || it.type !== "text") return;
+  const before = { size: it.size, font: it.font || "clean" };
+  Object.assign(it, change);
+  it._key = null;
+  pushOp({ kind:"mod", item: it, before, after: { size: it.size, font: it.font || "clean" } });
+  draw();
+}
+function buildTextFonts(){
+  const el = $("#tfontrow"); el.innerHTML = "";
+  for (const k of Object.keys(TEXT_FONTS)){
+    const f = TEXT_FONTS[k];
+    const b = document.createElement("button");
+    b.className = "fxbtn" + (state.textStyle === k ? " on" : "");
+    b.textContent = f.label;
+    b.style.fontFamily = f.family;
+    b.style.fontWeight = f.weight;
+    b.style.fontStyle = f.style;
+    b.addEventListener("click", () => setTextStyle(k));
+    el.appendChild(b);
+  }
+}
+// picking up a piece of text brings its size and style into the panel, the way
+// every editor does, so the next change starts from what is in front of you
+function adoptTextStyle(it){
+  if (!it || it.type !== "text") return;
+  state.textSize = it.size;
+  state.textStyle = TEXT_FONTS[it.font] ? it.font : "clean";
+  syncTextPanel();
+}
+function syncTextPanel(){
+  $("#tsize").value = state.textSize;
+  $("#tsval").textContent = state.textSize + " px";
+  $$("#tsizeseg button").forEach(b => b.classList.toggle("on", +b.dataset.s === state.textSize));
+  $$("#tfontrow .fxbtn").forEach((b, i) => b.classList.toggle("on", Object.keys(TEXT_FONTS)[i] === state.textStyle));
+  const sel = state.sel && state.sel.type === "text";
+  $("#tselnote").textContent = sel
+    ? "Changing these also changes the text you have picked."
+    : "Picking a piece of text with the select tool lets you restyle it.";
+}
 $("#shfill").addEventListener("change", (e) => { state.shapeFill = e.target.checked; save(); });
 $$("#hwmode button").forEach(b => b.addEventListener("click", () => {
   state.hwMode = b.dataset.mode;
@@ -3980,7 +4087,7 @@ function save(){
           stylusOnly: state.stylusOnly, hw: state.hw, hwMode: state.hwMode, docMode: state.docMode,
           voiceFx: state.voiceFx, shape: state.shape,
           shapeFill: state.shapeFill, shapeColor: state.shapeColor,
-          textColor: state.textColor, textSize: state.textSize,
+          textColor: state.textColor, textSize: state.textSize, textStyle: state.textStyle,
           recSrc: rec.src, mic: rec.mic, sys: rec.sys, quality: rec.quality,
           recFormat: rec.format, recGuide: state.recGuide
         }
@@ -4005,7 +4112,8 @@ function load(){
     voiceFx: pref.voiceFx || "none",
     shape: pref.shape || state.shape, shapeFill: !!pref.shapeFill,
     shapeColor: pref.shapeColor || state.shapeColor,
-    textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize
+    textColor: pref.textColor || state.textColor, textSize: pref.textSize || state.textSize,
+    textStyle: TEXT_FONTS[pref.textStyle] ? pref.textStyle : "clean"
   });
   rec.src = canScreen ? (pref.recSrc || "board") : "board";
   rec.quality = pref.quality || "1080";
@@ -4077,7 +4185,7 @@ function boot(){
 
   $("#opacity").value = Math.round(state.opacity * 100); $("#opval").textContent = Math.round(state.opacity * 100) + "%";
   $("#ersize").value = state.eraserSize; $("#ersizeval").textContent = state.eraserSize + " px";
-  $("#tsize").value = state.textSize;    $("#tsval").textContent = state.textSize + " px";
+  buildTextFonts(); syncTextPanel();
   $("#shfill").checked = state.shapeFill;
   $("#snapchk").checked = state.snap;
   $("#styluschk").checked = state.stylusOnly;
@@ -4109,6 +4217,14 @@ function boot(){
   if (matchMedia("(pointer: coarse)").matches && !localStorage.getItem(STORE_KEY + "-seen")){
     setTimeout(() => toast("Pinch to zoom · tap a tool twice for its options"), 900);
     try { localStorage.setItem(STORE_KEY + "-seen", "1"); } catch (e){}
+  }
+
+  // a web font that arrives after the first paint changes how wide the text is
+  if (document.fonts && document.fonts.ready){
+    document.fonts.ready.then(() => {
+      state.pages.forEach(pg => pg.items.forEach(it => { if (it.type === "text") it._key = null; }));
+      buildTextFonts(); draw();
+    }).catch(() => {});
   }
 
   // preload any stored images so the first paint is complete

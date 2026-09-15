@@ -16,6 +16,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   browser's best filter so they stay clean when you zoom.
 
 **Drawing**
+* The three writing tools look like what they do: a fine nib for the pen, a fat nib with a thick
+  stroke for the marker, and a band of colour across a line of text for the highlighter
 * Pen for writing: a fine nib that thins and thickens with the speed of your hand, and is
   never turned into a shape
 * Marker with 10 colours, 5 thicknesses and an opacity slider
@@ -35,7 +37,10 @@ Open `index.html` and it works. No build step, no server, no dependencies.
   tag, frame, braces, brackets, table, number line). Square and circle stay perfectly square
   whichever way you drag, so no Shift key is needed on a touch screen. Any closed shape can be
   filled, and you can write on top of any of them with the pen.
-* Text, double click any text to edit it again
+* Text in four styles — **Clean**, **Hand**, **Serif** and **Typed** — and four sizes at a tap,
+  Small, Medium, Large and Huge, with a slider for anything in between. Pick a piece of text with
+  the select tool and the panel shows its own style, so changing the style or the size there
+  changes that text. Double click any text to edit it again.
 * Shape recognition: draw a rough box, circle, triangle, diamond, arrow or line freehand and it
   is redrawn cleanly the moment you lift the pen. A figure drawn with even sides becomes an even
   one: an equilateral triangle, a square, a regular pentagon, a benzene hexagon. Circles and ovals
