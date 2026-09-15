@@ -510,18 +510,34 @@ const lctx = layer.getContext("2d");
 let layerDirty = true;
 let DPR = 1, VW = 0, VH = 0;
 
+// a full 3x screen is worth having on a phone or a retina laptop, but a huge
+// external monitor at 3x would ask for more canvas memory than a browser will
+// happily keep, so the backing store is allowed to grow up to this many pixels
+const PIXEL_BUDGET = 12e6;
+
 function resize(){
   const r = $("#work").getBoundingClientRect();
-  DPR = Math.min(window.devicePixelRatio || 1, 2.5);
   VW = Math.max(1, Math.round(r.width));
   VH = Math.max(1, Math.round(r.height));
+  let dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const budget = Math.sqrt(PIXEL_BUDGET / (VW * VH));
+  DPR = Math.max(1, Math.min(dpr, budget));
   const even = (n) => Math.max(2, Math.round(n / 2) * 2);
   cv.width  = even(VW * DPR);
   cv.height = even(VH * DPR);
   cv.style.width  = VW + "px";
   cv.style.height = VH + "px";
   layer.width = cv.width; layer.height = cv.height;
+  // resizing a canvas resets its context, so the resampling quality used for
+  // photos and PDF pages has to be asked for again every time
+  sharpen(ctx); sharpen(lctx);
   draw();
+}
+// pictures are rarely shown at exactly their own size: without this the browser
+// picks the cheapest filter and a zoomed worksheet turns to mush
+function sharpen(c){
+  c.imageSmoothingEnabled = true;
+  c.imageSmoothingQuality = "high";
 }
 window.addEventListener("resize", () => { resize(); clampView(); });
 window.addEventListener("orientationchange", () => setTimeout(() => { resize(); fitView(); }, 250));
@@ -2889,17 +2905,17 @@ async function importPdf(file){
   const render1 = async (n) => {
     const pg = await doc.getPage(n);
     const base = pg.getViewport({ scale: 1 });
-    // a whiteboard never needs more than screen resolution, and this is the
-    // difference between a slow import and an instant one
-    const target = Math.max(VW, VH) * Math.min(2, DPR);
-    const scale = Math.min(target / Math.max(base.width, base.height), 2.2);
+    // rasterise a little above screen resolution so zooming into a worksheet
+    // stays readable, while still keeping the import quick
+    const target = Math.max(VW, VH) * Math.min(3, DPR + 0.5);
+    const scale = Math.min(target / Math.max(base.width, base.height), 3);
     const vp = pg.getViewport({ scale });
     const cvs = document.createElement("canvas");
     cvs.width = Math.round(vp.width); cvs.height = Math.round(vp.height);
     const c2 = cvs.getContext("2d", { alpha:false });
     c2.fillStyle = "#ffffff"; c2.fillRect(0, 0, cvs.width, cvs.height);
     await pg.render({ canvasContext: c2, viewport: vp }).promise;
-    const blob = await new Promise(r => cvs.toBlob(r, "image/jpeg", 0.82));
+    const blob = await new Promise(r => cvs.toBlob(r, "image/jpeg", 0.92));
     const mid = await dbPut(blob);
     const url = URL.createObjectURL(blob);
     if (mid) mediaURL.set(mid, url);
@@ -3233,13 +3249,15 @@ function pageToCanvas(p, scale){
   const off = document.createElement("canvas");
   if (!box){
     off.width = Math.round(VW * k); off.height = Math.round(VH * k);
-    paintPage(off.getContext("2d"), p, off.width, off.height,
+    const ec = off.getContext("2d"); sharpen(ec);
+    paintPage(ec, p, off.width, off.height,
               { s: state.view.s * k, x: state.view.x * k, y: state.view.y * k });
     return off;
   }
   off.width  = Math.max(2, Math.round((box.w + pad*2) * k));
   off.height = Math.max(2, Math.round((box.h + pad*2) * k));
-  paintPage(off.getContext("2d"), p, off.width, off.height,
+  const ec2 = off.getContext("2d"); sharpen(ec2);
+  paintPage(ec2, p, off.width, off.height,
             { s: k, x: (pad - box.x) * k, y: (pad - box.y) * k });
   return off;
 }
@@ -3489,7 +3507,7 @@ async function startRec(){
       rec.canvas = document.createElement("canvas");
       rec.canvas.width = rec.outW; rec.canvas.height = rec.outH;
       const rc = rec.canvas.getContext("2d", { alpha:false });
-      rc.imageSmoothingQuality = "high";
+      sharpen(rc);
       const k = rec.outW / srcW;
       let lastFrame = 0;
       const tick = (now) => {

@@ -10,6 +10,10 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Controls float on the board itself: tools down the right side, pages along the bottom
 * The surface keeps going in every direction, so pan and zoom instead of running out of room
 * Fullscreen with `F`, and the percentage button brings everything back into view
+* Everything is drawn at the full resolution of the screen, up to 3x, so ink, text and shapes are
+  as sharp as the display can show them. Retina laptops, phones and 4K monitors all get their own
+  true pixels rather than a scaled up picture, and photos and PDF pages are resampled with the
+  browser's best filter so they stay clean when you zoom.
 
 **Drawing**
 * Pen for writing: a fine nib that thins and thickens with the speed of your hand, and is
@@ -53,7 +57,8 @@ Open `index.html` and it works. No build step, no server, no dependencies.
 * Paste or drag and drop works too
 * A video sits on the board with its own play button, and you can write on it while it plays
 * A PDF becomes one board page per page, so you can annotate a worksheet or a handout. The first
-  page appears straight away and the rest arrive while you are already writing.
+  page appears straight away and the rest arrive while you are already writing. Pages are
+  rasterised above screen resolution, so zooming into small print stays readable.
 * Size or move one page of a document and every other page of it follows, each keeping its own
   shape, so flipping through never jumps.
 * Whatever size you zoom a page or a photo to, next and back bring the following one up at the
