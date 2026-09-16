@@ -3,15 +3,24 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Jost:wght@300;400;500&display=swap">
 
 <style>
+  /* Direction 03, debossed into hide: the whole site is a tanned leather
+     ground rather than near-black. Display type is stamped into it (dark,
+     with a light top edge); anything that has to be read stays cream. */
   :root {
-    --ink:      #0B0A09;
-    --bone:     #E8E3DA;
-    --bone-dim: rgba(232,227,218,0.56);
-    --bone-faint: rgba(232,227,218,0.30);
-    --brass:    #B08D57;
-    --brass-lt: #E8D2A6;
-    --burgundy: #5C1F2A;
-    --hair:     rgba(232,227,218,0.10);
+    --hide:      #4A3225;
+    --hide-deep: #33221A;
+    --hide-soft: #5A3E2E;
+    --hide-lit:  #96684A;
+    --emboss:      #2B1A10;
+    --emboss-edge: rgba(255,226,186,0.30);
+    --bone:      #F2E7D6;
+    --bone-dim:  rgba(242,231,214,0.64);
+    --bone-faint: rgba(242,231,214,0.36);
+    --brass:     #C79A5C;
+    --brass-lt:  #F0D9AE;
+    --burgundy:  #5C1F2A;
+    --hair:      rgba(255,226,186,0.16);
+    --seam:      rgba(29,17,10,0.42);
     --display:  'Bodoni Moda', Didot, 'Times New Roman', serif;
     --body:     'Jost', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
@@ -20,12 +29,27 @@
 
   body {
     margin: 0;
-    background: var(--ink);
+    background: var(--hide);
+    background-image:
+      radial-gradient(76% 60% at 26% 14%, rgba(150,104,74,0.52), rgba(74,50,37,0) 62%),
+      radial-gradient(70% 62% at 82% 88%, rgba(0,0,0,0.46), rgba(74,50,37,0) 64%);
+    background-attachment: fixed;
     color: var(--bone);
     font-family: var(--body);
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+  /* the grain, so it reads as hide and not as flat brown */
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: 70;
+    pointer-events: none; opacity: 0.26; mix-blend-mode: overlay;
+    filter: url(#hideGrain);
+  }
+  /* stamped into the leather: dark, with the light catching the top edge */
+  .deboss {
+    color: var(--emboss);
+    text-shadow: 0 1.5px 0 var(--emboss-edge);
   }
   body.locked { overflow: hidden; }
 
@@ -37,7 +61,7 @@
   body.flat #stage { height: 100vh; }
   body.flat .caption[data-cap="0"] { opacity: 1; }
   body.flat .caption[data-cap="1"], body.flat .caption[data-cap="2"], body.flat .caption[data-cap="3"] { display: none; }
-  body.flat .sticky { background: radial-gradient(52% 44% at 50% 40%, rgba(176,141,87,0.16), rgba(11,10,9,0) 72%); }
+  body.flat .sticky { background: radial-gradient(52% 44% at 50% 40%, rgba(240,206,158,0.18), rgba(74,50,37,0) 72%); }
 
   /* ---------- top bar ---------- */
   .bar {
@@ -47,7 +71,7 @@
     padding-top: env(safe-area-inset-top, 0px);
     height: calc(70px + env(safe-area-inset-top, 0px));
     border-bottom: 1px solid var(--hair);
-    background: rgba(11,10,9,0.55);
+    background: rgba(106,74,54,0.78);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   }
   .bar nav { display: flex; gap: clamp(14px, 2.4vw, 32px); }
@@ -56,7 +80,7 @@
     color: var(--bone-dim); text-decoration: none;
   }
   .bar nav a:hover { color: var(--brass-lt); }
-  .mark { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: clamp(14px, 2vw, 18px); letter-spacing: 0.42em; padding-left: 0.42em; white-space: nowrap; }
+  .mark { color: var(--emboss); text-shadow: 0 1.6px 0 rgba(255,232,196,0.5); display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: clamp(14px, 2vw, 18px); letter-spacing: 0.42em; padding-left: 0.42em; white-space: nowrap; }
   .mark img { height: 30px; width: auto; display: block; }
   .util { display: flex; gap: 18px; }
   @media (max-width: 720px) { .bar nav, .bar .util { display: none; } .bar { justify-content: center; } }
@@ -94,7 +118,7 @@
     content: ''; position: absolute;
     left: 50%; top: 50%; transform: translate(-50%, -50%);
     width: 170%; height: 145%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(176,141,87,0.24), rgba(11,10,9,0) 70%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(240,206,158,0.3), rgba(74,50,37,0) 70%);
   }
   .mk-frame {
     position: absolute; bottom: 0; left: 50%;
@@ -105,20 +129,27 @@
   @media (max-height: 700px) { .mk-stack { height: 30vh; } .caption h1 { font-size: clamp(30px, 5.4vw, 48px); } }
 
   .eyebrow { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brass); margin: 0 0 18px; }
-  .caption h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 7vw, 76px); line-height: 1; letter-spacing: -0.01em; margin: 0; text-wrap: balance; text-shadow: 0 16px 50px rgba(0,0,0,0.75); }
-  .caption h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4.6vw, 46px); line-height: 1.06; margin: 0; text-wrap: balance; text-shadow: 0 14px 44px rgba(0,0,0,0.78); }
+  .caption h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 7vw, 76px); line-height: 1; letter-spacing: -0.01em; margin: 0; text-wrap: balance; color: #FBF2E2; text-shadow: 0 2px 0 rgba(43,26,16,0.55), 0 18px 46px rgba(30,18,10,0.7); }
+  .caption h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4.6vw, 46px); line-height: 1.06; margin: 0; text-wrap: balance; color: #FBF2E2; text-shadow: 0 2px 0 rgba(43,26,16,0.55), 0 14px 40px rgba(30,18,10,0.72); }
   .caption p { margin: 16px auto 0; max-width: 44ch; font-size: clamp(13px, 1.6vw, 15px); line-height: 1.75; color: var(--bone-dim); text-wrap: pretty; }
 
   .scrollcue { position: absolute; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 8.5px; letter-spacing: 0.34em; color: var(--bone-faint); }
   .scrollcue i { display: block; width: 1px; height: 34px; background: linear-gradient(to bottom, rgba(176,141,87,0), var(--brass)); }
 
   /* ---------- page content ---------- */
-  main { position: relative; z-index: 20; background: var(--ink); }
+  main {
+    position: relative; z-index: 20;
+    background: var(--hide);
+    background-image:
+      radial-gradient(76% 60% at 26% 14%, rgba(150,104,74,0.52), rgba(74,50,37,0) 62%),
+      radial-gradient(70% 62% at 82% 88%, rgba(0,0,0,0.46), rgba(74,50,37,0) 64%);
+    background-attachment: fixed;
+  }
   .wrap { max-width: 1280px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); }
   section { padding-block: clamp(64px, 11vw, 132px); }
 
   .sec-head { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(28px, 4vw, 48px); }
-  .sec-head h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 46px); line-height: 1; margin: 0; }
+  .sec-head h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 46px); line-height: 1; margin: 0; color: var(--emboss); text-shadow: 0 1.5px 0 var(--emboss-edge); }
   .sec-head p { margin: 10px 0 0; font-size: 13px; color: var(--bone-dim); }
 
   .filters { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -130,19 +161,26 @@
   @media (min-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
   .card { display: flex; flex-direction: column; text-align: left; background: none; border: 0; padding: 0; color: inherit; }
-  .plate { position: relative; aspect-ratio: 4 / 5; max-width: 100%; display: grid; place-items: center; border: 1px solid var(--hair); overflow: hidden; transition: border-color .25s ease; }
-  .card:hover .plate { border-color: rgba(176,141,87,0.55); }
+  /* every panel is pressed into the hide: dark seam, light catching the top */
+  .plate {
+    position: relative; aspect-ratio: 4 / 5; max-width: 100%;
+    display: grid; place-items: center; overflow: hidden;
+    border: 1px solid var(--seam);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.42), 0 1px 0 var(--emboss-edge);
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  .card:hover .plate { border-color: rgba(199,154,92,0.7); box-shadow: inset 0 2px 5px rgba(0,0,0,0.3), 0 1px 0 var(--emboss-edge); }
   .pimg { width: 100%; height: 100%; object-fit: contain; padding: 9%; filter: drop-shadow(0 16px 26px rgba(0,0,0,0.5)); transition: transform .4s cubic-bezier(.22,.61,.36,1); }
   .card:hover .pimg { transform: scale(1.045); }
   .plate.bone .pimg { filter: drop-shadow(0 16px 26px rgba(23,19,15,0.28)); }
-  .plate.dark { background: radial-gradient(62% 56% at 50% 42%, rgba(176,141,87,0.16), rgba(11,10,9,0) 74%), rgba(232,227,218,0.025); }
-  .plate.bone { background: radial-gradient(70% 62% at 46% 36%, #F4F1EB, #DED8CC 78%); }
+  .plate.dark { background: radial-gradient(64% 58% at 44% 34%, rgba(150,104,74,0.55), rgba(40,26,18,0.9) 78%); }
+  .plate.bone { background: radial-gradient(70% 62% at 46% 34%, #EFE6D6, #CDBEA6 80%); }
   .plate .no { position: absolute; top: 14px; left: 14px; font-size: 8.5px; letter-spacing: 0.2em; }
-  .plate.dark .no { color: var(--bone-faint); } .plate.bone .no { color: rgba(23,19,15,0.42); }
+  .plate.dark .no { color: var(--bone-faint); } .plate.bone .no { color: rgba(43,26,16,0.5); }
   .plate .tag { position: absolute; top: 12px; right: 12px; font-size: 8.5px; letter-spacing: 0.14em; padding: 5px 9px; border: 1px solid; }
   .plate.dark .tag { border-color: rgba(176,141,87,0.6); color: var(--brass-lt); }
-  .plate.bone .tag { border-color: rgba(23,19,15,0.3); color: rgba(23,19,15,0.72); }
-  .plate .spin360 { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 8.5px; letter-spacing: 0.2em; padding: 6px 12px; border: 1px solid rgba(176,141,87,0.5); color: var(--brass-lt); background: rgba(11,10,9,0.55); opacity: 0; transition: opacity .25s ease; white-space: nowrap; }
+  .plate.bone .tag { border-color: rgba(43,26,16,0.34); color: rgba(43,26,16,0.78); }
+  .plate .spin360 { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 8.5px; letter-spacing: 0.2em; padding: 6px 12px; border: 1px solid rgba(176,141,87,0.5); color: var(--brass-lt); background: rgba(51,34,26,0.62); opacity: 0; transition: opacity .25s ease; white-space: nowrap; }
   .card:hover .plate .spin360 { opacity: 1; }
 
   .meta { padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
@@ -156,10 +194,10 @@
 
   .story { border-top: 1px solid var(--hair); }
   .story-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: center; }
-  .story h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; margin: 0 0 18px; text-wrap: balance; }
+  .story h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; margin: 0 0 18px; text-wrap: balance; color: var(--emboss); text-shadow: 0 1.5px 0 var(--emboss-edge); }
   .story p { margin: 0 0 14px; font-size: 14px; line-height: 1.8; color: var(--bone-dim); max-width: 60ch; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin: 0; }
-  .facts div { background: var(--ink); padding: 20px 18px; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--seam); border: 1px solid var(--seam); box-shadow: inset 0 2px 5px rgba(0,0,0,0.34), 0 1px 0 var(--emboss-edge); margin: 0; }
+  .facts div { background: rgba(51,34,26,0.5); padding: 20px 18px; }
   .facts dt { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); margin-bottom: 8px; }
   .facts dd { margin: 0; font-family: var(--display); font-size: 22px; color: var(--brass-lt); }
 
@@ -170,21 +208,21 @@
   .note b { color: var(--bone); font-weight: 500; }
 
   /* ---------- product view ---------- */
-  .pv { position: fixed; inset: 0; z-index: 60; background: var(--ink); overflow-y: auto; overscroll-behavior: contain; padding-top: env(safe-area-inset-top, 0px); }
-  .pv-close { position: fixed; top: calc(18px + env(safe-area-inset-top, 0px)); right: clamp(14px, 3vw, 34px); z-index: 62; width: 42px; height: 42px; border: 1px solid var(--hair); background: rgba(11,10,9,0.72); color: var(--bone); font-size: 17px; line-height: 1; display: grid; place-items: center; }
+  .pv { position: fixed; inset: 0; z-index: 60; background: var(--hide-deep); background-image: radial-gradient(70% 54% at 30% 12%, rgba(150,104,74,0.4), rgba(51,34,26,0) 64%); overflow-y: auto; overscroll-behavior: contain; padding-top: env(safe-area-inset-top, 0px); }
+  .pv-close { position: fixed; top: calc(18px + env(safe-area-inset-top, 0px)); right: clamp(14px, 3vw, 34px); z-index: 62; width: 42px; height: 42px; border: 1px solid var(--hair); background: rgba(51,34,26,0.76); color: var(--bone); font-size: 17px; line-height: 1; display: grid; place-items: center; }
   .pv-close:hover { border-color: var(--brass); color: var(--brass-lt); }
 
   .pv-main { display: grid; grid-template-columns: 1fr; gap: 0; }
   @media (min-width: 940px) { .pv-main { grid-template-columns: 1.15fr 1fr; } }
 
-  .pv-stage { position: relative; min-height: 56vh; aspect-ratio: 1 / 1; max-height: 78vh; border-bottom: 1px solid var(--hair); background: radial-gradient(56% 50% at 50% 44%, rgba(176,141,87,0.16), rgba(11,10,9,0) 72%); touch-action: pan-y; cursor: grab; }
+  .pv-stage { position: relative; min-height: 56vh; aspect-ratio: 1 / 1; max-height: 78vh; border-bottom: 1px solid var(--seam); background: radial-gradient(58% 52% at 46% 38%, rgba(150,104,74,0.46), rgba(40,26,18,0.55) 76%); touch-action: pan-y; cursor: grab; }
   .pv-stage.dragging { cursor: grabbing; }
-  @media (min-width: 940px) { .pv-stage { border-right: 1px solid var(--hair); border-bottom: 0; aspect-ratio: auto; height: 100vh; max-height: none; } }
+  @media (min-width: 940px) { .pv-stage { border-right: 1px solid var(--seam); border-bottom: 0; aspect-ratio: auto; height: 100vh; max-height: none; } }
   #pvgl { position: absolute; inset: 0; width: 100%; height: 100%; }
   .pv-photo { position: absolute; inset: 0; display: grid; place-items: center; padding: clamp(24px, 6%, 72px); }
   .pv-photo img { max-width: 100%; max-height: 100%; width: auto; object-fit: contain; filter: drop-shadow(0 30px 54px rgba(0,0,0,0.62)); }
 
-  .pv-modes { position: absolute; top: clamp(16px, 3vh, 26px); left: 50%; transform: translateX(-50%); display: flex; border: 1px solid var(--hair); background: rgba(11,10,9,0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 3; }
+  .pv-modes { position: absolute; top: clamp(16px, 3vh, 26px); left: 50%; transform: translateX(-50%); display: flex; border: 1px solid var(--hair); background: rgba(51,34,26,0.66); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); z-index: 3; }
   .pv-modes button { padding: 10px 18px; border: 0; background: none; color: var(--bone-dim); font-size: 9px; letter-spacing: 0.2em; white-space: nowrap; }
   .pv-modes button + button { border-left: 1px solid var(--hair); }
   .pv-modes button[aria-pressed="true"] { background: rgba(176,141,87,0.16); color: var(--brass-lt); }
@@ -196,7 +234,7 @@
   .pv-stage[data-mode="turn"] .pv-photo { display: none; }
   .pv-stage[data-mode="photo"] { cursor: default; }
 
-  .spin { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(176,141,87,0.55); background: rgba(11,10,9,0.6); color: var(--brass-lt); font-size: 15px; display: grid; place-items: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .spin { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(176,141,87,0.55); background: rgba(51,34,26,0.66); color: var(--brass-lt); font-size: 15px; display: grid; place-items: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .spin:hover { background: rgba(176,141,87,0.2); }
   .spin.prev { left: clamp(12px, 2.4vw, 28px); } .spin.next { right: clamp(12px, 2.4vw, 28px); }
 
@@ -205,7 +243,7 @@
 
   .pv-info { padding: clamp(28px, 5vw, 62px) clamp(16px, 4vw, 56px); display: flex; flex-direction: column; gap: 22px; align-self: center; }
   .pv-crumb { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); }
-  .pv-info h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.02; margin: 0; }
+  .pv-info h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.02; margin: 0; color: #FBF2E2; text-shadow: 0 2px 0 rgba(30,18,10,0.6); }
   .pv-desc { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--bone-dim); max-width: 46ch; }
   .pv-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
   .pv-price b { font-family: var(--display); font-weight: 400; font-size: 30px; color: var(--brass-lt); }
@@ -226,7 +264,7 @@
   .sizes button[disabled] { color: rgba(232,227,218,0.18); text-decoration: line-through; cursor: not-allowed; }
 
   .buys { display: flex; flex-direction: column; gap: 11px; }
-  .buy { height: 54px; border: 0; background: var(--brass); color: #14100B; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  .buy { height: 54px; border: 0; background: var(--brass); color: #2B1A10; box-shadow: 0 1px 0 var(--emboss-edge); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
   .buy.ghost { background: none; border: 1px solid rgba(232,227,218,0.22); color: var(--bone-dim); }
   .buy:hover { filter: brightness(1.08); }
 
@@ -249,6 +287,10 @@
     .plate svg, .plate .spin360 { transition: none; }
   }
 </style>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <filter id="hideGrain"><feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+</svg>
 
 <canvas id="gl"></canvas>
 
@@ -355,74 +397,74 @@
   // The seven added later carry placeholder prices for the owner to set.
   var PRODUCTS = [
     { id:'ridge', no:'NO. 001', name:'The Ridge', cat:'Women \u00b7 Cropped trucker', sex:'women',
-      price:137, was:199, off:31, rate:4.5, sold:'17 sold', hide:'#1A1614', dark:'#0E0B0A', set:true,
-      colours:[['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:['XL'],
+      price:137, was:199, off:31, rate:4.5, sold:'17 sold', hide:'#2F2F2F', dark:'#212121', set:true,
+      colours:[['Jet Black','#2F2F2F']], sizes:['S','M','L','XL'], out:['XL'],
       desc:'Snap front, two flap chest pockets, cropped at the hip. Boxy through the body so it sits over a knit without riding up.',
       fit:'Cropped and boxy. Take your usual size.' },
 
     { id:'drift', no:'NO. 002', name:'The Drift', cat:'Women \u00b7 Bomber', sex:'women',
-      price:49, was:287, off:82, rate:4.4, sold:'8.7K sold', hide:'#4A3225', dark:'#2A1B12', set:true,
-      colours:[['Coffee','#4A3225'],['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:[],
+      price:49, was:287, off:82, rate:4.4, sold:'8.7K sold', hide:'#59443D', dark:'#4A342E', set:true,
+      colours:[['Coffee','#59443D'],['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:[],
       desc:'Zip front, pointed collar, elasticated hem and cuffs. Dropped shoulder, oversized on purpose, short enough to wear over denim.',
       fit:'Oversized. Size down if you want it close.' },
 
     { id:'hunza', no:'NO. 003', name:'The Hunza', cat:'Men \u00b7 Loose flap', sex:'men',
-      price:74, was:423, off:82, rate:4.7, sold:'1K+ sold', hide:'#1F1B18', dark:'#100D0B', set:true,
-      colours:[['Jet Black','#1F1B18']], sizes:['M','L','XL','XXL'], out:[],
+      price:74, was:423, off:82, rate:4.7, sold:'1K+ sold', hide:'#252525', dark:'#0E0E0E', set:true,
+      colours:[['Jet Black','#252525']], sizes:['M','L','XL','XXL'], out:[],
       desc:'Two deep flap pockets across the chest, full zip, elasticated hem. Cut very loose through the shoulder, the roomiest thing we make.',
       fit:'Super loose. A size down still reads oversized.' },
 
     { id:'maillard', no:'NO. 004', name:'The Maillard', cat:'Men \u00b7 Lapel moto', sex:'men',
-      price:97, was:482, off:79, rate:4.9, sold:'167 sold', hide:'#5A3A2E', dark:'#33201A', set:true,
-      colours:[['Maillard Brown','#5A3A2E']], sizes:['S','M','L','XL','XXL'], out:['XXL'],
+      price:97, was:482, off:79, rate:4.9, sold:'167 sold', hide:'#3A2A27', dark:'#22140D', set:true,
+      colours:[['Maillard Brown','#3A2A27']], sizes:['S','M','L','XL','XXL'], out:['XXL'],
       desc:'Wide notch lapels, zip hand pockets, elasticated hem. Worn open it shows the whole lining, which is the point of it.',
       fit:'Regular through the body, loose in the shoulder.' },
 
     { id:'ember', no:'NO. 005', name:'The Ember', cat:'Women \u00b7 Cropped zip', sex:'women',
-      price:60, was:256, off:76, rate:4.6, sold:'31K+ sold', hide:'#5C1F2A', dark:'#39121A', set:true,
-      colours:[['Burgundy','#5C1F2A']], sizes:['S','M','L','XL'], out:[],
+      price:60, was:256, off:76, rate:4.6, sold:'31K+ sold', hide:'#612E32', dark:'#532024', set:true,
+      colours:[['Burgundy','#612E32']], sizes:['S','M','L','XL'], out:[],
       desc:'Pointed collar, full zip, cropped at the waist with an elasticated hem and snap cuffs. The colour is the whole point of this one.',
       fit:'Cropped and close. Size up over a thick jumper.' },
 
     { id:'cinder', no:'NO. 006', name:'The Cinder', cat:'Women \u00b7 Cropped bomber', sex:'women',
-      price:89, was:349, off:74, rate:4.6, sold:'New', hide:'#1A1614', dark:'#0E0B0A', set:false,
-      colours:[['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:[],
+      price:89, was:349, off:74, rate:4.6, sold:'New', hide:'#232323', dark:'#121514', set:false,
+      colours:[['Jet Black','#232323']], sizes:['S','M','L','XL'], out:[],
       desc:'Blouson sleeves gathered at the cuff, hidden placket, slash hand pockets. The softest shell in the line.',
       fit:'Cropped with volume in the sleeve. Take your usual size.' },
 
     { id:'chukar', no:'NO. 007', name:'The Chukar', cat:'Men \u00b7 Bomber', sex:'men',
-      price:119, was:429, off:72, rate:4.7, sold:'New', hide:'#4A3225', dark:'#2A1B12', set:false,
-      colours:[['Coffee','#4A3225']], sizes:['M','L','XL','XXL'], out:[],
+      price:119, was:429, off:72, rate:4.7, sold:'New', hide:'#5E4A43', dark:'#4E3832', set:false,
+      colours:[['Coffee','#5E4A43']], sizes:['M','L','XL','XXL'], out:[],
       desc:'Big shirt collar, full zip, ribbed hem and cuffs, welt hand pockets. A plain brown bomber done properly.',
       fit:'Relaxed. Room for a hoodie underneath.' },
 
     { id:'snowline', no:'NO. 008', name:'The Snowline', cat:'Women \u00b7 Cropped biker', sex:'women',
-      price:129, was:399, off:68, rate:4.8, sold:'New', hide:'#E4DED0', dark:'#B9B2A1', set:false,
-      colours:[['Snow','#E4DED0']], sizes:['S','M','L'], out:[],
+      price:129, was:399, off:68, rate:4.8, sold:'New', hide:'#E7E5DA', dark:'#DAD3C8', set:false,
+      colours:[['Snow','#E7E5DA']], sizes:['S','M','L'], out:[],
       desc:'Band collar with a two-snap tab, centre zip, panelled front. Cut short and narrow, the sharpest shape we carry.',
       fit:'Slim and cropped. Size up if you are between sizes.' },
 
     { id:'kaghan', no:'NO. 009', name:'The Kaghan', cat:'Women \u00b7 Cropped moto', sex:'women',
-      price:105, was:379, off:72, rate:4.7, sold:'New', hide:'#3E2A22', dark:'#241711', set:false,
-      colours:[['Chocolate','#3E2A22']], sizes:['S','M','L','XL'], out:[],
+      price:105, was:379, off:72, rate:4.7, sold:'New', hide:'#483B39', dark:'#312420', set:false,
+      colours:[['Chocolate','#483B39']], sizes:['S','M','L','XL'], out:[],
       desc:'Zip chest pockets, snap tab at the throat, short in the body. Dark enough to read black until the light hits it.',
       fit:'Close through the shoulder, cropped at the waist.' },
 
     { id:'chitral', no:'NO. 010', name:'The Chitral', cat:'Women \u00b7 Utility', sex:'women',
-      price:95, was:329, off:71, rate:4.5, sold:'New', hide:'#E0DACB', dark:'#B9B2A1', set:false,
-      colours:[['Bone','#E0DACB']], sizes:['S','M','L','XL'], out:[],
+      price:95, was:329, off:71, rate:4.5, sold:'New', hide:'#D2CBC0', dark:'#C7BEB1', set:false,
+      colours:[['Bone','#D2CBC0']], sizes:['S','M','L','XL'], out:[],
       desc:'Two big patch pockets, concealed snap front, band collar. The most forgiving cut in the line and the easiest to wear.',
       fit:'Loose and cropped. Take your usual size.' },
 
     { id:'quarry', no:'NO. 011', name:'The Quarry', cat:'Men \u00b7 Distressed bomber', sex:'men',
-      price:139, was:459, off:70, rate:4.8, sold:'New', hide:'#6B4A33', dark:'#402B1D', set:false,
-      colours:[['Distressed Brown','#6B4A33']], sizes:['M','L','XL','XXL'], out:[],
+      price:139, was:459, off:70, rate:4.8, sold:'New', hide:'#503726', dark:'#3A2616', set:false,
+      colours:[['Distressed Brown','#503726']], sizes:['M','L','XL','XXL'], out:[],
       desc:'Finished to look already worn, with flap pockets, a stand collar and a ribbed hem. No two come out quite the same.',
       fit:'Relaxed, slightly cropped in the body.' },
 
     { id:'juniper', no:'NO. 012', name:'The Juniper', cat:'Men \u00b7 Oversized biker', sex:'men',
-      price:149, was:489, off:70, rate:4.9, sold:'New', hide:'#4B4A35', dark:'#2C2B1E', set:false,
-      colours:[['Olive','#4B4A35']], sizes:['M','L','XL','XXL'], out:[],
+      price:149, was:489, off:70, rate:4.9, sold:'New', hide:'#645A50', dark:'#483F32', set:false,
+      colours:[['Olive','#645A50']], sizes:['M','L','XL','XXL'], out:[],
       desc:'Asymmetric zip, epaulettes, a collar that stands right up. The heaviest thing we make and the one that lasts longest.',
       fit:'Very oversized. Size down unless you want it huge.' }
   ];
