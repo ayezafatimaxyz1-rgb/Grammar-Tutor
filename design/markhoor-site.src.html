@@ -56,7 +56,8 @@
     color: var(--bone-dim); text-decoration: none;
   }
   .bar nav a:hover { color: var(--brass-lt); }
-  .mark { font-family: var(--display); font-size: clamp(14px, 2vw, 18px); letter-spacing: 0.42em; padding-left: 0.42em; white-space: nowrap; }
+  .mark { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: clamp(14px, 2vw, 18px); letter-spacing: 0.42em; padding-left: 0.42em; white-space: nowrap; }
+  .mark img { height: 30px; width: auto; display: block; }
   .util { display: flex; gap: 18px; }
   @media (max-width: 720px) { .bar nav, .bar .util { display: none; } .bar { justify-content: center; } }
 
@@ -65,7 +66,43 @@
   .sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; pointer-events: none; }
 
   .caption { position: absolute; left: 50%; transform: translateX(-50%); width: min(560px, calc(100vw - 32px)); text-align: center; opacity: 0; padding: 0 16px; }
-  .cap-hero { bottom: 11vh; } .cap-mid { bottom: 13vh; } .cap-final { bottom: 12vh; }
+  .cap-mid { bottom: 13vh; } .cap-final { bottom: 12vh; }
+
+  /* The animal and the headline share one screen, so they are stacked in a
+     flex column rather than positioned against the viewport edges — that way
+     they cannot overlap at any height. */
+  .hero-block {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: clamp(14px, 2.5vh, 34px);
+    padding: calc(80px + env(safe-area-inset-top, 0px)) 16px 96px;
+  }
+  .cap-hero { position: relative; left: auto; bottom: auto; transform: none; flex-shrink: 0; }
+
+  /* the markhor turnaround: five drawings stacked, crossfaded by scroll */
+  .mk-stack {
+    position: relative;
+    transform-origin: bottom center;
+    flex: 0 1 auto;
+    min-height: 0;
+    height: min(40vh, 360px);
+    width: min(88vw, 560px);
+    pointer-events: none;
+  }
+  .mk-stack::before {
+    content: ''; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 170%; height: 145%;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(176,141,87,0.24), rgba(11,10,9,0) 70%);
+  }
+  .mk-frame {
+    position: absolute; bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    height: 100%; width: auto; max-width: none;
+    filter: drop-shadow(0 26px 44px rgba(0,0,0,0.72));
+  }
+  @media (max-height: 700px) { .mk-stack { height: 30vh; } .caption h1 { font-size: clamp(30px, 5.4vw, 48px); } }
 
   .eyebrow { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brass); margin: 0 0 18px; }
   .caption h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 7vw, 76px); line-height: 1; letter-spacing: -0.01em; margin: 0; text-wrap: balance; text-shadow: 0 16px 50px rgba(0,0,0,0.75); }
@@ -202,16 +239,19 @@
 
 <div class="bar">
   <nav><a href="#line">Men</a><a href="#line">Women</a><a href="#story">The Markhor</a></nav>
-  <div class="mark">MARKHOOR</div>
+  <div class="mark"><img src="__MARKHOR_LOGO__" alt="" aria-hidden="true">MARKHOOR</div>
   <div class="util"><span>Search</span><span>Bag (0)</span></div>
 </div>
 
 <div id="stage">
   <div class="sticky">
-    <div class="caption cap-hero" data-cap="0">
-      <p class="eyebrow">Leather &middot; Est 2026 &middot; United Arab Emirates</p>
-      <h1>Built for the climb</h1>
-      <p>Five jackets, cut heavy and worn close. Named for the markhor, the horned goat that holds the cliff face when nothing else can.</p>
+    <div class="hero-block">
+      <div class="mk-stack" id="mkStack" aria-hidden="true"></div>
+      <div class="caption cap-hero" data-cap="0">
+        <p class="eyebrow">Leather &middot; Est 2026 &middot; United Arab Emirates</p>
+        <h1>Built for the climb</h1>
+        <p>Five jackets, cut heavy and worn close. Named for the markhor, the horned goat that holds the cliff face when nothing else can.</p>
+      </div>
     </div>
     <div class="caption cap-mid" data-cap="1">
       <h2>Bronze, floor to ceiling</h2>
@@ -331,6 +371,34 @@
   function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
   function ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
 
+  /* ---- the markhor turnaround: the supplied drawings, front round to left ---- */
+  var MK_FRAMES = "__MARKHOR_FRAMES__";
+  var mkStack = document.getElementById('mkStack');
+  var mkFrames = [];
+  if (mkStack && MK_FRAMES && MK_FRAMES.length) {
+    MK_FRAMES.forEach(function (src, i) {
+      var img = document.createElement('img');
+      img.className = 'mk-frame';
+      img.alt = '';
+      img.src = src;
+      img.style.opacity = i === 0 ? '1' : '0';
+      mkStack.appendChild(img);
+      mkFrames.push(img);
+    });
+  }
+
+  // crossfade between neighbouring angles so the five drawings read as a turn
+  function markhorAt(p) {
+    if (!mkFrames.length) return;
+    var turn = seg(p, 0, 0.16) * (mkFrames.length - 1);
+    for (var i = 0; i < mkFrames.length; i++) {
+      mkFrames[i].style.opacity = String(Math.max(0, 1 - Math.abs(turn - i)));
+    }
+    var away = ease(seg(p, 0.18, 0.36));
+    mkStack.style.opacity = String(1 - away);
+    mkStack.style.transform = 'translateY(' + (-away * 22).toFixed(2) + 'vh) scale(' + (1 - away * 0.2).toFixed(3) + ')';
+  }
+
   /* ================= flat jacket art for the cards ================= */
   function jacketSVG(hide) {
     return '<svg viewBox="0 0 320 300" role="img" aria-label="Leather jacket">' +
@@ -412,139 +480,6 @@
     var rim = new THREE.DirectionalLight(0xbcd2ff, 0.9); rim.position.set(-6, 2, -5); scene.add(rim);
     var fill = new THREE.DirectionalLight(0xffe2bd, 0.5); fill.position.set(0, -3, 5); scene.add(fill);
     return key;
-  }
-
-  /* ---- A markhor horn is not a ridged cone. It is a tapering rod that itself
-         corkscrews around an axis, and the corkscrew opens out as it rises.
-         So: sweep a circular section along a widening helix, carrying the frame
-         forward by parallel transport so the keel never flips. ---- */
-  function hornGeometry(H, tubeR, turns, helixR) {
-    var SEG = 170, RING = 16;
-    var pts = [], rad = [];
-    for (var i = 0; i <= SEG; i++) {
-      var t = i / SEG;
-      var hr = helixR * (0.26 + 0.74 * t);
-      var th = turns * Math.PI * 2 * t;
-      pts.push(new THREE.Vector3(hr * Math.cos(th), H * t, hr * Math.sin(th)));
-      rad.push(tubeR * (1 - 0.88 * t));
-    }
-
-    var tan = [];
-    for (var i = 0; i <= SEG; i++) {
-      var a = pts[Math.max(0, i - 1)], b = pts[Math.min(SEG, i + 1)];
-      tan.push(new THREE.Vector3().subVectors(b, a).normalize());
-    }
-
-    var N = new THREE.Vector3(1, 0, 0);
-    N.sub(tan[0].clone().multiplyScalar(N.dot(tan[0])));
-    if (N.lengthSq() < 1e-8) N.set(0, 0, 1);
-    N.normalize();
-
-    var pos = [], idx = [];
-    for (var i = 0; i <= SEG; i++) {
-      var T = tan[i];
-      N.sub(T.clone().multiplyScalar(N.dot(T)));
-      if (N.lengthSq() < 1e-8) N.set(0, 0, 1).sub(T.clone().multiplyScalar(T.z));
-      N.normalize();
-      var B = new THREE.Vector3().crossVectors(T, N);
-      var t = i / SEG;
-      for (var j = 0; j <= RING; j++) {
-        var a = j / RING * Math.PI * 2;
-        var keel = 1 + 0.32 * Math.pow(Math.max(0, Math.cos(a)), 2);
-        var band = 1 + 0.055 * Math.sin(t * 74);
-        var rr = rad[i] * keel * band;
-        pos.push(
-          pts[i].x + rr * (Math.cos(a) * N.x + Math.sin(a) * B.x),
-          pts[i].y + rr * (Math.cos(a) * N.y + Math.sin(a) * B.y),
-          pts[i].z + rr * (Math.cos(a) * N.z + Math.sin(a) * B.z)
-        );
-      }
-    }
-
-    for (var s = 0; s < SEG; s++) for (var k = 0; k < RING; k++) {
-      var A = s * (RING + 1) + k, D = A + RING + 1;
-      idx.push(A, D, A + 1, D, D + 1, A + 1);
-    }
-
-    var base = pos.length / 3;
-    pos.push(pts[0].x, pts[0].y, pts[0].z);
-    for (var c = 0; c < RING; c++) idx.push(base, c + 1, c);
-    var tip = pos.length / 3;
-    pos.push(pts[SEG].x, pts[SEG].y, pts[SEG].z);
-    var last = SEG * (RING + 1);
-    for (var c2 = 0; c2 < RING; c2++) idx.push(tip, last + c2, last + c2 + 1);
-
-    var g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-    g.setIndex(idx);
-    g.computeVertexNormals();
-    return g;
-  }
-
-  /* ---- the whole animal, as a cast bronze sculpture ---- */
-  function buildMarkhor(pale, mid, dark) {
-    var M = new THREE.Group();
-    var SPH = new THREE.SphereGeometry(1, 24, 16);
-    function add(geo, x, y, z, m) {
-      var mesh = new THREE.Mesh(geo, m || pale);
-      mesh.position.set(x, y, z);
-      M.add(mesh);
-      return mesh;
-    }
-
-    // barrel body, deeper at the chest and falling away to the rump
-    add(SPH, 0, 1.38, 0).scale.set(0.54, 0.47, 1.00);
-    add(SPH, 0, 1.60, 0.34).scale.set(0.47, 0.35, 0.44);   // withers
-    add(SPH, 0, 1.34, -0.68).scale.set(0.50, 0.46, 0.42);  // haunch
-    add(SPH, 0, 1.26, 0.56).scale.set(0.50, 0.46, 0.40);   // brisket
-
-    // legs: pale above the knee, dark below, as in the reference
-    [[-0.31, 0.58, 0.11], [0.31, 0.58, 0.11], [-0.31, -0.68, -0.12], [0.31, -0.68, -0.12]]
-      .forEach(function (L) {
-        var x = L[0], z = L[1], lean = L[2];
-        add(new THREE.CylinderGeometry(0.12, 0.085, 0.64, 10), x, 1.04, z).rotation.x = lean;
-        add(new THREE.CylinderGeometry(0.076, 0.052, 0.62, 10), x, 0.45, z + lean * 0.5, dark).rotation.x = -lean * 0.7;
-        add(new THREE.CylinderGeometry(0.066, 0.078, 0.14, 8), x, 0.07, z + lean * 0.2, dark);
-      });
-
-    // neck
-    add(new THREE.CylinderGeometry(0.20, 0.32, 0.88, 14), 0, 1.80, 0.78).rotation.x = 0.58;
-
-    // head, muzzle, ears
-    add(SPH, 0, 2.20, 1.12).scale.set(0.19, 0.19, 0.31);
-    add(SPH, 0, 2.09, 1.41).scale.set(0.12, 0.115, 0.17);
-    [-1, 1].forEach(function (s) {
-      var ear = add(new THREE.ConeGeometry(0.08, 0.32, 10), s * 0.20, 2.28, 1.02);
-      ear.rotation.z = s * 1.3; ear.rotation.x = -0.5; ear.scale.z = 0.42;
-    });
-
-    // The long pale ruff down the neck and the dark beard in front of it are
-    // most of what makes this read as a markhor rather than any other goat.
-    var ruff = add(new THREE.ConeGeometry(0.46, 1.22, 16), 0, 1.44, 0.80);
-    ruff.rotation.x = Math.PI + 0.18; ruff.scale.set(1, 1, 0.60);
-
-    var shoulder = add(new THREE.ConeGeometry(0.42, 0.78, 16), 0, 1.28, 0.44);
-    shoulder.rotation.x = Math.PI + 0.04; shoulder.scale.set(1, 1, 0.52);
-
-    var beard = add(new THREE.ConeGeometry(0.21, 1.08, 14), 0, 1.60, 1.21, dark);
-    beard.rotation.x = Math.PI + 0.10; beard.scale.set(1, 1, 0.44);
-
-    // short tail, carried up
-    add(new THREE.ConeGeometry(0.08, 0.28, 8), 0, 1.66, -1.00, dark).rotation.x = -0.95;
-
-    // The horns: wide open corkscrews in a splayed V, flaring as they rise.
-    // A real pair are mirror images, so the second is generated with the twist
-    // reversed rather than scaled by -1, which would invert its normals.
-    [-1, 1].forEach(function (s) {
-      var h = new THREE.Mesh(hornGeometry(2.15, 0.105, 2.4 * s, 0.30), mid);
-      h.position.set(s * 0.10, 2.30, 1.02);
-      h.rotation.z = -s * 0.42;
-      h.rotation.x = -0.20;
-      M.add(h);
-    });
-
-    add(new THREE.CylinderGeometry(1.15, 1.28, 0.14, 40), 0, 0.02, 0, dark);
-    return M;
   }
 
   /* ---- a jacket built in the round, so it turns a full circle ---- */
@@ -653,13 +588,7 @@
       if (envMain) scene.environment = envMain;
 
       var bronze = new THREE.MeshStandardMaterial({ color: 0xC49A5E, metalness: 0.92, roughness: 0.27 });
-      var bronzePale = new THREE.MeshStandardMaterial({ color: 0xD9C6A2, metalness: 0.86, roughness: 0.34 });
       var bronzeDark = new THREE.MeshStandardMaterial({ color: 0x5A4428, metalness: 0.82, roughness: 0.5 });
-
-      var markhor = buildMarkhor(bronzePale, bronze, bronzeDark);
-      markhor.position.y = -1.7;
-      markhor.scale.setScalar(1.15);
-      scene.add(markhor);
 
       var rails = new THREE.Group();
       scene.add(rails);
@@ -722,11 +651,7 @@
         current += (target - current) * Math.min(1, dt * 6.5);
         var p = current;
 
-        var away = ease(seg(p, 0.17, 0.37));
-        markhor.rotation.y += dt * 0.34 + (target - current) * 2.0;
-        markhor.position.y = -1.7 + away * 7.4;
-        markhor.scale.setScalar(1.15 * (1 - away * 0.5));
-        markhor.visible = away < 0.99;
+        markhorAt(p);
 
         uprights.forEach(function (u, i) { u.scale.y = Math.max(0.001, ease(seg(p, 0.18 + (i % 4) * 0.022, 0.42))); });
         bars.forEach(function (b, i) { b.scale.y = Math.max(0.001, ease(seg(p, 0.30 + (i % 2) * 0.03, 0.50))); });
