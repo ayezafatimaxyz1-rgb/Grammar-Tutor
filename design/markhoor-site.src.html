@@ -101,6 +101,7 @@
     align-items: center; justify-content: center;
     gap: clamp(14px, 2.5vh, 34px);
     padding: calc(80px + env(safe-area-inset-top, 0px)) 16px 96px;
+    overflow: hidden;   /* the glow behind the animal is wider than the stack */
   }
   .cap-hero { position: relative; left: auto; bottom: auto; transform: none; flex-shrink: 0; }
 
@@ -305,22 +306,22 @@
     <div class="hero-block">
       <div class="mk-stack" id="mkStack" aria-hidden="true"></div>
       <div class="caption cap-hero" data-cap="0">
-        <p class="eyebrow">Leather &middot; Est 2026 &middot; United Arab Emirates</p>
-        <h1>Built for the climb</h1>
-        <p>Twelve jackets, cut heavy and worn close. Named for the markhor, the horned goat that holds the cliff face when nothing else can.</p>
+        <p class="eyebrow">Est 2026 &middot; United Arab Emirates</p>
+        <h1>Markhoor Leathers</h1>
+        <p>Twelve jackets, cut heavy and worn close. Free shipping across the Emirates, at your door in two days.</p>
       </div>
     </div>
     <div class="caption cap-mid" data-cap="1">
       <h2>Bronze, floor to ceiling</h2>
-      <p>The room builds itself as you scroll. Uprights first, then the rails span between them.</p>
+      <p>The shop builds itself as you scroll. Posts first, then the rails and the ceiling span across them.</p>
     </div>
     <div class="caption cap-mid" data-cap="2">
-      <h2>The line hangs</h2>
-      <p>All twelve, on two rails, lit from above.</p>
+      <h2>Twelve on the rack</h2>
+      <p>The whole line, hung in two rows and lit from above.</p>
     </div>
     <div class="caption cap-final" data-cap="3">
-      <h2>Open any one of them</h2>
-      <p>Below, click a jacket and it opens full screen, turning a full circle in your hands.</p>
+      <h2>Take one down</h2>
+      <p>Keep scrolling to the shop floor, where any jacket opens full screen.</p>
     </div>
     <div class="scrollcue" id="cue"><i></i><span>SCROLL</span></div>
   </div>
@@ -674,13 +675,13 @@
       if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
 
       var scene = new THREE.Scene();
-      scene.fog = new THREE.FogExp2(0x0B0A09, 0.036);
+      scene.fog = new THREE.FogExp2(0x4A3225, 0.030);
       var camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 140);
       camera.position.set(0, 0, 9.4);
 
       var key = lightRig(scene);
       var overhead = new THREE.PointLight(0xffc98a, 0, 30);
-      overhead.position.set(0, 4.6, 1.5);
+      overhead.position.set(0, 3.4, 0.5);
       scene.add(overhead);
 
       envMain = makeEnv(renderer);
@@ -689,66 +690,112 @@
       var bronze = new THREE.MeshStandardMaterial({ color: 0xC49A5E, metalness: 0.92, roughness: 0.27 });
       var bronzeDark = new THREE.MeshStandardMaterial({ color: 0x5A4428, metalness: 0.82, roughness: 0.5 });
 
+      // ---------------- the shop ----------------
+      // One rack of twelve, hung in two even rows inside a bronze frame that
+      // runs floor to ceiling, with a second frame behind it for depth. The
+      // back frame carries no stock: duplicating the line there just read as
+      // a mistake.
       var rails = new THREE.Group();
       scene.add(rails);
-      var uprights = [], bars = [], hangers = [];
+      var uprights = [], bars = [], runners = [], hangers = [], shell = [];
 
-      function railRow(z, dim, s) {
-        var row = new THREE.Group();
-        row.position.z = z;
-        var mat = dim ? bronzeDark : bronze;
+      var W = 7.2,            // half the room width, and where the end posts stand
+          TOP = 4.0,          // ceiling
+          FLOOR = -4.0,
+          RAIL_A = 1.6,       // upper hanging rail
+          RAIL_B = -1.2,      // lower hanging rail
+          JH = 1.5,           // jacket height
+          FRONT = 0, BACK = -6.4;
 
-        [-6.2, -2.1, 2.1, 6.2].forEach(function (x) {
-          var ug = new THREE.CylinderGeometry(0.045, 0.045, 8.6, 10);
-          ug.translate(0, 4.3, 0);
-          var u = new THREE.Mesh(ug, mat);
-          u.position.set(x, -4.3, 0); u.scale.y = 0.001;
-          row.add(u); uprights.push(u);
-        });
-        [1.35, -1.75].forEach(function (y) {
-          var b = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 12.4, 8), mat);
-          b.rotation.z = Math.PI / 2; b.position.set(0, y, 0); b.scale.y = 0.001;
-          row.add(b); bars.push(b);
-        });
-
-        // The rails carry the actual product photographs on alpha-cut planes.
-        // Unlit, so the leather keeps its own colour; brightness is driven by the
-        // room light coming up rather than by the scene's lamps.
-        function hang(p, x, y) {
-          var mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
-          mat.color.setScalar(0.4);
-          var j = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 1.5), mat);
-          j.position.set(x, y, 0);
-          j.scale.setScalar(0.001);
-          new THREE.TextureLoader().load(p.img, function (tex) {
-            if ('encoding' in tex) tex.encoding = THREE.sRGBEncoding;
-            tex.minFilter = THREE.LinearFilter;
-            mat.map = tex; mat.needsUpdate = true;
-            var h = 1.9, w = h * (tex.image.width / tex.image.height);
-            j.geometry.dispose();
-            j.geometry = new THREE.PlaneGeometry(w, h);
-          });
-          row.add(j); hangers.push(j);
-        }
-        PRODUCTS.slice(0, 6).forEach(function (p, i) { hang(p, -5.5 + i * 2.2, 1.35 - 1.12); });
-        PRODUCTS.slice(6).forEach(function (p, i) { hang(p, -5.5 + i * 2.2, -1.75 - 1.12); });
-
-        rails.add(row);
+      function beam(len, x, y, z, axis, mat) {
+        var b = new THREE.Mesh(new THREE.CylinderGeometry(0.036, 0.036, len, 8), mat);
+        if (axis === 'x') b.rotation.z = Math.PI / 2;
+        if (axis === 'z') b.rotation.x = Math.PI / 2;
+        b.position.set(x, y, z);
+        b.scale.y = 0.001;
+        rails.add(b);
+        return b;
       }
-      railRow(-5.4, true, 1);
-      railRow(0, false, 1);
+
+      function frame(z, mat) {
+        [-W, -W / 3, W / 3, W].forEach(function (x) {
+          var ug = new THREE.CylinderGeometry(0.05, 0.05, TOP - FLOOR, 10);
+          ug.translate(0, (TOP - FLOOR) / 2, 0);
+          var u = new THREE.Mesh(ug, mat);
+          u.position.set(x, FLOOR, z);
+          u.scale.y = 0.001;
+          rails.add(u); uprights.push(u);
+        });
+        [TOP, FLOOR, RAIL_A, RAIL_B].forEach(function (y) {
+          bars.push(beam(W * 2, 0, y, z, 'x', mat));
+        });
+      }
+
+      frame(BACK, bronzeDark);
+      frame(FRONT, bronze);
+
+      // beams running front to back, which is what makes it read as a ceiling
+      [-W, -W / 3, W / 3, W].forEach(function (x) {
+        runners.push(beam(FRONT - BACK, x, TOP, (FRONT + BACK) / 2, 'z', bronzeDark));
+      });
+
+      // floor and back wall, so the frame stands in a room rather than in space
+      (function () {
+        var fm = new THREE.MeshStandardMaterial({ color: 0x3A2619, roughness: 0.96, metalness: 0, transparent: true, opacity: 0 });
+        var floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 20), fm);
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.set(0, FLOOR, -4);
+        rails.add(floor); shell.push(fm);
+
+        var wm = new THREE.MeshStandardMaterial({ color: 0x4A3225, roughness: 0.96, metalness: 0, transparent: true, opacity: 0 });
+        var wall = new THREE.Mesh(new THREE.PlaneGeometry(30, 16), wm);
+        wall.position.set(0, 1.2, -10);
+        rails.add(wall); shell.push(wm);
+      })();
+
+      // The rack carries the real photographs on alpha-cut planes. Unlit, so the
+      // leather keeps its own colour; the room light drives their brightness.
+      function hang(p, x, railY) {
+        var mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false });
+        mat.color.setScalar(0.42);
+        var j = new THREE.Mesh(new THREE.PlaneGeometry(JH, JH), mat);
+        j.position.set(x, railY - JH / 2 - 0.06, FRONT + 0.05);
+        j.scale.setScalar(0.001);
+        new THREE.TextureLoader().load(p.img, function (tex) {
+          if ('encoding' in tex) tex.encoding = THREE.sRGBEncoding;
+          tex.minFilter = THREE.LinearFilter;
+          mat.map = tex; mat.needsUpdate = true;
+          j.geometry.dispose();
+          j.geometry = new THREE.PlaneGeometry(JH * (tex.image.width / tex.image.height), JH);
+        });
+        rails.add(j); hangers.push(j);
+      }
+
+      // six to a rail at 2.4 apart: wide enough that no jacket touches the next
+      // one or the posts, and the outermost still sits inside the rail ends
+      var XS = [-6.0, -3.6, -1.2, 1.2, 3.6, 6.0];
+      PRODUCTS.slice(0, 6).forEach(function (p, i) { hang(p, XS[i], RAIL_A); });
+      PRODUCTS.slice(6, 12).forEach(function (p, i) { hang(p, XS[i], RAIL_B); });
 
       var target = 0, current = 0;
       function measure() {
         var span = stage.offsetHeight - window.innerHeight;
         target = span > 0 ? clamp(-stage.getBoundingClientRect().top / span, 0, 1) : 0;
       }
+      // A 14-unit-wide room will not fit a portrait viewport at any sane camera
+      // distance, so the room itself shrinks until it does.
+      var roomScale = 1;
+      function fitRoom() {
+        roomScale = clamp(camera.aspect / 1.55, 0.44, 1);
+      }
       function onResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight, false);
+        fitRoom();
         measure();
       }
+      fitRoom();
       window.addEventListener('resize', onResize, { passive: true });
       window.addEventListener('scroll', measure, { passive: true });
       measure();
@@ -764,14 +811,20 @@
 
         markhorAt(p);
 
-        uprights.forEach(function (u, i) { u.scale.y = Math.max(0.001, ease(seg(p, 0.18 + (i % 4) * 0.022, 0.42))); });
-        bars.forEach(function (b, i) { b.scale.y = Math.max(0.001, ease(seg(p, 0.30 + (i % 2) * 0.03, 0.50))); });
+        // posts first, then the rails and the ceiling span across them,
+        // then the beams that run front to back
+        uprights.forEach(function (u, i) { u.scale.y = Math.max(0.001, ease(seg(p, 0.18 + (i % 4) * 0.02, 0.40))); });
+        bars.forEach(function (b, i) { b.scale.y = Math.max(0.001, ease(seg(p, 0.28 + (i % 4) * 0.022, 0.50))); });
+        runners.forEach(function (b, i) { b.scale.y = Math.max(0.001, ease(seg(p, 0.36 + i * 0.018, 0.56))); });
+
+        var room = ease(seg(p, 0.20, 0.48));
+        shell.forEach(function (m) { m.opacity = room * 0.92; });
+        rails.scale.setScalar(roomScale);
 
         var lit = ease(seg(p, 0.52, 0.78));
         hangers.forEach(function (j, i) {
           var s = ease(seg(p, 0.46 + (i % 12) * 0.011, 0.70 + (i % 12) * 0.011));
           j.scale.setScalar(Math.max(0.001, s));
-          j.rotation.y = (1 - s) * 0.5 + Math.sin(i * 1.7) * 0.05;
           j.material.opacity = s;
           j.material.color.setScalar(0.42 + lit * 0.58);
         });
@@ -781,9 +834,9 @@
 
         var back = ease(seg(p, 0.16, 0.48));
         var push = ease(seg(p, 0.78, 1.0));
-        camera.position.z = 9.4 + back * 3.6 - push * 2.2;
-        camera.position.y = -back * 0.5 + push * 0.3;
-        camera.lookAt(0, 0, 0);
+        camera.position.z = 9.4 + back * 4.4 - push * 3.2;
+        camera.position.y = back * 0.35 - push * 0.15;
+        camera.lookAt(0, back * 0.25, 0);
 
         var on = [seg(p, 0, 0.06) * (1 - seg(p, 0.12, 0.2)),
                   seg(p, 0.26, 0.34) * (1 - seg(p, 0.40, 0.47)),
