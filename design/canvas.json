@@ -1,0 +1,52 @@
+{
+  "pages": [
+    { "id": "page-1", "name": "Directions" },
+    { "id": "page-2", "name": "Screens" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html",       "page": "page-1", "x": 0,    "y": 0,    "w": 1440, "h": 900,  "title": "Home — Mountain Dark (leading)" },
+    { "file": "Wordmark.dc.html",   "page": "page-1", "x": 1560, "y": 0,    "w": 1440, "h": 820,  "title": "Wordmark — four directions" },
+    { "file": "DirectionA.dc.html", "page": "page-1", "x": 0,    "y": 1060, "w": 1440, "h": 900,  "title": "Alternate A — Bone Atelier" },
+    { "file": "DirectionB.dc.html", "page": "page-1", "x": 1560, "y": 1060, "w": 1440, "h": 900,  "title": "Alternate B — Field Manual" },
+
+    { "file": "Product.dc.html",    "page": "page-2", "x": 0,    "y": 0,    "w": 1440, "h": 1100, "title": "Product — scroll to turn", "is_interactive": true },
+    { "file": "Collection.dc.html", "page": "page-2", "x": 1560, "y": 0,    "w": 1440, "h": 1060, "title": "Collection — all five" },
+    { "file": "Sequence.dc.html",   "page": "page-2", "x": 0,    "y": 1260, "w": 1440, "h": 660,  "title": "Opening sequence — five beats" },
+    { "file": "System.dc.html",     "page": "page-2", "x": 1560, "y": 1260, "w": 1440, "h": 840,  "title": "Colour, type, motion rules" }
+  ],
+  "annotations": [
+    {
+      "id": "note-directions",
+      "page": "page-1",
+      "x": 0,
+      "y": -150,
+      "w": 620,
+      "text": "Three directions, same brand truth.\nMountain Dark is the one I'd ship — it matches your references and the jackets photograph well on black. Pick one, or tell me to cross them."
+    },
+    {
+      "id": "note-wordmark",
+      "page": "page-1",
+      "x": 1560,
+      "y": -150,
+      "w": 520,
+      "text": "The horn is drawn from a real spiral, generated in code — so it scales to any size and works in 3D on the live site."
+    },
+    {
+      "id": "note-product",
+      "page": "page-2",
+      "x": 0,
+      "y": -150,
+      "w": 620,
+      "text": "This one is live — move your mouse across the jacket, or click the ticks on the left, and it turns. On the real site that's driven by scroll.\nThe jacket is drawn, not photographed. Your photos drop straight in."
+    },
+    {
+      "id": "note-prices",
+      "page": "page-2",
+      "x": 1560,
+      "y": -150,
+      "w": 560,
+      "text": "Prices and names are placeholders. AED figures are the ones from your own listings; the names are mine to start the conversation."
+    }
+  ],
+  "launch": { "view": "canvas", "page": "page-1" }
+}
