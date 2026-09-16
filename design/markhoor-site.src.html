@@ -298,10 +298,75 @@
   .rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 22px); }
   @media (min-width: 760px) { .rel { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
+
+  /* ---------- the rack: a true 3D perspective ring ----------
+     Cards sit on a cylinder with the camera at its centre, so each one is
+     tangent to the ring and faces the camera. The back half is culled and the
+     edges dim, which is what makes it read as depth rather than as a slider. */
+  .rack { position: relative; height: 500px; overflow: hidden; }
+  .ring {
+    position: absolute; inset: 0; z-index: 2;
+    perspective: 900px; perspective-origin: 50% 50%;
+    transform-style: preserve-3d;
+  }
+  .rcard {
+    position: absolute; left: 50%; top: 50%;
+    width: 168px; height: 236px; margin: -118px 0 0 -84px;
+    border: 1px solid var(--seam);
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.42), 0 1px 0 var(--emboss-edge), 0 26px 40px rgba(20,12,7,0.5);
+    background: radial-gradient(64% 58% at 44% 34%, rgba(150,104,74,0.55), rgba(40,26,18,0.92) 78%);
+    backface-visibility: hidden; will-change: transform;
+    padding: 0; color: inherit; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  }
+  .rcard.pale { background: radial-gradient(70% 62% at 46% 34%, #EFE6D6, #CDBEA6 80%); }
+  .rcard img { position: absolute; top: 6%; left: 8%; width: 84%; height: 66%; object-fit: contain; }
+  .rcard b { position: relative; font-family: var(--display); font-weight: 400; font-size: 15px; color: #FBF2E2; }
+  .rcard.pale b, .rcard.pale span { color: #2B1A10; }
+  .rcard span { position: relative; font-size: 11px; color: var(--bone-dim); margin: 3px 0 14px; font-variant-numeric: tabular-nums; }
+  .rack-hint { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); z-index: 3; font-size: 8.5px; letter-spacing: 0.26em; color: var(--bone-faint); white-space: nowrap; }
+  @media (max-width: 720px) { .rack { height: 380px; } .rcard { width: 132px; height: 186px; margin: -93px 0 0 -66px; } }
+
+  /* ---------- marquee ---------- */
+  .ticker { overflow: hidden; border-block: 1px solid var(--seam); box-shadow: inset 0 2px 5px rgba(0,0,0,0.3); padding-block: 15px; }
+  .ticker-row { display: flex; width: max-content; animation: slide 38s linear infinite; }
+  .ticker span { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: var(--bone-dim); padding-inline: 26px; white-space: nowrap; }
+  .ticker i { color: var(--brass); font-style: normal; }
+  @keyframes slide { to { transform: translateX(-50%); } }
+
+  /* ---------- entrance and scroll reveals ----------
+     Both use the individual translate / scale / clip-path properties rather
+     than transform, because transform is already owned by the markhor stack
+     and the ring loop. Individual properties compose; transform would collide. */
+  html.intro .bar { opacity: 0; translate: 0 -9px; }
+  html.intro .eyebrow { opacity: 0; translate: 0 8px; }
+  html.intro .cap-hero h1 { opacity: 0; translate: 0 16px; clip-path: inset(100% 0 -30% 0); }
+  html.intro .cap-hero p:last-child { opacity: 0; translate: 0 11px; }
+  html.intro .mk-stack { opacity: 0; translate: 0 20px; scale: 0.985; }
+  html.intro .scrollcue { opacity: 0; }
+
+  .rev { opacity: 0; translate: 0 22px; transition: opacity .8s cubic-bezier(.16,1,.3,1), translate .8s cubic-bezier(.16,1,.3,1); }
+  .rev.in { opacity: 1; translate: 0 0; }
+
   @media (prefers-reduced-motion: reduce) {
-    .plate svg, .plate .spin360 { transition: none; }
+    html.intro .bar, html.intro .eyebrow, html.intro .cap-hero h1,
+    html.intro .cap-hero p:last-child, html.intro .mk-stack, html.intro .scrollcue {
+      opacity: 1; translate: none; scale: none; clip-path: none;
+    }
+    .rev { opacity: 1; translate: none; transition: none; }
+    .ticker-row { animation: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pimg, .plate .spin360 { transition: none; }
   }
 </style>
+
+<script>
+  // armed before first paint; the timer guarantees content can never be stranded
+  document.documentElement.classList.add('intro');
+  setTimeout(function () { document.documentElement.classList.remove('intro'); }, 4000);
+</script>
 
 <svg width="0" height="0" aria-hidden="true" style="position:absolute">
   <filter id="hideGrain"><feTurbulence type="fractalNoise" baseFrequency="0.86" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
@@ -342,8 +407,17 @@
 </div>
 
 <main>
-  <section id="line" class="wrap">
-    <div class="sec-head">
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-row" id="tickerRow"></div>
+  </div>
+
+  <div class="rack rev" id="rack">
+    <div class="ring" id="ring"></div>
+    <div class="rack-hint">TWELVE ON THE RACK &middot; HOVER TO HOLD &middot; CLICK TO OPEN</div>
+  </div>
+
+  <section id="line" class="wrap" style="padding-top: clamp(40px, 6vw, 72px);">
+    <div class="sec-head rev">
       <div>
         <h3>The whole line</h3>
         <p>Twelve jackets. Click any one to see it big, then turn it all the way round.</p>
@@ -354,14 +428,14 @@
         <button class="chip" aria-pressed="false" data-f="men">Men 5</button>
       </div>
     </div>
-    <div class="grid" id="grid"></div>
-    <div class="note">
+    <div class="grid rev" id="grid"></div>
+    <div class="note rev">
       <b>Two things to set before this goes live.</b> Numbers 001 to 005 carry the real prices from your own listings. Numbers 006 to 012, the ones marked NEW, have placeholder prices that you need to replace with yours. And the 360 turn uses a model of each jacket, because a real turn needs the piece photographed from every angle, not just the front.
     </div>
   </section>
 
   <section id="story" class="story">
-    <div class="wrap story-in">
+    <div class="wrap story-in rev">
       <div>
         <h3>Why a goat with spiral horns</h3>
         <p>The markhor lives where nothing else bothers to. It walks ledges the width of a hand, at altitude, in weather, and it does this without drama. Pakistan put it on the national crest for a reason.</p>
@@ -566,7 +640,8 @@
   });
 
   document.addEventListener('click', function (e) {
-    var card = e.target.closest ? e.target.closest('.card') : null;
+    // the grid, the related row and the ring all open the same product view
+    var card = e.target.closest ? e.target.closest('.card, .rcard') : null;
     if (card && card.dataset.id) openProduct(card.dataset.id);
   });
 
@@ -1114,5 +1189,147 @@
   pvStage.addEventListener('pointercancel', up);
 
   window.addEventListener('resize', function () { if (!pv.hidden && pvStage.dataset.mode === 'model') sizePV(); }, { passive: true });
+
+  /* ================= the rack: a 3D perspective ring ================= */
+  (function () {
+    var ring = document.getElementById('ring');
+    var rack = document.getElementById('rack');
+    if (!ring) return;
+
+    // Each product appears twice so the ring is dense, but the two copies sit
+    // 180 degrees apart and the cull is +/-42, so a duplicate is never on screen.
+    var deck = PRODUCTS.concat(PRODUCTS);
+    var N = deck.length, STEP = 360 / N, CULL = 42, R = 900, SPEED = 2.0;
+
+    var cards = deck.map(function (p) {
+      var el = document.createElement('button');
+      el.className = 'rcard' + (p.pale ? ' pale' : '');
+      el.dataset.id = p.id;
+      el.innerHTML = '<img src="' + p.img + '" alt="" loading="lazy">' +
+                     '<b>' + p.name + '</b><span>AED ' + p.price + '</span>';
+      ring.appendChild(el);
+      return el;
+    });
+
+    var phase = -2, last = 0, held = false;
+    rack.addEventListener('pointerenter', function () { held = true; });
+    rack.addEventListener('pointerleave', function () { held = false; });
+
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function place() {
+      for (var i = 0; i < N; i++) {
+        var a = (((i * STEP + phase) % 360) + 540) % 360 - 180;
+        var el = cards[i];
+        if (Math.abs(a) > CULL) { el.style.visibility = 'hidden'; continue; }
+        el.style.visibility = 'visible';
+        var r = a * Math.PI / 180, c = Math.cos(r);
+        el.style.transform = 'translate3d(' + (R * Math.sin(r)).toFixed(2) + 'px,0,' +
+                             (R * (1 - c)).toFixed(2) + 'px) rotateY(' + (-a).toFixed(2) + 'deg)';
+        // front card bright, shoulders falling away into the room
+        el.style.filter = 'brightness(' + (0.52 + 0.48 * c).toFixed(3) + ')';
+        el.style.opacity = Math.min(1, (CULL - Math.abs(a)) / 9).toFixed(3);
+      }
+    }
+
+    function frame(t) {
+      requestAnimationFrame(frame);
+      if (!last) last = t;
+      var dt = Math.min((t - last) / 1000, 0.1);
+      last = t;
+      if (!still && !held) phase -= SPEED * dt;
+      place();
+    }
+    // a backgrounded tab must not bank up time and jump on return
+    document.addEventListener('visibilitychange', function () { last = 0; });
+    place();
+    requestAnimationFrame(frame);
+  })();
+
+  /* ================= ticker ================= */
+  (function () {
+    var row = document.getElementById('tickerRow');
+    if (!row) return;
+    var bits = ['Free shipping', 'UAE delivery in two days', 'Priced in AED', 'Twelve jackets', 'Markhoor Leathers'];
+    var half = '';
+    for (var k = 0; k < 4; k++) half += bits.map(function (b) { return '<span>' + b + ' <i>&bull;</i></span>'; }).join('');
+    row.innerHTML = half + half;   // two identical halves, so -50% loops seamlessly
+  })();
+
+  /* ================= scroll reveals =================
+     Deliberately not IntersectionObserver: it only fires when a threshold is
+     crossed, so an instant jump past a section (a deep link, a restored scroll
+     position) leaves it stranded at opacity 0 forever. A rAF-throttled rect
+     check cannot miss, and there are only a handful of elements. */
+  (function () {
+    var items = [].slice.call(document.querySelectorAll('.rev'));
+    if (!items.length) return;
+    if (reduce) { items.forEach(function (el) { el.classList.add('in'); }); return; }
+
+    var queued = false;
+    function check() {
+      queued = false;
+      var vh = window.innerHeight;
+      for (var i = items.length - 1; i >= 0; i--) {
+        // top above 88% of the viewport covers both entering from below and
+        // being already scrolled past
+        if (items[i].getBoundingClientRect().top < vh * 0.88) {
+          items[i].classList.add('in');
+          items.splice(i, 1);
+        }
+      }
+      if (!items.length) {
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onScroll);
+      }
+    }
+    function onScroll() { if (!queued) { queued = true; requestAnimationFrame(check); } }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    check();
+  })();
+
+  /* ================= the entrance ================= */
+  (function () {
+    var root = document.documentElement;
+    function settle() {
+      if (document.getAnimations) {
+        document.getAnimations().forEach(function (a) {
+          if (a.id && a.id.indexOf('intro:') === 0) a.cancel();
+        });
+      }
+      root.classList.remove('intro');
+    }
+    if (!root.classList.contains('intro') || reduce || !Element.prototype.animate) { settle(); return; }
+
+    var D = window.innerWidth <= 700 ? 0.66 : 1;
+    var EXPO = 'cubic-bezier(.16,1,.3,1)', SOFT = 'cubic-bezier(.22,.61,.36,1)';
+    var n = 0, last = null;
+
+    function play(sel, from, dur, delay, ease) {
+      var el = document.querySelector(sel);
+      if (!el) return;
+      var to = { opacity: 1 };
+      if (from.translate) to.translate = '0 0';
+      if (from.scale) to.scale = '1';
+      if (from.clipPath) to.clipPath = 'inset(-30% 0 -30% 0)';
+      var a = el.animate([from, to], { duration: dur, delay: delay, easing: ease, fill: 'both' });
+      a.id = 'intro:' + (n++);
+      last = a;
+      return a;
+    }
+    function Y(px) { return '0 ' + (px * D) + 'px'; }
+
+    play('.bar',            { opacity: 0, translate: Y(-9) },                              620,  60, EXPO);
+    play('.mk-stack',       { opacity: 0, translate: Y(20), scale: '.985' },               900, 180, EXPO);
+    play('.eyebrow',        { opacity: 0, translate: Y(8) },                               520, 520, SOFT);
+    play('.cap-hero h1',    { opacity: 0, translate: Y(16), clipPath: 'inset(100% 0 -30% 0)' }, 900, 600, EXPO);
+    play('.cap-hero p:last-child', { opacity: 0, translate: Y(11) },                       620, 820, SOFT);
+    play('.scrollcue',      { opacity: 0 },                                                600, 1050, SOFT);
+
+    if (last) last.finished.then(settle).catch(settle);
+    else settle();
+  })();
+
 })();
 </script>
