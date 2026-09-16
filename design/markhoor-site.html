@@ -5,7 +5,6 @@
 <style>
   :root {
     --ink:      #0B0A09;
-    --ink-2:    #14120D;
     --bone:     #E8E3DA;
     --bone-dim: rgba(232,227,218,0.56);
     --bone-faint: rgba(232,227,218,0.30);
@@ -28,41 +27,28 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+  body.locked { overflow: hidden; }
 
-  /* ---------- fixed 3D layer ---------- */
-  #gl {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-  }
-  /* if WebGL never starts, the stage collapses to one screen instead of
-     leaving five screens of empty scroll */
+  button { font-family: var(--body); cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  #gl { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
   body.flat #stage { height: 100vh; }
   body.flat .caption[data-cap="0"] { opacity: 1; }
-  body.flat .caption[data-cap="1"],
-  body.flat .caption[data-cap="2"],
-  body.flat .caption[data-cap="3"] { display: none; }
+  body.flat .caption[data-cap="1"], body.flat .caption[data-cap="2"], body.flat .caption[data-cap="3"] { display: none; }
   body.flat .sticky { background: radial-gradient(52% 44% at 50% 40%, rgba(176,141,87,0.16), rgba(11,10,9,0) 72%); }
 
   /* ---------- top bar ---------- */
   .bar {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 40;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
     padding: 0 clamp(16px, 4vw, 56px);
     padding-top: env(safe-area-inset-top, 0px);
     height: calc(70px + env(safe-area-inset-top, 0px));
     border-bottom: 1px solid var(--hair);
     background: rgba(11,10,9,0.55);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   }
   .bar nav { display: flex; gap: clamp(14px, 2.4vw, 32px); }
   .bar nav a, .bar .util span {
@@ -70,152 +56,56 @@
     color: var(--bone-dim); text-decoration: none;
   }
   .bar nav a:hover { color: var(--brass-lt); }
-  .mark {
-    font-family: var(--display);
-    font-size: clamp(14px, 2vw, 18px);
-    letter-spacing: 0.42em;
-    padding-left: 0.42em;
-    white-space: nowrap;
-  }
+  .mark { font-family: var(--display); font-size: clamp(14px, 2vw, 18px); letter-spacing: 0.42em; padding-left: 0.42em; white-space: nowrap; }
   .util { display: flex; gap: 18px; }
   @media (max-width: 720px) { .bar nav, .bar .util { display: none; } .bar { justify-content: center; } }
 
-  /* ---------- the scroll stage ---------- */
+  /* ---------- scroll stage ---------- */
   #stage { position: relative; height: 560vh; z-index: 10; }
+  .sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; pointer-events: none; }
 
-  .sticky {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-  }
+  .caption { position: absolute; left: 50%; transform: translateX(-50%); width: min(560px, calc(100vw - 32px)); text-align: center; opacity: 0; padding: 0 16px; }
+  .cap-hero { bottom: 11vh; } .cap-mid { bottom: 13vh; } .cap-final { bottom: 12vh; }
 
-  .caption {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(560px, calc(100vw - 32px));
-    text-align: center;
-    opacity: 0;
-    padding: 0 16px;
-  }
-  .cap-hero  { bottom: 12vh; }
-  .cap-mid   { bottom: 14vh; }
-  .cap-final { bottom: 13vh; }
+  .eyebrow { font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase; color: var(--brass); margin: 0 0 18px; }
+  .caption h1 { font-family: var(--display); font-weight: 400; font-size: clamp(38px, 7vw, 76px); line-height: 1; letter-spacing: -0.01em; margin: 0; text-wrap: balance; text-shadow: 0 16px 50px rgba(0,0,0,0.75); }
+  .caption h2 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4.6vw, 46px); line-height: 1.06; margin: 0; text-wrap: balance; text-shadow: 0 14px 44px rgba(0,0,0,0.78); }
+  .caption p { margin: 16px auto 0; max-width: 44ch; font-size: clamp(13px, 1.6vw, 15px); line-height: 1.75; color: var(--bone-dim); text-wrap: pretty; }
 
-  .eyebrow {
-    font-size: 9.5px; letter-spacing: 0.32em; text-transform: uppercase;
-    color: var(--brass); margin: 0 0 18px;
-  }
-  .caption h1 {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(38px, 7vw, 76px);
-    line-height: 1;
-    letter-spacing: -0.01em;
-    margin: 0;
-    text-wrap: balance;
-    text-shadow: 0 16px 50px rgba(0,0,0,0.7);
-  }
-  .caption h2 {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(28px, 4.6vw, 46px);
-    line-height: 1.06;
-    margin: 0;
-    text-wrap: balance;
-    text-shadow: 0 14px 44px rgba(0,0,0,0.75);
-  }
-  .caption p {
-    margin: 16px auto 0;
-    max-width: 44ch;
-    font-size: clamp(13px, 1.6vw, 15px);
-    line-height: 1.75;
-    color: var(--bone-dim);
-    text-wrap: pretty;
-  }
+  .scrollcue { position: absolute; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 8.5px; letter-spacing: 0.34em; color: var(--bone-faint); }
+  .scrollcue i { display: block; width: 1px; height: 34px; background: linear-gradient(to bottom, rgba(176,141,87,0), var(--brass)); }
 
-  .scrollcue {
-    position: absolute;
-    bottom: calc(26px + env(safe-area-inset-bottom, 0px));
-    left: 50%; transform: translateX(-50%);
-    display: flex; flex-direction: column; align-items: center; gap: 10px;
-    font-size: 8.5px; letter-spacing: 0.34em; color: var(--bone-faint);
-  }
-  .scrollcue i {
-    display: block; width: 1px; height: 34px;
-    background: linear-gradient(to bottom, rgba(176,141,87,0), var(--brass));
-  }
-
-  /* ---------- content below the stage ---------- */
+  /* ---------- page content ---------- */
   main { position: relative; z-index: 20; background: var(--ink); }
-
-  .wrap {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-inline: clamp(16px, 4vw, 48px);
-  }
-
+  .wrap { max-width: 1280px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 48px); }
   section { padding-block: clamp(64px, 11vw, 132px); }
 
-  .sec-head {
-    display: flex; flex-wrap: wrap; gap: 20px;
-    align-items: flex-end; justify-content: space-between;
-    margin-bottom: clamp(28px, 4vw, 48px);
-  }
-  .sec-head h3 {
-    font-family: var(--display); font-weight: 400;
-    font-size: clamp(30px, 4.4vw, 46px); line-height: 1; margin: 0;
-  }
+  .sec-head { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(28px, 4vw, 48px); }
+  .sec-head h3 { font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 46px); line-height: 1; margin: 0; }
   .sec-head p { margin: 10px 0 0; font-size: 13px; color: var(--bone-dim); }
 
   .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-  .chip {
-    padding: 9px 18px; border: 1px solid var(--hair);
-    font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--bone-dim); cursor: pointer; background: none;
-    font-family: var(--body);
-  }
-  .chip[aria-pressed="true"] {
-    border-color: var(--brass); background: rgba(176,141,87,0.1); color: var(--brass-lt);
-  }
+  .chip { padding: 9px 18px; border: 1px solid var(--hair); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bone-dim); background: none; }
+  .chip[aria-pressed="true"] { border-color: var(--brass); background: rgba(176,141,87,0.1); color: var(--brass-lt); }
 
-  /* three across at most, so five jackets sit 3 + 2 and never leave an orphan */
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(14px, 2vw, 24px);
-  }
+  .grid { display: grid; grid-template-columns: 1fr; gap: clamp(14px, 2vw, 24px); }
   @media (min-width: 640px)  { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
-  .card { display: flex; flex-direction: column; }
-  .plate {
-    position: relative;
-    aspect-ratio: 4 / 5;
-    max-width: 100%;
-    display: grid; place-items: center;
-    border: 1px solid var(--hair);
-    overflow: hidden;
-  }
-  .plate svg { width: 78%; height: auto; filter: drop-shadow(0 16px 24px rgba(0,0,0,0.5)); }
+  .card { display: flex; flex-direction: column; text-align: left; background: none; border: 0; padding: 0; color: inherit; }
+  .plate { position: relative; aspect-ratio: 4 / 5; max-width: 100%; display: grid; place-items: center; border: 1px solid var(--hair); overflow: hidden; transition: border-color .25s ease; }
+  .card:hover .plate { border-color: rgba(176,141,87,0.55); }
+  .plate svg { width: 78%; height: auto; filter: drop-shadow(0 16px 24px rgba(0,0,0,0.5)); transition: transform .4s cubic-bezier(.22,.61,.36,1); }
+  .card:hover .plate svg { transform: scale(1.045); }
   .plate.dark { background: radial-gradient(62% 56% at 50% 42%, rgba(176,141,87,0.16), rgba(11,10,9,0) 74%), rgba(232,227,218,0.025); }
   .plate.bone { background: radial-gradient(70% 62% at 46% 36%, #F4F1EB, #DED8CC 78%); }
-  .plate .no {
-    position: absolute; top: 14px; left: 14px;
-    font-size: 8.5px; letter-spacing: 0.2em;
-  }
-  .plate.dark .no { color: var(--bone-faint); }
-  .plate.bone .no { color: rgba(23,19,15,0.42); }
-  .plate .tag {
-    position: absolute; top: 12px; right: 12px;
-    font-size: 8.5px; letter-spacing: 0.14em; padding: 5px 9px; border: 1px solid;
-  }
+  .plate .no { position: absolute; top: 14px; left: 14px; font-size: 8.5px; letter-spacing: 0.2em; }
+  .plate.dark .no { color: var(--bone-faint); } .plate.bone .no { color: rgba(23,19,15,0.42); }
+  .plate .tag { position: absolute; top: 12px; right: 12px; font-size: 8.5px; letter-spacing: 0.14em; padding: 5px 9px; border: 1px solid; }
   .plate.dark .tag { border-color: rgba(176,141,87,0.6); color: var(--brass-lt); }
   .plate.bone .tag { border-color: rgba(23,19,15,0.3); color: rgba(23,19,15,0.72); }
+  .plate .spin360 { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 8.5px; letter-spacing: 0.2em; padding: 6px 12px; border: 1px solid rgba(176,141,87,0.5); color: var(--brass-lt); background: rgba(11,10,9,0.55); opacity: 0; transition: opacity .25s ease; white-space: nowrap; }
+  .card:hover .plate .spin360 { opacity: 1; }
 
   .meta { padding-top: 15px; display: flex; flex-direction: column; gap: 8px; }
   .meta .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
@@ -226,12 +116,11 @@
   .dots { display: flex; gap: 6px; }
   .dots i { width: 12px; height: 12px; border-radius: 50%; display: block; outline: 1px solid rgba(232,227,218,0.2); outline-offset: 1px; }
 
-  /* story */
   .story { border-top: 1px solid var(--hair); }
   .story-in { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(28px, 5vw, 72px); align-items: center; }
   .story h3 { font-family: var(--display); font-weight: 400; font-size: clamp(28px, 4vw, 42px); line-height: 1.08; margin: 0 0 18px; text-wrap: balance; }
   .story p { margin: 0 0 14px; font-size: 14px; line-height: 1.8; color: var(--bone-dim); max-width: 60ch; }
-  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1px; background: var(--hair); border: 1px solid var(--hair); margin: 0; }
   .facts div { background: var(--ink); padding: 20px 18px; }
   .facts dt { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); margin-bottom: 8px; }
   .facts dd { margin: 0; font-family: var(--display); font-size: 22px; color: var(--brass-lt); }
@@ -239,19 +128,73 @@
   footer { border-top: 1px solid var(--hair); padding-block: 44px; }
   .foot { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bone-faint); }
 
-  .note {
-    margin-top: 40px; padding: 18px 20px;
-    border-left: 2px solid var(--burgundy);
-    background: rgba(92,31,42,0.14);
-    font-size: 12.5px; line-height: 1.7; color: var(--bone-dim);
-    max-width: 68ch;
-  }
+  .note { margin-top: 40px; padding: 18px 20px; border-left: 2px solid var(--burgundy); background: rgba(92,31,42,0.14); font-size: 12.5px; line-height: 1.7; color: var(--bone-dim); max-width: 68ch; }
   .note b { color: var(--bone); font-weight: 500; }
 
+  /* ---------- product view ---------- */
+  .pv { position: fixed; inset: 0; z-index: 60; background: var(--ink); overflow-y: auto; overscroll-behavior: contain; padding-top: env(safe-area-inset-top, 0px); }
+  .pv-close { position: fixed; top: calc(18px + env(safe-area-inset-top, 0px)); right: clamp(14px, 3vw, 34px); z-index: 62; width: 42px; height: 42px; border: 1px solid var(--hair); background: rgba(11,10,9,0.72); color: var(--bone); font-size: 17px; line-height: 1; display: grid; place-items: center; }
+  .pv-close:hover { border-color: var(--brass); color: var(--brass-lt); }
+
+  .pv-main { display: grid; grid-template-columns: 1fr; gap: 0; }
+  @media (min-width: 940px) { .pv-main { grid-template-columns: 1.15fr 1fr; } }
+
+  .pv-stage { position: relative; min-height: 56vh; aspect-ratio: 1 / 1; max-height: 78vh; border-bottom: 1px solid var(--hair); background: radial-gradient(56% 50% at 50% 44%, rgba(176,141,87,0.16), rgba(11,10,9,0) 72%); touch-action: pan-y; cursor: grab; }
+  .pv-stage.dragging { cursor: grabbing; }
+  @media (min-width: 940px) { .pv-stage { border-right: 1px solid var(--hair); border-bottom: 0; aspect-ratio: auto; height: 100vh; max-height: none; } }
+  #pvgl { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  .spin { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(176,141,87,0.55); background: rgba(11,10,9,0.6); color: var(--brass-lt); font-size: 15px; display: grid; place-items: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .spin:hover { background: rgba(176,141,87,0.2); }
+  .spin.prev { left: clamp(12px, 2.4vw, 28px); } .spin.next { right: clamp(12px, 2.4vw, 28px); }
+
+  .pv-hint { position: absolute; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; font-size: 9px; letter-spacing: 0.26em; color: var(--bone-faint); white-space: nowrap; }
+  .pv-deg { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); font-family: var(--display); font-size: 15px; color: var(--brass-lt); font-variant-numeric: tabular-nums; }
+
+  .pv-info { padding: clamp(28px, 5vw, 62px) clamp(16px, 4vw, 56px); display: flex; flex-direction: column; gap: 22px; align-self: center; }
+  .pv-crumb { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); }
+  .pv-info h2 { font-family: var(--display); font-weight: 400; font-size: clamp(34px, 5.4vw, 54px); line-height: 1.02; margin: 0; }
+  .pv-desc { margin: 0; font-size: 13.5px; line-height: 1.75; color: var(--bone-dim); max-width: 46ch; }
+  .pv-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+  .pv-price b { font-family: var(--display); font-weight: 400; font-size: 30px; color: var(--brass-lt); }
+  .pv-price s { font-size: 14px; color: var(--bone-faint); }
+  .pv-price em { font-style: normal; font-size: 9.5px; letter-spacing: 0.14em; padding: 4px 9px; border: 1px solid rgba(92,31,42,0.95); color: #C88896; }
+  .pv-rate { display: flex; align-items: center; gap: 9px; font-size: 11.5px; color: var(--bone-dim); }
+  .pv-rate svg { display: block; }
+
+  .pv-rule { height: 1px; background: var(--hair); }
+  .pv-lab { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bone-faint); margin-bottom: 12px; }
+  .pv-lab b { color: var(--brass-lt); font-weight: 400; }
+  .sw { display: flex; gap: 12px; flex-wrap: wrap; }
+  .sw button { width: 40px; height: 40px; border: 0; outline: 1px solid var(--hair); outline-offset: 3px; padding: 0; }
+  .sw button[aria-pressed="true"] { outline-color: var(--brass); }
+  .sizes { display: flex; gap: 9px; flex-wrap: wrap; }
+  .sizes button { min-width: 56px; height: 46px; border: 1px solid var(--hair); background: none; color: var(--bone-dim); font-size: 12.5px; }
+  .sizes button[aria-pressed="true"] { border-color: var(--brass); background: rgba(176,141,87,0.12); color: var(--brass-lt); }
+  .sizes button[disabled] { color: rgba(232,227,218,0.18); text-decoration: line-through; cursor: not-allowed; }
+
+  .buys { display: flex; flex-direction: column; gap: 11px; }
+  .buy { height: 54px; border: 0; background: var(--brass); color: #14100B; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500; }
+  .buy.ghost { background: none; border: 1px solid rgba(232,227,218,0.22); color: var(--bone-dim); }
+  .buy:hover { filter: brightness(1.08); }
+
+  .acc { display: flex; flex-direction: column; }
+  .acc details { border-top: 1px solid var(--hair); }
+  .acc details:last-child { border-bottom: 1px solid var(--hair); }
+  .acc summary { padding: 17px 0; font-size: 12.5px; color: var(--bone-dim); list-style: none; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .acc summary::-webkit-details-marker { display: none; }
+  .acc summary::after { content: '+'; color: var(--brass); font-size: 15px; }
+  .acc details[open] summary::after { content: '\2212'; }
+  .acc p { margin: 0 0 17px; font-size: 12.5px; line-height: 1.75; color: var(--bone-faint); max-width: 54ch; }
+
+  .pv-related { border-top: 1px solid var(--hair); padding: clamp(40px, 6vw, 76px) clamp(16px, 4vw, 56px) clamp(56px, 8vw, 96px); }
+  .pv-related h4 { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px; }
+  .pv-related > p { margin: 0 0 28px; font-size: 12.5px; color: var(--bone-faint); }
+  .rel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(12px, 2vw, 22px); }
+  @media (min-width: 760px) { .rel { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
   @media (prefers-reduced-motion: reduce) {
-    #stage { height: 100vh; }
-    .caption { opacity: 1 !important; }
-    .cap-mid, .cap-final { display: none; }
+    .plate svg, .plate .spin360 { transition: none; }
   }
 </style>
 
@@ -270,22 +213,18 @@
       <h1>Built for the climb</h1>
       <p>Five jackets, cut heavy and worn close. Named for the markhor, the horned goat that holds the cliff face when nothing else can.</p>
     </div>
-
     <div class="caption cap-mid" data-cap="1">
       <h2>Bronze, floor to ceiling</h2>
       <p>The room builds itself as you scroll. Uprights first, then the rails span between them.</p>
     </div>
-
     <div class="caption cap-mid" data-cap="2">
       <h2>The line hangs</h2>
       <p>Every jacket we make, on one rail, lit from above.</p>
     </div>
-
     <div class="caption cap-final" data-cap="3">
-      <h2>Turn it over</h2>
-      <p>Keep scrolling and the jacket rotates. On the finished shop this runs on photographs of the real thing, one frame per angle.</p>
+      <h2>Open any one of them</h2>
+      <p>Below, click a jacket and it opens full screen, turning a full circle in your hands.</p>
     </div>
-
     <div class="scrollcue" id="cue"><i></i><span>SCROLL</span></div>
   </div>
 </div>
@@ -295,7 +234,7 @@
     <div class="sec-head">
       <div>
         <h3>The whole line</h3>
-        <p>Five jackets. Everything we make, on one page.</p>
+        <p>Five jackets. Click any one to turn it all the way round.</p>
       </div>
       <div class="filters">
         <button class="chip" aria-pressed="true" data-f="all">All 5</button>
@@ -304,9 +243,8 @@
       </div>
     </div>
     <div class="grid" id="grid"></div>
-
     <div class="note">
-      <b>About these jackets.</b> They are drawings, not photographs. I built them so you could see the shop working before your real pictures exist. Send me your five photos and they go straight into every slot you see here, including the ones turning in 3D above.
+      <b>About these jackets.</b> They are built shapes, not photographs, so you can see the shop working before your real pictures exist. Send me your five photos and they replace every jacket here, including the one that spins.
     </div>
   </section>
 
@@ -326,13 +264,27 @@
     </div>
   </section>
 
-  <footer>
-    <div class="wrap foot">
-      <span>Markhoor &middot; United Arab Emirates</span>
-      <span>Capra falconeri</span>
-    </div>
-  </footer>
+  <footer><div class="wrap foot"><span>Markhoor &middot; United Arab Emirates</span><span>Capra falconeri</span></div></footer>
 </main>
+
+<div class="pv" id="pv" hidden>
+  <button class="pv-close" id="pvClose" aria-label="Close">&#10005;</button>
+  <div class="pv-main">
+    <div class="pv-stage" id="pvStage">
+      <canvas id="pvgl"></canvas>
+      <div class="pv-deg" id="pvDeg">0&deg;</div>
+      <button class="spin prev" id="pvPrev" aria-label="Turn left">&#9664;</button>
+      <button class="spin next" id="pvNext" aria-label="Turn right">&#9654;</button>
+      <div class="pv-hint">DRAG TO TURN &middot; FULL 360&deg;</div>
+    </div>
+    <div class="pv-info" id="pvInfo"></div>
+  </div>
+  <div class="pv-related">
+    <h4>Goes with this</h4>
+    <p id="pvRelNote">The rest of the line.</p>
+    <div class="rel" id="pvRel"></div>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -342,14 +294,44 @@
   var JACKET = "M186,38 L248,58 C280,72 300,116 300,168 L298,206 L254,212 C256,180 250,140 236,112 L236,248 L84,248 L84,112 C70,140 64,180 66,212 L22,206 L20,168 C20,116 40,72 72,58 L134,38 C150,45 170,45 186,38 Z";
 
   var PRODUCTS = [
-    { no: 'NO. 001', name: 'The Ridge',    cat: 'Women · Cropped lapel', price: 137, was: 199, hide: '#1A1614', plate: 'bone', tag: '',          sex: 'women', dots: ['#1A1614'] },
-    { no: 'NO. 002', name: 'The Drift',    cat: 'Women · Bomber',        price: 49,  was: 287, hide: '#4A3225', plate: 'dark', tag: '8.7K SOLD', sex: 'women', dots: ['#4A3225', '#1A1614'] },
-    { no: 'NO. 003', name: 'The Hunza',    cat: 'Men · Loose flap',      price: 74,  was: 423, hide: '#1F1B18', plate: 'bone', tag: '',          sex: 'men',   dots: ['#1F1B18', '#5A3A2E'] },
-    { no: 'NO. 004', name: 'The Maillard', cat: 'Men · Double collar',   price: 97,  was: 482, hide: '#5A3A2E', plate: 'dark', tag: '4.9 ★', sex: 'men',  dots: ['#5A3A2E', '#1A1614'] },
-    { no: 'NO. 005', name: 'The Ember',    cat: 'Women · Cropped zip',   price: 60,  was: 256, hide: '#5C1F2A', plate: 'dark', tag: '31K SOLD',  sex: 'women', dots: ['#5C1F2A', '#1A1614'] }
+    { id:'ridge', no:'NO. 001', name:'The Ridge', cat:'Women · Cropped lapel', sex:'women',
+      price:137, was:199, off:31, rate:4.5, sold:'17 sold', hide:'#1A1614', dark:'#0E0B0A', plate:'bone',
+      tag:'', colours:[['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:['XL'],
+      desc:'Notch lapel, single-breasted, cropped at the hip. Boxy through the body so it sits over a knit without riding up.',
+      care:'Faux leather. Wipe with a damp cloth, never machine wash, keep it out of direct sun.',
+      fit:'Cropped. Sized for a relaxed fit, take your usual size.' },
+    { id:'drift', no:'NO. 002', name:'The Drift', cat:'Women · Bomber', sex:'women',
+      price:49, was:287, off:82, rate:4.4, sold:'8.7K sold', hide:'#4A3225', dark:'#2A1B12', plate:'dark',
+      tag:'8.7K SOLD', colours:[['Coffee','#4A3225'],['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:[],
+      desc:'Zip-front bomber with an elasticated hem and cuffs. Dropped shoulder, oversized on purpose, short enough to wear over denim.',
+      care:'Faux leather. Wipe with a damp cloth, never machine wash, keep it out of direct sun.',
+      fit:'Oversized. Size down if you want it close.' },
+    { id:'hunza', no:'NO. 003', name:'The Hunza', cat:'Men · Loose flap', sex:'men',
+      price:74, was:423, off:82, rate:4.7, sold:'1K+ sold', hide:'#1F1B18', dark:'#100D0B', plate:'bone',
+      tag:'', colours:[['Jet Black','#1F1B18'],['Maillard Brown','#5A3A2E']], sizes:['M','L','XL','XXL'], out:[],
+      desc:'Two deep flap pockets across the chest, full zip, elasticated hem. Cut very loose through the shoulder, the roomiest thing we make.',
+      care:'Faux leather. Wipe with a damp cloth, never machine wash, keep it out of direct sun.',
+      fit:'Super loose. A size down still reads oversized.' },
+    { id:'maillard', no:'NO. 004', name:'The Maillard', cat:'Men · Double collar', sex:'men',
+      price:97, was:482, off:79, rate:4.9, sold:'167 sold', hide:'#5A3A2E', dark:'#33201A', plate:'dark',
+      tag:'4.9 ★', colours:[['Maillard Brown','#5A3A2E'],['Jet Black','#1A1614']], sizes:['S','M','L','XL','XXL'], out:['XXL'],
+      desc:'Double-layer collar that can sit up or fold flat, zip hand pockets, elasticated hem. The most finished piece in the line.',
+      care:'Faux leather. Wipe with a damp cloth, never machine wash, keep it out of direct sun.',
+      fit:'Regular through the body, loose in the shoulder.' },
+    { id:'ember', no:'NO. 005', name:'The Ember', cat:'Women · Cropped zip', sex:'women',
+      price:60, was:256, off:76, rate:4.6, sold:'31K+ sold', hide:'#5C1F2A', dark:'#39121A', plate:'dark',
+      tag:'31K SOLD', colours:[['Burgundy','#5C1F2A'],['Jet Black','#1A1614']], sizes:['S','M','L','XL'], out:[],
+      desc:'Pointed collar, full zip, cropped at the waist with an elasticated hem. The colour is the whole point of this one.',
+      care:'Faux leather. Wipe with a damp cloth, never machine wash, keep it out of direct sun.',
+      fit:'Cropped and close. Size up over a thick jumper.' }
   ];
 
-  /* ============ product grid ============ */
+  function byId(id) { for (var i = 0; i < PRODUCTS.length; i++) if (PRODUCTS[i].id === id) return PRODUCTS[i]; return null; }
+  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
+  function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
+  function ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+  /* ================= flat jacket art for the cards ================= */
   function jacketSVG(hide) {
     return '<svg viewBox="0 0 320 300" role="img" aria-label="Leather jacket">' +
       '<path d="' + JACKET + '" fill="' + hide + '"/>' +
@@ -363,46 +345,258 @@
       '<path d="M184,38 L160,56 L178,88 L200,50 Z" fill="#000" fill-opacity=".16"/>' +
       '<g fill="none" stroke="#000" stroke-opacity=".32" stroke-width="1.3">' +
       '<rect x="100" y="120" width="48" height="46" rx="2"/><rect x="98" y="114" width="52" height="15" rx="2"/>' +
-      '<rect x="172" y="120" width="48" height="46" rx="2"/><rect x="170" y="114" width="52" height="15" rx="2"/></g>' +
-      '</svg>';
+      '<rect x="172" y="120" width="48" height="46" rx="2"/><rect x="170" y="114" width="52" height="15" rx="2"/></g></svg>';
+  }
+
+  function cardHTML(p, small) {
+    return '<button class="card" data-id="' + p.id + '">' +
+      '<span class="plate ' + p.plate + '">' +
+        '<span class="no">' + p.no + '</span>' +
+        (p.tag && !small ? '<span class="tag">' + p.tag + '</span>' : '') +
+        jacketSVG(p.hide) +
+        (small ? '' : '<span class="spin360">TURN IT 360&deg;</span>') +
+      '</span>' +
+      '<span class="meta">' +
+        '<span class="row"><span class="name">' + p.name + '</span>' +
+        '<span class="price">AED ' + p.price + '<span class="was">' + p.was + '</span></span></span>' +
+        '<span class="row"><span class="cat">' + p.cat + '</span>' +
+        '<span class="dots">' + p.colours.map(function (c) { return '<i style="background:' + c[1] + '"></i>'; }).join('') + '</span></span>' +
+      '</span></button>';
   }
 
   var grid = document.getElementById('grid');
   function renderGrid(filter) {
-    var html = '';
-    PRODUCTS.forEach(function (p) {
-      if (filter !== 'all' && p.sex !== filter) return;
-      html += '<article class="card">' +
-        '<div class="plate ' + p.plate + '">' +
-          '<span class="no">' + p.no + '</span>' +
-          (p.tag ? '<span class="tag">' + p.tag + '</span>' : '') +
-          jacketSVG(p.hide) +
-        '</div>' +
-        '<div class="meta">' +
-          '<div class="row"><span class="name">' + p.name + '</span>' +
-          '<span class="price">AED ' + p.price + '<span class="was">' + p.was + '</span></span></div>' +
-          '<div class="row"><span class="cat">' + p.cat + '</span>' +
-          '<span class="dots">' + p.dots.map(function (c) { return '<i style="background:' + c + '"></i>'; }).join('') + '</span></div>' +
-        '</div></article>';
-    });
-    grid.innerHTML = html;
+    grid.innerHTML = PRODUCTS.filter(function (p) { return filter === 'all' || p.sex === filter; })
+      .map(function (p) { return cardHTML(p, false); }).join('');
   }
   renderGrid('all');
 
   Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (b) {
     b.addEventListener('click', function () {
-      Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (o) {
-        o.setAttribute('aria-pressed', String(o === b));
-      });
+      Array.prototype.forEach.call(document.querySelectorAll('.chip'), function (o) { o.setAttribute('aria-pressed', String(o === b)); });
       renderGrid(b.dataset.f);
     });
   });
 
-  /* ============ 3D stage ============ */
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest ? e.target.closest('.card') : null;
+    if (card && card.dataset.id) openProduct(card.dataset.id);
+  });
+
+  /* ================= shared 3D helpers ================= */
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var HAS3D = typeof THREE !== 'undefined';
+
+  function makeEnv(renderer) {
+    try {
+      var ec = document.createElement('canvas');
+      ec.width = 32; ec.height = 128;
+      var eg = ec.getContext('2d');
+      var lg = eg.createLinearGradient(0, 0, 0, 128);
+      lg.addColorStop(0.00, '#20180f'); lg.addColorStop(0.34, '#8c6f47');
+      lg.addColorStop(0.47, '#fbeed2'); lg.addColorStop(0.60, '#7d6340');
+      lg.addColorStop(1.00, '#0a0806');
+      eg.fillStyle = lg; eg.fillRect(0, 0, 32, 128);
+      var t = new THREE.CanvasTexture(ec);
+      t.mapping = THREE.EquirectangularReflectionMapping;
+      var g = new THREE.PMREMGenerator(renderer);
+      var out = g.fromEquirectangular(t).texture;
+      g.dispose();
+      return out;
+    } catch (e) { return null; }
+  }
+
+  function lightRig(scene) {
+    scene.add(new THREE.AmbientLight(0x6b5a44, 0.55));
+    var key = new THREE.DirectionalLight(0xffd9a8, 2.2); key.position.set(4, 7, 6); scene.add(key);
+    var rim = new THREE.DirectionalLight(0xbcd2ff, 0.9); rim.position.set(-6, 2, -5); scene.add(rim);
+    var fill = new THREE.DirectionalLight(0xffe2bd, 0.5); fill.position.set(0, -3, 5); scene.add(fill);
+    return key;
+  }
+
+  /* ---- one spiral horn, base at the origin, growing up and leaning back ---- */
+  function hornGeometry(H, R0, turns, ridges) {
+    var SEG = 200, RING = 26, TAPER = 0.9, LEAN = 0.10 * H;
+    var pos = [], idx = [];
+    for (var i = 0; i <= SEG; i++) {
+      var t = i / SEG;
+      var cy = H * t;
+      var cz = -LEAN * Math.pow(t, 1.9);
+      var r = R0 * (1 - TAPER * t);
+      var twist = turns * Math.PI * 2 * t;
+      for (var j = 0; j <= RING; j++) {
+        var a = j / RING * Math.PI * 2;
+        var rr = r * (1 + 0.2 * Math.sin(ridges * (a + twist)));
+        pos.push(rr * Math.cos(a), cy, cz + rr * Math.sin(a));
+      }
+    }
+    var cap = pos.length / 3;
+    pos.push(0, 0, 0);
+    for (var s = 0; s < SEG; s++) for (var k = 0; k < RING; k++) {
+      var A = s * (RING + 1) + k, B = A + RING + 1;
+      idx.push(A, B, A + 1, B, B + 1, A + 1);
+    }
+    for (var c = 0; c < RING; c++) idx.push(cap, c + 1, c);
+    var g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+    g.setIndex(idx);
+    g.computeVertexNormals();
+    return g;
+  }
+
+  /* ---- the whole animal, as a cast bronze sculpture ---- */
+  function buildMarkhor(mat, dark) {
+    var M = new THREE.Group();
+    function add(geo, x, y, z, m) {
+      var mesh = new THREE.Mesh(geo, m || mat);
+      mesh.position.set(x, y, z);
+      M.add(mesh);
+      return mesh;
+    }
+
+    // barrel body
+    var body = add(new THREE.SphereGeometry(1, 26, 18), 0, 1.35, 0);
+    body.scale.set(0.52, 0.46, 0.98);
+
+    // chest, deeper at the front
+    var chest = add(new THREE.SphereGeometry(1, 20, 14), 0, 1.30, 0.55);
+    chest.scale.set(0.50, 0.48, 0.42);
+
+    // haunch
+    var rump = add(new THREE.SphereGeometry(1, 20, 14), 0, 1.38, -0.62);
+    rump.scale.set(0.48, 0.45, 0.40);
+
+    // legs, upper and lower, with a real knee bend
+    [[-0.30, 0.60, 0.12], [0.30, 0.60, 0.12], [-0.30, -0.66, -0.12], [0.30, -0.66, -0.12]]
+      .forEach(function (L) {
+        var x = L[0], z = L[1], lean = L[2];
+        var up = add(new THREE.CylinderGeometry(0.115, 0.085, 0.62, 10), x, 1.06, z);
+        up.rotation.x = lean;
+        var lo = add(new THREE.CylinderGeometry(0.075, 0.052, 0.62, 10), x, 0.46, z + lean * 0.5);
+        lo.rotation.x = -lean * 0.7;
+        var hoof = add(new THREE.CylinderGeometry(0.068, 0.078, 0.14, 8), x, 0.07, z + lean * 0.2, dark);
+        return hoof;
+      });
+
+    // neck, rising forward
+    var neck = add(new THREE.CylinderGeometry(0.19, 0.30, 0.82, 14), 0, 1.78, 0.80);
+    neck.rotation.x = 0.62;
+
+    // head and muzzle
+    var head = add(new THREE.SphereGeometry(1, 20, 14), 0, 2.16, 1.10);
+    head.scale.set(0.185, 0.185, 0.30);
+    var muzzle = add(new THREE.SphereGeometry(1, 16, 12), 0, 2.06, 1.38);
+    muzzle.scale.set(0.115, 0.115, 0.17);
+
+    // ears, swept out and back
+    [-1, 1].forEach(function (s) {
+      var ear = add(new THREE.ConeGeometry(0.075, 0.30, 10), s * 0.19, 2.25, 1.00);
+      ear.rotation.z = s * 1.25;
+      ear.rotation.x = -0.45;
+      ear.scale.z = 0.45;
+    });
+
+    // the beard, which is half of what makes it a markhor
+    var beard = add(new THREE.ConeGeometry(0.115, 0.62, 12), 0, 1.78, 1.20, dark);
+    beard.rotation.x = Math.PI + 0.22;
+    beard.scale.set(1, 1, 0.5);
+
+    // the chest mane running down the front of the neck
+    var mane = add(new THREE.ConeGeometry(0.21, 0.78, 12), 0, 1.60, 0.86, dark);
+    mane.rotation.x = Math.PI + 0.30;
+    mane.scale.set(1, 1, 0.42);
+
+    // short tail, carried up
+    var tail = add(new THREE.ConeGeometry(0.075, 0.26, 8), 0, 1.68, -0.98);
+    tail.rotation.x = -0.9;
+
+    // The horns: tall, tight corkscrews in a splayed V. A real pair are mirror
+    // images, so the second is generated with the twist reversed rather than
+    // scaled by -1, which would invert its normals and light it wrongly.
+    [-1, 1].forEach(function (s) {
+      var h = new THREE.Mesh(hornGeometry(1.95, 0.135, 3.4 * s, 3), mat);
+      h.position.set(s * 0.115, 2.28, 1.00);
+      h.rotation.z = -s * 0.30;
+      h.rotation.x = -0.16;
+      M.add(h);
+    });
+
+    // plinth
+    var base = add(new THREE.CylinderGeometry(1.15, 1.28, 0.14, 40), 0, 0.02, 0, dark);
+
+    return M;
+  }
+
+  /* ---- a jacket built in the round, so it turns a full circle ---- */
+  var JGEO = null;
+  function jacketGeometries() {
+    if (JGEO) return JGEO;
+    JGEO = {
+      torso:  new THREE.CylinderGeometry(0.66, 0.60, 1.50, 32, 1, false),
+      sleeve: new THREE.CylinderGeometry(0.205, 0.155, 1.20, 16),
+      cuff:   new THREE.CylinderGeometry(0.168, 0.168, 0.14, 14),
+      collar: new THREE.TorusGeometry(0.30, 0.075, 8, 26),
+      zip:    new THREE.BoxGeometry(0.035, 1.40, 0.05),
+      pocket: new THREE.BoxGeometry(0.28, 0.26, 0.035),
+      flap:   new THREE.BoxGeometry(0.30, 0.09, 0.045),
+      hem:    new THREE.CylinderGeometry(0.625, 0.625, 0.17, 32),
+      pull:   new THREE.BoxGeometry(0.05, 0.10, 0.03)
+    };
+    return JGEO;
+  }
+
+  function buildJacket(hide, darkHex, env) {
+    var G = jacketGeometries();
+    var skin = new THREE.MeshStandardMaterial({ color: new THREE.Color(hide), roughness: 0.44, metalness: 0.08, envMap: env || null, envMapIntensity: 0.7 });
+    var trim = new THREE.MeshStandardMaterial({ color: new THREE.Color(darkHex), roughness: 0.55, metalness: 0.06, envMap: env || null, envMapIntensity: 0.5 });
+    var metal = new THREE.MeshStandardMaterial({ color: 0xcdb188, roughness: 0.3, metalness: 0.9, envMap: env || null });
+
+    var J = new THREE.Group();
+    var FRONT = 0.62;   // how far the oval body reaches forward
+
+    var torso = new THREE.Mesh(G.torso, skin);
+    torso.scale.z = FRONT; J.add(torso);
+
+    var hem = new THREE.Mesh(G.hem, trim);
+    hem.position.y = -0.79; hem.scale.z = FRONT; J.add(hem);
+
+    var collar = new THREE.Mesh(G.collar, trim);
+    collar.rotation.x = Math.PI / 2;
+    collar.position.y = 0.76; collar.scale.z = FRONT; J.add(collar);
+
+    [-1, 1].forEach(function (s) {
+      var sl = new THREE.Mesh(G.sleeve, skin);
+      sl.position.set(s * 0.66, 0.06, 0);
+      sl.rotation.z = s * 0.40;
+      J.add(sl);
+      var cf = new THREE.Mesh(G.cuff, trim);
+      cf.position.set(s * 0.894, -0.497, 0);
+      cf.rotation.z = s * 0.40;
+      J.add(cf);
+    });
+
+    var zipFace = 0.66 * FRONT + 0.012;
+    var zip = new THREE.Mesh(G.zip, metal);
+    zip.position.set(0, -0.02, zipFace); J.add(zip);
+    var pull = new THREE.Mesh(G.pull, metal);
+    pull.position.set(0, -0.62, zipFace + 0.03); J.add(pull);
+
+    [-1, 1].forEach(function (s) {
+      var pk = new THREE.Mesh(G.pocket, trim);
+      pk.position.set(s * 0.235, -0.16, zipFace - 0.02); J.add(pk);
+      var fl = new THREE.Mesh(G.flap, trim);
+      fl.position.set(s * 0.235, 0.0, zipFace - 0.01); J.add(fl);
+    });
+
+    J.userData.materials = [skin, trim, metal];
+    return J;
+  }
+
+  /* ================= the scrolling stage ================= */
   var canvas = document.getElementById('gl');
   var caps = document.querySelectorAll('.caption');
   var cue = document.getElementById('cue');
+  var stage = document.getElementById('stage');
 
   function flatten() {
     document.body.classList.add('flat');
@@ -410,288 +604,308 @@
     if (cue) cue.style.display = 'none';
   }
 
-  if (reduce || typeof THREE === 'undefined') { flatten(); return; }
+  var envMain = null;
 
-  var renderer;
-  try {
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
-  } catch (err) { flatten(); return; }
-  if (!renderer) { flatten(); return; }
+  if (!HAS3D || reduce) {
+    flatten();
+  } else {
+    (function initStage() {
+      var renderer;
+      try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true }); }
+      catch (err) { flatten(); return; }
+      if (!renderer) { flatten(); return; }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-  renderer.setSize(window.innerWidth, window.innerHeight, false);
-  if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+      renderer.setSize(window.innerWidth, window.innerHeight, false);
+      if ('outputEncoding' in renderer) renderer.outputEncoding = THREE.sRGBEncoding;
 
-  var scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0B0A09, 0.038);
+      var scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x0B0A09, 0.036);
+      var camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 140);
+      camera.position.set(0, 0, 9.4);
 
-  var camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 120);
-  camera.position.set(0, 0, 9.4);
+      var key = lightRig(scene);
+      var overhead = new THREE.PointLight(0xffc98a, 0, 30);
+      overhead.position.set(0, 4.6, 1.5);
+      scene.add(overhead);
 
-  /* --- lights --- */
-  scene.add(new THREE.AmbientLight(0x6b5a44, 0.55));
-  var key = new THREE.DirectionalLight(0xffd9a8, 2.1);
-  key.position.set(4, 7, 6);
-  scene.add(key);
-  var rim = new THREE.DirectionalLight(0xbcd2ff, 0.85);
-  rim.position.set(-6, 2, -5);
-  scene.add(rim);
-  var overhead = new THREE.PointLight(0xffc98a, 0.0, 26);
-  overhead.position.set(0, 4.6, 1.5);
-  scene.add(overhead);
+      envMain = makeEnv(renderer);
+      if (envMain) scene.environment = envMain;
 
-  /* --- environment so the brass reads as metal --- */
-  try {
-    var ec = document.createElement('canvas');
-    ec.width = 32; ec.height = 128;
-    var eg = ec.getContext('2d');
-    var lg = eg.createLinearGradient(0, 0, 0, 128);
-    lg.addColorStop(0.00, '#20180f');
-    lg.addColorStop(0.34, '#8c6f47');
-    lg.addColorStop(0.47, '#fbeed2');
-    lg.addColorStop(0.60, '#7d6340');
-    lg.addColorStop(1.00, '#0a0806');
-    eg.fillStyle = lg; eg.fillRect(0, 0, 32, 128);
-    var envTex = new THREE.CanvasTexture(ec);
-    envTex.mapping = THREE.EquirectangularReflectionMapping;
-    var pmrem = new THREE.PMREMGenerator(renderer);
-    scene.environment = pmrem.fromEquirectangular(envTex).texture;
-    pmrem.dispose();
-  } catch (e) { /* lights alone still carry it */ }
+      var bronze = new THREE.MeshStandardMaterial({ color: 0xC49A5E, metalness: 0.92, roughness: 0.27 });
+      var bronzeDark = new THREE.MeshStandardMaterial({ color: 0x6B5130, metalness: 0.8, roughness: 0.46 });
 
-  var brass = new THREE.MeshStandardMaterial({ color: 0xC49A5E, metalness: 0.92, roughness: 0.26 });
+      var markhor = buildMarkhor(bronze, bronzeDark);
+      markhor.position.y = -1.7;
+      markhor.scale.setScalar(1.15);
+      scene.add(markhor);
 
-  /* --- the horn: a tapering cone swept along a leaning axis,
-         with its cross-section modulated to cut three spiral ridges --- */
-  function buildHorn() {
-    var SEG = 240, RING = 30, TURNS = 3.5, H = 6.4, R0 = 0.66, TAPER = 0.88, LEAN = 0.62, RIDGES = 3;
-    var pos = [], idx = [];
-    for (var i = 0; i <= SEG; i++) {
-      var t = i / SEG;
-      var cy = -H * 0.42 + H * t;
-      var cx = LEAN * Math.pow(t, 1.8);
-      var r = R0 * (1 - TAPER * t);
-      var twist = TURNS * Math.PI * 2 * t;
-      for (var j = 0; j <= RING; j++) {
-        var a = j / RING * Math.PI * 2;
-        var rr = r * (1 + 0.19 * Math.sin(RIDGES * (a + twist)));
-        pos.push(cx + rr * Math.cos(a), cy, rr * Math.sin(a));
+      var rails = new THREE.Group();
+      scene.add(rails);
+      var uprights = [], bars = [], hangers = [];
+
+      function railRow(z, dim, s) {
+        var row = new THREE.Group();
+        row.position.z = z;
+        var mat = dim ? bronzeDark : bronze;
+
+        [-6.2, -2.1, 2.1, 6.2].forEach(function (x) {
+          var ug = new THREE.CylinderGeometry(0.045, 0.045, 8.6, 10);
+          ug.translate(0, 4.3, 0);
+          var u = new THREE.Mesh(ug, mat);
+          u.position.set(x, -4.3, 0); u.scale.y = 0.001;
+          row.add(u); uprights.push(u);
+        });
+        [1.35, -1.75].forEach(function (y) {
+          var b = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 12.4, 8), mat);
+          b.rotation.z = Math.PI / 2; b.position.set(0, y, 0); b.scale.y = 0.001;
+          row.add(b); bars.push(b);
+        });
+
+        function hang(p, x, y) {
+          var j = buildJacket(p.hide, p.dark, envMain);
+          j.scale.setScalar(0.001);
+          j.position.set(x, y, 0);
+          j.userData.materials.forEach(function (m) { m.transparent = true; m.opacity = 0; });
+          row.add(j); hangers.push(j);
+        }
+        PRODUCTS.forEach(function (p, i) { hang(p, -4.4 + i * 2.2, 1.35 - 0.95 * s); });
+        PRODUCTS.slice(0, 4).forEach(function (p, i) { hang(p, -3.3 + i * 2.2, -1.75 - 0.95 * s); });
+
+        rails.add(row);
       }
-    }
-    // base cap
-    var capCentre = pos.length / 3;
-    pos.push(0, -H * 0.42, 0);
-    for (var s = 0; s < SEG; s++) {
-      for (var k = 0; k < RING; k++) {
-        var A = s * (RING + 1) + k, B = A + RING + 1;
-        idx.push(A, B, A + 1, B, B + 1, A + 1);
+      railRow(-5.4, true, 1);
+      railRow(0, false, 1);
+
+      var target = 0, current = 0;
+      function measure() {
+        var span = stage.offsetHeight - window.innerHeight;
+        target = span > 0 ? clamp(-stage.getBoundingClientRect().top / span, 0, 1) : 0;
       }
+      function onResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight, false);
+        measure();
+      }
+      window.addEventListener('resize', onResize, { passive: true });
+      window.addEventListener('scroll', measure, { passive: true });
+      measure();
+
+      var clock = new THREE.Clock();
+      (function frame() {
+        requestAnimationFrame(frame);
+        var dt = Math.min(clock.getDelta(), 0.05);
+        // the product view covers the page; no reason to keep drawing behind it
+        if (pv && !pv.hidden) return;
+        current += (target - current) * Math.min(1, dt * 6.5);
+        var p = current;
+
+        var away = ease(seg(p, 0.17, 0.37));
+        markhor.rotation.y += dt * 0.34 + (target - current) * 2.0;
+        markhor.position.y = -1.7 + away * 7.4;
+        markhor.scale.setScalar(1.15 * (1 - away * 0.5));
+        markhor.visible = away < 0.99;
+
+        uprights.forEach(function (u, i) { u.scale.y = Math.max(0.001, ease(seg(p, 0.18 + (i % 4) * 0.022, 0.42))); });
+        bars.forEach(function (b, i) { b.scale.y = Math.max(0.001, ease(seg(p, 0.30 + (i % 2) * 0.03, 0.50))); });
+
+        hangers.forEach(function (j, i) {
+          var s = ease(seg(p, 0.46 + (i % 9) * 0.014, 0.70 + (i % 9) * 0.014));
+          j.scale.setScalar(Math.max(0.001, s * 0.92));
+          j.rotation.y = (1 - s) * 0.7 + Math.sin(i * 1.7) * 0.06;
+          j.userData.materials.forEach(function (m) { m.opacity = s; });
+        });
+
+        overhead.intensity = ease(seg(p, 0.52, 0.78)) * 3.6;
+        key.intensity = 2.2 + ease(seg(p, 0.52, 0.78)) * 0.8;
+
+        var back = ease(seg(p, 0.16, 0.48));
+        var push = ease(seg(p, 0.78, 1.0));
+        camera.position.z = 9.4 + back * 3.6 - push * 2.2;
+        camera.position.y = -back * 0.5 + push * 0.3;
+        camera.lookAt(0, 0, 0);
+
+        var on = [seg(p, 0, 0.06) * (1 - seg(p, 0.12, 0.2)),
+                  seg(p, 0.26, 0.34) * (1 - seg(p, 0.40, 0.47)),
+                  seg(p, 0.55, 0.62) * (1 - seg(p, 0.71, 0.78)),
+                  seg(p, 0.84, 0.90)];
+        for (var i = 0; i < caps.length; i++) caps[i].style.opacity = on[i] || 0;
+        cue.style.opacity = 1 - seg(p, 0.02, 0.1);
+        canvas.style.opacity = 1 - seg(p, 0.95, 1);
+
+        renderer.render(scene, camera);
+      })();
+    })();
+  }
+
+  /* ================= the product view ================= */
+  var pv = document.getElementById('pv');
+  var pvInfo = document.getElementById('pvInfo');
+  var pvRel = document.getElementById('pvRel');
+  var pvDeg = document.getElementById('pvDeg');
+  var pvStage = document.getElementById('pvStage');
+  var pvCanvas = document.getElementById('pvgl');
+
+  var pvR = null, pvScene = null, pvCam = null, pvJacket = null, pvEnv = null;
+  var angTarget = 0, angNow = 0, pvRunning = false, currentColour = 0;
+
+  function star(on) {
+    return '<svg width="12" height="12" viewBox="0 0 24 24" fill="' + (on ? '#B08D57' : 'rgba(232,227,218,0.22)') + '">' +
+      '<path d="m12 2 3 6.6 7 .8-5.2 4.8 1.4 7L12 17.8 5.8 21.2l1.4-7L2 9.4l7-.8z"/></svg>';
+  }
+
+  function infoHTML(p) {
+    var stars = '';
+    for (var i = 1; i <= 5; i++) stars += star(i <= Math.round(p.rate));
+    return '<div class="pv-crumb">' + p.cat.replace(' · ', ' / ') + ' &nbsp;/&nbsp; ' + p.no + '</div>' +
+      '<h2>' + p.name + '</h2>' +
+      '<p class="pv-desc">' + p.desc + '</p>' +
+      '<div class="pv-price"><b>AED ' + p.price.toFixed(2) + '</b><s>' + p.was + '.00</s><em>' + p.off + '% OFF</em></div>' +
+      '<div class="pv-rate">' + stars + '<span>' + p.rate + '</span><span style="color:rgba(232,227,218,0.24)">&bull;</span><span>' + p.sold + '</span></div>' +
+      '<div class="pv-rule"></div>' +
+      '<div><div class="pv-lab">Colour &mdash; <b id="pvColName">' + p.colours[0][0] + '</b></div>' +
+        '<div class="sw" id="pvSw">' + p.colours.map(function (c, i) {
+          return '<button data-i="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="' + c[0] + '" style="background:' + c[1] + '"></button>';
+        }).join('') + '</div></div>' +
+      '<div><div class="pv-lab">Size (AE)</div><div class="sizes">' + p.sizes.map(function (s, i) {
+          var gone = p.out.indexOf(s) >= 0;
+          return '<button ' + (gone ? 'disabled' : '') + ' aria-pressed="' + (!gone && i === 1) + '">' + s + '</button>';
+        }).join('') + '</div></div>' +
+      '<div class="buys"><button class="buy">Add to bag</button><button class="buy ghost">Ask on WhatsApp</button></div>' +
+      '<div class="acc">' +
+        '<details><summary>Materials &amp; care</summary><p>' + p.care + '</p></details>' +
+        '<details><summary>Fit</summary><p>' + p.fit + '</p></details>' +
+        '<details><summary>Delivery</summary><p>Free shipping across the UAE, arriving in about two business days. AED 20 credit if it runs late.</p></details>' +
+      '</div>';
+  }
+
+  function wireInfo(p) {
+    var sw = document.getElementById('pvSw');
+    if (sw) sw.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      currentColour = +b.dataset.i;
+      Array.prototype.forEach.call(sw.children, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      document.getElementById('pvColName').textContent = p.colours[currentColour][0];
+      recolour(p.colours[currentColour][1], p.dark);
+    });
+    var sizes = pvInfo.querySelector('.sizes');
+    if (sizes) sizes.addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b || b.disabled) return;
+      Array.prototype.forEach.call(sizes.children, function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+    });
+  }
+
+  function recolour(hide, dark) {
+    if (!pvJacket) return;
+    var m = pvJacket.userData.materials;
+    m[0].color.set(hide);
+    m[1].color.set(dark);
+  }
+
+  function initPV() {
+    if (pvR || !HAS3D) return;
+    try { pvR = new THREE.WebGLRenderer({ canvas: pvCanvas, antialias: true, alpha: true }); }
+    catch (e) { pvR = null; return; }
+    pvR.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+    if ('outputEncoding' in pvR) pvR.outputEncoding = THREE.sRGBEncoding;
+    pvScene = new THREE.Scene();
+    lightRig(pvScene);
+    pvEnv = makeEnv(pvR);
+    if (pvEnv) pvScene.environment = pvEnv;
+    pvCam = new THREE.PerspectiveCamera(38, 1, 0.1, 40);
+    pvCam.position.set(0, 0.1, 5.0);
+    pvCam.lookAt(0, -0.02, 0);
+    pvJacket = buildJacket('#5A3A2E', '#33201A', pvEnv);
+    pvScene.add(pvJacket);
+  }
+
+  function sizePV() {
+    if (!pvR) return;
+    var w = pvStage.clientWidth, h = pvStage.clientHeight;
+    if (!w || !h) return;
+    pvR.setSize(w, h, false);
+    pvCam.aspect = w / h;
+    pvCam.updateProjectionMatrix();
+  }
+
+  var pvClock = null;
+  function pvLoop() {
+    if (!pvRunning) return;
+    requestAnimationFrame(pvLoop);
+    if (!pvClock) pvClock = new THREE.Clock();
+    var dt = Math.min(pvClock.getDelta(), 0.05);
+    angNow += (angTarget - angNow) * Math.min(1, dt * 7);
+    if (pvJacket) {
+      pvJacket.rotation.y = angNow;
+      pvJacket.position.y = -0.02 + Math.sin(performance.now() / 2400) * 0.015;
     }
-    for (var c = 0; c < RING; c++) idx.push(capCentre, c + 1, c);
-
-    var g = new THREE.BufferGeometry();
-    g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
-    g.setIndex(idx);
-    g.computeVertexNormals();
-    return new THREE.Mesh(g, brass);
+    var deg = Math.round(((angNow * 180 / Math.PI) % 360 + 360) % 360);
+    pvDeg.textContent = deg + '°';
+    pvR.render(pvScene, pvCam);
   }
 
-  var horn = buildHorn();
-  scene.add(horn);
+  function openProduct(id) {
+    var p = byId(id);
+    if (!p) return;
+    currentColour = 0;
+    pvInfo.innerHTML = infoHTML(p);
+    wireInfo(p);
+    pvRel.innerHTML = PRODUCTS.filter(function (o) { return o.id !== p.id; })
+      .map(function (o) { return cardHTML(o, true); }).join('');
+    document.getElementById('pvRelNote').textContent = 'The other four in the line.';
 
-  /* --- jacket texture drawn on a canvas, so your photos can replace it later --- */
-  function jacketTexture(hide) {
-    var c = document.createElement('canvas');
-    c.width = 512; c.height = 480;
-    var g = c.getContext('2d');
-    g.scale(512 / 320, 480 / 300);
-    var body = new Path2D(JACKET);
-    g.fillStyle = hide; g.fill(body);
-    g.fillStyle = 'rgba(0,0,0,.24)';
-    g.fill(new Path2D("M236,112 L236,248 L160,248 L160,52 L184,38 L248,58 C280,72 300,116 300,168 L298,206 L254,212 C256,180 250,140 236,112 Z"));
-    g.fillStyle = 'rgba(0,0,0,.34)'; g.fillRect(84, 220, 152, 28);
-    g.fillStyle = 'rgba(0,0,0,.44)'; g.fillRect(157, 56, 6, 166);
-    g.strokeStyle = 'rgba(216,196,162,.45)'; g.lineWidth = 2.2;
-    g.setLineDash([2, 3.4]); g.beginPath(); g.moveTo(160, 58); g.lineTo(160, 220); g.stroke(); g.setLineDash([]);
-    g.fillStyle = 'rgba(255,255,255,.08)'; g.fill(new Path2D("M136,38 L160,56 L142,88 L120,50 Z"));
-    g.fillStyle = 'rgba(0,0,0,.18)'; g.fill(new Path2D("M184,38 L160,56 L178,88 L200,50 Z"));
-    g.strokeStyle = 'rgba(0,0,0,.34)'; g.lineWidth = 1.3;
-    g.strokeRect(100, 120, 48, 46); g.strokeRect(98, 114, 52, 15);
-    g.strokeRect(172, 120, 48, 46); g.strokeRect(170, 114, 52, 15);
-    var t = new THREE.CanvasTexture(c);
-    if ('encoding' in t) t.encoding = THREE.sRGBEncoding;
-    return t;
-  }
+    pv.hidden = false;
+    document.body.classList.add('locked');
+    pv.scrollTop = 0;
 
-  // a plane bowed forward, so a turning jacket reads as having a body in it
-  function bowedPlane(w, h) {
-    var g = new THREE.PlaneGeometry(w, h, 26, 1);
-    var p = g.attributes.position, half = w / 2;
-    for (var i = 0; i < p.count; i++) {
-      var x = p.getX(i);
-      p.setZ(i, 0.26 * (1 - (x / half) * (x / half)));
+    if (HAS3D && !reduce) {
+      initPV();
+      if (pvR) {
+        recolour(p.colours[0][1], p.dark);
+        angTarget = 0; angNow = -0.5;
+        sizePV();
+        if (!pvRunning) { pvRunning = true; pvClock = null; pvLoop(); }
+      } else {
+        pvStage.style.display = 'none';
+      }
+    } else {
+      pvStage.style.display = 'none';
     }
-    g.computeVertexNormals();
-    return g;
+    document.getElementById('pvClose').focus();
   }
 
-  var texCache = {};
-  function jacketMesh(hide, w, h) {
-    if (!texCache[hide]) texCache[hide] = jacketTexture(hide);
-    // alphaTest stays low so the cutout is clean but a fading opacity
-    // still reads as a fade rather than popping in at the threshold
-    var m = new THREE.MeshStandardMaterial({
-      map: texCache[hide], transparent: true, alphaTest: 0.04, opacity: 0,
-      roughness: 0.62, metalness: 0.06, side: THREE.DoubleSide
-    });
-    return new THREE.Mesh(bowedPlane(w, h), m);
+  function closeProduct() {
+    pv.hidden = true;
+    pvRunning = false;
+    document.body.classList.remove('locked');
   }
 
-  /* --- the showroom --- */
-  var rails = new THREE.Group();
-  scene.add(rails);
+  document.getElementById('pvClose').addEventListener('click', closeProduct);
+  document.addEventListener('keydown', function (e) {
+    if (pv.hidden) return;
+    if (e.key === 'Escape') closeProduct();
+    if (e.key === 'ArrowLeft') angTarget -= Math.PI / 6;
+    if (e.key === 'ArrowRight') angTarget += Math.PI / 6;
+  });
+  document.getElementById('pvPrev').addEventListener('click', function () { angTarget -= Math.PI / 6; });
+  document.getElementById('pvNext').addEventListener('click', function () { angTarget += Math.PI / 6; });
 
-  var uprights = [], bars = [], hangers = [];
+  // drag to turn
+  var dragging = false, lastX = 0;
+  function down(x) { dragging = true; lastX = x; pvStage.classList.add('dragging'); }
+  function move(x) { if (!dragging) return; angTarget += (x - lastX) * 0.011; lastX = x; }
+  function up() { dragging = false; pvStage.classList.remove('dragging'); }
 
-  function railRow(z, dim, scale) {
-    var row = new THREE.Group();
-    row.position.z = z;
-    var mat = dim
-      ? new THREE.MeshStandardMaterial({ color: 0x7a613c, metalness: 0.88, roughness: 0.38 })
-      : brass;
+  pvStage.addEventListener('pointerdown', function (e) {
+    if (e.target.closest('.spin')) return;
+    down(e.clientX);
+    if (pvStage.setPointerCapture) { try { pvStage.setPointerCapture(e.pointerId); } catch (err) {} }
+  });
+  pvStage.addEventListener('pointermove', function (e) { move(e.clientX); });
+  pvStage.addEventListener('pointerup', up);
+  pvStage.addEventListener('pointercancel', up);
 
-    [-6.2, -2.1, 2.1, 6.2].forEach(function (x) {
-      // origin moved to the foot so scaling y grows the upright off the floor
-      var ug = new THREE.CylinderGeometry(0.045, 0.045, 8.6, 10);
-      ug.translate(0, 4.3, 0);
-      var u = new THREE.Mesh(ug, mat);
-      u.position.set(x, -4.3, 0);
-      u.scale.y = 0.001;
-      row.add(u); uprights.push(u);
-    });
-
-    [1.35, -1.75].forEach(function (y) {
-      var b = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 12.4, 8), mat);
-      b.rotation.z = Math.PI / 2;
-      b.position.set(0, y, 0);
-      b.scale.y = 0.001;
-      row.add(b); bars.push(b);
-    });
-
-    PRODUCTS.forEach(function (p, i) {
-      var j = jacketMesh(p.hide, 1.62 * scale, 1.52 * scale);
-      j.position.set(-4.4 + i * 2.2, 1.35 - 0.92 * scale, 0.06);
-      j.scale.setScalar(0.001);
-      row.add(j); hangers.push(j);
-    });
-    PRODUCTS.slice(0, 4).forEach(function (p, i) {
-      var j = jacketMesh(p.hide, 1.62 * scale, 1.52 * scale);
-      j.position.set(-3.3 + i * 2.2, -1.75 - 0.92 * scale, 0.06);
-      j.scale.setScalar(0.001);
-      row.add(j); hangers.push(j);
-    });
-
-    rails.add(row);
-    return row;
-  }
-
-  railRow(-5.4, true, 0.92);
-  railRow(0, false, 1);
-
-  /* --- the one that turns at the end --- */
-  var hero = jacketMesh('#5A3A2E', 2.3, 2.15);
-  hero.position.set(0, -0.15, 4.4);
-  hero.visible = false;
-  scene.add(hero);
-
-  /* --- scroll wiring --- */
-  var stage = document.getElementById('stage');
-  function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
-  function seg(p, a, b) { return clamp((p - a) / (b - a), 0, 1); }
-  function ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
-
-  var target = 0, current = 0;
-  function measure() {
-    var span = stage.offsetHeight - window.innerHeight;
-    target = span > 0 ? clamp(-stage.getBoundingClientRect().top / span, 0, 1) : 0;
-  }
-
-  function onResize() {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight, false);
-    measure();
-  }
-  window.addEventListener('resize', onResize, { passive: true });
-  window.addEventListener('scroll', measure, { passive: true });
-  measure();
-
-  var clock = new THREE.Clock();
-
-  function frame() {
-    requestAnimationFrame(frame);
-    var dt = Math.min(clock.getDelta(), 0.05);
-    current += (target - current) * Math.min(1, dt * 6.5);
-    var p = current;
-
-    // horn: turns always, recedes as the room arrives
-    var away = ease(seg(p, 0.16, 0.36));
-    horn.rotation.y += dt * 0.42;
-    horn.rotation.y += (target - current) * 2.2;
-    horn.position.y = 0.2 + away * 5.6;
-    horn.scale.setScalar(1 - away * 0.55);
-    horn.visible = away < 0.99;
-
-    // uprights rise, then the bars span across
-    uprights.forEach(function (u, i) {
-      u.scale.y = Math.max(0.001, ease(seg(p, 0.18 + (i % 4) * 0.022, 0.42)) );
-    });
-    bars.forEach(function (b, i) {
-      b.scale.y = Math.max(0.001, ease(seg(p, 0.30 + (i % 2) * 0.03, 0.50)));
-    });
-
-    // the line hangs, left to right
-    hangers.forEach(function (j, i) {
-      var s = ease(seg(p, 0.46 + (i % 9) * 0.014, 0.70 + (i % 9) * 0.014));
-      j.scale.setScalar(Math.max(0.001, s));
-      j.material.opacity = s;
-      j.rotation.y = (1 - s) * 0.5;
-    });
-
-    // light comes up over the room
-    overhead.intensity = ease(seg(p, 0.52, 0.78)) * 3.4;
-    key.intensity = 2.1 + ease(seg(p, 0.52, 0.78)) * 0.8;
-
-    // camera: pull back for the room, push in for the turntable
-    var back = ease(seg(p, 0.16, 0.48));
-    var push = ease(seg(p, 0.78, 1.0));
-    camera.position.z = 9.4 + back * 3.6 - push * 5.6;
-    camera.position.y = -back * 0.5 + push * 0.4;
-    camera.lookAt(0, push * -0.1, 0);
-
-    // the turntable
-    var turn = seg(p, 0.80, 1.0);
-    hero.visible = turn > 0.001;
-    if (hero.visible) {
-      hero.material.opacity = ease(seg(p, 0.80, 0.87));
-      hero.rotation.y = (turn - 0.5) * 2.3;
-      hero.position.z = 4.4 - ease(seg(p, 0.80, 0.94)) * 1.1;
-    }
-    rails.position.z = -push * 1.6;
-
-    // captions
-    var on = [seg(p, 0, 0.06) * (1 - seg(p, 0.12, 0.2)),
-              seg(p, 0.26, 0.34) * (1 - seg(p, 0.40, 0.47)),
-              seg(p, 0.55, 0.62) * (1 - seg(p, 0.71, 0.78)),
-              seg(p, 0.84, 0.90)];
-    for (var i = 0; i < caps.length; i++) caps[i].style.opacity = on[i] != null ? on[i] : 0;
-    cue.style.opacity = 1 - seg(p, 0.02, 0.1);
-
-    // hand the page back once the stage is done
-    canvas.style.opacity = 1 - seg(p, 0.94, 1);
-
-    renderer.render(scene, camera);
-  }
-  frame();
+  window.addEventListener('resize', function () { if (!pv.hidden) sizePV(); }, { passive: true });
 })();
 </script>
