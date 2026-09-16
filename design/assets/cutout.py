@@ -2,7 +2,7 @@ from PIL import Image
 from collections import deque
 import os, sys
 
-def cutout(src, out, target_h=820, tol=14, feather=20, quality=80):
+def cutout(src, out, target_h=820, tol=14, feather=20, quality=80, erode=0):
     im = Image.open(src).convert("RGBA")
     w, h = im.size
     px = im.load()
@@ -26,6 +26,21 @@ def cutout(src, out, target_h=820, tol=14, feather=20, quality=80):
         for dx,dy in ((1,0),(-1,0),(0,1),(0,-1)):
             nx,ny = x+dx, y+dy
             if 0 <= nx < w and 0 <= ny < h: maybe(nx,ny)
+
+    # Some source art carries a light rim around the product. Feathering cannot
+    # remove it because those pixels sit far from the background colour, so the
+    # transparent region is grown inward instead.
+    for _ in range(erode):
+        grow = []
+        for y in range(h):
+            b = y*w
+            for x in range(w):
+                if seen[b+x]: continue
+                for dx, dy in ((1,0),(-1,0),(0,1),(0,-1)):
+                    nx, ny = x+dx, y+dy
+                    if 0 <= nx < w and 0 <= ny < h and seen[ny*w+nx]:
+                        grow.append(b+x); break
+        for i in grow: seen[i] = 1
 
     cut = sum(seen)
     # feather the anti-aliased ring the flood fill leaves behind, so pale jackets

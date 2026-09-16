@@ -228,12 +228,26 @@
   .pv-modes button + button { border-left: 1px solid var(--hair); }
   .pv-modes button[aria-pressed="true"] { background: rgba(176,141,87,0.16); color: var(--brass-lt); }
 
+  .pv-spin { position: absolute; inset: 0; display: grid; place-items: center; padding: clamp(24px, 6%, 72px); }
+  .pv-spin img { grid-area: 1 / 1; max-width: 100%; max-height: 100%; width: auto; object-fit: contain; opacity: 0; filter: drop-shadow(0 30px 54px rgba(0,0,0,0.62)); }
+  .pv-spin img.on { opacity: 1; }
+
+  /* three stage modes: the photograph, a photographic turntable, or the model */
   .pv-stage[data-mode="photo"] #pvgl,
+  .pv-stage[data-mode="photo"] .pv-spin,
   .pv-stage[data-mode="photo"] .spin,
   .pv-stage[data-mode="photo"] .pv-deg,
   .pv-stage[data-mode="photo"] .pv-hint { display: none; }
-  .pv-stage[data-mode="turn"] .pv-photo { display: none; }
+  .pv-stage[data-mode="spin"] .pv-photo,
+  .pv-stage[data-mode="spin"] #pvgl { display: none; }
+  .pv-stage[data-mode="model"] .pv-photo,
+  .pv-stage[data-mode="model"] .pv-spin { display: none; }
   .pv-stage[data-mode="photo"] { cursor: default; }
+
+  .pv-real { position: absolute; bottom: 22px; right: clamp(14px, 3vw, 28px); font-size: 8.5px; letter-spacing: 0.18em; color: var(--bone-faint); }
+  .pv-stage[data-mode="spin"] .pv-real::after { content: 'PHOTOGRAPHED, 12 FRAMES'; }
+  .pv-stage[data-mode="model"] .pv-real::after { content: 'MODELLED PREVIEW'; }
+  .pv-stage[data-mode="photo"] .pv-real { display: none; }
 
   .spin { position: absolute; top: 50%; transform: translateY(-50%); width: 50px; height: 50px; border-radius: 50%; border: 1px solid rgba(176,141,87,0.55); background: rgba(51,34,26,0.66); color: var(--brass-lt); font-size: 15px; display: grid; place-items: center; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
   .spin:hover { background: rgba(176,141,87,0.2); }
@@ -370,6 +384,7 @@
   <div class="pv-main">
     <div class="pv-stage" id="pvStage" data-mode="photo">
       <div class="pv-photo"><img id="pvPhotoImg" src="" alt=""></div>
+      <div class="pv-spin" id="pvSpin" aria-hidden="true"></div>
       <canvas id="pvgl"></canvas>
       <div class="pv-modes" id="pvModes">
         <button type="button" data-m="photo" aria-pressed="true">PHOTO</button>
@@ -379,6 +394,7 @@
       <button class="spin prev" id="pvPrev" aria-label="Turn left">&#9664;</button>
       <button class="spin next" id="pvNext" aria-label="Turn right">&#9654;</button>
       <div class="pv-hint">DRAG TO TURN &middot; FULL 360&deg;</div>
+      <div class="pv-real"></div>
     </div>
     <div class="pv-info" id="pvInfo"></div>
   </div>
@@ -474,7 +490,10 @@
   var CARE = 'Faux leather. Wipe with a damp cloth, never machine wash, and keep it out of direct sun.';
 
   var PHOTOS = "__PRODUCT_PHOTOS__";
+  var SPINS = "__PRODUCT_SPINS__";
   PRODUCTS.forEach(function (p) {
+    // twelve frames at 30 degrees, when they have been shot
+    p.spin = (SPINS && SPINS[p.id] && SPINS[p.id].length) ? SPINS[p.id] : null;
     p.img = PHOTOS[p.id] || '';
     p.care = CARE;
     // pale hides vanish on a dark plate, so they get the bone one instead
@@ -522,7 +541,7 @@
         '<span class="no">' + p.no + '</span>' +
         (p.tag && !small ? '<span class="tag">' + p.tag + '</span>' : '') +
         '<img class="pimg" src="' + p.img + '" alt="' + p.name + '" loading="lazy">' +
-        (small ? '' : '<span class="spin360">OPEN &amp; TURN 360&deg;</span>') +
+        (small ? '' : '<span class="spin360">' + (p.spin ? 'TURN 360&deg; &middot; PHOTOGRAPHED' : 'OPEN &amp; TURN 360&deg;') + '</span>') +
       '</span>' +
       '<span class="meta">' +
         '<span class="row"><span class="name">' + p.name + '</span>' +
@@ -862,6 +881,8 @@
   var pvR = null, pvScene = null, pvCam = null, pvJacket = null, pvEnv = null;
   var angTarget = 0, angNow = 0, pvRunning = false, currentColour = 0, currentProduct = null;
   var pvModes = document.getElementById('pvModes');
+  var pvSpin = document.getElementById('pvSpin');
+  var spinImgs = [], spinIdx = 0, spinFrames = null;
   var pvPhotoImg = document.getElementById('pvPhotoImg');
 
   function star(on) {
@@ -969,6 +990,21 @@
     pvPhotoImg.src = p.img;
     pvPhotoImg.alt = p.name;
 
+    spinFrames = p.spin;
+    pvSpin.innerHTML = '';
+    spinImgs = [];
+    if (spinFrames) {
+      spinFrames.forEach(function (src, i) {
+        var im = document.createElement('img');
+        im.src = src; im.alt = '';
+        if (i === 0) im.className = 'on';
+        pvSpin.appendChild(im);
+        spinImgs.push(im);
+      });
+      spinIdx = 0;
+    }
+    pvModes.querySelector('[data-m="turn"]').hidden = !(spinFrames || (HAS3D && !reduce));
+
     // four others from the same department first, so "goes with this" means something
     var rel = PRODUCTS.filter(function (o) { return o.id !== p.id && o.sex === p.sex; })
       .concat(PRODUCTS.filter(function (o) { return o.id !== p.id && o.sex !== p.sex; }))
@@ -987,27 +1023,46 @@
     document.getElementById('pvClose').focus();
   }
 
+  // "turn" resolves to the photographic turntable when the product has been
+  // shot from every angle, and falls back to the model when it has not
   function setMode(m) {
-    if (m === 'turn' && (!HAS3D || reduce)) return;
-    pvStage.dataset.mode = m;
-    Array.prototype.forEach.call(pvModes.children, function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.m === m));
-    });
     if (m === 'turn') {
-      initPV();
-      if (!pvR) { pvStage.dataset.mode = 'photo'; return; }
-      if (currentProduct) recolour(currentProduct.colours[currentColour][1], currentProduct.dark);
-      angTarget = 0; angNow = -0.6;
-      sizePV();
-      if (!pvRunning) { pvRunning = true; pvClock = null; pvLoop(); }
+      if (spinFrames) {
+        pvStage.dataset.mode = 'spin';
+        pvRunning = false;
+        showSpin(0);
+      } else if (HAS3D && !reduce) {
+        pvStage.dataset.mode = 'model';
+        initPV();
+        if (!pvR) { pvStage.dataset.mode = 'photo'; m = 'photo'; }
+        else {
+          if (currentProduct) recolour(currentProduct.colours[currentColour][1], currentProduct.dark);
+          angTarget = 0; angNow = -0.6;
+          sizePV();
+          if (!pvRunning) { pvRunning = true; pvClock = null; pvLoop(); }
+        }
+      } else { return; }
     } else {
+      pvStage.dataset.mode = 'photo';
       pvRunning = false;
     }
+    var on = pvStage.dataset.mode === 'photo' ? 'photo' : 'turn';
+    Array.prototype.forEach.call(pvModes.children, function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.m === on));
+    });
   }
 
-  if (!HAS3D || reduce) {
-    pvModes.querySelector('[data-m="turn"]').hidden = true;
+  function showSpin(i) {
+    if (!spinImgs.length) return;
+    var n = spinImgs.length;
+    spinIdx = ((i % n) + n) % n;
+    for (var k = 0; k < n; k++) spinImgs[k].className = (k === spinIdx ? 'on' : '');
+    pvDeg.textContent = Math.round(spinIdx * (360 / n)) + '\u00B0';
   }
+
+  function isSpin() { return pvStage.dataset.mode === 'spin'; }
+  function isTurning() { return isSpin() || pvStage.dataset.mode === 'model'; }
+  function step(dir) { if (isSpin()) showSpin(spinIdx + dir); else angTarget += dir * Math.PI / 6; }
   pvModes.addEventListener('click', function (e) {
     var b = e.target.closest('button');
     if (b) setMode(b.dataset.m);
@@ -1023,21 +1078,34 @@
   document.addEventListener('keydown', function (e) {
     if (pv.hidden) return;
     if (e.key === 'Escape') closeProduct();
-    if (pvStage.dataset.mode !== 'turn') return;
-    if (e.key === 'ArrowLeft') angTarget -= Math.PI / 6;
-    if (e.key === 'ArrowRight') angTarget += Math.PI / 6;
+    if (!isTurning()) return;
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
   });
-  document.getElementById('pvPrev').addEventListener('click', function () { angTarget -= Math.PI / 6; });
-  document.getElementById('pvNext').addEventListener('click', function () { angTarget += Math.PI / 6; });
+  document.getElementById('pvPrev').addEventListener('click', function () { step(-1); });
+  document.getElementById('pvNext').addEventListener('click', function () { step(1); });
 
   // drag to turn
-  var dragging = false, lastX = 0;
-  function down(x) { dragging = true; lastX = x; pvStage.classList.add('dragging'); }
-  function move(x) { if (!dragging) return; angTarget += (x - lastX) * 0.011; lastX = x; }
+  var dragging = false, lastX = 0, dragAcc = 0;
+  function down(x) { dragging = true; lastX = x; dragAcc = 0; pvStage.classList.add('dragging'); }
+  function move(x) {
+    if (!dragging) return;
+    var dx = x - lastX; lastX = x;
+    if (isSpin()) {
+      // one frame per 26px of drag, so a full turn is roughly a screen width
+      dragAcc += dx;
+      while (Math.abs(dragAcc) >= 26) {
+        showSpin(spinIdx + (dragAcc > 0 ? 1 : -1));
+        dragAcc -= (dragAcc > 0 ? 26 : -26);
+      }
+    } else {
+      angTarget += dx * 0.011;
+    }
+  }
   function up() { dragging = false; pvStage.classList.remove('dragging'); }
 
   pvStage.addEventListener('pointerdown', function (e) {
-    if (pvStage.dataset.mode !== 'turn' || e.target.closest('.spin') || e.target.closest('.pv-modes')) return;
+    if (!isTurning() || e.target.closest('.spin') || e.target.closest('.pv-modes')) return;
     down(e.clientX);
     if (pvStage.setPointerCapture) { try { pvStage.setPointerCapture(e.pointerId); } catch (err) {} }
   });
@@ -1045,6 +1113,6 @@
   pvStage.addEventListener('pointerup', up);
   pvStage.addEventListener('pointercancel', up);
 
-  window.addEventListener('resize', function () { if (!pv.hidden && pvStage.dataset.mode === 'turn') sizePV(); }, { passive: true });
+  window.addEventListener('resize', function () { if (!pv.hidden && pvStage.dataset.mode === 'model') sizePV(); }, { passive: true });
 })();
 </script>
