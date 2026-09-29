@@ -1,0 +1,29 @@
+{
+  "name": "rizq-pilot",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render RizqPilot out/rizq-pilot.mp4",
+    "stills": "node scripts/stills.mjs"
+  },
+  "dependencies": {
+    "@fontsource/amiri": "^5.3.0",
+    "@fontsource/amiri-quran": "^5.3.0",
+    "@fontsource/noto-naskh-arabic": "^5.3.0",
+    "@fontsource/noto-nastaliq-urdu": "^5.3.0",
+    "@fontsource/scheherazade-new": "^5.3.0",
+    "@remotion/cli": "^4.0.529",
+    "@remotion/google-fonts": "^4.0.529",
+    "@types/d3-geo": "^3.1.1",
+    "@types/react": "^19.3.0",
+    "@types/topojson-client": "^3.1.5",
+    "d3-geo": "^3.1.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.529",
+    "topojson-client": "^3.1.0",
+    "typescript": "^7.0.2",
+    "world-atlas": "^2.0.2"
+  }
+}

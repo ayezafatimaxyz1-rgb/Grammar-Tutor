@@ -1,0 +1,83 @@
+<title>Rizq Series Bible</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&family=Noto+Nastaliq+Urdu:wght@400;600&family=Scheherazade+New:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column on manuscript paper, a sticky contents bar; the series' own badge colours carry the classification system. */
+:root {
+  --paper: #F4ECDA; --sheet: #FBF6EA; --ink: #2B2118; --muted: #6B5A48; --rule: #D8C7A3;
+  --gold: #9C7222; --sepia: #8A5A2B; --teal: #1E8C82; --coral: #C4553A; --amber: #B7861B;
+  --display: "Spectral", Georgia, serif; --body: "Spectral", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ur: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif; --ar: "Scheherazade New", "Amiri", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0E1B2C; --sheet: #13243A; --ink: #E3EEF0; --muted: #A5B8C0; --rule: #27405E;
+  --gold: #D4A64A; --sepia: #C99A6B; --teal: #3CC7B9; --coral: #EE8A6E; --amber: #E0B64E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0E1B2C; --sheet: #13243A; --ink: #E3EEF0; --muted: #A5B8C0; --rule: #27405E;
+  --gold: #D4A64A; --sepia: #C99A6B; --teal: #3CC7B9; --coral: #EE8A6E; --amber: #E0B64E; color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--body); padding-inline: 16px; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 8px 80px; }
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule);
+  display: flex; gap: 6px 22px; flex-wrap: wrap; align-items: baseline; padding: 12px 0; }
+nav .name { font-family: var(--ur); font-size: 20px; line-height: 2; color: var(--gold); margin-inline-end: auto; }
+nav a { color: var(--ink); text-decoration: none; font-size: 15px; letter-spacing: .02em; border-bottom: 1.5px solid transparent; }
+nav a:hover, nav a:focus-visible { border-bottom-color: var(--gold); outline: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 8px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.part { padding-top: 28px; }
+.part + .part { border-top: 2px solid var(--gold); margin-top: 48px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4vw, 38px); line-height: 1.2; text-wrap: balance; margin: 18px 0 10px; }
+h2 { font-weight: 600; font-size: 24px; margin: 40px 0 8px; text-wrap: balance; }
+h3 { font-weight: 600; font-size: 18px; margin: 30px 0 6px; padding-top: 10px; border-top: 1px solid var(--rule); scroll-margin-top: 70px; }
+p, li { max-width: 72ch; }
+em { color: var(--muted); }
+code { font-family: var(--mono); font-size: .82em; background: var(--sheet); padding: 1px 5px; border-radius: 3px; }
+pre { background: var(--sheet); padding: 12px 14px; overflow-x: auto; border-radius: 4px; }
+pre code { background: none; padding: 0; }
+ul { padding-inline-start: 1.2em; }
+li { margin: 4px 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0; }
+
+.tablewrap { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--rule); background: var(--sheet); border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-family: var(--mono); font-size: 13px; white-space: nowrap; color: var(--muted); }
+td.codes { white-space: nowrap; }
+
+bdi.ur { font-family: var(--ur); font-size: 1.02em; line-height: 2.1; }
+bdi.ar { font-family: var(--ar); font-size: 1.28em; line-height: 1.8; color: var(--ink); }
+li.narr { list-style: none; margin-inline-start: -1.2em; margin-top: 10px; }
+li.narr strong { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+li.narr p { font-family: var(--ur); font-size: 19px; line-height: 2.25; margin: 2px 0 6px; padding: 10px 16px; background: var(--sheet);
+  border-inline-start: 3px solid var(--gold); max-width: none; text-align: right; }
+
+.code { display: inline-block; font-family: var(--mono); font-size: 11px; line-height: 1; padding: 4px 6px; border-radius: 3px; margin-inline-end: 3px; color: var(--sheet); }
+.cT { background: var(--gold); } .cI { background: var(--sepia); } .cA { background: var(--teal); } .cE { background: var(--coral); }
+.flag { display: inline-grid; place-items: center; width: 1.25em; height: 1.25em; border-radius: 50%; font: 600 .75em/1 var(--mono); color: var(--sheet); vertical-align: .1em; }
+.flag.warn { background: var(--coral); } .flag.check { background: var(--amber); } .flag.ok { background: var(--teal); }
+@media (max-width: 520px) { body { font-size: 16px; } nav .name { width: 100%; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <nav>
+    <span class="name" dir="rtl">رزق سے ریاست تک</span>
+    <a href="#audit">Inventory &amp; audit</a>
+    <a href="#episodes">Eight episodes</a>
+    <a href="#pilot">Pilot</a>
+  </nav>
+  <div class="legend" aria-label="Legend">
+    <span><span class="code cT">T</span> Qur'anic text</span>
+    <span><span class="code cI">I</span> Scholarly interpretation</span>
+    <span><span class="code cA">A</span> Modern application</span>
+    <span><span class="code cE">E</span> Empirical claim</span>
+    <span><span class="flag warn">⚠</span> Inaccurate or overstated</span>
+    <span><span class="flag check">?</span> Needs a citation</span>
+    <span><span class="flag ok">✓</span> Checked</span>
+  </div>
+<!--SECTIONS-->
+</div>

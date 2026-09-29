@@ -1,0 +1,2005 @@
+<title>Rizq Series Bible</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@500&family=Noto+Nastaliq+Urdu:wght@400;600&family=Scheherazade+New:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column on manuscript paper, a sticky contents bar; the series' own badge colours carry the classification system. */
+:root {
+  --paper: #F4ECDA; --sheet: #FBF6EA; --ink: #2B2118; --muted: #6B5A48; --rule: #D8C7A3;
+  --gold: #9C7222; --sepia: #8A5A2B; --teal: #1E8C82; --coral: #C4553A; --amber: #B7861B;
+  --display: "Spectral", Georgia, serif; --body: "Spectral", Georgia, serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ur: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif; --ar: "Scheherazade New", "Amiri", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0E1B2C; --sheet: #13243A; --ink: #E3EEF0; --muted: #A5B8C0; --rule: #27405E;
+  --gold: #D4A64A; --sepia: #C99A6B; --teal: #3CC7B9; --coral: #EE8A6E; --amber: #E0B64E; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --paper: #0E1B2C; --sheet: #13243A; --ink: #E3EEF0; --muted: #A5B8C0; --rule: #27405E;
+  --gold: #D4A64A; --sepia: #C99A6B; --teal: #3CC7B9; --coral: #EE8A6E; --amber: #E0B64E; color-scheme: dark }
+
+body { background: var(--paper); color: var(--ink); font: 17px/1.6 var(--body); padding-inline: 16px; }
+.wrap { max-width: 980px; margin: 0 auto; padding-block: 8px 80px; }
+nav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); border-bottom: 1px solid var(--rule);
+  display: flex; gap: 6px 22px; flex-wrap: wrap; align-items: baseline; padding: 12px 0; }
+nav .name { font-family: var(--ur); font-size: 20px; line-height: 2; color: var(--gold); margin-inline-end: auto; }
+nav a { color: var(--ink); text-decoration: none; font-size: 15px; letter-spacing: .02em; border-bottom: 1.5px solid transparent; }
+nav a:hover, nav a:focus-visible { border-bottom-color: var(--gold); outline: none; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 8px; font-size: 14px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+
+.part { padding-top: 28px; }
+.part + .part { border-top: 2px solid var(--gold); margin-top: 48px; }
+h1 { font-family: var(--display); font-weight: 600; font-size: clamp(28px, 4vw, 38px); line-height: 1.2; text-wrap: balance; margin: 18px 0 10px; }
+h2 { font-weight: 600; font-size: 24px; margin: 40px 0 8px; text-wrap: balance; }
+h3 { font-weight: 600; font-size: 18px; margin: 30px 0 6px; padding-top: 10px; border-top: 1px solid var(--rule); scroll-margin-top: 70px; }
+p, li { max-width: 72ch; }
+em { color: var(--muted); }
+code { font-family: var(--mono); font-size: .82em; background: var(--sheet); padding: 1px 5px; border-radius: 3px; }
+pre { background: var(--sheet); padding: 12px 14px; overflow-x: auto; border-radius: 4px; }
+pre code { background: none; padding: 0; }
+ul { padding-inline-start: 1.2em; }
+li { margin: 4px 0; }
+hr { border: 0; border-top: 1px solid var(--rule); margin: 36px 0; }
+
+.tablewrap { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--rule); background: var(--sheet); border-radius: 4px; }
+table { border-collapse: collapse; width: 100%; font-size: 15px; }
+th, td { text-align: left; vertical-align: top; padding: 8px 12px; border-bottom: 1px solid var(--rule); }
+th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-family: var(--mono); font-size: 13px; white-space: nowrap; color: var(--muted); }
+td.codes { white-space: nowrap; }
+
+bdi.ur { font-family: var(--ur); font-size: 1.02em; line-height: 2.1; }
+bdi.ar { font-family: var(--ar); font-size: 1.28em; line-height: 1.8; color: var(--ink); }
+li.narr { list-style: none; margin-inline-start: -1.2em; margin-top: 10px; }
+li.narr strong { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+li.narr p { font-family: var(--ur); font-size: 19px; line-height: 2.25; margin: 2px 0 6px; padding: 10px 16px; background: var(--sheet);
+  border-inline-start: 3px solid var(--gold); max-width: none; text-align: right; }
+
+.code { display: inline-block; font-family: var(--mono); font-size: 11px; line-height: 1; padding: 4px 6px; border-radius: 3px; margin-inline-end: 3px; color: var(--sheet); }
+.cT { background: var(--gold); } .cI { background: var(--sepia); } .cA { background: var(--teal); } .cE { background: var(--coral); }
+.flag { display: inline-grid; place-items: center; width: 1.25em; height: 1.25em; border-radius: 50%; font: 600 .75em/1 var(--mono); color: var(--sheet); vertical-align: .1em; }
+.flag.warn { background: var(--coral); } .flag.check { background: var(--amber); } .flag.ok { background: var(--teal); }
+@media (max-width: 520px) { body { font-size: 16px; } nav .name { width: 100%; } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="wrap">
+  <nav>
+    <span class="name" dir="rtl">رزق سے ریاست تک</span>
+    <a href="#audit">Inventory &amp; audit</a>
+    <a href="#episodes">Eight episodes</a>
+    <a href="#pilot">Pilot</a>
+  </nav>
+  <div class="legend" aria-label="Legend">
+    <span><span class="code cT">T</span> Qur'anic text</span>
+    <span><span class="code cI">I</span> Scholarly interpretation</span>
+    <span><span class="code cA">A</span> Modern application</span>
+    <span><span class="code cE">E</span> Empirical claim</span>
+    <span><span class="flag warn">⚠</span> Inaccurate or overstated</span>
+    <span><span class="flag check">?</span> Needs a citation</span>
+    <span><span class="flag ok">✓</span> Checked</span>
+  </div>
+<section id="audit" class="part"><h1>Part 1: Source Inventory and Qur'anic Audit</h1>
+<p><strong>Source:</strong> <code>Quranic_Economic_Blueprint.pdf</code>, 21 pages, 1376×768 pt. Every page is a single raster image (no text layer), exported from <strong>Gemini Notebook</strong>. Page 1 says the deck is "detailed notes based on a Nouman Ali Khan series". So this is an <strong>AI generated summary of lectures</strong>, not the lecturer's own words. The audit treats every claim as the deck's claim, not NAK's, unless it can be checked against his published lectures (which I could not access from this environment).</p>
+<h2>How to read this document</h2>
+<p>Every inventoried point has an ID (<code>P05.3</code> = page 5, point 3). The episode plan in Part 2 cites these IDs, and <code>docs/coverage.py</code> checks that every ID is covered at least once.</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+<th>On screen badge (Urdu)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>T</strong></td>
+<td>Direct text of the Qur'an (what the verse literally says)</td>
+<td><code><bdi dir="rtl" class="ur">قرآنی متن</bdi></code> (gold)</td>
+</tr>
+<tr>
+<td><strong>I</strong></td>
+<td>Scholarly interpretation: classical tafsīr, lexicography, or recognised scholarly reading</td>
+<td><code><bdi dir="rtl" class="ur">تفسیری رائے</bdi></code> (sepia)</td>
+</tr>
+<tr>
+<td><strong>A</strong></td>
+<td>Modern application: the deck's (or lecturer's) extension of the idea to today</td>
+<td><code><bdi dir="rtl" class="ur">عصری اطلاق</bdi></code> (teal)</td>
+</tr>
+<tr>
+<td><strong>E</strong></td>
+<td>Empirical claim: a factual claim about history, economics or society that needs evidence</td>
+<td><code><bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></code> (coral)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Audit flags:</strong> <span class="flag warn" title="Inaccurate or overstated">⚠</span> = inaccurate, misquoted, or overstated; <span class="flag check" title="Needs a citation">?</span> = plausible but needs a citation before broadcast; <span class="flag ok" title="Checked">✓</span> = checked and accurate.</p>
+<p><strong>Reference texts used in the audit</strong> (bundled in the npm package <code>quran-json@3.1.2</code>, sourced from Tanzil / QuranEnc):</p>
+<ul>
+<li>Arabic: Uthmani script (King Fahd Complex text via QuranEnc).</li>
+<li>English: Saheeh International.</li>
+<li>Urdu: Sayyid Abul A'la Maududi, <em>Tafhīm al-Qur'ān</em> translation.</li>
+<li>Tafsīr references cited from standard works: al-Ṭabarī (<em>Jāmiʿ al-Bayān</em>), Ibn Kathīr, al-Qurṭubī (<em>al-Jāmiʿ li-Aḥkām al-Qur'ān</em>), Maududi (<em>Tafhīm</em>), and Ibn Manẓūr (<em>Lisān al-ʿArab</em>) for lexicography. The live tafsīr sites (quran.com, tanzil.net, altafsir.com) were blocked from this container, so the tafsīr notes below are from these standard works as I know them. <strong>Every tafsīr citation marked <span class="flag check" title="Needs a citation">?</span> should be checked page by page against a printed edition before broadcast.</strong></li>
+</ul>
+<hr />
+<h2>Page 1: Title</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P01.1</td>
+<td>Title: <bdi dir="rtl" class="ur">قرآن اور عالمی معیشت</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Framing title.</td>
+</tr>
+<tr>
+<td>P01.2</td>
+<td>Subtitle: <bdi dir="rtl" class="ur">مائیکرو اکنامکس سے میکرو پاور تک: معاشی استحکام کا الٰہی خاکہ</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>"Divine blueprint" is a framing claim; the series should present it as <em>a reading</em> of the Qur'an.</td>
+</tr>
+<tr>
+<td>P01.3</td>
+<td>"Nouman Ali Khan <bdi dir="rtl" class="ur">کی سیریز پر مبنی تفصیلی نوٹس"</bdi></td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Attribution. The deck is AI generated notes, so wording and examples may not be NAK's. Credit as "based on notes from lectures by Nouman Ali Khan" and do not put quotes in his mouth.</td>
+</tr>
+<tr>
+<td>P01.4</td>
+<td>Decorative stamps "APPROVED BY: DIVINE DESIGN", "DATE: 2024", "PROJECT: ISLAMIC ECONOMICS BLUEPRINT"</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> The "Approved by Divine Design" stamp implies divine endorsement of a human study. <strong>Do not reproduce.</strong></td>
+</tr>
+<tr>
+<td>P01.5</td>
+<td>World map with gold trade lines and $ symbols</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Visual only. Map labels in the image are garbled AI text ("SSS.A", "EDDB.65"). Rebuild the map from real geodata.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 2: A big misconception: separating dīn and dunyā</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P02.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">ایک بڑی غلط فہمی: دین اور دنیا کی تفریق</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Thesis statement.</td>
+</tr>
+<tr>
+<td>P02.2</td>
+<td>"The Qur'an does not reject the material world; it organises it."</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Mainstream position; supported by 7:32, 28:77 (<bdi dir="rtl" class="ar">وَلَا تَنسَ نَصِيبَكَ مِنَ ٱلدُّنۡيَا)</bdi>, 62:10.</td>
+</tr>
+<tr>
+<td>P02.3</td>
+<td>Common view: religion is limited to worship (prayer, fasting); business, livelihood and career are "dunyā" with no link to dīn</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td>Characterisation of a popular attitude. Fair as a description of a mindset, but say "many people think", not "the common view is".</td>
+</tr>
+<tr>
+<td>P02.4</td>
+<td>Qur'anic view: no separation between spirituality and materiality; earning, spending and doing business are also part of worship</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Supported by 62:9–10 (leave trade for Jumuʿah, then return to seek Allah's bounty), 73:20, 2:198. "Part of worship" is an interpretive conclusion (intention based), not a verse wording.</td>
+</tr>
+<tr>
+<td>P02.5</td>
+<td>The Qur'an should be studied not only for creed and fiqh (inheritance, divorce) but also through an economic lens</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Methodological proposal.</td>
+</tr>
+<tr>
+<td>P02.6</td>
+<td>"The Qur'an strongly criticises those who forbid themselves the lawful, good things Allah created (beauty, rizq)"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 7:32 <bdi dir="rtl" class="ar">قُلۡ مَنۡ حَرَّمَ زِينَةَ ٱللَّهِ ٱلَّتِيٓ أَخۡرَجَ لِعِبَادِهِۦ وَٱلطَّيِّبَٰتِ مِنَ ٱلرِّزۡقِ</bdi>. Note: <em>zīnah</em> is "adornment" (dress/beauty), <em>ṭayyibāt min al-rizq</em> "good things of provision". Also 5:87.</td>
+</tr>
+<tr>
+<td>P02.7</td>
+<td>"Cutting off from the world and sitting in caves is not Islam"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Supported by 57:27 (monasticism "they innovated it; We did not prescribe it") and the hadith "<bdi dir="rtl" class="ur">لا رهبانية في الإسلام"</bdi> is weak in that wording; the sound hadith is the Prophet ﷺ rejecting celibacy/perpetual fasting ("<bdi dir="rtl" class="ur">فمن رغب عن سنتي فليس مني"</bdi>, Bukhari 5063). <span class="flag warn" title="Inaccurate or overstated">⚠</span> Do not quote "no monasticism in Islam" as a hadith. Note also the Prophet ﷺ himself retreated to Ḥirā', so say "permanent withdrawal from society", not "caves".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 3: The creation worldview: earth as prison or blessing?</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P03.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">تخلیق کا نظریہ: زمین ایک قید خانہ یا ایک نعمت؟</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P03.2</td>
+<td>"Economic mindset starts from how we see this world"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Reasonable framing.</td>
+</tr>
+<tr>
+<td>P03.3</td>
+<td>Biblical view: coming to earth is a punishment and a curse</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Oversimplified.</strong> Genesis 3:17–19 says the <em>ground</em> is cursed "because of you" and man will eat "by the sweat of your brow"; it does not say that being on earth is itself a curse. Genesis 1:28 and 2:15 (tend and keep the garden, before the fall) present work and dominion positively. Christian traditions differ widely.</td>
+</tr>
+<tr>
+<td>P03.4</td>
+<td>Biblical view: hard labour, diseases and agriculture are results of that curse</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Toil and thorns: yes (Gen 3:17–19). Pain in childbirth: yes (3:16). "Diseases": not in Genesis 3. "Agriculture as a result of the curse": Adam already tends the garden in 2:15; toilsome farming is the result.</td>
+</tr>
+<tr>
+<td>P03.5</td>
+<td>Biblical view: man is a prisoner in this world</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Not a Genesis statement. The "world as prison" idea appears in some Christian and also Muslim ascetic writing (the hadith <bdi dir="rtl" class="ur">الدنيا سجن المؤمن</bdi>, Muslim 2956, is itself Islamic). <strong>Do not attribute this to "the Bible".</strong></td>
+</tr>
+<tr>
+<td>P03.6</td>
+<td>Qur'anic view: being sent to earth is not a curse but a provision from Allah</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 2:36 / 7:24: <bdi dir="rtl" class="ar">وَلَكُمۡ فِي ٱلۡأَرۡضِ مُسۡتَقَرࣱّ وَمَتَٰعٌ إِلَىٰ حِينࣲ ("</bdi>a place of settlement and provision for a time"). 2:37 Adam is forgiven before descent. That this is "not a curse" is interpretation, but strongly grounded; 2:30 shows the earthly <em>khalīfah</em> was planned before the slip.</td>
+</tr>
+<tr>
+<td>P03.7</td>
+<td>Earth contains abundant resources and blessings for humans</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 7:10 <bdi dir="rtl" class="ar">وَجَعَلۡنَا لَكُمۡ فِيهَا مَعَٰيِشَ</bdi>; 41:10 <bdi dir="rtl" class="ar">وَقَدَّرَ فِيهَآ أَقۡوَٰتَهَا</bdi>.</td>
+</tr>
+<tr>
+<td>P03.8</td>
+<td>Human purpose here: gratitude and using these blessings</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 7:10 ends <bdi dir="rtl" class="ar">قَلِيلࣰا مَّا تَشۡكُرُونَ</bdi>; 14:37 <bdi dir="rtl" class="ar">لَعَلَّهُمۡ يَشۡكُرُونَ</bdi>. Primary purpose in the Qur'an is worship (51:56); present gratitude and use as <em>part</em> of that.</td>
+</tr>
+<tr>
+<td>P03.9</td>
+<td>Conclusion: developing the world economically and succeeding in it is part of being khalīfah on earth</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>2:30 (khalīfah), 11:61 <bdi dir="rtl" class="ar">وَٱسۡتَعۡمَرَكُمۡ فِيهَا ("</bdi>and settled you in it / asked you to cultivate it"). 11:61 is the stronger proof text; add it. Classical meaning of <em>khalīfah</em> is debated (successor of earlier beings, or vicegerent); keep "one reading".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 4: National security and economic prosperity</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P04.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">قومی سلامتی اور معاشی خوشحالی کا باہمی ربط</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P04.2</td>
+<td>Ibrāhīm (AS) in a barren valley asked for two things</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 14:37 <bdi dir="rtl" class="ar">بِوَادٍ غَيۡرِ ذِي زَرۡعٍ</bdi>; 2:126.</td>
+</tr>
+<tr>
+<td>P04.3</td>
+<td>1. "Make this city secure" (national security)</td>
+<td class="codes"><span class="code cT">T</span><span class="code cA">A</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 2:126 <bdi dir="rtl" class="ar">رَبِّ ٱجۡعَلۡ هَٰذَا بَلَدًا ءَامِنࣰا. "</bdi>National security" is a modern gloss.</td>
+</tr>
+<tr>
+<td>P04.4</td>
+<td>2. "Provide its people with fruits" (economic prosperity)</td>
+<td class="codes"><span class="code cT">T</span><span class="code cA">A</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 2:126 <bdi dir="rtl" class="ar">وَٱرۡزُقۡ أَهۡلَهُۥ مِنَ ٱلثَّمَرَٰتِ</bdi>. Note the verse continues "whoever of them believes"; Allah replies He will also give the disbeliever enjoyment for a while. Include this: provision is not limited to believers.</td>
+</tr>
+<tr>
+<td>P04.5</td>
+<td>Venn: <bdi dir="rtl" class="ur">امن</bdi> ∩ <bdi dir="rtl" class="ur">خوشحالی</bdi> = <bdi dir="rtl" class="ur">ریاست کی بقا</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Visual thesis.</td>
+</tr>
+<tr>
+<td>P04.6</td>
+<td>Without economy, security: the system cannot stand</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> General political economy claim; reasonable, cite as principle not fact.</td>
+</tr>
+<tr>
+<td>P04.7</td>
+<td>Without security, economy: investment and assets are not safe</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Well supported (World Bank <em>World Development Report 2011: Conflict, Security and Development</em>).</td>
+</tr>
+<tr>
+<td>P04.8</td>
+<td>Makkah model: became a global trade pipeline and highway rest stop</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Overstated.</strong> Qurayshi caravan trade is attested (106:2), but its scale is debated: Patricia Crone, <em>Meccan Trade and the Rise of Islam</em> (1987), argued it was regional (leather, clothing), not a spice "pipeline"; others (e.g. Mahmood Ibrahim, Gene Heck) argue for more. Say "a caravan hub" and note the debate.</td>
+</tr>
+<tr>
+<td>P04.9</td>
+<td>The Qur'an formally recognised this economic route in Sūrat Quraysh</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 106:1–4 <bdi dir="rtl" class="ar">لِإِيلَٰفِ قُرَيۡشٍ ... رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ ... ٱلَّذِيٓ أَطۡعَمَهُم مِّن جُوعࣲ وَءَامَنَهُم مِّنۡ خَوۡفِۭ</bdi>. Classical tafsīr (Ibn Kathīr, al-Ṭabarī): winter journey to Yemen, summer journey to Shām. Note 106:4 itself pairs food and security, which is the strongest proof for this whole page.</td>
+</tr>
+<tr>
+<td>P04.10</td>
+<td>Map</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Map errors:</strong> "<bdi dir="rtl" class="ur">شام"</bdi> is labelled twice, once over Iran/Central Asia; "<bdi dir="rtl" class="ur">افریقہ"</bdi> twice; a "<bdi dir="rtl" class="ur">یورپ"</bdi> route goes to Greece. The Qur'an and tafsīr mention only Yemen and Shām. Rebuild: Makkah → Yemen (winter), Makkah → Shām/Bosra–Gaza (summer); anything further is labelled as "later/indirect links, debated".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 5: Qur'anic economic terms (1)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P05.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">قرآنی معاشی اصطلاحات (حصہ اول): قرآن کی زبان میں چھپے معاشی تصورات</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P05.2</td>
+<td><strong><bdi dir="rtl" class="ur">رِزْق</bdi> = "The Supply Chain"</strong></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Lexically <em>rizq</em> is "provision, what is given for sustenance" (Lisān: <bdi dir="rtl" class="ur">الرزق ما يُنتفع به)</bdi>. Qur'an attributes rizq to Allah (11:6, 51:58) and uses it for food (2:22, 50:11), wealth (2:3 "spend from what We provided"), and also non-material gifts (e.g. 11:88 <bdi dir="rtl" class="ar">رِزۡقًا حَسَنࣰا</bdi>, read by some as prophethood/knowledge). "Supply chain" is an <strong>analogy</strong>, not a meaning.</td>
+</tr>
+<tr>
+<td>P05.3</td>
+<td>Meaning: "not only spiritual rizq but the food on your plate"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Correct in spirit, but the slide inverts the emphasis: the Qur'an's primary use of rizq is material; the spiritual sense is the extension.</td>
+</tr>
+<tr>
+<td>P05.4</td>
+<td>Chain: <bdi dir="rtl" class="ur">بارش → فصلوں کی کاشت → جانوروں کی خوراک → کٹائی اور پروسیسنگ → ٹرانسپورٹ → آپ کی پلیٹ</bdi></td>
+<td class="codes"><span class="code cT">T</span><span class="code cA">A</span></td>
+<td><span class="flag ok" title="Checked">✓</span> First three links are Qur'anic: 80:24–32 <bdi dir="rtl" class="ar">فَلۡيَنظُرِ ٱلۡإِنسَٰنُ إِلَىٰ طَعَامِهِۦٓ ... أَنَّا صَبَبۡنَا ٱلۡمَآءَ صَبࣰّا ... مَّتَٰعࣰا لَّكُمۡ وَلِأَنۡعَٰمِكُمۡ</bdi> (rain, crops, fodder for livestock); also 50:9–11 <bdi dir="rtl" class="ar">رِزۡقࣰا لِّلۡعِبَادِ</bdi>. Processing, transport and the plate are the modern extension (A). <span class="flag warn" title="Inaccurate or overstated">⚠</span> The slide's icons also misorder: its arrow chain reads right to left but the icons run left to right.</td>
+</tr>
+<tr>
+<td>P05.5</td>
+<td>Insight: countries that control the agricultural and food supply chain dominate other nations</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> <strong>Needs evidence and softening.</strong> Evidence of leverage exists (2022: Russia and Ukraine supplied roughly 30% of world wheat exports and the war sent prices to records, FAO/IFPRI 2022; export bans by India 2022). "Dominate" overstates; use "gain leverage".</td>
+</tr>
+<tr>
+<td>P05.6</td>
+<td><strong><bdi dir="rtl" class="ar">ثَمَرَة</bdi> = "Investment &amp; Maturity"</strong></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Analogy.</td>
+</tr>
+<tr>
+<td>P05.7</td>
+<td>Meaning: literally fruit, "but in the Qur'an it means investment"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Overstated.</strong> Literally fruit/produce. In 18:34 <bdi dir="rtl" class="ar">وَكَانَ لَهُۥ ثَمَرࣱ</bdi> some early authorities (Ibn ʿAbbās, Mujāhid, Qatādah per al-Ṭabarī; tied to the reading <em>thumur</em>) glossed it as wealth of all kinds; so "wealth/returns" is a <em>recognised reading of specific verses</em>, not the general Qur'anic meaning.</td>
+</tr>
+<tr>
+<td>P05.8</td>
+<td>As planting an orchard involves labour, logistics and sales, business investment ripens over time into fruit (profit)</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Fine as analogy. 18:42 (the owner "turning his hands over what he had spent on it") shows the Qur'an itself treats the garden as capital spent.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 6: Qur'anic economic terms (2)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P06.1</td>
+<td>Heading: (<bdi dir="rtl" class="ur">حصہ دوم) منافع، طلب اور صارفین کا برتاؤ</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P06.2</td>
+<td><strong><bdi dir="rtl" class="ur">فَضْل</bdi> = additional profit / bonus</strong> (chart with break-even line)</td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td><em>Faḍl</em> = bounty, surplus, grace. In trade contexts classical tafsīr reads "seeking Allah's faḍl" as trade/profit (2:198, per Ibn ʿAbbās in Bukhari 2050, 4519). "Bonus above break-even" is a modern analogy.</td>
+</tr>
+<tr>
+<td>P06.3</td>
+<td>Sūrat al-Jumuʿah: "spread in the land and seek Allah's faḍl (business opportunities)"</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 62:10 <bdi dir="rtl" class="ar">فَٱنتَشِرُواْ فِي ٱلۡأَرۡضِ وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ</bdi>. Add 62:9 (<bdi dir="rtl" class="ar">وَذَرُواْ ٱلۡبَيۡعَ)</bdi>: the same passage tells them to <em>leave trade</em> for prayer. The pairing is the point.</td>
+</tr>
+<tr>
+<td>P06.4</td>
+<td><strong><bdi dir="rtl" class="ur">مَتَاع</bdi> = something used and enjoyed</strong></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> Lexically goods, provisions, anything enjoyed for a time (Lisān). Qur'an often pairs it with "for a time" (2:36).</td>
+</tr>
+<tr>
+<td>P06.5</td>
+<td>Modern apps, cars and phones are the best examples of matāʿ; they work and their design attracts</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Analogy. Note the Qur'an also uses <em>matāʿ</em> with a caution: 3:185 <bdi dir="rtl" class="ar">وَمَا ٱلۡحَيَوٰةُ ٱلدُّنۡيَآ إِلَّا مَتَٰعُ ٱلۡغُرُورِ</bdi>. Show both sides.</td>
+</tr>
+<tr>
+<td>P06.6</td>
+<td>An-Nūr 24:29: "no blame in entering houses (commercial buildings/shops) in which there is benefit (matāʿ) for you"</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Omission.</strong> The verse says <bdi dir="rtl" class="ar">بُيُوتًا</bdi> <strong><bdi dir="rtl" class="ar">غَيۡرَ مَسۡكُونَةࣲ</bdi></strong>, "houses <em>not inhabited</em>". The shops/inns reading is classical (Mujāhid, Qatādah, al-Ṭabarī: khāns, shops, public lodgings), so it is a sound interpretation, but the translation must include "uninhabited".</td>
+</tr>
+<tr>
+<td>P06.7</td>
+<td>"This is Qur'anic endorsement of the importance of commercial centres"</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Overreach: the verse is about permission to enter (after the rule of seeking permission, 24:27), not about importance. Say "the Qur'an assumes such spaces and eases access to them".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 7: Business mindset: jihād and trade on par</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P07.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">کاروباری ذہنیت: جہاد اور تجارت کا ہم پلہ ہونا</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P07.2</td>
+<td>In Islam business is not merely permissible but highly honourable</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Supported by hadith (e.g. "the truthful, trustworthy merchant is with the prophets…", Tirmidhī 1209, graded ḥasan by some, weak by others <span class="flag check" title="Needs a citation">?</span>).</td>
+</tr>
+<tr>
+<td>P07.3</td>
+<td>Al-Muzzammil begins with commands of intense night worship</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 73:1–4.</td>
+</tr>
+<tr>
+<td>P07.4</td>
+<td>At the end Allah names three exempted groups: 1) the sick</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 73:20 <bdi dir="rtl" class="ar">مَّرۡضَىٰ</bdi>.</td>
+</tr>
+<tr>
+<td>P07.5</td>
+<td>2) those who travel <strong>in the way of Allah</strong> seeking faḍl (business)</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Misquoted.</strong> The verse: <bdi dir="rtl" class="ar">يَضۡرِبُونَ فِي ٱلۡأَرۡضِ يَبۡتَغُونَ مِن فَضۡلِ ٱللَّهِ, "</bdi>travelling <strong>in the land</strong>". "In the way of Allah" (<bdi dir="rtl" class="ar">فِي سَبِيلِ ٱللَّهِ)</bdi> belongs to the third group (fighters). Correct in narration.</td>
+</tr>
+<tr>
+<td>P07.6</td>
+<td>3) those who fight in Allah's way (jihād)</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> <bdi dir="rtl" class="ar">يُقَٰتِلُونَ فِي سَبِيلِ ٱللَّهِ</bdi>.</td>
+</tr>
+<tr>
+<td>P07.7</td>
+<td>Mufassirūn and Companions: Allah placed travellers for lawful earning alongside mujāhidīn</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Al-Qurṭubī on 73:20 cites Ibn Masʿūd: whoever brings food to a Muslim town and sells it at the day's price has the rank of martyrs, then recited this verse. Chain should be checked. "Alongside" (mentioned together) is text; "equal rank" is interpretation.</td>
+</tr>
+<tr>
+<td>P07.8</td>
+<td>Business is not a worldly obstacle but itself a high rank</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Interpretive conclusion.</td>
+</tr>
+<tr>
+<td>P07.9</td>
+<td>Famous Companion's saying: after martyrdom, the death I love most is on my mount carrying trade goods</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Attributed to <strong>ʿUmar ibn al-Khaṭṭāb</strong> (al-Qurṭubī on 73:20; Saʿīd ibn Manṣūr): "…than to come to it while I am between two mountain paths seeking of Allah's bounty". Name him and give the wording as reported; the slide's "on my mount with trade goods" is a paraphrase. Grade the chain before broadcast.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 8: Global links: infrastructure, research and travel</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P08.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">عالمی روابط: انفراسٹرکچر، تحقیق اور ہجرت برائے دنیا</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P08.2</td>
+<td>The Qur'an urges constant movement and progress rather than stagnation</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Supported by 67:15 <bdi dir="rtl" class="ar">فَٱمۡشُواْ فِي مَنَاكِبِهَا وَكُلُواْ مِن رِّزۡقِهِۦ, 29:20 سِيرُواْ فِي ٱلۡأَرۡضِ</bdi>.</td>
+</tr>
+<tr>
+<td>P08.3</td>
+<td>Nūḥ (AS): "Allah made the earth a spread for you so you may walk its open roads"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 71:19–20 <bdi dir="rtl" class="ar">وَٱللَّهُ جَعَلَ لَكُمُ ٱلۡأَرۡضَ بِسَاطࣰا ۝ لِّتَسۡلُكُواْ مِنۡهَا سُبُلࣰا فِجَاجࣰا</bdi>. These are Nūḥ's words to his people.</td>
+</tr>
+<tr>
+<td>P08.4</td>
+<td>Lesson: in ancient times Nūḥ presented a blueprint for infrastructure, travel and a global economy</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Overreach.</strong> Nūḥ is reminding his people of Allah's signs, not proposing infrastructure. Better economic hook from the same sūrah: 71:10–12 (seek forgiveness → rain, wealth, children, gardens, rivers).</td>
+</tr>
+<tr>
+<td>P08.5</td>
+<td>Dhul-Qarnayn and reinvestment: used vast resources to develop backward regions, new technology (the wall), and sought trade partners</td>
+<td class="codes"><span class="code cT">T</span><span class="code cA">A</span></td>
+<td>Partly <span class="flag ok" title="Checked">✓</span>: 18:84 (given means to everything); 18:94–96 people offer payment (<bdi dir="rtl" class="ar">خَرۡجًا)</bdi>, he declines ("what my Lord gave me is better") and asks for labour; iron and molten copper technology. <span class="flag warn" title="Inaccurate or overstated">⚠</span> "Sought trade partners" is <strong>not in the text</strong>. "Reinvestment in backward areas" is interpretation.</td>
+</tr>
+<tr>
+<td>P08.6</td>
+<td>Youth travel for education: the Qur'an calls travel on ships a sign of Allah</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 42:32 <bdi dir="rtl" class="ar">وَمِنۡ ءَايَٰتِهِ ٱلۡجَوَارِ فِي ٱلۡبَحۡرِ كَٱلۡأَعۡلَٰمِ</bdi>; also 2:164, 30:46 (ships "that you may seek His bounty").</td>
+</tr>
+<tr>
+<td>P08.7</td>
+<td>Sending children abroad to learn skills and higher education is not "worldliness" but necessary for progress</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Modern application. Could cite 9:122 (a group going out to gain understanding), which is about religious learning; label as analogy.</td>
+</tr>
+<tr>
+<td>P08.8</td>
+<td>Ḥajj: no sin in seeking your Lord's faḍl (business) during Ḥajj</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 2:198. Bukhari 2050: ʿUkāẓ, Majannah and Dhul-Majāz were pre-Islamic markets; Muslims hesitated to trade in Ḥajj season and this verse was revealed.</td>
+</tr>
+<tr>
+<td>P08.9</td>
+<td>Ḥajj is the world's biggest business networking and trade convention</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Overstated as description of Ḥajj's purpose (2:197, 22:27–28 put worship first; 22:28 <bdi dir="rtl" class="ar">لِّيَشۡهَدُواْ مَنَٰفِعَ لَهُمۡ</bdi> does include worldly benefits in some tafsīr). Rephrase: "the Qur'an allows trade in Ḥajj; it has also historically been a meeting place of the Muslim world".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 9: Consumer psychology and weaknesses</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P09.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">صارف کی نفسیات اور خامیاں</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P09.2</td>
+<td>"The weaknesses modern marketing exploits were already described by the Qur'an"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Framing.</td>
+</tr>
+<tr>
+<td>P09.3</td>
+<td>Weak willpower: man is weak by nature and runs toward instant pleasure</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 4:28 <bdi dir="rtl" class="ar">وَخُلِقَ ٱلۡإِنسَٰنُ ضَعِيفࣰا</bdi>; 75:20 <bdi dir="rtl" class="ar">كَلَّا بَلۡ تُحِبُّونَ ٱلۡعَاجِلَةَ</bdi>; 17:11 <bdi dir="rtl" class="ar">وَكَانَ ٱلۡإِنسَٰنُ عَجُولࣰا</bdi>. Note 4:28 in context is about Allah lightening marriage rules; applying it to consumption is interpretation.</td>
+</tr>
+<tr>
+<td>P09.4</td>
+<td>Chocolates at supermarket counters and YouTube thumbnails exploit this</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Checkout placement driving impulse purchases is documented (e.g. UK ban on checkout HFSS placement, 2022, based on public health evidence).</td>
+</tr>
+<tr>
+<td>P09.5</td>
+<td>Inner emptiness: ads target it so that brands give artificial comfort</td>
+<td class="codes"><span class="code cI">I</span><span class="code cE">E</span></td>
+<td>No verse cited on the slide. Candidate: 13:28 <bdi dir="rtl" class="ar">أَلَا بِذِكۡرِ ٱللَّهِ تَطۡمَئِنُّ ٱلۡقُلُوبُ</bdi> (label as interpretation). Marketing claim <span class="flag check" title="Needs a citation">?</span>.</td>
+</tr>
+<tr>
+<td>P09.6</td>
+<td>Extreme selfishness (<bdi dir="rtl" class="ur">شُحّ)</bdi>: caring for nobody but oneself; produces an industry that encourages self-love and saving money at all costs</td>
+<td class="codes"><span class="code cT">T</span><span class="code cA">A</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 59:9 / 64:16 <bdi dir="rtl" class="ar">وَمَن يُوقَ شُحَّ نَفۡسِهِۦ فَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ</bdi>; 4:128 <bdi dir="rtl" class="ar">وَأُحۡضِرَتِ ٱلۡأَنفُسُ ٱلشُّحَّ</bdi>. The "industry" link is application.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 10: The Qārūn complex: brand worship and false image</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P10.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">قارون کمپلیکس: برانڈز کی پوجا اور مصنوعی امیج</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P10.2</td>
+<td>Extreme wealth gaps produce "Qārūn psychology" in society</td>
+<td class="codes"><span class="code cE">E</span><span class="code cI">I</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Social science link between inequality and status consumption exists (e.g. Wilkinson &amp; Pickett, <em>The Spirit Level</em>, 2009; Walasek &amp; Brown 2015 on status-seeking search terms), contested.</td>
+</tr>
+<tr>
+<td>P10.3</td>
+<td><strong><bdi dir="rtl" class="ar">مُخْتَال</bdi></strong>: building an imaginary, artificial image of oneself, bigger and better than reality</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Root <bdi dir="rtl" class="ur">خ ي ل</bdi> links <em>khayāl</em> (imagination) and <em>khuyalā'</em> (conceit); lexicographers connect them (Lisān). Recognised linguistic insight, keep as I.</td>
+</tr>
+<tr>
+<td>P10.4</td>
+<td>Examples: heavy make-up, surgery, fake social-media life</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Handle carefully: make-up and surgery are not in themselves <em>ikhtiyāl</em>; the point is self-deception and display. Avoid shaming appearance.</td>
+</tr>
+<tr>
+<td>P10.5</td>
+<td><strong><bdi dir="rtl" class="ur">فَخُور</bdi></strong>: displaying one's supposed superiority to others; today follower counts and expensive brands set a person's value</td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td><span class="flag ok" title="Checked">✓</span> Pair <bdi dir="rtl" class="ar">مُخۡتَالࣲ فَخُورٍ</bdi> appears in 4:36, 31:18, 57:23 (<bdi dir="rtl" class="ar">إِنَّ ٱللَّهَ لَا يُحِبُّ كُلَّ مُخۡتَالࣲ فَخُورٍ)</bdi>.</td>
+</tr>
+<tr>
+<td>P10.6</td>
+<td>Qur'anic cure, al-Qaṣaṣ: when Qārūn came out people said "would that we had the same"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 28:79. The slide's pen icon glyph after the quote is a stray artefact.</td>
+</tr>
+<tr>
+<td>P10.7</td>
+<td>"The Qur'an rejected this brand worship and said Allah's reward is far better than these shiny things"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Speaker misattributed.</strong> In 28:80 the words are spoken by <strong>"those who were given knowledge"</strong> (<bdi dir="rtl" class="ar">ٱلَّذِينَ أُوتُواْ ٱلۡعِلۡمَ)</bdi>, which the Qur'an endorses; it is not a direct divine address. Also the ending: <bdi dir="rtl" class="ar">وَلَا يُلَقَّىٰهَآ إِلَّا ٱلصَّٰبِرُونَ</bdi>. Then 28:81 the earth swallows him; 28:82 the same people retract.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 11: The Qur'anic spending formula: the middle path</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P11.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">خرچ کرنے کا قرآنی فارمولا: اعتدال کا راستہ</bdi></td>
+<td class="codes"><span class="code cT">T</span></td>
+<td>25:67.</td>
+</tr>
+<tr>
+<td>P11.2</td>
+<td>"Economic crises come from extreme saving or extreme spending"</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Oversimplified.</strong> Excess saving in a downturn can deepen recession ("paradox of thrift", Keynes 1936) and excess credit-fuelled spending can feed bubbles, but crises have many causes (leverage, banking panics, policy). Say "can contribute to".</td>
+</tr>
+<tr>
+<td>P11.3</td>
+<td><strong><bdi dir="rtl" class="ur">قَتْر</bdi></strong>: literally "iron chain mail that no arrow can pass"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Etymology inaccurate.</strong> <em>Qatr/iqtār</em> = to be stingy, to narrow (Lisān: <bdi dir="rtl" class="ur">التضييق)</bdi>. <em>Qatīr</em> separately means the rivet heads of chain mail (<bdi dir="rtl" class="ur">رؤوس مسامير الدرع)</bdi>, and <em>qatarah</em> is dust/gloom (80:41). A root link exists, but "the literal meaning of qatr is chain mail" is wrong.</td>
+</tr>
+<tr>
+<td>P11.4</td>
+<td>When people hold money back, businesses close, jobs end, recession</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Paradox of thrift, standard macroeconomics; conditional (holds in demand-constrained downturns).</td>
+</tr>
+<tr>
+<td>P11.5</td>
+<td><strong><bdi dir="rtl" class="ur">قَوَام</bdi></strong>: the servants of the Most Merciful neither waste nor are stingy but stay moderate between</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 25:67 <bdi dir="rtl" class="ar">وَٱلَّذِينَ إِذَآ أَنفَقُواْ لَمۡ يُسۡرِفُواْ وَلَمۡ يَقۡتُرُواْ وَكَانَ بَيۡنَ ذَٰلِكَ قَوَامࣰا</bdi> (context 25:63 <bdi dir="rtl" class="ar">عِبَادُ ٱلرَّحۡمَٰنِ)</bdi>. Also 17:29.</td>
+</tr>
+<tr>
+<td>P11.6</td>
+<td>"This keeps the market stable"</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Application; moderate spending supports stability but "market stable" is a macro claim.</td>
+</tr>
+<tr>
+<td>P11.7</td>
+<td><strong><bdi dir="rtl" class="ar">إِسْرَاف</bdi></strong>: pouring money into unnecessary things</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 7:31 <bdi dir="rtl" class="ar">وَلَا تُسۡرِفُوٓاْ</bdi>; 17:26–27 <bdi dir="rtl" class="ar">تَبۡذِير</bdi>.</td>
+</tr>
+<tr>
+<td>P11.8</td>
+<td>This raises demand, inflation peaks, resources are wasted on luxuries</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Demand-pull inflation is real but household luxury spending alone rarely drives national inflation. Soften.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 12: Prayer: the ultimate psychological calibrator</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P12.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">نماز: حتمی نفسیاتی کیلیبریٹر</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Metaphor.</td>
+</tr>
+<tr>
+<td>P12.2</td>
+<td>Leaving the race of the material world and connecting to reality</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>62:9 (leave trade for prayer), 29:45 (prayer restrains from indecency; remembrance of Allah is greater), 24:37 <bdi dir="rtl" class="ar">رِجَالࣱ لَّا تُلۡهِيهِمۡ تِجَٰرَةࣱ وَلَا بَيۡعٌ عَن ذِكۡرِ ٱللَّهِ</bdi>. 24:37 is the ideal proof text; add it.</td>
+</tr>
+<tr>
+<td>P12.3</td>
+<td>Prayer time: a few minutes cut off from the world before Allah, recognising one's real status ("Mini Hajj")</td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td>"Mini Hajj" is a lecturer's metaphor, not a term of the sources.</td>
+</tr>
+<tr>
+<td>P12.4</td>
+<td>Chart: psychological state vs time; sinking into the race (wealth, status, brands)</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> The sine chart is <strong>illustrative, not data</strong>. Label it "<bdi dir="rtl" class="ur">علامتی خاکہ"</bdi> on screen.</td>
+</tr>
+<tr>
+<td>P12.5</td>
+<td>Returning to the world with balance and moderation</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P12.6</td>
+<td>Key insight: an Islamic economy is not just "halal food" or "interest-free banking"; it is producing a "Qur'anic consumer" whose personality is balanced by prayer and gratitude</td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td>Opinion of the deck. Present as the series' thesis.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 13: Business corruption and fraud</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P13.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">کاروباری بدعنوانی اور غبن: صارفین کو دھوکہ دینا معاشرے کو تباہی کی طرف لے جاتا ہے</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P13.2</td>
+<td><strong><bdi dir="rtl" class="ur">بَخْس: "</bdi>Exhausting the Consumer"</strong>: "The Qur'an says: do not give people less of their things"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 11:85, 7:85, 26:183 <bdi dir="rtl" class="ar">وَلَا تَبۡخَسُواْ ٱلنَّاسَ أَشۡيَآءَهُمۡ</bdi> (Shuʿayb to Madyan). Also 83:1–3. "Exhausting" is the deck's gloss; <em>bakhs</em> = diminishing, short-changing.</td>
+</tr>
+<tr>
+<td>P13.3</td>
+<td>Customer service keeping people on hold 40–40 minutes, not answering emails, hidden fees, so the consumer gives up</td>
+<td class="codes"><span class="code cA">A</span><span class="code cE">E</span></td>
+<td>Application. <span class="flag check" title="Needs a citation">?</span> "40 minutes" is anecdotal; present as example, not statistic. Slide typo "40-40".</td>
+</tr>
+<tr>
+<td>P13.4</td>
+<td>Deadly link, an-Nisā' 4:29: "Do not consume each other's wealth wrongfully … and do not kill yourselves"</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>The ellipsis hides the key clause</strong>: <bdi dir="rtl" class="ar">إِلَّآ أَن تَكُونَ تِجَٰرَةً عَن تَرَاضࣲ مِّنكُمۡ, "</bdi>except trade by mutual consent". For an economics series this clause is central. Also <bdi dir="rtl" class="ar">وَلَا تَقۡتُلُوٓاْ أَنفُسَكُمۡ</bdi>: al-Ṭabarī's preferred reading is "do not kill one another"; others read suicide or self-ruin.</td>
+</tr>
+<tr>
+<td>P13.5</td>
+<td>When fraud, lies and bribery become common at corporate level, frustration grows, ending in violent crime and killing</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Link between perceived unfairness/corruption and violence has some support but is complex. Present as the lecturer's reading of the verse order (I), plus a hedged empirical claim.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 14: The tragedy of capitalist oligarchy</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P14.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">سرمایہ دارانہ آمریت کا المیہ</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P14.2</td>
+<td>How the existence of an ultra-rich class destroys the lower class</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Causal claim.</td>
+</tr>
+<tr>
+<td>P14.3</td>
+<td>0.1% Elite: extreme concentration; they buy politics and law</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Concentration: documented (World Inequality Report 2022). Policy capture: argued by Gilens &amp; Page (2014), contested. Qur'anic link: 2:188 <bdi dir="rtl" class="ar">وَتُدۡلُواْ بِهَآ إِلَى ٱلۡحُكَّامِ</bdi> (bribing rulers): <strong>add</strong>.</td>
+</tr>
+<tr>
+<td>P14.4</td>
+<td>Middle-class squeeze: poor and poorer</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Varies by country (Pew 2015, OECD <em>Under Pressure: The Squeezed Middle Class</em> 2019).</td>
+</tr>
+<tr>
+<td>P14.5</td>
+<td>Riba economy: people fall into debt traps to survive</td>
+<td class="codes"><span class="code cT">T</span><span class="code cE">E</span></td>
+<td>Ribā prohibition <span class="flag ok" title="Checked">✓</span> 2:275–279, 3:130. Debt-trap dynamics <span class="flag check" title="Needs a citation">?</span>.</td>
+</tr>
+<tr>
+<td>P14.6</td>
+<td>Societal collapse: financial pressure breaks families and prostitution grows</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Sensitive and <strong>needs strong evidence</strong>; financial stress and family breakdown have research support; the prostitution claim should be dropped or sourced.</td>
+</tr>
+<tr>
+<td>P14.7</td>
+<td>Crime &amp; escapism: theft, robbery and killing become common; people turn to drugs and gambling</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Economic strain theory (Agnew) and "deaths of despair" (Case &amp; Deaton 2020) support a hedged version.</td>
+</tr>
+<tr>
+<td>P14.8</td>
+<td>The Qur'an both forbade the harām acts and targeted their root: unequal economic system and corrupt elite</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td>Strong proof texts: 59:7 <bdi dir="rtl" class="ar">كَيۡ لَا يَكُونَ دُولَةَۢ بَيۡنَ ٱلۡأَغۡنِيَآءِ مِنكُمۡ</bdi>; 17:16 (the <em>mutrafūn</em>, affluent elite); 2:188. Add them; the slide cites none.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 15: Pharaoh's strategy and lahw al-ḥadīth</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P15.1</td>
+<td>Heading: <bdi dir="rtl" class="ar">فرعون کی حکمتِ عملی اور لَهْوَ الْحَدِيث: ایلیٹ طبقہ عوام کو اٹھنے سے کیسے روکتا ہے؟</bdi></td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P15.2</td>
+<td>"The Emasculation of Men": Pharaoh slaughtered boys and kept women alive</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 28:4 <bdi dir="rtl" class="ar">يُذَبِّحُ أَبۡنَآءَهُمۡ وَيَسۡتَحۡيِۦ نِسَآءَهُمۡ</bdi>; 2:49; 14:6. Also 28:4 <bdi dir="rtl" class="ar">جَعَلَ أَهۡلَهَا شِيَعࣰا</bdi> (divided people into factions), a stronger political point.</td>
+</tr>
+<tr>
+<td>P15.3</td>
+<td>Today's method: making men mentally useless through screens, devices and porn, and commercialising women; this ends a society's economic momentum</td>
+<td class="codes"><span class="code cA">A</span><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Polemical analogy, not tafsīr.</strong> The phrase "emasculation" and a coordinated "method" imply intent without evidence. Present only as the lecturer's analogy, with clear labelling; evidence on screen time and productivity is mixed.</td>
+</tr>
+<tr>
+<td>P15.4</td>
+<td><strong><bdi dir="rtl" class="ar">لَهْوَ الْحَدِيث</bdi> (Purchasing Distraction)</strong></td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 31:6 <bdi dir="rtl" class="ar">وَمِنَ ٱلنَّاسِ مَن يَشۡتَرِي لَهۡوَ ٱلۡحَدِيثِ لِيُضِلَّ عَن سَبِيلِ ٱللَّهِ</bdi>. Classical tafsīr: Ibn Masʿūd swore it means singing; Ibn ʿAbbās; also al-Naḍr ibn al-Ḥārith buying Persian tales / singing girls to distract people from the Qur'an (al-Ṭabarī, Ibn Kathīr). "Purchasing" is textual (<bdi dir="rtl" class="ar">يَشۡتَرِي)</bdi>.</td>
+</tr>
+<tr>
+<td>P15.5</td>
+<td>The corrupt elite invests in entertainment and social-media apps to stop people moving to economic or purposeful industry; people jump app to app with no mental space</td>
+<td class="codes"><span class="code cA">A</span><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Intent claim ("to stop people") is conspiratorial as stated. Attention-economy business models are documented (ad revenue from engagement); present that, not intent.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 16: Qur'anic solution (1): true ṣadaqah</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P16.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">معاشی استحکام کا قرآنی حل (حصہ اول): حقیقی صدقہ: صرف کھانا کھلانا نہیں، بلکہ معاشی طور پر بااختیار بنانا</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P16.2</td>
+<td>Traditional charity: 1) just give food to the hungry 2) they depend on the same fund again 3) only a temporary fix</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Fair critique of dependency, but the Qur'an itself praises feeding (76:8, 90:14). Do not belittle feeding.</td>
+</tr>
+<tr>
+<td>P16.3</td>
+<td>Qur'anic ṣadaqah: 1) "<em>iṭʿām</em> (feeding) means teaching a skill so they can earn their own food"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Inaccurate.</strong> <em>Iṭʿām</em> literally means feeding (90:14 <bdi dir="rtl" class="ar">أَوۡ إِطۡعَٰمࣱ فِي يَوۡمࣲ ذِي مَسۡغَبَةࣲ)</bdi>. Empowerment is a legitimate <em>application</em>, supported by the hadith of the man sold his goods to buy an axe (Abū Dāwūd 1641, <span class="flag check" title="Needs a citation">?</span> graded), not a meaning of the word.</td>
+</tr>
+<tr>
+<td>P16.4</td>
+<td>2) Educate orphans, set the needy up in business so they are not a burden</td>
+<td class="codes"><span class="code cI">I</span><span class="code cA">A</span></td>
+<td>2:220 <bdi dir="rtl" class="ar">قُلۡ إِصۡلَاحࣱ لَّهُمۡ خَيۡرࣱ ("</bdi>improvement for them is best") supports it; 90:15–16.</td>
+</tr>
+<tr>
+<td>P16.5</td>
+<td>3) Make ex-prisoners active members so they don't return to crime</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>76:8 <bdi dir="rtl" class="ar">أَسِيرًا</bdi> means captive (war captive in tafsīr); 90:13 <bdi dir="rtl" class="ar">فَكُّ رَقَبَةٍ</bdi> (freeing a neck). Extending to ex-prisoners is application. 9:60 <bdi dir="rtl" class="ar">ٱلۡغَٰرِمِينَ</bdi> (debtors) is also relevant.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 17: Qur'anic solution (2): law of inheritance</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P17.1</td>
+<td>Heading: (<bdi dir="rtl" class="ur">حصہ دوم) وراثت کا قانون: خاندانی اجارہ داری کے خاتمے کا الٰہی فارمولا</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P17.2</td>
+<td>The capitalist problem: billionaire families' wealth stays concentrated for generations, creating extreme inequality</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Piketty, <em>Capital in the 21st Century</em> (2014) on inherited wealth.</td>
+</tr>
+<tr>
+<td>P17.3</td>
+<td>Label "<bdi dir="rtl" class="ur">موت خاجات"</bdi></td>
+<td>:</td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Garbled text (AI artefact). Omit.</td>
+</tr>
+<tr>
+<td>P17.4</td>
+<td>"The Qur'an breaks this oligarchy through just one law"</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Overstated.</strong> Inheritance works alongside zakāh (9:60), the ban on ribā (2:275), and 59:7. Say "one of its strongest tools".</td>
+</tr>
+<tr>
+<td>P17.5</td>
+<td>After death wealth is compulsorily distributed horizontally among heirs</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 4:7 <bdi dir="rtl" class="ar">نَصِيبࣰا مَّفۡرُوضࣰا</bdi> (an obligatory share, "be it little or much"); 4:11–12, 4:176. Bequest capped at one third (Bukhari 2742, Saʿd ibn Abī Waqqāṣ).</td>
+</tr>
+<tr>
+<td>P17.6</td>
+<td>So no single family can seize the whole society's wealth</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Tendency, not guarantee (waqf, corporate structures and pre-death transfers can circumvent). Soften.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 18: Qur'anic solution (3): marriage as economic institution</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P18.1</td>
+<td>Heading: (<bdi dir="rtl" class="ur">حصہ سوم) شادی بطور معاشی ادارہ: شادی، تعدد ازواج اور غلاموں کی معاشرتی ترقی کا معاشی پہلو</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P18.2</td>
+<td>Venn: <bdi dir="rtl" class="ur">مالی ذمہ داری / یتیموں کی کفالت / سماجی ترقی</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P18.3</td>
+<td>Man's financial responsibility: "The Qur'an for the first time made clear that the household's full financial responsibility is on the man"</td>
+<td class="codes"><span class="code cT">T</span><span class="code cE">E</span></td>
+<td><span class="flag ok" title="Checked">✓</span> Text: 4:34 <bdi dir="rtl" class="ar">وَبِمَآ أَنفَقُواْ مِنۡ أَمۡوَٰلِهِمۡ</bdi>; 2:233 <bdi dir="rtl" class="ar">وَعَلَى ٱلۡمَوۡلُودِ لَهُۥ رِزۡقُهُنَّ وَكِسۡوَتُهُنَّ</bdi>. <span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>"For the first time" is historically false</strong>: husbands' maintenance duties exist in earlier legal systems (e.g. Mesopotamian codes, Jewish ketubah obligations). Drop "first time"; emphasise that the wife's own wealth stays hers (4:4, 4:32).</td>
+</tr>
+<tr>
+<td>P18.4</td>
+<td>Polygamy and ending crime: the Qur'an gave permission for 4 marriages "in the context of orphans"; wealthy men adopting widows and their orphans keeps them off the streets and out of crime</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span><span class="code cE">E</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 4:3 context is orphans. <span class="flag warn" title="Inaccurate or overstated">⚠</span> But the most authoritative reading (ʿĀ'ishah, Bukhari 4574) is that guardians who feared being unjust to orphan girls in their care (marrying them for their wealth without fair dowry) should marry other women. The "marry widows to support orphans" reading is a later interpretation. The verse also says "if you fear you will not be just, then one". The crime link <span class="flag check" title="Needs a citation">?</span> is unsupported.</td>
+</tr>
+<tr>
+<td>P18.5</td>
+<td>Social mobility of the lower class: for the first time in history children of slave women were declared legitimate heirs</td>
+<td class="codes"><span class="code cI">I</span><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> The rule (child of a master by his slave, <em>umm walad</em>, is free and inherits) comes from hadith and fiqh, not a verse. "First time in history" is <strong>false</strong>: e.g. Code of Hammurabi §170–171 allowed a father to recognise his slave's children as heirs.</td>
+</tr>
+<tr>
+<td>P18.6</td>
+<td>Marriage and inheritance laws raised the lowest to economic parity in just one generation</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> Unsupported and overstated. Qur'anic support for the <em>direction</em>: 24:32 (marry off the unmarried and righteous slaves; "if poor, Allah will enrich them from His bounty"), 4:25, 90:13. Drop "one generation".</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 19: Global strategy: the concept of wilāyah</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P19.1</td>
+<td>Heading: <bdi dir="rtl" class="ar">عالمی حکمتِ عملی: وَلَایَت کا تصور: غیر متزلزل اتحاد اور وسائل کی شراکت داری</bdi></td>
+<td class="codes"><span class="code cI">I</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P19.2</td>
+<td>Root: the word <em>walī</em> comes from the pad placed under a horse saddle, which clings to the horse's back; where the horse turns, the pad turns; an unbreakable bond</td>
+<td class="codes"><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> Lexically attested: Lisān al-ʿArab records <bdi dir="rtl" class="ar">الوَلِيَّة</bdi> as the saddle cloth (<bdi dir="rtl" class="ur">البرذعة</bdi> / what is under it). But the root's core meaning is nearness (<bdi dir="rtl" class="ar">الوَلْي: القُرب)</bdi>. Present the saddle-pad as a vivid <em>usage</em>, not "the origin".</td>
+</tr>
+<tr>
+<td>P19.3</td>
+<td>The global reality: the Qur'an says those who disbelieve are <em>awliyā'</em> of one another</td>
+<td class="codes"><span class="code cT">T</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 8:73 <bdi dir="rtl" class="ar">وَٱلَّذِينَ كَفَرُواْ بَعۡضُهُمۡ أَوۡلِيَآءُ بَعۡضٍ</bdi>.</td>
+</tr>
+<tr>
+<td>P19.4</td>
+<td>They use each other's resources, technology and markets; common defence and free trade</td>
+<td class="codes"><span class="code cE">E</span><span class="code cA">A</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Refers to e.g. NATO, EU single market: factual examples OK; linking them to 8:73 is application.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 20: Building a Muslim economic bloc</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P20.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">مسلم اکنامک بلاک کی تعمیر: بارڈر لیس تعاون اور ٹیلنٹ کا تبادلہ</bdi></td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P20.2</td>
+<td>Blueprint in Madinah: Muhājirūn and Anṣār were separate tribes but Allah made them each other's <em>walī</em> (economic partnership, giving citizenship)</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag ok" title="Checked">✓</span> 8:72 <bdi dir="rtl" class="ar">أُوْلَٰٓئِكَ بَعۡضُهُمۡ أَوۡلِيَآءُ بَعۡضࣲ</bdi>; the <em>muʾākhāh</em> (brotherhood pact) even included mutual inheritance at first, later superseded by 8:75 (blood relatives more entitled). "Citizenship" is a modern gloss. Slide repeats "(<bdi dir="rtl" class="ur">معاشی شراکت، شہریت دینا)"</bdi> twice (typo).</td>
+</tr>
+<tr>
+<td>P20.3</td>
+<td>Yet they kept priority for internal affairs</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td>8:72: no <em>wilāyah</em> obligation toward believers who did not emigrate, and help cannot breach a treaty (<bdi dir="rtl" class="ar">إِلَّا عَلَىٰ قَوۡمِۭ بَيۡنَكُمۡ وَبَيۡنَهُم مِّيثَٰقࣱ)</bdi>. Explain this properly; it is an important limit.</td>
+</tr>
+<tr>
+<td>P20.4</td>
+<td>Modern application 1: open borders and visa policy (free movement of human resources)</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td>Policy proposal.</td>
+</tr>
+<tr>
+<td>P20.5</td>
+<td>2: medical experts in one country, minerals in another; connect them</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P20.6</td>
+<td>3: let foreign talent open businesses and get citizenship so the best minds drive an economic revolution in Muslim countries</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P20.7</td>
+<td>Icons: Open Visas / Tech Sharing / Unified Market</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2>Page 21: Ultimate power: ending fitnah and global economic dominance</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Point</th>
+<th>Code</th>
+<th>Audit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P21.1</td>
+<td>Heading: <bdi dir="rtl" class="ur">حتمی طاقت: فتنہ کا خاتمہ اور عالمی اقتصادی غلبہ؛</bdi> real power is economic influence, not only military</td>
+<td class="codes"><span class="code cA">A</span><span class="code cE">E</span></td>
+<td></td>
+</tr>
+<tr>
+<td>P21.2</td>
+<td>Al-Anfāl 8:73 "Ultimate warning": "If you (Muslims) do not establish wilāyah among yourselves (unity and economic bloc), there will be great fitnah and corruption on earth"</td>
+<td class="codes"><span class="code cT">T</span><span class="code cI">I</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> <strong>Interpretation inserted into the translation.</strong> Text: <bdi dir="rtl" class="ar">إِلَّا تَفۡعَلُوهُ تَكُن فِتۡنَةࣱ فِي ٱلۡأَرۡضِ وَفَسَادࣱ كَبِيرࣱ, "</bdi>If you do not do so…". "(<bdi dir="rtl" class="ur">اتحاد اور معاشی بلاک)"</bdi> is the deck's gloss inside the quotation. Classical tafsīr: "it" = the believers taking each other as allies and not taking disbelievers as allies (Ibn Kathīr, al-Ṭabarī), including the inheritance/alliance rules just given. Show the verse clean; put "economic bloc" in a separately labelled application card.</td>
+</tr>
+<tr>
+<td>P21.3</td>
+<td>Economic vs military power: while your economy is weak the enemy crushes you by force; if your bloc gives the world the best technology, the world will think before attacking, since a boycott could strangle it</td>
+<td class="codes"><span class="code cE">E</span></td>
+<td><span class="flag check" title="Needs a citation">?</span> Economic interdependence as deterrent: debated (liberal peace theory vs. e.g. 1914). Present as argument.</td>
+</tr>
+<tr>
+<td>P21.4</td>
+<td>Final call: build startups, tech hubs, promote Muslim excellence; strengthen the economy, "the only Qur'anic path to ending global fitnah"</td>
+<td class="codes"><span class="code cA">A</span></td>
+<td><span class="flag warn" title="Inaccurate or overstated">⚠</span> "The only Qur'anic path" is overstated; say "one path the lecturer urges".</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2>Summary of corrections the narration must make (never repeat silently)</h2>
+<ol>
+<li><strong>73:20</strong>: travellers seek bounty "in the land", not "in the way of Allah" (P07.5).</li>
+<li><strong>4:29</strong>: restore "except trade by mutual consent" (P13.4).</li>
+<li><strong>24:29</strong>: restore "uninhabited houses" (P06.6).</li>
+<li><strong>28:80</strong>: spoken by "those given knowledge", not a direct divine address (P10.7).</li>
+<li><strong>8:73</strong>: no gloss inside the verse translation (P21.2).</li>
+<li><strong>Iṭʿām</strong> means feeding, not teaching a skill (P16.3).</li>
+<li><strong>Qatr</strong> is stinginess; chain-mail is a related word, not its literal meaning (P11.3).</li>
+<li><strong>Thamarah</strong> as "investment" is a reading of specific verses, not the Qur'an's general meaning (P05.7).</li>
+<li><strong>Rizq</strong> as "supply chain" is an analogy (P05.2).</li>
+<li><strong>Bible characterisation</strong> is oversimplified; quote Genesis exactly or drop it (P03.3–P03.5).</li>
+<li><strong>"First time in history"</strong> claims on maintenance and slave heirs are false (P18.3, P18.5).</li>
+<li><strong>4:3</strong> mainstream reading via ʿĀ'ishah (P18.4).</li>
+<li><strong>Makkah as global pipeline</strong> is debated; map errors (P04.8, P04.10).</li>
+<li><strong>Nūḥ infrastructure blueprint</strong>, <strong>Dhul-Qarnayn trade partners</strong>: not in text (P08.4, P08.5).</li>
+<li><strong>Divine approval stamps</strong> removed (P01.4).</li>
+<li>Hadith/athar attributions to be graded: ʿUmar's saying (P07.9), Ibn Masʿūd on 73:20 (P07.7), trustworthy merchant (P07.2).</li>
+</ol></section>
+<section id="episodes" class="part"><h1>Part 2: Eight-Episode Outline, Scene and Narration Plan</h1>
+<p><strong>Series title:</strong> <bdi dir="rtl" class="ur">رزق سے ریاست تک: قرآن کا معاشی زاویہ</bdi>
+<strong>Format:</strong> 8 episodes, 6 to 8 minutes each, 1920×1080, 30 fps. Urdu narration, one voice, calm explanatory register.
+<strong>Credit line (every episode):</strong> "<bdi dir="rtl" class="ur">نعمان علی خان کے لیکچرز سے ماخوذ نوٹس پر مبنی تحقیقی جائزہ۔ تفسیری آراء اور عصری اطلاقات الگ نشان زد ہیں۔"</bdi></p>
+<h2>Visual grammar (applies to every scene)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Qur'anic world</strong></td>
+<td>Warm paper <code>#F3E9D2</code>, ink <code>#2B2118</code>, gold <code>#B8892D</code>. Arabic in <em>Amiri Quran</em>, Urdu in <em>Noto Nastaliq Urdu</em>. Gold hairline frames, no ornament clutter.</td>
+</tr>
+<tr>
+<td><strong>Present-day world</strong></td>
+<td>Navy <code>#0E1B2C</code>, teal <code>#2FB5A8</code>, pale ice <code>#D9ECEF</code>, coral <code>#E8795A</code> for warnings. Diagrams, maps and flows only.</td>
+</tr>
+<tr>
+<td><strong>Transitions</strong></td>
+<td>Paper "turns" to navy with a 12 frame ink wipe when moving from text to application; the reverse when returning.</td>
+</tr>
+<tr>
+<td><strong>Badges</strong> (top right, every scene)</td>
+<td><code><bdi dir="rtl" class="ur">قرآنی متن</bdi></code> gold · <code><bdi dir="rtl" class="ur">تفسیری رائے</bdi></code> sepia · <code><bdi dir="rtl" class="ur">عصری اطلاق</bdi></code> teal · <code><bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></code> coral. Several badges may appear together.</td>
+</tr>
+<tr>
+<td><strong>Source strip</strong> (bottom left)</td>
+<td>Sūrah name + number:verse in Latin digits, translation credit ("<bdi dir="rtl" class="ur">ترجمہ: مودودی")</bdi>.</td>
+</tr>
+<tr>
+<td><strong>Headings</strong></td>
+<td>Max 7 words. Kinetic: 18 frame rise + opacity, no bounce, no spin.</td>
+</tr>
+<tr>
+<td><strong>Layout</strong></td>
+<td>One idea per frame. Max 2 text blocks on screen. Arabic line max 60% width. 120 px safe margins.</td>
+</tr>
+<tr>
+<td><strong>Maps</strong></td>
+<td>Built from Natural Earth geodata (<code>world-atlas</code>), labelled in Urdu by hand, never AI-generated. Flows drawn as great-circle arcs; goods = gold dots, money = teal dots moving the opposite way.</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Coverage:</strong> every inventory ID from Part 1 appears in at least one scene's "Covers" line. Run <code>python3 docs/coverage.py</code> to verify.</p>
+<hr />
+<h1>Episode 1 · <bdi dir="rtl" class="ur">دین اور دنیا: ایک ہی نقشہ</bdi></h1>
+<p><em>Covers pages 1 to 3. Runtime ≈ 6:30.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">کیا مذہب صرف مسجد تک محدود ہے؟ قرآن زمین کو قید خانہ نہیں، امانت اور نعمت کہتا ہے۔</bdi></p>
+<h3 id="E1.S1">E1.S1 · Cold open · 0:30 · Navy → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P01.1, P01.2, P01.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Night-time world map (Natural Earth) with thin teal shipping lanes pulsing. Camera slowly pulls back; the navy dissolves into warm paper and the same coastlines become ink lines. Title rises.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">قرآن اور عالمی معیشت</bdi></code> → subtitle <code><bdi dir="rtl" class="ur">ایک تحقیقی سلسلہ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">ہر روز دنیا کے سمندروں میں ہزاروں جہاز اناج، تیل اور سامان لے کر چلتے ہیں۔ پیسہ ایک طرف بہتا ہے اور سامان دوسری طرف۔ سوال یہ ہے کہ کیا قرآن کے پاس اس نظام کے بارے میں کہنے کو کچھ ہے؟ یہ سلسلہ اسی سوال کا جواب تلاش کرتا ہے، احتیاط کے ساتھ، اور یہ بتاتے ہوئے کہ کون سی بات قرآن کا متن ہے اور کون سی ہماری تعبیر۔</p></li>
+<li><strong>Source:</strong> Visual framing only.</li>
+</ul>
+<h3 id="E1.S2">E1.S2 · How to watch this series · 0:40 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P01.3, P01.4</li>
+<li><strong>Badge:</strong> (legend of all four badges)</li>
+<li><strong>Visual:</strong> Four badges slide in one by one, each with a one-line explanation. Then a small card: "<bdi dir="rtl" class="ur">ماخذ: نعمان علی خان کے لیکچرز پر مبنی نوٹس"</bdi> with an honest note.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">قرآنی متن</bdi></code> · <code><bdi dir="rtl" class="ur">تفسیری رائے</bdi></code> · <code><bdi dir="rtl" class="ur">عصری اطلاق</bdi></code> · <code><bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">یہ سلسلہ نعمان علی خان کے لیکچرز سے تیار کیے گئے نوٹس پر مبنی ہے۔ مگر ہم نے ہر آیت کو عربی متن، معتبر ترجمے اور تفسیر سے ملا کر دیکھا ہے۔ اسکرین پر آپ کو چار نشان نظر آئیں گے۔ سنہرا نشان یعنی قرآن کا براہ راست متن۔ بھورا نشان یعنی علماء کی تفسیری رائے۔ فیروزی نشان یعنی آج کی دنیا پر اطلاق۔ اور مرجانی نشان یعنی ایسا دعویٰ جس کے لیے ثبوت درکار ہے۔ اصل نوٹس میں جہاں غلطی تھی، ہم وہاں رک کر اس کی درستی بتائیں گے۔</p></li>
+<li><strong>Source:</strong> Audit Part 1. The "Approved by Divine Design" stamps from the source are deliberately not reproduced.</li>
+</ul>
+<h3 id="E1.S3">E1.S3 · The misconception · 0:45 · Paper → Navy split</h3>
+<ul>
+<li><strong>Covers:</strong> P02.1, P02.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Screen splits vertically. Left: a mosque arch in ink line. Right: a navy office tower drawn in teal line. A thin crack runs between them. Heading rises.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">ایک بڑی غلط فہمی: دین اور دنیا کی تفریق</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">بہت سے لوگ یہ سمجھتے ہیں کہ دین کا تعلق صرف نماز، روزے اور عبادات سے ہے، اور کاروبار، ملازمت اور معیشت "دنیا" کے کام ہیں جن کا دین سے کوئی واسطہ نہیں۔ یہ سوچ عام ہے، مگر کیا قرآن بھی یہی کہتا ہے؟</p></li>
+<li><strong>Source:</strong> Characterisation of a common attitude (not a survey result).</li>
+</ul>
+<h3 id="E1.S4">E1.S4 · Friday: leave trade, then return to it · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P02.2, P02.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> 62:9 in Arabic writes on in gold; the word <code><bdi dir="rtl" class="ar">ٱلۡبَيۡعَ</bdi></code> glows. A small market-stall icon fades out. Then 62:10 writes on; <code><bdi dir="rtl" class="ar">فَٱنتَشِرُواْ فِي ٱلۡأَرۡضِ</bdi></code> glows and the stall returns, now with footpaths radiating outward.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَذَرُواْ ٱلۡبَيۡعَ</bdi></code> / <code><bdi dir="rtl" class="ar">فَٱنتَشِرُواْ فِي ٱلۡأَرۡضِ وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">خرید و فروخت چھوڑ دو</bdi></code> / <code><bdi dir="rtl" class="ur">زمین میں پھیل جاؤ اور اللہ کا فضل تلاش کرو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ الجمعہ کی دو آیتیں دیکھیے۔ پہلی میں حکم ہے کہ جب جمعے کی اذان ہو تو خرید و فروخت چھوڑ دو اور اللہ کے ذکر کی طرف دوڑو۔ اور اگلی ہی آیت میں کہا گیا کہ جب نماز پوری ہو جائے تو زمین میں پھیل جاؤ اور اللہ کا فضل تلاش کرو۔ ایک ہی مقام پر بازار چھوڑنے کا حکم بھی ہے اور بازار لوٹنے کی ترغیب بھی۔ یہاں دین اور دنیا دو الگ خانے نہیں، ایک ہی دن کی دو ترتیبیں ہیں۔ علماء اسی بنیاد پر کہتے ہیں کہ نیت درست ہو تو روزی کمانا بھی عبادت کا حصہ بن جاتا ہے۔</p></li>
+<li><strong>Source:</strong> Al-Jumuʿah 62:9 to 10; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>. Interpretation: general scholarly position.</li>
+</ul>
+<h3 id="E1.S5">E1.S5 · Who forbade the good things? · 0:50 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P02.5, P02.6, P02.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> 7:32 on paper. <code><bdi dir="rtl" class="ar">زِينَةَ ٱللَّهِ</bdi></code> and <code><bdi dir="rtl" class="ar">ٱلطَّيِّبَٰتِ مِنَ ٱلرِّزۡقِ</bdi></code> underline in gold. Then a small cave outline fades to a town skyline, not to mock retreat but to show the Qur'an's orientation toward society.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">قُلۡ مَنۡ حَرَّمَ زِينَةَ ٱللَّهِ ٱلَّتِيٓ أَخۡرَجَ لِعِبَادِهِۦ وَٱلطَّيِّبَٰتِ مِنَ ٱلرِّزۡقِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">کس نے اللہ کی اس زینت کو حرام کیا جو اس نے اپنے بندوں کے لیے نکالی، اور پاک رزق کو؟</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن ان لوگوں سے سوال کرتا ہے جو اللہ کی پیدا کی ہوئی زینت اور پاکیزہ رزق کو اپنے اوپر حرام کر لیتے ہیں۔ سورۃ الحدید میں رہبانیت کا ذکر ہے کہ لوگوں نے اسے خود ایجاد کیا، اللہ نے اسے فرض نہیں کیا تھا۔ اور صحیح بخاری میں ہے کہ نبی کریم ﷺ نے ان صحابہ کو روکا جو ہمیشہ روزہ رکھنے اور شادی نہ کرنے کا ارادہ رکھتے تھے۔ اسی لیے یہ سلسلہ قرآن کو صرف عقائد اور فقہ کی کتاب کے طور پر نہیں، معاشی نظر سے بھی پڑھنے کی کوشش ہے۔</p></li>
+<li><strong>Source:</strong> Al-Aʿrāf 7:32; Al-Ḥadīd 57:27; Bukhari 5063. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Correction: the popular phrase "<bdi dir="rtl" class="ur">لا رہبانیۃ فی الاسلام"</bdi> is not quoted as a hadith.</li>
+</ul>
+<h3 id="E1.S6">E1.S6 · Genesis, quoted fairly · 0:55 · Paper (muted grey tone)</h3>
+<ul>
+<li><strong>Covers:</strong> P03.1, P03.2, P03.3, P03.4, P03.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi> (with a small "<bdi dir="rtl" class="ur">درستی"</bdi> tab)</li>
+<li><strong>Visual:</strong> Heading. A neutral grey card quotes Genesis 3:17 to 19 in Urdu. The source slide's three claims appear as ghost text, and two are struck through with a thin coral line and replaced with the accurate wording.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">تخلیق کا نظریہ: زمین قید خانہ یا نعمت؟</bdi></code> / card: <code><bdi dir="rtl" class="ur">پیدائش 3:17–19: "زمین تیرے سبب لعنتی ہوئی</bdi>… <bdi dir="rtl" class="ur">تو پسینے سے روٹی کھائے گا"</bdi></code> / struck: <code><bdi dir="rtl" class="ur">بیماریاں اس لعنت کا نتیجہ</bdi></code> · <code><bdi dir="rtl" class="ur">انسان دنیا میں قیدی ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">معاشی سوچ کی بنیاد اس بات پر ہے کہ ہم اس دنیا کو کیسے دیکھتے ہیں۔ اصل نوٹس میں کہا گیا تھا کہ بائبل کے مطابق زمین پر آنا ہی سزا اور لعنت ہے، اور انسان یہاں قیدی ہے۔ یہ بات اس طرح درست نہیں۔ کتاب پیدائش میں لعنت زمین پر آتی ہے اور انسان کو محنت اور پسینے سے روزی کمانے کا کہا جاتا ہے۔ بیماریوں کا ذکر وہاں نہیں، اور باغ کی نگہداشت کا کام تو گناہ سے پہلے ہی سونپا گیا تھا۔ "دنیا قید خانہ ہے" کا جملہ بائبل کا نہیں۔ مسیحی روایت میں بھی اس پر مختلف آراء ہیں، اس لیے ہم موازنہ احتیاط سے کریں گے۔</p></li>
+<li><strong>Source:</strong> Genesis 1:28, 2:15, 3:16 to 19. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P03.3 to P03.5.</li>
+</ul>
+<h3 id="E1.S7">E1.S7 · Descent with provision · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P03.6, P03.7, P03.8</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> A single gold line descends from the top of frame and lands on a horizon; seeds, water and wheat sprout along it. 2:36 and 7:10 appear in sequence.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَلَكُمۡ فِي ٱلۡأَرۡضِ مُسۡتَقَرࣱّ وَمَتَٰعٌ إِلَىٰ حِينࣲ</bdi></code> / <code><bdi dir="rtl" class="ar">وَجَعَلۡنَا لَكُمۡ فِيهَا مَعَٰيِشَۗ قَلِيلࣰا مَّا تَشۡكُرُونَ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">زمین میں تمہارے لیے ٹھکانا اور ایک مدت تک سامانِ زیست ہے</bdi></code> / <code><bdi dir="rtl" class="ur">ہم نے تمہارے لیے یہاں سامانِ زیست فراہم کیا، مگر تم کم ہی شکر کرتے ہو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن جب حضرت آدم کے زمین پر اترنے کا ذکر کرتا ہے تو ساتھ ہی کہتا ہے: زمین میں تمہارے لیے ٹھکانا ہے اور ایک مدت تک سامانِ زندگی۔ اس سے پہلے آدم کی توبہ قبول ہو چکی تھی، اور فرشتوں سے کہا جا چکا تھا کہ میں زمین میں خلیفہ بنانے والا ہوں۔ سورۃ الاعراف میں ارشاد ہے کہ ہم نے تمہیں زمین میں بسایا اور تمہارے لیے یہاں معیشت کے ذرائع رکھ دیے۔ یہ آیت شکر کی یاد دہانی پر ختم ہوتی ہے۔ یعنی زمین کے وسائل نعمت ہیں، اور ان کا درست استعمال شکر کا حصہ ہے۔</p></li>
+<li><strong>Source:</strong> Al-Baqarah 2:30, 2:36 to 37; Al-Aʿrāf 7:10; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E1.S8">E1.S8 · Khalīfah and cultivating the earth · 0:50 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P03.9</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> 11:61 appears; the word <code><bdi dir="rtl" class="ar">وَٱسۡتَعۡمَرَكُمۡ</bdi></code> glows. Ink-wipe into navy: a quiet montage diagram of fields, workshops and roads drawn as teal lines. End on episode card.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">هُوَ أَنشَأَكُم مِّنَ ٱلۡأَرۡضِ وَٱسۡتَعۡمَرَكُمۡ فِيهَا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اسی نے تمہیں زمین سے پیدا کیا اور اس میں تمہیں آباد کیا</bdi></code> / end card: <code><bdi dir="rtl" class="ur">اگلی قسط: امن اور رزق</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">حضرت صالح کی زبان سے قرآن کہتا ہے: اسی نے تمہیں زمین سے پیدا کیا اور اس میں تمہیں آباد کیا۔ عربی لفظ "استعمرکم" میں آباد کرنے اور تعمیر کی ذمہ داری دونوں کا مفہوم ہے۔ بہت سے علماء خلافت کے تصور کو بھی اسی ذمہ داری سے جوڑتے ہیں، اگرچہ خلیفہ کے معنی پر مفسرین میں اختلاف ہے۔ اس نظر سے دنیا کو معاشی طور پر آباد کرنا ترکِ دین نہیں، بلکہ امانت کی ادائیگی ہے۔ اگلی قسط میں ہم ایک بنجر وادی کی طرف چلیں گے، جہاں ایک دعا نے ایک شہر کی معیشت کی بنیاد رکھی۔</p></li>
+<li><strong>Source:</strong> Hūd 11:61; Al-Baqarah 2:30. Interpretation of <em>khalīfah</em> flagged as debated.</li>
+</ul>
+<hr />
+<h1>Episode 2 · <bdi dir="rtl" class="ur">امن اور رزق: ایک بنجر وادی کی دعا</bdi></h1>
+<p><em>Covers page 4. Runtime ≈ 6:00.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">ابراہیمؑ نے ایک بے آب و گیاہ وادی کے لیے دو چیزیں مانگیں: امن اور رزق۔ یہی دو ستون آج بھی ریاستوں کو قائم رکھتے ہیں۔</bdi></p>
+<h3 id="E2.S1">E2.S1 · The valley · 0:45 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P04.1, P04.2</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> Accurate relief sketch of the Ḥijāz (Natural Earth + hillshade), ink on paper, no labels except <code><bdi dir="rtl" class="ur">مکہ</bdi></code>. Wind lines cross empty land. 14:37 writes on.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">رَّبَّنَآ إِنِّيٓ أَسۡكَنتُ مِن ذُرِّيَّتِي بِوَادٍ غَيۡرِ ذِي زَرۡعٍ عِندَ بَيۡتِكَ ٱلۡمُحَرَّمِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">میں نے اپنی اولاد کے ایک حصے کو ایک بے آب و گیاہ وادی میں تیرے محترم گھر کے پاس بسایا ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سوچیے ایک ایسی وادی جہاں نہ کھیتی ہے نہ پانی کا کوئی نظام۔ حضرت ابراہیمؑ اپنی اولاد کو یہاں بساتے ہیں اور دعا کرتے ہیں۔ قرآن اس دعا کو دو جگہ نقل کرتا ہے، اور دونوں میں ایک ہی ترتیب ہے۔</p></li>
+<li><strong>Source:</strong> Ibrāhīm 14:37; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E2.S2">E2.S2 · Two requests · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P04.3, P04.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> 2:126 writes on. Two gold words lift off the verse: <code><bdi dir="rtl" class="ur">ءَامِنٗا</bdi></code> and <code><bdi dir="rtl" class="ar">ٱلثَّمَرَٰتِ</bdi></code>, each settling into a circle. Then the second half of the verse (Allah's reply) appears in smaller type.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">رَبِّ ٱجۡعَلۡ هَٰذَا بَلَدًا ءَامِنࣰا وَٱرۡزُقۡ أَهۡلَهُۥ مِنَ ٱلثَّمَرَٰتِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اے میرے رب، اس شہر کو امن کا شہر بنا دے اور اس کے باشندوں کو پھلوں کا رزق دے</bdi></code> / small: <code><bdi dir="rtl" class="ur">جو نہ مانے گا، دنیا کا سامان میں اسے بھی دوں گا</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ البقرہ میں ابراہیمؑ کی دعا ہے: اے میرے رب، اس شہر کو امن والا بنا دے، اور اس کے رہنے والوں کو پھلوں کا رزق دے۔ پہلی چیز امن، دوسری رزق۔ آج کی زبان میں ہم انہیں قومی سلامتی اور معاشی خوشحالی کہیں گے، مگر یہ ہماری اصطلاح ہے، آیت کی نہیں۔ ایک اور بات قابل غور ہے۔ ابراہیمؑ نے رزق ایمان والوں کے لیے مانگا، اور اللہ نے جواب دیا کہ دنیا کا سامان میں انکار کرنے والوں کو بھی دوں گا۔ رزق کا دروازہ سب کے لیے کھلا ہے۔</p></li>
+<li><strong>Source:</strong> Al-Baqarah 2:126; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E2.S3">E2.S3 · The overlap · 0:50 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P04.5, P04.6, P04.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">عصری اطلاق · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Two circles (navy "<bdi dir="rtl" class="ur">امن"</bdi>, teal "<bdi dir="rtl" class="ur">خوشحالی")</bdi> slide together; the overlap fills and reads <code><bdi dir="rtl" class="ur">ریاست کی بقا</bdi></code>. Two short arrows show failure modes on either side.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">امن</bdi></code> · <code><bdi dir="rtl" class="ur">خوشحالی</bdi></code> · <code><bdi dir="rtl" class="ur">ریاست کی بقا</bdi></code> / <code><bdi dir="rtl" class="ur">معیشت کے بغیر سلامتی: نظام کمزور</bdi></code> · <code><bdi dir="rtl" class="ur">سلامتی کے بغیر معیشت: سرمایہ غیر محفوظ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اس دعا سے ایک اصول نکلتا ہے۔ اگر معیشت نہ ہو تو سلامتی کا نظام دیر تک قائم نہیں رہتا، اور اگر سلامتی نہ ہو تو کوئی سرمایہ لگانے کو تیار نہیں ہوتا۔ عالمی بینک کی دو ہزار گیارہ کی رپورٹ بھی یہی بتاتی ہے کہ تنازعات والے ممالک میں غربت کم کرنے کی رفتار سب سے سست رہی۔ یہ قرآن سے براہ راست حکم نہیں، بلکہ اس دعا کی ترتیب سے نکلنے والا ایک سبق ہے۔</p></li>
+<li><strong>Source:</strong> World Bank, <em>World Development Report 2011</em>. <span class="flag check" title="Needs a citation">?</span> Verify the exact finding wording before VO lock.</li>
+</ul>
+<h3 id="E2.S4">E2.S4 · Quraysh: the two journeys · 1:10 · Paper map</h3>
+<ul>
+<li><strong>Covers:</strong> P04.9, P04.10</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> Accurate map of Arabia, Red Sea and Levant. Two gold arcs draw from Makkah: south to Yemen labelled <code><bdi dir="rtl" class="ur">سردیوں کا سفر</bdi></code>, north to Shām (Bosra/Gaza) labelled <code><bdi dir="rtl" class="ur">گرمیوں کا سفر</bdi></code>. Caravans as small gold dots. No other routes.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">لِإِيلَٰفِ قُرَيۡشٍ ۝ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">قریش کو مانوس کرنے کے لیے، سردی اور گرمی کے سفروں سے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">دعا کا اثر تاریخ میں نظر آتا ہے۔ سورۃ قریش دو تجارتی سفروں کا ذکر کرتی ہے: سردی کا سفر اور گرمی کا سفر۔ ابن کثیر اور طبری جیسے مفسرین کے مطابق سردیوں میں قافلے یمن جاتے تھے اور گرمیوں میں شام۔ اصل نوٹس کے نقشے میں شام کو دو جگہ دکھایا گیا تھا، ایک بار ایران کے اوپر، اور راستے یورپ اور افریقہ تک پھیلا دیے گئے تھے۔ قرآن اور تفسیر صرف یمن اور شام کا ذکر کرتے ہیں، اس لیے ہمارا نقشہ یہیں تک ہے۔</p></li>
+<li><strong>Source:</strong> Quraysh 106:1 to 2; Ibn Kathīr, al-Ṭabarī on 106. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P04.10 map.</li>
+</ul>
+<h3 id="E2.S5">E2.S5 · How big was Makkan trade? · 0:55 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P04.8</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> A scale bar animates between two labels: <code><bdi dir="rtl" class="ur">علاقائی قافلہ</bdi></code> ↔ <code><bdi dir="rtl" class="ur">عالمی پائپ لائن</bdi></code>. A marker hovers near the regional end with a shaded "debate" band. Two book spines appear: Crone 1987 and a counter-view.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">مکہ: عالمی تجارتی پائپ لائن؟</bdi></code> / <code><bdi dir="rtl" class="ur">تاریخ دانوں میں اختلاف</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس میں کہا گیا کہ مکہ ایک عالمی تجارتی پائپ لائن اور شاہراہ کا پڑاؤ بن گیا۔ یہ بات مبالغہ ہے۔ قریش کی تجارت ضرور تھی، قرآن خود اس کی گواہی دیتا ہے، مگر اس کا حجم کتنا تھا، اس پر مؤرخین میں اختلاف ہے۔ پیٹریشیا کرون نے انیس سو ستاسی میں لکھا کہ یہ زیادہ تر علاقائی تجارت تھی، چمڑے اور کپڑے جیسی چیزوں کی۔ دوسرے محققین اسے زیادہ وسیع سمجھتے ہیں۔ ہم اسے ایک اہم قافلہ مرکز کہیں گے، اور بحث کو کھلا چھوڑیں گے۔</p></li>
+<li><strong>Source:</strong> Patricia Crone, <em>Meccan Trade and the Rise of Islam</em> (1987). <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P04.8.</li>
+</ul>
+<h3 id="E2.S6">E2.S6 · Food and safety in one verse · 0:50 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P04.9</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> 106:3 to 4. The words <code><bdi dir="rtl" class="ar">أَطۡعَمَهُم مِّن جُوعࣲ</bdi></code> and <code><bdi dir="rtl" class="ar">ءَامَنَهُم مِّنۡ خَوۡفِۭ</bdi></code> light up and swing into the two Venn circles from S3, now in gold on paper. End card.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">ٱلَّذِيٓ أَطۡعَمَهُم مِّن جُوعࣲ وَءَامَنَهُم مِّنۡ خَوۡفِۭ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">جس نے انہیں بھوک سے بچا کر کھانے کو دیا اور خوف سے بچا کر امن عطا کیا</bdi></code> / end card: <code><bdi dir="rtl" class="ur">اگلی قسط: قرآن کی معاشی لغت</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اور سورت کا اختتام دیکھیے: اس گھر کے رب کی عبادت کرو، جس نے انہیں بھوک سے بچا کر کھانا دیا اور خوف سے بچا کر امن دیا۔ ابراہیمؑ کی دعا کے دونوں حصے، رزق اور امن، یہاں پورے ہوتے نظر آتے ہیں۔ اور ان کا شکر عبادت کی صورت میں مانگا گیا ہے۔ اگلی قسط میں ہم ان الفاظ کو قریب سے دیکھیں گے جن سے قرآن معیشت کی بات کرتا ہے: رزق، ثمرہ، فضل اور متاع۔</p></li>
+<li><strong>Source:</strong> Quraysh 106:3 to 4; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<hr />
+<h1>Episode 3 · <bdi dir="rtl" class="ur">قرآن کی معاشی لغت</bdi></h1>
+<p><em>Covers pages 5 to 6. Runtime ≈ 7:00. </em><em>The 60 to 90 second pilot is built from E3.S1 to S4 (see Part 3).</em><strong>
+</strong>Logline:** <bdi dir="rtl" class="ur">چار الفاظ، چار تصورات: رزق، ثمرہ، فضل، متاع۔ ان کے اصل معنی کیا ہیں، اور ہم ان سے آج کی معیشت کیسے سمجھ سکتے ہیں؟</bdi></p>
+<h3 id="E3.S1">E3.S1 · Look at your food · 0:40 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P05.1, P05.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> A simple ink plate with a piece of bread in the centre of warm paper. 80:24 writes on above it in gold.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">فَلۡيَنظُرِ ٱلۡإِنسَٰنُ إِلَىٰ طَعَامِهِۦٓ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">پھر ذرا انسان اپنی خوراک کو دیکھے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">ہم دن میں کئی بار کھانا کھاتے ہیں، مگر کم ہی سوچتے ہیں کہ یہ نوالہ ہم تک پہنچا کیسے۔ قرآن ہمیں یہی دعوت دیتا ہے: انسان ذرا اپنی خوراک کو دیکھے۔</p></li>
+<li><strong>Source:</strong> ʿAbasa 80:24; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E3.S2">E3.S2 · The word rizq · 0:40 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P05.2, P05.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> <bdi dir="rtl" class="ur">رِزۡق</bdi> in large gold Amiri. Three small labels orbit it: <code><bdi dir="rtl" class="ur">غذا</bdi></code> <code><bdi dir="rtl" class="ur">مال</bdi></code> <code><bdi dir="rtl" class="ur">علم و ہدایت</bdi></code>. 11:6 appears beneath.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَمَا مِن دَآبَّةࣲ فِي ٱلۡأَرۡضِ إِلَّا عَلَى ٱللَّهِ رِزۡقُهَا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">زمین میں چلنے والا کوئی جاندار ایسا نہیں جس کا رزق اللہ کے ذمے نہ ہو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">عربی میں رزق ہر اس چیز کو کہتے ہیں جو زندگی کو قائم رکھنے کے لیے عطا کی جائے۔ قرآن اسے سب سے زیادہ کھانے اور مال کے لیے استعمال کرتا ہے، اور بعض جگہ علم اور ہدایت جیسی نعمتوں کے لیے بھی۔ اور وہ یہ یاد دلاتا ہے کہ ہر جاندار کا رزق اللہ کے ذمے ہے۔</p></li>
+<li><strong>Source:</strong> Hūd 11:6; Lisān al-ʿArab (<bdi dir="rtl" class="ur">رزق)</bdi>. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects emphasis of P05.3.</li>
+</ul>
+<h3 id="E3.S3">E3.S3 · From rain to plate · 0:55 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P05.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Horizontal chain, right to left (Urdu reading order): rain → crops → fodder in gold on paper, each ticked with the verse number. Ink-wipe to navy; the chain continues: harvest/processing → transport → plate in teal. Gold dots (goods) travel right to left; teal dots (money) travel left to right underneath.</li>
+<li><strong>On screen:</strong> gold: <code><bdi dir="rtl" class="ur">بارش</bdi></code> <code><bdi dir="rtl" class="ur">فصل</bdi></code> <code><bdi dir="rtl" class="ur">مویشیوں کا چارہ</bdi></code> (tag <code><bdi dir="rtl" class="ur">عبس</bdi> 80:25–32</code>) / teal: <code><bdi dir="rtl" class="ur">کٹائی اور پروسیسنگ</bdi></code> <code><bdi dir="rtl" class="ur">ترسیل</bdi></code> <code><bdi dir="rtl" class="ur">آپ کی پلیٹ</bdi></code> (tag <code><bdi dir="rtl" class="ur">عصری اطلاق</bdi></code>) / flow labels: <code><bdi dir="rtl" class="ur">سامان</bdi> ←</code> <code>→ <bdi dir="rtl" class="ur">رقم</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ عبس اس سفر کا آغاز خود بیان کرتی ہے: ہم نے خوب پانی برسایا، پھر زمین کو پھاڑا، پھر اس میں غلہ، انگور، زیتون، کھجور اور چارہ اگایا، تمہارے لیے اور تمہارے مویشیوں کے لیے۔ یہاں تک قرآن کا متن ہے۔ آج اس کے آگے کٹائی، پروسیسنگ اور ترسیل کی کڑیاں جڑ گئی ہیں، اور سامان ایک سمت میں چلتا ہے تو پیسہ دوسری سمت میں۔ بعض مقررین رزق کو "سپلائی چین" کہتے ہیں۔ یہ ایک مفید مثال ہے، لفظ کا معنی نہیں۔</p></li>
+<li><strong>Source:</strong> ʿAbasa 80:25 to 32; Qāf 50:9 to 11. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P05.2 (analogy, not meaning).</li>
+</ul>
+<h3 id="E3.S4">E3.S4 · Who controls the chain? · 0:50 · Navy map</h3>
+<ul>
+<li><strong>Covers:</strong> P05.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Accurate map, Black Sea centred. Russia and Ukraine shaded teal. Gold arcs fan out to North Africa and the Middle East (schematic, labelled <code><bdi dir="rtl" class="ur">علامتی خاکہ</bdi></code>). A counter shows <code>≈ 30%</code> with source. Then a coral stamp <code><bdi dir="rtl" class="ur">غلبہ؟</bdi></code> is corrected to <code><bdi dir="rtl" class="ur">اثر و رسوخ</bdi></code>.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">عالمی گندم برآمدات میں روس اور یوکرین کا حصہ</bdi></code> <code>30%</code> <code><bdi dir="rtl" class="ur">تقریباً، جنگ سے پہلے (2021)</bdi></code> · <code><bdi dir="rtl" class="ur">ماخذ</bdi>: FAO / IFPRI، 2022</code> · struck <code><bdi dir="rtl" class="ur">غلبہ</bdi></code> → <code><bdi dir="rtl" class="ur">اثر و رسوخ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس میں ایک دعویٰ ہے: جو ممالک غذائی سپلائی چین پر قابو رکھتے ہیں، وہ دوسری قوموں پر غلبہ پاتے ہیں۔ اس کے حق میں شواہد موجود ہیں۔ جنگ سے پہلے روس اور یوکرین مل کر دنیا کی تقریباً تیس فیصد گندم برآمد کرتے تھے، اور دو ہزار بائیس کی جنگ نے عالمی غذائی قیمتیں ریکارڈ سطح پر پہنچا دیں۔ مگر "غلبہ" بڑا لفظ ہے۔ درست بات یہ ہے کہ غذا پر قابو اثر و رسوخ دیتا ہے۔ اور یہی وجہ ہے کہ قرآن نے بھوک سے نجات اور خوف سے امن کو ایک ساتھ ذکر کیا۔</p></li>
+<li><strong>Source:</strong> FAO (2022) <em>Information Note: The importance of Ukraine and the Russian Federation for global agricultural markets</em>; IFPRI (2022). <span class="flag check" title="Needs a citation">?</span> Confirm the ~30% figure and year in the FAO note before VO lock. Quraysh 106:4.</li>
+</ul>
+<h3 id="E3.S5">E3.S5 · Thamarah: fruit that takes time · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P05.6, P05.7, P05.8</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> A seed on a timeline grows into a tree in five stages (ink). 18:34 and 18:42 appear. The garden in 18:42 collapses on its trellises, drawn gently.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَكَانَ لَهُۥ ثَمَرࣱ</bdi></code> / <code><bdi dir="rtl" class="ar">فَأَصۡبَحَ يُقَلِّبُ كَفَّيۡهِ عَلَىٰ مَآ أَنفَقَ فِيهَا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">ثمرہ: لفظی معنی پھل</bdi></code> / <code><bdi dir="rtl" class="ur">بعض مفسرین: 18:34 میں "ثمر" سے مراد مال و دولت</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">ثمرہ کا لفظی معنی پھل ہے۔ نوٹس میں کہا گیا کہ قرآن میں اس کا مطلب سرمایہ کاری ہے۔ یہ عمومی طور پر درست نہیں۔ البتہ سورۃ الکہف میں باغ والے شخص کے بارے میں "وکان لہ ثمر" آیا ہے، اور ابن عباس اور مجاہد جیسے مفسرین سے منقول ہے کہ یہاں ثمر سے مراد ہر طرح کا مال ہے۔ اور جب اس کا باغ برباد ہوا تو قرآن کہتا ہے کہ وہ اپنے ہاتھ ملتا رہ گیا اس پر جو اس نے اس میں خرچ کیا تھا۔ یعنی باغ ایک سرمایہ تھا، جس میں محنت اور وقت لگا۔ کاروبار بھی ایسا ہی ہے: بیج، انتظار، پھر پھل۔</p></li>
+<li><strong>Source:</strong> Al-Kahf 18:34, 18:42; al-Ṭabarī on 18:34. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P05.7.</li>
+</ul>
+<h3 id="E3.S6">E3.S6 · Faḍl: leave trade, seek bounty · 0:55 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P06.1, P06.2, P06.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> <bdi dir="rtl" class="ur">فَضۡل</bdi> in gold. Transition to navy: a clean bar chart with a dashed break-even line; bars above the line glow teal, labelled <code><bdi dir="rtl" class="ur">اضافی منافع</bdi></code>. Small inset: 2:198 with a map dot for ʿUkāẓ.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ</bdi></code> / <code><bdi dir="rtl" class="ar">لَيۡسَ عَلَيۡكُمۡ جُنَاحٌ أَن تَبۡتَغُواْ فَضۡلࣰا مِّن رَّبِّكُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">فضل: عطا، اضافہ، بخشش</bdi></code> / <code><bdi dir="rtl" class="ur">تجارتی سیاق میں: منافع</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">فضل کا مطلب ہے عطا، زیادتی، وہ جو ضرورت سے بڑھ کر ملے۔ سورۃ الجمعہ میں نماز کے بعد اللہ کا فضل تلاش کرنے کا حکم ہے، اور سورۃ البقرہ میں حج کے دوران اللہ کا فضل تلاش کرنے کی اجازت۔ صحیح بخاری میں ابن عباس کی روایت ہے کہ عکاظ اور مجنہ جیسے بازاروں میں لوگ حج کے موسم میں تجارت سے ہچکچاتے تھے، تو یہ آیت نازل ہوئی۔ اسی لیے مفسرین تجارتی سیاق میں فضل کو منافع کے معنی میں لیتے ہیں۔ جدید زبان میں کہیں تو لاگت پوری ہونے کے بعد جو اضافہ ہو، وہ فضل ہے۔</p></li>
+<li><strong>Source:</strong> Al-Jumuʿah 62:10; Al-Baqarah 2:198; Bukhari 2050.</li>
+</ul>
+<h3 id="E3.S7">E3.S7 · Matāʿ: useful, pleasing, temporary · 1:00 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P06.4, P06.5, P06.6, P06.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> <bdi dir="rtl" class="ur">مَتَاع</bdi> in gold. A balance: gears (use) on one pan, a smile (enjoyment) on the other. Transition: line drawings of a phone and a car. Then 24:29 with <code><bdi dir="rtl" class="ar">غَيۡرَ مَسۡكُونَةࣲ</bdi></code> highlighted in coral-underline (restored words), next to a sketch of an old caravanserai.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">بُيُوتًا غَيۡرَ مَسۡكُونَةࣲ فِيهَا مَتَٰعࣱ لَّكُمۡ</bdi></code> / small: <code><bdi dir="rtl" class="ar">وَمَا ٱلۡحَيَوٰةُ ٱلدُّنۡيَآ إِلَّا مَتَٰعُ ٱلۡغُرُورِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">ایسے گھر جو کسی کے رہنے کی جگہ نہ ہوں اور جن میں تمہارے فائدے کی کوئی چیز ہو</bdi></code> / <code><bdi dir="rtl" class="ur">مفسرین: سرائے، دکانیں، عوامی عمارتیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">متاع وہ چیز ہے جو کام بھی آئے اور جس سے لطف بھی حاصل ہو، مگر ایک مدت کے لیے۔ آج کا فون یا گاڑی اس کی اچھی مثال ہیں۔ سورۃ النور میں ہے کہ ایسے گھروں میں داخل ہونے میں حرج نہیں جو کسی کی رہائش نہ ہوں اور جن میں تمہارا کوئی فائدہ ہو۔ نوٹس میں "رہائش نہ ہوں" کے الفاظ چھوٹ گئے تھے، جو اس آیت کی اصل شرط ہیں۔ مجاہد اور قتادہ نے اس سے سرائے اور دکانیں مراد لی ہیں۔ یعنی قرآن بازار کی جگہوں کو تسلیم کرتا ہے اور ان تک رسائی آسان کرتا ہے۔ اور ساتھ ہی یاد دلاتا ہے کہ دنیا کی زندگی دھوکے کا سامان بھی بن سکتی ہے۔</p></li>
+<li><strong>Source:</strong> An-Nūr 24:29; Āl ʿImrān 3:185; al-Ṭabarī on 24:29. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P06.6, softens P06.7.</li>
+</ul>
+<hr />
+<h1>Episode 4 · <bdi dir="rtl" class="ur">تاجر، مسافر اور مجاہد</bdi></h1>
+<p><em>Covers pages 7 to 8. Runtime ≈ 7:30.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">سورۃ المزمل میں تاجر اور مجاہد ایک ہی آیت میں کیوں آتے ہیں؟ اور قرآن حرکت، سفر اور تعمیر کو کیسے دیکھتا ہے؟</bdi></p>
+<h3 id="E4.S1">E4.S1 · The night of worship · 0:45 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P07.1, P07.2, P07.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> Deep indigo-paper night sky with a thin crescent; 73:2 writes on. Heading rises.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">قُمِ ٱلَّيۡلَ إِلَّا قَلِيلࣰا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">کاروباری ذہنیت: تجارت کا مقام</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ المزمل رات کی طویل عبادت کے حکم سے شروع ہوتی ہے: رات کو قیام کرو، مگر تھوڑا۔ اور اسی سورت کی آخری آیت میں ایک حیرت انگیز بات ہے، جو تجارت کے مقام کو واضح کرتی ہے۔ ترمذی کی ایک روایت میں سچے امانت دار تاجر کو انبیاء، صدیقین اور شہداء کے ساتھ بتایا گیا ہے، اگرچہ محدثین نے اس کی سند پر کلام کیا ہے۔</p></li>
+<li><strong>Source:</strong> Al-Muzzammil 73:1 to 4; Tirmidhī 1209 (<span class="flag check" title="Needs a citation">?</span> grading varies).</li>
+</ul>
+<h3 id="E4.S2">E4.S2 · Three groups, one verse · 1:10 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P07.4, P07.5, P07.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> 73:20 excerpt. Three phrases lift into three columns with simple icons: bed, caravan, shield. Under the middle column the source slide's wording <code><bdi dir="rtl" class="ur">اللہ کی راہ میں سفر</bdi></code> appears, is struck in coral, and replaced by <code><bdi dir="rtl" class="ur">زمین میں سفر</bdi></code>.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">مَّرۡضَىٰ</bdi></code> / <code><bdi dir="rtl" class="ar">يَضۡرِبُونَ فِي ٱلۡأَرۡضِ يَبۡتَغُونَ مِن فَضۡلِ ٱللَّهِ</bdi></code> / <code><bdi dir="rtl" class="ar">يُقَٰتِلُونَ فِي سَبِيلِ ٱللَّهِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">مریض</bdi></code> · <code><bdi dir="rtl" class="ur">اللہ کے فضل کی تلاش میں زمین میں سفر کرنے والے</bdi></code> · <code><bdi dir="rtl" class="ur">اللہ کی راہ میں لڑنے والے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اللہ فرماتا ہے کہ وہ جانتا ہے تم میں کچھ بیمار ہوں گے، کچھ زمین میں سفر کریں گے اللہ کا فضل تلاش کرتے ہوئے، اور کچھ اللہ کی راہ میں جنگ کریں گے۔ ایک درستی ضروری ہے۔ نوٹس میں لکھا تھا کہ تاجر "اللہ کی راہ میں" سفر کرتے ہیں۔ آیت میں "فی سبیل اللہ" کے الفاظ جنگ کرنے والوں کے لیے ہیں۔ تاجروں کے لیے "فی الارض" ہے، یعنی زمین میں۔ مگر یہ بات اپنی جگہ اہم ہے کہ رات کی عبادت میں رعایت کے ذکر میں تاجر اور مجاہد ایک ساتھ آئے ہیں۔</p></li>
+<li><strong>Source:</strong> Al-Muzzammil 73:20; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P07.5.</li>
+</ul>
+<h3 id="E4.S3">E4.S3 · What the early scholars drew from it · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P07.7, P07.8, P07.9</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> Two quotation cards, sepia, each with name, source and a small "<bdi dir="rtl" class="ur">سند کی جانچ"</bdi> tag. Card 1: Ibn Masʿūd. Card 2: ʿUmar.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">ابن مسعودؓ: جو شخص مسلمانوں کے کسی شہر میں غلہ لا کر اس دن کے نرخ پر بیچے، اس کا مرتبہ شہداء جیسا ہے</bdi></code> / <code><bdi dir="rtl" class="ur">عمرؓ: جہاد کے بعد مجھے سب سے زیادہ یہ پسند ہے کہ موت آئے تو میں پہاڑی راستوں میں اللہ کا فضل تلاش کر رہا ہوں</bdi></code> / <code><bdi dir="rtl" class="ur">ماخذ: تفسیر قرطبی، سورۃ المزمل</bdi> 20</code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">امام قرطبی نے اس آیت کے تحت حضرت عبداللہ بن مسعود کا قول نقل کیا ہے کہ جو شخص مسلمانوں کے کسی شہر میں غلہ لا کر اس دن کے نرخ پر بیچے، اس کا مرتبہ اللہ کے ہاں شہیدوں جیسا ہے، پھر انہوں نے یہی آیت پڑھی۔ اور حضرت عمر سے منقول ہے کہ جہاد کے بعد انہیں سب سے زیادہ یہ پسند تھا کہ موت ایسی حالت میں آئے کہ وہ اللہ کا فضل تلاش کرتے ہوئے سفر میں ہوں۔ نوٹس میں اس قول کو ایک نامعلوم صحابی سے منسوب کیا گیا تھا۔ ان روایات کی سند پر محدثین کی تحقیق دیکھنا ضروری ہے، مگر یہ واضح ہے کہ سلف نے حلال تجارت کو کمتر نہیں سمجھا، بلکہ ایک بلند درجہ جانا۔</p></li>
+<li><strong>Source:</strong> al-Qurṭubī on 73:20. <span class="flag check" title="Needs a citation">?</span> Grade both reports before VO lock; P07.9 attribution corrected to ʿUmar.</li>
+</ul>
+<h3 id="E4.S4">E4.S4 · Walk its paths · 0:50 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P08.1, P08.2, P08.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> A flat ink landscape unrolls like a carpet (<bdi dir="rtl" class="ur">بساط)</bdi>; footpaths draw across it. 71:19 to 20 and 67:15.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَٱللَّهُ جَعَلَ لَكُمُ ٱلۡأَرۡضَ بِسَاطࣰا ۝ لِّتَسۡلُكُواْ مِنۡهَا سُبُلࣰا فِجَاجࣰا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اور اللہ نے زمین کو تمہارے لیے فرش کی طرح بچھا دیا، تاکہ تم اس کے کھلے راستوں میں چلو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن جمود کی نہیں، حرکت کی ترغیب دیتا ہے۔ سورۃ الملک میں ہے: زمین کے کندھوں پر چلو پھرو اور اس کا رزق کھاؤ۔ اور حضرت نوحؑ اپنی قوم کو یاد دلاتے ہیں کہ اللہ نے زمین کو تمہارے لیے فرش کی طرح بچھایا تاکہ تم اس کے کھلے راستوں پر چلو۔</p></li>
+<li><strong>Source:</strong> Nūḥ 71:19 to 20; Al-Mulk 67:15; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E4.S5">E4.S5 · Nūḥ: a reminder, not a blueprint · 0:50 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P08.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> The source slide's claim <code><bdi dir="rtl" class="ur">نوحؑ نے انفراسٹرکچر کا خاکہ پیش کیا</bdi></code> appears and softens to grey. 71:10 to 12 appears: rain, wealth, children, gardens, rivers bloom as small ink icons.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">ٱسۡتَغۡفِرُواْ رَبَّكُمۡ</bdi> … <bdi dir="rtl" class="ar">يُرۡسِلِ ٱلسَّمَآءَ عَلَيۡكُم مِّدۡرَارࣰا ۝ وَيُمۡدِدۡكُم بِأَمۡوَٰلࣲ وَبَنِينَ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اپنے رب سے معافی مانگو</bdi> … <bdi dir="rtl" class="ur">وہ تم پر آسمان سے خوب بارشیں برسائے گا، تمہیں مال اور اولاد سے نوازے گا</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس میں کہا گیا کہ نوحؑ نے قدیم دور میں انفراسٹرکچر اور عالمی معیشت کا خاکہ پیش کیا۔ آیت میں ایسا نہیں۔ نوحؑ اللہ کی نشانیاں یاد دلا رہے ہیں۔ مگر اسی سورت میں ایک واضح معاشی بات ہے: اپنے رب سے معافی مانگو، وہ تم پر خوب بارش برسائے گا، مال اور اولاد سے مدد دے گا، باغ اور نہریں دے گا۔ یہاں اخلاقی اصلاح اور معاشی خوشحالی کو جوڑا گیا ہے۔</p></li>
+<li><strong>Source:</strong> Nūḥ 71:10 to 12. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P08.4.</li>
+</ul>
+<h3 id="E4.S6">E4.S6 · Dhul-Qarnayn: iron, copper, labour · 1:00 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P08.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Two mountain walls in ink. Iron sheets stack between them, bellows glow, molten copper pours (restrained orange). A small coin bag offered and gently pushed back. Transition to navy: the same shape becomes a modern dam cross-section.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">مَا مَكَّنِّي فِيهِ رَبِّي خَيۡرࣱ فَأَعِينُونِي بِقُوَّةٍ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">جو کچھ میرے رب نے مجھے دے رکھا ہے وہ بہت ہے، تم بس محنت سے میری مدد کرو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">ذوالقرنین کو اللہ نے ہر چیز کے اسباب دیے تھے۔ جب ایک قوم نے ان سے دیوار بنانے کے بدلے مال کی پیشکش کی تو انہوں نے انکار کیا اور کہا: میرے رب نے جو دیا ہے وہ بہتر ہے، تم محنت سے میری مدد کرو۔ پھر لوہے کی چادریں، دھونکنی اور پگھلا ہوا تانبا۔ یعنی مقامی لوگوں کی محنت، نئی ٹیکنالوجی، اور اپنے وسائل۔ یہ پسماندہ علاقے میں تعمیر کی ایک مثال ہے۔ نوٹس میں یہ بھی کہا گیا کہ انہوں نے تجارتی شراکت دار تلاش کیے، مگر یہ بات آیات میں نہیں ہے۔</p></li>
+<li><strong>Source:</strong> Al-Kahf 18:84, 18:94 to 96. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P08.5.</li>
+</ul>
+<h3 id="E4.S7">E4.S7 · Ships, and studying abroad · 0:50 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P08.6, P08.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> 42:32 in gold on a dark sea; mountain-like sails. Then a navy world map with thin teal arcs of student flows (schematic, labelled <code><bdi dir="rtl" class="ur">علامتی</bdi></code>).</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَمِنۡ ءَايَٰتِهِ ٱلۡجَوَارِ فِي ٱلۡبَحۡرِ كَٱلۡأَعۡلَٰمِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اور اس کی نشانیوں میں سے سمندر میں پہاڑوں جیسے جہاز ہیں</bdi></code> / <code><bdi dir="rtl" class="ur">تعلیم کے لیے سفر: عصری اطلاق</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن سمندر میں پہاڑوں جیسے چلتے جہازوں کو اللہ کی نشانی کہتا ہے، اور سورۃ الروم میں کہتا ہے کہ یہ اس لیے ہیں کہ تم اس کا فضل تلاش کرو۔ اس سے یہ اطلاق نکالا جاتا ہے کہ بچوں کو ہنر اور اعلیٰ تعلیم کے لیے باہر بھیجنا دنیا پرستی نہیں، بلکہ ترقی کی ضرورت ہے۔ یہ ایک عصری اطلاق ہے، آیت کا براہ راست حکم نہیں۔</p></li>
+<li><strong>Source:</strong> Ash-Shūrā 42:32; Ar-Rūm 30:46.</li>
+</ul>
+<h3 id="E4.S8">E4.S8 · Ḥajj and trade · 1:00 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P08.8, P08.9</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Map of the Ḥijāz with three dots: ʿUkāẓ, Majannah, Dhul-Majāz (approximate, labelled <code><bdi dir="rtl" class="ur">تقریبی مقام</bdi></code>). 2:198 writes on. Then navy: lines from many countries converging on Makkah.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">لَيۡسَ عَلَيۡكُمۡ جُنَاحٌ أَن تَبۡتَغُواْ فَضۡلࣰا مِّن رَّبِّكُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اگر حج کے ساتھ ساتھ اپنے رب کا فضل بھی تلاش کرو تو کوئی مضائقہ نہیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">حج کے موسم میں تجارت کی اجازت قرآن میں صاف ہے۔ نوٹس میں حج کو دنیا کی سب سے بڑی بزنس کانفرنس کہا گیا ہے۔ یہ بات حج کے مقصد کو الٹ دیتی ہے۔ حج اول و آخر عبادت ہے۔ البتہ سورۃ الحج میں ہے کہ لوگ آئیں تاکہ اپنے لیے فوائد دیکھیں، اور کئی مفسرین نے ان فوائد میں دنیاوی فائدے بھی شامل کیے ہیں۔ تاریخ میں حج مسلم دنیا کے ملنے کی جگہ بھی رہا ہے۔ عبادت پہلے، تجارت اس کے ساتھ جائز۔</p></li>
+<li><strong>Source:</strong> Al-Baqarah 2:198; Al-Ḥajj 22:28; Bukhari 2050. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Softens P08.9.</li>
+</ul>
+<hr />
+<h1>Episode 5 · <bdi dir="rtl" class="ur">صارف کا دل: خواہش، نمائش، توازن</bdi></h1>
+<p><em>Covers pages 9 to 12. Runtime ≈ 8:00.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">جدید مارکیٹنگ انسان کی جن کمزوریوں کو استعمال کرتی ہے، قرآن نے ان کا نام لیا ہے۔ اور علاج بھی بتایا ہے: اعتدال اور نماز۔</bdi></p>
+<h3 id="E5.S1">E5.S1 · Hasty by nature · 0:55 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P09.1, P09.2, P09.3, P09.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> A clean line-drawn head in teal. A checkout counter with small items glows; a thumbnail grid flickers. 75:20 and 17:11 appear in gold on a paper inset.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">كَلَّا بَلۡ تُحِبُّونَ ٱلۡعَاجِلَةَ</bdi></code> / <code><bdi dir="rtl" class="ar">وَكَانَ ٱلۡإِنسَٰنُ عَجُولࣰا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">تم جلد ملنے والی چیز سے محبت رکھتے ہو</bdi></code> / <code><bdi dir="rtl" class="ur">انسان بڑا جلد باز ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن کہتا ہے کہ انسان جلد باز ہے، اور یہ کہ تم جلد ملنے والی چیز سے محبت کرتے ہو۔ سپر مارکیٹ کے کاؤنٹر پر رکھی چاکلیٹیں اور ویڈیو کے دلکش تھمب نیل اسی کمزوری سے فائدہ اٹھاتے ہیں۔ برطانیہ نے دو ہزار بائیس میں چیک آؤٹ کے قریب غیر صحت بخش اشیاء رکھنے پر پابندی اسی بنیاد پر لگائی۔ نوٹس میں سورۃ النساء کی آیت "انسان کمزور پیدا کیا گیا" بھی لائی گئی ہے؛ اس کا سیاق نکاح کے احکام میں آسانی ہے، اس لیے اسے یہاں تفسیری اطلاق سمجھیں۔</p></li>
+<li><strong>Source:</strong> Al-Qiyāmah 75:20; Al-Isrā' 17:11; An-Nisā' 4:28 (context note). UK Food (Promotion and Placement) Regulations 2021, in force Oct 2022. <span class="flag check" title="Needs a citation">?</span></li>
+</ul>
+<h3 id="E5.S2">E5.S2 · The inner void, and shuḥḥ · 1:00 · Navy → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P09.5, P09.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے · قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> A hollow circle in the chest of the line-drawn figure; ad tiles try to fill it and slide off. Paper inset with 13:28, then 59:9.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">أَلَا بِذِكۡرِ ٱللَّهِ تَطۡمَئِنُّ ٱلۡقُلُوبُ</bdi></code> / <code><bdi dir="rtl" class="ar">وَمَن يُوقَ شُحَّ نَفۡسِهِۦ فَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">خبردار، اللہ کے ذکر ہی سے دلوں کو اطمینان ملتا ہے</bdi></code> / <code><bdi dir="rtl" class="ur">اور جو اپنے نفس کے بخل سے بچا لیا گیا، وہی فلاح پانے والے ہیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">انسان کے اندر ایک خلا ہے، اور بہت سے اشتہار یہی وعدہ کرتے ہیں کہ یہ برانڈ آپ کو سکون دے گا۔ قرآن کہتا ہے کہ دلوں کا اطمینان اللہ کے ذکر میں ہے۔ اور ایک لفظ ہے "شُحّ"، یعنی ایسا لالچ اور بخل جس میں انسان کو اپنے سوا کسی کی پروا نہ ہو۔ قرآن کہتا ہے کہ جو اس سے بچا لیا گیا، وہی کامیاب ہے۔ آج کی صارفیت اسی نفسیات کو پروان چڑھاتی ہے: صرف اپنی ذات، اور ہر قیمت پر اپنا فائدہ۔</p></li>
+<li><strong>Source:</strong> Ar-Raʿd 13:28 (interpretive link); Al-Ḥashr 59:9; At-Taghābun 64:16.</li>
+</ul>
+<h3 id="E5.S3">E5.S3 · Mukhtāl: the imagined self · 1:00 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P10.1, P10.2, P10.3, P10.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے · عصری اطلاق · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> A figure before a mirror; the reflection is larger and wears a crown made of price tags. Root letters <bdi dir="rtl" class="ur">خ ی ل</bdi> float between <bdi dir="rtl" class="ur">خیال</bdi> and <bdi dir="rtl" class="ur">خیلاء</bdi>.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ar">مُخۡتَال</bdi></code> · <code><bdi dir="rtl" class="ur">خ ی ل: خیال</bdi> ↔ <bdi dir="rtl" class="ur">خیلاء</bdi></code> · <code><bdi dir="rtl" class="ur">اپنی ایک خیالی تصویر</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن ایک جوڑا استعمال کرتا ہے: مختال اور فخور۔ مختال کی جڑ خ ی ل ہے، جس سے خیال بھی نکلا اور خیلاء یعنی تکبر بھی۔ اہلِ لغت اس تعلق کو بیان کرتے ہیں: مختال وہ ہے جو اپنی ایک خیالی تصویر بنا لے اور خود کو حقیقت سے بڑا سمجھے۔ آج فلٹر، دکھاوا اور نقلی سوشل میڈیا زندگی اسی کی شکلیں ہو سکتی ہیں۔ مسئلہ سنورنا نہیں، خود فریبی اور نمائش ہے۔ ماہرین سماجیات کے مطابق جن معاشروں میں دولت کا فرق زیادہ ہے، وہاں حیثیت کی دوڑ بھی زیادہ دیکھی گئی ہے، اگرچہ اس پر بحث جاری ہے۔</p></li>
+<li><strong>Source:</strong> Lisān al-ʿArab (<bdi dir="rtl" class="ur">خ ی ل)</bdi>; Wilkinson &amp; Pickett (2009); Walasek &amp; Brown (2015). <span class="flag check" title="Needs a citation">?</span> <span class="flag warn" title="Inaccurate or overstated">⚠</span> P10.4 reframed.</li>
+</ul>
+<h3 id="E5.S4">E5.S4 · Fakhūr, and Qārūn's parade · 1:10 · Navy → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P10.5, P10.6, P10.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> A plinth with a figure and a crowd holding up phones. Transition to paper: 28:79 then 28:80; the speaker label <code><bdi dir="rtl" class="ur">وہ لوگ جنہیں علم دیا گیا تھا</bdi></code> appears clearly above 28:80. Finally the ground line gently closes (28:81), no spectacle.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">يَٰلَيۡتَ لَنَا مِثۡلَ مَآ أُوتِيَ قَٰرُونُ</bdi></code> / <code><bdi dir="rtl" class="ar">وَقَالَ ٱلَّذِينَ أُوتُواْ ٱلۡعِلۡمَ وَيۡلَكُمۡ ثَوَابُ ٱللَّهِ خَيۡرࣱ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">کاش ہمیں بھی وہی ملتا جو قارون کو دیا گیا</bdi></code> / <code><bdi dir="rtl" class="ur">علم والوں نے کہا: افسوس تمہارے حال پر، اللہ کا ثواب بہتر ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">فخور وہ ہے جو اپنی بڑائی دوسروں پر جتائے۔ آج فالوورز کی تعداد اور مہنگے برانڈ کسی کی قیمت طے کرنے لگے ہیں۔ قرآن کہتا ہے: اللہ کسی مختال فخور کو پسند نہیں کرتا۔ اور قارون کا قصہ سناتا ہے۔ وہ اپنی پوری سج دھج کے ساتھ نکلا تو دنیا چاہنے والے بولے: کاش ہمیں بھی یہ ملتا۔ اور جنہیں علم دیا گیا تھا انہوں نے کہا: افسوس، اللہ کا ثواب بہتر ہے۔ نوٹس میں یہ جملہ براہ راست اللہ کا فرمان بتایا گیا تھا؛ دراصل یہ اہلِ علم کا قول ہے جسے قرآن نے نقل اور تسلیم کیا۔ پھر زمین نے قارون کو نگل لیا، اور کل کے حسرت کرنے والے شکر ادا کرنے لگے۔</p></li>
+<li><strong>Source:</strong> Luqmān 31:18; Al-Ḥadīd 57:23; Al-Qaṣaṣ 28:79 to 82. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P10.7.</li>
+</ul>
+<h3 id="E5.S5">E5.S5 · Between two extremes · 1:10 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P11.1, P11.2, P11.5, P11.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> A horizontal ruler. Left end <code><bdi dir="rtl" class="ur">قَتۡر</bdi></code>, right end <code><bdi dir="rtl" class="ar">إِسۡرَاف</bdi></code>, a balance settles at the centre <code><bdi dir="rtl" class="ur">قَوَام</bdi></code>. 25:67 writes on above in gold; 17:29 as a second line: a hand tied at the neck vs. an open hand.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">لَمۡ يُسۡرِفُواْ وَلَمۡ يَقۡتُرُواْ وَكَانَ بَيۡنَ ذَٰلِكَ قَوَامࣰا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">نہ فضول خرچی کرتے ہیں نہ بخل، بلکہ ان کا خرچ دونوں انتہاؤں کے درمیان اعتدال پر قائم رہتا ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">رحمان کے بندوں کی ایک صفت یہ ہے کہ جب خرچ کرتے ہیں تو نہ اسراف کرتے ہیں نہ تنگی، بلکہ ان کا خرچ دونوں کے درمیان اعتدال پر ہوتا ہے۔ سورۃ بنی اسرائیل میں ہے: نہ ہاتھ گردن سے باندھ لو اور نہ بالکل کھلا چھوڑ دو۔ نوٹس کہتا ہے کہ معاشی بحران انتہائی بچت یا انتہائی خرچ سے آتے ہیں۔ ماہرین معاشیات کہیں گے کہ یہ دونوں بحران میں حصہ ڈال سکتے ہیں، مگر بحرانوں کی اور بھی وجوہات ہوتی ہیں، جیسے قرضوں کا بوجھ اور بینکاری کا بگاڑ۔</p></li>
+<li><strong>Source:</strong> Al-Furqān 25:63, 25:67; Al-Isrā' 17:29. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Softens P11.2, P11.6.</li>
+</ul>
+<h3 id="E5.S6">E5.S6 · Qatr and isrāf in the real economy · 1:00 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P11.3, P11.4, P11.7, P11.8</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Left panel: shop shutters closing one by one as coins stop flowing (paradox of thrift loop diagram). Right panel: a demand curve shifting and a price gauge rising. Top: word card <code><bdi dir="rtl" class="ur">قَتۡر</bdi> = <bdi dir="rtl" class="ur">تنگی، بخل</bdi></code> with small note <code><bdi dir="rtl" class="ur">قتیر: زرہ کی کڑیوں کے سر</bdi></code>.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">قتر: تنگ کرنا، بخل</bdi></code> · <code><bdi dir="rtl" class="ur">قتیر (الگ لفظ): زرہ کی کیلوں کے سر</bdi></code> · <code><bdi dir="rtl" class="ur">بچت کا تضاد</bdi></code> · <code><bdi dir="rtl" class="ur">طلب میں اضافہ ← مہنگائی کا دباؤ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس میں کہا گیا کہ "قتر" کا لفظی معنی لوہے کی وہ زرہ ہے جس سے تیر نہ گزر سکے۔ یہ درست نہیں۔ قتر کا معنی ہے تنگ کرنا اور بخل۔ عربی میں "قتیر" ایک الگ لفظ ہے، زرہ کی کیلوں کے سروں کے لیے، اور دونوں ایک ہی مادے سے ہیں۔ معاشی لحاظ سے، اگر مندی میں سب لوگ ایک ساتھ خرچ روک لیں تو کاروبار بند ہوتے ہیں اور نوکریاں جاتی ہیں؛ اسے بچت کا تضاد کہا جاتا ہے۔ اور اسراف طلب کو بڑھا کر قیمتوں پر دباؤ ڈال سکتا ہے، اور وسائل غیر ضروری چیزوں میں ضائع ہوتے ہیں۔ یہ سب حالات پر منحصر ہے، ہر وقت کا قانون نہیں۔</p></li>
+<li><strong>Source:</strong> Lisān al-ʿArab (<bdi dir="rtl" class="ur">قتر, قتیر)</bdi>; Keynes (1936). Al-Aʿrāf 7:31. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P11.3.</li>
+</ul>
+<h3 id="E5.S7">E5.S7 · Prayer as recalibration · 1:10 · Navy (chart) → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P12.1, P12.2, P12.3, P12.4, P12.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> A teal wave labelled <code><bdi dir="rtl" class="ur">دنیا کی دوڑ</bdi></code> drifts downward into noise (brand icons, tickers). Five short vertical gold ticks interrupt it through the day; after each tick the wave recentres. Label in corner: <code><bdi dir="rtl" class="ur">علامتی خاکہ، ڈیٹا نہیں</bdi></code>. Paper inset: 24:37.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">رِجَالࣱ لَّا تُلۡهِيهِمۡ تِجَٰرَةࣱ وَلَا بَيۡعٌ عَن ذِكۡرِ ٱللَّهِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">ایسے لوگ جنہیں تجارت اور خرید و فروخت اللہ کی یاد سے غافل نہیں کرتی</bdi></code> / <code><bdi dir="rtl" class="ur">نماز: توازن کی بحالی</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">دن بھر کی دوڑ میں انسان دولت، حیثیت اور برانڈز میں ڈوبتا جاتا ہے۔ پھر اذان ہوتی ہے، اور چند منٹ کے لیے وہ سب چھوڑ کر اللہ کے سامنے کھڑا ہو جاتا ہے۔ قرآن ایسے لوگوں کی تعریف کرتا ہے جنہیں تجارت اور خرید و فروخت اللہ کی یاد سے غافل نہیں کرتی۔ اور کہتا ہے کہ نماز بے حیائی اور برائی سے روکتی ہے۔ بعض مقررین نماز کو "چھوٹا حج" کہتے ہیں، یعنی روزانہ اپنی اصل حیثیت کو پہچاننے کا لمحہ۔ یہ ایک تشبیہ ہے۔ یہ خاکہ بھی علامتی ہے، کسی تحقیق کا ڈیٹا نہیں۔</p></li>
+<li><strong>Source:</strong> An-Nūr 24:37; Al-ʿAnkabūt 29:45; Al-Jumuʿah 62:9. <span class="flag warn" title="Inaccurate or overstated">⚠</span> P12.4 labelled as schematic.</li>
+</ul>
+<h3 id="E5.S8">E5.S8 · The Qur'anic consumer · 0:35 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P12.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Three labels appear then step aside: <code><bdi dir="rtl" class="ur">حلال فوڈ</bdi></code>, <code><bdi dir="rtl" class="ur">سود سے پاک بینکاری</bdi></code>, and in the centre a figure outline filled with a calm gold gradient: <code><bdi dir="rtl" class="ur">متوازن صارف</bdi></code>. End card.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">اسلامی معیشت: صرف پراڈکٹس نہیں، شخصیت</bdi></code> / <code><bdi dir="rtl" class="ur">اگلی قسط: بگاڑ کی جڑیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اس حصے کا خلاصہ یہ ہے کہ اسلامی معیشت صرف حلال کھانے یا سود سے پاک بینکاری کا نام نہیں۔ اس کی بنیاد ایک ایسا انسان ہے جس کی شخصیت نماز اور شکر سے متوازن ہو۔ یہ اس سلسلے کا مرکزی خیال ہے، جسے ہم ایک رائے کے طور پر پیش کر رہے ہیں۔ اگلی قسط میں ہم دیکھیں گے کہ جب کاروبار میں دھوکہ اور معاشرے میں دولت کا ارتکاز بڑھ جائے تو کیا ہوتا ہے۔</p></li>
+<li><strong>Source:</strong> Series thesis (opinion).</li>
+</ul>
+<hr />
+<h1>Episode 6 · <bdi dir="rtl" class="ur">بگاڑ کی جڑیں: دھوکہ، ارتکاز، غفلت</bdi></h1>
+<p><em>Covers pages 13 to 15. Runtime ≈ 8:00.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">قرآن صرف جرم سے نہیں روکتا، اس کی جڑ کو بھی پکڑتا ہے: کم تولنا، باطل طریقے سے مال کھانا، دولت کا چند ہاتھوں میں گھومنا، اور خریدی ہوئی غفلت۔</bdi></p>
+<h3 id="E6.S1">E6.S1 · Bakhs: short-changing people · 1:00 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P13.1, P13.2, P13.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> An old balance scale in ink with one pan nudged. Transition: a navy loop diagram: phone on hold (clock), unanswered email, hidden fee line on a receipt, customer walking away.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَلَا تَبۡخَسُواْ ٱلنَّاسَ أَشۡيَآءَهُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">لوگوں کو ان کی چیزوں میں گھاٹا نہ دو</bdi></code> / <code><bdi dir="rtl" class="ur">طویل ہولڈ · جواب نہ دینا · پوشیدہ فیس</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">حضرت شعیبؑ نے اپنی قوم سے کہا: پورا ناپو اور تولو، اور لوگوں کو ان کی چیزوں میں گھاٹا نہ دو۔ عربی میں اس کے لیے لفظ ہے "بخس"۔ آج یہ صرف ترازو تک محدود نہیں۔ صارف کو گھنٹوں ہولڈ پر رکھنا، ای میل کا جواب نہ دینا، پوشیدہ فیسیں کاٹنا، تاکہ آدمی تھک کر اپنا حق مانگنا چھوڑ دے: یہ سب بخس کی جدید صورتیں ہیں۔ یہ مثالیں ہیں، کسی سروے کے اعداد نہیں۔</p></li>
+<li><strong>Source:</strong> Hūd 11:85; Al-Aʿrāf 7:85; Ash-Shuʿarā' 26:183; Al-Muṭaffifīn 83:1 to 3.</li>
+</ul>
+<h3 id="E6.S2">E6.S2 · 4:29 in full · 1:10 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P13.4, P13.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> 4:29 writes on in full. The source slide's ellipsis <code>…</code> appears in coral where the middle clause was cut, then opens to reveal <code><bdi dir="rtl" class="ar">إِلَّآ أَن تَكُونَ تِجَٰرَةً عَن تَرَاضࣲ مِّنكُمۡ</bdi></code> in gold.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">لَا تَأۡكُلُوٓاْ أَمۡوَٰلَكُم بَيۡنَكُم بِٱلۡبَٰطِلِ إِلَّآ أَن تَكُونَ تِجَٰرَةً عَن تَرَاضࣲ مِّنكُمۡۚ وَلَا تَقۡتُلُوٓاْ أَنفُسَكُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">آپس میں ایک دوسرے کے مال باطل طریقوں سے نہ کھاؤ، لین دین آپس کی رضامندی سے ہونا چاہیے، اور اپنے آپ کو قتل نہ کرو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ النساء کی یہ آیت نوٹس میں ادھوری نقل ہوئی تھی۔ پوری آیت یوں ہے: ایک دوسرے کا مال باطل طریقے سے نہ کھاؤ، سوائے اس تجارت کے جو باہمی رضامندی سے ہو، اور اپنے آپ کو قتل نہ کرو۔ درمیان کا حصہ، یعنی باہمی رضامندی کی تجارت، معاشیات کی بنیاد ہے، اسے چھوڑنا نہیں چاہیے۔ امام طبری کے نزدیک "اپنے آپ کو قتل نہ کرو" کا مطلب ہے ایک دوسرے کو قتل نہ کرو۔ بعض مقررین اس ترتیب سے یہ نکتہ نکالتے ہیں کہ جب دھوکہ اور رشوت عام ہو جائے تو معاشرے میں غصہ بڑھتا ہے جو تشدد تک پہنچ سکتا ہے۔ یہ ایک تفسیری نکتہ ہے، اور اس کے سماجی پہلو پر تحقیق ملی جلی ہے۔</p></li>
+<li><strong>Source:</strong> An-Nisā' 4:29; al-Ṭabarī on 4:29. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P13.4.</li>
+</ul>
+<h3 id="E6.S3">E6.S3 · Concentration at the top · 1:00 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P14.1, P14.2, P14.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ · قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> A clean stacked bar: global wealth share of top 10% vs bottom 50% (World Inequality Report 2022). Then a paper inset with 2:188, the phrase <code><bdi dir="rtl" class="ar">وَتُدۡلُواْ بِهَآ إِلَى ٱلۡحُكَّامِ</bdi></code> underlined.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">عالمی دولت: سب سے امیر 10٪ کے پاس</bdi> ≈ 76<bdi dir="rtl" class="ur">٪، نچلے 50٪ کے پاس</bdi> ≈ 2٪</code> · <code><bdi dir="rtl" class="ur">ماخذ</bdi>: World Inequality Report 2022</code> / Arabic: <code><bdi dir="rtl" class="ar">وَتُدۡلُواْ بِهَآ إِلَى ٱلۡحُكَّامِ لِتَأۡكُلُواْ فَرِيقࣰا مِّنۡ أَمۡوَٰلِ ٱلنَّاسِ</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">دنیا میں دولت کا ارتکاز ایک حقیقت ہے۔ ورلڈ ان ایکویلٹی رپورٹ دو ہزار بائیس کے مطابق دنیا کی سب سے امیر دس فیصد آبادی کے پاس تقریباً چھہتر فیصد دولت ہے، اور نچلی آدھی آبادی کے پاس صرف دو فیصد۔ نوٹس کہتا ہے کہ یہ طبقہ سیاست اور قانون کو خرید لیتا ہے۔ اس پر بحث ہے، مگر قرآن نے اس خطرے کا نام لیا ہے: اپنا مال حاکموں تک نہ پہنچاؤ تاکہ لوگوں کے مال کا کچھ حصہ ناجائز طور پر کھا سکو۔</p></li>
+<li><strong>Source:</strong> World Inequality Report 2022 (Chancel, Piketty, Saez, Zucman). <span class="flag check" title="Needs a citation">?</span> Confirm figures. Al-Baqarah 2:188. Gilens &amp; Page (2014) for policy capture, contested.</li>
+</ul>
+<h3 id="E6.S4">E6.S4 · The cascade · 1:10 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P14.4, P14.5, P14.6, P14.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ · قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> Four steps cascade diagonally: <code><bdi dir="rtl" class="ur">متوسط طبقے پر دباؤ</bdi></code> → <code><bdi dir="rtl" class="ur">سود اور قرض</bdi></code> → <code><bdi dir="rtl" class="ur">خاندانی دباؤ</bdi></code> → <code><bdi dir="rtl" class="ur">جرم اور فرار</bdi></code>. Each step carries a small coral "<bdi dir="rtl" class="ur">ثبوت"</bdi> tag with a source. Paper inset: 2:275 <code><bdi dir="rtl" class="ar">وَأَحَلَّ ٱللَّهُ ٱلۡبَيۡعَ وَحَرَّمَ ٱلرِّبَوٰاْ</bdi></code>.</li>
+<li><strong>On screen:</strong> step labels above / Arabic <code><bdi dir="rtl" class="ar">وَأَحَلَّ ٱللَّهُ ٱلۡبَيۡعَ وَحَرَّمَ ٱلرِّبَوٰاْ</bdi></code> / Urdu <code><bdi dir="rtl" class="ur">اللہ نے تجارت کو حلال اور سود کو حرام کیا</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس ایک سلسلہ بیان کرتا ہے۔ پہلے متوسط طبقہ دباؤ میں آتا ہے؛ کئی ملکوں میں اس کے شواہد ہیں، اگرچہ ہر جگہ یکساں نہیں۔ پھر لوگ گزارے کے لیے قرض لیتے ہیں، اور سودی قرض کا جال پھیلتا ہے؛ قرآن نے تجارت کو حلال اور سود کو حرام کیا۔ پھر مالی دباؤ خاندانوں کو توڑتا ہے، اور لوگ جرم، نشے اور جوئے میں فرار ڈھونڈتے ہیں۔ ان میں سے کچھ کڑیوں پر مضبوط تحقیق ہے، جیسے "مایوسی کی اموات" پر کیس اور ڈیٹن کا کام۔ نوٹس میں جسم فروشی کے بڑھنے کا دعویٰ بھی ہے؛ اس کے لیے ہمیں قابل اعتماد ماخذ نہیں ملا، اس لیے ہم اسے شامل نہیں کر رہے۔</p></li>
+<li><strong>Source:</strong> OECD (2019) <em>Under Pressure: The Squeezed Middle Class</em>; Case &amp; Deaton (2020) <em>Deaths of Despair</em>; Al-Baqarah 2:275 to 279. <span class="flag warn" title="Inaccurate or overstated">⚠</span> P14.6 claim withheld pending evidence.</li>
+</ul>
+<h3 id="E6.S5">E6.S5 · The Qur'an targets the root · 0:55 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P14.8</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> A tree with the cascade's four fruits; the camera tilts down to its roots, where 59:7 writes on. Then 17:16 as a smaller second line.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">كَيۡ لَا يَكُونَ دُولَةَۢ بَيۡنَ ٱلۡأَغۡنِيَآءِ مِنكُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">تاکہ وہ تمہارے مالداروں ہی کے درمیان گردش نہ کرتا رہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن نے ایک طرف چوری، جوئے اور بدکاری کو حرام کیا، تو دوسری طرف ان کی جڑ کو بھی نشانہ بنایا۔ مالِ فے کی تقسیم کا اصول بتاتے ہوئے فرمایا: تاکہ دولت تمہارے مالداروں ہی کے درمیان گردش نہ کرتی رہے۔ اور سورۃ بنی اسرائیل میں "مترفین" یعنی عیش پرست اشرافیہ کو بستیوں کی تباہی کا سبب بتایا۔</p></li>
+<li><strong>Source:</strong> Al-Ḥashr 59:7; Al-Isrā' 17:16.</li>
+</ul>
+<h3 id="E6.S6">E6.S6 · Pharaoh's method · 1:10 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P15.1, P15.2, P15.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> 28:4 on paper. <code><bdi dir="rtl" class="ar">جَعَلَ أَهۡلَهَا شِيَعࣰا</bdi></code> highlights first (divided into factions), then <code><bdi dir="rtl" class="ar">يُذَبِّحُ أَبۡنَآءَهُمۡ</bdi></code>. Transition: a navy card reads <code><bdi dir="rtl" class="ur">مقرر کی تشبیہ</bdi></code>, with the modern analogy in careful wording.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">إِنَّ فِرۡعَوۡنَ عَلَا فِي ٱلۡأَرۡضِ وَجَعَلَ أَهۡلَهَا شِيَعࣰا</bdi> … <bdi dir="rtl" class="ar">يُذَبِّحُ أَبۡنَآءَهُمۡ وَيَسۡتَحۡيِۦ نِسَآءَهُمۡ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">فرعون نے زمین میں سرکشی کی اور اس کے باشندوں کو گروہوں میں بانٹ دیا</bdi>… <bdi dir="rtl" class="ur">ان کے لڑکوں کو قتل کرتا اور لڑکیوں کو جیتا رہنے دیتا</bdi></code> / card: <code><bdi dir="rtl" class="ur">تشبیہ، تفسیر نہیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن بتاتا ہے کہ فرعون نے اپنی قوم کو گروہوں میں بانٹ دیا، ایک گروہ کو کمزور رکھا، ان کے بیٹوں کو قتل کرتا اور بیٹیوں کو زندہ رہنے دیتا۔ مقرر اس سے ایک تشبیہ دیتے ہیں: کہ آج اسکرینوں اور فحش مواد کی لت نوجوانوں کی توانائی چھین رہی ہے، اور عورت کو تجارتی اشتہار بنا دیا گیا ہے۔ یہ ایک تشبیہ ہے، آیت کی تفسیر نہیں، اور یہ کہنا کہ کوئی منظم منصوبہ ایسا کر رہا ہے، ثبوت مانگتا ہے۔ البتہ فرعون کا پہلا حربہ، قوم کو تقسیم کرنا، آج بھی پہچانا جا سکتا ہے۔</p></li>
+<li><strong>Source:</strong> Al-Qaṣaṣ 28:4; Al-Baqarah 2:49. <span class="flag warn" title="Inaccurate or overstated">⚠</span> P15.3 labelled as analogy.</li>
+</ul>
+<h3 id="E6.S7">E6.S7 · Buying distraction · 1:05 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P15.4, P15.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> 31:6 on paper; the verb <code><bdi dir="rtl" class="ar">يَشۡتَرِي</bdi></code> glows. Sepia card: Ibn Masʿūd / al-Naḍr ibn al-Ḥārith. Transition to navy: an "attention economy" loop: user → engagement → ad revenue → more content → user.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَمِنَ ٱلنَّاسِ مَن يَشۡتَرِي لَهۡوَ ٱلۡحَدِيثِ لِيُضِلَّ عَن سَبِيلِ ٱللَّهِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">انسانوں میں کوئی ایسا بھی ہے جو دلفریب کلام خرید کر لاتا ہے تاکہ لوگوں کو اللہ کے راستے سے بھٹکا دے</bdi></code> / loop: <code><bdi dir="rtl" class="ur">توجہ ← وقت ← اشتہار کی آمدنی</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ لقمان میں ایسے شخص کا ذکر ہے جو "لہو الحدیث" خرید کر لاتا ہے تاکہ لوگوں کو اللہ کے راستے سے بھٹکائے۔ مفسرین کے مطابق نضر بن حارث فارس کے قصے اور گانے والی لونڈیاں خرید کر لاتا تھا تاکہ لوگ قرآن نہ سنیں۔ ابن مسعود نے اس سے گانا مراد لیا۔ آج کی توجہ کی معیشت میں بہت سی ایپس کی آمدنی اس پر ہے کہ ہم کتنا وقت ان پر گزارتے ہیں۔ یہ کاروباری ماڈل ایک حقیقت ہے۔ مگر یہ دعویٰ کہ اشرافیہ جان بوجھ کر عوام کو صنعت سے روکنے کے لیے ایسا کرتی ہے، ثبوت کا تقاضا کرتا ہے۔</p></li>
+<li><strong>Source:</strong> Luqmān 31:6; al-Ṭabarī and Ibn Kathīr on 31:6. <span class="flag warn" title="Inaccurate or overstated">⚠</span> P15.5 intent claim flagged.</li>
+</ul>
+<hr />
+<h1>Episode 7 · <bdi dir="rtl" class="ur">قرآنی حل: صدقہ، وراثت، نکاح</bdi></h1>
+<p><em>Covers pages 16 to 18. Runtime ≈ 7:30.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">قرآن دولت کو گردش میں رکھنے کے لیے تین ادارے دیتا ہے: بااختیار بنانے والا صدقہ، لازمی وراثت، اور ذمہ دار خاندان۔</bdi></p>
+<h3 id="E7.S1">E7.S1 · Feeding is not small · 0:55 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P16.1, P16.2</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> 90:11 to 16 writes on as a mountain pass (<bdi dir="rtl" class="ur">العقبة)</bdi> drawn as a steep ink path; each good deed is a step: freeing a neck, feeding on a day of hunger, a related orphan, a needy person in the dust.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">فَلَا ٱقۡتَحَمَ ٱلۡعَقَبَةَ</bdi> … <bdi dir="rtl" class="ar">فَكُّ رَقَبَةٍ ۝ أَوۡ إِطۡعَٰمࣱ فِي يَوۡمࣲ ذِي مَسۡغَبَةࣲ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">کسی گردن کو غلامی سے چھڑانا، یا فاقے کے دن کسی قریبی یتیم یا خاک نشین مسکین کو کھانا کھلانا</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس کہتا ہے کہ روایتی خیرات صرف کھانا کھلانا ہے، جو عارضی حل ہے۔ مگر پہلے یہ جان لیں کہ قرآن کھانا کھلانے کو چھوٹا کام نہیں سمجھتا۔ سورۃ البلد میں اسے ایک مشکل گھاٹی عبور کرنے کے برابر کہا گیا: کسی گردن کو آزاد کرانا، یا بھوک کے دن کسی یتیم یا خاک نشین مسکین کو کھانا کھلانا۔</p></li>
+<li><strong>Source:</strong> Al-Balad 90:11 to 16; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E7.S2">E7.S2 · Iṭʿām means feeding; empowerment is the next step · 1:05 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P16.3, P16.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Word card <code><bdi dir="rtl" class="ar">إِطۡعَام</bdi> = <bdi dir="rtl" class="ur">کھانا کھلانا</bdi></code> (the source slide's claim <code><bdi dir="rtl" class="ur">ہنر سکھانا</bdi></code> is struck and moved to a teal "application" card). Navy diagram: bowl → tools → workshop → the person now feeding others (a closed loop). Paper inset 2:220.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">اطعام: کھانا کھلانا</bdi></code> · <code><bdi dir="rtl" class="ur">بااختیار بنانا: عصری اطلاق</bdi></code> / Arabic <code><bdi dir="rtl" class="ar">قُلۡ إِصۡلَاحࣱ لَّهُمۡ خَيۡرࣱ</bdi></code> / Urdu <code><bdi dir="rtl" class="ur">کہو: جس میں ان کی بھلائی ہو، وہی بہتر ہے</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس میں کہا گیا کہ "اطعام" کا مطلب ہنر سکھانا ہے۔ یہ لفظ کا معنی نہیں؛ اطعام کا مطلب کھانا کھلانا ہی ہے۔ ہاں، بااختیار بنانا اس کا اگلا قدم ضرور ہے۔ یتیموں کے بارے میں قرآن کہتا ہے: جس میں ان کی اصلاح اور بھلائی ہو، وہی بہتر ہے۔ اور ابو داؤد کی ایک روایت ہے کہ نبی ﷺ نے ایک سوالی کا سامان بیچ کر اسے کلہاڑی دلوائی تاکہ وہ لکڑیاں کاٹ کر خود کمائے۔ یتیم کو تعلیم دینا اور مسکین کو کاروبار کا موقع دینا اسی روح کا اطلاق ہے۔</p></li>
+<li><strong>Source:</strong> Al-Balad 90:14; Al-Baqarah 2:220; Abū Dāwūd 1641 (<span class="flag check" title="Needs a citation">?</span> grading). <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P16.3.</li>
+</ul>
+<h3 id="E7.S3">E7.S3 · Captives, debtors, and second chances · 0:50 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P16.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> 76:8 and a short excerpt of 9:60 (<code><bdi dir="rtl" class="ar">وَفِي ٱلرِّقَابِ وَٱلۡغَٰرِمِينَ</bdi></code>). Navy: a simple path from a closed door to an open workshop.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَيُطۡعِمُونَ ٱلطَّعَامَ عَلَىٰ حُبِّهِۦ مِسۡكِينࣰا وَيَتِيمࣰا وَأَسِيرًا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اور اللہ کی محبت میں مسکین، یتیم اور قیدی کو کھانا کھلاتے ہیں</bdi></code> / <code><bdi dir="rtl" class="ur">سابق قیدیوں کی بحالی: عصری اطلاق</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن نیک لوگوں کی صفت بتاتا ہے کہ وہ اللہ کی محبت میں مسکین، یتیم اور قیدی کو کھانا کھلاتے ہیں۔ یہاں قیدی سے مراد جنگی قیدی تھے۔ اور زکوٰۃ کے مصارف میں گردنیں آزاد کرانا اور قرض داروں کی مدد شامل ہے۔ آج اسی روح کو آگے بڑھاتے ہوئے، سزا کاٹ چکے لوگوں کو معاشرے کا فعال حصہ بنانا تاکہ وہ دوبارہ جرم کی طرف نہ جائیں، ایک عصری اطلاق ہے۔</p></li>
+<li><strong>Source:</strong> Al-Insān 76:8; At-Tawbah 9:60.</li>
+</ul>
+<h3 id="E7.S4">E7.S4 · Inheritance: wealth that must move · 1:10 · Navy → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P17.1, P17.2, P17.3, P17.4, P17.5</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Left: teal streams converge upward into one coin (concentration). Right: a single gold coin branches down into a family tree, shares splitting generation by generation. 4:7 writes on beneath, <code><bdi dir="rtl" class="ar">نَصِيبࣰا مَّفۡرُوضࣰا</bdi></code> glowing.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">لِّلرِّجَالِ نَصِيبࣱ مِّمَّا تَرَكَ ٱلۡوَٰلِدَانِ وَٱلۡأَقۡرَبُونَ وَلِلنِّسَآءِ نَصِيبࣱ</bdi> … <bdi dir="rtl" class="ar">نَصِيبࣰا مَّفۡرُوضࣰا</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">مردوں کے لیے بھی حصہ ہے اور عورتوں کے لیے بھی، خواہ تھوڑا ہو یا بہت، یہ حصہ مقرر ہے</bdi></code> / <code><bdi dir="rtl" class="ur">وصیت: زیادہ سے زیادہ ایک تہائی</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">معیشت دانوں نے دکھایا ہے کہ وراثت میں ملی دولت نسل در نسل چند خاندانوں میں جمع رہ سکتی ہے۔ قرآن کا وراثت کا قانون اس کے برعکس سمت میں کام کرتا ہے۔ مردوں کا بھی حصہ ہے اور عورتوں کا بھی، تھوڑا ہو یا بہت، اور یہ حصہ مقرر ہے۔ صحیح بخاری کے مطابق وصیت ایک تہائی سے زیادہ نہیں ہو سکتی۔ یعنی باقی دولت لازماً کئی وارثوں میں بٹتی ہے۔ نوٹس کہتا ہے کہ قرآن "صرف ایک قانون" سے یہ اجارہ داری توڑتا ہے؛ درست یہ ہے کہ وراثت زکوٰۃ اور سود کی حرمت کے ساتھ مل کر کام کرتی ہے۔</p></li>
+<li><strong>Source:</strong> An-Nisā' 4:7, 4:11 to 12, 4:176; Bukhari 2742; Piketty (2014). <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P17.4; garbled label P17.3 omitted.</li>
+</ul>
+<h3 id="E7.S5">E7.S5 · A tendency, not a guarantee · 0:40 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P17.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> The family tree from S4; a few dotted bypass lines (trusts, companies, lifetime transfers) show wealth can route around it. Caption.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">رجحان، ضمانت نہیں</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">کیا اس سے کوئی خاندان پوری دولت پر قابض نہیں ہو سکتا؟ یہ قانون اس سمت میں مضبوط دباؤ ڈالتا ہے، مگر تاریخ میں اوقاف، کمپنیوں اور زندگی میں کی گئی منتقلیوں کے ذریعے دولت جمع بھی رہی ہے۔ اسے ایک رجحان سمجھیں، ضمانت نہیں۔</p></li>
+<li><strong>Source:</strong> <span class="flag warn" title="Inaccurate or overstated">⚠</span> Softens P17.6.</li>
+</ul>
+<h3 id="E7.S6">E7.S6 · Maintenance, and the wife's own wealth · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P18.1, P18.2, P18.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Three rings (Venn) in gold on paper: <code><bdi dir="rtl" class="ur">مالی ذمہ داری</bdi></code> <code><bdi dir="rtl" class="ur">یتیموں کی کفالت</bdi></code> <code><bdi dir="rtl" class="ur">سماجی ترقی</bdi></code>. The first ring brightens; 2:233 and 4:4 appear in sequence.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَعَلَى ٱلۡمَوۡلُودِ لَهُۥ رِزۡقُهُنَّ وَكِسۡوَتُهُنَّ بِٱلۡمَعۡرُوفِ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">بچے کے باپ پر ان کا کھانا اور کپڑا معروف طریقے سے لازم ہے</bdi></code> / struck: <code><bdi dir="rtl" class="ur">پہلی بار</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن گھر کے اخراجات کی ذمہ داری مرد پر رکھتا ہے: بچے کے باپ پر ماں کا کھانا اور لباس معروف طریقے سے لازم ہے۔ اور عورت کا اپنا مال، مہر اور کمائی اسی کی رہتی ہے۔ نوٹس میں کہا گیا کہ قرآن نے "پہلی بار" یہ ذمہ داری مرد پر ڈالی۔ یہ تاریخی طور پر درست نہیں؛ اس سے پہلے کے قوانین میں بھی شوہر پر نفقہ کی ذمہ داریاں تھیں۔ قرآن کی خصوصیت یہ ہے کہ اس نے اس ذمہ داری کے ساتھ عورت کی مالی خود مختاری کو بھی محفوظ رکھا۔</p></li>
+<li><strong>Source:</strong> Al-Baqarah 2:233; An-Nisā' 4:4, 4:32, 4:34. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P18.3.</li>
+</ul>
+<h3 id="E7.S7">E7.S7 · 4:3 and the orphans · 1:05 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P18.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> 4:3 writes on in full, including <code><bdi dir="rtl" class="ar">فَإِنۡ خِفۡتُمۡ أَلَّا تَعۡدِلُواْ فَوَٰحِدَةً</bdi></code>. A sepia card: "<bdi dir="rtl" class="ur">حضرت عائشہؓ کی وضاحت، بخاری 4574"</bdi>. A second, lighter card: "<bdi dir="rtl" class="ur">بعد کی ایک رائے: بیواؤں اور یتیموں کی کفالت"</bdi>.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَإِنۡ خِفۡتُمۡ أَلَّا تُقۡسِطُواْ فِي ٱلۡيَتَٰمَىٰ فَٱنكِحُواْ مَا طَابَ لَكُم مِّنَ ٱلنِّسَآءِ مَثۡنَىٰ وَثُلَٰثَ وَرُبَٰعَۖ فَإِنۡ خِفۡتُمۡ أَلَّا تَعۡدِلُواْ فَوَٰحِدَةً</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اگر تم یتیموں کے ساتھ بے انصافی سے ڈرتے ہو</bdi>… <bdi dir="rtl" class="ur">لیکن اگر عدل نہ کر سکنے کا اندیشہ ہو تو پھر ایک ہی</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">یہ درست ہے کہ چار نکاحوں کی اجازت یتیموں کے ذکر کے ساتھ آئی ہے۔ مگر اس کی سب سے معتبر وضاحت حضرت عائشہ سے صحیح بخاری میں ہے: کچھ سرپرست اپنی زیر کفالت یتیم لڑکیوں سے ان کے مال کی خاطر، پورا مہر دیے بغیر، نکاح کرنا چاہتے تھے۔ انہیں کہا گیا کہ اگر انصاف نہ کر سکو تو دوسری عورتوں سے نکاح کرو۔ اور آیت خود کہتی ہے: اگر عدل نہ کر سکو تو ایک ہی۔ بیواؤں اور ان کے یتیم بچوں کی کفالت والی تعبیر بعد کی ایک رائے ہے۔ اور نوٹس کا یہ دعویٰ کہ اس سے جرائم ختم ہوتے ہیں، ثبوت کا محتاج ہے۔</p></li>
+<li><strong>Source:</strong> An-Nisā' 4:3; Bukhari 4574. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P18.4.</li>
+</ul>
+<h3 id="E7.S8">E7.S8 · Marriage, freedom and mobility · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P18.5, P18.6</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> 24:32 writes on; <code><bdi dir="rtl" class="ar">يُغۡنِهِمُ ٱللَّهُ مِن فَضۡلِهِۦ</bdi></code> glows. Two struck coral phrases from the source: <code><bdi dir="rtl" class="ur">تاریخ میں پہلی بار</bdi></code> and <code><bdi dir="rtl" class="ur">صرف ایک نسل میں</bdi></code>. End card.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَأَنكِحُواْ ٱلۡأَيَٰمَىٰ مِنكُمۡ وَٱلصَّٰلِحِينَ مِنۡ عِبَادِكُمۡ وَإِمَآئِكُمۡۚ إِن يَكُونُواْ فُقَرَآءَ يُغۡنِهِمُ ٱللَّهُ مِن فَضۡلِهِۦ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">تم میں سے جو مجرد ہوں اور تمہارے غلام لونڈیوں میں سے جو صالح ہوں، ان کے نکاح کر دو؛ اگر وہ غریب ہوں تو اللہ اپنے فضل سے انہیں غنی کر دے گا</bdi></code> / end card <code><bdi dir="rtl" class="ur">اگلی قسط: ولایت</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">قرآن کہتا ہے: اپنے میں سے بے نکاح لوگوں کا اور اپنے نیک غلاموں اور لونڈیوں کا نکاح کرا دو؛ اگر وہ غریب ہیں تو اللہ اپنے فضل سے انہیں غنی کر دے گا۔ یہ سماج کے سب سے نچلے طبقے کو خاندان اور عزت دینے کا راستہ تھا۔ فقہ میں یہ اصول بھی ہے کہ مالک سے لونڈی کی اولاد آزاد اور وارث ہے؛ یہ حدیث اور فقہ سے ہے، کسی آیت سے براہ راست نہیں۔ نوٹس کا یہ کہنا کہ یہ "تاریخ میں پہلی بار" ہوا، درست نہیں، اور "ایک ہی نسل میں برابری" کا دعویٰ بھی ثبوت کے بغیر ہے۔ سمت واضح ہے، مگر مبالغے کی ضرورت نہیں۔</p></li>
+<li><strong>Source:</strong> An-Nūr 24:32; An-Nisā' 4:25; fiqh of <em>umm walad</em>; Code of Hammurabi §170 to 171 (counter-example). <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P18.5, P18.6.</li>
+</ul>
+<hr />
+<h1>Episode 8 · <bdi dir="rtl" class="ur">ولایت: اتحاد کی معیشت</bdi></h1>
+<p><em>Covers pages 19 to 21. Runtime ≈ 7:30.</em>
+<strong>Logline:</strong> <bdi dir="rtl" class="ur">ولی کا لفظ اس گدی سے بھی جڑا ہے جو گھوڑے کی پیٹھ سے چپکی رہتی ہے۔ قرآن کہتا ہے کہ اگر اہلِ ایمان ایک دوسرے کے ولی نہ بنے تو زمین میں فتنہ ہوگا۔ یہ اتحاد آج کیسا دکھائی دے سکتا ہے؟</bdi></p>
+<h3 id="E8.S1">E8.S1 · The saddle cloth · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P19.1, P19.2</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> Fine ink drawing of a saddle with the cloth beneath highlighted in gold, labelled <code><bdi dir="rtl" class="ar">وَلِیّہ</bdi></code>. The horse turns (simple line motion) and the cloth moves with it. Root card: <code><bdi dir="rtl" class="ur">و ل ی: قرب</bdi></code>.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">وَلایت: اٹوٹ قربت</bdi></code> · <code><bdi dir="rtl" class="ur">و ل ی</bdi> = <bdi dir="rtl" class="ur">قرب، نزدیکی</bdi></code> · <code><bdi dir="rtl" class="ar">الوَلِیَّۃ: زین کے نیچے کی گدی (لسان العرب)</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">ولایت کا مادہ و، ل، ی ہے، اور اس کا بنیادی مطلب ہے قرب، نزدیکی۔ عربی لغت لسان العرب میں ایک لفظ "ولیّہ" بھی ملتا ہے: وہ گدی جو گھوڑے کی زین کے نیچے رکھی جاتی ہے اور اس کی پیٹھ سے چپکی رہتی ہے۔ گھوڑا جدھر مڑے، گدی بھی ادھر مڑتی ہے۔ نوٹس نے اسے لفظ کی اصل کہا؛ درست یہ ہے کہ یہ اسی مادے کا ایک خوبصورت استعمال ہے، جو ولایت کے مفہوم کو واضح کرتا ہے۔</p></li>
+<li><strong>Source:</strong> Lisān al-ʿArab (<bdi dir="rtl" class="ur">ولي)</bdi>. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Refines P19.2.</li>
+</ul>
+<h3 id="E8.S2">E8.S2 · Those who disbelieve are allies of one another · 0:55 · Paper → Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P19.3, P19.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق · تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> 8:73 first clause on paper. Transition to an accurate navy map: EU member states outlined in teal, NATO members in a thin outline; a few trade arcs. Label <code><bdi dir="rtl" class="ur">مثال، تفسیر نہیں</bdi></code>.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَٱلَّذِينَ كَفَرُواْ بَعۡضُهُمۡ أَوۡلِيَآءُ بَعۡضٍ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">جو لوگ منکرِ حق ہیں وہ ایک دوسرے کی حمایت کرتے ہیں</bdi></code> / <code><bdi dir="rtl" class="ur">مشترکہ منڈی · مشترکہ دفاع</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">سورۃ الانفال میں ہے: جو لوگ انکار کرنے والے ہیں وہ ایک دوسرے کے ولی ہیں۔ مقرر اس آیت کو آج کی دنیا پر لاگو کرتے ہیں: کئی ملک ایک دوسرے کے وسائل، ٹیکنالوجی اور منڈیاں استعمال کرتے ہیں، اور ان کے مشترکہ دفاع اور آزاد تجارت کے معاہدے ہیں، جیسے یورپی یونین اور نیٹو۔ یہ مثالیں حقیقت ہیں، مگر انہیں اس آیت کا مصداق قرار دینا ایک عصری اطلاق ہے۔</p></li>
+<li><strong>Source:</strong> Al-Anfāl 8:73 (first clause).</li>
+</ul>
+<h3 id="E8.S3">E8.S3 · Madinah: the brotherhood pact · 1:10 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P20.1, P20.2</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> Map of Madinah oasis (schematic, labelled). Two groups of dots (Muhājirūn in gold, Anṣār in sepia) pair up with thin lines. 8:72 writes on.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">وَٱلَّذِينَ ءَاوَواْ وَّنَصَرُوٓاْ أُوْلَٰٓئِكَ بَعۡضُهُمۡ أَوۡلِيَآءُ بَعۡضࣲ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اور جن لوگوں نے جگہ دی اور مدد کی، وہی ایک دوسرے کے ولی ہیں</bdi></code> / <code><bdi dir="rtl" class="ur">مؤاخات</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">مدینہ میں مہاجرین اور انصار الگ الگ پس منظر کے لوگ تھے۔ قرآن نے کہا کہ جنہوں نے ہجرت کی اور جنہوں نے پناہ دی اور مدد کی، وہ ایک دوسرے کے ولی ہیں۔ نبی ﷺ نے ان میں بھائی چارہ قائم کیا، جسے مؤاخات کہتے ہیں۔ شروع میں یہ رشتہ اتنا گہرا تھا کہ وہ ایک دوسرے کے وارث بھی بنتے تھے، بعد میں سورۃ الانفال کی آخری آیت نے وراثت کو خونی رشتوں تک محدود کر دیا۔ نوٹس نے اسے "شہریت دینا" کہا ہے؛ یہ آج کی اصطلاح ہے۔</p></li>
+<li><strong>Source:</strong> Al-Anfāl 8:72, 8:75. Slide typo (repeated bracket) not reproduced.</li>
+</ul>
+<h3 id="E8.S4">E8.S4 · The limits of wilāyah · 0:55 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P20.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> The remainder of 8:72: two boundary lines draw: <code><bdi dir="rtl" class="ur">ہجرت نہ کرنے والے</bdi></code> (no wilāyah obligation) and <code><bdi dir="rtl" class="ur">معاہدہ</bdi></code> (help cannot breach a treaty).</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">إِلَّا عَلَىٰ قَوۡمِۭ بَيۡنَكُمۡ وَبَيۡنَهُم مِّيثَٰقࣱ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">مگر کسی ایسی قوم کے خلاف نہیں جس سے تمہارا معاہدہ ہو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اسی آیت میں ولایت کی حدود بھی ہیں۔ جو ایمان لائے مگر ہجرت نہیں کی، ان سے ولایت کا وہ تعلق نہیں۔ اگر وہ دین کے معاملے میں مدد مانگیں تو مدد لازم ہے، مگر کسی ایسی قوم کے خلاف نہیں جس سے تمہارا معاہدہ ہو۔ یعنی اتحاد بھی عہد کی پابندی کے تابع ہے۔</p></li>
+<li><strong>Source:</strong> Al-Anfāl 8:72; <bdi dir="rtl" class="ur">ترجمہ: مودودی</bdi>.</li>
+</ul>
+<h3 id="E8.S5">E8.S5 · A modern proposal · 1:00 · Navy map</h3>
+<ul>
+<li><strong>Covers:</strong> P20.4, P20.5, P20.6, P20.7</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">عصری اطلاق</bdi></li>
+<li><strong>Visual:</strong> Accurate navy map of OIC member states (outlined). Three icons appear sequentially: <code><bdi dir="rtl" class="ur">کھلے ویزے</bdi></code>, <code><bdi dir="rtl" class="ur">ٹیکنالوجی کا تبادلہ</bdi></code>, <code><bdi dir="rtl" class="ur">مشترکہ منڈی</bdi></code>. Teal talent arcs and gold mineral arcs cross between regions (schematic).</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">عصری تجویز</bdi></code> · <code><bdi dir="rtl" class="ur">کھلے ویزے</bdi></code> · <code><bdi dir="rtl" class="ur">ٹیکنالوجی کا تبادلہ</bdi></code> · <code><bdi dir="rtl" class="ur">مشترکہ منڈی</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اس بنیاد پر مقرر کچھ عملی تجاویز دیتے ہیں۔ مسلم ممالک کے درمیان سرحدیں اور ویزے آسان ہوں تاکہ انسانی وسائل آزادانہ منتقل ہو سکیں۔ ایک ملک میں طبی ماہرین ہیں، دوسرے میں معدنیات؛ انہیں جوڑا جائے۔ اور باہر کے باصلاحیت لوگوں کو کاروبار اور شہریت کے مواقع دیے جائیں، تاکہ بہترین دماغ انہی ملکوں میں تبدیلی لائیں۔ یہ پالیسی کی تجاویز ہیں، قرآن کے احکام نہیں، اور ان پر بحث ہو سکتی ہے۔</p></li>
+<li><strong>Source:</strong> Policy proposals (A).</li>
+</ul>
+<h3 id="E8.S6">E8.S6 · 8:73, without a gloss · 1:00 · Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P21.1, P21.2</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></li>
+<li><strong>Visual:</strong> 8:73 full, clean, centred. The source slide's inserted bracket <code>(<bdi dir="rtl" class="ur">اتحاد اور معاشی بلاک)</bdi></code> appears inside the translation in coral, then lifts out and moves to a separate teal card labelled <code><bdi dir="rtl" class="ur">مقرر کی تعبیر</bdi></code>.</li>
+<li><strong>On screen (Arabic):</strong> <code><bdi dir="rtl" class="ar">إِلَّا تَفۡعَلُوهُ تَكُن فِتۡنَةࣱ فِي ٱلۡأَرۡضِ وَفَسَادࣱ كَبِيرࣱ</bdi></code></li>
+<li><strong>On screen (Urdu):</strong> <code><bdi dir="rtl" class="ur">اگر تم یہ نہ کرو گے تو زمین میں فتنہ اور بڑا فساد برپا ہو گا</bdi></code> / teal card: <code><bdi dir="rtl" class="ur">مقرر کی تعبیر: معاشی اتحاد</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">اب وہ آیت جسے نوٹس نے "حتمی تنبیہ" کہا ہے: اگر تم یہ نہ کرو گے تو زمین میں فتنہ اور بڑا فساد ہوگا۔ نوٹس نے ترجمے کے اندر "اتحاد اور معاشی بلاک" کے الفاظ ڈال دیے تھے۔ آیت کو ہم صاف رکھیں گے۔ ابن کثیر اور طبری کے مطابق "یہ" سے مراد ہے اہلِ ایمان کا ایک دوسرے کو ولی بنانا اور منکرین کو ولی نہ بنانا۔ اس میں معاشی تعاون کو شامل سمجھنا ایک جائز تعبیر ہو سکتی ہے، مگر یہ تعبیر ہے، متن نہیں۔</p></li>
+<li><strong>Source:</strong> Al-Anfāl 8:73; Ibn Kathīr, al-Ṭabarī on 8:73. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Corrects P21.2.</li>
+</ul>
+<h3 id="E8.S7">E8.S7 · Economic strength and deterrence · 0:55 · Navy</h3>
+<ul>
+<li><strong>Covers:</strong> P21.3</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></li>
+<li><strong>Visual:</strong> Two gauges: <code><bdi dir="rtl" class="ur">فوجی طاقت</bdi></code> and <code><bdi dir="rtl" class="ur">معاشی باہمی انحصار</bdi></code>. A network of trade lines thickens; a dashed line labelled <code>1914</code> appears as a counter-example.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">معاشی طاقت بطور رکاوٹ؟</bdi></code> · <code><bdi dir="rtl" class="ur">نظریہ: باہمی انحصار جنگ روکتا ہے</bdi></code> · <code><bdi dir="rtl" class="ur">اعتراض</bdi>: 1914</code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">نوٹس کہتا ہے کہ جب تک معیشت کمزور ہے، دشمن صرف فوجی طاقت سے آپ کو دبا دے گا، اور اگر آپ کا معاشی بلاک دنیا کو بہترین ٹیکنالوجی دے رہا ہو تو دنیا حملے سے پہلے سوچے گی۔ بین الاقوامی تعلقات میں یہ ایک معروف نظریہ ہے کہ معاشی باہمی انحصار جنگ کو مہنگا بنا دیتا ہے۔ مگر اس پر اعتراض بھی ہے: پہلی عالمی جنگ سے پہلے یورپ کی معیشتیں گہرائی سے جڑی ہوئی تھیں، پھر بھی جنگ ہوئی۔</p></li>
+<li><strong>Source:</strong> Liberal peace theory; Norman Angell, <em>The Great Illusion</em> (1910) and the 1914 counter-example.</li>
+</ul>
+<h3 id="E8.S8">E8.S8 · Closing: build, and stay honest · 1:00 · Navy → Paper</h3>
+<ul>
+<li><strong>Covers:</strong> P21.4</li>
+<li><strong>Badge:</strong> <bdi dir="rtl" class="ur">عصری اطلاق · قرآنی متن</bdi></li>
+<li><strong>Visual:</strong> Navy: small icons of workshops, labs and start-ups light up across the OIC map. Ink-wipe back to paper, and the series' first verse returns: 62:10. Final credits with sources list.</li>
+<li><strong>On screen:</strong> <code><bdi dir="rtl" class="ur">عملی دعوت: تعمیر، تحقیق، مہارت</bdi></code> / Arabic <code><bdi dir="rtl" class="ar">وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ وَٱذۡكُرُواْ ٱللَّهَ كَثِيرࣰا لَّعَلَّكُمۡ تُفۡلِحُونَ</bdi></code> / Urdu <code><bdi dir="rtl" class="ur">اللہ کا فضل تلاش کرو اور اللہ کو کثرت سے یاد کرتے رہو، شاید کہ تمہیں فلاح نصیب ہو</bdi></code></li>
+<li class="narr"><strong>Narration</strong><p dir="rtl" lang="ur">مقرر کی آخری دعوت یہ ہے: نئے کاروبار بنائیں، تحقیق کے مراکز قائم کریں، اور مہارت کو فروغ دیں۔ نوٹس اسے عالمی فتنے کے خاتمے کا "واحد" قرآنی راستہ کہتا ہے؛ ہم اسے ایک راستہ کہیں گے، جس پر مقرر زور دیتے ہیں۔ اور یہ سلسلہ وہیں ختم ہوتا ہے جہاں سے شروع ہوا تھا: جب نماز پوری ہو جائے تو زمین میں پھیل جاؤ، اللہ کا فضل تلاش کرو، اور اللہ کو کثرت سے یاد کرتے رہو، تاکہ تم فلاح پاؤ۔ رزق کی تلاش اور اللہ کی یاد، ایک ساتھ۔</p></li>
+<li><strong>Source:</strong> Al-Jumuʿah 62:10. <span class="flag warn" title="Inaccurate or overstated">⚠</span> Softens P21.4.</li>
+</ul></section>
+<section id="pilot" class="part"><h1>Part 3: Pilot, "<bdi dir="rtl" class="ur">رزق اور اس کی معاشی مثال"</bdi></h1>
+<p><strong>Length:</strong> 83.6 s (2509 frames at 30 fps), 1920×1080. Built from Episode 3, scenes S1 to S4, with the Quraysh close from E2.S6 as its coda.
+<strong>Project:</strong> <code>remotion/</code>. All script text, on-screen words, timings and sources are in <code>remotion/src/data/pilot.ts</code>.</p>
+<h2>Scene list (as built)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Time</th>
+<th>Palette</th>
+<th>Badges</th>
+<th>On screen</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0:00 to 0:09.5</td>
+<td>Paper</td>
+<td><bdi dir="rtl" class="ur">قرآنی متن</bdi></td>
+<td>Plate drawing; <code><bdi dir="rtl" class="ar">فَلۡيَنظُرِ ٱلۡإِنسَٰنُ إِلَىٰ طَعَامِهِۦٓ</bdi></code> / <code><bdi dir="rtl" class="ur">پھر ذرا انسان اپنی خوراک کو دیکھے</bdi></code></td>
+<td>ʿAbasa 80:24, tr. Maududi</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0:09 to 0:22</td>
+<td>Paper</td>
+<td><bdi dir="rtl" class="ur">قرآنی متن · تفسیری رائے</bdi></td>
+<td><code><bdi dir="rtl" class="ur">رِزۡق</bdi></code> · <code><bdi dir="rtl" class="ur">زندگی قائم رکھنے کے لیے جو کچھ عطا ہو</bdi></code> · <code><bdi dir="rtl" class="ur">غذا</bdi></code> <code><bdi dir="rtl" class="ur">مال</bdi></code> <code><bdi dir="rtl" class="ur">علم و ہدایت</bdi></code> · 11:6 Arabic + Urdu</td>
+<td>Hūd 11:6; Lisān al-ʿArab</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0:21 to 0:46</td>
+<td>Paper → split Paper/Navy</td>
+<td><bdi dir="rtl" class="ur">قرآنی متن · عصری اطلاق</bdi></td>
+<td><code><bdi dir="rtl" class="ur">بارش سے پلیٹ تک</bdi></code>; 80:25 to 27 then <code><bdi dir="rtl" class="ar">مَّتَٰعࣰا لَّكُمۡ وَلِأَنۡعَٰمِكُمۡ</bdi></code>; chain <code><bdi dir="rtl" class="ur">بارش → فصل → مویشیوں کا چارہ</bdi></code> (gold, paper) <code>→ <bdi dir="rtl" class="ur">کٹائی اور پروسیسنگ → ترسیل → آپ کی پلیٹ</bdi></code> (teal, navy); goods dots right→left, money dots left→right; note <code><bdi dir="rtl" class="ur">رزق</bdi> = <bdi dir="rtl" class="ur">سپلائی چین؟ مفید مثال، لفظ کا معنی نہیں</bdi></code></td>
+<td>ʿAbasa 80:25 to 32; Qāf 50:9 to 11</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0:45 to 1:06</td>
+<td>Navy map</td>
+<td><bdi dir="rtl" class="ur">تحقیق طلب دعویٰ</bdi></td>
+<td><code><bdi dir="rtl" class="ur">غذا کی زنجیر پر کس کا قابو؟</bdi></code>; claim card; Russia and Ukraine highlighted; schematic arcs to North Africa and the Middle East; <code>30%</code> <code><bdi dir="rtl" class="ur">تقریباً، جنگ سے پہلے (2021)</bdi></code>; <code><bdi dir="rtl" class="ur">غلبہ</bdi></code> struck → <code><bdi dir="rtl" class="ur">اثر و رسوخ</bdi></code></td>
+<td>FAO Information Note (2022); IFPRI (2022); Natural Earth 1:50m</td>
+</tr>
+<tr>
+<td>5</td>
+<td>1:06 to 1:23.6</td>
+<td>Paper</td>
+<td><bdi dir="rtl" class="ur">قرآنی متن</bdi></td>
+<td><code><bdi dir="rtl" class="ur">سورۂ قریش</bdi></code>; 106:4 Arabic + Urdu; two rings <code><bdi dir="rtl" class="ur">رزق</bdi></code> / <code><bdi dir="rtl" class="ur">امن</bdi></code> with <code><bdi dir="rtl" class="ar">أَطۡعَمَهُم مِّن جُوعࣲ</bdi></code> / <code><bdi dir="rtl" class="ar">ءَامَنَهُم مِّنۡ خَوۡفِۭ</bdi></code>; end card <code><bdi dir="rtl" class="ur">اگلی کڑی: ثمرہ، پھل جو وقت لیتا ہے</bdi></code> + credit</td>
+<td>Quraysh 106:3 to 4, tr. Maududi</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Narration (as timed in the preview subtitles)</h2>
+<ol>
+<li><bdi dir="rtl" class="ur">ہم دن میں کئی بار کھانا کھاتے ہیں، مگر کم ہی سوچتے ہیں کہ یہ نوالہ ہم تک پہنچا کیسے۔ قرآن کہتا ہے: انسان ذرا اپنی خوراک کو دیکھے۔</bdi></li>
+<li><bdi dir="rtl" class="ur">عربی میں رزق ہر اس چیز کو کہتے ہیں جو زندگی قائم رکھنے کے لیے عطا کی جائے: غذا، مال، اور علم و ہدایت بھی۔ اور قرآن یاد دلاتا ہے کہ ہر جاندار کا رزق اللہ کے ذمے ہے۔</bdi></li>
+<li><bdi dir="rtl" class="ur">سورۂ عبس اس سفر کی پہلی کڑیاں خود گنواتی ہے: ہم نے خوب پانی برسایا، پھر زمین کو پھاڑا، پھر غلہ، پھل اور چارہ اگایا، تمہارے لیے اور تمہارے مویشیوں کے لیے۔ یہاں تک قرآن کا متن ہے۔ آج اس کے آگے پروسیسنگ اور ترسیل کی کڑیاں جڑ گئی ہیں۔ سامان ایک سمت چلتا ہے، اور پیسہ دوسری سمت۔ رزق کو "سپلائی چین" کہنا ایک مفید مثال ہے، لفظ کا معنی نہیں۔</bdi></li>
+<li><bdi dir="rtl" class="ur">کہا جاتا ہے کہ جو غذا کی زنجیر پر قابو رکھے، وہ دوسری قوموں پر غالب آتا ہے۔ جنگ سے پہلے روس اور یوکرین مل کر دنیا کی تقریباً تیس فیصد گندم برآمد کرتے تھے، اور 2022 کی جنگ نے عالمی غذائی قیمتیں ریکارڈ سطح پر پہنچا دیں۔ یہ غلبہ نہیں، مگر اثر و رسوخ ضرور ہے۔</bdi></li>
+<li><bdi dir="rtl" class="ur">شاید اسی لیے قرآن نے قریش کو یاد دلایا: اس رب کی عبادت کرو جس نے انہیں بھوک سے بچا کر کھانا دیا، اور خوف سے بچا کر امن دیا۔ رزق اور امن، ساتھ ساتھ۔</bdi></li>
+</ol>
+<p>≈ 190 words, ≈ 2.3 words per second, a calm documentary pace.</p>
+<h2>Corrections made in the pilot (vs. the source PDF, page 5)</h2>
+<ul>
+<li>"<bdi dir="rtl" class="ur">رزق</bdi> = The Supply Chain" is presented as an <strong>analogy</strong>, stated on screen and in narration (P05.2).</li>
+<li>Only rain, crops and fodder are labelled Qur'anic; processing, transport and the plate are labelled <code><bdi dir="rtl" class="ur">عصری اطلاق</bdi></code> (P05.4).</li>
+<li>"Countries that control the food chain dominate others" is shown as a <strong>claim needing evidence</strong>, given its best evidence, and downgraded on screen from <code><bdi dir="rtl" class="ur">غلبہ</bdi></code> to <code><bdi dir="rtl" class="ur">اثر و رسوخ</bdi></code> (P05.5).</li>
+<li>The slide's "not only spiritual rizq" inversion is corrected: rizq is primarily material in Qur'anic usage, and extends to knowledge and guidance (P05.3).</li>
+</ul>
+<h2>Open items before picture lock</h2>
+<ol>
+<li><span class="flag check" title="Needs a citation">?</span> Confirm the "≈ 30% of world wheat exports (2021)" wording against the FAO information note (March/June 2022) and pick the exact figure and year shown on screen.</li>
+<li>Record voice-over (see README), place it at <code>remotion/public/vo/pilot.mp3</code>, render with <code>--props='{"subtitles":false,"voiceover":"vo/pilot.mp3"}'</code>, and retime <code>narration</code> in <code>pilot.ts</code> to the recording.</li>
+<li>Scholar review of the Urdu narration and Qur'an translations (Maududi's translation is used verbatim on screen; narration paraphrases are marked as such).</li>
+</ol></section>
+</div>
