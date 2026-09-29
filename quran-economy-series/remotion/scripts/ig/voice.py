@@ -22,10 +22,10 @@ LEAD, GAP, TAIL = 0.30, 0.38, 0.55   # seconds: before first sentence, between s
 
 # Spoken respellings for Arabic names and terms; captions keep the proper spelling.
 SAY = {
-    r"\bQur'an\b": 'Kuraan', r'\bQuran\b': 'Kuraan', r"\bQuran's\b": "Kuraan's", r"\bQur'anic\b": 'Kuraanic',
+    r"\bQur'an\b": 'Kuraan', r'\bQuran\b': 'Kuraan', r"\bQuran's\b": "Kuraan's", r"\bQur'anic\b": 'Kuraanic', r'\bQuranic\b': 'Kuraanic',
     r"\bAl-Jumu'ah\b": 'al Joomooah', r"\bJumu'ah\b": 'Joomooah', r'\bSurah\b': 'Soorah',
     r'\btafsir\b': 'tafseer', r'\bBukhari\b': 'Bukhaari', r'\bHira\b': 'Heeraa', r'\bdunya\b': 'doonyaa',
-    r'\bdeen\b': 'deen', r'\bNouman\b': 'Noamaan', r'\bSahih\b': 'Saheeh', r'\bAl-A\'raf\b': 'al Araaf',
+    r'\bdeen\b': 'deen', r'\bfiqh\b': 'fick', r'\brizq\b': 'rizk', r'\bNouman\b': 'Noamaan', r'\bSahih\b': 'Saheeh', r'\bAl-A\'raf\b': 'al Araaf',
 }
 
 def spoken(text):

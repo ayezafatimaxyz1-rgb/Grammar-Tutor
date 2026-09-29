@@ -72,25 +72,25 @@ export const Globe: React.FC = () => {
   return (
     <AbsoluteFill>
       <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-        <path d={sphere} fill="rgba(47,181,168,0.05)" stroke={C.teal} strokeOpacity={0.5} strokeWidth={2} />
-        <path d={grat} fill="none" stroke={C.navyLine} strokeWidth={1} />
-        {land.map((d, i) => <path key={i} d={d} fill="rgba(217,236,239,0.10)" stroke="rgba(217,236,239,0.45)" strokeWidth={0.9} />)}
+        <path d={sphere} fill="rgba(184,137,45,0.06)" stroke={C.gold} strokeOpacity={0.7} strokeWidth={2.5} />
+        <path d={grat} fill="none" stroke={C.gold} strokeOpacity={0.18} strokeWidth={1} />
+        {land.map((d, i) => <path key={i} d={d} fill="rgba(184,137,45,0.10)" stroke={C.ink} strokeOpacity={0.55} strokeWidth={0.9} />)}
         {lines.map((l, i) => (
           <g key={i}>
-            <path d={l.d} fill="none" stroke={C.goldBright} strokeOpacity={0.55 * routesIn} strokeWidth={2} />
-            {dots(l.a, l.b, C.goldBright, 1, i)}
-            {dots(l.a, l.b, C.teal, -1, i + 3)}
+            <path d={l.d} fill="none" stroke={C.gold} strokeOpacity={0.6 * routesIn} strokeWidth={2} />
+            {dots(l.a, l.b, C.gold, 1, i)}
+            {dots(l.a, l.b, C.sepia, -1, i + 3)}
           </g>
         ))}
       </svg>
       <div style={{position: 'absolute', top: 1150, left: 0, width: 1080, display: 'flex', justifyContent: 'center', gap: 60, opacity: legend,
         fontFamily: FE.sans, fontWeight: 800, fontSize: 30, letterSpacing: 3}}>
-        <span style={{color: C.goldBright}}>● {scene.props.goodsLabel} →</span>
-        <span style={{color: C.teal}}>← {scene.props.moneyLabel} ●</span>
+        <span style={{color: C.gold}}>● {scene.props.goodsLabel} →</span>
+        <span style={{color: C.sepia}}>← {scene.props.moneyLabel} ●</span>
       </div>
       <div style={{position: 'absolute', top: 262, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 78,
-        lineHeight: 1.05, color: C.ice, ...rise(f, q)}}>
-        Does the Qur'an speak to this?
+        lineHeight: 1.05, color: C.ink, ...rise(f, q)}}>
+        {scene.props.question ?? 'Does the Qur\'an speak to this?'}
       </div>
       <Sfx name="ping" at={12} volume={0.5} />
       <Sfx name="swish" at={cue(1)} volume={0.4} />
@@ -133,6 +133,16 @@ export const Title: React.FC = () => {
           padding: '0 60px', ...rise(f, 34)}}>
           {ep.title}
         </div>
+        {ep.scenes[1]?.props?.subtitle ? (
+          <div style={{marginTop: 40, padding: '0 90px', fontFamily: FE.sans, fontWeight: 700, fontSize: 32, lineHeight: 1.35, letterSpacing: 1, color: C.inkSoft, ...rise(f, 50)}}>
+            {ep.scenes[1].props.subtitle}<br />{ep.scenes[1].props.subtitle2}
+          </div>
+        ) : null}
+        {ep.scenes[1]?.props?.credit ? (
+          <div style={{marginTop: 30, fontFamily: FE.display, fontStyle: 'italic', fontWeight: 600, fontSize: 36, color: C.gold, ...rise(f, useCue()(1))}}>
+            {ep.scenes[1].props.credit}
+          </div>
+        ) : null}
       </div>
       <Sfx name="hit" at={8} volume={0.7} />
       <Sfx name="chime" at={30} volume={0.35} />
@@ -204,7 +214,7 @@ export const Split: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{position: 'absolute', inset: 0, clipPath: `inset(0 0 ${960 + gap}px 0)`}}><Paper /></div>
-      <div style={{position: 'absolute', inset: 0, clipPath: `inset(${960 + gap}px 0 0 0)`}}><Navy /></div>
+      <div style={{position: 'absolute', inset: 0, clipPath: `inset(${960 + gap}px 0 0 0)`}}><Paper /><AbsoluteFill style={{background: 'rgba(138,90,43,0.10)'}} /></div>
       <div style={{position: 'absolute', top: 262, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 72, color: C.ink, ...rise(f, 4)}}>
         {heading}
       </div>
@@ -214,17 +224,17 @@ export const Split: React.FC = () => {
         <div style={{fontFamily: FE.display, fontWeight: 600, fontSize: 44, color: C.ink}}>{top.caption}</div>
       </div>
       <div style={{position: 'absolute', top: 1000 + gap, left: 80, width: 920, display: 'flex', alignItems: 'center', gap: 30, ...rise(f, cue(bottom.at), 20)}}>
-        <Bot c={C.ice} draw={progress(f, cue(bottom.at), 40)} size={210} />
+        <Bot c={C.ink} draw={progress(f, cue(bottom.at), 40)} size={210} />
         <div>
-          <div style={{fontFamily: FE.sans, fontWeight: 800, fontSize: 44, letterSpacing: 10, color: C.teal}}>{bottom.label}</div>
-          <div style={{fontFamily: FE.display, fontWeight: 600, fontSize: 44, lineHeight: 1.1, color: C.ice}}>{bottom.caption}</div>
+          <div style={{fontFamily: FE.sans, fontWeight: 800, fontSize: 44, letterSpacing: 10, color: C.sepia}}>{bottom.label}</div>
+          <div style={{fontFamily: FE.display, fontWeight: 600, fontSize: 44, lineHeight: 1.1, color: C.ink}}>{bottom.caption}</div>
         </div>
       </div>
       <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
-        <polyline points={zig} fill="none" stroke={C.coral} strokeWidth={5} strokeDasharray={1300} strokeDashoffset={1300 * (1 - crack)} />
+        <polyline points={zig} fill="none" stroke={C.gold} strokeWidth={5} strokeDasharray={1300} strokeDashoffset={1300 * (1 - crack)} />
       </svg>
       <div style={{position: 'absolute', top: 925, width: 1080, display: 'flex', justifyContent: 'center', ...rise(f, cue(questionAt), 10)}}>
-        <div style={{fontFamily: FE.sans, fontWeight: 800, fontSize: 40, padding: '12px 34px', borderRadius: 999, background: C.coral, color: '#2A0E05'}}>
+        <div style={{fontFamily: FE.sans, fontWeight: 800, fontSize: 40, padding: '12px 34px', borderRadius: 999, background: C.ink, color: '#FFF8EA'}}>
           {question}
         </div>
       </div>
@@ -377,8 +387,8 @@ export const Lens: React.FC = () => {
   const lensX = interpolate(focus, [0, 1], [interpolate(glide, [0, 1], [xs[0], xs[1]]), xs[2]]);
   return (
     <AbsoluteFill>
-      <div style={{position: 'absolute', top: 290, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 80, lineHeight: 1.05, color: C.ice, ...rise(f, 4)}}>
-        How we read the Qur'an here
+      <div style={{position: 'absolute', top: 290, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 80, lineHeight: 1.05, color: C.ink, ...rise(f, 4)}}>
+        {scene.props.heading ?? 'How we read the Qur\'an here'}
       </div>
       {items.map((it, i) => {
         const Icon = ICONS[it.icon];
@@ -386,21 +396,71 @@ export const Lens: React.FC = () => {
         const lit = Boolean(it.focus) && focus > 0.5;
         return (
           <div key={it.label} style={{position: 'absolute', top: 640, left: xs[i] - 150, width: 300, display: 'flex', flexDirection: 'column', alignItems: 'center', ...rise(f, cue(it.at, i * 8), 20), opacity: dim * progress(f, cue(it.at, i * 8), 16)}}>
-            <div style={{width: 220, height: 220, borderRadius: '50%', border: `3px solid ${lit ? C.teal : 'rgba(217,236,239,0.4)'}`, display: 'grid', placeItems: 'center',
-              background: lit ? `rgba(47,181,168,${0.18 * focus})` : 'transparent'}}>
-              <Icon c={lit ? C.teal : C.ice} draw={progress(f, cue(it.at, i * 8), 30)} size={150} />
+            <div style={{width: 220, height: 220, borderRadius: '50%', border: `3px solid ${lit ? C.gold : 'rgba(43,33,24,0.35)'}`, display: 'grid', placeItems: 'center',
+              background: lit ? `rgba(184,137,45,${0.18 * focus})` : 'transparent'}}>
+              <Icon c={lit ? C.gold : C.ink} draw={progress(f, cue(it.at, i * 8), 30)} size={150} />
             </div>
-            <div style={{marginTop: 18, fontFamily: FE.sans, fontWeight: 800, fontSize: 38, color: lit ? C.teal : C.ice}}>{it.label}</div>
-            {it.sub ? <div style={{fontFamily: FE.sans, fontSize: 24, color: 'rgba(217,236,239,0.7)'}}>{it.sub}</div> : null}
+            <div style={{marginTop: 18, fontFamily: FE.sans, fontWeight: 800, fontSize: 38, color: lit ? C.gold : C.ink}}>{it.label}</div>
+            {it.sub ? <div style={{fontFamily: FE.sans, fontSize: 24, color: C.inkSoft}}>{it.sub}</div> : null}
           </div>
         );
       })}
       <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: progress(f, 20, 12)}}>
-        <circle cx={lensX} cy={750} r={138} fill="none" stroke={C.goldBright} strokeWidth={6} />
-        <line x1={lensX + 98} y1={848} x2={lensX + 150} y2={900} stroke={C.goldBright} strokeWidth={14} strokeLinecap="round" />
+        <circle cx={lensX} cy={750} r={138} fill="none" stroke={C.sepia} strokeWidth={6} />
+        <line x1={lensX + 98} y1={848} x2={lensX + 150} y2={900} stroke={C.sepia} strokeWidth={14} strokeLinecap="round" />
       </svg>
       <Sfx name="swish" at={focusAt} volume={0.5} />
       <Sfx name="pop" at={focusAt + 20} volume={0.5} />
+    </AbsoluteFill>
+  );
+};
+
+
+// ---------------------------------------------------------------- statement (what the notes say)
+const GlobeGrid: React.FC<{draw: number}> = ({draw}) => (
+  <svg width={260} height={260} viewBox="-100 -100 200 200">
+    {[0, 1, 2].map((k) => <ellipse key={k} cx={0} cy={0} rx={80 - k * 30} ry={80} fill="none" stroke={C.gold} strokeWidth={3} strokeDasharray={520} strokeDashoffset={520 * (1 - draw)} />)}
+    {[-40, 0, 40].map((y) => <line key={y} x1={-Math.sqrt(6400 - y * y)} y1={y} x2={Math.sqrt(6400 - y * y)} y2={y} stroke={C.gold} strokeWidth={3} opacity={draw} />)}
+  </svg>
+);
+const Cave: React.FC<{draw: number}> = ({draw}) => (
+  <svg width={300} height={220} viewBox="-150 -110 300 220">
+    <path d="M -140 90 C -120 -20 -60 -95 0 -95 C 60 -95 120 -20 140 90 M -60 90 C -55 20 -30 -20 0 -20 C 30 -20 55 20 60 90 M -150 90 H 150" fill="none" stroke={C.ink} strokeWidth={3.5} strokeLinecap="round" strokeDasharray={1100} strokeDashoffset={1100 * (1 - draw)} />
+  </svg>
+);
+export const Statement: React.FC = () => {
+  const f = useCurrentFrame();
+  const cue = useCue();
+  const {scene} = useScene();
+  const p = scene.props;
+  const lines = p.lines as {text: string; at: number; big?: boolean}[];
+  const iconDraw = progress(f, 2, 40);
+  return (
+    <AbsoluteFill>
+      {p.kicker ? (
+        <div style={{position: 'absolute', top: 300, width: 1080, textAlign: 'center', fontFamily: FE.sans, fontWeight: 800, fontSize: 34, letterSpacing: 10, color: C.gold, ...rise(f, 4)}}>
+          {p.kicker.toUpperCase()}
+        </div>
+      ) : p.icon ? (
+        <div style={{position: 'absolute', top: 280, width: 1080, display: 'flex', justifyContent: 'center', opacity: progress(f, 2, 12)}}>
+          {p.icon === 'cave' ? <Cave draw={iconDraw} /> : <GlobeGrid draw={iconDraw} />}
+        </div>
+      ) : null}
+      <div style={{position: 'absolute', top: p.kicker ? 430 : 600, left: 80, width: 920, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30, textAlign: 'center'}}>
+        {lines.map((l, i) => (
+          <div key={i} style={{fontFamily: FE.display, fontWeight: l.big ? 700 : 600, fontStyle: l.big ? 'italic' : 'normal', fontSize: l.big ? 104 : 66, lineHeight: 1.08,
+            color: l.big ? C.sepia : C.ink, textWrap: 'balance' as any, ...rise(f, cue(l.at, 2), 30, 18)}}>
+            {l.text}
+            <Sfx name={l.big ? 'hit' : 'swish'} at={cue(l.at, 2)} volume={l.big ? 0.35 : 0.3} />
+          </div>
+        ))}
+        <svg width={420} height={30} style={{opacity: progress(f, cue(lines[lines.length - 1].at, 20), 14)}}>
+          <line x1={0} y1={15} x2={170} y2={15} stroke={C.gold} strokeWidth={2} />
+          <path d="M 210 3 L 215 11 L 223 15 L 215 19 L 210 27 L 205 19 L 197 15 L 205 11 Z" fill={C.gold} />
+          <line x1={250} y1={15} x2={420} y2={15} stroke={C.gold} strokeWidth={2} />
+        </svg>
+      </div>
+      <Sfx name="paper" at={2} volume={0.4} />
     </AbsoluteFill>
   );
 };
@@ -430,13 +490,13 @@ export const Outro: React.FC = () => {
 
 export type TemplateDef = {C: React.FC; bg: 'paper' | 'navy' | 'none'; headerDark: boolean; sourceDark: boolean};
 export const TEMPLATES: Record<string, TemplateDef> = {
-  globe: {C: Globe, bg: 'navy', headerDark: true, sourceDark: true},
+  globe: {C: Globe, bg: 'paper', headerDark: false, sourceDark: false},
   title: {C: Title, bg: 'paper', headerDark: false, sourceDark: false},
   legend: {C: Legend, bg: 'paper', headerDark: false, sourceDark: false},
-  split: {C: Split, bg: 'none', headerDark: false, sourceDark: true},
+  split: {C: Split, bg: 'none', headerDark: false, sourceDark: false},
+  statement: {C: Statement, bg: 'paper', headerDark: false, sourceDark: false},
   ayah: {C: Ayah, bg: 'paper', headerDark: false, sourceDark: false},
   quote: {C: Quote, bg: 'paper', headerDark: false, sourceDark: false},
-  correction: {C: Correction, bg: 'paper', headerDark: false, sourceDark: false},
-  lens: {C: Lens, bg: 'navy', headerDark: true, sourceDark: true},
+  lens: {C: Lens, bg: 'paper', headerDark: false, sourceDark: false},
   outro: {C: Outro, bg: 'paper', headerDark: false, sourceDark: false},
 };

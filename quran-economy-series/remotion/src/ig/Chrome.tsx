@@ -68,7 +68,7 @@ export const Captions: React.FC = () => {
     <AbsoluteFill style={{pointerEvents: 'none'}}>
       <div style={{position: 'absolute', top: 1330, left: 60, width: 860, display: 'flex', justifyContent: 'center', opacity: o}}>
         <div style={{fontFamily: FE.sans, fontWeight: 800, fontSize: 54, lineHeight: 1.18, textAlign: 'center', color: '#FFFFFF',
-          padding: '14px 26px 18px', borderRadius: 18, background: 'rgba(10,16,26,0.78)', maxWidth: 860}}>
+          padding: '14px 26px 18px', borderRadius: 18, background: 'rgba(43,33,24,0.86)', maxWidth: 860}}>
           {chunk.map((w, i) => {
             const on = t >= w.start && t < w.end + 0.05;
             return (

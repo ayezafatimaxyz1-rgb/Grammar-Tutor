@@ -3,7 +3,7 @@ import React from 'react';
 import {AbsoluteFill, Audio, Loop, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {Navy, Paper} from '../components/Backdrop';
 import {progress} from '../components/motion';
-import {Badges, Captions, Header, Source} from './Chrome';
+import {Captions, Header} from './Chrome';
 import {EPISODES} from './registry';
 import {SceneProvider} from './sceneContext';
 import {Sfx, TEMPLATES} from './templates';
@@ -26,7 +26,7 @@ export const EpisodeVideo: React.FC<EpisodeProps> = ({episode, captions, ambienc
   const {ep, timing} = EPISODES[episode];
   let start = 0;
   return (
-    <AbsoluteFill style={{backgroundColor: '#0E1B2C'}}>
+    <AbsoluteFill style={{backgroundColor: '#F3E9D2'}}>
       {ep.scenes.map((scene, i) => {
         const frames = Math.round(timing.scenes[i].duration * FPS);
         const lead = i === 0 ? 0 : LEAD;
@@ -40,8 +40,6 @@ export const EpisodeVideo: React.FC<EpisodeProps> = ({episode, captions, ambienc
                 {def.bg === 'paper' ? <Paper /> : def.bg === 'navy' ? <Navy /> : null}
                 <T />
                 <Header dark={def.headerDark} number={ep.number} />
-                <Badges kinds={scene.badges} />
-                <Source text={scene.source} dark={def.sourceDark} />
                 {captions ? <Captions /> : null}
               </Fade>
               <Sequence from={lead} name="voice" layout="none">

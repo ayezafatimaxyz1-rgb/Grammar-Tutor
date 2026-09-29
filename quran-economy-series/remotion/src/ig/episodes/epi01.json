@@ -2,316 +2,34 @@
   "id": "epi01",
   "number": 1,
   "title": "The Big Misconception",
-  "covers": [
-    "P01.1",
-    "P01.2",
-    "P01.3",
-    "P01.4",
-    "P01.5",
-    "P02.1",
-    "P02.2",
-    "P02.3",
-    "P02.4",
-    "P02.5",
-    "P02.6",
-    "P02.7"
-  ],
-  "next": "Is the Earth a Prison or a Blessing?",
+  "covers": ["P01.1", "P01.2", "P01.3", "P01.4", "P01.5", "P02.1", "P02.2", "P02.3", "P02.4", "P02.5", "P02.6", "P02.7"],
+  "next": "The Earth: A Prison or a Blessing?",
   "scenes": [
-    {
-      "template": "globe",
-      "badges": [
-        "modern"
-      ],
-      "source": "Map: Natural Earth",
-      "narration": [
-        "Every day, thousands of ships carry grain, oil and goods across the world's oceans.",
-        "Goods flow one way. Money flows the other.",
-        "So here is a question. Does the Quran have anything to say about this system?"
-      ],
-      "props": {
-        "goodsLabel": "GOODS",
-        "moneyLabel": "MONEY"
-      }
-    },
-    {
-      "template": "title",
-      "badges": [],
-      "source": "",
-      "narration": [
-        "Welcome to Quran and Global Economy. Episode one: the big misconception."
-      ],
-      "props": {}
-    },
-    {
-      "template": "legend",
-      "badges": [],
-      "source": "Based on notes from lectures by Nouman Ali Khan",
-      "narration": [
-        "Before we start, a promise.",
-        "This series is based on notes from lectures by Nouman Ali Khan, and every verse has been checked against the Arabic text, a trusted translation, and classical tafsir.",
-        "Gold marks the Quran's own words. Brown marks scholarly interpretation. Teal marks a modern application. And coral marks a claim that still needs evidence.",
-        "Where the original notes made a mistake, we will stop and correct it."
-      ],
-      "props": {
-        "heading": "How to watch",
-        "items": [
-          {
-            "kind": "text",
-            "label": "Qur'anic text",
-            "note": "The verse's own words",
-            "at": 2.0
-          },
-          {
-            "kind": "tafsir",
-            "label": "Scholarly view",
-            "note": "Tafsir and lexicons",
-            "at": 2.26
-          },
-          {
-            "kind": "modern",
-            "label": "Modern application",
-            "note": "Today's world",
-            "at": 2.43
-          },
-          {
-            "kind": "claim",
-            "label": "Claim to check",
-            "note": "Needs evidence",
-            "at": 2.65
-          }
-        ],
-        "footer": "Mistakes in the source notes are corrected on screen",
-        "footerAt": 3,
-        "checks": [
-          {
-            "label": "Arabic text",
-            "at": 1.55
-          },
-          {
-            "label": "Trusted translation",
-            "at": 1.72
-          },
-          {
-            "label": "Classical tafsir",
-            "at": 1.88
-          }
-        ]
-      }
-    },
-    {
-      "template": "split",
-      "badges": [
-        "claim"
-      ],
-      "source": "A common attitude, not a survey result",
-      "narration": [
-        "Many people believe religion is only about prayer and fasting.",
-        "Business, careers and the economy? That's worldly, with nothing to do with faith.",
-        "But is that what the Quran actually says?"
-      ],
-      "props": {
-        "heading": "The Big Misconception",
-        "top": {
-          "icon": "mosque",
-          "label": "DEEN",
-          "caption": "Prayer · Fasting",
-          "at": 0
-        },
-        "bottom": {
-          "icon": "tower",
-          "label": "DUNYA",
-          "caption": "Business · Career · Economy",
-          "at": 1
-        },
-        "crackAt": 1,
-        "question": "Two separate worlds?",
-        "questionAt": 2
-      }
-    },
-    {
-      "template": "ayah",
-      "badges": [
-        "text"
-      ],
-      "source": "Al-Jumu'ah 62:9 · Saheeh International",
-      "narration": [
-        "Look at two verses from Surah Al-Jumu'ah.",
-        "The first says: when the call to Friday prayer is made, hurry to the remembrance of Allah, and leave trade."
-      ],
-      "props": {
-        "ref": "Al-Jumu'ah 62:9",
-        "arabic": "فَٱسۡعَوۡاْ إِلَىٰ ذِكۡرِ ٱللَّهِ وَذَرُواْ ٱلۡبَيۡعَ",
-        "english": "…proceed to the remembrance of Allah and leave trade.",
-        "highlight": "leave trade",
-        "arabicAt": 0,
-        "icon": "stall-close",
-        "highlightAt": 1
-      }
-    },
-    {
-      "template": "ayah",
-      "badges": [
-        "text",
-        "tafsir"
-      ],
-      "source": "Al-Jumu'ah 62:10 · Saheeh International",
-      "narration": [
-        "And the very next verse says: when the prayer is over, disperse in the land, and seek from the bounty of Allah.",
-        "Leave the market, then return to it. One passage, one day, two movements.",
-        "This is why scholars say that, with the right intention, earning a living becomes part of worship."
-      ],
-      "props": {
-        "ref": "Al-Jumu'ah 62:10",
-        "arabic": "فَٱنتَشِرُواْ فِي ٱلۡأَرۡضِ وَٱبۡتَغُواْ مِن فَضۡلِ ٱللَّهِ",
-        "english": "Disperse within the land and seek from the bounty of Allah.",
-        "highlight": "seek from the bounty of Allah",
-        "arabicAt": 0,
-        "icon": "stall-open",
-        "note": "Earning, with the right intention, is part of worship",
-        "noteKind": "tafsir",
-        "noteAt": 2
-      }
-    },
-    {
-      "template": "ayah",
-      "badges": [
-        "text"
-      ],
-      "source": "Al-A'raf 7:32 · Saheeh International",
-      "narration": [
-        "The Quran even challenges those who ban good things for themselves.",
-        "Say: who has forbidden the adornment of Allah, which He produced for His servants, and the good things of provision?"
-      ],
-      "props": {
-        "ref": "Al-A'raf 7:32",
-        "arabic": "قُلۡ مَنۡ حَرَّمَ زِينَةَ ٱللَّهِ ٱلَّتِيٓ أَخۡرَجَ لِعِبَادِهِۦ وَٱلطَّيِّبَٰتِ مِنَ ٱلرِّزۡقِ",
-        "english": "Say, “Who has forbidden the adornment of Allah which He has produced for His servants and the good things of provision?”",
-        "highlight": "good things of provision",
-        "arabicAt": 0,
-        "highlightAt": 1
-      }
-    },
-    {
-      "template": "ayah",
-      "badges": [
-        "text",
-        "tafsir"
-      ],
-      "source": "Al-Qasas 28:77 · Saheeh International",
-      "narration": [
-        "The Quran doesn't reject the material world. It organises it.",
-        "Seek the home of the Hereafter, but do not forget your share of this world."
-      ],
-      "props": {
-        "ref": "Al-Qasas 28:77",
-        "arabic": "وَٱبۡتَغِ فِيمَآ ءَاتَىٰكَ ٱللَّهُ ٱلدَّارَ ٱلۡأٓخِرَةَۖ وَلَا تَنسَ نَصِيبَكَ مِنَ ٱلدُّنۡيَا",
-        "english": "Seek, through what Allah has given you, the home of the Hereafter; and do not forget your share of the world.",
-        "highlight": "do not forget your share of the world",
-        "arabicAt": 0,
-        "kicker": "Not rejected. Organised.",
-        "kickerAt": 0,
-        "highlightAt": 1
-      }
-    },
-    {
-      "template": "ayah",
-      "badges": [
-        "text"
-      ],
-      "source": "Al-Hadid 57:27 · Saheeh International",
-      "narration": [
-        "What about leaving the world entirely, and living in isolation?",
-        "The Quran says monasticism was something people invented. Allah did not prescribe it."
-      ],
-      "props": {
-        "ref": "Al-Hadid 57:27",
-        "arabic": "وَرَهۡبَانِيَّةً ٱبۡتَدَعُوهَا مَا كَتَبۡنَٰهَا عَلَيۡهِمۡ",
-        "english": "…and monasticism, which they innovated; We did not prescribe it for them.",
-        "highlight": "We did not prescribe it",
-        "arabicAt": 0,
-        "highlightAt": 1
-      }
-    },
-    {
-      "template": "quote",
-      "badges": [
-        "tafsir"
-      ],
-      "source": "Sahih al-Bukhari 5063",
-      "narration": [
-        "And in Sahih al-Bukhari, the Prophet, peace be upon him, stopped companions who vowed to fast forever and never marry.",
-        "He said: whoever turns away from my way is not from me."
-      ],
-      "props": {
-        "label": "Hadith",
-        "quote": "“Whoever turns away from my Sunnah is not from me.”",
-        "quoteAt": 1,
-        "context": "Said to companions who vowed to fast every day, pray all night and never marry",
-        "cite": "Sahih al-Bukhari 5063"
-      }
-    },
-    {
-      "template": "correction",
-      "badges": [
-        "claim"
-      ],
-      "source": "Audit note P02.7",
-      "narration": [
-        "One correction.",
-        "The popular line, there is no monasticism in Islam, is not an authentic hadith in that wording.",
-        "And the Prophet himself retreated to the cave of Hira. So the point is permanent withdrawal from society, not caves."
-      ],
-      "props": {
-        "said": "“No monasticism in Islam” as a hadith",
-        "fix": "Not authentic in that wording",
-        "fixAt": 1,
-        "said2": "Sitting in caves is not Islam",
-        "fix2": "Permanent withdrawal from society is rejected",
-        "fix2At": 2
-      }
-    },
-    {
-      "template": "lens",
-      "badges": [
-        "modern"
-      ],
-      "source": "Series approach",
-      "narration": [
-        "So this series reads the Quran not only for belief and law, like inheritance or divorce,",
-        "but through an economic lens."
-      ],
-      "props": {
-        "items": [
-          {
-            "icon": "creed",
-            "label": "Belief",
-            "at": 0
-          },
-          {
-            "icon": "law",
-            "label": "Law",
-            "sub": "Inheritance · Divorce",
-            "at": 0
-          },
-          {
-            "icon": "economy",
-            "label": "Economy",
-            "at": 0,
-            "focus": true
-          }
-        ],
-        "focusAt": 1
-      }
-    },
-    {
-      "template": "outro",
-      "badges": [],
-      "source": "",
-      "narration": [
-        "Next episode: is the earth a prison, or a blessing? Follow for episode two."
-      ],
-      "props": {}
-    }
+    {"template": "globe", "badges": [], "source": "",
+     "narration": ["Every day, ships carry grain, oil and goods across the world.", "Goods flow one way. Money flows the other.", "So what does the Quran say about the economy?"],
+     "props": {"goodsLabel": "GOODS", "moneyLabel": "MONEY", "question": "What does the Qur'an say?"}},
+    {"template": "title", "badges": [], "source": "",
+     "narration": ["Quran and Global Economy. From microeconomics to macro power: the divine blueprint of economic stability.", "Detailed notes based on a Nouman Ali Khan series."],
+     "props": {"subtitle": "From Microeconomics to Macro Power", "subtitle2": "The Divine Blueprint of Economic Stability", "credit": "Detailed notes based on a Nouman Ali Khan series"}},
+    {"template": "split", "badges": [], "source": "",
+     "narration": ["Episode one. A big misconception: the separation of deen and dunya.", "The common view is that religion is limited to worship, like prayer and fasting.", "Business, livelihood and career are dunya, with no link to deen."],
+     "props": {"heading": "A Big Misconception", "top": {"icon": "mosque", "label": "DEEN", "caption": "Prayer · Fasting", "at": 1}, "bottom": {"icon": "tower", "label": "DUNYA", "caption": "Business · Livelihood · Career", "at": 2}, "crackAt": 2.5, "question": "Two separate worlds?", "questionAt": 2.7}},
+    {"template": "statement", "badges": [], "source": "",
+     "narration": ["But the Quran does not reject the material world.", "It organises it."],
+     "props": {"icon": "globe-grid", "lines": [{"text": "The Qur'an does not reject the material world.", "at": 0}, {"text": "It organises it.", "at": 1, "big": true}]}},
+    {"template": "statement", "badges": [], "source": "",
+     "narration": ["In the Quranic view, there is no separation between spirituality and materiality.", "Earning, spending and doing business are also part of worship."],
+     "props": {"kicker": "The Qur'anic View", "lines": [{"text": "No separation between spirituality and materiality", "at": 0}, {"text": "Earning, Spending & Business", "at": 1, "big": true}, {"text": "are also part of worship", "at": 1.6}]}},
+    {"template": "ayah", "badges": [], "source": "",
+     "narration": ["The Quran strongly criticises those who forbid themselves the lawful, good things Allah created, like beauty and rizq.", "Say: who has forbidden the adornment of Allah, which He produced for His servants, and the good things of provision?"],
+     "props": {"ref": "Al-A'raf 7:32", "arabic": "قُلۡ مَنۡ حَرَّمَ زِينَةَ ٱللَّهِ ٱلَّتِيٓ أَخۡرَجَ لِعِبَادِهِۦ وَٱلطَّيِّبَٰتِ مِنَ ٱلرِّزۡقِ", "english": "Say, “Who has forbidden the adornment of Allah which He has produced for His servants and the good things of provision?”", "highlight": "good things of provision", "arabicAt": 0, "highlightAt": 1, "kicker": "Beauty · Rizq", "kickerAt": 0}},
+    {"template": "statement", "badges": [], "source": "",
+     "narration": ["Cutting yourself off from the world and sitting in caves is not Islam."],
+     "props": {"icon": "cave", "lines": [{"text": "Cutting off from the world", "at": 0}, {"text": "and sitting in caves", "at": 0.35}, {"text": "is not Islam.", "at": 0.7, "big": true}]}},
+    {"template": "lens", "badges": [], "source": "",
+     "narration": ["So the Quran should be studied not only for creed and fiqh, like inheritance and divorce,", "but also through an economic lens."],
+     "props": {"heading": "Read the Qur'an through", "focusAt": 1, "items": [{"icon": "creed", "label": "Creed", "at": 0}, {"icon": "law", "label": "Fiqh", "sub": "Inheritance · Divorce", "at": 0}, {"icon": "economy", "label": "Economy", "at": 0, "focus": true}]}},
+    {"template": "outro", "badges": [], "source": "",
+     "narration": ["Next episode: the earth, a prison or a blessing? Follow for episode two."], "props": {}}
   ]
 }
