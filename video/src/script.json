@@ -1,117 +1,118 @@
 {
  "voice": {
-  "provider": "ElevenLabs",
-  "voice": "Alice - Clear, Engaging Educator (British)",
-  "voice_id": "Xb7hH8MSUJpSbSDYk0k2",
-  "model": "eleven_multilingual_v2"
+  "provider": "Kokoro (local, offline)",
+  "voice": "Emma (British English, female)",
+  "voice_id": "bf_emma",
+  "speed": 0.87,
+  "lang": "en-gb"
  },
  "main": [
   {
    "id": "m01",
    "scene": "Hook",
-   "pad": 0.8,
+   "pad": 1.4,
    "text": "Why is ‘The furniture are expensive’ wrong when a room contains several chairs? And why do we say ‘much rice’ when rice has thousands of grains? A memorised list tells you the answer. It doesn’t show you why."
   },
   {
    "id": "m02",
    "scene": "Overview",
-   "pad": 0.8,
+   "pad": 1.4,
    "text": "In the meanings we are studying, English treats these nouns as uncountable, so they take a singular verb. Let’s see five pictures behind the examples: an overall collection, a material, a measured amount, a body of knowledge, and an activity."
   },
   {
    "id": "m03",
    "scene": "Unit1",
-   "pad": 0.5,
+   "pad": 1.1,
    "text": "First: unit or mass. ‘The furniture are expensive.’ Look: a chair, a table, a sofa and a bed. I can count the separate objects: one chair, two chairs. But when I call them furniture, I’ve changed the way I’m talking about them."
   },
   {
    "id": "m04",
    "scene": "Unit2",
-   "pad": 1.2,
+   "pad": 1.8,
    "text": "Furniture is the overall label for the collection, not the name of each separate item. English treats that word as uncountable. So ‘The furniture is expensive.’ To give a number, I count pieces of furniture: ‘Two pieces of furniture are expensive.’ Here pieces is plural."
   },
   {
    "id": "m05",
    "scene": "Unit3",
-   "pad": 1.0,
+   "pad": 1.6,
    "text": "The same picture helps with luggage: several bags and suitcases, one luggage label. ‘The luggage is heavy’, but ‘three pieces of luggage are heavy’. You can picture clothing, equipment and crockery similarly."
   },
   {
    "id": "m06",
    "scene": "Material1",
-   "pad": 0.5,
+   "pad": 1.1,
    "text": "Second: material. Think of gold. A ring, a coin and a necklace are three different things, but the gold is the substance from which they are made. When the word names the substance, I ask ‘How much gold?’"
   },
   {
    "id": "m07",
    "scene": "Material2",
-   "pad": 0.7,
+   "pad": 1.3,
    "text": "I count three rings, or measure twenty grams of gold. The number belongs to rings or grams, not directly to gold. Picture the same distinction with silver, wood, glass and cotton when they name materials."
   },
   {
    "id": "m08",
    "scene": "Material3",
-   "pad": 1.2,
+   "pad": 1.8,
    "text": "There is an important correction to the brick example in my notes: ‘This house is made of bricks’ is correct. Those are individual blocks. ‘This house is made of brick’ is also correct when brick means the material. The difference is what the word names in that sentence."
   },
   {
    "id": "m09",
    "scene": "Measured1",
-   "pad": 0.5,
+   "pad": 1.1,
    "text": "Third: a measured food amount. ‘I ate too many rice for lunch’ is wrong. If we zoom in, we can see many grains. But when I say rice as food, I am talking about the amount in the bowl, not listing the grains one by one."
   },
   {
    "id": "m10",
    "scene": "Measured2",
-   "pad": 1.0,
+   "pad": 1.6,
    "text": "So: ‘I ate too much rice for lunch.’ If I want to count something, I can say ‘many grains of rice’ or ‘two bowls of rice’. Watch where the number goes: onto grains or bowls. Bread works the same way in ‘three slices of bread’; milk in ‘two litres of milk’."
   },
   {
    "id": "m11",
    "scene": "Measured3",
-   "pad": 0.8,
+   "pad": 1.4,
    "text": "This food group overlaps with substances. The reason I have given it its own picture is that a bowl of rice or a jug of milk makes the idea of measuring an amount easy to see."
   },
   {
    "id": "m12",
    "scene": "Abstract1",
-   "pad": 0.5,
+   "pad": 1.1,
    "text": "Fourth: abstract. ‘He has many knowledges about art’ is wrong in ordinary English. Here knowledge is his whole body of understanding. It may contain many facts, but the word knowledge is not naming each fact separately."
   },
   {
    "id": "m13",
    "scene": "Abstract2",
-   "pad": 1.0,
+   "pad": 1.6,
    "text": "Say, ‘He has a lot of knowledge about art.’ Think also of advice and information: ‘some advice’, ‘useful information’. If I need a number, I can say ‘two pieces of advice’, ‘three pieces of information’, or count ‘three facts’."
   },
   {
    "id": "m14",
    "scene": "Abstract3",
-   "pad": 0.8,
+   "pad": 1.4,
    "text": "Abstract is a picture that helps us think, but it cannot decide every case by itself. An idea is abstract, yet ‘three ideas’ is correct. We have to notice whether this particular word names an undivided body or separate items in the sentence."
   },
   {
    "id": "m15",
    "scene": "Activity1",
-   "pad": 0.5,
+   "pad": 1.1,
    "text": "Fifth: activity or process. ‘She does many works every day’ is wrong when I mean her daily effort. She might type, plan, call and clean: several actions. But work names that effort as an ongoing whole."
   },
   {
    "id": "m16",
    "scene": "Activity2",
-   "pad": 1.0,
+   "pad": 1.6,
    "text": "So: ‘She does a lot of work every day.’ To count the actions, I choose another noun: ‘She completes four tasks every day.’ Count the tasks; describe the work as an amount of activity."
   },
   {
    "id": "m17",
    "scene": "Activity3",
-   "pad": 0.8,
+   "pad": 1.4,
    "text": "But ‘three works of art’ is correct: in a gallery, works means created pieces. The meaning has changed."
   },
   {
    "id": "m18",
    "scene": "Quiz",
-   "pad": 1.0,
+   "pad": 1.6,
    "text": "Now try three new sentences. ‘The luggage is heavy’: several bags, one overall label. ‘I need much more rice’: the food as an amount. ‘Her advice is useful’: advice as information, not separate suggestions. Each time, picture what the noun is naming before you choose the grammar.",
    "gaps": [
     {
@@ -131,7 +132,7 @@
   {
    "id": "m19",
    "scene": "Recap",
-   "pad": 3.0,
+   "pad": 3.6,
    "text": "These are the five pictures: collection, material, measured amount, body of knowledge, process. See the meaning first. Then ask what you can count directly, or which unit you need. That is how the correction becomes understandable instead of something you have to recite."
   }
  ],

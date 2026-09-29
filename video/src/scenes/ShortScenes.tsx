@@ -178,8 +178,8 @@ export const S1Luggage: React.FC = () => {
 const HouseWalls: React.FC<{ leftMode: number; rightMode: number; counted?: number; show?: number }> = ({ leftMode, rightMode, counted = 0, show = 1 }) => (
   <Layer w={VW} h={VH}>
     <g opacity={show}>
-      <G x={540} y={720} s={1.6}><BrickWall mode={leftMode} counted={counted} w={420} h={180} /></G>
-      <G x={540} y={1060} s={1.6}><BrickWall mode={rightMode} w={420} h={180} /></G>
+      <G x={540} y={660} s={1.6}><BrickWall mode={leftMode} counted={counted} w={420} h={180} /></G>
+      <G x={540} y={1090} s={1.6}><BrickWall mode={rightMode} w={420} h={180} /></G>
     </g>
   </Layer>
 );
@@ -194,7 +194,7 @@ export const S2Hook: React.FC = () => {
       <Tab i={1} />
       <Hook at={t0}>Made of <span style={{ color: C.material }}>brick</span> or <span style={{ color: C.material }}>bricks</span>?</Hook>
       <HouseWalls leftMode={0} rightMode={1} show={prog(f, t0)} />
-      <Stamp text="BOTH ✓" at={tBoth} x={540} y={890} size={70} color={C.correct} />
+      <Stamp text="BOTH ✓" at={tBoth} x={540} y={875} size={70} color={C.correct} />
       <Sfx at={tBoth} name="correct" />
     </>
   );
@@ -269,11 +269,11 @@ export const S2Brick: React.FC = () => {
     <>
       <Tab i={1} />
       <HouseWalls leftMode={0} rightMode={prog(f, tMat, 25)} counted={counted} />
-      <Sentence text="made of [bricks|n]" mark="right" at={tBricks} accent={C.material} size={54} style={sent(420)} />
-      <Tag color={C.material} at={tBricks + 20} x={540} y={900} size={32}>individual blocks you could count</Tag>
-      <Sentence text="made of [brick|n]" mark="right" at={tMat - 8} accent={C.material} size={54} style={sent(1230)} />
-      <Tag color={C.material} at={tMat + 10} x={540} y={1370} size={32} solid>the material</Tag>
-      <Note at={tBoth} x={540} y={1440} w={960} size={38} color={C.ink}><b>What does the word name in your sentence?</b></Note>
+      <Sentence text="made of [bricks|n]" mark="right" at={tBricks} accent={C.material} size={54} style={sent(390)} />
+      <Tag color={C.material} at={tBricks + 20} x={540} y={872} size={32}>individual blocks you could count</Tag>
+      <Sentence text="made of [brick|n]" mark="right" at={tMat - 8} accent={C.material} size={54} style={sent(1255)} />
+      <Tag color={C.material} at={tMat + 10} x={540} y={1385} size={32} solid>the material</Tag>
+      <Note at={tBoth} x={540} y={1435} w={960} size={36} color={C.ink}><b>What does the word name in your sentence?</b></Note>
       <Sfx at={tBricks} name="correct" />
       <Sfx at={tMat} name="correct" />
     </>

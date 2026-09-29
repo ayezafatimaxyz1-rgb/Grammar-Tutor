@@ -41,7 +41,7 @@ def word_times(text, dur):
         trail = w.rstrip("’'")[-1:] if w else ""
         weights.append(len(core) + 1.5 + PAUSE.get(trail, 0))
     total = sum(weights)
-    # ElevenLabs clips carry ~0.15 s of leading and trailing air
+    # TTS clips carry ~0.15 s of leading and trailing air
     usable, start = max(dur - 0.35, 0.5), 0.15
     out, acc = [], 0.0
     for w, wt in zip(words, weights):
