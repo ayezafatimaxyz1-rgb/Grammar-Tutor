@@ -1,0 +1,1183 @@
+{
+ "id": "epi02",
+ "fps": 30,
+ "scenes": [
+  {
+   "voice": "ig/epi02/s01.wav",
+   "duration": 6.707,
+   "sentences": [
+    {
+     "text": "Is this world a prison? Or is it a blessing?",
+     "start": 0.3,
+     "end": 2.987,
+     "words": [
+      {
+       "w": "Is",
+       "start": 0.35,
+       "end": 0.476
+      },
+      {
+       "w": "this",
+       "start": 0.476,
+       "end": 0.729
+      },
+      {
+       "w": "world",
+       "start": 0.729,
+       "end": 1.044
+      },
+      {
+       "w": "a",
+       "start": 1.044,
+       "end": 1.17
+      },
+      {
+       "w": "prison?",
+       "start": 1.17,
+       "end": 1.738
+      },
+      {
+       "w": "Or",
+       "start": 1.738,
+       "end": 1.865
+      },
+      {
+       "w": "is",
+       "start": 1.865,
+       "end": 1.991
+      },
+      {
+       "w": "it",
+       "start": 1.991,
+       "end": 2.117
+      },
+      {
+       "w": "a",
+       "start": 2.117,
+       "end": 2.243
+      },
+      {
+       "w": "blessing?",
+       "start": 2.243,
+       "end": 2.938
+      }
+     ]
+    },
+    {
+     "text": "Your answer shapes how you earn, spend and build.",
+     "start": 3.367,
+     "end": 6.157,
+     "words": [
+      {
+       "w": "Your",
+       "start": 3.417,
+       "end": 3.657
+      },
+      {
+       "w": "answer",
+       "start": 3.657,
+       "end": 4.015
+      },
+      {
+       "w": "shapes",
+       "start": 4.015,
+       "end": 4.374
+      },
+      {
+       "w": "how",
+       "start": 4.374,
+       "end": 4.553
+      },
+      {
+       "w": "you",
+       "start": 4.553,
+       "end": 4.732
+      },
+      {
+       "w": "earn,",
+       "start": 4.732,
+       "end": 5.151
+      },
+      {
+       "w": "spend",
+       "start": 5.151,
+       "end": 5.45
+      },
+      {
+       "w": "and",
+       "start": 5.45,
+       "end": 5.629
+      },
+      {
+       "w": "build.",
+       "start": 5.629,
+       "end": 6.107
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s02.wav",
+   "duration": 7.937,
+   "sentences": [
+    {
+     "text": "Quran and Global Economy. Episode two: the creation worldview. Is the earth a prison, or a blessing?",
+     "start": 0.3,
+     "end": 7.387,
+     "words": [
+      {
+       "w": "Quran",
+       "start": 0.35,
+       "end": 0.714
+      },
+      {
+       "w": "and",
+       "start": 0.714,
+       "end": 0.932
+      },
+      {
+       "w": "Global",
+       "start": 0.932,
+       "end": 1.369
+      },
+      {
+       "w": "Economy.",
+       "start": 1.369,
+       "end": 2.097
+      },
+      {
+       "w": "Episode",
+       "start": 2.097,
+       "end": 2.606
+      },
+      {
+       "w": "two:",
+       "start": 2.606,
+       "end": 3.043
+      },
+      {
+       "w": "the",
+       "start": 3.043,
+       "end": 3.261
+      },
+      {
+       "w": "creation",
+       "start": 3.261,
+       "end": 3.843
+      },
+      {
+       "w": "worldview.",
+       "start": 3.843,
+       "end": 4.717
+      },
+      {
+       "w": "Is",
+       "start": 4.717,
+       "end": 4.862
+      },
+      {
+       "w": "the",
+       "start": 4.862,
+       "end": 5.081
+      },
+      {
+       "w": "earth",
+       "start": 5.081,
+       "end": 5.445
+      },
+      {
+       "w": "a",
+       "start": 5.445,
+       "end": 5.59
+      },
+      {
+       "w": "prison,",
+       "start": 5.59,
+       "end": 6.245
+      },
+      {
+       "w": "or",
+       "start": 6.245,
+       "end": 6.391
+      },
+      {
+       "w": "a",
+       "start": 6.391,
+       "end": 6.536
+      },
+      {
+       "w": "blessing?",
+       "start": 6.536,
+       "end": 7.337
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s03.wav",
+   "duration": 4.588,
+   "sentences": [
+    {
+     "text": "Our economic mindset begins with how we see this world.",
+     "start": 0.3,
+     "end": 4.038,
+     "words": [
+      {
+       "w": "Our",
+       "start": 0.35,
+       "end": 0.577
+      },
+      {
+       "w": "economic",
+       "start": 0.577,
+       "end": 1.184
+      },
+      {
+       "w": "mindset",
+       "start": 1.184,
+       "end": 1.714
+      },
+      {
+       "w": "begins",
+       "start": 1.714,
+       "end": 2.169
+      },
+      {
+       "w": "with",
+       "start": 2.169,
+       "end": 2.472
+      },
+      {
+       "w": "how",
+       "start": 2.472,
+       "end": 2.699
+      },
+      {
+       "w": "we",
+       "start": 2.699,
+       "end": 2.851
+      },
+      {
+       "w": "see",
+       "start": 2.851,
+       "end": 3.078
+      },
+      {
+       "w": "this",
+       "start": 3.078,
+       "end": 3.382
+      },
+      {
+       "w": "world.",
+       "start": 3.382,
+       "end": 3.988
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s04.wav",
+   "duration": 11.655,
+   "sentences": [
+    {
+     "text": "In the Biblical view, coming to earth is a punishment and a curse.",
+     "start": 0.3,
+     "end": 4.046,
+     "words": [
+      {
+       "w": "In",
+       "start": 0.35,
+       "end": 0.472
+      },
+      {
+       "w": "the",
+       "start": 0.472,
+       "end": 0.654
+      },
+      {
+       "w": "Biblical",
+       "start": 0.654,
+       "end": 1.14
+      },
+      {
+       "w": "view,",
+       "start": 1.14,
+       "end": 1.565
+      },
+      {
+       "w": "coming",
+       "start": 1.565,
+       "end": 1.93
+      },
+      {
+       "w": "to",
+       "start": 1.93,
+       "end": 2.051
+      },
+      {
+       "w": "earth",
+       "start": 2.051,
+       "end": 2.355
+      },
+      {
+       "w": "is",
+       "start": 2.355,
+       "end": 2.477
+      },
+      {
+       "w": "a",
+       "start": 2.477,
+       "end": 2.598
+      },
+      {
+       "w": "punishment",
+       "start": 2.598,
+       "end": 3.206
+      },
+      {
+       "w": "and",
+       "start": 3.206,
+       "end": 3.388
+      },
+      {
+       "w": "a",
+       "start": 3.388,
+       "end": 3.51
+      },
+      {
+       "w": "curse.",
+       "start": 3.51,
+       "end": 3.996
+      }
+     ]
+    },
+    {
+     "text": "Hard labour, disease and agriculture are the results of that curse.",
+     "start": 4.426,
+     "end": 8.488,
+     "words": [
+      {
+       "w": "Hard",
+       "start": 4.476,
+       "end": 4.736
+      },
+      {
+       "w": "labour,",
+       "start": 4.736,
+       "end": 5.32
+      },
+      {
+       "w": "disease",
+       "start": 5.32,
+       "end": 5.775
+      },
+      {
+       "w": "and",
+       "start": 5.775,
+       "end": 5.97
+      },
+      {
+       "w": "agriculture",
+       "start": 5.97,
+       "end": 6.684
+      },
+      {
+       "w": "are",
+       "start": 6.684,
+       "end": 6.879
+      },
+      {
+       "w": "the",
+       "start": 6.879,
+       "end": 7.074
+      },
+      {
+       "w": "results",
+       "start": 7.074,
+       "end": 7.529
+      },
+      {
+       "w": "of",
+       "start": 7.529,
+       "end": 7.659
+      },
+      {
+       "w": "that",
+       "start": 7.659,
+       "end": 7.919
+      },
+      {
+       "w": "curse.",
+       "start": 7.919,
+       "end": 8.438
+      }
+     ]
+    },
+    {
+     "text": "And man is a prisoner in this world.",
+     "start": 8.868,
+     "end": 11.105,
+     "words": [
+      {
+       "w": "And",
+       "start": 8.918,
+       "end": 9.119
+      },
+      {
+       "w": "man",
+       "start": 9.119,
+       "end": 9.319
+      },
+      {
+       "w": "is",
+       "start": 9.319,
+       "end": 9.452
+      },
+      {
+       "w": "a",
+       "start": 9.452,
+       "end": 9.586
+      },
+      {
+       "w": "prisoner",
+       "start": 9.586,
+       "end": 10.12
+      },
+      {
+       "w": "in",
+       "start": 10.12,
+       "end": 10.254
+      },
+      {
+       "w": "this",
+       "start": 10.254,
+       "end": 10.521
+      },
+      {
+       "w": "world.",
+       "start": 10.521,
+       "end": 11.055
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s05.wav",
+   "duration": 13.92,
+   "sentences": [
+    {
+     "text": "In the Quranic view, being sent to earth is not a curse. It is a provision from Allah.",
+     "start": 0.3,
+     "end": 5.365,
+     "words": [
+      {
+       "w": "In",
+       "start": 0.35,
+       "end": 0.479
+      },
+      {
+       "w": "the",
+       "start": 0.479,
+       "end": 0.672
+      },
+      {
+       "w": "Quranic",
+       "start": 0.672,
+       "end": 1.124
+      },
+      {
+       "w": "view,",
+       "start": 1.124,
+       "end": 1.575
+      },
+      {
+       "w": "being",
+       "start": 1.575,
+       "end": 1.898
+      },
+      {
+       "w": "sent",
+       "start": 1.898,
+       "end": 2.155
+      },
+      {
+       "w": "to",
+       "start": 2.155,
+       "end": 2.284
+      },
+      {
+       "w": "earth",
+       "start": 2.284,
+       "end": 2.607
+      },
+      {
+       "w": "is",
+       "start": 2.607,
+       "end": 2.736
+      },
+      {
+       "w": "not",
+       "start": 2.736,
+       "end": 2.929
+      },
+      {
+       "w": "a",
+       "start": 2.929,
+       "end": 3.058
+      },
+      {
+       "w": "curse.",
+       "start": 3.058,
+       "end": 3.574
+      },
+      {
+       "w": "It",
+       "start": 3.574,
+       "end": 3.703
+      },
+      {
+       "w": "is",
+       "start": 3.703,
+       "end": 3.832
+      },
+      {
+       "w": "a",
+       "start": 3.832,
+       "end": 3.961
+      },
+      {
+       "w": "provision",
+       "start": 3.961,
+       "end": 4.541
+      },
+      {
+       "w": "from",
+       "start": 4.541,
+       "end": 4.799
+      },
+      {
+       "w": "Allah.",
+       "start": 4.799,
+       "end": 5.315
+      }
+     ]
+    },
+    {
+     "text": "The earth holds abundant resources and blessings for humans.",
+     "start": 5.745,
+     "end": 9.376,
+     "words": [
+      {
+       "w": "The",
+       "start": 5.795,
+       "end": 5.991
+      },
+      {
+       "w": "earth",
+       "start": 5.991,
+       "end": 6.318
+      },
+      {
+       "w": "holds",
+       "start": 6.318,
+       "end": 6.645
+      },
+      {
+       "w": "abundant",
+       "start": 6.645,
+       "end": 7.168
+      },
+      {
+       "w": "resources",
+       "start": 7.168,
+       "end": 7.757
+      },
+      {
+       "w": "and",
+       "start": 7.757,
+       "end": 7.953
+      },
+      {
+       "w": "blessings",
+       "start": 7.953,
+       "end": 8.541
+      },
+      {
+       "w": "for",
+       "start": 8.541,
+       "end": 8.738
+      },
+      {
+       "w": "humans.",
+       "start": 8.738,
+       "end": 9.326
+      }
+     ]
+    },
+    {
+     "text": "And our purpose here is gratitude, and using these blessings.",
+     "start": 9.756,
+     "end": 13.37,
+     "words": [
+      {
+       "w": "And",
+       "start": 9.806,
+       "end": 9.994
+      },
+      {
+       "w": "our",
+       "start": 9.994,
+       "end": 10.183
+      },
+      {
+       "w": "purpose",
+       "start": 10.183,
+       "end": 10.622
+      },
+      {
+       "w": "here",
+       "start": 10.622,
+       "end": 10.873
+      },
+      {
+       "w": "is",
+       "start": 10.873,
+       "end": 10.998
+      },
+      {
+       "w": "gratitude,",
+       "start": 10.998,
+       "end": 11.752
+      },
+      {
+       "w": "and",
+       "start": 11.752,
+       "end": 11.94
+      },
+      {
+       "w": "using",
+       "start": 11.94,
+       "end": 12.254
+      },
+      {
+       "w": "these",
+       "start": 12.254,
+       "end": 12.567
+      },
+      {
+       "w": "blessings.",
+       "start": 12.567,
+       "end": 13.32
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s06.wav",
+   "duration": 7.914,
+   "sentences": [
+    {
+     "text": "When Adam was sent down, the Quran says: and for you on the earth is a place of settlement, and provision for a time.",
+     "start": 0.3,
+     "end": 7.364,
+     "words": [
+      {
+       "w": "When",
+       "start": 0.35,
+       "end": 0.618
+      },
+      {
+       "w": "Adam",
+       "start": 0.618,
+       "end": 0.886
+      },
+      {
+       "w": "was",
+       "start": 0.886,
+       "end": 1.087
+      },
+      {
+       "w": "sent",
+       "start": 1.087,
+       "end": 1.354
+      },
+      {
+       "w": "down,",
+       "start": 1.354,
+       "end": 1.823
+      },
+      {
+       "w": "the",
+       "start": 1.823,
+       "end": 2.024
+      },
+      {
+       "w": "Quran",
+       "start": 2.024,
+       "end": 2.359
+      },
+      {
+       "w": "says:",
+       "start": 2.359,
+       "end": 2.828
+      },
+      {
+       "w": "and",
+       "start": 2.828,
+       "end": 3.028
+      },
+      {
+       "w": "for",
+       "start": 3.028,
+       "end": 3.229
+      },
+      {
+       "w": "you",
+       "start": 3.229,
+       "end": 3.43
+      },
+      {
+       "w": "on",
+       "start": 3.43,
+       "end": 3.564
+      },
+      {
+       "w": "the",
+       "start": 3.564,
+       "end": 3.765
+      },
+      {
+       "w": "earth",
+       "start": 3.765,
+       "end": 4.1
+      },
+      {
+       "w": "is",
+       "start": 4.1,
+       "end": 4.234
+      },
+      {
+       "w": "a",
+       "start": 4.234,
+       "end": 4.368
+      },
+      {
+       "w": "place",
+       "start": 4.368,
+       "end": 4.702
+      },
+      {
+       "w": "of",
+       "start": 4.702,
+       "end": 4.836
+      },
+      {
+       "w": "settlement,",
+       "start": 4.836,
+       "end": 5.707
+      },
+      {
+       "w": "and",
+       "start": 5.707,
+       "end": 5.908
+      },
+      {
+       "w": "provision",
+       "start": 5.908,
+       "end": 6.51
+      },
+      {
+       "w": "for",
+       "start": 6.51,
+       "end": 6.711
+      },
+      {
+       "w": "a",
+       "start": 6.711,
+       "end": 6.845
+      },
+      {
+       "w": "time.",
+       "start": 6.845,
+       "end": 7.314
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s07.wav",
+   "duration": 7.625,
+   "sentences": [
+    {
+     "text": "We have established you upon the earth, and made for you therein ways of livelihood.",
+     "start": 0.3,
+     "end": 5.118,
+     "words": [
+      {
+       "w": "We",
+       "start": 0.35,
+       "end": 0.478
+      },
+      {
+       "w": "have",
+       "start": 0.478,
+       "end": 0.733
+      },
+      {
+       "w": "established",
+       "start": 0.733,
+       "end": 1.434
+      },
+      {
+       "w": "you",
+       "start": 1.434,
+       "end": 1.625
+      },
+      {
+       "w": "upon",
+       "start": 1.625,
+       "end": 1.88
+      },
+      {
+       "w": "the",
+       "start": 1.88,
+       "end": 2.072
+      },
+      {
+       "w": "earth,",
+       "start": 2.072,
+       "end": 2.582
+      },
+      {
+       "w": "and",
+       "start": 2.582,
+       "end": 2.773
+      },
+      {
+       "w": "made",
+       "start": 2.773,
+       "end": 3.028
+      },
+      {
+       "w": "for",
+       "start": 3.028,
+       "end": 3.219
+      },
+      {
+       "w": "you",
+       "start": 3.219,
+       "end": 3.411
+      },
+      {
+       "w": "therein",
+       "start": 3.411,
+       "end": 3.857
+      },
+      {
+       "w": "ways",
+       "start": 3.857,
+       "end": 4.112
+      },
+      {
+       "w": "of",
+       "start": 4.112,
+       "end": 4.24
+      },
+      {
+       "w": "livelihood.",
+       "start": 4.24,
+       "end": 5.068
+      }
+     ]
+    },
+    {
+     "text": "Little are you grateful.",
+     "start": 5.498,
+     "end": 7.075,
+     "words": [
+      {
+       "w": "Little",
+       "start": 5.548,
+       "end": 5.934
+      },
+      {
+       "w": "are",
+       "start": 5.934,
+       "end": 6.126
+      },
+      {
+       "w": "you",
+       "start": 6.126,
+       "end": 6.319
+      },
+      {
+       "w": "grateful.",
+       "start": 6.319,
+       "end": 7.025
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s08.wav",
+   "duration": 5.638,
+   "sentences": [
+    {
+     "text": "And Allah told the angels: indeed, I will make upon the earth a khalifah.",
+     "start": 0.3,
+     "end": 5.088,
+     "words": [
+      {
+       "w": "And",
+       "start": 0.35,
+       "end": 0.557
+      },
+      {
+       "w": "Allah",
+       "start": 0.557,
+       "end": 0.901
+      },
+      {
+       "w": "told",
+       "start": 0.901,
+       "end": 1.177
+      },
+      {
+       "w": "the",
+       "start": 1.177,
+       "end": 1.384
+      },
+      {
+       "w": "angels:",
+       "start": 1.384,
+       "end": 2.004
+      },
+      {
+       "w": "indeed,",
+       "start": 2.004,
+       "end": 2.625
+      },
+      {
+       "w": "I",
+       "start": 2.625,
+       "end": 2.763
+      },
+      {
+       "w": "will",
+       "start": 2.763,
+       "end": 3.038
+      },
+      {
+       "w": "make",
+       "start": 3.038,
+       "end": 3.314
+      },
+      {
+       "w": "upon",
+       "start": 3.314,
+       "end": 3.59
+      },
+      {
+       "w": "the",
+       "start": 3.59,
+       "end": 3.797
+      },
+      {
+       "w": "earth",
+       "start": 3.797,
+       "end": 4.141
+      },
+      {
+       "w": "a",
+       "start": 4.141,
+       "end": 4.279
+      },
+      {
+       "w": "khalifah.",
+       "start": 4.279,
+       "end": 5.038
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s09.wav",
+   "duration": 6.45,
+   "sentences": [
+    {
+     "text": "So developing the world economically, and succeeding in it, is part of being a khalifah on earth.",
+     "start": 0.3,
+     "end": 5.9,
+     "words": [
+      {
+       "w": "So",
+       "start": 0.35,
+       "end": 0.475
+      },
+      {
+       "w": "developing",
+       "start": 0.475,
+       "end": 1.1
+      },
+      {
+       "w": "the",
+       "start": 1.1,
+       "end": 1.288
+      },
+      {
+       "w": "world",
+       "start": 1.288,
+       "end": 1.6
+      },
+      {
+       "w": "economically,",
+       "start": 1.6,
+       "end": 2.538
+      },
+      {
+       "w": "and",
+       "start": 2.538,
+       "end": 2.725
+      },
+      {
+       "w": "succeeding",
+       "start": 2.725,
+       "end": 3.35
+      },
+      {
+       "w": "in",
+       "start": 3.35,
+       "end": 3.475
+      },
+      {
+       "w": "it,",
+       "start": 3.475,
+       "end": 3.788
+      },
+      {
+       "w": "is",
+       "start": 3.788,
+       "end": 3.913
+      },
+      {
+       "w": "part",
+       "start": 3.913,
+       "end": 4.163
+      },
+      {
+       "w": "of",
+       "start": 4.163,
+       "end": 4.288
+      },
+      {
+       "w": "being",
+       "start": 4.288,
+       "end": 4.6
+      },
+      {
+       "w": "a",
+       "start": 4.6,
+       "end": 4.725
+      },
+      {
+       "w": "khalifah",
+       "start": 4.725,
+       "end": 5.225
+      },
+      {
+       "w": "on",
+       "start": 5.225,
+       "end": 5.35
+      },
+      {
+       "w": "earth.",
+       "start": 5.35,
+       "end": 5.85
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi02/s10.wav",
+   "duration": 5.232,
+   "sentences": [
+    {
+     "text": "Next episode: a prayer in a barren valley. Follow for episode three.",
+     "start": 0.3,
+     "end": 4.682,
+     "words": [
+      {
+       "w": "Next",
+       "start": 0.35,
+       "end": 0.614
+      },
+      {
+       "w": "episode:",
+       "start": 0.614,
+       "end": 1.272
+      },
+      {
+       "w": "a",
+       "start": 1.272,
+       "end": 1.404
+      },
+      {
+       "w": "prayer",
+       "start": 1.404,
+       "end": 1.799
+      },
+      {
+       "w": "in",
+       "start": 1.799,
+       "end": 1.931
+      },
+      {
+       "w": "a",
+       "start": 1.931,
+       "end": 2.063
+      },
+      {
+       "w": "barren",
+       "start": 2.063,
+       "end": 2.458
+      },
+      {
+       "w": "valley.",
+       "start": 2.458,
+       "end": 3.051
+      },
+      {
+       "w": "Follow",
+       "start": 3.051,
+       "end": 3.446
+      },
+      {
+       "w": "for",
+       "start": 3.446,
+       "end": 3.644
+      },
+      {
+       "w": "episode",
+       "start": 3.644,
+       "end": 4.105
+      },
+      {
+       "w": "three.",
+       "start": 4.105,
+       "end": 4.632
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

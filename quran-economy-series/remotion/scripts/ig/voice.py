@@ -25,7 +25,7 @@ SAY = {
     r"\bQur'an\b": 'Kuraan', r'\bQuran\b': 'Kuraan', r"\bQuran's\b": "Kuraan's", r"\bQur'anic\b": 'Kuraanic', r'\bQuranic\b': 'Kuraanic',
     r"\bAl-Jumu'ah\b": 'al Joomooah', r"\bJumu'ah\b": 'Joomooah', r'\bSurah\b': 'Soorah',
     r'\btafsir\b': 'tafseer', r'\bBukhari\b': 'Bukhaari', r'\bHira\b': 'Heeraa', r'\bdunya\b': 'doonyaa',
-    r'\bdeen\b': 'deen', r'\bfiqh\b': 'fick', r'\brizq\b': 'rizk', r'\bNouman\b': 'Noamaan', r'\bSahih\b': 'Saheeh', r'\bAl-A\'raf\b': 'al Araaf',
+    r'\bdeen\b': 'deen', r'\bfiqh\b': 'fick', r'\bkhalifah\b': 'khaleefah', r'\bAdam\b': 'Aadam', r'\brizq\b': 'rizk', r'\bNouman\b': 'Noamaan', r'\bSahih\b': 'Saheeh', r'\bAl-A\'raf\b': 'al Araaf',
 }
 
 def spoken(text):

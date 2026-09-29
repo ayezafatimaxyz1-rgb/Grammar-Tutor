@@ -465,6 +465,57 @@ export const Statement: React.FC = () => {
   );
 };
 
+
+// ---------------------------------------------------------------- list (a view, point by point)
+const Bars: React.FC<{draw: number; c: string}> = ({draw, c}) => (
+  <svg width={240} height={220} viewBox="-120 -110 240 220">
+    <path d="M -100 -95 H 100 M -100 95 H 100" fill="none" stroke={c} strokeWidth={5} strokeLinecap="round" strokeDasharray={420} strokeDashoffset={420 * (1 - draw)} />
+    {[-70, -35, 0, 35, 70].map((x) => <line key={x} x1={x} y1={-95} x2={x} y2={95} stroke={c} strokeWidth={5} strokeLinecap="round" strokeDasharray={200} strokeDashoffset={200 * (1 - draw)} />)}
+  </svg>
+);
+const Seed: React.FC<{draw: number; c: string}> = ({draw, c}) => (
+  <svg width={240} height={220} viewBox="-120 -110 240 220">
+    <path d="M -110 90 H 110 M 0 90 V 0 M 0 40 C -20 0 -70 -5 -80 15 C -60 45 -20 45 0 40 M 0 0 C 15 -45 65 -55 80 -35 C 65 -5 20 0 0 0" fill="none" stroke={c} strokeWidth={4.5} strokeLinecap="round" strokeLinejoin="round" strokeDasharray={900} strokeDashoffset={900 * (1 - draw)} />
+    {[-60, -30, 0, 30, 60].map((a, i) => <line key={i} x1={Math.sin(a * Math.PI / 180) * 70} y1={-40 - Math.cos(a * Math.PI / 180) * 70} x2={Math.sin(a * Math.PI / 180) * 88} y2={-40 - Math.cos(a * Math.PI / 180) * 88} stroke={C.gold} strokeWidth={4} strokeLinecap="round" opacity={draw} />)}
+  </svg>
+);
+export const List: React.FC = () => {
+  const f = useCurrentFrame();
+  const cue = useCue();
+  const {scene} = useScene();
+  const p = scene.props;
+  const muted = p.tone === 'muted';
+  const accent = muted ? C.inkSoft : C.gold;
+  const items = p.items as {text: string; at: number}[];
+  const draw = progress(f, 2, 40);
+  return (
+    <AbsoluteFill>
+      {muted ? <AbsoluteFill style={{background: 'rgba(43,33,24,0.07)'}} /> : null}
+      <div style={{position: 'absolute', top: 250, width: 1080, display: 'flex', justifyContent: 'center', opacity: progress(f, 2, 12)}}>
+        {p.icon === 'bars' ? <Bars draw={draw} c={accent} /> : <Seed draw={draw} c={C.ink} />}
+      </div>
+      <div style={{position: 'absolute', top: 500, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 90, color: muted ? C.inkSoft : C.sepia, ...rise(f, 6)}}>
+        {p.kicker}
+      </div>
+      <div style={{position: 'absolute', top: 650, left: 100, width: 880, display: 'flex', flexDirection: 'column', gap: 38}}>
+        {items.map((it, i) => {
+          const at = cue(it.at, 4);
+          return (
+            <div key={i} style={{display: 'flex', gap: 26, alignItems: 'flex-start', ...rise(f, at, 24, 16)}}>
+              <svg width={34} height={34} style={{flex: 'none', marginTop: 16}}>
+                <path d="M 17 2 L 21 13 L 32 17 L 21 21 L 17 32 L 13 21 L 2 17 L 13 13 Z" fill={accent} />
+              </svg>
+              <div style={{fontFamily: FE.display, fontWeight: 600, fontSize: 56, lineHeight: 1.12, color: C.ink}}>{it.text}</div>
+              <Sfx name="tick" at={at} volume={0.55} />
+            </div>
+          );
+        })}
+      </div>
+      <Sfx name="paper" at={2} volume={0.4} />
+    </AbsoluteFill>
+  );
+};
+
 // ---------------------------------------------------------------- outro
 export const Outro: React.FC = () => {
   const f = useCurrentFrame();
@@ -495,6 +546,7 @@ export const TEMPLATES: Record<string, TemplateDef> = {
   legend: {C: Legend, bg: 'paper', headerDark: false, sourceDark: false},
   split: {C: Split, bg: 'none', headerDark: false, sourceDark: false},
   statement: {C: Statement, bg: 'paper', headerDark: false, sourceDark: false},
+  list: {C: List, bg: 'paper', headerDark: false, sourceDark: false},
   ayah: {C: Ayah, bg: 'paper', headerDark: false, sourceDark: false},
   quote: {C: Quote, bg: 'paper', headerDark: false, sourceDark: false},
   lens: {C: Lens, bg: 'paper', headerDark: false, sourceDark: false},
