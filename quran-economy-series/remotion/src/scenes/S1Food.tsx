@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate} from 'remotion';
+import {useSceneFrame} from '../components/sceneTime';
 import {Paper} from '../components/Backdrop';
 import {progress} from '../components/motion';
 import {SceneChrome} from '../components/Scene';
@@ -34,7 +35,7 @@ const Plate: React.FC<{draw: number}> = ({draw}) => {
 };
 
 export const S1Food: React.FC<{subtitles: boolean}> = ({subtitles}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const spec = SCENES.food;
   const lift = progress(f, 4.4 * FPS, 26);
   const plateY = interpolate(lift, [0, 1], [0, -150]);

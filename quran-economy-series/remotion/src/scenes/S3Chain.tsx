@@ -1,5 +1,6 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate} from 'remotion';
+import {useSceneFrame} from '../components/sceneTime';
 import {Navy, Paper} from '../components/Backdrop';
 import {inOut, progress} from '../components/motion';
 import {SceneChrome} from '../components/Scene';
@@ -85,7 +86,7 @@ const Flow: React.FC<{y: number; color: string; dir: 1 | -1; t: number; opacity:
 };
 
 export const S3Chain: React.FC<{subtitles: boolean}> = ({subtitles}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const spec = SCENES.chain;
   const split = progress(f, T_SPLIT, 24);
   // navy reveal sweeps from the split line to the left edge, with a feathered edge

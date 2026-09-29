@@ -1,5 +1,6 @@
 import React from 'react';
-import {interpolate, useCurrentFrame} from 'remotion';
+import {interpolate} from 'remotion';
+import {useSceneFrame} from '../components/sceneTime';
 import {Paper} from '../components/Backdrop';
 import {progress} from '../components/motion';
 import {SceneChrome} from '../components/Scene';
@@ -9,7 +10,7 @@ import {C, F} from '../theme';
 import {uthmani} from '../components/uthmani';
 
 export const S5Close: React.FC<{subtitles: boolean}> = ({subtitles}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const spec = SCENES.close;
   const rings = progress(f, 0.4 * FPS, 50);
   const fill = progress(f, 7.6 * FPS, 24);

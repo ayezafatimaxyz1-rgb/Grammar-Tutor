@@ -4,10 +4,11 @@ import {BADGE_LABELS, BadgeKind, NarrationLine, FPS, TEXT} from '../data/pilot';
 import {BADGE_COLORS, C, F} from '../theme';
 import {inOut, progress} from './motion';
 import {isolateNumbers} from './bidi';
+import {useSceneFrame} from './sceneTime';
 
 /** Classification badges, top right (reading start for Urdu). */
 export const Badges: React.FC<{kinds: BadgeKind[]; start?: number}> = ({kinds, start = 10}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   return (
     <div dir="rtl" style={{position: 'absolute', top: 92, right: 110, display: 'flex', gap: 14}}>
       {kinds.map((k, i) => {
@@ -31,7 +32,7 @@ export const Badges: React.FC<{kinds: BadgeKind[]; start?: number}> = ({kinds, s
 
 /** Source strip, bottom left. */
 export const SourceStrip: React.FC<{text: string; dark?: boolean}> = ({text, dark}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   return (
     <div
       dir="rtl"

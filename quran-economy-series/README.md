@@ -11,7 +11,8 @@ Research, scripts and an editable Remotion animation project for an eight-part U
 | `docs/03-pilot.md` | The 83.6 s pilot on رزق as built, with its narration and open items. |
 | `docs/coverage.py` | `python3 docs/coverage.py` checks that every inventory point is covered by at least one scene. |
 | `remotion/` | Editable Remotion 4 project for the pilot. |
-| `remotion/out/rizq-pilot-preview.mp4` | Rendered preview (subtitled narration, no voice-over yet). |
+| `remotion/out/rizq-pilot-voice.mp4` | Rendered pilot with Urdu voice-over and subtitles (94 s). |
+| `remotion/out/rizq-pilot-preview.mp4` | Earlier silent, subtitled preview (84 s). |
 
 ## Working on the animation
 
@@ -26,9 +27,7 @@ python3 scripts/check_glyphs.py   # every on-screen character exists in its font
 
 * **Change words, timing or sources:** `src/data/pilot.ts` only. Scene files handle layout and motion.
 * **Colours and fonts:** `src/theme.ts`. Qur'anic text: *Scheherazade New*. Urdu: *Noto Nastaliq Urdu*. Numerals: *Amiri*.
-* **Voice-over:** put the file at `public/vo/pilot.mp3` and render with
-  `npx remotion render RizqPilot out/rizq-pilot.mp4 --props='{"subtitles":false,"voiceover":"vo/pilot.mp3"}'`,
-  then retime the `narration` entries in `pilot.ts` to match the recording.
+* **Voice-over:** one clip per scene in `public/vo/` (s1 to s5). Each scene's `narration` holds the measured sentence times; `designFrom` holds the times the animation was built against, and `src/components/sceneTime.tsx` remaps motion so it stays on the spoken sentence. Render without voice or subtitles with `--props='{"voice":false,"subtitles":false}'`.
 * The config points Remotion at the preinstalled Chromium in this environment; on another machine delete `remotion.config.ts`'s `setBrowserExecutable` line (or set `REMOTION_BROWSER`).
 
 ## Arabic and Urdu rendering notes

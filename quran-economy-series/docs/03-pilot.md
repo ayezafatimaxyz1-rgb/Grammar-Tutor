@@ -1,6 +1,6 @@
 # Part 3: Pilot, "رزق اور اس کی معاشی مثال"
 
-**Length:** 83.6 s (2509 frames at 30 fps), 1920×1080. Built from Episode 3, scenes S1 to S4, with the Quraysh close from E2.S6 as its coda.
+**Length:** 94.3 s (2828 frames at 30 fps), 1920×1080, with Urdu voice-over (ElevenLabs, voice "Zafar", model eleven_multilingual_v2) and Urdu subtitles. The silent subtitled cut was 83.6 s; scenes were lengthened to fit the recorded voice. Built from Episode 3, scenes S1 to S4, with the Quraysh close from E2.S6 as its coda.
 **Project:** `remotion/`. All script text, on-screen words, timings and sources are in `remotion/src/data/pilot.ts`.
 
 ## Scene list (as built)
@@ -33,5 +33,5 @@
 ## Open items before picture lock
 
 1. 🔍 Confirm the "≈ 30% of world wheat exports (2021)" wording against the FAO information note (March/June 2022) and pick the exact figure and year shown on screen.
-2. Record voice-over (see README), place it at `remotion/public/vo/pilot.mp3`, render with `--props='{"subtitles":false,"voiceover":"vo/pilot.mp3"}'`, and retime `narration` in `pilot.ts` to the recording.
+2. ✅ Voice-over recorded (`remotion/public/vo/s1.mp3` to `s5.mp3`). Sentence timings in `pilot.ts` were measured from the pauses in each clip; visual cues are remapped to them by `src/components/sceneTime.tsx`. To replace the voice, drop in new clips and update each scene's `narration` timings.
 3. Scholar review of the Urdu narration and Qur'an translations (Maududi's translation is used verbatim on screen; narration paraphrases are marked as such).

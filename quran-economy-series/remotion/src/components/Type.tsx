@@ -1,5 +1,5 @@
+import {useSceneFrame} from './sceneTime';
 import React from 'react';
-import {useCurrentFrame} from 'remotion';
 import {C, F} from '../theme';
 import {progress} from './motion';
 import {uthmani} from './uthmani';
@@ -11,7 +11,7 @@ type Common = {start?: number; style?: React.CSSProperties};
 export const KineticHeading: React.FC<Common & {text: string; size?: number; color?: string}> = ({
   text, start = 0, size = 64, color = C.ink, style,
 }) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const p = progress(f, start, 18);
   return (
     <div
@@ -30,7 +30,7 @@ export const KineticHeading: React.FC<Common & {text: string; size?: number; col
 export const ArabicReveal: React.FC<Common & {text: string; size?: number; dur?: number; color?: string}> = ({
   text, start = 0, size = 72, dur = 40, color = C.ink, style,
 }) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const p = progress(f, start, dur);
   const edge = 8; // % width of the feathered edge
   const pos = (1 - p) * (100 + edge) - edge;
@@ -54,7 +54,7 @@ export const ArabicReveal: React.FC<Common & {text: string; size?: number; dur?:
 export const UrduLine: React.FC<Common & {text: string; size?: number; color?: string; weight?: number}> = ({
   text, start = 0, size = 40, color = C.inkSoft, weight = 400, style,
 }) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const p = progress(f, start, 16);
   return (
     <div

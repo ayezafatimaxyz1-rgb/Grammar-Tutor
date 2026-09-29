@@ -20,63 +20,82 @@ export type SceneSpec = {
   durationInFrames: number;
   badges: BadgeKind[];
   source: string;
-  narration: NarrationLine[]; // seconds, relative to scene start
+  /** Voice-over clip in /public, played from VO_LEAD seconds into the scene. */
+  voice: string;
+  /** Sentence timings in the recorded voice-over (seconds, scene-relative). Drives subtitles. */
+  narration: NarrationLine[];
+  /** Start time each sentence had when the animation was designed. Visual cues are remapped
+   *  from these to narration[i].from, so motion stays on the spoken sentence. */
+  designFrom: number[];
 };
+
+/** Seconds of silence before each scene's voice-over starts. */
+export const VO_LEAD = 0.4;
 
 export const SCENES = {
   food: {
     id: 'E3.S1',
-    durationInFrames: 9.5 * FPS,
+    durationInFrames: 320,
     badges: ['text'],
+    voice: 'vo/s1.mp3',
+    designFrom: [0.4, 4.8],
     source: 'عبس 80:24 · ترجمہ: مودودی',
     narration: [
-      {from: 0.4, to: 4.6, text: 'ہم دن میں کئی بار کھانا کھاتے ہیں، مگر کم ہی سوچتے ہیں کہ یہ نوالہ ہم تک پہنچا کیسے۔'},
-      {from: 4.8, to: 9.2, text: 'قرآن کہتا ہے: انسان ذرا اپنی خوراک کو دیکھے۔'},
+      {from: 0.4, to: 6.1, text: 'ہم دن میں کئی بار کھانا کھاتے ہیں، مگر کم ہی سوچتے ہیں کہ یہ نوالہ ہم تک پہنچا کیسے۔'},
+      {from: 6.2, to: 9.6, text: 'قرآن کہتا ہے: انسان ذرا اپنی خوراک کو دیکھے۔'},
     ],
   },
   rizq: {
     id: 'E3.S2',
-    durationInFrames: 13 * FPS,
+    durationInFrames: 450,
     badges: ['text', 'tafsir'],
+    voice: 'vo/s2.mp3',
+    designFrom: [0.3, 7.4],
     source: 'ہود 11:6 · لسان العرب (رزق) · ترجمہ: مودودی',
     narration: [
-      {from: 0.3, to: 7.2, text: 'عربی میں رزق ہر اس چیز کو کہتے ہیں جو زندگی قائم رکھنے کے لیے عطا کی جائے: غذا، مال، اور علم و ہدایت بھی۔'},
-      {from: 7.4, to: 12.6, text: 'اور قرآن یاد دلاتا ہے کہ ہر جاندار کا رزق اللہ کے ذمے ہے۔'},
+      {from: 0.4, to: 8.4, text: 'عربی میں رزق ہر اس چیز کو کہتے ہیں جو زندگی قائم رکھنے کے لیے عطا کی جائے: غذا، مال، اور علم و ہدایت بھی۔'},
+      {from: 8.9, to: 13.9, text: 'اور قرآن یاد دلاتا ہے کہ ہر جاندار کا رزق اللہ کے ذمے ہے۔'},
     ],
   },
   chain: {
     id: 'E3.S3',
-    durationInFrames: 25 * FPS,
+    durationInFrames: 867,
     badges: ['text', 'modern'],
+    voice: 'vo/s3.mp3',
+    designFrom: [0.3, 6.5, 11.2, 18.4],
     source: 'عبس 80:25–32 · ق 50:9–11 · آگے کی کڑیاں: عصری اطلاق',
     narration: [
-      {from: 0.3, to: 6.4, text: 'سورۂ عبس اس سفر کی پہلی کڑیاں خود گنواتی ہے: ہم نے خوب پانی برسایا، پھر زمین کو پھاڑا،'},
-      {from: 6.5, to: 11.0, text: 'پھر غلہ، پھل اور چارہ اگایا، تمہارے لیے اور تمہارے مویشیوں کے لیے۔ یہاں تک قرآن کا متن ہے۔'},
-      {from: 11.2, to: 18.2, text: 'آج اس کے آگے پروسیسنگ اور ترسیل کی کڑیاں جڑ گئی ہیں۔ سامان ایک سمت چلتا ہے، اور پیسہ دوسری سمت۔'},
-      {from: 18.4, to: 24.6, text: 'رزق کو "سپلائی چین" کہنا ایک مفید مثال ہے، لفظ کا معنی نہیں۔'},
+      {from: 0.4, to: 8.0, text: 'سورۂ عبس اس سفر کی پہلی کڑیاں خود گنواتی ہے: ہم نے خوب پانی برسایا، پھر زمین کو پھاڑا،'},
+      {from: 8.3, to: 14.4, text: 'پھر غلہ، پھل اور چارہ اگایا، تمہارے لیے اور تمہارے مویشیوں کے لیے۔ یہاں تک قرآن کا متن ہے۔'},
+      {from: 14.8, to: 22.1, text: 'آج اس کے آگے پروسیسنگ اور ترسیل کی کڑیاں جڑ گئی ہیں۔ سامان ایک سمت چلتا ہے، اور پیسہ دوسری سمت۔'},
+      {from: 22.5, to: 27.8, text: 'رزق کو "سپلائی چین" کہنا ایک مفید مثال ہے، لفظ کا معنی نہیں۔'},
     ],
   },
   map: {
     id: 'E3.S4',
-    durationInFrames: 21 * FPS,
+    durationInFrames: 704,
     badges: ['claim'],
+    voice: 'vo/s4.mp3',
+    designFrom: [0.3, 5.6, 12.5, 16.6],
     source: 'FAO Information Note (2022) · IFPRI (2022) · نقشہ: Natural Earth',
     narration: [
-      {from: 0.3, to: 5.4, text: 'کہا جاتا ہے کہ جو غذا کی زنجیر پر قابو رکھے، وہ دوسری قوموں پر غالب آتا ہے۔'},
-      {from: 5.6, to: 12.4, text: 'جنگ سے پہلے روس اور یوکرین مل کر دنیا کی تقریباً تیس فیصد گندم برآمد کرتے تھے،'},
-      {from: 12.5, to: 16.4, text: 'اور 2022 کی جنگ نے عالمی غذائی قیمتیں ریکارڈ سطح پر پہنچا دیں۔'},
-      {from: 16.6, to: 20.7, text: 'یہ غلبہ نہیں، مگر اثر و رسوخ ضرور ہے۔'},
+      {from: 0.4, to: 6.3, text: 'کہا جاتا ہے کہ جو غذا کی زنجیر پر قابو رکھے، وہ دوسری قوموں پر غالب آتا ہے۔'},
+      {from: 6.6, to: 12.9, text: 'جنگ سے پہلے روس اور یوکرین مل کر دنیا کی تقریباً تیس فیصد گندم برآمد کرتے تھے،'},
+      {from: 13.2, to: 18.6, text: 'اور 2022 کی جنگ نے عالمی غذائی قیمتیں ریکارڈ سطح پر پہنچا دیں۔'},
+      {from: 18.9, to: 22.4, text: 'یہ غلبہ نہیں، مگر اثر و رسوخ ضرور ہے۔'},
     ],
   },
   close: {
     id: 'E3.S4b',
-    durationInFrames: 17 * FPS,
+    durationInFrames: 543,
     badges: ['text'],
+    voice: 'vo/s5.mp3',
+    designFrom: [0.3, 4.1, 10.4],
     source: 'قریش 106:3–4 · ترجمہ: مودودی',
     narration: [
-      {from: 0.3, to: 4.0, text: 'شاید اسی لیے قرآن نے قریش کو یاد دلایا:'},
-      {from: 4.1, to: 10.2, text: 'اس رب کی عبادت کرو جس نے انہیں بھوک سے بچا کر کھانا دیا، اور خوف سے بچا کر امن دیا۔'},
-      {from: 10.4, to: 13.6, text: 'رزق اور امن، ساتھ ساتھ۔'},
+      {from: 0.4, to: 4.1, text: 'شاید اسی لیے قرآن نے قریش کو یاد دلایا:'},
+      {from: 4.2, to: 11.4, text: 'اس رب کی عبادت کرو جس نے انہیں بھوک سے بچا کر کھانا دیا، اور خوف سے بچا کر امن دیا۔'},
+      {from: 11.9, to: 14.6, text: 'رزق اور امن، ساتھ ساتھ۔'},
     ],
   },
 } satisfies Record<string, SceneSpec>;

@@ -4,7 +4,8 @@ import {feature} from 'topojson-client';
 import type {FeatureCollection, Geometry} from 'geojson';
 import type {Topology} from 'topojson-specification';
 import world from 'world-atlas/countries-50m.json';
-import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
+import {AbsoluteFill, interpolate} from 'remotion';
+import {useSceneFrame} from '../components/sceneTime';
 import {Navy} from '../components/Backdrop';
 import {inOut, progress} from '../components/motion';
 import {SceneChrome} from '../components/Scene';
@@ -37,7 +38,7 @@ const MAP_BOX: [[number, number], [number, number]] = [[640, 190], [1790, 880]];
 const countries = feature(world as unknown as Topology, (world as any).objects.countries) as unknown as FeatureCollection<Geometry, {name: string}>;
 
 export const S4Map: React.FC<{subtitles: boolean}> = ({subtitles}) => {
-  const f = useCurrentFrame();
+  const f = useSceneFrame();
   const spec = SCENES.map;
 
   const {path, project, shapes, graticule} = useMemo(() => {
