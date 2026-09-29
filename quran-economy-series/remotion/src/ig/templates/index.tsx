@@ -1,6 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill, Audio, Sequence, interpolate, staticFile, useCurrentFrame} from 'remotion';
-import {geoDistance, geoEqualEarth, geoGraticule10, geoInterpolate, geoOrthographic, geoPath} from 'd3-geo';
+import {geoConicConformal, geoDistance, geoEqualEarth, geoGraticule10, geoInterpolate, geoOrthographic, geoPath} from 'd3-geo';
+import world50 from 'world-atlas/countries-50m.json';
 import {feature} from 'topojson-client';
 import type {FeatureCollection, Geometry} from 'geojson';
 import world from 'world-atlas/countries-110m.json';
@@ -11,6 +12,7 @@ import {BADGE_COLORS, BADGE_TEXT, BadgeKind, C, FE, FPS, SAFE} from '../theme';
 import {useCue, useScene} from '../sceneContext';
 import {ICONS} from '../Icons';
 
+const countries50 = feature(world50 as any, (world50 as any).objects.countries) as unknown as FeatureCollection<Geometry>;
 const countries = feature(world as any, (world as any).objects.countries) as unknown as FeatureCollection<Geometry>;
 
 /** Plays a sound effect at a scene-relative frame. */
@@ -351,7 +353,7 @@ const Row: React.FC<{said: string; fix: string; at: number; top: number}> = ({sa
         <span style={{position: 'absolute', left: 0, top: '52%', height: 5, width: `${strike * 100}%`, background: C.coral}} />
       </div>
       <div style={{marginTop: 22, fontFamily: FE.sans, fontWeight: 800, fontSize: 24, letterSpacing: 4, color: C.teal, ...rise(f, at + 8, 10)}}>ACCURATE</div>
-      <div style={{marginTop: 8, fontFamily: FE.display, fontWeight: 700, fontSize: 58, lineHeight: 1.1, color: C.ink, ...rise(f, at + 12, 14)}}>✓ {fix}</div>
+      <div style={{marginTop: 8, fontFamily: FE.display, fontWeight: 700, fontSize: 50, lineHeight: 1.1, color: C.ink, ...rise(f, at + 12, 14)}}>✓ {fix}</div>
       <Sfx name="strike" at={at} volume={0.6} />
     </div>
   );
@@ -516,6 +518,104 @@ export const List: React.FC = () => {
   );
 };
 
+
+// ---------------------------------------------------------------- venn
+export const Venn: React.FC = () => {
+  const f = useCurrentFrame();
+  const cue = useCue();
+  const {scene} = useScene();
+  const p = scene.props;
+  const merge = progress(f, 10, 36);
+  const gap = interpolate(merge, [0, 1], [240, 120]);
+  const r = 230, cy = 820, circ = 2 * Math.PI * r;
+  const draw = progress(f, 0, 34);
+  const mid = progress(f, cue(p.centerAt), 16);
+  return (
+    <AbsoluteFill>
+      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+        {[-1, 1].map((side) => (
+          <circle key={side} cx={540 + side * gap} cy={cy} r={r} fill={`rgba(184,137,45,${0.08 + 0.06 * mid})`} stroke={C.gold} strokeWidth={4}
+            strokeDasharray={circ} strokeDashoffset={circ * (1 - draw)} transform={`rotate(${side * 90} ${540 + side * gap} ${cy})`} />
+        ))}
+      </svg>
+      {[p.left, p.right].map((t: string, i: number) => (
+        <div key={t} style={{position: 'absolute', top: cy - 44, left: 540 + (i ? 1 : -1) * (gap + 118) - 150, width: 300, textAlign: 'center',
+          fontFamily: FE.display, fontWeight: 700, fontSize: 50, color: C.ink, ...rise(f, 14 + i * 6)}}>{t}</div>
+      ))}
+      <div style={{position: 'absolute', top: cy + 280, width: 1080, display: 'flex', justifyContent: 'center', ...rise(f, cue(p.centerAt), 16)}}>
+        <div style={{fontFamily: FE.display, fontStyle: 'italic', fontWeight: 700, fontSize: 80, color: C.sepia}}>{p.center}</div>
+      </div>
+      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, opacity: mid}}>
+        <path d={`M 540 ${cy + 60} V ${cy + 250}`} stroke={C.sepia} strokeWidth={3} strokeDasharray="6 8" />
+        <circle cx={540} cy={cy} r={16} fill={C.sepia} />
+      </svg>
+      <Sfx name="swish" at={10} volume={0.4} />
+      <Sfx name="hit" at={cue(p.centerAt)} volume={0.4} />
+    </AbsoluteFill>
+  );
+};
+
+// ---------------------------------------------------------------- map (trade routes, paper and gold)
+export const RouteMap: React.FC = () => {
+  const f = useCurrentFrame();
+  const cue = useCue();
+  const {scene} = useScene();
+  const p = scene.props;
+  const {land, project} = useMemo(() => {  // eslint-disable-line
+    const proj = geoConicConformal().parallels([15, 40]).rotate([-33, 0]);
+    proj.fitExtent([[60, 430], [1020, 1180]], {type: 'MultiPoint', coordinates: p.extent ?? [[12, 8], [58, 8], [12, 46], [58, 46]]} as any);
+    const gp = geoPath(proj);
+    return {land: countries50.features.map((ft) => gp(ft) ?? ''), project: (ll: [number, number]) => proj(ll) as [number, number]};
+  }, [p.extent]);
+  const o = project(p.origin.ll);
+  const routes = (p.routes as {label: string; ll: [number, number]; at: number}[]).map((r, i) => {
+    const e = project(r.ll);
+    const mx = (o[0] + e[0]) / 2, my = (o[1] + e[1]) / 2, dx = e[0] - o[0], dy = e[1] - o[1];
+    const c: [number, number] = [mx - dy * 0.18, my + dx * 0.18];
+    return {...r, e, c, t: progress(f, cue(r.at), 30), i};
+  });
+  const q = (a: number[], c: number[], b: number[], t: number) => [(1 - t) ** 2 * a[0] + 2 * (1 - t) * t * c[0] + t * t * b[0], (1 - t) ** 2 * a[1] + 2 * (1 - t) * t * c[1] + t * t * b[1]];
+  const pulse = 1 + 0.25 * Math.sin(f / 6);
+  return (
+    <AbsoluteFill>
+      <div style={{position: 'absolute', top: 270, width: 1080, textAlign: 'center', fontFamily: FE.display, fontWeight: 700, fontSize: 90, color: C.ink, ...rise(f, 4)}}>{p.heading}</div>
+      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+        <defs><clipPath id="mapbox"><rect x={50} y={420} width={980} height={770} rx={14} /></clipPath></defs>
+        <g clipPath="url(#mapbox)" opacity={progress(f, 0, 24)}>
+          {land.map((d, i) => <path key={i} d={d} fill="rgba(184,137,45,0.10)" stroke={C.ink} strokeOpacity={0.45} strokeWidth={1} />)}
+          {routes.map((r) => (
+            <g key={r.label}>
+              <path d={`M ${o[0]} ${o[1]} Q ${r.c[0]} ${r.c[1]} ${r.e[0]} ${r.e[1]}`} fill="none" stroke={C.gold} strokeWidth={5} strokeLinecap="round"
+                strokeDasharray={1400} strokeDashoffset={1400 * (1 - r.t)} />
+              {r.t >= 1 ? [0, 0.33, 0.66].map((k) => {
+                const tt = (f / 70 + k + r.i * 0.17) % 1;
+                const [x, y] = q(o, r.c, r.e, tt);
+                return <circle key={k} cx={x} cy={y} r={7} fill={C.sepia} opacity={Math.min(tt / 0.1, (1 - tt) / 0.1, 1)} />;
+              }) : null}
+              <circle cx={r.e[0]} cy={r.e[1]} r={9} fill={C.paper} stroke={C.gold} strokeWidth={4} opacity={r.t} />
+            </g>
+          ))}
+          <circle cx={o[0]} cy={o[1]} r={22 * pulse} fill="none" stroke={C.gold} strokeWidth={3} opacity={0.6} />
+          <circle cx={o[0]} cy={o[1]} r={13} fill={C.sepia} />
+        </g>
+        <rect x={50} y={420} width={980} height={770} rx={14} fill="none" stroke={C.gold} strokeWidth={2} opacity={0.6} />
+      </svg>
+      {[{label: p.origin.label, xy: o, at: 6, big: true, off: p.origin.off}, ...routes.map((r: any) => ({label: r.label, xy: r.e, at: cue(r.at, 20), big: false, off: r.off}))].map((l: any) => (
+        <div key={l.label} style={{position: 'absolute', left: l.xy[0] - 150 + (l.off?.[0] ?? 0), top: l.xy[1] + (l.off?.[1] ?? (l.big ? 22 : -76)), width: 300, textAlign: 'center',
+          fontFamily: FE.sans, fontWeight: 800, fontSize: l.big ? 40 : 32, letterSpacing: 2, color: l.big ? C.sepia : C.ink,
+          textShadow: `0 0 8px ${C.paper}, 0 0 4px ${C.paper}`, ...rise(f, l.at, 10, 12)}}>
+          {l.label.toUpperCase()}
+        </div>
+      ))}
+      <div style={{position: 'absolute', top: 1200, width: 1080, textAlign: 'center', fontFamily: FE.display, fontStyle: 'italic', fontWeight: 700, fontSize: 66, color: C.sepia, ...rise(f, cue(p.captionAt, 30))}}>
+        {p.caption}
+      </div>
+      <Sfx name="ping" at={6} volume={0.5} />
+      {routes.map((r) => <Sfx key={r.label} name="swish" at={cue(r.at)} volume={0.3} />)}
+    </AbsoluteFill>
+  );
+};
+
 // ---------------------------------------------------------------- outro
 export const Outro: React.FC = () => {
   const f = useCurrentFrame();
@@ -547,6 +647,8 @@ export const TEMPLATES: Record<string, TemplateDef> = {
   split: {C: Split, bg: 'none', headerDark: false, sourceDark: false},
   statement: {C: Statement, bg: 'paper', headerDark: false, sourceDark: false},
   list: {C: List, bg: 'paper', headerDark: false, sourceDark: false},
+  venn: {C: Venn, bg: 'paper', headerDark: false, sourceDark: false},
+  map: {C: RouteMap, bg: 'paper', headerDark: false, sourceDark: false},
   ayah: {C: Ayah, bg: 'paper', headerDark: false, sourceDark: false},
   quote: {C: Quote, bg: 'paper', headerDark: false, sourceDark: false},
   lens: {C: Lens, bg: 'paper', headerDark: false, sourceDark: false},

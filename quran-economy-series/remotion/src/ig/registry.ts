@@ -2,6 +2,8 @@ import epi01 from './episodes/epi01.json';
 import epi01t from './episodes/epi01.timing.json';
 import epi02 from './episodes/epi02.json';
 import epi02t from './episodes/epi02.timing.json';
+import epi03 from './episodes/epi03.json';
+import epi03t from './episodes/epi03.timing.json';
 
 export type Scene = {
   template: string;
@@ -19,4 +21,5 @@ export type Timing = {id: string; fps: number; scenes: SceneTiming[]};
 export const EPISODES: Record<string, {ep: Episode; timing: Timing}> = {
   epi01: {ep: epi01 as Episode, timing: epi01t as Timing},
   epi02: {ep: epi02 as Episode, timing: epi02t as Timing},
+  epi03: {ep: epi03 as Episode, timing: epi03t as Timing},
 };

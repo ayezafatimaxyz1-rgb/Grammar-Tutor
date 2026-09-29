@@ -1,0 +1,1243 @@
+{
+ "id": "epi03",
+ "fps": 30,
+ "scenes": [
+  {
+   "voice": "ig/epi03/s01.wav",
+   "duration": 7.211,
+   "sentences": [
+    {
+     "text": "What keeps a nation standing? An army? Or an economy?",
+     "start": 0.3,
+     "end": 3.629,
+     "words": [
+      {
+       "w": "What",
+       "start": 0.35,
+       "end": 0.603
+      },
+      {
+       "w": "keeps",
+       "start": 0.603,
+       "end": 0.92
+      },
+      {
+       "w": "a",
+       "start": 0.92,
+       "end": 1.047
+      },
+      {
+       "w": "nation",
+       "start": 1.047,
+       "end": 1.426
+      },
+      {
+       "w": "standing?",
+       "start": 1.426,
+       "end": 2.123
+      },
+      {
+       "w": "An",
+       "start": 2.123,
+       "end": 2.25
+      },
+      {
+       "w": "army?",
+       "start": 2.25,
+       "end": 2.693
+      },
+      {
+       "w": "Or",
+       "start": 2.693,
+       "end": 2.819
+      },
+      {
+       "w": "an",
+       "start": 2.819,
+       "end": 2.946
+      },
+      {
+       "w": "economy?",
+       "start": 2.946,
+       "end": 3.579
+      }
+     ]
+    },
+    {
+     "text": "The Quran's answer begins with one prayer.",
+     "start": 4.009,
+     "end": 6.661,
+     "words": [
+      {
+       "w": "The",
+       "start": 4.059,
+       "end": 4.261
+      },
+      {
+       "w": "Quran's",
+       "start": 4.261,
+       "end": 4.731
+      },
+      {
+       "w": "answer",
+       "start": 4.731,
+       "end": 5.134
+      },
+      {
+       "w": "begins",
+       "start": 5.134,
+       "end": 5.536
+      },
+      {
+       "w": "with",
+       "start": 5.536,
+       "end": 5.805
+      },
+      {
+       "w": "one",
+       "start": 5.805,
+       "end": 6.006
+      },
+      {
+       "w": "prayer.",
+       "start": 6.006,
+       "end": 6.611
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s02.wav",
+   "duration": 8.616,
+   "sentences": [
+    {
+     "text": "Quran and Global Economy. Episode three: national security and economic prosperity, and the link between them.",
+     "start": 0.3,
+     "end": 8.066,
+     "words": [
+      {
+       "w": "Quran",
+       "start": 0.35,
+       "end": 0.722
+      },
+      {
+       "w": "and",
+       "start": 0.722,
+       "end": 0.945
+      },
+      {
+       "w": "Global",
+       "start": 0.945,
+       "end": 1.392
+      },
+      {
+       "w": "Economy.",
+       "start": 1.392,
+       "end": 2.136
+      },
+      {
+       "w": "Episode",
+       "start": 2.136,
+       "end": 2.657
+      },
+      {
+       "w": "three:",
+       "start": 2.657,
+       "end": 3.253
+      },
+      {
+       "w": "national",
+       "start": 3.253,
+       "end": 3.848
+      },
+      {
+       "w": "security",
+       "start": 3.848,
+       "end": 4.443
+      },
+      {
+       "w": "and",
+       "start": 4.443,
+       "end": 4.667
+      },
+      {
+       "w": "economic",
+       "start": 4.667,
+       "end": 5.262
+      },
+      {
+       "w": "prosperity,",
+       "start": 5.262,
+       "end": 6.229
+      },
+      {
+       "w": "and",
+       "start": 6.229,
+       "end": 6.453
+      },
+      {
+       "w": "the",
+       "start": 6.453,
+       "end": 6.676
+      },
+      {
+       "w": "link",
+       "start": 6.676,
+       "end": 6.974
+      },
+      {
+       "w": "between",
+       "start": 6.974,
+       "end": 7.495
+      },
+      {
+       "w": "them.",
+       "start": 7.495,
+       "end": 8.016
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s03.wav",
+   "duration": 11.792,
+   "sentences": [
+    {
+     "text": "Ibrahim, peace be upon him, settled his family in a barren valley.",
+     "start": 0.3,
+     "end": 4.651,
+     "words": [
+      {
+       "w": "Ibrahim,",
+       "start": 0.35,
+       "end": 1.036
+      },
+      {
+       "w": "peace",
+       "start": 1.036,
+       "end": 1.378
+      },
+      {
+       "w": "be",
+       "start": 1.378,
+       "end": 1.516
+      },
+      {
+       "w": "upon",
+       "start": 1.516,
+       "end": 1.79
+      },
+      {
+       "w": "him,",
+       "start": 1.79,
+       "end": 2.201
+      },
+      {
+       "w": "settled",
+       "start": 2.201,
+       "end": 2.681
+      },
+      {
+       "w": "his",
+       "start": 2.681,
+       "end": 2.887
+      },
+      {
+       "w": "family",
+       "start": 2.887,
+       "end": 3.298
+      },
+      {
+       "w": "in",
+       "start": 3.298,
+       "end": 3.435
+      },
+      {
+       "w": "a",
+       "start": 3.435,
+       "end": 3.572
+      },
+      {
+       "w": "barren",
+       "start": 3.572,
+       "end": 3.984
+      },
+      {
+       "w": "valley.",
+       "start": 3.984,
+       "end": 4.601
+      }
+     ]
+    },
+    {
+     "text": "Our Lord, I have settled some of my descendants in a valley without cultivation, near Your sacred House.",
+     "start": 5.031,
+     "end": 11.242,
+     "words": [
+      {
+       "w": "Our",
+       "start": 5.081,
+       "end": 5.274
+      },
+      {
+       "w": "Lord,",
+       "start": 5.274,
+       "end": 5.724
+      },
+      {
+       "w": "I",
+       "start": 5.724,
+       "end": 5.853
+      },
+      {
+       "w": "have",
+       "start": 5.853,
+       "end": 6.11
+      },
+      {
+       "w": "settled",
+       "start": 6.11,
+       "end": 6.56
+      },
+      {
+       "w": "some",
+       "start": 6.56,
+       "end": 6.818
+      },
+      {
+       "w": "of",
+       "start": 6.818,
+       "end": 6.946
+      },
+      {
+       "w": "my",
+       "start": 6.946,
+       "end": 7.075
+      },
+      {
+       "w": "descendants",
+       "start": 7.075,
+       "end": 7.782
+      },
+      {
+       "w": "in",
+       "start": 7.782,
+       "end": 7.911
+      },
+      {
+       "w": "a",
+       "start": 7.911,
+       "end": 8.04
+      },
+      {
+       "w": "valley",
+       "start": 8.04,
+       "end": 8.426
+      },
+      {
+       "w": "without",
+       "start": 8.426,
+       "end": 8.876
+      },
+      {
+       "w": "cultivation,",
+       "start": 8.876,
+       "end": 9.777
+      },
+      {
+       "w": "near",
+       "start": 9.777,
+       "end": 10.034
+      },
+      {
+       "w": "Your",
+       "start": 10.034,
+       "end": 10.291
+      },
+      {
+       "w": "sacred",
+       "start": 10.291,
+       "end": 10.677
+      },
+      {
+       "w": "House.",
+       "start": 10.677,
+       "end": 11.192
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s04.wav",
+   "duration": 7.675,
+   "sentences": [
+    {
+     "text": "And there he asked Allah for two things.",
+     "start": 0.3,
+     "end": 2.468,
+     "words": [
+      {
+       "w": "And",
+       "start": 0.35,
+       "end": 0.527
+      },
+      {
+       "w": "there",
+       "start": 0.527,
+       "end": 0.823
+      },
+      {
+       "w": "he",
+       "start": 0.823,
+       "end": 0.941
+      },
+      {
+       "w": "asked",
+       "start": 0.941,
+       "end": 1.236
+      },
+      {
+       "w": "Allah",
+       "start": 1.236,
+       "end": 1.532
+      },
+      {
+       "w": "for",
+       "start": 1.532,
+       "end": 1.709
+      },
+      {
+       "w": "two",
+       "start": 1.709,
+       "end": 1.886
+      },
+      {
+       "w": "things.",
+       "start": 1.886,
+       "end": 2.418
+      }
+     ]
+    },
+    {
+     "text": "My Lord, make this a secure city, and provide its people with fruits.",
+     "start": 2.848,
+     "end": 7.125,
+     "words": [
+      {
+       "w": "My",
+       "start": 2.898,
+       "end": 3.029
+      },
+      {
+       "w": "Lord,",
+       "start": 3.029,
+       "end": 3.486
+      },
+      {
+       "w": "make",
+       "start": 3.486,
+       "end": 3.747
+      },
+      {
+       "w": "this",
+       "start": 3.747,
+       "end": 4.008
+      },
+      {
+       "w": "a",
+       "start": 4.008,
+       "end": 4.138
+      },
+      {
+       "w": "secure",
+       "start": 4.138,
+       "end": 4.53
+      },
+      {
+       "w": "city,",
+       "start": 4.53,
+       "end": 4.987
+      },
+      {
+       "w": "and",
+       "start": 4.987,
+       "end": 5.182
+      },
+      {
+       "w": "provide",
+       "start": 5.182,
+       "end": 5.639
+      },
+      {
+       "w": "its",
+       "start": 5.639,
+       "end": 5.835
+      },
+      {
+       "w": "people",
+       "start": 5.835,
+       "end": 6.227
+      },
+      {
+       "w": "with",
+       "start": 6.227,
+       "end": 6.488
+      },
+      {
+       "w": "fruits.",
+       "start": 6.488,
+       "end": 7.075
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s05.wav",
+   "duration": 9.143,
+   "sentences": [
+    {
+     "text": "First: make this city secure. That is national security.",
+     "start": 0.3,
+     "end": 3.901,
+     "words": [
+      {
+       "w": "First:",
+       "start": 0.35,
+       "end": 0.869
+      },
+      {
+       "w": "make",
+       "start": 0.869,
+       "end": 1.128
+      },
+      {
+       "w": "this",
+       "start": 1.128,
+       "end": 1.387
+      },
+      {
+       "w": "city",
+       "start": 1.387,
+       "end": 1.647
+      },
+      {
+       "w": "secure.",
+       "start": 1.647,
+       "end": 2.23
+      },
+      {
+       "w": "That",
+       "start": 2.23,
+       "end": 2.489
+      },
+      {
+       "w": "is",
+       "start": 2.489,
+       "end": 2.619
+      },
+      {
+       "w": "national",
+       "start": 2.619,
+       "end": 3.138
+      },
+      {
+       "w": "security.",
+       "start": 3.138,
+       "end": 3.851
+      }
+     ]
+    },
+    {
+     "text": "Second: provide its people with fruits. That is economic prosperity.",
+     "start": 4.281,
+     "end": 8.594,
+     "words": [
+      {
+       "w": "Second:",
+       "start": 4.331,
+       "end": 4.914
+      },
+      {
+       "w": "provide",
+       "start": 4.914,
+       "end": 5.368
+      },
+      {
+       "w": "its",
+       "start": 5.368,
+       "end": 5.562
+      },
+      {
+       "w": "people",
+       "start": 5.562,
+       "end": 5.951
+      },
+      {
+       "w": "with",
+       "start": 5.951,
+       "end": 6.21
+      },
+      {
+       "w": "fruits.",
+       "start": 6.21,
+       "end": 6.794
+      },
+      {
+       "w": "That",
+       "start": 6.794,
+       "end": 7.053
+      },
+      {
+       "w": "is",
+       "start": 7.053,
+       "end": 7.182
+      },
+      {
+       "w": "economic",
+       "start": 7.182,
+       "end": 7.701
+      },
+      {
+       "w": "prosperity.",
+       "start": 7.701,
+       "end": 8.543
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s06.wav",
+   "duration": 4.006,
+   "sentences": [
+    {
+     "text": "Where peace and prosperity meet, the state survives.",
+     "start": 0.3,
+     "end": 3.456,
+     "words": [
+      {
+       "w": "Where",
+       "start": 0.35,
+       "end": 0.662
+      },
+      {
+       "w": "peace",
+       "start": 0.662,
+       "end": 0.974
+      },
+      {
+       "w": "and",
+       "start": 0.974,
+       "end": 1.161
+      },
+      {
+       "w": "prosperity",
+       "start": 1.161,
+       "end": 1.784
+      },
+      {
+       "w": "meet,",
+       "start": 1.784,
+       "end": 2.221
+      },
+      {
+       "w": "the",
+       "start": 2.221,
+       "end": 2.408
+      },
+      {
+       "w": "state",
+       "start": 2.408,
+       "end": 2.72
+      },
+      {
+       "w": "survives.",
+       "start": 2.72,
+       "end": 3.406
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s07.wav",
+   "duration": 11.516,
+   "sentences": [
+    {
+     "text": "Without an economy, security cannot stand. The system collapses.",
+     "start": 0.3,
+     "end": 4.768,
+     "words": [
+      {
+       "w": "Without",
+       "start": 0.35,
+       "end": 0.843
+      },
+      {
+       "w": "an",
+       "start": 0.843,
+       "end": 0.984
+      },
+      {
+       "w": "economy,",
+       "start": 0.984,
+       "end": 1.689
+      },
+      {
+       "w": "security",
+       "start": 1.689,
+       "end": 2.252
+      },
+      {
+       "w": "cannot",
+       "start": 2.252,
+       "end": 2.675
+      },
+      {
+       "w": "stand.",
+       "start": 2.675,
+       "end": 3.239
+      },
+      {
+       "w": "The",
+       "start": 3.239,
+       "end": 3.45
+      },
+      {
+       "w": "system",
+       "start": 3.45,
+       "end": 3.873
+      },
+      {
+       "w": "collapses.",
+       "start": 3.873,
+       "end": 4.718
+      }
+     ]
+    },
+    {
+     "text": "And without security, the economy cannot stand. Investments and assets are not safe.",
+     "start": 5.148,
+     "end": 10.966,
+     "words": [
+      {
+       "w": "And",
+       "start": 5.198,
+       "end": 5.418
+      },
+      {
+       "w": "without",
+       "start": 5.418,
+       "end": 5.931
+      },
+      {
+       "w": "security,",
+       "start": 5.931,
+       "end": 6.738
+      },
+      {
+       "w": "the",
+       "start": 6.738,
+       "end": 6.958
+      },
+      {
+       "w": "economy",
+       "start": 6.958,
+       "end": 7.471
+      },
+      {
+       "w": "cannot",
+       "start": 7.471,
+       "end": 7.911
+      },
+      {
+       "w": "stand.",
+       "start": 7.911,
+       "end": 8.497
+      },
+      {
+       "w": "Investments",
+       "start": 8.497,
+       "end": 9.304
+      },
+      {
+       "w": "and",
+       "start": 9.304,
+       "end": 9.523
+      },
+      {
+       "w": "assets",
+       "start": 9.523,
+       "end": 9.963
+      },
+      {
+       "w": "are",
+       "start": 9.963,
+       "end": 10.183
+      },
+      {
+       "w": "not",
+       "start": 10.183,
+       "end": 10.403
+      },
+      {
+       "w": "safe.",
+       "start": 10.403,
+       "end": 10.916
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s08.wav",
+   "duration": 7.813,
+   "sentences": [
+    {
+     "text": "Then came the Makkah model.",
+     "start": 0.3,
+     "end": 1.937,
+     "words": [
+      {
+       "w": "Then",
+       "start": 0.35,
+       "end": 0.596
+      },
+      {
+       "w": "came",
+       "start": 0.596,
+       "end": 0.842
+      },
+      {
+       "w": "the",
+       "start": 0.842,
+       "end": 1.026
+      },
+      {
+       "w": "Makkah",
+       "start": 1.026,
+       "end": 1.395
+      },
+      {
+       "w": "model.",
+       "start": 1.395,
+       "end": 1.887
+      }
+     ]
+    },
+    {
+     "text": "Makkah became a global trade pipeline, and a rest stop on the highway of trade.",
+     "start": 2.317,
+     "end": 7.263,
+     "words": [
+      {
+       "w": "Makkah",
+       "start": 2.367,
+       "end": 2.777
+      },
+      {
+       "w": "became",
+       "start": 2.777,
+       "end": 3.186
+      },
+      {
+       "w": "a",
+       "start": 3.186,
+       "end": 3.323
+      },
+      {
+       "w": "global",
+       "start": 3.323,
+       "end": 3.732
+      },
+      {
+       "w": "trade",
+       "start": 3.732,
+       "end": 4.073
+      },
+      {
+       "w": "pipeline,",
+       "start": 4.073,
+       "end": 4.824
+      },
+      {
+       "w": "and",
+       "start": 4.824,
+       "end": 5.029
+      },
+      {
+       "w": "a",
+       "start": 5.029,
+       "end": 5.165
+      },
+      {
+       "w": "rest",
+       "start": 5.165,
+       "end": 5.438
+      },
+      {
+       "w": "stop",
+       "start": 5.438,
+       "end": 5.711
+      },
+      {
+       "w": "on",
+       "start": 5.711,
+       "end": 5.848
+      },
+      {
+       "w": "the",
+       "start": 5.848,
+       "end": 6.052
+      },
+      {
+       "w": "highway",
+       "start": 6.052,
+       "end": 6.53
+      },
+      {
+       "w": "of",
+       "start": 6.53,
+       "end": 6.667
+      },
+      {
+       "w": "trade.",
+       "start": 6.667,
+       "end": 7.213
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s09.wav",
+   "duration": 11.031,
+   "sentences": [
+    {
+     "text": "And the Quran formally recognised this economic route, in Surah Quraysh.",
+     "start": 0.3,
+     "end": 5.062,
+     "words": [
+      {
+       "w": "And",
+       "start": 0.35,
+       "end": 0.562
+      },
+      {
+       "w": "the",
+       "start": 0.562,
+       "end": 0.774
+      },
+      {
+       "w": "Quran",
+       "start": 0.774,
+       "end": 1.127
+      },
+      {
+       "w": "formally",
+       "start": 1.127,
+       "end": 1.692
+      },
+      {
+       "w": "recognised",
+       "start": 1.692,
+       "end": 2.399
+      },
+      {
+       "w": "this",
+       "start": 2.399,
+       "end": 2.681
+      },
+      {
+       "w": "economic",
+       "start": 2.681,
+       "end": 3.246
+      },
+      {
+       "w": "route,",
+       "start": 3.246,
+       "end": 3.811
+      },
+      {
+       "w": "in",
+       "start": 3.811,
+       "end": 3.953
+      },
+      {
+       "w": "Surah",
+       "start": 3.953,
+       "end": 4.306
+      },
+      {
+       "w": "Quraysh.",
+       "start": 4.306,
+       "end": 5.012
+      }
+     ]
+    },
+    {
+     "text": "For the security of Quraysh: their security in the caravans of winter and summer.",
+     "start": 5.442,
+     "end": 10.481,
+     "words": [
+      {
+       "w": "For",
+       "start": 5.492,
+       "end": 5.698
+      },
+      {
+       "w": "the",
+       "start": 5.698,
+       "end": 5.904
+      },
+      {
+       "w": "security",
+       "start": 5.904,
+       "end": 6.453
+      },
+      {
+       "w": "of",
+       "start": 6.453,
+       "end": 6.59
+      },
+      {
+       "w": "Quraysh:",
+       "start": 6.59,
+       "end": 7.276
+      },
+      {
+       "w": "their",
+       "start": 7.276,
+       "end": 7.619
+      },
+      {
+       "w": "security",
+       "start": 7.619,
+       "end": 8.167
+      },
+      {
+       "w": "in",
+       "start": 8.167,
+       "end": 8.305
+      },
+      {
+       "w": "the",
+       "start": 8.305,
+       "end": 8.51
+      },
+      {
+       "w": "caravans",
+       "start": 8.51,
+       "end": 9.059
+      },
+      {
+       "w": "of",
+       "start": 9.059,
+       "end": 9.196
+      },
+      {
+       "w": "winter",
+       "start": 9.196,
+       "end": 9.608
+      },
+      {
+       "w": "and",
+       "start": 9.608,
+       "end": 9.814
+      },
+      {
+       "w": "summer.",
+       "start": 9.814,
+       "end": 10.431
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s10.wav",
+   "duration": 6.69,
+   "sentences": [
+    {
+     "text": "So let them worship the Lord of this House, who fed them against hunger, and made them safe from fear.",
+     "start": 0.3,
+     "end": 6.14,
+     "words": [
+      {
+       "w": "So",
+       "start": 0.35,
+       "end": 0.479
+      },
+      {
+       "w": "let",
+       "start": 0.479,
+       "end": 0.672
+      },
+      {
+       "w": "them",
+       "start": 0.672,
+       "end": 0.93
+      },
+      {
+       "w": "worship",
+       "start": 0.93,
+       "end": 1.382
+      },
+      {
+       "w": "the",
+       "start": 1.382,
+       "end": 1.575
+      },
+      {
+       "w": "Lord",
+       "start": 1.575,
+       "end": 1.833
+      },
+      {
+       "w": "of",
+       "start": 1.833,
+       "end": 1.962
+      },
+      {
+       "w": "this",
+       "start": 1.962,
+       "end": 2.22
+      },
+      {
+       "w": "House,",
+       "start": 2.22,
+       "end": 2.736
+      },
+      {
+       "w": "who",
+       "start": 2.736,
+       "end": 2.93
+      },
+      {
+       "w": "fed",
+       "start": 2.93,
+       "end": 3.123
+      },
+      {
+       "w": "them",
+       "start": 3.123,
+       "end": 3.381
+      },
+      {
+       "w": "against",
+       "start": 3.381,
+       "end": 3.833
+      },
+      {
+       "w": "hunger,",
+       "start": 3.833,
+       "end": 4.413
+      },
+      {
+       "w": "and",
+       "start": 4.413,
+       "end": 4.607
+      },
+      {
+       "w": "made",
+       "start": 4.607,
+       "end": 4.865
+      },
+      {
+       "w": "them",
+       "start": 4.865,
+       "end": 5.123
+      },
+      {
+       "w": "safe",
+       "start": 5.123,
+       "end": 5.381
+      },
+      {
+       "w": "from",
+       "start": 5.381,
+       "end": 5.639
+      },
+      {
+       "w": "fear.",
+       "start": 5.639,
+       "end": 6.09
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi03/s11.wav",
+   "duration": 5.372,
+   "sentences": [
+    {
+     "text": "Next episode: rizq, from rain to plate. Follow for episode four.",
+     "start": 0.3,
+     "end": 4.822,
+     "words": [
+      {
+       "w": "Next",
+       "start": 0.35,
+       "end": 0.635
+      },
+      {
+       "w": "episode:",
+       "start": 0.635,
+       "end": 1.348
+      },
+      {
+       "w": "rizq,",
+       "start": 1.348,
+       "end": 1.848
+      },
+      {
+       "w": "from",
+       "start": 1.848,
+       "end": 2.133
+      },
+      {
+       "w": "rain",
+       "start": 2.133,
+       "end": 2.418
+      },
+      {
+       "w": "to",
+       "start": 2.418,
+       "end": 2.561
+      },
+      {
+       "w": "plate.",
+       "start": 2.561,
+       "end": 3.131
+      },
+      {
+       "w": "Follow",
+       "start": 3.131,
+       "end": 3.559
+      },
+      {
+       "w": "for",
+       "start": 3.559,
+       "end": 3.773
+      },
+      {
+       "w": "episode",
+       "start": 3.773,
+       "end": 4.272
+      },
+      {
+       "w": "four.",
+       "start": 4.272,
+       "end": 4.772
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

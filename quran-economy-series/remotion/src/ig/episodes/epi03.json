@@ -1,0 +1,298 @@
+{
+  "id": "epi03",
+  "number": 3,
+  "title": "A Prayer in a Barren Valley",
+  "covers": [
+    "P04.1",
+    "P04.2",
+    "P04.3",
+    "P04.4",
+    "P04.5",
+    "P04.6",
+    "P04.7",
+    "P04.8",
+    "P04.9",
+    "P04.10"
+  ],
+  "next": "Rizq: From Rain to Plate",
+  "scenes": [
+    {
+      "template": "statement",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "What keeps a nation standing? An army? Or an economy?",
+        "The Quran's answer begins with one prayer."
+      ],
+      "props": {
+        "icon": "globe-grid",
+        "lines": [
+          {
+            "text": "What keeps a nation standing?",
+            "at": 0
+          },
+          {
+            "text": "Security, or prosperity?",
+            "at": 0.5,
+            "big": true
+          },
+          {
+            "text": "The answer begins with one prayer.",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "template": "title",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Quran and Global Economy. Episode three: national security and economic prosperity, and the link between them."
+      ],
+      "props": {
+        "subtitle": "National Security and Economic Prosperity",
+        "subtitle2": "The Link Between Them"
+      }
+    },
+    {
+      "template": "ayah",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Ibrahim, peace be upon him, settled his family in a barren valley.",
+        "Our Lord, I have settled some of my descendants in a valley without cultivation, near Your sacred House."
+      ],
+      "props": {
+        "ref": "Ibrahim 14:37",
+        "arabic": "رَّبَّنَآ إِنِّيٓ أَسۡكَنتُ مِن ذُرِّيَّتِي بِوَادٍ غَيۡرِ ذِي زَرۡعٍ عِندَ بَيۡتِكَ ٱلۡمُحَرَّمِ",
+        "english": "Our Lord, I have settled some of my descendants in an uncultivated valley near Your sacred House.",
+        "highlight": "an uncultivated valley",
+        "arabicAt": 0,
+        "highlightAt": 1,
+        "kicker": "A Barren Valley",
+        "kickerAt": 0
+      }
+    },
+    {
+      "template": "ayah",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "And there he asked Allah for two things.",
+        "My Lord, make this a secure city, and provide its people with fruits."
+      ],
+      "props": {
+        "ref": "Al-Baqarah 2:126",
+        "arabic": "رَبِّ ٱجۡعَلۡ هَٰذَا بَلَدًا ءَامِنٗا وَٱرۡزُقۡ أَهۡلَهُۥ مِنَ ٱلثَّمَرَٰتِ",
+        "english": "My Lord, make this a secure city and provide its people with fruits.",
+        "highlight": "a secure city",
+        "arabicAt": 0,
+        "highlightAt": 1,
+        "kicker": "Two Requests",
+        "kickerAt": 0
+      }
+    },
+    {
+      "template": "list",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "First: make this city secure. That is national security.",
+        "Second: provide its people with fruits. That is economic prosperity."
+      ],
+      "props": {
+        "kicker": "Ibrahim's Two Requests",
+        "icon": "seed",
+        "tone": "gold",
+        "items": [
+          {
+            "text": "“Make this city secure”: National Security",
+            "at": 0
+          },
+          {
+            "text": "“Provide its people with fruits”: Economic Prosperity",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "template": "venn",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Where peace and prosperity meet, the state survives."
+      ],
+      "props": {
+        "left": "Peace",
+        "right": "Prosperity",
+        "center": "Survival of the State",
+        "centerAt": 0.45
+      }
+    },
+    {
+      "template": "list",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Without an economy, security cannot stand. The system collapses.",
+        "And without security, the economy cannot stand. Investments and assets are not safe."
+      ],
+      "props": {
+        "kicker": "One Needs the Other",
+        "icon": "bars",
+        "tone": "muted",
+        "items": [
+          {
+            "text": "Without economy, security: the system cannot stand",
+            "at": 0
+          },
+          {
+            "text": "Without security, economy: investment and assets are not safe",
+            "at": 1
+          }
+        ]
+      }
+    },
+    {
+      "template": "map",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Then came the Makkah model.",
+        "Makkah became a global trade pipeline, and a rest stop on the highway of trade."
+      ],
+      "props": {
+        "heading": "The Makkah Model",
+        "origin": {
+          "label": "Makkah",
+          "ll": [
+            39.83,
+            21.42
+          ],
+          "off": [
+            -120,
+            -10
+          ]
+        },
+        "routes": [
+          {
+            "label": "Yemen",
+            "ll": [
+              44.2,
+              15.35
+            ],
+            "at": 1,
+            "off": [
+              120,
+              -20
+            ]
+          },
+          {
+            "label": "Sham",
+            "ll": [
+              36.3,
+              33.5
+            ],
+            "at": 1.2,
+            "off": [
+              110,
+              -40
+            ]
+          },
+          {
+            "label": "Africa",
+            "ll": [
+              30.0,
+              15.0
+            ],
+            "at": 1.4,
+            "off": [
+              -60,
+              20
+            ]
+          },
+          {
+            "label": "Europe",
+            "ll": [
+              23.7,
+              37.9
+            ],
+            "at": 1.6,
+            "off": [
+              0,
+              -76
+            ]
+          }
+        ],
+        "caption": "A global trade pipeline",
+        "captionAt": 1,
+        "extent": [
+          [
+            20,
+            8
+          ],
+          [
+            56,
+            8
+          ],
+          [
+            20,
+            42
+          ],
+          [
+            56,
+            42
+          ]
+        ]
+      }
+    },
+    {
+      "template": "ayah",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "And the Quran formally recognised this economic route, in Surah Quraysh.",
+        "For the security of Quraysh: their security in the caravans of winter and summer."
+      ],
+      "props": {
+        "ref": "Quraysh 106:1–2",
+        "arabic": "لِإِيلَٰفِ قُرَيۡشٍ ۝ إِۦلَٰفِهِمۡ رِحۡلَةَ ٱلشِّتَآءِ وَٱلصَّيۡفِ",
+        "english": "For the accustomed security of the Quraysh: their accustomed security in the caravan of winter and summer.",
+        "highlight": "the caravan of winter and summer",
+        "arabicAt": 0,
+        "highlightAt": 1,
+        "kicker": "Surah Quraysh",
+        "kickerAt": 0
+      }
+    },
+    {
+      "template": "ayah",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "So let them worship the Lord of this House, who fed them against hunger, and made them safe from fear."
+      ],
+      "props": {
+        "ref": "Quraysh 106:3–4",
+        "arabic": "فَلۡيَعۡبُدُواْ رَبَّ هَٰذَا ٱلۡبَيۡتِ ۝ ٱلَّذِيٓ أَطۡعَمَهُم مِّن جُوعٖ وَءَامَنَهُم مِّنۡ خَوۡفِۭ",
+        "english": "Let them worship the Lord of this House, who has fed them against hunger and made them safe from fear.",
+        "highlight": "fed them against hunger and made them safe from fear",
+        "arabicAt": 0,
+        "highlightAt": 0.4,
+        "kicker": "Food · Safety",
+        "kickerAt": 0
+      }
+    },
+    {
+      "template": "outro",
+      "badges": [],
+      "source": "",
+      "narration": [
+        "Next episode: rizq, from rain to plate. Follow for episode four."
+      ],
+      "props": {}
+    }
+  ]
+}
