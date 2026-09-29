@@ -1,9 +1,9 @@
 {
  "voice": {
   "provider": "Kokoro (local, offline)",
-  "voice": "Emma (British English, female)",
-  "voice_id": "bf_emma",
-  "speed": 0.87,
+  "voice": "George (British English, male)",
+  "voice_id": "bm_george",
+  "speed": 0.95,
   "lang": "en-gb"
  },
  "main": [
