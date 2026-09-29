@@ -1,0 +1,2359 @@
+{
+ "id": "epi01",
+ "fps": 30,
+ "scenes": [
+  {
+   "voice": "ig/epi01/s01.wav",
+   "duration": 14.394,
+   "sentences": [
+    {
+     "text": "Every day, thousands of ships carry grain, oil and goods across the world's oceans.",
+     "start": 0.3,
+     "end": 5.588,
+     "words": [
+      {
+       "w": "Every",
+       "start": 0.35,
+       "end": 0.691
+      },
+      {
+       "w": "day,",
+       "start": 0.691,
+       "end": 1.101
+      },
+      {
+       "w": "thousands",
+       "start": 1.101,
+       "end": 1.715
+      },
+      {
+       "w": "of",
+       "start": 1.715,
+       "end": 1.852
+      },
+      {
+       "w": "ships",
+       "start": 1.852,
+       "end": 2.193
+      },
+      {
+       "w": "carry",
+       "start": 2.193,
+       "end": 2.535
+      },
+      {
+       "w": "grain,",
+       "start": 2.535,
+       "end": 3.081
+      },
+      {
+       "w": "oil",
+       "start": 3.081,
+       "end": 3.285
+      },
+      {
+       "w": "and",
+       "start": 3.285,
+       "end": 3.49
+      },
+      {
+       "w": "goods",
+       "start": 3.49,
+       "end": 3.832
+      },
+      {
+       "w": "across",
+       "start": 3.832,
+       "end": 4.241
+      },
+      {
+       "w": "the",
+       "start": 4.241,
+       "end": 4.446
+      },
+      {
+       "w": "world's",
+       "start": 4.446,
+       "end": 4.924
+      },
+      {
+       "w": "oceans.",
+       "start": 4.924,
+       "end": 5.538
+      }
+     ]
+    },
+    {
+     "text": "Goods flow one way. Money flows the other.",
+     "start": 5.968,
+     "end": 8.792,
+     "words": [
+      {
+       "w": "Goods",
+       "start": 6.018,
+       "end": 6.367
+      },
+      {
+       "w": "flow",
+       "start": 6.367,
+       "end": 6.647
+      },
+      {
+       "w": "one",
+       "start": 6.647,
+       "end": 6.856
+      },
+      {
+       "w": "way.",
+       "start": 6.856,
+       "end": 7.275
+      },
+      {
+       "w": "Money",
+       "start": 7.275,
+       "end": 7.625
+      },
+      {
+       "w": "flows",
+       "start": 7.625,
+       "end": 7.974
+      },
+      {
+       "w": "the",
+       "start": 7.974,
+       "end": 8.183
+      },
+      {
+       "w": "other.",
+       "start": 8.183,
+       "end": 8.742
+      }
+     ]
+    },
+    {
+     "text": "So here is a question. Does the Quran have anything to say about this system?",
+     "start": 9.172,
+     "end": 13.844,
+     "words": [
+      {
+       "w": "So",
+       "start": 9.222,
+       "end": 9.357
+      },
+      {
+       "w": "here",
+       "start": 9.357,
+       "end": 9.626
+      },
+      {
+       "w": "is",
+       "start": 9.626,
+       "end": 9.76
+      },
+      {
+       "w": "a",
+       "start": 9.76,
+       "end": 9.894
+      },
+      {
+       "w": "question.",
+       "start": 9.894,
+       "end": 10.634
+      },
+      {
+       "w": "Does",
+       "start": 10.634,
+       "end": 10.903
+      },
+      {
+       "w": "the",
+       "start": 10.903,
+       "end": 11.105
+      },
+      {
+       "w": "Quran",
+       "start": 11.105,
+       "end": 11.441
+      },
+      {
+       "w": "have",
+       "start": 11.441,
+       "end": 11.71
+      },
+      {
+       "w": "anything",
+       "start": 11.71,
+       "end": 12.248
+      },
+      {
+       "w": "to",
+       "start": 12.248,
+       "end": 12.382
+      },
+      {
+       "w": "say",
+       "start": 12.382,
+       "end": 12.584
+      },
+      {
+       "w": "about",
+       "start": 12.584,
+       "end": 12.92
+      },
+      {
+       "w": "this",
+       "start": 12.92,
+       "end": 13.189
+      },
+      {
+       "w": "system?",
+       "start": 13.189,
+       "end": 13.794
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s02.wav",
+   "duration": 6.191,
+   "sentences": [
+    {
+     "text": "Welcome to Quran and Global Economy. Episode one: the big misconception.",
+     "start": 0.3,
+     "end": 5.641,
+     "words": [
+      {
+       "w": "Welcome",
+       "start": 0.35,
+       "end": 0.89
+      },
+      {
+       "w": "to",
+       "start": 0.89,
+       "end": 1.044
+      },
+      {
+       "w": "Quran",
+       "start": 1.044,
+       "end": 1.429
+      },
+      {
+       "w": "and",
+       "start": 1.429,
+       "end": 1.66
+      },
+      {
+       "w": "Global",
+       "start": 1.66,
+       "end": 2.123
+      },
+      {
+       "w": "Economy.",
+       "start": 2.123,
+       "end": 2.894
+      },
+      {
+       "w": "Episode",
+       "start": 2.894,
+       "end": 3.433
+      },
+      {
+       "w": "one:",
+       "start": 3.433,
+       "end": 3.896
+      },
+      {
+       "w": "the",
+       "start": 3.896,
+       "end": 4.127
+      },
+      {
+       "w": "big",
+       "start": 4.127,
+       "end": 4.358
+      },
+      {
+       "w": "misconception.",
+       "start": 4.358,
+       "end": 5.591
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s03.wav",
+   "duration": 29.297,
+   "sentences": [
+    {
+     "text": "Before we start, a promise.",
+     "start": 0.3,
+     "end": 1.955,
+     "words": [
+      {
+       "w": "Before",
+       "start": 0.35,
+       "end": 0.683
+      },
+      {
+       "w": "we",
+       "start": 0.683,
+       "end": 0.794
+      },
+      {
+       "w": "start,",
+       "start": 0.794,
+       "end": 1.239
+      },
+      {
+       "w": "a",
+       "start": 1.239,
+       "end": 1.35
+      },
+      {
+       "w": "promise.",
+       "start": 1.35,
+       "end": 1.905
+      }
+     ]
+    },
+    {
+     "text": "This series is based on notes from lectures by Nouman Ali Khan, and every verse has been checked against the Arabic text, a trusted translation, and classical tafsir.",
+     "start": 2.335,
+     "end": 13.236,
+     "words": [
+      {
+       "w": "This",
+       "start": 2.385,
+       "end": 2.677
+      },
+      {
+       "w": "series",
+       "start": 2.677,
+       "end": 3.115
+      },
+      {
+       "w": "is",
+       "start": 3.115,
+       "end": 3.261
+      },
+      {
+       "w": "based",
+       "start": 3.261,
+       "end": 3.626
+      },
+      {
+       "w": "on",
+       "start": 3.626,
+       "end": 3.772
+      },
+      {
+       "w": "notes",
+       "start": 3.772,
+       "end": 4.137
+      },
+      {
+       "w": "from",
+       "start": 4.137,
+       "end": 4.429
+      },
+      {
+       "w": "lectures",
+       "start": 4.429,
+       "end": 5.012
+      },
+      {
+       "w": "by",
+       "start": 5.012,
+       "end": 5.158
+      },
+      {
+       "w": "Nouman",
+       "start": 5.158,
+       "end": 5.596
+      },
+      {
+       "w": "Ali",
+       "start": 5.596,
+       "end": 5.815
+      },
+      {
+       "w": "Khan,",
+       "start": 5.815,
+       "end": 6.326
+      },
+      {
+       "w": "and",
+       "start": 6.326,
+       "end": 6.545
+      },
+      {
+       "w": "every",
+       "start": 6.545,
+       "end": 6.91
+      },
+      {
+       "w": "verse",
+       "start": 6.91,
+       "end": 7.275
+      },
+      {
+       "w": "has",
+       "start": 7.275,
+       "end": 7.494
+      },
+      {
+       "w": "been",
+       "start": 7.494,
+       "end": 7.785
+      },
+      {
+       "w": "checked",
+       "start": 7.785,
+       "end": 8.296
+      },
+      {
+       "w": "against",
+       "start": 8.296,
+       "end": 8.807
+      },
+      {
+       "w": "the",
+       "start": 8.807,
+       "end": 9.026
+      },
+      {
+       "w": "Arabic",
+       "start": 9.026,
+       "end": 9.464
+      },
+      {
+       "w": "text,",
+       "start": 9.464,
+       "end": 9.975
+      },
+      {
+       "w": "a",
+       "start": 9.975,
+       "end": 10.121
+      },
+      {
+       "w": "trusted",
+       "start": 10.121,
+       "end": 10.631
+      },
+      {
+       "w": "translation,",
+       "start": 10.631,
+       "end": 11.653
+      },
+      {
+       "w": "and",
+       "start": 11.653,
+       "end": 11.872
+      },
+      {
+       "w": "classical",
+       "start": 11.872,
+       "end": 12.529
+      },
+      {
+       "w": "tafsir.",
+       "start": 12.529,
+       "end": 13.186
+      }
+     ]
+    },
+    {
+     "text": "Gold marks the Quran's own words. Brown marks scholarly interpretation. Teal marks a modern application. And coral marks a claim that still needs evidence.",
+     "start": 13.616,
+     "end": 24.583,
+     "words": [
+      {
+       "w": "Gold",
+       "start": 13.666,
+       "end": 13.972
+      },
+      {
+       "w": "marks",
+       "start": 13.972,
+       "end": 14.354
+      },
+      {
+       "w": "the",
+       "start": 14.354,
+       "end": 14.584
+      },
+      {
+       "w": "Quran's",
+       "start": 14.584,
+       "end": 15.12
+      },
+      {
+       "w": "own",
+       "start": 15.12,
+       "end": 15.349
+      },
+      {
+       "w": "words.",
+       "start": 15.349,
+       "end": 15.962
+      },
+      {
+       "w": "Brown",
+       "start": 15.962,
+       "end": 16.344
+      },
+      {
+       "w": "marks",
+       "start": 16.344,
+       "end": 16.727
+      },
+      {
+       "w": "scholarly",
+       "start": 16.727,
+       "end": 17.416
+      },
+      {
+       "w": "interpretation.",
+       "start": 17.416,
+       "end": 18.717
+      },
+      {
+       "w": "Teal",
+       "start": 18.717,
+       "end": 19.023
+      },
+      {
+       "w": "marks",
+       "start": 19.023,
+       "end": 19.406
+      },
+      {
+       "w": "a",
+       "start": 19.406,
+       "end": 19.559
+      },
+      {
+       "w": "modern",
+       "start": 19.559,
+       "end": 20.018
+      },
+      {
+       "w": "application.",
+       "start": 20.018,
+       "end": 21.089
+      },
+      {
+       "w": "And",
+       "start": 21.089,
+       "end": 21.319
+      },
+      {
+       "w": "coral",
+       "start": 21.319,
+       "end": 21.702
+      },
+      {
+       "w": "marks",
+       "start": 21.702,
+       "end": 22.084
+      },
+      {
+       "w": "a",
+       "start": 22.084,
+       "end": 22.237
+      },
+      {
+       "w": "claim",
+       "start": 22.237,
+       "end": 22.62
+      },
+      {
+       "w": "that",
+       "start": 22.62,
+       "end": 22.926
+      },
+      {
+       "w": "still",
+       "start": 22.926,
+       "end": 23.309
+      },
+      {
+       "w": "needs",
+       "start": 23.309,
+       "end": 23.691
+      },
+      {
+       "w": "evidence.",
+       "start": 23.691,
+       "end": 24.533
+      }
+     ]
+    },
+    {
+     "text": "Where the original notes made a mistake, we will stop and correct it.",
+     "start": 24.963,
+     "end": 28.747,
+     "words": [
+      {
+       "w": "Where",
+       "start": 25.013,
+       "end": 25.31
+      },
+      {
+       "w": "the",
+       "start": 25.31,
+       "end": 25.489
+      },
+      {
+       "w": "original",
+       "start": 25.489,
+       "end": 25.964
+      },
+      {
+       "w": "notes",
+       "start": 25.964,
+       "end": 26.261
+      },
+      {
+       "w": "made",
+       "start": 26.261,
+       "end": 26.499
+      },
+      {
+       "w": "a",
+       "start": 26.499,
+       "end": 26.617
+      },
+      {
+       "w": "mistake,",
+       "start": 26.617,
+       "end": 27.212
+      },
+      {
+       "w": "we",
+       "start": 27.212,
+       "end": 27.33
+      },
+      {
+       "w": "will",
+       "start": 27.33,
+       "end": 27.568
+      },
+      {
+       "w": "stop",
+       "start": 27.568,
+       "end": 27.806
+      },
+      {
+       "w": "and",
+       "start": 27.806,
+       "end": 27.984
+      },
+      {
+       "w": "correct",
+       "start": 27.984,
+       "end": 28.4
+      },
+      {
+       "w": "it.",
+       "start": 28.4,
+       "end": 28.697
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s04.wav",
+   "duration": 12.998,
+   "sentences": [
+    {
+     "text": "Many people believe religion is only about prayer and fasting.",
+     "start": 0.3,
+     "end": 4.353,
+     "words": [
+      {
+       "w": "Many",
+       "start": 0.35,
+       "end": 0.637
+      },
+      {
+       "w": "people",
+       "start": 0.637,
+       "end": 1.069
+      },
+      {
+       "w": "believe",
+       "start": 1.069,
+       "end": 1.572
+      },
+      {
+       "w": "religion",
+       "start": 1.572,
+       "end": 2.147
+      },
+      {
+       "w": "is",
+       "start": 2.147,
+       "end": 2.29
+      },
+      {
+       "w": "only",
+       "start": 2.29,
+       "end": 2.578
+      },
+      {
+       "w": "about",
+       "start": 2.578,
+       "end": 2.937
+      },
+      {
+       "w": "prayer",
+       "start": 2.937,
+       "end": 3.369
+      },
+      {
+       "w": "and",
+       "start": 3.369,
+       "end": 3.584
+      },
+      {
+       "w": "fasting.",
+       "start": 3.584,
+       "end": 4.303
+      }
+     ]
+    },
+    {
+     "text": "Business, careers and the economy? That's worldly, with nothing to do with faith.",
+     "start": 4.733,
+     "end": 9.702,
+     "words": [
+      {
+       "w": "Business,",
+       "start": 4.783,
+       "end": 5.478
+      },
+      {
+       "w": "careers",
+       "start": 5.478,
+       "end": 5.921
+      },
+      {
+       "w": "and",
+       "start": 5.921,
+       "end": 6.111
+      },
+      {
+       "w": "the",
+       "start": 6.111,
+       "end": 6.3
+      },
+      {
+       "w": "economy?",
+       "start": 6.3,
+       "end": 6.933
+      },
+      {
+       "w": "That's",
+       "start": 6.933,
+       "end": 7.312
+      },
+      {
+       "w": "worldly,",
+       "start": 7.312,
+       "end": 7.945
+      },
+      {
+       "w": "with",
+       "start": 7.945,
+       "end": 8.198
+      },
+      {
+       "w": "nothing",
+       "start": 8.198,
+       "end": 8.64
+      },
+      {
+       "w": "to",
+       "start": 8.64,
+       "end": 8.767
+      },
+      {
+       "w": "do",
+       "start": 8.767,
+       "end": 8.893
+      },
+      {
+       "w": "with",
+       "start": 8.893,
+       "end": 9.146
+      },
+      {
+       "w": "faith.",
+       "start": 9.146,
+       "end": 9.652
+      }
+     ]
+    },
+    {
+     "text": "But is that what the Quran actually says?",
+     "start": 10.082,
+     "end": 12.448,
+     "words": [
+      {
+       "w": "But",
+       "start": 10.132,
+       "end": 10.321
+      },
+      {
+       "w": "is",
+       "start": 10.321,
+       "end": 10.447
+      },
+      {
+       "w": "that",
+       "start": 10.447,
+       "end": 10.698
+      },
+      {
+       "w": "what",
+       "start": 10.698,
+       "end": 10.95
+      },
+      {
+       "w": "the",
+       "start": 10.95,
+       "end": 11.139
+      },
+      {
+       "w": "Quran",
+       "start": 11.139,
+       "end": 11.454
+      },
+      {
+       "w": "actually",
+       "start": 11.454,
+       "end": 11.957
+      },
+      {
+       "w": "says?",
+       "start": 11.957,
+       "end": 12.398
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s05.wav",
+   "duration": 10.502,
+   "sentences": [
+    {
+     "text": "Look at two verses from Surah Al-Jumu'ah.",
+     "start": 0.3,
+     "end": 2.994,
+     "words": [
+      {
+       "w": "Look",
+       "start": 0.35,
+       "end": 0.638
+      },
+      {
+       "w": "at",
+       "start": 0.638,
+       "end": 0.782
+      },
+      {
+       "w": "two",
+       "start": 0.782,
+       "end": 0.999
+      },
+      {
+       "w": "verses",
+       "start": 0.999,
+       "end": 1.431
+      },
+      {
+       "w": "from",
+       "start": 1.431,
+       "end": 1.719
+      },
+      {
+       "w": "Surah",
+       "start": 1.719,
+       "end": 2.08
+      },
+      {
+       "w": "Al-Jumu'ah.",
+       "start": 2.08,
+       "end": 2.945
+      }
+     ]
+    },
+    {
+     "text": "The first says: when the call to Friday prayer is made, hurry to the remembrance of Allah, and leave trade.",
+     "start": 3.374,
+     "end": 9.952,
+     "words": [
+      {
+       "w": "The",
+       "start": 3.424,
+       "end": 3.627
+      },
+      {
+       "w": "first",
+       "start": 3.627,
+       "end": 3.964
+      },
+      {
+       "w": "says:",
+       "start": 3.964,
+       "end": 4.437
+      },
+      {
+       "w": "when",
+       "start": 4.437,
+       "end": 4.707
+      },
+      {
+       "w": "the",
+       "start": 4.707,
+       "end": 4.909
+      },
+      {
+       "w": "call",
+       "start": 4.909,
+       "end": 5.179
+      },
+      {
+       "w": "to",
+       "start": 5.179,
+       "end": 5.314
+      },
+      {
+       "w": "Friday",
+       "start": 5.314,
+       "end": 5.719
+      },
+      {
+       "w": "prayer",
+       "start": 5.719,
+       "end": 6.124
+      },
+      {
+       "w": "is",
+       "start": 6.124,
+       "end": 6.258
+      },
+      {
+       "w": "made,",
+       "start": 6.258,
+       "end": 6.731
+      },
+      {
+       "w": "hurry",
+       "start": 6.731,
+       "end": 7.068
+      },
+      {
+       "w": "to",
+       "start": 7.068,
+       "end": 7.203
+      },
+      {
+       "w": "the",
+       "start": 7.203,
+       "end": 7.406
+      },
+      {
+       "w": "remembrance",
+       "start": 7.406,
+       "end": 8.148
+      },
+      {
+       "w": "of",
+       "start": 8.148,
+       "end": 8.283
+      },
+      {
+       "w": "Allah,",
+       "start": 8.283,
+       "end": 8.823
+      },
+      {
+       "w": "and",
+       "start": 8.823,
+       "end": 9.025
+      },
+      {
+       "w": "leave",
+       "start": 9.025,
+       "end": 9.362
+      },
+      {
+       "w": "trade.",
+       "start": 9.362,
+       "end": 9.902
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s06.wav",
+   "duration": 18.036,
+   "sentences": [
+    {
+     "text": "And the very next verse says: when the prayer is over, disperse in the land, and seek from the bounty of Allah.",
+     "start": 0.3,
+     "end": 6.357,
+     "words": [
+      {
+       "w": "And",
+       "start": 0.35,
+       "end": 0.532
+      },
+      {
+       "w": "the",
+       "start": 0.532,
+       "end": 0.715
+      },
+      {
+       "w": "very",
+       "start": 0.715,
+       "end": 0.958
+      },
+      {
+       "w": "next",
+       "start": 0.958,
+       "end": 1.201
+      },
+      {
+       "w": "verse",
+       "start": 1.201,
+       "end": 1.505
+      },
+      {
+       "w": "says:",
+       "start": 1.505,
+       "end": 1.931
+      },
+      {
+       "w": "when",
+       "start": 1.931,
+       "end": 2.174
+      },
+      {
+       "w": "the",
+       "start": 2.174,
+       "end": 2.356
+      },
+      {
+       "w": "prayer",
+       "start": 2.356,
+       "end": 2.721
+      },
+      {
+       "w": "is",
+       "start": 2.721,
+       "end": 2.842
+      },
+      {
+       "w": "over,",
+       "start": 2.842,
+       "end": 3.268
+      },
+      {
+       "w": "disperse",
+       "start": 3.268,
+       "end": 3.754
+      },
+      {
+       "w": "in",
+       "start": 3.754,
+       "end": 3.876
+      },
+      {
+       "w": "the",
+       "start": 3.876,
+       "end": 4.058
+      },
+      {
+       "w": "land,",
+       "start": 4.058,
+       "end": 4.484
+      },
+      {
+       "w": "and",
+       "start": 4.484,
+       "end": 4.666
+      },
+      {
+       "w": "seek",
+       "start": 4.666,
+       "end": 4.909
+      },
+      {
+       "w": "from",
+       "start": 4.909,
+       "end": 5.152
+      },
+      {
+       "w": "the",
+       "start": 5.152,
+       "end": 5.335
+      },
+      {
+       "w": "bounty",
+       "start": 5.335,
+       "end": 5.7
+      },
+      {
+       "w": "of",
+       "start": 5.7,
+       "end": 5.821
+      },
+      {
+       "w": "Allah.",
+       "start": 5.821,
+       "end": 6.308
+      }
+     ]
+    },
+    {
+     "text": "Leave the market, then return to it. One passage, one day, two movements.",
+     "start": 6.737,
+     "end": 11.296,
+     "words": [
+      {
+       "w": "Leave",
+       "start": 6.787,
+       "end": 7.101
+      },
+      {
+       "w": "the",
+       "start": 7.101,
+       "end": 7.29
+      },
+      {
+       "w": "market,",
+       "start": 7.29,
+       "end": 7.855
+      },
+      {
+       "w": "then",
+       "start": 7.855,
+       "end": 8.106
+      },
+      {
+       "w": "return",
+       "start": 8.106,
+       "end": 8.483
+      },
+      {
+       "w": "to",
+       "start": 8.483,
+       "end": 8.609
+      },
+      {
+       "w": "it.",
+       "start": 8.609,
+       "end": 8.923
+      },
+      {
+       "w": "One",
+       "start": 8.923,
+       "end": 9.111
+      },
+      {
+       "w": "passage,",
+       "start": 9.111,
+       "end": 9.739
+      },
+      {
+       "w": "one",
+       "start": 9.739,
+       "end": 9.927
+      },
+      {
+       "w": "day,",
+       "start": 9.927,
+       "end": 10.304
+      },
+      {
+       "w": "two",
+       "start": 10.304,
+       "end": 10.493
+      },
+      {
+       "w": "movements.",
+       "start": 10.493,
+       "end": 11.246
+      }
+     ]
+    },
+    {
+     "text": "This is why scholars say that, with the right intention, earning a living becomes part of worship.",
+     "start": 11.676,
+     "end": 17.486,
+     "words": [
+      {
+       "w": "This",
+       "start": 11.726,
+       "end": 11.983
+      },
+      {
+       "w": "is",
+       "start": 11.983,
+       "end": 12.111
+      },
+      {
+       "w": "why",
+       "start": 12.111,
+       "end": 12.303
+      },
+      {
+       "w": "scholars",
+       "start": 12.303,
+       "end": 12.817
+      },
+      {
+       "w": "say",
+       "start": 12.817,
+       "end": 13.009
+      },
+      {
+       "w": "that,",
+       "start": 13.009,
+       "end": 13.458
+      },
+      {
+       "w": "with",
+       "start": 13.458,
+       "end": 13.715
+      },
+      {
+       "w": "the",
+       "start": 13.715,
+       "end": 13.907
+      },
+      {
+       "w": "right",
+       "start": 13.907,
+       "end": 14.228
+      },
+      {
+       "w": "intention,",
+       "start": 14.228,
+       "end": 14.998
+      },
+      {
+       "w": "earning",
+       "start": 14.998,
+       "end": 15.447
+      },
+      {
+       "w": "a",
+       "start": 15.447,
+       "end": 15.576
+      },
+      {
+       "w": "living",
+       "start": 15.576,
+       "end": 15.96
+      },
+      {
+       "w": "becomes",
+       "start": 15.96,
+       "end": 16.41
+      },
+      {
+       "w": "part",
+       "start": 16.41,
+       "end": 16.666
+      },
+      {
+       "w": "of",
+       "start": 16.666,
+       "end": 16.795
+      },
+      {
+       "w": "worship.",
+       "start": 16.795,
+       "end": 17.436
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s07.wav",
+   "duration": 11.704,
+   "sentences": [
+    {
+     "text": "The Quran even challenges those who ban good things for themselves.",
+     "start": 0.3,
+     "end": 4.389,
+     "words": [
+      {
+       "w": "The",
+       "start": 0.35,
+       "end": 0.553
+      },
+      {
+       "w": "Quran",
+       "start": 0.553,
+       "end": 0.891
+      },
+      {
+       "w": "even",
+       "start": 0.891,
+       "end": 1.161
+      },
+      {
+       "w": "challenges",
+       "start": 1.161,
+       "end": 1.837
+      },
+      {
+       "w": "those",
+       "start": 1.837,
+       "end": 2.175
+      },
+      {
+       "w": "who",
+       "start": 2.175,
+       "end": 2.378
+      },
+      {
+       "w": "ban",
+       "start": 2.378,
+       "end": 2.581
+      },
+      {
+       "w": "good",
+       "start": 2.581,
+       "end": 2.851
+      },
+      {
+       "w": "things",
+       "start": 2.851,
+       "end": 3.257
+      },
+      {
+       "w": "for",
+       "start": 3.257,
+       "end": 3.46
+      },
+      {
+       "w": "themselves.",
+       "start": 3.46,
+       "end": 4.339
+      }
+     ]
+    },
+    {
+     "text": "Say: who has forbidden the adornment of Allah, which He produced for His servants, and the good things of provision?",
+     "start": 4.769,
+     "end": 11.154,
+     "words": [
+      {
+       "w": "Say:",
+       "start": 4.819,
+       "end": 5.178
+      },
+      {
+       "w": "who",
+       "start": 5.178,
+       "end": 5.357
+      },
+      {
+       "w": "has",
+       "start": 5.357,
+       "end": 5.537
+      },
+      {
+       "w": "forbidden",
+       "start": 5.537,
+       "end": 6.076
+      },
+      {
+       "w": "the",
+       "start": 6.076,
+       "end": 6.255
+      },
+      {
+       "w": "adornment",
+       "start": 6.255,
+       "end": 6.794
+      },
+      {
+       "w": "of",
+       "start": 6.794,
+       "end": 6.914
+      },
+      {
+       "w": "Allah,",
+       "start": 6.914,
+       "end": 7.393
+      },
+      {
+       "w": "which",
+       "start": 7.393,
+       "end": 7.692
+      },
+      {
+       "w": "He",
+       "start": 7.692,
+       "end": 7.812
+      },
+      {
+       "w": "produced",
+       "start": 7.812,
+       "end": 8.291
+      },
+      {
+       "w": "for",
+       "start": 8.291,
+       "end": 8.47
+      },
+      {
+       "w": "His",
+       "start": 8.47,
+       "end": 8.65
+      },
+      {
+       "w": "servants,",
+       "start": 8.65,
+       "end": 9.308
+      },
+      {
+       "w": "and",
+       "start": 9.308,
+       "end": 9.488
+      },
+      {
+       "w": "the",
+       "start": 9.488,
+       "end": 9.668
+      },
+      {
+       "w": "good",
+       "start": 9.668,
+       "end": 9.907
+      },
+      {
+       "w": "things",
+       "start": 9.907,
+       "end": 10.266
+      },
+      {
+       "w": "of",
+       "start": 10.266,
+       "end": 10.386
+      },
+      {
+       "w": "provision?",
+       "start": 10.386,
+       "end": 11.104
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s08.wav",
+   "duration": 9.434,
+   "sentences": [
+    {
+     "text": "The Quran doesn't reject the material world. It organises it.",
+     "start": 0.3,
+     "end": 4.385,
+     "words": [
+      {
+       "w": "The",
+       "start": 0.35,
+       "end": 0.563
+      },
+      {
+       "w": "Quran",
+       "start": 0.563,
+       "end": 0.919
+      },
+      {
+       "w": "doesn't",
+       "start": 0.919,
+       "end": 1.417
+      },
+      {
+       "w": "reject",
+       "start": 1.417,
+       "end": 1.844
+      },
+      {
+       "w": "the",
+       "start": 1.844,
+       "end": 2.058
+      },
+      {
+       "w": "material",
+       "start": 2.058,
+       "end": 2.627
+      },
+      {
+       "w": "world.",
+       "start": 2.627,
+       "end": 3.196
+      },
+      {
+       "w": "It",
+       "start": 3.196,
+       "end": 3.339
+      },
+      {
+       "w": "organises",
+       "start": 3.339,
+       "end": 3.979
+      },
+      {
+       "w": "it.",
+       "start": 3.979,
+       "end": 4.335
+      }
+     ]
+    },
+    {
+     "text": "Seek the home of the Hereafter, but do not forget your share of this world.",
+     "start": 4.765,
+     "end": 8.884,
+     "words": [
+      {
+       "w": "Seek",
+       "start": 4.815,
+       "end": 5.062
+      },
+      {
+       "w": "the",
+       "start": 5.062,
+       "end": 5.248
+      },
+      {
+       "w": "home",
+       "start": 5.248,
+       "end": 5.495
+      },
+      {
+       "w": "of",
+       "start": 5.495,
+       "end": 5.619
+      },
+      {
+       "w": "the",
+       "start": 5.619,
+       "end": 5.804
+      },
+      {
+       "w": "Hereafter,",
+       "start": 5.804,
+       "end": 6.546
+      },
+      {
+       "w": "but",
+       "start": 6.546,
+       "end": 6.732
+      },
+      {
+       "w": "do",
+       "start": 6.732,
+       "end": 6.855
+      },
+      {
+       "w": "not",
+       "start": 6.855,
+       "end": 7.041
+      },
+      {
+       "w": "forget",
+       "start": 7.041,
+       "end": 7.412
+      },
+      {
+       "w": "your",
+       "start": 7.412,
+       "end": 7.659
+      },
+      {
+       "w": "share",
+       "start": 7.659,
+       "end": 7.968
+      },
+      {
+       "w": "of",
+       "start": 7.968,
+       "end": 8.092
+      },
+      {
+       "w": "this",
+       "start": 8.092,
+       "end": 8.339
+      },
+      {
+       "w": "world.",
+       "start": 8.339,
+       "end": 8.834
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s09.wav",
+   "duration": 10.501,
+   "sentences": [
+    {
+     "text": "What about leaving the world entirely, and living in isolation?",
+     "start": 0.3,
+     "end": 4.037,
+     "words": [
+      {
+       "w": "What",
+       "start": 0.35,
+       "end": 0.601
+      },
+      {
+       "w": "about",
+       "start": 0.601,
+       "end": 0.914
+      },
+      {
+       "w": "leaving",
+       "start": 0.914,
+       "end": 1.353
+      },
+      {
+       "w": "the",
+       "start": 1.353,
+       "end": 1.541
+      },
+      {
+       "w": "world",
+       "start": 1.541,
+       "end": 1.855
+      },
+      {
+       "w": "entirely,",
+       "start": 1.855,
+       "end": 2.545
+      },
+      {
+       "w": "and",
+       "start": 2.545,
+       "end": 2.733
+      },
+      {
+       "w": "living",
+       "start": 2.733,
+       "end": 3.109
+      },
+      {
+       "w": "in",
+       "start": 3.109,
+       "end": 3.235
+      },
+      {
+       "w": "isolation?",
+       "start": 3.235,
+       "end": 3.987
+      }
+     ]
+    },
+    {
+     "text": "The Quran says monasticism was something people invented. Allah did not prescribe it.",
+     "start": 4.417,
+     "end": 9.951,
+     "words": [
+      {
+       "w": "The",
+       "start": 4.467,
+       "end": 4.679
+      },
+      {
+       "w": "Quran",
+       "start": 4.679,
+       "end": 5.032
+      },
+      {
+       "w": "says",
+       "start": 5.032,
+       "end": 5.314
+      },
+      {
+       "w": "monasticism",
+       "start": 5.314,
+       "end": 6.09
+      },
+      {
+       "w": "was",
+       "start": 6.09,
+       "end": 6.302
+      },
+      {
+       "w": "something",
+       "start": 6.302,
+       "end": 6.937
+      },
+      {
+       "w": "people",
+       "start": 6.937,
+       "end": 7.36
+      },
+      {
+       "w": "invented.",
+       "start": 7.36,
+       "end": 8.137
+      },
+      {
+       "w": "Allah",
+       "start": 8.137,
+       "end": 8.489
+      },
+      {
+       "w": "did",
+       "start": 8.489,
+       "end": 8.701
+      },
+      {
+       "w": "not",
+       "start": 8.701,
+       "end": 8.913
+      },
+      {
+       "w": "prescribe",
+       "start": 8.913,
+       "end": 9.548
+      },
+      {
+       "w": "it.",
+       "start": 9.548,
+       "end": 9.901
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s10.wav",
+   "duration": 12.038,
+   "sentences": [
+    {
+     "text": "And in Sahih al-Bukhari, the Prophet, peace be upon him, stopped companions who vowed to fast forever and never marry.",
+     "start": 0.3,
+     "end": 7.912,
+     "words": [
+      {
+       "w": "And",
+       "start": 0.35,
+       "end": 0.563
+      },
+      {
+       "w": "in",
+       "start": 0.563,
+       "end": 0.704
+      },
+      {
+       "w": "Sahih",
+       "start": 0.704,
+       "end": 1.059
+      },
+      {
+       "w": "al-Bukhari,",
+       "start": 1.059,
+       "end": 1.909
+      },
+      {
+       "w": "the",
+       "start": 1.909,
+       "end": 2.122
+      },
+      {
+       "w": "Prophet,",
+       "start": 2.122,
+       "end": 2.83
+      },
+      {
+       "w": "peace",
+       "start": 2.83,
+       "end": 3.185
+      },
+      {
+       "w": "be",
+       "start": 3.185,
+       "end": 3.326
+      },
+      {
+       "w": "upon",
+       "start": 3.326,
+       "end": 3.61
+      },
+      {
+       "w": "him,",
+       "start": 3.61,
+       "end": 4.035
+      },
+      {
+       "w": "stopped",
+       "start": 4.035,
+       "end": 4.531
+      },
+      {
+       "w": "companions",
+       "start": 4.531,
+       "end": 5.24
+      },
+      {
+       "w": "who",
+       "start": 5.24,
+       "end": 5.452
+      },
+      {
+       "w": "vowed",
+       "start": 5.452,
+       "end": 5.807
+      },
+      {
+       "w": "to",
+       "start": 5.807,
+       "end": 5.948
+      },
+      {
+       "w": "fast",
+       "start": 5.948,
+       "end": 6.232
+      },
+      {
+       "w": "forever",
+       "start": 6.232,
+       "end": 6.728
+      },
+      {
+       "w": "and",
+       "start": 6.728,
+       "end": 6.94
+      },
+      {
+       "w": "never",
+       "start": 6.94,
+       "end": 7.295
+      },
+      {
+       "w": "marry.",
+       "start": 7.295,
+       "end": 7.862
+      }
+     ]
+    },
+    {
+     "text": "He said: whoever turns away from my way is not from me.",
+     "start": 8.292,
+     "end": 11.488,
+     "words": [
+      {
+       "w": "He",
+       "start": 8.342,
+       "end": 8.471
+      },
+      {
+       "w": "said:",
+       "start": 8.471,
+       "end": 8.922
+      },
+      {
+       "w": "whoever",
+       "start": 8.922,
+       "end": 9.374
+      },
+      {
+       "w": "turns",
+       "start": 9.374,
+       "end": 9.696
+      },
+      {
+       "w": "away",
+       "start": 9.696,
+       "end": 9.954
+      },
+      {
+       "w": "from",
+       "start": 9.954,
+       "end": 10.212
+      },
+      {
+       "w": "my",
+       "start": 10.212,
+       "end": 10.341
+      },
+      {
+       "w": "way",
+       "start": 10.341,
+       "end": 10.535
+      },
+      {
+       "w": "is",
+       "start": 10.535,
+       "end": 10.664
+      },
+      {
+       "w": "not",
+       "start": 10.664,
+       "end": 10.857
+      },
+      {
+       "w": "from",
+       "start": 10.857,
+       "end": 11.115
+      },
+      {
+       "w": "me.",
+       "start": 11.115,
+       "end": 11.438
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s11.wav",
+   "duration": 16.641,
+   "sentences": [
+    {
+     "text": "One correction.",
+     "start": 0.3,
+     "end": 1.388,
+     "words": [
+      {
+       "w": "One",
+       "start": 0.35,
+       "end": 0.535
+      },
+      {
+       "w": "correction.",
+       "start": 0.535,
+       "end": 1.338
+      }
+     ]
+    },
+    {
+     "text": "The popular line, there is no monasticism in Islam, is not an authentic hadith in that wording.",
+     "start": 1.768,
+     "end": 8.151,
+     "words": [
+      {
+       "w": "The",
+       "start": 1.818,
+       "end": 2.04
+      },
+      {
+       "w": "popular",
+       "start": 2.04,
+       "end": 2.558
+      },
+      {
+       "w": "line,",
+       "start": 2.558,
+       "end": 3.075
+      },
+      {
+       "w": "there",
+       "start": 3.075,
+       "end": 3.445
+      },
+      {
+       "w": "is",
+       "start": 3.445,
+       "end": 3.592
+      },
+      {
+       "w": "no",
+       "start": 3.592,
+       "end": 3.74
+      },
+      {
+       "w": "monasticism",
+       "start": 3.74,
+       "end": 4.553
+      },
+      {
+       "w": "in",
+       "start": 4.553,
+       "end": 4.701
+      },
+      {
+       "w": "Islam,",
+       "start": 4.701,
+       "end": 5.293
+      },
+      {
+       "w": "is",
+       "start": 5.293,
+       "end": 5.44
+      },
+      {
+       "w": "not",
+       "start": 5.44,
+       "end": 5.662
+      },
+      {
+       "w": "an",
+       "start": 5.662,
+       "end": 5.81
+      },
+      {
+       "w": "authentic",
+       "start": 5.81,
+       "end": 6.475
+      },
+      {
+       "w": "hadith",
+       "start": 6.475,
+       "end": 6.919
+      },
+      {
+       "w": "in",
+       "start": 6.919,
+       "end": 7.067
+      },
+      {
+       "w": "that",
+       "start": 7.067,
+       "end": 7.362
+      },
+      {
+       "w": "wording.",
+       "start": 7.362,
+       "end": 8.101
+      }
+     ]
+    },
+    {
+     "text": "And the Prophet himself retreated to the cave of Hira. So the point is permanent withdrawal from society, not caves.",
+     "start": 8.531,
+     "end": 16.091,
+     "words": [
+      {
+       "w": "And",
+       "start": 8.581,
+       "end": 8.799
+      },
+      {
+       "w": "the",
+       "start": 8.799,
+       "end": 9.016
+      },
+      {
+       "w": "Prophet",
+       "start": 9.016,
+       "end": 9.523
+      },
+      {
+       "w": "himself",
+       "start": 9.523,
+       "end": 10.03
+      },
+      {
+       "w": "retreated",
+       "start": 10.03,
+       "end": 10.682
+      },
+      {
+       "w": "to",
+       "start": 10.682,
+       "end": 10.827
+      },
+      {
+       "w": "the",
+       "start": 10.827,
+       "end": 11.044
+      },
+      {
+       "w": "cave",
+       "start": 11.044,
+       "end": 11.334
+      },
+      {
+       "w": "of",
+       "start": 11.334,
+       "end": 11.478
+      },
+      {
+       "w": "Hira.",
+       "start": 11.478,
+       "end": 11.985
+      },
+      {
+       "w": "So",
+       "start": 11.985,
+       "end": 12.13
+      },
+      {
+       "w": "the",
+       "start": 12.13,
+       "end": 12.348
+      },
+      {
+       "w": "point",
+       "start": 12.348,
+       "end": 12.71
+      },
+      {
+       "w": "is",
+       "start": 12.71,
+       "end": 12.855
+      },
+      {
+       "w": "permanent",
+       "start": 12.855,
+       "end": 13.506
+      },
+      {
+       "w": "withdrawal",
+       "start": 13.506,
+       "end": 14.231
+      },
+      {
+       "w": "from",
+       "start": 14.231,
+       "end": 14.52
+      },
+      {
+       "w": "society,",
+       "start": 14.52,
+       "end": 15.245
+      },
+      {
+       "w": "not",
+       "start": 15.245,
+       "end": 15.462
+      },
+      {
+       "w": "caves.",
+       "start": 15.462,
+       "end": 16.041
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s12.wav",
+   "duration": 9.006,
+   "sentences": [
+    {
+     "text": "So this series reads the Quran not only for belief and law, like inheritance or divorce,",
+     "start": 0.3,
+     "end": 6.03,
+     "words": [
+      {
+       "w": "So",
+       "start": 0.35,
+       "end": 0.496
+      },
+      {
+       "w": "this",
+       "start": 0.496,
+       "end": 0.789
+      },
+      {
+       "w": "series",
+       "start": 0.789,
+       "end": 1.227
+      },
+      {
+       "w": "reads",
+       "start": 1.227,
+       "end": 1.593
+      },
+      {
+       "w": "the",
+       "start": 1.593,
+       "end": 1.812
+      },
+      {
+       "w": "Quran",
+       "start": 1.812,
+       "end": 2.178
+      },
+      {
+       "w": "not",
+       "start": 2.178,
+       "end": 2.397
+      },
+      {
+       "w": "only",
+       "start": 2.397,
+       "end": 2.69
+      },
+      {
+       "w": "for",
+       "start": 2.69,
+       "end": 2.909
+      },
+      {
+       "w": "belief",
+       "start": 2.909,
+       "end": 3.348
+      },
+      {
+       "w": "and",
+       "start": 3.348,
+       "end": 3.567
+      },
+      {
+       "w": "law,",
+       "start": 3.567,
+       "end": 4.006
+      },
+      {
+       "w": "like",
+       "start": 4.006,
+       "end": 4.298
+      },
+      {
+       "w": "inheritance",
+       "start": 4.298,
+       "end": 5.103
+      },
+      {
+       "w": "or",
+       "start": 5.103,
+       "end": 5.249
+      },
+      {
+       "w": "divorce,",
+       "start": 5.249,
+       "end": 5.98
+      }
+     ]
+    },
+    {
+     "text": "but through an economic lens.",
+     "start": 6.41,
+     "end": 8.456,
+     "words": [
+      {
+       "w": "but",
+       "start": 6.46,
+       "end": 6.676
+      },
+      {
+       "w": "through",
+       "start": 6.676,
+       "end": 7.181
+      },
+      {
+       "w": "an",
+       "start": 7.181,
+       "end": 7.325
+      },
+      {
+       "w": "economic",
+       "start": 7.325,
+       "end": 7.902
+      },
+      {
+       "w": "lens.",
+       "start": 7.902,
+       "end": 8.406
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "voice": "ig/epi01/s13.wav",
+   "duration": 5.781,
+   "sentences": [
+    {
+     "text": "Next episode: is the earth a prison, or a blessing? Follow for episode two.",
+     "start": 0.3,
+     "end": 5.231,
+     "words": [
+      {
+       "w": "Next",
+       "start": 0.35,
+       "end": 0.618
+      },
+      {
+       "w": "episode:",
+       "start": 0.618,
+       "end": 1.289
+      },
+      {
+       "w": "is",
+       "start": 1.289,
+       "end": 1.423
+      },
+      {
+       "w": "the",
+       "start": 1.423,
+       "end": 1.625
+      },
+      {
+       "w": "earth",
+       "start": 1.625,
+       "end": 1.96
+      },
+      {
+       "w": "a",
+       "start": 1.96,
+       "end": 2.094
+      },
+      {
+       "w": "prison,",
+       "start": 2.094,
+       "end": 2.698
+      },
+      {
+       "w": "or",
+       "start": 2.698,
+       "end": 2.832
+      },
+      {
+       "w": "a",
+       "start": 2.832,
+       "end": 2.967
+      },
+      {
+       "w": "blessing?",
+       "start": 2.967,
+       "end": 3.705
+      },
+      {
+       "w": "Follow",
+       "start": 3.705,
+       "end": 4.107
+      },
+      {
+       "w": "for",
+       "start": 4.107,
+       "end": 4.308
+      },
+      {
+       "w": "episode",
+       "start": 4.308,
+       "end": 4.778
+      },
+      {
+       "w": "two.",
+       "start": 4.778,
+       "end": 5.181
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
