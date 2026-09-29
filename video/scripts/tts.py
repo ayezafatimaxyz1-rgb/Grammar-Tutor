@@ -43,7 +43,7 @@ def main():
     voice = script["voice"]
     ensure_model()
     k = Kokoro(os.path.join(MODEL_DIR, FILES[0]), os.path.join(MODEL_DIR, FILES[1]))
-    segs = script["main"] + [b for sh in script["shorts"] for b in sh["beats"]]
+    segs = [b for v in script["videos"] for b in v["beats"]]
     only = set(sys.argv[1:])
     out_dir = os.path.join(ROOT, "public/audio")
     os.makedirs(out_dir, exist_ok=True)

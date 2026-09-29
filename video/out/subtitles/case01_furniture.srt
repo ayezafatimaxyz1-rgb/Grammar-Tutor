@@ -1,0 +1,243 @@
+1
+00:00:00,370 --> 00:00:01,776
+Furniture.
+Luggage.
+
+2
+00:00:01,816 --> 00:00:04,509
+Gold. Rice.
+Knowledge.
+
+3
+00:00:04,549 --> 00:00:05,056
+Work.
+
+4
+00:00:05,096 --> 00:00:06,247
+We’re told
+to memorise lists
+
+5
+00:00:06,287 --> 00:00:06,928
+like these:
+
+6
+00:00:06,968 --> 00:00:09,096
+no plural,
+singular verb.
+
+7
+00:00:09,637 --> 00:00:10,948
+But what if
+you didn’t have
+
+8
+00:00:10,988 --> 00:00:12,147
+to memorise them?
+
+9
+00:00:12,187 --> 00:00:13,516
+What if you
+could prove it,
+
+10
+00:00:13,556 --> 00:00:14,787
+with logic?
+
+11
+00:00:15,437 --> 00:00:17,271
+Case one:
+furniture.
+
+12
+00:00:17,311 --> 00:00:18,294
+Why
+is ‘The furniture
+
+13
+00:00:18,334 --> 00:00:20,179
+are expensive’
+wrong?
+
+14
+00:00:20,803 --> 00:00:21,531
+Proof one.
+
+15
+00:00:21,571 --> 00:00:22,761
+Point
+to a furniture.
+
+16
+00:00:22,801 --> 00:00:24,860
+This? That’s
+a chair.
+
+17
+00:00:24,900 --> 00:00:26,554
+This? A table.
+
+18
+00:00:26,594 --> 00:00:27,870
+A sofa. A bed.
+
+19
+00:00:27,910 --> 00:00:28,909
+Every object
+already has its
+
+20
+00:00:28,949 --> 00:00:29,985
+own name.
+
+21
+00:00:30,437 --> 00:00:32,649
+Nothing here
+is ‘a furniture’.
+
+22
+00:00:32,689 --> 00:00:34,387
+So furniture
+is not the name
+
+23
+00:00:34,427 --> 00:00:36,211
+of one object.
+
+24
+00:00:37,337 --> 00:00:38,135
+Proof two.
+
+25
+00:00:38,175 --> 00:00:39,329
+Furniture
+is the name for
+
+26
+00:00:39,369 --> 00:00:40,439
+the whole group.
+
+27
+00:00:40,479 --> 00:00:42,976
+Chair,
+table, sofa,
+
+28
+00:00:43,016 --> 00:00:44,623
+bed: one box,
+one label.
+
+29
+00:00:45,070 --> 00:00:46,539
+Try counting
+the label:
+
+30
+00:00:46,579 --> 00:00:48,547
+one furniture,
+two furnitures?
+
+31
+00:00:48,587 --> 00:00:49,657
+It fails.
+
+32
+00:00:49,697 --> 00:00:51,216
+We count
+what’s inside:
+
+33
+00:00:51,256 --> 00:00:53,220
+one chair,
+two chairs.
+
+34
+00:00:54,370 --> 00:00:55,288
+Proof three.
+
+35
+00:00:55,328 --> 00:00:56,745
+A group name
+works as one
+
+36
+00:00:56,785 --> 00:00:58,016
+whole, so the verb
+
+37
+00:00:58,056 --> 00:00:59,063
+is singular:
+
+38
+00:00:59,103 --> 00:01:01,200
+‘The furniture
+is expensive.’
+
+39
+00:01:02,337 --> 00:01:03,253
+Need a number?
+
+40
+00:01:03,293 --> 00:01:05,525
+The two won’t
+stick to furniture.
+
+41
+00:01:05,565 --> 00:01:07,100
+Give it something
+countable:
+
+42
+00:01:07,140 --> 00:01:08,316
+‘Two pieces
+of furniture
+
+43
+00:01:08,356 --> 00:01:09,983
+are expensive.’
+
+44
+00:01:11,103 --> 00:01:12,677
+Now you try:
+
+45
+00:01:12,717 --> 00:01:14,047
+luggage.
+Point to a luggage?
+
+46
+00:01:14,087 --> 00:01:15,327
+No, that’s
+a suitcase,
+
+47
+00:01:15,367 --> 00:01:16,296
+that’s a bag.
+
+48
+00:01:16,336 --> 00:01:17,712
+Group name, so:
+
+49
+00:01:17,752 --> 00:01:18,965
+‘The luggage
+is heavy.’
+
+50
+00:01:19,903 --> 00:01:21,331
+So don’t memorise.
+
+51
+00:01:21,371 --> 00:01:23,528
+Ask: can I point
+to one of it?
+
+52
+00:01:23,568 --> 00:01:25,007
+If not, it’s
+a group name.
+
+53
+00:01:25,047 --> 00:01:26,445
+Treat it as one.
+

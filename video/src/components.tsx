@@ -66,7 +66,8 @@ export const Sentence: React.FC<{
   size?: number;
   style?: React.CSSProperties;
   fadeOutAt?: number;
-}> = ({ text, mark = "none", at = 0, hlAt, linkAt, chipAt, accent = C.unit, size = 54, style, fadeOutAt }) => {
+  bounceAt?: number;    // chip that tries to land on a token and bounces off
+}> = ({ text, mark = "none", at = 0, hlAt, linkAt, chipAt, accent = C.unit, size = 54, style, fadeOutAt, bounceAt }) => {
   const f = useCurrentFrame();
   const pop = usePop();
   const toks = parse(text);
@@ -106,6 +107,7 @@ export const Sentence: React.FC<{
         {deco}
         {t}
         {chip && chipAt !== undefined && <Chip label={chip} at={chipAt} size={size * 0.9} color={accent} />}
+        {flags.match(/b([0-9a-z]+)/) && bounceAt !== undefined && <BounceChip label={flags.match(/b([0-9a-z]+)/)![1]} at={bounceAt} size={size * 0.9} color={accent} />}
       </span>
     );
   };
@@ -170,6 +172,24 @@ export const Chip: React.FC<{ label: string; at: number; size?: number; color?: 
     }}>
       {label}
     </span>
+  );
+};
+
+/** Counter badge that flies at a token, hits it and bounces away: "this number can't go here". */
+export const BounceChip: React.FC<{ label: string; at: number; size?: number; color?: string }> = ({ label, at, size = 48, color = C.ink }) => {
+  const f = useCurrentFrame();
+  if (f < at || f > at + 40) return null;
+  const t = f - at;
+  const hit = 12;
+  const x = t < hit ? -160 * (1 - t / hit) : 60 * (t - hit) / 8;
+  const y = t < hit ? -140 * (1 - t / hit) : -Math.abs(Math.sin((t - hit) / 5)) * 90 * Math.exp(-(t - hit) / 14) - (t - hit) * 3;
+  const o = t < hit ? 1 : Math.max(0, 1 - (t - hit) / 26);
+  return (
+    <span style={{
+      position: "absolute", left: "50%", top: -size * 1.05, width: size, height: size, marginLeft: -size / 2, borderRadius: "50%",
+      background: color, color: "#fff", fontSize: size * 0.55, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center",
+      fontFamily: FONT, transform: `translate(${x}px, ${y}px) rotate(${t > hit ? (t - hit) * 12 : 0}deg)`, opacity: o,
+    }}>{label}</span>
   );
 };
 

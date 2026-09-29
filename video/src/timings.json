@@ -1,3401 +1,16 @@
 {
  "fps": 30,
- "main": [
-  {
-   "id": "m01",
-   "scene": "Hook",
-   "audio": "audio/main_01.mp3",
-   "start": 0.0,
-   "startFrame": 0,
-   "frames": 469,
-   "lead": 0.35,
-   "audioDur": 13.872,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Why",
-     "t": 0.02
-    },
-    {
-     "w": "is",
-     "t": 0.274
-    },
-    {
-     "w": "‘The",
-     "t": 0.47
-    },
-    {
-     "w": "furniture",
-     "t": 0.724
-    },
-    {
-     "w": "are",
-     "t": 1.315
-    },
-    {
-     "w": "expensive’",
-     "t": 1.569
-    },
-    {
-     "w": "wrong",
-     "t": 2.217
-    },
-    {
-     "w": "when",
-     "t": 2.584
-    },
-    {
-     "w": "a",
-     "t": 2.894
-    },
-    {
-     "w": "room",
-     "t": 3.034
-    },
-    {
-     "w": "contains",
-     "t": 3.344
-    },
-    {
-     "w": "several",
-     "t": 3.879
-    },
-    {
-     "w": "chairs?",
-     "t": 4.359
-    },
-    {
-     "w": "And",
-     "t": 5.288
-    },
-    {
-     "w": "why",
-     "t": 5.531
-    },
-    {
-     "w": "do",
-     "t": 5.774
-    },
-    {
-     "w": "we",
-     "t": 5.963
-    },
-    {
-     "w": "say",
-     "t": 6.152
-    },
-    {
-     "w": "‘much",
-     "t": 6.395
-    },
-    {
-     "w": "rice’",
-     "t": 6.691
-    },
-    {
-     "w": "when",
-     "t": 7.043
-    },
-    {
-     "w": "rice",
-     "t": 7.339
-    },
-    {
-     "w": "has",
-     "t": 7.636
-    },
-    {
-     "w": "thousands",
-     "t": 7.879
-    },
-    {
-     "w": "of",
-     "t": 8.445
-    },
-    {
-     "w": "grains?",
-     "t": 8.635
-    },
-    {
-     "w": "A",
-     "t": 9.525
-    },
-    {
-     "w": "memorised",
-     "t": 9.663
-    },
-    {
-     "w": "list",
-     "t": 10.241
-    },
-    {
-     "w": "tells",
-     "t": 10.543
-    },
-    {
-     "w": "you",
-     "t": 10.901
-    },
-    {
-     "w": "the",
-     "t": 11.149
-    },
-    {
-     "w": "answer.",
-     "t": 11.397
-    },
-    {
-     "w": "It",
-     "t": 12.304
-    },
-    {
-     "w": "doesn’t",
-     "t": 12.444
-    },
-    {
-     "w": "show",
-     "t": 12.783
-    },
-    {
-     "w": "you",
-     "t": 13.003
-    },
-    {
-     "w": "why.",
-     "t": 13.181
-    }
-   ],
-   "text": "Why is ‘The furniture are expensive’ wrong when a room contains several chairs? And why do we say ‘much rice’ when rice has thousands of grains? A memorised list tells you the answer. It doesn’t show you why."
-  },
-  {
-   "id": "m02",
-   "scene": "Overview",
-   "audio": "audio/main_02.mp3",
-   "start": 15.633,
-   "startFrame": 469,
-   "frames": 543,
-   "lead": 0.35,
-   "audioDur": 16.344,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "In",
-     "t": 0.02
-    },
-    {
-     "w": "the",
-     "t": 0.178
-    },
-    {
-     "w": "meanings",
-     "t": 0.383
-    },
-    {
-     "w": "we",
-     "t": 0.814
-    },
-    {
-     "w": "are",
-     "t": 0.973
-    },
-    {
-     "w": "studying,",
-     "t": 1.177
-    },
-    {
-     "w": "English",
-     "t": 1.789
-    },
-    {
-     "w": "treats",
-     "t": 2.283
-    },
-    {
-     "w": "these",
-     "t": 2.718
-    },
-    {
-     "w": "nouns",
-     "t": 3.095
-    },
-    {
-     "w": "as",
-     "t": 3.471
-    },
-    {
-     "w": "uncountable,",
-     "t": 3.675
-    },
-    {
-     "w": "so",
-     "t": 4.632
-    },
-    {
-     "w": "they",
-     "t": 4.838
-    },
-    {
-     "w": "take",
-     "t": 5.163
-    },
-    {
-     "w": "a",
-     "t": 5.487
-    },
-    {
-     "w": "singular",
-     "t": 5.635
-    },
-    {
-     "w": "verb.",
-     "t": 6.195
-    },
-    {
-     "w": "Let’s",
-     "t": 7.051
-    },
-    {
-     "w": "see",
-     "t": 7.41
-    },
-    {
-     "w": "five",
-     "t": 7.658
-    },
-    {
-     "w": "pictures",
-     "t": 7.963
-    },
-    {
-     "w": "behind",
-     "t": 8.488
-    },
-    {
-     "w": "the",
-     "t": 8.902
-    },
-    {
-     "w": "examples:",
-     "t": 9.151
-    },
-    {
-     "w": "an",
-     "t": 10.008
-    },
-    {
-     "w": "overall",
-     "t": 10.208
-    },
-    {
-     "w": "collection,",
-     "t": 10.693
-    },
-    {
-     "w": "a",
-     "t": 11.578
-    },
-    {
-     "w": "material,",
-     "t": 11.747
-    },
-    {
-     "w": "a",
-     "t": 12.665
-    },
-    {
-     "w": "measured",
-     "t": 12.801
-    },
-    {
-     "w": "amount,",
-     "t": 13.322
-    },
-    {
-     "w": "a",
-     "t": 13.952
-    },
-    {
-     "w": "body",
-     "t": 14.077
-    },
-    {
-     "w": "of",
-     "t": 14.352
-    },
-    {
-     "w": "knowledge,",
-     "t": 14.528
-    },
-    {
-     "w": "and",
-     "t": 15.255
-    },
-    {
-     "w": "an",
-     "t": 15.416
-    },
-    {
-     "w": "activity.",
-     "t": 15.542
-    }
-   ],
-   "text": "In the meanings we are studying, English treats these nouns as uncountable, so they take a singular verb. Let’s see five pictures behind the examples: an overall collection, a material, a measured amount, a body of knowledge, and an activity."
-  },
-  {
-   "id": "m03",
-   "scene": "Unit1",
-   "audio": "audio/main_03.mp3",
-   "start": 33.733,
-   "startFrame": 1012,
-   "frames": 503,
-   "lead": 0.35,
-   "audioDur": 15.288,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "First:",
-     "t": 0.02
-    },
-    {
-     "w": "unit",
-     "t": 0.734
-    },
-    {
-     "w": "or",
-     "t": 1.049
-    },
-    {
-     "w": "mass.",
-     "t": 1.249
-    },
-    {
-     "w": "‘The",
-     "t": 2.076
-    },
-    {
-     "w": "furniture",
-     "t": 2.285
-    },
-    {
-     "w": "are",
-     "t": 2.771
-    },
-    {
-     "w": "expensive.’",
-     "t": 2.979
-    },
-    {
-     "w": "Look:",
-     "t": 3.928
-    },
-    {
-     "w": "a",
-     "t": 4.435
-    },
-    {
-     "w": "chair,",
-     "t": 4.572
-    },
-    {
-     "w": "a",
-     "t": 5.142
-    },
-    {
-     "w": "table,",
-     "t": 5.277
-    },
-    {
-     "w": "a",
-     "t": 5.847
-    },
-    {
-     "w": "sofa",
-     "t": 5.983
-    },
-    {
-     "w": "and",
-     "t": 6.282
-    },
-    {
-     "w": "a",
-     "t": 6.526
-    },
-    {
-     "w": "bed.",
-     "t": 6.662
-    },
-    {
-     "w": "I",
-     "t": 7.395
-    },
-    {
-     "w": "can",
-     "t": 7.511
-    },
-    {
-     "w": "count",
-     "t": 7.718
-    },
-    {
-     "w": "the",
-     "t": 8.017
-    },
-    {
-     "w": "separate",
-     "t": 8.225
-    },
-    {
-     "w": "objects:",
-     "t": 8.662
-    },
-    {
-     "w": "one",
-     "t": 9.33
-    },
-    {
-     "w": "chair,",
-     "t": 9.575
-    },
-    {
-     "w": "two",
-     "t": 10.147
-    },
-    {
-     "w": "chairs.",
-     "t": 10.392
-    },
-    {
-     "w": "But",
-     "t": 11.293
-    },
-    {
-     "w": "when",
-     "t": 11.49
-    },
-    {
-     "w": "I",
-     "t": 11.731
-    },
-    {
-     "w": "call",
-     "t": 11.841
-    },
-    {
-     "w": "them",
-     "t": 12.082
-    },
-    {
-     "w": "furniture,",
-     "t": 12.324
-    },
-    {
-     "w": "I’ve",
-     "t": 12.961
-    },
-    {
-     "w": "changed",
-     "t": 13.17
-    },
-    {
-     "w": "the",
-     "t": 13.493
-    },
-    {
-     "w": "way",
-     "t": 13.664
-    },
-    {
-     "w": "I’m",
-     "t": 13.835
-    },
-    {
-     "w": "talking",
-     "t": 14.006
-    },
-    {
-     "w": "about",
-     "t": 14.329
-    },
-    {
-     "w": "them.",
-     "t": 14.576
-    }
-   ],
-   "text": "First: unit or mass. ‘The furniture are expensive.’ Look: a chair, a table, a sofa and a bed. I can count the separate objects: one chair, two chairs. But when I call them furniture, I’ve changed the way I’m talking about them."
-  },
-  {
-   "id": "m04",
-   "scene": "Unit2",
-   "audio": "audio/main_04.mp3",
-   "start": 50.5,
-   "startFrame": 1515,
-   "frames": 607,
-   "lead": 0.35,
-   "audioDur": 18.072,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Furniture",
-     "t": 0.02
-    },
-    {
-     "w": "is",
-     "t": 0.555
-    },
-    {
-     "w": "the",
-     "t": 0.733
-    },
-    {
-     "w": "overall",
-     "t": 0.963
-    },
-    {
-     "w": "label",
-     "t": 1.396
-    },
-    {
-     "w": "for",
-     "t": 1.727
-    },
-    {
-     "w": "the",
-     "t": 1.957
-    },
-    {
-     "w": "collection,",
-     "t": 2.187
-    },
-    {
-     "w": "not",
-     "t": 2.976
-    },
-    {
-     "w": "the",
-     "t": 3.228
-    },
-    {
-     "w": "name",
-     "t": 3.48
-    },
-    {
-     "w": "of",
-     "t": 3.786
-    },
-    {
-     "w": "each",
-     "t": 3.982
-    },
-    {
-     "w": "separate",
-     "t": 4.289
-    },
-    {
-     "w": "item.",
-     "t": 4.82
-    },
-    {
-     "w": "English",
-     "t": 5.63
-    },
-    {
-     "w": "treats",
-     "t": 6.08
-    },
-    {
-     "w": "that",
-     "t": 6.475
-    },
-    {
-     "w": "word",
-     "t": 6.766
-    },
-    {
-     "w": "as",
-     "t": 7.057
-    },
-    {
-     "w": "uncountable.",
-     "t": 7.242
-    },
-    {
-     "w": "So",
-     "t": 8.379
-    },
-    {
-     "w": "‘The",
-     "t": 8.567
-    },
-    {
-     "w": "furniture",
-     "t": 8.811
-    },
-    {
-     "w": "is",
-     "t": 9.378
-    },
-    {
-     "w": "expensive.’",
-     "t": 9.567
-    },
-    {
-     "w": "To",
-     "t": 10.674
-    },
-    {
-     "w": "give",
-     "t": 10.828
-    },
-    {
-     "w": "a",
-     "t": 11.069
-    },
-    {
-     "w": "number,",
-     "t": 11.178
-    },
-    {
-     "w": "I",
-     "t": 11.681
-    },
-    {
-     "w": "count",
-     "t": 11.814
-    },
-    {
-     "w": "pieces",
-     "t": 12.16
-    },
-    {
-     "w": "of",
-     "t": 12.559
-    },
-    {
-     "w": "furniture:",
-     "t": 12.746
-    },
-    {
-     "w": "‘Two",
-     "t": 13.625
-    },
-    {
-     "w": "pieces",
-     "t": 13.873
-    },
-    {
-     "w": "of",
-     "t": 14.286
-    },
-    {
-     "w": "furniture",
-     "t": 14.48
-    },
-    {
-     "w": "are",
-     "t": 15.059
-    },
-    {
-     "w": "expensive.’",
-     "t": 15.307
-    },
-    {
-     "w": "Here",
-     "t": 16.436
-    },
-    {
-     "w": "pieces",
-     "t": 16.68
-    },
-    {
-     "w": "is",
-     "t": 17.013
-    },
-    {
-     "w": "plural.",
-     "t": 17.169
-    }
-   ],
-   "text": "Furniture is the overall label for the collection, not the name of each separate item. English treats that word as uncountable. So ‘The furniture is expensive.’ To give a number, I count pieces of furniture: ‘Two pieces of furniture are expensive.’ Here pieces is plural."
-  },
-  {
-   "id": "m05",
-   "scene": "Unit3",
-   "audio": "audio/main_05.mp3",
-   "start": 70.733,
-   "startFrame": 2122,
-   "frames": 457,
-   "lead": 0.35,
-   "audioDur": 13.272,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "The",
-     "t": 0.02
-    },
-    {
-     "w": "same",
-     "t": 0.242
-    },
-    {
-     "w": "picture",
-     "t": 0.512
-    },
-    {
-     "w": "helps",
-     "t": 0.931
-    },
-    {
-     "w": "with",
-     "t": 1.251
-    },
-    {
-     "w": "luggage:",
-     "t": 1.522
-    },
-    {
-     "w": "several",
-     "t": 2.236
-    },
-    {
-     "w": "bags",
-     "t": 2.781
-    },
-    {
-     "w": "and",
-     "t": 3.133
-    },
-    {
-     "w": "suitcases,",
-     "t": 3.422
-    },
-    {
-     "w": "one",
-     "t": 4.351
-    },
-    {
-     "w": "luggage",
-     "t": 4.597
-    },
-    {
-     "w": "label.",
-     "t": 5.059
-    },
-    {
-     "w": "‘The",
-     "t": 5.904
-    },
-    {
-     "w": "luggage",
-     "t": 6.119
-    },
-    {
-     "w": "is",
-     "t": 6.522
-    },
-    {
-     "w": "heavy’,",
-     "t": 6.689
-    },
-    {
-     "w": "but",
-     "t": 7.235
-    },
-    {
-     "w": "‘three",
-     "t": 7.447
-    },
-    {
-     "w": "pieces",
-     "t": 7.754
-    },
-    {
-     "w": "of",
-     "t": 8.108
-    },
-    {
-     "w": "luggage",
-     "t": 8.273
-    },
-    {
-     "w": "are",
-     "t": 8.674
-    },
-    {
-     "w": "heavy’.",
-     "t": 8.887
-    },
-    {
-     "w": "You",
-     "t": 9.665
-    },
-    {
-     "w": "can",
-     "t": 9.881
-    },
-    {
-     "w": "picture",
-     "t": 10.095
-    },
-    {
-     "w": "clothing,",
-     "t": 10.502
-    },
-    {
-     "w": "equipment",
-     "t": 11.149
-    },
-    {
-     "w": "and",
-     "t": 11.612
-    },
-    {
-     "w": "crockery",
-     "t": 11.811
-    },
-    {
-     "w": "similarly.",
-     "t": 12.232
-    }
-   ],
-   "text": "The same picture helps with luggage: several bags and suitcases, one luggage label. ‘The luggage is heavy’, but ‘three pieces of luggage are heavy’. You can picture clothing, equipment and crockery similarly."
-  },
-  {
-   "id": "m06",
-   "scene": "Material1",
-   "audio": "audio/main_06.mp3",
-   "start": 85.967,
-   "startFrame": 2579,
-   "frames": 444,
-   "lead": 0.35,
-   "audioDur": 13.344,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Second:",
-     "t": 0.02
-    },
-    {
-     "w": "material.",
-     "t": 1.462
-    },
-    {
-     "w": "Think",
-     "t": 2.022
-    },
-    {
-     "w": "of",
-     "t": 2.218
-    },
-    {
-     "w": "gold.",
-     "t": 2.324
-    },
-    {
-     "w": "A",
-     "t": 2.763
-    },
-    {
-     "w": "ring,",
-     "t": 2.903
-    },
-    {
-     "w": "a",
-     "t": 3.434
-    },
-    {
-     "w": "coin",
-     "t": 3.562
-    },
-    {
-     "w": "and",
-     "t": 3.841
-    },
-    {
-     "w": "a",
-     "t": 4.07
-    },
-    {
-     "w": "necklace",
-     "t": 4.196
-    },
-    {
-     "w": "are",
-     "t": 4.68
-    },
-    {
-     "w": "three",
-     "t": 4.909
-    },
-    {
-     "w": "different",
-     "t": 5.24
-    },
-    {
-     "w": "things,",
-     "t": 5.773
-    },
-    {
-     "w": "but",
-     "t": 6.357
-    },
-    {
-     "w": "the",
-     "t": 6.576
-    },
-    {
-     "w": "gold",
-     "t": 6.794
-    },
-    {
-     "w": "is",
-     "t": 7.061
-    },
-    {
-     "w": "the",
-     "t": 7.23
-    },
-    {
-     "w": "substance",
-     "t": 7.448
-    },
-    {
-     "w": "from",
-     "t": 7.957
-    },
-    {
-     "w": "which",
-     "t": 8.224
-    },
-    {
-     "w": "they",
-     "t": 8.539
-    },
-    {
-     "w": "are",
-     "t": 8.805
-    },
-    {
-     "w": "made.",
-     "t": 9.023
-    },
-    {
-     "w": "When",
-     "t": 9.727
-    },
-    {
-     "w": "the",
-     "t": 9.982
-    },
-    {
-     "w": "word",
-     "t": 10.191
-    },
-    {
-     "w": "names",
-     "t": 10.446
-    },
-    {
-     "w": "the",
-     "t": 10.749
-    },
-    {
-     "w": "substance,",
-     "t": 10.958
-    },
-    {
-     "w": "I",
-     "t": 11.632
-    },
-    {
-     "w": "ask",
-     "t": 11.749
-    },
-    {
-     "w": "‘How",
-     "t": 11.959
-    },
-    {
-     "w": "much",
-     "t": 12.17
-    },
-    {
-     "w": "gold?’",
-     "t": 12.426
-    }
-   ],
-   "text": "Second: material. Think of gold. A ring, a coin and a necklace are three different things, but the gold is the substance from which they are made. When the word names the substance, I ask ‘How much gold?’"
-  },
-  {
-   "id": "m07",
-   "scene": "Material2",
-   "audio": "audio/main_07.mp3",
-   "start": 100.767,
-   "startFrame": 3023,
-   "frames": 480,
-   "lead": 0.35,
-   "audioDur": 14.328,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "I",
-     "t": 0.02
-    },
-    {
-     "w": "count",
-     "t": 0.17
-    },
-    {
-     "w": "three",
-     "t": 0.562
-    },
-    {
-     "w": "rings,",
-     "t": 0.953
-    },
-    {
-     "w": "or",
-     "t": 1.585
-    },
-    {
-     "w": "measure",
-     "t": 1.77
-    },
-    {
-     "w": "twenty",
-     "t": 2.218
-    },
-    {
-     "w": "grams",
-     "t": 2.613
-    },
-    {
-     "w": "of",
-     "t": 2.956
-    },
-    {
-     "w": "gold.",
-     "t": 3.141
-    },
-    {
-     "w": "The",
-     "t": 3.905
-    },
-    {
-     "w": "number",
-     "t": 4.16
-    },
-    {
-     "w": "belongs",
-     "t": 4.586
-    },
-    {
-     "w": "to",
-     "t": 5.069
-    },
-    {
-     "w": "rings",
-     "t": 5.268
-    },
-    {
-     "w": "or",
-     "t": 5.636
-    },
-    {
-     "w": "grams,",
-     "t": 5.836
-    },
-    {
-     "w": "not",
-     "t": 6.431
-    },
-    {
-     "w": "directly",
-     "t": 6.708
-    },
-    {
-     "w": "to",
-     "t": 7.29
-    },
-    {
-     "w": "gold.",
-     "t": 7.505
-    },
-    {
-     "w": "Picture",
-     "t": 8.394
-    },
-    {
-     "w": "the",
-     "t": 8.821
-    },
-    {
-     "w": "same",
-     "t": 9.048
-    },
-    {
-     "w": "distinction",
-     "t": 9.324
-    },
-    {
-     "w": "with",
-     "t": 9.953
-    },
-    {
-     "w": "silver,",
-     "t": 10.23
-    },
-    {
-     "w": "wood,",
-     "t": 10.808
-    },
-    {
-     "w": "glass",
-     "t": 11.41
-    },
-    {
-     "w": "and",
-     "t": 11.735
-    },
-    {
-     "w": "cotton",
-     "t": 11.962
-    },
-    {
-     "w": "when",
-     "t": 12.337
-    },
-    {
-     "w": "they",
-     "t": 12.614
-    },
-    {
-     "w": "name",
-     "t": 12.889
-    },
-    {
-     "w": "materials.",
-     "t": 13.165
-    }
-   ],
-   "text": "I count three rings, or measure twenty grams of gold. The number belongs to rings or grams, not directly to gold. Picture the same distinction with silver, wood, glass and cotton when they name materials."
-  },
-  {
-   "id": "m08",
-   "scene": "Material3",
-   "audio": "audio/main_08.mp3",
-   "start": 116.767,
-   "startFrame": 3503,
-   "frames": 584,
-   "lead": 0.35,
-   "audioDur": 17.304,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "There",
-     "t": 0.02
-    },
-    {
-     "w": "is",
-     "t": 0.328
-    },
-    {
-     "w": "an",
-     "t": 0.493
-    },
-    {
-     "w": "important",
-     "t": 0.658
-    },
-    {
-     "w": "correction",
-     "t": 1.155
-    },
-    {
-     "w": "to",
-     "t": 1.699
-    },
-    {
-     "w": "the",
-     "t": 1.865
-    },
-    {
-     "w": "brick",
-     "t": 2.078
-    },
-    {
-     "w": "example",
-     "t": 2.385
-    },
-    {
-     "w": "in",
-     "t": 2.787
-    },
-    {
-     "w": "my",
-     "t": 2.953
-    },
-    {
-     "w": "notes:",
-     "t": 3.118
-    },
-    {
-     "w": "‘This",
-     "t": 3.709
-    },
-    {
-     "w": "house",
-     "t": 3.987
-    },
-    {
-     "w": "is",
-     "t": 4.315
-    },
-    {
-     "w": "made",
-     "t": 4.491
-    },
-    {
-     "w": "of",
-     "t": 4.769
-    },
-    {
-     "w": "bricks’",
-     "t": 4.945
-    },
-    {
-     "w": "is",
-     "t": 5.374
-    },
-    {
-     "w": "correct.",
-     "t": 5.551
-    },
-    {
-     "w": "Those",
-     "t": 6.433
-    },
-    {
-     "w": "are",
-     "t": 6.805
-    },
-    {
-     "w": "individual",
-     "t": 7.062
-    },
-    {
-     "w": "blocks.",
-     "t": 7.719
-    },
-    {
-     "w": "‘This",
-     "t": 8.662
-    },
-    {
-     "w": "house",
-     "t": 8.971
-    },
-    {
-     "w": "is",
-     "t": 9.336
-    },
-    {
-     "w": "made",
-     "t": 9.534
-    },
-    {
-     "w": "of",
-     "t": 9.843
-    },
-    {
-     "w": "brick’",
-     "t": 10.04
-    },
-    {
-     "w": "is",
-     "t": 10.462
-    },
-    {
-     "w": "also",
-     "t": 10.659
-    },
-    {
-     "w": "correct",
-     "t": 10.968
-    },
-    {
-     "w": "when",
-     "t": 11.446
-    },
-    {
-     "w": "brick",
-     "t": 11.756
-    },
-    {
-     "w": "means",
-     "t": 12.122
-    },
-    {
-     "w": "the",
-     "t": 12.487
-    },
-    {
-     "w": "material.",
-     "t": 12.74
-    },
-    {
-     "w": "The",
-     "t": 13.781
-    },
-    {
-     "w": "difference",
-     "t": 13.998
-    },
-    {
-     "w": "is",
-     "t": 14.554
-    },
-    {
-     "w": "what",
-     "t": 14.724
-    },
-    {
-     "w": "the",
-     "t": 14.989
-    },
-    {
-     "w": "word",
-     "t": 15.207
-    },
-    {
-     "w": "names",
-     "t": 15.473
-    },
-    {
-     "w": "in",
-     "t": 15.786
-    },
-    {
-     "w": "that",
-     "t": 15.956
-    },
-    {
-     "w": "sentence.",
-     "t": 16.221
-    }
-   ],
-   "text": "There is an important correction to the brick example in my notes: ‘This house is made of bricks’ is correct. Those are individual blocks. ‘This house is made of brick’ is also correct when brick means the material. The difference is what the word names in that sentence."
-  },
-  {
-   "id": "m09",
-   "scene": "Measured1",
-   "audio": "audio/main_09.mp3",
-   "start": 136.233,
-   "startFrame": 4087,
-   "frames": 480,
-   "lead": 0.35,
-   "audioDur": 14.52,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Third:",
-     "t": 0.02
-    },
-    {
-     "w": "a",
-     "t": 0.604
-    },
-    {
-     "w": "measured",
-     "t": 0.721
-    },
-    {
-     "w": "food",
-     "t": 1.165
-    },
-    {
-     "w": "amount.",
-     "t": 1.422
-    },
-    {
-     "w": "‘I",
-     "t": 2.193
-    },
-    {
-     "w": "ate",
-     "t": 2.31
-    },
-    {
-     "w": "too",
-     "t": 2.52
-    },
-    {
-     "w": "many",
-     "t": 2.731
-    },
-    {
-     "w": "rice",
-     "t": 2.987
-    },
-    {
-     "w": "for",
-     "t": 3.244
-    },
-    {
-     "w": "lunch’",
-     "t": 3.454
-    },
-    {
-     "w": "is",
-     "t": 3.804
-    },
-    {
-     "w": "wrong.",
-     "t": 3.968
-    },
-    {
-     "w": "If",
-     "t": 4.692
-    },
-    {
-     "w": "we",
-     "t": 4.889
-    },
-    {
-     "w": "zoom",
-     "t": 5.086
-    },
-    {
-     "w": "in,",
-     "t": 5.395
-    },
-    {
-     "w": "we",
-     "t": 5.817
-    },
-    {
-     "w": "can",
-     "t": 6.013
-    },
-    {
-     "w": "see",
-     "t": 6.263
-    },
-    {
-     "w": "many",
-     "t": 6.514
-    },
-    {
-     "w": "grains.",
-     "t": 6.82
-    },
-    {
-     "w": "But",
-     "t": 7.74
-    },
-    {
-     "w": "when",
-     "t": 8.001
-    },
-    {
-     "w": "I",
-     "t": 8.321
-    },
-    {
-     "w": "say",
-     "t": 8.466
-    },
-    {
-     "w": "rice",
-     "t": 8.728
-    },
-    {
-     "w": "as",
-     "t": 9.048
-    },
-    {
-     "w": "food,",
-     "t": 9.252
-    },
-    {
-     "w": "I",
-     "t": 9.804
-    },
-    {
-     "w": "am",
-     "t": 9.93
-    },
-    {
-     "w": "talking",
-     "t": 10.107
-    },
-    {
-     "w": "about",
-     "t": 10.535
-    },
-    {
-     "w": "the",
-     "t": 10.863
-    },
-    {
-     "w": "amount",
-     "t": 11.089
-    },
-    {
-     "w": "in",
-     "t": 11.467
-    },
-    {
-     "w": "the",
-     "t": 11.644
-    },
-    {
-     "w": "bowl,",
-     "t": 11.87
-    },
-    {
-     "w": "not",
-     "t": 12.349
-    },
-    {
-     "w": "listing",
-     "t": 12.542
-    },
-    {
-     "w": "the",
-     "t": 12.907
-    },
-    {
-     "w": "grains",
-     "t": 13.101
-    },
-    {
-     "w": "one",
-     "t": 13.422
-    },
-    {
-     "w": "by",
-     "t": 13.616
-    },
-    {
-     "w": "one.",
-     "t": 13.766
-    }
-   ],
-   "text": "Third: a measured food amount. ‘I ate too many rice for lunch’ is wrong. If we zoom in, we can see many grains. But when I say rice as food, I am talking about the amount in the bowl, not listing the grains one by one."
-  },
-  {
-   "id": "m10",
-   "scene": "Measured2",
-   "audio": "audio/main_10.mp3",
-   "start": 152.233,
-   "startFrame": 4567,
-   "frames": 568,
-   "lead": 0.35,
-   "audioDur": 16.968,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "So:",
-     "t": 0.02
-    },
-    {
-     "w": "‘I",
-     "t": 0.459
-    },
-    {
-     "w": "ate",
-     "t": 0.575
-    },
-    {
-     "w": "too",
-     "t": 0.783
-    },
-    {
-     "w": "much",
-     "t": 0.991
-    },
-    {
-     "w": "rice",
-     "t": 1.246
-    },
-    {
-     "w": "for",
-     "t": 1.5
-    },
-    {
-     "w": "lunch.’",
-     "t": 1.708
-    },
-    {
-     "w": "If",
-     "t": 2.47
-    },
-    {
-     "w": "I",
-     "t": 2.62
-    },
-    {
-     "w": "want",
-     "t": 2.727
-    },
-    {
-     "w": "to",
-     "t": 2.962
-    },
-    {
-     "w": "count",
-     "t": 3.11
-    },
-    {
-     "w": "something,",
-     "t": 3.388
-    },
-    {
-     "w": "I",
-     "t": 4.007
-    },
-    {
-     "w": "can",
-     "t": 4.151
-    },
-    {
-     "w": "say",
-     "t": 4.41
-    },
-    {
-     "w": "‘many",
-     "t": 4.67
-    },
-    {
-     "w": "grains",
-     "t": 4.987
-    },
-    {
-     "w": "of",
-     "t": 5.418
-    },
-    {
-     "w": "rice’",
-     "t": 5.621
-    },
-    {
-     "w": "or",
-     "t": 5.995
-    },
-    {
-     "w": "‘two",
-     "t": 6.196
-    },
-    {
-     "w": "bowls",
-     "t": 6.457
-    },
-    {
-     "w": "of",
-     "t": 6.83
-    },
-    {
-     "w": "rice’.",
-     "t": 7.032
-    },
-    {
-     "w": "Watch",
-     "t": 7.925
-    },
-    {
-     "w": "where",
-     "t": 8.221
-    },
-    {
-     "w": "the",
-     "t": 8.516
-    },
-    {
-     "w": "number",
-     "t": 8.72
-    },
-    {
-     "w": "goes:",
-     "t": 9.061
-    },
-    {
-     "w": "onto",
-     "t": 9.584
-    },
-    {
-     "w": "grains",
-     "t": 9.967
-    },
-    {
-     "w": "or",
-     "t": 10.488
-    },
-    {
-     "w": "bowls.",
-     "t": 10.732
-    },
-    {
-     "w": "Bread",
-     "t": 11.811
-    },
-    {
-     "w": "works",
-     "t": 12.161
-    },
-    {
-     "w": "the",
-     "t": 12.511
-    },
-    {
-     "w": "same",
-     "t": 12.753
-    },
-    {
-     "w": "way",
-     "t": 13.049
-    },
-    {
-     "w": "in",
-     "t": 13.292
-    },
-    {
-     "w": "‘three",
-     "t": 13.48
-    },
-    {
-     "w": "slices",
-     "t": 13.83
-    },
-    {
-     "w": "of",
-     "t": 14.234
-    },
-    {
-     "w": "bread’;",
-     "t": 14.422
-    },
-    {
-     "w": "milk",
-     "t": 15.149
-    },
-    {
-     "w": "in",
-     "t": 15.376
-    },
-    {
-     "w": "‘two",
-     "t": 15.521
-    },
-    {
-     "w": "litres",
-     "t": 15.707
-    },
-    {
-     "w": "of",
-     "t": 16.018
-    },
-    {
-     "w": "milk’.",
-     "t": 16.163
-    }
-   ],
-   "text": "So: ‘I ate too much rice for lunch.’ If I want to count something, I can say ‘many grains of rice’ or ‘two bowls of rice’. Watch where the number goes: onto grains or bowls. Bread works the same way in ‘three slices of bread’; milk in ‘two litres of milk’."
-  },
-  {
-   "id": "m11",
-   "scene": "Measured3",
-   "audio": "audio/main_11.mp3",
-   "start": 171.167,
-   "startFrame": 5135,
-   "frames": 422,
-   "lead": 0.35,
-   "audioDur": 12.288,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "This",
-     "t": 0.02
-    },
-    {
-     "w": "food",
-     "t": 0.344
-    },
-    {
-     "w": "group",
-     "t": 0.666
-    },
-    {
-     "w": "overlaps",
-     "t": 1.049
-    },
-    {
-     "w": "with",
-     "t": 1.607
-    },
-    {
-     "w": "substances.",
-     "t": 1.93
-    },
-    {
-     "w": "The",
-     "t": 3.135
-    },
-    {
-     "w": "reason",
-     "t": 3.392
-    },
-    {
-     "w": "I",
-     "t": 3.819
-    },
-    {
-     "w": "have",
-     "t": 3.961
-    },
-    {
-     "w": "given",
-     "t": 4.275
-    },
-    {
-     "w": "it",
-     "t": 4.645
-    },
-    {
-     "w": "its",
-     "t": 4.845
-    },
-    {
-     "w": "own",
-     "t": 5.102
-    },
-    {
-     "w": "picture",
-     "t": 5.359
-    },
-    {
-     "w": "is",
-     "t": 5.843
-    },
-    {
-     "w": "that",
-     "t": 6.043
-    },
-    {
-     "w": "a",
-     "t": 6.357
-    },
-    {
-     "w": "bowl",
-     "t": 6.499
-    },
-    {
-     "w": "of",
-     "t": 6.813
-    },
-    {
-     "w": "rice",
-     "t": 7.013
-    },
-    {
-     "w": "or",
-     "t": 7.326
-    },
-    {
-     "w": "a",
-     "t": 7.525
-    },
-    {
-     "w": "jug",
-     "t": 7.668
-    },
-    {
-     "w": "of",
-     "t": 7.925
-    },
-    {
-     "w": "milk",
-     "t": 8.124
-    },
-    {
-     "w": "makes",
-     "t": 8.438
-    },
-    {
-     "w": "the",
-     "t": 8.808
-    },
-    {
-     "w": "idea",
-     "t": 9.065
-    },
-    {
-     "w": "of",
-     "t": 9.379
-    },
-    {
-     "w": "measuring",
-     "t": 9.579
-    },
-    {
-     "w": "an",
-     "t": 10.177
-    },
-    {
-     "w": "amount",
-     "t": 10.377
-    },
-    {
-     "w": "easy",
-     "t": 10.804
-    },
-    {
-     "w": "to",
-     "t": 11.118
-    },
-    {
-     "w": "see.",
-     "t": 11.318
-    }
-   ],
-   "text": "This food group overlaps with substances. The reason I have given it its own picture is that a bowl of rice or a jug of milk makes the idea of measuring an amount easy to see."
-  },
-  {
-   "id": "m12",
-   "scene": "Abstract1",
-   "audio": "audio/main_12.mp3",
-   "start": 185.233,
-   "startFrame": 5557,
-   "frames": 488,
-   "lead": 0.35,
-   "audioDur": 14.784,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Fourth:",
-     "t": 0.02
-    },
-    {
-     "w": "abstract.",
-     "t": 0.588
-    },
-    {
-     "w": "‘He",
-     "t": 1.675
-    },
-    {
-     "w": "has",
-     "t": 1.867
-    },
-    {
-     "w": "many",
-     "t": 2.112
-    },
-    {
-     "w": "knowledges",
-     "t": 2.413
-    },
-    {
-     "w": "about",
-     "t": 3.04
-    },
-    {
-     "w": "art’",
-     "t": 3.396
-    },
-    {
-     "w": "is",
-     "t": 3.695
-    },
-    {
-     "w": "wrong",
-     "t": 3.887
-    },
-    {
-     "w": "in",
-     "t": 4.242
-    },
-    {
-     "w": "ordinary",
-     "t": 4.433
-    },
-    {
-     "w": "English.",
-     "t": 4.952
-    },
-    {
-     "w": "Here",
-     "t": 5.908
-    },
-    {
-     "w": "knowledge",
-     "t": 6.187
-    },
-    {
-     "w": "is",
-     "t": 6.724
-    },
-    {
-     "w": "his",
-     "t": 6.902
-    },
-    {
-     "w": "whole",
-     "t": 7.131
-    },
-    {
-     "w": "body",
-     "t": 7.463
-    },
-    {
-     "w": "of",
-     "t": 7.744
-    },
-    {
-     "w": "understanding.",
-     "t": 7.922
-    },
-    {
-     "w": "It",
-     "t": 9.121
-    },
-    {
-     "w": "may",
-     "t": 9.332
-    },
-    {
-     "w": "contain",
-     "t": 9.605
-    },
-    {
-     "w": "many",
-     "t": 10.117
-    },
-    {
-     "w": "facts,",
-     "t": 10.45
-    },
-    {
-     "w": "but",
-     "t": 11.085
-    },
-    {
-     "w": "the",
-     "t": 11.305
-    },
-    {
-     "w": "word",
-     "t": 11.524
-    },
-    {
-     "w": "knowledge",
-     "t": 11.793
-    },
-    {
-     "w": "is",
-     "t": 12.305
-    },
-    {
-     "w": "not",
-     "t": 12.475
-    },
-    {
-     "w": "naming",
-     "t": 12.695
-    },
-    {
-     "w": "each",
-     "t": 13.061
-    },
-    {
-     "w": "fact",
-     "t": 13.329
-    },
-    {
-     "w": "separately.",
-     "t": 13.597
-    }
-   ],
-   "text": "Fourth: abstract. ‘He has many knowledges about art’ is wrong in ordinary English. Here knowledge is his whole body of understanding. It may contain many facts, but the word knowledge is not naming each fact separately."
-  },
-  {
-   "id": "m13",
-   "scene": "Abstract2",
-   "audio": "audio/main_13.mp3",
-   "start": 201.5,
-   "startFrame": 6045,
-   "frames": 506,
-   "lead": 0.35,
-   "audioDur": 14.904,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Say,",
-     "t": 0.02
-    },
-    {
-     "w": "‘He",
-     "t": 0.397
-    },
-    {
-     "w": "has",
-     "t": 0.553
-    },
-    {
-     "w": "a",
-     "t": 0.753
-    },
-    {
-     "w": "lot",
-     "t": 0.864
-    },
-    {
-     "w": "of",
-     "t": 1.064
-    },
-    {
-     "w": "knowledge",
-     "t": 1.219
-    },
-    {
-     "w": "about",
-     "t": 1.686
-    },
-    {
-     "w": "art.’",
-     "t": 1.974
-    },
-    {
-     "w": "Think",
-     "t": 2.618
-    },
-    {
-     "w": "also",
-     "t": 2.985
-    },
-    {
-     "w": "of",
-     "t": 3.295
-    },
-    {
-     "w": "advice",
-     "t": 3.492
-    },
-    {
-     "w": "and",
-     "t": 3.915
-    },
-    {
-     "w": "information:",
-     "t": 4.168
-    },
-    {
-     "w": "‘some",
-     "t": 5.21
-    },
-    {
-     "w": "advice’,",
-     "t": 5.541
-    },
-    {
-     "w": "‘useful",
-     "t": 6.293
-    },
-    {
-     "w": "information’.",
-     "t": 6.73
-    },
-    {
-     "w": "If",
-     "t": 8.042
-    },
-    {
-     "w": "I",
-     "t": 8.21
-    },
-    {
-     "w": "need",
-     "t": 8.33
-    },
-    {
-     "w": "a",
-     "t": 8.594
-    },
-    {
-     "w": "number,",
-     "t": 8.715
-    },
-    {
-     "w": "I",
-     "t": 9.267
-    },
-    {
-     "w": "can",
-     "t": 9.405
-    },
-    {
-     "w": "say",
-     "t": 9.656
-    },
-    {
-     "w": "‘two",
-     "t": 9.906
-    },
-    {
-     "w": "pieces",
-     "t": 10.158
-    },
-    {
-     "w": "of",
-     "t": 10.575
-    },
-    {
-     "w": "advice’,",
-     "t": 10.769
-    },
-    {
-     "w": "‘three",
-     "t": 11.465
-    },
-    {
-     "w": "pieces",
-     "t": 11.803
-    },
-    {
-     "w": "of",
-     "t": 12.194
-    },
-    {
-     "w": "information’,",
-     "t": 12.376
-    },
-    {
-     "w": "or",
-     "t": 13.288
-    },
-    {
-     "w": "count",
-     "t": 13.441
-    },
-    {
-     "w": "‘three",
-     "t": 13.726
-    },
-    {
-     "w": "facts’.",
-     "t": 14.01
-    }
-   ],
-   "text": "Say, ‘He has a lot of knowledge about art.’ Think also of advice and information: ‘some advice’, ‘useful information’. If I need a number, I can say ‘two pieces of advice’, ‘three pieces of information’, or count ‘three facts’."
-  },
-  {
-   "id": "m14",
-   "scene": "Abstract3",
-   "audio": "audio/main_14.mp3",
-   "start": 218.367,
-   "startFrame": 6551,
-   "frames": 567,
-   "lead": 0.35,
-   "audioDur": 17.136,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Abstract",
-     "t": 0.02
-    },
-    {
-     "w": "is",
-     "t": 0.552
-    },
-    {
-     "w": "a",
-     "t": 0.749
-    },
-    {
-     "w": "picture",
-     "t": 0.888
-    },
-    {
-     "w": "that",
-     "t": 1.365
-    },
-    {
-     "w": "helps",
-     "t": 1.672
-    },
-    {
-     "w": "us",
-     "t": 2.036
-    },
-    {
-     "w": "think,",
-     "t": 2.232
-    },
-    {
-     "w": "but",
-     "t": 2.821
-    },
-    {
-     "w": "it",
-     "t": 3.078
-    },
-    {
-     "w": "cannot",
-     "t": 3.277
-    },
-    {
-     "w": "decide",
-     "t": 3.706
-    },
-    {
-     "w": "every",
-     "t": 4.134
-    },
-    {
-     "w": "case",
-     "t": 4.506
-    },
-    {
-     "w": "by",
-     "t": 4.819
-    },
-    {
-     "w": "itself.",
-     "t": 5.02
-    },
-    {
-     "w": "An",
-     "t": 5.962
-    },
-    {
-     "w": "idea",
-     "t": 6.214
-    },
-    {
-     "w": "is",
-     "t": 6.611
-    },
-    {
-     "w": "abstract,",
-     "t": 6.864
-    },
-    {
-     "w": "yet",
-     "t": 7.838
-    },
-    {
-     "w": "‘three",
-     "t": 8.105
-    },
-    {
-     "w": "ideas’",
-     "t": 8.489
-    },
-    {
-     "w": "is",
-     "t": 8.934
-    },
-    {
-     "w": "correct.",
-     "t": 9.141
-    },
-    {
-     "w": "We",
-     "t": 10.178
-    },
-    {
-     "w": "have",
-     "t": 10.371
-    },
-    {
-     "w": "to",
-     "t": 10.674
-    },
-    {
-     "w": "notice",
-     "t": 10.866
-    },
-    {
-     "w": "whether",
-     "t": 11.279
-    },
-    {
-     "w": "this",
-     "t": 11.746
-    },
-    {
-     "w": "particular",
-     "t": 12.049
-    },
-    {
-     "w": "word",
-     "t": 12.682
-    },
-    {
-     "w": "names",
-     "t": 12.984
-    },
-    {
-     "w": "an",
-     "t": 13.341
-    },
-    {
-     "w": "undivided",
-     "t": 13.534
-    },
-    {
-     "w": "body",
-     "t": 14.112
-    },
-    {
-     "w": "or",
-     "t": 14.414
-    },
-    {
-     "w": "separate",
-     "t": 14.606
-    },
-    {
-     "w": "items",
-     "t": 15.129
-    },
-    {
-     "w": "in",
-     "t": 15.486
-    },
-    {
-     "w": "the",
-     "t": 15.679
-    },
-    {
-     "w": "sentence.",
-     "t": 15.926
-    }
-   ],
-   "text": "Abstract is a picture that helps us think, but it cannot decide every case by itself. An idea is abstract, yet ‘three ideas’ is correct. We have to notice whether this particular word names an undivided body or separate items in the sentence."
-  },
-  {
-   "id": "m15",
-   "scene": "Activity1",
-   "audio": "audio/main_15.mp3",
-   "start": 237.267,
-   "startFrame": 7118,
-   "frames": 463,
-   "lead": 0.35,
-   "audioDur": 13.968,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "Fifth:",
-     "t": 0.02
-    },
-    {
-     "w": "activity",
-     "t": 0.748
-    },
-    {
-     "w": "or",
-     "t": 1.3
-    },
-    {
-     "w": "process.",
-     "t": 1.504
-    },
-    {
-     "w": "‘She",
-     "t": 2.521
-    },
-    {
-     "w": "does",
-     "t": 2.737
-    },
-    {
-     "w": "many",
-     "t": 3.0
-    },
-    {
-     "w": "works",
-     "t": 3.264
-    },
-    {
-     "w": "every",
-     "t": 3.575
-    },
-    {
-     "w": "day’",
-     "t": 3.886
-    },
-    {
-     "w": "is",
-     "t": 4.149
-    },
-    {
-     "w": "wrong",
-     "t": 4.317
-    },
-    {
-     "w": "when",
-     "t": 4.628
-    },
-    {
-     "w": "I",
-     "t": 4.892
-    },
-    {
-     "w": "mean",
-     "t": 5.011
-    },
-    {
-     "w": "her",
-     "t": 5.275
-    },
-    {
-     "w": "daily",
-     "t": 5.49
-    },
-    {
-     "w": "effort.",
-     "t": 5.802
-    },
-    {
-     "w": "She",
-     "t": 6.592
-    },
-    {
-     "w": "might",
-     "t": 6.831
-    },
-    {
-     "w": "type,",
-     "t": 7.177
-    },
-    {
-     "w": "plan,",
-     "t": 7.682
-    },
-    {
-     "w": "call",
-     "t": 8.288
-    },
-    {
-     "w": "and",
-     "t": 8.609
-    },
-    {
-     "w": "clean:",
-     "t": 8.873
-    },
-    {
-     "w": "several",
-     "t": 9.604
-    },
-    {
-     "w": "actions.",
-     "t": 10.112
-    },
-    {
-     "w": "But",
-     "t": 11.158
-    },
-    {
-     "w": "work",
-     "t": 11.355
-    },
-    {
-     "w": "names",
-     "t": 11.594
-    },
-    {
-     "w": "that",
-     "t": 11.878
-    },
-    {
-     "w": "effort",
-     "t": 12.118
-    },
-    {
-     "w": "as",
-     "t": 12.445
-    },
-    {
-     "w": "an",
-     "t": 12.597
-    },
-    {
-     "w": "ongoing",
-     "t": 12.75
-    },
-    {
-     "w": "whole.",
-     "t": 13.121
-    }
-   ],
-   "text": "Fifth: activity or process. ‘She does many works every day’ is wrong when I mean her daily effort. She might type, plan, call and clean: several actions. But work names that effort as an ongoing whole."
-  },
-  {
-   "id": "m16",
-   "scene": "Activity2",
-   "audio": "audio/main_16.mp3",
-   "start": 252.7,
-   "startFrame": 7581,
-   "frames": 435,
-   "lead": 0.35,
-   "audioDur": 12.528,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "So:",
-     "t": 0.02
-    },
-    {
-     "w": "‘She",
-     "t": 0.442
-    },
-    {
-     "w": "does",
-     "t": 0.642
-    },
-    {
-     "w": "a",
-     "t": 0.886
-    },
-    {
-     "w": "lot",
-     "t": 0.998
-    },
-    {
-     "w": "of",
-     "t": 1.197
-    },
-    {
-     "w": "work",
-     "t": 1.353
-    },
-    {
-     "w": "every",
-     "t": 1.598
-    },
-    {
-     "w": "day.’",
-     "t": 1.886
-    },
-    {
-     "w": "To",
-     "t": 2.531
-    },
-    {
-     "w": "count",
-     "t": 2.702
-    },
-    {
-     "w": "the",
-     "t": 3.018
-    },
-    {
-     "w": "actions,",
-     "t": 3.239
-    },
-    {
-     "w": "I",
-     "t": 3.848
-    },
-    {
-     "w": "choose",
-     "t": 3.984
-    },
-    {
-     "w": "another",
-     "t": 4.389
-    },
-    {
-     "w": "noun:",
-     "t": 4.847
-    },
-    {
-     "w": "‘She",
-     "t": 5.468
-    },
-    {
-     "w": "completes",
-     "t": 5.739
-    },
-    {
-     "w": "four",
-     "t": 6.368
-    },
-    {
-     "w": "tasks",
-     "t": 6.699
-    },
-    {
-     "w": "every",
-     "t": 7.089
-    },
-    {
-     "w": "day.’",
-     "t": 7.479
-    },
-    {
-     "w": "Count",
-     "t": 8.35
-    },
-    {
-     "w": "the",
-     "t": 8.736
-    },
-    {
-     "w": "tasks;",
-     "t": 9.004
-    },
-    {
-     "w": "describe",
-     "t": 9.747
-    },
-    {
-     "w": "the",
-     "t": 10.188
-    },
-    {
-     "w": "work",
-     "t": 10.397
-    },
-    {
-     "w": "as",
-     "t": 10.652
-    },
-    {
-     "w": "an",
-     "t": 10.814
-    },
-    {
-     "w": "amount",
-     "t": 10.976
-    },
-    {
-     "w": "of",
-     "t": 11.324
-    },
-    {
-     "w": "activity.",
-     "t": 11.486
-    }
-   ],
-   "text": "So: ‘She does a lot of work every day.’ To count the actions, I choose another noun: ‘She completes four tasks every day.’ Count the tasks; describe the work as an amount of activity."
-  },
-  {
-   "id": "m17",
-   "scene": "Activity3",
-   "audio": "audio/main_17.mp3",
-   "start": 267.2,
-   "startFrame": 8016,
-   "frames": 263,
-   "lead": 0.35,
-   "audioDur": 6.984,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "But",
-     "t": 0.02
-    },
-    {
-     "w": "‘three",
-     "t": 0.251
-    },
-    {
-     "w": "works",
-     "t": 0.585
-    },
-    {
-     "w": "of",
-     "t": 0.918
-    },
-    {
-     "w": "art’",
-     "t": 1.097
-    },
-    {
-     "w": "is",
-     "t": 1.38
-    },
-    {
-     "w": "correct:",
-     "t": 1.558
-    },
-    {
-     "w": "in",
-     "t": 2.303
-    },
-    {
-     "w": "a",
-     "t": 2.466
-    },
-    {
-     "w": "gallery,",
-     "t": 2.583
-    },
-    {
-     "w": "works",
-     "t": 3.169
-    },
-    {
-     "w": "means",
-     "t": 3.556
-    },
-    {
-     "w": "created",
-     "t": 3.942
-    },
-    {
-     "w": "pieces.",
-     "t": 4.448
-    },
-    {
-     "w": "The",
-     "t": 5.429
-    },
-    {
-     "w": "meaning",
-     "t": 5.607
-    },
-    {
-     "w": "has",
-     "t": 5.946
-    },
-    {
-     "w": "changed.",
-     "t": 6.124
-    }
-   ],
-   "text": "But ‘three works of art’ is correct: in a gallery, works means created pieces. The meaning has changed."
-  },
-  {
-   "id": "m18",
-   "scene": "Quiz",
-   "audio": "audio/main_18.mp3",
-   "start": 275.967,
-   "startFrame": 8279,
-   "frames": 758,
-   "lead": 0.35,
-   "audioDur": 23.304,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": 2.019,
-     "offset": 0.0
-    },
-    {
-     "from": 2.019,
-     "to": 5.801,
-     "offset": 1.6
-    },
-    {
-     "from": 5.801,
-     "to": 9.0,
-     "offset": 3.2
-    },
-    {
-     "from": 9.0,
-     "to": null,
-     "offset": 4.8
-    }
-   ],
-   "words": [
-    {
-     "w": "Now",
-     "t": 0.02
-    },
-    {
-     "w": "try",
-     "t": 0.273
-    },
-    {
-     "w": "three",
-     "t": 0.524
-    },
-    {
-     "w": "new",
-     "t": 0.888
-    },
-    {
-     "w": "sentences.",
-     "t": 1.14
-    },
-    {
-     "w": "‘The",
-     "t": 3.832
-    },
-    {
-     "w": "luggage",
-     "t": 4.027
-    },
-    {
-     "w": "is",
-     "t": 4.397
-    },
-    {
-     "w": "heavy’:",
-     "t": 4.548
-    },
-    {
-     "w": "several",
-     "t": 5.135
-    },
-    {
-     "w": "bags,",
-     "t": 5.586
-    },
-    {
-     "w": "one",
-     "t": 6.09
-    },
-    {
-     "w": "overall",
-     "t": 6.329
-    },
-    {
-     "w": "label.",
-     "t": 6.78
-    },
-    {
-     "w": "‘I",
-     "t": 9.203
-    },
-    {
-     "w": "need",
-     "t": 9.328
-    },
-    {
-     "w": "much",
-     "t": 9.604
-    },
-    {
-     "w": "more",
-     "t": 9.879
-    },
-    {
-     "w": "rice’:",
-     "t": 10.155
-    },
-    {
-     "w": "the",
-     "t": 10.781
-    },
-    {
-     "w": "food",
-     "t": 11.004
-    },
-    {
-     "w": "as",
-     "t": 11.275
-    },
-    {
-     "w": "an",
-     "t": 11.447
-    },
-    {
-     "w": "amount.",
-     "t": 11.62
-    },
-    {
-     "w": "‘Her",
-     "t": 14.033
-    },
-    {
-     "w": "advice",
-     "t": 14.278
-    },
-    {
-     "w": "is",
-     "t": 14.686
-    },
-    {
-     "w": "useful’:",
-     "t": 14.877
-    },
-    {
-     "w": "advice",
-     "t": 15.666
-    },
-    {
-     "w": "as",
-     "t": 16.108
-    },
-    {
-     "w": "information,",
-     "t": 16.314
-    },
-    {
-     "w": "not",
-     "t": 17.283
-    },
-    {
-     "w": "separate",
-     "t": 17.54
-    },
-    {
-     "w": "suggestions.",
-     "t": 18.081
-    },
-    {
-     "w": "Each",
-     "t": 19.307
-    },
-    {
-     "w": "time,",
-     "t": 19.598
-    },
-    {
-     "w": "picture",
-     "t": 20.103
-    },
-    {
-     "w": "what",
-     "t": 20.441
-    },
-    {
-     "w": "the",
-     "t": 20.66
-    },
-    {
-     "w": "noun",
-     "t": 20.838
-    },
-    {
-     "w": "is",
-     "t": 21.057
-    },
-    {
-     "w": "naming",
-     "t": 21.196
-    },
-    {
-     "w": "before",
-     "t": 21.494
-    },
-    {
-     "w": "you",
-     "t": 21.792
-    },
-    {
-     "w": "choose",
-     "t": 21.971
-    },
-    {
-     "w": "the",
-     "t": 22.269
-    },
-    {
-     "w": "grammar.",
-     "t": 22.448
-    }
-   ],
-   "text": "Now try three new sentences. ‘The luggage is heavy’: several bags, one overall label. ‘I need much more rice’: the food as an amount. ‘Her advice is useful’: advice as information, not separate suggestions. Each time, picture what the noun is naming before you choose the grammar."
-  },
-  {
-   "id": "m19",
-   "scene": "Recap",
-   "audio": "audio/main_19.mp3",
-   "start": 301.233,
-   "startFrame": 9037,
-   "frames": 636,
-   "lead": 0.35,
-   "audioDur": 17.232,
-   "parts": [
-    {
-     "from": 0.0,
-     "to": null,
-     "offset": 0.0
-    }
-   ],
-   "words": [
-    {
-     "w": "These",
-     "t": 0.02
-    },
-    {
-     "w": "are",
-     "t": 0.331
-    },
-    {
-     "w": "the",
-     "t": 0.545
-    },
-    {
-     "w": "five",
-     "t": 0.76
-    },
-    {
-     "w": "pictures:",
-     "t": 1.023
-    },
-    {
-     "w": "collection,",
-     "t": 1.764
-    },
-    {
-     "w": "material,",
-     "t": 2.555
-    },
-    {
-     "w": "measured",
-     "t": 3.242
-    },
-    {
-     "w": "amount,",
-     "t": 3.727
-    },
-    {
-     "w": "body",
-     "t": 4.314
-    },
-    {
-     "w": "of",
-     "t": 4.552
-    },
-    {
-     "w": "knowledge,",
-     "t": 4.704
-    },
-    {
-     "w": "process.",
-     "t": 5.336
-    },
-    {
-     "w": "See",
-     "t": 6.353
-    },
-    {
-     "w": "the",
-     "t": 6.591
-    },
-    {
-     "w": "meaning",
-     "t": 6.829
-    },
-    {
-     "w": "first.",
-     "t": 7.278
-    },
-    {
-     "w": "Then",
-     "t": 8.097
-    },
-    {
-     "w": "ask",
-     "t": 8.38
-    },
-    {
-     "w": "what",
-     "t": 8.611
-    },
-    {
-     "w": "you",
-     "t": 8.894
-    },
-    {
-     "w": "can",
-     "t": 9.125
-    },
-    {
-     "w": "count",
-     "t": 9.356
-    },
-    {
-     "w": "directly,",
-     "t": 9.689
-    },
-    {
-     "w": "or",
-     "t": 10.383
-    },
-    {
-     "w": "which",
-     "t": 10.563
-    },
-    {
-     "w": "unit",
-     "t": 10.897
-    },
-    {
-     "w": "you",
-     "t": 11.18
-    },
-    {
-     "w": "need.",
-     "t": 11.412
-    },
-    {
-     "w": "That",
-     "t": 12.159
-    },
-    {
-     "w": "is",
-     "t": 12.412
-    },
-    {
-     "w": "how",
-     "t": 12.573
-    },
-    {
-     "w": "the",
-     "t": 12.781
-    },
-    {
-     "w": "correction",
-     "t": 12.988
-    },
-    {
-     "w": "becomes",
-     "t": 13.518
-    },
-    {
-     "w": "understandable",
-     "t": 13.91
-    },
-    {
-     "w": "instead",
-     "t": 14.624
-    },
-    {
-     "w": "of",
-     "t": 15.016
-    },
-    {
-     "w": "something",
-     "t": 15.177
-    },
-    {
-     "w": "you",
-     "t": 15.661
-    },
-    {
-     "w": "have",
-     "t": 15.868
-    },
-    {
-     "w": "to",
-     "t": 16.122
-    },
-    {
-     "w": "recite.",
-     "t": 16.283
-    }
-   ],
-   "text": "These are the five pictures: collection, material, measured amount, body of knowledge, process. See the meaning first. Then ask what you can count directly, or which unit you need. That is how the correction becomes understandable instead of something you have to recite."
-  }
- ],
- "shorts": {
-  "s1": [
+ "videos": {
+  "v1": [
    {
-    "id": "s1a",
-    "scene": "S1Hook",
-    "audio": "audio/s1a.mp3",
+    "id": "v1a",
+    "scene": "HookList",
+    "audio": "audio/v1a.mp3",
     "start": 0.0,
     "startFrame": 0,
-    "frames": 118,
+    "frames": 278,
     "lead": 0.35,
-    "audioDur": 3.168,
+    "audioDur": 8.496,
     "parts": [
      {
       "from": 0.0,
@@ -3405,49 +20,85 @@
     ],
     "words": [
      {
-      "w": "Four",
+      "w": "Furniture.",
       "t": 0.02
      },
      {
-      "w": "objects.",
-      "t": 0.308
+      "w": "Luggage.",
+      "t": 0.765
      },
      {
-      "w": "So",
-      "t": 1.222
+      "w": "Gold.",
+      "t": 1.466
      },
      {
-      "w": "why",
-      "t": 1.365
+      "w": "Rice.",
+      "t": 2.672
      },
      {
-      "w": "does",
-      "t": 1.549
+      "w": "Knowledge.",
+      "t": 3.438
      },
      {
-      "w": "furniture",
-      "t": 1.773
+      "w": "Work.",
+      "t": 4.199
      },
      {
-      "w": "take",
-      "t": 2.202
+      "w": "We’re",
+      "t": 4.746
      },
      {
-      "w": "‘is’?",
-      "t": 2.426
+      "w": "told",
+      "t": 4.992
+     },
+     {
+      "w": "to",
+      "t": 5.2
+     },
+     {
+      "w": "memorise",
+      "t": 5.332
+     },
+     {
+      "w": "lists",
+      "t": 5.691
+     },
+     {
+      "w": "like",
+      "t": 5.937
+     },
+     {
+      "w": "these:",
+      "t": 6.144
+     },
+     {
+      "w": "no",
+      "t": 6.618
+     },
+     {
+      "w": "plural,",
+      "t": 6.768
+     },
+     {
+      "w": "singular",
+      "t": 7.263
+     },
+     {
+      "w": "verb.",
+      "t": 7.672
      }
     ],
-    "text": "Four objects. So why does furniture take ‘is’?"
+    "text": "Furniture. Luggage. Gold. Rice. Knowledge. Work. We’re told to memorise lists like these: no plural, singular verb."
    },
    {
-    "id": "s1b",
-    "scene": "S1Label",
-    "audio": "audio/s1b.mp3",
-    "start": 3.933,
-    "startFrame": 118,
-    "frames": 374,
+    "id": "v1b",
+    "scene": "HookTwist",
+    "audio": "audio/v1b.mp3",
+    "start": 9.267,
+    "startFrame": 278,
+    "frames": 174,
     "lead": 0.35,
-    "audioDur": 11.712,
+    "audioDur": 4.92,
     "parts": [
      {
       "from": 0.0,
@@ -3457,221 +108,613 @@
     ],
     "words": [
      {
-      "w": "A",
+      "w": "But",
       "t": 0.02
      },
      {
-      "w": "chair,",
-      "t": 0.291
+      "w": "what",
+      "t": 0.216
      },
      {
-      "w": "a",
-      "t": 1.425
+      "w": "if",
+      "t": 0.456
      },
      {
-      "w": "table,",
-      "t": 1.531
+      "w": "you",
+      "t": 0.609
      },
      {
-      "w": "a",
-      "t": 1.98
+      "w": "didn’t",
+      "t": 0.805
      },
      {
-      "w": "sofa",
-      "t": 2.086
+      "w": "have",
+      "t": 1.132
      },
      {
-      "w": "and",
-      "t": 2.321
+      "w": "to",
+      "t": 1.371
      },
      {
-      "w": "a",
-      "t": 2.513
+      "w": "memorise",
+      "t": 1.524
      },
      {
-      "w": "bed.",
-      "t": 2.62
+      "w": "them?",
+      "t": 1.938
      },
      {
-      "w": "I",
-      "t": 3.196
+      "w": "What",
+      "t": 2.57
      },
      {
-      "w": "can",
-      "t": 3.323
+      "w": "if",
+      "t": 2.792
      },
      {
-      "w": "count",
-      "t": 3.551
+      "w": "you",
+      "t": 2.933
      },
      {
-      "w": "them:",
-      "t": 3.879
+      "w": "could",
+      "t": 3.114
      },
      {
-      "w": "one",
-      "t": 4.462
+      "w": "prove",
+      "t": 3.376
      },
      {
-      "w": "chair,",
-      "t": 4.717
+      "w": "it,",
+      "t": 3.637
      },
      {
-      "w": "two",
-      "t": 5.316
+      "w": "with",
+      "t": 3.939
      },
      {
-      "w": "chairs.",
-      "t": 5.572
+      "w": "logic?",
+      "t": 4.148
+     }
+    ],
+    "text": "But what if you didn’t have to memorise them? What if you could prove it, with logic?"
+   },
+   {
+    "id": "v1c",
+    "scene": "CaseOpen",
+    "audio": "audio/v1c.mp3",
+    "start": 15.067,
+    "startFrame": 452,
+    "frames": 161,
+    "lead": 0.35,
+    "audioDur": 4.512,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Case",
+      "t": 0.02
      },
      {
-      "w": "But",
-      "t": 6.512
+      "w": "one:",
+      "t": 0.296
      },
      {
-      "w": "furniture",
-      "t": 6.733
+      "w": "furniture.",
+      "t": 0.824
+     },
+     {
+      "w": "Why",
+      "t": 1.894
      },
      {
       "w": "is",
-      "t": 7.249
-     },
-     {
-      "w": "the",
-      "t": 7.421
-     },
-     {
-      "w": "overall",
-      "t": 7.642
-     },
-     {
-      "w": "label",
-      "t": 8.059
-     },
-     {
-      "w": "for",
-      "t": 8.379
-     },
-     {
-      "w": "the",
-      "t": 8.599
-     },
-     {
-      "w": "whole",
-      "t": 8.82
-     },
-     {
-      "w": "collection,",
-      "t": 9.139
-     },
-     {
-      "w": "not",
-      "t": 9.901
-     },
-     {
-      "w": "the",
-      "t": 10.095
-     },
-     {
-      "w": "name",
-      "t": 10.289
-     },
-     {
-      "w": "of",
-      "t": 10.527
-     },
-     {
-      "w": "each",
-      "t": 10.679
-     },
-     {
-      "w": "item.",
-      "t": 10.916
-     }
-    ],
-    "text": "A chair, a table, a sofa and a bed. I can count them: one chair, two chairs. But furniture is the overall label for the whole collection, not the name of each item."
-   },
-   {
-    "id": "s1c",
-    "scene": "S1Fix",
-    "audio": "audio/s1c.mp3",
-    "start": 16.4,
-    "startFrame": 492,
-    "frames": 209,
-    "lead": 0.35,
-    "audioDur": 5.808,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "English",
-      "t": 0.02
-     },
-     {
-      "w": "treats",
-      "t": 0.449
-     },
-     {
-      "w": "that",
-      "t": 0.829
-     },
-     {
-      "w": "word",
-      "t": 1.107
-     },
-     {
-      "w": "as",
-      "t": 1.385
-     },
-     {
-      "w": "uncountable.",
-      "t": 1.562
-     },
-     {
-      "w": "So:",
-      "t": 2.649
+      "t": 2.094
      },
      {
       "w": "‘The",
-      "t": 3.327
+      "t": 2.25
      },
      {
       "w": "furniture",
-      "t": 3.533
+      "t": 2.45
+     },
+     {
+      "w": "are",
+      "t": 2.917
+     },
+     {
+      "w": "expensive’",
+      "t": 3.117
+     },
+     {
+      "w": "wrong?",
+      "t": 3.629
+     }
+    ],
+    "text": "Case one: furniture. Why is ‘The furniture are expensive’ wrong?"
+   },
+   {
+    "id": "v1d",
+    "scene": "PointTest",
+    "audio": "audio/v1d.mp3",
+    "start": 20.433,
+    "startFrame": 613,
+    "frames": 289,
+    "lead": 0.35,
+    "audioDur": 8.952,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "one.",
+      "t": 0.27
+     },
+     {
+      "w": "Point",
+      "t": 0.788
+     },
+     {
+      "w": "to",
+      "t": 1.038
+     },
+     {
+      "w": "a",
+      "t": 1.173
+     },
+     {
+      "w": "furniture.",
+      "t": 1.269
+     },
+     {
+      "w": "This?",
+      "t": 2.018
+     },
+     {
+      "w": "That’s",
+      "t": 2.603
+     },
+     {
+      "w": "a",
+      "t": 3.048
+     },
+     {
+      "w": "chair.",
+      "t": 3.197
+     },
+     {
+      "w": "This?",
+      "t": 4.117
+     },
+     {
+      "w": "A",
+      "t": 4.967
+     },
+     {
+      "w": "table.",
+      "t": 5.085
+     },
+     {
+      "w": "A",
+      "t": 5.811
+     },
+     {
+      "w": "sofa.",
+      "t": 5.926
+     },
+     {
+      "w": "A",
+      "t": 6.599
+     },
+     {
+      "w": "bed.",
+      "t": 6.681
+     },
+     {
+      "w": "Every",
+      "t": 7.127
+     },
+     {
+      "w": "object",
+      "t": 7.341
+     },
+     {
+      "w": "already",
+      "t": 7.589
+     },
+     {
+      "w": "has",
+      "t": 7.869
+     },
+     {
+      "w": "its",
+      "t": 8.017
+     },
+     {
+      "w": "own",
+      "t": 8.166
+     },
+     {
+      "w": "name.",
+      "t": 8.314
+     }
+    ],
+    "text": "Proof one. Point to a furniture. This? That’s a chair. This? A table. A sofa. A bed. Every object already has its own name."
+   },
+   {
+    "id": "v1e",
+    "scene": "PointVerdict",
+    "audio": "audio/v1e.mp3",
+    "start": 30.067,
+    "startFrame": 902,
+    "frames": 207,
+    "lead": 0.35,
+    "audioDur": 5.544,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Nothing",
+      "t": 0.02
+     },
+     {
+      "w": "here",
+      "t": 0.492
      },
      {
       "w": "is",
-      "t": 4.017
+      "t": 0.799
+     },
+     {
+      "w": "‘a",
+      "t": 0.993
+     },
+     {
+      "w": "furniture’.",
+      "t": 1.132
+     },
+     {
+      "w": "So",
+      "t": 2.272
+     },
+     {
+      "w": "furniture",
+      "t": 2.461
+     },
+     {
+      "w": "is",
+      "t": 3.032
+     },
+     {
+      "w": "not",
+      "t": 3.222
+     },
+     {
+      "w": "the",
+      "t": 3.467
+     },
+     {
+      "w": "name",
+      "t": 3.712
+     },
+     {
+      "w": "of",
+      "t": 4.01
+     },
+     {
+      "w": "one",
+      "t": 4.201
+     },
+     {
+      "w": "object.",
+      "t": 4.444
+     }
+    ],
+    "text": "Nothing here is ‘a furniture’. So furniture is not the name of one object."
+   },
+   {
+    "id": "v1f",
+    "scene": "BoxIt",
+    "audio": "audio/v1f.mp3",
+    "start": 36.967,
+    "startFrame": 1109,
+    "frames": 232,
+    "lead": 0.35,
+    "audioDur": 7.056,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "two.",
+      "t": 0.293
+     },
+     {
+      "w": "Furniture",
+      "t": 0.858
+     },
+     {
+      "w": "is",
+      "t": 1.298
+     },
+     {
+      "w": "the",
+      "t": 1.444
+     },
+     {
+      "w": "name",
+      "t": 1.633
+     },
+     {
+      "w": "for",
+      "t": 1.863
+     },
+     {
+      "w": "the",
+      "t": 2.052
+     },
+     {
+      "w": "whole",
+      "t": 2.24
+     },
+     {
+      "w": "group.",
+      "t": 2.512
+     },
+     {
+      "w": "Chair,",
+      "t": 3.162
+     },
+     {
+      "w": "table,",
+      "t": 4.22
+     },
+     {
+      "w": "sofa,",
+      "t": 5.28
+     },
+     {
+      "w": "bed:",
+      "t": 5.699
+     },
+     {
+      "w": "one",
+      "t": 6.163
+     },
+     {
+      "w": "box,",
+      "t": 6.27
+     },
+     {
+      "w": "one",
+      "t": 6.473
+     },
+     {
+      "w": "label.",
+      "t": 6.58
+     }
+    ],
+    "text": "Proof two. Furniture is the name for the whole group. Chair, table, sofa, bed: one box, one label."
+   },
+   {
+    "id": "v1g",
+    "scene": "CountBox",
+    "audio": "audio/v1g.mp3",
+    "start": 44.7,
+    "startFrame": 1341,
+    "frames": 279,
+    "lead": 0.35,
+    "audioDur": 7.92,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Try",
+      "t": 0.02
+     },
+     {
+      "w": "counting",
+      "t": 0.239
+     },
+     {
+      "w": "the",
+      "t": 0.701
+     },
+     {
+      "w": "label:",
+      "t": 0.921
+     },
+     {
+      "w": "one",
+      "t": 1.529
+     },
+     {
+      "w": "furniture,",
+      "t": 1.734
+     },
+     {
+      "w": "two",
+      "t": 2.396
+     },
+     {
+      "w": "furnitures?",
+      "t": 2.602
+     },
+     {
+      "w": "It",
+      "t": 3.537
+     },
+     {
+      "w": "fails.",
+      "t": 3.742
+     },
+     {
+      "w": "We",
+      "t": 4.647
+     },
+     {
+      "w": "count",
+      "t": 4.822
+     },
+     {
+      "w": "what’s",
+      "t": 5.15
+     },
+     {
+      "w": "inside:",
+      "t": 5.527
+     },
+     {
+      "w": "one",
+      "t": 6.206
+     },
+     {
+      "w": "chair,",
+      "t": 6.398
+     },
+     {
+      "w": "two",
+      "t": 6.845
+     },
+     {
+      "w": "chairs.",
+      "t": 7.036
+     }
+    ],
+    "text": "Try counting the label: one furniture, two furnitures? It fails. We count what’s inside: one chair, two chairs."
+   },
+   {
+    "id": "v1h",
+    "scene": "VerbSnap",
+    "audio": "audio/v1h.mp3",
+    "start": 54.0,
+    "startFrame": 1620,
+    "frames": 239,
+    "lead": 0.35,
+    "audioDur": 6.6,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "three.",
+      "t": 0.303
+     },
+     {
+      "w": "A",
+      "t": 0.978
+     },
+     {
+      "w": "group",
+      "t": 1.103
+     },
+     {
+      "w": "name",
+      "t": 1.43
+     },
+     {
+      "w": "works",
+      "t": 1.706
+     },
+     {
+      "w": "as",
+      "t": 2.033
+     },
+     {
+      "w": "one",
+      "t": 2.208
+     },
+     {
+      "w": "whole,",
+      "t": 2.435
+     },
+     {
+      "w": "so",
+      "t": 2.962
+     },
+     {
+      "w": "the",
+      "t": 3.155
+     },
+     {
+      "w": "verb",
+      "t": 3.403
+     },
+     {
+      "w": "is",
+      "t": 3.706
+     },
+     {
+      "w": "singular:",
+      "t": 3.899
+     },
+     {
+      "w": "‘The",
+      "t": 4.753
+     },
+     {
+      "w": "furniture",
+      "t": 4.946
+     },
+     {
+      "w": "is",
+      "t": 5.394
      },
      {
       "w": "expensive.’",
-      "t": 4.179
-     },
-     {
-      "w": "Not",
-      "t": 5.123
-     },
-     {
-      "w": "‘are’.",
-      "t": 5.255
+      "t": 5.544
      }
     ],
-    "text": "English treats that word as uncountable. So: ‘The furniture is expensive.’ Not ‘are’."
+    "text": "Proof three. A group name works as one whole, so the verb is singular: ‘The furniture is expensive.’"
    },
    {
-    "id": "s1d",
-    "scene": "S1Pieces",
-    "audio": "audio/s1d.mp3",
-    "start": 23.367,
-    "startFrame": 701,
-    "frames": 284,
+    "id": "v1i",
+    "scene": "PiecesChip",
+    "audio": "audio/v1i.mp3",
+    "start": 61.967,
+    "startFrame": 1859,
+    "frames": 263,
     "lead": 0.35,
-    "audioDur": 8.304,
+    "audioDur": 7.416,
     "parts": [
      {
       "from": 0.0,
@@ -3686,506 +729,88 @@
      },
      {
       "w": "a",
-      "t": 0.239
+      "t": 0.234
      },
      {
       "w": "number?",
-      "t": 0.339
+      "t": 0.332
      },
      {
-      "w": "Count",
-      "t": 0.997
+      "w": "The",
+      "t": 0.976
      },
      {
-      "w": "pieces:",
-      "t": 1.403
+      "w": "two",
+      "t": 1.203
+     },
+     {
+      "w": "won’t",
+      "t": 1.431
+     },
+     {
+      "w": "stick",
+      "t": 1.759
+     },
+     {
+      "w": "to",
+      "t": 2.086
+     },
+     {
+      "w": "furniture.",
+      "t": 2.264
+     },
+     {
+      "w": "Give",
+      "t": 3.248
+     },
+     {
+      "w": "it",
+      "t": 3.488
+     },
+     {
+      "w": "something",
+      "t": 3.641
+     },
+     {
+      "w": "countable:",
+      "t": 4.101
      },
      {
       "w": "‘Two",
-      "t": 2.248
+      "t": 4.823
      },
      {
       "w": "pieces",
-      "t": 2.494
+      "t": 5.034
      },
      {
       "w": "of",
-      "t": 2.907
+      "t": 5.384
      },
      {
       "w": "furniture",
-      "t": 3.099
+      "t": 5.548
      },
      {
       "w": "are",
-      "t": 3.675
+      "t": 6.039
      },
      {
       "w": "expensive.’",
-      "t": 3.923
-     },
-     {
-      "w": "The",
-      "t": 5.049
-     },
-     {
-      "w": "number",
-      "t": 5.289
-     },
-     {
-      "w": "goes",
-      "t": 5.688
-     },
-     {
-      "w": "on",
-      "t": 5.982
-     },
-     {
-      "w": "pieces,",
-      "t": 6.169
-     },
-     {
-      "w": "so",
-      "t": 6.782
-     },
-     {
-      "w": "the",
-      "t": 6.924
-     },
-     {
-      "w": "verb",
-      "t": 7.106
-     },
-     {
-      "w": "is",
-      "t": 7.329
-     },
-     {
-      "w": "plural.",
-      "t": 7.471
+      "t": 6.249
      }
     ],
-    "text": "Need a number? Count pieces: ‘Two pieces of furniture are expensive.’ The number goes on pieces, so the verb is plural."
+    "text": "Need a number? The two won’t stick to furniture. Give it something countable: ‘Two pieces of furniture are expensive.’"
    },
    {
-    "id": "s1e",
-    "scene": "S1Luggage",
-    "audio": "audio/s1e.mp3",
-    "start": 32.833,
-    "startFrame": 985,
-    "frames": 317,
+    "id": "v1j",
+    "scene": "LuggageTest",
+    "audio": "audio/v1j.mp3",
+    "start": 70.733,
+    "startFrame": 2122,
+    "frames": 264,
     "lead": 0.35,
-    "audioDur": 8.688,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Same",
-      "t": 0.02
-     },
-     {
-      "w": "picture",
-      "t": 0.325
-     },
-     {
-      "w": "with",
-      "t": 0.794
-     },
-     {
-      "w": "luggage:",
-      "t": 1.099
-     },
-     {
-      "w": "‘The",
-      "t": 1.901
-     },
-     {
-      "w": "luggage",
-      "t": 2.106
-     },
-     {
-      "w": "is",
-      "t": 2.496
-     },
-     {
-      "w": "heavy’,",
-      "t": 2.655
-     },
-     {
-      "w": "but",
-      "t": 3.182
-     },
-     {
-      "w": "‘three",
-      "t": 3.396
-     },
-     {
-      "w": "pieces",
-      "t": 3.704
-     },
-     {
-      "w": "of",
-      "t": 4.061
-     },
-     {
-      "w": "luggage",
-      "t": 4.228
-     },
-     {
-      "w": "are",
-      "t": 4.631
-     },
-     {
-      "w": "heavy’.",
-      "t": 4.844
-     },
-     {
-      "w": "See",
-      "t": 5.628
-     },
-     {
-      "w": "what",
-      "t": 5.878
-     },
-     {
-      "w": "the",
-      "t": 6.185
-     },
-     {
-      "w": "noun",
-      "t": 6.435
-     },
-     {
-      "w": "names,",
-      "t": 6.742
-     },
-     {
-      "w": "then",
-      "t": 7.325
-     },
-     {
-      "w": "choose",
-      "t": 7.533
-     },
-     {
-      "w": "the",
-      "t": 7.814
-     },
-     {
-      "w": "verb.",
-      "t": 7.984
-     }
-    ],
-    "text": "Same picture with luggage: ‘The luggage is heavy’, but ‘three pieces of luggage are heavy’. See what the noun names, then choose the verb."
-   }
-  ],
-  "s2": [
-   {
-    "id": "s2a",
-    "scene": "S2Hook",
-    "audio": "audio/s2a.mp3",
-    "start": 0.0,
-    "startFrame": 0,
-    "frames": 136,
-    "lead": 0.35,
-    "audioDur": 3.768,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Is",
-      "t": 0.02
-     },
-     {
-      "w": "a",
-      "t": 0.191
-     },
-     {
-      "w": "house",
-      "t": 0.314
-     },
-     {
-      "w": "made",
-      "t": 0.633
-     },
-     {
-      "w": "of",
-      "t": 0.903
-     },
-     {
-      "w": "brick,",
-      "t": 1.074
-     },
-     {
-      "w": "or",
-      "t": 1.59
-     },
-     {
-      "w": "bricks?",
-      "t": 1.762
-     },
-     {
-      "w": "Both",
-      "t": 2.575
-     },
-     {
-      "w": "are",
-      "t": 2.778
-     },
-     {
-      "w": "correct.",
-      "t": 2.946
-     }
-    ],
-    "text": "Is a house made of brick, or bricks? Both are correct."
-   },
-   {
-    "id": "s2b",
-    "scene": "S2Gold",
-    "audio": "audio/s2b.mp3",
-    "start": 4.533,
-    "startFrame": 136,
-    "frames": 290,
-    "lead": 0.35,
-    "audioDur": 8.904,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Think",
-      "t": 0.02
-     },
-     {
-      "w": "of",
-      "t": 0.33
-     },
-     {
-      "w": "gold.",
-      "t": 0.498
-     },
-     {
-      "w": "A",
-      "t": 1.191
-     },
-     {
-      "w": "ring,",
-      "t": 1.32
-     },
-     {
-      "w": "a",
-      "t": 1.81
-     },
-     {
-      "w": "coin",
-      "t": 1.939
-     },
-     {
-      "w": "and",
-      "t": 2.223
-     },
-     {
-      "w": "a",
-      "t": 2.456
-     },
-     {
-      "w": "necklace",
-      "t": 2.585
-     },
-     {
-      "w": "are",
-      "t": 3.074
-     },
-     {
-      "w": "three",
-      "t": 3.307
-     },
-     {
-      "w": "things.",
-      "t": 3.642
-     },
-     {
-      "w": "Gold",
-      "t": 4.494
-     },
-     {
-      "w": "is",
-      "t": 4.742
-     },
-     {
-      "w": "the",
-      "t": 4.899
-     },
-     {
-      "w": "substance",
-      "t": 5.103
-     },
-     {
-      "w": "they",
-      "t": 5.576
-     },
-     {
-      "w": "are",
-      "t": 5.824
-     },
-     {
-      "w": "made",
-      "t": 6.026
-     },
-     {
-      "w": "from.",
-      "t": 6.274
-     },
-     {
-      "w": "So",
-      "t": 6.929
-     },
-     {
-      "w": "we",
-      "t": 7.104
-     },
-     {
-      "w": "ask:",
-      "t": 7.279
-     },
-     {
-      "w": "how",
-      "t": 7.807
-     },
-     {
-      "w": "much",
-      "t": 7.978
-     },
-     {
-      "w": "gold?",
-      "t": 8.188
-     }
-    ],
-    "text": "Think of gold. A ring, a coin and a necklace are three things. Gold is the substance they are made from. So we ask: how much gold?"
-   },
-   {
-    "id": "s2c",
-    "scene": "S2Count",
-    "audio": "audio/s2c.mp3",
-    "start": 14.2,
-    "startFrame": 426,
-    "frames": 257,
-    "lead": 0.35,
-    "audioDur": 7.416,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "I",
-      "t": 0.02
-     },
-     {
-      "w": "count",
-      "t": 0.173
-     },
-     {
-      "w": "three",
-      "t": 0.57
-     },
-     {
-      "w": "rings,",
-      "t": 0.966
-     },
-     {
-      "w": "or",
-      "t": 1.607
-     },
-     {
-      "w": "measure",
-      "t": 1.794
-     },
-     {
-      "w": "twenty",
-      "t": 2.247
-     },
-     {
-      "w": "grams",
-      "t": 2.646
-     },
-     {
-      "w": "of",
-      "t": 2.992
-     },
-     {
-      "w": "gold.",
-      "t": 3.179
-     },
-     {
-      "w": "The",
-      "t": 3.951
-     },
-     {
-      "w": "number",
-      "t": 4.217
-     },
-     {
-      "w": "goes",
-      "t": 4.66
-     },
-     {
-      "w": "on",
-      "t": 4.985
-     },
-     {
-      "w": "rings",
-      "t": 5.192
-     },
-     {
-      "w": "or",
-      "t": 5.575
-     },
-     {
-      "w": "grams,",
-      "t": 5.782
-     },
-     {
-      "w": "not",
-      "t": 6.403
-     },
-     {
-      "w": "on",
-      "t": 6.576
-     },
-     {
-      "w": "gold.",
-      "t": 6.711
-     }
-    ],
-    "text": "I count three rings, or measure twenty grams of gold. The number goes on rings or grams, not on gold."
-   },
-   {
-    "id": "s2d",
-    "scene": "S2Brick",
-    "audio": "audio/s2d.mp3",
-    "start": 22.767,
-    "startFrame": 683,
-    "frames": 402,
-    "lead": 0.35,
-    "audioDur": 11.544,
+    "audioDur": 7.632,
     "parts": [
      {
       "from": 0.0,
@@ -4199,491 +824,101 @@
       "t": 0.02
      },
      {
-      "w": "the",
-      "t": 0.257
-     },
-     {
-      "w": "house.",
-      "t": 0.494
-     },
-     {
-      "w": "‘Made",
-      "t": 1.31
-     },
-     {
-      "w": "of",
-      "t": 1.578
-     },
-     {
-      "w": "bricks’",
-      "t": 1.749
-     },
-     {
-      "w": "means",
-      "t": 2.166
-     },
-     {
-      "w": "individual",
-      "t": 2.483
-     },
-     {
-      "w": "blocks",
-      "t": 3.046
-     },
-     {
       "w": "you",
-      "t": 3.413
+      "t": 0.392
      },
      {
-      "w": "could",
-      "t": 3.633
+      "w": "try:",
+      "t": 0.765
      },
      {
-      "w": "count.",
-      "t": 3.951
+      "w": "luggage.",
+      "t": 1.634
      },
      {
-      "w": "‘Made",
-      "t": 4.709
-     },
-     {
-      "w": "of",
-      "t": 4.976
-     },
-     {
-      "w": "brick’",
-      "t": 5.146
-     },
-     {
-      "w": "names",
-      "t": 5.509
-     },
-     {
-      "w": "the",
-      "t": 5.824
-     },
-     {
-      "w": "material.",
-      "t": 6.043
-     },
-     {
-      "w": "Both",
-      "t": 6.939
-     },
-     {
-      "w": "are",
-      "t": 7.218
-     },
-     {
-      "w": "right.",
-      "t": 7.445
-     },
-     {
-      "w": "The",
-      "t": 8.23
-     },
-     {
-      "w": "difference",
-      "t": 8.434
-     },
-     {
-      "w": "is",
-      "t": 8.954
-     },
-     {
-      "w": "what",
-      "t": 9.113
-     },
-     {
-      "w": "the",
-      "t": 9.362
-     },
-     {
-      "w": "word",
-      "t": 9.565
-     },
-     {
-      "w": "names",
-      "t": 9.815
-     },
-     {
-      "w": "in",
-      "t": 10.109
-     },
-     {
-      "w": "your",
-      "t": 10.267
-     },
-     {
-      "w": "sentence.",
-      "t": 10.517
-     }
-    ],
-    "text": "Now the house. ‘Made of bricks’ means individual blocks you could count. ‘Made of brick’ names the material. Both are right. The difference is what the word names in your sentence."
-   }
-  ],
-  "s3": [
-   {
-    "id": "s3a",
-    "scene": "S3Hook",
-    "audio": "audio/s3a.mp3",
-    "start": 0.0,
-    "startFrame": 0,
-    "frames": 134,
-    "lead": 0.35,
-    "audioDur": 3.696,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "There",
-      "t": 0.02
-     },
-     {
-      "w": "are",
-      "t": 0.355
-     },
-     {
-      "w": "thousands",
-      "t": 0.586
-     },
-     {
-      "w": "of",
-      "t": 1.126
-     },
-     {
-      "w": "grains.",
-      "t": 1.306
-     },
-     {
-      "w": "So",
-      "t": 2.155
-     },
-     {
-      "w": "why",
-      "t": 2.298
-     },
-     {
-      "w": "not",
-      "t": 2.48
-     },
-     {
-      "w": "‘many",
-      "t": 2.663
-     },
-     {
-      "w": "rice’?",
-      "t": 2.885
-     }
-    ],
-    "text": "There are thousands of grains. So why not ‘many rice’?"
-   },
-   {
-    "id": "s3b",
-    "scene": "S3Zoom",
-    "audio": "audio/s3b.mp3",
-    "start": 4.467,
-    "startFrame": 134,
-    "frames": 257,
-    "lead": 0.35,
-    "audioDur": 7.8,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Zoom",
-      "t": 0.02
-     },
-     {
-      "w": "in",
-      "t": 0.372
-     },
-     {
-      "w": "and",
-      "t": 0.595
-     },
-     {
-      "w": "you",
-      "t": 0.883
-     },
-     {
-      "w": "see",
-      "t": 1.171
-     },
-     {
-      "w": "grains.",
-      "t": 1.458
-     },
-     {
-      "w": "But",
-      "t": 2.514
-     },
-     {
-      "w": "when",
-      "t": 2.767
-     },
-     {
-      "w": "I",
-      "t": 3.076
-     },
-     {
-      "w": "say",
-      "t": 3.216
-     },
-     {
-      "w": "rice",
-      "t": 3.47
-     },
-     {
-      "w": "as",
-      "t": 3.78
-     },
-     {
-      "w": "food,",
-      "t": 3.976
-     },
-     {
-      "w": "I",
-      "t": 4.511
-     },
-     {
-      "w": "mean",
-      "t": 4.637
-     },
-     {
-      "w": "the",
-      "t": 4.913
-     },
-     {
-      "w": "amount",
-      "t": 5.139
-     },
-     {
-      "w": "in",
-      "t": 5.517
-     },
-     {
-      "w": "the",
-      "t": 5.694
-     },
-     {
-      "w": "bowl,",
-      "t": 5.92
-     },
-     {
-      "w": "not",
-      "t": 6.397
-     },
-     {
-      "w": "a",
-      "t": 6.571
-     },
-     {
-      "w": "list",
-      "t": 6.667
-     },
-     {
-      "w": "of",
-      "t": 6.88
-     },
-     {
-      "w": "grains.",
-      "t": 7.014
-     }
-    ],
-    "text": "Zoom in and you see grains. But when I say rice as food, I mean the amount in the bowl, not a list of grains."
-   },
-   {
-    "id": "s3c",
-    "scene": "S3Fix",
-    "audio": "audio/s3c.mp3",
-    "start": 13.033,
-    "startFrame": 391,
-    "frames": 149,
-    "lead": 0.35,
-    "audioDur": 3.816,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "So:",
-      "t": 0.02
-     },
-     {
-      "w": "‘I",
-      "t": 0.461
-     },
-     {
-      "w": "ate",
-      "t": 0.576
-     },
-     {
-      "w": "too",
-      "t": 0.785
-     },
-     {
-      "w": "much",
-      "t": 0.993
-     },
-     {
-      "w": "rice",
-      "t": 1.248
-     },
-     {
-      "w": "for",
-      "t": 1.502
-     },
-     {
-      "w": "lunch.’",
-      "t": 1.711
-     },
-     {
-      "w": "Not",
-      "t": 2.475
-     },
-     {
-      "w": "‘too",
-      "t": 2.649
-     },
-     {
-      "w": "many",
-      "t": 2.822
-     },
-     {
-      "w": "rice’.",
-      "t": 3.035
-     }
-    ],
-    "text": "So: ‘I ate too much rice for lunch.’ Not ‘too many rice’."
-   },
-   {
-    "id": "s3d",
-    "scene": "S3Units",
-    "audio": "audio/s3d.mp3",
-    "start": 18.0,
-    "startFrame": 540,
-    "frames": 259,
-    "lead": 0.35,
-    "audioDur": 7.656,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Want",
-      "t": 0.02
+      "w": "Point",
+      "t": 2.138
      },
      {
       "w": "to",
-      "t": 0.244
-     },
-     {
-      "w": "count?",
-      "t": 0.386
-     },
-     {
-      "w": "Choose",
-      "t": 1.018
+      "t": 2.326
      },
      {
       "w": "a",
-      "t": 1.422
+      "t": 2.426
      },
      {
-      "w": "unit:",
-      "t": 1.558
+      "w": "luggage?",
+      "t": 2.499
      },
      {
-      "w": "‘many",
-      "t": 2.178
+      "w": "No,",
+      "t": 3.004
      },
      {
-      "w": "grains",
-      "t": 2.461
+      "w": "that’s",
+      "t": 3.313
      },
      {
-      "w": "of",
-      "t": 2.847
+      "w": "a",
+      "t": 3.622
      },
      {
-      "w": "rice’,",
-      "t": 3.027
+      "w": "suitcase,",
+      "t": 3.725
      },
      {
-      "w": "‘two",
-      "t": 3.567
+      "w": "that’s",
+      "t": 4.284
      },
      {
-      "w": "bowls",
-      "t": 3.82
+      "w": "a",
+      "t": 4.593
      },
      {
-      "w": "of",
-      "t": 4.184
+      "w": "bag.",
+      "t": 4.696
      },
      {
-      "w": "rice’.",
-      "t": 4.38
+      "w": "Group",
+      "t": 5.253
      },
      {
-      "w": "The",
-      "t": 5.25
+      "w": "name,",
+      "t": 5.73
      },
      {
-      "w": "number",
-      "t": 5.451
+      "w": "so:",
+      "t": 6.428
      },
      {
-      "w": "goes",
-      "t": 5.787
+      "w": "‘The",
+      "t": 6.669
      },
      {
-      "w": "onto",
-      "t": 6.034
+      "w": "luggage",
+      "t": 6.783
      },
      {
-      "w": "grains",
-      "t": 6.28
+      "w": "is",
+      "t": 6.999
      },
      {
-      "w": "or",
-      "t": 6.617
-     },
-     {
-      "w": "bowls.",
-      "t": 6.774
+      "w": "heavy.’",
+      "t": 7.087
      }
     ],
-    "text": "Want to count? Choose a unit: ‘many grains of rice’, ‘two bowls of rice’. The number goes onto grains or bowls."
+    "text": "Now you try: luggage. Point to a luggage? No, that’s a suitcase, that’s a bag. Group name, so: ‘The luggage is heavy.’"
    },
    {
-    "id": "s3e",
-    "scene": "S3Bread",
-    "audio": "audio/s3e.mp3",
-    "start": 26.633,
-    "startFrame": 799,
-    "frames": 231,
+    "id": "v1k",
+    "scene": "RuleCard",
+    "audio": "audio/v1k.mp3",
+    "start": 79.533,
+    "startFrame": 2386,
+    "frames": 275,
     "lead": 0.35,
-    "audioDur": 5.832,
+    "audioDur": 6.312,
     "parts": [
      {
       "from": 0.0,
@@ -4692,1887 +927,1259 @@
      }
     ],
     "words": [
-     {
-      "w": "Bread",
-      "t": 0.02
-     },
-     {
-      "w": "works",
-      "t": 0.328
-     },
-     {
-      "w": "the",
-      "t": 0.637
-     },
-     {
-      "w": "same",
-      "t": 0.85
-     },
-     {
-      "w": "way:",
-      "t": 1.111
-     },
-     {
-      "w": "‘three",
-      "t": 1.609
-     },
-     {
-      "w": "slices",
-      "t": 1.961
-     },
-     {
-      "w": "of",
-      "t": 2.367
-     },
-     {
-      "w": "bread’.",
-      "t": 2.558
-     },
-     {
-      "w": "Picture",
-      "t": 3.451
-     },
-     {
-      "w": "the",
-      "t": 3.846
-     },
-     {
-      "w": "amount,",
-      "t": 4.055
-     },
-     {
-      "w": "then",
-      "t": 4.589
-     },
-     {
-      "w": "pick",
-      "t": 4.787
-     },
-     {
-      "w": "the",
-      "t": 4.986
-     },
-     {
-      "w": "unit.",
-      "t": 5.148
-     }
-    ],
-    "text": "Bread works the same way: ‘three slices of bread’. Picture the amount, then pick the unit."
-   }
-  ],
-  "s4": [
-   {
-    "id": "s4a",
-    "scene": "S4Hook",
-    "audio": "audio/s4a.mp3",
-    "start": 0.0,
-    "startFrame": 0,
-    "frames": 109,
-    "lead": 0.35,
-    "audioDur": 2.88,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Why",
-      "t": 0.02
-     },
-     {
-      "w": "‘a",
-      "t": 0.231
-     },
-     {
-      "w": "lot",
-      "t": 0.349
-     },
-     {
-      "w": "of",
-      "t": 0.562
-     },
-     {
-      "w": "knowledge’,",
-      "t": 0.726
-     },
-     {
-      "w": "but",
-      "t": 1.455
-     },
-     {
-      "w": "‘three",
-      "t": 1.656
-     },
-     {
-      "w": "ideas’?",
-      "t": 1.944
-     }
-    ],
-    "text": "Why ‘a lot of knowledge’, but ‘three ideas’?"
-   },
-   {
-    "id": "s4b",
-    "scene": "S4Body",
-    "audio": "audio/s4b.mp3",
-    "start": 3.633,
-    "startFrame": 109,
-    "frames": 284,
-    "lead": 0.35,
-    "audioDur": 8.688,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "He",
-      "t": 0.02
-     },
-     {
-      "w": "knows",
-      "t": 0.213
-     },
-     {
-      "w": "many",
-      "t": 0.571
-     },
-     {
-      "w": "facts",
-      "t": 0.874
-     },
-     {
-      "w": "about",
-      "t": 1.232
-     },
-     {
-      "w": "art.",
-      "t": 1.592
-     },
-     {
-      "w": "But",
-      "t": 2.335
-     },
-     {
-      "w": "knowledge",
-      "t": 2.554
-     },
-     {
-      "w": "names",
-      "t": 3.064
-     },
-     {
-      "w": "his",
-      "t": 3.379
-     },
-     {
-      "w": "whole",
-      "t": 3.598
-     },
-     {
-      "w": "body",
-      "t": 3.915
-     },
-     {
-      "w": "of",
-      "t": 4.182
-     },
-     {
-      "w": "understanding,",
-      "t": 4.351
-     },
-     {
-      "w": "not",
-      "t": 5.25
-     },
-     {
-      "w": "each",
-      "t": 5.482
-     },
-     {
-      "w": "fact",
-      "t": 5.765
-     },
-     {
-      "w": "separately.",
-      "t": 6.048
-     },
      {
       "w": "So",
-      "t": 7.104
-     },
-     {
-      "w": "not",
-      "t": 7.246
-     },
-     {
-      "w": "‘many",
-      "t": 7.428
-     },
-     {
-      "w": "knowledges’.",
-      "t": 7.65
-     }
-    ],
-    "text": "He knows many facts about art. But knowledge names his whole body of understanding, not each fact separately. So not ‘many knowledges’."
-   },
-   {
-    "id": "s4c",
-    "scene": "S4Fix",
-    "audio": "audio/s4c.mp3",
-    "start": 13.1,
-    "startFrame": 393,
-    "frames": 269,
-    "lead": 0.35,
-    "audioDur": 7.8,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Say:",
       "t": 0.02
      },
      {
-      "w": "‘He",
-      "t": 0.461
-     },
-     {
-      "w": "has",
-      "t": 0.608
-     },
-     {
-      "w": "a",
-      "t": 0.797
-     },
-     {
-      "w": "lot",
-      "t": 0.902
-     },
-     {
-      "w": "of",
-      "t": 1.091
-     },
-     {
-      "w": "knowledge",
-      "t": 1.238
-     },
-     {
-      "w": "about",
-      "t": 1.679
-     },
-     {
-      "w": "art.’",
-      "t": 1.952
-     },
-     {
-      "w": "Advice",
-      "t": 2.562
-     },
-     {
-      "w": "works",
-      "t": 3.017
-     },
-     {
-      "w": "similarly:",
-      "t": 3.412
-     },
-     {
-      "w": "‘some",
-      "t": 4.414
-     },
-     {
-      "w": "advice’,",
-      "t": 4.753
-     },
-     {
-      "w": "or",
-      "t": 5.523
-     },
-     {
-      "w": "count",
-      "t": 5.67
-     },
-     {
-      "w": "it",
-      "t": 5.943
-     },
-     {
-      "w": "as",
-      "t": 6.09
-     },
-     {
-      "w": "‘two",
-      "t": 6.236
-     },
-     {
-      "w": "pieces",
-      "t": 6.425
-     },
-     {
-      "w": "of",
-      "t": 6.74
-     },
-     {
-      "w": "advice’.",
-      "t": 6.887
-     }
-    ],
-    "text": "Say: ‘He has a lot of knowledge about art.’ Advice works similarly: ‘some advice’, or count it as ‘two pieces of advice’."
-   },
-   {
-    "id": "s4d",
-    "scene": "S4Ideas",
-    "audio": "audio/s4d.mp3",
-    "start": 22.067,
-    "startFrame": 662,
-    "frames": 394,
-    "lead": 0.35,
-    "audioDur": 11.28,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "But",
-      "t": 0.02
-     },
-     {
-      "w": "an",
-      "t": 0.297
-     },
-     {
-      "w": "idea",
-      "t": 0.514
-     },
-     {
-      "w": "is",
-      "t": 0.852
-     },
-     {
-      "w": "abstract",
-      "t": 1.067
-     },
-     {
-      "w": "too,",
-      "t": 1.653
-     },
-     {
-      "w": "and",
-      "t": 2.177
-     },
-     {
-      "w": "‘three",
-      "t": 2.422
-     },
-     {
-      "w": "ideas’",
-      "t": 2.776
-     },
-     {
-      "w": "is",
-      "t": 3.185
-     },
-     {
-      "w": "correct.",
-      "t": 3.376
-     },
-     {
-      "w": "Abstract",
-      "t": 4.33
-     },
-     {
-      "w": "doesn’t",
-      "t": 4.853
-     },
-     {
-      "w": "decide",
-      "t": 5.321
-     },
-     {
-      "w": "it.",
-      "t": 5.734
-     },
-     {
-      "w": "Ask:",
-      "t": 6.423
-     },
-     {
-      "w": "does",
-      "t": 7.202
-     },
-     {
-      "w": "this",
-      "t": 7.527
-     },
-     {
-      "w": "word",
-      "t": 7.853
-     },
-     {
-      "w": "name",
-      "t": 8.18
-     },
-     {
-      "w": "one",
-      "t": 8.505
-     },
-     {
-      "w": "undivided",
-      "t": 8.772
-     },
-     {
-      "w": "body,",
-      "t": 9.394
-     },
-     {
-      "w": "or",
-      "t": 9.958
-     },
-     {
-      "w": "separate",
-      "t": 10.101
-     },
-     {
-      "w": "items?",
-      "t": 10.492
-     }
-    ],
-    "text": "But an idea is abstract too, and ‘three ideas’ is correct. Abstract doesn’t decide it. Ask: does this word name one undivided body, or separate items?"
-   }
-  ],
-  "s5": [
-   {
-    "id": "s5a",
-    "scene": "S5Hook",
-    "audio": "audio/s5a.mp3",
-    "start": 0.0,
-    "startFrame": 0,
-    "frames": 103,
-    "lead": 0.35,
-    "audioDur": 2.664,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Why",
-      "t": 0.02
-     },
-     {
-      "w": "‘a",
-      "t": 0.251
-     },
-     {
-      "w": "lot",
-      "t": 0.38
-     },
-     {
-      "w": "of",
-      "t": 0.611
-     },
-     {
-      "w": "work’,",
-      "t": 0.791
-     },
-     {
-      "w": "but",
-      "t": 1.329
-     },
-     {
-      "w": "‘four",
-      "t": 1.523
-     },
-     {
-      "w": "tasks’?",
-      "t": 1.76
-     }
-    ],
-    "text": "Why ‘a lot of work’, but ‘four tasks’?"
-   },
-   {
-    "id": "s5b",
-    "scene": "S5Merge",
-    "audio": "audio/s5b.mp3",
-    "start": 3.433,
-    "startFrame": 103,
-    "frames": 316,
-    "lead": 0.35,
-    "audioDur": 9.768,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "She",
-      "t": 0.02
-     },
-     {
-      "w": "types,",
-      "t": 0.248
-     },
-     {
-      "w": "plans,",
-      "t": 0.778
-     },
-     {
-      "w": "calls",
-      "t": 1.396
-     },
-     {
-      "w": "and",
-      "t": 1.778
-     },
-     {
-      "w": "cleans.",
-      "t": 2.042
-     },
-     {
-      "w": "Several",
-      "t": 3.013
-     },
-     {
-      "w": "actions.",
-      "t": 3.526
-     },
-     {
-      "w": "But",
-      "t": 4.582
-     },
-     {
-      "w": "work,",
-      "t": 4.826
-     },
-     {
-      "w": "meaning",
-      "t": 5.342
-     },
-     {
-      "w": "her",
-      "t": 5.762
-     },
-     {
-      "w": "daily",
-      "t": 5.985
-     },
-     {
-      "w": "effort,",
-      "t": 6.306
-     },
-     {
-      "w": "names",
-      "t": 6.874
-     },
-     {
-      "w": "all",
-      "t": 7.194
-     },
-     {
-      "w": "of",
-      "t": 7.416
-     },
-     {
-      "w": "that",
-      "t": 7.588
-     },
-     {
-      "w": "as",
-      "t": 7.858
-     },
-     {
-      "w": "one",
-      "t": 8.031
-     },
-     {
-      "w": "ongoing",
-      "t": 8.252
-     },
-     {
-      "w": "activity.",
-      "t": 8.671
-     }
-    ],
-    "text": "She types, plans, calls and cleans. Several actions. But work, meaning her daily effort, names all of that as one ongoing activity."
-   },
-   {
-    "id": "s5c",
-    "scene": "S5Fix",
-    "audio": "audio/s5c.mp3",
-    "start": 13.967,
-    "startFrame": 419,
-    "frames": 148,
-    "lead": 0.35,
-    "audioDur": 3.768,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "So:",
-      "t": 0.02
-     },
-     {
-      "w": "‘She",
-      "t": 0.457
-     },
-     {
-      "w": "does",
-      "t": 0.666
-     },
-     {
-      "w": "a",
-      "t": 0.918
-     },
-     {
-      "w": "lot",
-      "t": 1.034
-     },
-     {
-      "w": "of",
-      "t": 1.241
-     },
-     {
-      "w": "work",
-      "t": 1.402
-     },
-     {
-      "w": "every",
-      "t": 1.656
-     },
-     {
-      "w": "day.’",
-      "t": 1.956
-     },
-     {
-      "w": "Not",
-      "t": 2.623
-     },
-     {
-      "w": "‘many",
-      "t": 2.787
-     },
-     {
-      "w": "works’.",
-      "t": 2.989
-     }
-    ],
-    "text": "So: ‘She does a lot of work every day.’ Not ‘many works’."
-   },
-   {
-    "id": "s5d",
-    "scene": "S5Tasks",
-    "audio": "audio/s5d.mp3",
-    "start": 18.9,
-    "startFrame": 567,
-    "frames": 187,
-    "lead": 0.35,
-    "audioDur": 5.256,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "To",
-      "t": 0.02
-     },
-     {
-      "w": "count",
+      "w": "don’t",
       "t": 0.2
      },
      {
-      "w": "the",
-      "t": 0.533
+      "w": "memorise.",
+      "t": 0.536
      },
      {
-      "w": "actions,",
-      "t": 0.763
+      "w": "Ask:",
+      "t": 1.488
      },
      {
-      "w": "choose",
-      "t": 1.403
+      "w": "can",
+      "t": 2.082
      },
      {
-      "w": "another",
-      "t": 1.797
+      "w": "I",
+      "t": 2.274
      },
      {
-      "w": "noun:",
-      "t": 2.244
+      "w": "point",
+      "t": 2.381
      },
      {
-      "w": "‘She",
-      "t": 2.85
+      "w": "to",
+      "t": 2.659
      },
      {
-      "w": "completes",
-      "t": 3.057
-     },
-     {
-      "w": "four",
-      "t": 3.542
-     },
-     {
-      "w": "tasks",
-      "t": 3.795
-     },
-     {
-      "w": "every",
-      "t": 4.095
-     },
-     {
-      "w": "day.’",
-      "t": 4.394
-     }
-    ],
-    "text": "To count the actions, choose another noun: ‘She completes four tasks every day.’"
-   },
-   {
-    "id": "s5e",
-    "scene": "S5Art",
-    "audio": "audio/s5e.mp3",
-    "start": 25.133,
-    "startFrame": 754,
-    "frames": 299,
-    "lead": 0.35,
-    "audioDur": 8.088,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "And",
-      "t": 0.02
-     },
-     {
-      "w": "‘three",
-      "t": 0.21
-     },
-     {
-      "w": "works",
-      "t": 0.486
+      "w": "one",
+      "t": 2.809
      },
      {
       "w": "of",
-      "t": 0.761
+      "t": 3.001
      },
      {
-      "w": "art’?",
-      "t": 0.909
+      "w": "it?",
+      "t": 3.151
      },
      {
-      "w": "Correct.",
-      "t": 1.523
+      "w": "If",
+      "t": 3.685
      },
      {
-      "w": "Here",
-      "t": 2.379
+      "w": "not,",
+      "t": 3.812
      },
      {
-      "w": "works",
-      "t": 2.671
+      "w": "it’s",
+      "t": 4.118
      },
      {
-      "w": "means",
-      "t": 3.018
+      "w": "a",
+      "t": 4.316
      },
      {
-      "w": "created",
-      "t": 3.365
+      "w": "group",
+      "t": 4.407
      },
      {
-      "w": "pieces.",
-      "t": 3.819
+      "w": "name.",
+      "t": 4.641
      },
      {
-      "w": "The",
-      "t": 4.7
+      "w": "Treat",
+      "t": 5.164
      },
      {
-      "w": "meaning",
-      "t": 4.926
+      "w": "it",
+      "t": 5.398
      },
      {
-      "w": "has",
-      "t": 5.353
+      "w": "as",
+      "t": 5.525
      },
      {
-      "w": "changed,",
-      "t": 5.579
-     },
-     {
-      "w": "so",
-      "t": 6.207
-     },
-     {
-      "w": "the",
-      "t": 6.362
-     },
-     {
-      "w": "grammar",
-      "t": 6.56
-     },
-     {
-      "w": "changes",
-      "t": 6.933
-     },
-     {
-      "w": "too.",
-      "t": 7.307
+      "w": "one.",
+      "t": 5.65
      }
     ],
-    "text": "And ‘three works of art’? Correct. Here works means created pieces. The meaning has changed, so the grammar changes too."
+    "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
    }
   ]
  },
  "captions": {
-  "main": [
+  "v1": [
    {
     "start": 0.37,
-    "end": 4.189,
-    "text": "Why is ‘The furniture are expensive’\nwrong when a room contains"
+    "end": 1.776,
+    "text": "Furniture.\nLuggage.",
+    "words": [
+     {
+      "w": "Furniture.",
+      "t": 0.37
+     },
+     {
+      "w": "Luggage.",
+      "t": 1.115
+     }
+    ]
    },
    {
-    "start": 4.229,
-    "end": 5.598,
-    "text": "several chairs?"
+    "start": 1.816,
+    "end": 4.509,
+    "text": "Gold. Rice.\nKnowledge.",
+    "words": [
+     {
+      "w": "Gold.",
+      "t": 1.816
+     },
+     {
+      "w": "Rice.",
+      "t": 3.022
+     },
+     {
+      "w": "Knowledge.",
+      "t": 3.788
+     }
+    ]
    },
    {
-    "start": 5.638,
-    "end": 9.835,
-    "text": "And why do we say ‘much rice’\nwhen rice has thousands of grains?"
+    "start": 4.549,
+    "end": 5.056,
+    "text": "Work.",
+    "words": [
+     {
+      "w": "Work.",
+      "t": 4.549
+     }
+    ]
    },
    {
-    "start": 9.875,
-    "end": 12.614,
-    "text": "A memorised list tells you the answer."
+    "start": 5.096,
+    "end": 6.247,
+    "text": "We’re told\nto memorise lists",
+    "words": [
+     {
+      "w": "We’re",
+      "t": 5.096
+     },
+     {
+      "w": "told",
+      "t": 5.342
+     },
+     {
+      "w": "to",
+      "t": 5.55
+     },
+     {
+      "w": "memorise",
+      "t": 5.682
+     },
+     {
+      "w": "lists",
+      "t": 6.041
+     }
+    ]
    },
    {
-    "start": 12.654,
-    "end": 14.472,
-    "text": "It doesn’t show you why."
+    "start": 6.287,
+    "end": 6.928,
+    "text": "like these:",
+    "words": [
+     {
+      "w": "like",
+      "t": 6.287
+     },
+     {
+      "w": "these:",
+      "t": 6.494
+     }
+    ]
    },
    {
-    "start": 16.003,
-    "end": 17.732,
-    "text": "In the meanings we are studying,"
+    "start": 6.968,
+    "end": 9.096,
+    "text": "no plural,\nsingular verb.",
+    "words": [
+     {
+      "w": "no",
+      "t": 6.968
+     },
+     {
+      "w": "plural,",
+      "t": 7.118
+     },
+     {
+      "w": "singular",
+      "t": 7.613
+     },
+     {
+      "w": "verb.",
+      "t": 8.022
+     }
+    ]
    },
    {
-    "start": 17.772,
-    "end": 20.575,
-    "text": "English treats these nouns as uncountable,"
+    "start": 9.637,
+    "end": 10.948,
+    "text": "But what if\nyou didn’t have",
+    "words": [
+     {
+      "w": "But",
+      "t": 9.637
+     },
+     {
+      "w": "what",
+      "t": 9.833
+     },
+     {
+      "w": "if",
+      "t": 10.073
+     },
+     {
+      "w": "you",
+      "t": 10.226
+     },
+     {
+      "w": "didn’t",
+      "t": 10.422
+     },
+     {
+      "w": "have",
+      "t": 10.749
+     }
+    ]
    },
    {
-    "start": 20.615,
-    "end": 22.994,
-    "text": "so they take a singular verb."
+    "start": 10.988,
+    "end": 12.147,
+    "text": "to memorise them?",
+    "words": [
+     {
+      "w": "to",
+      "t": 10.988
+     },
+     {
+      "w": "memorise",
+      "t": 11.141
+     },
+     {
+      "w": "them?",
+      "t": 11.555
+     }
+    ]
    },
    {
-    "start": 23.034,
-    "end": 25.951,
-    "text": "Let’s see five pictures\nbehind the examples:"
+    "start": 12.187,
+    "end": 13.516,
+    "text": "What if you\ncould prove it,",
+    "words": [
+     {
+      "w": "What",
+      "t": 12.187
+     },
+     {
+      "w": "if",
+      "t": 12.409
+     },
+     {
+      "w": "you",
+      "t": 12.55
+     },
+     {
+      "w": "could",
+      "t": 12.731
+     },
+     {
+      "w": "prove",
+      "t": 12.993
+     },
+     {
+      "w": "it,",
+      "t": 13.254
+     }
+    ]
    },
    {
-    "start": 25.991,
-    "end": 29.895,
-    "text": "an overall collection,\na material, a measured amount,"
+    "start": 13.556,
+    "end": 14.787,
+    "text": "with logic?",
+    "words": [
+     {
+      "w": "with",
+      "t": 13.556
+     },
+     {
+      "w": "logic?",
+      "t": 13.765
+     }
+    ]
    },
    {
-    "start": 29.935,
-    "end": 32.577,
-    "text": "a body of knowledge, and an activity."
+    "start": 15.437,
+    "end": 17.271,
+    "text": "Case one:\nfurniture.",
+    "words": [
+     {
+      "w": "Case",
+      "t": 15.437
+     },
+     {
+      "w": "one:",
+      "t": 15.713
+     },
+     {
+      "w": "furniture.",
+      "t": 16.241
+     }
+    ]
    },
    {
-    "start": 34.103,
-    "end": 36.119,
-    "text": "First: unit or mass."
+    "start": 17.311,
+    "end": 18.294,
+    "text": "Why\nis ‘The furniture",
+    "words": [
+     {
+      "w": "Why",
+      "t": 17.311
+     },
+     {
+      "w": "is",
+      "t": 17.511
+     },
+     {
+      "w": "‘The",
+      "t": 17.667
+     },
+     {
+      "w": "furniture",
+      "t": 17.867
+     }
+    ]
    },
    {
-    "start": 36.159,
-    "end": 37.971,
-    "text": "‘The furniture are expensive.’"
+    "start": 18.334,
+    "end": 20.179,
+    "text": "are expensive’\nwrong?",
+    "words": [
+     {
+      "w": "are",
+      "t": 18.334
+     },
+     {
+      "w": "expensive’",
+      "t": 18.534
+     },
+     {
+      "w": "wrong?",
+      "t": 19.046
+     }
+    ]
    },
    {
-    "start": 38.011,
-    "end": 41.438,
-    "text": "Look: a chair, a table, a sofa and a bed."
+    "start": 20.803,
+    "end": 21.531,
+    "text": "Proof one.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 20.803
+     },
+     {
+      "w": "one.",
+      "t": 21.053
+     }
+    ]
    },
    {
-    "start": 41.478,
-    "end": 43.373,
-    "text": "I can count the separate objects:"
+    "start": 21.571,
+    "end": 22.761,
+    "text": "Point\nto a furniture.",
+    "words": [
+     {
+      "w": "Point",
+      "t": 21.571
+     },
+     {
+      "w": "to",
+      "t": 21.821
+     },
+     {
+      "w": "a",
+      "t": 21.956
+     },
+     {
+      "w": "furniture.",
+      "t": 22.052
+     }
+    ]
    },
    {
-    "start": 43.413,
-    "end": 45.336,
-    "text": "one chair, two chairs."
+    "start": 22.801,
+    "end": 24.86,
+    "text": "This? That’s\na chair.",
+    "words": [
+     {
+      "w": "This?",
+      "t": 22.801
+     },
+     {
+      "w": "That’s",
+      "t": 23.386
+     },
+     {
+      "w": "a",
+      "t": 23.831
+     },
+     {
+      "w": "chair.",
+      "t": 23.98
+     }
+    ]
    },
    {
-    "start": 45.376,
-    "end": 47.004,
-    "text": "But when I call them furniture,"
+    "start": 24.9,
+    "end": 26.554,
+    "text": "This? A table.",
+    "words": [
+     {
+      "w": "This?",
+      "t": 24.9
+     },
+     {
+      "w": "A",
+      "t": 25.75
+     },
+     {
+      "w": "table.",
+      "t": 25.868
+     }
+    ]
    },
    {
-    "start": 47.044,
-    "end": 49.621,
-    "text": "I’ve changed the way\nI’m talking about them."
+    "start": 26.594,
+    "end": 27.87,
+    "text": "A sofa. A bed.",
+    "words": [
+     {
+      "w": "A",
+      "t": 26.594
+     },
+     {
+      "w": "sofa.",
+      "t": 26.709
+     },
+     {
+      "w": "A",
+      "t": 27.382
+     },
+     {
+      "w": "bed.",
+      "t": 27.464
+     }
+    ]
    },
    {
-    "start": 50.87,
-    "end": 53.786,
-    "text": "Furniture is the overall\nlabel for the collection,"
+    "start": 27.91,
+    "end": 28.909,
+    "text": "Every object\nalready has its",
+    "words": [
+     {
+      "w": "Every",
+      "t": 27.91
+     },
+     {
+      "w": "object",
+      "t": 28.124
+     },
+     {
+      "w": "already",
+      "t": 28.372
+     },
+     {
+      "w": "has",
+      "t": 28.652
+     },
+     {
+      "w": "its",
+      "t": 28.8
+     }
+    ]
    },
    {
-    "start": 53.826,
-    "end": 56.44,
-    "text": "not the name of each separate item."
+    "start": 28.949,
+    "end": 29.985,
+    "text": "own name.",
+    "words": [
+     {
+      "w": "own",
+      "t": 28.949
+     },
+     {
+      "w": "name.",
+      "t": 29.097
+     }
+    ]
    },
    {
-    "start": 56.48,
-    "end": 59.189,
-    "text": "English treats that word as uncountable."
+    "start": 30.437,
+    "end": 32.649,
+    "text": "Nothing here\nis ‘a furniture’.",
+    "words": [
+     {
+      "w": "Nothing",
+      "t": 30.437
+     },
+     {
+      "w": "here",
+      "t": 30.909
+     },
+     {
+      "w": "is",
+      "t": 31.216
+     },
+     {
+      "w": "‘a",
+      "t": 31.41
+     },
+     {
+      "w": "furniture’.",
+      "t": 31.549
+     }
+    ]
    },
    {
-    "start": 59.229,
-    "end": 61.484,
-    "text": "So ‘The furniture is expensive.’"
+    "start": 32.689,
+    "end": 34.387,
+    "text": "So furniture\nis not the name",
+    "words": [
+     {
+      "w": "So",
+      "t": 32.689
+     },
+     {
+      "w": "furniture",
+      "t": 32.878
+     },
+     {
+      "w": "is",
+      "t": 33.449
+     },
+     {
+      "w": "not",
+      "t": 33.639
+     },
+     {
+      "w": "the",
+      "t": 33.884
+     },
+     {
+      "w": "name",
+      "t": 34.129
+     }
+    ]
    },
    {
-    "start": 61.524,
-    "end": 64.435,
-    "text": "To give a number,\nI count pieces of furniture:"
+    "start": 34.427,
+    "end": 36.211,
+    "text": "of one object.",
+    "words": [
+     {
+      "w": "of",
+      "t": 34.427
+     },
+     {
+      "w": "one",
+      "t": 34.618
+     },
+     {
+      "w": "object.",
+      "t": 34.861
+     }
+    ]
    },
    {
-    "start": 64.475,
-    "end": 67.246,
-    "text": "‘Two pieces of furniture are expensive.’"
+    "start": 37.337,
+    "end": 38.135,
+    "text": "Proof two.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 37.337
+     },
+     {
+      "w": "two.",
+      "t": 37.61
+     }
+    ]
    },
    {
-    "start": 67.286,
-    "end": 69.172,
-    "text": "Here pieces is plural."
+    "start": 38.175,
+    "end": 39.329,
+    "text": "Furniture\nis the name for",
+    "words": [
+     {
+      "w": "Furniture",
+      "t": 38.175
+     },
+     {
+      "w": "is",
+      "t": 38.615
+     },
+     {
+      "w": "the",
+      "t": 38.761
+     },
+     {
+      "w": "name",
+      "t": 38.95
+     },
+     {
+      "w": "for",
+      "t": 39.18
+     }
+    ]
+   },
+   {
+    "start": 39.369,
+    "end": 40.439,
+    "text": "the whole group.",
+    "words": [
+     {
+      "w": "the",
+      "t": 39.369
+     },
+     {
+      "w": "whole",
+      "t": 39.557
+     },
+     {
+      "w": "group.",
+      "t": 39.829
+     }
+    ]
+   },
+   {
+    "start": 40.479,
+    "end": 42.976,
+    "text": "Chair,\ntable, sofa,",
+    "words": [
+     {
+      "w": "Chair,",
+      "t": 40.479
+     },
+     {
+      "w": "table,",
+      "t": 41.537
+     },
+     {
+      "w": "sofa,",
+      "t": 42.597
+     }
+    ]
+   },
+   {
+    "start": 43.016,
+    "end": 44.623,
+    "text": "bed: one box,\none label.",
+    "words": [
+     {
+      "w": "bed:",
+      "t": 43.016
+     },
+     {
+      "w": "one",
+      "t": 43.48
+     },
+     {
+      "w": "box,",
+      "t": 43.587
+     },
+     {
+      "w": "one",
+      "t": 43.79
+     },
+     {
+      "w": "label.",
+      "t": 43.897
+     }
+    ]
+   },
+   {
+    "start": 45.07,
+    "end": 46.539,
+    "text": "Try counting\nthe label:",
+    "words": [
+     {
+      "w": "Try",
+      "t": 45.07
+     },
+     {
+      "w": "counting",
+      "t": 45.289
+     },
+     {
+      "w": "the",
+      "t": 45.751
+     },
+     {
+      "w": "label:",
+      "t": 45.971
+     }
+    ]
+   },
+   {
+    "start": 46.579,
+    "end": 48.547,
+    "text": "one furniture,\ntwo furnitures?",
+    "words": [
+     {
+      "w": "one",
+      "t": 46.579
+     },
+     {
+      "w": "furniture,",
+      "t": 46.784
+     },
+     {
+      "w": "two",
+      "t": 47.446
+     },
+     {
+      "w": "furnitures?",
+      "t": 47.652
+     }
+    ]
+   },
+   {
+    "start": 48.587,
+    "end": 49.657,
+    "text": "It fails.",
+    "words": [
+     {
+      "w": "It",
+      "t": 48.587
+     },
+     {
+      "w": "fails.",
+      "t": 48.792
+     }
+    ]
+   },
+   {
+    "start": 49.697,
+    "end": 51.216,
+    "text": "We count\nwhat’s inside:",
+    "words": [
+     {
+      "w": "We",
+      "t": 49.697
+     },
+     {
+      "w": "count",
+      "t": 49.872
+     },
+     {
+      "w": "what’s",
+      "t": 50.2
+     },
+     {
+      "w": "inside:",
+      "t": 50.577
+     }
+    ]
+   },
+   {
+    "start": 51.256,
+    "end": 53.22,
+    "text": "one chair,\ntwo chairs.",
+    "words": [
+     {
+      "w": "one",
+      "t": 51.256
+     },
+     {
+      "w": "chair,",
+      "t": 51.448
+     },
+     {
+      "w": "two",
+      "t": 51.895
+     },
+     {
+      "w": "chairs.",
+      "t": 52.086
+     }
+    ]
+   },
+   {
+    "start": 54.37,
+    "end": 55.288,
+    "text": "Proof three.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 54.37
+     },
+     {
+      "w": "three.",
+      "t": 54.653
+     }
+    ]
+   },
+   {
+    "start": 55.328,
+    "end": 56.745,
+    "text": "A group name\nworks as one",
+    "words": [
+     {
+      "w": "A",
+      "t": 55.328
+     },
+     {
+      "w": "group",
+      "t": 55.453
+     },
+     {
+      "w": "name",
+      "t": 55.78
+     },
+     {
+      "w": "works",
+      "t": 56.056
+     },
+     {
+      "w": "as",
+      "t": 56.383
+     },
+     {
+      "w": "one",
+      "t": 56.558
+     }
+    ]
+   },
+   {
+    "start": 56.785,
+    "end": 58.016,
+    "text": "whole, so the verb",
+    "words": [
+     {
+      "w": "whole,",
+      "t": 56.785
+     },
+     {
+      "w": "so",
+      "t": 57.312
+     },
+     {
+      "w": "the",
+      "t": 57.505
+     },
+     {
+      "w": "verb",
+      "t": 57.753
+     }
+    ]
+   },
+   {
+    "start": 58.056,
+    "end": 59.063,
+    "text": "is singular:",
+    "words": [
+     {
+      "w": "is",
+      "t": 58.056
+     },
+     {
+      "w": "singular:",
+      "t": 58.249
+     }
+    ]
+   },
+   {
+    "start": 59.103,
+    "end": 61.2,
+    "text": "‘The furniture\nis expensive.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 59.103
+     },
+     {
+      "w": "furniture",
+      "t": 59.296
+     },
+     {
+      "w": "is",
+      "t": 59.744
+     },
+     {
+      "w": "expensive.’",
+      "t": 59.894
+     }
+    ]
+   },
+   {
+    "start": 62.337,
+    "end": 63.253,
+    "text": "Need a number?",
+    "words": [
+     {
+      "w": "Need",
+      "t": 62.337
+     },
+     {
+      "w": "a",
+      "t": 62.551
+     },
+     {
+      "w": "number?",
+      "t": 62.649
+     }
+    ]
+   },
+   {
+    "start": 63.293,
+    "end": 65.525,
+    "text": "The two won’t\nstick to furniture.",
+    "words": [
+     {
+      "w": "The",
+      "t": 63.293
+     },
+     {
+      "w": "two",
+      "t": 63.52
+     },
+     {
+      "w": "won’t",
+      "t": 63.748
+     },
+     {
+      "w": "stick",
+      "t": 64.076
+     },
+     {
+      "w": "to",
+      "t": 64.403
+     },
+     {
+      "w": "furniture.",
+      "t": 64.581
+     }
+    ]
+   },
+   {
+    "start": 65.565,
+    "end": 67.1,
+    "text": "Give it something\ncountable:",
+    "words": [
+     {
+      "w": "Give",
+      "t": 65.565
+     },
+     {
+      "w": "it",
+      "t": 65.805
+     },
+     {
+      "w": "something",
+      "t": 65.958
+     },
+     {
+      "w": "countable:",
+      "t": 66.418
+     }
+    ]
+   },
+   {
+    "start": 67.14,
+    "end": 68.316,
+    "text": "‘Two pieces\nof furniture",
+    "words": [
+     {
+      "w": "‘Two",
+      "t": 67.14
+     },
+     {
+      "w": "pieces",
+      "t": 67.351
+     },
+     {
+      "w": "of",
+      "t": 67.701
+     },
+     {
+      "w": "furniture",
+      "t": 67.865
+     }
+    ]
+   },
+   {
+    "start": 68.356,
+    "end": 69.983,
+    "text": "are expensive.’",
+    "words": [
+     {
+      "w": "are",
+      "t": 68.356
+     },
+     {
+      "w": "expensive.’",
+      "t": 68.566
+     }
+    ]
    },
    {
     "start": 71.103,
-    "end": 73.279,
-    "text": "The same picture helps with luggage:"
-   },
-   {
-    "start": 73.319,
-    "end": 76.947,
-    "text": "several bags and suitcases,\none luggage label."
-   },
-   {
-    "start": 76.987,
-    "end": 80.708,
-    "text": "‘The luggage is heavy’,\nbut ‘three pieces of luggage are heavy’."
-   },
-   {
-    "start": 80.748,
-    "end": 84.605,
-    "text": "You can picture clothing,\nequipment and crockery similarly."
-   },
-   {
-    "start": 86.337,
-    "end": 88.299,
-    "text": "Second: material."
-   },
-   {
-    "start": 88.339,
-    "end": 89.04,
-    "text": "Think of gold."
-   },
-   {
-    "start": 89.08,
-    "end": 92.634,
-    "text": "A ring, a coin and a necklace\nare three different things,"
-   },
-   {
-    "start": 92.674,
-    "end": 96.004,
-    "text": "but the gold is the substance\nfrom which they are made."
-   },
-   {
-    "start": 96.044,
-    "end": 99.911,
-    "text": "When the word names the substance,\nI ask ‘How much gold?’"
-   },
-   {
-    "start": 101.137,
-    "end": 104.982,
-    "text": "I count three rings,\nor measure twenty grams of gold."
-   },
-   {
-    "start": 105.022,
-    "end": 107.508,
-    "text": "The number belongs to rings or grams,"
-   },
-   {
-    "start": 107.548,
-    "end": 109.471,
-    "text": "not directly to gold."
-   },
-   {
-    "start": 109.511,
-    "end": 111.885,
-    "text": "Picture the same distinction with silver,"
-   },
-   {
-    "start": 111.925,
-    "end": 115.695,
-    "text": "wood, glass and cotton\nwhen they name materials."
-   },
-   {
-    "start": 117.137,
-    "end": 120.195,
-    "text": "There is an important correction\nto the brick example in my"
-   },
-   {
-    "start": 120.235,
-    "end": 123.51,
-    "text": "notes: ‘This house is made\nof bricks’ is correct."
-   },
-   {
-    "start": 123.55,
-    "end": 125.739,
-    "text": "Those are individual blocks."
-   },
-   {
-    "start": 125.779,
-    "end": 129.564,
-    "text": "‘This house is made of brick’\nis also correct when brick means"
-   },
-   {
-    "start": 129.604,
-    "end": 130.858,
-    "text": "the material."
-   },
-   {
-    "start": 130.898,
-    "end": 134.671,
-    "text": "The difference is what the word\nnames in that sentence."
-   },
-   {
-    "start": 136.603,
-    "end": 138.736,
-    "text": "Third: a measured food amount."
-   },
-   {
-    "start": 138.776,
-    "end": 141.235,
-    "text": "‘I ate too many rice for lunch’ is wrong."
-   },
-   {
-    "start": 141.275,
-    "end": 144.283,
-    "text": "If we zoom in, we can see many grains."
-   },
-   {
-    "start": 144.323,
-    "end": 146.347,
-    "text": "But when I say rice as food,"
-   },
-   {
-    "start": 146.387,
-    "end": 148.892,
-    "text": "I am talking about the amount in the bowl,"
-   },
-   {
-    "start": 148.932,
-    "end": 151.353,
-    "text": "not listing the grains one by one."
-   },
-   {
-    "start": 152.603,
-    "end": 155.013,
-    "text": "So: ‘I ate too much rice for lunch.’"
-   },
-   {
-    "start": 155.053,
-    "end": 156.55,
-    "text": "If I want to count something,"
-   },
-   {
-    "start": 156.59,
-    "end": 160.468,
-    "text": "I can say ‘many grains of rice’\nor ‘two bowls of rice’."
-   },
-   {
-    "start": 160.508,
-    "end": 162.127,
-    "text": "Watch where the number goes:"
-   },
-   {
-    "start": 162.167,
-    "end": 164.354,
-    "text": "onto grains or bowls."
-   },
-   {
-    "start": 164.394,
-    "end": 167.692,
-    "text": "Bread works the same way\nin ‘three slices of bread’;"
-   },
-   {
-    "start": 167.732,
-    "end": 169.801,
-    "text": "milk in ‘two litres of milk’."
-   },
-   {
-    "start": 171.537,
-    "end": 174.612,
-    "text": "This food group overlaps with substances."
-   },
-   {
-    "start": 174.652,
-    "end": 178.29,
-    "text": "The reason I have given it\nits own picture is that a bowl"
-   },
-   {
-    "start": 178.33,
-    "end": 182.281,
-    "text": "of rice or a jug of milk makes\nthe idea of measuring an amount"
-   },
-   {
-    "start": 182.321,
-    "end": 184.055,
-    "text": "easy to see."
-   },
-   {
-    "start": 185.603,
-    "end": 187.218,
-    "text": "Fourth: abstract."
-   },
-   {
-    "start": 187.258,
-    "end": 191.451,
-    "text": "‘He has many knowledges about\nart’ is wrong in ordinary English."
-   },
-   {
-    "start": 191.491,
-    "end": 194.664,
-    "text": "Here knowledge is his whole\nbody of understanding."
-   },
-   {
-    "start": 194.704,
-    "end": 196.628,
-    "text": "It may contain many facts,"
-   },
-   {
-    "start": 196.668,
-    "end": 200.617,
-    "text": "but the word knowledge\nis not naming each fact separately."
-   },
-   {
-    "start": 201.87,
-    "end": 204.428,
-    "text": "Say, ‘He has a lot\nof knowledge about art.’"
-   },
-   {
-    "start": 204.468,
-    "end": 207.02,
-    "text": "Think also of advice and information:"
-   },
-   {
-    "start": 207.06,
-    "end": 209.852,
-    "text": "‘some advice’, ‘useful information’."
-   },
-   {
-    "start": 209.892,
-    "end": 213.275,
-    "text": "If I need a number,\nI can say ‘two pieces of advice’,"
-   },
-   {
-    "start": 213.315,
-    "end": 217.004,
-    "text": "‘three pieces of information’,\nor count ‘three facts’."
-   },
-   {
-    "start": 218.737,
-    "end": 221.498,
-    "text": "Abstract is a picture that helps us think,"
-   },
-   {
-    "start": 221.538,
-    "end": 224.639,
-    "text": "but it cannot decide every case by itself."
-   },
-   {
-    "start": 224.679,
-    "end": 228.855,
-    "text": "An idea is abstract,\nyet ‘three ideas’ is correct."
-   },
-   {
-    "start": 228.895,
-    "end": 232.018,
-    "text": "We have to notice whether\nthis particular word names"
-   },
-   {
-    "start": 232.058,
-    "end": 236.103,
-    "text": "an undivided body or separate\nitems in the sentence."
-   },
-   {
-    "start": 237.637,
-    "end": 240.098,
-    "text": "Fifth: activity or process."
-   },
-   {
-    "start": 240.138,
-    "end": 244.169,
-    "text": "‘She does many works every day’\nis wrong when I mean her daily effort."
-   },
-   {
-    "start": 244.209,
-    "end": 247.181,
-    "text": "She might type, plan, call and clean:"
-   },
-   {
-    "start": 247.221,
-    "end": 248.735,
-    "text": "several actions."
-   },
-   {
-    "start": 248.775,
-    "end": 251.835,
-    "text": "But work names that effort\nas an ongoing whole."
-   },
-   {
-    "start": 253.07,
-    "end": 255.541,
-    "text": "So: ‘She does a lot of work every day.’"
-   },
-   {
-    "start": 255.581,
-    "end": 258.478,
-    "text": "To count the actions,\nI choose another noun:"
-   },
-   {
-    "start": 258.518,
-    "end": 261.36,
-    "text": "‘She completes four tasks every day.’"
-   },
-   {
-    "start": 261.4,
-    "end": 262.757,
-    "text": "Count the tasks;"
-   },
-   {
-    "start": 262.797,
-    "end": 265.828,
-    "text": "describe the work\nas an amount of activity."
-   },
-   {
-    "start": 267.57,
-    "end": 269.813,
-    "text": "But ‘three works of art’ is correct:"
-   },
-   {
-    "start": 269.853,
-    "end": 272.939,
-    "text": "in a gallery, works means created pieces."
-   },
-   {
-    "start": 272.979,
-    "end": 274.784,
-    "text": "The meaning has changed."
-   },
-   {
-    "start": 276.337,
-    "end": 280.109,
-    "text": "Now try three new sentences."
-   },
-   {
-    "start": 280.149,
-    "end": 281.412,
-    "text": "‘The luggage is heavy’:"
-   },
-   {
-    "start": 281.452,
-    "end": 285.48,
-    "text": "several bags, one overall label."
-   },
-   {
-    "start": 285.52,
-    "end": 287.058,
-    "text": "‘I need much more rice’:"
-   },
-   {
-    "start": 287.098,
-    "end": 290.31,
-    "text": "the food as an amount."
-   },
-   {
-    "start": 290.35,
-    "end": 291.943,
-    "text": "‘Her advice is useful’:"
-   },
-   {
-    "start": 291.983,
-    "end": 295.584,
-    "text": "advice as information,\nnot separate suggestions."
-   },
-   {
-    "start": 295.624,
-    "end": 298.546,
-    "text": "Each time, picture what the noun\nis naming before you choose"
-   },
-   {
-    "start": 298.586,
-    "end": 299.871,
-    "text": "the grammar."
-   },
-   {
-    "start": 301.603,
-    "end": 303.307,
-    "text": "These are the five pictures:"
-   },
-   {
-    "start": 303.347,
-    "end": 305.857,
-    "text": "collection, material, measured amount,"
-   },
-   {
-    "start": 305.897,
-    "end": 307.896,
-    "text": "body of knowledge, process."
-   },
-   {
-    "start": 307.936,
-    "end": 309.64,
-    "text": "See the meaning first."
-   },
-   {
-    "start": 309.68,
-    "end": 311.926,
-    "text": "Then ask what you can count directly,"
-   },
-   {
-    "start": 311.966,
-    "end": 313.702,
-    "text": "or which unit you need."
-   },
-   {
-    "start": 313.742,
-    "end": 316.559,
-    "text": "That is how the correction\nbecomes understandable instead"
-   },
-   {
-    "start": 316.599,
-    "end": 319.065,
-    "text": "of something you have to recite."
-   }
-  ],
-  "s1": [
-   {
-    "start": 0.37,
-    "end": 1.532,
-    "text": "Four objects."
-   },
-   {
-    "start": 1.572,
-    "end": 3.768,
-    "text": "So why does\nfurniture take ‘is’?"
-   },
-   {
-    "start": 4.303,
-    "end": 7.439,
-    "text": "A chair, a table,\na sofa and a bed."
-   },
-   {
-    "start": 7.479,
-    "end": 8.705,
-    "text": "I can count them:"
-   },
-   {
-    "start": 8.745,
-    "end": 10.755,
-    "text": "one chair,\ntwo chairs."
-   },
-   {
-    "start": 10.795,
-    "end": 12.622,
-    "text": "But furniture\nis the overall label"
-   },
-   {
-    "start": 12.662,
-    "end": 14.144,
-    "text": "for the whole\ncollection,"
-   },
-   {
-    "start": 14.184,
-    "end": 16.245,
-    "text": "not the name\nof each item."
-   },
-   {
-    "start": 16.77,
-    "end": 19.359,
-    "text": "English treats that\nword as uncountable."
-   },
-   {
-    "start": 19.399,
-    "end": 21.833,
-    "text": "So: ‘The furniture\nis expensive.’"
-   },
-   {
-    "start": 21.873,
-    "end": 22.808,
-    "text": "Not ‘are’."
-   },
-   {
-    "start": 23.737,
-    "end": 24.674,
-    "text": "Need a number?"
-   },
-   {
-    "start": 24.714,
-    "end": 25.925,
-    "text": "Count pieces:"
-   },
-   {
-    "start": 25.965,
-    "end": 28.726,
-    "text": "‘Two pieces of furniture\nare expensive.’"
-   },
-   {
-    "start": 28.766,
-    "end": 30.459,
-    "text": "The number\ngoes on pieces,"
-   },
-   {
-    "start": 30.499,
-    "end": 32.271,
-    "text": "so the verb\nis plural."
-   },
-   {
-    "start": 33.203,
-    "end": 35.044,
-    "text": "Same picture\nwith luggage:"
-   },
-   {
-    "start": 35.084,
-    "end": 36.325,
-    "text": "‘The luggage\nis heavy’,"
-   },
-   {
-    "start": 36.365,
-    "end": 38.771,
-    "text": "but ‘three pieces\nof luggage are heavy’."
-   },
-   {
-    "start": 38.811,
-    "end": 40.468,
-    "text": "See what\nthe noun names,"
-   },
-   {
-    "start": 40.508,
-    "end": 42.121,
-    "text": "then choose\nthe verb."
-   }
-  ],
-  "s2": [
-   {
-    "start": 0.37,
-    "end": 1.9,
-    "text": "Is a house\nmade of brick,"
-   },
-   {
-    "start": 1.94,
-    "end": 4.368,
-    "text": "or bricks? Both\nare correct."
-   },
-   {
-    "start": 4.903,
-    "end": 6.034,
-    "text": "Think of gold."
-   },
-   {
-    "start": 6.074,
-    "end": 7.917,
-    "text": "A ring, a coin\nand a necklace"
-   },
-   {
-    "start": 7.957,
-    "end": 9.337,
-    "text": "are three things."
-   },
-   {
-    "start": 9.377,
-    "end": 10.667,
-    "text": "Gold\nis the substance they"
-   },
-   {
-    "start": 10.707,
-    "end": 11.772,
-    "text": "are made from."
-   },
-   {
-    "start": 11.812,
-    "end": 14.037,
-    "text": "So we ask:\nhow much gold?"
-   },
-   {
-    "start": 14.57,
-    "end": 16.117,
-    "text": "I count three rings,"
-   },
-   {
-    "start": 16.157,
-    "end": 18.461,
-    "text": "or measure twenty\ngrams of gold."
-   },
-   {
-    "start": 18.501,
-    "end": 20.913,
-    "text": "The number goes\non rings or grams,"
-   },
-   {
-    "start": 20.953,
-    "end": 22.216,
-    "text": "not on gold."
-   },
-   {
-    "start": 23.137,
-    "end": 24.387,
-    "text": "Now the house."
-   },
-   {
-    "start": 24.427,
-    "end": 26.123,
-    "text": "‘Made of bricks’\nmeans individual"
-   },
-   {
-    "start": 26.163,
-    "end": 27.786,
-    "text": "blocks you\ncould count."
-   },
-   {
-    "start": 27.826,
-    "end": 30.016,
-    "text": "‘Made of brick’\nnames the material."
-   },
-   {
-    "start": 30.056,
-    "end": 31.307,
-    "text": "Both are right."
-   },
-   {
-    "start": 31.347,
-    "end": 32.892,
-    "text": "The difference\nis what the word"
-   },
-   {
-    "start": 32.932,
-    "end": 34.911,
-    "text": "names in your\nsentence."
-   }
-  ],
-  "s3": [
-   {
-    "start": 0.37,
-    "end": 2.465,
-    "text": "There are thousands\nof grains."
-   },
-   {
-    "start": 2.505,
-    "end": 4.296,
-    "text": "So why\nnot ‘many rice’?"
-   },
-   {
-    "start": 4.837,
-    "end": 7.291,
-    "text": "Zoom in and you\nsee grains."
-   },
-   {
-    "start": 7.331,
-    "end": 9.288,
-    "text": "But when I say\nrice as food,"
-   },
-   {
-    "start": 9.328,
-    "end": 11.174,
-    "text": "I mean the amount\nin the bowl,"
-   },
-   {
-    "start": 11.214,
-    "end": 12.867,
-    "text": "not a list\nof grains."
-   },
-   {
-    "start": 13.403,
-    "end": 13.804,
-    "text": "So:"
-   },
-   {
-    "start": 13.844,
-    "end": 15.818,
-    "text": "‘I ate too much\nrice for lunch.’"
-   },
-   {
-    "start": 15.858,
-    "end": 17.449,
-    "text": "Not ‘too many rice’."
-   },
-   {
-    "start": 18.37,
-    "end": 19.328,
-    "text": "Want to count?"
-   },
-   {
-    "start": 19.368,
-    "end": 20.488,
-    "text": "Choose a unit:"
-   },
-   {
-    "start": 20.528,
-    "end": 21.877,
-    "text": "‘many grains\nof rice’,"
-   },
-   {
-    "start": 21.917,
-    "end": 23.56,
-    "text": "‘two bowls of rice’."
-   },
-   {
-    "start": 23.6,
-    "end": 26.256,
-    "text": "The number goes onto\ngrains or bowls."
-   },
-   {
-    "start": 27.003,
-    "end": 28.552,
-    "text": "Bread works\nthe same way:"
-   },
-   {
-    "start": 28.592,
-    "end": 30.394,
-    "text": "‘three slices\nof bread’."
-   },
-   {
-    "start": 30.434,
-    "end": 31.532,
-    "text": "Picture the amount,"
-   },
-   {
-    "start": 31.572,
-    "end": 33.065,
-    "text": "then pick the unit."
-   }
-  ],
-  "s4": [
-   {
-    "start": 0.37,
-    "end": 1.765,
-    "text": "Why ‘a lot\nof knowledge’,"
-   },
-   {
-    "start": 1.805,
-    "end": 3.48,
-    "text": "but ‘three ideas’?"
-   },
-   {
-    "start": 4.003,
-    "end": 6.278,
-    "text": "He knows many\nfacts about art."
-   },
-   {
-    "start": 6.318,
-    "end": 8.125,
-    "text": "But knowledge names\nhis whole body"
-   },
-   {
-    "start": 8.165,
-    "end": 9.193,
-    "text": "of understanding,"
-   },
-   {
-    "start": 9.233,
-    "end": 11.047,
-    "text": "not each fact\nseparately."
-   },
-   {
-    "start": 11.087,
-    "end": 12.921,
-    "text": "So not ‘many\nknowledges’."
-   },
-   {
-    "start": 13.47,
-    "end": 13.871,
-    "text": "Say:"
-   },
-   {
-    "start": 13.911,
-    "end": 15.972,
-    "text": "‘He has a lot\nof knowledge about art.’"
-   },
-   {
-    "start": 16.012,
-    "end": 17.824,
-    "text": "Advice works\nsimilarly:"
-   },
-   {
-    "start": 17.864,
-    "end": 18.933,
-    "text": "‘some advice’,"
-   },
-   {
-    "start": 18.973,
-    "end": 21.5,
-    "text": "or count it as ‘two\npieces of advice’."
-   },
-   {
-    "start": 22.437,
-    "end": 24.554,
-    "text": "But an idea\nis abstract too,"
-   },
-   {
-    "start": 24.594,
-    "end": 26.707,
-    "text": "and ‘three ideas’\nis correct."
-   },
-   {
-    "start": 26.747,
-    "end": 28.8,
-    "text": "Abstract doesn’t\ndecide it."
-   },
-   {
-    "start": 28.84,
-    "end": 29.579,
-    "text": "Ask:"
-   },
-   {
-    "start": 29.619,
-    "end": 31.771,
-    "text": "does this word\nname one undivided"
-   },
-   {
-    "start": 31.811,
-    "end": 33.947,
-    "text": "body,\nor separate items?"
-   }
-  ],
-  "s5": [
-   {
-    "start": 0.37,
-    "end": 1.639,
-    "text": "Why ‘a lot of work’,"
-   },
-   {
-    "start": 1.679,
-    "end": 3.264,
-    "text": "but ‘four tasks’?"
-   },
-   {
-    "start": 3.803,
-    "end": 6.756,
-    "text": "She types, plans,\ncalls and cleans."
-   },
-   {
-    "start": 6.796,
-    "end": 8.325,
-    "text": "Several actions."
-   },
-   {
-    "start": 8.365,
-    "end": 10.049,
-    "text": "But work,\nmeaning her daily"
-   },
-   {
-    "start": 10.089,
-    "end": 11.995,
-    "text": "effort, names all\nof that as one"
-   },
-   {
-    "start": 12.035,
-    "end": 13.801,
-    "text": "ongoing activity."
-   },
-   {
-    "start": 14.337,
-    "end": 14.734,
-    "text": "So:"
-   },
-   {
-    "start": 14.774,
-    "end": 16.9,
-    "text": "‘She does a lot\nof work every day.’"
-   },
-   {
-    "start": 16.94,
-    "end": 18.335,
-    "text": "Not ‘many works’."
-   },
-   {
-    "start": 19.27,
-    "end": 20.613,
-    "text": "To count\nthe actions,"
-   },
-   {
-    "start": 20.653,
-    "end": 22.06,
-    "text": "choose another noun:"
-   },
-   {
-    "start": 22.1,
-    "end": 24.756,
-    "text": "‘She completes four\ntasks every day.’"
-   },
-   {
-    "start": 25.503,
-    "end": 26.966,
-    "text": "And ‘three\nworks of art’?"
-   },
-   {
-    "start": 27.006,
-    "end": 27.822,
-    "text": "Correct."
-   },
-   {
-    "start": 27.862,
-    "end": 30.143,
-    "text": "Here works means\ncreated pieces."
-   },
-   {
-    "start": 30.183,
-    "end": 31.65,
-    "text": "The meaning\nhas changed,"
-   },
-   {
-    "start": 31.69,
-    "end": 33.821,
-    "text": "so the grammar\nchanges too."
+    "end": 72.677,
+    "text": "Now you try:",
+    "words": [
+     {
+      "w": "Now",
+      "t": 71.103
+     },
+     {
+      "w": "you",
+      "t": 71.475
+     },
+     {
+      "w": "try:",
+      "t": 71.848
+     }
+    ]
+   },
+   {
+    "start": 72.717,
+    "end": 74.047,
+    "text": "luggage.\nPoint to a luggage?",
+    "words": [
+     {
+      "w": "luggage.",
+      "t": 72.717
+     },
+     {
+      "w": "Point",
+      "t": 73.221
+     },
+     {
+      "w": "to",
+      "t": 73.409
+     },
+     {
+      "w": "a",
+      "t": 73.509
+     },
+     {
+      "w": "luggage?",
+      "t": 73.582
+     }
+    ]
+   },
+   {
+    "start": 74.087,
+    "end": 75.327,
+    "text": "No, that’s\na suitcase,",
+    "words": [
+     {
+      "w": "No,",
+      "t": 74.087
+     },
+     {
+      "w": "that’s",
+      "t": 74.396
+     },
+     {
+      "w": "a",
+      "t": 74.705
+     },
+     {
+      "w": "suitcase,",
+      "t": 74.808
+     }
+    ]
+   },
+   {
+    "start": 75.367,
+    "end": 76.296,
+    "text": "that’s a bag.",
+    "words": [
+     {
+      "w": "that’s",
+      "t": 75.367
+     },
+     {
+      "w": "a",
+      "t": 75.676
+     },
+     {
+      "w": "bag.",
+      "t": 75.779
+     }
+    ]
+   },
+   {
+    "start": 76.336,
+    "end": 77.712,
+    "text": "Group name, so:",
+    "words": [
+     {
+      "w": "Group",
+      "t": 76.336
+     },
+     {
+      "w": "name,",
+      "t": 76.813
+     },
+     {
+      "w": "so:",
+      "t": 77.511
+     }
+    ]
+   },
+   {
+    "start": 77.752,
+    "end": 78.965,
+    "text": "‘The luggage\nis heavy.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 77.752
+     },
+     {
+      "w": "luggage",
+      "t": 77.866
+     },
+     {
+      "w": "is",
+      "t": 78.082
+     },
+     {
+      "w": "heavy.’",
+      "t": 78.17
+     }
+    ]
+   },
+   {
+    "start": 79.903,
+    "end": 81.331,
+    "text": "So don’t memorise.",
+    "words": [
+     {
+      "w": "So",
+      "t": 79.903
+     },
+     {
+      "w": "don’t",
+      "t": 80.083
+     },
+     {
+      "w": "memorise.",
+      "t": 80.419
+     }
+    ]
+   },
+   {
+    "start": 81.371,
+    "end": 83.528,
+    "text": "Ask: can I point\nto one of it?",
+    "words": [
+     {
+      "w": "Ask:",
+      "t": 81.371
+     },
+     {
+      "w": "can",
+      "t": 81.965
+     },
+     {
+      "w": "I",
+      "t": 82.157
+     },
+     {
+      "w": "point",
+      "t": 82.264
+     },
+     {
+      "w": "to",
+      "t": 82.542
+     },
+     {
+      "w": "one",
+      "t": 82.692
+     },
+     {
+      "w": "of",
+      "t": 82.884
+     },
+     {
+      "w": "it?",
+      "t": 83.034
+     }
+    ]
+   },
+   {
+    "start": 83.568,
+    "end": 85.007,
+    "text": "If not, it’s\na group name.",
+    "words": [
+     {
+      "w": "If",
+      "t": 83.568
+     },
+     {
+      "w": "not,",
+      "t": 83.695
+     },
+     {
+      "w": "it’s",
+      "t": 84.001
+     },
+     {
+      "w": "a",
+      "t": 84.199
+     },
+     {
+      "w": "group",
+      "t": 84.29
+     },
+     {
+      "w": "name.",
+      "t": 84.524
+     }
+    ]
+   },
+   {
+    "start": 85.047,
+    "end": 86.445,
+    "text": "Treat it as one.",
+    "words": [
+     {
+      "w": "Treat",
+      "t": 85.047
+     },
+     {
+      "w": "it",
+      "t": 85.281
+     },
+     {
+      "w": "as",
+      "t": 85.408
+     },
+     {
+      "w": "one.",
+      "t": 85.533
+     }
+    ]
    }
   ]
  }

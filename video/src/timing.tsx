@@ -9,7 +9,7 @@ export type Seg = {
 };
 
 export const TIMINGS = timings as unknown as {
-  fps: number; main: Seg[]; shorts: Record<string, Seg[]>;
+  fps: number; videos: Record<string, Seg[]>;
 };
 
 const SegContext = createContext<Seg | null>(null);

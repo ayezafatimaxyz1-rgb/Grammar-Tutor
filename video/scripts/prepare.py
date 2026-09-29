@@ -206,7 +206,8 @@ def captions(track, max_chars, max_line):
             else:
                 end = base + seg["audioDur"] + 0.25
             text = " ".join(x["w"] for x in g)
-            cues.append({"start": round(start, 3), "end": round(end, 3), "text": wrap_two_lines(text, max_line)})
+            cues.append({"start": round(start, 3), "end": round(end, 3), "text": wrap_two_lines(text, max_line),
+                         "words": [{"w": x["w"], "t": round(base + x["t"], 3)} for x in g]})
     return cues
 
 
@@ -252,30 +253,32 @@ def make_sfx():
     import random
     random.seed(4)
     synth("whoosh", 0.45, lambda t: math.sin(math.pi * t / 0.45) ** 2 * 0.35 * (random.random() * 2 - 1))
+    # stamp: low thump plus a short burst of paper noise
+    synth("stamp", 0.4, lambda t: env(t, 0.002, 0.06) * (0.9 * math.sin(2 * math.pi * (120 - 80 * t) * t)
+                                                         + 0.5 * (random.random() * 2 - 1) * math.exp(-t / 0.02)))
+    synth("ding", 0.9, lambda t: env(t, 0.003, 0.25) * 0.55 * (math.sin(2 * math.pi * 1318 * t) + 0.4 * math.sin(2 * math.pi * 2636 * t)))
+    synth("buzzer", 0.45, lambda t: env(t, 0.01, 0.3) * 0.45 * (1 if math.sin(2 * math.pi * 110 * t) > 0 else -1) * (0.6 + 0.4 * math.sin(2 * math.pi * 7 * t)))
+    synth("boing", 0.5, lambda t: env(t, 0.005, 0.15) * 0.7 * math.sin(2 * math.pi * (300 + 180 * math.sin(2 * math.pi * 9 * t) * math.exp(-t / 0.2)) * t))
+    synth("click", 0.06, lambda t: env(t, 0.0005, 0.008) * (random.random() * 2 - 1))
+    synth("slam", 0.5, lambda t: env(t, 0.002, 0.09) * (0.8 * math.sin(2 * math.pi * (70 - 30 * t) * t) + 0.35 * (random.random() * 2 - 1) * math.exp(-t / 0.03)))
+    synth("riser", 1.0, lambda t: (t / 1.0) ** 2 * 0.3 * (math.sin(2 * math.pi * (200 + 900 * t * t) * t) + 0.5 * (random.random() * 2 - 1)))
 
 
 def main():
     make_sfx()
-    data = {"fps": FPS, "main": build_track(script["main"]), "shorts": {}}
-    data["captions"] = {"main": captions(data["main"], 64, 42)}
-    write_subs("main_16x9", data["captions"]["main"])
-    write_transcript("main_16x9", "Grammar Detective: Why these nouns are uncountable (main video)", data["main"])
-    for sh in script["shorts"]:
-        have = all(os.path.exists(os.path.join(ROOT, "public", audio_path(b["id"]))) for b in sh["beats"])
-        if not have:
-            print(f"skip {sh['id']}: narration missing")
+    data = {"fps": FPS, "videos": {}, "captions": {}}
+    for v in script["videos"]:
+        missing = [b["id"] for b in v["beats"] if not os.path.exists(os.path.join(ROOT, "public", audio_path(b["id"])))]
+        if missing:
+            print(f"skip {v['id']}: narration missing for {', '.join(missing)}")
             continue
-        tr = build_track(sh["beats"])
-        data["shorts"][sh["id"]] = tr
-        name = f"short{sh['id'][1:]}_{sh['accent']}_9x16"
-        data["captions"][sh["id"]] = captions(tr, 34, 20)
-        write_subs(name, data["captions"][sh["id"]])
-        write_transcript(name, f"Grammar Detective Short: {sh['title']}", tr)
+        tr = build_track(v["beats"])
+        data["videos"][v["id"]] = tr
+        data["captions"][v["id"]] = captions(tr, 30, 18)
+        write_subs(v["slug"], data["captions"][v["id"]])
+        write_transcript(v["slug"], f"Grammar Detective, {v['title']}", tr)
+        print(f"{v['id']}: {sum(s['frames'] for s in tr) / FPS:.1f}s")
     json.dump(data, open(os.path.join(ROOT, "src/timings.json"), "w"), indent=1, ensure_ascii=False)
-    total = sum(s["frames"] for s in data["main"]) / FPS
-    print(f"main: {total:.1f}s")
-    for k, v in data["shorts"].items():
-        print(f"{k}: {sum(s['frames'] for s in v) / FPS:.1f}s")
 
 
 if __name__ == "__main__":

@@ -15,7 +15,8 @@ const browserExecutable = process.env.REMOTION_BROWSER ||
 execSync("python3 scripts/prepare.py", { stdio: "inherit" });
 const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts") });
 const comps = await getCompositions(serveUrl, { browserExecutable, logLevel: "error" });
-const names = { Main: "main_16x9", Short1: "short1_unit_9x16", Short2: "short2_material_9x16", Short3: "short3_measured_9x16", Short4: "short4_abstract_9x16", Short5: "short5_activity_9x16" };
+const script = JSON.parse(fs.readFileSync("src/script.json", "utf8"));
+const names = Object.fromEntries(script.videos.map((v) => [`Case0${v.id.slice(1)}`, v.slug]));
 fs.mkdirSync("out/video", { recursive: true });
 for (const composition of comps) {
   if (only.length && !only.includes(composition.id)) continue;

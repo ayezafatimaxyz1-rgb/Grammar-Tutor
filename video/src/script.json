@@ -6,307 +6,78 @@
   "speed": 0.95,
   "lang": "en-gb"
  },
- "main": [
+ "videos": [
   {
-   "id": "m01",
-   "scene": "Hook",
-   "pad": 1.4,
-   "text": "Why is ‘The furniture are expensive’ wrong when a room contains several chairs? And why do we say ‘much rice’ when rice has thousands of grains? A memorised list tells you the answer. It doesn’t show you why."
-  },
-  {
-   "id": "m02",
-   "scene": "Overview",
-   "pad": 1.4,
-   "text": "In the meanings we are studying, English treats these nouns as uncountable, so they take a singular verb. Let’s see five pictures behind the examples: an overall collection, a material, a measured amount, a body of knowledge, and an activity."
-  },
-  {
-   "id": "m03",
-   "scene": "Unit1",
-   "pad": 1.1,
-   "text": "First: unit or mass. ‘The furniture are expensive.’ Look: a chair, a table, a sofa and a bed. I can count the separate objects: one chair, two chairs. But when I call them furniture, I’ve changed the way I’m talking about them."
-  },
-  {
-   "id": "m04",
-   "scene": "Unit2",
-   "pad": 1.8,
-   "text": "Furniture is the overall label for the collection, not the name of each separate item. English treats that word as uncountable. So ‘The furniture is expensive.’ To give a number, I count pieces of furniture: ‘Two pieces of furniture are expensive.’ Here pieces is plural."
-  },
-  {
-   "id": "m05",
-   "scene": "Unit3",
-   "pad": 1.6,
-   "text": "The same picture helps with luggage: several bags and suitcases, one luggage label. ‘The luggage is heavy’, but ‘three pieces of luggage are heavy’. You can picture clothing, equipment and crockery similarly."
-  },
-  {
-   "id": "m06",
-   "scene": "Material1",
-   "pad": 1.1,
-   "text": "Second: material. Think of gold. A ring, a coin and a necklace are three different things, but the gold is the substance from which they are made. When the word names the substance, I ask ‘How much gold?’"
-  },
-  {
-   "id": "m07",
-   "scene": "Material2",
-   "pad": 1.3,
-   "text": "I count three rings, or measure twenty grams of gold. The number belongs to rings or grams, not directly to gold. Picture the same distinction with silver, wood, glass and cotton when they name materials."
-  },
-  {
-   "id": "m08",
-   "scene": "Material3",
-   "pad": 1.8,
-   "text": "There is an important correction to the brick example in my notes: ‘This house is made of bricks’ is correct. Those are individual blocks. ‘This house is made of brick’ is also correct when brick means the material. The difference is what the word names in that sentence."
-  },
-  {
-   "id": "m09",
-   "scene": "Measured1",
-   "pad": 1.1,
-   "text": "Third: a measured food amount. ‘I ate too many rice for lunch’ is wrong. If we zoom in, we can see many grains. But when I say rice as food, I am talking about the amount in the bowl, not listing the grains one by one."
-  },
-  {
-   "id": "m10",
-   "scene": "Measured2",
-   "pad": 1.6,
-   "text": "So: ‘I ate too much rice for lunch.’ If I want to count something, I can say ‘many grains of rice’ or ‘two bowls of rice’. Watch where the number goes: onto grains or bowls. Bread works the same way in ‘three slices of bread’; milk in ‘two litres of milk’."
-  },
-  {
-   "id": "m11",
-   "scene": "Measured3",
-   "pad": 1.4,
-   "text": "This food group overlaps with substances. The reason I have given it its own picture is that a bowl of rice or a jug of milk makes the idea of measuring an amount easy to see."
-  },
-  {
-   "id": "m12",
-   "scene": "Abstract1",
-   "pad": 1.1,
-   "text": "Fourth: abstract. ‘He has many knowledges about art’ is wrong in ordinary English. Here knowledge is his whole body of understanding. It may contain many facts, but the word knowledge is not naming each fact separately."
-  },
-  {
-   "id": "m13",
-   "scene": "Abstract2",
-   "pad": 1.6,
-   "text": "Say, ‘He has a lot of knowledge about art.’ Think also of advice and information: ‘some advice’, ‘useful information’. If I need a number, I can say ‘two pieces of advice’, ‘three pieces of information’, or count ‘three facts’."
-  },
-  {
-   "id": "m14",
-   "scene": "Abstract3",
-   "pad": 1.4,
-   "text": "Abstract is a picture that helps us think, but it cannot decide every case by itself. An idea is abstract, yet ‘three ideas’ is correct. We have to notice whether this particular word names an undivided body or separate items in the sentence."
-  },
-  {
-   "id": "m15",
-   "scene": "Activity1",
-   "pad": 1.1,
-   "text": "Fifth: activity or process. ‘She does many works every day’ is wrong when I mean her daily effort. She might type, plan, call and clean: several actions. But work names that effort as an ongoing whole."
-  },
-  {
-   "id": "m16",
-   "scene": "Activity2",
-   "pad": 1.6,
-   "text": "So: ‘She does a lot of work every day.’ To count the actions, I choose another noun: ‘She completes four tasks every day.’ Count the tasks; describe the work as an amount of activity."
-  },
-  {
-   "id": "m17",
-   "scene": "Activity3",
-   "pad": 1.4,
-   "text": "But ‘three works of art’ is correct: in a gallery, works means created pieces. The meaning has changed."
-  },
-  {
-   "id": "m18",
-   "scene": "Quiz",
-   "pad": 1.6,
-   "text": "Now try three new sentences. ‘The luggage is heavy’: several bags, one overall label. ‘I need much more rice’: the food as an amount. ‘Her advice is useful’: advice as information, not separate suggestions. Each time, picture what the noun is naming before you choose the grammar.",
-   "gaps": [
-    {
-     "before": "‘The luggage",
-     "sec": 1.6
-    },
-    {
-     "before": "‘I need",
-     "sec": 1.6
-    },
-    {
-     "before": "‘Her advice",
-     "sec": 1.6
-    }
-   ]
-  },
-  {
-   "id": "m19",
-   "scene": "Recap",
-   "pad": 3.6,
-   "text": "These are the five pictures: collection, material, measured amount, body of knowledge, process. See the meaning first. Then ask what you can count directly, or which unit you need. That is how the correction becomes understandable instead of something you have to recite."
-  }
- ],
- "shorts": [
-  {
-   "id": "s1",
+   "id": "v1",
    "title": "UNIT / MASS",
+   "slug": "case01_furniture",
    "accent": "unit",
    "beats": [
     {
-     "id": "s1a",
-     "scene": "S1Hook",
+     "id": "v1a",
+     "scene": "HookList",
      "pad": 0.4,
-     "text": "Four objects. So why does furniture take ‘is’?"
+     "text": "Furniture. Luggage. Gold. Rice. Knowledge. Work. We’re told to memorise lists like these: no plural, singular verb."
     },
     {
-     "id": "s1b",
-     "scene": "S1Label",
-     "pad": 0.4,
-     "text": "A chair, a table, a sofa and a bed. I can count them: one chair, two chairs. But furniture is the overall label for the whole collection, not the name of each item."
+     "id": "v1b",
+     "scene": "HookTwist",
+     "pad": 0.5,
+     "text": "But what if you didn’t have to memorise them? What if you could prove it, with logic?"
     },
     {
-     "id": "s1c",
-     "scene": "S1Fix",
+     "id": "v1c",
+     "scene": "CaseOpen",
+     "pad": 0.5,
+     "text": "Case one: furniture. Why is ‘The furniture are expensive’ wrong?"
+    },
+    {
+     "id": "v1d",
+     "scene": "PointTest",
+     "pad": 0.3,
+     "text": "Proof one. Point to a furniture. This? That’s a chair. This? A table. A sofa. A bed. Every object already has its own name."
+    },
+    {
+     "id": "v1e",
+     "scene": "PointVerdict",
+     "pad": 1.0,
+     "text": "Nothing here is ‘a furniture’. So furniture is not the name of one object."
+    },
+    {
+     "id": "v1f",
+     "scene": "BoxIt",
+     "pad": 0.3,
+     "text": "Proof two. Furniture is the name for the whole group. Chair, table, sofa, bed: one box, one label."
+    },
+    {
+     "id": "v1g",
+     "scene": "CountBox",
+     "pad": 1.0,
+     "text": "Try counting the label: one furniture, two furnitures? It fails. We count what’s inside: one chair, two chairs."
+    },
+    {
+     "id": "v1h",
+     "scene": "VerbSnap",
+     "pad": 1.0,
+     "text": "Proof three. A group name works as one whole, so the verb is singular: ‘The furniture is expensive.’"
+    },
+    {
+     "id": "v1i",
+     "scene": "PiecesChip",
+     "pad": 1.0,
+     "text": "Need a number? The two won’t stick to furniture. Give it something countable: ‘Two pieces of furniture are expensive.’"
+    },
+    {
+     "id": "v1j",
+     "scene": "LuggageTest",
      "pad": 0.8,
-     "text": "English treats that word as uncountable. So: ‘The furniture is expensive.’ Not ‘are’."
+     "text": "Now you try: luggage. Point to a luggage? No, that’s a suitcase, that’s a bag. Group name, so: ‘The luggage is heavy.’"
     },
     {
-     "id": "s1d",
-     "scene": "S1Pieces",
-     "pad": 0.8,
-     "text": "Need a number? Count pieces: ‘Two pieces of furniture are expensive.’ The number goes on pieces, so the verb is plural."
-    },
-    {
-     "id": "s1e",
-     "scene": "S1Luggage",
-     "pad": 1.5,
-     "text": "Same picture with luggage: ‘The luggage is heavy’, but ‘three pieces of luggage are heavy’. See what the noun names, then choose the verb."
-    }
-   ]
-  },
-  {
-   "id": "s2",
-   "title": "MATERIAL",
-   "accent": "material",
-   "beats": [
-    {
-     "id": "s2a",
-     "scene": "S2Hook",
-     "pad": 0.4,
-     "text": "Is a house made of brick, or bricks? Both are correct."
-    },
-    {
-     "id": "s2b",
-     "scene": "S2Gold",
-     "pad": 0.4,
-     "text": "Think of gold. A ring, a coin and a necklace are three things. Gold is the substance they are made from. So we ask: how much gold?"
-    },
-    {
-     "id": "s2c",
-     "scene": "S2Count",
-     "pad": 0.8,
-     "text": "I count three rings, or measure twenty grams of gold. The number goes on rings or grams, not on gold."
-    },
-    {
-     "id": "s2d",
-     "scene": "S2Brick",
-     "pad": 1.5,
-     "text": "Now the house. ‘Made of bricks’ means individual blocks you could count. ‘Made of brick’ names the material. Both are right. The difference is what the word names in your sentence."
-    }
-   ]
-  },
-  {
-   "id": "s3",
-   "title": "MEASURED",
-   "accent": "measured",
-   "beats": [
-    {
-     "id": "s3a",
-     "scene": "S3Hook",
-     "pad": 0.4,
-     "text": "There are thousands of grains. So why not ‘many rice’?"
-    },
-    {
-     "id": "s3b",
-     "scene": "S3Zoom",
-     "pad": 0.4,
-     "text": "Zoom in and you see grains. But when I say rice as food, I mean the amount in the bowl, not a list of grains."
-    },
-    {
-     "id": "s3c",
-     "scene": "S3Fix",
-     "pad": 0.8,
-     "text": "So: ‘I ate too much rice for lunch.’ Not ‘too many rice’."
-    },
-    {
-     "id": "s3d",
-     "scene": "S3Units",
-     "pad": 0.6,
-     "text": "Want to count? Choose a unit: ‘many grains of rice’, ‘two bowls of rice’. The number goes onto grains or bowls."
-    },
-    {
-     "id": "s3e",
-     "scene": "S3Bread",
-     "pad": 1.5,
-     "text": "Bread works the same way: ‘three slices of bread’. Picture the amount, then pick the unit."
-    }
-   ]
-  },
-  {
-   "id": "s4",
-   "title": "ABSTRACT",
-   "accent": "abstract",
-   "beats": [
-    {
-     "id": "s4a",
-     "scene": "S4Hook",
-     "pad": 0.4,
-     "text": "Why ‘a lot of knowledge’, but ‘three ideas’?"
-    },
-    {
-     "id": "s4b",
-     "scene": "S4Body",
-     "pad": 0.4,
-     "text": "He knows many facts about art. But knowledge names his whole body of understanding, not each fact separately. So not ‘many knowledges’."
-    },
-    {
-     "id": "s4c",
-     "scene": "S4Fix",
-     "pad": 0.8,
-     "text": "Say: ‘He has a lot of knowledge about art.’ Advice works similarly: ‘some advice’, or count it as ‘two pieces of advice’."
-    },
-    {
-     "id": "s4d",
-     "scene": "S4Ideas",
-     "pad": 1.5,
-     "text": "But an idea is abstract too, and ‘three ideas’ is correct. Abstract doesn’t decide it. Ask: does this word name one undivided body, or separate items?"
-    }
-   ]
-  },
-  {
-   "id": "s5",
-   "title": "ACTIVITY / PROCESS",
-   "accent": "activity",
-   "beats": [
-    {
-     "id": "s5a",
-     "scene": "S5Hook",
-     "pad": 0.4,
-     "text": "Why ‘a lot of work’, but ‘four tasks’?"
-    },
-    {
-     "id": "s5b",
-     "scene": "S5Merge",
-     "pad": 0.4,
-     "text": "She types, plans, calls and cleans. Several actions. But work, meaning her daily effort, names all of that as one ongoing activity."
-    },
-    {
-     "id": "s5c",
-     "scene": "S5Fix",
-     "pad": 0.8,
-     "text": "So: ‘She does a lot of work every day.’ Not ‘many works’."
-    },
-    {
-     "id": "s5d",
-     "scene": "S5Tasks",
-     "pad": 0.6,
-     "text": "To count the actions, choose another noun: ‘She completes four tasks every day.’"
-    },
-    {
-     "id": "s5e",
-     "scene": "S5Art",
-     "pad": 1.5,
-     "text": "And ‘three works of art’? Correct. Here works means created pieces. The meaning has changed, so the grammar changes too."
+     "id": "v1k",
+     "scene": "RuleCard",
+     "pad": 2.5,
+     "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
     }
    ]
   }
