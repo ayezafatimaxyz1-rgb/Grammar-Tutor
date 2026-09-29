@@ -1,0 +1,467 @@
+1
+00:00:00,370 --> 00:00:04,556
+Why is ‘The furniture are expensive’
+wrong when a room contains
+
+2
+00:00:04,596 --> 00:00:06,099
+several chairs?
+
+3
+00:00:06,139 --> 00:00:10,400
+And why do we say ‘much rice’
+when rice has thousands of grains?
+
+4
+00:00:10,440 --> 00:00:13,166
+A memorised list tells you the answer.
+
+5
+00:00:13,206 --> 00:00:15,072
+It doesn’t show you why.
+
+6
+00:00:16,003 --> 00:00:17,852
+In the meanings we are studying,
+
+7
+00:00:17,892 --> 00:00:20,977
+English treats these nouns as uncountable,
+
+8
+00:00:21,017 --> 00:00:23,598
+so they take a singular verb.
+
+9
+00:00:23,638 --> 00:00:26,594
+Let’s see five pictures
+behind the examples:
+
+10
+00:00:26,634 --> 00:00:30,157
+an overall collection,
+a material, a measured amount,
+
+11
+00:00:30,197 --> 00:00:33,369
+a body of knowledge, and an activity.
+
+12
+00:00:34,303 --> 00:00:36,723
+First: unit or mass.
+
+13
+00:00:36,763 --> 00:00:38,698
+‘The furniture are expensive.’
+
+14
+00:00:38,738 --> 00:00:41,597
+Look: a chair, a table, a sofa and a bed.
+
+15
+00:00:41,637 --> 00:00:43,695
+I can count the separate objects:
+
+16
+00:00:43,735 --> 00:00:45,513
+one chair, two chairs.
+
+17
+00:00:45,553 --> 00:00:47,878
+But when I call them furniture,
+
+18
+00:00:47,918 --> 00:00:50,415
+I’ve changed the way
+I’m talking about them.
+
+19
+00:00:51,037 --> 00:00:54,035
+Furniture is the overall
+label for the collection,
+
+20
+00:00:54,075 --> 00:00:56,591
+not the name of each separate item.
+
+21
+00:00:56,631 --> 00:00:59,696
+English treats that word as uncountable.
+
+22
+00:00:59,736 --> 00:01:02,645
+So ‘The furniture is expensive.’
+
+23
+00:01:02,685 --> 00:01:05,652
+To give a number,
+I count pieces of furniture:
+
+24
+00:01:05,692 --> 00:01:08,517
+‘Two pieces of furniture are expensive.’
+
+25
+00:01:08,557 --> 00:01:10,859
+Here pieces is plural.
+
+26
+00:01:12,203 --> 00:01:14,406
+The same picture helps with luggage:
+
+27
+00:01:14,446 --> 00:01:17,882
+several bags and suitcases,
+one luggage label.
+
+28
+00:01:17,922 --> 00:01:22,103
+‘The luggage is heavy’,
+but ‘three pieces of luggage are heavy’.
+
+29
+00:01:22,143 --> 00:01:26,226
+You can picture clothing,
+equipment and crockery similarly.
+
+30
+00:01:27,370 --> 00:01:29,178
+Second: material.
+
+31
+00:01:29,218 --> 00:01:30,436
+Think of gold.
+
+32
+00:01:30,476 --> 00:01:34,080
+A ring, a coin and a necklace
+are three different things,
+
+33
+00:01:34,120 --> 00:01:37,529
+but the gold is the substance
+from which they are made.
+
+34
+00:01:37,569 --> 00:01:41,811
+When the word names the substance,
+I ask ‘How much gold?’
+
+35
+00:01:42,437 --> 00:01:46,161
+I count three rings,
+or measure twenty grams of gold.
+
+36
+00:01:46,201 --> 00:01:48,900
+The number belongs to rings or grams,
+
+37
+00:01:48,940 --> 00:01:50,687
+not directly to gold.
+
+38
+00:01:50,727 --> 00:01:53,222
+Picture the same distinction with silver,
+
+39
+00:01:53,262 --> 00:01:56,956
+wood, glass and cotton
+when they name materials.
+
+40
+00:01:57,803 --> 00:02:01,239
+There is an important correction
+to the brick example in my
+
+41
+00:02:01,279 --> 00:02:04,359
+notes: ‘This house is made
+of bricks’ is correct.
+
+42
+00:02:04,399 --> 00:02:06,467
+Those are individual blocks.
+
+43
+00:02:06,507 --> 00:02:09,922
+‘This house is made of brick’
+is also correct when brick means
+
+44
+00:02:09,962 --> 00:02:11,090
+the material.
+
+45
+00:02:11,130 --> 00:02:15,065
+The difference is what the word
+names in that sentence.
+
+46
+00:02:16,403 --> 00:02:19,251
+Third: a measured food amount.
+
+47
+00:02:19,291 --> 00:02:21,770
+‘I ate too many rice for lunch’ is wrong.
+
+48
+00:02:21,810 --> 00:02:24,459
+If we zoom in, we can see many grains.
+
+49
+00:02:24,499 --> 00:02:26,506
+But when I say rice as food,
+
+50
+00:02:26,546 --> 00:02:28,710
+I am talking about the amount in the bowl,
+
+51
+00:02:28,750 --> 00:02:31,497
+not listing the grains one by one.
+
+52
+00:02:32,137 --> 00:02:34,938
+So: ‘I ate too much rice for lunch.’
+
+53
+00:02:34,978 --> 00:02:37,206
+If I want to count something,
+
+54
+00:02:37,246 --> 00:02:40,609
+I can say ‘many grains of rice’
+or ‘two bowls of rice’.
+
+55
+00:02:40,649 --> 00:02:42,096
+Watch where the number goes:
+
+56
+00:02:42,136 --> 00:02:44,321
+onto grains or bowls.
+
+57
+00:02:44,361 --> 00:02:47,699
+Bread works the same way
+in ‘three slices of bread’;
+
+58
+00:02:47,739 --> 00:02:50,235
+milk in ‘two litres of milk’.
+
+59
+00:02:51,370 --> 00:02:54,461
+This food group overlaps with substances.
+
+60
+00:02:54,501 --> 00:02:57,563
+The reason I have given it
+its own picture is that a bowl
+
+61
+00:02:57,603 --> 00:03:00,929
+of rice or a jug of milk makes
+the idea of measuring an amount
+
+62
+00:03:00,969 --> 00:03:02,493
+easy to see.
+
+63
+00:03:03,437 --> 00:03:05,650
+Fourth: abstract.
+
+64
+00:03:05,690 --> 00:03:10,204
+‘He has many knowledges about
+art’ is wrong in ordinary English.
+
+65
+00:03:10,244 --> 00:03:13,477
+Here knowledge is his whole
+body of understanding.
+
+66
+00:03:13,517 --> 00:03:15,702
+It may contain many facts,
+
+67
+00:03:15,742 --> 00:03:19,576
+but the word knowledge
+is not naming each fact separately.
+
+68
+00:03:20,203 --> 00:03:23,484
+Say, ‘He has a lot
+of knowledge about art.’
+
+69
+00:03:23,524 --> 00:03:26,195
+Think also of advice and information:
+
+70
+00:03:26,235 --> 00:03:28,906
+‘some advice’, ‘useful information’.
+
+71
+00:03:28,946 --> 00:03:32,823
+If I need a number,
+I can say ‘two pieces of advice’,
+
+72
+00:03:32,863 --> 00:03:36,733
+‘three pieces of information’,
+or count ‘three facts’.
+
+73
+00:03:37,870 --> 00:03:40,435
+Abstract is a picture that helps us think,
+
+74
+00:03:40,475 --> 00:03:43,978
+but it cannot decide every case by itself.
+
+75
+00:03:44,018 --> 00:03:48,487
+An idea is abstract,
+yet ‘three ideas’ is correct.
+
+76
+00:03:48,527 --> 00:03:51,820
+We have to notice whether
+this particular word names
+
+77
+00:03:51,860 --> 00:03:56,098
+an undivided body or separate
+items in the sentence.
+
+78
+00:03:57,037 --> 00:04:00,268
+Fifth: activity or process.
+
+79
+00:04:00,308 --> 00:04:05,274
+‘She does many works every day’
+is wrong when I mean her daily effort.
+
+80
+00:04:05,314 --> 00:04:08,053
+She might type, plan, call and clean:
+
+81
+00:04:08,093 --> 00:04:09,693
+several actions.
+
+82
+00:04:09,733 --> 00:04:13,933
+But work names that effort
+as an ongoing whole.
+
+83
+00:04:14,570 --> 00:04:17,573
+So: ‘She does a lot of work every day.’
+
+84
+00:04:17,613 --> 00:04:20,360
+To count the actions,
+I choose another noun:
+
+85
+00:04:20,400 --> 00:04:23,023
+‘She completes four tasks every day.’
+
+86
+00:04:23,063 --> 00:04:24,209
+Count the tasks;
+
+87
+00:04:24,249 --> 00:04:27,234
+describe the work
+as an amount of activity.
+
+88
+00:04:28,370 --> 00:04:31,036
+But ‘three works of art’ is correct:
+
+89
+00:04:31,076 --> 00:04:34,178
+in a gallery, works means created pieces.
+
+90
+00:04:34,218 --> 00:04:36,149
+The meaning has changed.
+
+91
+00:04:37,070 --> 00:04:41,013
+Now try three new sentences.
+
+92
+00:04:41,053 --> 00:04:42,662
+‘The luggage is heavy’:
+
+93
+00:04:42,702 --> 00:04:46,870
+several bags, one overall label.
+
+94
+00:04:46,910 --> 00:04:48,820
+‘I need much more rice’:
+
+95
+00:04:48,860 --> 00:04:52,335
+the food as an amount.
+
+96
+00:04:52,375 --> 00:04:54,313
+‘Her advice is useful’:
+
+97
+00:04:54,353 --> 00:04:57,979
+advice as information,
+not separate suggestions.
+
+98
+00:04:58,019 --> 00:05:01,194
+Each time, picture what the noun
+is naming before you choose
+
+99
+00:05:01,234 --> 00:05:02,841
+the grammar.
+
+100
+00:05:03,970 --> 00:05:06,030
+These are the five pictures:
+
+101
+00:05:06,070 --> 00:05:08,389
+collection, material, measured amount,
+
+102
+00:05:08,429 --> 00:05:10,705
+body of knowledge, process.
+
+103
+00:05:10,745 --> 00:05:12,059
+See the meaning first.
+
+104
+00:05:12,099 --> 00:05:14,560
+Then ask what you can count directly,
+
+105
+00:05:14,600 --> 00:05:16,674
+or which unit you need.
+
+106
+00:05:16,714 --> 00:05:19,507
+That is how the correction
+becomes understandable instead
+
+107
+00:05:19,547 --> 00:05:21,989
+of something you have to recite.
+

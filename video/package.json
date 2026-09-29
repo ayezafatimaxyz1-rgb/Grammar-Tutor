@@ -1,0 +1,22 @@
+{
+  "name": "grammar-detective-uncountable",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "prepare:timings": "python3 scripts/prepare.py",
+    "render:all": "node scripts/render-all.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@remotion/bundler": "^4.0.529",
+    "@remotion/cli": "^4.0.529",
+    "@remotion/renderer": "^4.0.529",
+    "@types/react": "^19.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.529",
+    "typescript": "^7.0.2"
+  }
+}
