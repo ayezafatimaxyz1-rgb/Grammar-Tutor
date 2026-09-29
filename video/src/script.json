@@ -80,6 +80,74 @@
      "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
     }
    ]
+  },
+  {
+   "id": "v2",
+   "title": "MATERIAL",
+   "slug": "case02_gold",
+   "accent": "material",
+   "beats": [
+    {
+     "id": "v2a",
+     "scene": "MeltHook",
+     "pad": 0.3,
+     "text": "A ring. A coin. A necklace. Three golden things. Now watch: melt them down. How many golds do you have now?"
+    },
+    {
+     "id": "v2b",
+     "scene": "HookBreak",
+     "pad": 0.5,
+     "text": "Three? One? The question doesn’t even work. And that’s the whole lesson, with no memorising."
+    },
+    {
+     "id": "v2c",
+     "scene": "CaseOpen",
+     "pad": 0.5,
+     "text": "Case two: materials. Why do we say ‘made of gold’, and never ‘made of golds’?"
+    },
+    {
+     "id": "v2d",
+     "scene": "CutRing",
+     "pad": 0.4,
+     "text": "Proof one: the cut test. Cut a ring in half. Is it still a ring? No. It’s a broken ring."
+    },
+    {
+     "id": "v2e",
+     "scene": "CutGold",
+     "pad": 1.0,
+     "text": "Now cut a lump of gold in half. Still gold? Yes. Cut it again. Still gold. However small, it’s still gold."
+    },
+    {
+     "id": "v2f",
+     "scene": "CountMeasure",
+     "pad": 1.0,
+     "text": "Proof two. So how do we give a number? Count the objects: three rings. Or measure the material: twenty grams of gold. The number never lands on gold."
+    },
+    {
+     "id": "v2g",
+     "scene": "BrickCount",
+     "pad": 0.3,
+     "text": "Proof three, the twist. Bricks can be counted: this wall has forty bricks. But brick is also a material, like gold."
+    },
+    {
+     "id": "v2h",
+     "scene": "BrickBoth",
+     "pad": 1.0,
+     "text": "So both are right. ‘Made of bricks’ means the blocks. ‘Made of brick’ means the material. The meaning decides the grammar."
+    },
+    {
+     "id": "v2i",
+     "scene": "WoodTest",
+     "pad": 0.8,
+     "text": "Your turn: wood. Cut a plank in half. Still wood? Yes. So: ‘This table is made of wood.’"
+    },
+    {
+     "id": "v2j",
+     "scene": "RuleCard2",
+     "pad": 2.5,
+     "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
+    }
+   ]
   }
  ]
 }

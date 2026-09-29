@@ -344,3 +344,34 @@ export const Painting: React.FC<{ v: number }> = ({ v }) => {
     </g>
   );
 };
+
+/* ---------------------------------------------------------------- extra props for the case videos */
+
+/** Gold ingot (trapezoid bar). */
+export const Ingot: React.FC<{ c?: string }> = ({ c = C.gold }) => (
+  <g>
+    <path d="M-120 50 L-85 -40 H85 L120 50 Z" fill={c} stroke={C.goldDeep} strokeWidth={6} strokeLinejoin="round" />
+    <path d="M-85 -40 L-70 -60 H70 L85 -40 Z" fill="#F1C84B" stroke={C.goldDeep} strokeWidth={5} strokeLinejoin="round" />
+    <path d="M-60 -10 H40" stroke="#fff" strokeWidth={6} opacity={0.45} strokeLinecap="round" />
+  </g>
+);
+
+/** Wooden plank with grain. */
+export const Plank: React.FC = () => (
+  <g>
+    <rect x={-160} y={-40} width={320} height={80} rx={8} fill="#C9935C" stroke="#7A5230" strokeWidth={6} />
+    {[-18, 0, 18].map((y, i) => <path key={i} d={`M-150 ${y} Q-60 ${y - 10 + i * 4} 20 ${y + 3} T150 ${y - 2}`} stroke="#8E6036" strokeWidth={3} fill="none" />)}
+    <ellipse cx={60} cy={-5} rx={16} ry={8} fill="none" stroke="#8E6036" strokeWidth={3} />
+  </g>
+);
+
+/** Flame, flickering with `t`. */
+export const Flame: React.FC<{ t?: number }> = ({ t = 0 }) => {
+  const w = Math.sin(t / 3) * 6;
+  return (
+    <g>
+      <path d={`M0 60 C-60 40 -50 -20 ${-10 + w} -80 C0 -30 30 -40 20 -90 C70 -30 60 40 0 60 Z`} fill="#FF7A2F" />
+      <path d={`M0 55 C-30 40 -25 0 ${-5 + w / 2} -35 C10 -10 25 -5 15 -40 C40 0 30 40 0 55 Z`} fill="#FFD166" />
+    </g>
+  );
+};

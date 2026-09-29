@@ -3,12 +3,13 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame, useVideoCon
 import { Seg, SegProvider, TIMINGS } from "./timing";
 import timings from "./timings.json";
 import { CASE01 } from "./v2/Case01";
+import { CASE02 } from "./v2/Case02";
 import { K, Karaoke } from "./v2/kit";
 
 type Cue = { start: number; end: number; text: string; words: { w: string; t: number }[] };
 const CAPTIONS = (timings as unknown as { captions: Record<string, Cue[]> }).captions;
 
-export const SCENES: Record<string, Record<string, React.FC>> = { v1: CASE01 };
+export const SCENES: Record<string, Record<string, React.FC>> = { v1: CASE01, v2: CASE02 };
 
 /** Plays a scene's narration, honouring any thinking-pause gaps cut into it. */
 const Narration: React.FC<{ seg: Seg }> = ({ seg }) => {

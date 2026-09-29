@@ -1014,6 +1014,1020 @@
     ],
     "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
    }
+  ],
+  "v2": [
+   {
+    "id": "v2a",
+    "scene": "MeltHook",
+    "audio": "audio/v2a.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 247,
+    "lead": 0.35,
+    "audioDur": 7.56,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "A",
+      "t": 0.02
+     },
+     {
+      "w": "ring.",
+      "t": 0.243
+     },
+     {
+      "w": "A",
+      "t": 1.542
+     },
+     {
+      "w": "coin.",
+      "t": 1.605
+     },
+     {
+      "w": "A",
+      "t": 1.974
+     },
+     {
+      "w": "necklace.",
+      "t": 2.038
+     },
+     {
+      "w": "Three",
+      "t": 2.509
+     },
+     {
+      "w": "golden",
+      "t": 2.818
+     },
+     {
+      "w": "things.",
+      "t": 3.174
+     },
+     {
+      "w": "Now",
+      "t": 3.957
+     },
+     {
+      "w": "watch:",
+      "t": 4.187
+     },
+     {
+      "w": "melt",
+      "t": 4.823
+     },
+     {
+      "w": "them",
+      "t": 5.059
+     },
+     {
+      "w": "down.",
+      "t": 5.296
+     },
+     {
+      "w": "How",
+      "t": 5.917
+     },
+     {
+      "w": "many",
+      "t": 6.07
+     },
+     {
+      "w": "golds",
+      "t": 6.258
+     },
+     {
+      "w": "do",
+      "t": 6.479
+     },
+     {
+      "w": "you",
+      "t": 6.598
+     },
+     {
+      "w": "have",
+      "t": 6.751
+     },
+     {
+      "w": "now?",
+      "t": 6.938
+     }
+    ],
+    "text": "A ring. A coin. A necklace. Three golden things. Now watch: melt them down. How many golds do you have now?"
+   },
+   {
+    "id": "v2b",
+    "scene": "HookBreak",
+    "audio": "audio/v2b.mp3",
+    "start": 8.233,
+    "startFrame": 247,
+    "frames": 199,
+    "lead": 0.35,
+    "audioDur": 5.76,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Three?",
+      "t": 0.02
+     },
+     {
+      "w": "One?",
+      "t": 1.042
+     },
+     {
+      "w": "The",
+      "t": 1.502
+     },
+     {
+      "w": "question",
+      "t": 1.656
+     },
+     {
+      "w": "doesn’t",
+      "t": 1.98
+     },
+     {
+      "w": "even",
+      "t": 2.269
+     },
+     {
+      "w": "work.",
+      "t": 2.457
+     },
+     {
+      "w": "And",
+      "t": 2.951
+     },
+     {
+      "w": "that’s",
+      "t": 3.141
+     },
+     {
+      "w": "the",
+      "t": 3.46
+     },
+     {
+      "w": "whole",
+      "t": 3.651
+     },
+     {
+      "w": "lesson,",
+      "t": 3.925
+     },
+     {
+      "w": "with",
+      "t": 4.412
+     },
+     {
+      "w": "no",
+      "t": 4.628
+     },
+     {
+      "w": "memorising.",
+      "t": 4.764
+     }
+    ],
+    "text": "Three? One? The question doesn’t even work. And that’s the whole lesson, with no memorising."
+   },
+   {
+    "id": "v2c",
+    "scene": "CaseOpen",
+    "audio": "audio/v2c.mp3",
+    "start": 14.867,
+    "startFrame": 446,
+    "frames": 181,
+    "lead": 0.35,
+    "audioDur": 5.16,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Case",
+      "t": 0.02
+     },
+     {
+      "w": "two:",
+      "t": 0.331
+     },
+     {
+      "w": "materials.",
+      "t": 0.925
+     },
+     {
+      "w": "Why",
+      "t": 2.028
+     },
+     {
+      "w": "do",
+      "t": 2.237
+     },
+     {
+      "w": "we",
+      "t": 2.399
+     },
+     {
+      "w": "say",
+      "t": 2.561
+     },
+     {
+      "w": "‘made",
+      "t": 2.769
+     },
+     {
+      "w": "of",
+      "t": 3.024
+     },
+     {
+      "w": "gold’,",
+      "t": 3.186
+     },
+     {
+      "w": "and",
+      "t": 3.673
+     },
+     {
+      "w": "never",
+      "t": 3.836
+     },
+     {
+      "w": "‘made",
+      "t": 4.072
+     },
+     {
+      "w": "of",
+      "t": 4.271
+     },
+     {
+      "w": "golds’?",
+      "t": 4.399
+     }
+    ],
+    "text": "Case two: materials. Why do we say ‘made of gold’, and never ‘made of golds’?"
+   },
+   {
+    "id": "v2d",
+    "scene": "CutRing",
+    "audio": "audio/v2d.mp3",
+    "start": 20.9,
+    "startFrame": 627,
+    "frames": 211,
+    "lead": 0.35,
+    "audioDur": 6.264,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "one:",
+      "t": 0.308
+     },
+     {
+      "w": "the",
+      "t": 0.774
+     },
+     {
+      "w": "cut",
+      "t": 0.973
+     },
+     {
+      "w": "test.",
+      "t": 1.173
+     },
+     {
+      "w": "Cut",
+      "t": 1.815
+     },
+     {
+      "w": "a",
+      "t": 2.016
+     },
+     {
+      "w": "ring",
+      "t": 2.128
+     },
+     {
+      "w": "in",
+      "t": 2.373
+     },
+     {
+      "w": "half.",
+      "t": 2.528
+     },
+     {
+      "w": "Is",
+      "t": 3.175
+     },
+     {
+      "w": "it",
+      "t": 3.33
+     },
+     {
+      "w": "still",
+      "t": 3.484
+     },
+     {
+      "w": "a",
+      "t": 3.771
+     },
+     {
+      "w": "ring?",
+      "t": 3.882
+     },
+     {
+      "w": "No.",
+      "t": 4.523
+     },
+     {
+      "w": "It’s",
+      "t": 4.982
+     },
+     {
+      "w": "a",
+      "t": 5.184
+     },
+     {
+      "w": "broken",
+      "t": 5.276
+     },
+     {
+      "w": "ring.",
+      "t": 5.551
+     }
+    ],
+    "text": "Proof one: the cut test. Cut a ring in half. Is it still a ring? No. It’s a broken ring."
+   },
+   {
+    "id": "v2e",
+    "scene": "CutGold",
+    "audio": "audio/v2e.mp3",
+    "start": 27.933,
+    "startFrame": 838,
+    "frames": 273,
+    "lead": 0.35,
+    "audioDur": 7.728,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Now",
+      "t": 0.02
+     },
+     {
+      "w": "cut",
+      "t": 0.224
+     },
+     {
+      "w": "a",
+      "t": 0.429
+     },
+     {
+      "w": "lump",
+      "t": 0.543
+     },
+     {
+      "w": "of",
+      "t": 0.792
+     },
+     {
+      "w": "gold",
+      "t": 0.951
+     },
+     {
+      "w": "in",
+      "t": 1.2
+     },
+     {
+      "w": "half.",
+      "t": 1.36
+     },
+     {
+      "w": "Still",
+      "t": 2.019
+     },
+     {
+      "w": "gold?",
+      "t": 2.354
+     },
+     {
+      "w": "Yes.",
+      "t": 3.105
+     },
+     {
+      "w": "Cut",
+      "t": 3.739
+     },
+     {
+      "w": "it",
+      "t": 3.938
+     },
+     {
+      "w": "again.",
+      "t": 4.094
+     },
+     {
+      "w": "Still",
+      "t": 4.78
+     },
+     {
+      "w": "gold.",
+      "t": 5.068
+     },
+     {
+      "w": "However",
+      "t": 5.71
+     },
+     {
+      "w": "small,",
+      "t": 6.052
+     },
+     {
+      "w": "it’s",
+      "t": 6.476
+     },
+     {
+      "w": "still",
+      "t": 6.697
+     },
+     {
+      "w": "gold.",
+      "t": 6.959
+     }
+    ],
+    "text": "Now cut a lump of gold in half. Still gold? Yes. Cut it again. Still gold. However small, it’s still gold."
+   },
+   {
+    "id": "v2f",
+    "scene": "CountMeasure",
+    "audio": "audio/v2f.mp3",
+    "start": 37.033,
+    "startFrame": 1111,
+    "frames": 338,
+    "lead": 0.35,
+    "audioDur": 9.888,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "two.",
+      "t": 0.272
+     },
+     {
+      "w": "So",
+      "t": 0.796
+     },
+     {
+      "w": "how",
+      "t": 0.931
+     },
+     {
+      "w": "do",
+      "t": 1.106
+     },
+     {
+      "w": "we",
+      "t": 1.242
+     },
+     {
+      "w": "give",
+      "t": 1.378
+     },
+     {
+      "w": "a",
+      "t": 1.591
+     },
+     {
+      "w": "number?",
+      "t": 1.689
+     },
+     {
+      "w": "Count",
+      "t": 2.328
+     },
+     {
+      "w": "the",
+      "t": 2.647
+     },
+     {
+      "w": "objects:",
+      "t": 2.867
+     },
+     {
+      "w": "three",
+      "t": 3.576
+     },
+     {
+      "w": "rings.",
+      "t": 3.944
+     },
+     {
+      "w": "Or",
+      "t": 4.819
+     },
+     {
+      "w": "measure",
+      "t": 4.985
+     },
+     {
+      "w": "the",
+      "t": 5.388
+     },
+     {
+      "w": "material:",
+      "t": 5.601
+     },
+     {
+      "w": "twenty",
+      "t": 6.335
+     },
+     {
+      "w": "grams",
+      "t": 6.721
+     },
+     {
+      "w": "of",
+      "t": 7.055
+     },
+     {
+      "w": "gold.",
+      "t": 7.235
+     },
+     {
+      "w": "The",
+      "t": 7.98
+     },
+     {
+      "w": "number",
+      "t": 8.161
+     },
+     {
+      "w": "never",
+      "t": 8.462
+     },
+     {
+      "w": "lands",
+      "t": 8.723
+     },
+     {
+      "w": "on",
+      "t": 8.985
+     },
+     {
+      "w": "gold.",
+      "t": 9.125
+     }
+    ],
+    "text": "Proof two. So how do we give a number? Count the objects: three rings. Or measure the material: twenty grams of gold. The number never lands on gold."
+   },
+   {
+    "id": "v2g",
+    "scene": "BrickCount",
+    "audio": "audio/v2g.mp3",
+    "start": 48.3,
+    "startFrame": 1449,
+    "frames": 258,
+    "lead": 0.35,
+    "audioDur": 7.944,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Proof",
+      "t": 0.02
+     },
+     {
+      "w": "three,",
+      "t": 0.688
+     },
+     {
+      "w": "the",
+      "t": 1.765
+     },
+     {
+      "w": "twist.",
+      "t": 1.902
+     },
+     {
+      "w": "Bricks",
+      "t": 2.372
+     },
+     {
+      "w": "can",
+      "t": 2.599
+     },
+     {
+      "w": "be",
+      "t": 2.735
+     },
+     {
+      "w": "counted:",
+      "t": 2.842
+     },
+     {
+      "w": "this",
+      "t": 3.281
+     },
+     {
+      "w": "wall",
+      "t": 3.553
+     },
+     {
+      "w": "has",
+      "t": 3.826
+     },
+     {
+      "w": "forty",
+      "t": 4.048
+     },
+     {
+      "w": "bricks.",
+      "t": 4.37
+     },
+     {
+      "w": "But",
+      "t": 5.186
+     },
+     {
+      "w": "brick",
+      "t": 5.391
+     },
+     {
+      "w": "is",
+      "t": 5.689
+     },
+     {
+      "w": "also",
+      "t": 5.85
+     },
+     {
+      "w": "a",
+      "t": 6.101
+     },
+     {
+      "w": "material,",
+      "t": 6.216
+     },
+     {
+      "w": "like",
+      "t": 6.834
+     },
+     {
+      "w": "gold.",
+      "t": 7.085
+     }
+    ],
+    "text": "Proof three, the twist. Bricks can be counted: this wall has forty bricks. But brick is also a material, like gold."
+   },
+   {
+    "id": "v2h",
+    "scene": "BrickBoth",
+    "audio": "audio/v2h.mp3",
+    "start": 56.9,
+    "startFrame": 1707,
+    "frames": 276,
+    "lead": 0.35,
+    "audioDur": 7.848,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "both",
+      "t": 0.209
+     },
+     {
+      "w": "are",
+      "t": 0.505
+     },
+     {
+      "w": "right.",
+      "t": 0.747
+     },
+     {
+      "w": "‘Made",
+      "t": 1.583
+     },
+     {
+      "w": "of",
+      "t": 1.845
+     },
+     {
+      "w": "bricks’",
+      "t": 2.013
+     },
+     {
+      "w": "means",
+      "t": 2.418
+     },
+     {
+      "w": "the",
+      "t": 2.729
+     },
+     {
+      "w": "blocks.",
+      "t": 2.943
+     },
+     {
+      "w": "‘Made",
+      "t": 3.73
+     },
+     {
+      "w": "of",
+      "t": 4.002
+     },
+     {
+      "w": "brick’",
+      "t": 4.174
+     },
+     {
+      "w": "means",
+      "t": 4.544
+     },
+     {
+      "w": "the",
+      "t": 4.865
+     },
+     {
+      "w": "material.",
+      "t": 5.087
+     },
+     {
+      "w": "The",
+      "t": 6.0
+     },
+     {
+      "w": "meaning",
+      "t": 6.173
+     },
+     {
+      "w": "decides",
+      "t": 6.502
+     },
+     {
+      "w": "the",
+      "t": 6.83
+     },
+     {
+      "w": "grammar.",
+      "t": 7.003
+     }
+    ],
+    "text": "So both are right. ‘Made of bricks’ means the blocks. ‘Made of brick’ means the material. The meaning decides the grammar."
+   },
+   {
+    "id": "v2i",
+    "scene": "WoodTest",
+    "audio": "audio/v2i.mp3",
+    "start": 66.1,
+    "startFrame": 1983,
+    "frames": 213,
+    "lead": 0.35,
+    "audioDur": 5.928,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Your",
+      "t": 0.02
+     },
+     {
+      "w": "turn:",
+      "t": 0.219
+     },
+     {
+      "w": "wood.",
+      "t": 0.634
+     },
+     {
+      "w": "Cut",
+      "t": 1.157
+     },
+     {
+      "w": "a",
+      "t": 1.32
+     },
+     {
+      "w": "plank",
+      "t": 1.41
+     },
+     {
+      "w": "in",
+      "t": 1.645
+     },
+     {
+      "w": "half.",
+      "t": 1.771
+     },
+     {
+      "w": "Still",
+      "t": 2.295
+     },
+     {
+      "w": "wood?",
+      "t": 2.594
+     },
+     {
+      "w": "Yes.",
+      "t": 3.264
+     },
+     {
+      "w": "So:",
+      "t": 3.876
+     },
+     {
+      "w": "‘This",
+      "t": 4.232
+     },
+     {
+      "w": "table",
+      "t": 4.438
+     },
+     {
+      "w": "is",
+      "t": 4.682
+     },
+     {
+      "w": "made",
+      "t": 4.812
+     },
+     {
+      "w": "of",
+      "t": 5.019
+     },
+     {
+      "w": "wood.’",
+      "t": 5.15
+     }
+    ],
+    "text": "Your turn: wood. Cut a plank in half. Still wood? Yes. So: ‘This table is made of wood.’"
+   },
+   {
+    "id": "v2j",
+    "scene": "RuleCard2",
+    "audio": "audio/v2j.mp3",
+    "start": 73.2,
+    "startFrame": 2196,
+    "frames": 327,
+    "lead": 0.35,
+    "audioDur": 8.04,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "don’t",
+      "t": 0.19
+     },
+     {
+      "w": "memorise.",
+      "t": 0.504
+     },
+     {
+      "w": "Cut",
+      "t": 1.4
+     },
+     {
+      "w": "it",
+      "t": 1.635
+     },
+     {
+      "w": "in",
+      "t": 1.818
+     },
+     {
+      "w": "half.",
+      "t": 2.001
+     },
+     {
+      "w": "If",
+      "t": 2.759
+     },
+     {
+      "w": "every",
+      "t": 2.931
+     },
+     {
+      "w": "piece",
+      "t": 3.25
+     },
+     {
+      "w": "is",
+      "t": 3.57
+     },
+     {
+      "w": "still",
+      "t": 3.743
+     },
+     {
+      "w": "the",
+      "t": 4.062
+     },
+     {
+      "w": "same",
+      "t": 4.283
+     },
+     {
+      "w": "stuff,",
+      "t": 4.554
+     },
+     {
+      "w": "it’s",
+      "t": 5.07
+     },
+     {
+      "w": "a",
+      "t": 5.35
+     },
+     {
+      "w": "material.",
+      "t": 5.477
+     },
+     {
+      "w": "Measure",
+      "t": 6.418
+     },
+     {
+      "w": "it,",
+      "t": 6.76
+     },
+     {
+      "w": "don’t",
+      "t": 7.062
+     },
+     {
+      "w": "count",
+      "t": 7.275
+     },
+     {
+      "w": "it.",
+      "t": 7.487
+     }
+    ],
+    "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
+   }
   ]
  },
  "captions": {
@@ -2178,6 +3192,1149 @@
      {
       "w": "one.",
       "t": 85.533
+     }
+    ]
+   }
+  ],
+  "v2": [
+   {
+    "start": 0.37,
+    "end": 2.284,
+    "text": "A ring. A coin.",
+    "words": [
+     {
+      "w": "A",
+      "t": 0.37
+     },
+     {
+      "w": "ring.",
+      "t": 0.593
+     },
+     {
+      "w": "A",
+      "t": 1.892
+     },
+     {
+      "w": "coin.",
+      "t": 1.955
+     }
+    ]
+   },
+   {
+    "start": 2.324,
+    "end": 2.819,
+    "text": "A necklace.",
+    "words": [
+     {
+      "w": "A",
+      "t": 2.324
+     },
+     {
+      "w": "necklace.",
+      "t": 2.388
+     }
+    ]
+   },
+   {
+    "start": 2.859,
+    "end": 4.267,
+    "text": "Three golden\nthings.",
+    "words": [
+     {
+      "w": "Three",
+      "t": 2.859
+     },
+     {
+      "w": "golden",
+      "t": 3.168
+     },
+     {
+      "w": "things.",
+      "t": 3.524
+     }
+    ]
+   },
+   {
+    "start": 4.307,
+    "end": 6.227,
+    "text": "Now watch:\nmelt them down.",
+    "words": [
+     {
+      "w": "Now",
+      "t": 4.307
+     },
+     {
+      "w": "watch:",
+      "t": 4.537
+     },
+     {
+      "w": "melt",
+      "t": 5.173
+     },
+     {
+      "w": "them",
+      "t": 5.409
+     },
+     {
+      "w": "down.",
+      "t": 5.646
+     }
+    ]
+   },
+   {
+    "start": 6.267,
+    "end": 8.16,
+    "text": "How many golds\ndo you have now?",
+    "words": [
+     {
+      "w": "How",
+      "t": 6.267
+     },
+     {
+      "w": "many",
+      "t": 6.42
+     },
+     {
+      "w": "golds",
+      "t": 6.608
+     },
+     {
+      "w": "do",
+      "t": 6.829
+     },
+     {
+      "w": "you",
+      "t": 6.948
+     },
+     {
+      "w": "have",
+      "t": 7.101
+     },
+     {
+      "w": "now?",
+      "t": 7.288
+     }
+    ]
+   },
+   {
+    "start": 8.603,
+    "end": 10.045,
+    "text": "Three? One?",
+    "words": [
+     {
+      "w": "Three?",
+      "t": 8.603
+     },
+     {
+      "w": "One?",
+      "t": 9.625
+     }
+    ]
+   },
+   {
+    "start": 10.085,
+    "end": 11.494,
+    "text": "The question\ndoesn’t even work.",
+    "words": [
+     {
+      "w": "The",
+      "t": 10.085
+     },
+     {
+      "w": "question",
+      "t": 10.239
+     },
+     {
+      "w": "doesn’t",
+      "t": 10.563
+     },
+     {
+      "w": "even",
+      "t": 10.852
+     },
+     {
+      "w": "work.",
+      "t": 11.04
+     }
+    ]
+   },
+   {
+    "start": 11.534,
+    "end": 12.955,
+    "text": "And that’s\nthe whole lesson,",
+    "words": [
+     {
+      "w": "And",
+      "t": 11.534
+     },
+     {
+      "w": "that’s",
+      "t": 11.724
+     },
+     {
+      "w": "the",
+      "t": 12.043
+     },
+     {
+      "w": "whole",
+      "t": 12.234
+     },
+     {
+      "w": "lesson,",
+      "t": 12.508
+     }
+    ]
+   },
+   {
+    "start": 12.995,
+    "end": 14.593,
+    "text": "with no\nmemorising.",
+    "words": [
+     {
+      "w": "with",
+      "t": 12.995
+     },
+     {
+      "w": "no",
+      "t": 13.211
+     },
+     {
+      "w": "memorising.",
+      "t": 13.347
+     }
+    ]
+   },
+   {
+    "start": 15.237,
+    "end": 17.205,
+    "text": "Case two:\nmaterials.",
+    "words": [
+     {
+      "w": "Case",
+      "t": 15.237
+     },
+     {
+      "w": "two:",
+      "t": 15.548
+     },
+     {
+      "w": "materials.",
+      "t": 16.142
+     }
+    ]
+   },
+   {
+    "start": 17.245,
+    "end": 18.85,
+    "text": "Why do we say\n‘made of gold’,",
+    "words": [
+     {
+      "w": "Why",
+      "t": 17.245
+     },
+     {
+      "w": "do",
+      "t": 17.454
+     },
+     {
+      "w": "we",
+      "t": 17.616
+     },
+     {
+      "w": "say",
+      "t": 17.778
+     },
+     {
+      "w": "‘made",
+      "t": 17.986
+     },
+     {
+      "w": "of",
+      "t": 18.241
+     },
+     {
+      "w": "gold’,",
+      "t": 18.403
+     }
+    ]
+   },
+   {
+    "start": 18.89,
+    "end": 20.627,
+    "text": "and never ‘made\nof golds’?",
+    "words": [
+     {
+      "w": "and",
+      "t": 18.89
+     },
+     {
+      "w": "never",
+      "t": 19.053
+     },
+     {
+      "w": "‘made",
+      "t": 19.289
+     },
+     {
+      "w": "of",
+      "t": 19.488
+     },
+     {
+      "w": "golds’?",
+      "t": 19.616
+     }
+    ]
+   },
+   {
+    "start": 21.27,
+    "end": 23.025,
+    "text": "Proof one:\nthe cut test.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 21.27
+     },
+     {
+      "w": "one:",
+      "t": 21.558
+     },
+     {
+      "w": "the",
+      "t": 22.024
+     },
+     {
+      "w": "cut",
+      "t": 22.223
+     },
+     {
+      "w": "test.",
+      "t": 22.423
+     }
+    ]
+   },
+   {
+    "start": 23.065,
+    "end": 24.385,
+    "text": "Cut a ring\nin half.",
+    "words": [
+     {
+      "w": "Cut",
+      "t": 23.065
+     },
+     {
+      "w": "a",
+      "t": 23.266
+     },
+     {
+      "w": "ring",
+      "t": 23.378
+     },
+     {
+      "w": "in",
+      "t": 23.623
+     },
+     {
+      "w": "half.",
+      "t": 23.778
+     }
+    ]
+   },
+   {
+    "start": 24.425,
+    "end": 25.733,
+    "text": "Is it still\na ring?",
+    "words": [
+     {
+      "w": "Is",
+      "t": 24.425
+     },
+     {
+      "w": "it",
+      "t": 24.58
+     },
+     {
+      "w": "still",
+      "t": 24.734
+     },
+     {
+      "w": "a",
+      "t": 25.021
+     },
+     {
+      "w": "ring?",
+      "t": 25.132
+     }
+    ]
+   },
+   {
+    "start": 25.773,
+    "end": 27.764,
+    "text": "No.\nIt’s a broken ring.",
+    "words": [
+     {
+      "w": "No.",
+      "t": 25.773
+     },
+     {
+      "w": "It’s",
+      "t": 26.232
+     },
+     {
+      "w": "a",
+      "t": 26.434
+     },
+     {
+      "w": "broken",
+      "t": 26.526
+     },
+     {
+      "w": "ring.",
+      "t": 26.801
+     }
+    ]
+   },
+   {
+    "start": 28.303,
+    "end": 30.262,
+    "text": "Now cut a lump\nof gold in half.",
+    "words": [
+     {
+      "w": "Now",
+      "t": 28.303
+     },
+     {
+      "w": "cut",
+      "t": 28.507
+     },
+     {
+      "w": "a",
+      "t": 28.712
+     },
+     {
+      "w": "lump",
+      "t": 28.826
+     },
+     {
+      "w": "of",
+      "t": 29.075
+     },
+     {
+      "w": "gold",
+      "t": 29.234
+     },
+     {
+      "w": "in",
+      "t": 29.483
+     },
+     {
+      "w": "half.",
+      "t": 29.643
+     }
+    ]
+   },
+   {
+    "start": 30.302,
+    "end": 31.982,
+    "text": "Still gold? Yes.",
+    "words": [
+     {
+      "w": "Still",
+      "t": 30.302
+     },
+     {
+      "w": "gold?",
+      "t": 30.637
+     },
+     {
+      "w": "Yes.",
+      "t": 31.388
+     }
+    ]
+   },
+   {
+    "start": 32.022,
+    "end": 33.023,
+    "text": "Cut it again.",
+    "words": [
+     {
+      "w": "Cut",
+      "t": 32.022
+     },
+     {
+      "w": "it",
+      "t": 32.221
+     },
+     {
+      "w": "again.",
+      "t": 32.377
+     }
+    ]
+   },
+   {
+    "start": 33.063,
+    "end": 33.953,
+    "text": "Still gold.",
+    "words": [
+     {
+      "w": "Still",
+      "t": 33.063
+     },
+     {
+      "w": "gold.",
+      "t": 33.351
+     }
+    ]
+   },
+   {
+    "start": 33.993,
+    "end": 36.261,
+    "text": "However small,\nit’s still gold.",
+    "words": [
+     {
+      "w": "However",
+      "t": 33.993
+     },
+     {
+      "w": "small,",
+      "t": 34.335
+     },
+     {
+      "w": "it’s",
+      "t": 34.759
+     },
+     {
+      "w": "still",
+      "t": 34.98
+     },
+     {
+      "w": "gold.",
+      "t": 35.242
+     }
+    ]
+   },
+   {
+    "start": 37.403,
+    "end": 38.139,
+    "text": "Proof two.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 37.403
+     },
+     {
+      "w": "two.",
+      "t": 37.655
+     }
+    ]
+   },
+   {
+    "start": 38.179,
+    "end": 39.671,
+    "text": "So how do we\ngive a number?",
+    "words": [
+     {
+      "w": "So",
+      "t": 38.179
+     },
+     {
+      "w": "how",
+      "t": 38.314
+     },
+     {
+      "w": "do",
+      "t": 38.489
+     },
+     {
+      "w": "we",
+      "t": 38.625
+     },
+     {
+      "w": "give",
+      "t": 38.761
+     },
+     {
+      "w": "a",
+      "t": 38.974
+     },
+     {
+      "w": "number?",
+      "t": 39.072
+     }
+    ]
+   },
+   {
+    "start": 39.711,
+    "end": 40.919,
+    "text": "Count the objects:",
+    "words": [
+     {
+      "w": "Count",
+      "t": 39.711
+     },
+     {
+      "w": "the",
+      "t": 40.03
+     },
+     {
+      "w": "objects:",
+      "t": 40.25
+     }
+    ]
+   },
+   {
+    "start": 40.959,
+    "end": 42.162,
+    "text": "three rings.",
+    "words": [
+     {
+      "w": "three",
+      "t": 40.959
+     },
+     {
+      "w": "rings.",
+      "t": 41.327
+     }
+    ]
+   },
+   {
+    "start": 42.202,
+    "end": 43.678,
+    "text": "Or measure\nthe material:",
+    "words": [
+     {
+      "w": "Or",
+      "t": 42.202
+     },
+     {
+      "w": "measure",
+      "t": 42.368
+     },
+     {
+      "w": "the",
+      "t": 42.771
+     },
+     {
+      "w": "material:",
+      "t": 42.984
+     }
+    ]
+   },
+   {
+    "start": 43.718,
+    "end": 45.323,
+    "text": "twenty grams\nof gold.",
+    "words": [
+     {
+      "w": "twenty",
+      "t": 43.718
+     },
+     {
+      "w": "grams",
+      "t": 44.104
+     },
+     {
+      "w": "of",
+      "t": 44.438
+     },
+     {
+      "w": "gold.",
+      "t": 44.618
+     }
+    ]
+   },
+   {
+    "start": 45.363,
+    "end": 47.521,
+    "text": "The number never\nlands on gold.",
+    "words": [
+     {
+      "w": "The",
+      "t": 45.363
+     },
+     {
+      "w": "number",
+      "t": 45.544
+     },
+     {
+      "w": "never",
+      "t": 45.845
+     },
+     {
+      "w": "lands",
+      "t": 46.106
+     },
+     {
+      "w": "on",
+      "t": 46.368
+     },
+     {
+      "w": "gold.",
+      "t": 46.508
+     }
+    ]
+   },
+   {
+    "start": 48.67,
+    "end": 50.982,
+    "text": "Proof three,\nthe twist.",
+    "words": [
+     {
+      "w": "Proof",
+      "t": 48.67
+     },
+     {
+      "w": "three,",
+      "t": 49.338
+     },
+     {
+      "w": "the",
+      "t": 50.415
+     },
+     {
+      "w": "twist.",
+      "t": 50.552
+     }
+    ]
+   },
+   {
+    "start": 51.022,
+    "end": 51.891,
+    "text": "Bricks can\nbe counted:",
+    "words": [
+     {
+      "w": "Bricks",
+      "t": 51.022
+     },
+     {
+      "w": "can",
+      "t": 51.249
+     },
+     {
+      "w": "be",
+      "t": 51.385
+     },
+     {
+      "w": "counted:",
+      "t": 51.492
+     }
+    ]
+   },
+   {
+    "start": 51.931,
+    "end": 53.796,
+    "text": "this wall has\nforty bricks.",
+    "words": [
+     {
+      "w": "this",
+      "t": 51.931
+     },
+     {
+      "w": "wall",
+      "t": 52.203
+     },
+     {
+      "w": "has",
+      "t": 52.476
+     },
+     {
+      "w": "forty",
+      "t": 52.698
+     },
+     {
+      "w": "bricks.",
+      "t": 53.02
+     }
+    ]
+   },
+   {
+    "start": 53.836,
+    "end": 55.444,
+    "text": "But brick is also\na material,",
+    "words": [
+     {
+      "w": "But",
+      "t": 53.836
+     },
+     {
+      "w": "brick",
+      "t": 54.041
+     },
+     {
+      "w": "is",
+      "t": 54.339
+     },
+     {
+      "w": "also",
+      "t": 54.5
+     },
+     {
+      "w": "a",
+      "t": 54.751
+     },
+     {
+      "w": "material,",
+      "t": 54.866
+     }
+    ]
+   },
+   {
+    "start": 55.484,
+    "end": 56.844,
+    "text": "like gold.",
+    "words": [
+     {
+      "w": "like",
+      "t": 55.484
+     },
+     {
+      "w": "gold.",
+      "t": 55.735
+     }
+    ]
+   },
+   {
+    "start": 57.27,
+    "end": 58.793,
+    "text": "So both are right.",
+    "words": [
+     {
+      "w": "So",
+      "t": 57.27
+     },
+     {
+      "w": "both",
+      "t": 57.459
+     },
+     {
+      "w": "are",
+      "t": 57.755
+     },
+     {
+      "w": "right.",
+      "t": 57.997
+     }
+    ]
+   },
+   {
+    "start": 58.833,
+    "end": 60.94,
+    "text": "‘Made of bricks’\nmeans the blocks.",
+    "words": [
+     {
+      "w": "‘Made",
+      "t": 58.833
+     },
+     {
+      "w": "of",
+      "t": 59.095
+     },
+     {
+      "w": "bricks’",
+      "t": 59.263
+     },
+     {
+      "w": "means",
+      "t": 59.668
+     },
+     {
+      "w": "the",
+      "t": 59.979
+     },
+     {
+      "w": "blocks.",
+      "t": 60.193
+     }
+    ]
+   },
+   {
+    "start": 60.98,
+    "end": 63.21,
+    "text": "‘Made of brick’\nmeans the material.",
+    "words": [
+     {
+      "w": "‘Made",
+      "t": 60.98
+     },
+     {
+      "w": "of",
+      "t": 61.252
+     },
+     {
+      "w": "brick’",
+      "t": 61.424
+     },
+     {
+      "w": "means",
+      "t": 61.794
+     },
+     {
+      "w": "the",
+      "t": 62.115
+     },
+     {
+      "w": "material.",
+      "t": 62.337
+     }
+    ]
+   },
+   {
+    "start": 63.25,
+    "end": 65.348,
+    "text": "The meaning decides\nthe grammar.",
+    "words": [
+     {
+      "w": "The",
+      "t": 63.25
+     },
+     {
+      "w": "meaning",
+      "t": 63.423
+     },
+     {
+      "w": "decides",
+      "t": 63.752
+     },
+     {
+      "w": "the",
+      "t": 64.08
+     },
+     {
+      "w": "grammar.",
+      "t": 64.253
+     }
+    ]
+   },
+   {
+    "start": 66.47,
+    "end": 67.567,
+    "text": "Your turn: wood.",
+    "words": [
+     {
+      "w": "Your",
+      "t": 66.47
+     },
+     {
+      "w": "turn:",
+      "t": 66.669
+     },
+     {
+      "w": "wood.",
+      "t": 67.084
+     }
+    ]
+   },
+   {
+    "start": 67.607,
+    "end": 68.705,
+    "text": "Cut a plank\nin half.",
+    "words": [
+     {
+      "w": "Cut",
+      "t": 67.607
+     },
+     {
+      "w": "a",
+      "t": 67.77
+     },
+     {
+      "w": "plank",
+      "t": 67.86
+     },
+     {
+      "w": "in",
+      "t": 68.095
+     },
+     {
+      "w": "half.",
+      "t": 68.221
+     }
+    ]
+   },
+   {
+    "start": 68.745,
+    "end": 70.286,
+    "text": "Still wood? Yes.",
+    "words": [
+     {
+      "w": "Still",
+      "t": 68.745
+     },
+     {
+      "w": "wood?",
+      "t": 69.044
+     },
+     {
+      "w": "Yes.",
+      "t": 69.714
+     }
+    ]
+   },
+   {
+    "start": 70.326,
+    "end": 70.642,
+    "text": "So:",
+    "words": [
+     {
+      "w": "So:",
+      "t": 70.326
+     }
+    ]
+   },
+   {
+    "start": 70.682,
+    "end": 72.628,
+    "text": "‘This table\nis made of wood.’",
+    "words": [
+     {
+      "w": "‘This",
+      "t": 70.682
+     },
+     {
+      "w": "table",
+      "t": 70.888
+     },
+     {
+      "w": "is",
+      "t": 71.132
+     },
+     {
+      "w": "made",
+      "t": 71.262
+     },
+     {
+      "w": "of",
+      "t": 71.469
+     },
+     {
+      "w": "wood.’",
+      "t": 71.6
+     }
+    ]
+   },
+   {
+    "start": 73.57,
+    "end": 74.91,
+    "text": "So don’t memorise.",
+    "words": [
+     {
+      "w": "So",
+      "t": 73.57
+     },
+     {
+      "w": "don’t",
+      "t": 73.74
+     },
+     {
+      "w": "memorise.",
+      "t": 74.054
+     }
+    ]
+   },
+   {
+    "start": 74.95,
+    "end": 76.269,
+    "text": "Cut it in half.",
+    "words": [
+     {
+      "w": "Cut",
+      "t": 74.95
+     },
+     {
+      "w": "it",
+      "t": 75.185
+     },
+     {
+      "w": "in",
+      "t": 75.368
+     },
+     {
+      "w": "half.",
+      "t": 75.551
+     }
+    ]
+   },
+   {
+    "start": 76.309,
+    "end": 77.572,
+    "text": "If every\npiece is still",
+    "words": [
+     {
+      "w": "If",
+      "t": 76.309
+     },
+     {
+      "w": "every",
+      "t": 76.481
+     },
+     {
+      "w": "piece",
+      "t": 76.8
+     },
+     {
+      "w": "is",
+      "t": 77.12
+     },
+     {
+      "w": "still",
+      "t": 77.293
+     }
+    ]
+   },
+   {
+    "start": 77.612,
+    "end": 79.928,
+    "text": "the same stuff,\nit’s a material.",
+    "words": [
+     {
+      "w": "the",
+      "t": 77.612
+     },
+     {
+      "w": "same",
+      "t": 77.833
+     },
+     {
+      "w": "stuff,",
+      "t": 78.104
+     },
+     {
+      "w": "it’s",
+      "t": 78.62
+     },
+     {
+      "w": "a",
+      "t": 78.9
+     },
+     {
+      "w": "material.",
+      "t": 79.027
+     }
+    ]
+   },
+   {
+    "start": 79.968,
+    "end": 81.84,
+    "text": "Measure it,\ndon’t count it.",
+    "words": [
+     {
+      "w": "Measure",
+      "t": 79.968
+     },
+     {
+      "w": "it,",
+      "t": 80.31
+     },
+     {
+      "w": "don’t",
+      "t": 80.612
+     },
+     {
+      "w": "count",
+      "t": 80.825
+     },
+     {
+      "w": "it.",
+      "t": 81.037
      }
     ]
    }
