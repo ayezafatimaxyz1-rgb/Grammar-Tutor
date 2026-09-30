@@ -148,6 +148,45 @@
      "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
     }
    ]
+  },
+  {
+   "id": "sm",
+   "title": "STYLE SAMPLE",
+   "slug": "sample",
+   "accent": "unit",
+   "sample": true,
+   "beats": [
+    {
+     "id": "sm1",
+     "scene": "-",
+     "pad": 0.5,
+     "text": "Why is ‘The furniture are expensive’ wrong?"
+    },
+    {
+     "id": "sm2",
+     "scene": "-",
+     "pad": 0.3,
+     "text": "Furniture contains many things: a chair, a table, a sofa, a bed."
+    },
+    {
+     "id": "sm3",
+     "scene": "-",
+     "pad": 0.3,
+     "text": "But English groups them together, and names them as one unit."
+    },
+    {
+     "id": "sm4",
+     "scene": "-",
+     "pad": 0.3,
+     "text": "Unit means one. And one is always singular. We can’t add s to one."
+    },
+    {
+     "id": "sm5",
+     "scene": "-",
+     "pad": 1.8,
+     "text": "So: ‘The furniture is expensive.’"
+    }
+   ]
   }
  ]
 }

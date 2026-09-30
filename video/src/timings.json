@@ -2028,6 +2028,304 @@
     ],
     "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
    }
+  ],
+  "sm": [
+   {
+    "id": "sm1",
+    "scene": "-",
+    "audio": "audio/sm1.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 122,
+    "lead": 0.35,
+    "audioDur": 3.192,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Why",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.265
+     },
+     {
+      "w": "‘The",
+      "t": 0.455
+     },
+     {
+      "w": "furniture",
+      "t": 0.7
+     },
+     {
+      "w": "are",
+      "t": 1.27
+     },
+     {
+      "w": "expensive’",
+      "t": 1.515
+     },
+     {
+      "w": "wrong?",
+      "t": 2.141
+     }
+    ],
+    "text": "Why is ‘The furniture are expensive’ wrong?"
+   },
+   {
+    "id": "sm2",
+    "scene": "-",
+    "audio": "audio/sm2.mp3",
+    "start": 4.067,
+    "startFrame": 122,
+    "frames": 172,
+    "lead": 0.35,
+    "audioDur": 5.064,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Furniture",
+      "t": 0.02
+     },
+     {
+      "w": "contains",
+      "t": 0.622
+     },
+     {
+      "w": "many",
+      "t": 1.168
+     },
+     {
+      "w": "things:",
+      "t": 1.484
+     },
+     {
+      "w": "a",
+      "t": 2.258
+     },
+     {
+      "w": "chair,",
+      "t": 2.409
+     },
+     {
+      "w": "a",
+      "t": 3.04
+     },
+     {
+      "w": "table,",
+      "t": 3.153
+     },
+     {
+      "w": "a",
+      "t": 3.626
+     },
+     {
+      "w": "sofa,",
+      "t": 3.738
+     },
+     {
+      "w": "a",
+      "t": 4.166
+     },
+     {
+      "w": "bed.",
+      "t": 4.279
+     }
+    ],
+    "text": "Furniture contains many things: a chair, a table, a sofa, a bed."
+   },
+   {
+    "id": "sm3",
+    "scene": "-",
+    "audio": "audio/sm3.mp3",
+    "start": 9.8,
+    "startFrame": 294,
+    "frames": 148,
+    "lead": 0.35,
+    "audioDur": 4.272,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "But",
+      "t": 0.02
+     },
+     {
+      "w": "English",
+      "t": 0.254
+     },
+     {
+      "w": "groups",
+      "t": 0.696
+     },
+     {
+      "w": "them",
+      "t": 1.085
+     },
+     {
+      "w": "together,",
+      "t": 1.371
+     },
+     {
+      "w": "and",
+      "t": 2.072
+     },
+     {
+      "w": "names",
+      "t": 2.302
+     },
+     {
+      "w": "them",
+      "t": 2.635
+     },
+     {
+      "w": "as",
+      "t": 2.917
+     },
+     {
+      "w": "one",
+      "t": 3.096
+     },
+     {
+      "w": "unit.",
+      "t": 3.326
+     }
+    ],
+    "text": "But English groups them together, and names them as one unit."
+   },
+   {
+    "id": "sm4",
+    "scene": "-",
+    "audio": "audio/sm4.mp3",
+    "start": 14.733,
+    "startFrame": 442,
+    "frames": 163,
+    "lead": 0.35,
+    "audioDur": 4.752,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Unit",
+      "t": 0.02
+     },
+     {
+      "w": "means",
+      "t": 0.319
+     },
+     {
+      "w": "one.",
+      "t": 0.671
+     },
+     {
+      "w": "And",
+      "t": 1.404
+     },
+     {
+      "w": "one",
+      "t": 1.614
+     },
+     {
+      "w": "is",
+      "t": 1.824
+     },
+     {
+      "w": "always",
+      "t": 1.987
+     },
+     {
+      "w": "singular.",
+      "t": 2.336
+     },
+     {
+      "w": "We",
+      "t": 3.199
+     },
+     {
+      "w": "can’t",
+      "t": 3.34
+     },
+     {
+      "w": "add",
+      "t": 3.602
+     },
+     {
+      "w": "s",
+      "t": 3.784
+     },
+     {
+      "w": "to",
+      "t": 3.885
+     },
+     {
+      "w": "one.",
+      "t": 4.027
+     }
+    ],
+    "text": "Unit means one. And one is always singular. We can’t add s to one."
+   },
+   {
+    "id": "sm5",
+    "scene": "-",
+    "audio": "audio/sm5.mp3",
+    "start": 20.167,
+    "startFrame": 605,
+    "frames": 144,
+    "lead": 0.35,
+    "audioDur": 2.64,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So:",
+      "t": 0.02
+     },
+     {
+      "w": "‘The",
+      "t": 1.451
+     },
+     {
+      "w": "furniture",
+      "t": 1.574
+     },
+     {
+      "w": "is",
+      "t": 1.863
+     },
+     {
+      "w": "expensive.’",
+      "t": 1.96
+     }
+    ],
+    "text": "So: ‘The furniture is expensive.’"
+   }
   ]
  },
  "captions": {
@@ -4335,6 +4633,295 @@
      {
       "w": "it.",
       "t": 81.037
+     }
+    ]
+   }
+  ],
+  "sm": [
+   {
+    "start": 0.37,
+    "end": 1.58,
+    "text": "Why\nis ‘The furniture",
+    "words": [
+     {
+      "w": "Why",
+      "t": 0.37
+     },
+     {
+      "w": "is",
+      "t": 0.615
+     },
+     {
+      "w": "‘The",
+      "t": 0.805
+     },
+     {
+      "w": "furniture",
+      "t": 1.05
+     }
+    ]
+   },
+   {
+    "start": 1.62,
+    "end": 3.792,
+    "text": "are expensive’\nwrong?",
+    "words": [
+     {
+      "w": "are",
+      "t": 1.62
+     },
+     {
+      "w": "expensive’",
+      "t": 1.865
+     },
+     {
+      "w": "wrong?",
+      "t": 2.491
+     }
+    ]
+   },
+   {
+    "start": 4.437,
+    "end": 5.861,
+    "text": "Furniture\ncontains many",
+    "words": [
+     {
+      "w": "Furniture",
+      "t": 4.437
+     },
+     {
+      "w": "contains",
+      "t": 5.039
+     },
+     {
+      "w": "many",
+      "t": 5.585
+     }
+    ]
+   },
+   {
+    "start": 5.901,
+    "end": 8.003,
+    "text": "things: a chair,\na table,",
+    "words": [
+     {
+      "w": "things:",
+      "t": 5.901
+     },
+     {
+      "w": "a",
+      "t": 6.675
+     },
+     {
+      "w": "chair,",
+      "t": 6.826
+     },
+     {
+      "w": "a",
+      "t": 7.457
+     },
+     {
+      "w": "table,",
+      "t": 7.57
+     }
+    ]
+   },
+   {
+    "start": 8.043,
+    "end": 9.731,
+    "text": "a sofa, a bed.",
+    "words": [
+     {
+      "w": "a",
+      "t": 8.043
+     },
+     {
+      "w": "sofa,",
+      "t": 8.155
+     },
+     {
+      "w": "a",
+      "t": 8.583
+     },
+     {
+      "w": "bed.",
+      "t": 8.696
+     }
+    ]
+   },
+   {
+    "start": 10.17,
+    "end": 11.481,
+    "text": "But English\ngroups them",
+    "words": [
+     {
+      "w": "But",
+      "t": 10.17
+     },
+     {
+      "w": "English",
+      "t": 10.404
+     },
+     {
+      "w": "groups",
+      "t": 10.846
+     },
+     {
+      "w": "them",
+      "t": 11.235
+     }
+    ]
+   },
+   {
+    "start": 11.521,
+    "end": 13.027,
+    "text": "together,\nand names them",
+    "words": [
+     {
+      "w": "together,",
+      "t": 11.521
+     },
+     {
+      "w": "and",
+      "t": 12.222
+     },
+     {
+      "w": "names",
+      "t": 12.452
+     },
+     {
+      "w": "them",
+      "t": 12.785
+     }
+    ]
+   },
+   {
+    "start": 13.067,
+    "end": 14.672,
+    "text": "as one unit.",
+    "words": [
+     {
+      "w": "as",
+      "t": 13.067
+     },
+     {
+      "w": "one",
+      "t": 13.246
+     },
+     {
+      "w": "unit.",
+      "t": 13.476
+     }
+    ]
+   },
+   {
+    "start": 15.103,
+    "end": 16.447,
+    "text": "Unit means one.",
+    "words": [
+     {
+      "w": "Unit",
+      "t": 15.103
+     },
+     {
+      "w": "means",
+      "t": 15.402
+     },
+     {
+      "w": "one.",
+      "t": 15.754
+     }
+    ]
+   },
+   {
+    "start": 16.487,
+    "end": 18.242,
+    "text": "And one is always\nsingular.",
+    "words": [
+     {
+      "w": "And",
+      "t": 16.487
+     },
+     {
+      "w": "one",
+      "t": 16.697
+     },
+     {
+      "w": "is",
+      "t": 16.907
+     },
+     {
+      "w": "always",
+      "t": 17.07
+     },
+     {
+      "w": "singular.",
+      "t": 17.419
+     }
+    ]
+   },
+   {
+    "start": 18.282,
+    "end": 20.085,
+    "text": "We can’t add\ns to one.",
+    "words": [
+     {
+      "w": "We",
+      "t": 18.282
+     },
+     {
+      "w": "can’t",
+      "t": 18.423
+     },
+     {
+      "w": "add",
+      "t": 18.685
+     },
+     {
+      "w": "s",
+      "t": 18.867
+     },
+     {
+      "w": "to",
+      "t": 18.968
+     },
+     {
+      "w": "one.",
+      "t": 19.11
+     }
+    ]
+   },
+   {
+    "start": 20.537,
+    "end": 21.928,
+    "text": "So:",
+    "words": [
+     {
+      "w": "So:",
+      "t": 20.537
+     }
+    ]
+   },
+   {
+    "start": 21.968,
+    "end": 23.407,
+    "text": "‘The furniture\nis expensive.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 21.968
+     },
+     {
+      "w": "furniture",
+      "t": 22.091
+     },
+     {
+      "w": "is",
+      "t": 22.38
+     },
+     {
+      "w": "expensive.’",
+      "t": 22.477
      }
     ]
    }

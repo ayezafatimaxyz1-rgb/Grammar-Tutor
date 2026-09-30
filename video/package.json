@@ -8,8 +8,11 @@
     "render:all": "node scripts/render-all.mjs"
   },
   "dependencies": {
+    "@fontsource/caveat": "^5.3.0",
     "@fontsource/ibm-plex-mono": "^5.3.0",
     "@fontsource/inter": "^5.3.0",
+    "@fontsource/noto-color-emoji": "^5.3.2",
+    "@fontsource/patrick-hand": "^5.3.0",
     "@remotion/bundler": "^4.0.529",
     "@remotion/cli": "^4.0.529",
     "@remotion/renderer": "^4.0.529",

@@ -1,0 +1,13 @@
+Grammar Detective, STYLE SAMPLE
+Narration: George (British English, male)
+
+[0:00.35] Why is ‘The furniture are expensive’ wrong?
+
+[0:04.42] Furniture contains many things: a chair, a table, a sofa, a bed.
+
+[0:10.15] But English groups them together, and names them as one unit.
+
+[0:15.08] Unit means one. And one is always singular. We can’t add s to one.
+
+[0:20.52] So: ‘The furniture is expensive.’
+

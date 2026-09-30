@@ -1,10 +1,14 @@
 import React from "react";
-import { Composition } from "remotion";
+import { AbsoluteFill, Composition } from "remotion";
 import { CaseVideo, SCENES } from "./Video";
 import { Seg, TIMINGS } from "./timing";
+import { ChatSample } from "./samples/Chat";
+import { NotesSample } from "./samples/NotesAlive";
+import { WhiteboardSample } from "./samples/Whiteboard";
 
 const videos = (TIMINGS as unknown as { videos: Record<string, Seg[]> }).videos;
 const total = (segs: { frames: number }[]) => segs.reduce((a, s) => a + s.frames, 0);
+const wrap = (C: React.FC) => () => <AbsoluteFill><C /></AbsoluteFill>;
 
 export const Root: React.FC = () => (
   <>
@@ -12,5 +16,12 @@ export const Root: React.FC = () => (
       <Composition key={id} id={`Case0${id.slice(1)}`} component={CaseVideo} width={1080} height={1920} fps={TIMINGS.fps}
         durationInFrames={total(videos[id])} defaultProps={{ id, captions: true }} />
     ))}
+    {videos.sm && (
+      <>
+        <Composition id="SampleNotes" component={wrap(NotesSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleWhiteboard" component={wrap(WhiteboardSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleChat" component={wrap(ChatSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+      </>
+    )}
   </>
 );

@@ -261,6 +261,14 @@ def make_sfx():
     synth("boing", 0.5, lambda t: env(t, 0.005, 0.15) * 0.7 * math.sin(2 * math.pi * (300 + 180 * math.sin(2 * math.pi * 9 * t) * math.exp(-t / 0.2)) * t))
     synth("click", 0.06, lambda t: env(t, 0.0005, 0.008) * (random.random() * 2 - 1))
     synth("slam", 0.5, lambda t: env(t, 0.002, 0.09) * (0.8 * math.sin(2 * math.pi * (70 - 30 * t) * t) + 0.35 * (random.random() * 2 - 1) * math.exp(-t / 0.03)))
+    # marker/pen scratch: band-limited noise with a stroke rhythm
+    state = {"y": 0.0}
+    def scratch(t):
+        state["y"] = 0.75 * state["y"] + 0.25 * (random.random() * 2 - 1)
+        return 0.9 * state["y"] * (0.55 + 0.45 * abs(math.sin(2 * math.pi * 5 * t))) * min(1, t / 0.03, (1.2 - t) / 0.05)
+    synth("scratch", 1.2, scratch)
+    synth("msg", 0.35, lambda t: env(t, 0.003, 0.07) * 0.6 * (math.sin(2 * math.pi * 880 * t) if t < 0.09 else math.sin(2 * math.pi * 1320 * t)))
+    synth("sent", 0.3, lambda t: math.sin(math.pi * min(1, t / 0.3)) * 0.35 * (random.random() * 2 - 1) * (1 - t / 0.3) + env(t, 0.002, 0.04) * 0.3 * math.sin(2 * math.pi * (600 + 2000 * t) * t))
     synth("riser", 1.0, lambda t: (t / 1.0) ** 2 * 0.3 * (math.sin(2 * math.pi * (200 + 900 * t * t) * t) + 0.5 * (random.random() * 2 - 1)))
 
 

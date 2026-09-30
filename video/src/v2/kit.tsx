@@ -219,7 +219,7 @@ export const Karaoke: React.FC<{ cues: Cue[]; top?: number }> = ({ cues, top = 1
 
 /* -------------------------------------------------------------------- sfx */
 
-export type Sound = "pop" | "tick" | "correct" | "wrong" | "whoosh" | "stamp" | "ding" | "buzzer" | "boing" | "click" | "slam" | "riser";
+export type Sound = "pop" | "tick" | "correct" | "wrong" | "whoosh" | "stamp" | "ding" | "buzzer" | "boing" | "click" | "slam" | "riser" | "scratch" | "msg" | "sent";
 export const Fx: React.FC<{ at: number; name: Sound; volume?: number }> = ({ at, name, volume = 0.22 }) => (
   <Sequence from={Math.max(0, Math.round(at))} durationInFrames={45} layout="none">
     <Audio src={staticFile(`sfx/${name}.wav`)} volume={volume} />
