@@ -1,0 +1,1301 @@
+1
+00:00:00,370 --> 00:00:01,982
+Uncountable nouns.
+
+2
+00:00:02,022 --> 00:00:03,842
+Why can’t we
+add s to them?
+
+3
+00:00:03,882 --> 00:00:04,920
+And why can’t
+they take
+
+4
+00:00:04,960 --> 00:00:06,384
+a plural verb?
+
+5
+00:00:07,337 --> 00:00:09,267
+Countable
+nouns are easy:
+
+6
+00:00:09,307 --> 00:00:10,948
+a chair,
+two chairs,
+
+7
+00:00:10,988 --> 00:00:12,225
+three ideas.
+
+8
+00:00:12,265 --> 00:00:13,563
+We count them
+one by one,
+
+9
+00:00:13,603 --> 00:00:15,295
+so they
+can take s.
+
+10
+00:00:15,937 --> 00:00:17,192
+But what
+about water,
+
+11
+00:00:17,232 --> 00:00:19,529
+rice, honesty,
+or music?
+
+12
+00:00:19,569 --> 00:00:21,181
+Nobody says
+two waters,
+
+13
+00:00:21,221 --> 00:00:22,791
+or three
+honesties.
+
+14
+00:00:23,537 --> 00:00:24,849
+Most books
+just give you
+
+15
+00:00:24,889 --> 00:00:26,323
+a list
+to memorise.
+
+16
+00:00:26,363 --> 00:00:28,717
+We won’t.
+We’ll use logic.
+
+17
+00:00:28,757 --> 00:00:30,632
+Uncountable
+nouns fall into
+
+18
+00:00:30,672 --> 00:00:31,972
+five categories,
+
+19
+00:00:32,012 --> 00:00:34,735
+and each category
+has its own reason.
+
+20
+00:00:35,370 --> 00:00:37,836
+One: unit,
+or mass.
+
+21
+00:00:37,876 --> 00:00:38,968
+Two: material.
+
+22
+00:00:39,008 --> 00:00:40,225
+Three: measured.
+
+23
+00:00:40,265 --> 00:00:41,110
+Four: abstract.
+
+24
+00:00:41,150 --> 00:00:41,603
+And five:
+
+25
+00:00:41,643 --> 00:00:43,112
+activity,
+or process.
+
+26
+00:00:43,837 --> 00:00:46,515
+Let’s prove them
+one at a time.
+
+27
+00:00:47,637 --> 00:00:48,484
+Error one.
+
+28
+00:00:48,524 --> 00:00:50,230
+‘Furniture
+are expensive.’
+
+29
+00:00:50,270 --> 00:00:51,277
+That’s wrong.
+
+30
+00:00:51,317 --> 00:00:52,738
+The correct
+sentence is:
+
+31
+00:00:52,778 --> 00:00:54,537
+‘Furniture
+is expensive.’
+
+32
+00:00:54,577 --> 00:00:55,571
+But why?
+
+33
+00:00:56,303 --> 00:00:57,438
+Category one:
+
+34
+00:00:57,478 --> 00:00:59,298
+unit, or mass.
+
+35
+00:00:59,338 --> 00:01:01,216
+This kind of noun
+is a unit,
+
+36
+00:01:01,256 --> 00:01:03,565
+and a unit contains
+many things.
+
+37
+00:01:04,203 --> 00:01:05,889
+Look. A chair.
+
+38
+00:01:05,929 --> 00:01:07,459
+A table. A bed.
+
+39
+00:01:07,499 --> 00:01:08,783
+A sofa. A desk.
+
+40
+00:01:08,823 --> 00:01:10,265
+Many individual
+things.
+
+41
+00:01:10,903 --> 00:01:12,862
+English groups
+them together.
+
+42
+00:01:12,902 --> 00:01:14,454
+It draws one
+circle around
+
+43
+00:01:14,494 --> 00:01:16,101
+them,
+and treats the whole
+
+44
+00:01:16,141 --> 00:01:17,283
+group as one unit,
+
+45
+00:01:17,323 --> 00:01:18,765
+called furniture.
+
+46
+00:01:19,703 --> 00:01:21,246
+Why? Because
+furniture
+
+47
+00:01:21,286 --> 00:01:23,316
+is not the name
+of one object.
+
+48
+00:01:23,356 --> 00:01:25,576
+It’s the name
+of the whole collection.
+
+49
+00:01:25,616 --> 00:01:27,457
+The word comes
+from ‘furnish’:
+
+50
+00:01:27,497 --> 00:01:29,725
+everything you
+furnish a room with.
+
+51
+00:01:30,470 --> 00:01:32,217
+And the word
+unit means one.
+
+52
+00:01:32,257 --> 00:01:33,299
+One thing.
+
+53
+00:01:33,339 --> 00:01:35,236
+And we can’t
+add s to one.
+
+54
+00:01:35,870 --> 00:01:37,481
+One is always
+singular.
+
+55
+00:01:37,521 --> 00:01:39,039
+We can’t add
+s to one,
+
+56
+00:01:39,079 --> 00:01:40,886
+so the word
+stays singular,
+
+57
+00:01:40,926 --> 00:01:42,604
+and so does
+the verb.
+
+58
+00:01:43,237 --> 00:01:45,196
+So the correct
+sentence is:
+
+59
+00:01:45,236 --> 00:01:47,403
+‘The furniture
+is expensive.’
+
+60
+00:01:48,537 --> 00:01:50,216
+The old school
+rule says:
+
+61
+00:01:50,256 --> 00:01:52,224
+furniture,
+luggage,
+
+62
+00:01:52,264 --> 00:01:53,099
+baggage
+and crockery
+
+63
+00:01:53,139 --> 00:01:54,285
+are always
+singular.
+
+64
+00:01:54,325 --> 00:01:55,368
+Memorise it.
+
+65
+00:01:55,408 --> 00:01:57,827
+Skip that.
+Here’s the logic:
+
+66
+00:01:57,867 --> 00:01:59,169
+many individual
+things
+
+67
+00:01:59,209 --> 00:02:01,002
+are named
+as one unit.
+
+68
+00:02:01,042 --> 00:02:02,228
+Unit means one,
+
+69
+00:02:02,268 --> 00:02:04,151
+and one is always
+singular.
+
+70
+00:02:04,903 --> 00:02:07,125
+The same logic
+works everywhere.
+
+71
+00:02:07,165 --> 00:02:07,921
+Luggage:
+
+72
+00:02:07,961 --> 00:02:09,713
+bags and suitcases
+together,
+
+73
+00:02:09,753 --> 00:02:11,466
+one whole.
+Clothing:
+
+74
+00:02:11,506 --> 00:02:12,758
+shirts
+and trousers,
+
+75
+00:02:12,798 --> 00:02:13,924
+one category.
+
+76
+00:02:13,964 --> 00:02:14,540
+Crockery:
+
+77
+00:02:14,580 --> 00:02:16,845
+plates and cups,
+one collection.
+
+78
+00:02:17,470 --> 00:02:18,701
+And if you
+need a number,
+
+79
+00:02:18,741 --> 00:02:20,075
+count a piece:
+
+80
+00:02:20,115 --> 00:02:21,405
+a piece
+of furniture,
+
+81
+00:02:21,445 --> 00:02:22,635
+a piece
+of luggage,
+
+82
+00:02:22,675 --> 00:02:24,396
+an item
+of clothing.
+
+83
+00:02:25,137 --> 00:02:26,406
+Now think
+about it.
+
+84
+00:02:26,446 --> 00:02:28,152
+Why can you say
+‘two chairs’,
+
+85
+00:02:28,192 --> 00:02:29,687
+but not ‘two
+rice’?
+
+86
+00:02:31,037 --> 00:02:31,858
+Error two.
+
+87
+00:02:31,898 --> 00:02:33,655
+‘This ring
+is made of golds.’
+
+88
+00:02:33,695 --> 00:02:34,432
+Wrong.
+
+89
+00:02:34,472 --> 00:02:36,499
+‘This ring
+is made of gold.’
+
+90
+00:02:37,237 --> 00:02:38,399
+Category two:
+
+91
+00:02:38,439 --> 00:02:39,494
+material.
+
+92
+00:02:39,534 --> 00:02:41,028
+A material
+is what something
+
+93
+00:02:41,068 --> 00:02:42,172
+is made from.
+
+94
+00:02:42,212 --> 00:02:43,659
+It’s a substance.
+
+95
+00:02:44,303 --> 00:02:46,442
+Take gold.
+It’s a substance,
+
+96
+00:02:46,482 --> 00:02:47,726
+and it’s used
+to make many
+
+97
+00:02:47,766 --> 00:02:48,752
+different things:
+
+98
+00:02:48,792 --> 00:02:51,301
+a ring, a coin,
+a crown.
+
+99
+00:02:51,937 --> 00:02:53,461
+We can count
+the things:
+
+100
+00:02:53,501 --> 00:02:55,468
+one ring,
+two coins.
+
+101
+00:02:55,508 --> 00:02:56,839
+But the substance
+itself
+
+102
+00:02:56,879 --> 00:02:58,928
+is measured,
+not counted.
+
+103
+00:02:58,968 --> 00:03:00,951
+We weigh gold
+in grams.
+
+104
+00:03:01,703 --> 00:03:03,215
+So a material
+noun,
+
+105
+00:03:03,255 --> 00:03:04,605
+used
+as a material,
+
+106
+00:03:04,645 --> 00:03:06,152
+isn’t made plural.
+
+107
+00:03:06,192 --> 00:03:08,365
+‘This ring
+is made of gold.’
+
+108
+00:03:09,503 --> 00:03:11,300
+The old school
+rule says:
+
+109
+00:03:11,340 --> 00:03:13,197
+brick, sand, milk,
+
+110
+00:03:13,237 --> 00:03:15,198
+glass and water
+are always singular.
+
+111
+00:03:15,238 --> 00:03:16,314
+Memorise it.
+
+112
+00:03:16,354 --> 00:03:18,447
+Skip that.
+The logic:
+
+113
+00:03:18,487 --> 00:03:20,134
+it’s the material
+used to make
+
+114
+00:03:20,174 --> 00:03:21,027
+other things,
+
+115
+00:03:21,067 --> 00:03:22,288
+so you measure
+it rather than
+
+116
+00:03:22,328 --> 00:03:23,461
+count it.
+
+117
+00:03:24,203 --> 00:03:26,519
+Silver:
+used for jewellery,
+
+118
+00:03:26,559 --> 00:03:28,077
+measured,
+not counted.
+
+119
+00:03:28,117 --> 00:03:29,194
+Wood:
+used for furniture,
+
+120
+00:03:29,234 --> 00:03:31,156
+measured
+in cubic metres.
+
+121
+00:03:31,196 --> 00:03:32,912
+Water:
+used for drinking,
+
+122
+00:03:32,952 --> 00:03:34,585
+measured
+in litres.
+
+123
+00:03:35,237 --> 00:03:36,829
+One careful note.
+
+124
+00:03:36,869 --> 00:03:37,888
+When you
+mean separate
+
+125
+00:03:37,928 --> 00:03:39,562
+objects,
+you can count them:
+
+126
+00:03:39,602 --> 00:03:41,001
+a wall made
+of bricks,
+
+127
+00:03:41,041 --> 00:03:43,073
+or two glasses
+of water.
+
+128
+00:03:43,113 --> 00:03:44,237
+But as a material,
+
+129
+00:03:44,277 --> 00:03:45,546
+it’s brick
+and glass,
+
+130
+00:03:45,586 --> 00:03:46,819
+with no s.
+
+131
+00:03:47,570 --> 00:03:48,935
+Now think
+about it.
+
+132
+00:03:48,975 --> 00:03:50,236
+Do we say
+‘one milk’,
+
+133
+00:03:50,276 --> 00:03:52,024
+or ‘one litre
+of milk’?
+
+134
+00:03:53,370 --> 00:03:54,169
+Error three.
+
+135
+00:03:54,209 --> 00:03:56,192
+‘I ate too many
+rice for lunch.’
+
+136
+00:03:56,232 --> 00:03:56,876
+Wrong.
+
+137
+00:03:56,916 --> 00:03:59,072
+‘I ate too much
+rice for lunch.’
+
+138
+00:03:59,803 --> 00:04:01,133
+Category three:
+
+139
+00:04:01,173 --> 00:04:02,104
+measured.
+
+140
+00:04:02,144 --> 00:04:03,961
+Food and substances
+like rice
+
+141
+00:04:04,001 --> 00:04:05,618
+are measured
+by amount,
+
+142
+00:04:05,658 --> 00:04:08,073
+not counted
+as separate items.
+
+143
+00:04:08,703 --> 00:04:11,324
+Rice comes as many
+tiny grains.
+
+144
+00:04:11,364 --> 00:04:13,339
+We don’t count
+them one by one.
+
+145
+00:04:13,379 --> 00:04:15,361
+We measure
+the amount instead:
+
+146
+00:04:15,401 --> 00:04:17,968
+a cup of rice,
+a kilo of rice,
+
+147
+00:04:18,008 --> 00:04:19,469
+a plate of rice.
+
+148
+00:04:20,203 --> 00:04:22,487
+Measured,
+not counted,
+
+149
+00:04:22,527 --> 00:04:24,320
+so it always takes
+a singular verb.
+
+150
+00:04:24,360 --> 00:04:26,433
+‘This rice
+is delicious.’
+
+151
+00:04:27,570 --> 00:04:29,280
+Students often
+confuse these
+
+152
+00:04:29,320 --> 00:04:31,510
+with material
+or unit nouns.
+
+153
+00:04:31,550 --> 00:04:32,632
+So just check:
+
+154
+00:04:32,672 --> 00:04:35,196
+is it measured,
+not directly counted?
+
+155
+00:04:35,236 --> 00:04:37,544
+The old school
+rule says food,
+
+156
+00:04:37,584 --> 00:04:38,722
+meat, sugar, salt,
+
+157
+00:04:38,762 --> 00:04:41,125
+tea and bread
+are always singular.
+
+158
+00:04:41,165 --> 00:04:42,900
+The logic:
+they’re measured,
+
+159
+00:04:42,940 --> 00:04:44,120
+not counted.
+
+160
+00:04:44,870 --> 00:04:45,446
+Bread:
+
+161
+00:04:45,486 --> 00:04:47,441
+measured in loaves
+or slices.
+
+162
+00:04:47,481 --> 00:04:49,512
+Milk:
+measured in litres.
+
+163
+00:04:49,552 --> 00:04:51,700
+Salt:
+measured by weight.
+
+164
+00:04:52,437 --> 00:04:53,840
+Now think
+about it.
+
+165
+00:04:53,880 --> 00:04:55,377
+Can you say
+‘two rice’,
+
+166
+00:04:55,417 --> 00:04:56,617
+or do you need
+to say ‘two
+
+167
+00:04:56,657 --> 00:04:58,163
+kilos of rice’?
+
+168
+00:04:59,503 --> 00:05:00,363
+Error four.
+
+169
+00:05:00,403 --> 00:05:02,550
+‘He has many
+knowledges about art.’
+
+170
+00:05:02,590 --> 00:05:03,417
+Wrong.
+
+171
+00:05:03,457 --> 00:05:04,452
+‘He has a lot
+of knowledge
+
+172
+00:05:04,492 --> 00:05:05,661
+about art.’
+
+173
+00:05:06,403 --> 00:05:07,560
+Category four:
+
+174
+00:05:07,600 --> 00:05:08,703
+abstract.
+
+175
+00:05:08,743 --> 00:05:10,137
+An abstract
+noun has no
+
+176
+00:05:10,177 --> 00:05:11,435
+physical form.
+
+177
+00:05:11,475 --> 00:05:13,425
+It can’t be
+held or touched.
+
+178
+00:05:14,070 --> 00:05:15,817
+It’s an idea,
+a quality,
+
+179
+00:05:15,857 --> 00:05:16,964
+or a state.
+
+180
+00:05:17,004 --> 00:05:18,287
+Knowledge,
+honesty,
+
+181
+00:05:18,327 --> 00:05:19,829
+advice, happiness.
+
+182
+00:05:19,869 --> 00:05:21,027
+You can’t put
+them on a table
+
+183
+00:05:21,067 --> 00:05:22,388
+and count them.
+
+184
+00:05:23,137 --> 00:05:24,795
+You experience it,
+
+185
+00:05:24,835 --> 00:05:25,810
+show it,
+or possess it,
+
+186
+00:05:25,850 --> 00:05:27,350
+but you never
+count it.
+
+187
+00:05:27,390 --> 00:05:28,583
+So it’s singular:
+
+188
+00:05:28,623 --> 00:05:30,615
+‘Her knowledge
+is impressive.’
+
+189
+00:05:31,737 --> 00:05:33,185
+The old school
+rule says
+
+190
+00:05:33,225 --> 00:05:34,782
+advice,
+information,
+
+191
+00:05:34,822 --> 00:05:36,017
+evidence
+and knowledge
+
+192
+00:05:36,057 --> 00:05:37,554
+are always
+singular.
+
+193
+00:05:37,594 --> 00:05:39,625
+Skip that.
+The logic:
+
+194
+00:05:39,665 --> 00:05:41,291
+we can’t physically
+hold them,
+
+195
+00:05:41,331 --> 00:05:42,845
+or count them
+directly.
+
+196
+00:05:42,885 --> 00:05:43,898
+Need a number?
+
+197
+00:05:43,938 --> 00:05:45,077
+A piece of advice,
+
+198
+00:05:45,117 --> 00:05:46,503
+a piece
+of information,
+
+199
+00:05:46,543 --> 00:05:48,071
+a piece
+of evidence.
+
+200
+00:05:48,803 --> 00:05:50,185
+Now think
+about it.
+
+201
+00:05:50,225 --> 00:05:51,811
+Can you hold
+honesty in your
+
+202
+00:05:51,851 --> 00:05:53,640
+hand, or can you
+only show it,
+
+203
+00:05:53,680 --> 00:05:55,945
+have it,
+or experience it?
+
+204
+00:05:57,270 --> 00:05:58,274
+Error five.
+
+205
+00:05:58,314 --> 00:06:00,417
+‘She does many
+works every day.’
+
+206
+00:06:00,457 --> 00:06:01,202
+Wrong.
+
+207
+00:06:01,242 --> 00:06:03,404
+‘She does a lot
+of work every day.’
+
+208
+00:06:04,137 --> 00:06:05,509
+Category five:
+
+209
+00:06:05,549 --> 00:06:07,747
+activity,
+or process.
+
+210
+00:06:07,787 --> 00:06:09,215
+We talk about
+an ongoing
+
+211
+00:06:09,255 --> 00:06:10,548
+process
+as a whole,
+
+212
+00:06:10,588 --> 00:06:12,311
+not as separate
+actions.
+
+213
+00:06:12,937 --> 00:06:14,907
+Work has many
+small steps:
+
+214
+00:06:14,947 --> 00:06:16,960
+emails, calls,
+meetings,
+
+215
+00:06:17,000 --> 00:06:17,972
+reports.
+
+216
+00:06:18,012 --> 00:06:19,356
+But we talk
+about it as one
+
+217
+00:06:19,396 --> 00:06:20,871
+ongoing whole.
+
+218
+00:06:21,603 --> 00:06:22,634
+One process,
+
+219
+00:06:22,674 --> 00:06:24,046
+not separate
+actions,
+
+220
+00:06:24,086 --> 00:06:25,682
+so a singular
+verb.
+
+221
+00:06:25,722 --> 00:06:27,689
+‘Her research
+is impressive.’
+
+222
+00:06:28,837 --> 00:06:30,687
+The old school
+rule says work,
+
+223
+00:06:30,727 --> 00:06:32,078
+research,
+progress,
+
+224
+00:06:32,118 --> 00:06:33,805
+travel and exercise
+are always
+
+225
+00:06:33,845 --> 00:06:35,874
+singular.
+Skip that.
+
+226
+00:06:35,914 --> 00:06:36,818
+The logic:
+
+227
+00:06:36,858 --> 00:06:38,338
+you’re talking
+about the whole
+
+228
+00:06:38,378 --> 00:06:40,381
+activity,
+not separate actions.
+
+229
+00:06:40,421 --> 00:06:41,277
+Research:
+
+230
+00:06:41,317 --> 00:06:43,202
+the whole process
+of studying.
+
+231
+00:06:43,242 --> 00:06:43,849
+Travel:
+
+232
+00:06:43,889 --> 00:06:45,651
+going from
+place to place.
+
+233
+00:06:45,691 --> 00:06:46,376
+Shopping:
+
+234
+00:06:46,416 --> 00:06:48,795
+the whole activity
+of buying things.
+
+235
+00:06:49,537 --> 00:06:50,852
+Now think
+about it.
+
+236
+00:06:50,892 --> 00:06:52,315
+Do we say
+‘I do a work’,
+
+237
+00:06:52,355 --> 00:06:53,799
+or ‘I do work’?
+
+238
+00:06:55,137 --> 00:06:56,532
+Let’s put all
+the examples
+
+239
+00:06:56,572 --> 00:06:58,175
+on the board.
+
+240
+00:06:58,803 --> 00:07:00,129
+Unit or mass:
+
+241
+00:07:00,169 --> 00:07:01,584
+furniture,
+luggage,
+
+242
+00:07:01,624 --> 00:07:03,039
+baggage,
+equipment,
+
+243
+00:07:03,079 --> 00:07:04,494
+machinery,
+garbage,
+
+244
+00:07:04,534 --> 00:07:05,604
+rubbish, clothing,
+
+245
+00:07:05,644 --> 00:07:06,844
+stationery,
+crockery,
+
+246
+00:07:06,884 --> 00:07:08,681
+cutlery,
+scenery and traffic.
+
+247
+00:07:08,721 --> 00:07:10,697
+Many things,
+one unit.
+
+248
+00:07:11,437 --> 00:07:13,731
+Material: gold,
+silver, iron,
+
+249
+00:07:13,771 --> 00:07:15,311
+copper,
+steel, wood,
+
+250
+00:07:15,351 --> 00:07:16,789
+stone, sand, clay,
+
+251
+00:07:16,829 --> 00:07:18,318
+cotton,
+wool, silk,
+
+252
+00:07:18,358 --> 00:07:19,355
+leather, plastic,
+
+253
+00:07:19,395 --> 00:07:20,328
+glass and paper.
+
+254
+00:07:20,368 --> 00:07:22,083
+It’s what things
+are made of.
+
+255
+00:07:23,003 --> 00:07:24,832
+Measured: food,
+rice, bread,
+
+256
+00:07:24,872 --> 00:07:26,183
+butter,
+cheese, meat,
+
+257
+00:07:26,223 --> 00:07:27,450
+sugar,
+flour, salt,
+
+258
+00:07:27,490 --> 00:07:28,635
+milk, water, tea,
+
+259
+00:07:28,675 --> 00:07:29,777
+coffee and honey.
+
+260
+00:07:29,817 --> 00:07:31,345
+Measured
+by amount.
+
+261
+00:07:32,070 --> 00:07:34,870
+Abstract: advice,
+information,
+
+262
+00:07:34,910 --> 00:07:36,131
+knowledge,
+education,
+
+263
+00:07:36,171 --> 00:07:37,219
+honesty, justice,
+
+264
+00:07:37,259 --> 00:07:38,414
+patience, courage,
+
+265
+00:07:38,454 --> 00:07:39,681
+wisdom, happiness,
+
+266
+00:07:39,721 --> 00:07:41,727
+freedom,
+peace and evidence.
+
+267
+00:07:41,767 --> 00:07:43,292
+No physical form.
+
+268
+00:07:44,037 --> 00:07:45,781
+Activity
+or process:
+
+269
+00:07:45,821 --> 00:07:47,570
+work, research,
+progress,
+
+270
+00:07:47,610 --> 00:07:48,797
+travel, exercise,
+
+271
+00:07:48,837 --> 00:07:49,973
+training, sleep,
+
+272
+00:07:50,013 --> 00:07:51,568
+shopping
+and business.
+
+273
+00:07:51,608 --> 00:07:53,315
+One whole
+activity.
+
+274
+00:07:54,237 --> 00:07:56,223
+So don’t memorise
+the list.
+
+275
+00:07:56,263 --> 00:07:57,390
+Find the category,
+
+276
+00:07:57,430 --> 00:07:58,875
+and the logic
+tells you:
+
+277
+00:07:58,915 --> 00:08:01,328
+no s,
+and a singular verb.
+
+278
+00:08:01,368 --> 00:08:03,611
+That’s the Grammar
+Logic Series.
+

@@ -11,6 +11,7 @@ import { PaperCutSample } from "./samples/PaperCut";
 import { TalkingSample } from "./samples/Talking";
 import { DocSample } from "./samples/DocPOV";
 import { Error1 } from "./wb/Error1";
+import { Uncountable } from "./wb/Uncountable";
 
 const videos = (TIMINGS as unknown as { videos: Record<string, Seg[]> }).videos;
 const total = (segs: { frames: number }[]) => segs.reduce((a, s) => a + s.frames, 0);
@@ -22,6 +23,7 @@ export const Root: React.FC = () => (
       <Composition key={id} id={`Case0${id.slice(1)}`} component={CaseVideo} width={1080} height={1920} fps={TIMINGS.fps}
         durationInFrames={total(videos[id])} defaultProps={{ id, captions: true }} />
     ))}
+    {videos.ul && <Composition id="Uncountable" component={Uncountable} width={1920} height={1080} fps={TIMINGS.fps} durationInFrames={total(videos.ul)} />}
     {videos.wb && <Composition id="Error1" component={Error1} width={1920} height={1080} fps={TIMINGS.fps} durationInFrames={total(videos.wb)} />}
     {videos.sm && (
       <>

@@ -419,6 +419,332 @@
           "scene": "Board"
         }
       ]
+    },
+    {
+      "id": "ul",
+      "title": "Grammar Logic Series: Uncountable Nouns",
+      "slug": "grammar_logic_uncountable",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "ul_in1",
+          "text": "Uncountable nouns. Why can’t we add s to them? And why can’t they take a plural verb?",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_in2",
+          "text": "Countable nouns are easy: a chair, two chairs, three ideas. We count them one by one, so they can take s.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_in3",
+          "text": "But what about water, rice, honesty, or music? Nobody says two waters, or three honesties.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_in4",
+          "text": "Most books just give you a list to memorise. We won’t. We’ll use logic. Uncountable nouns fall into five categories, and each category has its own reason.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_in5",
+          "text": "One: unit, or mass. Two: material. Three: measured. Four: abstract. And five: activity, or process.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_in6",
+          "text": "Let’s prove them one at a time.",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a1",
+          "text": "Error one. ‘Furniture are expensive.’ That’s wrong. The correct sentence is: ‘Furniture is expensive.’ But why?",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a2",
+          "text": "Category one: unit, or mass. This kind of noun is a unit, and a unit contains many things.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a3",
+          "text": "Look. A chair. A table. A bed. A sofa. A desk. Many individual things.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a4",
+          "text": "English groups them together. It draws one circle around them, and treats the whole group as one unit, called furniture.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a5",
+          "text": "Why? Because furniture is not the name of one object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a6",
+          "text": "And the word unit means one. One thing. And we can’t add s to one.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a7",
+          "text": "One is always singular. We can’t add s to one, so the word stays singular, and so does the verb.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a8",
+          "text": "So the correct sentence is: ‘The furniture is expensive.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a9",
+          "text": "The old school rule says: furniture, luggage, baggage and crockery are always singular. Memorise it. Skip that. Here’s the logic: many individual things are named as one unit. Unit means one, and one is always singular.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a10",
+          "text": "The same logic works everywhere. Luggage: bags and suitcases together, one whole. Clothing: shirts and trousers, one category. Crockery: plates and cups, one collection.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a11",
+          "text": "And if you need a number, count a piece: a piece of furniture, a piece of luggage, an item of clothing.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a12",
+          "text": "Now think about it. Why can you say ‘two chairs’, but not ‘two rice’?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b1",
+          "text": "Error two. ‘This ring is made of golds.’ Wrong. ‘This ring is made of gold.’",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b2",
+          "text": "Category two: material. A material is what something is made from. It’s a substance.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b3",
+          "text": "Take gold. It’s a substance, and it’s used to make many different things: a ring, a coin, a crown.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b4",
+          "text": "We can count the things: one ring, two coins. But the substance itself is measured, not counted. We weigh gold in grams.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b5",
+          "text": "So a material noun, used as a material, isn’t made plural. ‘This ring is made of gold.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b6",
+          "text": "The old school rule says: brick, sand, milk, glass and water are always singular. Memorise it. Skip that. The logic: it’s the material used to make other things, so you measure it rather than count it.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b7",
+          "text": "Silver: used for jewellery, measured, not counted. Wood: used for furniture, measured in cubic metres. Water: used for drinking, measured in litres.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b8",
+          "text": "One careful note. When you mean separate objects, you can count them: a wall made of bricks, or two glasses of water. But as a material, it’s brick and glass, with no s.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_b9",
+          "text": "Now think about it. Do we say ‘one milk’, or ‘one litre of milk’?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c1",
+          "text": "Error three. ‘I ate too many rice for lunch.’ Wrong. ‘I ate too much rice for lunch.’",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c2",
+          "text": "Category three: measured. Food and substances like rice are measured by amount, not counted as separate items.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c3",
+          "text": "Rice comes as many tiny grains. We don’t count them one by one. We measure the amount instead: a cup of rice, a kilo of rice, a plate of rice.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c4",
+          "text": "Measured, not counted, so it always takes a singular verb. ‘This rice is delicious.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c5",
+          "text": "Students often confuse these with material or unit nouns. So just check: is it measured, not directly counted? The old school rule says food, meat, sugar, salt, tea and bread are always singular. The logic: they’re measured, not counted.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c6",
+          "text": "Bread: measured in loaves or slices. Milk: measured in litres. Salt: measured by weight.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_c7",
+          "text": "Now think about it. Can you say ‘two rice’, or do you need to say ‘two kilos of rice’?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d1",
+          "text": "Error four. ‘He has many knowledges about art.’ Wrong. ‘He has a lot of knowledge about art.’",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d2",
+          "text": "Category four: abstract. An abstract noun has no physical form. It can’t be held or touched.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d3",
+          "text": "It’s an idea, a quality, or a state. Knowledge, honesty, advice, happiness. You can’t put them on a table and count them.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d4",
+          "text": "You experience it, show it, or possess it, but you never count it. So it’s singular: ‘Her knowledge is impressive.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d5",
+          "text": "The old school rule says advice, information, evidence and knowledge are always singular. Skip that. The logic: we can’t physically hold them, or count them directly. Need a number? A piece of advice, a piece of information, a piece of evidence.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_d6",
+          "text": "Now think about it. Can you hold honesty in your hand, or can you only show it, have it, or experience it?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e1",
+          "text": "Error five. ‘She does many works every day.’ Wrong. ‘She does a lot of work every day.’",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e2",
+          "text": "Category five: activity, or process. We talk about an ongoing process as a whole, not as separate actions.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e3",
+          "text": "Work has many small steps: emails, calls, meetings, reports. But we talk about it as one ongoing whole.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e4",
+          "text": "One process, not separate actions, so a singular verb. ‘Her research is impressive.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e5",
+          "text": "The old school rule says work, research, progress, travel and exercise are always singular. Skip that. The logic: you’re talking about the whole activity, not separate actions. Research: the whole process of studying. Travel: going from place to place. Shopping: the whole activity of buying things.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e6",
+          "text": "Now think about it. Do we say ‘I do a work’, or ‘I do work’?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s1",
+          "text": "Let’s put all the examples on the board.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s2",
+          "text": "Unit or mass: furniture, luggage, baggage, equipment, machinery, garbage, rubbish, clothing, stationery, crockery, cutlery, scenery and traffic. Many things, one unit.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s3",
+          "text": "Material: gold, silver, iron, copper, steel, wood, stone, sand, clay, cotton, wool, silk, leather, plastic, glass and paper. It’s what things are made of.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s4",
+          "text": "Measured: food, rice, bread, butter, cheese, meat, sugar, flour, salt, milk, water, tea, coffee and honey. Measured by amount.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s5",
+          "text": "Abstract: advice, information, knowledge, education, honesty, justice, patience, courage, wisdom, happiness, freedom, peace and evidence. No physical form.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s6",
+          "text": "Activity or process: work, research, progress, travel, exercise, training, sleep, shopping and business. One whole activity.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_s7",
+          "text": "So don’t memorise the list. Find the category, and the logic tells you: no s, and a singular verb. That’s the Grammar Logic Series.",
+          "pad": 2.5,
+          "scene": "Board"
+        }
+      ]
     }
   ]
 }

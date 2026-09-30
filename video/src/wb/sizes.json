@@ -1,0 +1,454 @@
+{
+"wb/table.png": [
+452,
+315
+],
+"wb/mug.png": [
+446,
+429
+],
+"wb/sofa.png": [
+448,
+211
+],
+"wb/desk.png": [
+447,
+286
+],
+"wb/knife.png": [
+54,
+449
+],
+"wb/bowl.png": [
+448,
+228
+],
+"wb/fork.png": [
+51,
+410
+],
+"wb/plate.png": [
+446,
+173
+],
+"wb/spoon.png": [
+88,
+413
+],
+"wb/chair.png": [
+255,
+449
+],
+"wb/bed.png": [
+446,
+283
+],
+"wb/fx/cup_with_straw.png": [
+256,
+256
+],
+"wb/fx/airplane.png": [
+256,
+256
+],
+"wb/fx/building_construction.png": [
+256,
+256
+],
+"wb/fx/shopping_bags.png": [
+256,
+256
+],
+"wb/fx/speech_balloon.png": [
+256,
+256
+],
+"wb/fx/pen.png": [
+256,
+256
+],
+"wb/fx/t-shirt.png": [
+256,
+256
+],
+"wb/fx/fountain_pen.png": [
+256,
+256
+],
+"wb/fx/envelope.png": [
+256,
+256
+],
+"wb/fx/gem_stone.png": [
+256,
+256
+],
+"wb/fx/counterclockwise_arrows_button.png": [
+256,
+256
+],
+"wb/fx/potable_water.png": [
+256,
+256
+],
+"wb/fx/package.png": [
+256,
+256
+],
+"wb/fx/jeans.png": [
+256,
+256
+],
+"wb/fx/books.png": [
+256,
+256
+],
+"wb/fx/teacup_without_handle.png": [
+256,
+256
+],
+"wb/fx/microscope.png": [
+256,
+256
+],
+"wb/fx/mobile_phone.png": [
+256,
+256
+],
+"wb/fx/scissors.png": [
+256,
+256
+],
+"wb/fx/footprints.png": [
+256,
+256
+],
+"wb/fx/telephone_receiver.png": [
+256,
+256
+],
+"wb/fx/butter.png": [
+256,
+256
+],
+"wb/fx/sparkles.png": [
+256,
+256
+],
+"wb/fx/moai.png": [
+256,
+256
+],
+"wb/fx/bus.png": [
+256,
+256
+],
+"wb/fx/light_bulb.png": [
+256,
+256
+],
+"wb/fx/framed_picture.png": [
+256,
+256
+],
+"wb/fx/memo.png": [
+256,
+256
+],
+"wb/fx/gear.png": [
+256,
+256
+],
+"wb/fx/thought_balloon.png": [
+256,
+256
+],
+"wb/fx/cheese_wedge.png": [
+256,
+256
+],
+"wb/fx/chart_increasing.png": [
+256,
+256
+],
+"wb/fx/right_arrow.png": [
+256,
+256
+],
+"wb/fx/hot_beverage.png": [
+256,
+256
+],
+"wb/fx/sleeping_face.png": [
+256,
+256
+],
+"wb/fx/pencil.png": [
+256,
+256
+],
+"wb/fx/mountain.png": [
+256,
+256
+],
+"wb/fx/cooked_rice.png": [
+256,
+256
+],
+"wb/fx/prayer_beads.png": [
+256,
+256
+],
+"wb/fx/brick.png": [
+256,
+256
+],
+"wb/fx/laptop.png": [
+256,
+256
+],
+"wb/fx/page_facing_up.png": [
+256,
+256
+],
+"wb/fx/musical_notes.png": [
+256,
+256
+],
+"wb/fx/magnifying_glass_tilted_left.png": [
+256,
+256
+],
+"wb/fx/bento_box.png": [
+256,
+256
+],
+"wb/fx/crown.png": [
+256,
+256
+],
+"wb/fx/handshake.png": [
+256,
+256
+],
+"wb/fx/toolbox.png": [
+256,
+256
+],
+"wb/fx/person_running.png": [
+256,
+256
+],
+"wb/fx/sheaf_of_rice.png": [
+256,
+256
+],
+"wb/fx/classical_building.png": [
+256,
+256
+],
+"wb/fx/couch_and_lamp.png": [
+256,
+256
+],
+"wb/fx/paperclip.png": [
+256,
+256
+],
+"wb/fx/open_book.png": [
+256,
+256
+],
+"wb/fx/oil_drum.png": [
+256,
+256
+],
+"wb/fx/lotion_bottle.png": [
+256,
+256
+],
+"wb/fx/cut_of_meat.png": [
+256,
+256
+],
+"wb/fx/evergreen_tree.png": [
+256,
+256
+],
+"wb/fx/bread.png": [
+256,
+256
+],
+"wb/fx/briefcase.png": [
+256,
+256
+],
+"wb/fx/dress.png": [
+256,
+256
+],
+"wb/fx/hammer_and_wrench.png": [
+256,
+256
+],
+"wb/fx/brain.png": [
+256,
+256
+],
+"wb/fx/repeat_button.png": [
+256,
+256
+],
+"wb/fx/stopwatch.png": [
+256,
+256
+],
+"wb/fx/backpack.png": [
+256,
+256
+],
+"wb/fx/rice_ball.png": [
+256,
+256
+],
+"wb/fx/smiling_face_with_smiling_eyes.png": [
+256,
+256
+],
+"wb/fx/money_bag.png": [
+256,
+256
+],
+"wb/fx/bowl_with_spoon.png": [
+256,
+256
+],
+"wb/fx/graduation_cap.png": [
+256,
+256
+],
+"wb/fx/test_tube.png": [
+256,
+256
+],
+"wb/fx/spoon.png": [
+256,
+256
+],
+"wb/fx/busts_in_silhouette.png": [
+256,
+256
+],
+"wb/fx/handbag.png": [
+256,
+256
+],
+"wb/fx/shopping_cart.png": [
+256,
+256
+],
+"wb/fx/house.png": [
+256,
+256
+],
+"wb/fx/wood.png": [
+256,
+256
+],
+"wb/fx/salt.png": [
+256,
+256
+],
+"wb/fx/clipboard.png": [
+256,
+256
+],
+"wb/fx/chair.png": [
+256,
+256
+],
+"wb/fx/fork_and_knife.png": [
+256,
+256
+],
+"wb/fx/coin.png": [
+256,
+256
+],
+"wb/fx/scroll.png": [
+256,
+256
+],
+"wb/fx/dove.png": [
+256,
+256
+],
+"wb/fx/honey_pot.png": [
+256,
+256
+],
+"wb/fx/wastebasket.png": [
+256,
+256
+],
+"wb/fx/bed.png": [
+256,
+256
+],
+"wb/fx/balance_scale.png": [
+256,
+256
+],
+"wb/fx/droplet.png": [
+256,
+256
+],
+"wb/fx/heart_with_ribbon.png": [
+256,
+256
+],
+"wb/fx/link.png": [
+256,
+256
+],
+"wb/fx/ring.png": [
+256,
+256
+],
+"wb/fx/candy.png": [
+256,
+256
+],
+"wb/fx/crayon.png": [
+256,
+256
+],
+"wb/fx/soap.png": [
+256,
+256
+],
+"wb/fx/hourglass_done.png": [
+256,
+256
+],
+"wb/fx/rock.png": [
+256,
+256
+],
+"wb/fx/automobile.png": [
+256,
+256
+],
+"wb/fx/straight_ruler.png": [
+256,
+256
+],
+"wb/fx/luggage.png": [
+256,
+256
+],
+"wb/fx/glass_of_milk.png": [
+256,
+256
+]
+}
