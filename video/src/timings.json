@@ -4000,6 +4000,1136 @@
     ],
     "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
    }
+  ],
+  "wb": [
+   {
+    "id": "wb01",
+    "scene": "Board",
+    "audio": "audio/wb01.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 116,
+    "lead": 0.35,
+    "audioDur": 2.712,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Grammar",
+      "t": 0.02
+     },
+     {
+      "w": "Logic",
+      "t": 0.497
+     },
+     {
+      "w": "Series.",
+      "t": 0.862
+     },
+     {
+      "w": "Error",
+      "t": 1.789
+     },
+     {
+      "w": "one.",
+      "t": 2.035
+     }
+    ],
+    "text": "Grammar Logic Series. Error one."
+   },
+   {
+    "id": "wb02",
+    "scene": "Board",
+    "audio": "audio/wb02.mp3",
+    "start": 3.867,
+    "startFrame": 116,
+    "frames": 305,
+    "lead": 0.35,
+    "audioDur": 9.0,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Look",
+      "t": 0.02
+     },
+     {
+      "w": "at",
+      "t": 0.277
+     },
+     {
+      "w": "this",
+      "t": 0.442
+     },
+     {
+      "w": "sentence:",
+      "t": 0.699
+     },
+     {
+      "w": "‘The",
+      "t": 1.426
+     },
+     {
+      "w": "furniture",
+      "t": 1.645
+     },
+     {
+      "w": "are",
+      "t": 2.155
+     },
+     {
+      "w": "expensive.’",
+      "t": 2.373
+     },
+     {
+      "w": "It",
+      "t": 3.369
+     },
+     {
+      "w": "sounds",
+      "t": 3.543
+     },
+     {
+      "w": "fine,",
+      "t": 3.917
+     },
+     {
+      "w": "but",
+      "t": 4.389
+     },
+     {
+      "w": "it’s",
+      "t": 4.614
+     },
+     {
+      "w": "wrong.",
+      "t": 4.888
+     },
+     {
+      "w": "Let’s",
+      "t": 5.659
+     },
+     {
+      "w": "find",
+      "t": 6.025
+     },
+     {
+      "w": "out",
+      "t": 6.335
+     },
+     {
+      "w": "why,",
+      "t": 6.588
+     },
+     {
+      "w": "with",
+      "t": 7.066
+     },
+     {
+      "w": "logic,",
+      "t": 7.325
+     },
+     {
+      "w": "not",
+      "t": 7.818
+     },
+     {
+      "w": "memorising.",
+      "t": 8.0
+     }
+    ],
+    "text": "Look at this sentence: ‘The furniture are expensive.’ It sounds fine, but it’s wrong. Let’s find out why, with logic, not memorising."
+   },
+   {
+    "id": "wb03",
+    "scene": "Board",
+    "audio": "audio/wb03.mp3",
+    "start": 14.033,
+    "startFrame": 421,
+    "frames": 286,
+    "lead": 0.35,
+    "audioDur": 8.376,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Here",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.351
+     },
+     {
+      "w": "the",
+      "t": 0.563
+     },
+     {
+      "w": "idea.",
+      "t": 0.835
+     },
+     {
+      "w": "Some",
+      "t": 1.709
+     },
+     {
+      "w": "nouns",
+      "t": 2.009
+     },
+     {
+      "w": "don’t",
+      "t": 2.365
+     },
+     {
+      "w": "name",
+      "t": 2.72
+     },
+     {
+      "w": "one",
+      "t": 3.02
+     },
+     {
+      "w": "single",
+      "t": 3.267
+     },
+     {
+      "w": "thing.",
+      "t": 3.677
+     },
+     {
+      "w": "They",
+      "t": 4.523
+     },
+     {
+      "w": "name",
+      "t": 4.781
+     },
+     {
+      "w": "a",
+      "t": 5.041
+     },
+     {
+      "w": "whole",
+      "t": 5.157
+     },
+     {
+      "w": "group",
+      "t": 5.464
+     },
+     {
+      "w": "of",
+      "t": 5.77
+     },
+     {
+      "w": "things,",
+      "t": 5.935
+     },
+     {
+      "w": "and",
+      "t": 6.475
+     },
+     {
+      "w": "the",
+      "t": 6.655
+     },
+     {
+      "w": "group",
+      "t": 6.835
+     },
+     {
+      "w": "acts",
+      "t": 7.094
+     },
+     {
+      "w": "as",
+      "t": 7.314
+     },
+     {
+      "w": "one",
+      "t": 7.454
+     },
+     {
+      "w": "unit.",
+      "t": 7.634
+     }
+    ],
+    "text": "Here is the idea. Some nouns don’t name one single thing. They name a whole group of things, and the group acts as one unit."
+   },
+   {
+    "id": "wb04",
+    "scene": "Board",
+    "audio": "audio/wb04.mp3",
+    "start": 23.567,
+    "startFrame": 707,
+    "frames": 172,
+    "lead": 0.35,
+    "audioDur": 4.752,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 0.02
+     },
+     {
+      "w": "see",
+      "t": 0.271
+     },
+     {
+      "w": "it.",
+      "t": 0.444
+     },
+     {
+      "w": "Here",
+      "t": 0.926
+     },
+     {
+      "w": "is",
+      "t": 1.138
+     },
+     {
+      "w": "a",
+      "t": 1.273
+     },
+     {
+      "w": "chair.",
+      "t": 1.369
+     },
+     {
+      "w": "Here",
+      "t": 1.966
+     },
+     {
+      "w": "is",
+      "t": 2.179
+     },
+     {
+      "w": "a",
+      "t": 2.314
+     },
+     {
+      "w": "table.",
+      "t": 2.41
+     },
+     {
+      "w": "A",
+      "t": 3.009
+     },
+     {
+      "w": "sofa.",
+      "t": 3.144
+     },
+     {
+      "w": "And",
+      "t": 3.931
+     },
+     {
+      "w": "a",
+      "t": 4.075
+     },
+     {
+      "w": "bed.",
+      "t": 4.154
+     }
+    ],
+    "text": "Let’s see it. Here is a chair. Here is a table. A sofa. And a bed."
+   },
+   {
+    "id": "wb05",
+    "scene": "Board",
+    "audio": "audio/wb05.mp3",
+    "start": 29.3,
+    "startFrame": 879,
+    "frames": 304,
+    "lead": 0.35,
+    "audioDur": 9.168,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Four",
+      "t": 0.02
+     },
+     {
+      "w": "different",
+      "t": 0.285
+     },
+     {
+      "w": "things.",
+      "t": 0.79
+     },
+     {
+      "w": "But",
+      "t": 1.583
+     },
+     {
+      "w": "English",
+      "t": 1.819
+     },
+     {
+      "w": "doesn’t",
+      "t": 2.265
+     },
+     {
+      "w": "use",
+      "t": 2.712
+     },
+     {
+      "w": "four",
+      "t": 2.948
+     },
+     {
+      "w": "names",
+      "t": 3.237
+     },
+     {
+      "w": "here.",
+      "t": 3.579
+     },
+     {
+      "w": "It",
+      "t": 4.341
+     },
+     {
+      "w": "draws",
+      "t": 4.512
+     },
+     {
+      "w": "a",
+      "t": 4.829
+     },
+     {
+      "w": "circle",
+      "t": 4.95
+     },
+     {
+      "w": "around",
+      "t": 5.316
+     },
+     {
+      "w": "them,",
+      "t": 5.681
+     },
+     {
+      "w": "and",
+      "t": 6.145
+     },
+     {
+      "w": "gives",
+      "t": 6.357
+     },
+     {
+      "w": "the",
+      "t": 6.663
+     },
+     {
+      "w": "whole",
+      "t": 6.875
+     },
+     {
+      "w": "group",
+      "t": 7.181
+     },
+     {
+      "w": "one",
+      "t": 7.487
+     },
+     {
+      "w": "name:",
+      "t": 7.699
+     },
+     {
+      "w": "furniture.",
+      "t": 8.242
+     }
+    ],
+    "text": "Four different things. But English doesn’t use four names here. It draws a circle around them, and gives the whole group one name: furniture."
+   },
+   {
+    "id": "wb06",
+    "scene": "Board",
+    "audio": "audio/wb06.mp3",
+    "start": 39.433,
+    "startFrame": 1183,
+    "frames": 194,
+    "lead": 0.35,
+    "audioDur": 5.496,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "furniture",
+      "t": 0.233
+     },
+     {
+      "w": "is",
+      "t": 0.874
+     },
+     {
+      "w": "not",
+      "t": 1.087
+     },
+     {
+      "w": "one",
+      "t": 1.362
+     },
+     {
+      "w": "object.",
+      "t": 1.637
+     },
+     {
+      "w": "It",
+      "t": 2.643
+     },
+     {
+      "w": "is",
+      "t": 2.835
+     },
+     {
+      "w": "one",
+      "t": 3.025
+     },
+     {
+      "w": "unit.",
+      "t": 3.27
+     },
+     {
+      "w": "And",
+      "t": 4.06
+     },
+     {
+      "w": "a",
+      "t": 4.237
+     },
+     {
+      "w": "unit",
+      "t": 4.336
+     },
+     {
+      "w": "means",
+      "t": 4.553
+     },
+     {
+      "w": "one.",
+      "t": 4.809
+     }
+    ],
+    "text": "So furniture is not one object. It is one unit. And a unit means one."
+   },
+   {
+    "id": "wb07",
+    "scene": "Board",
+    "audio": "audio/wb07.mp3",
+    "start": 45.9,
+    "startFrame": 1377,
+    "frames": 251,
+    "lead": 0.35,
+    "audioDur": 7.416,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "One",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.239
+     },
+     {
+      "w": "always",
+      "t": 0.409
+     },
+     {
+      "w": "singular.",
+      "t": 0.773
+     },
+     {
+      "w": "We",
+      "t": 1.671
+     },
+     {
+      "w": "can’t",
+      "t": 1.854
+     },
+     {
+      "w": "add",
+      "t": 2.194
+     },
+     {
+      "w": "s",
+      "t": 2.429
+     },
+     {
+      "w": "to",
+      "t": 2.559
+     },
+     {
+      "w": "one.",
+      "t": 2.742
+     },
+     {
+      "w": "So",
+      "t": 3.448
+     },
+     {
+      "w": "there",
+      "t": 3.636
+     },
+     {
+      "w": "is",
+      "t": 3.985
+     },
+     {
+      "w": "no",
+      "t": 4.173
+     },
+     {
+      "w": "‘furnitures’,",
+      "t": 4.361
+     },
+     {
+      "w": "and",
+      "t": 5.249
+     },
+     {
+      "w": "the",
+      "t": 5.441
+     },
+     {
+      "w": "verb",
+      "t": 5.634
+     },
+     {
+      "w": "must",
+      "t": 5.868
+     },
+     {
+      "w": "be",
+      "t": 6.104
+     },
+     {
+      "w": "singular",
+      "t": 6.254
+     },
+     {
+      "w": "too.",
+      "t": 6.659
+     }
+    ],
+    "text": "One is always singular. We can’t add s to one. So there is no ‘furnitures’, and the verb must be singular too."
+   },
+   {
+    "id": "wb08",
+    "scene": "Board",
+    "audio": "audio/wb08.mp3",
+    "start": 54.267,
+    "startFrame": 1628,
+    "frames": 159,
+    "lead": 0.35,
+    "audioDur": 3.936,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.217
+     },
+     {
+      "w": "correct",
+      "t": 0.47
+     },
+     {
+      "w": "sentence",
+      "t": 0.949
+     },
+     {
+      "w": "is:",
+      "t": 1.483
+     },
+     {
+      "w": "‘The",
+      "t": 2.019
+     },
+     {
+      "w": "furniture",
+      "t": 2.219
+     },
+     {
+      "w": "is",
+      "t": 2.685
+     },
+     {
+      "w": "expensive.’",
+      "t": 2.841
+     }
+    ],
+    "text": "So the correct sentence is: ‘The furniture is expensive.’"
+   },
+   {
+    "id": "wb09",
+    "scene": "Board",
+    "audio": "audio/wb09.mp3",
+    "start": 59.567,
+    "startFrame": 1787,
+    "frames": 333,
+    "lead": 0.35,
+    "audioDur": 9.744,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 0.02
+     },
+     {
+      "w": "prove",
+      "t": 0.299
+     },
+     {
+      "w": "it",
+      "t": 0.578
+     },
+     {
+      "w": "again.",
+      "t": 0.728
+     },
+     {
+      "w": "A",
+      "t": 1.393
+     },
+     {
+      "w": "plate.",
+      "t": 1.495
+     },
+     {
+      "w": "A",
+      "t": 2.122
+     },
+     {
+      "w": "bowl.",
+      "t": 2.231
+     },
+     {
+      "w": "A",
+      "t": 2.865
+     },
+     {
+      "w": "mug.",
+      "t": 2.976
+     },
+     {
+      "w": "Circle",
+      "t": 3.582
+     },
+     {
+      "w": "them,",
+      "t": 3.889
+     },
+     {
+      "w": "and",
+      "t": 4.278
+     },
+     {
+      "w": "name",
+      "t": 4.462
+     },
+     {
+      "w": "the",
+      "t": 4.686
+     },
+     {
+      "w": "group:",
+      "t": 4.87
+     },
+     {
+      "w": "crockery.",
+      "t": 5.382
+     },
+     {
+      "w": "One",
+      "t": 6.159
+     },
+     {
+      "w": "unit,",
+      "t": 6.531
+     },
+     {
+      "w": "so:",
+      "t": 7.316
+     },
+     {
+      "w": "‘The",
+      "t": 7.618
+     },
+     {
+      "w": "crockery",
+      "t": 7.761
+     },
+     {
+      "w": "is",
+      "t": 8.063
+     },
+     {
+      "w": "clean.’",
+      "t": 8.174
+     },
+     {
+      "w": "Never",
+      "t": 8.698
+     },
+     {
+      "w": "‘crockeries’.",
+      "t": 8.905
+     }
+    ],
+    "text": "Let’s prove it again. A plate. A bowl. A mug. Circle them, and name the group: crockery. One unit, so: ‘The crockery is clean.’ Never ‘crockeries’."
+   },
+   {
+    "id": "wb10",
+    "scene": "Board",
+    "audio": "audio/wb10.mp3",
+    "start": 70.667,
+    "startFrame": 2120,
+    "frames": 261,
+    "lead": 0.35,
+    "audioDur": 7.32,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "One",
+      "t": 0.02
+     },
+     {
+      "w": "more.",
+      "t": 0.34
+     },
+     {
+      "w": "A",
+      "t": 1.373
+     },
+     {
+      "w": "fork.",
+      "t": 1.504
+     },
+     {
+      "w": "A",
+      "t": 2.267
+     },
+     {
+      "w": "knife.",
+      "t": 2.378
+     },
+     {
+      "w": "A",
+      "t": 3.07
+     },
+     {
+      "w": "spoon.",
+      "t": 3.172
+     },
+     {
+      "w": "Circle",
+      "t": 3.807
+     },
+     {
+      "w": "them:",
+      "t": 4.115
+     },
+     {
+      "w": "cutlery.",
+      "t": 4.586
+     },
+     {
+      "w": "One",
+      "t": 5.205
+     },
+     {
+      "w": "unit,",
+      "t": 5.364
+     },
+     {
+      "w": "so:",
+      "t": 5.7
+     },
+     {
+      "w": "‘The",
+      "t": 5.973
+     },
+     {
+      "w": "cutlery",
+      "t": 6.102
+     },
+     {
+      "w": "is",
+      "t": 6.345
+     },
+     {
+      "w": "in",
+      "t": 6.446
+     },
+     {
+      "w": "the",
+      "t": 6.546
+     },
+     {
+      "w": "drawer.’",
+      "t": 6.675
+     }
+    ],
+    "text": "One more. A fork. A knife. A spoon. Circle them: cutlery. One unit, so: ‘The cutlery is in the drawer.’"
+   },
+   {
+    "id": "wb11",
+    "scene": "Board",
+    "audio": "audio/wb11.mp3",
+    "start": 79.367,
+    "startFrame": 2381,
+    "frames": 233,
+    "lead": 0.35,
+    "audioDur": 6.6,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "And",
+      "t": 0.02
+     },
+     {
+      "w": "if",
+      "t": 0.203
+     },
+     {
+      "w": "you",
+      "t": 0.345
+     },
+     {
+      "w": "need",
+      "t": 0.527
+     },
+     {
+      "w": "a",
+      "t": 0.751
+     },
+     {
+      "w": "number?",
+      "t": 0.852
+     },
+     {
+      "w": "Count",
+      "t": 1.522
+     },
+     {
+      "w": "the",
+      "t": 1.866
+     },
+     {
+      "w": "pieces,",
+      "t": 2.104
+     },
+     {
+      "w": "not",
+      "t": 2.712
+     },
+     {
+      "w": "the",
+      "t": 2.95
+     },
+     {
+      "w": "unit:",
+      "t": 3.189
+     },
+     {
+      "w": "two",
+      "t": 3.797
+     },
+     {
+      "w": "pieces",
+      "t": 4.025
+     },
+     {
+      "w": "of",
+      "t": 4.406
+     },
+     {
+      "w": "furniture,",
+      "t": 4.583
+     },
+     {
+      "w": "a",
+      "t": 5.32
+     },
+     {
+      "w": "piece",
+      "t": 5.413
+     },
+     {
+      "w": "of",
+      "t": 5.655
+     },
+     {
+      "w": "cutlery.",
+      "t": 5.784
+     }
+    ],
+    "text": "And if you need a number? Count the pieces, not the unit: two pieces of furniture, a piece of cutlery."
+   },
+   {
+    "id": "wb12",
+    "scene": "Board",
+    "audio": "audio/wb12.mp3",
+    "start": 87.133,
+    "startFrame": 2614,
+    "frames": 301,
+    "lead": 0.35,
+    "audioDur": 7.68,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "remember",
+      "t": 0.222
+     },
+     {
+      "w": "the",
+      "t": 0.767
+     },
+     {
+      "w": "logic:",
+      "t": 1.027
+     },
+     {
+      "w": "many",
+      "t": 1.745
+     },
+     {
+      "w": "things,",
+      "t": 2.047
+     },
+     {
+      "w": "one",
+      "t": 2.678
+     },
+     {
+      "w": "circle,",
+      "t": 2.925
+     },
+     {
+      "w": "one",
+      "t": 3.555
+     },
+     {
+      "w": "unit,",
+      "t": 3.803
+     },
+     {
+      "w": "one",
+      "t": 4.325
+     },
+     {
+      "w": "name,",
+      "t": 4.571
+     },
+     {
+      "w": "one",
+      "t": 5.093
+     },
+     {
+      "w": "singular",
+      "t": 5.339
+     },
+     {
+      "w": "verb.",
+      "t": 5.861
+     },
+     {
+      "w": "That’s",
+      "t": 6.657
+     },
+     {
+      "w": "error",
+      "t": 6.9
+     },
+     {
+      "w": "one.",
+      "t": 7.111
+     }
+    ],
+    "text": "So remember the logic: many things, one circle, one unit, one name, one singular verb. That’s error one."
+   }
   ]
  },
  "captions": {
@@ -8322,6 +9452,1274 @@
      {
       "w": "verb.",
       "t": 93.606
+     }
+    ]
+   }
+  ],
+  "wb": [
+   {
+    "start": 0.37,
+    "end": 2.099,
+    "text": "Grammar\nLogic Series.",
+    "words": [
+     {
+      "w": "Grammar",
+      "t": 0.37
+     },
+     {
+      "w": "Logic",
+      "t": 0.847
+     },
+     {
+      "w": "Series.",
+      "t": 1.212
+     }
+    ]
+   },
+   {
+    "start": 2.139,
+    "end": 3.312,
+    "text": "Error one.",
+    "words": [
+     {
+      "w": "Error",
+      "t": 2.139
+     },
+     {
+      "w": "one.",
+      "t": 2.385
+     }
+    ]
+   },
+   {
+    "start": 4.237,
+    "end": 5.603,
+    "text": "Look at this\nsentence:",
+    "words": [
+     {
+      "w": "Look",
+      "t": 4.237
+     },
+     {
+      "w": "at",
+      "t": 4.494
+     },
+     {
+      "w": "this",
+      "t": 4.659
+     },
+     {
+      "w": "sentence:",
+      "t": 4.916
+     }
+    ]
+   },
+   {
+    "start": 5.643,
+    "end": 7.546,
+    "text": "‘The furniture\nare expensive.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 5.643
+     },
+     {
+      "w": "furniture",
+      "t": 5.862
+     },
+     {
+      "w": "are",
+      "t": 6.372
+     },
+     {
+      "w": "expensive.’",
+      "t": 6.59
+     }
+    ]
+   },
+   {
+    "start": 7.586,
+    "end": 9.836,
+    "text": "It sounds fine,\nbut it’s wrong.",
+    "words": [
+     {
+      "w": "It",
+      "t": 7.586
+     },
+     {
+      "w": "sounds",
+      "t": 7.76
+     },
+     {
+      "w": "fine,",
+      "t": 8.134
+     },
+     {
+      "w": "but",
+      "t": 8.606
+     },
+     {
+      "w": "it’s",
+      "t": 8.831
+     },
+     {
+      "w": "wrong.",
+      "t": 9.105
+     }
+    ]
+   },
+   {
+    "start": 9.876,
+    "end": 11.243,
+    "text": "Let’s find\nout why,",
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 9.876
+     },
+     {
+      "w": "find",
+      "t": 10.242
+     },
+     {
+      "w": "out",
+      "t": 10.552
+     },
+     {
+      "w": "why,",
+      "t": 10.805
+     }
+    ]
+   },
+   {
+    "start": 11.283,
+    "end": 13.467,
+    "text": "with logic,\nnot memorising.",
+    "words": [
+     {
+      "w": "with",
+      "t": 11.283
+     },
+     {
+      "w": "logic,",
+      "t": 11.542
+     },
+     {
+      "w": "not",
+      "t": 12.035
+     },
+     {
+      "w": "memorising.",
+      "t": 12.217
+     }
+    ]
+   },
+   {
+    "start": 14.403,
+    "end": 16.052,
+    "text": "Here is the idea.",
+    "words": [
+     {
+      "w": "Here",
+      "t": 14.403
+     },
+     {
+      "w": "is",
+      "t": 14.734
+     },
+     {
+      "w": "the",
+      "t": 14.946
+     },
+     {
+      "w": "idea.",
+      "t": 15.218
+     }
+    ]
+   },
+   {
+    "start": 16.092,
+    "end": 17.61,
+    "text": "Some nouns\ndon’t name one",
+    "words": [
+     {
+      "w": "Some",
+      "t": 16.092
+     },
+     {
+      "w": "nouns",
+      "t": 16.392
+     },
+     {
+      "w": "don’t",
+      "t": 16.748
+     },
+     {
+      "w": "name",
+      "t": 17.103
+     },
+     {
+      "w": "one",
+      "t": 17.403
+     }
+    ]
+   },
+   {
+    "start": 17.65,
+    "end": 18.866,
+    "text": "single thing.",
+    "words": [
+     {
+      "w": "single",
+      "t": 17.65
+     },
+     {
+      "w": "thing.",
+      "t": 18.06
+     }
+    ]
+   },
+   {
+    "start": 18.906,
+    "end": 20.113,
+    "text": "They name\na whole group",
+    "words": [
+     {
+      "w": "They",
+      "t": 18.906
+     },
+     {
+      "w": "name",
+      "t": 19.164
+     },
+     {
+      "w": "a",
+      "t": 19.424
+     },
+     {
+      "w": "whole",
+      "t": 19.54
+     },
+     {
+      "w": "group",
+      "t": 19.847
+     }
+    ]
+   },
+   {
+    "start": 20.153,
+    "end": 21.657,
+    "text": "of things,\nand the group acts",
+    "words": [
+     {
+      "w": "of",
+      "t": 20.153
+     },
+     {
+      "w": "things,",
+      "t": 20.318
+     },
+     {
+      "w": "and",
+      "t": 20.858
+     },
+     {
+      "w": "the",
+      "t": 21.038
+     },
+     {
+      "w": "group",
+      "t": 21.218
+     },
+     {
+      "w": "acts",
+      "t": 21.477
+     }
+    ]
+   },
+   {
+    "start": 21.697,
+    "end": 23.009,
+    "text": "as one unit.",
+    "words": [
+     {
+      "w": "as",
+      "t": 21.697
+     },
+     {
+      "w": "one",
+      "t": 21.837
+     },
+     {
+      "w": "unit.",
+      "t": 22.017
+     }
+    ]
+   },
+   {
+    "start": 23.937,
+    "end": 24.803,
+    "text": "Let’s see it.",
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 23.937
+     },
+     {
+      "w": "see",
+      "t": 24.188
+     },
+     {
+      "w": "it.",
+      "t": 24.361
+     }
+    ]
+   },
+   {
+    "start": 24.843,
+    "end": 25.843,
+    "text": "Here is a chair.",
+    "words": [
+     {
+      "w": "Here",
+      "t": 24.843
+     },
+     {
+      "w": "is",
+      "t": 25.055
+     },
+     {
+      "w": "a",
+      "t": 25.19
+     },
+     {
+      "w": "chair.",
+      "t": 25.286
+     }
+    ]
+   },
+   {
+    "start": 25.883,
+    "end": 26.886,
+    "text": "Here is a table.",
+    "words": [
+     {
+      "w": "Here",
+      "t": 25.883
+     },
+     {
+      "w": "is",
+      "t": 26.096
+     },
+     {
+      "w": "a",
+      "t": 26.231
+     },
+     {
+      "w": "table.",
+      "t": 26.327
+     }
+    ]
+   },
+   {
+    "start": 26.926,
+    "end": 28.919,
+    "text": "A sofa. And a bed.",
+    "words": [
+     {
+      "w": "A",
+      "t": 26.926
+     },
+     {
+      "w": "sofa.",
+      "t": 27.061
+     },
+     {
+      "w": "And",
+      "t": 27.848
+     },
+     {
+      "w": "a",
+      "t": 27.992
+     },
+     {
+      "w": "bed.",
+      "t": 28.071
+     }
+    ]
+   },
+   {
+    "start": 29.67,
+    "end": 31.193,
+    "text": "Four different\nthings.",
+    "words": [
+     {
+      "w": "Four",
+      "t": 29.67
+     },
+     {
+      "w": "different",
+      "t": 29.935
+     },
+     {
+      "w": "things.",
+      "t": 30.44
+     }
+    ]
+   },
+   {
+    "start": 31.233,
+    "end": 32.847,
+    "text": "But English\ndoesn’t use four",
+    "words": [
+     {
+      "w": "But",
+      "t": 31.233
+     },
+     {
+      "w": "English",
+      "t": 31.469
+     },
+     {
+      "w": "doesn’t",
+      "t": 31.915
+     },
+     {
+      "w": "use",
+      "t": 32.362
+     },
+     {
+      "w": "four",
+      "t": 32.598
+     }
+    ]
+   },
+   {
+    "start": 32.887,
+    "end": 33.951,
+    "text": "names here.",
+    "words": [
+     {
+      "w": "names",
+      "t": 32.887
+     },
+     {
+      "w": "here.",
+      "t": 33.229
+     }
+    ]
+   },
+   {
+    "start": 33.991,
+    "end": 35.755,
+    "text": "It draws a circle\naround them,",
+    "words": [
+     {
+      "w": "It",
+      "t": 33.991
+     },
+     {
+      "w": "draws",
+      "t": 34.162
+     },
+     {
+      "w": "a",
+      "t": 34.479
+     },
+     {
+      "w": "circle",
+      "t": 34.6
+     },
+     {
+      "w": "around",
+      "t": 34.966
+     },
+     {
+      "w": "them,",
+      "t": 35.331
+     }
+    ]
+   },
+   {
+    "start": 35.795,
+    "end": 37.309,
+    "text": "and gives\nthe whole group one",
+    "words": [
+     {
+      "w": "and",
+      "t": 35.795
+     },
+     {
+      "w": "gives",
+      "t": 36.007
+     },
+     {
+      "w": "the",
+      "t": 36.313
+     },
+     {
+      "w": "whole",
+      "t": 36.525
+     },
+     {
+      "w": "group",
+      "t": 36.831
+     },
+     {
+      "w": "one",
+      "t": 37.137
+     }
+    ]
+   },
+   {
+    "start": 37.349,
+    "end": 39.068,
+    "text": "name: furniture.",
+    "words": [
+     {
+      "w": "name:",
+      "t": 37.349
+     },
+     {
+      "w": "furniture.",
+      "t": 37.892
+     }
+    ]
+   },
+   {
+    "start": 39.803,
+    "end": 42.386,
+    "text": "So furniture\nis not one object.",
+    "words": [
+     {
+      "w": "So",
+      "t": 39.803
+     },
+     {
+      "w": "furniture",
+      "t": 40.016
+     },
+     {
+      "w": "is",
+      "t": 40.657
+     },
+     {
+      "w": "not",
+      "t": 40.87
+     },
+     {
+      "w": "one",
+      "t": 41.145
+     },
+     {
+      "w": "object.",
+      "t": 41.42
+     }
+    ]
+   },
+   {
+    "start": 42.426,
+    "end": 43.803,
+    "text": "It is one unit.",
+    "words": [
+     {
+      "w": "It",
+      "t": 42.426
+     },
+     {
+      "w": "is",
+      "t": 42.618
+     },
+     {
+      "w": "one",
+      "t": 42.808
+     },
+     {
+      "w": "unit.",
+      "t": 43.053
+     }
+    ]
+   },
+   {
+    "start": 43.843,
+    "end": 45.529,
+    "text": "And a unit\nmeans one.",
+    "words": [
+     {
+      "w": "And",
+      "t": 43.843
+     },
+     {
+      "w": "a",
+      "t": 44.02
+     },
+     {
+      "w": "unit",
+      "t": 44.119
+     },
+     {
+      "w": "means",
+      "t": 44.336
+     },
+     {
+      "w": "one.",
+      "t": 44.592
+     }
+    ]
+   },
+   {
+    "start": 46.27,
+    "end": 47.881,
+    "text": "One is always\nsingular.",
+    "words": [
+     {
+      "w": "One",
+      "t": 46.27
+     },
+     {
+      "w": "is",
+      "t": 46.489
+     },
+     {
+      "w": "always",
+      "t": 46.659
+     },
+     {
+      "w": "singular.",
+      "t": 47.023
+     }
+    ]
+   },
+   {
+    "start": 47.921,
+    "end": 49.658,
+    "text": "We can’t add\ns to one.",
+    "words": [
+     {
+      "w": "We",
+      "t": 47.921
+     },
+     {
+      "w": "can’t",
+      "t": 48.104
+     },
+     {
+      "w": "add",
+      "t": 48.444
+     },
+     {
+      "w": "s",
+      "t": 48.679
+     },
+     {
+      "w": "to",
+      "t": 48.809
+     },
+     {
+      "w": "one.",
+      "t": 48.992
+     }
+    ]
+   },
+   {
+    "start": 49.698,
+    "end": 51.459,
+    "text": "So there is no\n‘furnitures’,",
+    "words": [
+     {
+      "w": "So",
+      "t": 49.698
+     },
+     {
+      "w": "there",
+      "t": 49.886
+     },
+     {
+      "w": "is",
+      "t": 50.235
+     },
+     {
+      "w": "no",
+      "t": 50.423
+     },
+     {
+      "w": "‘furnitures’,",
+      "t": 50.611
+     }
+    ]
+   },
+   {
+    "start": 51.499,
+    "end": 53.916,
+    "text": "and the verb must\nbe singular too.",
+    "words": [
+     {
+      "w": "and",
+      "t": 51.499
+     },
+     {
+      "w": "the",
+      "t": 51.691
+     },
+     {
+      "w": "verb",
+      "t": 51.884
+     },
+     {
+      "w": "must",
+      "t": 52.118
+     },
+     {
+      "w": "be",
+      "t": 52.354
+     },
+     {
+      "w": "singular",
+      "t": 52.504
+     },
+     {
+      "w": "too.",
+      "t": 52.909
+     }
+    ]
+   },
+   {
+    "start": 54.637,
+    "end": 56.596,
+    "text": "So the correct\nsentence is:",
+    "words": [
+     {
+      "w": "So",
+      "t": 54.637
+     },
+     {
+      "w": "the",
+      "t": 54.834
+     },
+     {
+      "w": "correct",
+      "t": 55.087
+     },
+     {
+      "w": "sentence",
+      "t": 55.566
+     },
+     {
+      "w": "is:",
+      "t": 56.1
+     }
+    ]
+   },
+   {
+    "start": 56.636,
+    "end": 58.803,
+    "text": "‘The furniture\nis expensive.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 56.636
+     },
+     {
+      "w": "furniture",
+      "t": 56.836
+     },
+     {
+      "w": "is",
+      "t": 57.302
+     },
+     {
+      "w": "expensive.’",
+      "t": 57.458
+     }
+    ]
+   },
+   {
+    "start": 59.937,
+    "end": 61.27,
+    "text": "Let’s prove\nit again.",
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 59.937
+     },
+     {
+      "w": "prove",
+      "t": 60.216
+     },
+     {
+      "w": "it",
+      "t": 60.495
+     },
+     {
+      "w": "again.",
+      "t": 60.645
+     }
+    ]
+   },
+   {
+    "start": 61.31,
+    "end": 62.742,
+    "text": "A plate. A bowl.",
+    "words": [
+     {
+      "w": "A",
+      "t": 61.31
+     },
+     {
+      "w": "plate.",
+      "t": 61.412
+     },
+     {
+      "w": "A",
+      "t": 62.039
+     },
+     {
+      "w": "bowl.",
+      "t": 62.148
+     }
+    ]
+   },
+   {
+    "start": 62.782,
+    "end": 64.155,
+    "text": "A mug.\nCircle them,",
+    "words": [
+     {
+      "w": "A",
+      "t": 62.782
+     },
+     {
+      "w": "mug.",
+      "t": 62.893
+     },
+     {
+      "w": "Circle",
+      "t": 63.499
+     },
+     {
+      "w": "them,",
+      "t": 63.806
+     }
+    ]
+   },
+   {
+    "start": 64.195,
+    "end": 65.259,
+    "text": "and name\nthe group:",
+    "words": [
+     {
+      "w": "and",
+      "t": 64.195
+     },
+     {
+      "w": "name",
+      "t": 64.379
+     },
+     {
+      "w": "the",
+      "t": 64.603
+     },
+     {
+      "w": "group:",
+      "t": 64.787
+     }
+    ]
+   },
+   {
+    "start": 65.299,
+    "end": 67.495,
+    "text": "crockery.\nOne unit, so:",
+    "words": [
+     {
+      "w": "crockery.",
+      "t": 65.299
+     },
+     {
+      "w": "One",
+      "t": 66.076
+     },
+     {
+      "w": "unit,",
+      "t": 66.448
+     },
+     {
+      "w": "so:",
+      "t": 67.233
+     }
+    ]
+   },
+   {
+    "start": 67.535,
+    "end": 68.575,
+    "text": "‘The crockery\nis clean.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 67.535
+     },
+     {
+      "w": "crockery",
+      "t": 67.678
+     },
+     {
+      "w": "is",
+      "t": 67.98
+     },
+     {
+      "w": "clean.’",
+      "t": 68.091
+     }
+    ]
+   },
+   {
+    "start": 68.615,
+    "end": 69.911,
+    "text": "Never\n‘crockeries’.",
+    "words": [
+     {
+      "w": "Never",
+      "t": 68.615
+     },
+     {
+      "w": "‘crockeries’.",
+      "t": 68.822
+     }
+    ]
+   },
+   {
+    "start": 71.037,
+    "end": 73.244,
+    "text": "One more. A fork.",
+    "words": [
+     {
+      "w": "One",
+      "t": 71.037
+     },
+     {
+      "w": "more.",
+      "t": 71.357
+     },
+     {
+      "w": "A",
+      "t": 72.39
+     },
+     {
+      "w": "fork.",
+      "t": 72.521
+     }
+    ]
+   },
+   {
+    "start": 73.284,
+    "end": 74.784,
+    "text": "A knife. A spoon.",
+    "words": [
+     {
+      "w": "A",
+      "t": 73.284
+     },
+     {
+      "w": "knife.",
+      "t": 73.395
+     },
+     {
+      "w": "A",
+      "t": 74.087
+     },
+     {
+      "w": "spoon.",
+      "t": 74.189
+     }
+    ]
+   },
+   {
+    "start": 74.824,
+    "end": 75.563,
+    "text": "Circle them:",
+    "words": [
+     {
+      "w": "Circle",
+      "t": 74.824
+     },
+     {
+      "w": "them:",
+      "t": 75.132
+     }
+    ]
+   },
+   {
+    "start": 75.603,
+    "end": 76.95,
+    "text": "cutlery.\nOne unit, so:",
+    "words": [
+     {
+      "w": "cutlery.",
+      "t": 75.603
+     },
+     {
+      "w": "One",
+      "t": 76.222
+     },
+     {
+      "w": "unit,",
+      "t": 76.381
+     },
+     {
+      "w": "so:",
+      "t": 76.717
+     }
+    ]
+   },
+   {
+    "start": 76.99,
+    "end": 78.587,
+    "text": "‘The cutlery\nis in the drawer.’",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 76.99
+     },
+     {
+      "w": "cutlery",
+      "t": 77.119
+     },
+     {
+      "w": "is",
+      "t": 77.362
+     },
+     {
+      "w": "in",
+      "t": 77.463
+     },
+     {
+      "w": "the",
+      "t": 77.563
+     },
+     {
+      "w": "drawer.’",
+      "t": 77.692
+     }
+    ]
+   },
+   {
+    "start": 79.737,
+    "end": 81.199,
+    "text": "And if you\nneed a number?",
+    "words": [
+     {
+      "w": "And",
+      "t": 79.737
+     },
+     {
+      "w": "if",
+      "t": 79.92
+     },
+     {
+      "w": "you",
+      "t": 80.062
+     },
+     {
+      "w": "need",
+      "t": 80.244
+     },
+     {
+      "w": "a",
+      "t": 80.468
+     },
+     {
+      "w": "number?",
+      "t": 80.569
+     }
+    ]
+   },
+   {
+    "start": 81.239,
+    "end": 82.389,
+    "text": "Count the pieces,",
+    "words": [
+     {
+      "w": "Count",
+      "t": 81.239
+     },
+     {
+      "w": "the",
+      "t": 81.583
+     },
+     {
+      "w": "pieces,",
+      "t": 81.821
+     }
+    ]
+   },
+   {
+    "start": 82.429,
+    "end": 83.474,
+    "text": "not the unit:",
+    "words": [
+     {
+      "w": "not",
+      "t": 82.429
+     },
+     {
+      "w": "the",
+      "t": 82.667
+     },
+     {
+      "w": "unit:",
+      "t": 82.906
+     }
+    ]
+   },
+   {
+    "start": 83.514,
+    "end": 84.997,
+    "text": "two pieces\nof furniture,",
+    "words": [
+     {
+      "w": "two",
+      "t": 83.514
+     },
+     {
+      "w": "pieces",
+      "t": 83.742
+     },
+     {
+      "w": "of",
+      "t": 84.123
+     },
+     {
+      "w": "furniture,",
+      "t": 84.3
+     }
+    ]
+   },
+   {
+    "start": 85.037,
+    "end": 86.567,
+    "text": "a piece\nof cutlery.",
+    "words": [
+     {
+      "w": "a",
+      "t": 85.037
+     },
+     {
+      "w": "piece",
+      "t": 85.13
+     },
+     {
+      "w": "of",
+      "t": 85.372
+     },
+     {
+      "w": "cutlery.",
+      "t": 85.501
+     }
+    ]
+   },
+   {
+    "start": 87.503,
+    "end": 89.188,
+    "text": "So remember\nthe logic:",
+    "words": [
+     {
+      "w": "So",
+      "t": 87.503
+     },
+     {
+      "w": "remember",
+      "t": 87.705
+     },
+     {
+      "w": "the",
+      "t": 88.25
+     },
+     {
+      "w": "logic:",
+      "t": 88.51
+     }
+    ]
+   },
+   {
+    "start": 89.228,
+    "end": 90.998,
+    "text": "many things,\none circle,",
+    "words": [
+     {
+      "w": "many",
+      "t": 89.228
+     },
+     {
+      "w": "things,",
+      "t": 89.53
+     },
+     {
+      "w": "one",
+      "t": 90.161
+     },
+     {
+      "w": "circle,",
+      "t": 90.408
+     }
+    ]
+   },
+   {
+    "start": 91.038,
+    "end": 92.536,
+    "text": "one unit,\none name,",
+    "words": [
+     {
+      "w": "one",
+      "t": 91.038
+     },
+     {
+      "w": "unit,",
+      "t": 91.286
+     },
+     {
+      "w": "one",
+      "t": 91.808
+     },
+     {
+      "w": "name,",
+      "t": 92.054
+     }
+    ]
+   },
+   {
+    "start": 92.576,
+    "end": 94.1,
+    "text": "one singular verb.",
+    "words": [
+     {
+      "w": "one",
+      "t": 92.576
+     },
+     {
+      "w": "singular",
+      "t": 92.822
+     },
+     {
+      "w": "verb.",
+      "t": 93.344
+     }
+    ]
+   },
+   {
+    "start": 94.14,
+    "end": 95.413,
+    "text": "That’s error one.",
+    "words": [
+     {
+      "w": "That’s",
+      "t": 94.14
+     },
+     {
+      "w": "error",
+      "t": 94.383
+     },
+     {
+      "w": "one.",
+      "t": 94.594
      }
     ]
    }

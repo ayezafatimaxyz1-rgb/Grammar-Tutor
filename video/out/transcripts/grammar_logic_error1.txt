@@ -1,0 +1,27 @@
+Grammar Detective, Grammar Logic Series: Error 1
+Narration: George (British English, male)
+
+[0:00.35] Grammar Logic Series. Error one.
+
+[0:04.22] Look at this sentence: ‘The furniture are expensive.’ It sounds fine, but it’s wrong. Let’s find out why, with logic, not memorising.
+
+[0:14.38] Here is the idea. Some nouns don’t name one single thing. They name a whole group of things, and the group acts as one unit.
+
+[0:23.92] Let’s see it. Here is a chair. Here is a table. A sofa. And a bed.
+
+[0:29.65] Four different things. But English doesn’t use four names here. It draws a circle around them, and gives the whole group one name: furniture.
+
+[0:39.78] So furniture is not one object. It is one unit. And a unit means one.
+
+[0:46.25] One is always singular. We can’t add s to one. So there is no ‘furnitures’, and the verb must be singular too.
+
+[0:54.62] So the correct sentence is: ‘The furniture is expensive.’
+
+[0:59.92] Let’s prove it again. A plate. A bowl. A mug. Circle them, and name the group: crockery. One unit, so: ‘The crockery is clean.’ Never ‘crockeries’.
+
+[1:11.02] One more. A fork. A knife. A spoon. Circle them: cutlery. One unit, so: ‘The cutlery is in the drawer.’
+
+[1:19.72] And if you need a number? Count the pieces, not the unit: two pieces of furniture, a piece of cutlery.
+
+[1:27.48] So remember the logic: many things, one circle, one unit, one name, one singular verb. That’s error one.
+

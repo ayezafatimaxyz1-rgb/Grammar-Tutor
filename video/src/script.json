@@ -339,6 +339,86 @@
       ],
       "slug": "real_life_one_unit",
       "accent": "unit"
+    },
+    {
+      "id": "wb",
+      "title": "Grammar Logic Series: Error 1",
+      "slug": "grammar_logic_error1",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "wb01",
+          "text": "Grammar Logic Series. Error one.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "wb02",
+          "text": "Look at this sentence: ‘The furniture are expensive.’ It sounds fine, but it’s wrong. Let’s find out why, with logic, not memorising.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "wb03",
+          "text": "Here is the idea. Some nouns don’t name one single thing. They name a whole group of things, and the group acts as one unit.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "wb04",
+          "text": "Let’s see it. Here is a chair. Here is a table. A sofa. And a bed.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "wb05",
+          "text": "Four different things. But English doesn’t use four names here. It draws a circle around them, and gives the whole group one name: furniture.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "wb06",
+          "text": "So furniture is not one object. It is one unit. And a unit means one.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "wb07",
+          "text": "One is always singular. We can’t add s to one. So there is no ‘furnitures’, and the verb must be singular too.",
+          "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "wb08",
+          "text": "So the correct sentence is: ‘The furniture is expensive.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "wb09",
+          "text": "Let’s prove it again. A plate. A bowl. A mug. Circle them, and name the group: crockery. One unit, so: ‘The crockery is clean.’ Never ‘crockeries’.",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "wb10",
+          "text": "One more. A fork. A knife. A spoon. Circle them: cutlery. One unit, so: ‘The cutlery is in the drawer.’",
+          "pad": 1.0,
+          "scene": "Board"
+        },
+        {
+          "id": "wb11",
+          "text": "And if you need a number? Count the pieces, not the unit: two pieces of furniture, a piece of cutlery.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "wb12",
+          "text": "So remember the logic: many things, one circle, one unit, one name, one singular verb. That’s error one.",
+          "pad": 2.0,
+          "scene": "Board"
+        }
+      ]
     }
   ]
 }

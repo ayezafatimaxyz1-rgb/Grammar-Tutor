@@ -1,0 +1,251 @@
+1
+00:00:00,370 --> 00:00:02,099
+Grammar
+Logic Series.
+
+2
+00:00:02,139 --> 00:00:03,312
+Error one.
+
+3
+00:00:04,237 --> 00:00:05,603
+Look at this
+sentence:
+
+4
+00:00:05,643 --> 00:00:07,546
+‘The furniture
+are expensive.’
+
+5
+00:00:07,586 --> 00:00:09,836
+It sounds fine,
+but it’s wrong.
+
+6
+00:00:09,876 --> 00:00:11,243
+Let’s find
+out why,
+
+7
+00:00:11,283 --> 00:00:13,467
+with logic,
+not memorising.
+
+8
+00:00:14,403 --> 00:00:16,052
+Here is the idea.
+
+9
+00:00:16,092 --> 00:00:17,610
+Some nouns
+don’t name one
+
+10
+00:00:17,650 --> 00:00:18,866
+single thing.
+
+11
+00:00:18,906 --> 00:00:20,113
+They name
+a whole group
+
+12
+00:00:20,153 --> 00:00:21,657
+of things,
+and the group acts
+
+13
+00:00:21,697 --> 00:00:23,009
+as one unit.
+
+14
+00:00:23,937 --> 00:00:24,803
+Let’s see it.
+
+15
+00:00:24,843 --> 00:00:25,843
+Here is a chair.
+
+16
+00:00:25,883 --> 00:00:26,886
+Here is a table.
+
+17
+00:00:26,926 --> 00:00:28,919
+A sofa. And a bed.
+
+18
+00:00:29,670 --> 00:00:31,193
+Four different
+things.
+
+19
+00:00:31,233 --> 00:00:32,847
+But English
+doesn’t use four
+
+20
+00:00:32,887 --> 00:00:33,951
+names here.
+
+21
+00:00:33,991 --> 00:00:35,755
+It draws a circle
+around them,
+
+22
+00:00:35,795 --> 00:00:37,309
+and gives
+the whole group one
+
+23
+00:00:37,349 --> 00:00:39,068
+name: furniture.
+
+24
+00:00:39,803 --> 00:00:42,386
+So furniture
+is not one object.
+
+25
+00:00:42,426 --> 00:00:43,803
+It is one unit.
+
+26
+00:00:43,843 --> 00:00:45,529
+And a unit
+means one.
+
+27
+00:00:46,270 --> 00:00:47,881
+One is always
+singular.
+
+28
+00:00:47,921 --> 00:00:49,658
+We can’t add
+s to one.
+
+29
+00:00:49,698 --> 00:00:51,459
+So there is no
+‘furnitures’,
+
+30
+00:00:51,499 --> 00:00:53,916
+and the verb must
+be singular too.
+
+31
+00:00:54,637 --> 00:00:56,596
+So the correct
+sentence is:
+
+32
+00:00:56,636 --> 00:00:58,803
+‘The furniture
+is expensive.’
+
+33
+00:00:59,937 --> 00:01:01,270
+Let’s prove
+it again.
+
+34
+00:01:01,310 --> 00:01:02,742
+A plate. A bowl.
+
+35
+00:01:02,782 --> 00:01:04,155
+A mug.
+Circle them,
+
+36
+00:01:04,195 --> 00:01:05,259
+and name
+the group:
+
+37
+00:01:05,299 --> 00:01:07,495
+crockery.
+One unit, so:
+
+38
+00:01:07,535 --> 00:01:08,575
+‘The crockery
+is clean.’
+
+39
+00:01:08,615 --> 00:01:09,911
+Never
+‘crockeries’.
+
+40
+00:01:11,037 --> 00:01:13,244
+One more. A fork.
+
+41
+00:01:13,284 --> 00:01:14,784
+A knife. A spoon.
+
+42
+00:01:14,824 --> 00:01:15,563
+Circle them:
+
+43
+00:01:15,603 --> 00:01:16,950
+cutlery.
+One unit, so:
+
+44
+00:01:16,990 --> 00:01:18,587
+‘The cutlery
+is in the drawer.’
+
+45
+00:01:19,737 --> 00:01:21,199
+And if you
+need a number?
+
+46
+00:01:21,239 --> 00:01:22,389
+Count the pieces,
+
+47
+00:01:22,429 --> 00:01:23,474
+not the unit:
+
+48
+00:01:23,514 --> 00:01:24,997
+two pieces
+of furniture,
+
+49
+00:01:25,037 --> 00:01:26,567
+a piece
+of cutlery.
+
+50
+00:01:27,503 --> 00:01:29,188
+So remember
+the logic:
+
+51
+00:01:29,228 --> 00:01:30,998
+many things,
+one circle,
+
+52
+00:01:31,038 --> 00:01:32,536
+one unit,
+one name,
+
+53
+00:01:32,576 --> 00:01:34,100
+one singular verb.
+
+54
+00:01:34,140 --> 00:01:35,413
+That’s error one.
+
