@@ -5,6 +5,8 @@ import { Seg, TIMINGS } from "./timing";
 import { ChatSample } from "./samples/Chat";
 import { NotesSample } from "./samples/NotesAlive";
 import { WhiteboardSample } from "./samples/Whiteboard";
+import { QuizSample } from "./samples/Quiz";
+import { VersusSample } from "./samples/Versus";
 
 const videos = (TIMINGS as unknown as { videos: Record<string, Seg[]> }).videos;
 const total = (segs: { frames: number }[]) => segs.reduce((a, s) => a + s.frames, 0);
@@ -21,6 +23,8 @@ export const Root: React.FC = () => (
         <Composition id="SampleNotes" component={wrap(NotesSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
         <Composition id="SampleWhiteboard" component={wrap(WhiteboardSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
         <Composition id="SampleChat" component={wrap(ChatSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleQuiz" component={wrap(QuizSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleVersus" component={wrap(VersusSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
       </>
     )}
   </>

@@ -2031,12 +2031,12 @@
   ],
   "sm": [
    {
-    "id": "sm1",
+    "id": "sm01",
     "scene": "-",
-    "audio": "audio/sm1.mp3",
+    "audio": "audio/sm01.mp3",
     "start": 0.0,
     "startFrame": 0,
-    "frames": 122,
+    "frames": 143,
     "lead": 0.35,
     "audioDur": 3.192,
     "parts": [
@@ -2079,14 +2079,14 @@
     "text": "Why is ‘The furniture are expensive’ wrong?"
    },
    {
-    "id": "sm2",
+    "id": "sm02",
     "scene": "-",
-    "audio": "audio/sm2.mp3",
-    "start": 4.067,
-    "startFrame": 122,
-    "frames": 172,
+    "audio": "audio/sm02.mp3",
+    "start": 4.767,
+    "startFrame": 143,
+    "frames": 213,
     "lead": 0.35,
-    "audioDur": 5.064,
+    "audioDur": 6.432,
     "parts": [
      {
       "from": 0.0,
@@ -2096,65 +2096,81 @@
     ],
     "words": [
      {
-      "w": "Furniture",
+      "w": "Look",
       "t": 0.02
      },
      {
-      "w": "contains",
-      "t": 0.622
+      "w": "at",
+      "t": 0.304
      },
      {
-      "w": "many",
-      "t": 1.168
+      "w": "what",
+      "t": 0.485
      },
      {
-      "w": "things:",
-      "t": 1.484
+      "w": "furniture",
+      "t": 0.769
+     },
+     {
+      "w": "contains:",
+      "t": 1.313
      },
      {
       "w": "a",
-      "t": 2.258
+      "t": 2.115
      },
      {
       "w": "chair,",
-      "t": 2.409
+      "t": 2.258
      },
      {
       "w": "a",
-      "t": 3.04
+      "t": 2.864
      },
      {
       "w": "table,",
-      "t": 3.153
+      "t": 2.997
      },
      {
       "w": "a",
-      "t": 3.626
+      "t": 3.558
      },
      {
       "w": "sofa,",
-      "t": 3.738
+      "t": 3.691
      },
      {
       "w": "a",
-      "t": 4.166
+      "t": 4.198
      },
      {
       "w": "bed.",
-      "t": 4.279
+      "t": 4.332
+     },
+     {
+      "w": "Many",
+      "t": 5.053
+     },
+     {
+      "w": "different",
+      "t": 5.26
+     },
+     {
+      "w": "things.",
+      "t": 5.655
      }
     ],
-    "text": "Furniture contains many things: a chair, a table, a sofa, a bed."
+    "text": "Look at what furniture contains: a chair, a table, a sofa, a bed. Many different things."
    },
    {
-    "id": "sm3",
+    "id": "sm03",
     "scene": "-",
-    "audio": "audio/sm3.mp3",
-    "start": 9.8,
-    "startFrame": 294,
-    "frames": 148,
+    "audio": "audio/sm03.mp3",
+    "start": 11.867,
+    "startFrame": 356,
+    "frames": 217,
     "lead": 0.35,
-    "audioDur": 4.272,
+    "audioDur": 6.576,
     "parts": [
      {
       "from": 0.0,
@@ -2169,56 +2185,80 @@
      },
      {
       "w": "English",
-      "t": 0.254
+      "t": 0.228
+     },
+     {
+      "w": "doesn’t",
+      "t": 0.62
+     },
+     {
+      "w": "name",
+      "t": 1.013
+     },
+     {
+      "w": "each",
+      "t": 1.266
+     },
+     {
+      "w": "one.",
+      "t": 1.52
+     },
+     {
+      "w": "It",
+      "t": 2.143
      },
      {
       "w": "groups",
-      "t": 0.696
+      "t": 2.341
      },
      {
       "w": "them",
-      "t": 1.085
+      "t": 2.762
      },
      {
-      "w": "together,",
-      "t": 1.371
+      "w": "together",
+      "t": 3.073
      },
      {
       "w": "and",
-      "t": 2.072
+      "t": 3.607
      },
      {
       "w": "names",
-      "t": 2.302
+      "t": 3.861
      },
      {
       "w": "them",
-      "t": 2.635
+      "t": 4.226
      },
      {
       "w": "as",
-      "t": 2.917
+      "t": 4.536
      },
      {
       "w": "one",
-      "t": 3.096
+      "t": 4.732
      },
      {
-      "w": "unit.",
-      "t": 3.326
+      "w": "unit:",
+      "t": 4.986
+     },
+     {
+      "w": "furniture.",
+      "t": 5.634
      }
     ],
-    "text": "But English groups them together, and names them as one unit."
+    "text": "But English doesn’t name each one. It groups them together and names them as one unit: furniture."
    },
    {
-    "id": "sm4",
+    "id": "sm04",
     "scene": "-",
-    "audio": "audio/sm4.mp3",
-    "start": 14.733,
-    "startFrame": 442,
-    "frames": 163,
+    "audio": "audio/sm04.mp3",
+    "start": 19.1,
+    "startFrame": 573,
+    "frames": 311,
     "lead": 0.35,
-    "audioDur": 4.752,
+    "audioDur": 9.6,
     "parts": [
      {
       "from": 0.0,
@@ -2228,103 +2268,719 @@
     ],
     "words": [
      {
-      "w": "Unit",
+      "w": "Why?",
       "t": 0.02
      },
      {
-      "w": "means",
-      "t": 0.319
-     },
-     {
-      "w": "one.",
-      "t": 0.671
-     },
-     {
-      "w": "And",
-      "t": 1.404
-     },
-     {
-      "w": "one",
-      "t": 1.614
-     },
-     {
-      "w": "is",
-      "t": 1.824
-     },
-     {
-      "w": "always",
-      "t": 1.987
-     },
-     {
-      "w": "singular.",
-      "t": 2.336
-     },
-     {
-      "w": "We",
-      "t": 3.199
-     },
-     {
-      "w": "can’t",
-      "t": 3.34
-     },
-     {
-      "w": "add",
-      "t": 3.602
-     },
-     {
-      "w": "s",
-      "t": 3.784
-     },
-     {
-      "w": "to",
-      "t": 3.885
-     },
-     {
-      "w": "one.",
-      "t": 4.027
-     }
-    ],
-    "text": "Unit means one. And one is always singular. We can’t add s to one."
-   },
-   {
-    "id": "sm5",
-    "scene": "-",
-    "audio": "audio/sm5.mp3",
-    "start": 20.167,
-    "startFrame": 605,
-    "frames": 144,
-    "lead": 0.35,
-    "audioDur": 2.64,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "So:",
-      "t": 0.02
-     },
-     {
-      "w": "‘The",
-      "t": 1.451
+      "w": "Because",
+      "t": 0.654
      },
      {
       "w": "furniture",
-      "t": 1.574
+      "t": 1.055
      },
      {
       "w": "is",
-      "t": 1.863
+      "t": 1.548
+     },
+     {
+      "w": "not",
+      "t": 1.713
+     },
+     {
+      "w": "the",
+      "t": 1.924
+     },
+     {
+      "w": "name",
+      "t": 2.137
+     },
+     {
+      "w": "of",
+      "t": 2.395
+     },
+     {
+      "w": "an",
+      "t": 2.56
+     },
+     {
+      "w": "object.",
+      "t": 2.725
+     },
+     {
+      "w": "It’s",
+      "t": 3.5
+     },
+     {
+      "w": "the",
+      "t": 3.747
+     },
+     {
+      "w": "name",
+      "t": 3.948
+     },
+     {
+      "w": "of",
+      "t": 4.194
+     },
+     {
+      "w": "the",
+      "t": 4.35
+     },
+     {
+      "w": "whole",
+      "t": 4.552
+     },
+     {
+      "w": "collection.",
+      "t": 4.843
+     },
+     {
+      "w": "The",
+      "t": 5.76
+     },
+     {
+      "w": "word",
+      "t": 5.985
+     },
+     {
+      "w": "comes",
+      "t": 6.262
+     },
+     {
+      "w": "from",
+      "t": 6.587
+     },
+     {
+      "w": "‘furnish’:",
+      "t": 6.863
+     },
+     {
+      "w": "everything",
+      "t": 7.641
+     },
+     {
+      "w": "you",
+      "t": 8.078
+     },
+     {
+      "w": "furnish",
+      "t": 8.249
+     },
+     {
+      "w": "a",
+      "t": 8.572
+     },
+     {
+      "w": "room",
+      "t": 8.668
+     },
+     {
+      "w": "with.",
+      "t": 8.876
+     }
+    ],
+    "text": "Why? Because furniture is not the name of an object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
+   },
+   {
+    "id": "sm05",
+    "scene": "-",
+    "audio": "audio/sm05.mp3",
+    "start": 29.467,
+    "startFrame": 884,
+    "frames": 257,
+    "lead": 0.35,
+    "audioDur": 7.392,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "And",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.244
+     },
+     {
+      "w": "unit",
+      "t": 0.369
+     },
+     {
+      "w": "means",
+      "t": 0.642
+     },
+     {
+      "w": "one.",
+      "t": 0.966
+     },
+     {
+      "w": "One",
+      "t": 1.637
+     },
+     {
+      "w": "is",
+      "t": 1.847
+     },
+     {
+      "w": "always",
+      "t": 2.01
+     },
+     {
+      "w": "singular.",
+      "t": 2.36
+     },
+     {
+      "w": "We",
+      "t": 3.221
+     },
+     {
+      "w": "can’t",
+      "t": 3.39
+     },
+     {
+      "w": "add",
+      "t": 3.706
+     },
+     {
+      "w": "s",
+      "t": 3.924
+     },
+     {
+      "w": "to",
+      "t": 4.045
+     },
+     {
+      "w": "one.",
+      "t": 4.215
+     },
+     {
+      "w": "So:",
+      "t": 4.87
+     },
+     {
+      "w": "‘The",
+      "t": 5.526
+     },
+     {
+      "w": "furniture",
+      "t": 5.72
+     },
+     {
+      "w": "is",
+      "t": 6.174
      },
      {
       "w": "expensive.’",
-      "t": 1.96
+      "t": 6.324
      }
     ],
-    "text": "So: ‘The furniture is expensive.’"
+    "text": "And a unit means one. One is always singular. We can’t add s to one. So: ‘The furniture is expensive.’"
+   },
+   {
+    "id": "sm06",
+    "scene": "-",
+    "audio": "audio/sm06.mp3",
+    "start": 38.033,
+    "startFrame": 1141,
+    "frames": 436,
+    "lead": 0.35,
+    "audioDur": 13.776,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "The",
+      "t": 0.02
+     },
+     {
+      "w": "same",
+      "t": 0.242
+     },
+     {
+      "w": "logic",
+      "t": 0.512
+     },
+     {
+      "w": "works",
+      "t": 0.833
+     },
+     {
+      "w": "for",
+      "t": 1.153
+     },
+     {
+      "w": "the",
+      "t": 1.375
+     },
+     {
+      "w": "whole",
+      "t": 1.597
+     },
+     {
+      "w": "family.",
+      "t": 1.917
+     },
+     {
+      "w": "Luggage:",
+      "t": 2.729
+     },
+     {
+      "w": "bags",
+      "t": 3.5
+     },
+     {
+      "w": "and",
+      "t": 3.823
+     },
+     {
+      "w": "suitcases.",
+      "t": 4.087
+     },
+     {
+      "w": "Equipment:",
+      "t": 5.234
+     },
+     {
+      "w": "tools",
+      "t": 5.971
+     },
+     {
+      "w": "and",
+      "t": 6.315
+     },
+     {
+      "w": "machines.",
+      "t": 6.553
+     },
+     {
+      "w": "Clothing:",
+      "t": 7.529
+     },
+     {
+      "w": "shirts",
+      "t": 8.246
+     },
+     {
+      "w": "and",
+      "t": 8.592
+     },
+     {
+      "w": "trousers.",
+      "t": 8.8
+     },
+     {
+      "w": "Crockery:",
+      "t": 9.656
+     },
+     {
+      "w": "plates",
+      "t": 10.373
+     },
+     {
+      "w": "and",
+      "t": 10.72
+     },
+     {
+      "w": "cups.",
+      "t": 10.928
+     },
+     {
+      "w": "Stationery:",
+      "t": 11.598
+     },
+     {
+      "w": "pens",
+      "t": 12.534
+     },
+     {
+      "w": "and",
+      "t": 12.764
+     },
+     {
+      "w": "paper.",
+      "t": 12.953
+     }
+    ],
+    "text": "The same logic works for the whole family. Luggage: bags and suitcases. Equipment: tools and machines. Clothing: shirts and trousers. Crockery: plates and cups. Stationery: pens and paper."
+   },
+   {
+    "id": "sm07",
+    "scene": "-",
+    "audio": "audio/sm07.mp3",
+    "start": 52.567,
+    "startFrame": 1577,
+    "frames": 258,
+    "lead": 0.35,
+    "audioDur": 7.824,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Notice",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.446
+     },
+     {
+      "w": "endings:",
+      "t": 0.702
+     },
+     {
+      "w": "luggage,",
+      "t": 1.526
+     },
+     {
+      "w": "equipment,",
+      "t": 2.22
+     },
+     {
+      "w": "clothing,",
+      "t": 2.944
+     },
+     {
+      "w": "crockery.",
+      "t": 3.648
+     },
+     {
+      "w": "These",
+      "t": 4.613
+     },
+     {
+      "w": "endings",
+      "t": 4.895
+     },
+     {
+      "w": "often",
+      "t": 5.262
+     },
+     {
+      "w": "build",
+      "t": 5.544
+     },
+     {
+      "w": "a",
+      "t": 5.825
+     },
+     {
+      "w": "word",
+      "t": 5.933
+     },
+     {
+      "w": "for",
+      "t": 6.172
+     },
+     {
+      "w": "a",
+      "t": 6.367
+     },
+     {
+      "w": "whole",
+      "t": 6.475
+     },
+     {
+      "w": "collection.",
+      "t": 6.757
+     }
+    ],
+    "text": "Notice the endings: luggage, equipment, clothing, crockery. These endings often build a word for a whole collection."
+   },
+   {
+    "id": "sm08",
+    "scene": "-",
+    "audio": "audio/sm08.mp3",
+    "start": 61.167,
+    "startFrame": 1835,
+    "frames": 247,
+    "lead": 0.35,
+    "audioDur": 7.464,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "each",
+      "t": 0.212
+     },
+     {
+      "w": "one",
+      "t": 0.513
+     },
+     {
+      "w": "is",
+      "t": 0.76
+     },
+     {
+      "w": "one",
+      "t": 0.951
+     },
+     {
+      "w": "unit,",
+      "t": 1.197
+     },
+     {
+      "w": "with",
+      "t": 1.717
+     },
+     {
+      "w": "a",
+      "t": 2.032
+     },
+     {
+      "w": "singular",
+      "t": 2.175
+     },
+     {
+      "w": "verb:",
+      "t": 2.718
+     },
+     {
+      "w": "the",
+      "t": 3.375
+     },
+     {
+      "w": "luggage",
+      "t": 3.585
+     },
+     {
+      "w": "is",
+      "t": 3.982
+     },
+     {
+      "w": "heavy,",
+      "t": 4.146
+     },
+     {
+      "w": "the",
+      "t": 4.637
+     },
+     {
+      "w": "equipment",
+      "t": 4.881
+     },
+     {
+      "w": "is",
+      "t": 5.451
+     },
+     {
+      "w": "new,",
+      "t": 5.641
+     },
+     {
+      "w": "my",
+      "t": 6.102
+     },
+     {
+      "w": "clothing",
+      "t": 6.242
+     },
+     {
+      "w": "is",
+      "t": 6.622
+     },
+     {
+      "w": "wet.",
+      "t": 6.762
+     }
+    ],
+    "text": "So each one is one unit, with a singular verb: the luggage is heavy, the equipment is new, my clothing is wet."
+   },
+   {
+    "id": "sm09",
+    "scene": "-",
+    "audio": "audio/sm09.mp3",
+    "start": 69.4,
+    "startFrame": 2082,
+    "frames": 238,
+    "lead": 0.35,
+    "audioDur": 7.152,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Need",
+      "t": 0.02
+     },
+     {
+      "w": "to",
+      "t": 0.268
+     },
+     {
+      "w": "count",
+      "t": 0.426
+     },
+     {
+      "w": "them?",
+      "t": 0.719
+     },
+     {
+      "w": "Count",
+      "t": 1.373
+     },
+     {
+      "w": "a",
+      "t": 1.743
+     },
+     {
+      "w": "piece:",
+      "t": 1.887
+     },
+     {
+      "w": "two",
+      "t": 2.599
+     },
+     {
+      "w": "pieces",
+      "t": 2.832
+     },
+     {
+      "w": "of",
+      "t": 3.219
+     },
+     {
+      "w": "furniture,",
+      "t": 3.4
+     },
+     {
+      "w": "three",
+      "t": 4.149
+     },
+     {
+      "w": "pieces",
+      "t": 4.486
+     },
+     {
+      "w": "of",
+      "t": 4.874
+     },
+     {
+      "w": "luggage,",
+      "t": 5.055
+     },
+     {
+      "w": "an",
+      "t": 5.7
+     },
+     {
+      "w": "item",
+      "t": 5.844
+     },
+     {
+      "w": "of",
+      "t": 6.072
+     },
+     {
+      "w": "clothing.",
+      "t": 6.216
+     }
+    ],
+    "text": "Need to count them? Count a piece: two pieces of furniture, three pieces of luggage, an item of clothing."
+   },
+   {
+    "id": "sm10",
+    "scene": "-",
+    "audio": "audio/sm10.mp3",
+    "start": 77.333,
+    "startFrame": 2320,
+    "frames": 238,
+    "lead": 0.35,
+    "audioDur": 5.568,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "don’t",
+      "t": 0.197
+     },
+     {
+      "w": "memorise",
+      "t": 0.526
+     },
+     {
+      "w": "the",
+      "t": 1.005
+     },
+     {
+      "w": "list.",
+      "t": 1.234
+     },
+     {
+      "w": "See",
+      "t": 1.966
+     },
+     {
+      "w": "the",
+      "t": 2.218
+     },
+     {
+      "w": "unit:",
+      "t": 2.472
+     },
+     {
+      "w": "many",
+      "t": 3.116
+     },
+     {
+      "w": "things,",
+      "t": 3.366
+     },
+     {
+      "w": "one",
+      "t": 3.885
+     },
+     {
+      "w": "name,",
+      "t": 4.09
+     },
+     {
+      "w": "one",
+      "t": 4.519
+     },
+     {
+      "w": "verb.",
+      "t": 4.723
+     }
+    ],
+    "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
    }
   ]
  },
@@ -4681,247 +5337,1034 @@
     ]
    },
    {
-    "start": 4.437,
-    "end": 5.861,
-    "text": "Furniture\ncontains many",
+    "start": 5.137,
+    "end": 6.39,
+    "text": "Look at what\nfurniture",
     "words": [
      {
-      "w": "Furniture",
-      "t": 4.437
+      "w": "Look",
+      "t": 5.137
      },
      {
-      "w": "contains",
-      "t": 5.039
+      "w": "at",
+      "t": 5.421
      },
      {
-      "w": "many",
-      "t": 5.585
+      "w": "what",
+      "t": 5.602
+     },
+     {
+      "w": "furniture",
+      "t": 5.886
      }
     ]
    },
    {
-    "start": 5.901,
-    "end": 8.003,
-    "text": "things: a chair,\na table,",
+    "start": 6.43,
+    "end": 8.635,
+    "text": "contains:\na chair, a table,",
     "words": [
      {
-      "w": "things:",
-      "t": 5.901
+      "w": "contains:",
+      "t": 6.43
      },
      {
       "w": "a",
-      "t": 6.675
+      "t": 7.232
      },
      {
       "w": "chair,",
-      "t": 6.826
+      "t": 7.375
      },
      {
       "w": "a",
-      "t": 7.457
+      "t": 7.981
      },
      {
       "w": "table,",
-      "t": 7.57
+      "t": 8.114
      }
     ]
    },
    {
-    "start": 8.043,
-    "end": 9.731,
+    "start": 8.675,
+    "end": 10.13,
     "text": "a sofa, a bed.",
     "words": [
      {
       "w": "a",
-      "t": 8.043
+      "t": 8.675
      },
      {
       "w": "sofa,",
-      "t": 8.155
+      "t": 8.808
      },
      {
       "w": "a",
-      "t": 8.583
+      "t": 9.315
      },
      {
       "w": "bed.",
-      "t": 8.696
+      "t": 9.449
      }
     ]
    },
    {
     "start": 10.17,
-    "end": 11.481,
-    "text": "But English\ngroups them",
+    "end": 11.799,
+    "text": "Many different\nthings.",
     "words": [
      {
-      "w": "But",
+      "w": "Many",
       "t": 10.17
      },
      {
+      "w": "different",
+      "t": 10.377
+     },
+     {
+      "w": "things.",
+      "t": 10.772
+     }
+    ]
+   },
+   {
+    "start": 12.237,
+    "end": 14.32,
+    "text": "But English doesn’t\nname each one.",
+    "words": [
+     {
+      "w": "But",
+      "t": 12.237
+     },
+     {
       "w": "English",
-      "t": 10.404
+      "t": 12.445
      },
      {
-      "w": "groups",
-      "t": 10.846
+      "w": "doesn’t",
+      "t": 12.837
      },
      {
-      "w": "them",
-      "t": 11.235
-     }
-    ]
-   },
-   {
-    "start": 11.521,
-    "end": 13.027,
-    "text": "together,\nand names them",
-    "words": [
-     {
-      "w": "together,",
-      "t": 11.521
+      "w": "name",
+      "t": 13.23
      },
      {
-      "w": "and",
-      "t": 12.222
-     },
-     {
-      "w": "names",
-      "t": 12.452
-     },
-     {
-      "w": "them",
-      "t": 12.785
-     }
-    ]
-   },
-   {
-    "start": 13.067,
-    "end": 14.672,
-    "text": "as one unit.",
-    "words": [
-     {
-      "w": "as",
-      "t": 13.067
-     },
-     {
-      "w": "one",
-      "t": 13.246
-     },
-     {
-      "w": "unit.",
-      "t": 13.476
-     }
-    ]
-   },
-   {
-    "start": 15.103,
-    "end": 16.447,
-    "text": "Unit means one.",
-    "words": [
-     {
-      "w": "Unit",
-      "t": 15.103
-     },
-     {
-      "w": "means",
-      "t": 15.402
+      "w": "each",
+      "t": 13.483
      },
      {
       "w": "one.",
-      "t": 15.754
+      "t": 13.737
      }
     ]
    },
    {
-    "start": 16.487,
-    "end": 18.242,
-    "text": "And one is always\nsingular.",
+    "start": 14.36,
+    "end": 15.784,
+    "text": "It groups\nthem together",
     "words": [
      {
-      "w": "And",
-      "t": 16.487
+      "w": "It",
+      "t": 14.36
+     },
+     {
+      "w": "groups",
+      "t": 14.558
+     },
+     {
+      "w": "them",
+      "t": 14.979
+     },
+     {
+      "w": "together",
+      "t": 15.29
+     }
+    ]
+   },
+   {
+    "start": 15.824,
+    "end": 17.811,
+    "text": "and names them\nas one unit:",
+    "words": [
+     {
+      "w": "and",
+      "t": 15.824
+     },
+     {
+      "w": "names",
+      "t": 16.078
+     },
+     {
+      "w": "them",
+      "t": 16.443
+     },
+     {
+      "w": "as",
+      "t": 16.753
      },
      {
       "w": "one",
-      "t": 16.697
+      "t": 16.949
      },
      {
-      "w": "is",
-      "t": 16.907
-     },
-     {
-      "w": "always",
-      "t": 17.07
-     },
-     {
-      "w": "singular.",
-      "t": 17.419
+      "w": "unit:",
+      "t": 17.203
      }
     ]
    },
    {
-    "start": 18.282,
-    "end": 20.085,
+    "start": 17.851,
+    "end": 19.043,
+    "text": "furniture.",
+    "words": [
+     {
+      "w": "furniture.",
+      "t": 17.851
+     }
+    ]
+   },
+   {
+    "start": 19.47,
+    "end": 20.958,
+    "text": "Why? Because\nfurniture",
+    "words": [
+     {
+      "w": "Why?",
+      "t": 19.47
+     },
+     {
+      "w": "Because",
+      "t": 20.104
+     },
+     {
+      "w": "furniture",
+      "t": 20.505
+     }
+    ]
+   },
+   {
+    "start": 20.998,
+    "end": 22.91,
+    "text": "is not the name\nof an object.",
+    "words": [
+     {
+      "w": "is",
+      "t": 20.998
+     },
+     {
+      "w": "not",
+      "t": 21.163
+     },
+     {
+      "w": "the",
+      "t": 21.374
+     },
+     {
+      "w": "name",
+      "t": 21.587
+     },
+     {
+      "w": "of",
+      "t": 21.845
+     },
+     {
+      "w": "an",
+      "t": 22.01
+     },
+     {
+      "w": "object.",
+      "t": 22.175
+     }
+    ]
+   },
+   {
+    "start": 22.95,
+    "end": 25.17,
+    "text": "It’s the name\nof the whole collection.",
+    "words": [
+     {
+      "w": "It’s",
+      "t": 22.95
+     },
+     {
+      "w": "the",
+      "t": 23.197
+     },
+     {
+      "w": "name",
+      "t": 23.398
+     },
+     {
+      "w": "of",
+      "t": 23.644
+     },
+     {
+      "w": "the",
+      "t": 23.8
+     },
+     {
+      "w": "whole",
+      "t": 24.002
+     },
+     {
+      "w": "collection.",
+      "t": 24.293
+     }
+    ]
+   },
+   {
+    "start": 25.21,
+    "end": 27.051,
+    "text": "The word comes\nfrom ‘furnish’:",
+    "words": [
+     {
+      "w": "The",
+      "t": 25.21
+     },
+     {
+      "w": "word",
+      "t": 25.435
+     },
+     {
+      "w": "comes",
+      "t": 25.712
+     },
+     {
+      "w": "from",
+      "t": 26.037
+     },
+     {
+      "w": "‘furnish’:",
+      "t": 26.313
+     }
+    ]
+   },
+   {
+    "start": 27.091,
+    "end": 29.3,
+    "text": "everything you\nfurnish a room with.",
+    "words": [
+     {
+      "w": "everything",
+      "t": 27.091
+     },
+     {
+      "w": "you",
+      "t": 27.528
+     },
+     {
+      "w": "furnish",
+      "t": 27.699
+     },
+     {
+      "w": "a",
+      "t": 28.022
+     },
+     {
+      "w": "room",
+      "t": 28.118
+     },
+     {
+      "w": "with.",
+      "t": 28.326
+     }
+    ]
+   },
+   {
+    "start": 29.837,
+    "end": 31.414,
+    "text": "And a unit\nmeans one.",
+    "words": [
+     {
+      "w": "And",
+      "t": 29.837
+     },
+     {
+      "w": "a",
+      "t": 30.061
+     },
+     {
+      "w": "unit",
+      "t": 30.186
+     },
+     {
+      "w": "means",
+      "t": 30.459
+     },
+     {
+      "w": "one.",
+      "t": 30.783
+     }
+    ]
+   },
+   {
+    "start": 31.454,
+    "end": 32.998,
+    "text": "One is always\nsingular.",
+    "words": [
+     {
+      "w": "One",
+      "t": 31.454
+     },
+     {
+      "w": "is",
+      "t": 31.664
+     },
+     {
+      "w": "always",
+      "t": 31.827
+     },
+     {
+      "w": "singular.",
+      "t": 32.177
+     }
+    ]
+   },
+   {
+    "start": 33.038,
+    "end": 34.647,
     "text": "We can’t add\ns to one.",
     "words": [
      {
       "w": "We",
-      "t": 18.282
+      "t": 33.038
      },
      {
       "w": "can’t",
-      "t": 18.423
+      "t": 33.207
      },
      {
       "w": "add",
-      "t": 18.685
+      "t": 33.523
      },
      {
       "w": "s",
-      "t": 18.867
+      "t": 33.741
      },
      {
       "w": "to",
-      "t": 18.968
+      "t": 33.862
      },
      {
       "w": "one.",
-      "t": 19.11
+      "t": 34.032
      }
     ]
    },
    {
-    "start": 20.537,
-    "end": 21.928,
+    "start": 34.687,
+    "end": 35.303,
     "text": "So:",
     "words": [
      {
       "w": "So:",
-      "t": 20.537
+      "t": 34.687
      }
     ]
    },
    {
-    "start": 21.968,
-    "end": 23.407,
+    "start": 35.343,
+    "end": 37.459,
     "text": "‘The furniture\nis expensive.’",
     "words": [
      {
       "w": "‘The",
-      "t": 21.968
+      "t": 35.343
      },
      {
       "w": "furniture",
-      "t": 22.091
+      "t": 35.537
      },
      {
       "w": "is",
-      "t": 22.38
+      "t": 35.991
      },
      {
       "w": "expensive.’",
-      "t": 22.477
+      "t": 36.141
+     }
+    ]
+   },
+   {
+    "start": 38.403,
+    "end": 39.718,
+    "text": "The same logic\nworks for",
+    "words": [
+     {
+      "w": "The",
+      "t": 38.403
+     },
+     {
+      "w": "same",
+      "t": 38.625
+     },
+     {
+      "w": "logic",
+      "t": 38.895
+     },
+     {
+      "w": "works",
+      "t": 39.216
+     },
+     {
+      "w": "for",
+      "t": 39.536
+     }
+    ]
+   },
+   {
+    "start": 39.758,
+    "end": 41.072,
+    "text": "the whole family.",
+    "words": [
+     {
+      "w": "the",
+      "t": 39.758
+     },
+     {
+      "w": "whole",
+      "t": 39.98
+     },
+     {
+      "w": "family.",
+      "t": 40.3
+     }
+    ]
+   },
+   {
+    "start": 41.112,
+    "end": 43.577,
+    "text": "Luggage:\nbags and suitcases.",
+    "words": [
+     {
+      "w": "Luggage:",
+      "t": 41.112
+     },
+     {
+      "w": "bags",
+      "t": 41.883
+     },
+     {
+      "w": "and",
+      "t": 42.206
+     },
+     {
+      "w": "suitcases.",
+      "t": 42.47
+     }
+    ]
+   },
+   {
+    "start": 43.617,
+    "end": 45.872,
+    "text": "Equipment:\ntools and machines.",
+    "words": [
+     {
+      "w": "Equipment:",
+      "t": 43.617
+     },
+     {
+      "w": "tools",
+      "t": 44.354
+     },
+     {
+      "w": "and",
+      "t": 44.698
+     },
+     {
+      "w": "machines.",
+      "t": 44.936
+     }
+    ]
+   },
+   {
+    "start": 45.912,
+    "end": 47.999,
+    "text": "Clothing:\nshirts and trousers.",
+    "words": [
+     {
+      "w": "Clothing:",
+      "t": 45.912
+     },
+     {
+      "w": "shirts",
+      "t": 46.629
+     },
+     {
+      "w": "and",
+      "t": 46.975
+     },
+     {
+      "w": "trousers.",
+      "t": 47.183
+     }
+    ]
+   },
+   {
+    "start": 48.039,
+    "end": 49.941,
+    "text": "Crockery:\nplates and cups.",
+    "words": [
+     {
+      "w": "Crockery:",
+      "t": 48.039
+     },
+     {
+      "w": "plates",
+      "t": 48.756
+     },
+     {
+      "w": "and",
+      "t": 49.103
+     },
+     {
+      "w": "cups.",
+      "t": 49.311
+     }
+    ]
+   },
+   {
+    "start": 49.981,
+    "end": 52.409,
+    "text": "Stationery:\npens and paper.",
+    "words": [
+     {
+      "w": "Stationery:",
+      "t": 49.981
+     },
+     {
+      "w": "pens",
+      "t": 50.917
+     },
+     {
+      "w": "and",
+      "t": 51.147
+     },
+     {
+      "w": "paper.",
+      "t": 51.336
+     }
+    ]
+   },
+   {
+    "start": 52.937,
+    "end": 54.403,
+    "text": "Notice\nthe endings:",
+    "words": [
+     {
+      "w": "Notice",
+      "t": 52.937
+     },
+     {
+      "w": "the",
+      "t": 53.363
+     },
+     {
+      "w": "endings:",
+      "t": 53.619
+     }
+    ]
+   },
+   {
+    "start": 54.443,
+    "end": 55.821,
+    "text": "luggage,\nequipment,",
+    "words": [
+     {
+      "w": "luggage,",
+      "t": 54.443
+     },
+     {
+      "w": "equipment,",
+      "t": 55.137
+     }
+    ]
+   },
+   {
+    "start": 55.861,
+    "end": 57.49,
+    "text": "clothing,\ncrockery.",
+    "words": [
+     {
+      "w": "clothing,",
+      "t": 55.861
+     },
+     {
+      "w": "crockery.",
+      "t": 56.565
+     }
+    ]
+   },
+   {
+    "start": 57.53,
+    "end": 58.702,
+    "text": "These endings\noften build",
+    "words": [
+     {
+      "w": "These",
+      "t": 57.53
+     },
+     {
+      "w": "endings",
+      "t": 57.812
+     },
+     {
+      "w": "often",
+      "t": 58.179
+     },
+     {
+      "w": "build",
+      "t": 58.461
+     }
+    ]
+   },
+   {
+    "start": 58.742,
+    "end": 60.991,
+    "text": "a word for a whole\ncollection.",
+    "words": [
+     {
+      "w": "a",
+      "t": 58.742
+     },
+     {
+      "w": "word",
+      "t": 58.85
+     },
+     {
+      "w": "for",
+      "t": 59.089
+     },
+     {
+      "w": "a",
+      "t": 59.284
+     },
+     {
+      "w": "whole",
+      "t": 59.392
+     },
+     {
+      "w": "collection.",
+      "t": 59.674
+     }
+    ]
+   },
+   {
+    "start": 61.537,
+    "end": 63.194,
+    "text": "So each one\nis one unit,",
+    "words": [
+     {
+      "w": "So",
+      "t": 61.537
+     },
+     {
+      "w": "each",
+      "t": 61.729
+     },
+     {
+      "w": "one",
+      "t": 62.03
+     },
+     {
+      "w": "is",
+      "t": 62.277
+     },
+     {
+      "w": "one",
+      "t": 62.468
+     },
+     {
+      "w": "unit,",
+      "t": 62.714
+     }
+    ]
+   },
+   {
+    "start": 63.234,
+    "end": 64.852,
+    "text": "with a singular\nverb:",
+    "words": [
+     {
+      "w": "with",
+      "t": 63.234
+     },
+     {
+      "w": "a",
+      "t": 63.549
+     },
+     {
+      "w": "singular",
+      "t": 63.692
+     },
+     {
+      "w": "verb:",
+      "t": 64.235
+     }
+    ]
+   },
+   {
+    "start": 64.892,
+    "end": 66.114,
+    "text": "the luggage\nis heavy,",
+    "words": [
+     {
+      "w": "the",
+      "t": 64.892
+     },
+     {
+      "w": "luggage",
+      "t": 65.102
+     },
+     {
+      "w": "is",
+      "t": 65.499
+     },
+     {
+      "w": "heavy,",
+      "t": 65.663
+     }
+    ]
+   },
+   {
+    "start": 66.154,
+    "end": 67.579,
+    "text": "the equipment\nis new,",
+    "words": [
+     {
+      "w": "the",
+      "t": 66.154
+     },
+     {
+      "w": "equipment",
+      "t": 66.398
+     },
+     {
+      "w": "is",
+      "t": 66.968
+     },
+     {
+      "w": "new,",
+      "t": 67.158
+     }
+    ]
+   },
+   {
+    "start": 67.619,
+    "end": 69.231,
+    "text": "my clothing\nis wet.",
+    "words": [
+     {
+      "w": "my",
+      "t": 67.619
+     },
+     {
+      "w": "clothing",
+      "t": 67.759
+     },
+     {
+      "w": "is",
+      "t": 68.139
+     },
+     {
+      "w": "wet.",
+      "t": 68.279
+     }
+    ]
+   },
+   {
+    "start": 69.77,
+    "end": 71.083,
+    "text": "Need to count\nthem?",
+    "words": [
+     {
+      "w": "Need",
+      "t": 69.77
+     },
+     {
+      "w": "to",
+      "t": 70.018
+     },
+     {
+      "w": "count",
+      "t": 70.176
+     },
+     {
+      "w": "them?",
+      "t": 70.469
+     }
+    ]
+   },
+   {
+    "start": 71.123,
+    "end": 72.309,
+    "text": "Count a piece:",
+    "words": [
+     {
+      "w": "Count",
+      "t": 71.123
+     },
+     {
+      "w": "a",
+      "t": 71.493
+     },
+     {
+      "w": "piece:",
+      "t": 71.637
+     }
+    ]
+   },
+   {
+    "start": 72.349,
+    "end": 73.859,
+    "text": "two pieces\nof furniture,",
+    "words": [
+     {
+      "w": "two",
+      "t": 72.349
+     },
+     {
+      "w": "pieces",
+      "t": 72.582
+     },
+     {
+      "w": "of",
+      "t": 72.969
+     },
+     {
+      "w": "furniture,",
+      "t": 73.15
+     }
+    ]
+   },
+   {
+    "start": 73.899,
+    "end": 75.41,
+    "text": "three pieces\nof luggage,",
+    "words": [
+     {
+      "w": "three",
+      "t": 73.899
+     },
+     {
+      "w": "pieces",
+      "t": 74.236
+     },
+     {
+      "w": "of",
+      "t": 74.624
+     },
+     {
+      "w": "luggage,",
+      "t": 74.805
+     }
+    ]
+   },
+   {
+    "start": 75.45,
+    "end": 77.152,
+    "text": "an item\nof clothing.",
+    "words": [
+     {
+      "w": "an",
+      "t": 75.45
+     },
+     {
+      "w": "item",
+      "t": 75.594
+     },
+     {
+      "w": "of",
+      "t": 75.822
+     },
+     {
+      "w": "clothing.",
+      "t": 75.966
+     }
+    ]
+   },
+   {
+    "start": 77.703,
+    "end": 79.609,
+    "text": "So don’t memorise\nthe list.",
+    "words": [
+     {
+      "w": "So",
+      "t": 77.703
+     },
+     {
+      "w": "don’t",
+      "t": 77.88
+     },
+     {
+      "w": "memorise",
+      "t": 78.209
+     },
+     {
+      "w": "the",
+      "t": 78.688
+     },
+     {
+      "w": "list.",
+      "t": 78.917
+     }
+    ]
+   },
+   {
+    "start": 79.649,
+    "end": 80.759,
+    "text": "See the unit:",
+    "words": [
+     {
+      "w": "See",
+      "t": 79.649
+     },
+     {
+      "w": "the",
+      "t": 79.901
+     },
+     {
+      "w": "unit:",
+      "t": 80.155
+     }
+    ]
+   },
+   {
+    "start": 80.799,
+    "end": 82.162,
+    "text": "many things,\none name,",
+    "words": [
+     {
+      "w": "many",
+      "t": 80.799
+     },
+     {
+      "w": "things,",
+      "t": 81.049
+     },
+     {
+      "w": "one",
+      "t": 81.568
+     },
+     {
+      "w": "name,",
+      "t": 81.773
+     }
+    ]
+   },
+   {
+    "start": 82.202,
+    "end": 83.501,
+    "text": "one verb.",
+    "words": [
+     {
+      "w": "one",
+      "t": 82.202
+     },
+     {
+      "w": "verb.",
+      "t": 82.406
      }
     ]
    }

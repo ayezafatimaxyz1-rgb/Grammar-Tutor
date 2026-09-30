@@ -375,3 +375,33 @@ export const Flame: React.FC<{ t?: number }> = ({ t = 0 }) => {
     </g>
   );
 };
+
+export const Gear: React.FC<P> = ({ c = C.ink, sw = 6 }) => {
+  const teeth = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2;
+    return <rect key={i} x={-12} y={-82} width={24} height={30} rx={4} transform={`rotate(${(a * 180) / Math.PI})`} fill={tint(c, 0.2)} stroke={c} strokeWidth={sw * 0.8} />;
+  });
+  return (
+    <g>
+      {teeth}
+      <circle r={58} fill={tint(c, 0.14)} stroke={c} strokeWidth={sw} />
+      <circle r={20} fill="none" stroke={c} strokeWidth={sw} />
+    </g>
+  );
+};
+
+export const PenStick: React.FC<P> = ({ c = C.ink, sw = 6 }) => (
+  <g {...line(c, sw)} transform="rotate(-35)">
+    <rect x={-16} y={-90} width={32} height={150} rx={8} fill={tint(c, 0.14)} />
+    <path d="M-16 60 L0 95 L16 60" fill={tint(c, 0.25)} />
+    <path d="M16 -70 L26 -70 L26 -20" fill="none" />
+  </g>
+);
+
+export const Paper: React.FC<P> = ({ c = C.ink, sw = 6 }) => (
+  <g {...line(c, sw)}>
+    <path d="M-60 -80 H30 L60 -50 V80 H-60 Z" fill={tint(c, 0.08)} />
+    <path d="M30 -80 V-50 H60" fill="none" />
+    <path d="M-40 -30 H40 M-40 0 H40 M-40 30 H20" fill="none" />
+  </g>
+);

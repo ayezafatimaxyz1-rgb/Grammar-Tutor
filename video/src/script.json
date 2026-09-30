@@ -157,34 +157,64 @@
    "sample": true,
    "beats": [
     {
-     "id": "sm1",
+     "id": "sm01",
      "scene": "-",
-     "pad": 0.5,
+     "pad": 1.2,
      "text": "Why is ‘The furniture are expensive’ wrong?"
     },
     {
-     "id": "sm2",
+     "id": "sm02",
      "scene": "-",
      "pad": 0.3,
-     "text": "Furniture contains many things: a chair, a table, a sofa, a bed."
+     "text": "Look at what furniture contains: a chair, a table, a sofa, a bed. Many different things."
     },
     {
-     "id": "sm3",
+     "id": "sm03",
      "scene": "-",
      "pad": 0.3,
-     "text": "But English groups them together, and names them as one unit."
+     "text": "But English doesn’t name each one. It groups them together and names them as one unit: furniture."
     },
     {
-     "id": "sm4",
+     "id": "sm04",
      "scene": "-",
-     "pad": 0.3,
-     "text": "Unit means one. And one is always singular. We can’t add s to one."
+     "pad": 0.4,
+     "text": "Why? Because furniture is not the name of an object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
     },
     {
-     "id": "sm5",
+     "id": "sm05",
      "scene": "-",
-     "pad": 1.8,
-     "text": "So: ‘The furniture is expensive.’"
+     "pad": 0.8,
+     "text": "And a unit means one. One is always singular. We can’t add s to one. So: ‘The furniture is expensive.’"
+    },
+    {
+     "id": "sm06",
+     "scene": "-",
+     "pad": 0.4,
+     "text": "The same logic works for the whole family. Luggage: bags and suitcases. Equipment: tools and machines. Clothing: shirts and trousers. Crockery: plates and cups. Stationery: pens and paper."
+    },
+    {
+     "id": "sm07",
+     "scene": "-",
+     "pad": 0.4,
+     "text": "Notice the endings: luggage, equipment, clothing, crockery. These endings often build a word for a whole collection."
+    },
+    {
+     "id": "sm08",
+     "scene": "-",
+     "pad": 0.4,
+     "text": "So each one is one unit, with a singular verb: the luggage is heavy, the equipment is new, my clothing is wet."
+    },
+    {
+     "id": "sm09",
+     "scene": "-",
+     "pad": 0.4,
+     "text": "Need to count them? Count a piece: two pieces of furniture, three pieces of luggage, an item of clothing."
+    },
+    {
+     "id": "sm10",
+     "scene": "-",
+     "pad": 2.0,
+     "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
     }
    ]
   }
