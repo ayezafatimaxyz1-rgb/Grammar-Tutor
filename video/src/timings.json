@@ -6013,146 +6013,14 @@
     "text": "English groups them together. It draws one circle around them, and treats the whole group as one unit, called furniture."
    },
    {
-    "id": "ul_a5",
-    "scene": "Board",
-    "audio": "audio/ul_a5.mp3",
-    "start": 79.333,
-    "startFrame": 2380,
-    "frames": 323,
-    "lead": 0.35,
-    "audioDur": 9.792,
-    "parts": [
-     {
-      "from": 0.0,
-      "to": null,
-      "offset": 0.0
-     }
-    ],
-    "words": [
-     {
-      "w": "Why?",
-      "t": 0.02
-     },
-     {
-      "w": "Because",
-      "t": 0.678
-     },
-     {
-      "w": "furniture",
-      "t": 1.091
-     },
-     {
-      "w": "is",
-      "t": 1.603
-     },
-     {
-      "w": "not",
-      "t": 1.774
-     },
-     {
-      "w": "the",
-      "t": 1.993
-     },
-     {
-      "w": "name",
-      "t": 2.212
-     },
-     {
-      "w": "of",
-      "t": 2.48
-     },
-     {
-      "w": "one",
-      "t": 2.65
-     },
-     {
-      "w": "object.",
-      "t": 2.869
-     },
-     {
-      "w": "It’s",
-      "t": 3.673
-     },
-     {
-      "w": "the",
-      "t": 3.919
-     },
-     {
-      "w": "name",
-      "t": 4.121
-     },
-     {
-      "w": "of",
-      "t": 4.367
-     },
-     {
-      "w": "the",
-      "t": 4.523
-     },
-     {
-      "w": "whole",
-      "t": 4.725
-     },
-     {
-      "w": "collection.",
-      "t": 5.016
-     },
-     {
-      "w": "The",
-      "t": 5.933
-     },
-     {
-      "w": "word",
-      "t": 6.158
-     },
-     {
-      "w": "comes",
-      "t": 6.434
-     },
-     {
-      "w": "from",
-      "t": 6.761
-     },
-     {
-      "w": "‘furnish’:",
-      "t": 7.036
-     },
-     {
-      "w": "everything",
-      "t": 7.814
-     },
-     {
-      "w": "you",
-      "t": 8.256
-     },
-     {
-      "w": "furnish",
-      "t": 8.429
-     },
-     {
-      "w": "a",
-      "t": 8.755
-     },
-     {
-      "w": "room",
-      "t": 8.852
-     },
-     {
-      "w": "with.",
-      "t": 9.063
-     }
-    ],
-    "text": "Why? Because furniture is not the name of one object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
-   },
-   {
     "id": "ul_a6",
     "scene": "Board",
     "audio": "audio/ul_a6.mp3",
-    "start": 90.1,
-    "startFrame": 2703,
-    "frames": 162,
+    "start": 79.333,
+    "startFrame": 2380,
+    "frames": 218,
     "lead": 0.35,
-    "audioDur": 4.536,
+    "audioDur": 6.384,
     "parts": [
      {
       "from": 0.0,
@@ -6166,73 +6034,97 @@
       "t": 0.02
      },
      {
-      "w": "the",
-      "t": 0.221
-     },
-     {
-      "w": "word",
-      "t": 0.422
+      "w": "a",
+      "t": 0.255
      },
      {
       "w": "unit",
-      "t": 0.668
+      "t": 0.386
      },
      {
       "w": "means",
-      "t": 0.913
+      "t": 0.675
      },
      {
       "w": "one.",
-      "t": 1.204
+      "t": 1.016
      },
      {
-      "w": "One",
-      "t": 1.807
+      "w": "The",
+      "t": 1.724
      },
      {
-      "w": "thing.",
-      "t": 2.05
+      "w": "whole",
+      "t": 1.938
+     },
+     {
+      "w": "group",
+      "t": 2.248
+     },
+     {
+      "w": "now",
+      "t": 2.558
+     },
+     {
+      "w": "works",
+      "t": 2.772
+     },
+     {
+      "w": "as",
+      "t": 3.082
+     },
+     {
+      "w": "one",
+      "t": 3.249
+     },
+     {
+      "w": "thing:",
+      "t": 3.464
+     },
+     {
+      "w": "one.",
+      "t": 4.06
      },
      {
       "w": "And",
-      "t": 2.889
+      "t": 4.763
      },
      {
       "w": "we",
-      "t": 3.061
+      "t": 4.932
      },
      {
       "w": "can’t",
-      "t": 3.194
+      "t": 5.064
      },
      {
       "w": "add",
-      "t": 3.442
+      "t": 5.31
      },
      {
       "w": "s",
-      "t": 3.613
+      "t": 5.481
      },
      {
       "w": "to",
-      "t": 3.709
+      "t": 5.575
      },
      {
       "w": "one.",
-      "t": 3.842
+      "t": 5.707
      }
     ],
-    "text": "And the word unit means one. One thing. And we can’t add s to one."
+    "text": "And a unit means one. The whole group now works as one thing: one. And we can’t add s to one."
    },
    {
     "id": "ul_a7",
     "scene": "Board",
     "audio": "audio/ul_a7.mp3",
-    "start": 95.5,
-    "startFrame": 2865,
-    "frames": 221,
+    "start": 86.6,
+    "startFrame": 2598,
+    "frames": 174,
     "lead": 0.35,
-    "audioDur": 6.504,
+    "audioDur": 4.92,
     "parts": [
      {
       "from": 0.0,
@@ -6247,89 +6139,217 @@
      },
      {
       "w": "is",
-      "t": 0.239
+      "t": 0.243
      },
      {
       "w": "always",
-      "t": 0.409
+      "t": 0.416
      },
      {
       "w": "singular.",
-      "t": 0.772
+      "t": 0.785
      },
      {
-      "w": "We",
-      "t": 1.671
-     },
-     {
-      "w": "can’t",
-      "t": 1.859
-     },
-     {
-      "w": "add",
-      "t": 2.208
-     },
-     {
-      "w": "s",
-      "t": 2.45
-     },
-     {
-      "w": "to",
-      "t": 2.584
-     },
-     {
-      "w": "one,",
-      "t": 2.772
-     },
-     {
-      "w": "so",
-      "t": 3.229
+      "w": "So",
+      "t": 1.7
      },
      {
       "w": "the",
-      "t": 3.422
+      "t": 1.885
      },
      {
       "w": "word",
-      "t": 3.67
+      "t": 2.121
      },
      {
       "w": "stays",
-      "t": 3.972
+      "t": 2.413
      },
      {
       "w": "singular,",
-      "t": 4.332
+      "t": 2.756
      },
      {
       "w": "and",
-      "t": 5.076
+      "t": 3.469
      },
      {
       "w": "so",
-      "t": 5.25
+      "t": 3.645
      },
      {
       "w": "does",
-      "t": 5.387
+      "t": 3.783
      },
      {
       "w": "the",
-      "t": 5.601
+      "t": 4.0
      },
      {
       "w": "verb.",
-      "t": 5.776
+      "t": 4.177
      }
     ],
-    "text": "One is always singular. We can’t add s to one, so the word stays singular, and so does the verb."
+    "text": "One is always singular. So the word stays singular, and so does the verb."
+   },
+   {
+    "id": "ul_a5",
+    "scene": "Board",
+    "audio": "audio/ul_a5.mp3",
+    "start": 92.4,
+    "startFrame": 2772,
+    "frames": 377,
+    "lead": 0.35,
+    "audioDur": 11.616,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "But",
+      "t": 0.02
+     },
+     {
+      "w": "why",
+      "t": 0.261
+     },
+     {
+      "w": "is",
+      "t": 0.501
+     },
+     {
+      "w": "furniture",
+      "t": 0.687
+     },
+     {
+      "w": "one",
+      "t": 1.248
+     },
+     {
+      "w": "unit?",
+      "t": 1.489
+     },
+     {
+      "w": "Because",
+      "t": 2.263
+     },
+     {
+      "w": "furniture",
+      "t": 2.72
+     },
+     {
+      "w": "is",
+      "t": 3.285
+     },
+     {
+      "w": "not",
+      "t": 3.474
+     },
+     {
+      "w": "the",
+      "t": 3.715
+     },
+     {
+      "w": "name",
+      "t": 3.958
+     },
+     {
+      "w": "of",
+      "t": 4.254
+     },
+     {
+      "w": "one",
+      "t": 4.441
+     },
+     {
+      "w": "object.",
+      "t": 4.684
+     },
+     {
+      "w": "It’s",
+      "t": 5.571
+     },
+     {
+      "w": "the",
+      "t": 5.817
+     },
+     {
+      "w": "name",
+      "t": 6.018
+     },
+     {
+      "w": "of",
+      "t": 6.264
+     },
+     {
+      "w": "the",
+      "t": 6.421
+     },
+     {
+      "w": "whole",
+      "t": 6.622
+     },
+     {
+      "w": "collection.",
+      "t": 6.913
+     },
+     {
+      "w": "The",
+      "t": 7.829
+     },
+     {
+      "w": "word",
+      "t": 8.049
+     },
+     {
+      "w": "comes",
+      "t": 8.318
+     },
+     {
+      "w": "from",
+      "t": 8.636
+     },
+     {
+      "w": "‘furnish’:",
+      "t": 8.904
+     },
+     {
+      "w": "everything",
+      "t": 9.661
+     },
+     {
+      "w": "you",
+      "t": 10.1
+     },
+     {
+      "w": "furnish",
+      "t": 10.272
+     },
+     {
+      "w": "a",
+      "t": 10.596
+     },
+     {
+      "w": "room",
+      "t": 10.691
+     },
+     {
+      "w": "with.",
+      "t": 10.901
+     }
+    ],
+    "text": "But why is furniture one unit? Because furniture is not the name of one object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
    },
    {
     "id": "ul_a8",
     "scene": "Board",
     "audio": "audio/ul_a8.mp3",
-    "start": 102.867,
-    "startFrame": 3086,
+    "start": 104.967,
+    "startFrame": 3149,
     "frames": 159,
     "lead": 0.35,
     "audioDur": 3.936,
@@ -6384,8 +6404,8 @@
     "id": "ul_a9",
     "scene": "Board",
     "audio": "audio/ul_a9.mp3",
-    "start": 108.167,
-    "startFrame": 3245,
+    "start": 110.267,
+    "startFrame": 3308,
     "frames": 491,
     "lead": 0.35,
     "audioDur": 15.384,
@@ -6548,8 +6568,8 @@
     "id": "ul_a10",
     "scene": "Board",
     "audio": "audio/ul_a10.mp3",
-    "start": 124.533,
-    "startFrame": 3736,
+    "start": 126.633,
+    "startFrame": 3799,
     "frames": 377,
     "lead": 0.35,
     "audioDur": 11.712,
@@ -6664,8 +6684,8 @@
     "id": "ul_a11",
     "scene": "Board",
     "audio": "audio/ul_a11.mp3",
-    "start": 137.1,
-    "startFrame": 4113,
+    "start": 139.2,
+    "startFrame": 4176,
     "frames": 230,
     "lead": 0.35,
     "audioDur": 6.696,
@@ -6768,8 +6788,8 @@
     "id": "ul_a12",
     "scene": "Board",
     "audio": "audio/ul_a12.mp3",
-    "start": 144.767,
-    "startFrame": 4343,
+    "start": 146.867,
+    "startFrame": 4406,
     "frames": 177,
     "lead": 0.35,
     "audioDur": 4.32,
@@ -6844,8 +6864,8 @@
     "id": "ul_b1",
     "scene": "Board",
     "audio": "audio/ul_b1.mp3",
-    "start": 150.667,
-    "startFrame": 4520,
+    "start": 152.767,
+    "startFrame": 4583,
     "frames": 186,
     "lead": 0.35,
     "audioDur": 5.232,
@@ -6924,8 +6944,8 @@
     "id": "ul_b2",
     "scene": "Board",
     "audio": "audio/ul_b2.mp3",
-    "start": 156.867,
-    "startFrame": 4706,
+    "start": 158.967,
+    "startFrame": 4769,
     "frames": 212,
     "lead": 0.35,
     "audioDur": 6.192,
@@ -7000,8 +7020,8 @@
     "id": "ul_b3",
     "scene": "Board",
     "audio": "audio/ul_b3.mp3",
-    "start": 163.933,
-    "startFrame": 4918,
+    "start": 166.033,
+    "startFrame": 4981,
     "frames": 229,
     "lead": 0.35,
     "audioDur": 6.768,
@@ -7096,8 +7116,8 @@
     "id": "ul_b4",
     "scene": "Board",
     "audio": "audio/ul_b4.mp3",
-    "start": 171.567,
-    "startFrame": 5147,
+    "start": 173.667,
+    "startFrame": 5210,
     "frames": 293,
     "lead": 0.35,
     "audioDur": 8.784,
@@ -7204,8 +7224,8 @@
     "id": "ul_b5",
     "scene": "Board",
     "audio": "audio/ul_b5.mp3",
-    "start": 181.333,
-    "startFrame": 5440,
+    "start": 183.433,
+    "startFrame": 5503,
     "frames": 234,
     "lead": 0.35,
     "audioDur": 6.432,
@@ -7292,8 +7312,8 @@
     "id": "ul_b6",
     "scene": "Board",
     "audio": "audio/ul_b6.mp3",
-    "start": 189.133,
-    "startFrame": 5674,
+    "start": 191.233,
+    "startFrame": 5737,
     "frames": 441,
     "lead": 0.35,
     "audioDur": 13.728,
@@ -7456,8 +7476,8 @@
     "id": "ul_b7",
     "scene": "Board",
     "audio": "audio/ul_b7.mp3",
-    "start": 203.833,
-    "startFrame": 6115,
+    "start": 205.933,
+    "startFrame": 6178,
     "frames": 331,
     "lead": 0.35,
     "audioDur": 10.152,
@@ -7564,8 +7584,8 @@
     "id": "ul_b8",
     "scene": "Board",
     "audio": "audio/ul_b8.mp3",
-    "start": 214.867,
-    "startFrame": 6446,
+    "start": 216.967,
+    "startFrame": 6509,
     "frames": 370,
     "lead": 0.35,
     "audioDur": 11.352,
@@ -7716,8 +7736,8 @@
     "id": "ul_b9",
     "scene": "Board",
     "audio": "audio/ul_b9.mp3",
-    "start": 227.2,
-    "startFrame": 6816,
+    "start": 229.3,
+    "startFrame": 6879,
     "frames": 174,
     "lead": 0.35,
     "audioDur": 4.224,
@@ -7792,8 +7812,8 @@
     "id": "ul_c1",
     "scene": "Board",
     "audio": "audio/ul_c1.mp3",
-    "start": 233.0,
-    "startFrame": 6990,
+    "start": 235.1,
+    "startFrame": 7053,
     "frames": 193,
     "lead": 0.35,
     "audioDur": 5.472,
@@ -7880,8 +7900,8 @@
     "id": "ul_c2",
     "scene": "Board",
     "audio": "audio/ul_c2.mp3",
-    "start": 239.433,
-    "startFrame": 7183,
+    "start": 241.533,
+    "startFrame": 7246,
     "frames": 267,
     "lead": 0.35,
     "audioDur": 8.04,
@@ -7968,8 +7988,8 @@
     "id": "ul_c3",
     "scene": "Board",
     "audio": "audio/ul_c3.mp3",
-    "start": 248.333,
-    "startFrame": 7450,
+    "start": 250.433,
+    "startFrame": 7513,
     "frames": 345,
     "lead": 0.35,
     "audioDur": 10.536,
@@ -8108,8 +8128,8 @@
     "id": "ul_c4",
     "scene": "Board",
     "audio": "audio/ul_c4.mp3",
-    "start": 259.833,
-    "startFrame": 7795,
+    "start": 261.933,
+    "startFrame": 7858,
     "frames": 221,
     "lead": 0.35,
     "audioDur": 6.0,
@@ -8184,8 +8204,8 @@
     "id": "ul_c5",
     "scene": "Board",
     "audio": "audio/ul_c5.mp3",
-    "start": 267.2,
-    "startFrame": 8016,
+    "start": 269.3,
+    "startFrame": 8079,
     "frames": 596,
     "lead": 0.35,
     "audioDur": 18.888,
@@ -8420,8 +8440,8 @@
     "id": "ul_c6",
     "scene": "Board",
     "audio": "audio/ul_c6.mp3",
-    "start": 287.067,
-    "startFrame": 8612,
+    "start": 289.167,
+    "startFrame": 8675,
     "frames": 227,
     "lead": 0.35,
     "audioDur": 6.6,
@@ -8496,8 +8516,8 @@
     "id": "ul_c7",
     "scene": "Board",
     "audio": "audio/ul_c7.mp3",
-    "start": 294.633,
-    "startFrame": 8839,
+    "start": 296.733,
+    "startFrame": 8902,
     "frames": 212,
     "lead": 0.35,
     "audioDur": 5.496,
@@ -8592,8 +8612,8 @@
     "id": "ul_d1",
     "scene": "Board",
     "audio": "audio/ul_d1.mp3",
-    "start": 301.7,
-    "startFrame": 9051,
+    "start": 303.8,
+    "startFrame": 9114,
     "frames": 207,
     "lead": 0.35,
     "audioDur": 5.928,
@@ -8680,8 +8700,8 @@
     "id": "ul_d2",
     "scene": "Board",
     "audio": "audio/ul_d2.mp3",
-    "start": 308.6,
-    "startFrame": 9258,
+    "start": 310.7,
+    "startFrame": 9321,
     "frames": 230,
     "lead": 0.35,
     "audioDur": 6.792,
@@ -8764,8 +8784,8 @@
     "id": "ul_d3",
     "scene": "Board",
     "audio": "audio/ul_d3.mp3",
-    "start": 316.267,
-    "startFrame": 9488,
+    "start": 318.367,
+    "startFrame": 9551,
     "frames": 272,
     "lead": 0.35,
     "audioDur": 8.088,
@@ -8872,8 +8892,8 @@
     "id": "ul_d4",
     "scene": "Board",
     "audio": "audio/ul_d4.mp3",
-    "start": 325.333,
-    "startFrame": 9760,
+    "start": 327.433,
+    "startFrame": 9823,
     "frames": 258,
     "lead": 0.35,
     "audioDur": 7.248,
@@ -8972,8 +8992,8 @@
     "id": "ul_d5",
     "scene": "Board",
     "audio": "audio/ul_d5.mp3",
-    "start": 333.933,
-    "startFrame": 10018,
+    "start": 336.033,
+    "startFrame": 10081,
     "frames": 512,
     "lead": 0.35,
     "audioDur": 16.104,
@@ -9156,8 +9176,8 @@
     "id": "ul_d6",
     "scene": "Board",
     "audio": "audio/ul_d6.mp3",
-    "start": 351.0,
-    "startFrame": 10530,
+    "start": 353.1,
+    "startFrame": 10593,
     "frames": 254,
     "lead": 0.35,
     "audioDur": 6.912,
@@ -9264,8 +9284,8 @@
     "id": "ul_e1",
     "scene": "Board",
     "audio": "audio/ul_e1.mp3",
-    "start": 359.467,
-    "startFrame": 10784,
+    "start": 361.567,
+    "startFrame": 10847,
     "frames": 206,
     "lead": 0.35,
     "audioDur": 5.904,
@@ -9352,8 +9372,8 @@
     "id": "ul_e2",
     "scene": "Board",
     "audio": "audio/ul_e2.mp3",
-    "start": 366.333,
-    "startFrame": 10990,
+    "start": 368.433,
+    "startFrame": 11053,
     "frames": 264,
     "lead": 0.35,
     "audioDur": 7.944,
@@ -9444,11 +9464,11 @@
     "id": "ul_e3",
     "scene": "Board",
     "audio": "audio/ul_e3.mp3",
-    "start": 375.133,
-    "startFrame": 11254,
-    "frames": 260,
+    "start": 377.233,
+    "startFrame": 11317,
+    "frames": 481,
     "lead": 0.35,
-    "audioDur": 7.704,
+    "audioDur": 14.88,
     "parts": [
      {
       "from": 0.0,
@@ -9458,86 +9478,274 @@
     ],
     "words": [
      {
-      "w": "Work",
+      "w": "Think",
       "t": 0.02
      },
      {
-      "w": "has",
-      "t": 0.341
+      "w": "about",
+      "t": 0.324
+     },
+     {
+      "w": "what",
+      "t": 0.629
+     },
+     {
+      "w": "work",
+      "t": 0.886
+     },
+     {
+      "w": "means.",
+      "t": 1.144
+     },
+     {
+      "w": "Work",
+      "t": 1.871
+     },
+     {
+      "w": "is",
+      "t": 2.198
      },
      {
       "w": "many",
-      "t": 0.602
+      "t": 2.407
      },
      {
       "w": "small",
-      "t": 0.923
+      "t": 2.735
      },
      {
       "w": "steps:",
-      "t": 1.301
+      "t": 3.122
+     },
+     {
+      "w": "answering",
+      "t": 3.868
      },
      {
       "w": "emails,",
-      "t": 2.03
+      "t": 4.459
+     },
+     {
+      "w": "making",
+      "t": 5.105
      },
      {
       "w": "calls,",
-      "t": 2.695
+      "t": 5.528
+     },
+     {
+      "w": "going",
+      "t": 6.118
+     },
+     {
+      "w": "to",
+      "t": 6.467
      },
      {
       "w": "meetings,",
-      "t": 3.303
+      "t": 6.655
+     },
+     {
+      "w": "writing",
+      "t": 7.381
      },
      {
       "w": "reports.",
-      "t": 4.083
+      "t": 7.838
      },
      {
-      "w": "But",
-      "t": 5.095
+      "w": "We",
+      "t": 8.779
      },
      {
-      "w": "we",
-      "t": 5.292
+      "w": "don’t",
+      "t": 8.929
      },
      {
-      "w": "talk",
-      "t": 5.446
+      "w": "count",
+      "t": 9.208
      },
      {
-      "w": "about",
-      "t": 5.688
+      "w": "each",
+      "t": 9.488
      },
      {
-      "w": "it",
-      "t": 5.973
+      "w": "step.",
+      "t": 9.724
      },
      {
-      "w": "as",
-      "t": 6.127
+      "w": "We",
+      "t": 10.348
+     },
+     {
+      "w": "put",
+      "t": 10.513
      },
      {
       "w": "one",
-      "t": 6.281
+      "t": 10.726
      },
      {
-      "w": "ongoing",
-      "t": 6.479
+      "w": "circle",
+      "t": 10.938
      },
      {
-      "w": "whole.",
-      "t": 6.852
+      "w": "around",
+      "t": 11.293
+     },
+     {
+      "w": "all",
+      "t": 11.647
+     },
+     {
+      "w": "of",
+      "t": 11.859
+     },
+     {
+      "w": "them,",
+      "t": 12.024
+     },
+     {
+      "w": "and",
+      "t": 12.473
+     },
+     {
+      "w": "call",
+      "t": 12.696
+     },
+     {
+      "w": "the",
+      "t": 12.969
+     },
+     {
+      "w": "whole",
+      "t": 13.191
+     },
+     {
+      "w": "activity:",
+      "t": 13.512
+     },
+     {
+      "w": "work.",
+      "t": 14.28
      }
     ],
-    "text": "Work has many small steps: emails, calls, meetings, reports. But we talk about it as one ongoing whole."
+    "text": "Think about what work means. Work is many small steps: answering emails, making calls, going to meetings, writing reports. We don’t count each step. We put one circle around all of them, and call the whole activity: work."
+   },
+   {
+    "id": "ul_e3b",
+    "scene": "Board",
+    "audio": "audio/ul_e3b.mp3",
+    "start": 393.267,
+    "startFrame": 11798,
+    "frames": 360,
+    "lead": 0.35,
+    "audioDur": 10.848,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Research",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.537
+     },
+     {
+      "w": "the",
+      "t": 0.728
+     },
+     {
+      "w": "same.",
+      "t": 0.974
+     },
+     {
+      "w": "Reading,",
+      "t": 1.764
+     },
+     {
+      "w": "asking",
+      "t": 2.409
+     },
+     {
+      "w": "questions,",
+      "t": 2.862
+     },
+     {
+      "w": "collecting",
+      "t": 3.735
+     },
+     {
+      "w": "data,",
+      "t": 4.344
+     },
+     {
+      "w": "testing,",
+      "t": 4.846
+     },
+     {
+      "w": "and",
+      "t": 5.45
+     },
+     {
+      "w": "writing",
+      "t": 5.667
+     },
+     {
+      "w": "up",
+      "t": 6.077
+     },
+     {
+      "w": "the",
+      "t": 6.246
+     },
+     {
+      "w": "results.",
+      "t": 6.463
+     },
+     {
+      "w": "Many",
+      "t": 7.308
+     },
+     {
+      "w": "steps,",
+      "t": 7.605
+     },
+     {
+      "w": "one",
+      "t": 8.172
+     },
+     {
+      "w": "circle,",
+      "t": 8.415
+     },
+     {
+      "w": "one",
+      "t": 9.036
+     },
+     {
+      "w": "process:",
+      "t": 9.279
+     },
+     {
+      "w": "research.",
+      "t": 10.062
+     }
+    ],
+    "text": "Research is the same. Reading, asking questions, collecting data, testing, and writing up the results. Many steps, one circle, one process: research."
    },
    {
     "id": "ul_e4",
     "scene": "Board",
     "audio": "audio/ul_e4.mp3",
-    "start": 383.8,
-    "startFrame": 11514,
+    "start": 405.267,
+    "startFrame": 12158,
     "frames": 217,
     "lead": 0.35,
     "audioDur": 5.856,
@@ -9608,11 +9816,11 @@
     "id": "ul_e5",
     "scene": "Board",
     "audio": "audio/ul_e5.mp3",
-    "start": 391.033,
-    "startFrame": 11731,
-    "frames": 621,
+    "start": 412.5,
+    "startFrame": 12375,
+    "frames": 398,
     "lead": 0.35,
-    "audioDur": 19.728,
+    "audioDur": 12.288,
     "parts": [
      {
       "from": 0.0,
@@ -9627,193 +9835,349 @@
      },
      {
       "w": "old",
-      "t": 0.249
+      "t": 0.262
      },
      {
       "w": "school",
-      "t": 0.48
+      "t": 0.504
      },
      {
       "w": "rule",
-      "t": 0.862
+      "t": 0.907
      },
      {
       "w": "says",
-      "t": 1.144
+      "t": 1.202
      },
      {
       "w": "work,",
-      "t": 1.424
+      "t": 1.498
      },
      {
       "w": "research,",
-      "t": 1.91
+      "t": 2.009
      },
      {
       "w": "progress,",
-      "t": 2.605
+      "t": 2.81
      },
      {
       "w": "travel",
-      "t": 3.301
+      "t": 3.619
      },
      {
       "w": "and",
-      "t": 3.688
+      "t": 4.046
      },
      {
       "w": "exercise",
-      "t": 3.92
+      "t": 4.302
      },
      {
       "w": "are",
-      "t": 4.41
+      "t": 4.842
      },
      {
       "w": "always",
-      "t": 4.642
+      "t": 5.098
      },
      {
       "w": "singular.",
-      "t": 5.028
+      "t": 5.524
      },
      {
       "w": "Skip",
-      "t": 5.982
+      "t": 6.576
      },
      {
       "w": "that.",
-      "t": 6.289
+      "t": 6.892
      },
      {
       "w": "The",
-      "t": 7.097
+      "t": 7.722
      },
      {
       "w": "logic:",
-      "t": 7.347
+      "t": 7.998
      },
      {
       "w": "you’re",
-      "t": 8.041
+      "t": 8.763
      },
      {
       "w": "talking",
-      "t": 8.382
+      "t": 9.096
      },
      {
       "w": "about",
-      "t": 8.767
+      "t": 9.473
      },
      {
       "w": "the",
-      "t": 9.062
+      "t": 9.761
      },
      {
       "w": "whole",
-      "t": 9.266
+      "t": 9.96
      },
      {
       "w": "activity,",
-      "t": 9.561
+      "t": 10.248
      },
      {
       "w": "not",
-      "t": 10.174
+      "t": 10.848
      },
      {
       "w": "separate",
-      "t": 10.378
+      "t": 11.031
      },
      {
       "w": "actions.",
-      "t": 10.809
+      "t": 11.418
+     }
+    ],
+    "text": "The old school rule says work, research, progress, travel and exercise are always singular. Skip that. The logic: you’re talking about the whole activity, not separate actions."
+   },
+   {
+    "id": "ul_e5b",
+    "scene": "Board",
+    "audio": "audio/ul_e5b.mp3",
+    "start": 425.767,
+    "startFrame": 12773,
+    "frames": 726,
+    "lead": 0.35,
+    "audioDur": 23.04,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "The",
+      "t": 0.02
      },
      {
-      "w": "Research:",
-      "t": 11.604
+      "w": "same",
+      "t": 0.235
      },
      {
-      "w": "the",
-      "t": 12.5
+      "w": "goes",
+      "t": 0.498
      },
      {
-      "w": "whole",
-      "t": 12.709
-     },
-     {
-      "w": "process",
-      "t": 13.01
-     },
-     {
-      "w": "of",
-      "t": 13.404
-     },
-     {
-      "w": "studying.",
-      "t": 13.567
-     },
-     {
-      "w": "Travel:",
-      "t": 14.425
-     },
-     {
-      "w": "going",
-      "t": 15.072
-     },
-     {
-      "w": "from",
-      "t": 15.385
-     },
-     {
-      "w": "place",
-      "t": 15.649
-     },
-     {
-      "w": "to",
-      "t": 15.961
-     },
-     {
-      "w": "place.",
-      "t": 16.129
-     },
-     {
-      "w": "Shopping:",
-      "t": 16.874
+      "w": "for",
+      "t": 0.761
      },
      {
       "w": "the",
-      "t": 17.599
+      "t": 0.976
      },
      {
       "w": "whole",
-      "t": 17.782
+      "t": 1.191
+     },
+     {
+      "w": "family.",
+      "t": 1.502
+     },
+     {
+      "w": "Work:",
+      "t": 2.291
+     },
+     {
+      "w": "the",
+      "t": 2.847
+     },
+     {
+      "w": "whole",
+      "t": 3.056
      },
      {
       "w": "activity",
-      "t": 18.048
+      "t": 3.359
      },
      {
       "w": "of",
-      "t": 18.436
+      "t": 3.799
+     },
+     {
+      "w": "working.",
+      "t": 3.962
+     },
+     {
+      "w": "Research:",
+      "t": 4.775
+     },
+     {
+      "w": "the",
+      "t": 5.627
+     },
+     {
+      "w": "whole",
+      "t": 5.824
+     },
+     {
+      "w": "process",
+      "t": 6.109
+     },
+     {
+      "w": "of",
+      "t": 6.482
+     },
+     {
+      "w": "studying.",
+      "t": 6.636
+     },
+     {
+      "w": "Progress:",
+      "t": 7.448
+     },
+     {
+      "w": "the",
+      "t": 8.222
+     },
+     {
+      "w": "process",
+      "t": 8.413
+     },
+     {
+      "w": "of",
+      "t": 8.775
+     },
+     {
+      "w": "improving.",
+      "t": 8.923
+     },
+     {
+      "w": "Travel:",
+      "t": 9.752
+     },
+     {
+      "w": "going",
+      "t": 10.329
+     },
+     {
+      "w": "from",
+      "t": 10.606
+     },
+     {
+      "w": "place",
+      "t": 10.841
+     },
+     {
+      "w": "to",
+      "t": 11.119
+     },
+     {
+      "w": "place.",
+      "t": 11.268
+     },
+     {
+      "w": "Exercise:",
+      "t": 11.93
+     },
+     {
+      "w": "physical",
+      "t": 12.618
+     },
+     {
+      "w": "training",
+      "t": 13.04
+     },
+     {
+      "w": "in",
+      "t": 13.462
+     },
+     {
+      "w": "general.",
+      "t": 13.617
+     },
+     {
+      "w": "Training:",
+      "t": 14.394
+     },
+     {
+      "w": "developing",
+      "t": 15.083
+     },
+     {
+      "w": "a",
+      "t": 15.594
+     },
+     {
+      "w": "skill.",
+      "t": 15.705
+     },
+     {
+      "w": "Sleep:",
+      "t": 16.394
+     },
+     {
+      "w": "the",
+      "t": 16.979
+     },
+     {
+      "w": "state",
+      "t": 17.179
+     },
+     {
+      "w": "of",
+      "t": 17.467
+     },
+     {
+      "w": "sleeping.",
+      "t": 17.624
+     },
+     {
+      "w": "Shopping:",
+      "t": 18.446
      },
      {
       "w": "buying",
-      "t": 18.578
+      "t": 19.182
      },
      {
       "w": "things.",
-      "t": 18.885
+      "t": 19.537
+     },
+     {
+      "w": "And",
+      "t": 20.321
+     },
+     {
+      "w": "business:",
+      "t": 20.536
+     },
+     {
+      "w": "buying,",
+      "t": 21.279
+     },
+     {
+      "w": "selling",
+      "t": 21.715
+     },
+     {
+      "w": "and",
+      "t": 22.037
+     },
+     {
+      "w": "trading.",
+      "t": 22.208
      }
     ],
-    "text": "The old school rule says work, research, progress, travel and exercise are always singular. Skip that. The logic: you’re talking about the whole activity, not separate actions. Research: the whole process of studying. Travel: going from place to place. Shopping: the whole activity of buying things."
+    "text": "The same goes for the whole family. Work: the whole activity of working. Research: the whole process of studying. Progress: the process of improving. Travel: going from place to place. Exercise: physical training in general. Training: developing a skill. Sleep: the state of sleeping. Shopping: buying things. And business: buying, selling and trading."
    },
    {
     "id": "ul_e6",
     "scene": "Board",
     "audio": "audio/ul_e6.mp3",
-    "start": 411.733,
-    "startFrame": 12352,
+    "start": 449.967,
+    "startFrame": 13499,
     "frames": 168,
     "lead": 0.35,
     "audioDur": 4.032,
@@ -9889,11 +10253,483 @@
     "text": "Now think about it. Do we say ‘I do a work’, or ‘I do work’?"
    },
    {
+    "id": "ul_x1",
+    "scene": "Board",
+    "audio": "audio/ul_x1.mp3",
+    "start": 455.567,
+    "startFrame": 13667,
+    "frames": 183,
+    "lead": 0.35,
+    "audioDur": 5.232,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "here’s",
+      "t": 0.203
+     },
+     {
+      "w": "the",
+      "t": 0.594
+     },
+     {
+      "w": "crux.",
+      "t": 0.829
+     },
+     {
+      "w": "How",
+      "t": 1.586
+     },
+     {
+      "w": "do",
+      "t": 1.791
+     },
+     {
+      "w": "you",
+      "t": 1.95
+     },
+     {
+      "w": "know",
+      "t": 2.155
+     },
+     {
+      "w": "a",
+      "t": 2.406
+     },
+     {
+      "w": "noun",
+      "t": 2.52
+     },
+     {
+      "w": "is",
+      "t": 2.77
+     },
+     {
+      "w": "uncountable?",
+      "t": 2.93
+     },
+     {
+      "w": "Check",
+      "t": 3.908
+     },
+     {
+      "w": "five",
+      "t": 4.169
+     },
+     {
+      "w": "things.",
+      "t": 4.39
+     }
+    ],
+    "text": "So here’s the crux. How do you know a noun is uncountable? Check five things."
+   },
+   {
+    "id": "ul_x2",
+    "scene": "Board",
+    "audio": "audio/ul_x2.mp3",
+    "start": 461.667,
+    "startFrame": 13850,
+    "frames": 223,
+    "lead": 0.35,
+    "audioDur": 6.576,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Does",
+      "t": 0.02
+     },
+     {
+      "w": "it",
+      "t": 0.279
+     },
+     {
+      "w": "work",
+      "t": 0.443
+     },
+     {
+      "w": "as",
+      "t": 0.701
+     },
+     {
+      "w": "one",
+      "t": 0.865
+     },
+     {
+      "w": "unit?",
+      "t": 1.077
+     },
+     {
+      "w": "Pens,",
+      "t": 1.758
+     },
+     {
+      "w": "pencils,",
+      "t": 2.395
+     },
+     {
+      "w": "clips",
+      "t": 3.04
+     },
+     {
+      "w": "and",
+      "t": 3.375
+     },
+     {
+      "w": "a",
+      "t": 3.607
+     },
+     {
+      "w": "ruler:",
+      "t": 3.736
+     },
+     {
+      "w": "circle",
+      "t": 4.381
+     },
+     {
+      "w": "them,",
+      "t": 4.794
+     },
+     {
+      "w": "and",
+      "t": 5.319
+     },
+     {
+      "w": "they’re",
+      "t": 5.467
+     },
+     {
+      "w": "stationery.",
+      "t": 5.75
+     }
+    ],
+    "text": "Does it work as one unit? Pens, pencils, clips and a ruler: circle them, and they’re stationery."
+   },
+   {
+    "id": "ul_x3",
+    "scene": "Board",
+    "audio": "audio/ul_x3.mp3",
+    "start": 469.1,
+    "startFrame": 14073,
+    "frames": 116,
+    "lead": 0.35,
+    "audioDur": 3.096,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Is",
+      "t": 0.02
+     },
+     {
+      "w": "it",
+      "t": 0.196
+     },
+     {
+      "w": "a",
+      "t": 0.374
+     },
+     {
+      "w": "material?",
+      "t": 0.499
+     },
+     {
+      "w": "A",
+      "t": 1.432
+     },
+     {
+      "w": "house",
+      "t": 1.542
+     },
+     {
+      "w": "made",
+      "t": 1.827
+     },
+     {
+      "w": "of",
+      "t": 2.068
+     },
+     {
+      "w": "stone.",
+      "t": 2.221
+     }
+    ],
+    "text": "Is it a material? A house made of stone."
+   },
+   {
+    "id": "ul_x4",
+    "scene": "Board",
+    "audio": "audio/ul_x4.mp3",
+    "start": 472.967,
+    "startFrame": 14189,
+    "frames": 153,
+    "lead": 0.35,
+    "audioDur": 4.344,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Is",
+      "t": 0.02
+     },
+     {
+      "w": "it",
+      "t": 0.214
+     },
+     {
+      "w": "usually",
+      "t": 0.407
+     },
+     {
+      "w": "measured",
+      "t": 0.876
+     },
+     {
+      "w": "rather",
+      "t": 1.401
+     },
+     {
+      "w": "than",
+      "t": 1.815
+     },
+     {
+      "w": "counted?",
+      "t": 2.118
+     },
+     {
+      "w": "A",
+      "t": 3.085
+     },
+     {
+      "w": "jar",
+      "t": 3.189
+     },
+     {
+      "w": "of",
+      "t": 3.378
+     },
+     {
+      "w": "honey.",
+      "t": 3.524
+     }
+    ],
+    "text": "Is it usually measured rather than counted? A jar of honey."
+   },
+   {
+    "id": "ul_x5",
+    "scene": "Board",
+    "audio": "audio/ul_x5.mp3",
+    "start": 478.067,
+    "startFrame": 14342,
+    "frames": 126,
+    "lead": 0.35,
+    "audioDur": 3.432,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Is",
+      "t": 0.02
+     },
+     {
+      "w": "it",
+      "t": 0.217
+     },
+     {
+      "w": "abstract,",
+      "t": 0.415
+     },
+     {
+      "w": "with",
+      "t": 1.176
+     },
+     {
+      "w": "no",
+      "t": 1.442
+     },
+     {
+      "w": "physical",
+      "t": 1.613
+     },
+     {
+      "w": "form?",
+      "t": 2.074
+     },
+     {
+      "w": "Peace.",
+      "t": 2.779
+     }
+    ],
+    "text": "Is it abstract, with no physical form? Peace."
+   },
+   {
+    "id": "ul_x6",
+    "scene": "Board",
+    "audio": "audio/ul_x6.mp3",
+    "start": 482.267,
+    "startFrame": 14468,
+    "frames": 151,
+    "lead": 0.35,
+    "audioDur": 4.176,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Or",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.232
+     },
+     {
+      "w": "it",
+      "t": 0.444
+     },
+     {
+      "w": "an",
+      "t": 0.656
+     },
+     {
+      "w": "activity,",
+      "t": 0.868
+     },
+     {
+      "w": "taken",
+      "t": 1.685
+     },
+     {
+      "w": "as",
+      "t": 2.019
+     },
+     {
+      "w": "a",
+      "t": 2.199
+     },
+     {
+      "w": "whole?",
+      "t": 2.327
+     },
+     {
+      "w": "Exercise.",
+      "t": 3.123
+     }
+    ],
+    "text": "Or is it an activity, taken as a whole? Exercise."
+   },
+   {
+    "id": "ul_x7",
+    "scene": "Board",
+    "audio": "audio/ul_x7.mp3",
+    "start": 487.3,
+    "startFrame": 14619,
+    "frames": 200,
+    "lead": 0.35,
+    "audioDur": 5.112,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "If",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.22
+     },
+     {
+      "w": "answer",
+      "t": 0.478
+     },
+     {
+      "w": "is",
+      "t": 0.906
+     },
+     {
+      "w": "yes,",
+      "t": 1.106
+     },
+     {
+      "w": "it’s",
+      "t": 1.593
+     },
+     {
+      "w": "uncountable:",
+      "t": 1.897
+     },
+     {
+      "w": "no",
+      "t": 2.92
+     },
+     {
+      "w": "s,",
+      "t": 3.216
+     },
+     {
+      "w": "and",
+      "t": 3.768
+     },
+     {
+      "w": "a",
+      "t": 3.942
+     },
+     {
+      "w": "singular",
+      "t": 4.037
+     },
+     {
+      "w": "verb.",
+      "t": 4.404
+     }
+    ],
+    "text": "If the answer is yes, it’s uncountable: no s, and a singular verb."
+   },
+   {
     "id": "ul_s1",
     "scene": "Board",
     "audio": "audio/ul_s1.mp3",
-    "start": 417.333,
-    "startFrame": 12520,
+    "start": 493.967,
+    "startFrame": 14819,
     "frames": 110,
     "lead": 0.35,
     "audioDur": 2.808,
@@ -9944,8 +10780,8 @@
     "id": "ul_s2",
     "scene": "Board",
     "audio": "audio/ul_s2.mp3",
-    "start": 421.0,
-    "startFrame": 12630,
+    "start": 497.633,
+    "startFrame": 14929,
     "frames": 379,
     "lead": 0.35,
     "audioDur": 11.664,
@@ -10048,8 +10884,8 @@
     "id": "ul_s3",
     "scene": "Board",
     "audio": "audio/ul_s3.mp3",
-    "start": 433.633,
-    "startFrame": 13009,
+    "start": 510.267,
+    "startFrame": 15308,
     "frames": 347,
     "lead": 0.35,
     "audioDur": 10.416,
@@ -10164,8 +11000,8 @@
     "id": "ul_s4",
     "scene": "Board",
     "audio": "audio/ul_s4.mp3",
-    "start": 445.2,
-    "startFrame": 13356,
+    "start": 521.833,
+    "startFrame": 15655,
     "frames": 272,
     "lead": 0.35,
     "audioDur": 8.112,
@@ -10260,8 +11096,8 @@
     "id": "ul_s5",
     "scene": "Board",
     "audio": "audio/ul_s5.mp3",
-    "start": 454.267,
-    "startFrame": 13628,
+    "start": 530.9,
+    "startFrame": 15927,
     "frames": 359,
     "lead": 0.35,
     "audioDur": 10.992,
@@ -10352,8 +11188,8 @@
     "id": "ul_s6",
     "scene": "Board",
     "audio": "audio/ul_s6.mp3",
-    "start": 466.233,
-    "startFrame": 13987,
+    "start": 542.867,
+    "startFrame": 16286,
     "frames": 306,
     "lead": 0.35,
     "audioDur": 9.048,
@@ -10436,8 +11272,8 @@
     "id": "ul_s7",
     "scene": "Board",
     "audio": "audio/ul_s7.mp3",
-    "start": 476.433,
-    "startFrame": 14293,
+    "start": 553.067,
+    "startFrame": 16592,
     "frames": 360,
     "lead": 0.35,
     "audioDur": 9.144,
@@ -17140,5329 +17976,6300 @@
    },
    {
     "start": 79.703,
-    "end": 81.246,
-    "text": "Why? Because\nfurniture",
-    "words": [
-     {
-      "w": "Why?",
-      "t": 79.703
-     },
-     {
-      "w": "Because",
-      "t": 80.361
-     },
-     {
-      "w": "furniture",
-      "t": 80.774
-     }
-    ]
-   },
-   {
-    "start": 81.286,
-    "end": 83.316,
-    "text": "is not the name\nof one object.",
-    "words": [
-     {
-      "w": "is",
-      "t": 81.286
-     },
-     {
-      "w": "not",
-      "t": 81.457
-     },
-     {
-      "w": "the",
-      "t": 81.676
-     },
-     {
-      "w": "name",
-      "t": 81.895
-     },
-     {
-      "w": "of",
-      "t": 82.163
-     },
-     {
-      "w": "one",
-      "t": 82.333
-     },
-     {
-      "w": "object.",
-      "t": 82.552
-     }
-    ]
-   },
-   {
-    "start": 83.356,
-    "end": 85.576,
-    "text": "It’s the name\nof the whole collection.",
-    "words": [
-     {
-      "w": "It’s",
-      "t": 83.356
-     },
-     {
-      "w": "the",
-      "t": 83.602
-     },
-     {
-      "w": "name",
-      "t": 83.804
-     },
-     {
-      "w": "of",
-      "t": 84.05
-     },
-     {
-      "w": "the",
-      "t": 84.206
-     },
-     {
-      "w": "whole",
-      "t": 84.408
-     },
-     {
-      "w": "collection.",
-      "t": 84.699
-     }
-    ]
-   },
-   {
-    "start": 85.616,
-    "end": 87.457,
-    "text": "The word comes\nfrom ‘furnish’:",
-    "words": [
-     {
-      "w": "The",
-      "t": 85.616
-     },
-     {
-      "w": "word",
-      "t": 85.841
-     },
-     {
-      "w": "comes",
-      "t": 86.117
-     },
-     {
-      "w": "from",
-      "t": 86.444
-     },
-     {
-      "w": "‘furnish’:",
-      "t": 86.719
-     }
-    ]
-   },
-   {
-    "start": 87.497,
-    "end": 89.725,
-    "text": "everything you\nfurnish a room with.",
-    "words": [
-     {
-      "w": "everything",
-      "t": 87.497
-     },
-     {
-      "w": "you",
-      "t": 87.939
-     },
-     {
-      "w": "furnish",
-      "t": 88.112
-     },
-     {
-      "w": "a",
-      "t": 88.438
-     },
-     {
-      "w": "room",
-      "t": 88.535
-     },
-     {
-      "w": "with.",
-      "t": 88.746
-     }
-    ]
-   },
-   {
-    "start": 90.47,
-    "end": 92.217,
-    "text": "And the word\nunit means one.",
+    "end": 81.367,
+    "text": "And a unit\nmeans one.",
     "words": [
      {
       "w": "And",
-      "t": 90.47
+      "t": 79.703
      },
      {
-      "w": "the",
-      "t": 90.671
-     },
-     {
-      "w": "word",
-      "t": 90.872
+      "w": "a",
+      "t": 79.938
      },
      {
       "w": "unit",
-      "t": 91.118
+      "t": 80.069
      },
      {
       "w": "means",
-      "t": 91.363
+      "t": 80.358
      },
      {
       "w": "one.",
-      "t": 91.654
+      "t": 80.699
      }
     ]
    },
    {
-    "start": 92.257,
-    "end": 93.299,
-    "text": "One thing.",
+    "start": 81.407,
+    "end": 82.725,
+    "text": "The whole\ngroup now works",
     "words": [
      {
-      "w": "One",
-      "t": 92.257
+      "w": "The",
+      "t": 81.407
      },
      {
-      "w": "thing.",
-      "t": 92.5
+      "w": "whole",
+      "t": 81.621
+     },
+     {
+      "w": "group",
+      "t": 81.931
+     },
+     {
+      "w": "now",
+      "t": 82.241
+     },
+     {
+      "w": "works",
+      "t": 82.455
      }
     ]
    },
    {
-    "start": 93.339,
-    "end": 95.236,
+    "start": 82.765,
+    "end": 83.703,
+    "text": "as one thing:",
+    "words": [
+     {
+      "w": "as",
+      "t": 82.765
+     },
+     {
+      "w": "one",
+      "t": 82.932
+     },
+     {
+      "w": "thing:",
+      "t": 83.147
+     }
+    ]
+   },
+   {
+    "start": 83.743,
+    "end": 84.406,
+    "text": "one.",
+    "words": [
+     {
+      "w": "one.",
+      "t": 83.743
+     }
+    ]
+   },
+   {
+    "start": 84.446,
+    "end": 86.317,
     "text": "And we can’t\nadd s to one.",
     "words": [
      {
       "w": "And",
-      "t": 93.339
+      "t": 84.446
      },
      {
       "w": "we",
-      "t": 93.511
+      "t": 84.615
      },
      {
       "w": "can’t",
-      "t": 93.644
+      "t": 84.747
      },
      {
       "w": "add",
-      "t": 93.892
+      "t": 84.993
      },
      {
       "w": "s",
-      "t": 94.063
+      "t": 85.164
      },
      {
       "w": "to",
-      "t": 94.159
+      "t": 85.258
      },
      {
       "w": "one.",
-      "t": 94.292
+      "t": 85.39
      }
     ]
    },
    {
-    "start": 95.87,
-    "end": 97.481,
+    "start": 86.97,
+    "end": 88.61,
     "text": "One is always\nsingular.",
     "words": [
      {
       "w": "One",
-      "t": 95.87
+      "t": 86.97
      },
      {
       "w": "is",
-      "t": 96.089
+      "t": 87.193
      },
      {
       "w": "always",
-      "t": 96.259
+      "t": 87.366
      },
      {
       "w": "singular.",
-      "t": 96.622
+      "t": 87.735
      }
     ]
    },
    {
-    "start": 97.521,
-    "end": 99.039,
-    "text": "We can’t add\ns to one,",
+    "start": 88.65,
+    "end": 90.379,
+    "text": "So the word\nstays singular,",
     "words": [
      {
-      "w": "We",
-      "t": 97.521
-     },
-     {
-      "w": "can’t",
-      "t": 97.709
-     },
-     {
-      "w": "add",
-      "t": 98.058
-     },
-     {
-      "w": "s",
-      "t": 98.3
-     },
-     {
-      "w": "to",
-      "t": 98.434
-     },
-     {
-      "w": "one,",
-      "t": 98.622
-     }
-    ]
-   },
-   {
-    "start": 99.079,
-    "end": 100.886,
-    "text": "so the word\nstays singular,",
-    "words": [
-     {
-      "w": "so",
-      "t": 99.079
+      "w": "So",
+      "t": 88.65
      },
      {
       "w": "the",
-      "t": 99.272
+      "t": 88.835
      },
      {
       "w": "word",
-      "t": 99.52
+      "t": 89.071
      },
      {
       "w": "stays",
-      "t": 99.822
+      "t": 89.363
      },
      {
       "w": "singular,",
-      "t": 100.182
+      "t": 89.706
      }
     ]
    },
    {
-    "start": 100.926,
-    "end": 102.604,
+    "start": 90.419,
+    "end": 92.12,
     "text": "and so does\nthe verb.",
     "words": [
      {
       "w": "and",
-      "t": 100.926
+      "t": 90.419
      },
      {
       "w": "so",
-      "t": 101.1
+      "t": 90.595
      },
      {
       "w": "does",
-      "t": 101.237
+      "t": 90.733
      },
      {
       "w": "the",
-      "t": 101.451
+      "t": 90.95
      },
      {
       "w": "verb.",
-      "t": 101.626
+      "t": 91.127
      }
     ]
    },
    {
-    "start": 103.237,
-    "end": 105.196,
+    "start": 92.77,
+    "end": 94.973,
+    "text": "But why is furniture\none unit?",
+    "words": [
+     {
+      "w": "But",
+      "t": 92.77
+     },
+     {
+      "w": "why",
+      "t": 93.011
+     },
+     {
+      "w": "is",
+      "t": 93.251
+     },
+     {
+      "w": "furniture",
+      "t": 93.437
+     },
+     {
+      "w": "one",
+      "t": 93.998
+     },
+     {
+      "w": "unit?",
+      "t": 94.239
+     }
+    ]
+   },
+   {
+    "start": 95.013,
+    "end": 95.995,
+    "text": "Because furniture",
+    "words": [
+     {
+      "w": "Because",
+      "t": 95.013
+     },
+     {
+      "w": "furniture",
+      "t": 95.47
+     }
+    ]
+   },
+   {
+    "start": 96.035,
+    "end": 98.281,
+    "text": "is not the name\nof one object.",
+    "words": [
+     {
+      "w": "is",
+      "t": 96.035
+     },
+     {
+      "w": "not",
+      "t": 96.224
+     },
+     {
+      "w": "the",
+      "t": 96.465
+     },
+     {
+      "w": "name",
+      "t": 96.708
+     },
+     {
+      "w": "of",
+      "t": 97.004
+     },
+     {
+      "w": "one",
+      "t": 97.191
+     },
+     {
+      "w": "object.",
+      "t": 97.434
+     }
+    ]
+   },
+   {
+    "start": 98.321,
+    "end": 100.539,
+    "text": "It’s the name\nof the whole collection.",
+    "words": [
+     {
+      "w": "It’s",
+      "t": 98.321
+     },
+     {
+      "w": "the",
+      "t": 98.567
+     },
+     {
+      "w": "name",
+      "t": 98.768
+     },
+     {
+      "w": "of",
+      "t": 99.014
+     },
+     {
+      "w": "the",
+      "t": 99.171
+     },
+     {
+      "w": "whole",
+      "t": 99.372
+     },
+     {
+      "w": "collection.",
+      "t": 99.663
+     }
+    ]
+   },
+   {
+    "start": 100.579,
+    "end": 102.371,
+    "text": "The word comes\nfrom ‘furnish’:",
+    "words": [
+     {
+      "w": "The",
+      "t": 100.579
+     },
+     {
+      "w": "word",
+      "t": 100.799
+     },
+     {
+      "w": "comes",
+      "t": 101.068
+     },
+     {
+      "w": "from",
+      "t": 101.386
+     },
+     {
+      "w": "‘furnish’:",
+      "t": 101.654
+     }
+    ]
+   },
+   {
+    "start": 102.411,
+    "end": 104.616,
+    "text": "everything you\nfurnish a room with.",
+    "words": [
+     {
+      "w": "everything",
+      "t": 102.411
+     },
+     {
+      "w": "you",
+      "t": 102.85
+     },
+     {
+      "w": "furnish",
+      "t": 103.022
+     },
+     {
+      "w": "a",
+      "t": 103.346
+     },
+     {
+      "w": "room",
+      "t": 103.441
+     },
+     {
+      "w": "with.",
+      "t": 103.651
+     }
+    ]
+   },
+   {
+    "start": 105.337,
+    "end": 107.296,
     "text": "So the correct\nsentence is:",
     "words": [
      {
       "w": "So",
-      "t": 103.237
+      "t": 105.337
      },
      {
       "w": "the",
-      "t": 103.434
+      "t": 105.534
      },
      {
       "w": "correct",
-      "t": 103.687
+      "t": 105.787
      },
      {
       "w": "sentence",
-      "t": 104.166
+      "t": 106.266
      },
      {
       "w": "is:",
-      "t": 104.7
+      "t": 106.8
      }
     ]
    },
    {
-    "start": 105.236,
-    "end": 107.403,
+    "start": 107.336,
+    "end": 109.503,
     "text": "‘The furniture\nis expensive.’",
     "words": [
      {
       "w": "‘The",
-      "t": 105.236
+      "t": 107.336
      },
      {
       "w": "furniture",
-      "t": 105.436
+      "t": 107.536
      },
      {
       "w": "is",
-      "t": 105.902
+      "t": 108.002
      },
      {
       "w": "expensive.’",
-      "t": 106.058
+      "t": 108.158
      }
     ]
    },
    {
-    "start": 108.537,
-    "end": 110.216,
+    "start": 110.637,
+    "end": 112.316,
     "text": "The old school\nrule says:",
     "words": [
      {
       "w": "The",
-      "t": 108.537
+      "t": 110.637
      },
      {
       "w": "old",
-      "t": 108.768
+      "t": 110.868
      },
      {
       "w": "school",
-      "t": 108.999
+      "t": 111.099
      },
      {
       "w": "rule",
-      "t": 109.383
+      "t": 111.483
      },
      {
       "w": "says:",
-      "t": 109.666
+      "t": 111.766
      }
     ]
    },
    {
-    "start": 110.256,
-    "end": 112.224,
+    "start": 112.356,
+    "end": 114.324,
     "text": "furniture,\nluggage,",
     "words": [
      {
       "w": "furniture,",
-      "t": 110.256
+      "t": 112.356
      },
      {
       "w": "luggage,",
-      "t": 111.778
+      "t": 113.878
      }
     ]
    },
    {
-    "start": 112.264,
-    "end": 113.099,
+    "start": 114.364,
+    "end": 115.199,
     "text": "baggage\nand crockery",
     "words": [
      {
       "w": "baggage",
-      "t": 112.264
+      "t": 114.364
      },
      {
       "w": "and",
-      "t": 112.595
+      "t": 114.695
      },
      {
       "w": "crockery",
-      "t": 112.77
+      "t": 114.87
      }
     ]
    },
    {
-    "start": 113.139,
-    "end": 114.285,
+    "start": 115.239,
+    "end": 116.385,
     "text": "are always\nsingular.",
     "words": [
      {
       "w": "are",
-      "t": 113.139
+      "t": 115.239
      },
      {
       "w": "always",
-      "t": 113.314
+      "t": 115.414
      },
      {
       "w": "singular.",
-      "t": 113.606
+      "t": 115.706
      }
     ]
    },
    {
-    "start": 114.325,
-    "end": 115.368,
+    "start": 116.425,
+    "end": 117.468,
     "text": "Memorise it.",
     "words": [
      {
       "w": "Memorise",
-      "t": 114.325
+      "t": 116.425
      },
      {
       "w": "it.",
-      "t": 114.793
+      "t": 116.893
      }
     ]
    },
    {
-    "start": 115.408,
-    "end": 117.827,
+    "start": 117.508,
+    "end": 119.927,
     "text": "Skip that.\nHere’s the logic:",
     "words": [
      {
       "w": "Skip",
-      "t": 115.408
+      "t": 117.508
      },
      {
       "w": "that.",
-      "t": 115.721
+      "t": 117.821
      },
      {
       "w": "Here’s",
-      "t": 116.547
+      "t": 118.647
      },
      {
       "w": "the",
-      "t": 116.951
+      "t": 119.051
      },
      {
       "w": "logic:",
-      "t": 117.194
+      "t": 119.294
      }
     ]
    },
    {
-    "start": 117.867,
-    "end": 119.169,
+    "start": 119.967,
+    "end": 121.269,
     "text": "many individual\nthings",
     "words": [
      {
       "w": "many",
-      "t": 117.867
+      "t": 119.967
      },
      {
       "w": "individual",
-      "t": 118.168
+      "t": 120.268
      },
      {
       "w": "things",
-      "t": 118.798
+      "t": 120.898
      }
     ]
    },
    {
-    "start": 119.209,
-    "end": 121.002,
+    "start": 121.309,
+    "end": 123.102,
     "text": "are named\nas one unit.",
     "words": [
      {
       "w": "are",
-      "t": 119.209
+      "t": 121.309
      },
      {
       "w": "named",
-      "t": 119.454
+      "t": 121.554
      },
      {
       "w": "as",
-      "t": 119.811
+      "t": 121.911
      },
      {
       "w": "one",
-      "t": 120.003
+      "t": 122.103
      },
      {
       "w": "unit.",
-      "t": 120.248
+      "t": 122.348
      }
     ]
    },
    {
-    "start": 121.042,
-    "end": 122.228,
+    "start": 123.142,
+    "end": 124.328,
     "text": "Unit means one,",
     "words": [
      {
       "w": "Unit",
-      "t": 121.042
+      "t": 123.142
      },
      {
       "w": "means",
-      "t": 121.372
+      "t": 123.472
      },
      {
       "w": "one,",
-      "t": 121.761
+      "t": 123.861
      }
     ]
    },
    {
-    "start": 122.268,
-    "end": 124.151,
+    "start": 124.368,
+    "end": 126.251,
     "text": "and one is always\nsingular.",
     "words": [
      {
       "w": "and",
-      "t": 122.268
+      "t": 124.368
      },
      {
       "w": "one",
-      "t": 122.442
+      "t": 124.542
      },
      {
       "w": "is",
-      "t": 122.615
+      "t": 124.715
      },
      {
       "w": "always",
-      "t": 122.749
+      "t": 124.849
      },
      {
       "w": "singular.",
-      "t": 123.038
+      "t": 125.138
      }
     ]
    },
    {
-    "start": 124.903,
-    "end": 127.125,
+    "start": 127.003,
+    "end": 129.225,
     "text": "The same logic\nworks everywhere.",
     "words": [
      {
       "w": "The",
-      "t": 124.903
+      "t": 127.003
      },
      {
       "w": "same",
-      "t": 125.137
+      "t": 127.237
      },
      {
       "w": "logic",
-      "t": 125.422
+      "t": 127.522
      },
      {
       "w": "works",
-      "t": 125.761
+      "t": 127.861
      },
      {
       "w": "everywhere.",
-      "t": 126.099
+      "t": 128.199
      }
     ]
    },
    {
-    "start": 127.165,
-    "end": 127.921,
+    "start": 129.265,
+    "end": 130.021,
     "text": "Luggage:",
     "words": [
      {
       "w": "Luggage:",
-      "t": 127.165
+      "t": 129.265
      }
     ]
    },
    {
-    "start": 127.961,
-    "end": 129.713,
+    "start": 130.061,
+    "end": 131.813,
     "text": "bags and suitcases\ntogether,",
     "words": [
      {
       "w": "bags",
-      "t": 127.961
+      "t": 130.061
      },
      {
       "w": "and",
-      "t": 128.25
+      "t": 130.35
      },
      {
       "w": "suitcases",
-      "t": 128.488
+      "t": 130.588
      },
      {
       "w": "together,",
-      "t": 129.042
+      "t": 131.142
      }
     ]
    },
    {
-    "start": 129.753,
-    "end": 131.466,
+    "start": 131.853,
+    "end": 133.566,
     "text": "one whole.\nClothing:",
     "words": [
      {
       "w": "one",
-      "t": 129.753
+      "t": 131.853
      },
      {
       "w": "whole.",
-      "t": 129.991
+      "t": 132.091
      },
      {
       "w": "Clothing:",
-      "t": 130.808
+      "t": 132.908
      }
     ]
    },
    {
-    "start": 131.506,
-    "end": 132.758,
+    "start": 133.606,
+    "end": 134.858,
     "text": "shirts\nand trousers,",
     "words": [
      {
       "w": "shirts",
-      "t": 131.506
+      "t": 133.606
      },
      {
       "w": "and",
-      "t": 131.886
+      "t": 133.986
      },
      {
       "w": "trousers,",
-      "t": 132.114
+      "t": 134.214
      }
     ]
    },
    {
-    "start": 132.798,
-    "end": 133.924,
+    "start": 134.898,
+    "end": 136.024,
     "text": "one category.",
     "words": [
      {
       "w": "one",
-      "t": 132.798
+      "t": 134.898
      },
      {
       "w": "category.",
-      "t": 133.026
+      "t": 135.126
      }
     ]
    },
    {
-    "start": 133.964,
-    "end": 134.54,
+    "start": 136.064,
+    "end": 136.64,
     "text": "Crockery:",
     "words": [
      {
       "w": "Crockery:",
-      "t": 133.964
+      "t": 136.064
      }
     ]
    },
    {
-    "start": 134.58,
-    "end": 136.845,
+    "start": 136.68,
+    "end": 138.945,
     "text": "plates and cups,\none collection.",
     "words": [
      {
       "w": "plates",
-      "t": 134.58
+      "t": 136.68
      },
      {
       "w": "and",
-      "t": 134.878
+      "t": 136.978
      },
      {
       "w": "cups,",
-      "t": 135.057
+      "t": 137.157
      },
      {
       "w": "one",
-      "t": 135.435
+      "t": 137.535
      },
      {
       "w": "collection.",
-      "t": 135.613
+      "t": 137.713
      }
     ]
    },
    {
-    "start": 137.47,
-    "end": 138.701,
+    "start": 139.57,
+    "end": 140.801,
     "text": "And if you\nneed a number,",
     "words": [
      {
       "w": "And",
-      "t": 137.47
+      "t": 139.57
      },
      {
       "w": "if",
-      "t": 137.648
+      "t": 139.748
      },
      {
       "w": "you",
-      "t": 137.788
+      "t": 139.888
      },
      {
       "w": "need",
-      "t": 137.966
+      "t": 140.066
      },
      {
       "w": "a",
-      "t": 138.185
+      "t": 140.285
      },
      {
       "w": "number,",
-      "t": 138.284
+      "t": 140.384
      }
     ]
    },
    {
-    "start": 138.741,
-    "end": 140.075,
+    "start": 140.841,
+    "end": 142.175,
     "text": "count a piece:",
     "words": [
      {
       "w": "count",
-      "t": 138.741
+      "t": 140.841
      },
      {
       "w": "a",
-      "t": 139.156
+      "t": 141.256
      },
      {
       "w": "piece:",
-      "t": 139.316
+      "t": 141.416
      }
     ]
    },
    {
-    "start": 140.115,
-    "end": 141.405,
+    "start": 142.215,
+    "end": 143.505,
     "text": "a piece\nof furniture,",
     "words": [
      {
       "w": "a",
-      "t": 140.115
+      "t": 142.215
      },
      {
       "w": "piece",
-      "t": 140.238
+      "t": 142.338
      },
      {
       "w": "of",
-      "t": 140.559
+      "t": 142.659
      },
      {
       "w": "furniture,",
-      "t": 140.73
+      "t": 142.83
      }
     ]
    },
    {
-    "start": 141.445,
-    "end": 142.635,
+    "start": 143.545,
+    "end": 144.735,
     "text": "a piece\nof luggage,",
     "words": [
      {
       "w": "a",
-      "t": 141.445
+      "t": 143.545
      },
      {
       "w": "piece",
-      "t": 141.567
+      "t": 143.667
      },
      {
       "w": "of",
-      "t": 141.887
+      "t": 143.987
      },
      {
       "w": "luggage,",
-      "t": 142.06
+      "t": 144.16
      }
     ]
    },
    {
-    "start": 142.675,
-    "end": 144.396,
+    "start": 144.775,
+    "end": 146.496,
     "text": "an item\nof clothing.",
     "words": [
      {
       "w": "an",
-      "t": 142.675
+      "t": 144.775
      },
      {
       "w": "item",
-      "t": 142.821
+      "t": 144.921
      },
      {
       "w": "of",
-      "t": 143.049
+      "t": 145.149
      },
      {
       "w": "clothing.",
-      "t": 143.196
+      "t": 145.296
      }
     ]
    },
    {
-    "start": 145.137,
-    "end": 146.406,
+    "start": 147.237,
+    "end": 148.506,
     "text": "Now think\nabout it.",
     "words": [
      {
       "w": "Now",
-      "t": 145.137
+      "t": 147.237
      },
      {
       "w": "think",
-      "t": 145.333
+      "t": 147.433
      },
      {
       "w": "about",
-      "t": 145.618
+      "t": 147.718
      },
      {
       "w": "it.",
-      "t": 145.901
+      "t": 148.001
      }
     ]
    },
    {
-    "start": 146.446,
-    "end": 148.152,
+    "start": 148.546,
+    "end": 150.252,
     "text": "Why can you say\n‘two chairs’,",
     "words": [
      {
       "w": "Why",
-      "t": 146.446
+      "t": 148.546
      },
      {
       "w": "can",
-      "t": 146.671
+      "t": 148.771
      },
      {
       "w": "you",
-      "t": 146.895
+      "t": 148.995
      },
      {
       "w": "say",
-      "t": 147.12
+      "t": 149.22
      },
      {
       "w": "‘two",
-      "t": 147.344
+      "t": 149.444
      },
      {
       "w": "chairs’,",
-      "t": 147.568
+      "t": 149.668
      }
     ]
    },
    {
-    "start": 148.192,
-    "end": 149.687,
+    "start": 150.292,
+    "end": 151.787,
     "text": "but not ‘two\nrice’?",
     "words": [
      {
       "w": "but",
-      "t": 148.192
+      "t": 150.292
      },
      {
       "w": "not",
-      "t": 148.358
+      "t": 150.458
      },
      {
       "w": "‘two",
-      "t": 148.524
+      "t": 150.624
      },
      {
       "w": "rice’?",
-      "t": 148.69
+      "t": 150.79
      }
     ]
    },
    {
-    "start": 151.037,
-    "end": 151.858,
+    "start": 153.137,
+    "end": 153.958,
     "text": "Error two.",
     "words": [
      {
       "w": "Error",
-      "t": 151.037
+      "t": 153.137
      },
      {
       "w": "two.",
-      "t": 151.316
+      "t": 153.416
      }
     ]
    },
    {
-    "start": 151.898,
-    "end": 153.655,
+    "start": 153.998,
+    "end": 155.755,
     "text": "‘This ring\nis made of golds.’",
     "words": [
      {
       "w": "‘This",
-      "t": 151.898
+      "t": 153.998
      },
      {
       "w": "ring",
-      "t": 152.144
+      "t": 154.244
      },
      {
       "w": "is",
-      "t": 152.392
+      "t": 154.492
      },
      {
       "w": "made",
-      "t": 152.549
+      "t": 154.649
      },
      {
       "w": "of",
-      "t": 152.797
+      "t": 154.897
      },
      {
       "w": "golds.’",
-      "t": 152.954
+      "t": 155.054
      }
     ]
    },
    {
-    "start": 153.695,
-    "end": 154.432,
+    "start": 155.795,
+    "end": 156.532,
     "text": "Wrong.",
     "words": [
      {
       "w": "Wrong.",
-      "t": 153.695
+      "t": 155.795
      }
     ]
    },
    {
-    "start": 154.472,
-    "end": 156.499,
+    "start": 156.572,
+    "end": 158.599,
     "text": "‘This ring\nis made of gold.’",
     "words": [
      {
       "w": "‘This",
-      "t": 154.472
+      "t": 156.572
      },
      {
       "w": "ring",
-      "t": 154.696
+      "t": 156.796
      },
      {
       "w": "is",
-      "t": 154.92
+      "t": 157.02
      },
      {
       "w": "made",
-      "t": 155.062
+      "t": 157.162
      },
      {
       "w": "of",
-      "t": 155.286
+      "t": 157.386
      },
      {
       "w": "gold.’",
-      "t": 155.428
+      "t": 157.528
      }
     ]
    },
    {
-    "start": 157.237,
-    "end": 158.399,
+    "start": 159.337,
+    "end": 160.499,
     "text": "Category two:",
     "words": [
      {
       "w": "Category",
-      "t": 157.237
+      "t": 159.337
      },
      {
       "w": "two:",
-      "t": 157.808
+      "t": 159.908
      }
     ]
    },
    {
-    "start": 158.439,
-    "end": 159.494,
+    "start": 160.539,
+    "end": 161.594,
     "text": "material.",
     "words": [
      {
       "w": "material.",
-      "t": 158.439
+      "t": 160.539
      }
     ]
    },
    {
-    "start": 159.534,
-    "end": 161.028,
+    "start": 161.634,
+    "end": 163.128,
     "text": "A material\nis what something",
     "words": [
      {
       "w": "A",
-      "t": 159.534
+      "t": 161.634
      },
      {
       "w": "material",
-      "t": 159.656
+      "t": 161.756
      },
      {
       "w": "is",
-      "t": 160.118
+      "t": 162.218
      },
      {
       "w": "what",
-      "t": 160.288
+      "t": 162.388
      },
      {
       "w": "something",
-      "t": 160.557
+      "t": 162.657
      }
     ]
    },
    {
-    "start": 161.068,
-    "end": 162.172,
+    "start": 163.168,
+    "end": 164.272,
     "text": "is made from.",
     "words": [
      {
       "w": "is",
-      "t": 161.068
+      "t": 163.168
      },
      {
       "w": "made",
-      "t": 161.238
+      "t": 163.338
      },
      {
       "w": "from.",
-      "t": 161.506
+      "t": 163.606
      }
     ]
    },
    {
-    "start": 162.212,
-    "end": 163.659,
+    "start": 164.312,
+    "end": 165.759,
     "text": "It’s a substance.",
     "words": [
      {
       "w": "It’s",
-      "t": 162.212
+      "t": 164.312
      },
      {
       "w": "a",
-      "t": 162.42
+      "t": 164.52
      },
      {
       "w": "substance.",
-      "t": 162.515
+      "t": 164.615
      }
     ]
    },
    {
-    "start": 164.303,
-    "end": 166.442,
+    "start": 166.403,
+    "end": 168.542,
     "text": "Take gold.\nIt’s a substance,",
     "words": [
      {
       "w": "Take",
-      "t": 164.303
+      "t": 166.403
      },
      {
       "w": "gold.",
-      "t": 164.55
+      "t": 166.65
      },
      {
       "w": "It’s",
-      "t": 165.202
+      "t": 167.302
      },
      {
       "w": "a",
-      "t": 165.516
+      "t": 167.616
      },
      {
       "w": "substance,",
-      "t": 165.658
+      "t": 167.758
      }
     ]
    },
    {
-    "start": 166.482,
-    "end": 167.726,
+    "start": 168.582,
+    "end": 169.826,
     "text": "and it’s used\nto make many",
     "words": [
      {
       "w": "and",
-      "t": 166.482
+      "t": 168.582
      },
      {
       "w": "it’s",
-      "t": 166.675
+      "t": 168.775
      },
      {
       "w": "used",
-      "t": 166.91
+      "t": 169.01
      },
      {
       "w": "to",
-      "t": 167.146
+      "t": 169.246
      },
      {
       "w": "make",
-      "t": 167.295
+      "t": 169.395
      },
      {
       "w": "many",
-      "t": 167.53
+      "t": 169.63
      }
     ]
    },
    {
-    "start": 167.766,
-    "end": 168.752,
+    "start": 169.866,
+    "end": 170.852,
     "text": "different things:",
     "words": [
      {
       "w": "different",
-      "t": 167.766
+      "t": 169.866
      },
      {
       "w": "things:",
-      "t": 168.214
+      "t": 170.314
      }
     ]
    },
    {
-    "start": 168.792,
-    "end": 171.301,
+    "start": 170.892,
+    "end": 173.401,
     "text": "a ring, a coin,\na crown.",
     "words": [
      {
       "w": "a",
-      "t": 168.792
+      "t": 170.892
      },
      {
       "w": "ring,",
-      "t": 168.914
+      "t": 171.014
      },
      {
       "w": "a",
-      "t": 169.377
+      "t": 171.477
      },
      {
       "w": "coin,",
-      "t": 169.499
+      "t": 171.599
      },
      {
       "w": "a",
-      "t": 169.962
+      "t": 172.062
      },
      {
       "w": "crown.",
-      "t": 170.085
+      "t": 172.185
      }
     ]
    },
    {
-    "start": 171.937,
-    "end": 173.461,
+    "start": 174.037,
+    "end": 175.561,
     "text": "We can count\nthe things:",
     "words": [
      {
       "w": "We",
-      "t": 171.937
+      "t": 174.037
      },
      {
       "w": "can",
-      "t": 172.106
+      "t": 174.206
      },
      {
       "w": "count",
-      "t": 172.322
+      "t": 174.422
      },
      {
       "w": "the",
-      "t": 172.635
+      "t": 174.735
      },
      {
       "w": "things:",
-      "t": 172.852
+      "t": 174.952
      }
     ]
    },
    {
-    "start": 173.501,
-    "end": 175.468,
+    "start": 175.601,
+    "end": 177.568,
     "text": "one ring,\ntwo coins.",
     "words": [
      {
       "w": "one",
-      "t": 173.501
+      "t": 175.601
      },
      {
       "w": "ring,",
-      "t": 173.768
+      "t": 175.868
      },
      {
       "w": "two",
-      "t": 174.327
+      "t": 176.427
      },
      {
       "w": "coins.",
-      "t": 174.594
+      "t": 176.694
      }
     ]
    },
    {
-    "start": 175.508,
-    "end": 176.839,
+    "start": 177.608,
+    "end": 178.939,
     "text": "But the substance\nitself",
     "words": [
      {
       "w": "But",
-      "t": 175.508
+      "t": 177.608
      },
      {
       "w": "the",
-      "t": 175.737
+      "t": 177.837
      },
      {
       "w": "substance",
-      "t": 175.966
+      "t": 178.066
      },
      {
       "w": "itself",
-      "t": 176.498
+      "t": 178.598
      }
     ]
    },
    {
-    "start": 176.879,
-    "end": 178.928,
+    "start": 178.979,
+    "end": 181.028,
     "text": "is measured,\nnot counted.",
     "words": [
      {
       "w": "is",
-      "t": 176.879
+      "t": 178.979
      },
      {
       "w": "measured,",
-      "t": 177.057
+      "t": 179.157
      },
      {
       "w": "not",
-      "t": 177.743
+      "t": 179.843
      },
      {
       "w": "counted.",
-      "t": 177.993
+      "t": 180.093
      }
     ]
    },
    {
-    "start": 178.968,
-    "end": 180.951,
+    "start": 181.068,
+    "end": 183.051,
     "text": "We weigh gold\nin grams.",
     "words": [
      {
       "w": "We",
-      "t": 178.968
+      "t": 181.068
      },
      {
       "w": "weigh",
-      "t": 179.125
+      "t": 181.225
      },
      {
       "w": "gold",
-      "t": 179.418
+      "t": 181.518
      },
      {
       "w": "in",
-      "t": 179.666
+      "t": 181.766
      },
      {
       "w": "grams.",
-      "t": 179.824
+      "t": 181.924
      }
     ]
    },
    {
-    "start": 181.703,
-    "end": 183.215,
+    "start": 183.803,
+    "end": 185.315,
     "text": "So a material\nnoun,",
     "words": [
      {
       "w": "So",
-      "t": 181.703
+      "t": 183.803
      },
      {
       "w": "a",
-      "t": 181.92
+      "t": 184.02
      },
      {
       "w": "material",
-      "t": 182.076
+      "t": 184.176
      },
      {
       "w": "noun,",
-      "t": 182.665
+      "t": 184.765
      }
     ]
    },
    {
-    "start": 183.255,
-    "end": 184.605,
+    "start": 185.355,
+    "end": 186.705,
     "text": "used\nas a material,",
     "words": [
      {
       "w": "used",
-      "t": 183.255
+      "t": 185.355
      },
      {
       "w": "as",
-      "t": 183.561
+      "t": 185.661
      },
      {
       "w": "a",
-      "t": 183.756
+      "t": 185.856
      },
      {
       "w": "material,",
-      "t": 183.894
+      "t": 185.994
      }
     ]
    },
    {
-    "start": 184.645,
-    "end": 186.152,
+    "start": 186.745,
+    "end": 188.252,
     "text": "isn’t made plural.",
     "words": [
      {
       "w": "isn’t",
-      "t": 184.645
+      "t": 186.745
      },
      {
       "w": "made",
-      "t": 184.999
+      "t": 187.099
      },
      {
       "w": "plural.",
-      "t": 185.296
+      "t": 187.396
      }
     ]
    },
    {
-    "start": 186.192,
-    "end": 188.365,
+    "start": 188.292,
+    "end": 190.465,
     "text": "‘This ring\nis made of gold.’",
     "words": [
      {
       "w": "‘This",
-      "t": 186.192
+      "t": 188.292
      },
      {
       "w": "ring",
-      "t": 186.439
+      "t": 188.539
      },
      {
       "w": "is",
-      "t": 186.686
+      "t": 188.786
      },
      {
       "w": "made",
-      "t": 186.843
+      "t": 188.943
      },
      {
       "w": "of",
-      "t": 187.09
+      "t": 189.19
      },
      {
       "w": "gold.’",
-      "t": 187.246
+      "t": 189.346
      }
     ]
    },
    {
-    "start": 189.503,
-    "end": 191.3,
+    "start": 191.603,
+    "end": 193.4,
     "text": "The old school\nrule says:",
     "words": [
      {
       "w": "The",
-      "t": 189.503
+      "t": 191.603
      },
      {
       "w": "old",
-      "t": 189.75
+      "t": 191.85
      },
      {
       "w": "school",
-      "t": 189.996
+      "t": 192.096
      },
      {
       "w": "rule",
-      "t": 190.408
+      "t": 192.508
      },
      {
       "w": "says:",
-      "t": 190.709
+      "t": 192.809
      }
     ]
    },
    {
-    "start": 191.34,
-    "end": 193.197,
+    "start": 193.44,
+    "end": 195.297,
     "text": "brick, sand, milk,",
     "words": [
      {
       "w": "brick,",
-      "t": 191.34
+      "t": 193.44
      },
      {
       "w": "sand,",
-      "t": 192.127
+      "t": 194.227
      },
      {
       "w": "milk,",
-      "t": 192.84
+      "t": 194.94
      }
     ]
    },
    {
-    "start": 193.237,
-    "end": 195.198,
+    "start": 195.337,
+    "end": 197.298,
     "text": "glass and water\nare always singular.",
     "words": [
      {
       "w": "glass",
-      "t": 193.237
+      "t": 195.337
      },
      {
       "w": "and",
-      "t": 193.507
+      "t": 195.607
      },
      {
       "w": "water",
-      "t": 193.695
+      "t": 195.795
      },
      {
       "w": "are",
-      "t": 193.966
+      "t": 196.066
      },
      {
       "w": "always",
-      "t": 194.154
+      "t": 196.254
      },
      {
       "w": "singular.",
-      "t": 194.466
+      "t": 196.566
      }
     ]
    },
    {
-    "start": 195.238,
-    "end": 196.314,
+    "start": 197.338,
+    "end": 198.414,
     "text": "Memorise it.",
     "words": [
      {
       "w": "Memorise",
-      "t": 195.238
+      "t": 197.338
      },
      {
       "w": "it.",
-      "t": 195.719
+      "t": 197.819
      }
     ]
    },
    {
-    "start": 196.354,
-    "end": 198.447,
+    "start": 198.454,
+    "end": 200.547,
     "text": "Skip that.\nThe logic:",
     "words": [
      {
       "w": "Skip",
-      "t": 196.354
+      "t": 198.454
      },
      {
       "w": "that.",
-      "t": 196.663
+      "t": 198.763
      },
      {
       "w": "The",
-      "t": 197.48
+      "t": 199.58
      },
      {
       "w": "logic:",
-      "t": 197.747
+      "t": 199.847
      }
     ]
    },
    {
-    "start": 198.487,
-    "end": 200.134,
+    "start": 200.587,
+    "end": 202.234,
     "text": "it’s the material\nused to make",
     "words": [
      {
       "w": "it’s",
-      "t": 198.487
+      "t": 200.587
      },
      {
       "w": "the",
-      "t": 198.761
+      "t": 200.861
      },
      {
       "w": "material",
-      "t": 198.983
+      "t": 201.083
      },
      {
       "w": "used",
-      "t": 199.455
+      "t": 201.555
      },
      {
       "w": "to",
-      "t": 199.728
+      "t": 201.828
      },
      {
       "w": "make",
-      "t": 199.902
+      "t": 202.002
      }
     ]
    },
    {
-    "start": 200.174,
-    "end": 201.027,
+    "start": 202.274,
+    "end": 203.127,
     "text": "other things,",
     "words": [
      {
       "w": "other",
-      "t": 200.174
+      "t": 202.274
      },
      {
       "w": "things,",
-      "t": 200.497
+      "t": 202.597
      }
     ]
    },
    {
-    "start": 201.067,
-    "end": 202.288,
+    "start": 203.167,
+    "end": 204.388,
     "text": "so you measure\nit rather than",
     "words": [
      {
       "w": "so",
-      "t": 201.067
+      "t": 203.167
      },
      {
       "w": "you",
-      "t": 201.201
+      "t": 203.301
      },
      {
       "w": "measure",
-      "t": 201.373
+      "t": 203.473
      },
      {
       "w": "it",
-      "t": 201.698
+      "t": 203.798
      },
      {
       "w": "rather",
-      "t": 201.832
+      "t": 203.932
      },
      {
       "w": "than",
-      "t": 202.118
+      "t": 204.218
      }
     ]
    },
    {
-    "start": 202.328,
-    "end": 203.461,
+    "start": 204.428,
+    "end": 205.561,
     "text": "count it.",
     "words": [
      {
       "w": "count",
-      "t": 202.328
+      "t": 204.428
      },
      {
       "w": "it.",
-      "t": 202.577
+      "t": 204.677
      }
     ]
    },
    {
-    "start": 204.203,
-    "end": 206.519,
+    "start": 206.303,
+    "end": 208.619,
     "text": "Silver:\nused for jewellery,",
     "words": [
      {
       "w": "Silver:",
-      "t": 204.203
+      "t": 206.303
      },
      {
       "w": "used",
-      "t": 205.04
+      "t": 207.14
      },
      {
       "w": "for",
-      "t": 205.382
+      "t": 207.482
      },
      {
       "w": "jewellery,",
-      "t": 205.661
+      "t": 207.761
      }
     ]
    },
    {
-    "start": 206.559,
-    "end": 208.077,
+    "start": 208.659,
+    "end": 210.177,
     "text": "measured,\nnot counted.",
     "words": [
      {
       "w": "measured,",
-      "t": 206.559
+      "t": 208.659
      },
      {
       "w": "not",
-      "t": 207.396
+      "t": 209.496
      },
      {
       "w": "counted.",
-      "t": 207.543
+      "t": 209.643
      }
     ]
    },
    {
-    "start": 208.117,
-    "end": 209.194,
+    "start": 210.217,
+    "end": 211.294,
     "text": "Wood:\nused for furniture,",
     "words": [
      {
       "w": "Wood:",
-      "t": 208.117
+      "t": 210.217
      },
      {
       "w": "used",
-      "t": 208.474
+      "t": 210.574
      },
      {
       "w": "for",
-      "t": 208.644
+      "t": 210.744
      },
      {
       "w": "furniture,",
-      "t": 208.784
+      "t": 210.884
      }
     ]
    },
    {
-    "start": 209.234,
-    "end": 211.156,
+    "start": 211.334,
+    "end": 213.256,
     "text": "measured\nin cubic metres.",
     "words": [
      {
       "w": "measured",
-      "t": 209.234
+      "t": 211.334
      },
      {
       "w": "in",
-      "t": 209.752
+      "t": 211.852
      },
      {
       "w": "cubic",
-      "t": 209.943
+      "t": 212.043
      },
      {
       "w": "metres.",
-      "t": 210.297
+      "t": 212.397
      }
     ]
    },
    {
-    "start": 211.196,
-    "end": 212.912,
+    "start": 213.296,
+    "end": 215.012,
     "text": "Water:\nused for drinking,",
     "words": [
      {
       "w": "Water:",
-      "t": 211.196
+      "t": 213.296
      },
      {
       "w": "used",
-      "t": 211.991
+      "t": 214.091
      },
      {
       "w": "for",
-      "t": 212.215
+      "t": 214.315
      },
      {
       "w": "drinking,",
-      "t": 212.399
+      "t": 214.499
      }
     ]
    },
    {
-    "start": 212.952,
-    "end": 214.585,
+    "start": 215.052,
+    "end": 216.685,
     "text": "measured\nin litres.",
     "words": [
      {
       "w": "measured",
-      "t": 212.952
+      "t": 215.052
      },
      {
       "w": "in",
-      "t": 213.341
+      "t": 215.441
      },
      {
       "w": "litres.",
-      "t": 213.483
+      "t": 215.583
      }
     ]
    },
    {
-    "start": 215.237,
-    "end": 216.829,
+    "start": 217.337,
+    "end": 218.929,
     "text": "One careful note.",
     "words": [
      {
       "w": "One",
-      "t": 215.237
+      "t": 217.337
      },
      {
       "w": "careful",
-      "t": 215.504
+      "t": 217.604
      },
      {
       "w": "note.",
-      "t": 216.009
+      "t": 218.109
      }
     ]
    },
    {
-    "start": 216.869,
-    "end": 217.888,
+    "start": 218.969,
+    "end": 219.988,
     "text": "When you\nmean separate",
     "words": [
      {
       "w": "When",
-      "t": 216.869
+      "t": 218.969
      },
      {
       "w": "you",
-      "t": 217.102
+      "t": 219.202
      },
      {
       "w": "mean",
-      "t": 217.293
+      "t": 219.393
      },
      {
       "w": "separate",
-      "t": 217.525
+      "t": 219.625
      }
     ]
    },
    {
-    "start": 217.928,
-    "end": 219.562,
+    "start": 220.028,
+    "end": 221.662,
     "text": "objects,\nyou can count them:",
     "words": [
      {
       "w": "objects,",
-      "t": 217.928
+      "t": 220.028
      },
      {
       "w": "you",
-      "t": 218.458
+      "t": 220.558
      },
      {
       "w": "can",
-      "t": 218.649
+      "t": 220.749
      },
      {
       "w": "count",
-      "t": 218.84
+      "t": 220.94
      },
      {
       "w": "them:",
-      "t": 219.115
+      "t": 221.215
      }
     ]
    },
    {
-    "start": 219.602,
-    "end": 221.001,
+    "start": 221.702,
+    "end": 223.101,
     "text": "a wall made\nof bricks,",
     "words": [
      {
       "w": "a",
-      "t": 219.602
+      "t": 221.702
      },
      {
       "w": "wall",
-      "t": 219.729
+      "t": 221.829
      },
      {
       "w": "made",
-      "t": 220.006
+      "t": 222.106
      },
      {
       "w": "of",
-      "t": 220.284
+      "t": 222.384
      },
      {
       "w": "bricks,",
-      "t": 220.46
+      "t": 222.56
      }
     ]
    },
    {
-    "start": 221.041,
-    "end": 223.073,
+    "start": 223.141,
+    "end": 225.173,
     "text": "or two glasses\nof water.",
     "words": [
      {
       "w": "or",
-      "t": 221.041
+      "t": 223.141
      },
      {
       "w": "two",
-      "t": 221.246
+      "t": 223.346
      },
      {
       "w": "glasses",
-      "t": 221.508
+      "t": 223.608
      },
      {
       "w": "of",
-      "t": 222.004
+      "t": 224.104
      },
      {
       "w": "water.",
-      "t": 222.209
+      "t": 224.309
      }
     ]
    },
    {
-    "start": 223.113,
-    "end": 224.237,
+    "start": 225.213,
+    "end": 226.337,
     "text": "But as a material,",
     "words": [
      {
       "w": "But",
-      "t": 223.113
+      "t": 225.213
      },
      {
       "w": "as",
-      "t": 223.332
+      "t": 225.432
      },
      {
       "w": "a",
-      "t": 223.501
+      "t": 225.601
      },
      {
       "w": "material,",
-      "t": 223.623
+      "t": 225.723
      }
     ]
    },
    {
-    "start": 224.277,
-    "end": 225.546,
+    "start": 226.377,
+    "end": 227.646,
     "text": "it’s brick\nand glass,",
     "words": [
      {
       "w": "it’s",
-      "t": 224.277
+      "t": 226.377
      },
      {
       "w": "brick",
-      "t": 224.544
+      "t": 226.644
      },
      {
       "w": "and",
-      "t": 224.859
+      "t": 226.959
      },
      {
       "w": "glass,",
-      "t": 225.077
+      "t": 227.177
      }
     ]
    },
    {
-    "start": 225.586,
-    "end": 226.819,
+    "start": 227.686,
+    "end": 228.919,
     "text": "with no s.",
     "words": [
      {
       "w": "with",
-      "t": 225.586
+      "t": 227.686
      },
      {
       "w": "no",
-      "t": 225.806
+      "t": 227.906
      },
      {
       "w": "s.",
-      "t": 225.945
+      "t": 228.045
      }
     ]
    },
    {
-    "start": 227.57,
-    "end": 228.935,
+    "start": 229.67,
+    "end": 231.035,
     "text": "Now think\nabout it.",
     "words": [
      {
       "w": "Now",
-      "t": 227.57
+      "t": 229.67
      },
      {
       "w": "think",
-      "t": 227.781
+      "t": 229.881
      },
      {
       "w": "about",
-      "t": 228.085
+      "t": 230.185
      },
      {
       "w": "it.",
-      "t": 228.39
+      "t": 230.49
      }
     ]
    },
    {
-    "start": 228.975,
-    "end": 230.236,
+    "start": 231.075,
+    "end": 232.336,
     "text": "Do we say\n‘one milk’,",
     "words": [
      {
       "w": "Do",
-      "t": 228.975
+      "t": 231.075
      },
      {
       "w": "we",
-      "t": 229.147
+      "t": 231.247
      },
      {
       "w": "say",
-      "t": 229.319
+      "t": 231.419
      },
      {
       "w": "‘one",
-      "t": 229.539
+      "t": 231.639
      },
      {
       "w": "milk’,",
-      "t": 229.76
+      "t": 231.86
      }
     ]
    },
    {
-    "start": 230.276,
-    "end": 232.024,
+    "start": 232.376,
+    "end": 234.124,
     "text": "or ‘one litre\nof milk’?",
     "words": [
      {
       "w": "or",
-      "t": 230.276
+      "t": 232.376
      },
      {
       "w": "‘one",
-      "t": 230.413
+      "t": 232.513
      },
      {
       "w": "litre",
-      "t": 230.59
+      "t": 232.69
      },
      {
       "w": "of",
-      "t": 230.845
+      "t": 232.945
      },
      {
       "w": "milk’?",
-      "t": 230.983
+      "t": 233.083
      }
     ]
    },
    {
-    "start": 233.37,
-    "end": 234.169,
+    "start": 235.47,
+    "end": 236.269,
     "text": "Error three.",
     "words": [
      {
       "w": "Error",
-      "t": 233.37
+      "t": 235.47
      },
      {
       "w": "three.",
-      "t": 233.617
+      "t": 235.717
      }
     ]
    },
    {
-    "start": 234.209,
-    "end": 236.192,
+    "start": 236.309,
+    "end": 238.292,
     "text": "‘I ate too many\nrice for lunch.’",
     "words": [
      {
       "w": "‘I",
-      "t": 234.209
+      "t": 236.309
      },
      {
       "w": "ate",
-      "t": 234.325
+      "t": 236.425
      },
      {
       "w": "too",
-      "t": 234.534
+      "t": 236.634
      },
      {
       "w": "many",
-      "t": 234.743
+      "t": 236.843
      },
      {
       "w": "rice",
-      "t": 234.999
+      "t": 237.099
      },
      {
       "w": "for",
-      "t": 235.255
+      "t": 237.355
      },
      {
       "w": "lunch.’",
-      "t": 235.464
+      "t": 237.564
      }
     ]
    },
    {
-    "start": 236.232,
-    "end": 236.876,
+    "start": 238.332,
+    "end": 238.976,
     "text": "Wrong.",
     "words": [
      {
       "w": "Wrong.",
-      "t": 236.232
+      "t": 238.332
      }
     ]
    },
    {
-    "start": 236.916,
-    "end": 239.072,
+    "start": 239.016,
+    "end": 241.172,
     "text": "‘I ate too much\nrice for lunch.’",
     "words": [
      {
       "w": "‘I",
-      "t": 236.916
+      "t": 239.016
      },
      {
       "w": "ate",
-      "t": 237.014
+      "t": 239.114
      },
      {
       "w": "too",
-      "t": 237.192
+      "t": 239.292
      },
      {
       "w": "much",
-      "t": 237.37
+      "t": 239.47
      },
      {
       "w": "rice",
-      "t": 237.586
+      "t": 239.686
      },
      {
       "w": "for",
-      "t": 237.803
+      "t": 239.903
      },
      {
       "w": "lunch.’",
-      "t": 237.98
+      "t": 240.08
      }
     ]
    },
    {
-    "start": 239.803,
-    "end": 241.133,
+    "start": 241.903,
+    "end": 243.233,
     "text": "Category three:",
     "words": [
      {
       "w": "Category",
-      "t": 239.803
+      "t": 241.903
      },
      {
       "w": "three:",
-      "t": 240.395
+      "t": 242.495
      }
     ]
    },
    {
-    "start": 241.173,
-    "end": 242.104,
+    "start": 243.273,
+    "end": 244.204,
     "text": "measured.",
     "words": [
      {
       "w": "measured.",
-      "t": 241.173
+      "t": 243.273
      }
     ]
    },
    {
-    "start": 242.144,
-    "end": 243.961,
+    "start": 244.244,
+    "end": 246.061,
     "text": "Food and substances\nlike rice",
     "words": [
      {
       "w": "Food",
-      "t": 242.144
+      "t": 244.244
      },
      {
       "w": "and",
-      "t": 242.458
+      "t": 244.558
      },
      {
       "w": "substances",
-      "t": 242.715
+      "t": 244.815
      },
      {
       "w": "like",
-      "t": 243.373
+      "t": 245.473
      },
      {
       "w": "rice",
-      "t": 243.686
+      "t": 245.786
      }
     ]
    },
    {
-    "start": 244.001,
-    "end": 245.618,
+    "start": 246.101,
+    "end": 247.718,
     "text": "are measured\nby amount,",
     "words": [
      {
       "w": "are",
-      "t": 244.001
+      "t": 246.101
      },
      {
       "w": "measured",
-      "t": 244.258
+      "t": 246.358
      },
      {
       "w": "by",
-      "t": 244.8
+      "t": 246.9
      },
      {
       "w": "amount,",
-      "t": 245.001
+      "t": 247.101
      }
     ]
    },
    {
-    "start": 245.658,
-    "end": 248.073,
+    "start": 247.758,
+    "end": 250.173,
     "text": "not counted\nas separate items.",
     "words": [
      {
       "w": "not",
-      "t": 245.658
+      "t": 247.758
      },
      {
       "w": "counted",
-      "t": 245.873
+      "t": 247.973
      },
      {
       "w": "as",
-      "t": 246.28
+      "t": 248.38
      },
      {
       "w": "separate",
-      "t": 246.447
+      "t": 248.547
      },
      {
       "w": "items.",
-      "t": 246.902
+      "t": 249.002
      }
     ]
    },
    {
-    "start": 248.703,
-    "end": 251.324,
+    "start": 250.803,
+    "end": 253.424,
     "text": "Rice comes as many\ntiny grains.",
     "words": [
      {
       "w": "Rice",
-      "t": 248.703
+      "t": 250.803
      },
      {
       "w": "comes",
-      "t": 249.043
+      "t": 251.143
      },
      {
       "w": "as",
-      "t": 249.445
+      "t": 251.545
      },
      {
       "w": "many",
-      "t": 249.662
+      "t": 251.762
      },
      {
       "w": "tiny",
-      "t": 250.002
+      "t": 252.102
      },
      {
       "w": "grains.",
-      "t": 250.343
+      "t": 252.443
      }
     ]
    },
    {
-    "start": 251.364,
-    "end": 253.339,
+    "start": 253.464,
+    "end": 255.439,
     "text": "We don’t count\nthem one by one.",
     "words": [
      {
       "w": "We",
-      "t": 251.364
+      "t": 253.464
      },
      {
       "w": "don’t",
-      "t": 251.526
+      "t": 253.626
      },
      {
       "w": "count",
-      "t": 251.827
+      "t": 253.927
      },
      {
       "w": "them",
-      "t": 252.128
+      "t": 254.228
      },
      {
       "w": "one",
-      "t": 252.383
+      "t": 254.483
      },
      {
       "w": "by",
-      "t": 252.591
+      "t": 254.691
      },
      {
       "w": "one.",
-      "t": 252.754
+      "t": 254.854
      }
     ]
    },
    {
-    "start": 253.379,
-    "end": 255.361,
+    "start": 255.479,
+    "end": 257.461,
     "text": "We measure\nthe amount instead:",
     "words": [
      {
       "w": "We",
-      "t": 253.379
+      "t": 255.479
      },
      {
       "w": "measure",
-      "t": 253.563
+      "t": 255.663
      },
      {
       "w": "the",
-      "t": 254.01
+      "t": 256.11
      },
      {
       "w": "amount",
-      "t": 254.245
+      "t": 256.345
      },
      {
       "w": "instead:",
-      "t": 254.64
+      "t": 256.74
      }
     ]
    },
    {
-    "start": 255.401,
-    "end": 257.968,
+    "start": 257.501,
+    "end": 260.068,
     "text": "a cup of rice,\na kilo of rice,",
     "words": [
      {
       "w": "a",
-      "t": 255.401
+      "t": 257.501
      },
      {
       "w": "cup",
-      "t": 255.552
+      "t": 257.652
      },
      {
       "w": "of",
-      "t": 255.823
+      "t": 257.923
      },
      {
       "w": "rice,",
-      "t": 256.034
+      "t": 258.134
      },
      {
       "w": "a",
-      "t": 256.607
+      "t": 258.707
      },
      {
       "w": "kilo",
-      "t": 256.774
+      "t": 258.874
      },
      {
       "w": "of",
-      "t": 257.14
+      "t": 259.24
      },
      {
       "w": "rice,",
-      "t": 257.374
+      "t": 259.474
      }
     ]
    },
    {
-    "start": 258.008,
-    "end": 259.469,
+    "start": 260.108,
+    "end": 261.569,
     "text": "a plate of rice.",
     "words": [
      {
       "w": "a",
-      "t": 258.008
+      "t": 260.108
      },
      {
       "w": "plate",
-      "t": 258.106
+      "t": 260.206
      },
      {
       "w": "of",
-      "t": 258.362
+      "t": 260.462
      },
      {
       "w": "rice.",
-      "t": 258.5
+      "t": 260.6
      }
     ]
    },
    {
-    "start": 260.203,
-    "end": 262.487,
+    "start": 262.303,
+    "end": 264.587,
     "text": "Measured,\nnot counted,",
     "words": [
      {
       "w": "Measured,",
-      "t": 260.203
+      "t": 262.303
      },
      {
       "w": "not",
-      "t": 261.871
+      "t": 263.971
      },
      {
       "w": "counted,",
-      "t": 262.045
+      "t": 264.145
      }
     ]
    },
    {
-    "start": 262.527,
-    "end": 264.32,
+    "start": 264.627,
+    "end": 266.42,
     "text": "so it always takes\na singular verb.",
     "words": [
      {
       "w": "so",
-      "t": 262.527
+      "t": 264.627
      },
      {
       "w": "it",
-      "t": 262.662
+      "t": 264.762
      },
      {
       "w": "always",
-      "t": 262.797
+      "t": 264.897
      },
      {
       "w": "takes",
-      "t": 263.086
+      "t": 265.186
      },
      {
       "w": "a",
-      "t": 263.337
+      "t": 265.437
      },
      {
       "w": "singular",
-      "t": 263.434
+      "t": 265.534
      },
      {
       "w": "verb.",
-      "t": 263.8
+      "t": 265.9
      }
     ]
    },
    {
-    "start": 264.36,
-    "end": 266.433,
+    "start": 266.46,
+    "end": 268.533,
     "text": "‘This rice\nis delicious.’",
     "words": [
      {
       "w": "‘This",
-      "t": 264.36
+      "t": 266.46
      },
      {
       "w": "rice",
-      "t": 264.617
+      "t": 266.717
      },
      {
       "w": "is",
-      "t": 264.874
+      "t": 266.974
      },
      {
       "w": "delicious.’",
-      "t": 265.038
+      "t": 267.138
      }
     ]
    },
    {
-    "start": 267.57,
-    "end": 268.996,
+    "start": 269.67,
+    "end": 271.096,
     "text": "Material and food\nnouns can",
     "words": [
      {
       "w": "Material",
-      "t": 267.57
+      "t": 269.67
      },
      {
       "w": "and",
-      "t": 268.027
+      "t": 270.127
      },
      {
       "w": "food",
-      "t": 268.243
+      "t": 270.343
      },
      {
       "w": "nouns",
-      "t": 268.507
+      "t": 270.607
      },
      {
       "w": "can",
-      "t": 268.819
+      "t": 270.919
      }
     ]
    },
    {
-    "start": 269.036,
-    "end": 269.765,
+    "start": 271.136,
+    "end": 271.865,
     "text": "look alike,",
     "words": [
      {
       "w": "look",
-      "t": 269.036
+      "t": 271.136
      },
      {
       "w": "alike,",
-      "t": 269.3
+      "t": 271.4
      }
     ]
    },
    {
-    "start": 269.805,
-    "end": 271.271,
+    "start": 271.905,
+    "end": 273.371,
     "text": "so here’s\nthe test:",
     "words": [
      {
       "w": "so",
-      "t": 269.805
+      "t": 271.905
      },
      {
       "w": "here’s",
-      "t": 270.0
+      "t": 272.1
      },
      {
       "w": "the",
-      "t": 270.418
+      "t": 272.518
      },
      {
       "w": "test:",
-      "t": 270.67
+      "t": 272.77
      }
     ]
    },
    {
-    "start": 271.311,
-    "end": 272.645,
+    "start": 273.411,
+    "end": 274.745,
     "text": "do we buy it\nin a measured",
     "words": [
      {
       "w": "do",
-      "t": 271.311
+      "t": 273.411
      },
      {
       "w": "we",
-      "t": 271.468
+      "t": 273.568
      },
      {
       "w": "buy",
-      "t": 271.626
+      "t": 273.726
      },
      {
       "w": "it",
-      "t": 271.829
+      "t": 273.929
      },
      {
       "w": "in",
-      "t": 271.986
+      "t": 274.086
      },
      {
       "w": "a",
-      "t": 272.144
+      "t": 274.244
      },
      {
       "w": "measured",
-      "t": 272.257
+      "t": 274.357
      }
     ]
    },
    {
-    "start": 272.685,
-    "end": 273.77,
+    "start": 274.785,
+    "end": 275.87,
     "text": "amount,\nlike a kilo",
     "words": [
      {
       "w": "amount,",
-      "t": 272.685
+      "t": 274.785
      },
      {
       "w": "like",
-      "t": 273.203
+      "t": 275.303
      },
      {
       "w": "a",
-      "t": 273.45
+      "t": 275.55
      },
      {
       "w": "kilo",
-      "t": 273.563
+      "t": 275.663
      }
     ]
    },
    {
-    "start": 273.81,
-    "end": 276.03,
+    "start": 275.91,
+    "end": 278.13,
     "text": "or a litre,\nand not in pieces?",
     "words": [
      {
       "w": "or",
-      "t": 273.81
+      "t": 275.91
      },
      {
       "w": "a",
-      "t": 273.968
+      "t": 276.068
      },
      {
       "w": "litre,",
-      "t": 274.081
+      "t": 276.181
      },
      {
       "w": "and",
-      "t": 274.554
+      "t": 276.654
      },
      {
       "w": "not",
-      "t": 274.789
+      "t": 276.889
      },
      {
       "w": "in",
-      "t": 275.024
+      "t": 277.124
      },
      {
       "w": "pieces?",
-      "t": 275.207
+      "t": 277.307
      }
     ]
    },
    {
-    "start": 276.07,
-    "end": 277.979,
+    "start": 278.17,
+    "end": 280.079,
     "text": "If yes,\nit’s uncountable.",
     "words": [
      {
       "w": "If",
-      "t": 276.07
+      "t": 278.17
      },
      {
       "w": "yes,",
-      "t": 276.245
+      "t": 278.345
      },
      {
       "w": "it’s",
-      "t": 276.67
+      "t": 278.77
      },
      {
       "w": "uncountable.",
-      "t": 276.944
+      "t": 279.044
      }
     ]
    },
    {
-    "start": 278.019,
-    "end": 279.883,
+    "start": 280.119,
+    "end": 281.983,
     "text": "The old school\nrule says food,",
     "words": [
      {
       "w": "The",
-      "t": 278.019
+      "t": 280.119
      },
      {
       "w": "old",
-      "t": 278.251
+      "t": 280.351
      },
      {
       "w": "school",
-      "t": 278.482
+      "t": 280.582
      },
      {
       "w": "rule",
-      "t": 278.868
+      "t": 280.968
      },
      {
       "w": "says",
-      "t": 279.151
+      "t": 281.251
      },
      {
       "w": "food,",
-      "t": 279.434
+      "t": 281.534
      }
     ]
    },
    {
-    "start": 279.923,
-    "end": 281.401,
+    "start": 282.023,
+    "end": 283.501,
     "text": "meat, sugar, salt,",
     "words": [
      {
       "w": "meat,",
-      "t": 279.923
+      "t": 282.023
      },
      {
       "w": "sugar,",
-      "t": 280.411
+      "t": 282.511
      },
      {
       "w": "salt,",
-      "t": 280.952
+      "t": 283.052
      }
     ]
    },
    {
-    "start": 281.441,
-    "end": 283.767,
+    "start": 283.541,
+    "end": 285.867,
     "text": "tea and bread\nare always singular.",
     "words": [
      {
       "w": "tea",
-      "t": 281.441
+      "t": 283.541
      },
      {
       "w": "and",
-      "t": 281.672
+      "t": 283.772
      },
      {
       "w": "bread",
-      "t": 281.904
+      "t": 284.004
      },
      {
       "w": "are",
-      "t": 282.238
+      "t": 284.338
      },
      {
       "w": "always",
-      "t": 282.47
+      "t": 284.57
      },
      {
       "w": "singular.",
-      "t": 282.856
+      "t": 284.956
      }
     ]
    },
    {
-    "start": 283.807,
-    "end": 285.436,
+    "start": 285.907,
+    "end": 287.536,
     "text": "The logic:\nthey’re measured,",
     "words": [
      {
       "w": "The",
-      "t": 283.807
+      "t": 285.907
      },
      {
       "w": "logic:",
-      "t": 284.033
+      "t": 286.133
      },
      {
       "w": "they’re",
-      "t": 284.659
+      "t": 286.759
      },
      {
       "w": "measured,",
-      "t": 284.975
+      "t": 287.075
      }
     ]
    },
    {
-    "start": 285.476,
-    "end": 286.688,
+    "start": 287.576,
+    "end": 288.788,
     "text": "not counted.",
     "words": [
      {
       "w": "not",
-      "t": 285.476
+      "t": 287.576
      },
      {
       "w": "counted.",
-      "t": 285.642
+      "t": 287.742
      }
     ]
    },
    {
-    "start": 287.437,
-    "end": 288.013,
+    "start": 289.537,
+    "end": 290.113,
     "text": "Bread:",
     "words": [
      {
       "w": "Bread:",
-      "t": 287.437
+      "t": 289.537
      }
     ]
    },
    {
-    "start": 288.053,
-    "end": 290.008,
+    "start": 290.153,
+    "end": 292.108,
     "text": "measured in loaves\nor slices.",
     "words": [
      {
       "w": "measured",
-      "t": 288.053
+      "t": 290.153
      },
      {
       "w": "in",
-      "t": 288.521
+      "t": 290.621
      },
      {
       "w": "loaves",
-      "t": 288.694
+      "t": 290.794
      },
      {
       "w": "or",
-      "t": 289.063
+      "t": 291.163
      },
      {
       "w": "slices.",
-      "t": 289.235
+      "t": 291.335
      }
     ]
    },
    {
-    "start": 290.048,
-    "end": 292.079,
+    "start": 292.148,
+    "end": 294.179,
     "text": "Milk:\nmeasured in litres.",
     "words": [
      {
       "w": "Milk:",
-      "t": 290.048
+      "t": 292.148
      },
      {
       "w": "measured",
-      "t": 290.636
+      "t": 292.736
      },
      {
       "w": "in",
-      "t": 291.114
+      "t": 293.214
      },
      {
       "w": "litres.",
-      "t": 291.29
+      "t": 293.39
      }
     ]
    },
    {
-    "start": 292.119,
-    "end": 294.267,
+    "start": 294.219,
+    "end": 296.367,
     "text": "Salt:\nmeasured by weight.",
     "words": [
      {
       "w": "Salt:",
-      "t": 292.119
+      "t": 294.219
      },
      {
       "w": "measured",
-      "t": 292.781
+      "t": 294.881
      },
      {
       "w": "by",
-      "t": 293.128
+      "t": 295.228
      },
      {
       "w": "weight.",
-      "t": 293.256
+      "t": 295.356
      }
     ]
    },
    {
-    "start": 295.003,
-    "end": 296.406,
+    "start": 297.103,
+    "end": 298.506,
     "text": "Now think\nabout it.",
     "words": [
      {
       "w": "Now",
-      "t": 295.003
+      "t": 297.103
      },
      {
       "w": "think",
-      "t": 295.219
+      "t": 297.319
      },
      {
       "w": "about",
-      "t": 295.532
+      "t": 297.632
      },
      {
       "w": "it.",
-      "t": 295.844
+      "t": 297.944
      }
     ]
    },
    {
-    "start": 296.446,
-    "end": 297.943,
+    "start": 298.546,
+    "end": 300.043,
     "text": "Can you say\n‘two rice’,",
     "words": [
      {
       "w": "Can",
-      "t": 296.446
+      "t": 298.546
      },
      {
       "w": "you",
-      "t": 296.689
+      "t": 298.789
      },
      {
       "w": "say",
-      "t": 296.931
+      "t": 299.031
      },
      {
       "w": "‘two",
-      "t": 297.174
+      "t": 299.274
      },
      {
       "w": "rice’,",
-      "t": 297.417
+      "t": 299.517
      }
     ]
    },
    {
-    "start": 297.983,
-    "end": 299.183,
+    "start": 300.083,
+    "end": 301.283,
     "text": "or do you need\nto say ‘two",
     "words": [
      {
       "w": "or",
-      "t": 297.983
+      "t": 300.083
      },
      {
       "w": "do",
-      "t": 298.131
+      "t": 300.231
      },
      {
       "w": "you",
-      "t": 298.278
+      "t": 300.378
      },
      {
       "w": "need",
-      "t": 298.467
+      "t": 300.567
      },
      {
       "w": "to",
-      "t": 298.698
+      "t": 300.798
      },
      {
       "w": "say",
-      "t": 298.845
+      "t": 300.945
      },
      {
       "w": "‘two",
-      "t": 299.034
+      "t": 301.134
      }
     ]
    },
    {
-    "start": 299.223,
-    "end": 300.729,
+    "start": 301.323,
+    "end": 302.829,
     "text": "kilos of rice’?",
     "words": [
      {
       "w": "kilos",
-      "t": 299.223
+      "t": 301.323
      },
      {
       "w": "of",
-      "t": 299.496
+      "t": 301.596
      },
      {
       "w": "rice’?",
-      "t": 299.643
+      "t": 301.743
      }
     ]
    },
    {
-    "start": 302.07,
-    "end": 302.93,
+    "start": 304.17,
+    "end": 305.03,
     "text": "Error four.",
     "words": [
      {
       "w": "Error",
-      "t": 302.07
+      "t": 304.17
      },
      {
       "w": "four.",
-      "t": 302.349
+      "t": 304.449
      }
     ]
    },
    {
-    "start": 302.97,
-    "end": 305.117,
+    "start": 305.07,
+    "end": 307.217,
     "text": "‘He has many\nknowledges about art.’",
     "words": [
      {
       "w": "‘He",
-      "t": 302.97
+      "t": 305.07
      },
      {
       "w": "has",
-      "t": 303.136
+      "t": 305.236
      },
      {
       "w": "many",
-      "t": 303.351
+      "t": 305.451
      },
      {
       "w": "knowledges",
-      "t": 303.611
+      "t": 305.711
      },
      {
       "w": "about",
-      "t": 304.159
+      "t": 306.259
      },
      {
       "w": "art.’",
-      "t": 304.467
+      "t": 306.567
      }
     ]
    },
    {
-    "start": 305.157,
-    "end": 305.984,
+    "start": 307.257,
+    "end": 308.084,
     "text": "Wrong.",
     "words": [
      {
       "w": "Wrong.",
-      "t": 305.157
+      "t": 307.257
      }
     ]
    },
    {
-    "start": 306.024,
-    "end": 307.019,
+    "start": 308.124,
+    "end": 309.119,
     "text": "‘He has a lot\nof knowledge",
     "words": [
      {
       "w": "‘He",
-      "t": 306.024
+      "t": 308.124
      },
      {
       "w": "has",
-      "t": 306.149
+      "t": 308.249
      },
      {
       "w": "a",
-      "t": 306.31
+      "t": 308.41
      },
      {
       "w": "lot",
-      "t": 306.399
+      "t": 308.499
      },
      {
       "w": "of",
-      "t": 306.56
+      "t": 308.66
      },
      {
       "w": "knowledge",
-      "t": 306.685
+      "t": 308.785
      }
     ]
    },
    {
-    "start": 307.059,
-    "end": 308.228,
+    "start": 309.159,
+    "end": 310.328,
     "text": "about art.’",
     "words": [
      {
       "w": "about",
-      "t": 307.059
+      "t": 309.159
      },
      {
       "w": "art.’",
-      "t": 307.291
+      "t": 309.391
      }
     ]
    },
    {
-    "start": 308.97,
-    "end": 310.127,
+    "start": 311.07,
+    "end": 312.227,
     "text": "Category four:",
     "words": [
      {
       "w": "Category",
-      "t": 308.97
+      "t": 311.07
      },
      {
       "w": "four:",
-      "t": 309.511
+      "t": 311.611
      }
     ]
    },
    {
-    "start": 310.167,
-    "end": 311.27,
+    "start": 312.267,
+    "end": 313.37,
     "text": "abstract.",
     "words": [
      {
       "w": "abstract.",
-      "t": 310.167
+      "t": 312.267
      }
     ]
    },
    {
-    "start": 311.31,
-    "end": 312.704,
+    "start": 313.41,
+    "end": 314.804,
     "text": "An abstract\nnoun has no",
     "words": [
      {
       "w": "An",
-      "t": 311.31
+      "t": 313.41
      },
      {
       "w": "abstract",
-      "t": 311.5
+      "t": 313.6
      },
      {
       "w": "noun",
-      "t": 312.014
+      "t": 314.114
      },
      {
       "w": "has",
-      "t": 312.311
+      "t": 314.411
      },
      {
       "w": "no",
-      "t": 312.554
+      "t": 314.654
      }
     ]
    },
    {
-    "start": 312.744,
-    "end": 314.002,
+    "start": 314.844,
+    "end": 316.102,
     "text": "physical form.",
     "words": [
      {
       "w": "physical",
-      "t": 312.744
+      "t": 314.844
      },
      {
       "w": "form.",
-      "t": 313.258
+      "t": 315.358
      }
     ]
    },
    {
-    "start": 314.042,
-    "end": 315.992,
+    "start": 316.142,
+    "end": 318.092,
     "text": "It can’t be\nheld or touched.",
     "words": [
      {
       "w": "It",
-      "t": 314.042
+      "t": 316.142
      },
      {
       "w": "can’t",
-      "t": 314.177
+      "t": 316.277
      },
      {
       "w": "be",
-      "t": 314.428
+      "t": 316.528
      },
      {
       "w": "held",
-      "t": 314.564
+      "t": 316.664
      },
      {
       "w": "or",
-      "t": 314.775
+      "t": 316.875
      },
      {
       "w": "touched.",
-      "t": 314.911
+      "t": 317.011
      }
     ]
    },
    {
-    "start": 316.637,
-    "end": 318.384,
+    "start": 318.737,
+    "end": 320.484,
     "text": "It’s an idea,\na quality,",
     "words": [
      {
       "w": "It’s",
-      "t": 316.637
+      "t": 318.737
      },
      {
       "w": "an",
-      "t": 316.93
+      "t": 319.03
      },
      {
       "w": "idea,",
-      "t": 317.117
+      "t": 319.217
      },
      {
       "w": "a",
-      "t": 317.624
+      "t": 319.724
      },
      {
       "w": "quality,",
-      "t": 317.758
+      "t": 319.858
      }
     ]
    },
    {
-    "start": 318.424,
-    "end": 319.531,
+    "start": 320.524,
+    "end": 321.631,
     "text": "or a state.",
     "words": [
      {
       "w": "or",
-      "t": 318.424
+      "t": 320.524
      },
      {
       "w": "a",
-      "t": 318.612
+      "t": 320.712
      },
      {
       "w": "state.",
-      "t": 318.745
+      "t": 320.845
      }
     ]
    },
    {
-    "start": 319.571,
-    "end": 320.854,
+    "start": 321.671,
+    "end": 322.954,
     "text": "Knowledge,\nhonesty,",
     "words": [
      {
       "w": "Knowledge,",
-      "t": 319.571
+      "t": 321.671
      },
      {
       "w": "honesty,",
-      "t": 320.272
+      "t": 322.372
      }
     ]
    },
    {
-    "start": 320.894,
-    "end": 322.396,
+    "start": 322.994,
+    "end": 324.496,
     "text": "advice, happiness.",
     "words": [
      {
       "w": "advice,",
-      "t": 320.894
+      "t": 322.994
      },
      {
       "w": "happiness.",
-      "t": 321.465
+      "t": 323.565
      }
     ]
    },
    {
-    "start": 322.436,
-    "end": 323.594,
+    "start": 324.536,
+    "end": 325.694,
     "text": "You can’t put\nthem on a table",
     "words": [
      {
       "w": "You",
-      "t": 322.436
+      "t": 324.536
      },
      {
       "w": "can’t",
-      "t": 322.596
+      "t": 324.696
      },
      {
       "w": "put",
-      "t": 322.829
+      "t": 324.929
      },
      {
       "w": "them",
-      "t": 322.99
+      "t": 325.09
      },
      {
       "w": "on",
-      "t": 323.186
+      "t": 325.286
      },
      {
       "w": "a",
-      "t": 323.312
+      "t": 325.412
      },
      {
       "w": "table",
-      "t": 323.401
+      "t": 325.501
      }
     ]
    },
    {
-    "start": 323.634,
-    "end": 324.955,
+    "start": 325.734,
+    "end": 327.055,
     "text": "and count them.",
     "words": [
      {
       "w": "and",
-      "t": 323.634
+      "t": 325.734
      },
      {
       "w": "count",
-      "t": 323.795
+      "t": 325.895
      },
      {
       "w": "them.",
-      "t": 324.028
+      "t": 326.128
      }
     ]
    },
    {
-    "start": 325.703,
-    "end": 327.361,
+    "start": 327.803,
+    "end": 329.461,
     "text": "You experience it,",
     "words": [
      {
       "w": "You",
-      "t": 325.703
+      "t": 327.803
      },
      {
       "w": "experience",
-      "t": 326.028
+      "t": 328.128
      },
      {
       "w": "it,",
-      "t": 326.859
+      "t": 328.959
      }
     ]
    },
    {
-    "start": 327.401,
-    "end": 328.376,
+    "start": 329.501,
+    "end": 330.476,
     "text": "show it,\nor possess it,",
     "words": [
      {
       "w": "show",
-      "t": 327.401
+      "t": 329.501
      },
      {
       "w": "it,",
-      "t": 327.573
+      "t": 329.673
      },
      {
       "w": "or",
-      "t": 327.807
+      "t": 329.907
      },
      {
       "w": "possess",
-      "t": 327.917
+      "t": 330.017
      },
      {
       "w": "it,",
-      "t": 328.182
+      "t": 330.282
      }
     ]
    },
    {
-    "start": 328.416,
-    "end": 329.916,
+    "start": 330.516,
+    "end": 332.016,
     "text": "but you never\ncount it.",
     "words": [
      {
       "w": "but",
-      "t": 328.416
+      "t": 330.516
      },
      {
       "w": "you",
-      "t": 328.617
+      "t": 330.717
      },
      {
       "w": "never",
-      "t": 328.818
+      "t": 330.918
      },
      {
       "w": "count",
-      "t": 329.108
+      "t": 331.208
      },
      {
       "w": "it.",
-      "t": 329.397
+      "t": 331.497
      }
     ]
    },
    {
-    "start": 329.956,
-    "end": 331.149,
+    "start": 332.056,
+    "end": 333.249,
     "text": "So it’s singular:",
     "words": [
      {
       "w": "So",
-      "t": 329.956
+      "t": 332.056
      },
      {
       "w": "it’s",
-      "t": 330.131
+      "t": 332.231
      },
      {
       "w": "singular:",
-      "t": 330.408
+      "t": 332.508
      }
     ]
    },
    {
-    "start": 331.189,
-    "end": 333.181,
+    "start": 333.289,
+    "end": 335.281,
     "text": "‘Her knowledge\nis impressive.’",
     "words": [
      {
       "w": "‘Her",
-      "t": 331.189
+      "t": 333.289
      },
      {
       "w": "knowledge",
-      "t": 331.365
+      "t": 333.465
      },
      {
       "w": "is",
-      "t": 331.776
+      "t": 333.876
      },
      {
       "w": "impressive.’",
-      "t": 331.913
+      "t": 334.013
      }
     ]
    },
    {
-    "start": 334.303,
-    "end": 335.751,
+    "start": 336.403,
+    "end": 337.851,
     "text": "The old school\nrule says",
     "words": [
      {
       "w": "The",
-      "t": 334.303
+      "t": 336.403
      },
      {
       "w": "old",
-      "t": 334.546
+      "t": 336.646
      },
      {
       "w": "school",
-      "t": 334.79
+      "t": 336.89
      },
      {
       "w": "rule",
-      "t": 335.195
+      "t": 337.295
      },
      {
       "w": "says",
-      "t": 335.494
+      "t": 337.594
      }
     ]
    },
    {
-    "start": 335.791,
-    "end": 337.348,
+    "start": 337.891,
+    "end": 339.448,
     "text": "advice,\ninformation,",
     "words": [
      {
       "w": "advice,",
-      "t": 335.791
+      "t": 337.891
      },
      {
       "w": "information,",
-      "t": 336.413
+      "t": 338.513
      }
     ]
    },
    {
-    "start": 337.388,
-    "end": 338.583,
+    "start": 339.488,
+    "end": 340.683,
     "text": "evidence\nand knowledge",
     "words": [
      {
       "w": "evidence",
-      "t": 337.388
+      "t": 339.488
      },
      {
       "w": "and",
-      "t": 337.866
+      "t": 339.966
      },
      {
       "w": "knowledge",
-      "t": 338.093
+      "t": 340.193
      }
     ]
    },
    {
-    "start": 338.623,
-    "end": 340.12,
+    "start": 340.723,
+    "end": 342.22,
     "text": "are always\nsingular.",
     "words": [
      {
       "w": "are",
-      "t": 338.623
+      "t": 340.723
      },
      {
       "w": "always",
-      "t": 338.849
+      "t": 340.949
      },
      {
       "w": "singular.",
-      "t": 339.227
+      "t": 341.327
      }
     ]
    },
    {
-    "start": 340.16,
-    "end": 342.191,
+    "start": 342.26,
+    "end": 344.291,
     "text": "Skip that.\nThe logic:",
     "words": [
      {
       "w": "Skip",
-      "t": 340.16
+      "t": 342.26
      },
      {
       "w": "that.",
-      "t": 340.467
+      "t": 342.567
      },
      {
       "w": "The",
-      "t": 341.28
+      "t": 343.38
      },
      {
       "w": "logic:",
-      "t": 341.532
+      "t": 343.632
      }
     ]
    },
    {
-    "start": 342.231,
-    "end": 343.857,
+    "start": 344.331,
+    "end": 345.957,
     "text": "we can’t physically\nhold them,",
     "words": [
      {
       "w": "we",
-      "t": 342.231
+      "t": 344.331
      },
      {
       "w": "can’t",
-      "t": 342.391
+      "t": 344.491
      },
      {
       "w": "physically",
-      "t": 342.688
+      "t": 344.788
      },
      {
       "w": "hold",
-      "t": 343.212
+      "t": 345.312
      },
      {
       "w": "them,",
-      "t": 343.464
+      "t": 345.564
      }
     ]
    },
    {
-    "start": 343.897,
-    "end": 345.411,
+    "start": 345.997,
+    "end": 347.511,
     "text": "or count them\ndirectly.",
     "words": [
      {
       "w": "or",
-      "t": 343.897
+      "t": 345.997
      },
      {
       "w": "count",
-      "t": 344.057
+      "t": 346.157
      },
      {
       "w": "them",
-      "t": 344.355
+      "t": 346.455
      },
      {
       "w": "directly.",
-      "t": 344.605
+      "t": 346.705
      }
     ]
    },
    {
-    "start": 345.451,
-    "end": 346.464,
+    "start": 347.551,
+    "end": 348.564,
     "text": "Need a number?",
     "words": [
      {
       "w": "Need",
-      "t": 345.451
+      "t": 347.551
      },
      {
       "w": "a",
-      "t": 345.687
+      "t": 347.787
      },
      {
       "w": "number?",
-      "t": 345.794
+      "t": 347.894
      }
     ]
    },
    {
-    "start": 346.504,
-    "end": 347.643,
+    "start": 348.604,
+    "end": 349.743,
     "text": "A piece of advice,",
     "words": [
      {
       "w": "A",
-      "t": 346.504
+      "t": 348.604
      },
      {
       "w": "piece",
-      "t": 346.627
+      "t": 348.727
      },
      {
       "w": "of",
-      "t": 346.946
+      "t": 349.046
      },
      {
       "w": "advice,",
-      "t": 347.118
+      "t": 349.218
      }
     ]
    },
    {
-    "start": 347.683,
-    "end": 349.069,
+    "start": 349.783,
+    "end": 351.169,
     "text": "a piece\nof information,",
     "words": [
      {
       "w": "a",
-      "t": 347.683
+      "t": 349.783
      },
      {
       "w": "piece",
-      "t": 347.807
+      "t": 349.907
      },
      {
       "w": "of",
-      "t": 348.125
+      "t": 350.225
      },
      {
       "w": "information,",
-      "t": 348.298
+      "t": 350.398
      }
     ]
    },
    {
-    "start": 349.109,
-    "end": 350.637,
+    "start": 351.209,
+    "end": 352.737,
     "text": "a piece\nof evidence.",
     "words": [
      {
       "w": "a",
-      "t": 349.109
+      "t": 351.209
      },
      {
       "w": "piece",
-      "t": 349.2
+      "t": 351.3
      },
      {
       "w": "of",
-      "t": 349.436
+      "t": 351.536
      },
      {
       "w": "evidence.",
-      "t": 349.563
+      "t": 351.663
      }
     ]
    },
    {
-    "start": 351.37,
-    "end": 352.752,
+    "start": 353.47,
+    "end": 354.852,
     "text": "Now think\nabout it.",
     "words": [
      {
       "w": "Now",
-      "t": 351.37
+      "t": 353.47
      },
      {
       "w": "think",
-      "t": 351.583
+      "t": 353.683
      },
      {
       "w": "about",
-      "t": 351.891
+      "t": 353.991
      },
      {
       "w": "it.",
-      "t": 352.199
+      "t": 354.299
      }
     ]
    },
    {
-    "start": 352.792,
-    "end": 354.378,
+    "start": 354.892,
+    "end": 356.478,
     "text": "Can you hold\nhonesty in your",
     "words": [
      {
       "w": "Can",
-      "t": 352.792
+      "t": 354.892
      },
      {
       "w": "you",
-      "t": 353.02
+      "t": 355.12
      },
      {
       "w": "hold",
-      "t": 353.249
+      "t": 355.349
      },
      {
       "w": "honesty",
-      "t": 353.528
+      "t": 355.628
      },
      {
       "w": "in",
-      "t": 353.96
+      "t": 356.06
      },
      {
       "w": "your",
-      "t": 354.139
+      "t": 356.239
      }
     ]
    },
    {
-    "start": 354.418,
-    "end": 356.207,
+    "start": 356.518,
+    "end": 358.307,
     "text": "hand, or can you\nonly show it,",
     "words": [
      {
       "w": "hand,",
-      "t": 354.418
+      "t": 356.518
      },
      {
       "w": "or",
-      "t": 354.901
+      "t": 357.001
      },
      {
       "w": "can",
-      "t": 355.053
+      "t": 357.153
      },
      {
       "w": "you",
-      "t": 355.248
+      "t": 357.348
      },
      {
       "w": "only",
-      "t": 355.444
+      "t": 357.544
      },
      {
       "w": "show",
-      "t": 355.682
+      "t": 357.782
      },
      {
       "w": "it,",
-      "t": 355.92
+      "t": 358.02
      }
     ]
    },
    {
-    "start": 356.247,
-    "end": 358.512,
+    "start": 358.347,
+    "end": 360.612,
     "text": "have it,\nor experience it?",
     "words": [
      {
       "w": "have",
-      "t": 356.247
+      "t": 358.347
      },
      {
       "w": "it,",
-      "t": 356.555
+      "t": 358.655
      },
      {
       "w": "or",
-      "t": 356.976
+      "t": 359.076
      },
      {
       "w": "experience",
-      "t": 357.117
+      "t": 359.217
      },
      {
       "w": "it?",
-      "t": 357.581
+      "t": 359.681
      }
     ]
    },
    {
-    "start": 359.837,
-    "end": 360.841,
+    "start": 361.937,
+    "end": 362.941,
     "text": "Error five.",
     "words": [
      {
       "w": "Error",
-      "t": 359.837
+      "t": 361.937
      },
      {
       "w": "five.",
-      "t": 360.16
+      "t": 362.26
      }
     ]
    },
    {
-    "start": 360.881,
-    "end": 362.984,
+    "start": 362.981,
+    "end": 365.084,
     "text": "‘She does many\nworks every day.’",
     "words": [
      {
       "w": "‘She",
-      "t": 360.881
+      "t": 362.981
      },
      {
       "w": "does",
-      "t": 361.106
+      "t": 363.206
      },
      {
       "w": "many",
-      "t": 361.379
+      "t": 363.479
      },
      {
       "w": "works",
-      "t": 361.654
+      "t": 363.754
      },
      {
       "w": "every",
-      "t": 361.977
+      "t": 364.077
      },
      {
       "w": "day.’",
-      "t": 362.301
+      "t": 364.401
      }
     ]
    },
    {
-    "start": 363.024,
-    "end": 363.769,
+    "start": 365.124,
+    "end": 365.869,
     "text": "Wrong.",
     "words": [
      {
       "w": "Wrong.",
-      "t": 363.024
+      "t": 365.124
      }
     ]
    },
    {
-    "start": 363.809,
-    "end": 365.971,
+    "start": 365.909,
+    "end": 368.071,
     "text": "‘She does a lot\nof work every day.’",
     "words": [
      {
       "w": "‘She",
-      "t": 363.809
+      "t": 365.909
      },
      {
       "w": "does",
-      "t": 363.976
+      "t": 366.076
      },
      {
       "w": "a",
-      "t": 364.181
+      "t": 366.281
      },
      {
       "w": "lot",
-      "t": 364.273
+      "t": 366.373
      },
      {
       "w": "of",
-      "t": 364.44
+      "t": 366.54
      },
      {
       "w": "work",
-      "t": 364.57
+      "t": 366.67
      },
      {
       "w": "every",
-      "t": 364.773
+      "t": 366.873
      },
      {
       "w": "day.’",
-      "t": 365.014
+      "t": 367.114
      }
     ]
    },
    {
-    "start": 366.703,
-    "end": 368.075,
+    "start": 368.803,
+    "end": 370.175,
     "text": "Category five:",
     "words": [
      {
       "w": "Category",
-      "t": 366.703
+      "t": 368.803
      },
      {
       "w": "five:",
-      "t": 367.341
+      "t": 369.441
      }
     ]
    },
    {
-    "start": 368.115,
-    "end": 370.313,
+    "start": 370.215,
+    "end": 372.413,
     "text": "activity,\nor process.",
     "words": [
      {
       "w": "activity,",
-      "t": 368.115
+      "t": 370.215
      },
      {
       "w": "or",
-      "t": 368.991
+      "t": 371.091
      },
      {
       "w": "process.",
-      "t": 369.218
+      "t": 371.318
      }
     ]
    },
    {
-    "start": 370.353,
-    "end": 371.781,
+    "start": 372.453,
+    "end": 373.881,
     "text": "We talk about\nan ongoing",
     "words": [
      {
       "w": "We",
-      "t": 370.353
+      "t": 372.453
      },
      {
       "w": "talk",
-      "t": 370.54
+      "t": 372.64
      },
      {
       "w": "about",
-      "t": 370.833
+      "t": 372.933
      },
      {
       "w": "an",
-      "t": 371.18
+      "t": 373.28
      },
      {
       "w": "ongoing",
-      "t": 371.367
+      "t": 373.467
      }
     ]
    },
    {
-    "start": 371.821,
-    "end": 373.114,
+    "start": 373.921,
+    "end": 375.214,
     "text": "process\nas a whole,",
     "words": [
      {
       "w": "process",
-      "t": 371.821
+      "t": 373.921
      },
      {
       "w": "as",
-      "t": 372.274
+      "t": 374.374
      },
      {
       "w": "a",
-      "t": 372.461
+      "t": 374.561
      },
      {
       "w": "whole,",
-      "t": 372.594
+      "t": 374.694
      }
     ]
    },
    {
-    "start": 373.154,
-    "end": 374.877,
+    "start": 375.254,
+    "end": 376.977,
     "text": "not as separate\nactions.",
     "words": [
      {
       "w": "not",
-      "t": 373.154
+      "t": 375.254
      },
      {
       "w": "as",
-      "t": 373.325
+      "t": 375.425
      },
      {
       "w": "separate",
-      "t": 373.458
+      "t": 375.558
      },
      {
       "w": "actions.",
-      "t": 373.819
+      "t": 375.919
      }
     ]
    },
    {
-    "start": 375.503,
-    "end": 377.473,
-    "text": "Work has many\nsmall steps:",
+    "start": 377.603,
+    "end": 379.414,
+    "text": "Think about\nwhat work means.",
     "words": [
      {
-      "w": "Work",
-      "t": 375.503
-     },
-     {
-      "w": "has",
-      "t": 375.824
-     },
-     {
-      "w": "many",
-      "t": 376.085
-     },
-     {
-      "w": "small",
-      "t": 376.406
-     },
-     {
-      "w": "steps:",
-      "t": 376.784
-     }
-    ]
-   },
-   {
-    "start": 377.513,
-    "end": 379.526,
-    "text": "emails, calls,\nmeetings,",
-    "words": [
-     {
-      "w": "emails,",
-      "t": 377.513
-     },
-     {
-      "w": "calls,",
-      "t": 378.178
-     },
-     {
-      "w": "meetings,",
-      "t": 378.786
-     }
-    ]
-   },
-   {
-    "start": 379.566,
-    "end": 380.538,
-    "text": "reports.",
-    "words": [
-     {
-      "w": "reports.",
-      "t": 379.566
-     }
-    ]
-   },
-   {
-    "start": 380.578,
-    "end": 381.922,
-    "text": "But we talk\nabout it as one",
-    "words": [
-     {
-      "w": "But",
-      "t": 380.578
-     },
-     {
-      "w": "we",
-      "t": 380.775
-     },
-     {
-      "w": "talk",
-      "t": 380.929
+      "w": "Think",
+      "t": 377.603
      },
      {
       "w": "about",
-      "t": 381.171
+      "t": 377.907
      },
      {
-      "w": "it",
-      "t": 381.456
+      "w": "what",
+      "t": 378.212
      },
      {
-      "w": "as",
-      "t": 381.61
+      "w": "work",
+      "t": 378.469
+     },
+     {
+      "w": "means.",
+      "t": 378.727
+     }
+    ]
+   },
+   {
+    "start": 379.454,
+    "end": 381.411,
+    "text": "Work is many\nsmall steps:",
+    "words": [
+     {
+      "w": "Work",
+      "t": 379.454
+     },
+     {
+      "w": "is",
+      "t": 379.781
+     },
+     {
+      "w": "many",
+      "t": 379.99
+     },
+     {
+      "w": "small",
+      "t": 380.318
+     },
+     {
+      "w": "steps:",
+      "t": 380.705
+     }
+    ]
+   },
+   {
+    "start": 381.451,
+    "end": 382.648,
+    "text": "answering emails,",
+    "words": [
+     {
+      "w": "answering",
+      "t": 381.451
+     },
+     {
+      "w": "emails,",
+      "t": 382.042
+     }
+    ]
+   },
+   {
+    "start": 382.688,
+    "end": 383.661,
+    "text": "making calls,",
+    "words": [
+     {
+      "w": "making",
+      "t": 382.688
+     },
+     {
+      "w": "calls,",
+      "t": 383.111
+     }
+    ]
+   },
+   {
+    "start": 383.701,
+    "end": 384.924,
+    "text": "going to meetings,",
+    "words": [
+     {
+      "w": "going",
+      "t": 383.701
+     },
+     {
+      "w": "to",
+      "t": 384.05
+     },
+     {
+      "w": "meetings,",
+      "t": 384.238
+     }
+    ]
+   },
+   {
+    "start": 384.964,
+    "end": 386.322,
+    "text": "writing reports.",
+    "words": [
+     {
+      "w": "writing",
+      "t": 384.964
+     },
+     {
+      "w": "reports.",
+      "t": 385.421
+     }
+    ]
+   },
+   {
+    "start": 386.362,
+    "end": 387.891,
+    "text": "We don’t count\neach step.",
+    "words": [
+     {
+      "w": "We",
+      "t": 386.362
+     },
+     {
+      "w": "don’t",
+      "t": 386.512
+     },
+     {
+      "w": "count",
+      "t": 386.791
+     },
+     {
+      "w": "each",
+      "t": 387.071
+     },
+     {
+      "w": "step.",
+      "t": 387.307
+     }
+    ]
+   },
+   {
+    "start": 387.931,
+    "end": 389.402,
+    "text": "We put one\ncircle around all",
+    "words": [
+     {
+      "w": "We",
+      "t": 387.931
+     },
+     {
+      "w": "put",
+      "t": 388.096
      },
      {
       "w": "one",
-      "t": 381.764
-     }
-    ]
-   },
-   {
-    "start": 381.962,
-    "end": 383.437,
-    "text": "ongoing whole.",
-    "words": [
-     {
-      "w": "ongoing",
-      "t": 381.962
+      "t": 388.309
      },
      {
-      "w": "whole.",
-      "t": 382.335
+      "w": "circle",
+      "t": 388.521
+     },
+     {
+      "w": "around",
+      "t": 388.876
+     },
+     {
+      "w": "all",
+      "t": 389.23
      }
     ]
    },
    {
-    "start": 384.17,
-    "end": 385.201,
+    "start": 389.442,
+    "end": 391.055,
+    "text": "of them,\nand call the whole",
+    "words": [
+     {
+      "w": "of",
+      "t": 389.442
+     },
+     {
+      "w": "them,",
+      "t": 389.607
+     },
+     {
+      "w": "and",
+      "t": 390.056
+     },
+     {
+      "w": "call",
+      "t": 390.279
+     },
+     {
+      "w": "the",
+      "t": 390.552
+     },
+     {
+      "w": "whole",
+      "t": 390.774
+     }
+    ]
+   },
+   {
+    "start": 391.095,
+    "end": 392.713,
+    "text": "activity: work.",
+    "words": [
+     {
+      "w": "activity:",
+      "t": 391.095
+     },
+     {
+      "w": "work.",
+      "t": 391.863
+     }
+    ]
+   },
+   {
+    "start": 393.637,
+    "end": 395.341,
+    "text": "Research\nis the same.",
+    "words": [
+     {
+      "w": "Research",
+      "t": 393.637
+     },
+     {
+      "w": "is",
+      "t": 394.154
+     },
+     {
+      "w": "the",
+      "t": 394.345
+     },
+     {
+      "w": "same.",
+      "t": 394.591
+     }
+    ]
+   },
+   {
+    "start": 395.381,
+    "end": 397.312,
+    "text": "Reading,\nasking questions,",
+    "words": [
+     {
+      "w": "Reading,",
+      "t": 395.381
+     },
+     {
+      "w": "asking",
+      "t": 396.026
+     },
+     {
+      "w": "questions,",
+      "t": 396.479
+     }
+    ]
+   },
+   {
+    "start": 397.352,
+    "end": 399.027,
+    "text": "collecting data,\ntesting,",
+    "words": [
+     {
+      "w": "collecting",
+      "t": 397.352
+     },
+     {
+      "w": "data,",
+      "t": 397.961
+     },
+     {
+      "w": "testing,",
+      "t": 398.463
+     }
+    ]
+   },
+   {
+    "start": 399.067,
+    "end": 400.885,
+    "text": "and writing up\nthe results.",
+    "words": [
+     {
+      "w": "and",
+      "t": 399.067
+     },
+     {
+      "w": "writing",
+      "t": 399.284
+     },
+     {
+      "w": "up",
+      "t": 399.694
+     },
+     {
+      "w": "the",
+      "t": 399.863
+     },
+     {
+      "w": "results.",
+      "t": 400.08
+     }
+    ]
+   },
+   {
+    "start": 400.925,
+    "end": 402.613,
+    "text": "Many steps,\none circle,",
+    "words": [
+     {
+      "w": "Many",
+      "t": 400.925
+     },
+     {
+      "w": "steps,",
+      "t": 401.222
+     },
+     {
+      "w": "one",
+      "t": 401.789
+     },
+     {
+      "w": "circle,",
+      "t": 402.032
+     }
+    ]
+   },
+   {
+    "start": 402.653,
+    "end": 403.639,
+    "text": "one process:",
+    "words": [
+     {
+      "w": "one",
+      "t": 402.653
+     },
+     {
+      "w": "process:",
+      "t": 402.896
+     }
+    ]
+   },
+   {
+    "start": 403.679,
+    "end": 404.715,
+    "text": "research.",
+    "words": [
+     {
+      "w": "research.",
+      "t": 403.679
+     }
+    ]
+   },
+   {
+    "start": 405.637,
+    "end": 406.668,
     "text": "One process,",
     "words": [
      {
       "w": "One",
-      "t": 384.17
+      "t": 405.637
      },
      {
       "w": "process,",
-      "t": 384.453
+      "t": 405.92
      }
     ]
    },
    {
-    "start": 385.241,
-    "end": 386.613,
+    "start": 406.708,
+    "end": 408.08,
     "text": "not separate\nactions,",
     "words": [
      {
       "w": "not",
-      "t": 385.241
+      "t": 406.708
      },
      {
       "w": "separate",
-      "t": 385.481
+      "t": 406.948
      },
      {
       "w": "actions,",
-      "t": 385.987
+      "t": 407.454
      }
     ]
    },
    {
-    "start": 386.653,
-    "end": 388.249,
+    "start": 408.12,
+    "end": 409.716,
     "text": "so a singular\nverb.",
     "words": [
      {
       "w": "so",
-      "t": 386.653
+      "t": 408.12
      },
      {
       "w": "a",
-      "t": 386.844
+      "t": 408.311
      },
      {
       "w": "singular",
-      "t": 386.981
+      "t": 408.448
      },
      {
       "w": "verb.",
-      "t": 387.499
+      "t": 408.966
      }
     ]
    },
    {
-    "start": 388.289,
-    "end": 390.256,
+    "start": 409.756,
+    "end": 411.723,
     "text": "‘Her research\nis impressive.’",
     "words": [
      {
       "w": "‘Her",
-      "t": 388.289
+      "t": 409.756
      },
      {
       "w": "research",
-      "t": 388.468
+      "t": 409.935
      },
      {
       "w": "is",
-      "t": 388.846
+      "t": 410.313
      },
      {
       "w": "impressive.’",
-      "t": 388.986
+      "t": 410.453
      }
     ]
    },
    {
-    "start": 391.403,
-    "end": 393.253,
+    "start": 412.87,
+    "end": 414.819,
     "text": "The old school\nrule says work,",
     "words": [
      {
       "w": "The",
-      "t": 391.403
+      "t": 412.87
      },
      {
       "w": "old",
-      "t": 391.632
+      "t": 413.112
      },
      {
       "w": "school",
-      "t": 391.863
+      "t": 413.354
      },
      {
       "w": "rule",
-      "t": 392.245
+      "t": 413.757
      },
      {
       "w": "says",
-      "t": 392.527
+      "t": 414.052
      },
      {
       "w": "work,",
-      "t": 392.807
+      "t": 414.348
      }
     ]
    },
    {
-    "start": 393.293,
-    "end": 394.644,
+    "start": 414.859,
+    "end": 416.429,
     "text": "research,\nprogress,",
     "words": [
      {
       "w": "research,",
-      "t": 393.293
+      "t": 414.859
      },
      {
       "w": "progress,",
-      "t": 393.988
+      "t": 415.66
      }
     ]
    },
    {
-    "start": 394.684,
-    "end": 396.371,
+    "start": 416.469,
+    "end": 418.334,
     "text": "travel and exercise\nare always",
     "words": [
      {
       "w": "travel",
-      "t": 394.684
+      "t": 416.469
      },
      {
       "w": "and",
-      "t": 395.071
+      "t": 416.896
      },
      {
       "w": "exercise",
-      "t": 395.303
+      "t": 417.152
      },
      {
       "w": "are",
-      "t": 395.793
+      "t": 417.692
      },
      {
       "w": "always",
-      "t": 396.025
+      "t": 417.948
      }
     ]
    },
    {
-    "start": 396.411,
-    "end": 398.44,
+    "start": 418.374,
+    "end": 420.532,
     "text": "singular.\nSkip that.",
     "words": [
      {
       "w": "singular.",
-      "t": 396.411
+      "t": 418.374
      },
      {
       "w": "Skip",
-      "t": 397.365
+      "t": 419.426
      },
      {
       "w": "that.",
-      "t": 397.672
+      "t": 419.742
      }
     ]
    },
    {
-    "start": 398.48,
-    "end": 399.384,
+    "start": 420.572,
+    "end": 421.573,
     "text": "The logic:",
     "words": [
      {
       "w": "The",
-      "t": 398.48
+      "t": 420.572
      },
      {
       "w": "logic:",
-      "t": 398.73
+      "t": 420.848
      }
     ]
    },
    {
-    "start": 399.424,
-    "end": 400.904,
+    "start": 421.613,
+    "end": 423.058,
     "text": "you’re talking\nabout the whole",
     "words": [
      {
       "w": "you’re",
-      "t": 399.424
+      "t": 421.613
      },
      {
       "w": "talking",
-      "t": 399.765
+      "t": 421.946
      },
      {
       "w": "about",
-      "t": 400.15
+      "t": 422.323
      },
      {
       "w": "the",
-      "t": 400.445
+      "t": 422.611
      },
      {
       "w": "whole",
-      "t": 400.649
+      "t": 422.81
      }
     ]
    },
    {
-    "start": 400.944,
-    "end": 402.947,
+    "start": 423.098,
+    "end": 425.388,
     "text": "activity,\nnot separate actions.",
     "words": [
      {
       "w": "activity,",
-      "t": 400.944
+      "t": 423.098
      },
      {
       "w": "not",
-      "t": 401.557
+      "t": 423.698
      },
      {
       "w": "separate",
-      "t": 401.761
+      "t": 423.881
      },
      {
       "w": "actions.",
-      "t": 402.192
+      "t": 424.268
      }
     ]
    },
    {
-    "start": 402.987,
-    "end": 403.843,
+    "start": 426.137,
+    "end": 428.368,
+    "text": "The same goes for\nthe whole family.",
+    "words": [
+     {
+      "w": "The",
+      "t": 426.137
+     },
+     {
+      "w": "same",
+      "t": 426.352
+     },
+     {
+      "w": "goes",
+      "t": 426.615
+     },
+     {
+      "w": "for",
+      "t": 426.878
+     },
+     {
+      "w": "the",
+      "t": 427.093
+     },
+     {
+      "w": "whole",
+      "t": 427.308
+     },
+     {
+      "w": "family.",
+      "t": 427.619
+     }
+    ]
+   },
+   {
+    "start": 428.408,
+    "end": 428.924,
+    "text": "Work:",
+    "words": [
+     {
+      "w": "Work:",
+      "t": 428.408
+     }
+    ]
+   },
+   {
+    "start": 428.964,
+    "end": 430.852,
+    "text": "the whole activity\nof working.",
+    "words": [
+     {
+      "w": "the",
+      "t": 428.964
+     },
+     {
+      "w": "whole",
+      "t": 429.173
+     },
+     {
+      "w": "activity",
+      "t": 429.476
+     },
+     {
+      "w": "of",
+      "t": 429.916
+     },
+     {
+      "w": "working.",
+      "t": 430.079
+     }
+    ]
+   },
+   {
+    "start": 430.892,
+    "end": 431.704,
     "text": "Research:",
     "words": [
      {
       "w": "Research:",
-      "t": 402.987
+      "t": 430.892
      }
     ]
    },
    {
-    "start": 403.883,
-    "end": 405.768,
+    "start": 431.744,
+    "end": 433.525,
     "text": "the whole process\nof studying.",
     "words": [
      {
       "w": "the",
-      "t": 403.883
+      "t": 431.744
      },
      {
       "w": "whole",
-      "t": 404.092
+      "t": 431.941
      },
      {
       "w": "process",
-      "t": 404.393
+      "t": 432.226
      },
      {
       "w": "of",
-      "t": 404.787
+      "t": 432.599
      },
      {
       "w": "studying.",
-      "t": 404.95
+      "t": 432.753
      }
     ]
    },
    {
-    "start": 405.808,
-    "end": 406.415,
+    "start": 433.565,
+    "end": 434.299,
+    "text": "Progress:",
+    "words": [
+     {
+      "w": "Progress:",
+      "t": 433.565
+     }
+    ]
+   },
+   {
+    "start": 434.339,
+    "end": 435.829,
+    "text": "the process\nof improving.",
+    "words": [
+     {
+      "w": "the",
+      "t": 434.339
+     },
+     {
+      "w": "process",
+      "t": 434.53
+     },
+     {
+      "w": "of",
+      "t": 434.892
+     },
+     {
+      "w": "improving.",
+      "t": 435.04
+     }
+    ]
+   },
+   {
+    "start": 435.869,
+    "end": 436.406,
     "text": "Travel:",
     "words": [
      {
       "w": "Travel:",
-      "t": 405.808
+      "t": 435.869
      }
     ]
    },
    {
-    "start": 406.455,
-    "end": 408.217,
+    "start": 436.446,
+    "end": 438.007,
     "text": "going from\nplace to place.",
     "words": [
      {
       "w": "going",
-      "t": 406.455
+      "t": 436.446
      },
      {
       "w": "from",
-      "t": 406.768
+      "t": 436.723
      },
      {
       "w": "place",
-      "t": 407.032
+      "t": 436.958
      },
      {
       "w": "to",
-      "t": 407.344
+      "t": 437.236
      },
      {
       "w": "place.",
-      "t": 407.512
+      "t": 437.385
      }
     ]
    },
    {
-    "start": 408.257,
-    "end": 408.942,
-    "text": "Shopping:",
+    "start": 438.047,
+    "end": 438.695,
+    "text": "Exercise:",
     "words": [
      {
-      "w": "Shopping:",
-      "t": 408.257
+      "w": "Exercise:",
+      "t": 438.047
      }
     ]
    },
    {
-    "start": 408.982,
-    "end": 411.361,
-    "text": "the whole activity\nof buying things.",
+    "start": 438.735,
+    "end": 440.471,
+    "text": "physical training\nin general.",
     "words": [
+     {
+      "w": "physical",
+      "t": 438.735
+     },
+     {
+      "w": "training",
+      "t": 439.157
+     },
+     {
+      "w": "in",
+      "t": 439.579
+     },
+     {
+      "w": "general.",
+      "t": 439.734
+     }
+    ]
+   },
+   {
+    "start": 440.511,
+    "end": 442.471,
+    "text": "Training:\ndeveloping a skill.",
+    "words": [
+     {
+      "w": "Training:",
+      "t": 440.511
+     },
+     {
+      "w": "developing",
+      "t": 441.2
+     },
+     {
+      "w": "a",
+      "t": 441.711
+     },
+     {
+      "w": "skill.",
+      "t": 441.822
+     }
+    ]
+   },
+   {
+    "start": 442.511,
+    "end": 444.523,
+    "text": "Sleep:\nthe state of sleeping.",
+    "words": [
+     {
+      "w": "Sleep:",
+      "t": 442.511
+     },
      {
       "w": "the",
-      "t": 408.982
+      "t": 443.096
      },
      {
-      "w": "whole",
-      "t": 409.165
-     },
-     {
-      "w": "activity",
-      "t": 409.431
+      "w": "state",
+      "t": 443.296
      },
      {
       "w": "of",
-      "t": 409.819
+      "t": 443.584
      },
      {
-      "w": "buying",
-      "t": 409.961
-     },
-     {
-      "w": "things.",
-      "t": 410.268
+      "w": "sleeping.",
+      "t": 443.741
      }
     ]
    },
    {
-    "start": 412.103,
-    "end": 413.418,
+    "start": 444.563,
+    "end": 446.398,
+    "text": "Shopping:\nbuying things.",
+    "words": [
+     {
+      "w": "Shopping:",
+      "t": 444.563
+     },
+     {
+      "w": "buying",
+      "t": 445.299
+     },
+     {
+      "w": "things.",
+      "t": 445.654
+     }
+    ]
+   },
+   {
+    "start": 446.438,
+    "end": 447.356,
+    "text": "And business:",
+    "words": [
+     {
+      "w": "And",
+      "t": 446.438
+     },
+     {
+      "w": "business:",
+      "t": 446.653
+     }
+    ]
+   },
+   {
+    "start": 447.396,
+    "end": 449.407,
+    "text": "buying,\nselling and trading.",
+    "words": [
+     {
+      "w": "buying,",
+      "t": 447.396
+     },
+     {
+      "w": "selling",
+      "t": 447.832
+     },
+     {
+      "w": "and",
+      "t": 448.154
+     },
+     {
+      "w": "trading.",
+      "t": 448.325
+     }
+    ]
+   },
+   {
+    "start": 450.337,
+    "end": 451.652,
     "text": "Now think\nabout it.",
     "words": [
      {
       "w": "Now",
-      "t": 412.103
+      "t": 450.337
      },
      {
       "w": "think",
-      "t": 412.307
+      "t": 450.541
      },
      {
       "w": "about",
-      "t": 412.6
+      "t": 450.834
      },
      {
       "w": "it.",
-      "t": 412.894
+      "t": 451.128
      }
     ]
    },
    {
-    "start": 413.458,
-    "end": 414.881,
+    "start": 451.692,
+    "end": 453.115,
     "text": "Do we say\n‘I do a work’,",
     "words": [
      {
       "w": "Do",
-      "t": 413.458
+      "t": 451.692
      },
      {
       "w": "we",
-      "t": 413.627
+      "t": 451.861
      },
      {
       "w": "say",
-      "t": 413.794
+      "t": 452.028
      },
      {
       "w": "‘I",
-      "t": 414.01
+      "t": 452.244
      },
      {
       "w": "do",
-      "t": 414.13
+      "t": 452.364
      },
      {
       "w": "a",
-      "t": 414.298
+      "t": 452.532
      },
      {
       "w": "work’,",
-      "t": 414.417
+      "t": 452.651
      }
     ]
    },
    {
-    "start": 414.921,
-    "end": 416.365,
+    "start": 453.155,
+    "end": 454.599,
     "text": "or ‘I do work’?",
     "words": [
      {
       "w": "or",
-      "t": 414.921
+      "t": 453.155
      },
      {
       "w": "‘I",
-      "t": 415.062
+      "t": 453.296
      },
      {
       "w": "do",
-      "t": 415.163
+      "t": 453.397
      },
      {
       "w": "work’?",
-      "t": 415.304
+      "t": 453.538
      }
     ]
    },
    {
-    "start": 417.703,
-    "end": 419.098,
-    "text": "Let’s put all\nthe examples",
-    "words": [
-     {
-      "w": "Let’s",
-      "t": 417.703
-     },
-     {
-      "w": "put",
-      "t": 418.019
-     },
-     {
-      "w": "all",
-      "t": 418.238
-     },
-     {
-      "w": "the",
-      "t": 418.457
-     },
-     {
-      "w": "examples",
-      "t": 418.676
-     }
-    ]
-   },
-   {
-    "start": 419.138,
-    "end": 420.741,
-    "text": "on the board.",
-    "words": [
-     {
-      "w": "on",
-      "t": 419.138
-     },
-     {
-      "w": "the",
-      "t": 419.308
-     },
-     {
-      "w": "board.",
-      "t": 419.527
-     }
-    ]
-   },
-   {
-    "start": 421.37,
-    "end": 422.696,
-    "text": "Unit or mass:",
-    "words": [
-     {
-      "w": "Unit",
-      "t": 421.37
-     },
-     {
-      "w": "or",
-      "t": 421.736
-     },
-     {
-      "w": "mass:",
-      "t": 421.969
-     }
-    ]
-   },
-   {
-    "start": 422.736,
-    "end": 424.151,
-    "text": "furniture,\nluggage,",
-    "words": [
-     {
-      "w": "furniture,",
-      "t": 422.736
-     },
-     {
-      "w": "luggage,",
-      "t": 423.517
-     }
-    ]
-   },
-   {
-    "start": 424.191,
-    "end": 425.606,
-    "text": "baggage,\nequipment,",
-    "words": [
-     {
-      "w": "baggage,",
-      "t": 424.191
-     },
-     {
-      "w": "equipment,",
-      "t": 424.865
-     }
-    ]
-   },
-   {
-    "start": 425.646,
-    "end": 427.061,
-    "text": "machinery,\ngarbage,",
-    "words": [
-     {
-      "w": "machinery,",
-      "t": 425.646
-     },
-     {
-      "w": "garbage,",
-      "t": 426.428
-     }
-    ]
-   },
-   {
-    "start": 427.101,
-    "end": 428.171,
-    "text": "rubbish, clothing,",
-    "words": [
-     {
-      "w": "rubbish,",
-      "t": 427.101
-     },
-     {
-      "w": "clothing,",
-      "t": 427.635
-     }
-    ]
-   },
-   {
-    "start": 428.211,
-    "end": 429.411,
-    "text": "stationery,\ncrockery,",
-    "words": [
-     {
-      "w": "stationery,",
-      "t": 428.211
-     },
-     {
-      "w": "crockery,",
-      "t": 428.874
-     }
-    ]
-   },
-   {
-    "start": 429.451,
-    "end": 431.248,
-    "text": "cutlery,\nscenery and traffic.",
-    "words": [
-     {
-      "w": "cutlery,",
-      "t": 429.451
-     },
-     {
-      "w": "scenery",
-      "t": 429.985
-     },
-     {
-      "w": "and",
-      "t": 430.349
-     },
-     {
-      "w": "traffic.",
-      "t": 430.541
-     }
-    ]
-   },
-   {
-    "start": 431.288,
-    "end": 433.264,
-    "text": "Many things,\none unit.",
-    "words": [
-     {
-      "w": "Many",
-      "t": 431.288
-     },
-     {
-      "w": "things,",
-      "t": 431.525
-     },
-     {
-      "w": "one",
-      "t": 432.019
-     },
-     {
-      "w": "unit.",
-      "t": 432.212
-     }
-    ]
-   },
-   {
-    "start": 434.003,
-    "end": 436.297,
-    "text": "Material: gold,\nsilver, iron,",
-    "words": [
-     {
-      "w": "Material:",
-      "t": 434.003
-     },
-     {
-      "w": "gold,",
-      "t": 434.808
-     },
-     {
-      "w": "silver,",
-      "t": 435.284
-     },
-     {
-      "w": "iron,",
-      "t": 435.861
-     }
-    ]
-   },
-   {
-    "start": 436.337,
-    "end": 437.877,
-    "text": "copper,\nsteel, wood,",
-    "words": [
-     {
-      "w": "copper,",
-      "t": 436.337
-     },
-     {
-      "w": "steel,",
-      "t": 436.914
-     },
-     {
-      "w": "wood,",
-      "t": 437.44
-     }
-    ]
-   },
-   {
-    "start": 437.917,
-    "end": 439.355,
-    "text": "stone, sand, clay,",
-    "words": [
-     {
-      "w": "stone,",
-      "t": 437.917
-     },
-     {
-      "w": "sand,",
-      "t": 438.442
-     },
-     {
-      "w": "clay,",
-      "t": 438.919
-     }
-    ]
-   },
-   {
-    "start": 439.395,
-    "end": 440.884,
-    "text": "cotton,\nwool, silk,",
-    "words": [
-     {
-      "w": "cotton,",
-      "t": 439.395
-     },
-     {
-      "w": "wool,",
-      "t": 439.971
-     },
-     {
-      "w": "silk,",
-      "t": 440.448
-     }
-    ]
-   },
-   {
-    "start": 440.924,
-    "end": 441.921,
-    "text": "leather, plastic,",
-    "words": [
-     {
-      "w": "leather,",
-      "t": 440.924
-     },
-     {
-      "w": "plastic,",
-      "t": 441.502
-     }
-    ]
-   },
-   {
-    "start": 441.961,
-    "end": 442.894,
-    "text": "glass and paper.",
-    "words": [
-     {
-      "w": "glass",
-      "t": 441.961
-     },
-     {
-      "w": "and",
-      "t": 442.199
-     },
-     {
-      "w": "paper.",
-      "t": 442.364
-     }
-    ]
-   },
-   {
-    "start": 442.934,
-    "end": 444.649,
-    "text": "It’s what things\nare made of.",
-    "words": [
-     {
-      "w": "It’s",
-      "t": 442.934
-     },
-     {
-      "w": "what",
-      "t": 443.11
-     },
-     {
-      "w": "things",
-      "t": 443.287
-     },
-     {
-      "w": "are",
-      "t": 443.528
-     },
-     {
-      "w": "made",
-      "t": 443.673
-     },
-     {
-      "w": "of.",
-      "t": 443.85
-     }
-    ]
-   },
-   {
-    "start": 445.57,
-    "end": 447.399,
-    "text": "Measured: food,\nrice, bread,",
-    "words": [
-     {
-      "w": "Measured:",
-      "t": 445.57
-     },
-     {
-      "w": "food,",
-      "t": 446.214
-     },
-     {
-      "w": "rice,",
-      "t": 446.609
-     },
-     {
-      "w": "bread,",
-      "t": 447.003
-     }
-    ]
-   },
-   {
-    "start": 447.439,
-    "end": 448.75,
-    "text": "butter,\ncheese, meat,",
-    "words": [
-     {
-      "w": "butter,",
-      "t": 447.439
-     },
-     {
-      "w": "cheese,",
-      "t": 447.917
-     },
-     {
-      "w": "meat,",
-      "t": 448.395
-     }
-    ]
-   },
-   {
-    "start": 448.79,
-    "end": 450.017,
-    "text": "sugar,\nflour, salt,",
-    "words": [
-     {
-      "w": "sugar,",
-      "t": 448.79
-     },
-     {
-      "w": "flour,",
-      "t": 449.226
-     },
-     {
-      "w": "salt,",
-      "t": 449.662
-     }
-    ]
-   },
-   {
-    "start": 450.057,
-    "end": 451.202,
-    "text": "milk, water, tea,",
-    "words": [
-     {
-      "w": "milk,",
-      "t": 450.057
-     },
-     {
-      "w": "water,",
-      "t": 450.451
-     },
-     {
-      "w": "tea,",
-      "t": 450.888
-     }
-    ]
-   },
-   {
-    "start": 451.242,
-    "end": 452.344,
-    "text": "coffee and honey.",
-    "words": [
-     {
-      "w": "coffee",
-      "t": 451.242
-     },
-     {
-      "w": "and",
-      "t": 451.552
-     },
-     {
-      "w": "honey.",
-      "t": 451.74
-     }
-    ]
-   },
-   {
-    "start": 452.384,
-    "end": 453.912,
-    "text": "Measured\nby amount.",
-    "words": [
-     {
-      "w": "Measured",
-      "t": 452.384
-     },
-     {
-      "w": "by",
-      "t": 452.736
-     },
-     {
-      "w": "amount.",
-      "t": 452.865
-     }
-    ]
-   },
-   {
-    "start": 454.637,
-    "end": 457.437,
-    "text": "Abstract: advice,\ninformation,",
-    "words": [
-     {
-      "w": "Abstract:",
-      "t": 454.637
-     },
-     {
-      "w": "advice,",
-      "t": 455.649
-     },
-     {
-      "w": "information,",
-      "t": 456.4
-     }
-    ]
-   },
-   {
-    "start": 457.477,
-    "end": 458.698,
-    "text": "knowledge,\neducation,",
-    "words": [
-     {
-      "w": "knowledge,",
-      "t": 457.477
-     },
-     {
-      "w": "education,",
-      "t": 458.107
-     }
-    ]
-   },
-   {
-    "start": 458.738,
-    "end": 459.786,
-    "text": "honesty, justice,",
-    "words": [
-     {
-      "w": "honesty,",
-      "t": 458.738
-     },
-     {
-      "w": "justice,",
-      "t": 459.282
-     }
-    ]
-   },
-   {
-    "start": 459.826,
-    "end": 460.981,
-    "text": "patience, courage,",
-    "words": [
-     {
-      "w": "patience,",
-      "t": 459.826
-     },
-     {
-      "w": "courage,",
-      "t": 460.413
-     }
-    ]
-   },
-   {
-    "start": 461.021,
-    "end": 462.248,
-    "text": "wisdom, happiness,",
-    "words": [
-     {
-      "w": "wisdom,",
-      "t": 461.021
-     },
-     {
-      "w": "happiness,",
-      "t": 461.582
-     }
-    ]
-   },
-   {
-    "start": 462.288,
-    "end": 464.294,
-    "text": "freedom,\npeace and evidence.",
-    "words": [
-     {
-      "w": "freedom,",
-      "t": 462.288
-     },
-     {
-      "w": "peace",
-      "t": 462.896
-     },
-     {
-      "w": "and",
-      "t": 463.213
-     },
-     {
-      "w": "evidence.",
-      "t": 463.433
-     }
-    ]
-   },
-   {
-    "start": 464.334,
-    "end": 465.859,
-    "text": "No physical form.",
-    "words": [
-     {
-      "w": "No",
-      "t": 464.334
-     },
-     {
-      "w": "physical",
-      "t": 464.475
-     },
-     {
-      "w": "form.",
-      "t": 464.858
-     }
-    ]
-   },
-   {
-    "start": 466.603,
-    "end": 468.347,
-    "text": "Activity\nor process:",
-    "words": [
-     {
-      "w": "Activity",
-      "t": 466.603
-     },
-     {
-      "w": "or",
-      "t": 467.219
-     },
-     {
-      "w": "process:",
-      "t": 467.446
-     }
-    ]
-   },
-   {
-    "start": 468.387,
-    "end": 470.136,
-    "text": "work, research,\nprogress,",
-    "words": [
-     {
-      "w": "work,",
-      "t": 468.387
-     },
-     {
-      "w": "research,",
-      "t": 468.852
-     },
-     {
-      "w": "progress,",
-      "t": 469.514
-     }
-    ]
-   },
-   {
-    "start": 470.176,
-    "end": 471.363,
-    "text": "travel, exercise,",
-    "words": [
-     {
-      "w": "travel,",
-      "t": 470.176
-     },
-     {
-      "w": "exercise,",
-      "t": 470.741
-     }
-    ]
-   },
-   {
-    "start": 471.403,
-    "end": 472.539,
-    "text": "training, sleep,",
-    "words": [
-     {
-      "w": "training,",
-      "t": 471.403
-     },
-     {
-      "w": "sleep,",
-      "t": 472.065
-     }
-    ]
-   },
-   {
-    "start": 472.579,
-    "end": 474.134,
-    "text": "shopping\nand business.",
-    "words": [
-     {
-      "w": "shopping",
-      "t": 472.579
-     },
-     {
-      "w": "and",
-      "t": 473.046
-     },
-     {
-      "w": "business.",
-      "t": 473.266
-     }
-    ]
-   },
-   {
-    "start": 474.174,
-    "end": 475.881,
-    "text": "One whole\nactivity.",
-    "words": [
-     {
-      "w": "One",
-      "t": 474.174
-     },
-     {
-      "w": "whole",
-      "t": 474.369
-     },
-     {
-      "w": "activity.",
-      "t": 474.651
-     }
-    ]
-   },
-   {
-    "start": 476.803,
-    "end": 478.789,
-    "text": "So don’t memorise\nthe list.",
+    "start": 455.937,
+    "end": 457.463,
+    "text": "So here’s\nthe crux.",
     "words": [
      {
       "w": "So",
-      "t": 476.803
+      "t": 455.937
      },
      {
-      "w": "don’t",
-      "t": 476.987
-     },
-     {
-      "w": "memorise",
-      "t": 477.329
+      "w": "here’s",
+      "t": 456.12
      },
      {
       "w": "the",
-      "t": 477.829
+      "t": 456.511
      },
      {
-      "w": "list.",
-      "t": 478.066
+      "w": "crux.",
+      "t": 456.746
      }
     ]
    },
    {
-    "start": 478.829,
-    "end": 479.956,
-    "text": "Find the category,",
+    "start": 457.503,
+    "end": 459.785,
+    "text": "How do you know\na noun is uncountable?",
     "words": [
      {
-      "w": "Find",
-      "t": 478.829
+      "w": "How",
+      "t": 457.503
      },
      {
-      "w": "the",
-      "t": 479.103
+      "w": "do",
+      "t": 457.708
      },
      {
-      "w": "category,",
-      "t": 479.326
+      "w": "you",
+      "t": 457.867
+     },
+     {
+      "w": "know",
+      "t": 458.072
+     },
+     {
+      "w": "a",
+      "t": 458.323
+     },
+     {
+      "w": "noun",
+      "t": 458.437
+     },
+     {
+      "w": "is",
+      "t": 458.687
+     },
+     {
+      "w": "uncountable?",
+      "t": 458.847
      }
     ]
    },
    {
-    "start": 479.996,
-    "end": 481.441,
-    "text": "and the logic\ntells you:",
+    "start": 459.825,
+    "end": 461.399,
+    "text": "Check five things.",
     "words": [
+     {
+      "w": "Check",
+      "t": 459.825
+     },
+     {
+      "w": "five",
+      "t": 460.086
+     },
+     {
+      "w": "things.",
+      "t": 460.307
+     }
+    ]
+   },
+   {
+    "start": 462.037,
+    "end": 463.735,
+    "text": "Does it work\nas one unit?",
+    "words": [
+     {
+      "w": "Does",
+      "t": 462.037
+     },
+     {
+      "w": "it",
+      "t": 462.296
+     },
+     {
+      "w": "work",
+      "t": 462.46
+     },
+     {
+      "w": "as",
+      "t": 462.718
+     },
+     {
+      "w": "one",
+      "t": 462.882
+     },
+     {
+      "w": "unit?",
+      "t": 463.094
+     }
+    ]
+   },
+   {
+    "start": 463.775,
+    "end": 465.017,
+    "text": "Pens, pencils,",
+    "words": [
+     {
+      "w": "Pens,",
+      "t": 463.775
+     },
+     {
+      "w": "pencils,",
+      "t": 464.412
+     }
+    ]
+   },
+   {
+    "start": 465.057,
+    "end": 466.358,
+    "text": "clips and a ruler:",
+    "words": [
+     {
+      "w": "clips",
+      "t": 465.057
+     },
      {
       "w": "and",
-      "t": 479.996
+      "t": 465.392
      },
      {
-      "w": "the",
-      "t": 480.202
+      "w": "a",
+      "t": 465.624
      },
      {
-      "w": "logic",
-      "t": 480.407
-     },
-     {
-      "w": "tells",
-      "t": 480.704
-     },
-     {
-      "w": "you:",
-      "t": 481.001
+      "w": "ruler:",
+      "t": 465.753
      }
     ]
    },
    {
-    "start": 481.481,
-    "end": 483.894,
+    "start": 466.398,
+    "end": 468.843,
+    "text": "circle them,\nand they’re stationery.",
+    "words": [
+     {
+      "w": "circle",
+      "t": 466.398
+     },
+     {
+      "w": "them,",
+      "t": 466.811
+     },
+     {
+      "w": "and",
+      "t": 467.336
+     },
+     {
+      "w": "they’re",
+      "t": 467.484
+     },
+     {
+      "w": "stationery.",
+      "t": 467.767
+     }
+    ]
+   },
+   {
+    "start": 469.47,
+    "end": 470.842,
+    "text": "Is it a material?",
+    "words": [
+     {
+      "w": "Is",
+      "t": 469.47
+     },
+     {
+      "w": "it",
+      "t": 469.646
+     },
+     {
+      "w": "a",
+      "t": 469.824
+     },
+     {
+      "w": "material?",
+      "t": 469.949
+     }
+    ]
+   },
+   {
+    "start": 470.882,
+    "end": 472.796,
+    "text": "A house made\nof stone.",
+    "words": [
+     {
+      "w": "A",
+      "t": 470.882
+     },
+     {
+      "w": "house",
+      "t": 470.992
+     },
+     {
+      "w": "made",
+      "t": 471.277
+     },
+     {
+      "w": "of",
+      "t": 471.518
+     },
+     {
+      "w": "stone.",
+      "t": 471.671
+     }
+    ]
+   },
+   {
+    "start": 473.337,
+    "end": 475.092,
+    "text": "Is it usually\nmeasured rather",
+    "words": [
+     {
+      "w": "Is",
+      "t": 473.337
+     },
+     {
+      "w": "it",
+      "t": 473.531
+     },
+     {
+      "w": "usually",
+      "t": 473.724
+     },
+     {
+      "w": "measured",
+      "t": 474.193
+     },
+     {
+      "w": "rather",
+      "t": 474.718
+     }
+    ]
+   },
+   {
+    "start": 475.132,
+    "end": 476.362,
+    "text": "than counted?",
+    "words": [
+     {
+      "w": "than",
+      "t": 475.132
+     },
+     {
+      "w": "counted?",
+      "t": 475.435
+     }
+    ]
+   },
+   {
+    "start": 476.402,
+    "end": 477.911,
+    "text": "A jar of honey.",
+    "words": [
+     {
+      "w": "A",
+      "t": 476.402
+     },
+     {
+      "w": "jar",
+      "t": 476.506
+     },
+     {
+      "w": "of",
+      "t": 476.695
+     },
+     {
+      "w": "honey.",
+      "t": 476.841
+     }
+    ]
+   },
+   {
+    "start": 478.437,
+    "end": 479.553,
+    "text": "Is it abstract,",
+    "words": [
+     {
+      "w": "Is",
+      "t": 478.437
+     },
+     {
+      "w": "it",
+      "t": 478.634
+     },
+     {
+      "w": "abstract,",
+      "t": 478.832
+     }
+    ]
+   },
+   {
+    "start": 479.593,
+    "end": 481.156,
+    "text": "with no\nphysical form?",
+    "words": [
+     {
+      "w": "with",
+      "t": 479.593
+     },
+     {
+      "w": "no",
+      "t": 479.859
+     },
+     {
+      "w": "physical",
+      "t": 480.03
+     },
+     {
+      "w": "form?",
+      "t": 480.491
+     }
+    ]
+   },
+   {
+    "start": 481.196,
+    "end": 482.099,
+    "text": "Peace.",
+    "words": [
+     {
+      "w": "Peace.",
+      "t": 481.196
+     }
+    ]
+   },
+   {
+    "start": 482.637,
+    "end": 484.262,
+    "text": "Or is it\nan activity,",
+    "words": [
+     {
+      "w": "Or",
+      "t": 482.637
+     },
+     {
+      "w": "is",
+      "t": 482.849
+     },
+     {
+      "w": "it",
+      "t": 483.061
+     },
+     {
+      "w": "an",
+      "t": 483.273
+     },
+     {
+      "w": "activity,",
+      "t": 483.485
+     }
+    ]
+   },
+   {
+    "start": 484.302,
+    "end": 485.7,
+    "text": "taken as a whole?",
+    "words": [
+     {
+      "w": "taken",
+      "t": 484.302
+     },
+     {
+      "w": "as",
+      "t": 484.636
+     },
+     {
+      "w": "a",
+      "t": 484.816
+     },
+     {
+      "w": "whole?",
+      "t": 484.944
+     }
+    ]
+   },
+   {
+    "start": 485.74,
+    "end": 487.043,
+    "text": "Exercise.",
+    "words": [
+     {
+      "w": "Exercise.",
+      "t": 485.74
+     }
+    ]
+   },
+   {
+    "start": 487.67,
+    "end": 489.203,
+    "text": "If the answer\nis yes,",
+    "words": [
+     {
+      "w": "If",
+      "t": 487.67
+     },
+     {
+      "w": "the",
+      "t": 487.87
+     },
+     {
+      "w": "answer",
+      "t": 488.128
+     },
+     {
+      "w": "is",
+      "t": 488.556
+     },
+     {
+      "w": "yes,",
+      "t": 488.756
+     }
+    ]
+   },
+   {
+    "start": 489.243,
+    "end": 490.53,
+    "text": "it’s uncountable:",
+    "words": [
+     {
+      "w": "it’s",
+      "t": 489.243
+     },
+     {
+      "w": "uncountable:",
+      "t": 489.547
+     }
+    ]
+   },
+   {
+    "start": 490.57,
+    "end": 493.012,
     "text": "no s,\nand a singular verb.",
     "words": [
      {
       "w": "no",
-      "t": 481.481
+      "t": 490.57
      },
      {
       "w": "s,",
-      "t": 481.796
+      "t": 490.866
      },
      {
       "w": "and",
-      "t": 482.378
+      "t": 491.418
      },
      {
       "w": "a",
-      "t": 482.604
+      "t": 491.592
      },
      {
       "w": "singular",
-      "t": 482.73
+      "t": 491.687
      },
      {
       "w": "verb.",
-      "t": 483.207
+      "t": 492.054
      }
     ]
    },
    {
-    "start": 483.934,
-    "end": 486.177,
+    "start": 494.337,
+    "end": 495.732,
+    "text": "Let’s put all\nthe examples",
+    "words": [
+     {
+      "w": "Let’s",
+      "t": 494.337
+     },
+     {
+      "w": "put",
+      "t": 494.653
+     },
+     {
+      "w": "all",
+      "t": 494.872
+     },
+     {
+      "w": "the",
+      "t": 495.091
+     },
+     {
+      "w": "examples",
+      "t": 495.31
+     }
+    ]
+   },
+   {
+    "start": 495.772,
+    "end": 497.375,
+    "text": "on the board.",
+    "words": [
+     {
+      "w": "on",
+      "t": 495.772
+     },
+     {
+      "w": "the",
+      "t": 495.942
+     },
+     {
+      "w": "board.",
+      "t": 496.161
+     }
+    ]
+   },
+   {
+    "start": 498.003,
+    "end": 499.329,
+    "text": "Unit or mass:",
+    "words": [
+     {
+      "w": "Unit",
+      "t": 498.003
+     },
+     {
+      "w": "or",
+      "t": 498.369
+     },
+     {
+      "w": "mass:",
+      "t": 498.602
+     }
+    ]
+   },
+   {
+    "start": 499.369,
+    "end": 500.784,
+    "text": "furniture,\nluggage,",
+    "words": [
+     {
+      "w": "furniture,",
+      "t": 499.369
+     },
+     {
+      "w": "luggage,",
+      "t": 500.15
+     }
+    ]
+   },
+   {
+    "start": 500.824,
+    "end": 502.239,
+    "text": "baggage,\nequipment,",
+    "words": [
+     {
+      "w": "baggage,",
+      "t": 500.824
+     },
+     {
+      "w": "equipment,",
+      "t": 501.498
+     }
+    ]
+   },
+   {
+    "start": 502.279,
+    "end": 503.694,
+    "text": "machinery,\ngarbage,",
+    "words": [
+     {
+      "w": "machinery,",
+      "t": 502.279
+     },
+     {
+      "w": "garbage,",
+      "t": 503.061
+     }
+    ]
+   },
+   {
+    "start": 503.734,
+    "end": 504.804,
+    "text": "rubbish, clothing,",
+    "words": [
+     {
+      "w": "rubbish,",
+      "t": 503.734
+     },
+     {
+      "w": "clothing,",
+      "t": 504.268
+     }
+    ]
+   },
+   {
+    "start": 504.844,
+    "end": 506.044,
+    "text": "stationery,\ncrockery,",
+    "words": [
+     {
+      "w": "stationery,",
+      "t": 504.844
+     },
+     {
+      "w": "crockery,",
+      "t": 505.507
+     }
+    ]
+   },
+   {
+    "start": 506.084,
+    "end": 507.881,
+    "text": "cutlery,\nscenery and traffic.",
+    "words": [
+     {
+      "w": "cutlery,",
+      "t": 506.084
+     },
+     {
+      "w": "scenery",
+      "t": 506.618
+     },
+     {
+      "w": "and",
+      "t": 506.982
+     },
+     {
+      "w": "traffic.",
+      "t": 507.174
+     }
+    ]
+   },
+   {
+    "start": 507.921,
+    "end": 509.897,
+    "text": "Many things,\none unit.",
+    "words": [
+     {
+      "w": "Many",
+      "t": 507.921
+     },
+     {
+      "w": "things,",
+      "t": 508.158
+     },
+     {
+      "w": "one",
+      "t": 508.652
+     },
+     {
+      "w": "unit.",
+      "t": 508.845
+     }
+    ]
+   },
+   {
+    "start": 510.637,
+    "end": 512.931,
+    "text": "Material: gold,\nsilver, iron,",
+    "words": [
+     {
+      "w": "Material:",
+      "t": 510.637
+     },
+     {
+      "w": "gold,",
+      "t": 511.442
+     },
+     {
+      "w": "silver,",
+      "t": 511.918
+     },
+     {
+      "w": "iron,",
+      "t": 512.495
+     }
+    ]
+   },
+   {
+    "start": 512.971,
+    "end": 514.511,
+    "text": "copper,\nsteel, wood,",
+    "words": [
+     {
+      "w": "copper,",
+      "t": 512.971
+     },
+     {
+      "w": "steel,",
+      "t": 513.548
+     },
+     {
+      "w": "wood,",
+      "t": 514.074
+     }
+    ]
+   },
+   {
+    "start": 514.551,
+    "end": 515.989,
+    "text": "stone, sand, clay,",
+    "words": [
+     {
+      "w": "stone,",
+      "t": 514.551
+     },
+     {
+      "w": "sand,",
+      "t": 515.076
+     },
+     {
+      "w": "clay,",
+      "t": 515.553
+     }
+    ]
+   },
+   {
+    "start": 516.029,
+    "end": 517.518,
+    "text": "cotton,\nwool, silk,",
+    "words": [
+     {
+      "w": "cotton,",
+      "t": 516.029
+     },
+     {
+      "w": "wool,",
+      "t": 516.605
+     },
+     {
+      "w": "silk,",
+      "t": 517.082
+     }
+    ]
+   },
+   {
+    "start": 517.558,
+    "end": 518.555,
+    "text": "leather, plastic,",
+    "words": [
+     {
+      "w": "leather,",
+      "t": 517.558
+     },
+     {
+      "w": "plastic,",
+      "t": 518.136
+     }
+    ]
+   },
+   {
+    "start": 518.595,
+    "end": 519.528,
+    "text": "glass and paper.",
+    "words": [
+     {
+      "w": "glass",
+      "t": 518.595
+     },
+     {
+      "w": "and",
+      "t": 518.833
+     },
+     {
+      "w": "paper.",
+      "t": 518.998
+     }
+    ]
+   },
+   {
+    "start": 519.568,
+    "end": 521.283,
+    "text": "It’s what things\nare made of.",
+    "words": [
+     {
+      "w": "It’s",
+      "t": 519.568
+     },
+     {
+      "w": "what",
+      "t": 519.744
+     },
+     {
+      "w": "things",
+      "t": 519.921
+     },
+     {
+      "w": "are",
+      "t": 520.162
+     },
+     {
+      "w": "made",
+      "t": 520.307
+     },
+     {
+      "w": "of.",
+      "t": 520.484
+     }
+    ]
+   },
+   {
+    "start": 522.203,
+    "end": 524.032,
+    "text": "Measured: food,\nrice, bread,",
+    "words": [
+     {
+      "w": "Measured:",
+      "t": 522.203
+     },
+     {
+      "w": "food,",
+      "t": 522.847
+     },
+     {
+      "w": "rice,",
+      "t": 523.242
+     },
+     {
+      "w": "bread,",
+      "t": 523.636
+     }
+    ]
+   },
+   {
+    "start": 524.072,
+    "end": 525.383,
+    "text": "butter,\ncheese, meat,",
+    "words": [
+     {
+      "w": "butter,",
+      "t": 524.072
+     },
+     {
+      "w": "cheese,",
+      "t": 524.55
+     },
+     {
+      "w": "meat,",
+      "t": 525.028
+     }
+    ]
+   },
+   {
+    "start": 525.423,
+    "end": 526.65,
+    "text": "sugar,\nflour, salt,",
+    "words": [
+     {
+      "w": "sugar,",
+      "t": 525.423
+     },
+     {
+      "w": "flour,",
+      "t": 525.859
+     },
+     {
+      "w": "salt,",
+      "t": 526.295
+     }
+    ]
+   },
+   {
+    "start": 526.69,
+    "end": 527.835,
+    "text": "milk, water, tea,",
+    "words": [
+     {
+      "w": "milk,",
+      "t": 526.69
+     },
+     {
+      "w": "water,",
+      "t": 527.084
+     },
+     {
+      "w": "tea,",
+      "t": 527.521
+     }
+    ]
+   },
+   {
+    "start": 527.875,
+    "end": 528.977,
+    "text": "coffee and honey.",
+    "words": [
+     {
+      "w": "coffee",
+      "t": 527.875
+     },
+     {
+      "w": "and",
+      "t": 528.185
+     },
+     {
+      "w": "honey.",
+      "t": 528.373
+     }
+    ]
+   },
+   {
+    "start": 529.017,
+    "end": 530.545,
+    "text": "Measured\nby amount.",
+    "words": [
+     {
+      "w": "Measured",
+      "t": 529.017
+     },
+     {
+      "w": "by",
+      "t": 529.369
+     },
+     {
+      "w": "amount.",
+      "t": 529.498
+     }
+    ]
+   },
+   {
+    "start": 531.27,
+    "end": 534.07,
+    "text": "Abstract: advice,\ninformation,",
+    "words": [
+     {
+      "w": "Abstract:",
+      "t": 531.27
+     },
+     {
+      "w": "advice,",
+      "t": 532.282
+     },
+     {
+      "w": "information,",
+      "t": 533.033
+     }
+    ]
+   },
+   {
+    "start": 534.11,
+    "end": 535.331,
+    "text": "knowledge,\neducation,",
+    "words": [
+     {
+      "w": "knowledge,",
+      "t": 534.11
+     },
+     {
+      "w": "education,",
+      "t": 534.74
+     }
+    ]
+   },
+   {
+    "start": 535.371,
+    "end": 536.419,
+    "text": "honesty, justice,",
+    "words": [
+     {
+      "w": "honesty,",
+      "t": 535.371
+     },
+     {
+      "w": "justice,",
+      "t": 535.915
+     }
+    ]
+   },
+   {
+    "start": 536.459,
+    "end": 537.614,
+    "text": "patience, courage,",
+    "words": [
+     {
+      "w": "patience,",
+      "t": 536.459
+     },
+     {
+      "w": "courage,",
+      "t": 537.046
+     }
+    ]
+   },
+   {
+    "start": 537.654,
+    "end": 538.881,
+    "text": "wisdom, happiness,",
+    "words": [
+     {
+      "w": "wisdom,",
+      "t": 537.654
+     },
+     {
+      "w": "happiness,",
+      "t": 538.215
+     }
+    ]
+   },
+   {
+    "start": 538.921,
+    "end": 540.927,
+    "text": "freedom,\npeace and evidence.",
+    "words": [
+     {
+      "w": "freedom,",
+      "t": 538.921
+     },
+     {
+      "w": "peace",
+      "t": 539.529
+     },
+     {
+      "w": "and",
+      "t": 539.846
+     },
+     {
+      "w": "evidence.",
+      "t": 540.066
+     }
+    ]
+   },
+   {
+    "start": 540.967,
+    "end": 542.492,
+    "text": "No physical form.",
+    "words": [
+     {
+      "w": "No",
+      "t": 540.967
+     },
+     {
+      "w": "physical",
+      "t": 541.108
+     },
+     {
+      "w": "form.",
+      "t": 541.491
+     }
+    ]
+   },
+   {
+    "start": 543.237,
+    "end": 544.981,
+    "text": "Activity\nor process:",
+    "words": [
+     {
+      "w": "Activity",
+      "t": 543.237
+     },
+     {
+      "w": "or",
+      "t": 543.853
+     },
+     {
+      "w": "process:",
+      "t": 544.08
+     }
+    ]
+   },
+   {
+    "start": 545.021,
+    "end": 546.77,
+    "text": "work, research,\nprogress,",
+    "words": [
+     {
+      "w": "work,",
+      "t": 545.021
+     },
+     {
+      "w": "research,",
+      "t": 545.486
+     },
+     {
+      "w": "progress,",
+      "t": 546.148
+     }
+    ]
+   },
+   {
+    "start": 546.81,
+    "end": 547.997,
+    "text": "travel, exercise,",
+    "words": [
+     {
+      "w": "travel,",
+      "t": 546.81
+     },
+     {
+      "w": "exercise,",
+      "t": 547.375
+     }
+    ]
+   },
+   {
+    "start": 548.037,
+    "end": 549.173,
+    "text": "training, sleep,",
+    "words": [
+     {
+      "w": "training,",
+      "t": 548.037
+     },
+     {
+      "w": "sleep,",
+      "t": 548.699
+     }
+    ]
+   },
+   {
+    "start": 549.213,
+    "end": 550.768,
+    "text": "shopping\nand business.",
+    "words": [
+     {
+      "w": "shopping",
+      "t": 549.213
+     },
+     {
+      "w": "and",
+      "t": 549.68
+     },
+     {
+      "w": "business.",
+      "t": 549.9
+     }
+    ]
+   },
+   {
+    "start": 550.808,
+    "end": 552.515,
+    "text": "One whole\nactivity.",
+    "words": [
+     {
+      "w": "One",
+      "t": 550.808
+     },
+     {
+      "w": "whole",
+      "t": 551.003
+     },
+     {
+      "w": "activity.",
+      "t": 551.285
+     }
+    ]
+   },
+   {
+    "start": 553.437,
+    "end": 555.423,
+    "text": "So don’t memorise\nthe list.",
+    "words": [
+     {
+      "w": "So",
+      "t": 553.437
+     },
+     {
+      "w": "don’t",
+      "t": 553.621
+     },
+     {
+      "w": "memorise",
+      "t": 553.963
+     },
+     {
+      "w": "the",
+      "t": 554.463
+     },
+     {
+      "w": "list.",
+      "t": 554.7
+     }
+    ]
+   },
+   {
+    "start": 555.463,
+    "end": 556.59,
+    "text": "Find the category,",
+    "words": [
+     {
+      "w": "Find",
+      "t": 555.463
+     },
+     {
+      "w": "the",
+      "t": 555.737
+     },
+     {
+      "w": "category,",
+      "t": 555.96
+     }
+    ]
+   },
+   {
+    "start": 556.63,
+    "end": 558.075,
+    "text": "and the logic\ntells you:",
+    "words": [
+     {
+      "w": "and",
+      "t": 556.63
+     },
+     {
+      "w": "the",
+      "t": 556.836
+     },
+     {
+      "w": "logic",
+      "t": 557.041
+     },
+     {
+      "w": "tells",
+      "t": 557.338
+     },
+     {
+      "w": "you:",
+      "t": 557.635
+     }
+    ]
+   },
+   {
+    "start": 558.115,
+    "end": 560.528,
+    "text": "no s,\nand a singular verb.",
+    "words": [
+     {
+      "w": "no",
+      "t": 558.115
+     },
+     {
+      "w": "s,",
+      "t": 558.43
+     },
+     {
+      "w": "and",
+      "t": 559.012
+     },
+     {
+      "w": "a",
+      "t": 559.238
+     },
+     {
+      "w": "singular",
+      "t": 559.364
+     },
+     {
+      "w": "verb.",
+      "t": 559.841
+     }
+    ]
+   },
+   {
+    "start": 560.568,
+    "end": 562.811,
     "text": "That’s the Grammar\nLogic Series.",
     "words": [
      {
       "w": "That’s",
-      "t": 483.934
+      "t": 560.568
      },
      {
       "w": "the",
-      "t": 484.248
+      "t": 560.882
      },
      {
       "w": "Grammar",
-      "t": 484.436
+      "t": 561.07
      },
      {
       "w": "Logic",
-      "t": 484.793
+      "t": 561.427
      },
      {
       "w": "Series.",
-      "t": 485.065
+      "t": 561.699
      }
     ]
    }

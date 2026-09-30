@@ -487,21 +487,21 @@
           "scene": "Board"
         },
         {
-          "id": "ul_a5",
-          "text": "Why? Because furniture is not the name of one object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with.",
-          "pad": 0.6,
-          "scene": "Board"
-        },
-        {
           "id": "ul_a6",
-          "text": "And the word unit means one. One thing. And we can’t add s to one.",
+          "text": "And a unit means one. The whole group now works as one thing: one. And we can’t add s to one.",
           "pad": 0.5,
           "scene": "Board"
         },
         {
           "id": "ul_a7",
-          "text": "One is always singular. We can’t add s to one, so the word stays singular, and so does the verb.",
+          "text": "One is always singular. So the word stays singular, and so does the verb.",
           "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_a5",
+          "text": "But why is furniture one unit? Because furniture is not the name of one object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with.",
+          "pad": 0.6,
           "scene": "Board"
         },
         {
@@ -680,8 +680,14 @@
         },
         {
           "id": "ul_e3",
-          "text": "Work has many small steps: emails, calls, meetings, reports. But we talk about it as one ongoing whole.",
-          "pad": 0.6,
+          "text": "Think about what work means. Work is many small steps: answering emails, making calls, going to meetings, writing reports. We don’t count each step. We put one circle around all of them, and call the whole activity: work.",
+          "pad": 0.8,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e3b",
+          "text": "Research is the same. Reading, asking questions, collecting data, testing, and writing up the results. Many steps, one circle, one process: research.",
+          "pad": 0.8,
           "scene": "Board"
         },
         {
@@ -692,13 +698,61 @@
         },
         {
           "id": "ul_e5",
-          "text": "The old school rule says work, research, progress, travel and exercise are always singular. Skip that. The logic: you’re talking about the whole activity, not separate actions. Research: the whole process of studying. Travel: going from place to place. Shopping: the whole activity of buying things.",
+          "text": "The old school rule says work, research, progress, travel and exercise are always singular. Skip that. The logic: you’re talking about the whole activity, not separate actions.",
           "pad": 0.6,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_e5b",
+          "text": "The same goes for the whole family. Work: the whole activity of working. Research: the whole process of studying. Progress: the process of improving. Travel: going from place to place. Exercise: physical training in general. Training: developing a skill. Sleep: the state of sleeping. Shopping: buying things. And business: buying, selling and trading.",
+          "pad": 0.8,
           "scene": "Board"
         },
         {
           "id": "ul_e6",
           "text": "Now think about it. Do we say ‘I do a work’, or ‘I do work’?",
+          "pad": 1.2,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x1",
+          "text": "So here’s the crux. How do you know a noun is uncountable? Check five things.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x2",
+          "text": "Does it work as one unit? Pens, pencils, clips and a ruler: circle them, and they’re stationery.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x3",
+          "text": "Is it a material? A house made of stone.",
+          "pad": 0.4,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x4",
+          "text": "Is it usually measured rather than counted? A jar of honey.",
+          "pad": 0.4,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x5",
+          "text": "Is it abstract, with no physical form? Peace.",
+          "pad": 0.4,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x6",
+          "text": "Or is it an activity, taken as a whole? Exercise.",
+          "pad": 0.5,
+          "scene": "Board"
+        },
+        {
+          "id": "ul_x7",
+          "text": "If the answer is yes, it’s uncountable: no s, and a singular verb.",
           "pad": 1.2,
           "scene": "Board"
         },

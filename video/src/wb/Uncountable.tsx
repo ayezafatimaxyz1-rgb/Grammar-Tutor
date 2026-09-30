@@ -180,43 +180,42 @@ export const Uncountable: React.FC = () => {
   board("a1", "ERROR 1");
   {
     errorHead("a1", "Furniture are expensive.", "are", "Furniture is expensive.");
-    text("WHY?", 1650, 250, 110, C.red, cue("a1", "but why"), { anchor: "middle" });
     categoryHead("a2", "UNIT / MASS", "category one", "UNIT", "a unit", ["contains", "many things"], ["contains many", "contains many"], C.navy);
-    const row: [string, string, number][] = [["ik:chair", "chair", 300], ["ik:table", "table", 560], ["ik:bed", "bed", 820], ["ik:sofa", "sofa", 1080], ["ik:desk", "desk", 1340]];
+    const row: [string, string, number][] = [["ik:chair", "chair", 190], ["ik:table", "table", 400], ["ik:bed", "bed", 610], ["ik:sofa", "sofa", 820], ["ik:desk", "desk", 1030]];
     row.forEach(([s, n, x]) => {
       const a = cue("a3", `a ${n}`);
-      photo(s, x, 640, 200, 150, a);
-      text(n, x, 772, 44, C.blue, a + 14, { anchor: "middle" });
+      photo(s, x, 650, 180, 140, a);
+      text(n, x, 772, 42, C.blue, a + 14, { anchor: "middle" });
     });
-    text("many individual", 1735, 620, 44, C.ink, cue("a3", "many individual"), { anchor: "middle" });
-    text("things", 1735, 668, 44, C.ink, cue("a3", "many individual") + 22, { anchor: "middle" });
-    text("grouped together", 1735, 770, 44, C.navy, cue("a4", "groups them"), { anchor: "middle" });
-    ink(loop(820, 688, 700, 188, 9), cue("a4", "draws one circle"), 34, C.navy, 8);
-    ink(arrow(820, 885, 820, 925, 10, 16), cue("a4", "as one unit") - 8, 6, C.navy, 5);
-    text("ONE UNIT", 820, 985, 66, C.navy, cue("a4", "as one unit"), { anchor: "middle" });
-    formal("(treated as one whole: ‘furniture’)", 820, 1030, 28, C.grey, cue("a4", "called furniture"), "f400i", "middle");
+    text("many individual things", 610, 925, 42, C.grey, cue("a3", "many individual"), { anchor: "middle" });
+    ink(loop(610, 690, 565, 185, 9), cue("a4", "draws one circle"), 34, C.navy, 8);
+    line([["grouped: ", C.navy], ["ONE UNIT", C.navy]], 610, 1010, 60, cue("a4", "as one unit") - 4, { anchor: "middle" });
+    // the notes' design, right when the group is circled: unit = 1, no s
+    const X = 1560;
+    ink(arrow(1185, 640, 1330, 470, 12, 22), cue("a6", "unit means") - 8, 8, C.orange, 5);
+    formal("‘unit’ means", X, 420, 50, C.orange, cue("a6", "unit means"), "f800", "middle");
+    rect(X - 78, 442, 156, 190, C.yellow, cue("a6", "means one"), { mode: "grow", r: 8 });
+    formal("1", X, 610, 196, C.orange, cue("a6", "means one") + 4, "f800", "middle");
+    text("+s", X + 205, 570, 90, C.red, cue("a6", "add s"), { anchor: "middle", dur: 8 });
+    ink([W([[X + 130, 490], [X + 285, 600]], 12, 1.5), W([[X + 130, 600], [X + 285, 490]], 13, 1.5)], cue("a6", "add s") + 10, 10, C.red, 9);
+    ink(arrow(X, 648, X, 700, 14, 16), cue("a7", "one is always") - 8, 6, C.green, 6);
+    line([["1 is always ", C.green], ["SINGULAR", C.green]], X, 765, 48, cue("a7", "one is always"), { font: "f800", anchor: "middle", hand: false, hl: 1 });
+    yellowBox(1250, 795, 620, ["We can’t add ‘-s’ to 1.", "So the word stays singular."], cue("a7", "so the word"), 30);
+    text("and the verb: singular too", X, 1000, 42, C.green, cue("a7", "so does the verb"), { anchor: "middle" });
   }
   board("a5", "ERROR 1");
   {
-    text("WHY?", 500, 235, 110, C.red, cue("a5", "why because"), { anchor: "middle", dur: 14 });
+    text("WHY is it one unit?", 500, 235, 80, C.red, cue("a5", "but why"), { anchor: "middle" });
     text("furniture is NOT one object", 500, 345, 50, C.ink, cue("a5", "not the name"), { anchor: "middle" });
     line([["= the ", C.blue], ["WHOLE", C.orange], [" collection", C.blue]], 500, 440, 60, cue("a5", "whole collection"), { anchor: "middle" });
     rect(110, 510, 780, 190, C.cream, cue("a5", "comes from"), { stroke: C.gold, sw: 3, r: 14 });
     formal("furnish  →  furniture", 500, 590, 52, C.navy, cue("a5", "comes from") + 6, "f800", "middle");
     formal("everything you furnish a room with", 500, 660, 34, C.grey, cue("a5", "everything you"), "f400i", "middle");
-    ink(arrow(905, 600, 1160, 215, 12, 22), start("a6", 0.2), 10, C.orange, 5);
-
-    // the notes' design: 'unit' means 1, +s crossed out
-    formal("‘unit’ means", 1400, 200, 54, C.orange, cue("a6", "unit means"), "f800", "middle");
-    rect(1318, 228, 164, 214, C.yellow, cue("a6", "means one"), { mode: "grow", r: 8 });
-    formal("1", 1400, 412, 220, C.orange, cue("a6", "means one") + 4, "f800", "middle");
-    text("+s", 1650, 372, 100, C.red, cue("a6", "add s"), { anchor: "middle", dur: 8 });
-    ink([W([[1570, 280], [1740, 405]], 12, 1.5), W([[1570, 405], [1740, 280]], 13, 1.5)], cue("a6", "add s") + 10, 10, C.red, 9);
-    // 1 is always SINGULAR + the rule box
-    ink(arrow(1400, 458, 1400, 525, 14, 18), cue("a7", "one is always") - 8, 6, C.green, 6);
-    line([["1 is always ", C.green], ["SINGULAR", C.green]], 1400, 600, 58, cue("a7", "one is always"), { font: "f800", anchor: "middle", hand: false, hl: 1 });
-    const yb = yellowBox(1060, 640, 680, ["We can’t add ‘-s’ to 1.", "So the word stays singular."], cue("a7", "we cant add"));
-    void yb;
+    const a = cue("a5", "whole collection");
+    ([["ik:chair", 1280], ["ik:sofa", 1420], ["ik:bed", 1570]] as const).forEach(([s, x], i) => photo(s, x, 330, 120, 100, a + i * 8, 10));
+    ink(loop(1425, 335, 250, 105, 70), a + 24, 20, C.navy, 7);
+    line([["the whole collection = ", C.navy], ["1", C.orange]], 1425, 530, 50, a + 40, { anchor: "middle" });
+    text("So the correct sentence is:", 960, 810, 46, C.grey, cue("a8", "so the correct"), { anchor: "middle" });
     scriptSentence([["The furniture ", C.blue], ["IS", C.blue], [" expensive", C.blue]], 1, 950, cue("a8", "the furniture is"));
   }
   board("a9", "ERROR 1");
@@ -366,24 +365,34 @@ export const Uncountable: React.FC = () => {
   {
     errorHead("e1", "She does many works every day.", "works", "She does a lot of work every day.");
     categoryHead("e2", "ACTIVITY / PROCESS", "category five", "ACTIVITY / PROCESS", "activity or", ["an ongoing process as a whole:", "not separate actions"], ["an ongoing", "not as separate"], C.navy);
-    const steps: [string, string, number][] = [["envelope", "emails", 250], ["telephone_receiver", "calls", 470], ["busts_in_silhouette", "meetings", 690], ["page_facing_up", "reports", 910]];
-    steps.forEach(([s, n, x], i) => {
-      const at = cue("e3", n);
-      ink(loop(x, 680, 62, 62, 50 + i, 1.02), at - 4, 10, C.pink, 5);
-      if (i) ink([W([[x - 158, 680], [x - 62, 680]], 60 + i, 1)], at - 8, 5, C.pink, 5);
-      photo(s, x, 680, 78, 78, at + 4, 8);
-      text(n, x, 790, 40, C.ink, at + 8, { anchor: "middle" });
+    text("what does WORK mean?", 545, 545, 42, C.navy, cue("e3", "what work means"), { anchor: "middle" });
+    const steps: [string, string, string, number][] = [["envelope", "emails", "answering emails", 200], ["telephone_receiver", "calls", "making calls", 430], ["busts_in_silhouette", "meetings", "going to meetings", 660], ["page_facing_up", "reports", "writing reports", 890]];
+    steps.forEach(([s, n, ph, x]) => {
+      const at = cue("e3", ph);
+      photo(s, x, 680, 120, 110, at, 10);
+      text(n, x, 790, 42, C.ink, at + 10, { anchor: "middle" });
     });
-    text("many small steps / actions", 580, 870, 44, C.ink, cue("e3", "many small steps"), { anchor: "middle" });
-    ink(arrow(1010, 680, 1130, 680, 9), cue("e3", "but we talk"), 6, C.pink, 5);
-    const r0 = cue("e3", "one ongoing whole");
-    const arc: Pt[] = Array.from({ length: 60 }, (_, i) => { const a = -1.2 + (i / 59) * Math.PI * 1.7; return [1400 + Math.cos(a) * 115, 680 + Math.sin(a) * 115] as Pt; });
-    const tip = arc[arc.length - 1], prev = arc[arc.length - 4];
-    const ang = Math.atan2(tip[1] - prev[1], tip[0] - prev[0]);
-    ink([W(arc, 10, 1.5), W([[tip[0] - 26 * Math.cos(ang - 0.5), tip[1] - 26 * Math.sin(ang - 0.5)], tip, [tip[0] - 26 * Math.cos(ang + 0.5), tip[1] - 26 * Math.sin(ang + 0.5)]], 11, 1)], r0 - 6, 14, C.navy, 7);
-    photo("briefcase", 1400, 680, 120, 110, r0 + 6, 10);
-    text("but we talk about it as", 1400, 850, 42, C.pink, cue("e3", "but we talk"), { anchor: "middle" });
-    line([["ONE", C.pink], [" ongoing whole", C.pink]], 1400, 905, 48, r0, { anchor: "middle" });
+    text("we don't count each step", 545, 1000, 44, C.red, cue("e3", "we dont count"), { anchor: "middle" });
+    ink(loop(545, 728, 470, 150, 51), cue("e3", "one circle"), 30, C.pink, 8);
+    ink(arrow(1030, 700, 1150, 700, 52), cue("e3", "the whole activity") - 6, 6, C.pink, 6);
+    text("WORK", 1420, 735, 120, C.pink, cue("e3", "the whole activity"), { anchor: "middle", dur: 14 });
+    formal("the whole activity: one process", 1420, 800, 30, C.grey, cue("e3", "the whole activity") + 16, "f400i", "middle");
+  }
+  board("e3b", "ERROR 5");
+  {
+    line([["Research", C.pink], [" is the same:", C.navy]], 960, 200, 64, cue("e3b", "research is the same"), { anchor: "middle" });
+    const steps: [string, string, string, number][] = [["open_book", "reading", "reading", 250], ["speech_balloon", "asking questions", "asking questions", 605], ["clipboard", "collecting data", "collecting data", 960], ["test_tube", "testing", "testing", 1315], ["memo", "writing up", "writing up", 1670]];
+    steps.forEach(([s, n, ph, x], i) => {
+      const at = cue("e3b", ph);
+      photo(s, x, 440, 150, 130, at, 10);
+      text(n, x, 565, 42, C.ink, at + 10, { anchor: "middle" });
+      if (i) ink(arrow(x - 280, 440, x - 95, 440, 60 + i, 16), at - 6, 6, C.grey, 4);
+    });
+    text("many steps", 960, 700, 50, C.grey, cue("e3b", "many steps"), { anchor: "middle" });
+    ink(loop(960, 480, 880, 175, 66), cue("e3b", "one circle"), 30, C.pink, 8);
+    ink(arrow(960, 725, 960, 790, 67, 18), cue("e3b", "one process") - 6, 6, C.pink, 6);
+    text("RESEARCH", 960, 900, 120, C.pink, cue("e3b", "one process") + 6, { anchor: "middle", dur: 16 });
+    formal("one process, taken as a whole", 960, 965, 32, C.grey, cue("e3b", "one process") + 24, "f400i", "middle");
   }
   board("e4", "ERROR 5");
   {
@@ -392,13 +401,72 @@ export const Uncountable: React.FC = () => {
     scriptSentence([["Her research ", C.navy], ["IS", C.navy], [" impressive.", C.navy]], 1, 420, cue("e4", "her research"), 88);
     oldVsLogic(110, 500, 900, ["Work, research, progress, travel, exercise ... are always singular.", "Handed to you as a fact to memorise, with no reason why."],
       ["You are talking about an activity or process as a whole,", "not separate individual actions or units."], cue("e5", "the old school"), cue("e5", "skip that"), cue("e5", "the logic"));
-    ([["microscope", "Research", "the whole process of studying", "research the whole"], ["airplane", "Travel", "going from place to place", "travel going"], ["shopping_cart", "Shopping", "the whole activity of buying things", "shopping the whole"]] as const).forEach(([s, n, d, c0], i) => {
-      const at = cue("e5", c0), y = 600 + i * 120;
-      photo(s, 1150, y, 90, 90, at, 8);
-      formal(n, 1220, y + 2, 38, C.pink, at + 4);
-      formal(d, 1220, y + 40, 26, C.grey, at + 8, "f400i");
+    const at = cue("e5", "the whole activity");
+    photo("briefcase", 1300, 640, 150, 130, at, 10);
+    photo("microscope", 1620, 640, 150, 130, at + 10, 10);
+    ink(loop(1300, 650, 110, 100, 71), at + 20, 12, C.pink, 6);
+    ink(loop(1620, 650, 110, 100, 72), at + 30, 12, C.pink, 6);
+    text("work", 1300, 800, 44, C.pink, at + 20, { anchor: "middle" });
+    text("research", 1620, 800, 44, C.pink, at + 30, { anchor: "middle" });
+    text("one whole process each", 1460, 890, 46, C.navy, cue("e5", "not separate actions"), { anchor: "middle" });
+  }
+  board("e5b", "ERROR 5");
+  {
+    text("the whole family", 960, 185, 64, C.navy, cue("e5b", "the whole family"), { anchor: "middle" });
+    const fam: [string, string, string, string][] = [
+      ["briefcase", "Work", "the whole activity of working", "work the whole"], ["microscope", "Research", "the whole process of studying", "research the whole"],
+      ["chart_increasing", "Progress", "the process of improving", "progress the process"], ["airplane", "Travel", "going from place to place", "travel going"],
+      ["person_running", "Exercise", "physical training in general", "exercise physical"], ["stopwatch", "Training", "developing a skill", "training developing"],
+      ["sleeping_face", "Sleep", "the state of sleeping", "sleep the state"], ["shopping_bags", "Shopping", "buying things", "shopping buying"],
+      ["money_bag", "Business", "buying, selling and trading", "and business"],
+    ];
+    fam.forEach(([s, n, d, c0], i) => {
+      const x = 85 + (i % 3) * 590, y = 230 + Math.floor(i / 3) * 210, at = cue("e5b", c0);
+      rect(x, y, 560, 180, "#FFFFFF", at, { stroke: C.pink, sw: 2.5, r: 16, dur: 8 });
+      photo(s, x + 85, y + 90, 110, 110, at + 4, 8);
+      formal(n, x + 165, y + 78, 40, C.pink, at + 6);
+      formal(d, x + 165, y + 120, 25, C.grey, at + 10, "f400i");
     });
-    think("Now think about it: do we say “I do a work”, or “I do work”?", 945, cue("e6", "now think"));
+    think("Now think about it: do we say “I do a work”, or “I do work”?", 900, cue("e6", "now think"));
+  }
+
+  /* ================================================================ THE CRUX: five checks, each with a new example */
+  board("x1", "THE CRUX");
+  {
+    text("THE CRUX: is it uncountable?", 960, 190, 72, C.navy, cue("x1", "heres the crux"), { anchor: "middle" });
+    text("check five things", 960, 255, 44, C.grey, cue("x1", "check five things"), { anchor: "middle" });
+    const cards: [string, string[], string, string, string][] = [
+      ["x2", ["Does it work as", "ONE UNIT?"], C.blue, "stationery", "does it work"],
+      ["x3", ["Is it a", "MATERIAL?"], C.teal, "stone", "is it a material"],
+      ["x4", ["Usually MEASURED,", "not counted?"], C.orange, "honey", "is it usually"],
+      ["x5", ["Is it ABSTRACT,", "no physical form?"], C.purple, "peace", "is it abstract"],
+      ["x6", ["An ACTIVITY", "taken as a whole?"], C.pink, "exercise", "or is it an activity"],
+    ];
+    cards.forEach(([b, q, c, word, qc], i) => {
+      const x = 70 + i * 362, cx = x + 170, at = cue(b, qc);
+      rect(x, 300, 340, 530, "#FFFFFF", at, { stroke: c, sw: 3, r: 18 });
+      formal(`${i + 1}`, x + 28, 352, 34, c, at + 2, "f800");
+      q.forEach((l, k) => formal(l, cx, 400 + k * 34, 27, C.ink, at + 4 + k * 4, "f800", "middle"));
+      if (i === 0) {
+        ([["pen", -55, -40], ["pencil", 55, -40], ["paperclip", -55, 45], ["straight_ruler", 55, 45]] as const).forEach(([s, dx, dy], k) => photo(s, cx + dx, 590 + dy, 90, 80, cue(b, ["pens", "pencils", "clips", "a ruler"][k]), 8));
+        ink(loop(cx, 595, 140, 115, 90), cue(b, "circle them"), 16, c, 6);
+      } else if (i === 1) {
+        photo("rock", cx - 70, 600, 110, 100, cue(b, "made of stone"), 8);
+        ink(arrow(cx - 5, 600, cx + 25, 600, 91, 12), cue(b, "a house") + 8, 4, c, 4);
+        photo("house", cx + 80, 590, 120, 120, cue(b, "a house") + 12, 8);
+      } else if (i === 2) {
+        photo("honey_pot", cx, 590, 170, 160, cue(b, "a jar"), 10);
+      } else if (i === 3) {
+        photo("dove", cx, 590, 170, 160, cue(b, "peace"), 10);
+      } else {
+        photo("person_running", cx, 590, 170, 170, cue(b, "exercise"), 10);
+      }
+      const wAt = i === 0 ? cue(b, "theyre stationery") : cue(b, word);
+      text(word, cx, 775, 54, c, wAt + 6, { anchor: "middle" });
+    });
+    rect(260, 870, 1400, 120, C.cream, cue("x7", "if the answer"), { stroke: C.gold, sw: 3, r: 16 });
+    formal("YES  →  UNCOUNTABLE:  no ‘s’  +  a singular verb", 960, 945, 44, C.ink, cue("x7", "if the answer") + 8, "f800", "middle");
+    ink(check(1600, 915, 28, 95), cue("x7", "singular verb"), 8, C.green, 9);
   }
 
   /* ================================================================ SUMMARY: every example in the book */
