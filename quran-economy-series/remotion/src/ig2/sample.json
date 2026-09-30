@@ -1,16 +1,15 @@
 {
-  "id": "sample",
+  "id": "security",
   "lines": [
-    {"text": "Your business can be worship.", "beat": "hook"},
-    {"text": "Sounds strange? Stay till the end.", "beat": "tease"},
-    {"text": "Most people split life into two worlds.", "beat": "img0"},
-    {"text": "Prayer and fasting on one side.", "beat": "deen"},
-    {"text": "Business and career on the other.", "beat": "dunya"},
-    {"text": "But the Quran never made that split.", "beat": "crack"},
-    {"text": "It doesn't reject the world.", "beat": "img1"},
-    {"text": "It organises it.", "beat": "punch"},
-    {"text": "Earning, spending and trading are part of worship.", "beat": "img2"},
-    {"text": "And cutting yourself off in a cave? That's not Islam.", "beat": "img3"},
-    {"text": "So yes. Your business can be worship.", "beat": "loop"}
+    {"text": "One prayer built an economy.", "beat": "hook"},
+    {"text": "And it still decides which nations survive.", "beat": "tease"},
+    {"text": "In a barren valley, Ibrahim asked Allah for two things.", "beat": "valley"},
+    {"text": "First: make this city secure.", "beat": "secure"},
+    {"text": "Second: provide its people with fruits.", "beat": "fruits"},
+    {"text": "Where security and prosperity meet, the state survives.", "beat": "venn"},
+    {"text": "Without economy, security cannot stand. Without security, wealth is never safe.", "beat": "without"},
+    {"text": "Makkah became a global trade pipeline.", "beat": "map"},
+    {"text": "And the Quran named it: the caravans of winter and summer.", "beat": "caravan"},
+    {"text": "One prayer. Food and safety. That is how nations survive.", "beat": "loop"}
   ]
 }

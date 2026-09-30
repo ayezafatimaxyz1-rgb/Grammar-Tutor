@@ -1,441 +1,478 @@
 {
- "duration": 24.606,
+ "duration": 30.413,
  "lines": [
   {
-   "text": "Your business can be worship.",
+   "text": "One prayer built an economy.",
    "beat": "hook",
    "start": 0.12,
-   "end": 1.727,
+   "end": 1.874,
    "words": [
     {
-     "w": "Your",
+     "w": "One",
      "start": 0.15,
-     "end": 0.379
+     "end": 0.345
     },
     {
-     "w": "business",
-     "start": 0.379,
-     "end": 0.838
+     "w": "prayer",
+     "start": 0.345,
+     "end": 0.736
     },
     {
-     "w": "can",
-     "start": 0.838,
-     "end": 1.009
+     "w": "built",
+     "start": 0.736,
+     "end": 1.062
     },
     {
-     "w": "be",
-     "start": 1.009,
-     "end": 1.124
+     "w": "an",
+     "start": 1.062,
+     "end": 1.193
     },
     {
-     "w": "worship.",
-     "start": 1.124,
-     "end": 1.697
+     "w": "economy.",
+     "start": 1.193,
+     "end": 1.844
     }
    ]
   },
   {
-   "text": "Sounds strange? Stay till the end.",
+   "text": "And it still decides which nations survive.",
    "beat": "tease",
-   "start": 2.047,
-   "end": 3.931,
-   "words": [
-    {
-     "w": "Sounds",
-     "start": 2.077,
-     "end": 2.409
-    },
-    {
-     "w": "strange?",
-     "start": 2.409,
-     "end": 2.962
-    },
-    {
-     "w": "Stay",
-     "start": 2.962,
-     "end": 3.183
-    },
-    {
-     "w": "till",
-     "start": 3.183,
-     "end": 3.404
-    },
-    {
-     "w": "the",
-     "start": 3.404,
-     "end": 3.57
-    },
-    {
-     "w": "end.",
-     "start": 3.57,
-     "end": 3.901
-    }
-   ]
-  },
-  {
-   "text": "Most people split life into two worlds.",
-   "beat": "img0",
-   "start": 4.251,
-   "end": 6.442,
-   "words": [
-    {
-     "w": "Most",
-     "start": 4.281,
-     "end": 4.525
-    },
-    {
-     "w": "people",
-     "start": 4.525,
-     "end": 4.89
-    },
-    {
-     "w": "split",
-     "start": 4.89,
-     "end": 5.195
-    },
-    {
-     "w": "life",
-     "start": 5.195,
-     "end": 5.438
-    },
-    {
-     "w": "into",
-     "start": 5.438,
-     "end": 5.682
-    },
-    {
-     "w": "two",
-     "start": 5.682,
-     "end": 5.864
-    },
-    {
-     "w": "worlds.",
-     "start": 5.864,
-     "end": 6.412
-    }
-   ]
-  },
-  {
-   "text": "Prayer and fasting on one side.",
-   "beat": "deen",
-   "start": 6.602,
-   "end": 8.407,
-   "words": [
-    {
-     "w": "Prayer",
-     "start": 6.632,
-     "end": 7.006
-    },
-    {
-     "w": "and",
-     "start": 7.006,
-     "end": 7.193
-    },
-    {
-     "w": "fasting",
-     "start": 7.193,
-     "end": 7.629
-    },
-    {
-     "w": "on",
-     "start": 7.629,
-     "end": 7.754
-    },
-    {
-     "w": "one",
-     "start": 7.754,
-     "end": 7.941
-    },
-    {
-     "w": "side.",
-     "start": 7.941,
-     "end": 8.377
-    }
-   ]
-  },
-  {
-   "text": "Business and career on the other.",
-   "beat": "dunya",
-   "start": 8.567,
-   "end": 10.275,
-   "words": [
-    {
-     "w": "Business",
-     "start": 8.597,
-     "end": 9.036
-    },
-    {
-     "w": "and",
-     "start": 9.036,
-     "end": 9.201
-    },
-    {
-     "w": "career",
-     "start": 9.201,
-     "end": 9.531
-    },
-    {
-     "w": "on",
-     "start": 9.531,
-     "end": 9.641
-    },
-    {
-     "w": "the",
-     "start": 9.641,
-     "end": 9.805
-    },
-    {
-     "w": "other.",
-     "start": 9.805,
-     "end": 10.245
-    }
-   ]
-  },
-  {
-   "text": "But the Quran never made that split.",
-   "beat": "crack",
-   "start": 10.435,
-   "end": 12.351,
-   "words": [
-    {
-     "w": "But",
-     "start": 10.465,
-     "end": 10.639
-    },
-    {
-     "w": "the",
-     "start": 10.639,
-     "end": 10.813
-    },
-    {
-     "w": "Quran",
-     "start": 10.813,
-     "end": 11.103
-    },
-    {
-     "w": "never",
-     "start": 11.103,
-     "end": 11.393
-    },
-    {
-     "w": "made",
-     "start": 11.393,
-     "end": 11.625
-    },
-    {
-     "w": "that",
-     "start": 11.625,
-     "end": 11.857
-    },
-    {
-     "w": "split.",
-     "start": 11.857,
-     "end": 12.321
-    }
-   ]
-  },
-  {
-   "text": "It doesn't reject the world.",
-   "beat": "img1",
-   "start": 12.511,
-   "end": 14.018,
-   "words": [
-    {
-     "w": "It",
-     "start": 12.541,
-     "end": 12.653
-    },
-    {
-     "w": "doesn't",
-     "start": 12.653,
-     "end": 13.042
-    },
-    {
-     "w": "reject",
-     "start": 13.042,
-     "end": 13.376
-    },
-    {
-     "w": "the",
-     "start": 13.376,
-     "end": 13.543
-    },
-    {
-     "w": "world.",
-     "start": 13.543,
-     "end": 13.988
-    }
-   ]
-  },
-  {
-   "text": "It organises it.",
-   "beat": "punch",
-   "start": 14.178,
-   "end": 15.384,
-   "words": [
-    {
-     "w": "It",
-     "start": 14.208,
-     "end": 14.351
-    },
-    {
-     "w": "organises",
-     "start": 14.351,
-     "end": 14.996
-    },
-    {
-     "w": "it.",
-     "start": 14.996,
-     "end": 15.354
-    }
-   ]
-  },
-  {
-   "text": "Earning, spending and trading are part of worship.",
-   "beat": "img2",
-   "start": 15.704,
-   "end": 18.179,
-   "words": [
-    {
-     "w": "Earning,",
-     "start": 15.734,
-     "end": 16.248
-    },
-    {
-     "w": "spending",
-     "start": 16.248,
-     "end": 16.659
-    },
-    {
-     "w": "and",
-     "start": 16.659,
-     "end": 16.813
-    },
-    {
-     "w": "trading",
-     "start": 16.813,
-     "end": 17.173
-    },
-    {
-     "w": "are",
-     "start": 17.173,
-     "end": 17.327
-    },
-    {
-     "w": "part",
-     "start": 17.327,
-     "end": 17.532
-    },
-    {
-     "w": "of",
-     "start": 17.532,
-     "end": 17.635
-    },
-    {
-     "w": "worship.",
-     "start": 17.635,
-     "end": 18.149
-    }
-   ]
-  },
-  {
-   "text": "And cutting yourself off in a cave? That's not Islam.",
-   "beat": "img3",
-   "start": 18.339,
-   "end": 21.287,
+   "start": 2.194,
+   "end": 4.433,
    "words": [
     {
      "w": "And",
-     "start": 18.369,
-     "end": 18.546
+     "start": 2.224,
+     "end": 2.392
     },
     {
-     "w": "cutting",
-     "start": 18.546,
-     "end": 18.958
+     "w": "it",
+     "start": 2.392,
+     "end": 2.503
     },
     {
-     "w": "yourself",
-     "start": 18.958,
-     "end": 19.43
+     "w": "still",
+     "start": 2.503,
+     "end": 2.783
     },
     {
-     "w": "off",
-     "start": 19.43,
-     "end": 19.607
+     "w": "decides",
+     "start": 2.783,
+     "end": 3.174
     },
     {
-     "w": "in",
-     "start": 19.607,
-     "end": 19.725
+     "w": "which",
+     "start": 3.174,
+     "end": 3.453
     },
     {
-     "w": "a",
-     "start": 19.725,
-     "end": 19.843
+     "w": "nations",
+     "start": 3.453,
+     "end": 3.844
     },
     {
-     "w": "cave?",
-     "start": 19.843,
-     "end": 20.255
-    },
-    {
-     "w": "That's",
-     "start": 20.255,
-     "end": 20.609
-    },
-    {
-     "w": "not",
-     "start": 20.609,
-     "end": 20.786
-    },
-    {
-     "w": "Islam.",
-     "start": 20.786,
-     "end": 21.257
+     "w": "survive.",
+     "start": 3.844,
+     "end": 4.402
     }
    ]
   },
   {
-   "text": "So yes. Your business can be worship.",
-   "beat": "loop",
-   "start": 21.447,
-   "end": 23.646,
+   "text": "In a barren valley, Ibrahim asked Allah for two things.",
+   "beat": "valley",
+   "start": 4.752,
+   "end": 7.934,
    "words": [
     {
-     "w": "So",
-     "start": 21.477,
-     "end": 21.599
+     "w": "In",
+     "start": 4.782,
+     "end": 4.905
     },
     {
-     "w": "yes.",
-     "start": 21.599,
-     "end": 21.966
+     "w": "a",
+     "start": 4.905,
+     "end": 5.027
     },
     {
-     "w": "Your",
-     "start": 21.966,
-     "end": 22.211
+     "w": "barren",
+     "start": 5.027,
+     "end": 5.395
     },
     {
-     "w": "business",
-     "start": 22.211,
-     "end": 22.699
+     "w": "valley,",
+     "start": 5.395,
+     "end": 5.945
     },
     {
-     "w": "can",
-     "start": 22.699,
-     "end": 22.883
+     "w": "Ibrahim",
+     "start": 5.945,
+     "end": 6.374
     },
     {
-     "w": "be",
-     "start": 22.883,
-     "end": 23.005
+     "w": "asked",
+     "start": 6.374,
+     "end": 6.68
     },
     {
-     "w": "worship.",
-     "start": 23.005,
+     "w": "Allah",
+     "start": 6.68,
+     "end": 6.986
+    },
+    {
+     "w": "for",
+     "start": 6.986,
+     "end": 7.17
+    },
+    {
+     "w": "two",
+     "start": 7.17,
+     "end": 7.353
+    },
+    {
+     "w": "things.",
+     "start": 7.353,
+     "end": 7.904
+    }
+   ]
+  },
+  {
+   "text": "First: make this city secure.",
+   "beat": "secure",
+   "start": 8.094,
+   "end": 9.708,
+   "words": [
+    {
+     "w": "First:",
+     "start": 8.124,
+     "end": 8.553
+    },
+    {
+     "w": "make",
+     "start": 8.553,
+     "end": 8.767
+    },
+    {
+     "w": "this",
+     "start": 8.767,
+     "end": 8.981
+    },
+    {
+     "w": "city",
+     "start": 8.981,
+     "end": 9.196
+    },
+    {
+     "w": "secure.",
+     "start": 9.196,
+     "end": 9.678
+    }
+   ]
+  },
+  {
+   "text": "Second: provide its people with fruits.",
+   "beat": "fruits",
+   "start": 9.868,
+   "end": 11.836,
+   "words": [
+    {
+     "w": "Second:",
+     "start": 9.898,
+     "end": 10.35
+    },
+    {
+     "w": "provide",
+     "start": 10.35,
+     "end": 10.701
+    },
+    {
+     "w": "its",
+     "start": 10.701,
+     "end": 10.852
+    },
+    {
+     "w": "people",
+     "start": 10.852,
+     "end": 11.153
+    },
+    {
+     "w": "with",
+     "start": 11.153,
+     "end": 11.354
+    },
+    {
+     "w": "fruits.",
+     "start": 11.354,
+     "end": 11.806
+    }
+   ]
+  },
+  {
+   "text": "Where security and prosperity meet, the state survives.",
+   "beat": "venn",
+   "start": 11.996,
+   "end": 15.008,
+   "words": [
+    {
+     "w": "Where",
+     "start": 12.026,
+     "end": 12.31
+    },
+    {
+     "w": "security",
+     "start": 12.31,
+     "end": 12.764
+    },
+    {
+     "w": "and",
+     "start": 12.764,
+     "end": 12.934
+    },
+    {
+     "w": "prosperity",
+     "start": 12.934,
+     "end": 13.502
+    },
+    {
+     "w": "meet,",
+     "start": 13.502,
+     "end": 13.899
+    },
+    {
+     "w": "the",
+     "start": 13.899,
+     "end": 14.07
+    },
+    {
+     "w": "state",
+     "start": 14.07,
+     "end": 14.353
+    },
+    {
+     "w": "survives.",
+     "start": 14.353,
+     "end": 14.978
+    }
+   ]
+  },
+  {
+   "text": "Without economy, security cannot stand. Without security, wealth is never safe.",
+   "beat": "without",
+   "start": 15.168,
+   "end": 20.048,
+   "words": [
+    {
+     "w": "Without",
+     "start": 15.198,
+     "end": 15.636
+    },
+    {
+     "w": "economy,",
+     "start": 15.636,
+     "end": 16.262
+    },
+    {
+     "w": "security",
+     "start": 16.262,
+     "end": 16.763
+    },
+    {
+     "w": "cannot",
+     "start": 16.763,
+     "end": 17.139
+    },
+    {
+     "w": "stand.",
+     "start": 17.139,
+     "end": 17.639
+    },
+    {
+     "w": "Without",
+     "start": 17.639,
+     "end": 18.078
+    },
+    {
+     "w": "security,",
+     "start": 18.078,
+     "end": 18.766
+    },
+    {
+     "w": "wealth",
+     "start": 18.766,
+     "end": 19.142
+    },
+    {
+     "w": "is",
+     "start": 19.142,
+     "end": 19.267
+    },
+    {
+     "w": "never",
+     "start": 19.267,
+     "end": 19.58
+    },
+    {
+     "w": "safe.",
+     "start": 19.58,
+     "end": 20.018
+    }
+   ]
+  },
+  {
+   "text": "Makkah became a global trade pipeline.",
+   "beat": "map",
+   "start": 20.208,
+   "end": 22.48,
+   "words": [
+    {
+     "w": "Makkah",
+     "start": 20.238,
+     "end": 20.607
+    },
+    {
+     "w": "became",
+     "start": 20.607,
+     "end": 20.976
+    },
+    {
+     "w": "a",
+     "start": 20.976,
+     "end": 21.098
+    },
+    {
+     "w": "global",
+     "start": 21.098,
+     "end": 21.467
+    },
+    {
+     "w": "trade",
+     "start": 21.467,
+     "end": 21.774
+    },
+    {
+     "w": "pipeline.",
+     "start": 21.774,
+     "end": 22.45
+    }
+   ]
+  },
+  {
+   "text": "And the Quran named it: the caravans of winter and summer.",
+   "beat": "caravan",
+   "start": 22.64,
+   "end": 25.774,
+   "words": [
+    {
+     "w": "And",
+     "start": 22.67,
+     "end": 22.847
+    },
+    {
+     "w": "the",
+     "start": 22.847,
+     "end": 23.025
+    },
+    {
+     "w": "Quran",
+     "start": 23.025,
+     "end": 23.32
+    },
+    {
+     "w": "named",
+     "start": 23.32,
      "end": 23.616
+    },
+    {
+     "w": "it:",
+     "start": 23.616,
+     "end": 23.912
+    },
+    {
+     "w": "the",
+     "start": 23.912,
+     "end": 24.089
+    },
+    {
+     "w": "caravans",
+     "start": 24.089,
+     "end": 24.562
+    },
+    {
+     "w": "of",
+     "start": 24.562,
+     "end": 24.68
+    },
+    {
+     "w": "winter",
+     "start": 24.68,
+     "end": 25.035
+    },
+    {
+     "w": "and",
+     "start": 25.035,
+     "end": 25.212
+    },
+    {
+     "w": "summer.",
+     "start": 25.212,
+     "end": 25.744
+    }
+   ]
+  },
+  {
+   "text": "One prayer. Food and safety. That is how nations survive.",
+   "beat": "loop",
+   "start": 25.934,
+   "end": 29.453,
+   "words": [
+    {
+     "w": "One",
+     "start": 25.964,
+     "end": 26.157
+    },
+    {
+     "w": "prayer.",
+     "start": 26.157,
+     "end": 26.733
+    },
+    {
+     "w": "Food",
+     "start": 26.733,
+     "end": 26.989
+    },
+    {
+     "w": "and",
+     "start": 26.989,
+     "end": 27.181
+    },
+    {
+     "w": "safety.",
+     "start": 27.181,
+     "end": 27.758
+    },
+    {
+     "w": "That",
+     "start": 27.758,
+     "end": 28.014
+    },
+    {
+     "w": "is",
+     "start": 28.014,
+     "end": 28.142
+    },
+    {
+     "w": "how",
+     "start": 28.142,
+     "end": 28.334
+    },
+    {
+     "w": "nations",
+     "start": 28.334,
+     "end": 28.783
+    },
+    {
+     "w": "survive.",
+     "start": 28.783,
+     "end": 29.423
     }
    ]
   }
