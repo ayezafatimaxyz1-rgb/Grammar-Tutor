@@ -1,0 +1,18 @@
+{
+  "page": 4,
+  "image": "notes/p04.jpg",
+  "displayWidth": 2000,
+  "lines": [
+    {"text": "The mutual link between national security and economic prosperity.", "cam": [510, 60, 1460, 170], "hl": [[530, 75, 1440, 160]], "part": "heading"},
+    {"text": "The prayer of Ibrahim, peace be upon him, and Makkah becoming a global centre of trade.", "cam": [510, 150, 1460, 245], "hl": [[530, 165, 1440, 235]], "part": "subtitle"},
+    {"text": "Peace. Prosperity. And where they meet: the survival of the state.", "cam": [160, 240, 900, 705], "hl": [[180, 250, 625, 692], [440, 250, 882, 692], [440, 360, 622, 590]], "hlAt": [0, 0.18, 0.55], "part": "venn"},
+    {"text": "Ibrahim, peace be upon him, asked for two things in a barren valley:", "cam": [95, 715, 970, 1060], "hl": [[120, 752, 950, 802]], "part": "box"},
+    {"text": "One: make this city a city of peace. National security.", "cam": [95, 715, 970, 1060], "hl": [[120, 805, 950, 852]], "part": "box"},
+    {"text": "Two: provide its people with the sustenance of fruits. Economic prosperity.", "cam": [95, 715, 970, 1060], "hl": [[120, 856, 950, 906]], "part": "box"},
+    {"text": "Security without an economy: the system cannot stand.", "cam": [95, 715, 970, 1060], "hl": [[120, 924, 950, 976]], "part": "box"},
+    {"text": "An economy without security: investments and assets are not safe.", "cam": [95, 715, 970, 1060], "hl": [[120, 978, 950, 1032]], "part": "box"},
+    {"text": "On the map, trade routes run from Makkah to Europe, Sham, Yemen and Africa.", "cam": [1035, 255, 1900, 865], "hl": [[1440, 520, 1500, 580]], "part": "map"},
+    {"text": "The economic model of Makkah: it became a global trade pipeline and a highway rest stop.", "cam": [1055, 905, 1880, 1068], "hl": [[1075, 930, 1860, 988]], "part": "gold"},
+    {"text": "The Quran formally recognised this economic route in Surah Quraysh.", "cam": [1055, 905, 1880, 1068], "hl": [[1075, 985, 1860, 1045]], "part": "gold"}
+  ]
+}
