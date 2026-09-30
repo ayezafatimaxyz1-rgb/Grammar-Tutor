@@ -6,6 +6,7 @@ import {TOTAL_FRAMES, FPS} from './data/pilot';
 import {TypeSpecimen} from './TypeSpecimen';
 import {EpisodeVideo, episodeFrames} from './ig/Episode';
 import {EPISODES} from './ig/registry';
+import {StyleSample, SAMPLE_FRAMES} from './ig2/Sample';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -19,6 +20,7 @@ export const RemotionRoot: React.FC = () => (
       defaultProps={pilotSchemaDefaults}
     />
     <Still id="TypeSpecimen" component={TypeSpecimen} width={1920} height={1080} />
+    <Composition id="QGE-STYLE-SAMPLE" component={StyleSample} durationInFrames={SAMPLE_FRAMES} fps={30} width={1080} height={1920} />
     {Object.keys(EPISODES).map((id) => (
       <Composition
         key={id}

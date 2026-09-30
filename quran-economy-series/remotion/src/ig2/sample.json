@@ -1,0 +1,16 @@
+{
+  "id": "sample",
+  "lines": [
+    {"text": "Your business can be worship.", "beat": "hook"},
+    {"text": "Sounds strange? Stay till the end.", "beat": "tease"},
+    {"text": "Most people split life into two worlds.", "beat": "img0"},
+    {"text": "Prayer and fasting on one side.", "beat": "deen"},
+    {"text": "Business and career on the other.", "beat": "dunya"},
+    {"text": "But the Quran never made that split.", "beat": "crack"},
+    {"text": "It doesn't reject the world.", "beat": "img1"},
+    {"text": "It organises it.", "beat": "punch"},
+    {"text": "Earning, spending and trading are part of worship.", "beat": "img2"},
+    {"text": "And cutting yourself off in a cave? That's not Islam.", "beat": "img3"},
+    {"text": "So yes. Your business can be worship.", "beat": "loop"}
+  ]
+}

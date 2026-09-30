@@ -1,0 +1,443 @@
+{
+ "duration": 24.606,
+ "lines": [
+  {
+   "text": "Your business can be worship.",
+   "beat": "hook",
+   "start": 0.12,
+   "end": 1.727,
+   "words": [
+    {
+     "w": "Your",
+     "start": 0.15,
+     "end": 0.379
+    },
+    {
+     "w": "business",
+     "start": 0.379,
+     "end": 0.838
+    },
+    {
+     "w": "can",
+     "start": 0.838,
+     "end": 1.009
+    },
+    {
+     "w": "be",
+     "start": 1.009,
+     "end": 1.124
+    },
+    {
+     "w": "worship.",
+     "start": 1.124,
+     "end": 1.697
+    }
+   ]
+  },
+  {
+   "text": "Sounds strange? Stay till the end.",
+   "beat": "tease",
+   "start": 2.047,
+   "end": 3.931,
+   "words": [
+    {
+     "w": "Sounds",
+     "start": 2.077,
+     "end": 2.409
+    },
+    {
+     "w": "strange?",
+     "start": 2.409,
+     "end": 2.962
+    },
+    {
+     "w": "Stay",
+     "start": 2.962,
+     "end": 3.183
+    },
+    {
+     "w": "till",
+     "start": 3.183,
+     "end": 3.404
+    },
+    {
+     "w": "the",
+     "start": 3.404,
+     "end": 3.57
+    },
+    {
+     "w": "end.",
+     "start": 3.57,
+     "end": 3.901
+    }
+   ]
+  },
+  {
+   "text": "Most people split life into two worlds.",
+   "beat": "img0",
+   "start": 4.251,
+   "end": 6.442,
+   "words": [
+    {
+     "w": "Most",
+     "start": 4.281,
+     "end": 4.525
+    },
+    {
+     "w": "people",
+     "start": 4.525,
+     "end": 4.89
+    },
+    {
+     "w": "split",
+     "start": 4.89,
+     "end": 5.195
+    },
+    {
+     "w": "life",
+     "start": 5.195,
+     "end": 5.438
+    },
+    {
+     "w": "into",
+     "start": 5.438,
+     "end": 5.682
+    },
+    {
+     "w": "two",
+     "start": 5.682,
+     "end": 5.864
+    },
+    {
+     "w": "worlds.",
+     "start": 5.864,
+     "end": 6.412
+    }
+   ]
+  },
+  {
+   "text": "Prayer and fasting on one side.",
+   "beat": "deen",
+   "start": 6.602,
+   "end": 8.407,
+   "words": [
+    {
+     "w": "Prayer",
+     "start": 6.632,
+     "end": 7.006
+    },
+    {
+     "w": "and",
+     "start": 7.006,
+     "end": 7.193
+    },
+    {
+     "w": "fasting",
+     "start": 7.193,
+     "end": 7.629
+    },
+    {
+     "w": "on",
+     "start": 7.629,
+     "end": 7.754
+    },
+    {
+     "w": "one",
+     "start": 7.754,
+     "end": 7.941
+    },
+    {
+     "w": "side.",
+     "start": 7.941,
+     "end": 8.377
+    }
+   ]
+  },
+  {
+   "text": "Business and career on the other.",
+   "beat": "dunya",
+   "start": 8.567,
+   "end": 10.275,
+   "words": [
+    {
+     "w": "Business",
+     "start": 8.597,
+     "end": 9.036
+    },
+    {
+     "w": "and",
+     "start": 9.036,
+     "end": 9.201
+    },
+    {
+     "w": "career",
+     "start": 9.201,
+     "end": 9.531
+    },
+    {
+     "w": "on",
+     "start": 9.531,
+     "end": 9.641
+    },
+    {
+     "w": "the",
+     "start": 9.641,
+     "end": 9.805
+    },
+    {
+     "w": "other.",
+     "start": 9.805,
+     "end": 10.245
+    }
+   ]
+  },
+  {
+   "text": "But the Quran never made that split.",
+   "beat": "crack",
+   "start": 10.435,
+   "end": 12.351,
+   "words": [
+    {
+     "w": "But",
+     "start": 10.465,
+     "end": 10.639
+    },
+    {
+     "w": "the",
+     "start": 10.639,
+     "end": 10.813
+    },
+    {
+     "w": "Quran",
+     "start": 10.813,
+     "end": 11.103
+    },
+    {
+     "w": "never",
+     "start": 11.103,
+     "end": 11.393
+    },
+    {
+     "w": "made",
+     "start": 11.393,
+     "end": 11.625
+    },
+    {
+     "w": "that",
+     "start": 11.625,
+     "end": 11.857
+    },
+    {
+     "w": "split.",
+     "start": 11.857,
+     "end": 12.321
+    }
+   ]
+  },
+  {
+   "text": "It doesn't reject the world.",
+   "beat": "img1",
+   "start": 12.511,
+   "end": 14.018,
+   "words": [
+    {
+     "w": "It",
+     "start": 12.541,
+     "end": 12.653
+    },
+    {
+     "w": "doesn't",
+     "start": 12.653,
+     "end": 13.042
+    },
+    {
+     "w": "reject",
+     "start": 13.042,
+     "end": 13.376
+    },
+    {
+     "w": "the",
+     "start": 13.376,
+     "end": 13.543
+    },
+    {
+     "w": "world.",
+     "start": 13.543,
+     "end": 13.988
+    }
+   ]
+  },
+  {
+   "text": "It organises it.",
+   "beat": "punch",
+   "start": 14.178,
+   "end": 15.384,
+   "words": [
+    {
+     "w": "It",
+     "start": 14.208,
+     "end": 14.351
+    },
+    {
+     "w": "organises",
+     "start": 14.351,
+     "end": 14.996
+    },
+    {
+     "w": "it.",
+     "start": 14.996,
+     "end": 15.354
+    }
+   ]
+  },
+  {
+   "text": "Earning, spending and trading are part of worship.",
+   "beat": "img2",
+   "start": 15.704,
+   "end": 18.179,
+   "words": [
+    {
+     "w": "Earning,",
+     "start": 15.734,
+     "end": 16.248
+    },
+    {
+     "w": "spending",
+     "start": 16.248,
+     "end": 16.659
+    },
+    {
+     "w": "and",
+     "start": 16.659,
+     "end": 16.813
+    },
+    {
+     "w": "trading",
+     "start": 16.813,
+     "end": 17.173
+    },
+    {
+     "w": "are",
+     "start": 17.173,
+     "end": 17.327
+    },
+    {
+     "w": "part",
+     "start": 17.327,
+     "end": 17.532
+    },
+    {
+     "w": "of",
+     "start": 17.532,
+     "end": 17.635
+    },
+    {
+     "w": "worship.",
+     "start": 17.635,
+     "end": 18.149
+    }
+   ]
+  },
+  {
+   "text": "And cutting yourself off in a cave? That's not Islam.",
+   "beat": "img3",
+   "start": 18.339,
+   "end": 21.287,
+   "words": [
+    {
+     "w": "And",
+     "start": 18.369,
+     "end": 18.546
+    },
+    {
+     "w": "cutting",
+     "start": 18.546,
+     "end": 18.958
+    },
+    {
+     "w": "yourself",
+     "start": 18.958,
+     "end": 19.43
+    },
+    {
+     "w": "off",
+     "start": 19.43,
+     "end": 19.607
+    },
+    {
+     "w": "in",
+     "start": 19.607,
+     "end": 19.725
+    },
+    {
+     "w": "a",
+     "start": 19.725,
+     "end": 19.843
+    },
+    {
+     "w": "cave?",
+     "start": 19.843,
+     "end": 20.255
+    },
+    {
+     "w": "That's",
+     "start": 20.255,
+     "end": 20.609
+    },
+    {
+     "w": "not",
+     "start": 20.609,
+     "end": 20.786
+    },
+    {
+     "w": "Islam.",
+     "start": 20.786,
+     "end": 21.257
+    }
+   ]
+  },
+  {
+   "text": "So yes. Your business can be worship.",
+   "beat": "loop",
+   "start": 21.447,
+   "end": 23.646,
+   "words": [
+    {
+     "w": "So",
+     "start": 21.477,
+     "end": 21.599
+    },
+    {
+     "w": "yes.",
+     "start": 21.599,
+     "end": 21.966
+    },
+    {
+     "w": "Your",
+     "start": 21.966,
+     "end": 22.211
+    },
+    {
+     "w": "business",
+     "start": 22.211,
+     "end": 22.699
+    },
+    {
+     "w": "can",
+     "start": 22.699,
+     "end": 22.883
+    },
+    {
+     "w": "be",
+     "start": 22.883,
+     "end": 23.005
+    },
+    {
+     "w": "worship.",
+     "start": 23.005,
+     "end": 23.616
+    }
+   ]
+  }
+ ]
+}
