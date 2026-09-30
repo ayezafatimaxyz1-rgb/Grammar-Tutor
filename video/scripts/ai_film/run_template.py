@@ -56,10 +56,11 @@ sf.write("audio.wav", np.clip(mix, -1, 1), SR)
 dl.wait()
 print("clips", sorted(os.listdir("clips")), flush=True)
 parts = []
-for n, (clip, b, r0, r1, src) in enumerate(D["plan"]):
+for n, (clip, b, r0, r1, src, *rest) in enumerate(D["plan"]):
     d = ab(b, r1) - ab(b, r0)
+    sp = rest[0] if rest else 1  # >1 speeds the clip up so an arrival lands inside the beat
     out = f"seg{n:02d}.mp4"
-    subprocess.run(f"ffmpeg -loglevel error -y -ss {src} -i clips/{clip}.mp4 -vf \"scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS},tpad=stop_mode=clone:stop_duration=8,setsar=1\" -t {d:.3f} -an -c:v libx264 -preset veryfast -crf 18 {out}", shell=True, check=True)
+    subprocess.run(f"ffmpeg -loglevel error -y -ss {src} -i clips/{clip}.mp4 -vf \"setpts=PTS/{sp},scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},fps={FPS},tpad=stop_mode=clone:stop_duration=8,setsar=1\" -t {d:.3f} -an -c:v libx264 -preset veryfast -crf 18 {out}", shell=True, check=True)
     parts.append(out)
 open("list.txt", "w").write("".join(f"file '{p}'\n" for p in parts))
 subprocess.run("ffmpeg -loglevel error -y -f concat -safe 0 -i list.txt -c copy bg.mp4", shell=True, check=True)
@@ -109,7 +110,7 @@ def rich(lines, size, style, bg):
 els = []
 for e in D["els"]:
     im = rich(e["lines"], e["size"], e["style"], e.get("bg", "W"))
-    els.append((0 if e.get("always") else ab(e["b"], e["t0"]), TOTAL if e.get("always") else ab(e["b"], e["t1"]), e.get("x", 540), e["y"], im, e.get("always")))
+    els.append((0 if e.get("always") else ab(e["b"], e["t0"]), TOTAL if e.get("always") else ab(e.get("b1", e["b"]), e["t1"]), e.get("x", 540), e["y"], im, e.get("always")))
 caps = []
 for c in D["caps"]:
     words, lines, cur = c[3].split(), [], ""

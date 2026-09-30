@@ -2982,6 +2982,1024 @@
     ],
     "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
    }
+  ],
+  "rf": [
+   {
+    "id": "rf01",
+    "scene": "Film",
+    "audio": "audio/rf01.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 190,
+    "lead": 0.35,
+    "audioDur": 4.968,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Quick",
+      "t": 0.02
+     },
+     {
+      "w": "question.",
+      "t": 0.318
+     },
+     {
+      "w": "Why",
+      "t": 1.166
+     },
+     {
+      "w": "do",
+      "t": 1.385
+     },
+     {
+      "w": "we",
+      "t": 1.554
+     },
+     {
+      "w": "never",
+      "t": 1.724
+     },
+     {
+      "w": "say",
+      "t": 2.04
+     },
+     {
+      "w": "furnitures,",
+      "t": 2.259
+     },
+     {
+      "w": "equipments,",
+      "t": 3.012
+     },
+     {
+      "w": "or",
+      "t": 3.905
+     },
+     {
+      "w": "luggages?",
+      "t": 4.047
+     }
+    ],
+    "text": "Quick question. Why do we never say furnitures, equipments, or luggages?"
+   },
+   {
+    "id": "rf02",
+    "scene": "Film",
+    "audio": "audio/rf02.mp3",
+    "start": 6.333,
+    "startFrame": 190,
+    "frames": 100,
+    "lead": 0.35,
+    "audioDur": 2.16,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Watch.",
+      "t": 0.02
+     },
+     {
+      "w": "Here’s",
+      "t": 0.649
+     },
+     {
+      "w": "an",
+      "t": 0.953
+     },
+     {
+      "w": "empty",
+      "t": 1.095
+     },
+     {
+      "w": "room.",
+      "t": 1.358
+     }
+    ],
+    "text": "Watch. Here’s an empty room."
+   },
+   {
+    "id": "rf03",
+    "scene": "Film",
+    "audio": "audio/rf03.mp3",
+    "start": 9.667,
+    "startFrame": 290,
+    "frames": 116,
+    "lead": 0.35,
+    "audioDur": 1.704,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "In",
+      "t": 0.02
+     },
+     {
+      "w": "comes",
+      "t": 0.203
+     },
+     {
+      "w": "a",
+      "t": 0.544
+     },
+     {
+      "w": "chair.",
+      "t": 0.675
+     }
+    ],
+    "text": "In comes a chair."
+   },
+   {
+    "id": "rf04",
+    "scene": "Film",
+    "audio": "audio/rf04.mp3",
+    "start": 13.533,
+    "startFrame": 406,
+    "frames": 103,
+    "lead": 0.35,
+    "audioDur": 1.272,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.271
+     },
+     {
+      "w": "sofa.",
+      "t": 0.386
+     }
+    ],
+    "text": "Then a sofa."
+   },
+   {
+    "id": "rf05",
+    "scene": "Film",
+    "audio": "audio/rf05.mp3",
+    "start": 16.967,
+    "startFrame": 509,
+    "frames": 94,
+    "lead": 0.35,
+    "audioDur": 1.176,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.258
+     },
+     {
+      "w": "bed.",
+      "t": 0.366
+     }
+    ],
+    "text": "Then a bed."
+   },
+   {
+    "id": "rf06",
+    "scene": "Film",
+    "audio": "audio/rf06.mp3",
+    "start": 20.1,
+    "startFrame": 603,
+    "frames": 168,
+    "lead": 0.35,
+    "audioDur": 4.632,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Now",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.249
+     },
+     {
+      "w": "room",
+      "t": 0.477
+     },
+     {
+      "w": "has",
+      "t": 0.757
+     },
+     {
+      "w": "furniture.",
+      "t": 0.984
+     },
+     {
+      "w": "Not",
+      "t": 1.975
+     },
+     {
+      "w": "three",
+      "t": 2.188
+     },
+     {
+      "w": "furnitures.",
+      "t": 2.495
+     },
+     {
+      "w": "Just",
+      "t": 3.465
+     },
+     {
+      "w": "furniture.",
+      "t": 3.683
+     }
+    ],
+    "text": "Now the room has furniture. Not three furnitures. Just furniture."
+   },
+   {
+    "id": "rf07",
+    "scene": "Film",
+    "audio": "audio/rf07.mp3",
+    "start": 25.7,
+    "startFrame": 771,
+    "frames": 330,
+    "lead": 0.35,
+    "audioDur": 9.84,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "English",
+      "t": 0.02
+     },
+     {
+      "w": "doesn’t",
+      "t": 0.434
+     },
+     {
+      "w": "name",
+      "t": 0.849
+     },
+     {
+      "w": "each",
+      "t": 1.116
+     },
+     {
+      "w": "piece.",
+      "t": 1.384
+     },
+     {
+      "w": "It",
+      "t": 2.14
+     },
+     {
+      "w": "groups",
+      "t": 2.32
+     },
+     {
+      "w": "them",
+      "t": 2.704
+     },
+     {
+      "w": "into",
+      "t": 2.986
+     },
+     {
+      "w": "one",
+      "t": 3.268
+     },
+     {
+      "w": "unit.",
+      "t": 3.499
+     },
+     {
+      "w": "And",
+      "t": 4.242
+     },
+     {
+      "w": "a",
+      "t": 4.475
+     },
+     {
+      "w": "unit",
+      "t": 4.605
+     },
+     {
+      "w": "means",
+      "t": 4.889
+     },
+     {
+      "w": "one.",
+      "t": 5.225
+     },
+     {
+      "w": "One",
+      "t": 5.924
+     },
+     {
+      "w": "is",
+      "t": 6.148
+     },
+     {
+      "w": "always",
+      "t": 6.322
+     },
+     {
+      "w": "singular,",
+      "t": 6.695
+     },
+     {
+      "w": "so",
+      "t": 7.368
+     },
+     {
+      "w": "no",
+      "t": 7.619
+     },
+     {
+      "w": "s:",
+      "t": 7.869
+     },
+     {
+      "w": "the",
+      "t": 8.478
+     },
+     {
+      "w": "furniture",
+      "t": 8.647
+     },
+     {
+      "w": "is",
+      "t": 9.044
+     },
+     {
+      "w": "new.",
+      "t": 9.176
+     }
+    ],
+    "text": "English doesn’t name each piece. It groups them into one unit. And a unit means one. One is always singular, so no s: the furniture is new."
+   },
+   {
+    "id": "rf08",
+    "scene": "Film",
+    "audio": "audio/rf08.mp3",
+    "start": 36.7,
+    "startFrame": 1101,
+    "frames": 134,
+    "lead": 0.35,
+    "audioDur": 3.504,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Now",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.298
+     },
+     {
+      "w": "mechanic’s",
+      "t": 0.453
+     },
+     {
+      "w": "workshop,",
+      "t": 1.163
+     },
+     {
+      "w": "and",
+      "t": 1.997
+     },
+     {
+      "w": "an",
+      "t": 2.185
+     },
+     {
+      "w": "empty",
+      "t": 2.331
+     },
+     {
+      "w": "toolbox.",
+      "t": 2.603
+     }
+    ],
+    "text": "Now a mechanic’s workshop, and an empty toolbox."
+   },
+   {
+    "id": "rf09",
+    "scene": "Film",
+    "audio": "audio/rf09.mp3",
+    "start": 41.167,
+    "startFrame": 1235,
+    "frames": 112,
+    "lead": 0.35,
+    "audioDur": 1.56,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "A",
+      "t": 0.02
+     },
+     {
+      "w": "spanner",
+      "t": 0.134
+     },
+     {
+      "w": "goes",
+      "t": 0.521
+     },
+     {
+      "w": "in.",
+      "t": 0.771
+     }
+    ],
+    "text": "A spanner goes in."
+   },
+   {
+    "id": "rf10",
+    "scene": "Film",
+    "audio": "audio/rf10.mp3",
+    "start": 44.9,
+    "startFrame": 1347,
+    "frames": 103,
+    "lead": 0.35,
+    "audioDur": 1.272,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.251
+     },
+     {
+      "w": "hammer.",
+      "t": 0.356
+     }
+    ],
+    "text": "Then a hammer."
+   },
+   {
+    "id": "rf11",
+    "scene": "Film",
+    "audio": "audio/rf11.mp3",
+    "start": 48.333,
+    "startFrame": 1450,
+    "frames": 99,
+    "lead": 0.35,
+    "audioDur": 1.32,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.272
+     },
+     {
+      "w": "drill.",
+      "t": 0.387
+     }
+    ],
+    "text": "Then a drill."
+   },
+   {
+    "id": "rf12",
+    "scene": "Film",
+    "audio": "audio/rf12.mp3",
+    "start": 51.633,
+    "startFrame": 1549,
+    "frames": 222,
+    "lead": 0.35,
+    "audioDur": 6.24,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Close",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.329
+     },
+     {
+      "w": "lid.",
+      "t": 0.543
+     },
+     {
+      "w": "Many",
+      "t": 1.185
+     },
+     {
+      "w": "tools,",
+      "t": 1.474
+     },
+     {
+      "w": "one",
+      "t": 2.024
+     },
+     {
+      "w": "box,",
+      "t": 2.26
+     },
+     {
+      "w": "one",
+      "t": 2.706
+     },
+     {
+      "w": "unit:",
+      "t": 2.942
+     },
+     {
+      "w": "equipment.",
+      "t": 3.545
+     },
+     {
+      "w": "So:",
+      "t": 4.891
+     },
+     {
+      "w": "the",
+      "t": 5.159
+     },
+     {
+      "w": "equipment",
+      "t": 5.285
+     },
+     {
+      "w": "is",
+      "t": 5.58
+     },
+     {
+      "w": "ready.",
+      "t": 5.678
+     }
+    ],
+    "text": "Close the lid. Many tools, one box, one unit: equipment. So: the equipment is ready."
+   },
+   {
+    "id": "rf13",
+    "scene": "Film",
+    "audio": "audio/rf13.mp3",
+    "start": 59.033,
+    "startFrame": 1771,
+    "frames": 123,
+    "lead": 0.35,
+    "audioDur": 3.12,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Now",
+      "t": 0.02
+     },
+     {
+      "w": "someone",
+      "t": 0.244
+     },
+     {
+      "w": "is",
+      "t": 0.668
+     },
+     {
+      "w": "getting",
+      "t": 0.842
+     },
+     {
+      "w": "ready",
+      "t": 1.266
+     },
+     {
+      "w": "for",
+      "t": 1.59
+     },
+     {
+      "w": "the",
+      "t": 1.814
+     },
+     {
+      "w": "airport.",
+      "t": 2.039
+     }
+    ],
+    "text": "Now someone is getting ready for the airport."
+   },
+   {
+    "id": "rf14",
+    "scene": "Film",
+    "audio": "audio/rf14.mp3",
+    "start": 63.133,
+    "startFrame": 1894,
+    "frames": 115,
+    "lead": 0.35,
+    "audioDur": 1.68,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "First,",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.501
+     },
+     {
+      "w": "suitcase.",
+      "t": 0.616
+     }
+    ],
+    "text": "First, a suitcase."
+   },
+   {
+    "id": "rf15",
+    "scene": "Film",
+    "audio": "audio/rf15.mp3",
+    "start": 66.967,
+    "startFrame": 2009,
+    "frames": 109,
+    "lead": 0.35,
+    "audioDur": 1.464,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.274
+     },
+     {
+      "w": "backpack.",
+      "t": 0.389
+     }
+    ],
+    "text": "Then a backpack."
+   },
+   {
+    "id": "rf16",
+    "scene": "Film",
+    "audio": "audio/rf16.mp3",
+    "start": 70.6,
+    "startFrame": 2118,
+    "frames": 109,
+    "lead": 0.35,
+    "audioDur": 1.68,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Then",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.285
+     },
+     {
+      "w": "carry-on",
+      "t": 0.405
+     },
+     {
+      "w": "bag.",
+      "t": 0.814
+     }
+    ],
+    "text": "Then a carry-on bag."
+   },
+   {
+    "id": "rf17",
+    "scene": "Film",
+    "audio": "audio/rf17.mp3",
+    "start": 74.233,
+    "startFrame": 2227,
+    "frames": 206,
+    "lead": 0.35,
+    "audioDur": 5.688,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Bags",
+      "t": 0.02
+     },
+     {
+      "w": "and",
+      "t": 0.331
+     },
+     {
+      "w": "suitcases",
+      "t": 0.585
+     },
+     {
+      "w": "together",
+      "t": 1.179
+     },
+     {
+      "w": "make",
+      "t": 1.715
+     },
+     {
+      "w": "one",
+      "t": 2.027
+     },
+     {
+      "w": "unit:",
+      "t": 2.281
+     },
+     {
+      "w": "luggage.",
+      "t": 2.932
+     },
+     {
+      "w": "So:",
+      "t": 3.728
+     },
+     {
+      "w": "my",
+      "t": 4.355
+     },
+     {
+      "w": "luggage",
+      "t": 4.487
+     },
+     {
+      "w": "is",
+      "t": 4.811
+     },
+     {
+      "w": "heavy.",
+      "t": 4.943
+     }
+    ],
+    "text": "Bags and suitcases together make one unit: luggage. So: my luggage is heavy."
+   },
+   {
+    "id": "rf18",
+    "scene": "Film",
+    "audio": "audio/rf18.mp3",
+    "start": 81.1,
+    "startFrame": 2433,
+    "frames": 223,
+    "lead": 0.35,
+    "audioDur": 6.48,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Need",
+      "t": 0.02
+     },
+     {
+      "w": "a",
+      "t": 0.238
+     },
+     {
+      "w": "number?",
+      "t": 0.338
+     },
+     {
+      "w": "Count",
+      "t": 0.994
+     },
+     {
+      "w": "a",
+      "t": 1.365
+     },
+     {
+      "w": "piece:",
+      "t": 1.507
+     },
+     {
+      "w": "two",
+      "t": 2.22
+     },
+     {
+      "w": "pieces",
+      "t": 2.456
+     },
+     {
+      "w": "of",
+      "t": 2.849
+     },
+     {
+      "w": "furniture,",
+      "t": 3.033
+     },
+     {
+      "w": "a",
+      "t": 3.794
+     },
+     {
+      "w": "piece",
+      "t": 3.903
+     },
+     {
+      "w": "of",
+      "t": 4.189
+     },
+     {
+      "w": "equipment,",
+      "t": 4.342
+     },
+     {
+      "w": "three",
+      "t": 4.979
+     },
+     {
+      "w": "pieces",
+      "t": 5.226
+     },
+     {
+      "w": "of",
+      "t": 5.511
+     },
+     {
+      "w": "luggage.",
+      "t": 5.644
+     }
+    ],
+    "text": "Need a number? Count a piece: two pieces of furniture, a piece of equipment, three pieces of luggage."
+   },
+   {
+    "id": "rf19",
+    "scene": "Film",
+    "audio": "audio/rf19.mp3",
+    "start": 88.533,
+    "startFrame": 2656,
+    "frames": 238,
+    "lead": 0.35,
+    "audioDur": 5.568,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "don’t",
+      "t": 0.197
+     },
+     {
+      "w": "memorise",
+      "t": 0.526
+     },
+     {
+      "w": "the",
+      "t": 1.005
+     },
+     {
+      "w": "list.",
+      "t": 1.234
+     },
+     {
+      "w": "See",
+      "t": 1.966
+     },
+     {
+      "w": "the",
+      "t": 2.218
+     },
+     {
+      "w": "unit:",
+      "t": 2.472
+     },
+     {
+      "w": "many",
+      "t": 3.116
+     },
+     {
+      "w": "things,",
+      "t": 3.366
+     },
+     {
+      "w": "one",
+      "t": 3.885
+     },
+     {
+      "w": "name,",
+      "t": 4.09
+     },
+     {
+      "w": "one",
+      "t": 4.519
+     },
+     {
+      "w": "verb.",
+      "t": 4.723
+     }
+    ],
+    "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
+   }
   ]
  },
  "captions": {
@@ -6365,6 +7383,945 @@
      {
       "w": "verb.",
       "t": 82.406
+     }
+    ]
+   }
+  ],
+  "rf": [
+   {
+    "start": 0.37,
+    "end": 1.476,
+    "text": "Quick question.",
+    "words": [
+     {
+      "w": "Quick",
+      "t": 0.37
+     },
+     {
+      "w": "question.",
+      "t": 0.668
+     }
+    ]
+   },
+   {
+    "start": 1.516,
+    "end": 2.569,
+    "text": "Why do we\nnever say",
+    "words": [
+     {
+      "w": "Why",
+      "t": 1.516
+     },
+     {
+      "w": "do",
+      "t": 1.735
+     },
+     {
+      "w": "we",
+      "t": 1.904
+     },
+     {
+      "w": "never",
+      "t": 2.074
+     },
+     {
+      "w": "say",
+      "t": 2.39
+     }
+    ]
+   },
+   {
+    "start": 2.609,
+    "end": 4.215,
+    "text": "furnitures,\nequipments,",
+    "words": [
+     {
+      "w": "furnitures,",
+      "t": 2.609
+     },
+     {
+      "w": "equipments,",
+      "t": 3.362
+     }
+    ]
+   },
+   {
+    "start": 4.255,
+    "end": 5.568,
+    "text": "or luggages?",
+    "words": [
+     {
+      "w": "or",
+      "t": 4.255
+     },
+     {
+      "w": "luggages?",
+      "t": 4.397
+     }
+    ]
+   },
+   {
+    "start": 6.703,
+    "end": 9.093,
+    "text": "Watch. Here’s\nan empty room.",
+    "words": [
+     {
+      "w": "Watch.",
+      "t": 6.703
+     },
+     {
+      "w": "Here’s",
+      "t": 7.332
+     },
+     {
+      "w": "an",
+      "t": 7.636
+     },
+     {
+      "w": "empty",
+      "t": 7.778
+     },
+     {
+      "w": "room.",
+      "t": 8.041
+     }
+    ]
+   },
+   {
+    "start": 10.037,
+    "end": 11.971,
+    "text": "In comes a chair.",
+    "words": [
+     {
+      "w": "In",
+      "t": 10.037
+     },
+     {
+      "w": "comes",
+      "t": 10.22
+     },
+     {
+      "w": "a",
+      "t": 10.561
+     },
+     {
+      "w": "chair.",
+      "t": 10.692
+     }
+    ]
+   },
+   {
+    "start": 13.903,
+    "end": 15.405,
+    "text": "Then a sofa.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 13.903
+     },
+     {
+      "w": "a",
+      "t": 14.154
+     },
+     {
+      "w": "sofa.",
+      "t": 14.269
+     }
+    ]
+   },
+   {
+    "start": 17.337,
+    "end": 18.743,
+    "text": "Then a bed.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 17.337
+     },
+     {
+      "w": "a",
+      "t": 17.575
+     },
+     {
+      "w": "bed.",
+      "t": 17.683
+     }
+    ]
+   },
+   {
+    "start": 20.47,
+    "end": 22.385,
+    "text": "Now the room\nhas furniture.",
+    "words": [
+     {
+      "w": "Now",
+      "t": 20.47
+     },
+     {
+      "w": "the",
+      "t": 20.699
+     },
+     {
+      "w": "room",
+      "t": 20.927
+     },
+     {
+      "w": "has",
+      "t": 21.207
+     },
+     {
+      "w": "furniture.",
+      "t": 21.434
+     }
+    ]
+   },
+   {
+    "start": 22.425,
+    "end": 23.875,
+    "text": "Not three\nfurnitures.",
+    "words": [
+     {
+      "w": "Not",
+      "t": 22.425
+     },
+     {
+      "w": "three",
+      "t": 22.638
+     },
+     {
+      "w": "furnitures.",
+      "t": 22.945
+     }
+    ]
+   },
+   {
+    "start": 23.915,
+    "end": 25.332,
+    "text": "Just furniture.",
+    "words": [
+     {
+      "w": "Just",
+      "t": 23.915
+     },
+     {
+      "w": "furniture.",
+      "t": 24.133
+     }
+    ]
+   },
+   {
+    "start": 26.07,
+    "end": 28.15,
+    "text": "English doesn’t\nname each piece.",
+    "words": [
+     {
+      "w": "English",
+      "t": 26.07
+     },
+     {
+      "w": "doesn’t",
+      "t": 26.484
+     },
+     {
+      "w": "name",
+      "t": 26.899
+     },
+     {
+      "w": "each",
+      "t": 27.166
+     },
+     {
+      "w": "piece.",
+      "t": 27.434
+     }
+    ]
+   },
+   {
+    "start": 28.19,
+    "end": 30.252,
+    "text": "It groups them\ninto one unit.",
+    "words": [
+     {
+      "w": "It",
+      "t": 28.19
+     },
+     {
+      "w": "groups",
+      "t": 28.37
+     },
+     {
+      "w": "them",
+      "t": 28.754
+     },
+     {
+      "w": "into",
+      "t": 29.036
+     },
+     {
+      "w": "one",
+      "t": 29.318
+     },
+     {
+      "w": "unit.",
+      "t": 29.549
+     }
+    ]
+   },
+   {
+    "start": 30.292,
+    "end": 31.934,
+    "text": "And a unit\nmeans one.",
+    "words": [
+     {
+      "w": "And",
+      "t": 30.292
+     },
+     {
+      "w": "a",
+      "t": 30.525
+     },
+     {
+      "w": "unit",
+      "t": 30.655
+     },
+     {
+      "w": "means",
+      "t": 30.939
+     },
+     {
+      "w": "one.",
+      "t": 31.275
+     }
+    ]
+   },
+   {
+    "start": 31.974,
+    "end": 33.378,
+    "text": "One is always\nsingular,",
+    "words": [
+     {
+      "w": "One",
+      "t": 31.974
+     },
+     {
+      "w": "is",
+      "t": 32.198
+     },
+     {
+      "w": "always",
+      "t": 32.372
+     },
+     {
+      "w": "singular,",
+      "t": 32.745
+     }
+    ]
+   },
+   {
+    "start": 33.418,
+    "end": 36.14,
+    "text": "so no s:\nthe furniture is new.",
+    "words": [
+     {
+      "w": "so",
+      "t": 33.418
+     },
+     {
+      "w": "no",
+      "t": 33.669
+     },
+     {
+      "w": "s:",
+      "t": 33.919
+     },
+     {
+      "w": "the",
+      "t": 34.528
+     },
+     {
+      "w": "furniture",
+      "t": 34.697
+     },
+     {
+      "w": "is",
+      "t": 35.094
+     },
+     {
+      "w": "new.",
+      "t": 35.226
+     }
+    ]
+   },
+   {
+    "start": 37.07,
+    "end": 39.007,
+    "text": "Now a mechanic’s\nworkshop,",
+    "words": [
+     {
+      "w": "Now",
+      "t": 37.07
+     },
+     {
+      "w": "a",
+      "t": 37.348
+     },
+     {
+      "w": "mechanic’s",
+      "t": 37.503
+     },
+     {
+      "w": "workshop,",
+      "t": 38.213
+     }
+    ]
+   },
+   {
+    "start": 39.047,
+    "end": 40.804,
+    "text": "and an empty\ntoolbox.",
+    "words": [
+     {
+      "w": "and",
+      "t": 39.047
+     },
+     {
+      "w": "an",
+      "t": 39.235
+     },
+     {
+      "w": "empty",
+      "t": 39.381
+     },
+     {
+      "w": "toolbox.",
+      "t": 39.653
+     }
+    ]
+   },
+   {
+    "start": 41.537,
+    "end": 43.327,
+    "text": "A spanner goes in.",
+    "words": [
+     {
+      "w": "A",
+      "t": 41.537
+     },
+     {
+      "w": "spanner",
+      "t": 41.651
+     },
+     {
+      "w": "goes",
+      "t": 42.038
+     },
+     {
+      "w": "in.",
+      "t": 42.288
+     }
+    ]
+   },
+   {
+    "start": 45.27,
+    "end": 46.772,
+    "text": "Then a hammer.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 45.27
+     },
+     {
+      "w": "a",
+      "t": 45.501
+     },
+     {
+      "w": "hammer.",
+      "t": 45.606
+     }
+    ]
+   },
+   {
+    "start": 48.703,
+    "end": 50.253,
+    "text": "Then a drill.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 48.703
+     },
+     {
+      "w": "a",
+      "t": 48.955
+     },
+     {
+      "w": "drill.",
+      "t": 49.07
+     }
+    ]
+   },
+   {
+    "start": 52.003,
+    "end": 53.128,
+    "text": "Close the lid.",
+    "words": [
+     {
+      "w": "Close",
+      "t": 52.003
+     },
+     {
+      "w": "the",
+      "t": 52.312
+     },
+     {
+      "w": "lid.",
+      "t": 52.526
+     }
+    ]
+   },
+   {
+    "start": 53.168,
+    "end": 54.649,
+    "text": "Many tools,\none box,",
+    "words": [
+     {
+      "w": "Many",
+      "t": 53.168
+     },
+     {
+      "w": "tools,",
+      "t": 53.457
+     },
+     {
+      "w": "one",
+      "t": 54.007
+     },
+     {
+      "w": "box,",
+      "t": 54.243
+     }
+    ]
+   },
+   {
+    "start": 54.689,
+    "end": 56.834,
+    "text": "one unit:\nequipment.",
+    "words": [
+     {
+      "w": "one",
+      "t": 54.689
+     },
+     {
+      "w": "unit:",
+      "t": 54.925
+     },
+     {
+      "w": "equipment.",
+      "t": 55.528
+     }
+    ]
+   },
+   {
+    "start": 56.874,
+    "end": 58.473,
+    "text": "So: the equipment\nis ready.",
+    "words": [
+     {
+      "w": "So:",
+      "t": 56.874
+     },
+     {
+      "w": "the",
+      "t": 57.142
+     },
+     {
+      "w": "equipment",
+      "t": 57.268
+     },
+     {
+      "w": "is",
+      "t": 57.563
+     },
+     {
+      "w": "ready.",
+      "t": 57.661
+     }
+    ]
+   },
+   {
+    "start": 59.403,
+    "end": 60.933,
+    "text": "Now someone\nis getting ready",
+    "words": [
+     {
+      "w": "Now",
+      "t": 59.403
+     },
+     {
+      "w": "someone",
+      "t": 59.627
+     },
+     {
+      "w": "is",
+      "t": 60.051
+     },
+     {
+      "w": "getting",
+      "t": 60.225
+     },
+     {
+      "w": "ready",
+      "t": 60.649
+     }
+    ]
+   },
+   {
+    "start": 60.973,
+    "end": 62.753,
+    "text": "for the airport.",
+    "words": [
+     {
+      "w": "for",
+      "t": 60.973
+     },
+     {
+      "w": "the",
+      "t": 61.197
+     },
+     {
+      "w": "airport.",
+      "t": 61.422
+     }
+    ]
+   },
+   {
+    "start": 63.503,
+    "end": 65.413,
+    "text": "First, a suitcase.",
+    "words": [
+     {
+      "w": "First,",
+      "t": 63.503
+     },
+     {
+      "w": "a",
+      "t": 63.984
+     },
+     {
+      "w": "suitcase.",
+      "t": 64.099
+     }
+    ]
+   },
+   {
+    "start": 67.337,
+    "end": 69.031,
+    "text": "Then a backpack.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 67.337
+     },
+     {
+      "w": "a",
+      "t": 67.591
+     },
+     {
+      "w": "backpack.",
+      "t": 67.706
+     }
+    ]
+   },
+   {
+    "start": 70.97,
+    "end": 72.88,
+    "text": "Then\na carry-on bag.",
+    "words": [
+     {
+      "w": "Then",
+      "t": 70.97
+     },
+     {
+      "w": "a",
+      "t": 71.235
+     },
+     {
+      "w": "carry-on",
+      "t": 71.355
+     },
+     {
+      "w": "bag.",
+      "t": 71.764
+     }
+    ]
+   },
+   {
+    "start": 74.603,
+    "end": 76.258,
+    "text": "Bags and suitcases\ntogether",
+    "words": [
+     {
+      "w": "Bags",
+      "t": 74.603
+     },
+     {
+      "w": "and",
+      "t": 74.914
+     },
+     {
+      "w": "suitcases",
+      "t": 75.168
+     },
+     {
+      "w": "together",
+      "t": 75.762
+     }
+    ]
+   },
+   {
+    "start": 76.298,
+    "end": 77.475,
+    "text": "make one unit:",
+    "words": [
+     {
+      "w": "make",
+      "t": 76.298
+     },
+     {
+      "w": "one",
+      "t": 76.61
+     },
+     {
+      "w": "unit:",
+      "t": 76.864
+     }
+    ]
+   },
+   {
+    "start": 77.515,
+    "end": 78.898,
+    "text": "luggage. So:",
+    "words": [
+     {
+      "w": "luggage.",
+      "t": 77.515
+     },
+     {
+      "w": "So:",
+      "t": 78.311
+     }
+    ]
+   },
+   {
+    "start": 78.938,
+    "end": 80.521,
+    "text": "my luggage\nis heavy.",
+    "words": [
+     {
+      "w": "my",
+      "t": 78.938
+     },
+     {
+      "w": "luggage",
+      "t": 79.07
+     },
+     {
+      "w": "is",
+      "t": 79.394
+     },
+     {
+      "w": "heavy.",
+      "t": 79.526
+     }
+    ]
+   },
+   {
+    "start": 81.47,
+    "end": 82.404,
+    "text": "Need a number?",
+    "words": [
+     {
+      "w": "Need",
+      "t": 81.47
+     },
+     {
+      "w": "a",
+      "t": 81.688
+     },
+     {
+      "w": "number?",
+      "t": 81.788
+     }
+    ]
+   },
+   {
+    "start": 82.444,
+    "end": 83.63,
+    "text": "Count a piece:",
+    "words": [
+     {
+      "w": "Count",
+      "t": 82.444
+     },
+     {
+      "w": "a",
+      "t": 82.815
+     },
+     {
+      "w": "piece:",
+      "t": 82.957
+     }
+    ]
+   },
+   {
+    "start": 83.67,
+    "end": 85.204,
+    "text": "two pieces\nof furniture,",
+    "words": [
+     {
+      "w": "two",
+      "t": 83.67
+     },
+     {
+      "w": "pieces",
+      "t": 83.906
+     },
+     {
+      "w": "of",
+      "t": 84.299
+     },
+     {
+      "w": "furniture,",
+      "t": 84.483
+     }
+    ]
+   },
+   {
+    "start": 85.244,
+    "end": 86.389,
+    "text": "a piece\nof equipment,",
+    "words": [
+     {
+      "w": "a",
+      "t": 85.244
+     },
+     {
+      "w": "piece",
+      "t": 85.353
+     },
+     {
+      "w": "of",
+      "t": 85.639
+     },
+     {
+      "w": "equipment,",
+      "t": 85.792
+     }
+    ]
+   },
+   {
+    "start": 86.429,
+    "end": 88.18,
+    "text": "three pieces\nof luggage.",
+    "words": [
+     {
+      "w": "three",
+      "t": 86.429
+     },
+     {
+      "w": "pieces",
+      "t": 86.676
+     },
+     {
+      "w": "of",
+      "t": 86.961
+     },
+     {
+      "w": "luggage.",
+      "t": 87.094
+     }
+    ]
+   },
+   {
+    "start": 88.903,
+    "end": 90.809,
+    "text": "So don’t memorise\nthe list.",
+    "words": [
+     {
+      "w": "So",
+      "t": 88.903
+     },
+     {
+      "w": "don’t",
+      "t": 89.08
+     },
+     {
+      "w": "memorise",
+      "t": 89.409
+     },
+     {
+      "w": "the",
+      "t": 89.888
+     },
+     {
+      "w": "list.",
+      "t": 90.117
+     }
+    ]
+   },
+   {
+    "start": 90.849,
+    "end": 91.959,
+    "text": "See the unit:",
+    "words": [
+     {
+      "w": "See",
+      "t": 90.849
+     },
+     {
+      "w": "the",
+      "t": 91.101
+     },
+     {
+      "w": "unit:",
+      "t": 91.355
+     }
+    ]
+   },
+   {
+    "start": 91.999,
+    "end": 93.362,
+    "text": "many things,\none name,",
+    "words": [
+     {
+      "w": "many",
+      "t": 91.999
+     },
+     {
+      "w": "things,",
+      "t": 92.249
+     },
+     {
+      "w": "one",
+      "t": 92.768
+     },
+     {
+      "w": "name,",
+      "t": 92.973
+     }
+    ]
+   },
+   {
+    "start": 93.402,
+    "end": 94.701,
+    "text": "one verb.",
+    "words": [
+     {
+      "w": "one",
+      "t": 93.402
+     },
+     {
+      "w": "verb.",
+      "t": 93.606
      }
     ]
    }

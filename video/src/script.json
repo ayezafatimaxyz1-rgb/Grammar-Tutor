@@ -1,222 +1,344 @@
 {
- "voice": {
-  "provider": "Kokoro (local, offline)",
-  "voice": "George (British English, male)",
-  "voice_id": "bm_george",
-  "speed": 0.95,
-  "lang": "en-gb"
- },
- "videos": [
-  {
-   "id": "v1",
-   "title": "UNIT / MASS",
-   "slug": "case01_furniture",
-   "accent": "unit",
-   "beats": [
-    {
-     "id": "v1a",
-     "scene": "HookList",
-     "pad": 0.4,
-     "text": "Furniture. Luggage. Gold. Rice. Knowledge. Work. We’re told to memorise lists like these: no plural, singular verb."
-    },
-    {
-     "id": "v1b",
-     "scene": "HookTwist",
-     "pad": 0.5,
-     "text": "But what if you didn’t have to memorise them? What if you could prove it, with logic?"
-    },
-    {
-     "id": "v1c",
-     "scene": "CaseOpen",
-     "pad": 0.5,
-     "text": "Case one: furniture. Why is ‘The furniture are expensive’ wrong?"
-    },
-    {
-     "id": "v1d",
-     "scene": "PointTest",
-     "pad": 0.3,
-     "text": "Proof one. Point to a furniture. This? That’s a chair. This? A table. A sofa. A bed. Every object already has its own name."
-    },
-    {
-     "id": "v1e",
-     "scene": "PointVerdict",
-     "pad": 1.0,
-     "text": "Nothing here is ‘a furniture’. So furniture is not the name of one object."
-    },
-    {
-     "id": "v1f",
-     "scene": "BoxIt",
-     "pad": 0.3,
-     "text": "Proof two. Furniture is the name for the whole group. Chair, table, sofa, bed: one box, one label."
-    },
-    {
-     "id": "v1g",
-     "scene": "CountBox",
-     "pad": 1.0,
-     "text": "Try counting the label: one furniture, two furnitures? It fails. We count what’s inside: one chair, two chairs."
-    },
-    {
-     "id": "v1h",
-     "scene": "VerbSnap",
-     "pad": 1.0,
-     "text": "Proof three. A group name works as one whole, so the verb is singular: ‘The furniture is expensive.’"
-    },
-    {
-     "id": "v1i",
-     "scene": "PiecesChip",
-     "pad": 1.0,
-     "text": "Need a number? The two won’t stick to furniture. Give it something countable: ‘Two pieces of furniture are expensive.’"
-    },
-    {
-     "id": "v1j",
-     "scene": "LuggageTest",
-     "pad": 0.8,
-     "text": "Now you try: luggage. Point to a luggage? No, that’s a suitcase, that’s a bag. Group name, so: ‘The luggage is heavy.’"
-    },
-    {
-     "id": "v1k",
-     "scene": "RuleCard",
-     "pad": 2.5,
-     "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
-    }
-   ]
+  "voice": {
+    "provider": "Kokoro (local, offline)",
+    "voice": "George (British English, male)",
+    "voice_id": "bm_george",
+    "speed": 0.95,
+    "lang": "en-gb"
   },
-  {
-   "id": "v2",
-   "title": "MATERIAL",
-   "slug": "case02_gold",
-   "accent": "material",
-   "beats": [
+  "videos": [
     {
-     "id": "v2a",
-     "scene": "MeltHook",
-     "pad": 0.3,
-     "text": "A ring. A coin. A necklace. Three golden things. Now watch: melt them down. How many golds do you have now?"
+      "id": "v1",
+      "title": "UNIT / MASS",
+      "slug": "case01_furniture",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "v1a",
+          "scene": "HookList",
+          "pad": 0.4,
+          "text": "Furniture. Luggage. Gold. Rice. Knowledge. Work. We’re told to memorise lists like these: no plural, singular verb."
+        },
+        {
+          "id": "v1b",
+          "scene": "HookTwist",
+          "pad": 0.5,
+          "text": "But what if you didn’t have to memorise them? What if you could prove it, with logic?"
+        },
+        {
+          "id": "v1c",
+          "scene": "CaseOpen",
+          "pad": 0.5,
+          "text": "Case one: furniture. Why is ‘The furniture are expensive’ wrong?"
+        },
+        {
+          "id": "v1d",
+          "scene": "PointTest",
+          "pad": 0.3,
+          "text": "Proof one. Point to a furniture. This? That’s a chair. This? A table. A sofa. A bed. Every object already has its own name."
+        },
+        {
+          "id": "v1e",
+          "scene": "PointVerdict",
+          "pad": 1.0,
+          "text": "Nothing here is ‘a furniture’. So furniture is not the name of one object."
+        },
+        {
+          "id": "v1f",
+          "scene": "BoxIt",
+          "pad": 0.3,
+          "text": "Proof two. Furniture is the name for the whole group. Chair, table, sofa, bed: one box, one label."
+        },
+        {
+          "id": "v1g",
+          "scene": "CountBox",
+          "pad": 1.0,
+          "text": "Try counting the label: one furniture, two furnitures? It fails. We count what’s inside: one chair, two chairs."
+        },
+        {
+          "id": "v1h",
+          "scene": "VerbSnap",
+          "pad": 1.0,
+          "text": "Proof three. A group name works as one whole, so the verb is singular: ‘The furniture is expensive.’"
+        },
+        {
+          "id": "v1i",
+          "scene": "PiecesChip",
+          "pad": 1.0,
+          "text": "Need a number? The two won’t stick to furniture. Give it something countable: ‘Two pieces of furniture are expensive.’"
+        },
+        {
+          "id": "v1j",
+          "scene": "LuggageTest",
+          "pad": 0.8,
+          "text": "Now you try: luggage. Point to a luggage? No, that’s a suitcase, that’s a bag. Group name, so: ‘The luggage is heavy.’"
+        },
+        {
+          "id": "v1k",
+          "scene": "RuleCard",
+          "pad": 2.5,
+          "text": "So don’t memorise. Ask: can I point to one of it? If not, it’s a group name. Treat it as one."
+        }
+      ]
     },
     {
-     "id": "v2b",
-     "scene": "HookBreak",
-     "pad": 0.5,
-     "text": "Three? One? The question doesn’t even work. And that’s the whole lesson, with no memorising."
+      "id": "v2",
+      "title": "MATERIAL",
+      "slug": "case02_gold",
+      "accent": "material",
+      "beats": [
+        {
+          "id": "v2a",
+          "scene": "MeltHook",
+          "pad": 0.3,
+          "text": "A ring. A coin. A necklace. Three golden things. Now watch: melt them down. How many golds do you have now?"
+        },
+        {
+          "id": "v2b",
+          "scene": "HookBreak",
+          "pad": 0.5,
+          "text": "Three? One? The question doesn’t even work. And that’s the whole lesson, with no memorising."
+        },
+        {
+          "id": "v2c",
+          "scene": "CaseOpen",
+          "pad": 0.5,
+          "text": "Case two: materials. Why do we say ‘made of gold’, and never ‘made of golds’?"
+        },
+        {
+          "id": "v2d",
+          "scene": "CutRing",
+          "pad": 0.4,
+          "text": "Proof one: the cut test. Cut a ring in half. Is it still a ring? No. It’s a broken ring."
+        },
+        {
+          "id": "v2e",
+          "scene": "CutGold",
+          "pad": 1.0,
+          "text": "Now cut a lump of gold in half. Still gold? Yes. Cut it again. Still gold. However small, it’s still gold."
+        },
+        {
+          "id": "v2f",
+          "scene": "CountMeasure",
+          "pad": 1.0,
+          "text": "Proof two. So how do we give a number? Count the objects: three rings. Or measure the material: twenty grams of gold. The number never lands on gold."
+        },
+        {
+          "id": "v2g",
+          "scene": "BrickCount",
+          "pad": 0.3,
+          "text": "Proof three, the twist. Bricks can be counted: this wall has forty bricks. But brick is also a material, like gold."
+        },
+        {
+          "id": "v2h",
+          "scene": "BrickBoth",
+          "pad": 1.0,
+          "text": "So both are right. ‘Made of bricks’ means the blocks. ‘Made of brick’ means the material. The meaning decides the grammar."
+        },
+        {
+          "id": "v2i",
+          "scene": "WoodTest",
+          "pad": 0.8,
+          "text": "Your turn: wood. Cut a plank in half. Still wood? Yes. So: ‘This table is made of wood.’"
+        },
+        {
+          "id": "v2j",
+          "scene": "RuleCard2",
+          "pad": 2.5,
+          "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
+        }
+      ]
     },
     {
-     "id": "v2c",
-     "scene": "CaseOpen",
-     "pad": 0.5,
-     "text": "Case two: materials. Why do we say ‘made of gold’, and never ‘made of golds’?"
+      "id": "sm",
+      "title": "STYLE SAMPLE",
+      "slug": "sample",
+      "accent": "unit",
+      "sample": true,
+      "beats": [
+        {
+          "id": "sm01",
+          "scene": "-",
+          "pad": 1.2,
+          "text": "Why is ‘The furniture are expensive’ wrong?"
+        },
+        {
+          "id": "sm02",
+          "scene": "-",
+          "pad": 0.3,
+          "text": "Look at what furniture contains: a chair, a table, a sofa, a bed. Many different things."
+        },
+        {
+          "id": "sm03",
+          "scene": "-",
+          "pad": 0.3,
+          "text": "But English doesn’t name each one. It groups them together and names them as one unit: furniture."
+        },
+        {
+          "id": "sm04",
+          "scene": "-",
+          "pad": 0.4,
+          "text": "Why? Because furniture is not the name of an object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
+        },
+        {
+          "id": "sm05",
+          "scene": "-",
+          "pad": 0.8,
+          "text": "And a unit means one. One is always singular. We can’t add s to one. So: ‘The furniture is expensive.’"
+        },
+        {
+          "id": "sm06",
+          "scene": "-",
+          "pad": 0.4,
+          "text": "The same logic works for the whole family. Luggage: bags and suitcases. Equipment: tools and machines. Clothing: shirts and trousers. Crockery: plates and cups. Stationery: pens and paper."
+        },
+        {
+          "id": "sm07",
+          "scene": "-",
+          "pad": 0.4,
+          "text": "Notice the endings: luggage, equipment, clothing, crockery. These endings often build a word for a whole collection."
+        },
+        {
+          "id": "sm08",
+          "scene": "-",
+          "pad": 0.4,
+          "text": "So each one is one unit, with a singular verb: the luggage is heavy, the equipment is new, my clothing is wet."
+        },
+        {
+          "id": "sm09",
+          "scene": "-",
+          "pad": 0.4,
+          "text": "Need to count them? Count a piece: two pieces of furniture, three pieces of luggage, an item of clothing."
+        },
+        {
+          "id": "sm10",
+          "scene": "-",
+          "pad": 2.0,
+          "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
+        }
+      ]
     },
     {
-     "id": "v2d",
-     "scene": "CutRing",
-     "pad": 0.4,
-     "text": "Proof one: the cut test. Cut a ring in half. Is it still a ring? No. It’s a broken ring."
-    },
-    {
-     "id": "v2e",
-     "scene": "CutGold",
-     "pad": 1.0,
-     "text": "Now cut a lump of gold in half. Still gold? Yes. Cut it again. Still gold. However small, it’s still gold."
-    },
-    {
-     "id": "v2f",
-     "scene": "CountMeasure",
-     "pad": 1.0,
-     "text": "Proof two. So how do we give a number? Count the objects: three rings. Or measure the material: twenty grams of gold. The number never lands on gold."
-    },
-    {
-     "id": "v2g",
-     "scene": "BrickCount",
-     "pad": 0.3,
-     "text": "Proof three, the twist. Bricks can be counted: this wall has forty bricks. But brick is also a material, like gold."
-    },
-    {
-     "id": "v2h",
-     "scene": "BrickBoth",
-     "pad": 1.0,
-     "text": "So both are right. ‘Made of bricks’ means the blocks. ‘Made of brick’ means the material. The meaning decides the grammar."
-    },
-    {
-     "id": "v2i",
-     "scene": "WoodTest",
-     "pad": 0.8,
-     "text": "Your turn: wood. Cut a plank in half. Still wood? Yes. So: ‘This table is made of wood.’"
-    },
-    {
-     "id": "v2j",
-     "scene": "RuleCard2",
-     "pad": 2.5,
-     "text": "So don’t memorise. Cut it in half. If every piece is still the same stuff, it’s a material. Measure it, don’t count it."
+      "id": "rf",
+      "title": "Real life: one unit",
+      "beats": [
+        {
+          "id": "rf01",
+          "text": "Quick question. Why do we never say furnitures, equipments, or luggages?",
+          "pad": 1.0,
+          "scene": "Film"
+        },
+        {
+          "id": "rf02",
+          "text": "Watch. Here’s an empty room.",
+          "pad": 0.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf03",
+          "text": "In comes a chair.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf04",
+          "text": "Then a sofa.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf05",
+          "text": "Then a bed.",
+          "pad": 1.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf06",
+          "text": "Now the room has furniture. Not three furnitures. Just furniture.",
+          "pad": 0.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf07",
+          "text": "English doesn’t name each piece. It groups them into one unit. And a unit means one. One is always singular, so no s: the furniture is new.",
+          "pad": 0.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf08",
+          "text": "Now a mechanic’s workshop, and an empty toolbox.",
+          "pad": 0.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf09",
+          "text": "A spanner goes in.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf10",
+          "text": "Then a hammer.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf11",
+          "text": "Then a drill.",
+          "pad": 1.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf12",
+          "text": "Close the lid. Many tools, one box, one unit: equipment. So: the equipment is ready.",
+          "pad": 0.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf13",
+          "text": "Now someone is getting ready for the airport.",
+          "pad": 0.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf14",
+          "text": "First, a suitcase.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf15",
+          "text": "Then a backpack.",
+          "pad": 1.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf16",
+          "text": "Then a carry-on bag.",
+          "pad": 1.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf17",
+          "text": "Bags and suitcases together make one unit: luggage. So: my luggage is heavy.",
+          "pad": 0.8,
+          "scene": "Film"
+        },
+        {
+          "id": "rf18",
+          "text": "Need a number? Count a piece: two pieces of furniture, a piece of equipment, three pieces of luggage.",
+          "pad": 0.6,
+          "scene": "Film"
+        },
+        {
+          "id": "rf19",
+          "text": "So don’t memorise the list. See the unit: many things, one name, one verb.",
+          "pad": 2.0,
+          "scene": "Film"
+        }
+      ],
+      "slug": "real_life_one_unit",
+      "accent": "unit"
     }
-   ]
-  },
-  {
-   "id": "sm",
-   "title": "STYLE SAMPLE",
-   "slug": "sample",
-   "accent": "unit",
-   "sample": true,
-   "beats": [
-    {
-     "id": "sm01",
-     "scene": "-",
-     "pad": 1.2,
-     "text": "Why is ‘The furniture are expensive’ wrong?"
-    },
-    {
-     "id": "sm02",
-     "scene": "-",
-     "pad": 0.3,
-     "text": "Look at what furniture contains: a chair, a table, a sofa, a bed. Many different things."
-    },
-    {
-     "id": "sm03",
-     "scene": "-",
-     "pad": 0.3,
-     "text": "But English doesn’t name each one. It groups them together and names them as one unit: furniture."
-    },
-    {
-     "id": "sm04",
-     "scene": "-",
-     "pad": 0.4,
-     "text": "Why? Because furniture is not the name of an object. It’s the name of the whole collection. The word comes from ‘furnish’: everything you furnish a room with."
-    },
-    {
-     "id": "sm05",
-     "scene": "-",
-     "pad": 0.8,
-     "text": "And a unit means one. One is always singular. We can’t add s to one. So: ‘The furniture is expensive.’"
-    },
-    {
-     "id": "sm06",
-     "scene": "-",
-     "pad": 0.4,
-     "text": "The same logic works for the whole family. Luggage: bags and suitcases. Equipment: tools and machines. Clothing: shirts and trousers. Crockery: plates and cups. Stationery: pens and paper."
-    },
-    {
-     "id": "sm07",
-     "scene": "-",
-     "pad": 0.4,
-     "text": "Notice the endings: luggage, equipment, clothing, crockery. These endings often build a word for a whole collection."
-    },
-    {
-     "id": "sm08",
-     "scene": "-",
-     "pad": 0.4,
-     "text": "So each one is one unit, with a singular verb: the luggage is heavy, the equipment is new, my clothing is wet."
-    },
-    {
-     "id": "sm09",
-     "scene": "-",
-     "pad": 0.4,
-     "text": "Need to count them? Count a piece: two pieces of furniture, three pieces of luggage, an item of clothing."
-    },
-    {
-     "id": "sm10",
-     "scene": "-",
-     "pad": 2.0,
-     "text": "So don’t memorise the list. See the unit: many things, one name, one verb."
-    }
-   ]
-  }
- ]
+  ]
 }
