@@ -315,8 +315,10 @@ export const Uncountable: React.FC = () => {
     const yb = yellowBox(560, 140, 800, ["Measured, not counted → always", "takes a SINGULAR verb."], cue("c4", "measured not counted"));
     ink(arrow(960, yb + 12, 960, yb + 62, 6, 16), cue("c4", "this rice") - 8, 6, C.navy, 5);
     scriptSentence([["This rice ", C.navy], ["IS", C.navy], [" delicious.", C.navy]], 1, 420, cue("c4", "this rice"), 88);
-    formal("Students often confuse these with MATERIAL or UNIT / MASS nouns:", 110, 520, 27, C.ink, cue("c5", "students often"), "f700");
-    formal("just remember, they are MEASURED instead of counted.", 110, 556, 27, C.ink, cue("c5", "so just check"), "f700");
+    formal("Material and food / substance can look alike.  THE TEST:", 110, 518, 27, C.navy, cue("c5", "material and food"), "f800");
+    const q = formal("Bought by the kilo or litre, not in pieces?", 110, 554, 27, C.ink, cue("c5", "do we buy"), "f700");
+    ink(arrow(q.x1 + 16, 545, q.x1 + 66, 545, 70, 14), cue("c5", "if yes"), 6, C.green, 5);
+    formal("UNCOUNTABLE", q.x1 + 78, 554, 27, C.green, cue("c5", "if yes") + 4, "f800");
     oldVsLogic(110, 580, 900, ["Food, meat, sugar, salt, tea, bread ... are always singular.", "Handed to you as a fact to memorise, with no reason why."],
       ["They are measured, not directly counted."], cue("c5", "the old school"), cue("c5", "always singular"), cue("c5", "the logic"));
     formal("VISUALIZE IT", 1100, 545, 34, C.gold, cue("c6", "bread"));
