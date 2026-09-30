@@ -48,7 +48,7 @@ export const TrackAudio: React.FC<{ id: string }> = ({ id }) => {
 };
 
 export const Full: React.FC<{ children: React.ReactNode; bg: string }> = ({ children, bg }) => (
-  <AbsoluteFill style={{ background: bg, overflow: "hidden" }}>{children}</AbsoluteFill>
+  <AbsoluteFill style={{ background: bg, overflow: "hidden", fontFamily: "Inter, 'Noto Color Emoji', sans-serif" }}>{children}</AbsoluteFill>
 );
 
 /* ------------------------------------------------------------------ strokes */

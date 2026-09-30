@@ -7,6 +7,9 @@ import { NotesSample } from "./samples/NotesAlive";
 import { WhiteboardSample } from "./samples/Whiteboard";
 import { QuizSample } from "./samples/Quiz";
 import { VersusSample } from "./samples/Versus";
+import { PaperCutSample } from "./samples/PaperCut";
+import { TalkingSample } from "./samples/Talking";
+import { DocSample } from "./samples/DocPOV";
 
 const videos = (TIMINGS as unknown as { videos: Record<string, Seg[]> }).videos;
 const total = (segs: { frames: number }[]) => segs.reduce((a, s) => a + s.frames, 0);
@@ -25,6 +28,9 @@ export const Root: React.FC = () => (
         <Composition id="SampleChat" component={wrap(ChatSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
         <Composition id="SampleQuiz" component={wrap(QuizSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
         <Composition id="SampleVersus" component={wrap(VersusSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SamplePaperCut" component={wrap(PaperCutSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleTalking" component={wrap(TalkingSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
+        <Composition id="SampleDoc" component={wrap(DocSample)} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.sm)} />
       </>
     )}
   </>
