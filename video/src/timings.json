@@ -11656,9 +11656,9 @@
     "audio": "audio/rl1_r4.mp3",
     "start": 24.367,
     "startFrame": 731,
-    "frames": 354,
+    "frames": 397,
     "lead": 0.35,
-    "audioDur": 10.848,
+    "audioDur": 12.264,
     "parts": [
      {
       "from": 0.0,
@@ -11668,138 +11668,146 @@
     ],
     "words": [
      {
-      "w": "But",
+      "w": "Because",
       "t": 0.02
      },
      {
       "w": "furniture",
-      "t": 0.262
+      "t": 0.46
      },
      {
       "w": "is",
-      "t": 0.83
+      "t": 1.003
      },
      {
-      "w": "not",
-      "t": 1.018
-     },
-     {
-      "w": "one",
-      "t": 1.261
-     },
-     {
-      "w": "object.",
-      "t": 1.504
+      "w": "uncountable.",
+      "t": 1.184
      },
      {
       "w": "It’s",
-      "t": 2.394
+      "t": 2.297
+     },
+     {
+      "w": "not",
+      "t": 2.581
+     },
+     {
+      "w": "one",
+      "t": 2.814
+     },
+     {
+      "w": "object.",
+      "t": 3.047
+     },
+     {
+      "w": "It’s",
+      "t": 3.9
      },
      {
       "w": "a",
-      "t": 2.696
+      "t": 4.201
      },
      {
       "w": "unit:",
-      "t": 2.833
+      "t": 4.338
      },
      {
       "w": "chairs,",
-      "t": 3.463
+      "t": 4.967
      },
      {
       "w": "tables",
-      "t": 4.127
+      "t": 5.604
      },
      {
       "w": "and",
-      "t": 4.559
+      "t": 6.019
      },
      {
       "w": "sofas",
-      "t": 4.818
+      "t": 6.268
      },
      {
       "w": "grouped",
-      "t": 5.194
+      "t": 6.629
      },
      {
       "w": "together",
-      "t": 5.684
+      "t": 7.099
      },
      {
       "w": "and",
-      "t": 6.232
+      "t": 7.625
      },
      {
       "w": "named",
-      "t": 6.492
+      "t": 7.875
      },
      {
       "w": "as",
-      "t": 6.866
+      "t": 8.234
      },
      {
       "w": "one.",
-      "t": 7.068
+      "t": 8.428
      },
      {
       "w": "A",
-      "t": 7.847
+      "t": 9.177
      },
      {
       "w": "unit",
-      "t": 7.945
+      "t": 9.32
      },
      {
       "w": "means",
-      "t": 8.163
+      "t": 9.639
      },
      {
       "w": "one,",
-      "t": 8.419
+      "t": 10.014
      },
      {
       "w": "and",
-      "t": 8.755
+      "t": 10.505
      },
      {
       "w": "you",
-      "t": 8.932
+      "t": 10.654
      },
      {
       "w": "can’t",
-      "t": 9.11
+      "t": 10.803
      },
      {
       "w": "pick",
-      "t": 9.367
+      "t": 11.019
      },
      {
       "w": "‘each’",
-      "t": 9.584
+      "t": 11.201
      },
      {
       "w": "out",
-      "t": 9.84
+      "t": 11.417
      },
      {
       "w": "of",
-      "t": 10.018
+      "t": 11.566
      },
      {
       "w": "one.",
-      "t": 10.156
+      "t": 11.682
      }
     ],
-    "text": "But furniture is not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one."
+    "text": "Because furniture is uncountable. It’s not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one."
    },
    {
     "id": "rl1_r5",
     "scene": "Reel",
     "audio": "audio/rl1_r5.mp3",
-    "start": 36.167,
-    "startFrame": 1085,
+    "start": 37.6,
+    "startFrame": 1128,
     "frames": 184,
     "lead": 0.35,
     "audioDur": 5.256,
@@ -11874,8 +11882,8 @@
     "id": "rl1_r6",
     "scene": "Reel",
     "audio": "audio/rl1_r6.mp3",
-    "start": 42.3,
-    "startFrame": 1269,
+    "start": 43.733,
+    "startFrame": 1312,
     "frames": 172,
     "lead": 0.35,
     "audioDur": 4.56,
@@ -11946,8 +11954,1032 @@
     "id": "rl1_r7",
     "scene": "Reel",
     "audio": "audio/rl1_r7.mp3",
-    "start": 48.033,
-    "startFrame": 1441,
+    "start": 49.467,
+    "startFrame": 1484,
+    "frames": 165,
+    "lead": 0.35,
+    "audioDur": 3.624,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 0.02
+     },
+     {
+      "w": "not",
+      "t": 0.605
+     },
+     {
+      "w": "rules.",
+      "t": 0.857
+     },
+     {
+      "w": "Comment",
+      "t": 1.721
+     },
+     {
+      "w": "‘logic’",
+      "t": 2.055
+     },
+     {
+      "w": "for",
+      "t": 2.349
+     },
+     {
+      "w": "the",
+      "t": 2.525
+     },
+     {
+      "w": "next",
+      "t": 2.701
+     },
+     {
+      "w": "one.",
+      "t": 2.917
+     }
+    ],
+    "text": "Logic, not rules. Comment ‘logic’ for the next one."
+   }
+  ],
+  "rl2": [
+   {
+    "id": "rl2_q1",
+    "scene": "Reel",
+    "audio": "audio/rl2_q1.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 228,
+    "lead": 0.35,
+    "audioDur": 3.624,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "A",
+      "t": 0.02
+     },
+     {
+      "w": "classic",
+      "t": 0.18
+     },
+     {
+      "w": "exam",
+      "t": 0.728
+     },
+     {
+      "w": "trap.",
+      "t": 1.081
+     },
+     {
+      "w": "Which",
+      "t": 2.015
+     },
+     {
+      "w": "sentence",
+      "t": 2.269
+     },
+     {
+      "w": "is",
+      "t": 2.641
+     },
+     {
+      "w": "correct?",
+      "t": 2.777
+     }
+    ],
+    "text": "A classic exam trap. Which sentence is correct?"
+   },
+   {
+    "id": "rl2_q2",
+    "scene": "Reel",
+    "audio": "audio/rl2_q2.mp3",
+    "start": 7.6,
+    "startFrame": 228,
+    "frames": 172,
+    "lead": 0.35,
+    "audioDur": 4.872,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Most",
+      "t": 0.02
+     },
+     {
+      "w": "students",
+      "t": 0.319
+     },
+     {
+      "w": "pick",
+      "t": 0.834
+     },
+     {
+      "w": "‘two",
+      "t": 1.132
+     },
+     {
+      "w": "breads’,",
+      "t": 1.376
+     },
+     {
+      "w": "because",
+      "t": 2.055
+     },
+     {
+      "w": "two",
+      "t": 2.478
+     },
+     {
+      "w": "means",
+      "t": 2.703
+     },
+     {
+      "w": "plural.",
+      "t": 3.027
+     },
+     {
+      "w": "That’s",
+      "t": 3.848
+     },
+     {
+      "w": "the",
+      "t": 4.097
+     },
+     {
+      "w": "trap.",
+      "t": 4.245
+     }
+    ],
+    "text": "Most students pick ‘two breads’, because two means plural. That’s the trap."
+   },
+   {
+    "id": "rl2_q3",
+    "scene": "Reel",
+    "audio": "audio/rl2_q3.mp3",
+    "start": 13.333,
+    "startFrame": 400,
+    "frames": 322,
+    "lead": 0.35,
+    "audioDur": 9.864,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Here’s",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.35
+     },
+     {
+      "w": "test:",
+      "t": 0.548
+     },
+     {
+      "w": "how",
+      "t": 1.053
+     },
+     {
+      "w": "do",
+      "t": 1.271
+     },
+     {
+      "w": "we",
+      "t": 1.441
+     },
+     {
+      "w": "buy",
+      "t": 1.609
+     },
+     {
+      "w": "bread?",
+      "t": 1.827
+     },
+     {
+      "w": "Not",
+      "t": 2.576
+     },
+     {
+      "w": "in",
+      "t": 2.818
+     },
+     {
+      "w": "pieces",
+      "t": 3.006
+     },
+     {
+      "w": "we",
+      "t": 3.407
+     },
+     {
+      "w": "count,",
+      "t": 3.596
+     },
+     {
+      "w": "but",
+      "t": 4.158
+     },
+     {
+      "w": "by",
+      "t": 4.41
+     },
+     {
+      "w": "the",
+      "t": 4.606
+     },
+     {
+      "w": "loaf",
+      "t": 4.858
+     },
+     {
+      "w": "or",
+      "t": 5.164
+     },
+     {
+      "w": "the",
+      "t": 5.361
+     },
+     {
+      "w": "slice.",
+      "t": 5.612
+     },
+     {
+      "w": "Bread",
+      "t": 6.478
+     },
+     {
+      "w": "is",
+      "t": 6.795
+     },
+     {
+      "w": "measured,",
+      "t": 6.965
+     },
+     {
+      "w": "so",
+      "t": 7.623
+     },
+     {
+      "w": "bread",
+      "t": 7.791
+     },
+     {
+      "w": "itself",
+      "t": 8.105
+     },
+     {
+      "w": "is",
+      "t": 8.465
+     },
+     {
+      "w": "uncountable.",
+      "t": 8.634
+     }
+    ],
+    "text": "Here’s the test: how do we buy bread? Not in pieces we count, but by the loaf or the slice. Bread is measured, so bread itself is uncountable."
+   },
+   {
+    "id": "rl2_q4",
+    "scene": "Reel",
+    "audio": "audio/rl2_q4.mp3",
+    "start": 24.067,
+    "startFrame": 722,
+    "frames": 254,
+    "lead": 0.35,
+    "audioDur": 7.584,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "bread",
+      "t": 0.208
+     },
+     {
+      "w": "never",
+      "t": 0.557
+     },
+     {
+      "w": "takes",
+      "t": 0.908
+     },
+     {
+      "w": "s.",
+      "t": 1.257
+     },
+     {
+      "w": "That",
+      "t": 1.875
+     },
+     {
+      "w": "kills",
+      "t": 2.155
+     },
+     {
+      "w": "option",
+      "t": 2.484
+     },
+     {
+      "w": "A.",
+      "t": 2.865
+     },
+     {
+      "w": "And",
+      "t": 3.45
+     },
+     {
+      "w": "option",
+      "t": 3.66
+     },
+     {
+      "w": "D",
+      "t": 4.009
+     },
+     {
+      "w": "says",
+      "t": 4.125
+     },
+     {
+      "w": "‘two",
+      "t": 4.38
+     },
+     {
+      "w": "bread’,",
+      "t": 4.59
+     },
+     {
+      "w": "with",
+      "t": 5.124
+     },
+     {
+      "w": "nothing",
+      "t": 5.381
+     },
+     {
+      "w": "to",
+      "t": 5.776
+     },
+     {
+      "w": "count.",
+      "t": 5.939
+     },
+     {
+      "w": "Wrong",
+      "t": 6.661
+     },
+     {
+      "w": "too.",
+      "t": 6.908
+     }
+    ],
+    "text": "So bread never takes s. That kills option A. And option D says ‘two bread’, with nothing to count. Wrong too."
+   },
+   {
+    "id": "rl2_q5",
+    "scene": "Reel",
+    "audio": "audio/rl2_q5.mp3",
+    "start": 32.533,
+    "startFrame": 976,
+    "frames": 317,
+    "lead": 0.35,
+    "audioDur": 9.408,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "we",
+      "t": 0.194
+     },
+     {
+      "w": "count",
+      "t": 0.369
+     },
+     {
+      "w": "the",
+      "t": 0.693
+     },
+     {
+      "w": "loaf",
+      "t": 0.916
+     },
+     {
+      "w": "instead.",
+      "t": 1.19
+     },
+     {
+      "w": "One",
+      "t": 2.062
+     },
+     {
+      "w": "loaf,",
+      "t": 2.282
+     },
+     {
+      "w": "two",
+      "t": 2.746
+     },
+     {
+      "w": "loaves.",
+      "t": 2.966
+     },
+     {
+      "w": "Option",
+      "t": 3.772
+     },
+     {
+      "w": "B",
+      "t": 4.172
+     },
+     {
+      "w": "forgot",
+      "t": 4.306
+     },
+     {
+      "w": "the",
+      "t": 4.707
+     },
+     {
+      "w": "plural",
+      "t": 4.948
+     },
+     {
+      "w": "of",
+      "t": 5.348
+     },
+     {
+      "w": "loaf.",
+      "t": 5.535
+     },
+     {
+      "w": "The",
+      "t": 6.309
+     },
+     {
+      "w": "answer",
+      "t": 6.562
+     },
+     {
+      "w": "is",
+      "t": 6.982
+     },
+     {
+      "w": "C:",
+      "t": 7.179
+     },
+     {
+      "w": "I",
+      "t": 7.656
+     },
+     {
+      "w": "need",
+      "t": 7.757
+     },
+     {
+      "w": "two",
+      "t": 7.98
+     },
+     {
+      "w": "loaves",
+      "t": 8.164
+     },
+     {
+      "w": "of",
+      "t": 8.468
+     },
+     {
+      "w": "bread.",
+      "t": 8.61
+     }
+    ],
+    "text": "So we count the loaf instead. One loaf, two loaves. Option B forgot the plural of loaf. The answer is C: I need two loaves of bread."
+   },
+   {
+    "id": "rl2_q6",
+    "scene": "Reel",
+    "audio": "audio/rl2_q6.mp3",
+    "start": 43.1,
+    "startFrame": 1293,
+    "frames": 165,
+    "lead": 0.35,
+    "audioDur": 3.624,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 0.02
+     },
+     {
+      "w": "not",
+      "t": 0.605
+     },
+     {
+      "w": "rules.",
+      "t": 0.857
+     },
+     {
+      "w": "Comment",
+      "t": 1.721
+     },
+     {
+      "w": "‘logic’",
+      "t": 2.055
+     },
+     {
+      "w": "for",
+      "t": 2.349
+     },
+     {
+      "w": "the",
+      "t": 2.525
+     },
+     {
+      "w": "next",
+      "t": 2.701
+     },
+     {
+      "w": "one.",
+      "t": 2.917
+     }
+    ],
+    "text": "Logic, not rules. Comment ‘logic’ for the next one."
+   }
+  ],
+  "rl3": [
+   {
+    "id": "rl3_p1",
+    "scene": "Reel",
+    "audio": "audio/rl3_p1.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 241,
+    "lead": 0.35,
+    "audioDur": 4.08,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Spot",
+      "t": 0.02
+     },
+     {
+      "w": "the",
+      "t": 0.282
+     },
+     {
+      "w": "error.",
+      "t": 0.497
+     },
+     {
+      "w": "A",
+      "t": 1.237
+     },
+     {
+      "w": "classic",
+      "t": 1.392
+     },
+     {
+      "w": "CSS",
+      "t": 1.922
+     },
+     {
+      "w": "and",
+      "t": 2.203
+     },
+     {
+      "w": "PMS",
+      "t": 2.483
+     },
+     {
+      "w": "pattern.",
+      "t": 2.764
+     }
+    ],
+    "text": "Spot the error. A classic CSS and PMS pattern."
+   },
+   {
+    "id": "rl3_p2",
+    "scene": "Reel",
+    "audio": "audio/rl3_p2.mp3",
+    "start": 8.033,
+    "startFrame": 241,
+    "frames": 155,
+    "lead": 0.35,
+    "audioDur": 4.296,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "There",
+      "t": 0.02
+     },
+     {
+      "w": "are",
+      "t": 0.361
+     },
+     {
+      "w": "actually",
+      "t": 0.596
+     },
+     {
+      "w": "two",
+      "t": 1.094
+     },
+     {
+      "w": "mistakes",
+      "t": 1.33
+     },
+     {
+      "w": "here,",
+      "t": 1.828
+     },
+     {
+      "w": "and",
+      "t": 2.326
+     },
+     {
+      "w": "one",
+      "t": 2.544
+     },
+     {
+      "w": "logic",
+      "t": 2.763
+     },
+     {
+      "w": "fixes",
+      "t": 3.079
+     },
+     {
+      "w": "both.",
+      "t": 3.394
+     }
+    ],
+    "text": "There are actually two mistakes here, and one logic fixes both."
+   },
+   {
+    "id": "rl3_p3",
+    "scene": "Reel",
+    "audio": "audio/rl3_p3.mp3",
+    "start": 13.2,
+    "startFrame": 396,
+    "frames": 391,
+    "lead": 0.35,
+    "audioDur": 12.168,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Information",
+      "t": 0.02
+     },
+     {
+      "w": "is",
+      "t": 0.76
+     },
+     {
+      "w": "abstract.",
+      "t": 0.967
+     },
+     {
+      "w": "Facts,",
+      "t": 2.061
+     },
+     {
+      "w": "news,",
+      "t": 2.679
+     },
+     {
+      "w": "details:",
+      "t": 3.238
+     },
+     {
+      "w": "you",
+      "t": 4.09
+     },
+     {
+      "w": "can’t",
+      "t": 4.302
+     },
+     {
+      "w": "hold",
+      "t": 4.609
+     },
+     {
+      "w": "information",
+      "t": 4.869
+     },
+     {
+      "w": "in",
+      "t": 5.459
+     },
+     {
+      "w": "your",
+      "t": 5.624
+     },
+     {
+      "w": "hand,",
+      "t": 5.883
+     },
+     {
+      "w": "and",
+      "t": 6.331
+     },
+     {
+      "w": "you",
+      "t": 6.513
+     },
+     {
+      "w": "can’t",
+      "t": 6.695
+     },
+     {
+      "w": "count",
+      "t": 6.957
+     },
+     {
+      "w": "it.",
+      "t": 7.22
+     },
+     {
+      "w": "So",
+      "t": 7.725
+     },
+     {
+      "w": "it’s",
+      "t": 7.89
+     },
+     {
+      "w": "uncountable:",
+      "t": 8.15
+     },
+     {
+      "w": "no",
+      "t": 9.023
+     },
+     {
+      "w": "s.",
+      "t": 9.259
+     },
+     {
+      "w": "Information,",
+      "t": 10.035
+     },
+     {
+      "w": "never",
+      "t": 10.745
+     },
+     {
+      "w": "informations.",
+      "t": 11.025
+     }
+    ],
+    "text": "Information is abstract. Facts, news, details: you can’t hold information in your hand, and you can’t count it. So it’s uncountable: no s. Information, never informations."
+   },
+   {
+    "id": "rl3_p4",
+    "scene": "Reel",
+    "audio": "audio/rl3_p4.mp3",
+    "start": 26.233,
+    "startFrame": 787,
+    "frames": 223,
+    "lead": 0.35,
+    "audioDur": 6.552,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "And",
+      "t": 0.02
+     },
+     {
+      "w": "because",
+      "t": 0.232
+     },
+     {
+      "w": "it’s",
+      "t": 0.634
+     },
+     {
+      "w": "uncountable,",
+      "t": 0.893
+     },
+     {
+      "w": "it",
+      "t": 1.672
+     },
+     {
+      "w": "works",
+      "t": 1.857
+     },
+     {
+      "w": "as",
+      "t": 2.201
+     },
+     {
+      "w": "one",
+      "t": 2.386
+     },
+     {
+      "w": "whole,",
+      "t": 2.624
+     },
+     {
+      "w": "so",
+      "t": 3.18
+     },
+     {
+      "w": "the",
+      "t": 3.381
+     },
+     {
+      "w": "verb",
+      "t": 3.639
+     },
+     {
+      "w": "is",
+      "t": 3.956
+     },
+     {
+      "w": "singular",
+      "t": 4.156
+     },
+     {
+      "w": "too:",
+      "t": 4.702
+     },
+     {
+      "w": "was,",
+      "t": 5.306
+     },
+     {
+      "w": "not",
+      "t": 5.64
+     },
+     {
+      "w": "were.",
+      "t": 5.817
+     }
+    ],
+    "text": "And because it’s uncountable, it works as one whole, so the verb is singular too: was, not were."
+   },
+   {
+    "id": "rl3_p5",
+    "scene": "Reel",
+    "audio": "audio/rl3_p5.mp3",
+    "start": 33.667,
+    "startFrame": 1010,
+    "frames": 238,
+    "lead": 0.35,
+    "audioDur": 6.768,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "‘The",
+      "t": 0.02
+     },
+     {
+      "w": "information",
+      "t": 0.276
+     },
+     {
+      "w": "provided",
+      "t": 0.986
+     },
+     {
+      "w": "by",
+      "t": 1.527
+     },
+     {
+      "w": "the",
+      "t": 1.725
+     },
+     {
+      "w": "officer",
+      "t": 1.98
+     },
+     {
+      "w": "was",
+      "t": 2.464
+     },
+     {
+      "w": "not",
+      "t": 2.72
+     },
+     {
+      "w": "accurate.’",
+      "t": 2.975
+     },
+     {
+      "w": "Need",
+      "t": 4.084
+     },
+     {
+      "w": "a",
+      "t": 4.313
+     },
+     {
+      "w": "number?",
+      "t": 4.418
+     },
+     {
+      "w": "Say",
+      "t": 5.108
+     },
+     {
+      "w": "a",
+      "t": 5.283
+     },
+     {
+      "w": "piece",
+      "t": 5.38
+     },
+     {
+      "w": "of",
+      "t": 5.633
+     },
+     {
+      "w": "information.",
+      "t": 5.769
+     }
+    ],
+    "text": "‘The information provided by the officer was not accurate.’ Need a number? Say a piece of information."
+   },
+   {
+    "id": "rl3_p6",
+    "scene": "Reel",
+    "audio": "audio/rl3_p6.mp3",
+    "start": 41.6,
+    "startFrame": 1248,
     "frames": 165,
     "lead": 0.35,
     "audioDur": 3.624,
@@ -25172,381 +26204,1502 @@
    },
    {
     "start": 24.737,
-    "end": 27.071,
-    "text": "But furniture\nis not one object.",
+    "end": 26.974,
+    "text": "Because furniture\nis uncountable.",
     "words": [
      {
-      "w": "But",
+      "w": "Because",
       "t": 24.737
      },
      {
       "w": "furniture",
-      "t": 24.979
+      "t": 25.177
      },
      {
       "w": "is",
-      "t": 25.547
+      "t": 25.72
      },
      {
-      "w": "not",
-      "t": 25.735
-     },
-     {
-      "w": "one",
-      "t": 25.978
-     },
-     {
-      "w": "object.",
-      "t": 26.221
+      "w": "uncountable.",
+      "t": 25.901
      }
     ]
    },
    {
-    "start": 27.111,
-    "end": 28.14,
+    "start": 27.014,
+    "end": 28.577,
+    "text": "It’s not one\nobject.",
+    "words": [
+     {
+      "w": "It’s",
+      "t": 27.014
+     },
+     {
+      "w": "not",
+      "t": 27.298
+     },
+     {
+      "w": "one",
+      "t": 27.531
+     },
+     {
+      "w": "object.",
+      "t": 27.764
+     }
+    ]
+   },
+   {
+    "start": 28.617,
+    "end": 29.644,
     "text": "It’s a unit:",
     "words": [
      {
       "w": "It’s",
-      "t": 27.111
+      "t": 28.617
      },
      {
       "w": "a",
-      "t": 27.413
+      "t": 28.918
      },
      {
       "w": "unit:",
-      "t": 27.55
+      "t": 29.055
      }
     ]
    },
    {
-    "start": 28.18,
-    "end": 29.871,
+    "start": 29.684,
+    "end": 31.306,
     "text": "chairs,\ntables and sofas",
     "words": [
      {
       "w": "chairs,",
-      "t": 28.18
+      "t": 29.684
      },
      {
       "w": "tables",
-      "t": 28.844
+      "t": 30.321
      },
      {
       "w": "and",
-      "t": 29.276
+      "t": 30.736
      },
      {
       "w": "sofas",
-      "t": 29.535
+      "t": 30.985
      }
     ]
    },
    {
-    "start": 29.911,
-    "end": 32.524,
+    "start": 31.346,
+    "end": 33.854,
     "text": "grouped together\nand named as one.",
     "words": [
      {
       "w": "grouped",
-      "t": 29.911
+      "t": 31.346
      },
      {
       "w": "together",
-      "t": 30.401
+      "t": 31.816
      },
      {
       "w": "and",
-      "t": 30.949
+      "t": 32.342
      },
      {
       "w": "named",
-      "t": 31.209
+      "t": 32.592
      },
      {
       "w": "as",
-      "t": 31.583
+      "t": 32.951
      },
      {
       "w": "one.",
-      "t": 31.785
+      "t": 33.145
      }
     ]
    },
    {
-    "start": 32.564,
-    "end": 33.432,
+    "start": 33.894,
+    "end": 35.182,
     "text": "A unit means one,",
     "words": [
      {
       "w": "A",
-      "t": 32.564
+      "t": 33.894
      },
      {
       "w": "unit",
-      "t": 32.662
+      "t": 34.037
      },
      {
       "w": "means",
-      "t": 32.88
+      "t": 34.356
      },
      {
       "w": "one,",
-      "t": 33.136
+      "t": 34.731
      }
     ]
    },
    {
-    "start": 33.472,
-    "end": 34.695,
+    "start": 35.222,
+    "end": 36.243,
     "text": "and you can’t\npick ‘each’ out",
     "words": [
      {
       "w": "and",
-      "t": 33.472
+      "t": 35.222
      },
      {
       "w": "you",
-      "t": 33.649
+      "t": 35.371
      },
      {
       "w": "can’t",
-      "t": 33.827
+      "t": 35.52
      },
      {
       "w": "pick",
-      "t": 34.084
+      "t": 35.736
      },
      {
       "w": "‘each’",
-      "t": 34.301
+      "t": 35.918
      },
      {
       "w": "out",
-      "t": 34.557
+      "t": 36.134
      }
     ]
    },
    {
-    "start": 34.735,
-    "end": 35.815,
+    "start": 36.283,
+    "end": 37.231,
     "text": "of one.",
     "words": [
      {
       "w": "of",
-      "t": 34.735
+      "t": 36.283
      },
      {
       "w": "one.",
-      "t": 34.873
+      "t": 36.399
      }
     ]
    },
    {
-    "start": 36.537,
-    "end": 37.981,
+    "start": 37.97,
+    "end": 39.414,
     "text": "So we give\n‘each’ something",
     "words": [
      {
       "w": "So",
-      "t": 36.537
+      "t": 37.97
      },
      {
       "w": "we",
-      "t": 36.713
+      "t": 38.146
      },
      {
       "w": "give",
-      "t": 36.889
+      "t": 38.322
      },
      {
       "w": "‘each’",
-      "t": 37.166
+      "t": 38.599
      },
      {
       "w": "something",
-      "t": 37.493
+      "t": 38.926
      }
     ]
    },
    {
-    "start": 38.021,
-    "end": 39.263,
+    "start": 39.454,
+    "end": 40.696,
     "text": "countable to hold:",
     "words": [
      {
       "w": "countable",
-      "t": 38.021
+      "t": 39.454
      },
      {
       "w": "to",
-      "t": 38.549
+      "t": 39.982
      },
      {
       "w": "hold:",
-      "t": 38.725
+      "t": 40.158
      }
     ]
    },
    {
-    "start": 39.303,
-    "end": 40.171,
+    "start": 40.736,
+    "end": 41.604,
     "text": "a piece.",
     "words": [
      {
       "w": "a",
-      "t": 39.303
+      "t": 40.736
      },
      {
       "w": "piece.",
-      "t": 39.429
+      "t": 40.862
      }
     ]
    },
    {
-    "start": 40.211,
-    "end": 42.023,
+    "start": 41.644,
+    "end": 43.456,
     "text": "Each piece\nof furniture.",
     "words": [
      {
       "w": "Each",
-      "t": 40.211
+      "t": 41.644
      },
      {
       "w": "piece",
-      "t": 40.429
+      "t": 41.862
      },
      {
       "w": "of",
-      "t": 40.686
+      "t": 42.119
      },
      {
       "w": "furniture.",
-      "t": 40.825
+      "t": 42.258
      }
     ]
    },
    {
-    "start": 42.67,
-    "end": 43.996,
+    "start": 44.103,
+    "end": 45.429,
     "text": "‘Each piece\nof furniture",
     "words": [
      {
       "w": "‘Each",
-      "t": 42.67
+      "t": 44.103
      },
      {
       "w": "piece",
-      "t": 42.959
+      "t": 44.392
      },
      {
       "w": "of",
-      "t": 43.3
+      "t": 44.733
      },
      {
       "w": "furniture",
-      "t": 43.484
+      "t": 44.917
      }
     ]
    },
    {
-    "start": 44.036,
-    "end": 45.808,
+    "start": 45.469,
+    "end": 47.241,
     "text": "in this display\nis on sale for",
     "words": [
      {
       "w": "in",
-      "t": 44.036
+      "t": 45.469
      },
      {
       "w": "this",
-      "t": 44.219
+      "t": 45.652
      },
      {
       "w": "display",
-      "t": 44.509
+      "t": 45.942
      },
      {
       "w": "is",
-      "t": 44.955
+      "t": 46.388
      },
      {
       "w": "on",
-      "t": 45.139
+      "t": 46.572
      },
      {
       "w": "sale",
-      "t": 45.323
+      "t": 46.756
      },
      {
       "w": "for",
-      "t": 45.612
+      "t": 47.045
      }
     ]
    },
    {
-    "start": 45.848,
-    "end": 47.46,
+    "start": 47.281,
+    "end": 48.893,
     "text": "half price.’",
     "words": [
      {
       "w": "half",
-      "t": 45.848
+      "t": 47.281
      },
      {
       "w": "price.’",
-      "t": 46.137
+      "t": 47.57
      }
     ]
    },
    {
-    "start": 48.403,
-    "end": 50.064,
+    "start": 49.837,
+    "end": 51.498,
     "text": "Logic, not rules.",
     "words": [
      {
       "w": "Logic,",
-      "t": 48.403
+      "t": 49.837
      },
      {
       "w": "not",
-      "t": 48.988
+      "t": 50.422
      },
      {
       "w": "rules.",
-      "t": 49.24
+      "t": 50.674
      }
     ]
    },
    {
-    "start": 50.104,
-    "end": 52.257,
+    "start": 51.538,
+    "end": 53.691,
     "text": "Comment ‘logic’\nfor the next one.",
     "words": [
      {
       "w": "Comment",
-      "t": 50.104
+      "t": 51.538
      },
      {
       "w": "‘logic’",
-      "t": 50.438
+      "t": 51.872
      },
      {
       "w": "for",
-      "t": 50.732
+      "t": 52.166
      },
      {
       "w": "the",
-      "t": 50.908
+      "t": 52.342
      },
      {
       "w": "next",
-      "t": 51.084
+      "t": 52.518
      },
      {
       "w": "one.",
-      "t": 51.3
+      "t": 52.734
+     }
+    ]
+   }
+  ],
+  "rl2": [
+   {
+    "start": 0.37,
+    "end": 2.325,
+    "text": "A classic\nexam trap.",
+    "words": [
+     {
+      "w": "A",
+      "t": 0.37
+     },
+     {
+      "w": "classic",
+      "t": 0.53
+     },
+     {
+      "w": "exam",
+      "t": 1.078
+     },
+     {
+      "w": "trap.",
+      "t": 1.431
+     }
+    ]
+   },
+   {
+    "start": 2.365,
+    "end": 4.224,
+    "text": "Which sentence\nis correct?",
+    "words": [
+     {
+      "w": "Which",
+      "t": 2.365
+     },
+     {
+      "w": "sentence",
+      "t": 2.619
+     },
+     {
+      "w": "is",
+      "t": 2.991
+     },
+     {
+      "w": "correct?",
+      "t": 3.127
+     }
+    ]
+   },
+   {
+    "start": 7.97,
+    "end": 9.286,
+    "text": "Most students\npick ‘two",
+    "words": [
+     {
+      "w": "Most",
+      "t": 7.97
+     },
+     {
+      "w": "students",
+      "t": 8.269
+     },
+     {
+      "w": "pick",
+      "t": 8.784
+     },
+     {
+      "w": "‘two",
+      "t": 9.082
+     }
+    ]
+   },
+   {
+    "start": 9.326,
+    "end": 11.758,
+    "text": "breads’, because\ntwo means plural.",
+    "words": [
+     {
+      "w": "breads’,",
+      "t": 9.326
+     },
+     {
+      "w": "because",
+      "t": 10.005
+     },
+     {
+      "w": "two",
+      "t": 10.428
+     },
+     {
+      "w": "means",
+      "t": 10.653
+     },
+     {
+      "w": "plural.",
+      "t": 10.977
+     }
+    ]
+   },
+   {
+    "start": 11.798,
+    "end": 13.072,
+    "text": "That’s the trap.",
+    "words": [
+     {
+      "w": "That’s",
+      "t": 11.798
+     },
+     {
+      "w": "the",
+      "t": 12.047
+     },
+     {
+      "w": "trap.",
+      "t": 12.195
+     }
+    ]
+   },
+   {
+    "start": 13.703,
+    "end": 14.696,
+    "text": "Here’s the test:",
+    "words": [
+     {
+      "w": "Here’s",
+      "t": 13.703
+     },
+     {
+      "w": "the",
+      "t": 14.033
+     },
+     {
+      "w": "test:",
+      "t": 14.231
+     }
+    ]
+   },
+   {
+    "start": 14.736,
+    "end": 16.219,
+    "text": "how do we\nbuy bread?",
+    "words": [
+     {
+      "w": "how",
+      "t": 14.736
+     },
+     {
+      "w": "do",
+      "t": 14.954
+     },
+     {
+      "w": "we",
+      "t": 15.124
+     },
+     {
+      "w": "buy",
+      "t": 15.292
+     },
+     {
+      "w": "bread?",
+      "t": 15.51
+     }
+    ]
+   },
+   {
+    "start": 16.259,
+    "end": 17.801,
+    "text": "Not in pieces\nwe count,",
+    "words": [
+     {
+      "w": "Not",
+      "t": 16.259
+     },
+     {
+      "w": "in",
+      "t": 16.501
+     },
+     {
+      "w": "pieces",
+      "t": 16.689
+     },
+     {
+      "w": "we",
+      "t": 17.09
+     },
+     {
+      "w": "count,",
+      "t": 17.279
+     }
+    ]
+   },
+   {
+    "start": 17.841,
+    "end": 20.121,
+    "text": "but by the loaf\nor the slice.",
+    "words": [
+     {
+      "w": "but",
+      "t": 17.841
+     },
+     {
+      "w": "by",
+      "t": 18.093
+     },
+     {
+      "w": "the",
+      "t": 18.289
+     },
+     {
+      "w": "loaf",
+      "t": 18.541
+     },
+     {
+      "w": "or",
+      "t": 18.847
+     },
+     {
+      "w": "the",
+      "t": 19.044
+     },
+     {
+      "w": "slice.",
+      "t": 19.295
+     }
+    ]
+   },
+   {
+    "start": 20.161,
+    "end": 21.266,
+    "text": "Bread is measured,",
+    "words": [
+     {
+      "w": "Bread",
+      "t": 20.161
+     },
+     {
+      "w": "is",
+      "t": 20.478
+     },
+     {
+      "w": "measured,",
+      "t": 20.648
+     }
+    ]
+   },
+   {
+    "start": 21.306,
+    "end": 23.797,
+    "text": "so bread itself\nis uncountable.",
+    "words": [
+     {
+      "w": "so",
+      "t": 21.306
+     },
+     {
+      "w": "bread",
+      "t": 21.474
+     },
+     {
+      "w": "itself",
+      "t": 21.788
+     },
+     {
+      "w": "is",
+      "t": 22.148
+     },
+     {
+      "w": "uncountable.",
+      "t": 22.317
+     }
+    ]
+   },
+   {
+    "start": 24.437,
+    "end": 26.252,
+    "text": "So bread\nnever takes s.",
+    "words": [
+     {
+      "w": "So",
+      "t": 24.437
+     },
+     {
+      "w": "bread",
+      "t": 24.625
+     },
+     {
+      "w": "never",
+      "t": 24.974
+     },
+     {
+      "w": "takes",
+      "t": 25.325
+     },
+     {
+      "w": "s.",
+      "t": 25.674
+     }
+    ]
+   },
+   {
+    "start": 26.292,
+    "end": 27.827,
+    "text": "That kills\noption A.",
+    "words": [
+     {
+      "w": "That",
+      "t": 26.292
+     },
+     {
+      "w": "kills",
+      "t": 26.572
+     },
+     {
+      "w": "option",
+      "t": 26.901
+     },
+     {
+      "w": "A.",
+      "t": 27.282
+     }
+    ]
+   },
+   {
+    "start": 27.867,
+    "end": 29.501,
+    "text": "And option D\nsays ‘two bread’,",
+    "words": [
+     {
+      "w": "And",
+      "t": 27.867
+     },
+     {
+      "w": "option",
+      "t": 28.077
+     },
+     {
+      "w": "D",
+      "t": 28.426
+     },
+     {
+      "w": "says",
+      "t": 28.542
+     },
+     {
+      "w": "‘two",
+      "t": 28.797
+     },
+     {
+      "w": "bread’,",
+      "t": 29.007
+     }
+    ]
+   },
+   {
+    "start": 29.541,
+    "end": 31.038,
+    "text": "with nothing\nto count.",
+    "words": [
+     {
+      "w": "with",
+      "t": 29.541
+     },
+     {
+      "w": "nothing",
+      "t": 29.798
+     },
+     {
+      "w": "to",
+      "t": 30.193
+     },
+     {
+      "w": "count.",
+      "t": 30.356
+     }
+    ]
+   },
+   {
+    "start": 31.078,
+    "end": 32.251,
+    "text": "Wrong too.",
+    "words": [
+     {
+      "w": "Wrong",
+      "t": 31.078
+     },
+     {
+      "w": "too.",
+      "t": 31.325
+     }
+    ]
+   },
+   {
+    "start": 32.903,
+    "end": 34.905,
+    "text": "So we count\nthe loaf instead.",
+    "words": [
+     {
+      "w": "So",
+      "t": 32.903
+     },
+     {
+      "w": "we",
+      "t": 33.077
+     },
+     {
+      "w": "count",
+      "t": 33.252
+     },
+     {
+      "w": "the",
+      "t": 33.576
+     },
+     {
+      "w": "loaf",
+      "t": 33.799
+     },
+     {
+      "w": "instead.",
+      "t": 34.073
+     }
+    ]
+   },
+   {
+    "start": 34.945,
+    "end": 36.615,
+    "text": "One loaf,\ntwo loaves.",
+    "words": [
+     {
+      "w": "One",
+      "t": 34.945
+     },
+     {
+      "w": "loaf,",
+      "t": 35.165
+     },
+     {
+      "w": "two",
+      "t": 35.629
+     },
+     {
+      "w": "loaves.",
+      "t": 35.849
+     }
+    ]
+   },
+   {
+    "start": 36.655,
+    "end": 39.152,
+    "text": "Option B forgot\nthe plural of loaf.",
+    "words": [
+     {
+      "w": "Option",
+      "t": 36.655
+     },
+     {
+      "w": "B",
+      "t": 37.055
+     },
+     {
+      "w": "forgot",
+      "t": 37.189
+     },
+     {
+      "w": "the",
+      "t": 37.59
+     },
+     {
+      "w": "plural",
+      "t": 37.831
+     },
+     {
+      "w": "of",
+      "t": 38.231
+     },
+     {
+      "w": "loaf.",
+      "t": 38.418
+     }
+    ]
+   },
+   {
+    "start": 39.192,
+    "end": 40.499,
+    "text": "The answer is C:",
+    "words": [
+     {
+      "w": "The",
+      "t": 39.192
+     },
+     {
+      "w": "answer",
+      "t": 39.445
+     },
+     {
+      "w": "is",
+      "t": 39.865
+     },
+     {
+      "w": "C:",
+      "t": 40.062
+     }
+    ]
+   },
+   {
+    "start": 40.539,
+    "end": 42.541,
+    "text": "I need two\nloaves of bread.",
+    "words": [
+     {
+      "w": "I",
+      "t": 40.539
+     },
+     {
+      "w": "need",
+      "t": 40.64
+     },
+     {
+      "w": "two",
+      "t": 40.863
+     },
+     {
+      "w": "loaves",
+      "t": 41.047
+     },
+     {
+      "w": "of",
+      "t": 41.351
+     },
+     {
+      "w": "bread.",
+      "t": 41.493
+     }
+    ]
+   },
+   {
+    "start": 43.47,
+    "end": 45.131,
+    "text": "Logic, not rules.",
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 43.47
+     },
+     {
+      "w": "not",
+      "t": 44.055
+     },
+     {
+      "w": "rules.",
+      "t": 44.307
+     }
+    ]
+   },
+   {
+    "start": 45.171,
+    "end": 47.324,
+    "text": "Comment ‘logic’\nfor the next one.",
+    "words": [
+     {
+      "w": "Comment",
+      "t": 45.171
+     },
+     {
+      "w": "‘logic’",
+      "t": 45.505
+     },
+     {
+      "w": "for",
+      "t": 45.799
+     },
+     {
+      "w": "the",
+      "t": 45.975
+     },
+     {
+      "w": "next",
+      "t": 46.151
+     },
+     {
+      "w": "one.",
+      "t": 46.367
+     }
+    ]
+   }
+  ],
+  "rl3": [
+   {
+    "start": 0.37,
+    "end": 1.547,
+    "text": "Spot the error.",
+    "words": [
+     {
+      "w": "Spot",
+      "t": 0.37
+     },
+     {
+      "w": "the",
+      "t": 0.632
+     },
+     {
+      "w": "error.",
+      "t": 0.847
+     }
+    ]
+   },
+   {
+    "start": 1.587,
+    "end": 4.68,
+    "text": "A classic CSS\nand PMS pattern.",
+    "words": [
+     {
+      "w": "A",
+      "t": 1.587
+     },
+     {
+      "w": "classic",
+      "t": 1.742
+     },
+     {
+      "w": "CSS",
+      "t": 2.272
+     },
+     {
+      "w": "and",
+      "t": 2.553
+     },
+     {
+      "w": "PMS",
+      "t": 2.833
+     },
+     {
+      "w": "pattern.",
+      "t": 3.114
+     }
+    ]
+   },
+   {
+    "start": 8.403,
+    "end": 9.673,
+    "text": "There\nare actually two",
+    "words": [
+     {
+      "w": "There",
+      "t": 8.403
+     },
+     {
+      "w": "are",
+      "t": 8.744
+     },
+     {
+      "w": "actually",
+      "t": 8.979
+     },
+     {
+      "w": "two",
+      "t": 9.477
+     }
+    ]
+   },
+   {
+    "start": 9.713,
+    "end": 10.669,
+    "text": "mistakes here,",
+    "words": [
+     {
+      "w": "mistakes",
+      "t": 9.713
+     },
+     {
+      "w": "here,",
+      "t": 10.211
+     }
+    ]
+   },
+   {
+    "start": 10.709,
+    "end": 12.929,
+    "text": "and one logic\nfixes both.",
+    "words": [
+     {
+      "w": "and",
+      "t": 10.709
+     },
+     {
+      "w": "one",
+      "t": 10.927
+     },
+     {
+      "w": "logic",
+      "t": 11.146
+     },
+     {
+      "w": "fixes",
+      "t": 11.462
+     },
+     {
+      "w": "both.",
+      "t": 11.777
+     }
+    ]
+   },
+   {
+    "start": 13.57,
+    "end": 15.571,
+    "text": "Information\nis abstract.",
+    "words": [
+     {
+      "w": "Information",
+      "t": 13.57
+     },
+     {
+      "w": "is",
+      "t": 14.31
+     },
+     {
+      "w": "abstract.",
+      "t": 14.517
+     }
+    ]
+   },
+   {
+    "start": 15.611,
+    "end": 17.6,
+    "text": "Facts, news,\ndetails:",
+    "words": [
+     {
+      "w": "Facts,",
+      "t": 15.611
+     },
+     {
+      "w": "news,",
+      "t": 16.229
+     },
+     {
+      "w": "details:",
+      "t": 16.788
+     }
+    ]
+   },
+   {
+    "start": 17.64,
+    "end": 18.969,
+    "text": "you can’t hold\ninformation",
+    "words": [
+     {
+      "w": "you",
+      "t": 17.64
+     },
+     {
+      "w": "can’t",
+      "t": 17.852
+     },
+     {
+      "w": "hold",
+      "t": 18.159
+     },
+     {
+      "w": "information",
+      "t": 18.419
+     }
+    ]
+   },
+   {
+    "start": 19.009,
+    "end": 19.841,
+    "text": "in your hand,",
+    "words": [
+     {
+      "w": "in",
+      "t": 19.009
+     },
+     {
+      "w": "your",
+      "t": 19.174
+     },
+     {
+      "w": "hand,",
+      "t": 19.433
+     }
+    ]
+   },
+   {
+    "start": 19.881,
+    "end": 21.235,
+    "text": "and you can’t\ncount it.",
+    "words": [
+     {
+      "w": "and",
+      "t": 19.881
+     },
+     {
+      "w": "you",
+      "t": 20.063
+     },
+     {
+      "w": "can’t",
+      "t": 20.245
+     },
+     {
+      "w": "count",
+      "t": 20.507
+     },
+     {
+      "w": "it.",
+      "t": 20.77
+     }
+    ]
+   },
+   {
+    "start": 21.275,
+    "end": 22.533,
+    "text": "So it’s\nuncountable:",
+    "words": [
+     {
+      "w": "So",
+      "t": 21.275
+     },
+     {
+      "w": "it’s",
+      "t": 21.44
+     },
+     {
+      "w": "uncountable:",
+      "t": 21.7
+     }
+    ]
+   },
+   {
+    "start": 22.573,
+    "end": 23.545,
+    "text": "no s.",
+    "words": [
+     {
+      "w": "no",
+      "t": 22.573
+     },
+     {
+      "w": "s.",
+      "t": 22.809
+     }
+    ]
+   },
+   {
+    "start": 23.585,
+    "end": 25.968,
+    "text": "Information,\nnever informations.",
+    "words": [
+     {
+      "w": "Information,",
+      "t": 23.585
+     },
+     {
+      "w": "never",
+      "t": 24.295
+     },
+     {
+      "w": "informations.",
+      "t": 24.575
+     }
+    ]
+   },
+   {
+    "start": 26.603,
+    "end": 28.215,
+    "text": "And because it’s\nuncountable,",
+    "words": [
+     {
+      "w": "And",
+      "t": 26.603
+     },
+     {
+      "w": "because",
+      "t": 26.815
+     },
+     {
+      "w": "it’s",
+      "t": 27.217
+     },
+     {
+      "w": "uncountable,",
+      "t": 27.476
+     }
+    ]
+   },
+   {
+    "start": 28.255,
+    "end": 29.723,
+    "text": "it works\nas one whole,",
+    "words": [
+     {
+      "w": "it",
+      "t": 28.255
+     },
+     {
+      "w": "works",
+      "t": 28.44
+     },
+     {
+      "w": "as",
+      "t": 28.784
+     },
+     {
+      "w": "one",
+      "t": 28.969
+     },
+     {
+      "w": "whole,",
+      "t": 29.207
+     }
+    ]
+   },
+   {
+    "start": 29.763,
+    "end": 31.849,
+    "text": "so the verb\nis singular too:",
+    "words": [
+     {
+      "w": "so",
+      "t": 29.763
+     },
+     {
+      "w": "the",
+      "t": 29.964
+     },
+     {
+      "w": "verb",
+      "t": 30.222
+     },
+     {
+      "w": "is",
+      "t": 30.539
+     },
+     {
+      "w": "singular",
+      "t": 30.739
+     },
+     {
+      "w": "too:",
+      "t": 31.285
+     }
+    ]
+   },
+   {
+    "start": 31.889,
+    "end": 33.385,
+    "text": "was, not were.",
+    "words": [
+     {
+      "w": "was,",
+      "t": 31.889
+     },
+     {
+      "w": "not",
+      "t": 32.223
+     },
+     {
+      "w": "were.",
+      "t": 32.4
+     }
+    ]
+   },
+   {
+    "start": 34.037,
+    "end": 35.702,
+    "text": "‘The information\nprovided by",
+    "words": [
+     {
+      "w": "‘The",
+      "t": 34.037
+     },
+     {
+      "w": "information",
+      "t": 34.293
+     },
+     {
+      "w": "provided",
+      "t": 35.003
+     },
+     {
+      "w": "by",
+      "t": 35.544
+     }
+    ]
+   },
+   {
+    "start": 35.742,
+    "end": 38.061,
+    "text": "the officer was\nnot accurate.’",
+    "words": [
+     {
+      "w": "the",
+      "t": 35.742
+     },
+     {
+      "w": "officer",
+      "t": 35.997
+     },
+     {
+      "w": "was",
+      "t": 36.481
+     },
+     {
+      "w": "not",
+      "t": 36.737
+     },
+     {
+      "w": "accurate.’",
+      "t": 36.992
+     }
+    ]
+   },
+   {
+    "start": 38.101,
+    "end": 39.085,
+    "text": "Need a number?",
+    "words": [
+     {
+      "w": "Need",
+      "t": 38.101
+     },
+     {
+      "w": "a",
+      "t": 38.33
+     },
+     {
+      "w": "number?",
+      "t": 38.435
+     }
+    ]
+   },
+   {
+    "start": 39.125,
+    "end": 41.035,
+    "text": "Say a piece\nof information.",
+    "words": [
+     {
+      "w": "Say",
+      "t": 39.125
+     },
+     {
+      "w": "a",
+      "t": 39.3
+     },
+     {
+      "w": "piece",
+      "t": 39.397
+     },
+     {
+      "w": "of",
+      "t": 39.65
+     },
+     {
+      "w": "information.",
+      "t": 39.786
+     }
+    ]
+   },
+   {
+    "start": 41.97,
+    "end": 43.631,
+    "text": "Logic, not rules.",
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 41.97
+     },
+     {
+      "w": "not",
+      "t": 42.555
+     },
+     {
+      "w": "rules.",
+      "t": 42.807
+     }
+    ]
+   },
+   {
+    "start": 43.671,
+    "end": 45.824,
+    "text": "Comment ‘logic’\nfor the next one.",
+    "words": [
+     {
+      "w": "Comment",
+      "t": 43.671
+     },
+     {
+      "w": "‘logic’",
+      "t": 44.005
+     },
+     {
+      "w": "for",
+      "t": 44.299
+     },
+     {
+      "w": "the",
+      "t": 44.475
+     },
+     {
+      "w": "next",
+      "t": 44.651
+     },
+     {
+      "w": "one.",
+      "t": 44.867
      }
     ]
    }

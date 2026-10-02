@@ -826,7 +826,7 @@
         },
         {
           "id": "rl1_r4",
-          "text": "But furniture is not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one.",
+          "text": "Because furniture is uncountable. It’s not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one.",
           "pad": 0.6,
           "scene": "Reel"
         },
@@ -844,6 +844,94 @@
         },
         {
           "id": "rl1_r7",
+          "text": "Logic, not rules. Comment ‘logic’ for the next one.",
+          "pad": 1.5,
+          "scene": "Reel"
+        }
+      ]
+    },
+    {
+      "id": "rl2",
+      "title": "Exam Logic Reel 2",
+      "slug": "reel_bread_loaves",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "rl2_q1",
+          "text": "A classic exam trap. Which sentence is correct?",
+          "pad": 3.6,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl2_q2",
+          "text": "Most students pick ‘two breads’, because two means plural. That’s the trap.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl2_q3",
+          "text": "Here’s the test: how do we buy bread? Not in pieces we count, but by the loaf or the slice. Bread is measured, so bread itself is uncountable.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl2_q4",
+          "text": "So bread never takes s. That kills option A. And option D says ‘two bread’, with nothing to count. Wrong too.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl2_q5",
+          "text": "So we count the loaf instead. One loaf, two loaves. Option B forgot the plural of loaf. The answer is C: I need two loaves of bread.",
+          "pad": 0.8,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl2_q6",
+          "text": "Logic, not rules. Comment ‘logic’ for the next one.",
+          "pad": 1.5,
+          "scene": "Reel"
+        }
+      ]
+    },
+    {
+      "id": "rl3",
+      "title": "Exam Logic Reel 3",
+      "slug": "reel_information_was",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "rl3_p1",
+          "text": "Spot the error. A classic CSS and PMS pattern.",
+          "pad": 3.6,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl3_p2",
+          "text": "There are actually two mistakes here, and one logic fixes both.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl3_p3",
+          "text": "Information is abstract. Facts, news, details: you can’t hold information in your hand, and you can’t count it. So it’s uncountable: no s. Information, never informations.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl3_p4",
+          "text": "And because it’s uncountable, it works as one whole, so the verb is singular too: was, not were.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl3_p5",
+          "text": "‘The information provided by the officer was not accurate.’ Need a number? Say a piece of information.",
+          "pad": 0.8,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl3_p6",
           "text": "Logic, not rules. Comment ‘logic’ for the next one.",
           "pad": 1.5,
           "scene": "Reel"

@@ -13,6 +13,8 @@ import { DocSample } from "./samples/DocPOV";
 import { Error1 } from "./wb/Error1";
 import { Uncountable } from "./wb/Uncountable";
 import { Reel1 } from "./wb/Reel1";
+import { Reel2 } from "./wb/Reel2";
+import { Reel3 } from "./wb/Reel3";
 
 const videos = (TIMINGS as unknown as { videos: Record<string, Seg[]> }).videos;
 const total = (segs: { frames: number }[]) => segs.reduce((a, s) => a + s.frames, 0);
@@ -24,6 +26,8 @@ export const Root: React.FC = () => (
       <Composition key={id} id={`Case0${id.slice(1)}`} component={CaseVideo} width={1080} height={1920} fps={TIMINGS.fps}
         durationInFrames={total(videos[id])} defaultProps={{ id, captions: true }} />
     ))}
+    {videos.rl2 && <Composition id="Reel2" component={Reel2} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.rl2)} />}
+    {videos.rl3 && <Composition id="Reel3" component={Reel3} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.rl3)} />}
     {videos.rl1 && <Composition id="Reel1" component={Reel1} width={1080} height={1920} fps={TIMINGS.fps} durationInFrames={total(videos.rl1)} />}
     {videos.ul && <Composition id="Uncountable" component={Uncountable} width={1920} height={1080} fps={TIMINGS.fps} durationInFrames={total(videos.ul)} />}
     {videos.wb && <Composition id="Error1" component={Error1} width={1920} height={1080} fps={TIMINGS.fps} durationInFrames={total(videos.wb)} />}
