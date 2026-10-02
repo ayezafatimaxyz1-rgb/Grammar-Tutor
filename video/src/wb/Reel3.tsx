@@ -59,7 +59,7 @@ export const Reel3: React.FC = () => {
 
   return (
     <ReelShell f={f} video={V} reel={R} end={END} chip="CSS / PMS PATTERN" prompt="SPOT THE ERROR" promptUntil={start("p2")} cardH={560}
-      zoom={[{ at: cue("p3", "never informations"), out: start("p4"), ox: inf.x0, oy: RY[0] - 20, s: 1.22 }, { at: cue("p4", "was not were"), out: start("p5"), ox: were.x0, oy: RY[2] - 20, s: 1.22 }]}
+      zoom={[{ at: cue("p3", "never informations"), out: cue("p3", "never informations") + 45, ox: inf.x0, oy: RY[0] - 20, s: 1.22 }, { at: cue("p4", "was not were"), out: cue("p4", "was not were") + 45, ox: were.x0, oy: RY[2] - 20, s: 1.22 }]}
       countdown={[cue("p1", "pattern") + 22, start("p2")]} stamp={{ at: at + 20, text: "A + C" }}
       card={<>
         <CardText x={SX} y={CARD.y + 62} size={25} color={C.grey}>CSS / PMS · ENGLISH</CardText>
