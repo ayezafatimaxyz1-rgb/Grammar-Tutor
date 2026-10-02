@@ -799,6 +799,56 @@
           "scene": "Board"
         }
       ]
+    },
+    {
+      "id": "rl1",
+      "title": "CSS Logic Reel 1",
+      "slug": "reel_css_each_furniture",
+      "accent": "unit",
+      "beats": [
+        {
+          "id": "rl1_r1",
+          "text": "This sentence came in a CSS exam. Can you find the error?",
+          "pad": 3.6,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r2",
+          "text": "Most students attack the verb ‘is’. But the verb is fine. The real problem is the word ‘each’.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r3",
+          "text": "‘Each’ means we pick things one by one: each chair, each table, each sofa. So ‘each’ needs something you can count.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r4",
+          "text": "But furniture is not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one.",
+          "pad": 0.6,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r5",
+          "text": "So we give ‘each’ something countable to hold: a piece. Each piece of furniture.",
+          "pad": 0.5,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r6",
+          "text": "‘Each piece of furniture in this display is on sale for half price.’",
+          "pad": 0.8,
+          "scene": "Reel"
+        },
+        {
+          "id": "rl1_r7",
+          "text": "Logic, not rules. Comment ‘logic’ for the next one.",
+          "pad": 1.5,
+          "scene": "Reel"
+        }
+      ]
     }
   ]
 }

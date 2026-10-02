@@ -11384,6 +11384,620 @@
     ],
     "text": "So don’t memorise the list. Find the category, and the logic tells you: no s, and a singular verb. That’s the Grammar Logic Series."
    }
+  ],
+  "rl1": [
+   {
+    "id": "rl1_r1",
+    "scene": "Reel",
+    "audio": "audio/rl1_r1.mp3",
+    "start": 0.0,
+    "startFrame": 0,
+    "frames": 249,
+    "lead": 0.35,
+    "audioDur": 4.32,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "This",
+      "t": 0.02
+     },
+     {
+      "w": "sentence",
+      "t": 0.386
+     },
+     {
+      "w": "came",
+      "t": 1.016
+     },
+     {
+      "w": "in",
+      "t": 1.382
+     },
+     {
+      "w": "a",
+      "t": 1.615
+     },
+     {
+      "w": "CSS",
+      "t": 1.781
+     },
+     {
+      "w": "exam.",
+      "t": 2.08
+     },
+     {
+      "w": "Can",
+      "t": 3.044
+     },
+     {
+      "w": "you",
+      "t": 3.193
+     },
+     {
+      "w": "find",
+      "t": 3.342
+     },
+     {
+      "w": "the",
+      "t": 3.524
+     },
+     {
+      "w": "error?",
+      "t": 3.673
+     }
+    ],
+    "text": "This sentence came in a CSS exam. Can you find the error?"
+   },
+   {
+    "id": "rl1_r2",
+    "scene": "Reel",
+    "audio": "audio/rl1_r2.mp3",
+    "start": 8.3,
+    "startFrame": 249,
+    "frames": 223,
+    "lead": 0.35,
+    "audioDur": 6.576,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Most",
+      "t": 0.02
+     },
+     {
+      "w": "students",
+      "t": 0.312
+     },
+     {
+      "w": "attack",
+      "t": 0.816
+     },
+     {
+      "w": "the",
+      "t": 1.214
+     },
+     {
+      "w": "verb",
+      "t": 1.452
+     },
+     {
+      "w": "‘is’.",
+      "t": 1.744
+     },
+     {
+      "w": "But",
+      "t": 2.46
+     },
+     {
+      "w": "the",
+      "t": 2.707
+     },
+     {
+      "w": "verb",
+      "t": 2.954
+     },
+     {
+      "w": "is",
+      "t": 3.255
+     },
+     {
+      "w": "fine.",
+      "t": 3.447
+     },
+     {
+      "w": "The",
+      "t": 4.243
+     },
+     {
+      "w": "real",
+      "t": 4.447
+     },
+     {
+      "w": "problem",
+      "t": 4.696
+     },
+     {
+      "w": "is",
+      "t": 5.08
+     },
+     {
+      "w": "the",
+      "t": 5.239
+     },
+     {
+      "w": "word",
+      "t": 5.442
+     },
+     {
+      "w": "‘each’.",
+      "t": 5.691
+     }
+    ],
+    "text": "Most students attack the verb ‘is’. But the verb is fine. The real problem is the word ‘each’."
+   },
+   {
+    "id": "rl1_r3",
+    "scene": "Reel",
+    "audio": "audio/rl1_r3.mp3",
+    "start": 15.733,
+    "startFrame": 472,
+    "frames": 259,
+    "lead": 0.35,
+    "audioDur": 7.776,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "‘Each’",
+      "t": 0.02
+     },
+     {
+      "w": "means",
+      "t": 0.38
+     },
+     {
+      "w": "we",
+      "t": 0.738
+     },
+     {
+      "w": "pick",
+      "t": 0.932
+     },
+     {
+      "w": "things",
+      "t": 1.236
+     },
+     {
+      "w": "one",
+      "t": 1.651
+     },
+     {
+      "w": "by",
+      "t": 1.9
+     },
+     {
+      "w": "one:",
+      "t": 2.093
+     },
+     {
+      "w": "each",
+      "t": 2.674
+     },
+     {
+      "w": "chair,",
+      "t": 3.011
+     },
+     {
+      "w": "each",
+      "t": 3.657
+     },
+     {
+      "w": "table,",
+      "t": 3.961
+     },
+     {
+      "w": "each",
+      "t": 4.541
+     },
+     {
+      "w": "sofa.",
+      "t": 4.846
+     },
+     {
+      "w": "So",
+      "t": 5.648
+     },
+     {
+      "w": "‘each’",
+      "t": 5.781
+     },
+     {
+      "w": "needs",
+      "t": 6.031
+     },
+     {
+      "w": "something",
+      "t": 6.279
+     },
+     {
+      "w": "you",
+      "t": 6.681
+     },
+     {
+      "w": "can",
+      "t": 6.854
+     },
+     {
+      "w": "count.",
+      "t": 7.026
+     }
+    ],
+    "text": "‘Each’ means we pick things one by one: each chair, each table, each sofa. So ‘each’ needs something you can count."
+   },
+   {
+    "id": "rl1_r4",
+    "scene": "Reel",
+    "audio": "audio/rl1_r4.mp3",
+    "start": 24.367,
+    "startFrame": 731,
+    "frames": 354,
+    "lead": 0.35,
+    "audioDur": 10.848,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "But",
+      "t": 0.02
+     },
+     {
+      "w": "furniture",
+      "t": 0.262
+     },
+     {
+      "w": "is",
+      "t": 0.83
+     },
+     {
+      "w": "not",
+      "t": 1.018
+     },
+     {
+      "w": "one",
+      "t": 1.261
+     },
+     {
+      "w": "object.",
+      "t": 1.504
+     },
+     {
+      "w": "It’s",
+      "t": 2.394
+     },
+     {
+      "w": "a",
+      "t": 2.696
+     },
+     {
+      "w": "unit:",
+      "t": 2.833
+     },
+     {
+      "w": "chairs,",
+      "t": 3.463
+     },
+     {
+      "w": "tables",
+      "t": 4.127
+     },
+     {
+      "w": "and",
+      "t": 4.559
+     },
+     {
+      "w": "sofas",
+      "t": 4.818
+     },
+     {
+      "w": "grouped",
+      "t": 5.194
+     },
+     {
+      "w": "together",
+      "t": 5.684
+     },
+     {
+      "w": "and",
+      "t": 6.232
+     },
+     {
+      "w": "named",
+      "t": 6.492
+     },
+     {
+      "w": "as",
+      "t": 6.866
+     },
+     {
+      "w": "one.",
+      "t": 7.068
+     },
+     {
+      "w": "A",
+      "t": 7.847
+     },
+     {
+      "w": "unit",
+      "t": 7.945
+     },
+     {
+      "w": "means",
+      "t": 8.163
+     },
+     {
+      "w": "one,",
+      "t": 8.419
+     },
+     {
+      "w": "and",
+      "t": 8.755
+     },
+     {
+      "w": "you",
+      "t": 8.932
+     },
+     {
+      "w": "can’t",
+      "t": 9.11
+     },
+     {
+      "w": "pick",
+      "t": 9.367
+     },
+     {
+      "w": "‘each’",
+      "t": 9.584
+     },
+     {
+      "w": "out",
+      "t": 9.84
+     },
+     {
+      "w": "of",
+      "t": 10.018
+     },
+     {
+      "w": "one.",
+      "t": 10.156
+     }
+    ],
+    "text": "But furniture is not one object. It’s a unit: chairs, tables and sofas grouped together and named as one. A unit means one, and you can’t pick ‘each’ out of one."
+   },
+   {
+    "id": "rl1_r5",
+    "scene": "Reel",
+    "audio": "audio/rl1_r5.mp3",
+    "start": 36.167,
+    "startFrame": 1085,
+    "frames": 184,
+    "lead": 0.35,
+    "audioDur": 5.256,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "So",
+      "t": 0.02
+     },
+     {
+      "w": "we",
+      "t": 0.196
+     },
+     {
+      "w": "give",
+      "t": 0.372
+     },
+     {
+      "w": "‘each’",
+      "t": 0.649
+     },
+     {
+      "w": "something",
+      "t": 0.976
+     },
+     {
+      "w": "countable",
+      "t": 1.504
+     },
+     {
+      "w": "to",
+      "t": 2.032
+     },
+     {
+      "w": "hold:",
+      "t": 2.208
+     },
+     {
+      "w": "a",
+      "t": 2.786
+     },
+     {
+      "w": "piece.",
+      "t": 2.912
+     },
+     {
+      "w": "Each",
+      "t": 3.694
+     },
+     {
+      "w": "piece",
+      "t": 3.912
+     },
+     {
+      "w": "of",
+      "t": 4.169
+     },
+     {
+      "w": "furniture.",
+      "t": 4.308
+     }
+    ],
+    "text": "So we give ‘each’ something countable to hold: a piece. Each piece of furniture."
+   },
+   {
+    "id": "rl1_r6",
+    "scene": "Reel",
+    "audio": "audio/rl1_r6.mp3",
+    "start": 42.3,
+    "startFrame": 1269,
+    "frames": 172,
+    "lead": 0.35,
+    "audioDur": 4.56,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "‘Each",
+      "t": 0.02
+     },
+     {
+      "w": "piece",
+      "t": 0.309
+     },
+     {
+      "w": "of",
+      "t": 0.65
+     },
+     {
+      "w": "furniture",
+      "t": 0.834
+     },
+     {
+      "w": "in",
+      "t": 1.386
+     },
+     {
+      "w": "this",
+      "t": 1.569
+     },
+     {
+      "w": "display",
+      "t": 1.859
+     },
+     {
+      "w": "is",
+      "t": 2.305
+     },
+     {
+      "w": "on",
+      "t": 2.489
+     },
+     {
+      "w": "sale",
+      "t": 2.673
+     },
+     {
+      "w": "for",
+      "t": 2.962
+     },
+     {
+      "w": "half",
+      "t": 3.198
+     },
+     {
+      "w": "price.’",
+      "t": 3.487
+     }
+    ],
+    "text": "‘Each piece of furniture in this display is on sale for half price.’"
+   },
+   {
+    "id": "rl1_r7",
+    "scene": "Reel",
+    "audio": "audio/rl1_r7.mp3",
+    "start": 48.033,
+    "startFrame": 1441,
+    "frames": 165,
+    "lead": 0.35,
+    "audioDur": 3.624,
+    "parts": [
+     {
+      "from": 0.0,
+      "to": null,
+      "offset": 0.0
+     }
+    ],
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 0.02
+     },
+     {
+      "w": "not",
+      "t": 0.605
+     },
+     {
+      "w": "rules.",
+      "t": 0.857
+     },
+     {
+      "w": "Comment",
+      "t": 1.721
+     },
+     {
+      "w": "‘logic’",
+      "t": 2.055
+     },
+     {
+      "w": "for",
+      "t": 2.349
+     },
+     {
+      "w": "the",
+      "t": 2.525
+     },
+     {
+      "w": "next",
+      "t": 2.701
+     },
+     {
+      "w": "one.",
+      "t": 2.917
+     }
+    ],
+    "text": "Logic, not rules. Comment ‘logic’ for the next one."
+   }
   ]
  },
  "captions": {
@@ -24270,6 +24884,669 @@
      {
       "w": "Series.",
       "t": 561.699
+     }
+    ]
+   }
+  ],
+  "rl1": [
+   {
+    "start": 0.37,
+    "end": 3.354,
+    "text": "This sentence came\nin a CSS exam.",
+    "words": [
+     {
+      "w": "This",
+      "t": 0.37
+     },
+     {
+      "w": "sentence",
+      "t": 0.736
+     },
+     {
+      "w": "came",
+      "t": 1.366
+     },
+     {
+      "w": "in",
+      "t": 1.732
+     },
+     {
+      "w": "a",
+      "t": 1.965
+     },
+     {
+      "w": "CSS",
+      "t": 2.131
+     },
+     {
+      "w": "exam.",
+      "t": 2.43
+     }
+    ]
+   },
+   {
+    "start": 3.394,
+    "end": 4.92,
+    "text": "Can you find\nthe error?",
+    "words": [
+     {
+      "w": "Can",
+      "t": 3.394
+     },
+     {
+      "w": "you",
+      "t": 3.543
+     },
+     {
+      "w": "find",
+      "t": 3.692
+     },
+     {
+      "w": "the",
+      "t": 3.874
+     },
+     {
+      "w": "error?",
+      "t": 4.023
+     }
+    ]
+   },
+   {
+    "start": 8.67,
+    "end": 11.07,
+    "text": "Most students attack\nthe verb ‘is’.",
+    "words": [
+     {
+      "w": "Most",
+      "t": 8.67
+     },
+     {
+      "w": "students",
+      "t": 8.962
+     },
+     {
+      "w": "attack",
+      "t": 9.466
+     },
+     {
+      "w": "the",
+      "t": 9.864
+     },
+     {
+      "w": "verb",
+      "t": 10.102
+     },
+     {
+      "w": "‘is’.",
+      "t": 10.394
+     }
+    ]
+   },
+   {
+    "start": 11.11,
+    "end": 12.853,
+    "text": "But the verb\nis fine.",
+    "words": [
+     {
+      "w": "But",
+      "t": 11.11
+     },
+     {
+      "w": "the",
+      "t": 11.357
+     },
+     {
+      "w": "verb",
+      "t": 11.604
+     },
+     {
+      "w": "is",
+      "t": 11.905
+     },
+     {
+      "w": "fine.",
+      "t": 12.097
+     }
+    ]
+   },
+   {
+    "start": 12.893,
+    "end": 15.476,
+    "text": "The real problem\nis the word ‘each’.",
+    "words": [
+     {
+      "w": "The",
+      "t": 12.893
+     },
+     {
+      "w": "real",
+      "t": 13.097
+     },
+     {
+      "w": "problem",
+      "t": 13.346
+     },
+     {
+      "w": "is",
+      "t": 13.73
+     },
+     {
+      "w": "the",
+      "t": 13.889
+     },
+     {
+      "w": "word",
+      "t": 14.092
+     },
+     {
+      "w": "‘each’.",
+      "t": 14.341
+     }
+    ]
+   },
+   {
+    "start": 16.103,
+    "end": 17.694,
+    "text": "‘Each’ means\nwe pick things",
+    "words": [
+     {
+      "w": "‘Each’",
+      "t": 16.103
+     },
+     {
+      "w": "means",
+      "t": 16.463
+     },
+     {
+      "w": "we",
+      "t": 16.821
+     },
+     {
+      "w": "pick",
+      "t": 17.015
+     },
+     {
+      "w": "things",
+      "t": 17.319
+     }
+    ]
+   },
+   {
+    "start": 17.734,
+    "end": 18.717,
+    "text": "one by one:",
+    "words": [
+     {
+      "w": "one",
+      "t": 17.734
+     },
+     {
+      "w": "by",
+      "t": 17.983
+     },
+     {
+      "w": "one:",
+      "t": 18.176
+     }
+    ]
+   },
+   {
+    "start": 18.757,
+    "end": 20.584,
+    "text": "each chair,\neach table,",
+    "words": [
+     {
+      "w": "each",
+      "t": 18.757
+     },
+     {
+      "w": "chair,",
+      "t": 19.094
+     },
+     {
+      "w": "each",
+      "t": 19.74
+     },
+     {
+      "w": "table,",
+      "t": 20.044
+     }
+    ]
+   },
+   {
+    "start": 20.624,
+    "end": 21.691,
+    "text": "each sofa.",
+    "words": [
+     {
+      "w": "each",
+      "t": 20.624
+     },
+     {
+      "w": "sofa.",
+      "t": 20.929
+     }
+    ]
+   },
+   {
+    "start": 21.731,
+    "end": 22.897,
+    "text": "So ‘each’ needs\nsomething you",
+    "words": [
+     {
+      "w": "So",
+      "t": 21.731
+     },
+     {
+      "w": "‘each’",
+      "t": 21.864
+     },
+     {
+      "w": "needs",
+      "t": 22.114
+     },
+     {
+      "w": "something",
+      "t": 22.362
+     },
+     {
+      "w": "you",
+      "t": 22.764
+     }
+    ]
+   },
+   {
+    "start": 22.937,
+    "end": 24.109,
+    "text": "can count.",
+    "words": [
+     {
+      "w": "can",
+      "t": 22.937
+     },
+     {
+      "w": "count.",
+      "t": 23.109
+     }
+    ]
+   },
+   {
+    "start": 24.737,
+    "end": 27.071,
+    "text": "But furniture\nis not one object.",
+    "words": [
+     {
+      "w": "But",
+      "t": 24.737
+     },
+     {
+      "w": "furniture",
+      "t": 24.979
+     },
+     {
+      "w": "is",
+      "t": 25.547
+     },
+     {
+      "w": "not",
+      "t": 25.735
+     },
+     {
+      "w": "one",
+      "t": 25.978
+     },
+     {
+      "w": "object.",
+      "t": 26.221
+     }
+    ]
+   },
+   {
+    "start": 27.111,
+    "end": 28.14,
+    "text": "It’s a unit:",
+    "words": [
+     {
+      "w": "It’s",
+      "t": 27.111
+     },
+     {
+      "w": "a",
+      "t": 27.413
+     },
+     {
+      "w": "unit:",
+      "t": 27.55
+     }
+    ]
+   },
+   {
+    "start": 28.18,
+    "end": 29.871,
+    "text": "chairs,\ntables and sofas",
+    "words": [
+     {
+      "w": "chairs,",
+      "t": 28.18
+     },
+     {
+      "w": "tables",
+      "t": 28.844
+     },
+     {
+      "w": "and",
+      "t": 29.276
+     },
+     {
+      "w": "sofas",
+      "t": 29.535
+     }
+    ]
+   },
+   {
+    "start": 29.911,
+    "end": 32.524,
+    "text": "grouped together\nand named as one.",
+    "words": [
+     {
+      "w": "grouped",
+      "t": 29.911
+     },
+     {
+      "w": "together",
+      "t": 30.401
+     },
+     {
+      "w": "and",
+      "t": 30.949
+     },
+     {
+      "w": "named",
+      "t": 31.209
+     },
+     {
+      "w": "as",
+      "t": 31.583
+     },
+     {
+      "w": "one.",
+      "t": 31.785
+     }
+    ]
+   },
+   {
+    "start": 32.564,
+    "end": 33.432,
+    "text": "A unit means one,",
+    "words": [
+     {
+      "w": "A",
+      "t": 32.564
+     },
+     {
+      "w": "unit",
+      "t": 32.662
+     },
+     {
+      "w": "means",
+      "t": 32.88
+     },
+     {
+      "w": "one,",
+      "t": 33.136
+     }
+    ]
+   },
+   {
+    "start": 33.472,
+    "end": 34.695,
+    "text": "and you can’t\npick ‘each’ out",
+    "words": [
+     {
+      "w": "and",
+      "t": 33.472
+     },
+     {
+      "w": "you",
+      "t": 33.649
+     },
+     {
+      "w": "can’t",
+      "t": 33.827
+     },
+     {
+      "w": "pick",
+      "t": 34.084
+     },
+     {
+      "w": "‘each’",
+      "t": 34.301
+     },
+     {
+      "w": "out",
+      "t": 34.557
+     }
+    ]
+   },
+   {
+    "start": 34.735,
+    "end": 35.815,
+    "text": "of one.",
+    "words": [
+     {
+      "w": "of",
+      "t": 34.735
+     },
+     {
+      "w": "one.",
+      "t": 34.873
+     }
+    ]
+   },
+   {
+    "start": 36.537,
+    "end": 37.981,
+    "text": "So we give\n‘each’ something",
+    "words": [
+     {
+      "w": "So",
+      "t": 36.537
+     },
+     {
+      "w": "we",
+      "t": 36.713
+     },
+     {
+      "w": "give",
+      "t": 36.889
+     },
+     {
+      "w": "‘each’",
+      "t": 37.166
+     },
+     {
+      "w": "something",
+      "t": 37.493
+     }
+    ]
+   },
+   {
+    "start": 38.021,
+    "end": 39.263,
+    "text": "countable to hold:",
+    "words": [
+     {
+      "w": "countable",
+      "t": 38.021
+     },
+     {
+      "w": "to",
+      "t": 38.549
+     },
+     {
+      "w": "hold:",
+      "t": 38.725
+     }
+    ]
+   },
+   {
+    "start": 39.303,
+    "end": 40.171,
+    "text": "a piece.",
+    "words": [
+     {
+      "w": "a",
+      "t": 39.303
+     },
+     {
+      "w": "piece.",
+      "t": 39.429
+     }
+    ]
+   },
+   {
+    "start": 40.211,
+    "end": 42.023,
+    "text": "Each piece\nof furniture.",
+    "words": [
+     {
+      "w": "Each",
+      "t": 40.211
+     },
+     {
+      "w": "piece",
+      "t": 40.429
+     },
+     {
+      "w": "of",
+      "t": 40.686
+     },
+     {
+      "w": "furniture.",
+      "t": 40.825
+     }
+    ]
+   },
+   {
+    "start": 42.67,
+    "end": 43.996,
+    "text": "‘Each piece\nof furniture",
+    "words": [
+     {
+      "w": "‘Each",
+      "t": 42.67
+     },
+     {
+      "w": "piece",
+      "t": 42.959
+     },
+     {
+      "w": "of",
+      "t": 43.3
+     },
+     {
+      "w": "furniture",
+      "t": 43.484
+     }
+    ]
+   },
+   {
+    "start": 44.036,
+    "end": 45.808,
+    "text": "in this display\nis on sale for",
+    "words": [
+     {
+      "w": "in",
+      "t": 44.036
+     },
+     {
+      "w": "this",
+      "t": 44.219
+     },
+     {
+      "w": "display",
+      "t": 44.509
+     },
+     {
+      "w": "is",
+      "t": 44.955
+     },
+     {
+      "w": "on",
+      "t": 45.139
+     },
+     {
+      "w": "sale",
+      "t": 45.323
+     },
+     {
+      "w": "for",
+      "t": 45.612
+     }
+    ]
+   },
+   {
+    "start": 45.848,
+    "end": 47.46,
+    "text": "half price.’",
+    "words": [
+     {
+      "w": "half",
+      "t": 45.848
+     },
+     {
+      "w": "price.’",
+      "t": 46.137
+     }
+    ]
+   },
+   {
+    "start": 48.403,
+    "end": 50.064,
+    "text": "Logic, not rules.",
+    "words": [
+     {
+      "w": "Logic,",
+      "t": 48.403
+     },
+     {
+      "w": "not",
+      "t": 48.988
+     },
+     {
+      "w": "rules.",
+      "t": 49.24
+     }
+    ]
+   },
+   {
+    "start": 50.104,
+    "end": 52.257,
+    "text": "Comment ‘logic’\nfor the next one.",
+    "words": [
+     {
+      "w": "Comment",
+      "t": 50.104
+     },
+     {
+      "w": "‘logic’",
+      "t": 50.438
+     },
+     {
+      "w": "for",
+      "t": 50.732
+     },
+     {
+      "w": "the",
+      "t": 50.908
+     },
+     {
+      "w": "next",
+      "t": 51.084
+     },
+     {
+      "w": "one.",
+      "t": 51.3
      }
     ]
    }

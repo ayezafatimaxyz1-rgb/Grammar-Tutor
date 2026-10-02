@@ -1,0 +1,125 @@
+1
+00:00:00,370 --> 00:00:03,354
+This sentence came
+in a CSS exam.
+
+2
+00:00:03,394 --> 00:00:04,920
+Can you find
+the error?
+
+3
+00:00:08,670 --> 00:00:11,070
+Most students attack
+the verb ‘is’.
+
+4
+00:00:11,110 --> 00:00:12,853
+But the verb
+is fine.
+
+5
+00:00:12,893 --> 00:00:15,476
+The real problem
+is the word ‘each’.
+
+6
+00:00:16,103 --> 00:00:17,694
+‘Each’ means
+we pick things
+
+7
+00:00:17,734 --> 00:00:18,717
+one by one:
+
+8
+00:00:18,757 --> 00:00:20,584
+each chair,
+each table,
+
+9
+00:00:20,624 --> 00:00:21,691
+each sofa.
+
+10
+00:00:21,731 --> 00:00:22,897
+So ‘each’ needs
+something you
+
+11
+00:00:22,937 --> 00:00:24,109
+can count.
+
+12
+00:00:24,737 --> 00:00:27,071
+But furniture
+is not one object.
+
+13
+00:00:27,111 --> 00:00:28,140
+It’s a unit:
+
+14
+00:00:28,180 --> 00:00:29,871
+chairs,
+tables and sofas
+
+15
+00:00:29,911 --> 00:00:32,524
+grouped together
+and named as one.
+
+16
+00:00:32,564 --> 00:00:33,432
+A unit means one,
+
+17
+00:00:33,472 --> 00:00:34,695
+and you can’t
+pick ‘each’ out
+
+18
+00:00:34,735 --> 00:00:35,815
+of one.
+
+19
+00:00:36,537 --> 00:00:37,981
+So we give
+‘each’ something
+
+20
+00:00:38,021 --> 00:00:39,263
+countable to hold:
+
+21
+00:00:39,303 --> 00:00:40,171
+a piece.
+
+22
+00:00:40,211 --> 00:00:42,023
+Each piece
+of furniture.
+
+23
+00:00:42,670 --> 00:00:43,996
+‘Each piece
+of furniture
+
+24
+00:00:44,036 --> 00:00:45,808
+in this display
+is on sale for
+
+25
+00:00:45,848 --> 00:00:47,460
+half price.’
+
+26
+00:00:48,403 --> 00:00:50,064
+Logic, not rules.
+
+27
+00:00:50,104 --> 00:00:52,257
+Comment ‘logic’
+for the next one.
+
