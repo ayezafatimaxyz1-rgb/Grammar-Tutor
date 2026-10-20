@@ -32,6 +32,10 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("my sentence stays on screen", msgs.includes("I living in Lahore"));
   check("Mam replies", msgs.includes("What food do you like"), msgs.slice(-120));
   check("corrections shown", msgs.includes("I live in Lahore"));
+  check("correction reason in English", msgs.includes('Use "live" for where you stay.'));
+  await p.click(".msg.tutor .tools .mini:nth-child(3)");
+  await p.waitForTimeout(300);
+  check("Simpler button rewrites in English", (await p.textContent("#msgs")).includes("Lahore is big."));
 
   // 2. Second message works too
   await p.fill("#input", "I like biryani very much");
@@ -76,6 +80,16 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.waitForTimeout(800);
   const diag = await p.textContent("#diagOut");
   check("connection check all pass", !/failed/i.test(diag) && /3\. Sentence check ✓/.test(diag), diag.replace(/\n/g, " | ").slice(0, 200));
+
+  // English only: an old saved card (Urdu meaning in the store) must show the English meaning
+  await p.click("[data-tab=cards]");
+  await p.waitForTimeout(200);
+  check("old card shows English meaning", (await p.textContent("#grid")).includes("the money, jobs and trade of a country"));
+  for (const tab of ["talk", "read", "cards", "review", "progress"]) {
+    await p.click(`[data-tab=${tab}]`); await p.waitForTimeout(150);
+    const txt = await p.evaluate(() => document.body.innerText);
+    check(`no Urdu script on ${tab}`, !/[\u0600-\u06FF]/.test(txt), (txt.match(/[\u0600-\u06FF][^\n]{0,30}/) || [""])[0]);
+  }
 
   const errs = [...pageErrors, ...(await p.evaluate(() => window.__errors))];
   check("no page errors", errs.length === 0, errs.join(" ; "));

@@ -12,7 +12,7 @@
 <body>
 <title>Bolo English</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <style>
 /* Layout: one-screen phone app. Header, scrolling content, composer, bottom tab bar. */
 :root {
@@ -31,7 +31,6 @@
   --tint-s: 70%;
   --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
   --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
-  --urdu: "Noto Nastaliq Urdu", "Geeza Pro", "Noto Sans Arabic", serif;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -65,7 +64,7 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 h2 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.1; margin: 4px 0 0; text-wrap: balance; letter-spacing: -0.02em; }
 h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; }
 .sub { color: var(--muted); margin: 0; }
-.ur { font-family: var(--urdu); direction: rtl; line-height: 2.1; font-size: 15px; }
+.mean { font-size: 15px; color: var(--fg); }
 .banner { background: var(--sunk); border-radius: 12px; padding: 12px 14px; font-size: 15px; }
 .banner.warn { border-left: 4px solid var(--sun); }
 
@@ -225,7 +224,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <section class="view pad" id="v-talk">
       <div id="pickTopic" class="view" style="padding:0">
         <div>
-          <h2>Aaj kis baare mein baat karein?</h2>
+          <h2>What shall we talk about today?</h2>
           <p class="sub">Pick a topic. Your teacher, Mam, speaks slowly and corrects one mistake at a time.</p>
         </div>
         <div id="noAI" class="banner warn" hidden></div>
@@ -252,7 +251,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <section class="view pad" id="v-read" hidden>
       <div>
         <h2>Read and discuss</h2>
-        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, explains it in Urdu, saves the hard words as cards, then talks with you about it.</p>
+        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, saves the hard words as cards, then talks with you about it.</p>
       </div>
       <form class="addbox" id="addForm">
         <div class="seg" role="group" aria-label="What are you adding" id="kindSeg">
@@ -308,7 +307,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <section class="view pad" id="v-progress" hidden>
       <div>
         <h2>Your progress</h2>
-        <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. Rozana thora thora.</p>
+        <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. A little every day adds up.</p>
       </div>
       <div class="stats" id="stats"></div>
       <h3>Last 7 days (minutes)</h3>
@@ -384,26 +383,26 @@ const WORLD = [
   ["📱", "Social media and fake news", "Many people read news on social media. Do you trust news on Facebook or TikTok?"],
 ];
 const WORDS = [
-  ["democracy","جمہوریت","Pakistan is a democracy.","🗳️"],["economy","معیشت","The economy needs more jobs.","💰📈"],
-  ["inflation","مہنگائی","Inflation makes food expensive.","🛒📈"],["corruption","بدعنوانی","Corruption hurts poor people.","💸🚫"],
-  ["education","تعلیم","Education changes lives.","🎓📚"],["climate change","موسمیاتی تبدیلی","Climate change brings more floods.","🌍🔥"],
-  ["pollution","آلودگی","Air pollution is very high in Lahore.","🏭🌫️"],["population","آبادی","Pakistan has a large population.","👥👥"],
-  ["unemployment","بے روزگاری","Unemployment is a big problem for young people.","🧑‍💼❌"],["government","حکومت","The government made a new law.","🏛️"],
-  ["policy","پالیسی","We need a better education policy.","📜"],["justice","انصاف","Everyone wants justice.","⚖️"],
-  ["rights","حقوق","Women and men have equal rights.","✊"],["responsibility","ذمہ داری","Voting is our responsibility.","🤝"],
-  ["opportunity","موقع","CSS is a big opportunity for me.","🚪✨"],["challenge","چیلنج، مشکل","Water shortage is a big challenge.","🧗"],
-  ["solution","حل","Education is the best solution.","💡"],["improve","بہتر بنانا","I want to improve my English.","📈"],
-  ["develop","ترقی کرنا","Pakistan can develop very fast.","🏗️"],["resources","وسائل","Pakistan has many natural resources.","⛏️🌾"],
-  ["agriculture","زراعت","Agriculture is very important for Pakistan.","🌾🚜"],["energy crisis","توانائی کا بحران","The energy crisis causes load shedding.","🔌⚡"],
-  ["security","سلامتی، تحفظ","Security is important for peace.","🛡️"],["peace","امن","We all want peace.","🕊️"],
-  ["foreign policy","خارجہ پالیسی","Foreign policy is about our relations with other countries.","🌐🤝"],["trade","تجارت","Trade with China is growing.","🚢📦"],
-  ["technology","ٹیکنالوجی","Technology makes life easier.","💻"],["artificial intelligence","مصنوعی ذہانت","Artificial intelligence is changing jobs.","🤖"],
-  ["public service","عوامی خدمت","I want to do public service.","🏛️🙋"],["honest","ایماندار","A good officer must be honest.","😇"],
-  ["discipline","نظم و ضبط","Discipline helps me study every day.","⏰✅"],["confident","پراعتماد","I feel confident in my interview.","💪"],
-  ["opinion","رائے","In my opinion, education is the key.","💬"],["however","تاہم","It is hard; however, I will try.","↔️"],
-  ["because of","کی وجہ سے","Prices went up because of inflation.","➡️"],["health care","صحت کی سہولیات","Health care should be free for poor people.","🏥"],
-  ["water shortage","پانی کی کمی","Water shortage is a big threat.","🚰❌"],["tolerance","برداشت، رواداری","Tolerance makes society strong.","🤲"],
-  ["accountability","احتساب","Accountability can stop corruption.","🔍"],["sustainable","پائیدار","We need sustainable development.","♻️"],
+  ["democracy","people choose their government by voting","Pakistan is a democracy.","🗳️"],["economy","the money, jobs and trade of a country","The economy needs more jobs.","💰📈"],
+  ["inflation","prices keep going up","Inflation makes food expensive.","🛒📈"],["corruption","dishonest use of power for money","Corruption hurts poor people.","💸🚫"],
+  ["education","learning at school and college","Education changes lives.","🎓📚"],["climate change","the earth's weather changing over many years","Climate change brings more floods.","🌍🔥"],
+  ["pollution","dirty air, water or land","Air pollution is very high in Lahore.","🏭🌫️"],["population","the number of people living in a place","Pakistan has a large population.","👥👥"],
+  ["unemployment","not having a job","Unemployment is a big problem for young people.","🧑‍💼❌"],["government","the people who run a country","The government made a new law.","🏛️"],
+  ["policy","a plan or rule for doing things","We need a better education policy.","📜"],["justice","fair treatment for everyone","Everyone wants justice.","⚖️"],
+  ["rights","things every person is allowed to have or do","Women and men have equal rights.","✊"],["responsibility","a duty you must do","Voting is our responsibility.","🤝"],
+  ["opportunity","a good chance to do something","CSS is a big opportunity for me.","🚪✨"],["challenge","something difficult to do","Water shortage is a big challenge.","🧗"],
+  ["solution","an answer to a problem","Education is the best solution.","💡"],["improve","to make something better","I want to improve my English.","📈"],
+  ["develop","to grow and become better","Pakistan can develop very fast.","🏗️"],["resources","useful things like water, land and minerals","Pakistan has many natural resources.","⛏️🌾"],
+  ["agriculture","farming and growing crops","Agriculture is very important for Pakistan.","🌾🚜"],["energy crisis","not enough electricity or gas","The energy crisis causes load shedding.","🔌⚡"],
+  ["security","being safe from danger","Security is important for peace.","🛡️"],["peace","no war or fighting","We all want peace.","🕊️"],
+  ["foreign policy","how a country deals with other countries","Foreign policy is about our relations with other countries.","🌐🤝"],["trade","buying and selling between countries","Trade with China is growing.","🚢📦"],
+  ["technology","machines and computers that help us","Technology makes life easier.","💻"],["artificial intelligence","computers that can think and learn","Artificial intelligence is changing jobs.","🤖"],
+  ["public service","working to help the people","I want to do public service.","🏛️🙋"],["honest","always telling the truth","A good officer must be honest.","😇"],
+  ["discipline","doing the right thing every day, on time","Discipline helps me study every day.","⏰✅"],["confident","sure of yourself","I feel confident in my interview.","💪"],
+  ["opinion","what you think about something","In my opinion, education is the key.","💬"],["however","but (shows a different idea)","It is hard; however, I will try.","↔️"],
+  ["because of","for this reason","Prices went up because of inflation.","➡️"],["health care","doctors, hospitals and medicine","Health care should be free for poor people.","🏥"],
+  ["water shortage","not enough water","Water shortage is a big threat.","🚰❌"],["tolerance","accepting people who are different","Tolerance makes society strong.","🤲"],
+  ["accountability","having to explain and answer for what you did","Accountability can stop corruption.","🔍"],["sustainable","able to continue for a long time without harm","We need sustainable development.","♻️"],
 ];
 const dayNum = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / DAY);
 function worldTopic() {
@@ -411,7 +410,11 @@ function worldTopic() {
   return { id: "world", em: "🌍", name: "World today", desc: em + " " + theme, css: true, open: "Let's talk about the world today. " + open,
     extra: `Today's world theme is "${theme}". You have no live news, so talk about the general situation, give one simple fact the student can use in the CSS exam, and ask for the student's opinion. Never invent specific recent events, dates or numbers.` };
 }
-function todayWord() { const [word, ur, example, emoji] = WORDS[dayNum() % WORDS.length]; return { word, ur, example, emoji }; }
+function todayWord() { const [word, mean, example, emoji] = WORDS[dayNum() % WORDS.length]; return { word, mean, example, emoji }; }
+const WORD_MEAN = Object.fromEntries(WORDS.map(([w, m]) => [w, m]));
+const isEnglish = (t) => !!t && !/[\u0600-\u06FF]/.test(t);
+// Older cards were saved with Urdu meanings; show an English meaning instead (or nothing).
+function cardMeaning(c) { if (isEnglish(c.mean)) return c.mean; if (isEnglish(c.ur)) return c.ur; return c.type === "word" ? WORD_MEAN[String(c.word).toLowerCase()] || "" : ""; }
 const INTERVALS = [0, 1, 3, 7, 16, 35]; // days per review box
 const DAY = 86400000;
 const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
@@ -587,11 +590,11 @@ function errText(e) {
     default: return "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
   }
 }
-const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is a total beginner from Pakistan who speaks Urdu and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
+const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is a total beginner from Pakistan (first language Urdu) who is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
 Rules:
 - Use very simple English (CEFR A1-A2). Short sentences. At most 2 short sentences, then ONE simple question so the student keeps talking.
 - Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
-- If the student writes Urdu or Roman Urdu, show them how to say it in English and ask them to repeat it.
+- Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say the sentence again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no JSON.`;
 
@@ -618,16 +621,16 @@ function renderTopics() {
 function renderWotd() {
   const w = todayWord(), box = $("wotd");
   box.style.setProperty("--h", hue(w.word));
-  box.innerHTML = `<div class="pic"></div><div class="body"><span class="k">Word of the day</span><span class="word"></span><span class="ur"></span><span class="ex"></span><div class="tools"></div></div>`;
+  box.innerHTML = `<div class="pic"></div><div class="body"><span class="k">Word of the day</span><span class="word"></span><span class="mean"></span><span class="ex"></span><div class="tools"></div></div>`;
   box.querySelector(".pic").textContent = w.emoji;
   box.querySelector(".word").textContent = w.word;
-  box.querySelector(".ur").textContent = w.ur;
+  box.querySelector(".mean").textContent = w.mean;
   box.querySelector(".ex").textContent = w.example;
   const tools = box.querySelector(".tools");
   const saved = state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === w.word);
   const save = tool(saved ? "✓ In your cards" : "+ Save card", () => {
     const now = Date.now();
-    const c = { id: now.toString(36) + "d", type: "word", word: w.word, ur: w.ur, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
+    const c = { id: now.toString(36) + "d", type: "word", word: w.word, mean: w.mean, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
     state.cards.unshift(c); putCard(c); renderCards(); renderDue(); renderWotd();
   });
   save.disabled = saved;
@@ -662,10 +665,10 @@ function addTutor(r) {
   const w = document.createElement("div"); w.className = "msg tutor";
   if (r.correction?.right) {
     const f = document.createElement("div"); f.className = "fix";
-    f.innerHTML = `<span class="w"></span><span class="r"></span><span class="ur"></span>`;
+    f.innerHTML = `<span class="w"></span><span class="r"></span><span class="mean"></span>`;
     f.querySelector(".w").textContent = r.correction.wrong || "";
     f.querySelector(".r").textContent = "✓ " + r.correction.right;
-    f.querySelector(".ur").textContent = r.correction.why_ur || "";
+    f.querySelector(".mean").textContent = r.correction.why || "";
     f.append(tool("🔊 Say it right", () => speak(r.correction.right, 0.8)));
     w.append(f);
   }
@@ -673,13 +676,13 @@ function addTutor(r) {
   const b = document.createElement("div"); b.className = "bubble"; b.textContent = r.reply; w.append(b);
   const tools = document.createElement("div"); tools.className = "tools";
   tools.append(tool("🔊 Again", () => speak(r.reply, 0.88)), tool("🐢 Slow", () => speak(r.reply, 0.6)));
-  const urBtn = tool("اردو Meaning", async () => {
+  const urBtn = tool("🧩 Simpler", async () => {
     if (!sample) return;
     urBtn.disabled = true; urBtn.textContent = "…";
     try {
-      const { text } = await sample(`Translate this English sentence into simple Urdu (Urdu script). Reply with only the translation.\n\n${r.reply}`, { modelTier: "quick" });
-      const u = document.createElement("div"); u.className = "ur"; u.textContent = text.trim(); tools.after(u); urBtn.remove();
-    } catch (e) { urBtn.disabled = false; urBtn.textContent = "اردو Meaning"; }
+      const { text } = await sample(`Rewrite this in very simple English for a total beginner (A1 level, short common words). Reply with only the rewritten words.\n\n${r.reply}`, { modelTier: "quick" });
+      const u = document.createElement("div"); u.className = "mean"; u.textContent = text.trim(); u.append(" ", tool("🔊", () => speak(text.trim(), 0.75))); tools.after(u); urBtn.remove();
+    } catch (e) { urBtn.disabled = false; urBtn.textContent = "🧩 Simpler"; }
   });
   if (sample) tools.append(urBtn);
   w.append(tools);
@@ -706,7 +709,7 @@ function attachFeedback(w, fb) {
   const panel = document.createElement("div"); panel.className = "fb"; panel.hidden = true;
   if (errs.length) {
     const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Mistakes"; panel.append(l);
-    errs.forEach((e) => { const d = document.createElement("div"); d.className = "err"; d.innerHTML = '<span class="w"></span><span class="r"></span><span class="ur"></span>'; d.children[0].textContent = e.wrong || ""; d.children[1].textContent = "✓ " + e.right; d.children[2].textContent = e.why_ur || ""; panel.append(d); });
+    errs.forEach((e) => { const d = document.createElement("div"); d.className = "err"; d.innerHTML = '<span class="w"></span><span class="r"></span><span class="mean"></span>'; d.children[0].textContent = e.wrong || ""; d.children[1].textContent = "✓ " + e.right; d.children[2].textContent = isEnglish(e.why) ? e.why : ""; panel.append(d); });
   }
   if (better.length) {
     const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Better ways to say it"; panel.append(l);
@@ -777,17 +780,17 @@ async function checkAnswer(meEl, text, lastQ) {
   meEl.append(tag);
   const known = state.cards.filter((c) => c.type === "word").map((c) => c.word).slice(0, 80).join(", ") || "none";
   try {
-    const r = await sample.json(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation.
+    const r = await sample.json(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu.
 Teacher asked: "${lastQ}"
 Student answered: "${text}"
 Reply with ONLY this JSON:
-{"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why_ur": "very short reason in Urdu script"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
+{"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
 "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items. "new_words" has 0 to 2 items and never repeats these known words: ${known}.`, { modelTier: "quick", cache: false });
     dbg("check_done");
     tag.remove();
     attachFeedback(meEl, r);
     const err0 = Array.isArray(r?.errors) ? r.errors.find((e) => e?.right) : null;
-    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why_ur: String(err0.why_ur || "") } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] });
+    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] });
   } catch (e) {
     dbg("check_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300) });
     tag.disabled = false; tag.textContent = "Check failed (" + (e?.code || "error") + ") · tap to retry";
@@ -804,12 +807,12 @@ function chatNote(msg, canRetry) {
 function saveCards(res) {
   const now = Date.now();
   if (res.correction) {
-    const c = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", ur: res.correction.why_ur || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: topic.name };
+    const c = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: topic.name };
     state.cards.unshift(c); putCard(c); sess.fixes.push(c);
   }
   res.new_words.forEach((w, i) => {
     if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
-    const c = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), ur: String(w.ur || ""), example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: topic.name };
+    const c = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: topic.name };
     state.cards.unshift(c); putCard(c); sess.newWords.push(c);
   });
   renderCards(); renderDue();
@@ -823,7 +826,7 @@ async function finish() {
   let rep = null;
   try {
     rep = await sample.json(`You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. Score the student's speaking for a beginner (be kind but honest).
-Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip_ur": "one practical tip for tomorrow in Urdu script", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
+Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for tomorrow in simple English", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
 
 Topic: ${topic.name}
 ${transcript.slice(-12000)}`, { modelTier: "default" });
@@ -848,7 +851,7 @@ function setLive(st) {
 }
 if (canHandsFree) {
   $("live").hidden = false;
-  $("hint").textContent = "Speak freely, Urdu words are OK. Tap your own message to see mistakes and better ways to say it.";
+  $("hint").textContent = "Speak freely in English. Tap your own message to see mistakes and better ways to say it.";
   $("micBtn").onclick = () => {
     if (rec) { try { rec.stop(); } catch {} return; } // tapping while listening sends what was heard
     if (hasTTS) speechSynthesis.cancel();
@@ -959,13 +962,13 @@ $("addForm").addEventListener("submit", async (e) => {
     if (imgs.length && !lim?.images) { status("Pictures can't be sent from this view. Paste the article text instead.", true); return; }
     if (lim?.images) imgs = imgs.slice(0, lim.images.maxCount);
     status("Mam is reading it… this can take up to a minute.");
-    const r = await sample.json(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
+    const r = await sample.json(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Write everything in simple English only, never Urdu. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
 Reply with ONLY JSON:
-{"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "ur": "a 4 to 6 sentence summary in Urdu script", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
+{"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
 Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default" });
     if (!r?.title || !r?.simple_en) throw { code: "invalid_json" };
     const now = Date.now();
-    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), ur: String(r.ur || ""), css_angle: String(r.css_angle || ""),
+    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), css_angle: String(r.css_angle || ""),
       words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6), questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), other_headlines: (Array.isArray(r.other_headlines) ? r.other_headlines : []).slice(0, 6).map(String) };
     state.library.unshift(it); putItem(it); addWords(it);
     files = []; pdfDoc = null; $("thumbs").innerHTML = ""; $("pdfPages").hidden = true; $("pasteIn").value = "";
@@ -980,7 +983,7 @@ function addWords(it) {
   const now = Date.now();
   (it.words || []).forEach((w, i) => {
     if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
-    const c = { id: now.toString(36) + "r" + i, type: "word", word: String(w.word), ur: String(w.ur || ""), example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
+    const c = { id: now.toString(36) + "r" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
     state.cards.unshift(c); putCard(c);
   });
   renderCards(); renderDue();
@@ -1005,12 +1008,11 @@ function renderLib(openId) {
     const t = document.createElement("div"); t.className = "tools";
     t.append(tool("🔊 Listen", () => speak(it.simple_en, 0.85)), tool("🐢 Slow", () => speak(it.simple_en, 0.65)));
     m.append(t);
-    add("ur", "اردو خلاصہ", it.ur);
     add("angle", "CSS angle", it.css_angle);
     if (it.words?.length) {
       const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Key words (saved to your cards)"; m.append(l);
       const c = document.createElement("div"); c.className = "chips";
-      it.words.forEach((w) => { const ch = document.createElement("button"); ch.type = "button"; ch.className = "chip"; ch.style.border = "0"; ch.style.setProperty("--h", hue(w.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = w.emoji || "✨"; ch.lastChild.textContent = w.word + " · " + (w.ur || ""); ch.onclick = () => speak(w.word + ". " + (w.example || ""), 0.8); c.append(ch); });
+      it.words.forEach((w) => { const ch = document.createElement("button"); ch.type = "button"; ch.className = "chip"; ch.style.border = "0"; ch.style.setProperty("--h", hue(w.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = w.emoji || "✨"; ch.lastChild.textContent = w.word + (isEnglish(w.meaning) ? " · " + w.meaning : ""); ch.onclick = () => speak(w.word + ". " + (w.example || ""), 0.8); c.append(ch); });
       m.append(c);
     }
     if (it.questions?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Think and answer"; m.append(l); const ol = document.createElement("ol"); it.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ol.append(li); }); m.append(ol); }
@@ -1039,10 +1041,10 @@ function renderCards() {
   list.forEach((c) => {
     const b = document.createElement("button"); b.type = "button"; b.className = "card" + (c.type === "fix" ? " fixcard" : "");
     b.style.setProperty("--h", hue(c.word));
-    b.innerHTML = `<div class="pic"></div><div class="body"><span class="word"></span><span class="ur"></span><span class="ex"></span></div>`;
+    b.innerHTML = `<div class="pic"></div><div class="body"><span class="word"></span><span class="mean"></span><span class="ex"></span></div>`;
     b.querySelector(".pic").textContent = c.emoji;
     b.querySelector(".word").textContent = c.word;
-    b.querySelector(".ur").textContent = c.ur;
+    b.querySelector(".mean").textContent = cardMeaning(c);
     b.querySelector(".ex").textContent = c.type === "fix" ? (c.wrong ? "Not: " + c.wrong : "") : c.example;
     b.onclick = () => speak(c.type === "fix" ? c.word : c.word + ". " + c.example, 0.8);
     g.append(b);
@@ -1066,10 +1068,10 @@ function renderReview() {
   }
   const c = due[0];
   const f = document.createElement("div"); f.className = "flash"; f.style.setProperty("--h", hue(c.word));
-  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="ur"></span><div class="row"><button class="btn primary" type="button">Show answer</button></div></div>`;
+  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="mean"></span><div class="row"><button class="btn primary" type="button">Show answer</button></div></div>`;
   f.querySelector(".pic").textContent = c.emoji;
   f.querySelector(".sub").textContent = (c.type === "fix" ? "Say this sentence correctly:  " + c.wrong : "Say the English word for this, then use it in a sentence.") + "   (" + due.length + " left)";
-  f.querySelector(".ur").textContent = c.ur;
+  f.querySelector(".mean").textContent = cardMeaning(c);
   const row = f.querySelector(".row");
   row.firstChild.onclick = () => {
     const a = document.createElement("div"); a.className = "answer"; a.textContent = c.word;
@@ -1116,16 +1118,16 @@ function renderProgress() {
     wk.append(el);
   });
   const rp = $("reports"); rp.innerHTML = "";
-  if (!state.sessions.length) { rp.innerHTML = `<div class="empty"><span class="big">📝</span><strong>No reports yet</strong><span>Finish a talk to get your score, mistakes to fix and a tip in Urdu.</span></div>`; return; }
+  if (!state.sessions.length) { rp.innerHTML = `<div class="empty"><span class="big">📝</span><strong>No reports yet</strong><span>Finish a talk to get your score, mistakes to fix and a tip for tomorrow.</span></div>`; return; }
   state.sessions.slice(0, 15).forEach((s) => {
     const r = document.createElement("div"); r.className = "report";
-    r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="wd"></div><div class="wo"></div><div class="ur"></div><div class="ul"></div>`;
+    r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="wd"></div><div class="wo"></div><div class="mean"></div><div class="ul"></div>`;
     r.querySelector(".score").textContent = s.score ? s.score + "/10" : s.em;
     r.querySelector("h3").textContent = s.em + " " + s.topic + (s.level ? " · " + s.level : "");
     r.querySelector(".when").textContent = new Date(s.date).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) + " · " + s.min + " min · " + s.words + " words · " + s.newCards + " new cards";
     if (s.did_well?.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
     (s.work_on || []).forEach((w) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span>'; f.firstChild.textContent = w.wrong; f.lastChild.textContent = "✓ " + w.right; r.querySelector(".wo").append(f); });
-    r.querySelector(".ur").textContent = s.tip_ur || "";
+    r.querySelector(".mean").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
     if (s.useful_line) { const u = r.querySelector(".ul"); u.innerHTML = "<strong>Interview line to learn: </strong><span></span>"; u.lastChild.textContent = s.useful_line; u.append(" ", tool("🔊", () => speak(s.useful_line, 0.8))); }
     rp.append(r);
   });
