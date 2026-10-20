@@ -7,6 +7,7 @@
   const seed = window.__seed || {
     "data/users/u_test": {
       meta: { sessions: [{ id: "s1", date: now - 86400000, topic: "My city", em: "🏙️", min: 3, words: 40, newCards: 1, score: 6 }], days: { [today]: { min: 2, words: 30 } }, settings: { voice: true, goal: 10 } },
+      chat_cold: { id: "cold", kind: "talk", topic: { id: "city", em: "🏙️", name: "My city", desc: "Places and food", open: "Which city do you live in?", extra: "", css: false, kind: "talk" }, started: now - 2 * 86400000, updated: now - 2 * 86400000, turns: [{ role: "assistant", content: "Which city do you live in?" }, { role: "user", content: "I live in Karachi", fb: { verdict: "great", errors: [], better: [{ label: "More natural", text: "I live in Karachi." }] } }, { role: "assistant", content: "Nice! What is Karachi famous for?" }], words: 4, min: 0.5, newCards: 0 },
       card_a1: { id: "a1", type: "word", word: "economy", ur: "معیشت", example: "The economy is growing.", emoji: "💰", box: 0, due: now - 1000, created: now - 5000, topic: "Word of the day" },
     },
     library: {},
@@ -34,7 +35,7 @@
   });
   const db = Object.freeze({ collection, doc: (p) => { const i = p.lastIndexOf("/"); return collection(p.slice(0, i)).doc(p.slice(i + 1)); } });
   const user = Object.freeze({ id: async () => "u_test", me: async () => ({ id: "u_test", name: "" }), isOwner: async () => true, canEdit: async () => true, can: () => true, profiles: async () => ({}) });
-  const permissions = Object.freeze({ state: async () => "granted", request: async () => ({}), manage: async () => {} });
+  const permissions = Object.freeze({ state: async () => "granted", request: async () => ({}), manage: async () => { window.__managed = (window.__managed || 0) + 1; } });
 
   const replyFor = (prompt) => {
     if (/exactly the word OK/.test(prompt)) return "OK";
@@ -64,6 +65,7 @@
     const prompt = flat(input);
     window.__calls.push({ prompt: prompt.slice(0, 200), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
     if (window.__failNext) { const c = window.__failNext; window.__failNext = null; throw { code: c, message: "forced " + c }; }
+    if (window.__hangNext) { window.__hangNext = false; await new Promise((_, rej) => opts.signal?.addEventListener("abort", () => rej({ code: "cancelled", message: "aborted" }))); }
     await new Promise((r) => setTimeout(r, 30));
     if (opts.signal?.aborted) throw { code: "cancelled", message: "aborted" };
     const text = replyFor(prompt);
@@ -71,7 +73,7 @@
     return text;
   };
   const sample = async (input, opts) => ({ text: await run(input, opts), truncated: false });
-  sample.json = async (input, opts) => { const t = await run(input, opts); try { return JSON.parse(t); } catch { throw { code: "invalid_json", message: "no json", text: t }; } };
+  sample.json = async (input, opts) => { if (window.__noJson) throw { code: "capability_removed", message: "no json" }; const t = await run(input, opts); try { return JSON.parse(t); } catch { throw { code: "invalid_json", message: "no json", text: t }; } };
   sample.limits = async () => ({ maxPromptBytes: 262144, images: { maxCount: 20, maxInputBytes: 5e6, mediaTypes: ["image/jpeg", "image/png"] } });
   Object.freeze(sample);
   const caps = { sample, db, user, permissions };

@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Bolo English">
 <meta name="theme-color" content="#0d7a4c">
-<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
 <body>
 <title>Bolo English</title>
@@ -100,13 +100,14 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .tutor .bubble { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
 .me .bubble { background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 6px; }
 .tools { display: flex; gap: 6px; flex-wrap: wrap; }
-.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 4px 10px; font-size: 13px; }
+.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 8px 12px; min-height: 36px; font-size: 13px; }
+#chat .chatbar { position: sticky; top: 0; z-index: 2; background: var(--bg); padding-block: 6px; }
 .fix { background: var(--surface); border: 1px dashed var(--bad); border-radius: 14px; padding: 10px 12px; font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
 .fix .w { color: var(--bad); text-decoration: line-through; }
 .fix .r { color: var(--good); font-weight: 700; }
 .praise { color: var(--good); font-size: 14px; font-weight: 700; }
 .me .bubble { cursor: pointer; }
-.verdict { border: 0; background: none; padding: 0 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.verdict { border: 0; background: none; padding: 10px 6px; min-height: 44px; font-size: 14px; font-weight: 700; color: var(--muted); }
 .verdict.great { color: var(--good); }
 .verdict.fix { color: var(--bad); }
 .fb { align-self: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 15px; color: var(--fg); }
@@ -515,57 +516,78 @@ function putMeta() {
   metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
 }
 let libCol = null; // "library": readings, also filled by Claude from chat uploads
-let dbgCol = null, dbgQueue = [];
+let dbgCol = null, dbgRows = [], dbgTimer = 0;
+const visitId = "v" + Date.now().toString(36);
 // Documents from the store arrive frozen; the app edits its state in place, so always work on a copy.
 const thaw = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
-// Step log so Claude can read what happened on the learner's phone (owner-only "debug" collection).
+// Step log so Claude can read what happened on the learner's phone: one owner-only document per visit,
+// at most 150 rows, and visits older than a week are deleted, so the store never fills up.
 function dbg(step, extra) {
-  const row = { t: Date.now(), step, ...(extra || {}) };
-  if (dbgCol) dbgCol.add(row).catch(() => {}); else if (dbgQueue.length < 50) dbgQueue.push(row);
+  dbgRows.push({ t: Date.now(), step, ...(extra || {}) }); if (dbgRows.length > 150) dbgRows.shift();
+  clearTimeout(dbgTimer); dbgTimer = setTimeout(() => { if (dbgCol) dbgCol.doc(visitId).set({ t: Date.now(), rows: dbgRows }).catch(() => {}); }, 1500);
 }
 window.addEventListener("error", (e) => dbg("page_error", { message: String(e.message || "").slice(0, 300), line: e.lineno || 0 }));
 window.addEventListener("unhandledrejection", (e) => dbg("unhandled", { message: String(e.reason?.message || e.reason?.code || e.reason || "").slice(0, 300) }));
-function putItem(it) { saveLocal(); if (libCol) libCol.doc(it.id).set(it).catch(() => {}); }
+const pendingLib = new Set();
+function putItem(it) { saveLocal(); if (!libCol) return; pendingLib.add(it.id); libCol.doc(it.id).set(it).then(() => pendingLib.delete(it.id), () => {}); }
 function delItem(it) { state.library = state.library.filter((x) => x.id !== it.id); saveLocal(); if (libCol) libCol.doc(it.id).delete().catch(() => {}); renderLib(); }
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+// The store can be briefly unavailable on a weak connection: retry once after a short random pause.
+async function getRetry(q) { try { return await q.get(); } catch (e) { await pause(500 + Math.random() * 1000); return q.get(); } }
+let cardsReady = false; // true once this person's saved cards are loaded, so word cards are never made twice
+// Articles Claude adds from chat arrive only through the store: give them their word cards once.
+function libraryWords() { if (!cardsReady) return; state.library.forEach((x) => { if (!x.cardsMade) { addWords(x); x.cardsMade = true; putItem(x); } }); }
+function onLibrary(snap) {
+  const docs = snap.docs.map((d) => ({ ...thaw(d.data()), id: d.id }));
+  const ids = new Set(docs.map((x) => x.id));
+  const next = [...docs, ...state.library.filter((x) => !ids.has(x.id) && pendingLib.has(x.id))].sort((a, b) => b.created - a.created);
+  const changed = JSON.stringify(next) !== JSON.stringify(state.library);
+  state.library = next;
+  if (changed) { saveLocal(); renderLib(); }
+  libraryWords();
+}
 async function connectDb() {
-  try {
-    const [db, user] = await Promise.all([use("db"), use("user")]);
-    if (db) {
-      libCol = db.collection("library");
-      dbgCol = db.collection("debug"); dbgQueue.splice(0).forEach((r) => dbgCol.add(r).catch(() => {}));
-      dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 11 });
-      libCol.onSnapshot((snap) => {
-        const byId = new Map(state.library.map((x) => [x.id, x]));
-        snap.docs.forEach((d) => byId.set(d.id, { ...thaw(d.data()), id: d.id }));
-        state.library = [...byId.values()].sort((a, b) => b.created - a.created);
-        saveLocal(); renderLib();
-      }, () => {});
-    }
-    if (!db || !user) return;
-    const uid = await user.id();
-    if (!uid) return;
-    col = db.collection("data/users/" + uid);
-    const snap = await col.get();
-    if (snap.empty) { // first time on the account: copy anything this browser already has
-      state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true)); putMeta(); return;
-    }
-    const cards = [], chats = []; let meta = null;
-    snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); else if (d.id.startsWith("chat_")) chats.push(thaw(d.data())); });
-    // Keep whichever copy of a chat is newer; the open chat object is updated in place so the screen keeps working.
-    const byChat = new Map(state.chats.map((c) => [c.id, c]));
-    chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) Object.assign(l, c); else byChat.set(c.id, c); } });
-    state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true); });
-    state.chats = [...byChat.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
-    const byId = new Map(cards.map((c) => [c.id, c]));
-    state.cards.forEach((c) => { if (!byId.has(c.id)) { byId.set(c.id, c); putCard(c); } });
-    state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
-    if (meta) {
-      state.sessions = meta.sessions || state.sessions;
-      state.days = { ...state.days, ...(meta.days || {}) };
-      state.settings = { ...state.settings, ...(meta.settings || {}) };
-    }
-    saveLocal(); renderAll();
-  } catch { col = null; }
+  const [db, user] = await Promise.all([use("db"), use("user")]).catch(() => [null, null]);
+  if (db) {
+    libCol = db.collection("library");
+    dbgCol = db.collection("debug");
+    dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 12 });
+    libCol.onSnapshot(onLibrary, () => {});
+    getRetry(dbgCol).then((sn) => sn.docs.forEach((d) => { if ((d.data()?.t || 0) < Date.now() - 7 * DAY) dbgCol.doc(d.id).delete().catch(() => {}); })).catch(() => {});
+  }
+  if (!db || !user) { cardsReady = true; libraryWords(); return; }
+  let uid = null;
+  try { uid = await user.id(); } catch {}
+  if (!uid) { cardsReady = true; libraryWords(); return; }
+  col = db.collection("data/users/" + uid);
+  let snap;
+  try { snap = await getRetry(col); }
+  catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; } // writes still go to the store meanwhile
+  cardsReady = true;
+  if (snap.empty) { // first time on the account: copy anything this browser already has
+    state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true)); putMeta(); libraryWords(); return;
+  }
+  const cards = [], chats = []; let meta = null;
+  snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); else if (d.id.startsWith("chat_")) chats.push(thaw(d.data())); });
+  // Keep whichever copy of a chat is newer; the open chat object is updated in place so the screen keeps working.
+  const byChat = new Map(state.chats.map((c) => [c.id, c]));
+  chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) Object.assign(l, c); else byChat.set(c.id, c); } });
+  state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true); });
+  state.chats = [...byChat.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
+  const byId = new Map(cards.map((c) => [c.id, c]));
+  state.cards.forEach((c) => { const sc = byId.get(c.id); if (!sc) { byId.set(c.id, c); putCard(c); } else if ((c.due || 0) > (sc.due || 0)) { byId.set(c.id, c); putCard(c); } });
+  state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
+  if (meta) {
+    // Union, never replace: a visit that could not reach the store must not lose its minutes or reports.
+    const ses = new Map([...(meta.sessions || []), ...state.sessions].map((x) => [x.id, x]));
+    state.sessions = [...ses.values()].sort((a, b) => (b.date || 0) - (a.date || 0)).slice(0, 40);
+    const days = { ...(meta.days || {}) };
+    for (const [d, v] of Object.entries(state.days)) { const o = days[d]; days[d] = o ? { min: Math.max(o.min || 0, v.min || 0), words: Math.max(o.words || 0, v.words || 0) } : v; }
+    state.days = days;
+    state.settings = { ...state.settings, ...(meta.settings || {}) };
+    putMeta();
+  }
+  saveLocal(); renderAll(); libraryWords();
 }
 
 function logTime(ms, words) {
@@ -587,18 +609,25 @@ function streak() {
 let voice = null;
 function pickVoice() {
   const vs = speechSynthesis.getVoices().filter((v) => /^en[-_]/i.test(v.lang));
-  voice = vs.find((v) => /Samantha|Karen|Daniel|Google UK English Female|Google US English/i.test(v.name)) || vs.find((v) => /en[-_](US|GB)/i.test(v.lang)) || vs[0] || null;
+  for (const n of ["Samantha", "Google US English", "Karen", "Moira", "Tessa", "Google UK English Female", "Serena", "Martha"]) { const v = vs.find((x) => x.name.startsWith(n)); if (v) { voice = v; return; } }
+  const male = /Daniel|Rishi|Fred|Albert|Aaron|Arthur|Gordon|Ralph|Junior|Bad News|Bells|Boing|Bubbles|Cellos|Wobble|Zarvox|Trinoids|Whisper|Organ|Jester|Superstar/i;
+  voice = vs.find((v) => /en[-_]US/i.test(v.lang) && !male.test(v.name)) || vs.find((v) => /en[-_]GB/i.test(v.lang) && !male.test(v.name)) || vs[0] || null;
 }
 const hasTTS = "speechSynthesis" in window;
 if (hasTTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+let curU = null, ttsPrimed = false;
+// Stop speaking without firing the old line's callbacks (a cancelled line must not reopen the mic).
+function hush() { if (!hasTTS) return; if (curU) { curU.onend = curU.onerror = null; curU = null; } speechSynthesis.cancel(); }
+// iOS only lets a page speak after one utterance started inside a tap; call this from tap handlers.
+function primeTTS() { if (ttsPrimed || !hasTTS) return; try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); ttsPrimed = true; } catch {} }
 function speak(text, rate = 0.88, onend, pitch = 1) {
   if (!hasTTS) { onend?.(); return; }
-  speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
+  hush(); ttsPrimed = true;
+  const u = new SpeechSynthesisUtterance(text); curU = u;
   if (voice) u.voice = voice;
   u.lang = voice?.lang || "en-US"; u.rate = rate; u.pitch = pitch;
   if (onend) setLive("speaking");
-  u.onend = () => onend?.(); u.onerror = () => onend?.();
+  u.onend = () => { if (curU === u) curU = null; onend?.(); }; u.onerror = (e) => { if (curU === u) curU = null; if (e?.error !== "interrupted" && e?.error !== "canceled") onend?.(); };
   speechSynthesis.speak(u);
 }
 
@@ -662,7 +691,14 @@ function aiBanner() {
   $("goKey").onclick = () => { show("history"); $("keyIn").focus(); };
 }
 const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); aiBanner(); return sample; });
-function errText(e) {
+// Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
+const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
+  if (e?.code !== "capability_removed") throw e;
+  const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
+  return parseLoose(text);
+});
+const PERMANENT = new Set(["sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function errText(e, where) {
   switch (e?.code) {
     case "not_granted": return "Mam needs permission to use Claude. Allow it from this page's Permissions menu, then try again.";
     case "rate_limited": case "queue_overflow": return "Too many messages at once. Wait a minute, then send again.";
@@ -671,7 +707,12 @@ function errText(e) {
     case "offline": return "No internet connection. Check your connection and try again.";
     case "timeout": return "Mam took too long to answer.";
     case "cancelled": return "";
-    default: return "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
+    case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view (" + e.code + "). Open the page on claude.ai in Safari, or update the Claude app.";
+    case "image_rejected": return "One of the pictures could not be read. Try a different screenshot.";
+    case "prompt_too_large": return "This is too long. Choose fewer pages or paste a shorter part.";
+    case "refused": case "empty_completion": return where === "read" ? "Mam could not use this text. Try a different article or page." : "Mam could not answer that. Try saying it in a different way.";
+    case "invalid_json": return where === "read" ? "Mam could not read this clearly. Try clearer screenshots or fewer pages." : "Mam's answer came back in the wrong shape. Try again.";
+    default: return where === "read" ? "Mam could not read this (" + (e?.code || "error") + "). Tap Make it simple to try again." : "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
   }
 }
 const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is a total beginner from Pakistan (first language Urdu) who is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
@@ -814,11 +855,12 @@ function startTopic(t) {
   sess = { last: Date.now() };
   show("talk"); enterChat();
   addTutor({ reply: t.open });
-  if (canHandsFree) handsFree = true; else $("input").focus();
+  if (canHandsFree) handsFree = true; // no auto-focus: the iOS keyboard would push Mam's first question off screen
+  primeTTS();
   if (state.settings.voice) speakLine(t.open, afterSpeak); else afterSpeak();
 }
 function openChat(c) {
-  stopListening(); ctl?.abort(); if (hasTTS) speechSynthesis.cancel();
+  stopListening(); ctl?.abort(); hush();
   topic = c.topic; chat = c; sess = { last: Date.now() };
   show("talk"); enterChat();
   c.turns.forEach((tn, i) => {
@@ -832,7 +874,7 @@ function openChat(c) {
   scrollDown();
 }
 function endChat() {
-  stopListening(); if (hasTTS) speechSynthesis.cancel(); ctl?.abort();
+  stopListening(); hush(); ctl?.abort();
   topic = null; chat = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
   renderTopics();
 }
@@ -893,7 +935,7 @@ async function send(retryEl) {
   const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
   dbg("send_called", { len: text.length, busy, hasTopic: !!t, retry: !!retryEl });
   if (!text || busy || !c) return;
-  if (hasTTS && speechSynthesis.speaking) speechSynthesis.cancel();
+  hush();
   await aiReady;
   if (c !== chat) return;
   if (!sample) { chatNote(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (History, Settings).", false); return; }
@@ -916,10 +958,14 @@ async function send(retryEl) {
   busy = true; $("sendBtn").disabled = true;
   const wait = document.createElement("div"); wait.className = "msg tutor";
   wait.innerHTML = '<div class="bubble typing">' + (t.kind === "interview" ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
-  const slow = setTimeout(() => { if (wait.isConnected && !wait.dataset.got) wait.firstChild.textContent = "Still waiting… If a box asks you to allow Claude, tap Allow."; }, 7000);
   const myCtl = (ctl = new AbortController());
-  let timedOut = false;
-  const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 90000);
+  let timedOut = false, replied = false, stopped = false;
+  const slow = setTimeout(() => {
+    if (!wait.isConnected || wait.dataset.got) return;
+    wait.firstChild.textContent = "Still waiting… If a box asks you to allow Claude, tap Allow.";
+    wait.append(tool("■ Stop", () => { stopped = true; myCtl.abort(); }));
+  }, 7000);
+  const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 180000);
   setLive("thinking");
   try {
     dbg("reply_call_start", { turns: c.turns.length, hasSample: !!sample, kind: c.kind });
@@ -933,17 +979,22 @@ async function send(retryEl) {
     const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
     c.turns.push({ role: "assistant", content: line }); putChat(c);
     if (c === chat) {
-      addTutor({ reply: line });
+      addTutor({ reply: line }); replied = true;
       if (t.kind === "interview" && /interview is over/i.test(line)) boardDone();
       if (state.settings.voice) speakLine(line, afterSpeak); else setTimeout(afterSpeak, 50);
     }
   } catch (e) {
     dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300), timedOut });
     wait.remove();
-    const m = errText(timedOut ? { code: "timeout" } : e);
-    if (m && c === chat) { markNotSent(meEl); chatNote(m, false); } else setLive("idle");
+    const code = timedOut ? "timeout" : e?.code;
+    if (c === chat) {
+      if (code === "not_granted") { markNotSent(meEl); chatNote(errText(e), false, allowAction(() => send(meEl))); }
+      else if (PERMANENT.has(code)) chatNote(errText(e), false);
+      else if (code === "cancelled") { if (stopped) markNotSent(meEl); setLive("idle"); }
+      else { markNotSent(meEl); chatNote(errText({ code }), false); }
+    } else setLive("idle");
   } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
-  if (!turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // after the reply, so the two calls never compete
+  if (replied && !turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // only after a real reply, so the two calls never compete
 }
 function boardDone() {
   const d = document.createElement("div"); d.className = "banner retry";
@@ -958,7 +1009,7 @@ async function checkAnswer(meEl, text, lastQ, turn, c) {
   meEl.append(tag);
   const known = state.cards.filter((x) => x.type === "word").map((x) => x.word).slice(0, 80).join(", ") || "none";
   try {
-    const r = await sample.json(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu.
+    const r = await askJson(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu.
 Question: "${lastQ}"
 Student answered: "${text}"
 Reply with ONLY this JSON:
@@ -968,7 +1019,9 @@ Reply with ONLY this JSON:
     tag.remove();
     const fb = { verdict: String(r?.verdict || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] };
     if (turn) { turn.fb = fb; putChat(c); }
+    const m = $("main"), atEnd = m.scrollHeight - m.scrollTop - m.clientHeight < 120;
     attachFeedback(meEl, fb);
+    if (atEnd && c === chat) scrollDown(); // keep Mam's newest question in view below the corrections
     const err0 = fb.errors[0];
     saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] }, c);
   } catch (e) {
@@ -977,12 +1030,21 @@ Reply with ONLY this JSON:
     tag.onclick = () => checkAnswer(meEl, text, lastQ, turn, c);
   }
 }
-function chatNote(msg, canRetry) {
+function chatNote(msg, canRetry, action) {
   stopListening();
   const d = document.createElement("div"); d.className = "banner warn retry retrybox";
   const sp = document.createElement("span"); sp.textContent = msg; d.append(sp);
   if (canRetry) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Try again"; b.onclick = () => { d.remove(); send(); }; d.append(b); }
+  if (action) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = action.label; b.onclick = () => action.fn(d); d.append(b); }
   $("msgs").append(d); scrollDown();
+}
+// After a "Don't allow", only the Permissions panel can turn Claude back on; offer it as a button.
+function allowAction(retry) {
+  return { label: "Allow Claude", fn: async (box) => {
+    const pm = await use("permissions");
+    try { await pm?.manage(); } catch { box.querySelector("span").textContent = "Open the menu at the top of this page, choose Permissions, and allow Claude. Then try again."; return; }
+    if ((await pm?.state("sample")) === "granted") { box.remove(); retry(); }
+  } };
 }
 function saveCards(res, c) {
   const now = Date.now(), from = c?.topic?.name || "Talk";
@@ -1001,16 +1063,17 @@ function saveCards(res, c) {
 async function finish() {
   const c = chat, t = topic;
   if (!c || busy) return;
-  stopListening(); if (hasTTS) speechSynthesis.cancel();
+  stopListening(); hush();
   if (c.turns.filter((x) => x.role === "user").length < 2) { chatNote("Say at least two things first, then tap " + $("finishBtn").textContent + " for your report.", false); return; }
   await aiReady;
   if (!sample) { chatNote("The report needs Mam's connection. Check History, Settings.", false); return; }
   busy = true; $("finishBtn").disabled = true; const label = $("finishBtn").textContent; $("finishBtn").textContent = "Scoring…";
+  const myCtl = (ctl = new AbortController());
   const board = t.kind === "interview";
   const transcript = c.turns.map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   let rep = null;
   try {
-    rep = await sample.json(board
+    rep = await askJson(board
       ? `You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a beginner English speaker from Pakistan. Judge it kindly but honestly, as a real board would, and focus on spoken fluency. Write in simple English only.
 Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for next week's interview", "useful_line": "one strong, simple sentence the candidate can use in the real interview"}
 
@@ -1019,9 +1082,10 @@ ${transcript.slice(-14000)}`
 Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for tomorrow in simple English", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
 
 Topic: ${t.name}
-${transcript.slice(-12000)}`, { modelTier: "default" });
-  } catch (e) { dbg("report_error", { code: String(e?.code || "none") }); }
-  busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label;
+${transcript.slice(-12000)}`, { modelTier: "default", signal: myCtl.signal });
+  } catch (e) { dbg("report_error", { code: String(e?.code || "none") }); if (e?.code === "not_granted" && c === chat) { chatNote(errText(e), false, allowAction(finish)); rep = "shown"; } }
+  finally { busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label; }
+  if (rep === "shown") return;
   if (!rep || typeof rep !== "object") { if (c === chat) chatNote("The report could not be made this time. Tap " + label + " again.", false); return; }
   c.report = { ...rep, date: Date.now() }; putChat(c, true);
   if (c === chat) { $("msgs").querySelectorAll(".report").forEach((x) => x.remove()); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
@@ -1066,7 +1130,7 @@ if (canHandsFree) {
   $("hint").textContent = "Speak freely in English. Tap your own message to see mistakes and better ways to say it.";
   $("micBtn").onclick = () => {
     if (rec) { try { rec.stop(); } catch {} return; } // tapping while listening sends what was heard
-    if (hasTTS) speechSynthesis.cancel();
+    hush();
     handsFree = true; startListening();
   };
 }
@@ -1085,7 +1149,7 @@ function startListening() {
   } catch { rec = null; setLive("idle"); }
 }
 function stopListening() { handsFree = false; clearTimeout(silenceT); try { rec?.abort(); } catch {} rec = null; setLive("idle"); }
-function afterSpeak() { if (handsFree && !rec && topic && !busy) startListening(); else setLive("idle"); }
+function afterSpeak() { if (rec) return; if (handsFree && topic && !busy) startListening(); else setLive("idle"); }
 
 // ---------- cards ----------
 // ---------- read ----------
@@ -1133,15 +1197,18 @@ $("fileIn").addEventListener("change", async () => {
   files.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
   if (files.length) status(files.length + " screenshot" + (files.length > 1 ? "s" : "") + " ready.");
 });
+// Canvases are released right after use: iOS kills the page when canvas memory runs out.
+const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
 function shrink(source, w, h) {
   const scale = Math.min(1, 1800 / Math.max(w, h));
   const c = document.createElement("canvas"); c.width = Math.round(w * scale); c.height = Math.round(h * scale);
   c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
-  return new Promise((ok) => c.toBlob(ok, "image/jpeg", 0.85));
+  return toJpeg(c);
 }
 async function imageBlob(file) {
   const bmp = await createImageBitmap(file).catch(() => null);
-  return bmp ? shrink(bmp, bmp.width, bmp.height) : file;
+  if (!bmp) return file;
+  try { return await shrink(bmp, bmp.width, bmp.height); } finally { bmp.close?.(); }
 }
 async function pdfContent() {
   const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 9);
@@ -1151,10 +1218,11 @@ async function pdfContent() {
     const tc = await page.getTextContent();
     const t = tc.items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
     if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
-    const vp = page.getViewport({ scale: 1.6 }); // a scanned page has no text, so send its picture
-    const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height;
+    const v1 = page.getViewport({ scale: 1 }); // a scanned page has no text, so send its picture
+    const vp = page.getViewport({ scale: Math.min(1.6, 1800 / Math.max(v1.width, v1.height)) });
+    const c = document.createElement("canvas"); c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
     await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
-    imgs.push(await shrink(c, c.width, c.height));
+    imgs.push(await toJpeg(c)); page.cleanup();
   }
   return { text, imgs, pages: from + "-" + to };
 }
@@ -1169,18 +1237,22 @@ $("addForm").addEventListener("submit", async (e) => {
   try {
     let text = pasted, imgs = [], pages = "";
     if (pdfDoc) { status("Reading the PDF pages…"); const r = await pdfContent(); text = (r.text + "\n\n" + pasted).trim(); imgs = r.imgs; pages = r.pages; }
-    else if (files.length) { status("Preparing screenshots…"); imgs = await Promise.all(files.map(imageBlob)); }
     const lim = await sample.limits().catch(() => null);
+    if (!pdfDoc && files.length) {
+      status("Preparing screenshots…");
+      const ok = (f) => inClaude && lim?.images && lim.images.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes;
+      for (const f of files) imgs.push(ok(f) ? f : await imageBlob(f)); // one at a time; Claude shrinks accepted files itself
+    }
     if (imgs.length && !lim?.images) { status("Pictures can't be sent from this view. Paste the article text instead.", true); return; }
     if (lim?.images) imgs = imgs.slice(0, lim.images.maxCount);
     status("Mam is reading it… this can take up to a minute.");
-    const r = await sample.json(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Write everything in simple English only, never Urdu. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
+    const r = await askJson(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Write everything in simple English only, never Urdu. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
 Reply with ONLY JSON:
 {"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
 Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default" });
     if (!r?.title || !r?.simple_en) throw { code: "invalid_json" };
     const now = Date.now();
-    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), css_angle: String(r.css_angle || ""),
+    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, cardsMade: true, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), css_angle: String(r.css_angle || ""),
       words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6), questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), other_headlines: (Array.isArray(r.other_headlines) ? r.other_headlines : []).slice(0, 6).map(String) };
     state.library.unshift(it); putItem(it); addWords(it);
     files = []; pdfDoc = null; $("thumbs").innerHTML = ""; $("pdfPages").hidden = true; $("pasteIn").value = "";
@@ -1188,7 +1260,7 @@ Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { ima
     libFilter = "all"; document.querySelectorAll("#libSeg button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.k === "all")));
     renderLib(it.id);
   } catch (err) {
-    status(err?.code === "invalid_json" ? "Mam could not read this clearly. Try clearer screenshots or fewer pages." : errText(err) || "Stopped.", true);
+    status(errText(err, "read") || "Stopped.", true); if (err?.code === "not_granted") status("Mam needs permission to use Claude. Open this page's Permissions menu and allow Claude, then try again.", true);
   } finally { $("processBtn").disabled = false; }
 });
 function addWords(it) {
@@ -1202,6 +1274,7 @@ function addWords(it) {
 }
 function renderLib(openId) {
   const box = $("lib"); if (!box) return;
+  const open = new Set([...box.querySelectorAll("details[open]")].map((d) => d.dataset.id)); if (openId) open.add(openId);
   const list = state.library.filter((x) => libFilter === "all" || x.kind === libFilter);
   box.innerHTML = "";
   if (!list.length) {
@@ -1209,7 +1282,7 @@ function renderLib(openId) {
     return;
   }
   list.forEach((it) => {
-    const d = document.createElement("details"); d.className = "item"; d.style.setProperty("--h", hue(it.title)); if (it.id === openId) d.open = true;
+    const d = document.createElement("details"); d.className = "item"; d.dataset.id = it.id; d.style.setProperty("--h", hue(it.title)); if (open.has(it.id)) d.open = true;
     d.innerHTML = `<summary><div class="pic"></div><div style="min-width:0"><div class="meta"></div><div class="ttl"></div></div></summary><div class="more"></div>`;
     d.querySelector(".pic").textContent = it.emoji;
     d.querySelector(".meta").textContent = (KIND[it.kind] || "Reading") + " · " + it.source + " · " + new Date(it.created).toLocaleDateString(undefined, { day: "numeric", month: "short" });
@@ -1326,7 +1399,7 @@ function renderReview() {
     let res = null; await aiReady;
     if (sample) {
       try {
-        res = await sample.json(`A beginner English learner is practising the word "${c.word}" (meaning: ${cardMeaning(c) || "see the word"}). They said: "${said}". Ignore capital letters and punctuation (voice dictation). Write in simple English only.
+        res = await askJson(`A beginner English learner is practising the word "${c.word}" (meaning: ${cardMeaning(c) || "see the word"}). They said: "${said}". Ignore capital letters and punctuation (voice dictation). Write in simple English only.
 Reply with ONLY JSON: {"used_word": true if they used "${c.word}" or a form of it (plural, past tense, etc.), "correct": true if the sentence is correct English, "fixed": "the corrected sentence (the same as theirs if it is correct)", "note": "very short encouragement or tip"}`, { modelTier: "quick", cache: false });
       } catch {}
     }
@@ -1429,7 +1502,7 @@ async function evaluateMinute(at, prev) {
   minBusy = true;
   const rec = minRec;
   try {
-    const r = await sample.json(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
+    const r = await askJson(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
 Question: "${rec.topic.name}"
 ${rec.topic.ctx ? "The question is about this article: " + rec.topic.ctx.slice(0, 3000) + "\n" : ""}Student's answer (voice dictation, so ignore capital letters and punctuation): "${at.text}"
 Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words.
@@ -1554,14 +1627,15 @@ function show(tab) {
 document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 $("input").addEventListener("input", autoGrow);
-$("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
-$("sendBtn").onclick = () => send();
+$("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); primeTTS(); send(); } });
+$("sendBtn").onclick = () => { primeTTS(); send(); };
 $("backBtn").onclick = endChat;
 $("finishBtn").onclick = finish;
 $("voiceBtn").onclick = () => {
   state.settings.voice = !state.settings.voice; putMeta();
   $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
-  if (!state.settings.voice && hasTTS) speechSynthesis.cancel();
+  if (!state.settings.voice) hush();
+  else { const last = chat?.turns.filter((x) => x.role === "assistant").pop(); if (last && topic) speakLine(last.content); else primeTTS(); } // a tap: unlocks speech on iOS
 };
 $("goalSel").onchange = () => { state.settings.goal = +$("goalSel").value; putMeta(); renderHeader(); };
 if (!inClaude) {
@@ -1588,24 +1662,28 @@ $("diagBtn").onclick = async () => {
   put("Inside Claude: " + (inClaude ? "yes" : "no"));
   await aiReady;
   put("Teacher connection: " + (sample ? "available" : "not available"));
-  if (inClaude) { try { const pm = await use("permissions"); put("Permission: " + (pm ? await pm.state("sample") : "unknown")); } catch { put("Permission: unknown"); } }
+  if (inClaude) {
+    try {
+      const pm = await use("permissions"), stt = pm ? await pm.state("sample") : "unknown"; put("Permission: " + stt);
+      if (stt === "denied" && !$("diagAllow")) { const b = document.createElement("button"); b.type = "button"; b.id = "diagAllow"; b.className = "btn primary"; b.textContent = "Allow Claude"; b.onclick = async () => { try { await pm.manage(); } catch { put("Open the menu at the top of this page, choose Permissions, and allow Claude."); } }; $("diagBtn").after(b); }
+    } catch { put("Permission: unknown"); }
+  }
   put("Saved chats: " + state.chats.length + (col ? " (synced to your account)" : " (on this device only)"));
   if (sample) {
     put("Sending a test message… (tap Allow if asked)");
-    const c = new AbortController(); const t = setTimeout(() => c.abort(), 45000);
-    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: c.signal }); put("1. Simple test: " + text.trim().slice(0, 40) + " ✓"); }
+    const step = () => { const c = new AbortController(); setTimeout(() => c.abort(), 120000); return c.signal; }; // a fresh limit per step; the consent sheet can take a while
+    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: step() }); put("1. Simple test: " + text.trim().slice(0, 40) + " ✓"); }
     catch (e) { put("1. Simple test failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
     put("Testing a chat reply…");
     try {
-      const { text } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: c.signal, onText: () => {} });
+      const { text } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: step(), onText: () => {} });
       put("2. Chat reply ✓ " + text.trim().slice(0, 80));
     } catch (e) { put("2. Chat reply failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
     put("Testing sentence check…");
     try {
-      const r = await sample.json('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", cache: false, signal: c.signal });
+      const r = await askJson('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", cache: false, signal: step() });
       put("3. Sentence check ✓ " + JSON.stringify(r).slice(0, 60));
     } catch (e) { put("3. Sentence check failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
-    finally { clearTimeout(t); }
   }
   $("diagBtn").disabled = false;
 };

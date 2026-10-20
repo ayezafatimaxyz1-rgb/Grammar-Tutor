@@ -24,7 +24,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const check = (name, ok, info) => { results.push({ name, ok }); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
   const wait = (ms = 500) => p.waitForTimeout(ms);
   const store = () => p.evaluate(() => window.__store["data/users/u_test"]);
-  const chatsIn = (st) => Object.entries(st).filter(([k]) => k.startsWith("chat_")).map(([, v]) => v);
+  const chatsIn = (st) => Object.entries(st).filter(([k]) => k.startsWith("chat_") && k !== "chat_cold").map(([, v]) => v);
 
   // ---- Talk ----
   check("sentence starters shown", true);
@@ -116,6 +116,52 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("#diagBtn"); await wait(900);
   const diag = await p.textContent("#diagOut");
   check("connection check all pass", !/failed/i.test(diag) && /3\. Sentence check ✓/.test(diag), diag);
+
+  // ---- Regression checks for the audit fixes ----
+  await p.click("[data-tab=history]"); await wait(200);
+  const coldBtn = (await p.$$("#hist .hitem")).at(-1);
+  await coldBtn.click(); await wait(300);
+  check("chat saved on another day reopens", (await p.textContent("#msgs")).includes("I live in Karachi"));
+  await p.fill("#input", "Karachi is famous for the sea"); await p.click("#sendBtn"); await wait(900);
+  st = await store();
+  check("continuing a chat loaded from the store works", st.chat_cold?.turns?.length === 5, String(st.chat_cold?.turns?.length));
+  check("chat bar stays at the top", await p.evaluate(() => getComputedStyle(document.querySelector("#chat .chatbar")).position === "sticky"));
+  await p.evaluate(() => { window.__failNext = "not_granted"; });
+  await p.fill("#input", "The food is very good"); await p.click("#sendBtn"); await wait(500);
+  const allowBtn = await p.$("text=Allow Claude");
+  check("not allowed shows an Allow Claude button", !!allowBtn);
+  if (allowBtn) { await allowBtn.click(); await wait(800); }
+  check("Allow Claude opens Permissions and retries", (await p.evaluate(() => window.__managed)) === 1 && !(await p.$(".notsent")));
+  const fixCards = (await store()); const n1 = Object.values(fixCards).filter((c) => c.type === "fix").length;
+  await p.evaluate(() => { window.__failNext = "upstream_error"; });
+  await p.fill("#input", "I living near the sea"); await p.click("#sendBtn"); await wait(500);
+  const n2 = Object.values(await store()).filter((c) => c.type === "fix").length;
+  check("no sentence check when the reply failed", n2 === n1, n1 + " -> " + n2);
+  await p.click(".notsent"); await wait(900);
+  const n3 = Object.values(await store()).filter((c) => c.type === "fix").length;
+  check("check runs once after the retry", n3 === n1 + 1, n1 + " -> " + n3);
+  await p.evaluate(() => { window.__hangNext = true; });
+  await p.fill("#input", "I like the beach"); await p.click("#sendBtn"); await wait(7600);
+  const stopBtn = await p.$("text=■ Stop");
+  check("slow reply offers a Stop button", !!stopBtn);
+  if (stopBtn) { await stopBtn.click(); await wait(300); }
+  check("Stop leaves the sentence ready to retry", !!(await p.$(".notsent")));
+  await p.evaluate(() => { window.__noJson = true; });
+  await p.click(".notsent"); await wait(900);
+  check("corrections work without sample.json", (await p.textContent("#msgs")).includes("to fix"));
+  await p.evaluate(() => { window.__noJson = false; });
+  const dbgDocs = await p.evaluate(() => Object.keys(window.__store.debug || {}).length);
+  check("debug log is one document per visit", dbgDocs === 1, String(dbgDocs));
+  await p.click("#backBtn");
+  await p.click("[data-tab=read]"); await wait(200);
+  if (!(await p.$("#lib details[open]"))) await p.click("#lib details summary");
+  await p.evaluate(async () => { const db = await window.claude.use("db"); await db.collection("library").doc("x_claude").set({ id: "x_claude", kind: "weekly", source: "The Economist", created: Date.now() - 999999, title: "Added by Claude", emoji: "📘", simple_en: "A short story.", words: [{ word: "tariff", meaning: "a tax on goods from abroad", example: "The tariff is high.", emoji: "🚢" }], questions: [] }); });
+  await wait(600);
+  check("open article stays open after sync", !!(await p.$("#lib details[open]")));
+  check("article added by Claude appears", (await p.textContent("#lib")).includes("Added by Claude"));
+  check("its key words become cards once", Object.values(await store()).filter((c) => c.word === "tariff").length === 1);
+  await p.click("[data-tab=minute]"); await p.click("#minStart"); await p.fill("#minIn", "I think education is important"); await p.click("[data-tab=talk]"); await wait(300);
+  check("leaving 1-Minute ends the run", await p.evaluate(() => document.getElementById("minDone").hidden));
 
   // ---- English only + layout ----
   for (const tab of ["talk", "minute", "read", "review", "history"]) {
