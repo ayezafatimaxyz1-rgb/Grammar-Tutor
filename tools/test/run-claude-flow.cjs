@@ -66,6 +66,20 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("continuing adds to the same chat", chats.length === 1 && chats[0].turns.filter((t) => t.role === "user").length === 4, JSON.stringify(chats.map((c) => c.turns?.length)));
   await p.click("#backBtn");
 
+  // ---- Chats continue per topic ----
+  check("topic card offers to continue", (await p.textContent("#topics")).includes("↻ Continue"));
+  await p.click(".topic:nth-child(2)"); await wait(300);
+  msgs = await p.textContent("#msgs");
+  check("tapping the topic again keeps the old messages", msgs.includes("I living in Lahore") && msgs.includes("Thank you Mam"));
+  await p.reload(); await wait(700);
+  check("reopening the app goes back into the chat", !(await p.isHidden("#chat")) && (await p.textContent("#msgs")).includes("I like biryani"));
+  await p.click("#newBtn"); await wait(300);
+  msgs = await p.textContent("#msgs");
+  check("＋ New starts an empty chat", !msgs.includes("I living in Lahore") && msgs.includes("What is your name"));
+  await p.click("#backBtn");
+  await p.reload(); await wait(700);
+  check("after ← the app opens on the topic list", await p.isHidden("#chat"));
+
   // ---- Mock interview ----
   await p.click("#heroBtn"); await wait(200);
   check("interview opens with the Chairman", (await p.textContent("#msgs")).includes("Chairman"));

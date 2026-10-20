@@ -89,6 +89,9 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 /* Chat */
 .chatbar { display: flex; align-items: center; gap: 8px; }
 .chatbar .t { font-family: var(--display); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chatbar .btn { padding: 8px 12px; white-space: nowrap; }
+.daysep { align-self: center; font-size: 12px; color: var(--muted); background: var(--sunk); border-radius: 99px; padding: 4px 12px; }
+.topic .cont { font-size: 12px; font-weight: 700; color: var(--accent); }
 .btn { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 8px 14px; font-size: 14px; }
 .btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 700; }
 .btn:disabled { opacity: .5; cursor: default; }
@@ -289,9 +292,10 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
       </div>
       <div id="chat" class="view" style="padding:0" hidden>
         <div class="chatbar">
-          <button class="btn" id="backBtn" type="button">← Topics</button>
+          <button class="btn" id="backBtn" type="button" aria-label="Back to topics">←</button>
           <span class="t" id="chatTitle"></span>
-          <button class="btn" id="voiceBtn" type="button" aria-pressed="true">🔊 On</button>
+          <button class="btn" id="voiceBtn" type="button" aria-pressed="true" aria-label="Mam's voice">🔊</button>
+          <button class="btn" id="newBtn" type="button" aria-label="Start a new chat on this topic">＋ New</button>
           <button class="btn primary" id="finishBtn" type="button">Finish</button>
         </div>
         <div id="startersSlot"></div>
@@ -587,7 +591,7 @@ async function connectDb() {
     state.settings = { ...state.settings, ...(meta.settings || {}) };
     putMeta();
   }
-  saveLocal(); renderAll(); libraryWords();
+  saveLocal(); renderAll(); libraryWords(); restoreChat();
 }
 
 function logTime(ms, words) {
@@ -786,7 +790,7 @@ const saveTimers = new Map();
 function newChat(t) {
   const now = Date.now();
   return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", css: !!t.css, kind: t.kind || "talk" },
-    started: now, updated: now, turns: [{ role: "assistant", content: t.open }], words: 0, min: 0, newCards: 0 };
+    started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0, min: 0, newCards: 0 };
 }
 const slimChat = (c) => (c.turns ? { ...c, turns: c.turns.slice(-300) } : { ...c, attempts: (c.attempts || []).slice(-30) });
 function putChat(c, now) {
@@ -799,6 +803,14 @@ function putChat(c, now) {
   };
   if (now) write(); else saveTimers.set(c.id, setTimeout(write, 700));
 }
+// One ongoing chat per topic: tapping a topic again continues it with all earlier messages.
+const PER_NAME = new Set(["world", "own", "read", "wotd"]);
+function findThread(t) {
+  const kind = t.kind || "talk";
+  return state.chats.filter((c) => c.kind === kind && c.topic?.id === t.id && (!PER_NAME.has(t.id) || (c.topic.name === t.name && (t.id !== "world" || c.topic.desc === t.desc))) && (kind !== "interview" || !(c.report || c.turns.some((x) => /interview is over/i.test(x.content)))))
+    .sort((a, b) => b.updated - a.updated)[0] || null;
+}
+const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
 function renderTopics() {
   $("topics").innerHTML = "";
   const list = [worldTopic(), ...TOPICS, { id: "own", em: "✏️", name: "My own topic", desc: "Type any topic you like" }];
@@ -807,11 +819,14 @@ function renderTopics() {
     b.type = "button"; b.className = "topic" + (t.css ? " css" : "");
     b.innerHTML = `<span class="em">${t.em}</span>${t.css ? '<span class="tag">CSS</span>' : ""}<strong></strong><span></span>`;
     b.querySelector("strong").textContent = t.name; b.querySelector("span:last-child").textContent = t.desc;
+    const th = t.id !== "own" && findThread(t);
+    if (th) { const n = th.turns.filter((x) => x.role === "user").length; const k = document.createElement("span"); k.className = "cont"; k.textContent = "↻ Continue · " + n + " answer" + (n === 1 ? "" : "s"); b.append(k); }
     b.onclick = () => { if (t.id === "own") { $("ownForm").hidden = false; $("ownInput").focus(); } else startTopic(t); };
     $("topics").append(b);
   });
   const last = state.chats.filter((c) => c.kind === "interview").sort((a, b) => b.updated - a.updated)[0];
   const days = last ? Math.floor((Date.now() - last.updated) / DAY) : -1;
+  $("heroBtn").textContent = findThread(INTERVIEW) ? "Continue interview" : "Start interview";
   $("heroWhen").textContent = days < 0 ? "Best once a week. You haven't tried it yet." : days === 0 ? "Last interview: today." : "Last interview: " + days + " day" + (days === 1 ? "" : "s") + " ago." + (days >= 7 ? " Time for this week's!" : "");
 }
 function renderWotd() {
@@ -842,14 +857,31 @@ $("ownForm").addEventListener("submit", (e) => {
   startTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
 });
 $("heroBtn").onclick = () => startTopic(INTERVIEW);
+function daySep(t) { const d = document.createElement("div"); d.className = "daysep"; d.textContent = new Date(t).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); $("msgs").append(d); }
+// Remember the open chat so reopening the app goes straight back into it.
+function rememberChat(id) { if (state.settings.lastChat === id) return; state.settings.lastChat = id; putMeta(); }
 function enterChat() {
+  rememberChat(chat?.id || null);
   $("pickTopic").hidden = true; $("chat").hidden = false; $("composer").hidden = false;
   $("msgs").innerHTML = "";
   $("chatTitle").textContent = topic.em + " " + topic.name;
-  $("startersSlot").innerHTML = ""; $("startersSlot").append(startersBox(startersFor(topic), "input"));
+  $("startersSlot").innerHTML = "";
+  const sb = startersBox(startersFor(topic), "input"); sb.open = !chat?.turns.some((x) => x.role === "user"); $("startersSlot").append(sb);
   $("finishBtn").textContent = topic.kind === "interview" ? "End interview" : "Finish";
 }
-function startTopic(t) {
+function startTopic(t, fresh) {
+  const th = !fresh && findThread(t);
+  if (th) {
+    openChat(th);
+    if (Date.now() - th.updated > 30 * 60000) { // coming back later: Mam picks the conversation up again
+      const q = lastQuestion(th.turns.filter((x) => x.role === "assistant").pop()?.content || "") || splitSpeaker(th.topic.open).text;
+      const line = (th.kind === "interview" ? "[Chairman] Welcome back. Let us continue. " : "Welcome back! Let's continue. ") + q;
+      th.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(th);
+      daySep(Date.now()); addTutor({ reply: line });
+      primeTTS(); if (state.settings.voice) speakLine(line, afterSpeak); else afterSpeak();
+    }
+    return;
+  }
   stopListening(); ctl?.abort();
   topic = t; chat = newChat(t);
   sess = { last: Date.now() };
@@ -863,7 +895,10 @@ function openChat(c) {
   stopListening(); ctl?.abort(); hush();
   topic = c.topic; chat = c; sess = { last: Date.now() };
   show("talk"); enterChat();
+  let prevAt = c.started || 0;
   c.turns.forEach((tn, i) => {
+    if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
+    if (tn.at) prevAt = tn.at;
     if (tn.role === "assistant") { addTutor({ reply: tn.content }); return; }
     const el = addMe(tn.content); el.dataset.text = tn.content; el.dataset.idx = i;
     if (tn.fb) attachFeedback(el, tn.fb, true);
@@ -876,7 +911,7 @@ function openChat(c) {
 function endChat() {
   stopListening(); hush(); ctl?.abort();
   topic = null; chat = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
-  renderTopics();
+  rememberChat(null); renderTopics();
 }
 function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
 function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
@@ -949,7 +984,7 @@ async function send(retryEl) {
     const words = text.split(/\s+/).filter(Boolean).length;
     c.words += words; c.min = Math.round((c.min + gap / 60000) * 10) / 10;
     logTime(gap, words);
-    turn = { role: "user", content: text }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
+    turn = { role: "user", content: text, at: now }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
     const st = $("startersSlot").querySelector("details"); if (st) st.open = false; // make room for the conversation
     putChat(c);
   }
@@ -977,7 +1012,7 @@ async function send(retryEl) {
     dbg("reply_done", { len: reply.length });
     wait.remove();
     const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
-    c.turns.push({ role: "assistant", content: line }); putChat(c);
+    c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c);
     if (c === chat) {
       addTutor({ reply: line }); replied = true;
       if (t.kind === "interview" && /interview is over/i.test(line)) boardDone();
@@ -1441,7 +1476,9 @@ let minQ = null, minRec = null, minTimer = 0, minStartAt = 0, minRunning = false
 function minStatus(t, err) { $("minStatus").textContent = t; $("minStatus").classList.toggle("err", !!err); }
 function loadQuestion(q, ctx, rec) {
   stopMinute(true);
-  minQ = { q, ctx: ctx || "" }; minRec = rec || null;
+  minQ = { q, ctx: ctx || "" };
+  minRec = rec || state.chats.filter((c) => c.kind === "minute" && c.topic?.name === q).sort((a, b) => b.updated - a.updated)[0] || null;
+  rec = minRec;
   $("qText").textContent = q; $("minIn").value = ""; $("minResult").innerHTML = ""; minStatus("");
   setTimer(60); renderMinPast();
   if (rec?.attempts?.length) renderMinResult(rec.attempts[rec.attempts.length - 1], rec.attempts[rec.attempts.length - 2]);
@@ -1630,10 +1667,11 @@ $("input").addEventListener("input", autoGrow);
 $("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); primeTTS(); send(); } });
 $("sendBtn").onclick = () => { primeTTS(); send(); };
 $("backBtn").onclick = endChat;
+$("newBtn").onclick = () => { if (topic && !busy) startTopic(topic.kind === "interview" ? INTERVIEW : topic, true); };
 $("finishBtn").onclick = finish;
 $("voiceBtn").onclick = () => {
   state.settings.voice = !state.settings.voice; putMeta();
-  $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
+  $("voiceBtn").textContent = state.settings.voice ? "🔊" : "🔇"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
   if (!state.settings.voice) hush();
   else { const last = chat?.turns.filter((x) => x.role === "assistant").pop(); if (last && topic) speakLine(last.content); else primeTTS(); } // a tap: unlocks speech on iOS
 };
@@ -1691,9 +1729,14 @@ function renderAll() {
   $("goalSel").value = String(state.settings.goal);
   renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
   if (!$("v-history").hidden) renderHistory();
-  $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off";
+  $("voiceBtn").textContent = state.settings.voice ? "🔊" : "🔇";
 }
-loadLocal(); renderAll();
+function restoreChat() {
+  if (chat || !state.settings.lastChat || $("v-talk").hidden) return; // never pull the learner away from another tab
+  const c = state.chats.find((x) => x.id === state.settings.lastChat && x.turns);
+  if (c) openChat(c);
+}
+loadLocal(); renderAll(); restoreChat();
 connectDb();
 })();
 </script>
