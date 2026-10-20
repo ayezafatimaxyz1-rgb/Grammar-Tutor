@@ -1,0 +1,1129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bolo English">
+<meta name="theme-color" content="#0d7a4c">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Bolo English</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;600&display=swap">
+<style>
+/* Layout: one-screen phone app. Header, scrolling content, composer, bottom tab bar. */
+:root {
+  --bg: #eef3ef;
+  --surface: #ffffff;
+  --sunk: #e2eae4;
+  --fg: #13241b;
+  --muted: #5a6d62;
+  --line: #cfdcd3;
+  --accent: #0d7a4c;
+  --accent-fg: #ffffff;
+  --sun: #e39a2d;
+  --bad: #b8402a;
+  --good: #1f8a57;
+  --tint-l: 90%;
+  --tint-s: 70%;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  --urdu: "Noto Nastaliq Urdu", "Geeza Pro", "Noto Sans Arabic", serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
+    --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193;
+    --tint-l: 22%; --tint-s: 40%; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
+  --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193;
+  --tint-l: 22%; --tint-s: 40%; color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.app { height: 100%; display: flex; flex-direction: column; max-width: 680px; margin: 0 auto; }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { display: flex; align-items: center; gap: 10px; padding-block: 12px 8px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.brand b { color: var(--accent); }
+.streak { margin-left: auto; display: flex; gap: 6px; align-items: center; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.streak strong { color: var(--fg); }
+.meter { width: 64px; height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--sun); width: 0; transition: width .4s; }
+main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.view { padding-block: 8px 24px; display: flex; flex-direction: column; gap: 14px; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.1; margin: 4px 0 0; text-wrap: balance; letter-spacing: -0.02em; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; }
+.sub { color: var(--muted); margin: 0; }
+.ur { font-family: var(--urdu); direction: rtl; line-height: 2.1; font-size: 15px; }
+.banner { background: var(--sunk); border-radius: 12px; padding: 12px 14px; font-size: 15px; }
+.banner.warn { border-left: 4px solid var(--sun); }
+
+/* Topics */
+.topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.topic { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; min-height: 112px; }
+.topic .em { font-size: 30px; line-height: 1; }
+.topic strong { font-family: var(--display); font-size: 16px; }
+.topic span { color: var(--muted); font-size: 13px; }
+.topic.css { border-color: var(--accent); }
+.wotd { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 110px minmax(0, 1fr); }
+.wotd .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 44px; display: grid; place-items: center; letter-spacing: 2px; }
+.wotd .body { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.wotd .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wotd .word { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; }
+.wotd .ex { color: var(--muted); font-size: 14px; }
+.own { display: flex; gap: 8px; }
+.own input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 99px; padding: 10px 14px; font: inherit; }
+.topic .tag { color: var(--accent-fg); font-size: 11px; }
+.tag { display: inline-block; align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: var(--accent-fg); padding: 2px 7px; border-radius: 99px; }
+
+/* Chat */
+.chatbar { display: flex; align-items: center; gap: 8px; }
+.chatbar .t { font-family: var(--display); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 8px 14px; font-size: 14px; }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 700; }
+.btn:disabled { opacity: .5; cursor: default; }
+.msgs { display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 88%; display: flex; flex-direction: column; gap: 6px; }
+.msg.tutor { align-self: flex-start; }
+.msg.me { align-self: flex-end; align-items: flex-end; }
+.bubble { padding: 10px 14px; border-radius: 18px; font-size: 17px; }
+.tutor .bubble { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.me .bubble { background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 6px; }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; }
+.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 4px 10px; font-size: 13px; }
+.fix { background: var(--surface); border: 1px dashed var(--bad); border-radius: 14px; padding: 10px 12px; font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
+.fix .w { color: var(--bad); text-decoration: line-through; }
+.fix .r { color: var(--good); font-weight: 700; }
+.praise { color: var(--good); font-size: 14px; font-weight: 700; }
+.me .bubble { cursor: pointer; }
+.verdict { border: 0; background: none; padding: 0 4px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.verdict.great { color: var(--good); }
+.verdict.fix { color: var(--bad); }
+.fb { align-self: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 15px; color: var(--fg); }
+.fb .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.fb .err { display: flex; flex-direction: column; gap: 1px; }
+.fb .w { color: var(--bad); text-decoration: line-through; }
+.fb .r { color: var(--good); font-weight: 700; }
+.fb .alt { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.fb .alt span { min-width: 0; }
+.fb .alt em { font-style: normal; color: var(--muted); font-size: 12px; display: block; }
+.retry { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.live { display: flex; align-items: center; justify-content: center; gap: 14px; padding-block: 4px; }
+.live .state { font-size: 14px; color: var(--muted); min-width: 0; }
+.bigmic { width: 72px; height: 72px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 28px; flex: none; }
+.bigmic.on { background: var(--bad); animation: pulse 1.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bad) 50%, transparent); } 100% { box-shadow: 0 0 0 18px transparent; } }
+.linkbtn { border: 0; background: none; color: var(--accent); font-weight: 700; padding: 0; text-decoration: underline; }
+.settings { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.settings input, .settings select { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; width: 100%; }
+.settings ol { margin: 0; padding-left: 20px; font-size: 14px; }
+.settings a { color: var(--accent); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { display: flex; gap: 6px; align-items: center; border-radius: 99px; padding: 4px 10px 4px 6px; font-size: 14px; background: hsl(var(--h) var(--tint-s) var(--tint-l)); }
+.chip .e { font-size: 18px; }
+.typing { color: var(--muted); font-style: italic; }
+
+/* Composer */
+.composer { border-top: 1px solid var(--line); background: var(--bg); padding-block: 10px; display: flex; flex-direction: column; gap: 6px; }
+.composer .row { display: flex; gap: 8px; align-items: flex-end; }
+.composer textarea { flex: 1; min-width: 0; resize: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 18px; padding: 10px 14px; font: inherit; font-size: 17px; max-height: 140px; }
+.send { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 20px; font-weight: 700; flex: none; }
+.mic { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); color: var(--accent); font-weight: 700; flex: none; font-size: 12px; }
+.mic.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+.hint { font-size: 13px; color: var(--muted); margin: 0; }
+
+/* Cards */
+.seg { display: flex; gap: 6px; background: var(--sunk); padding: 4px; border-radius: 99px; align-self: flex-start; }
+.seg button { border: 0; background: none; padding: 6px 14px; border-radius: 99px; font-size: 14px; }
+.seg button[aria-pressed="true"] { background: var(--surface); font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.card { border: 0; border-radius: 18px; padding: 0; text-align: left; background: var(--surface); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 0 var(--line); }
+.card .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 46px; height: 96px; display: grid; place-items: center; letter-spacing: 4px; }
+.card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.card .word { font-family: var(--display); font-weight: 800; font-size: 19px; overflow-wrap: anywhere; }
+.card .ex { color: var(--muted); font-size: 13px; }
+.card.fixcard .word { font-size: 15px; font-family: var(--body); }
+.empty { text-align: center; color: var(--muted); padding: 30px 10px; border: 2px dashed var(--line); border-radius: 18px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.empty .big { font-size: 40px; }
+
+/* Review */
+.flash { background: var(--surface); border-radius: 24px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.flash .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 72px; height: 170px; display: grid; place-items: center; letter-spacing: 6px; }
+.flash .body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.flash .answer { font-family: var(--display); font-size: 24px; font-weight: 800; }
+.flash .row { display: flex; gap: 8px; flex-wrap: wrap; }
+.flash .row .btn { flex: 1; min-width: 120px; padding-block: 12px; }
+
+/* Progress */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stat { background: var(--surface); border-radius: 16px; padding: 12px; border: 1px solid var(--line); }
+.stat b { display: block; font-family: var(--display); font-size: 28px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; align-items: end; height: 110px; padding: 12px; background: var(--surface); border-radius: 16px; border: 1px solid var(--line); }
+.week div { display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; font-size: 11px; color: var(--muted); }
+.week i { width: 100%; max-width: 28px; background: var(--accent); border-radius: 6px 6px 2px 2px; min-height: 3px; }
+.week i.zero { background: var(--sunk); }
+.report { background: var(--surface); border-radius: 18px; border: 1px solid var(--line); padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.score { font-family: var(--display); font-weight: 800; font-size: 40px; color: var(--accent); line-height: 1; }
+.report ul { margin: 0; padding-left: 20px; }
+.report .when { color: var(--muted); font-size: 13px; }
+
+/* Tabs */
+.addbox { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.addbox input[type=text], .addbox textarea, .addbox input[type=number] { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; width: 100%; }
+.addbox textarea { min-height: 70px; resize: vertical; }
+.addbox .pages { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.addbox .pages input { width: 72px; }
+.vh { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.upload { display: flex; align-items: center; justify-content: center; gap: 8px; border: 2px dashed var(--accent); color: var(--accent); border-radius: 14px; padding: 14px; font-weight: 700; cursor: pointer; text-align: center; }
+.thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.thumbs img { width: 56px; height: 72px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+.thumbs .pdf { font-size: 13px; background: var(--sunk); border-radius: 8px; padding: 6px 10px; }
+.status { font-size: 14px; color: var(--muted); }
+.status.err { color: var(--bad); }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.item summary { list-style: none; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 12px; cursor: pointer; align-items: center; }
+.item summary::-webkit-details-marker { display: none; }
+.item .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); border-radius: 14px; height: 64px; display: grid; place-items: center; font-size: 28px; }
+.item .meta { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.item .ttl { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.25; }
+.item .more { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.item .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.item .simple { font-size: 17px; }
+.item .angle { border-left: 4px solid var(--sun); padding: 6px 10px; background: var(--sunk); border-radius: 0 10px 10px 0; font-size: 15px; }
+.item ol, .item ul { margin: 0; padding-left: 20px; }
+nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
+nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
+nav.tabs button .i { font-size: 20px; line-height: 1; }
+nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
+.badge { background: var(--bad); color: #fff; border-radius: 99px; font-size: 10px; padding: 0 5px; margin-left: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="app">
+  <header class="top pad">
+    <div class="brand">Bolo <b>English</b></div>
+    <div class="streak" title="Daily speaking goal">
+      <span id="streakTxt">🔥 <strong>0</strong></span>
+      <div class="meter" aria-label="Today's goal"><i id="goalBar"></i></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- TALK -->
+    <section class="view pad" id="v-talk">
+      <div id="pickTopic" class="view" style="padding:0">
+        <div>
+          <h2>Aaj kis baare mein baat karein?</h2>
+          <p class="sub">Pick a topic. Your tutor Sana speaks slowly and corrects one mistake at a time.</p>
+        </div>
+        <div id="noAI" class="banner warn" hidden></div>
+        <div class="wotd" id="wotd"></div>
+        <h3>Talk topics</h3>
+        <div class="topics" id="topics"></div>
+        <form class="own" id="ownForm" hidden>
+          <input id="ownInput" type="text" maxlength="80" placeholder="e.g. My favourite book" aria-label="Your own topic">
+          <button class="btn primary" type="submit">Start</button>
+        </form>
+      </div>
+      <div id="chat" class="view" style="padding:0" hidden>
+        <div class="chatbar">
+          <button class="btn" id="backBtn" type="button">← Topics</button>
+          <span class="t" id="chatTitle"></span>
+          <button class="btn" id="voiceBtn" type="button" aria-pressed="true">🔊 On</button>
+          <button class="btn primary" id="finishBtn" type="button">Finish</button>
+        </div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- READ -->
+    <section class="view pad" id="v-read" hidden>
+      <div>
+        <h2>Read and discuss</h2>
+        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Sana makes it simple, explains it in Urdu, saves the hard words as cards, then talks with you about it.</p>
+      </div>
+      <form class="addbox" id="addForm">
+        <div class="seg" role="group" aria-label="What are you adding" id="kindSeg">
+          <button type="button" data-k="daily" aria-pressed="true">Daily news</button>
+          <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+          <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+        </div>
+        <input type="text" id="srcInput" list="srcList" maxlength="60" placeholder="Source, e.g. Dawn" aria-label="Source">
+        <datalist id="srcList"></datalist>
+        <label class="upload" for="fileIn">📷 Add screenshots or a PDF</label>
+        <input class="vh" type="file" id="fileIn" multiple accept="image/*,application/pdf">
+        <div class="thumbs" id="thumbs"></div>
+        <div class="pages" id="pdfPages" hidden>
+          <span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="3" aria-label="To page"><span id="pOf"></span>
+        </div>
+        <textarea id="pasteIn" placeholder="…or paste the article text here"></textarea>
+        <button class="btn primary" type="submit" id="processBtn">Make it simple</button>
+        <div class="status" id="readStatus" aria-live="polite"></div>
+      </form>
+      <div class="seg" role="group" aria-label="Show" id="libSeg">
+        <button type="button" data-k="all" aria-pressed="true">All</button>
+        <button type="button" data-k="daily" aria-pressed="false">Daily</button>
+        <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+        <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+      </div>
+      <div class="view" style="padding:0" id="lib"></div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="view pad" id="v-cards" hidden>
+      <div>
+        <h2>Your picture cards</h2>
+        <p class="sub">Every new word and every fixed mistake from your talks lands here. Tap a card to hear it.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Card type">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="word" aria-pressed="false">Words</button>
+        <button type="button" data-f="fix" aria-pressed="false">Fixes</button>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- REVIEW -->
+    <section class="view pad" id="v-review" hidden>
+      <div>
+        <h2>Daily review</h2>
+        <p class="sub">Look at the picture, say the English out loud, then check.</p>
+      </div>
+      <div id="flashWrap"></div>
+    </section>
+
+    <!-- PROGRESS -->
+    <section class="view pad" id="v-progress" hidden>
+      <div>
+        <h2>Your progress</h2>
+        <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. Rozana thora thora.</p>
+      </div>
+      <div class="stats" id="stats"></div>
+      <h3>Last 7 days (minutes)</h3>
+      <div class="week" id="week"></div>
+      <h3>Session reports</h3>
+      <div id="reports" class="view" style="padding:0"></div>
+      <h3>Settings</h3>
+      <div class="settings">
+        <label for="goalSel">Daily speaking goal</label>
+        <select id="goalSel"><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option></select>
+        <div id="keyBox" class="settings" style="padding:0;border:0" hidden>
+          <label for="keyIn"><strong>Free AI key (Google Gemini)</strong></label>
+          <ol>
+            <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with your Google account.</li>
+            <li>Tap <strong>Create API key</strong> and copy it.</li>
+            <li>Paste it here and tap Save. It stays only on this phone.</li>
+          </ol>
+          <input type="password" id="keyIn" autocomplete="off" placeholder="Paste your key (starts with AIza…)">
+          <div class="retry"><button class="btn primary" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button><span class="status" id="keyStatus"></span></div>
+        </div>
+        <p class="sub" id="handsfreeNote" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <div class="composer pad" id="composer" hidden>
+    <div class="live" id="live" hidden>
+      <button class="bigmic" id="micBtn" type="button" aria-label="Start talking">🎤</button>
+      <span class="state" id="liveState">Tap the mic and speak. Sana listens until you pause.</span>
+    </div>
+    <div class="row" id="typeRow">
+      <textarea id="input" rows="1" placeholder="Speak or type in English…" aria-label="Your message"></textarea>
+      <button class="send" id="sendBtn" type="button" aria-label="Send">↑</button>
+    </div>
+    <p class="hint" id="hint">Tip: tap the 🎤 on your iPhone keyboard and just speak. Tap your own message to see your mistakes and better ways to say it.</p>
+  </div>
+
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
+    <button type="button" data-tab="read"><span class="i">📰</span>Read</button>
+    <button type="button" data-tab="cards"><span class="i">🖼️</span>Cards</button>
+    <button type="button" data-tab="review"><span class="i">🔁</span><span>Review<span class="badge" id="dueBadge" hidden></span></span></button>
+    <button type="button" data-tab="progress"><span class="i">📈</span>Progress</button>
+  </nav>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (id) => document.getElementById(id);
+const TOPICS = [
+  { id: "intro", em: "🙋", name: "Introduce yourself", desc: "Name, city, studies", open: "Hello! I am Sana, your English partner. What is your name, and where are you from?" },
+  { id: "routine", em: "⏰", name: "My daily routine", desc: "Wake up, work, sleep", open: "Let's talk about your day. What time do you wake up in the morning?" },
+  { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
+  { id: "city", em: "🏙️", name: "My city", desc: "Places and food", open: "Which city do you live in? What is it famous for?" },
+  { id: "whycss", em: "🎯", name: "Why CSS?", desc: "Your dream and goals", css: true, open: "Many people dream of the civil service. Why do you want to pass the CSS exam?" },
+  { id: "pakistan", em: "🇵🇰", name: "Pakistan today", desc: "Easy current affairs", css: true, open: "Let's talk about Pakistan. In your opinion, what is one big problem in Pakistan today?" },
+  { id: "viva", em: "🪑", name: "Interview practice", desc: "Mock CSS viva, slow", css: true, open: "Good morning. Please have a seat. First, tell us a little about yourself." },
+  { id: "free", em: "☕", name: "Free talk", desc: "Anything you like", open: "Hi! What would you like to talk about today?" },
+];
+const WORLD = [
+  ["🌊", "Climate change and floods", "Climate change is a big problem for the whole world. Have you seen its effects in Pakistan?"],
+  ["🤖", "Artificial intelligence", "Artificial intelligence is changing the world very fast. Do you use any AI apps?"],
+  ["🕊️", "War and peace", "Some countries in the world are at war today. Why is peace important for everyone?"],
+  ["🌐", "USA and China", "The USA and China are the two biggest powers today. Why are they important for Pakistan?"],
+  ["💹", "Prices and the world economy", "Prices are rising in many countries. Why do you think things are so expensive?"],
+  ["🧳", "People moving abroad", "Many young people leave their country to work abroad. Would you like to live abroad? Why or why not?"],
+  ["💧", "The water crisis", "Many countries do not have enough clean water. Is water a problem in your city?"],
+  ["🤝", "Pakistan and its neighbours", "Pakistan has four neighbours. Which neighbour is most important for Pakistan, in your opinion?"],
+  ["🏛️", "The United Nations", "The United Nations tries to keep peace in the world. Do you think it does a good job?"],
+  ["📱", "Social media and fake news", "Many people read news on social media. Do you trust news on Facebook or TikTok?"],
+];
+const WORDS = [
+  ["democracy","جمہوریت","Pakistan is a democracy.","🗳️"],["economy","معیشت","The economy needs more jobs.","💰📈"],
+  ["inflation","مہنگائی","Inflation makes food expensive.","🛒📈"],["corruption","بدعنوانی","Corruption hurts poor people.","💸🚫"],
+  ["education","تعلیم","Education changes lives.","🎓📚"],["climate change","موسمیاتی تبدیلی","Climate change brings more floods.","🌍🔥"],
+  ["pollution","آلودگی","Air pollution is very high in Lahore.","🏭🌫️"],["population","آبادی","Pakistan has a large population.","👥👥"],
+  ["unemployment","بے روزگاری","Unemployment is a big problem for young people.","🧑‍💼❌"],["government","حکومت","The government made a new law.","🏛️"],
+  ["policy","پالیسی","We need a better education policy.","📜"],["justice","انصاف","Everyone wants justice.","⚖️"],
+  ["rights","حقوق","Women and men have equal rights.","✊"],["responsibility","ذمہ داری","Voting is our responsibility.","🤝"],
+  ["opportunity","موقع","CSS is a big opportunity for me.","🚪✨"],["challenge","چیلنج، مشکل","Water shortage is a big challenge.","🧗"],
+  ["solution","حل","Education is the best solution.","💡"],["improve","بہتر بنانا","I want to improve my English.","📈"],
+  ["develop","ترقی کرنا","Pakistan can develop very fast.","🏗️"],["resources","وسائل","Pakistan has many natural resources.","⛏️🌾"],
+  ["agriculture","زراعت","Agriculture is very important for Pakistan.","🌾🚜"],["energy crisis","توانائی کا بحران","The energy crisis causes load shedding.","🔌⚡"],
+  ["security","سلامتی، تحفظ","Security is important for peace.","🛡️"],["peace","امن","We all want peace.","🕊️"],
+  ["foreign policy","خارجہ پالیسی","Foreign policy is about our relations with other countries.","🌐🤝"],["trade","تجارت","Trade with China is growing.","🚢📦"],
+  ["technology","ٹیکنالوجی","Technology makes life easier.","💻"],["artificial intelligence","مصنوعی ذہانت","Artificial intelligence is changing jobs.","🤖"],
+  ["public service","عوامی خدمت","I want to do public service.","🏛️🙋"],["honest","ایماندار","A good officer must be honest.","😇"],
+  ["discipline","نظم و ضبط","Discipline helps me study every day.","⏰✅"],["confident","پراعتماد","I feel confident in my interview.","💪"],
+  ["opinion","رائے","In my opinion, education is the key.","💬"],["however","تاہم","It is hard; however, I will try.","↔️"],
+  ["because of","کی وجہ سے","Prices went up because of inflation.","➡️"],["health care","صحت کی سہولیات","Health care should be free for poor people.","🏥"],
+  ["water shortage","پانی کی کمی","Water shortage is a big threat.","🚰❌"],["tolerance","برداشت، رواداری","Tolerance makes society strong.","🤲"],
+  ["accountability","احتساب","Accountability can stop corruption.","🔍"],["sustainable","پائیدار","We need sustainable development.","♻️"],
+];
+const dayNum = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / DAY);
+function worldTopic() {
+  const [em, theme, open] = WORLD[dayNum() % WORLD.length];
+  return { id: "world", em: "🌍", name: "World today", desc: em + " " + theme, css: true, open: "Let's talk about the world today. " + open,
+    extra: `Today's world theme is "${theme}". You have no live news, so talk about the general situation, give one simple fact the student can use in the CSS exam, and ask for the student's opinion. Never invent specific recent events, dates or numbers.` };
+}
+function todayWord() { const [word, ur, example, emoji] = WORDS[dayNum() % WORDS.length]; return { word, ur, example, emoji }; }
+const INTERVALS = [0, 1, 3, 7, 16, 35]; // days per review box
+const DAY = 86400000;
+const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
+const today = () => new Date().toLocaleDateString("en-CA");
+
+// ---------- state ----------
+let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [] };
+const LS = "bolo.v1";
+function loadLocal() { try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s) state = { ...state, ...s, settings: { ...state.settings, ...(s.settings || {}) } }; } catch {} }
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch {} }
+
+let col = null; // db collection for this person
+let metaTimer = 0;
+function putCard(c) { saveLocal(); if (col) col.doc("card_" + c.id).set(c).catch(() => {}); }
+function putMeta() {
+  saveLocal();
+  if (!col) return;
+  clearTimeout(metaTimer);
+  metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
+}
+let libCol = null; // "library": readings, also filled by Claude from chat uploads
+function putItem(it) { saveLocal(); if (libCol) libCol.doc(it.id).set(it).catch(() => {}); }
+function delItem(it) { state.library = state.library.filter((x) => x.id !== it.id); saveLocal(); if (libCol) libCol.doc(it.id).delete().catch(() => {}); renderLib(); }
+async function connectDb() {
+  try {
+    const [db, user] = await Promise.all([use("db"), use("user")]);
+    if (db) {
+      libCol = db.collection("library");
+      libCol.onSnapshot((snap) => {
+        const byId = new Map(state.library.map((x) => [x.id, x]));
+        snap.docs.forEach((d) => byId.set(d.id, { ...d.data(), id: d.id }));
+        state.library = [...byId.values()].sort((a, b) => b.created - a.created);
+        saveLocal(); renderLib();
+      }, () => {});
+    }
+    if (!db || !user) return;
+    const uid = await user.id();
+    if (!uid) return;
+    col = db.collection("data/users/" + uid);
+    const snap = await col.get();
+    if (snap.empty) { // first time on the account: copy anything this browser already has
+      state.cards.forEach(putCard); putMeta(); return;
+    }
+    const cards = []; let meta = null;
+    snap.docs.forEach((d) => { if (d.id === "meta") meta = d.data(); else if (d.id.startsWith("card_")) cards.push(d.data()); });
+    const byId = new Map(cards.map((c) => [c.id, c]));
+    state.cards.forEach((c) => { if (!byId.has(c.id)) { byId.set(c.id, c); putCard(c); } });
+    state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
+    if (meta) {
+      state.sessions = meta.sessions || state.sessions;
+      state.days = { ...state.days, ...(meta.days || {}) };
+      state.settings = { ...state.settings, ...(meta.settings || {}) };
+    }
+    saveLocal(); renderAll();
+  } catch { col = null; }
+}
+
+function logTime(ms, words) {
+  const d = today();
+  const e = state.days[d] || { min: 0, words: 0 };
+  e.min = Math.round((e.min + ms / 60000) * 10) / 10;
+  e.words += words;
+  state.days[d] = e;
+  putMeta(); renderHeader();
+}
+function streak() {
+  let n = 0, t = Date.now();
+  if (!(state.days[today()]?.words > 0)) t -= DAY; // today not done yet still keeps yesterday's streak
+  for (;;) { const d = new Date(t).toLocaleDateString("en-CA"); if (state.days[d]?.words > 0) { n++; t -= DAY; } else break; }
+  return n;
+}
+
+// ---------- speech out ----------
+let voice = null;
+function pickVoice() {
+  const vs = speechSynthesis.getVoices().filter((v) => /^en[-_]/i.test(v.lang));
+  voice = vs.find((v) => /Samantha|Karen|Daniel|Google UK English Female|Google US English/i.test(v.name)) || vs.find((v) => /en[-_](US|GB)/i.test(v.lang)) || vs[0] || null;
+}
+const hasTTS = "speechSynthesis" in window;
+if (hasTTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(text, rate = 0.88, onend) {
+  if (!hasTTS) { onend?.(); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  if (voice) u.voice = voice;
+  u.lang = voice?.lang || "en-US"; u.rate = rate;
+  if (onend) setLive("speaking");
+  u.onend = () => onend?.(); u.onerror = () => onend?.();
+  speechSynthesis.speak(u);
+}
+
+// ---------- Claude ----------
+let sample = null;
+const inClaude = !!window.claude;
+const GKEY = "bolo.gemini";
+function gget() { try { return JSON.parse(localStorage.getItem(GKEY) || "null"); } catch { return null; } }
+const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+function parseLoose(t) {
+  try { return JSON.parse(t); } catch {}
+  const m = t.match(/```(?:json)?\s*([\s\S]*?)```/); if (m) { try { return JSON.parse(m[1]); } catch {} }
+  const i = t.search(/[[{]/), j = Math.max(t.lastIndexOf("}"), t.lastIndexOf("]"));
+  if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch {} }
+  throw { code: "invalid_json", text: t };
+}
+// Outside Claude, Sana runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
+function geminiAI() {
+  const cfg = gget(); if (!cfg?.key) return null;
+  const call = async (input, opts = {}, json = false) => {
+    const turnsIn = typeof input === "string" ? [{ role: "user", content: input }] : input;
+    const contents = [];
+    for (const t of turnsIn) {
+      const role = t.role === "assistant" ? "model" : "user", last = contents[contents.length - 1];
+      if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] });
+    }
+    const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
+    for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
+    const body = { contents, generationConfig: { temperature: 0.7, ...(json ? { responseMimeType: "application/json" } : {}) } };
+    let res;
+    try {
+      res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal });
+    } catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
+    if (!res.ok) throw { code: res.status === 429 ? "rate_limited" : res.status === 400 || res.status === 403 ? "bad_key" : "upstream_error" };
+    const data = await res.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
+    if (!text) throw { code: "empty_completion" };
+    return text;
+  };
+  const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
+  fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
+  fn.limits = async () => ({ maxPromptBytes: 900000, images: { maxCount: 10, maxInputBytes: 20e6, mediaTypes: ["image/jpeg", "image/png", "image/webp"] } });
+  return fn;
+}
+async function pickModel(key) {
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", { headers: { "x-goog-api-key": key } });
+  if (!r.ok) throw { code: "bad_key" };
+  const names = ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
+  if (names.includes("gemini-flash-latest")) return "gemini-flash-latest";
+  const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
+  const flash = names.filter((n) => /^gemini-[\d.]+-flash$/.test(n)).sort((a, b) => ver(b) - ver(a));
+  return flash[0] || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+}
+function aiBanner() {
+  const nb = $("noAI");
+  if (sample) { nb.hidden = true; return; }
+  nb.hidden = false;
+  if (inClaude) { nb.textContent = "Sana can't reach Claude from this view. Open this page in the Claude app or on claude.ai and allow it to use Claude."; return; }
+  nb.innerHTML = 'To talk with Sana here, add your free Gemini key once. <button class="linkbtn" type="button" id="goKey">Add key</button>';
+  $("goKey").onclick = () => { show("progress"); $("keyIn").focus(); };
+}
+const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); aiBanner(); return sample; });
+function errText(e) {
+  switch (e?.code) {
+    case "not_granted": return "Sana needs permission to use Claude. Allow it from this page's Permissions menu, then try again.";
+    case "rate_limited": case "queue_overflow": return "Too many messages at once. Wait a minute, then send again.";
+    case "session_expired": return "Your Claude sign-in expired. Reload the page.";
+    case "bad_key": return "Your Gemini key did not work. Check it in Progress, Settings.";
+    case "offline": return "No internet connection. Check your connection and try again.";
+    case "timeout": return "Sana took too long to answer.";
+    case "cancelled": return "";
+    default: return "Sana could not answer this time. Send your message again.";
+  }
+}
+const RULES = (topic) => `You are Sana, a warm and patient English speaking tutor. Your student is a total beginner from Pakistan who speaks Urdu and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
+Rules:
+- Use very simple English (CEFR A1-A2). Short sentences. At most 2 short sentences, then ONE simple question so the student keeps talking.
+- Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
+- If the student writes Urdu or Roman Urdu, show them how to say it in English and ask them to repeat it.
+- Do NOT correct the student inside "reply"; just keep talking naturally. Put all corrections in "feedback", about the student's LAST message only. Ignore capital letters and punctuation, since they speak with voice dictation.
+- Pick 0 to 2 useful new words or phrases from this exchange that a beginner should learn (prefer words useful for the CSS interview). Never repeat these known words: KNOWN.
+"errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has the 2 items.
+Reply with ONLY this JSON:
+{"reply": "your spoken reply", "feedback": {"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why_ur": "very short reason in Urdu script"}], "better": [{"label": "More natural", "text": "the student's whole message said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}]}, "praise": "2-5 word encouragement or empty string", "new_words": [{"word": "word or phrase", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}`;
+
+// ---------- talk ----------
+let topic = null, turns = [], sess = null, busy = false, ctl = null;
+function renderTopics() {
+  $("topics").innerHTML = "";
+  const list = [worldTopic(), ...TOPICS, { id: "own", em: "✏️", name: "My own topic", desc: "Type any topic you like" }];
+  list.forEach((t) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "topic" + (t.css ? " css" : "");
+    b.innerHTML = `<span class="em">${t.em}</span>${t.css ? '<span class="tag">CSS</span>' : ""}<strong></strong><span></span>`;
+    b.querySelector("strong").textContent = t.name; b.querySelector("span:last-child").textContent = t.desc;
+    b.onclick = () => { if (t.id === "own") { $("ownForm").hidden = false; $("ownInput").focus(); } else startTopic(t); };
+    $("topics").append(b);
+  });
+}
+function renderWotd() {
+  const w = todayWord(), box = $("wotd");
+  box.style.setProperty("--h", hue(w.word));
+  box.innerHTML = `<div class="pic"></div><div class="body"><span class="k">Word of the day</span><span class="word"></span><span class="ur"></span><span class="ex"></span><div class="tools"></div></div>`;
+  box.querySelector(".pic").textContent = w.emoji;
+  box.querySelector(".word").textContent = w.word;
+  box.querySelector(".ur").textContent = w.ur;
+  box.querySelector(".ex").textContent = w.example;
+  const tools = box.querySelector(".tools");
+  const saved = state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === w.word);
+  const save = tool(saved ? "✓ In your cards" : "+ Save card", () => {
+    const now = Date.now();
+    const c = { id: now.toString(36) + "d", type: "word", word: w.word, ur: w.ur, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
+    state.cards.unshift(c); putCard(c); renderCards(); renderDue(); renderWotd();
+  });
+  save.disabled = saved;
+  tools.append(tool("🔊 Listen", () => speak(w.word + ". " + w.example, 0.8)), save,
+    tool("💬 Practice with Sana", () => startTopic({ id: "wotd", em: w.emoji, name: "Word: " + w.word, desc: "Use today's word",
+      open: `Today's word is "${w.word}". ${w.example} Can you make your own sentence with "${w.word}"?`,
+      extra: `Today's target word is "${w.word}". Help the student use it in their own sentences at least three times, with simple examples.` })));
+}
+$("ownForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("ownInput").value.trim(); if (!name) return;
+  $("ownInput").value = ""; $("ownForm").hidden = true;
+  startTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
+});
+function startTopic(t) {
+  topic = t; turns = [{ role: "assistant", content: t.open }];
+  sess = { start: Date.now(), last: Date.now(), active: 0, words: 0, mine: [], fixes: [], newWords: [] };
+  $("pickTopic").hidden = true; $("chat").hidden = false; $("composer").hidden = false;
+  $("chatTitle").textContent = t.em + " " + t.name;
+  $("msgs").innerHTML = "";
+  addTutor({ reply: t.open });
+  if (canHandsFree) handsFree = true; else $("input").focus();
+  if (state.settings.voice) speak(t.open, 0.88, afterSpeak); else afterSpeak();
+}
+function endChat() {
+  stopListening(); speechSynthesis?.cancel(); ctl?.abort();
+  topic = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
+}
+function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
+function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
+function addTutor(r) {
+  const w = document.createElement("div"); w.className = "msg tutor";
+  if (r.correction?.right) {
+    const f = document.createElement("div"); f.className = "fix";
+    f.innerHTML = `<span class="w"></span><span class="r"></span><span class="ur"></span>`;
+    f.querySelector(".w").textContent = r.correction.wrong || "";
+    f.querySelector(".r").textContent = "✓ " + r.correction.right;
+    f.querySelector(".ur").textContent = r.correction.why_ur || "";
+    f.append(tool("🔊 Say it right", () => speak(r.correction.right, 0.8)));
+    w.append(f);
+  }
+  if (r.praise) { const p = document.createElement("div"); p.className = "praise"; p.textContent = r.praise; w.append(p); }
+  const b = document.createElement("div"); b.className = "bubble"; b.textContent = r.reply; w.append(b);
+  const tools = document.createElement("div"); tools.className = "tools";
+  tools.append(tool("🔊 Again", () => speak(r.reply, 0.88)), tool("🐢 Slow", () => speak(r.reply, 0.6)));
+  const urBtn = tool("اردو Meaning", async () => {
+    if (!sample) return;
+    urBtn.disabled = true; urBtn.textContent = "…";
+    try {
+      const { text } = await sample(`Translate this English sentence into simple Urdu (Urdu script). Reply with only the translation.\n\n${r.reply}`, { modelTier: "quick" });
+      const u = document.createElement("div"); u.className = "ur"; u.textContent = text.trim(); tools.after(u); urBtn.remove();
+    } catch (e) { urBtn.disabled = false; urBtn.textContent = "اردو Meaning"; }
+  });
+  if (sample) tools.append(urBtn);
+  w.append(tools);
+  if (r.new_words?.length) {
+    const c = document.createElement("div"); c.className = "chips";
+    r.new_words.forEach((nw) => { const ch = document.createElement("span"); ch.className = "chip"; ch.style.setProperty("--h", hue(nw.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = nw.emoji || "✨"; ch.lastChild.textContent = "New card: " + nw.word; c.append(ch); });
+    w.append(c);
+  }
+  $("msgs").append(w); scrollDown();
+}
+function addMe(text) {
+  const w = document.createElement("div"); w.className = "msg me";
+  const b = document.createElement("div"); b.className = "bubble"; b.textContent = text; w.append(b);
+  $("msgs").append(w); scrollDown();
+  return w;
+}
+function attachFeedback(w, fb) {
+  if (!fb) return;
+  const errs = (Array.isArray(fb.errors) ? fb.errors : []).filter((e) => e?.right);
+  const better = (Array.isArray(fb.better) ? fb.better : []).filter((x) => x?.text);
+  const verdict = errs.length ? "fix" : fb.verdict === "great" ? "great" : "good";
+  const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict " + verdict;
+  tag.textContent = verdict === "fix" ? "⚠ " + errs.length + " to fix · tap" : (verdict === "great" ? "✓ Great" : "✓ Good") + " · tap for better ways";
+  const panel = document.createElement("div"); panel.className = "fb"; panel.hidden = true;
+  if (errs.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Mistakes"; panel.append(l);
+    errs.forEach((e) => { const d = document.createElement("div"); d.className = "err"; d.innerHTML = '<span class="w"></span><span class="r"></span><span class="ur"></span>'; d.children[0].textContent = e.wrong || ""; d.children[1].textContent = "✓ " + e.right; d.children[2].textContent = e.why_ur || ""; panel.append(d); });
+  }
+  if (better.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Better ways to say it"; panel.append(l);
+    better.forEach((x) => { const d = document.createElement("div"); d.className = "alt"; d.innerHTML = "<span><em></em></span>"; d.firstChild.firstChild.textContent = x.label || ""; d.firstChild.append(String(x.text)); d.append(tool("🔊", () => speak(String(x.text), 0.8))); panel.append(d); });
+  }
+  const toggle = () => { panel.hidden = !panel.hidden; if (!panel.hidden) panel.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
+  tag.onclick = toggle; w.querySelector(".bubble").onclick = toggle;
+  w.append(tag, panel);
+}
+async function send() {
+  const text = $("input").value.trim();
+  if (!text || busy || !topic) return;
+  if (hasTTS && speechSynthesis.speaking) speechSynthesis.cancel();
+  await aiReady;
+  if (!sample) { chatNote(inClaude ? "Sana can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (Progress, Settings).", false); return; }
+  document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
+  $("input").value = ""; autoGrow();
+  const meEl = addMe(text);
+  const now = Date.now(); const gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
+  const words = text.split(/\s+/).filter(Boolean).length;
+  sess.active += gap; sess.words += words; sess.mine.push(text);
+  logTime(gap, words);
+  turns.push({ role: "user", content: text });
+  busy = true; $("sendBtn").disabled = true;
+  const wait = document.createElement("div"); wait.className = "msg tutor typing"; wait.textContent = "Sana is thinking…"; $("msgs").append(wait); scrollDown();
+  const known = state.cards.filter((c) => c.type === "word").map((c) => c.word).slice(0, 80).join(", ") || "none";
+  ctl = new AbortController();
+  let timedOut = false;
+  const watchdog = setTimeout(() => { timedOut = true; ctl.abort(); }, 90000);
+  setLive("thinking");
+  try {
+    const recent = turns.slice(-14); if (recent[0].role !== "user") recent.unshift({ role: "user", content: "(conversation continues)" });
+    const r = await sample.json([{ role: "user", content: RULES(topic).replace("KNOWN", known) }, ...recent], { modelTier: "quick", cache: false, signal: ctl.signal });
+    wait.remove();
+    const fb = r?.feedback && typeof r.feedback === "object" ? r.feedback : null;
+    const err0 = Array.isArray(fb?.errors) ? fb.errors.find((e) => e?.right) : null;
+    const res = { reply: String(r?.reply || "Can you say that again, please?"), correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why_ur: String(err0.why_ur || "") } : null, praise: r?.praise || "", new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] };
+    turns.push({ role: "assistant", content: res.reply });
+    attachFeedback(meEl, fb);
+    addTutor({ ...res, correction: null });
+    saveCards(res);
+    if (state.settings.voice) speak(res.reply, 0.88, afterSpeak); else setTimeout(afterSpeak, 50);
+  } catch (e) {
+    wait.remove(); turns.pop(); meEl.remove(); sess.mine.pop();
+    $("input").value = text; autoGrow();
+    const m = errText(timedOut ? { code: "timeout" } : e);
+    if (m) chatNote(m, true); else setLive("idle");
+  } finally { clearTimeout(watchdog); busy = false; $("sendBtn").disabled = false; }
+}
+function chatNote(msg, canRetry) {
+  stopListening();
+  const d = document.createElement("div"); d.className = "banner warn retry retrybox";
+  const sp = document.createElement("span"); sp.textContent = msg; d.append(sp);
+  if (canRetry) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Try again"; b.onclick = () => { d.remove(); send(); }; d.append(b); }
+  $("msgs").append(d); scrollDown();
+}
+function saveCards(res) {
+  const now = Date.now();
+  if (res.correction) {
+    const c = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", ur: res.correction.why_ur || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: topic.name };
+    state.cards.unshift(c); putCard(c); sess.fixes.push(c);
+  }
+  res.new_words.forEach((w, i) => {
+    if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const c = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), ur: String(w.ur || ""), example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: topic.name };
+    state.cards.unshift(c); putCard(c); sess.newWords.push(c);
+  });
+  renderCards(); renderDue();
+}
+async function finish() {
+  if (!sess || busy) return;
+  stopListening(); speechSynthesis?.cancel();
+  if (sess.mine.length < 2) { endChat(); return; }
+  busy = true; $("finishBtn").disabled = true; $("finishBtn").textContent = "Scoring…";
+  const transcript = turns.map((t) => (t.role === "user" ? "Student: " : "Sana: ") + t.content).join("\n");
+  let rep = null;
+  try {
+    rep = await sample.json(`You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. Score the student's speaking for a beginner (be kind but honest).
+Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip_ur": "one practical tip for tomorrow in Urdu script", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
+
+Topic: ${topic.name}
+${transcript.slice(-12000)}`, { modelTier: "default" });
+  } catch {}
+  const s = { id: Date.now().toString(36), date: Date.now(), topic: topic.name, em: topic.em, min: Math.round(sess.active / 6000) / 10, words: sess.words, newCards: sess.fixes.length + sess.newWords.length, ...(rep || {}) };
+  state.sessions.unshift(s); putMeta();
+  busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = "Finish";
+  endChat(); renderProgress(); show("progress");
+}
+
+// ---------- hands-free (only outside Claude: the Claude frame never gets the microphone) ----------
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const canHandsFree = !!SR && !inClaude;
+let rec = null, handsFree = false, silenceT = 0;
+function setLive(st) {
+  if (!canHandsFree) return;
+  const m = $("micBtn");
+  m.classList.toggle("on", st === "listening");
+  m.textContent = st === "listening" ? "■" : "🎤";
+  m.setAttribute("aria-label", st === "listening" ? "Send now" : "Start talking");
+  $("liveState").textContent = { listening: "Listening… pause when you finish, or tap ■ to send.", thinking: "Sana is thinking…", speaking: "Sana is speaking…", idle: "Tap the mic and speak. Sana listens until you pause." }[st] || "";
+}
+if (canHandsFree) {
+  $("live").hidden = false;
+  $("hint").textContent = "Speak freely, Urdu words are OK. Tap your own message to see mistakes and better ways to say it.";
+  $("micBtn").onclick = () => {
+    if (rec) { try { rec.stop(); } catch {} return; } // tapping while listening sends what was heard
+    if (hasTTS) speechSynthesis.cancel();
+    handsFree = true; startListening();
+  };
+}
+function startListening() {
+  if (!canHandsFree || busy || !topic) return;
+  try {
+    rec = new SR(); rec.lang = "en-US"; rec.interimResults = true; rec.continuous = true;
+    let heard = "";
+    const arm = () => { clearTimeout(silenceT); silenceT = setTimeout(() => { try { rec?.stop(); } catch {} }, 2200); };
+    rec.onresult = (e) => { let s = ""; for (const r of e.results) s += r[0].transcript; heard = s; $("input").value = s; autoGrow(); arm(); };
+    rec.onerror = (e) => {
+      if (e.error === "not-allowed" || e.error === "service-not-allowed") { handsFree = false; $("liveState").textContent = "Allow the microphone for this site in your phone settings, then tap the mic again."; }
+    };
+    rec.onend = () => { clearTimeout(silenceT); rec = null; if (heard.trim()) send(); else if (topic && !busy) setLive("idle"); };
+    rec.start(); setLive("listening");
+  } catch { rec = null; setLive("idle"); }
+}
+function stopListening() { handsFree = false; clearTimeout(silenceT); try { rec?.abort(); } catch {} rec = null; setLive("idle"); }
+function afterSpeak() { if (handsFree && !rec && topic && !busy) startListening(); else setLive("idle"); }
+
+// ---------- cards ----------
+// ---------- read ----------
+const SOURCES = { daily: ["Dawn", "The Express Tribune", "The News", "BBC News", "Al Jazeera"], weekly: ["The Economist", "TIME", "The Friday Times"], monthly: ["Jahangir's World Times", "Foreign Affairs", "The Diplomat", "Foreign Policy"] };
+const KIND = { daily: "Daily news", weekly: "Weekly magazine", monthly: "Monthly magazine" };
+let kind = "daily", libFilter = "all", files = [], pdfDoc = null;
+function segInit(id, key, cb) {
+  document.querySelectorAll("#" + id + " button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("#" + id + " button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); cb(b.dataset[key]);
+  });
+}
+function fillSources() { $("srcList").innerHTML = ""; SOURCES[kind].forEach((n) => { const o = document.createElement("option"); o.value = n; $("srcList").append(o); }); $("srcInput").placeholder = "Source, e.g. " + SOURCES[kind][0]; }
+segInit("kindSeg", "k", (k) => { kind = k; fillSources(); });
+segInit("libSeg", "k", (k) => { libFilter = k; renderLib(); });
+fillSources();
+function status(t, err) { $("readStatus").textContent = t; $("readStatus").classList.toggle("err", !!err); }
+let pdfLib = null;
+function loadScript(src) { return new Promise((ok, no) => { const sc = document.createElement("script"); sc.src = src; sc.onload = ok; sc.onerror = no; document.head.append(sc); }); }
+async function getPdfLib() {
+  if (pdfLib) return pdfLib;
+  const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  await loadScript(base + "pdf.worker.min.js"); // runs on the page itself, since the frame cannot start an outside worker
+  await loadScript(base + "pdf.min.js");
+  pdfLib = window.pdfjsLib; pdfLib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+  return pdfLib;
+}
+$("fileIn").addEventListener("change", async () => {
+  files = [...$("fileIn").files]; $("fileIn").value = ""; pdfDoc = null;
+  const th = $("thumbs"); th.innerHTML = ""; $("pdfPages").hidden = true; status("");
+  const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+  if (pdf) {
+    files = [pdf];
+    const d = document.createElement("span"); d.className = "pdf"; d.textContent = "📄 " + pdf.name; th.append(d);
+    try {
+      status("Opening PDF…");
+      const lib = await getPdfLib();
+      pdfDoc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise;
+      $("pdfPages").hidden = false; $("pOf").textContent = "of " + pdfDoc.numPages + " (up to 10 at a time)";
+      $("pFrom").value = 1; $("pTo").value = Math.min(3, pdfDoc.numPages); $("pFrom").max = $("pTo").max = pdfDoc.numPages;
+      status("Choose the pages with your article, then tap Make it simple.");
+    } catch { status("This PDF could not be opened. Try screenshots of the pages instead.", true); files = []; }
+    return;
+  }
+  files = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
+  files.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
+  if (files.length) status(files.length + " screenshot" + (files.length > 1 ? "s" : "") + " ready.");
+});
+function shrink(source, w, h) {
+  const scale = Math.min(1, 1800 / Math.max(w, h));
+  const c = document.createElement("canvas"); c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+  c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
+  return new Promise((ok) => c.toBlob(ok, "image/jpeg", 0.85));
+}
+async function imageBlob(file) {
+  const bmp = await createImageBitmap(file).catch(() => null);
+  return bmp ? shrink(bmp, bmp.width, bmp.height) : file;
+}
+async function pdfContent() {
+  const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 9);
+  let text = ""; const imgs = [];
+  for (let n = from; n <= to; n++) {
+    const page = await pdfDoc.getPage(n);
+    const tc = await page.getTextContent();
+    const t = tc.items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
+    if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
+    const vp = page.getViewport({ scale: 1.6 }); // a scanned page has no text, so send its picture
+    const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height;
+    await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    imgs.push(await shrink(c, c.width, c.height));
+  }
+  return { text, imgs, pages: from + "-" + to };
+}
+$("addForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await aiReady;
+  if (!sample) { status("Open this page inside Claude to use Read.", true); return; }
+  const pasted = $("pasteIn").value.trim();
+  if (!files.length && !pasted) { status("Add screenshots, a PDF, or paste some text first.", true); return; }
+  const source = $("srcInput").value.trim() || "Unknown source";
+  $("processBtn").disabled = true;
+  try {
+    let text = pasted, imgs = [], pages = "";
+    if (pdfDoc) { status("Reading the PDF pages…"); const r = await pdfContent(); text = (r.text + "\n\n" + pasted).trim(); imgs = r.imgs; pages = r.pages; }
+    else if (files.length) { status("Preparing screenshots…"); imgs = await Promise.all(files.map(imageBlob)); }
+    const lim = await sample.limits().catch(() => null);
+    if (imgs.length && !lim?.images) { status("Pictures can't be sent from this view. Paste the article text instead.", true); return; }
+    if (lim?.images) imgs = imgs.slice(0, lim.images.maxCount);
+    status("Sana is reading it… this can take up to a minute.");
+    const r = await sample.json(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
+Reply with ONLY JSON:
+{"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "ur": "a 4 to 6 sentence summary in Urdu script", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
+Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default" });
+    if (!r?.title || !r?.simple_en) throw { code: "invalid_json" };
+    const now = Date.now();
+    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), ur: String(r.ur || ""), css_angle: String(r.css_angle || ""),
+      words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6), questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), other_headlines: (Array.isArray(r.other_headlines) ? r.other_headlines : []).slice(0, 6).map(String) };
+    state.library.unshift(it); putItem(it); addWords(it);
+    files = []; pdfDoc = null; $("thumbs").innerHTML = ""; $("pdfPages").hidden = true; $("pasteIn").value = "";
+    status("Done. " + it.words.length + " new words were added to your cards.");
+    libFilter = "all"; document.querySelectorAll("#libSeg button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.k === "all")));
+    renderLib(it.id);
+  } catch (err) {
+    status(err?.code === "invalid_json" ? "Sana could not read this clearly. Try clearer screenshots or fewer pages." : errText(err) || "Stopped.", true);
+  } finally { $("processBtn").disabled = false; }
+});
+function addWords(it) {
+  const now = Date.now();
+  (it.words || []).forEach((w, i) => {
+    if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const c = { id: now.toString(36) + "r" + i, type: "word", word: String(w.word), ur: String(w.ur || ""), example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
+    state.cards.unshift(c); putCard(c);
+  });
+  renderCards(); renderDue();
+}
+function renderLib(openId) {
+  const box = $("lib"); if (!box) return;
+  const list = state.library.filter((x) => libFilter === "all" || x.kind === libFilter);
+  box.innerHTML = "";
+  if (!list.length) {
+    box.innerHTML = `<div class="empty"><span class="big">📰</span><strong>Nothing here yet</strong><span>Add a page from Dawn today, or from your Economist or JWT. You can also send the screenshots to Claude in chat.</span></div>`;
+    return;
+  }
+  list.forEach((it) => {
+    const d = document.createElement("details"); d.className = "item"; d.style.setProperty("--h", hue(it.title)); if (it.id === openId) d.open = true;
+    d.innerHTML = `<summary><div class="pic"></div><div style="min-width:0"><div class="meta"></div><div class="ttl"></div></div></summary><div class="more"></div>`;
+    d.querySelector(".pic").textContent = it.emoji;
+    d.querySelector(".meta").textContent = (KIND[it.kind] || "Reading") + " · " + it.source + " · " + new Date(it.created).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+    d.querySelector(".ttl").textContent = it.title;
+    const m = d.querySelector(".more");
+    const add = (cls, label, text) => { if (!text) return; if (label) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = label; m.append(l); } const x = document.createElement("div"); x.className = cls; x.textContent = text; m.append(x); };
+    add("simple", "Simple English", it.simple_en);
+    const t = document.createElement("div"); t.className = "tools";
+    t.append(tool("🔊 Listen", () => speak(it.simple_en, 0.85)), tool("🐢 Slow", () => speak(it.simple_en, 0.65)));
+    m.append(t);
+    add("ur", "اردو خلاصہ", it.ur);
+    add("angle", "CSS angle", it.css_angle);
+    if (it.words?.length) {
+      const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Key words (saved to your cards)"; m.append(l);
+      const c = document.createElement("div"); c.className = "chips";
+      it.words.forEach((w) => { const ch = document.createElement("button"); ch.type = "button"; ch.className = "chip"; ch.style.border = "0"; ch.style.setProperty("--h", hue(w.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = w.emoji || "✨"; ch.lastChild.textContent = w.word + " · " + (w.ur || ""); ch.onclick = () => speak(w.word + ". " + (w.example || ""), 0.8); c.append(ch); });
+      m.append(c);
+    }
+    if (it.questions?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Think and answer"; m.append(l); const ol = document.createElement("ol"); it.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ol.append(li); }); m.append(ol); }
+    if (it.other_headlines?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Other headlines"; m.append(l); const ul = document.createElement("ul"); it.other_headlines.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ul.append(li); }); m.append(ul); }
+    const row = document.createElement("div"); row.className = "tools";
+    const go = document.createElement("button"); go.type = "button"; go.className = "btn primary"; go.textContent = "💬 Discuss with Sana";
+    go.onclick = () => { show("talk"); startTopic({ id: "read", em: it.emoji, name: it.title, desc: "from " + it.source,
+      open: `Let's talk about the ${KIND[it.kind]?.toLowerCase() || "article"} you read from ${it.source}: "${it.title}". ${it.questions?.[0] || "What is this story about, in your own words?"}`,
+      extra: `The student read this article. Simple summary: ${it.simple_en} Help them explain it in their own words, teach the key words (${(it.words || []).map((w) => w.word).join(", ")}), and ask their opinion. Useful questions: ${(it.questions || []).join(" | ")}` }); };
+    const del = document.createElement("button"); del.type = "button"; del.className = "btn"; del.textContent = "Remove";
+    del.onclick = () => { if (del.dataset.sure) delItem(it); else { del.dataset.sure = "1"; del.textContent = "Tap again to remove"; } };
+    row.append(go, del); m.append(row);
+    box.append(d);
+  });
+}
+
+function hue(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.codePointAt(0)) % 360; return h; }
+let filter = "all";
+function renderCards() {
+  const g = $("grid"); g.innerHTML = "";
+  const list = state.cards.filter((c) => filter === "all" || c.type === filter);
+  if (!list.length) {
+    g.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="big">🖼️</span><strong>No cards yet</strong><span>Have a talk with Sana. New words and corrected sentences turn into picture cards here.</span></div>`;
+    return;
+  }
+  list.forEach((c) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "card" + (c.type === "fix" ? " fixcard" : "");
+    b.style.setProperty("--h", hue(c.word));
+    b.innerHTML = `<div class="pic"></div><div class="body"><span class="word"></span><span class="ur"></span><span class="ex"></span></div>`;
+    b.querySelector(".pic").textContent = c.emoji;
+    b.querySelector(".word").textContent = c.word;
+    b.querySelector(".ur").textContent = c.ur;
+    b.querySelector(".ex").textContent = c.type === "fix" ? (c.wrong ? "Not: " + c.wrong : "") : c.example;
+    b.onclick = () => speak(c.type === "fix" ? c.word : c.word + ". " + c.example, 0.8);
+    g.append(b);
+  });
+}
+document.querySelectorAll(".seg button").forEach((b) => b.onclick = () => {
+  filter = b.dataset.f; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); renderCards();
+});
+
+// ---------- review ----------
+function dueCards() { const now = Date.now(); return state.cards.filter((c) => c.due <= now).sort((a, b) => a.due - b.due); }
+function renderDue() { const n = dueCards().length; $("dueBadge").hidden = !n; $("dueBadge").textContent = n; }
+function renderReview() {
+  const wrap = $("flashWrap"); wrap.innerHTML = "";
+  const due = dueCards();
+  if (!due.length) {
+    const next = state.cards.length ? Math.min(...state.cards.map((c) => c.due)) : 0;
+    wrap.innerHTML = `<div class="empty"><span class="big">✅</span><strong>${state.cards.length ? "All done for now" : "Nothing to review yet"}</strong><span></span></div>`;
+    wrap.querySelector("span:last-child").textContent = state.cards.length ? "Next card comes back " + new Date(next).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "short" }) + ". Go talk with Sana!" : "Your cards from Talk will come back here on the right days so you never forget them.";
+    return;
+  }
+  const c = due[0];
+  const f = document.createElement("div"); f.className = "flash"; f.style.setProperty("--h", hue(c.word));
+  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="ur"></span><div class="row"><button class="btn primary" type="button">Show answer</button></div></div>`;
+  f.querySelector(".pic").textContent = c.emoji;
+  f.querySelector(".sub").textContent = (c.type === "fix" ? "Say this sentence correctly:  " + c.wrong : "Say the English word for this, then use it in a sentence.") + "   (" + due.length + " left)";
+  f.querySelector(".ur").textContent = c.ur;
+  const row = f.querySelector(".row");
+  row.firstChild.onclick = () => {
+    const a = document.createElement("div"); a.className = "answer"; a.textContent = c.word;
+    row.before(a);
+    if (c.example && c.type === "word") { const ex = document.createElement("div"); ex.className = "sub"; ex.textContent = c.example; row.before(ex); }
+    speak(c.type === "fix" ? c.word : c.word + ". " + c.example, 0.8);
+    row.innerHTML = "";
+    const again = document.createElement("button"); again.className = "btn"; again.type = "button"; again.textContent = "↺ Again (forgot)";
+    const got = document.createElement("button"); got.className = "btn primary"; got.type = "button"; got.textContent = "✓ I said it";
+    again.onclick = () => grade(c, false); got.onclick = () => grade(c, true);
+    row.append(again, got);
+  };
+  wrap.append(f);
+}
+function grade(c, ok) {
+  c.box = ok ? Math.min(c.box + 1, INTERVALS.length - 1) : 0;
+  c.due = ok ? Date.now() + INTERVALS[c.box] * DAY : Date.now() + 60000 * 5;
+  putCard(c); renderDue(); renderReview();
+}
+
+// ---------- progress ----------
+function renderHeader() {
+  $("streakTxt").innerHTML = "🔥 <strong>" + streak() + "</strong>";
+  const m = state.days[today()]?.min || 0;
+  $("goalBar").style.width = Math.min(100, (m / state.settings.goal) * 100) + "%";
+  $("goalTxt").textContent = state.settings.goal;
+}
+function renderProgress() {
+  const totalW = Object.values(state.days).reduce((a, d) => a + d.words, 0);
+  const totalM = Object.values(state.days).reduce((a, d) => a + d.min, 0);
+  $("stats").innerHTML = "";
+  [[streak(), "day streak"], [Math.round(totalM), "minutes"], [totalW, "words spoken"]].forEach(([v, l]) => {
+    const d = document.createElement("div"); d.className = "stat"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = v; d.lastChild.textContent = l; $("stats").append(d);
+  });
+  const wk = $("week"); wk.innerHTML = "";
+  const days = [...Array(7)].map((_, i) => new Date(Date.now() - (6 - i) * DAY));
+  const max = Math.max(state.settings.goal, ...days.map((d) => state.days[d.toLocaleDateString("en-CA")]?.min || 0));
+  days.forEach((d) => {
+    const m = state.days[d.toLocaleDateString("en-CA")]?.min || 0;
+    const el = document.createElement("div"); el.innerHTML = "<i></i><span></span>";
+    el.firstChild.style.height = Math.max(3, (m / max) * 80) + "px"; if (!m) el.firstChild.className = "zero";
+    el.firstChild.title = m + " min";
+    el.lastChild.textContent = d.toLocaleDateString(undefined, { weekday: "narrow" });
+    wk.append(el);
+  });
+  const rp = $("reports"); rp.innerHTML = "";
+  if (!state.sessions.length) { rp.innerHTML = `<div class="empty"><span class="big">📝</span><strong>No reports yet</strong><span>Finish a talk to get your score, mistakes to fix and a tip in Urdu.</span></div>`; return; }
+  state.sessions.slice(0, 15).forEach((s) => {
+    const r = document.createElement("div"); r.className = "report";
+    r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="wd"></div><div class="wo"></div><div class="ur"></div><div class="ul"></div>`;
+    r.querySelector(".score").textContent = s.score ? s.score + "/10" : s.em;
+    r.querySelector("h3").textContent = s.em + " " + s.topic + (s.level ? " · " + s.level : "");
+    r.querySelector(".when").textContent = new Date(s.date).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) + " · " + s.min + " min · " + s.words + " words · " + s.newCards + " new cards";
+    if (s.did_well?.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
+    (s.work_on || []).forEach((w) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span>'; f.firstChild.textContent = w.wrong; f.lastChild.textContent = "✓ " + w.right; r.querySelector(".wo").append(f); });
+    r.querySelector(".ur").textContent = s.tip_ur || "";
+    if (s.useful_line) { const u = r.querySelector(".ul"); u.innerHTML = "<strong>Interview line to learn: </strong><span></span>"; u.lastChild.textContent = s.useful_line; u.append(" ", tool("🔊", () => speak(s.useful_line, 0.8))); }
+    rp.append(r);
+  });
+}
+
+// ---------- shell ----------
+function show(tab) {
+  ["talk", "read", "cards", "review", "progress"].forEach((t) => { $("v-" + t).hidden = t !== tab; });
+  document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  $("composer").hidden = tab !== "talk" || !topic;
+  if (tab === "review") renderReview();
+  if (tab === "read") renderLib();
+  if (tab === "progress") renderProgress();
+  $("main").scrollTop = tab === "talk" ? $("main").scrollHeight : 0;
+}
+document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
+function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
+$("input").addEventListener("input", autoGrow);
+$("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
+$("sendBtn").onclick = send;
+$("backBtn").onclick = endChat;
+$("finishBtn").onclick = finish;
+$("voiceBtn").onclick = () => {
+  state.settings.voice = !state.settings.voice; putMeta();
+  $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
+  if (!state.settings.voice) speechSynthesis?.cancel();
+};
+$("goalSel").onchange = () => { state.settings.goal = +$("goalSel").value; putMeta(); renderHeader(); };
+if (!inClaude) {
+  $("keyBox").hidden = false;
+  if (gget()?.key) $("keyStatus").textContent = "Key saved ✓";
+  $("keySave").onclick = async () => {
+    const key = $("keyIn").value.trim(); if (!key) return;
+    $("keyStatus").textContent = "Checking…";
+    try {
+      const model = await pickModel(key);
+      try { localStorage.setItem(GKEY, JSON.stringify({ key, model })); } catch {}
+      sample = geminiAI(); aiBanner(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Sana is ready.";
+    } catch { $("keyStatus").textContent = "That key did not work. Copy it again and paste."; }
+  };
+  $("keyDel").onclick = () => { try { localStorage.removeItem(GKEY); } catch {} sample = null; aiBanner(); $("keyStatus").textContent = "Key removed."; };
+} else {
+  $("handsfreeNote").hidden = false;
+  $("handsfreeNote").textContent = "Want hands-free talking like Loora? Inside Claude the microphone is blocked, so use the free web version of Bolo English in Safari for that.";
+}
+function renderAll() {
+  $("goalSel").value = String(state.settings.goal);
+  renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
+  $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off";
+}
+loadLocal(); renderAll();
+connectDb();
+})();
+</script>
+
+</body>
+</html>
