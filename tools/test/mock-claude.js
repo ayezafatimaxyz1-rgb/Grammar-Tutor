@@ -39,7 +39,7 @@
 
   const replyFor = (prompt) => {
     if (/exactly the word OK/.test(prompt)) return "OK";
-    if (/Write the board's next turn now/.test(prompt)) return /This is the last turn/.test(prompt) ? "[Chairman] Thank you very much. The interview is over." : "[Member 1] Why do you want to join the civil service?";
+    if (/Write the board's next turn now/.test(prompt)) return /This is the last turn/.test(prompt) || window.__forceOver ? "[Chairman] Thank you very much. The interview is over." : "[Member 1] Why do you want to join the civil service?";
     if (/senior CSS \(FPSC\) interview examiner/.test(prompt)) return JSON.stringify({ score: 5, level: "A2", areas: { communication: 6, confidence: 5, knowledge: 4, english: 5 }, board_view: "The candidate is polite but needs longer answers.", did_well: ["Polite", "Clear"], work_on: [{ wrong: "I want serve", right: "I want to serve" }], tip: "Give one example in every answer.", useful_line: "I want to serve the people of Pakistan." });
     if (/The student spoke for/.test(prompt)) return JSON.stringify({ score: 7, comment: "Good flow with few pauses.", errors: [{ wrong: "I am agree", right: "I agree", why: "Agree is already a verb." }], better: "I want to join the civil service because I want to serve my country. As an officer, I can help people.", tip: "Use one example." });
     if (/is practising the word/.test(prompt)) return JSON.stringify({ used_word: true, correct: false, fixed: "The economy of Pakistan is growing.", note: "Good try!" });
@@ -63,7 +63,7 @@
   const run = async (input, opts = {}) => {
     validate(input, opts);
     const prompt = flat(input);
-    window.__calls.push({ prompt: prompt.slice(0, 600), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
+    window.__calls.push({ prompt: prompt.slice(0, 2000), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
     if (window.__failNext) { const c = window.__failNext; window.__failNext = null; throw { code: c, message: "forced " + c }; }
     if (window.__hangNext) { window.__hangNext = false; await new Promise((_, rej) => opts.signal?.addEventListener("abort", () => rej({ code: "cancelled", message: "aborted" }))); }
     await new Promise((r) => setTimeout(r, 30));

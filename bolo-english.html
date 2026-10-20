@@ -222,6 +222,9 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .metric { background: var(--sunk); border-radius: 12px; padding: 8px; text-align: center; }
 .metric b { display: block; font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
 .metric span { font-size: 11px; color: var(--muted); }
+.metric b i { font-style: normal; font-size: 14px; }
+.metric b i.good { color: var(--good); }
+.metric b i.bad { color: var(--bad); }
 .better { margin: 0; font-size: 16px; line-height: 1.5; }
 .flash textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 17px; resize: vertical; }
 .flash .prompt { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--bad); }
@@ -555,14 +558,16 @@ const today = () => new Date().toLocaleDateString("en-CA");
 let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [], chats: [] };
 const LS = "bolo.v1";
 function loadLocal() { try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s) state = { ...state, ...s, settings: { ...state.settings, ...(s.settings || {}) } }; } catch {} }
-function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...state, chats: state.chats.slice(0, 30) })); } catch {} }
+// With the account store the phone keeps the 30 newest chats; without it (web version) this is the only copy, so keep far more.
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...state, chats: state.chats.slice(0, col ? 30 : 300) })); } catch {} }
 
 let col = null; // db collection for this person
 let metaTimer = 0;
 function putCard(c) { saveLocal(); if (col) col.doc("card_" + c.id).set(c).catch(() => {}); }
+let metaReady = false; // until the account's own meta is read, writing ours would wipe its streak and reports
 function putMeta() {
   saveLocal();
-  if (!col) return;
+  if (!col || !metaReady) return;
   clearTimeout(metaTimer);
   metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
 }
@@ -571,6 +576,8 @@ let dbgCol = null, dbgRows = [], dbgTimer = 0;
 const visitId = "v" + Date.now().toString(36);
 // Documents from the store arrive frozen; the app edits its state in place, so always work on a copy.
 const thaw = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
+let idSeq = 0;
+const newId = (tag) => Date.now().toString(36) + tag + (++idSeq).toString(36);
 // Step log so Claude can read what happened on the learner's phone: one owner-only document per visit,
 // at most 150 rows, and visits older than a week are deleted, so the store never fills up.
 function dbg(step, extra) {
@@ -599,7 +606,7 @@ function onLibrary(snap) {
 }
 async function connectDb() {
   const [db, user] = await Promise.all([use("db"), use("user")]).catch(() => [null, null]);
-  if (db) {
+  if (db && !libCol) {
     libCol = db.collection("library");
     dbgCol = db.collection("debug");
     dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 12 });
@@ -614,16 +621,17 @@ async function connectDb() {
   let snap;
   try { snap = await getRetry(col); }
   catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; } // writes still go to the store meanwhile
-  cardsReady = true;
+  cardsReady = true; metaReady = true;
   if (snap.empty) { // first time on the account: copy anything this browser already has
-    state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true)); putMeta(); libraryWords(); return;
+    state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true, true)); putMeta(); libraryWords(); return;
   }
   const cards = [], chats = []; let meta = null;
   snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); else if (d.id.startsWith("chat_")) chats.push(thaw(d.data())); });
   // Keep whichever copy of a chat is newer; the open chat object is updated in place so the screen keeps working.
   const byChat = new Map(state.chats.map((c) => [c.id, c]));
-  chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) Object.assign(l, c); else byChat.set(c.id, c); } });
-  state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true); });
+  let redraw = false;
+  chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat || l === minRec) { Object.assign(l, c); redraw = redraw || l === chat; } else byChat.set(c.id, c); } });
+  state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true, true); }); // upload without re-dating them
   state.chats = [...byChat.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
   const byId = new Map(cards.map((c) => [c.id, c]));
   state.cards.forEach((c) => { const sc = byId.get(c.id); if (!sc) { byId.set(c.id, c); putCard(c); } else if ((c.due || 0) > (sc.due || 0)) { byId.set(c.id, c); putCard(c); } });
@@ -639,6 +647,7 @@ async function connectDb() {
     putMeta();
   }
   saveLocal(); renderAll(); libraryWords(); restoreChat(); checkLevel();
+  if (redraw && chat && !busy && !$("chat").hidden) openChat(chat); // another device added turns to the open chat
 }
 
 function logTime(ms, words) {
@@ -698,7 +707,7 @@ function parseLoose(t) {
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
 function geminiAI() {
   const cfg = gget(); if (!cfg?.key) return null;
-  const call = async (input, opts = {}, json = false) => {
+  const call = async (input, opts = {}, json = false, retried = false) => {
     const turnsIn = typeof input === "string" ? [{ role: "user", content: input }] : input;
     const contents = [];
     for (const t of turnsIn) {
@@ -712,7 +721,13 @@ function geminiAI() {
     try {
       res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal });
     } catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
-    if (!res.ok) throw { code: res.status === 429 ? "rate_limited" : res.status === 400 || res.status === 403 ? "bad_key" : "upstream_error" };
+    if (!res.ok) {
+      let body = ""; try { body = JSON.stringify(await res.json()); } catch {}
+      if (res.status === 404 && !retried) { // Google retired the model: pick the current one and try once more
+        try { const m = await pickModel(cfg.key); if (m && m !== cfg.model) { cfg.model = m; try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} return call(input, opts, json, true); } } catch {}
+      }
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(body) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(body)) ? "bad_key" : "upstream_error" };
+    }
     const data = await res.json();
     const text = (data.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
     if (!text) throw { code: "empty_completion" };
@@ -756,6 +771,7 @@ function errText(e, where) {
     case "session_expired": return "Your Claude sign-in expired. Reload the page.";
     case "bad_key": return "Your Gemini key did not work. Check it in History, Settings.";
     case "offline": return "No internet connection. Check your connection and try again.";
+    case "quota": return "Google's free limit for today is used up. Try again tomorrow, or add a different key in History, Settings.";
     case "timeout": return "Mam took too long to answer.";
     case "cancelled": return "";
     case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view (" + e.code + "). Open the page on claude.ai in Safari, or update the Claude app.";
@@ -802,15 +818,21 @@ function useStarter(s, target) {
   if (target === "minIn" && !minRunning) $("minStart").click(); // a starter on the 1-minute screen starts the clock
   const el = $(target), v = el.value.trim();
   el.value = (v ? v + " " : "") + s.split("…")[0];
+  if (target === "minIn") minBase = el.value; // the 1-minute recogniser adds to the starter instead of replacing it
   if (target === "input") autoGrow();
   el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch {}
   speak(s.replace(/…/g, ", "), 0.8);
 }
 
 const PITCH = { chairman: 0.8, "member 1": 1, "member 2": 1.25 };
+const WHO = "Chairman|Member\\s*(?:1|2|one|two)";
 function splitSpeaker(s) {
-  const m = String(s).match(/^\s*\[(Chairman|Member\s*1|Member\s*2)\]\s*/i);
-  return m ? { who: m[1].replace(/\s+/, " ").replace(/^./, (x) => x.toUpperCase()), text: String(s).slice(m[0].length) } : { who: "", text: String(s) };
+  const str = String(s);
+  const m = str.match(new RegExp("^\\s*\\**\\s*(?:\\[\\s*(" + WHO + ")\\s*\\]|(" + WHO + ")\\s*:)\\s*\\**\\s*:?\\s*", "i"));
+  const strip = (t) => t.replace(new RegExp("\\s*\\[\\s*(?:" + WHO + ")\\s*\\]\\s*", "gi"), " ").trim(); // a second label inside the line
+  if (!m) return { who: "", text: strip(str) };
+  const who = (m[1] || m[2]).replace(/\s+/g, " ").replace(/one$/i, "1").replace(/two$/i, "2").replace(/^./, (x) => x.toUpperCase()).replace(/member\s*/i, "Member ");
+  return { who, text: strip(str.slice(m[0].length)) };
 }
 function speakLine(line, onend, rate = 0.88) { const { who, text } = splitSpeaker(line); speak(text, rate, onend, PITCH[who.toLowerCase()] || 1); }
 const BOARD_RULES = (answered) => `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is a beginner in English who is practising for the real interview.
@@ -827,7 +849,7 @@ Reply with only the board's words.`;
 function askMam(t, history, opts) {
   const board = t.kind === "interview";
   const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
-  const head = board ? BOARD_RULES(history.filter((x) => x.role === "user").length) : RULES(t);
+  const head = board ? BOARD_RULES(history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length) : RULES(t);
   return sample(head + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now."), { modelTier: "quick", cache: false, ...opts });
 }
 
@@ -839,14 +861,25 @@ function newChat(t) {
   return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", css: !!t.css, kind: t.kind || "talk" },
     started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0, min: 0, newCards: 0 };
 }
-const slimChat = (c) => (c.turns ? { ...c, turns: c.turns.slice(-300) } : { ...c, attempts: (c.attempts || []).slice(-30) });
-function putChat(c, now) {
-  c.updated = Date.now();
+// A store document holds at most 256 KiB: keep the newest turns that fit well under that.
+function slimChat(c) {
+  if (!c.turns) return { ...c, attempts: (c.attempts || []).slice(-30) };
+  let turns = c.turns.slice(-300), out = { ...c, turns };
+  while (turns.length > 20 && new Blob([JSON.stringify(out)]).size > 200000) { turns = turns.slice(Math.ceil(turns.length / 5)); out = { ...c, turns }; }
+  return out;
+}
+const saveRetries = new Map();
+function putChat(c, now, keepTime) {
+  if (!keepTime) c.updated = Date.now();
   const i = state.chats.indexOf(c); if (i > 0) state.chats.splice(i, 1); if (i !== 0) state.chats.unshift(c);
   clearTimeout(saveTimers.get(c.id));
   const write = () => {
     saveTimers.delete(c.id); saveLocal();
-    if (col) col.doc("chat_" + c.id).set(slimChat(c)).catch((e) => dbg("chat_save_error", { code: String(e?.code || ""), message: String(e?.message || "").slice(0, 200) }));
+    if (col) col.doc("chat_" + c.id).set(slimChat(c)).then(() => saveRetries.delete(c.id), (e) => {
+      dbg("chat_save_error", { code: String(e?.code || ""), message: String(e?.message || "").slice(0, 200) });
+      const n = (saveRetries.get(c.id) || 0) + 1; saveRetries.set(c.id, n);
+      if (n <= 3) setTimeout(() => putChat(c, true, true), 10000 * n); // try again a few times so nothing is lost
+    });
   };
   if (now) write(); else saveTimers.set(c.id, setTimeout(write, 700));
 }
@@ -888,7 +921,7 @@ function renderWotd() {
   const saved = state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === w.word);
   const save = tool(saved ? "✓ In your cards" : "+ Save card", () => {
     const now = Date.now();
-    const c = { id: now.toString(36) + "d", type: "word", word: w.word, mean: w.mean, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
+    const c = { id: newId("d"), type: "word", word: w.word, mean: w.mean, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
     state.cards.unshift(c); putCard(c); renderCards(); renderDue(); renderWotd();
   });
   save.disabled = saved;
@@ -939,6 +972,7 @@ function startTopic(t, fresh) {
   if (state.settings.voice) speakLine(t.open, afterSpeak); else afterSpeak();
 }
 function openChat(c) {
+  if (c === chat && !$("chat").hidden && busy) { show("talk"); return; }
   stopListening(); ctl?.abort(); hush();
   topic = c.topic; chat = c; sess = { last: Date.now() };
   show("talk"); enterChat();
@@ -946,13 +980,16 @@ function openChat(c) {
   c.turns.forEach((tn, i) => {
     if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
     if (tn.at) prevAt = tn.at;
-    if (tn.role === "assistant") { addTutor({ reply: tn.content }); return; }
+    const repHere = () => { if (c.report?.turns > 0 && c.report.turns === i + 1 && c.report.turns < c.turns.length) $("msgs").append(reportCard(c)); };
+    if (tn.role === "assistant") { addTutor({ reply: tn.content }); repHere(); return; }
     const el = addMe(tn.content); el.dataset.text = tn.content; el.dataset.idx = i;
     if (tn.fb) attachFeedback(el, tn.fb, true);
     else if (i === c.turns.length - 1) markNotSent(el);
     else { const q = splitSpeaker(c.turns[i - 1]?.content || "").text; const b = document.createElement("button"); b.type = "button"; b.className = "verdict"; b.textContent = "Check this sentence"; b.onclick = () => { b.remove(); checkAnswer(el, tn.content, q, tn, c); }; el.append(b); }
+    repHere();
   });
-  if (c.report) $("msgs").append(reportCard(c));
+  if (c.report && !(c.report.turns > 0 && c.report.turns < c.turns.length)) $("msgs").append(reportCard(c));
+  if (interviewOver(c) && !c.report) boardDone();
   scrollDown();
 }
 function endChat() {
@@ -1017,6 +1054,7 @@ async function send(retryEl) {
   const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
   dbg("send_called", { len: text.length, busy, hasTopic: !!t, retry: !!retryEl });
   if (!text || busy || !c) return;
+  if (interviewOver(c)) { chatNote("This interview is over. Tap " + (c.report ? "＋ New for a new interview." : "Get my interview report, or ＋ New for a new interview."), false); return; }
   hush();
   await aiReady;
   if (c !== chat) return;
@@ -1026,6 +1064,7 @@ async function send(retryEl) {
   if (meEl) { meEl.querySelector(".notsent")?.remove(); turn = c.turns[+meEl.dataset.idx]; }
   else {
     $("input").value = ""; autoGrow();
+    document.querySelectorAll("#msgs .notsent").forEach((x) => x.remove());
     meEl = addMe(text); meEl.dataset.text = text;
     const now = Date.now(), gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
     const words = text.split(/\s+/).filter(Boolean).length;
@@ -1044,7 +1083,7 @@ async function send(retryEl) {
   let timedOut = false, replied = false, stopped = false;
   const slow = setTimeout(() => {
     if (!wait.isConnected || wait.dataset.got) return;
-    wait.firstChild.textContent = "Still waiting… If a box asks you to allow Claude, tap Allow.";
+    wait.firstChild.textContent = inClaude ? "Still waiting… If a box asks you to allow Claude, tap Allow." : "Still waiting…";
     wait.append(tool("■ Stop", () => { stopped = true; myCtl.abort(); }));
   }, 7000);
   const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 180000);
@@ -1078,7 +1117,10 @@ async function send(retryEl) {
   } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
   if (replied && !turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // only after a real reply, so the two calls never compete
 }
+const interviewOver = (c) => c?.kind === "interview" && c.turns.some((x) => x.role === "assistant" && /interview is over/i.test(x.content));
 function boardDone() {
+  stopListening();
+  if (chat?.report) return; // the report is already in the chat
   const d = document.createElement("div"); d.className = "banner retry";
   d.append("The board has finished. ");
   const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my interview report"; b.onclick = () => { d.remove(); finish(); };
@@ -1131,13 +1173,14 @@ function allowAction(retry) {
 }
 function saveCards(res, c) {
   const now = Date.now(), from = c?.topic?.name || "Talk";
-  if (res.correction) {
-    const card = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: from };
+  const norm = (x) => toks(x).join(" ");
+  if (res.correction && !state.cards.some((x) => x.type === "fix" && norm(x.word) === norm(res.correction.right))) {
+    const card = { id: newId("f"), type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: from };
     state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
   }
   res.new_words.forEach((w, i) => {
     if (state.cards.some((x) => x.type === "word" && x.word.toLowerCase() === String(w.word).toLowerCase())) return;
-    const card = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: from };
+    const card = { id: newId("w"), type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: from };
     state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
   });
   if (c) putChat(c);
@@ -1170,7 +1213,7 @@ ${transcript.slice(-12000)}`, { modelTier: "default", signal: myCtl.signal });
   finally { busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label; }
   if (rep === "shown") return;
   if (!rep || typeof rep !== "object") { if (c === chat) chatNote("The report could not be made this time. Tap " + label + " again.", false); return; }
-  c.report = { ...rep, date: Date.now() }; putChat(c, true); checkLevel();
+  c.report = { ...rep, date: Date.now(), turns: c.turns.length }; putChat(c, true); checkLevel();
   if (c === chat) { $("msgs").querySelectorAll(".report").forEach((x) => x.remove()); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
 }
 function reportCard(c) {
@@ -1221,9 +1264,9 @@ function startListening() {
   if (!canHandsFree || busy || !topic) return;
   try {
     rec = new SR(); rec.lang = "en-US"; rec.interimResults = true; rec.continuous = true;
-    let heard = "";
+    let heard = ""; const base = $("input").value.trim();
     const arm = () => { clearTimeout(silenceT); silenceT = setTimeout(() => { try { rec?.stop(); } catch {} }, 2200); };
-    rec.onresult = (e) => { let s = ""; for (const r of e.results) s += r[0].transcript; heard = s; $("input").value = s; autoGrow(); arm(); };
+    rec.onresult = (e) => { let s = ""; for (const r of e.results) s += r[0].transcript; heard = s; $("input").value = (base + " " + s).trim(); autoGrow(); arm(); };
     rec.onerror = (e) => {
       if (e.error === "not-allowed" || e.error === "service-not-allowed") { handsFree = false; $("liveState").textContent = "Allow the microphone for this site in your phone settings, then tap the mic again."; }
     };
@@ -1312,7 +1355,7 @@ async function pdfContent() {
 $("addForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   await aiReady;
-  if (!sample) { status("Open this page inside Claude to use Read.", true); return; }
+  if (!sample) { status(inClaude ? "Mam can't reach Claude from this view. Open the page in the Claude app or on claude.ai." : "Add your free Gemini key first (History, Settings).", true); return; }
   const pasted = $("pasteIn").value.trim();
   if (!files.length && !pasted) { status("Add screenshots, a PDF, or paste some text first.", true); return; }
   const source = $("srcInput").value.trim() || "Unknown source";
@@ -1350,7 +1393,7 @@ function addWords(it) {
   const now = Date.now();
   (it.words || []).forEach((w, i) => {
     if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
-    const c = { id: now.toString(36) + "r" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
+    const c = { id: newId("r"), type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
     state.cards.unshift(c); putCard(c);
   });
   renderCards(); renderDue();
@@ -1409,7 +1452,7 @@ function matchWords(said, target) {
   for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
   const hit = new Array(b.length).fill(false);
   for (let i = 0, j = 0; i < a.length && j < b.length;) { if (a[i] === b[j]) { hit[j] = true; i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++; }
-  return { score: b.length ? dp[0][0] / Math.max(b.length, a.length) : 0, words: b, hit };
+  return { score: b.length ? dp[0][0] / b.length : 0, words: b, hit };
 }
 function diffView(m) {
   const d = document.createElement("div"); d.className = "diff";
@@ -1502,7 +1545,8 @@ Reply with ONLY JSON: {"used_word": true if they used "${c.word}" or a form of i
   row.append(forgot, check);
   wrap.append(f);
 }
-function grade(c, ok) {
+function grade(card, ok) {
+  const c = state.cards.find((x) => x.id === card.id) || card; // the list may have been replaced by a sync meanwhile
   c.box = ok ? Math.min((c.box || 0) + 1, INTERVALS.length - 1) : 0;
   c.due = ok ? Date.now() + INTERVALS[c.box] * DAY : Date.now() + 60000 * 5;
   putCard(c); renderDue(); renderReview();
@@ -1520,7 +1564,7 @@ const QUESTIONS = [
   "Should Pakistan focus more on agriculture or industry?", "Which service group do you want, and why?", "How can we make our cities cleaner?",
   "What do you do to stay healthy?", "Why do so many young people want to go abroad?",
 ];
-let minQ = null, minRec = null, minTimer = 0, minStartAt = 0, minRunning = false, minSR = null, minBusy = false;
+let minQ = null, minRec = null, minTimer = 0, minStartAt = 0, minRunning = false, minSR = null, minBusy = false, minBase = "";
 function minStatus(t, err) { $("minStatus").textContent = t; $("minStatus").classList.toggle("err", !!err); }
 function loadQuestion(q, ctx, rec) {
   stopMinute(true);
@@ -1529,7 +1573,11 @@ function loadQuestion(q, ctx, rec) {
   rec = minRec;
   $("qText").textContent = q; $("minIn").value = ""; $("minResult").innerHTML = ""; minStatus("");
   setTimer(60); renderMinPast();
-  if (rec?.attempts?.length) renderMinResult(rec.attempts[rec.attempts.length - 1], rec.attempts[rec.attempts.length - 2]);
+  if (rec?.attempts?.length) {
+    const last = rec.attempts[rec.attempts.length - 1], prev = rec.attempts[rec.attempts.length - 2];
+    if (last.result) renderMinResult(last, prev);
+    else { renderMinResult(last, prev, "Mam's feedback for this answer did not arrive."); $("minResult").append(tool("Get feedback now", () => evaluateMinute(last, prev))); }
+  }
 }
 function nextQuestion() { const pool = QUESTIONS.filter((x) => x !== minQ?.q); loadQuestion(pool[Math.floor(Math.random() * pool.length)]); }
 function setTimer(left) { $("timer").textContent = Math.max(0, Math.ceil(left)); $("ring").style.setProperty("--p", Math.max(0, Math.min(1, left / 60))); }
@@ -1544,10 +1592,11 @@ $("minStart").onclick = () => {
   minTimer = setInterval(() => { const left = 60 - (Date.now() - minStartAt) / 1000; setTimer(left); if (left <= 0) endMinute(); }, 250);
   if (canHandsFree) {
     try {
-      let base = "";
+      minBase = "";
       const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
-      r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (base + " " + s).trim(); };
-      r.onend = () => { if (minRunning && minSR === r) { base = inp.value; try { r.start(); } catch {} } };
+      r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (minBase + " " + s).trim(); };
+      r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; minStatus("Allow the microphone for this site in your phone settings, or type your answer.", true); } };
+      r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; try { r.start(); } catch {} } };
       r.start(); minSR = r; minStatus("Listening… speak until the timer ends.");
     } catch { minSR = null; }
   } else minStatus("Tap the 🎤 on your keyboard and keep talking until the timer ends.");
@@ -1556,6 +1605,7 @@ $("minDone").onclick = () => endMinute();
 function stopMinute(silent) {
   clearInterval(minTimer); const r = minSR; minSR = null; try { r?.abort(); } catch {}
   const was = minRunning; minRunning = false;
+  const inp = $("minIn"); inp.blur(); inp.disabled = true; // closes the keyboard so the result is visible
   $("minStart").hidden = false; $("minDone").hidden = true; $("minStart").textContent = "▶ Start 60 seconds";
   if (silent && was) $("minIn").value = "";
   return was;
@@ -1568,7 +1618,7 @@ async function endMinute() {
   if (!text) { minStatus("I didn't get any words. Tap Start, then the 🎤 on your keyboard, and speak.", true); setTimer(60); return; }
   const words = toks(text).length;
   const wpm = Math.round(words / Math.max(secs, 10) * 60);
-  const fillers = (text.match(/\b(um+|uh+|er+m*|ah+|hmm+|you know|i mean|basically|actually)\b/gi) || []).length;
+  const fillers = (text.match(/\b(um+|uh+|er+m*|ah+|hmm+|you know)\b/gi) || []).length;
   const t = toks(text); let repeats = 0; for (let i = 1; i < t.length; i++) if (t[i] === t[i - 1]) repeats++;
   logTime(secs * 1000, words);
   if (!minRec) { const now = Date.now(); minRec = { id: "m" + now.toString(36), kind: "minute", topic: { em: "⏱️", name: minQ.q, ctx: minQ.ctx || "" }, started: now, updated: now, attempts: [], words: 0, min: 0 }; }
@@ -1579,13 +1629,14 @@ async function endMinute() {
   $("minStart").textContent = "🔁 Try again";
   renderMinPast();
   await evaluateMinute(at, prev);
+  $("minResult").scrollIntoView({ block: "start", behavior: "smooth" });
 }
 async function evaluateMinute(at, prev) {
   renderMinResult(at, prev, "Mam is listening to your answer…");
   await aiReady;
   if (!sample) { renderMinResult(at, prev, inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in History, Settings, to get Mam's feedback."); return; }
   minBusy = true;
-  const rec = minRec;
+  const rec = minRec, mc = new AbortController(), mt = setTimeout(() => mc.abort(), 120000); // never leave the screen stuck
   try {
     const r = await askJson(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
 Question: "${rec.topic.name}"
@@ -1593,7 +1644,7 @@ ${rec.topic.ctx ? "The question is about this article: " + rec.topic.ctx.slice(0
 Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words. The student's English level is ${levelId()}; score fairly for that level, and write the better answer one small step above it.
 Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
 {"score": number 1-10 for a beginner (fluency, clarity and answering the question), "comment": "one or two short sentences about the fluency, kind and honest", "errors": [{"wrong": "exact wrong words", "right": "corrected words", "why": "very short reason, at most 10 words"}], "better": "a better answer to the same question in 70 to 100 words of simple (A2-B1) English, keeping the student's own ideas", "tip": "one practical tip for the next try"}
-"errors" has 0 to 3 items.`, { modelTier: "default", cache: false });
+"errors" has 0 to 3 items.`, { modelTier: "default", cache: false, signal: mc.signal });
     at.result = { score: Number(r?.score) || 0, comment: String(r?.comment || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: String(r?.better || ""), tip: String(r?.tip || "") };
     putChat(rec, true); checkLevel();
     if (rec === minRec) { renderMinResult(at, prev); renderMinPast(); }
@@ -1602,7 +1653,7 @@ Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
       renderMinResult(at, prev, errText(e) || "Stopped.");
       const b = tool("Get feedback again", () => evaluateMinute(at, prev)); $("minResult").append(b);
     }
-  } finally { minBusy = false; }
+  } finally { minBusy = false; clearTimeout(mt); }
 }
 function renderMinResult(at, prev, note) {
   const box = $("minResult"); box.innerHTML = "";
@@ -1613,8 +1664,9 @@ function renderMinResult(at, prev, note) {
   card.querySelector("h3").textContent = "Attempt " + (minRec?.attempts.indexOf(at) + 1 || 1);
   card.querySelector(".when").textContent = at.secs + " second" + (at.secs === 1 ? "" : "s") + " of speaking";
   const mt = card.querySelector(".metrics");
-  const chipM = (val, label, delta) => { const d = document.createElement("div"); d.className = "metric"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = val + (delta ? " " + delta : ""); d.lastChild.textContent = label; mt.append(d); };
-  const dl = (a, b, upGood) => (b == null ? "" : a === b ? "" : (a > b) === upGood ? "▲" : "▼");
+  const chipM = (val, label, d) => { const el = document.createElement("div"); el.className = "metric"; el.innerHTML = "<b></b><span></span>"; el.firstChild.textContent = val; if (d) { const a = document.createElement("i"); a.className = d.good ? "good" : "bad"; a.textContent = " " + d.arrow; el.firstChild.append(a); } el.lastChild.textContent = label; mt.append(el); };
+  // the arrow shows which way the number moved; its colour shows whether that is good
+  const dl = (a, b, upGood) => (b == null || a === b ? null : { arrow: a > b ? "▲" : "▼", good: (a > b) === upGood });
   chipM(at.words, "words", dl(at.words, prev?.words, true));
   chipM(at.wpm, "words / min", dl(at.wpm, prev?.wpm, true));
   chipM(at.fillers, "fillers (um, uh)", dl(at.fillers, prev?.fillers, false));
@@ -1914,6 +1966,7 @@ function show(tab) {
   TABS.forEach((t) => { $("v-" + t).hidden = t !== tab; });
   document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   $("composer").hidden = tab !== "talk" || !topic;
+  if (tab !== "talk" && (handsFree || rec)) { stopListening(); hush(); }
   if (tab !== "minute" && minRunning) endMinute();
   if (tab === "review") renderReview();
   if (tab === "read") renderLib();
