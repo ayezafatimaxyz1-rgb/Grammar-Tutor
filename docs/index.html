@@ -583,6 +583,12 @@ Rules:
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no JSON.`;
 
+// Mam's next line, sent as one plain prompt (the same call shape the connection check uses).
+function askMam(t, history, opts) {
+  const convo = history.slice(-14).map((x) => (x.role === "user" ? "Student: " : "Mam: ") + x.content).join("\n");
+  return sample(RULES(t) + "\n\nConversation so far:\n" + convo + "\n\nWrite Mam's next reply now.", { modelTier: "quick", cache: false, ...opts });
+}
+
 // ---------- talk ----------
 let topic = null, turns = [], sess = null, busy = false, ctl = null;
 function renderTopics() {
@@ -718,7 +724,6 @@ async function send(retryEl) {
     turns.push({ role: "user", content: text });
   }
   const lastQ = [...turns].reverse().find((t) => t.role === "assistant")?.content || "";
-  checkAnswer(meEl, text, lastQ);
   busy = true; $("sendBtn").disabled = true;
   const wait = document.createElement("div"); wait.className = "msg tutor";
   wait.innerHTML = '<div class="bubble typing">Mam is thinking…</div>'; $("msgs").append(wait); scrollDown();
@@ -728,13 +733,12 @@ async function send(retryEl) {
   const watchdog = setTimeout(() => { timedOut = true; ctl.abort(); }, 90000);
   setLive("thinking");
   try {
-    const recent = turns.slice(-14); if (recent[0].role !== "user") recent.unshift({ role: "user", content: "(conversation continues)" });
-    const { text: reply } = await sample([{ role: "user", content: RULES(topic) }, ...recent], {
-      modelTier: "quick", cache: false, signal: ctl.signal,
+    const { text: reply } = await askMam(topic, turns, {
+      signal: ctl.signal,
       onText: ({ text: t }) => { wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = t; scrollDown(); },
     });
     wait.remove();
-    const res = { reply: reply.trim().replace(/^"|"$/g, "") || "Can you say that again, please?" };
+    const res = { reply: reply.trim().replace(/^(Mam:\s*)/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?" };
     turns.push({ role: "assistant", content: res.reply });
     addTutor(res);
     if (state.settings.voice) speak(res.reply, 0.88, afterSpeak); else setTimeout(afterSpeak, 50);
@@ -747,6 +751,7 @@ async function send(retryEl) {
       chatNote(m, false);
     } else setLive("idle");
   } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
+  checkAnswer(meEl, text, lastQ); // after the reply, so the two calls never compete
 }
 // Corrections come from their own call, so a slow or failed check never blocks Mam's reply.
 async function checkAnswer(meEl, text, lastQ) {
@@ -1158,8 +1163,18 @@ $("diagBtn").onclick = async () => {
   if (sample) {
     put("Sending a test message… (tap Allow if asked)");
     const c = new AbortController(); const t = setTimeout(() => c.abort(), 45000);
-    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: c.signal }); put("Test reply: " + text.trim().slice(0, 40) + " ✓ Everything works."); }
-    catch (e) { put("Test failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: c.signal }); put("1. Simple test: " + text.trim().slice(0, 40) + " ✓"); }
+    catch (e) { put("1. Simple test failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    put("Testing a chat reply…");
+    try {
+      const { text } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: c.signal, onText: () => {} });
+      put("2. Chat reply ✓ " + text.trim().slice(0, 80));
+    } catch (e) { put("2. Chat reply failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    put("Testing sentence check…");
+    try {
+      const r = await sample.json('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", cache: false, signal: c.signal });
+      put("3. Sentence check ✓ " + JSON.stringify(r).slice(0, 60));
+    } catch (e) { put("3. Sentence check failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
     finally { clearTimeout(t); }
   }
   $("diagBtn").disabled = false;
