@@ -145,7 +145,30 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .report .when { color: var(--muted); font-size: 13px; }
 
 /* Tabs */
-nav.tabs { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.addbox { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.addbox input[type=text], .addbox textarea, .addbox input[type=number] { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; width: 100%; }
+.addbox textarea { min-height: 70px; resize: vertical; }
+.addbox .pages { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.addbox .pages input { width: 72px; }
+.vh { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.upload { display: flex; align-items: center; justify-content: center; gap: 8px; border: 2px dashed var(--accent); color: var(--accent); border-radius: 14px; padding: 14px; font-weight: 700; cursor: pointer; text-align: center; }
+.thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.thumbs img { width: 56px; height: 72px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+.thumbs .pdf { font-size: 13px; background: var(--sunk); border-radius: 8px; padding: 6px 10px; }
+.status { font-size: 14px; color: var(--muted); }
+.status.err { color: var(--bad); }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.item summary { list-style: none; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 12px; cursor: pointer; align-items: center; }
+.item summary::-webkit-details-marker { display: none; }
+.item .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); border-radius: 14px; height: 64px; display: grid; place-items: center; font-size: 28px; }
+.item .meta { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.item .ttl { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.25; }
+.item .more { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.item .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.item .simple { font-size: 17px; }
+.item .angle { border-left: 4px solid var(--sun); padding: 6px 10px; background: var(--sunk); border-radius: 0 10px 10px 0; font-size: 15px; }
+.item ol, .item ul { margin: 0; padding-left: 20px; }
+nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
 nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
 nav.tabs button .i { font-size: 20px; line-height: 1; }
 nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
@@ -188,6 +211,39 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
         </div>
         <div class="msgs" id="msgs" aria-live="polite"></div>
       </div>
+    </section>
+
+    <!-- READ -->
+    <section class="view pad" id="v-read" hidden>
+      <div>
+        <h2>Read and discuss</h2>
+        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Sana makes it simple, explains it in Urdu, saves the hard words as cards, then talks with you about it.</p>
+      </div>
+      <form class="addbox" id="addForm">
+        <div class="seg" role="group" aria-label="What are you adding" id="kindSeg">
+          <button type="button" data-k="daily" aria-pressed="true">Daily news</button>
+          <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+          <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+        </div>
+        <input type="text" id="srcInput" list="srcList" maxlength="60" placeholder="Source, e.g. Dawn" aria-label="Source">
+        <datalist id="srcList"></datalist>
+        <label class="upload" for="fileIn">📷 Add screenshots or a PDF</label>
+        <input class="vh" type="file" id="fileIn" multiple accept="image/*,application/pdf">
+        <div class="thumbs" id="thumbs"></div>
+        <div class="pages" id="pdfPages" hidden>
+          <span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="3" aria-label="To page"><span id="pOf"></span>
+        </div>
+        <textarea id="pasteIn" placeholder="…or paste the article text here"></textarea>
+        <button class="btn primary" type="submit" id="processBtn">Make it simple</button>
+        <div class="status" id="readStatus" aria-live="polite"></div>
+      </form>
+      <div class="seg" role="group" aria-label="Show" id="libSeg">
+        <button type="button" data-k="all" aria-pressed="true">All</button>
+        <button type="button" data-k="daily" aria-pressed="false">Daily</button>
+        <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+        <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+      </div>
+      <div class="view" style="padding:0" id="lib"></div>
     </section>
 
     <!-- CARDS -->
@@ -238,6 +294,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
   <nav class="tabs" aria-label="Sections">
     <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
+    <button type="button" data-tab="read"><span class="i">📰</span>Read</button>
     <button type="button" data-tab="cards"><span class="i">🖼️</span>Cards</button>
     <button type="button" data-tab="review"><span class="i">🔁</span><span>Review<span class="badge" id="dueBadge" hidden></span></span></button>
     <button type="button" data-tab="progress"><span class="i">📈</span>Progress</button>
@@ -305,7 +362,7 @@ const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve
 const today = () => new Date().toLocaleDateString("en-CA");
 
 // ---------- state ----------
-let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 } };
+let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [] };
 const LS = "bolo.v1";
 function loadLocal() { try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s) state = { ...state, ...s, settings: { ...state.settings, ...(s.settings || {}) } }; } catch {} }
 function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch {} }
@@ -319,9 +376,21 @@ function putMeta() {
   clearTimeout(metaTimer);
   metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
 }
+let libCol = null; // "library": readings, also filled by Claude from chat uploads
+function putItem(it) { saveLocal(); if (libCol) libCol.doc(it.id).set(it).catch(() => {}); }
+function delItem(it) { state.library = state.library.filter((x) => x.id !== it.id); saveLocal(); if (libCol) libCol.doc(it.id).delete().catch(() => {}); renderLib(); }
 async function connectDb() {
   try {
     const [db, user] = await Promise.all([use("db"), use("user")]);
+    if (db) {
+      libCol = db.collection("library");
+      libCol.onSnapshot((snap) => {
+        const byId = new Map(state.library.map((x) => [x.id, x]));
+        snap.docs.forEach((d) => byId.set(d.id, { ...d.data(), id: d.id }));
+        state.library = [...byId.values()].sort((a, b) => b.created - a.created);
+        saveLocal(); renderLib();
+      }, () => {});
+    }
     if (!db || !user) return;
     const uid = await user.id();
     if (!uid) return;
@@ -579,6 +648,160 @@ function stopListening() { handsFree = false; try { rec?.abort(); } catch {} rec
 function afterSpeak() { if (handsFree && !rec && topic) startListening(); }
 
 // ---------- cards ----------
+// ---------- read ----------
+const SOURCES = { daily: ["Dawn", "The Express Tribune", "The News", "BBC News", "Al Jazeera"], weekly: ["The Economist", "TIME", "The Friday Times"], monthly: ["Jahangir's World Times", "Foreign Affairs", "The Diplomat", "Foreign Policy"] };
+const KIND = { daily: "Daily news", weekly: "Weekly magazine", monthly: "Monthly magazine" };
+let kind = "daily", libFilter = "all", files = [], pdfDoc = null;
+function segInit(id, key, cb) {
+  document.querySelectorAll("#" + id + " button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("#" + id + " button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); cb(b.dataset[key]);
+  });
+}
+function fillSources() { $("srcList").innerHTML = ""; SOURCES[kind].forEach((n) => { const o = document.createElement("option"); o.value = n; $("srcList").append(o); }); $("srcInput").placeholder = "Source, e.g. " + SOURCES[kind][0]; }
+segInit("kindSeg", "k", (k) => { kind = k; fillSources(); });
+segInit("libSeg", "k", (k) => { libFilter = k; renderLib(); });
+fillSources();
+function status(t, err) { $("readStatus").textContent = t; $("readStatus").classList.toggle("err", !!err); }
+let pdfLib = null;
+function loadScript(src) { return new Promise((ok, no) => { const sc = document.createElement("script"); sc.src = src; sc.onload = ok; sc.onerror = no; document.head.append(sc); }); }
+async function getPdfLib() {
+  if (pdfLib) return pdfLib;
+  const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  await loadScript(base + "pdf.worker.min.js"); // runs on the page itself, since the frame cannot start an outside worker
+  await loadScript(base + "pdf.min.js");
+  pdfLib = window.pdfjsLib; pdfLib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+  return pdfLib;
+}
+$("fileIn").addEventListener("change", async () => {
+  files = [...$("fileIn").files]; $("fileIn").value = ""; pdfDoc = null;
+  const th = $("thumbs"); th.innerHTML = ""; $("pdfPages").hidden = true; status("");
+  const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+  if (pdf) {
+    files = [pdf];
+    const d = document.createElement("span"); d.className = "pdf"; d.textContent = "📄 " + pdf.name; th.append(d);
+    try {
+      status("Opening PDF…");
+      const lib = await getPdfLib();
+      pdfDoc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise;
+      $("pdfPages").hidden = false; $("pOf").textContent = "of " + pdfDoc.numPages + " (up to 10 at a time)";
+      $("pFrom").value = 1; $("pTo").value = Math.min(3, pdfDoc.numPages); $("pFrom").max = $("pTo").max = pdfDoc.numPages;
+      status("Choose the pages with your article, then tap Make it simple.");
+    } catch { status("This PDF could not be opened. Try screenshots of the pages instead.", true); files = []; }
+    return;
+  }
+  files = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
+  files.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
+  if (files.length) status(files.length + " screenshot" + (files.length > 1 ? "s" : "") + " ready.");
+});
+function shrink(source, w, h) {
+  const scale = Math.min(1, 1800 / Math.max(w, h));
+  const c = document.createElement("canvas"); c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+  c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
+  return new Promise((ok) => c.toBlob(ok, "image/jpeg", 0.85));
+}
+async function imageBlob(file) {
+  const bmp = await createImageBitmap(file).catch(() => null);
+  return bmp ? shrink(bmp, bmp.width, bmp.height) : file;
+}
+async function pdfContent() {
+  const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 9);
+  let text = ""; const imgs = [];
+  for (let n = from; n <= to; n++) {
+    const page = await pdfDoc.getPage(n);
+    const tc = await page.getTextContent();
+    const t = tc.items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
+    if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
+    const vp = page.getViewport({ scale: 1.6 }); // a scanned page has no text, so send its picture
+    const c = document.createElement("canvas"); c.width = vp.width; c.height = vp.height;
+    await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    imgs.push(await shrink(c, c.width, c.height));
+  }
+  return { text, imgs, pages: from + "-" + to };
+}
+$("addForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await aiReady;
+  if (!sample) { status("Open this page inside Claude to use Read.", true); return; }
+  const pasted = $("pasteIn").value.trim();
+  if (!files.length && !pasted) { status("Add screenshots, a PDF, or paste some text first.", true); return; }
+  const source = $("srcInput").value.trim() || "Unknown source";
+  $("processBtn").disabled = true;
+  try {
+    let text = pasted, imgs = [], pages = "";
+    if (pdfDoc) { status("Reading the PDF pages…"); const r = await pdfContent(); text = (r.text + "\n\n" + pasted).trim(); imgs = r.imgs; pages = r.pages; }
+    else if (files.length) { status("Preparing screenshots…"); imgs = await Promise.all(files.map(imageBlob)); }
+    const lim = await sample.limits().catch(() => null);
+    if (imgs.length && !lim?.images) { status("Pictures can't be sent from this view. Paste the article text instead.", true); return; }
+    if (lim?.images) imgs = imgs.slice(0, lim.images.maxCount);
+    status("Sana is reading it… this can take up to a minute.");
+    const r = await sample.json(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
+Reply with ONLY JSON:
+{"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "ur": "a 4 to 6 sentence summary in Urdu script", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
+Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default" });
+    if (!r?.title || !r?.simple_en) throw { code: "invalid_json" };
+    const now = Date.now();
+    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), ur: String(r.ur || ""), css_angle: String(r.css_angle || ""),
+      words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6), questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), other_headlines: (Array.isArray(r.other_headlines) ? r.other_headlines : []).slice(0, 6).map(String) };
+    state.library.unshift(it); putItem(it); addWords(it);
+    files = []; pdfDoc = null; $("thumbs").innerHTML = ""; $("pdfPages").hidden = true; $("pasteIn").value = "";
+    status("Done. " + it.words.length + " new words were added to your cards.");
+    libFilter = "all"; document.querySelectorAll("#libSeg button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.k === "all")));
+    renderLib(it.id);
+  } catch (err) {
+    status(err?.code === "invalid_json" ? "Sana could not read this clearly. Try clearer screenshots or fewer pages." : errText(err) || "Stopped.", true);
+  } finally { $("processBtn").disabled = false; }
+});
+function addWords(it) {
+  const now = Date.now();
+  (it.words || []).forEach((w, i) => {
+    if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const c = { id: now.toString(36) + "r" + i, type: "word", word: String(w.word), ur: String(w.ur || ""), example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
+    state.cards.unshift(c); putCard(c);
+  });
+  renderCards(); renderDue();
+}
+function renderLib(openId) {
+  const box = $("lib"); if (!box) return;
+  const list = state.library.filter((x) => libFilter === "all" || x.kind === libFilter);
+  box.innerHTML = "";
+  if (!list.length) {
+    box.innerHTML = `<div class="empty"><span class="big">📰</span><strong>Nothing here yet</strong><span>Add a page from Dawn today, or from your Economist or JWT. You can also send the screenshots to Claude in chat.</span></div>`;
+    return;
+  }
+  list.forEach((it) => {
+    const d = document.createElement("details"); d.className = "item"; d.style.setProperty("--h", hue(it.title)); if (it.id === openId) d.open = true;
+    d.innerHTML = `<summary><div class="pic"></div><div style="min-width:0"><div class="meta"></div><div class="ttl"></div></div></summary><div class="more"></div>`;
+    d.querySelector(".pic").textContent = it.emoji;
+    d.querySelector(".meta").textContent = (KIND[it.kind] || "Reading") + " · " + it.source + " · " + new Date(it.created).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+    d.querySelector(".ttl").textContent = it.title;
+    const m = d.querySelector(".more");
+    const add = (cls, label, text) => { if (!text) return; if (label) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = label; m.append(l); } const x = document.createElement("div"); x.className = cls; x.textContent = text; m.append(x); };
+    add("simple", "Simple English", it.simple_en);
+    const t = document.createElement("div"); t.className = "tools";
+    t.append(tool("🔊 Listen", () => speak(it.simple_en, 0.85)), tool("🐢 Slow", () => speak(it.simple_en, 0.65)));
+    m.append(t);
+    add("ur", "اردو خلاصہ", it.ur);
+    add("angle", "CSS angle", it.css_angle);
+    if (it.words?.length) {
+      const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Key words (saved to your cards)"; m.append(l);
+      const c = document.createElement("div"); c.className = "chips";
+      it.words.forEach((w) => { const ch = document.createElement("button"); ch.type = "button"; ch.className = "chip"; ch.style.border = "0"; ch.style.setProperty("--h", hue(w.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = w.emoji || "✨"; ch.lastChild.textContent = w.word + " · " + (w.ur || ""); ch.onclick = () => speak(w.word + ". " + (w.example || ""), 0.8); c.append(ch); });
+      m.append(c);
+    }
+    if (it.questions?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Think and answer"; m.append(l); const ol = document.createElement("ol"); it.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ol.append(li); }); m.append(ol); }
+    if (it.other_headlines?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Other headlines"; m.append(l); const ul = document.createElement("ul"); it.other_headlines.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ul.append(li); }); m.append(ul); }
+    const row = document.createElement("div"); row.className = "tools";
+    const go = document.createElement("button"); go.type = "button"; go.className = "btn primary"; go.textContent = "💬 Discuss with Sana";
+    go.onclick = () => { show("talk"); startTopic({ id: "read", em: it.emoji, name: it.title, desc: "from " + it.source,
+      open: `Let's talk about the ${KIND[it.kind]?.toLowerCase() || "article"} you read from ${it.source}: "${it.title}". ${it.questions?.[0] || "What is this story about, in your own words?"}`,
+      extra: `The student read this article. Simple summary: ${it.simple_en} Help them explain it in their own words, teach the key words (${(it.words || []).map((w) => w.word).join(", ")}), and ask their opinion. Useful questions: ${(it.questions || []).join(" | ")}` }); };
+    const del = document.createElement("button"); del.type = "button"; del.className = "btn"; del.textContent = "Remove";
+    del.onclick = () => { if (del.dataset.sure) delItem(it); else { del.dataset.sure = "1"; del.textContent = "Tap again to remove"; } };
+    row.append(go, del); m.append(row);
+    box.append(d);
+  });
+}
+
 function hue(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.codePointAt(0)) % 360; return h; }
 let filter = "all";
 function renderCards() {
@@ -685,10 +908,11 @@ function renderProgress() {
 
 // ---------- shell ----------
 function show(tab) {
-  ["talk", "cards", "review", "progress"].forEach((t) => { $("v-" + t).hidden = t !== tab; });
+  ["talk", "read", "cards", "review", "progress"].forEach((t) => { $("v-" + t).hidden = t !== tab; });
   document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   $("composer").hidden = tab !== "talk" || !topic;
   if (tab === "review") renderReview();
+  if (tab === "read") renderLib();
   if (tab === "progress") renderProgress();
   $("main").scrollTop = tab === "talk" ? $("main").scrollHeight : 0;
 }
@@ -705,7 +929,7 @@ $("voiceBtn").onclick = () => {
   if (!state.settings.voice) speechSynthesis?.cancel();
 };
 function renderAll() {
-  renderTopics(); renderWotd(); renderCards(); renderDue(); renderHeader();
+  renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
   $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off";
 }
 loadLocal(); renderAll();
