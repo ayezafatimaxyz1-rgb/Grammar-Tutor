@@ -434,6 +434,8 @@ function putMeta() {
 }
 let libCol = null; // "library": readings, also filled by Claude from chat uploads
 let dbgCol = null, dbgQueue = [];
+// Documents from the store arrive frozen; the app edits its state in place, so always work on a copy.
+const thaw = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
 // Step log so Claude can read what happened on the learner's phone (owner-only "debug" collection).
 function dbg(step, extra) {
   const row = { t: Date.now(), step, ...(extra || {}) };
@@ -452,7 +454,7 @@ async function connectDb() {
       dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 8 });
       libCol.onSnapshot((snap) => {
         const byId = new Map(state.library.map((x) => [x.id, x]));
-        snap.docs.forEach((d) => byId.set(d.id, { ...d.data(), id: d.id }));
+        snap.docs.forEach((d) => byId.set(d.id, { ...thaw(d.data()), id: d.id }));
         state.library = [...byId.values()].sort((a, b) => b.created - a.created);
         saveLocal(); renderLib();
       }, () => {});
@@ -466,7 +468,7 @@ async function connectDb() {
       state.cards.forEach(putCard); putMeta(); return;
     }
     const cards = []; let meta = null;
-    snap.docs.forEach((d) => { if (d.id === "meta") meta = d.data(); else if (d.id.startsWith("card_")) cards.push(d.data()); });
+    snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); });
     const byId = new Map(cards.map((c) => [c.id, c]));
     state.cards.forEach((c) => { if (!byId.has(c.id)) { byId.set(c.id, c); putCard(c); } });
     state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
