@@ -64,6 +64,14 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .topic strong { font-family: var(--display); font-size: 16px; }
 .topic span { color: var(--muted); font-size: 13px; }
 .topic.css { border-color: var(--accent); }
+.wotd { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 110px minmax(0, 1fr); }
+.wotd .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 44px; display: grid; place-items: center; letter-spacing: 2px; }
+.wotd .body { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.wotd .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wotd .word { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; }
+.wotd .ex { color: var(--muted); font-size: 14px; }
+.own { display: flex; gap: 8px; }
+.own input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 99px; padding: 10px 14px; font: inherit; }
 .topic .tag { color: var(--accent-fg); font-size: 11px; }
 .tag { display: inline-block; align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: var(--accent-fg); padding: 2px 7px; border-radius: 99px; }
 
@@ -163,7 +171,13 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <p class="sub">Pick a topic. Your tutor Sana speaks slowly and corrects one mistake at a time.</p>
         </div>
         <div id="noAI" class="banner warn" hidden>Open this page inside Claude to talk with Sana. Cards, review and progress still work here.</div>
+        <div class="wotd" id="wotd"></div>
+        <h3>Talk topics</h3>
         <div class="topics" id="topics"></div>
+        <form class="own" id="ownForm" hidden>
+          <input id="ownInput" type="text" maxlength="80" placeholder="e.g. My favourite book" aria-label="Your own topic">
+          <button class="btn primary" type="submit">Start</button>
+        </form>
       </div>
       <div id="chat" class="view" style="padding:0" hidden>
         <div class="chatbar">
@@ -244,6 +258,47 @@ const TOPICS = [
   { id: "viva", em: "🪑", name: "Interview practice", desc: "Mock CSS viva, slow", css: true, open: "Good morning. Please have a seat. First, tell us a little about yourself." },
   { id: "free", em: "☕", name: "Free talk", desc: "Anything you like", open: "Hi! What would you like to talk about today?" },
 ];
+const WORLD = [
+  ["🌊", "Climate change and floods", "Climate change is a big problem for the whole world. Have you seen its effects in Pakistan?"],
+  ["🤖", "Artificial intelligence", "Artificial intelligence is changing the world very fast. Do you use any AI apps?"],
+  ["🕊️", "War and peace", "Some countries in the world are at war today. Why is peace important for everyone?"],
+  ["🌐", "USA and China", "The USA and China are the two biggest powers today. Why are they important for Pakistan?"],
+  ["💹", "Prices and the world economy", "Prices are rising in many countries. Why do you think things are so expensive?"],
+  ["🧳", "People moving abroad", "Many young people leave their country to work abroad. Would you like to live abroad? Why or why not?"],
+  ["💧", "The water crisis", "Many countries do not have enough clean water. Is water a problem in your city?"],
+  ["🤝", "Pakistan and its neighbours", "Pakistan has four neighbours. Which neighbour is most important for Pakistan, in your opinion?"],
+  ["🏛️", "The United Nations", "The United Nations tries to keep peace in the world. Do you think it does a good job?"],
+  ["📱", "Social media and fake news", "Many people read news on social media. Do you trust news on Facebook or TikTok?"],
+];
+const WORDS = [
+  ["democracy","جمہوریت","Pakistan is a democracy.","🗳️"],["economy","معیشت","The economy needs more jobs.","💰📈"],
+  ["inflation","مہنگائی","Inflation makes food expensive.","🛒📈"],["corruption","بدعنوانی","Corruption hurts poor people.","💸🚫"],
+  ["education","تعلیم","Education changes lives.","🎓📚"],["climate change","موسمیاتی تبدیلی","Climate change brings more floods.","🌍🔥"],
+  ["pollution","آلودگی","Air pollution is very high in Lahore.","🏭🌫️"],["population","آبادی","Pakistan has a large population.","👥👥"],
+  ["unemployment","بے روزگاری","Unemployment is a big problem for young people.","🧑‍💼❌"],["government","حکومت","The government made a new law.","🏛️"],
+  ["policy","پالیسی","We need a better education policy.","📜"],["justice","انصاف","Everyone wants justice.","⚖️"],
+  ["rights","حقوق","Women and men have equal rights.","✊"],["responsibility","ذمہ داری","Voting is our responsibility.","🤝"],
+  ["opportunity","موقع","CSS is a big opportunity for me.","🚪✨"],["challenge","چیلنج، مشکل","Water shortage is a big challenge.","🧗"],
+  ["solution","حل","Education is the best solution.","💡"],["improve","بہتر بنانا","I want to improve my English.","📈"],
+  ["develop","ترقی کرنا","Pakistan can develop very fast.","🏗️"],["resources","وسائل","Pakistan has many natural resources.","⛏️🌾"],
+  ["agriculture","زراعت","Agriculture is very important for Pakistan.","🌾🚜"],["energy crisis","توانائی کا بحران","The energy crisis causes load shedding.","🔌⚡"],
+  ["security","سلامتی، تحفظ","Security is important for peace.","🛡️"],["peace","امن","We all want peace.","🕊️"],
+  ["foreign policy","خارجہ پالیسی","Foreign policy is about our relations with other countries.","🌐🤝"],["trade","تجارت","Trade with China is growing.","🚢📦"],
+  ["technology","ٹیکنالوجی","Technology makes life easier.","💻"],["artificial intelligence","مصنوعی ذہانت","Artificial intelligence is changing jobs.","🤖"],
+  ["public service","عوامی خدمت","I want to do public service.","🏛️🙋"],["honest","ایماندار","A good officer must be honest.","😇"],
+  ["discipline","نظم و ضبط","Discipline helps me study every day.","⏰✅"],["confident","پراعتماد","I feel confident in my interview.","💪"],
+  ["opinion","رائے","In my opinion, education is the key.","💬"],["however","تاہم","It is hard; however, I will try.","↔️"],
+  ["because of","کی وجہ سے","Prices went up because of inflation.","➡️"],["health care","صحت کی سہولیات","Health care should be free for poor people.","🏥"],
+  ["water shortage","پانی کی کمی","Water shortage is a big threat.","🚰❌"],["tolerance","برداشت، رواداری","Tolerance makes society strong.","🤲"],
+  ["accountability","احتساب","Accountability can stop corruption.","🔍"],["sustainable","پائیدار","We need sustainable development.","♻️"],
+];
+const dayNum = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / DAY);
+function worldTopic() {
+  const [em, theme, open] = WORLD[dayNum() % WORLD.length];
+  return { id: "world", em: "🌍", name: "World today", desc: em + " " + theme, css: true, open: "Let's talk about the world today. " + open,
+    extra: `Today's world theme is "${theme}". You have no live news, so talk about the general situation, give one simple fact the student can use in the CSS exam, and ask for the student's opinion. Never invent specific recent events, dates or numbers.` };
+}
+function todayWord() { const [word, ur, example, emoji] = WORDS[dayNum() % WORDS.length]; return { word, ur, example, emoji }; }
 const INTERVALS = [0, 1, 3, 7, 16, 35]; // days per review box
 const DAY = 86400000;
 const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
@@ -334,7 +389,7 @@ function errText(e) {
     default: return "Sana could not answer this time. Send your message again.";
   }
 }
-const RULES = (topic) => `You are Sana, a warm and patient English speaking tutor. Your student is a total beginner from Pakistan who speaks Urdu and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}).
+const RULES = (topic) => `You are Sana, a warm and patient English speaking tutor. Your student is a total beginner from Pakistan who speaks Urdu and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
 Rules:
 - Use very simple English (CEFR A1-A2). Short sentences. At most 2 short sentences, then ONE simple question so the student keeps talking.
 - Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
@@ -348,15 +403,43 @@ Reply with ONLY this JSON:
 let topic = null, turns = [], sess = null, busy = false, ctl = null;
 function renderTopics() {
   $("topics").innerHTML = "";
-  TOPICS.forEach((t) => {
+  const list = [worldTopic(), ...TOPICS, { id: "own", em: "✏️", name: "My own topic", desc: "Type any topic you like" }];
+  list.forEach((t) => {
     const b = document.createElement("button");
     b.type = "button"; b.className = "topic" + (t.css ? " css" : "");
     b.innerHTML = `<span class="em">${t.em}</span>${t.css ? '<span class="tag">CSS</span>' : ""}<strong></strong><span></span>`;
     b.querySelector("strong").textContent = t.name; b.querySelector("span:last-child").textContent = t.desc;
-    b.onclick = () => startTopic(t);
+    b.onclick = () => { if (t.id === "own") { $("ownForm").hidden = false; $("ownInput").focus(); } else startTopic(t); };
     $("topics").append(b);
   });
 }
+function renderWotd() {
+  const w = todayWord(), box = $("wotd");
+  box.style.setProperty("--h", hue(w.word));
+  box.innerHTML = `<div class="pic"></div><div class="body"><span class="k">Word of the day</span><span class="word"></span><span class="ur"></span><span class="ex"></span><div class="tools"></div></div>`;
+  box.querySelector(".pic").textContent = w.emoji;
+  box.querySelector(".word").textContent = w.word;
+  box.querySelector(".ur").textContent = w.ur;
+  box.querySelector(".ex").textContent = w.example;
+  const tools = box.querySelector(".tools");
+  const saved = state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === w.word);
+  const save = tool(saved ? "✓ In your cards" : "+ Save card", () => {
+    const now = Date.now();
+    const c = { id: now.toString(36) + "d", type: "word", word: w.word, ur: w.ur, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
+    state.cards.unshift(c); putCard(c); renderCards(); renderDue(); renderWotd();
+  });
+  save.disabled = saved;
+  tools.append(tool("🔊 Listen", () => speak(w.word + ". " + w.example, 0.8)), save,
+    tool("💬 Practice with Sana", () => startTopic({ id: "wotd", em: w.emoji, name: "Word: " + w.word, desc: "Use today's word",
+      open: `Today's word is "${w.word}". ${w.example} Can you make your own sentence with "${w.word}"?`,
+      extra: `Today's target word is "${w.word}". Help the student use it in their own sentences at least three times, with simple examples.` })));
+}
+$("ownForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("ownInput").value.trim(); if (!name) return;
+  $("ownInput").value = ""; $("ownForm").hidden = true;
+  startTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
+});
 function startTopic(t) {
   topic = t; turns = [{ role: "assistant", content: t.open }];
   sess = { start: Date.now(), last: Date.now(), active: 0, words: 0, mine: [], fixes: [], newWords: [] };
@@ -622,7 +705,7 @@ $("voiceBtn").onclick = () => {
   if (!state.settings.voice) speechSynthesis?.cancel();
 };
 function renderAll() {
-  renderTopics(); renderCards(); renderDue(); renderHeader();
+  renderTopics(); renderWotd(); renderCards(); renderDue(); renderHeader();
   $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off";
 }
 loadLocal(); renderAll();
