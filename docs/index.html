@@ -330,6 +330,8 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <div class="retry"><button class="btn primary" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button><span class="status" id="keyStatus"></span></div>
         </div>
         <p class="sub" id="handsfreeNote" hidden></p>
+        <div class="retry"><button class="btn" type="button" id="diagBtn">Check connection</button></div>
+        <pre class="status" id="diagOut" style="white-space:pre-wrap;margin:0;font-family:inherit"></pre>
       </div>
     </section>
   </main>
@@ -535,6 +537,7 @@ function geminiAI() {
     const data = await res.json();
     const text = (data.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
     if (!text) throw { code: "empty_completion" };
+    try { opts.onText?.({ text, delta: text }); } catch {}
     return text;
   };
   const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
@@ -569,7 +572,7 @@ function errText(e) {
     case "offline": return "No internet connection. Check your connection and try again.";
     case "timeout": return "Mam took too long to answer.";
     case "cancelled": return "";
-    default: return "Mam could not answer this time. Send your message again.";
+    default: return "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
   }
 }
 const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is a total beginner from Pakistan who speaks Urdu and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
@@ -577,11 +580,8 @@ Rules:
 - Use very simple English (CEFR A1-A2). Short sentences. At most 2 short sentences, then ONE simple question so the student keeps talking.
 - Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
 - If the student writes Urdu or Roman Urdu, show them how to say it in English and ask them to repeat it.
-- Do NOT correct the student inside "reply"; just keep talking naturally. Put all corrections in "feedback", about the student's LAST message only. Ignore capital letters and punctuation, since they speak with voice dictation.
-- Pick 0 to 2 useful new words or phrases from this exchange that a beginner should learn (prefer words useful for the CSS interview). Never repeat these known words: KNOWN.
-"errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has the 2 items.
-Reply with ONLY this JSON:
-{"reply": "your spoken reply", "feedback": {"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why_ur": "very short reason in Urdu script"}], "better": [{"label": "More natural", "text": "the student's whole message said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}]}, "praise": "2-5 word encouragement or empty string", "new_words": [{"word": "word or phrase", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}`;
+- Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
+Reply with only the words you say: no labels, no quotes, no JSON.`;
 
 // ---------- talk ----------
 let topic = null, turns = [], sess = null, busy = false, ctl = null;
@@ -696,47 +696,79 @@ function attachFeedback(w, fb) {
   }
   const toggle = () => { panel.hidden = !panel.hidden; if (!panel.hidden) panel.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
   tag.onclick = toggle; w.querySelector(".bubble").onclick = toggle;
+  if (verdict === "fix") panel.hidden = false;
   w.append(tag, panel);
 }
-async function send() {
-  const text = $("input").value.trim();
+async function send(retryEl) {
+  const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
   if (!text || busy || !topic) return;
   if (hasTTS && speechSynthesis.speaking) speechSynthesis.cancel();
   await aiReady;
   if (!sample) { chatNote(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (Progress, Settings).", false); return; }
   document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
-  $("input").value = ""; autoGrow();
-  const meEl = addMe(text);
-  const now = Date.now(); const gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
-  const words = text.split(/\s+/).filter(Boolean).length;
-  sess.active += gap; sess.words += words; sess.mine.push(text);
-  logTime(gap, words);
-  turns.push({ role: "user", content: text });
+  let meEl = retryEl;
+  if (meEl) meEl.querySelector(".notsent")?.remove();
+  else {
+    $("input").value = ""; autoGrow();
+    meEl = addMe(text); meEl.dataset.text = text;
+    const now = Date.now(); const gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
+    const words = text.split(/\s+/).filter(Boolean).length;
+    sess.active += gap; sess.words += words; sess.mine.push(text);
+    logTime(gap, words);
+    turns.push({ role: "user", content: text });
+  }
+  const lastQ = [...turns].reverse().find((t) => t.role === "assistant")?.content || "";
+  checkAnswer(meEl, text, lastQ);
   busy = true; $("sendBtn").disabled = true;
-  const wait = document.createElement("div"); wait.className = "msg tutor typing"; wait.textContent = "Mam is thinking…"; $("msgs").append(wait); scrollDown();
-  const known = state.cards.filter((c) => c.type === "word").map((c) => c.word).slice(0, 80).join(", ") || "none";
+  const wait = document.createElement("div"); wait.className = "msg tutor";
+  wait.innerHTML = '<div class="bubble typing">Mam is thinking…</div>'; $("msgs").append(wait); scrollDown();
+  const slow = setTimeout(() => { if (wait.isConnected && !wait.dataset.got) wait.firstChild.textContent = "Still waiting… If a box asks you to allow Claude, tap Allow."; }, 7000);
   ctl = new AbortController();
   let timedOut = false;
   const watchdog = setTimeout(() => { timedOut = true; ctl.abort(); }, 90000);
   setLive("thinking");
   try {
     const recent = turns.slice(-14); if (recent[0].role !== "user") recent.unshift({ role: "user", content: "(conversation continues)" });
-    const r = await sample.json([{ role: "user", content: RULES(topic).replace("KNOWN", known) }, ...recent], { modelTier: "quick", cache: false, signal: ctl.signal });
+    const { text: reply } = await sample([{ role: "user", content: RULES(topic) }, ...recent], {
+      modelTier: "quick", cache: false, signal: ctl.signal,
+      onText: ({ text: t }) => { wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = t; scrollDown(); },
+    });
     wait.remove();
-    const fb = r?.feedback && typeof r.feedback === "object" ? r.feedback : null;
-    const err0 = Array.isArray(fb?.errors) ? fb.errors.find((e) => e?.right) : null;
-    const res = { reply: String(r?.reply || "Can you say that again, please?"), correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why_ur: String(err0.why_ur || "") } : null, praise: r?.praise || "", new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] };
+    const res = { reply: reply.trim().replace(/^"|"$/g, "") || "Can you say that again, please?" };
     turns.push({ role: "assistant", content: res.reply });
-    attachFeedback(meEl, fb);
-    addTutor({ ...res, correction: null });
-    saveCards(res);
+    addTutor(res);
     if (state.settings.voice) speak(res.reply, 0.88, afterSpeak); else setTimeout(afterSpeak, 50);
   } catch (e) {
-    wait.remove(); turns.pop(); meEl.remove(); sess.mine.pop();
-    $("input").value = text; autoGrow();
+    wait.remove();
     const m = errText(timedOut ? { code: "timeout" } : e);
-    if (m) chatNote(m, true); else setLive("idle");
-  } finally { clearTimeout(watchdog); busy = false; $("sendBtn").disabled = false; }
+    if (m) {
+      const ns = document.createElement("button"); ns.type = "button"; ns.className = "verdict fix notsent"; ns.textContent = "Mam didn't answer · tap to try again";
+      ns.onclick = () => send(meEl); meEl.append(ns);
+      chatNote(m, false);
+    } else setLive("idle");
+  } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
+}
+// Corrections come from their own call, so a slow or failed check never blocks Mam's reply.
+async function checkAnswer(meEl, text, lastQ) {
+  meEl.querySelectorAll(".verdict:not(.notsent), .fb").forEach((x) => x.remove());
+  const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict"; tag.textContent = "Checking your sentence…"; tag.disabled = true;
+  meEl.append(tag);
+  const known = state.cards.filter((c) => c.type === "word").map((c) => c.word).slice(0, 80).join(", ") || "none";
+  try {
+    const r = await sample.json(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation.
+Teacher asked: "${lastQ}"
+Student answered: "${text}"
+Reply with ONLY this JSON:
+{"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why_ur": "very short reason in Urdu script"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
+"errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items. "new_words" has 0 to 2 items and never repeats these known words: ${known}.`, { modelTier: "quick", cache: false });
+    tag.remove();
+    attachFeedback(meEl, r);
+    const err0 = Array.isArray(r?.errors) ? r.errors.find((e) => e?.right) : null;
+    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why_ur: String(err0.why_ur || "") } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] });
+  } catch (e) {
+    tag.disabled = false; tag.textContent = "Check failed (" + (e?.code || "error") + ") · tap to retry";
+    tag.onclick = () => checkAnswer(meEl, text, lastQ);
+  }
 }
 function chatNote(msg, canRetry) {
   stopListening();
@@ -1089,7 +1121,7 @@ document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => sh
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 $("input").addEventListener("input", autoGrow);
 $("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); } });
-$("sendBtn").onclick = send;
+$("sendBtn").onclick = () => send();
 $("backBtn").onclick = endChat;
 $("finishBtn").onclick = finish;
 $("voiceBtn").onclick = () => {
@@ -1115,6 +1147,23 @@ if (!inClaude) {
   $("handsfreeNote").hidden = false;
   $("handsfreeNote").textContent = "Want hands-free talking like Loora? Inside Claude the microphone is blocked, so use the free web version of Bolo English in Safari for that.";
 }
+$("diagBtn").onclick = async () => {
+  const out = $("diagOut"), lines = [];
+  const put = (l) => { lines.push(l); out.textContent = lines.join("\n"); };
+  $("diagBtn").disabled = true;
+  put("Inside Claude: " + (inClaude ? "yes" : "no"));
+  await aiReady;
+  put("Teacher connection: " + (sample ? "available" : "not available"));
+  if (inClaude) { try { const pm = await use("permissions"); put("Permission: " + (pm ? await pm.state("sample") : "unknown")); } catch { put("Permission: unknown"); } }
+  if (sample) {
+    put("Sending a test message… (tap Allow if asked)");
+    const c = new AbortController(); const t = setTimeout(() => c.abort(), 45000);
+    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: c.signal }); put("Test reply: " + text.trim().slice(0, 40) + " ✓ Everything works."); }
+    catch (e) { put("Test failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    finally { clearTimeout(t); }
+  }
+  $("diagBtn").disabled = false;
+};
 function renderAll() {
   $("goalSel").value = String(state.settings.goal);
   renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
