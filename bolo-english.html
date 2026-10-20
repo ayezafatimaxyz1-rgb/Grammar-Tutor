@@ -190,6 +190,49 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .item .simple { font-size: 17px; }
 .item .angle { border-left: 4px solid var(--sun); padding: 6px 10px; background: var(--sunk); border-radius: 0 10px 10px 0; font-size: 15px; }
 .item ol, .item ul { margin: 0; padding-left: 20px; }
+.hero { background: var(--accent); color: var(--accent-fg); border-radius: 20px; padding: 16px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.hero .em { font-size: 40px; grid-row: span 3; }
+.hero strong { font-family: var(--display); font-size: 20px; }
+.hero span { font-size: 14px; opacity: .9; }
+.hero .btn { grid-column: 2; justify-self: start; background: var(--accent-fg); color: var(--accent); border: 0; font-weight: 700; margin-top: 6px; }
+.starters { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px; }
+.starters summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--muted); }
+.starters .chips { margin-top: 8px; }
+.chip.starter { border: 1px solid var(--line); background: var(--sunk); color: var(--fg); padding: 6px 12px; font-size: 14px; }
+.who { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); padding-left: 6px; }
+.areas { display: flex; flex-direction: column; gap: 6px; }
+.area { display: grid; grid-template-columns: 110px minmax(0, 1fr) 44px; gap: 8px; align-items: center; font-size: 14px; }
+.area i { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.area b { display: block; height: 100%; background: var(--accent); }
+.area em { font-style: normal; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.qcard .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.qcard .q { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.timerbox { display: flex; align-items: center; gap: 16px; }
+.ring { --p: 1; width: 84px; height: 84px; border-radius: 50%; flex: none; display: grid; place-items: center; background: conic-gradient(var(--accent) calc(var(--p) * 360deg), var(--sunk) 0); }
+.ring span { width: 66px; height: 66px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 26px; font-variant-numeric: tabular-nums; }
+.timerbox .btn { padding: 12px 18px; font-size: 16px; }
+.answerbox { width: 100%; min-height: 120px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 16px; padding: 12px 14px; font: inherit; font-size: 17px; resize: vertical; }
+.answerbox:disabled { opacity: .6; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.metric { background: var(--sunk); border-radius: 12px; padding: 8px; text-align: center; }
+.metric b { display: block; font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.metric span { font-size: 11px; color: var(--muted); }
+.better { margin: 0; font-size: 16px; line-height: 1.5; }
+.flash textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 17px; resize: vertical; }
+.flash .prompt { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--bad); }
+.flash .out { display: flex; flex-direction: column; gap: 6px; }
+.fixline { color: var(--good); font-weight: 700; }
+.diff { font-size: 17px; line-height: 1.6; }
+.diff .ok { color: var(--good); font-weight: 700; }
+.diff .miss { color: var(--bad); text-decoration: underline; }
+.hitem { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 10px 12px; display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; text-align: left; width: 100%; }
+.hitem .pic { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-size: 24px; background: hsl(var(--h) var(--tint-s) var(--tint-l)); }
+.hitem .txt { display: flex; flex-direction: column; min-width: 0; }
+.hitem .meta { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.hitem .ttl { font-family: var(--display); font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hitem .sub2 { font-size: 13px; color: var(--muted); }
+.hitem .sc { font-family: var(--display); font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
 nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
 nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
 nav.tabs button .i { font-size: 20px; line-height: 1; }
@@ -216,6 +259,13 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <p class="sub">Pick a topic. Your teacher, Mam, speaks slowly and corrects one mistake at a time.</p>
         </div>
         <div id="noAI" class="banner warn" hidden></div>
+        <div class="hero">
+          <span class="em">🏛️</span>
+          <strong>Mock CSS interview</strong>
+          <span>A board of 3 asks you about 10 questions, with follow-ups. Then you get a full report.</span>
+          <span id="heroWhen"></span>
+          <button class="btn" type="button" id="heroBtn">Start interview</button>
+        </div>
         <div class="wotd" id="wotd"></div>
         <h3>Talk topics</h3>
         <div class="topics" id="topics"></div>
@@ -231,7 +281,34 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <button class="btn" id="voiceBtn" type="button" aria-pressed="true">🔊 On</button>
           <button class="btn primary" id="finishBtn" type="button">Finish</button>
         </div>
+        <div id="startersSlot"></div>
         <div class="msgs" id="msgs" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 1-MINUTE -->
+    <section class="view pad" id="v-minute" hidden>
+      <div>
+        <h2>1-minute answer</h2>
+        <p class="sub">Answer one question for 60 seconds without stopping. You get your speed, filler words, mistakes and a better answer to copy.</p>
+      </div>
+      <div class="qcard">
+        <span class="k">Question</span>
+        <div class="q" id="qText"></div>
+        <div class="tools"><button class="mini" type="button" id="qListen">🔊 Listen</button><button class="mini" type="button" id="qNext">🔀 Another question</button></div>
+      </div>
+      <div id="minStartersSlot"></div>
+      <div class="timerbox">
+        <div class="ring" id="ring"><span id="timer">60</span></div>
+        <button class="btn primary" type="button" id="minStart">▶ Start 60 seconds</button>
+        <button class="btn primary" type="button" id="minDone" hidden>■ Done</button>
+      </div>
+      <textarea class="answerbox" id="minIn" disabled placeholder="Tap Start, then tap the 🎤 on your keyboard and keep talking…" aria-label="Your answer"></textarea>
+      <div class="status" id="minStatus" aria-live="polite"></div>
+      <div id="minResult"></div>
+      <div id="minPastWrap" class="view" style="padding:0" hidden>
+        <h3>Earlier attempts</h3>
+        <div id="minPast" class="view" style="padding:0"></div>
       </div>
     </section>
 
@@ -239,7 +316,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <section class="view pad" id="v-read" hidden>
       <div>
         <h2>Read and discuss</h2>
-        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, saves the hard words as cards, then talks with you about it.</p>
+        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, then you retell it out loud in one minute or discuss it with her.</p>
       </div>
       <form class="addbox" id="addForm">
         <div class="seg" role="group" aria-label="What are you adding" id="kindSeg">
@@ -268,40 +345,42 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
       <div class="view" style="padding:0" id="lib"></div>
     </section>
 
-    <!-- CARDS -->
-    <section class="view pad" id="v-cards" hidden>
-      <div>
-        <h2>Your picture cards</h2>
-        <p class="sub">Every new word and every fixed mistake from your talks lands here. Tap a card to hear it.</p>
-      </div>
-      <div class="seg" role="group" aria-label="Card type">
-        <button type="button" data-f="all" aria-pressed="true">All</button>
-        <button type="button" data-f="word" aria-pressed="false">Words</button>
-        <button type="button" data-f="fix" aria-pressed="false">Fixes</button>
-      </div>
-      <div class="grid" id="grid"></div>
-    </section>
-
     <!-- REVIEW -->
     <section class="view pad" id="v-review" hidden>
       <div>
-        <h2>Daily review</h2>
-        <p class="sub">Look at the picture, say the English out loud, then check.</p>
+        <h2>Speak your cards</h2>
+        <p class="sub">Each card comes back on the right day. Say a sentence with the word, or say the corrected sentence, and Mam checks it.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Review view" id="revSeg">
+        <button type="button" data-v="today" aria-pressed="true">Today</button>
+        <button type="button" data-v="all" aria-pressed="false">All cards</button>
       </div>
       <div id="flashWrap"></div>
+      <div id="cardsWrap" class="view" style="padding:0" hidden>
+        <div class="seg" role="group" aria-label="Card type" id="cardSeg">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="word" aria-pressed="false">Words</button>
+          <button type="button" data-f="fix" aria-pressed="false">Fixes</button>
+        </div>
+        <div class="grid" id="grid"></div>
+      </div>
     </section>
 
-    <!-- PROGRESS -->
-    <section class="view pad" id="v-progress" hidden>
+    <!-- HISTORY -->
+    <section class="view pad" id="v-history" hidden>
       <div>
-        <h2>Your progress</h2>
+        <h2>Your history</h2>
         <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. A little every day adds up.</p>
       </div>
       <div class="stats" id="stats"></div>
       <h3>Last 7 days (minutes)</h3>
       <div class="week" id="week"></div>
-      <h3>Session reports</h3>
-      <div id="reports" class="view" style="padding:0"></div>
+      <h3>Your chats</h3>
+      <div id="hist" class="view" style="padding:0"></div>
+      <div id="oldWrap" class="view" style="padding:0" hidden>
+        <h3>Earlier reports</h3>
+        <div id="oldReports" class="view" style="padding:0"></div>
+      </div>
       <h3>Settings</h3>
       <div class="settings">
         <label for="goalSel">Daily speaking goal</label>
@@ -337,10 +416,10 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
   <nav class="tabs" aria-label="Sections">
     <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
+    <button type="button" data-tab="minute"><span class="i">⏱️</span>1-Minute</button>
     <button type="button" data-tab="read"><span class="i">📰</span>Read</button>
-    <button type="button" data-tab="cards"><span class="i">🖼️</span>Cards</button>
     <button type="button" data-tab="review"><span class="i">🔁</span><span>Review<span class="badge" id="dueBadge" hidden></span></span></button>
-    <button type="button" data-tab="progress"><span class="i">📈</span>Progress</button>
+    <button type="button" data-tab="history"><span class="i">🗂️</span>History</button>
   </nav>
 </div>
 
@@ -409,10 +488,10 @@ const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve
 const today = () => new Date().toLocaleDateString("en-CA");
 
 // ---------- state ----------
-let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [] };
+let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [], chats: [] };
 const LS = "bolo.v1";
 function loadLocal() { try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s) state = { ...state, ...s, settings: { ...state.settings, ...(s.settings || {}) } }; } catch {} }
-function saveLocal() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch {} }
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...state, chats: state.chats.slice(0, 30) })); } catch {} }
 
 let col = null; // db collection for this person
 let metaTimer = 0;
@@ -442,7 +521,7 @@ async function connectDb() {
     if (db) {
       libCol = db.collection("library");
       dbgCol = db.collection("debug"); dbgQueue.splice(0).forEach((r) => dbgCol.add(r).catch(() => {}));
-      dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 8 });
+      dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 11 });
       libCol.onSnapshot((snap) => {
         const byId = new Map(state.library.map((x) => [x.id, x]));
         snap.docs.forEach((d) => byId.set(d.id, { ...thaw(d.data()), id: d.id }));
@@ -456,10 +535,15 @@ async function connectDb() {
     col = db.collection("data/users/" + uid);
     const snap = await col.get();
     if (snap.empty) { // first time on the account: copy anything this browser already has
-      state.cards.forEach(putCard); putMeta(); return;
+      state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true)); putMeta(); return;
     }
-    const cards = []; let meta = null;
-    snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); });
+    const cards = [], chats = []; let meta = null;
+    snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); else if (d.id.startsWith("chat_")) chats.push(thaw(d.data())); });
+    // Keep whichever copy of a chat is newer; the open chat object is updated in place so the screen keeps working.
+    const byChat = new Map(state.chats.map((c) => [c.id, c]));
+    chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) Object.assign(l, c); else byChat.set(c.id, c); } });
+    state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true); });
+    state.chats = [...byChat.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
     const byId = new Map(cards.map((c) => [c.id, c]));
     state.cards.forEach((c) => { if (!byId.has(c.id)) { byId.set(c.id, c); putCard(c); } });
     state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
@@ -495,12 +579,12 @@ function pickVoice() {
 }
 const hasTTS = "speechSynthesis" in window;
 if (hasTTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
-function speak(text, rate = 0.88, onend) {
+function speak(text, rate = 0.88, onend, pitch = 1) {
   if (!hasTTS) { onend?.(); return; }
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   if (voice) u.voice = voice;
-  u.lang = voice?.lang || "en-US"; u.rate = rate;
+  u.lang = voice?.lang || "en-US"; u.rate = rate; u.pitch = pitch;
   if (onend) setLive("speaking");
   u.onend = () => onend?.(); u.onerror = () => onend?.();
   speechSynthesis.speak(u);
@@ -563,7 +647,7 @@ function aiBanner() {
   nb.hidden = false;
   if (inClaude) { nb.textContent = "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai and allow it to use Claude."; return; }
   nb.innerHTML = 'To talk with Mam here, add your free Gemini key once. <button class="linkbtn" type="button" id="goKey">Add key</button>';
-  $("goKey").onclick = () => { show("progress"); $("keyIn").focus(); };
+  $("goKey").onclick = () => { show("history"); $("keyIn").focus(); };
 }
 const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); aiBanner(); return sample; });
 function errText(e) {
@@ -571,7 +655,7 @@ function errText(e) {
     case "not_granted": return "Mam needs permission to use Claude. Allow it from this page's Permissions menu, then try again.";
     case "rate_limited": case "queue_overflow": return "Too many messages at once. Wait a minute, then send again.";
     case "session_expired": return "Your Claude sign-in expired. Reload the page.";
-    case "bad_key": return "Your Gemini key did not work. Check it in Progress, Settings.";
+    case "bad_key": return "Your Gemini key did not work. Check it in History, Settings.";
     case "offline": return "No internet connection. Check your connection and try again.";
     case "timeout": return "Mam took too long to answer.";
     case "cancelled": return "";
@@ -586,14 +670,82 @@ Rules:
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no JSON.`;
 
-// Mam's next line, sent as one plain prompt (the same call shape the connection check uses).
-function askMam(t, history, opts) {
-  const convo = history.slice(-14).map((x) => (x.role === "user" ? "Student: " : "Mam: ") + x.content).join("\n");
-  return sample(RULES(t) + "\n\nConversation so far:\n" + convo + "\n\nWrite Mam's next reply now.", { modelTier: "quick", cache: false, ...opts });
+// ---------- talk ----------
+const INTERVIEW = { id: "interview", kind: "interview", em: "🏛️", name: "Mock CSS interview", desc: "A board of 3 asks about 10 questions", css: true,
+  open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." };
+const STARTERS = {
+  intro: ["My name is …", "I am from …", "I studied … at …", "I live with my …", "In my free time, I like to …"],
+  routine: ["I wake up at …", "After that, I …", "In the afternoon, I usually …", "In the evening, I …", "I go to bed at … because …"],
+  family: ["There are … people in my family.", "My father is a …", "My mother is a …", "I have … brothers and … sisters.", "I love my family because …"],
+  city: ["I live in …", "My city is famous for …", "The best place in my city is …", "One problem in my city is …", "I like my city because …"],
+  whycss: ["I want to join the civil service because …", "My dream is to …", "I want to serve my country by …", "As an officer, I will …", "I am preparing by …"],
+  pakistan: ["In my opinion, the biggest problem is …", "One reason is …", "For example, …", "The government should …", "I think the solution is …"],
+  world: ["Today the world is facing …", "This affects Pakistan because …", "One reason is …", "In my opinion, …", "One solution could be …"],
+  interview: ["Thank you, sir. My name is …", "Could you please repeat the question?", "In my view, …", "I am not sure, but I think …", "For example, …"],
+  free: ["I want to talk about …", "I think …", "The reason is …", "For example, …", "What do you think about …?"],
+  general: ["I think …", "In my opinion, …", "One reason is …", "For example, …", "So, I believe …"],
+};
+STARTERS.viva = STARTERS.interview;
+const startersFor = (t) => STARTERS[t?.id] || STARTERS.general;
+function startersBox(list, target) {
+  const d = document.createElement("details"); d.className = "starters"; d.open = true;
+  d.innerHTML = "<summary>💡 Sentence starters · tap one to use it</summary><div class=\"chips\"></div>";
+  list.forEach((s) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip starter"; b.textContent = s; b.onclick = () => useStarter(s, target); d.lastChild.append(b); });
+  return d;
+}
+// Puts the start of the sentence in the box so the learner only has to say the rest.
+function useStarter(s, target) {
+  if (target === "minIn" && !minRunning) $("minStart").click(); // a starter on the 1-minute screen starts the clock
+  const el = $(target), v = el.value.trim();
+  el.value = (v ? v + " " : "") + s.split("…")[0];
+  if (target === "input") autoGrow();
+  el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch {}
+  speak(s.replace(/…/g, ", "), 0.8);
 }
 
-// ---------- talk ----------
-let topic = null, turns = [], sess = null, busy = false, ctl = null;
+const PITCH = { chairman: 0.8, "member 1": 1, "member 2": 1.25 };
+function splitSpeaker(s) {
+  const m = String(s).match(/^\s*\[(Chairman|Member\s*1|Member\s*2)\]\s*/i);
+  return m ? { who: m[1].replace(/\s+/, " ").replace(/^./, (x) => x.toUpperCase()), text: String(s).slice(m[0].length) } : { who: "", text: String(s) };
+}
+function speakLine(line, onend, rate = 0.88) { const { who, text } = splitSpeaker(line); speak(text, rate, onend, PITCH[who.toLowerCase()] || 1); }
+const BOARD_RULES = (answered) => `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is a beginner in English who is practising for the real interview.
+Rules:
+- Ask ONE short, clear question per turn in simple, natural interview English (B1 level). Take turns between the members.
+- Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
+- Do not teach or correct English during the interview (feedback is shown separately). If the candidate did not understand, repeat the question in simpler words.
+- English only. Never write Urdu or Roman Urdu.
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?
+- The candidate has answered ${answered} question${answered === 1 ? "" : "s"} so far. ${answered >= 9 ? 'This is the last turn: the Chairman thanks the candidate and says exactly "The interview is over."' : "Keep the interview going."}
+Reply with only the board's words.`;
+
+// The next line from Mam (or the board), sent as one plain prompt (the same call shape the connection check uses).
+function askMam(t, history, opts) {
+  const board = t.kind === "interview";
+  const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
+  const head = board ? BOARD_RULES(history.filter((x) => x.role === "user").length) : RULES(t);
+  return sample(head + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now."), { modelTier: "quick", cache: false, ...opts });
+}
+
+// Every chat is saved after each message, so the learner can reopen and continue it from History.
+let topic = null, chat = null, sess = null, busy = false, ctl = null;
+const saveTimers = new Map();
+function newChat(t) {
+  const now = Date.now();
+  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", css: !!t.css, kind: t.kind || "talk" },
+    started: now, updated: now, turns: [{ role: "assistant", content: t.open }], words: 0, min: 0, newCards: 0 };
+}
+const slimChat = (c) => (c.turns ? { ...c, turns: c.turns.slice(-300) } : { ...c, attempts: (c.attempts || []).slice(-30) });
+function putChat(c, now) {
+  c.updated = Date.now();
+  const i = state.chats.indexOf(c); if (i > 0) state.chats.splice(i, 1); if (i !== 0) state.chats.unshift(c);
+  clearTimeout(saveTimers.get(c.id));
+  const write = () => {
+    saveTimers.delete(c.id); saveLocal();
+    if (col) col.doc("chat_" + c.id).set(slimChat(c)).catch((e) => dbg("chat_save_error", { code: String(e?.code || ""), message: String(e?.message || "").slice(0, 200) }));
+  };
+  if (now) write(); else saveTimers.set(c.id, setTimeout(write, 700));
+}
 function renderTopics() {
   $("topics").innerHTML = "";
   const list = [worldTopic(), ...TOPICS, { id: "own", em: "✏️", name: "My own topic", desc: "Type any topic you like" }];
@@ -605,6 +757,9 @@ function renderTopics() {
     b.onclick = () => { if (t.id === "own") { $("ownForm").hidden = false; $("ownInput").focus(); } else startTopic(t); };
     $("topics").append(b);
   });
+  const last = state.chats.filter((c) => c.kind === "interview").sort((a, b) => b.updated - a.updated)[0];
+  const days = last ? Math.floor((Date.now() - last.updated) / DAY) : -1;
+  $("heroWhen").textContent = days < 0 ? "Best once a week. You haven't tried it yet." : days === 0 ? "Last interview: today." : "Last interview: " + days + " day" + (days === 1 ? "" : "s") + " ago." + (days >= 7 ? " Time for this week's!" : "");
 }
 function renderWotd() {
   const w = todayWord(), box = $("wotd");
@@ -633,52 +788,61 @@ $("ownForm").addEventListener("submit", (e) => {
   $("ownInput").value = ""; $("ownForm").hidden = true;
   startTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
 });
-function startTopic(t) {
-  topic = t; turns = [{ role: "assistant", content: t.open }];
-  sess = { start: Date.now(), last: Date.now(), active: 0, words: 0, mine: [], fixes: [], newWords: [] };
+$("heroBtn").onclick = () => startTopic(INTERVIEW);
+function enterChat() {
   $("pickTopic").hidden = true; $("chat").hidden = false; $("composer").hidden = false;
-  $("chatTitle").textContent = t.em + " " + t.name;
   $("msgs").innerHTML = "";
+  $("chatTitle").textContent = topic.em + " " + topic.name;
+  $("startersSlot").innerHTML = ""; $("startersSlot").append(startersBox(startersFor(topic), "input"));
+  $("finishBtn").textContent = topic.kind === "interview" ? "End interview" : "Finish";
+}
+function startTopic(t) {
+  stopListening(); ctl?.abort();
+  topic = t; chat = newChat(t);
+  sess = { last: Date.now() };
+  show("talk"); enterChat();
   addTutor({ reply: t.open });
   if (canHandsFree) handsFree = true; else $("input").focus();
-  if (state.settings.voice) speak(t.open, 0.88, afterSpeak); else afterSpeak();
+  if (state.settings.voice) speakLine(t.open, afterSpeak); else afterSpeak();
+}
+function openChat(c) {
+  stopListening(); ctl?.abort(); if (hasTTS) speechSynthesis.cancel();
+  topic = c.topic; chat = c; sess = { last: Date.now() };
+  show("talk"); enterChat();
+  c.turns.forEach((tn, i) => {
+    if (tn.role === "assistant") { addTutor({ reply: tn.content }); return; }
+    const el = addMe(tn.content); el.dataset.text = tn.content; el.dataset.idx = i;
+    if (tn.fb) attachFeedback(el, tn.fb, true);
+    else if (i === c.turns.length - 1) markNotSent(el);
+    else { const q = splitSpeaker(c.turns[i - 1]?.content || "").text; const b = document.createElement("button"); b.type = "button"; b.className = "verdict"; b.textContent = "Check this sentence"; b.onclick = () => { b.remove(); checkAnswer(el, tn.content, q, tn, c); }; el.append(b); }
+  });
+  if (c.report) $("msgs").append(reportCard(c));
+  scrollDown();
 }
 function endChat() {
-  stopListening(); speechSynthesis?.cancel(); ctl?.abort();
-  topic = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
+  stopListening(); if (hasTTS) speechSynthesis.cancel(); ctl?.abort();
+  topic = null; chat = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
+  renderTopics();
 }
 function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
 function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
 function addTutor(r) {
   const w = document.createElement("div"); w.className = "msg tutor";
-  if (r.correction?.right) {
-    const f = document.createElement("div"); f.className = "fix";
-    f.innerHTML = `<span class="w"></span><span class="r"></span><span class="mean"></span>`;
-    f.querySelector(".w").textContent = r.correction.wrong || "";
-    f.querySelector(".r").textContent = "✓ " + r.correction.right;
-    f.querySelector(".mean").textContent = r.correction.why || "";
-    f.append(tool("🔊 Say it right", () => speak(r.correction.right, 0.8)));
-    w.append(f);
-  }
-  if (r.praise) { const p = document.createElement("div"); p.className = "praise"; p.textContent = r.praise; w.append(p); }
-  const b = document.createElement("div"); b.className = "bubble"; b.textContent = r.reply; w.append(b);
+  const { who, text } = splitSpeaker(r.reply);
+  if (who) { const l = document.createElement("div"); l.className = "who"; l.textContent = who; w.append(l); }
+  const b = document.createElement("div"); b.className = "bubble"; b.textContent = text; w.append(b);
   const tools = document.createElement("div"); tools.className = "tools";
-  tools.append(tool("🔊 Again", () => speak(r.reply, 0.88)), tool("🐢 Slow", () => speak(r.reply, 0.6)));
-  const urBtn = tool("🧩 Simpler", async () => {
+  tools.append(tool("🔊 Again", () => speakLine(r.reply)), tool("🐢 Slow", () => speakLine(r.reply, null, 0.6)));
+  const simpler = tool("🧩 Simpler", async () => {
     if (!sample) return;
-    urBtn.disabled = true; urBtn.textContent = "…";
+    simpler.disabled = true; simpler.textContent = "…";
     try {
-      const { text } = await sample(`Rewrite this in very simple English for a total beginner (A1 level, short common words). Reply with only the rewritten words.\n\n${r.reply}`, { modelTier: "quick" });
-      const u = document.createElement("div"); u.className = "mean"; u.textContent = text.trim(); u.append(" ", tool("🔊", () => speak(text.trim(), 0.75))); tools.after(u); urBtn.remove();
-    } catch (e) { urBtn.disabled = false; urBtn.textContent = "🧩 Simpler"; }
+      const { text: s } = await sample(`Rewrite this in very simple English for a total beginner (A1 level, short common words). Reply with only the rewritten words.\n\n${text}`, { modelTier: "quick" });
+      const u = document.createElement("div"); u.className = "mean"; u.textContent = s.trim(); u.append(" ", tool("🔊", () => speak(s.trim(), 0.75))); tools.after(u); simpler.remove();
+    } catch (e) { simpler.disabled = false; simpler.textContent = "🧩 Simpler"; }
   });
-  if (sample) tools.append(urBtn);
+  if (sample) tools.append(simpler);
   w.append(tools);
-  if (r.new_words?.length) {
-    const c = document.createElement("div"); c.className = "chips";
-    r.new_words.forEach((nw) => { const ch = document.createElement("span"); ch.className = "chip"; ch.style.setProperty("--h", hue(nw.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = nw.emoji || "✨"; ch.lastChild.textContent = "New card: " + nw.word; c.append(ch); });
-    w.append(c);
-  }
   $("msgs").append(w); scrollDown();
 }
 function addMe(text) {
@@ -687,7 +851,11 @@ function addMe(text) {
   $("msgs").append(w); scrollDown();
   return w;
 }
-function attachFeedback(w, fb) {
+function markNotSent(el) {
+  const ns = document.createElement("button"); ns.type = "button"; ns.className = "verdict fix notsent"; ns.textContent = "No answer yet · tap to try again";
+  ns.onclick = () => send(el); el.append(ns);
+}
+function attachFeedback(w, fb, collapsed) {
   if (!fb) return;
   const errs = (Array.isArray(fb.errors) ? fb.errors : []).filter((e) => e?.right);
   const better = (Array.isArray(fb.better) ? fb.better : []).filter((x) => x?.text);
@@ -705,84 +873,96 @@ function attachFeedback(w, fb) {
   }
   const toggle = () => { panel.hidden = !panel.hidden; if (!panel.hidden) panel.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
   tag.onclick = toggle; w.querySelector(".bubble").onclick = toggle;
-  if (verdict === "fix") panel.hidden = false;
+  if (verdict === "fix" && !collapsed) panel.hidden = false;
   w.append(tag, panel);
 }
 async function send(retryEl) {
+  const c = chat, t = topic;
   const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
-  dbg("send_called", { len: text.length, busy, hasTopic: !!topic, retry: !!retryEl });
-  if (!text || busy || !topic) return;
+  dbg("send_called", { len: text.length, busy, hasTopic: !!t, retry: !!retryEl });
+  if (!text || busy || !c) return;
   if (hasTTS && speechSynthesis.speaking) speechSynthesis.cancel();
   await aiReady;
-  if (!sample) { chatNote(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (Progress, Settings).", false); return; }
+  if (c !== chat) return;
+  if (!sample) { chatNote(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (History, Settings).", false); return; }
   document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
-  let meEl = retryEl;
-  if (meEl) meEl.querySelector(".notsent")?.remove();
+  let meEl = retryEl, turn;
+  if (meEl) { meEl.querySelector(".notsent")?.remove(); turn = c.turns[+meEl.dataset.idx]; }
   else {
     $("input").value = ""; autoGrow();
     meEl = addMe(text); meEl.dataset.text = text;
-    const now = Date.now(); const gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
+    const now = Date.now(), gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
     const words = text.split(/\s+/).filter(Boolean).length;
-    sess.active += gap; sess.words += words; sess.mine.push(text);
+    c.words += words; c.min = Math.round((c.min + gap / 60000) * 10) / 10;
     logTime(gap, words);
-    turns.push({ role: "user", content: text });
+    turn = { role: "user", content: text }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
+    const st = $("startersSlot").querySelector("details"); if (st) st.open = false; // make room for the conversation
+    putChat(c);
   }
-  const lastQ = [...turns].reverse().find((t) => t.role === "assistant")?.content || "";
+  const idx = c.turns.indexOf(turn);
+  const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
   busy = true; $("sendBtn").disabled = true;
   const wait = document.createElement("div"); wait.className = "msg tutor";
-  wait.innerHTML = '<div class="bubble typing">Mam is thinking…</div>'; $("msgs").append(wait); scrollDown();
+  wait.innerHTML = '<div class="bubble typing">' + (t.kind === "interview" ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
   const slow = setTimeout(() => { if (wait.isConnected && !wait.dataset.got) wait.firstChild.textContent = "Still waiting… If a box asks you to allow Claude, tap Allow."; }, 7000);
-  ctl = new AbortController();
+  const myCtl = (ctl = new AbortController());
   let timedOut = false;
-  const watchdog = setTimeout(() => { timedOut = true; ctl.abort(); }, 90000);
+  const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 90000);
   setLive("thinking");
   try {
-    dbg("reply_call_start", { turns: turns.length, hasSample: !!sample });
+    dbg("reply_call_start", { turns: c.turns.length, hasSample: !!sample, kind: c.kind });
     let firstText = true;
-    const { text: reply } = await askMam(topic, turns, {
-      signal: ctl.signal,
-      onText: ({ text: t }) => { if (firstText) { firstText = false; dbg("reply_first_text"); } wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = t; scrollDown(); },
+    const { text: reply } = await askMam(t, c.turns.slice(0, idx + 1), {
+      signal: myCtl.signal,
+      onText: ({ text: s }) => { if (firstText) { firstText = false; dbg("reply_first_text"); } wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = splitSpeaker(s).text; scrollDown(); },
     });
     dbg("reply_done", { len: reply.length });
     wait.remove();
-    const res = { reply: reply.trim().replace(/^(Mam:\s*)/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?" };
-    turns.push({ role: "assistant", content: res.reply });
-    addTutor(res);
-    if (state.settings.voice) speak(res.reply, 0.88, afterSpeak); else setTimeout(afterSpeak, 50);
+    const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
+    c.turns.push({ role: "assistant", content: line }); putChat(c);
+    if (c === chat) {
+      addTutor({ reply: line });
+      if (t.kind === "interview" && /interview is over/i.test(line)) boardDone();
+      if (state.settings.voice) speakLine(line, afterSpeak); else setTimeout(afterSpeak, 50);
+    }
   } catch (e) {
     dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300), timedOut });
     wait.remove();
     const m = errText(timedOut ? { code: "timeout" } : e);
-    if (m) {
-      const ns = document.createElement("button"); ns.type = "button"; ns.className = "verdict fix notsent"; ns.textContent = "Mam didn't answer · tap to try again";
-      ns.onclick = () => send(meEl); meEl.append(ns);
-      chatNote(m, false);
-    } else setLive("idle");
+    if (m && c === chat) { markNotSent(meEl); chatNote(m, false); } else setLive("idle");
   } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
-  checkAnswer(meEl, text, lastQ); // after the reply, so the two calls never compete
+  if (!turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // after the reply, so the two calls never compete
 }
-// Corrections come from their own call, so a slow or failed check never blocks Mam's reply.
-async function checkAnswer(meEl, text, lastQ) {
+function boardDone() {
+  const d = document.createElement("div"); d.className = "banner retry";
+  d.append("The board has finished. ");
+  const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my interview report"; b.onclick = () => { d.remove(); finish(); };
+  d.append(b); $("msgs").append(d); scrollDown();
+}
+// Corrections come from their own call, so a slow or failed check never blocks the reply.
+async function checkAnswer(meEl, text, lastQ, turn, c) {
   meEl.querySelectorAll(".verdict:not(.notsent), .fb").forEach((x) => x.remove());
   const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict"; tag.textContent = "Checking your sentence…"; tag.disabled = true;
   meEl.append(tag);
-  const known = state.cards.filter((c) => c.type === "word").map((c) => c.word).slice(0, 80).join(", ") || "none";
+  const known = state.cards.filter((x) => x.type === "word").map((x) => x.word).slice(0, 80).join(", ") || "none";
   try {
     const r = await sample.json(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu.
-Teacher asked: "${lastQ}"
+Question: "${lastQ}"
 Student answered: "${text}"
 Reply with ONLY this JSON:
 {"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
 "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items. "new_words" has 0 to 2 items and never repeats these known words: ${known}.`, { modelTier: "quick", cache: false });
     dbg("check_done");
     tag.remove();
-    attachFeedback(meEl, r);
-    const err0 = Array.isArray(r?.errors) ? r.errors.find((e) => e?.right) : null;
-    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] });
+    const fb = { verdict: String(r?.verdict || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] };
+    if (turn) { turn.fb = fb; putChat(c); }
+    attachFeedback(meEl, fb);
+    const err0 = fb.errors[0];
+    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] }, c);
   } catch (e) {
     dbg("check_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300) });
     tag.disabled = false; tag.textContent = "Check failed (" + (e?.code || "error") + ") · tap to retry";
-    tag.onclick = () => checkAnswer(meEl, text, lastQ);
+    tag.onclick = () => checkAnswer(meEl, text, lastQ, turn, c);
   }
 }
 function chatNote(msg, canRetry) {
@@ -792,37 +972,69 @@ function chatNote(msg, canRetry) {
   if (canRetry) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Try again"; b.onclick = () => { d.remove(); send(); }; d.append(b); }
   $("msgs").append(d); scrollDown();
 }
-function saveCards(res) {
-  const now = Date.now();
+function saveCards(res, c) {
+  const now = Date.now(), from = c?.topic?.name || "Talk";
   if (res.correction) {
-    const c = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: topic.name };
-    state.cards.unshift(c); putCard(c); sess.fixes.push(c);
+    const card = { id: now.toString(36) + "f", type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: from };
+    state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
   }
   res.new_words.forEach((w, i) => {
-    if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
-    const c = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: topic.name };
-    state.cards.unshift(c); putCard(c); sess.newWords.push(c);
+    if (state.cards.some((x) => x.type === "word" && x.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const card = { id: now.toString(36) + "w" + i, type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: from };
+    state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
   });
+  if (c) putChat(c);
   renderCards(); renderDue();
 }
 async function finish() {
-  if (!sess || busy) return;
-  stopListening(); speechSynthesis?.cancel();
-  if (sess.mine.length < 2) { endChat(); return; }
-  busy = true; $("finishBtn").disabled = true; $("finishBtn").textContent = "Scoring…";
-  const transcript = turns.map((t) => (t.role === "user" ? "Student: " : "Mam: ") + t.content).join("\n");
+  const c = chat, t = topic;
+  if (!c || busy) return;
+  stopListening(); if (hasTTS) speechSynthesis.cancel();
+  if (c.turns.filter((x) => x.role === "user").length < 2) { chatNote("Say at least two things first, then tap " + $("finishBtn").textContent + " for your report.", false); return; }
+  await aiReady;
+  if (!sample) { chatNote("The report needs Mam's connection. Check History, Settings.", false); return; }
+  busy = true; $("finishBtn").disabled = true; const label = $("finishBtn").textContent; $("finishBtn").textContent = "Scoring…";
+  const board = t.kind === "interview";
+  const transcript = c.turns.map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   let rep = null;
   try {
-    rep = await sample.json(`You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. Score the student's speaking for a beginner (be kind but honest).
+    rep = await sample.json(board
+      ? `You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a beginner English speaker from Pakistan. Judge it kindly but honestly, as a real board would, and focus on spoken fluency. Write in simple English only.
+Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for next week's interview", "useful_line": "one strong, simple sentence the candidate can use in the real interview"}
+
+${transcript.slice(-14000)}`
+      : `You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. Score the student's speaking for a beginner (be kind but honest). Write in simple English only.
 Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for tomorrow in simple English", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
 
-Topic: ${topic.name}
+Topic: ${t.name}
 ${transcript.slice(-12000)}`, { modelTier: "default" });
-  } catch {}
-  const s = { id: Date.now().toString(36), date: Date.now(), topic: topic.name, em: topic.em, min: Math.round(sess.active / 6000) / 10, words: sess.words, newCards: sess.fixes.length + sess.newWords.length, ...(rep || {}) };
-  state.sessions.unshift(s); putMeta();
-  busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = "Finish";
-  endChat(); renderProgress(); show("progress");
+  } catch (e) { dbg("report_error", { code: String(e?.code || "none") }); }
+  busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label;
+  if (!rep || typeof rep !== "object") { if (c === chat) chatNote("The report could not be made this time. Tap " + label + " again.", false); return; }
+  c.report = { ...rep, date: Date.now() }; putChat(c, true);
+  if (c === chat) { $("msgs").querySelectorAll(".report").forEach((x) => x.remove()); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
+}
+function reportCard(c) {
+  const s = c.report || {};
+  const r = document.createElement("div"); r.className = "report";
+  r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="areas"></div><p class="sub bv"></p><div class="wd"></div><div class="wo"></div><div class="mean tip"></div><div class="ul"></div>`;
+  r.querySelector(".score").textContent = s.score ? s.score + "/10" : c.topic.em;
+  r.querySelector("h3").textContent = (c.kind === "interview" ? "Interview report" : "Your report") + (s.level ? " · " + s.level : "");
+  r.querySelector(".when").textContent = new Date(s.date || c.updated).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) + " · " + (c.min || 0) + " min · " + (c.words || 0) + " words · " + (c.newCards || 0) + " new cards";
+  if (s.areas && typeof s.areas === "object") {
+    const a = r.querySelector(".areas");
+    [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["english", "English"]].forEach(([k, l]) => {
+      const v = Math.max(0, Math.min(10, Number(s.areas[k]) || 0));
+      const row = document.createElement("div"); row.className = "area"; row.innerHTML = "<span></span><i><b></b></i><em></em>";
+      row.children[0].textContent = l; row.querySelector("b").style.width = v * 10 + "%"; row.children[2].textContent = v + "/10"; a.append(row);
+    });
+  }
+  r.querySelector(".bv").textContent = isEnglish(s.board_view) ? s.board_view : "";
+  if (Array.isArray(s.did_well) && s.did_well.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
+  (Array.isArray(s.work_on) ? s.work_on : []).forEach((w) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span>'; f.firstChild.textContent = w.wrong || ""; f.lastChild.textContent = "✓ " + (w.right || ""); r.querySelector(".wo").append(f); });
+  r.querySelector(".tip").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
+  if (s.useful_line) { const u = r.querySelector(".ul"); u.innerHTML = "<strong>Line to learn: </strong><span></span>"; u.lastChild.textContent = s.useful_line; u.append(" ", tool("🔊", () => speak(s.useful_line, 0.8))); }
+  return r;
 }
 
 // ---------- hands-free (only outside Claude: the Claude frame never gets the microphone) ----------
@@ -1006,18 +1218,38 @@ function renderLib(openId) {
     if (it.questions?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Think and answer"; m.append(l); const ol = document.createElement("ol"); it.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ol.append(li); }); m.append(ol); }
     if (it.other_headlines?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Other headlines"; m.append(l); const ul = document.createElement("ul"); it.other_headlines.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ul.append(li); }); m.append(ul); }
     const row = document.createElement("div"); row.className = "tools";
-    const go = document.createElement("button"); go.type = "button"; go.className = "btn primary"; go.textContent = "💬 Discuss with Mam";
-    go.onclick = () => { show("talk"); startTopic({ id: "read", em: it.emoji, name: it.title, desc: "from " + it.source,
+    const retell = document.createElement("button"); retell.type = "button"; retell.className = "btn primary"; retell.textContent = "⏱️ Retell it in 1 minute";
+    retell.onclick = () => { show("minute"); loadQuestion(`Retell this story in your own words: "${it.title}"`, it.simple_en); };
+    const go = document.createElement("button"); go.type = "button"; go.className = "btn"; go.textContent = "💬 Discuss with Mam";
+    go.onclick = () => { startTopic({ id: "read", em: it.emoji, name: it.title, desc: "from " + it.source,
       open: `Let's talk about the ${KIND[it.kind]?.toLowerCase() || "article"} you read from ${it.source}: "${it.title}". ${it.questions?.[0] || "What is this story about, in your own words?"}`,
       extra: `The student read this article. Simple summary: ${it.simple_en} Help them explain it in their own words, teach the key words (${(it.words || []).map((w) => w.word).join(", ")}), and ask their opinion. Useful questions: ${(it.questions || []).join(" | ")}` }); };
     const del = document.createElement("button"); del.type = "button"; del.className = "btn"; del.textContent = "Remove";
     del.onclick = () => { if (del.dataset.sure) delItem(it); else { del.dataset.sure = "1"; del.textContent = "Tap again to remove"; } };
-    row.append(go, del); m.append(row);
+    row.append(retell, go, del); m.append(row);
     box.append(d);
   });
 }
 
 function hue(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.codePointAt(0)) % 360; return h; }
+
+// ---------- words: compare what was said with a target sentence ----------
+const toks = (s) => String(s).toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, " ").split(/\s+/).filter(Boolean);
+// Marks which words of the target sentence the learner said, in order (longest common subsequence).
+function matchWords(said, target) {
+  const a = toks(said), b = toks(target), dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const hit = new Array(b.length).fill(false);
+  for (let i = 0, j = 0; i < a.length && j < b.length;) { if (a[i] === b[j]) { hit[j] = true; i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++; }
+  return { score: b.length ? dp[0][0] / Math.max(b.length, a.length) : 0, words: b, hit };
+}
+function diffView(m) {
+  const d = document.createElement("div"); d.className = "diff";
+  m.words.forEach((w, i) => { const s = document.createElement("span"); s.className = m.hit[i] ? "ok" : "miss"; s.textContent = w; d.append(s, " "); });
+  return d;
+}
+
+// ---------- cards ----------
 let filter = "all";
 function renderCards() {
   const g = $("grid"); g.innerHTML = "";
@@ -1038,14 +1270,17 @@ function renderCards() {
     g.append(b);
   });
 }
-document.querySelectorAll(".seg button").forEach((b) => b.onclick = () => {
-  filter = b.dataset.f; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); renderCards();
-});
+segInit("cardSeg", "f", (f) => { filter = f; renderCards(); });
+$("minStartersSlot").append(startersBox(STARTERS.general, "minIn"));
+let revView = "today";
+segInit("revSeg", "v", (v) => { revView = v; renderReview(); });
 
-// ---------- review ----------
+// ---------- review: every card is answered out loud ----------
 function dueCards() { const now = Date.now(); return state.cards.filter((c) => c.due <= now).sort((a, b) => a.due - b.due); }
 function renderDue() { const n = dueCards().length; $("dueBadge").hidden = !n; $("dueBadge").textContent = n; }
 function renderReview() {
+  $("flashWrap").hidden = revView !== "today"; $("cardsWrap").hidden = revView === "today";
+  if (revView !== "today") { renderCards(); return; }
   const wrap = $("flashWrap"); wrap.innerHTML = "";
   const due = dueCards();
   if (!due.length) {
@@ -1054,42 +1289,206 @@ function renderReview() {
     wrap.querySelector("span:last-child").textContent = state.cards.length ? "Next card comes back " + new Date(next).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "short" }) + ". Go talk with Mam!" : "Your cards from Talk will come back here on the right days so you never forget them.";
     return;
   }
-  const c = due[0];
+  const c = due[0], fix = c.type === "fix";
   const f = document.createElement("div"); f.className = "flash"; f.style.setProperty("--h", hue(c.word));
-  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="mean"></span><div class="row"><button class="btn primary" type="button">Show answer</button></div></div>`;
+  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="prompt"></span><span class="mean"></span><textarea id="revIn" rows="2"></textarea><div class="out"></div><div class="row"></div></div>`;
   f.querySelector(".pic").textContent = c.emoji;
-  f.querySelector(".sub").textContent = (c.type === "fix" ? "Say this sentence correctly:  " + c.wrong : "Say the English word for this, then use it in a sentence.") + "   (" + due.length + " left)";
+  f.querySelector(".sub").textContent = (fix ? "Say this sentence correctly" : "Say a sentence with the word that means this") + " · " + due.length + " left";
+  f.querySelector(".prompt").textContent = fix ? c.wrong || "" : "";
   f.querySelector(".mean").textContent = cardMeaning(c);
-  const row = f.querySelector(".row");
-  row.firstChild.onclick = () => {
-    const a = document.createElement("div"); a.className = "answer"; a.textContent = c.word;
-    row.before(a);
-    if (c.example && c.type === "word") { const ex = document.createElement("div"); ex.className = "sub"; ex.textContent = c.example; row.before(ex); }
-    speak(c.type === "fix" ? c.word : c.word + ". " + c.example, 0.8);
-    row.innerHTML = "";
-    const again = document.createElement("button"); again.className = "btn"; again.type = "button"; again.textContent = "↺ Again (forgot)";
-    const got = document.createElement("button"); got.className = "btn primary"; got.type = "button"; got.textContent = "✓ I said it";
-    again.onclick = () => grade(c, false); got.onclick = () => grade(c, true);
-    row.append(again, got);
-  };
+  const inp = f.querySelector("textarea"); inp.placeholder = "Tap here, then the 🎤 on your keyboard, and say it";
+  const out = f.querySelector(".out"), row = f.querySelector(".row");
+  const btn = (label, cls, fn) => { const b = document.createElement("button"); b.type = "button"; b.className = "btn " + cls; b.textContent = label; b.onclick = fn; return b; };
+  const answer = () => { speak(fix ? c.word : c.word + ". " + (c.example || ""), 0.8); };
+  const finishCard = (ok) => { row.innerHTML = ""; row.append(btn("Next card →", "primary", () => grade(c, ok))); };
+  const check = btn("✓ Check", "primary", async () => {
+    const said = inp.value.trim();
+    if (!said) { out.textContent = "Say or type your answer first."; return; }
+    check.disabled = true;
+    if (fix) {
+      const m = matchWords(said, c.word), ok = m.score >= 0.8;
+      out.innerHTML = ""; const h = document.createElement("strong"); h.textContent = ok ? "✓ Well said!" : "Almost. Green words you said, red words you missed:"; out.append(h, diffView(m));
+      answer(); finishCard(ok); return;
+    }
+    out.textContent = "Checking…";
+    let res = null; await aiReady;
+    if (sample) {
+      try {
+        res = await sample.json(`A beginner English learner is practising the word "${c.word}" (meaning: ${cardMeaning(c) || "see the word"}). They said: "${said}". Ignore capital letters and punctuation (voice dictation). Write in simple English only.
+Reply with ONLY JSON: {"used_word": true if they used "${c.word}" or a form of it (plural, past tense, etc.), "correct": true if the sentence is correct English, "fixed": "the corrected sentence (the same as theirs if it is correct)", "note": "very short encouragement or tip"}`, { modelTier: "quick", cache: false });
+      } catch {}
+    }
+    const used = res ? !!res.used_word : toks(said).join(" ").includes(toks(c.word).join(" "));
+    out.innerHTML = "";
+    const h = document.createElement("strong"); h.textContent = used ? "✓ You used “" + c.word + "”." : "The word was “" + c.word + "”."; out.append(h);
+    if (res && res.correct === false && res.fixed) { const p = document.createElement("div"); p.className = "fixline"; p.textContent = "Better: " + res.fixed; p.append(" ", tool("🔊", () => speak(String(res.fixed), 0.8))); out.append(p); }
+    if (res?.note && isEnglish(res.note)) { const p = document.createElement("div"); p.className = "sub"; p.textContent = res.note; out.append(p); }
+    if (!used && c.example) { const p = document.createElement("div"); p.className = "sub"; p.textContent = "Example: " + c.example; out.append(p); }
+    answer(); finishCard(used);
+  });
+  const forgot = btn("I forgot", "", () => {
+    out.innerHTML = ""; const a = document.createElement("div"); a.className = "answer"; a.textContent = c.word; out.append(a);
+    if (!fix && c.example) { const ex = document.createElement("div"); ex.className = "sub"; ex.textContent = c.example; out.append(ex); }
+    answer(); finishCard(false);
+  });
+  row.append(forgot, check);
   wrap.append(f);
 }
 function grade(c, ok) {
-  c.box = ok ? Math.min(c.box + 1, INTERVALS.length - 1) : 0;
+  c.box = ok ? Math.min((c.box || 0) + 1, INTERVALS.length - 1) : 0;
   c.due = ok ? Date.now() + INTERVALS[c.box] * DAY : Date.now() + 60000 * 5;
   putCard(c); renderDue(); renderReview();
 }
 
-// ---------- progress ----------
+// ---------- 1-minute answer ----------
+const QUESTIONS = [
+  "Tell us about yourself.", "Why do you want to join the civil service?", "What is the biggest problem of Pakistan?", "What are your hobbies?",
+  "Who is your role model, and why?", "Describe your hometown.", "Why is education important?", "How can we reduce corruption in Pakistan?",
+  "What is the role of young people in Pakistan?", "How can Pakistan solve its energy crisis?", "What is climate change, and how does it affect Pakistan?",
+  "What makes a good officer?", "What is your biggest strength?", "What is your weakness, and how are you working on it?", "What did you do last weekend?",
+  "What is democracy?", "How can we improve our police?", "How does social media affect young people?", "What is your favourite book, and why?",
+  "What will you do in your first month as an officer?", "Why is tolerance important in our society?", "What is the role of women in Pakistan's development?",
+  "Tell us about a challenge you faced and how you solved it.", "How can we save water in Pakistan?", "What is artificial intelligence, and is it good for Pakistan?",
+  "Should Pakistan focus more on agriculture or industry?", "Which service group do you want, and why?", "How can we make our cities cleaner?",
+  "What do you do to stay healthy?", "Why do so many young people want to go abroad?",
+];
+let minQ = null, minRec = null, minTimer = 0, minStartAt = 0, minRunning = false, minSR = null, minBusy = false;
+function minStatus(t, err) { $("minStatus").textContent = t; $("minStatus").classList.toggle("err", !!err); }
+function loadQuestion(q, ctx, rec) {
+  stopMinute(true);
+  minQ = { q, ctx: ctx || "" }; minRec = rec || null;
+  $("qText").textContent = q; $("minIn").value = ""; $("minResult").innerHTML = ""; minStatus("");
+  setTimer(60); renderMinPast();
+  if (rec?.attempts?.length) renderMinResult(rec.attempts[rec.attempts.length - 1], rec.attempts[rec.attempts.length - 2]);
+}
+function nextQuestion() { const pool = QUESTIONS.filter((x) => x !== minQ?.q); loadQuestion(pool[Math.floor(Math.random() * pool.length)]); }
+function setTimer(left) { $("timer").textContent = Math.max(0, Math.ceil(left)); $("ring").style.setProperty("--p", Math.max(0, Math.min(1, left / 60))); }
+$("qListen").onclick = () => minQ && speak(minQ.q, 0.85);
+$("qNext").onclick = () => nextQuestion();
+$("minStart").onclick = () => {
+  if (minRunning || minBusy) return;
+  $("minResult").innerHTML = ""; minStatus("");
+  minRunning = true; minStartAt = Date.now();
+  $("minStart").hidden = true; $("minDone").hidden = false;
+  const inp = $("minIn"); inp.disabled = false; inp.value = ""; inp.focus();
+  minTimer = setInterval(() => { const left = 60 - (Date.now() - minStartAt) / 1000; setTimer(left); if (left <= 0) endMinute(); }, 250);
+  if (canHandsFree) {
+    try {
+      let base = "";
+      const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+      r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (base + " " + s).trim(); };
+      r.onend = () => { if (minRunning && minSR === r) { base = inp.value; try { r.start(); } catch {} } };
+      r.start(); minSR = r; minStatus("Listening… speak until the timer ends.");
+    } catch { minSR = null; }
+  } else minStatus("Tap the 🎤 on your keyboard and keep talking until the timer ends.");
+};
+$("minDone").onclick = () => endMinute();
+function stopMinute(silent) {
+  clearInterval(minTimer); const r = minSR; minSR = null; try { r?.abort(); } catch {}
+  const was = minRunning; minRunning = false;
+  $("minStart").hidden = false; $("minDone").hidden = true; $("minStart").textContent = "▶ Start 60 seconds";
+  if (silent && was) $("minIn").value = "";
+  return was;
+}
+async function endMinute() {
+  if (!stopMinute()) return;
+  const secs = Math.min(60, Math.max(1, (Date.now() - minStartAt) / 1000));
+  setTimer(0);
+  const text = $("minIn").value.trim();
+  if (!text) { minStatus("I didn't get any words. Tap Start, then the 🎤 on your keyboard, and speak.", true); setTimer(60); return; }
+  const words = toks(text).length;
+  const wpm = Math.round(words / Math.max(secs, 10) * 60);
+  const fillers = (text.match(/\b(um+|uh+|er+m*|ah+|hmm+|you know|i mean|basically|actually)\b/gi) || []).length;
+  const t = toks(text); let repeats = 0; for (let i = 1; i < t.length; i++) if (t[i] === t[i - 1]) repeats++;
+  logTime(secs * 1000, words);
+  if (!minRec) { const now = Date.now(); minRec = { id: "m" + now.toString(36), kind: "minute", topic: { em: "⏱️", name: minQ.q, ctx: minQ.ctx || "" }, started: now, updated: now, attempts: [], words: 0, min: 0 }; }
+  const prev = minRec.attempts[minRec.attempts.length - 1];
+  const at = { at: Date.now(), text, secs: Math.round(secs), words, wpm, fillers, repeats, result: null };
+  minRec.attempts.push(at); minRec.words += words; minRec.min = Math.round((minRec.min + secs / 60) * 10) / 10;
+  putChat(minRec, true);
+  $("minStart").textContent = "🔁 Try again";
+  renderMinPast();
+  await evaluateMinute(at, prev);
+}
+async function evaluateMinute(at, prev) {
+  renderMinResult(at, prev, "Mam is listening to your answer…");
+  await aiReady;
+  if (!sample) { renderMinResult(at, prev, inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in History, Settings, to get Mam's feedback."); return; }
+  minBusy = true;
+  const rec = minRec;
+  try {
+    const r = await sample.json(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
+Question: "${rec.topic.name}"
+${rec.topic.ctx ? "The question is about this article: " + rec.topic.ctx.slice(0, 3000) + "\n" : ""}Student's answer (voice dictation, so ignore capital letters and punctuation): "${at.text}"
+Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words.
+Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
+{"score": number 1-10 for a beginner (fluency, clarity and answering the question), "comment": "one or two short sentences about the fluency, kind and honest", "errors": [{"wrong": "exact wrong words", "right": "corrected words", "why": "very short reason, at most 10 words"}], "better": "a better answer to the same question in 70 to 100 words of simple (A2-B1) English, keeping the student's own ideas", "tip": "one practical tip for the next try"}
+"errors" has 0 to 3 items.`, { modelTier: "default", cache: false });
+    at.result = { score: Number(r?.score) || 0, comment: String(r?.comment || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: String(r?.better || ""), tip: String(r?.tip || "") };
+    putChat(rec, true);
+    if (rec === minRec) { renderMinResult(at, prev); renderMinPast(); }
+  } catch (e) {
+    if (rec === minRec) {
+      renderMinResult(at, prev, errText(e) || "Stopped.");
+      const b = tool("Get feedback again", () => evaluateMinute(at, prev)); $("minResult").append(b);
+    }
+  } finally { minBusy = false; }
+}
+function renderMinResult(at, prev, note) {
+  const box = $("minResult"); box.innerHTML = "";
+  const r = at.result;
+  const card = document.createElement("div"); card.className = "report";
+  card.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="metrics"></div><p class="sub cm"></p><div class="wo"></div><div class="bt"></div><div class="mean tip"></div>`;
+  card.querySelector(".score").textContent = r?.score ? r.score + "/10" : "⏱️";
+  card.querySelector("h3").textContent = "Attempt " + (minRec?.attempts.indexOf(at) + 1 || 1);
+  card.querySelector(".when").textContent = at.secs + " second" + (at.secs === 1 ? "" : "s") + " of speaking";
+  const mt = card.querySelector(".metrics");
+  const chipM = (val, label, delta) => { const d = document.createElement("div"); d.className = "metric"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = val + (delta ? " " + delta : ""); d.lastChild.textContent = label; mt.append(d); };
+  const dl = (a, b, upGood) => (b == null ? "" : a === b ? "" : (a > b) === upGood ? "▲" : "▼");
+  chipM(at.words, "words", dl(at.words, prev?.words, true));
+  chipM(at.wpm, "words / min", dl(at.wpm, prev?.wpm, true));
+  chipM(at.fillers, "fillers (um, uh)", dl(at.fillers, prev?.fillers, false));
+  chipM(at.repeats, "repeated words", dl(at.repeats, prev?.repeats, false));
+  card.querySelector(".cm").textContent = note || (r && isEnglish(r.comment) ? r.comment : "") || "Fluent speakers say about 120 to 150 words per minute. Aim to talk the whole minute without stopping.";
+  (r?.errors || []).forEach((e) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span><span class="mean"></span>'; f.children[0].textContent = e.wrong || ""; f.children[1].textContent = "✓ " + e.right; f.children[2].textContent = isEnglish(e.why) ? e.why : ""; card.querySelector(".wo").append(f); });
+  if (r?.better && isEnglish(r.better)) {
+    const b = card.querySelector(".bt"); const l = document.createElement("div"); l.className = "lbl"; l.textContent = "A better answer (listen, then try again)"; b.append(l);
+    const p = document.createElement("p"); p.className = "better"; p.textContent = r.better; b.append(p);
+    const tl = document.createElement("div"); tl.className = "tools"; tl.append(tool("🔊 Listen", () => speak(r.better, 0.85)), tool("🐢 Slow", () => speak(r.better, 0.65))); b.append(tl);
+  }
+  card.querySelector(".tip").textContent = r?.tip && isEnglish(r.tip) ? "💡 " + r.tip : "";
+  const row = document.createElement("div"); row.className = "tools";
+  const again = document.createElement("button"); again.type = "button"; again.className = "btn primary"; again.textContent = "🔁 Try again"; again.onclick = () => { $("minIn").value = ""; $("minStart").click(); };
+  const next = document.createElement("button"); next.type = "button"; next.className = "btn"; next.textContent = "Next question →"; next.onclick = () => nextQuestion();
+  row.append(again, next); card.append(row);
+  box.append(card);
+}
+function renderMinPast() {
+  const box = $("minPast"); box.innerHTML = "";
+  const list = minRec?.attempts || [];
+  $("minPastWrap").hidden = list.length < 2;
+  list.slice(0, -1).reverse().forEach((a, i) => {
+    const d = document.createElement("details"); d.className = "item";
+    d.innerHTML = "<summary style=\"grid-template-columns:auto minmax(0,1fr)\"><b></b><span></span></summary><div class=\"more\"><p></p></div>";
+    d.querySelector("b").textContent = a.result?.score ? a.result.score + "/10" : "–";
+    d.querySelector("summary span").textContent = "Attempt " + (list.length - 1 - i) + " · " + a.words + " words · " + a.wpm + " words/min";
+    d.querySelector("p").textContent = a.text;
+    box.append(d);
+  });
+}
+function openMinute(rec) { show("minute"); loadQuestion(rec.topic.name, rec.topic.ctx, rec); }
+
+// ---------- history ----------
 function renderHeader() {
   $("streakTxt").innerHTML = "🔥 <strong>" + streak() + "</strong>";
   const m = state.days[today()]?.min || 0;
   $("goalBar").style.width = Math.min(100, (m / state.settings.goal) * 100) + "%";
   $("goalTxt").textContent = state.settings.goal;
 }
-function renderProgress() {
-  const totalW = Object.values(state.days).reduce((a, d) => a + d.words, 0);
-  const totalM = Object.values(state.days).reduce((a, d) => a + d.min, 0);
+const KIND_LABEL = { talk: "Talk", interview: "Mock interview", minute: "1-minute answer" };
+function renderHistory() {
+  const totalW = Object.values(state.days).reduce((a, d) => a + (d.words || 0), 0);
+  const totalM = Object.values(state.days).reduce((a, d) => a + (d.min || 0), 0);
   $("stats").innerHTML = "";
   [[streak(), "day streak"], [Math.round(totalM), "minutes"], [totalW, "words spoken"]].forEach(([v, l]) => {
     const d = document.createElement("div"); d.className = "stat"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = v; d.lastChild.textContent = l; $("stats").append(d);
@@ -1105,30 +1504,39 @@ function renderProgress() {
     el.lastChild.textContent = d.toLocaleDateString(undefined, { weekday: "narrow" });
     wk.append(el);
   });
-  const rp = $("reports"); rp.innerHTML = "";
-  if (!state.sessions.length) { rp.innerHTML = `<div class="empty"><span class="big">📝</span><strong>No reports yet</strong><span>Finish a talk to get your score, mistakes to fix and a tip for tomorrow.</span></div>`; return; }
-  state.sessions.slice(0, 15).forEach((s) => {
-    const r = document.createElement("div"); r.className = "report";
-    r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="wd"></div><div class="wo"></div><div class="mean"></div><div class="ul"></div>`;
-    r.querySelector(".score").textContent = s.score ? s.score + "/10" : s.em;
-    r.querySelector("h3").textContent = s.em + " " + s.topic + (s.level ? " · " + s.level : "");
-    r.querySelector(".when").textContent = new Date(s.date).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) + " · " + s.min + " min · " + s.words + " words · " + s.newCards + " new cards";
-    if (s.did_well?.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
-    (s.work_on || []).forEach((w) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span>'; f.firstChild.textContent = w.wrong; f.lastChild.textContent = "✓ " + w.right; r.querySelector(".wo").append(f); });
-    r.querySelector(".mean").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
-    if (s.useful_line) { const u = r.querySelector(".ul"); u.innerHTML = "<strong>Interview line to learn: </strong><span></span>"; u.lastChild.textContent = s.useful_line; u.append(" ", tool("🔊", () => speak(s.useful_line, 0.8))); }
-    rp.append(r);
+  const box = $("hist"); box.innerHTML = "";
+  const list = [...state.chats].sort((a, b) => b.updated - a.updated);
+  if (!list.length) box.innerHTML = `<div class="empty"><span class="big">🗂️</span><strong>No chats yet</strong><span>Every talk, interview and 1-minute answer is saved here automatically. Tap one to read it again or continue.</span></div>`;
+  list.forEach((c) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "hitem";
+    b.innerHTML = `<span class="pic"></span><span class="txt"><span class="meta"></span><span class="ttl"></span><span class="sub2"></span></span><span class="sc"></span>`;
+    b.style.setProperty("--h", hue(c.topic?.name || c.id));
+    b.querySelector(".pic").textContent = c.topic?.em || "💬";
+    b.querySelector(".meta").textContent = (KIND_LABEL[c.kind] || "Talk") + " · " + new Date(c.updated).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+    b.querySelector(".ttl").textContent = c.topic?.name || "Chat";
+    const answers = c.kind === "minute" ? (c.attempts || []).length + " attempt" + ((c.attempts || []).length === 1 ? "" : "s") : ((n) => n + " answer" + (n === 1 ? "" : "s"))((c.turns || []).filter((x) => x.role === "user").length);
+    b.querySelector(".sub2").textContent = answers + " · " + (c.words || 0) + " words";
+    const best = c.kind === "minute" ? Math.max(0, ...(c.attempts || []).map((a) => a.result?.score || 0)) : c.report?.score;
+    b.querySelector(".sc").textContent = best ? best + "/10" : "";
+    b.onclick = () => (c.kind === "minute" ? openMinute(c) : openChat(c));
+    box.append(b);
   });
+  const old = $("oldReports"); old.innerHTML = "";
+  $("oldWrap").hidden = !state.sessions.length;
+  state.sessions.slice(0, 15).forEach((s) => old.append(reportCard({ kind: "talk", topic: { em: s.em, name: s.topic }, report: { ...s }, min: s.min, words: s.words, newCards: s.newCards, updated: s.date })));
 }
 
 // ---------- shell ----------
+const TABS = ["talk", "minute", "read", "review", "history"];
 function show(tab) {
-  ["talk", "read", "cards", "review", "progress"].forEach((t) => { $("v-" + t).hidden = t !== tab; });
+  TABS.forEach((t) => { $("v-" + t).hidden = t !== tab; });
   document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   $("composer").hidden = tab !== "talk" || !topic;
+  if (tab !== "minute" && minRunning) endMinute();
   if (tab === "review") renderReview();
   if (tab === "read") renderLib();
-  if (tab === "progress") renderProgress();
+  if (tab === "history") renderHistory();
+  if (tab === "minute" && !minQ) nextQuestion();
   $("main").scrollTop = tab === "talk" ? $("main").scrollHeight : 0;
 }
 document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
@@ -1141,7 +1549,7 @@ $("finishBtn").onclick = finish;
 $("voiceBtn").onclick = () => {
   state.settings.voice = !state.settings.voice; putMeta();
   $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
-  if (!state.settings.voice) speechSynthesis?.cancel();
+  if (!state.settings.voice && hasTTS) speechSynthesis.cancel();
 };
 $("goalSel").onchange = () => { state.settings.goal = +$("goalSel").value; putMeta(); renderHeader(); };
 if (!inClaude) {
@@ -1169,6 +1577,7 @@ $("diagBtn").onclick = async () => {
   await aiReady;
   put("Teacher connection: " + (sample ? "available" : "not available"));
   if (inClaude) { try { const pm = await use("permissions"); put("Permission: " + (pm ? await pm.state("sample") : "unknown")); } catch { put("Permission: unknown"); } }
+  put("Saved chats: " + state.chats.length + (col ? " (synced to your account)" : " (on this device only)"));
   if (sample) {
     put("Sending a test message… (tap Allow if asked)");
     const c = new AbortController(); const t = setTimeout(() => c.abort(), 45000);
@@ -1191,6 +1600,7 @@ $("diagBtn").onclick = async () => {
 function renderAll() {
   $("goalSel").value = String(state.settings.goal);
   renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
+  if (!$("v-history").hidden) renderHistory();
   $("voiceBtn").textContent = state.settings.voice ? "🔊 On" : "🔇 Off";
 }
 loadLocal(); renderAll();

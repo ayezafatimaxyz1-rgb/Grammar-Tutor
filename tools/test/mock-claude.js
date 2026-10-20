@@ -38,6 +38,10 @@
 
   const replyFor = (prompt) => {
     if (/exactly the word OK/.test(prompt)) return "OK";
+    if (/Write the board's next turn now/.test(prompt)) return /This is the last turn/.test(prompt) ? "[Chairman] Thank you very much. The interview is over." : "[Member 1] Why do you want to join the civil service?";
+    if (/senior CSS \(FPSC\) interview examiner/.test(prompt)) return JSON.stringify({ score: 5, level: "A2", areas: { communication: 6, confidence: 5, knowledge: 4, english: 5 }, board_view: "The candidate is polite but needs longer answers.", did_well: ["Polite", "Clear"], work_on: [{ wrong: "I want serve", right: "I want to serve" }], tip: "Give one example in every answer.", useful_line: "I want to serve the people of Pakistan." });
+    if (/The student spoke for/.test(prompt)) return JSON.stringify({ score: 7, comment: "Good flow with few pauses.", errors: [{ wrong: "I am agree", right: "I agree", why: "Agree is already a verb." }], better: "I want to join the civil service because I want to serve my country. As an officer, I can help people.", tip: "Use one example." });
+    if (/is practising the word/.test(prompt)) return JSON.stringify({ used_word: true, correct: false, fixed: "The economy of Pakistan is growing.", note: "Good try!" });
     if (/Write Mam's next reply now/.test(prompt)) return window.__reply || "Nice! Lahore is a big city. What food do you like there?";
     if (/Rewrite this in very simple English/.test(prompt)) return "Lahore is big. What food do you like?";
     if (/checking one spoken answer/.test(prompt)) return JSON.stringify({ verdict: "fix", errors: [{ wrong: "I living in Lahore", right: "I live in Lahore", why: 'Use "live" for where you stay.' }], better: [{ label: "More natural", text: "I live in Lahore with my family." }, { label: "CSS interview", text: "I am from Lahore, where I live with my family." }], new_words: [{ word: "capital", meaning: "the main city of a place", example: "Lahore is the capital of Punjab.", emoji: "🏛️" }] });
