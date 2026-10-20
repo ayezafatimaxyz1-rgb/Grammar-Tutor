@@ -433,6 +433,14 @@ function putMeta() {
   metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
 }
 let libCol = null; // "library": readings, also filled by Claude from chat uploads
+let dbgCol = null, dbgQueue = [];
+// Step log so Claude can read what happened on the learner's phone (owner-only "debug" collection).
+function dbg(step, extra) {
+  const row = { t: Date.now(), step, ...(extra || {}) };
+  if (dbgCol) dbgCol.add(row).catch(() => {}); else if (dbgQueue.length < 50) dbgQueue.push(row);
+}
+window.addEventListener("error", (e) => dbg("page_error", { message: String(e.message || "").slice(0, 300), line: e.lineno || 0 }));
+window.addEventListener("unhandledrejection", (e) => dbg("unhandled", { message: String(e.reason?.message || e.reason?.code || e.reason || "").slice(0, 300) }));
 function putItem(it) { saveLocal(); if (libCol) libCol.doc(it.id).set(it).catch(() => {}); }
 function delItem(it) { state.library = state.library.filter((x) => x.id !== it.id); saveLocal(); if (libCol) libCol.doc(it.id).delete().catch(() => {}); renderLib(); }
 async function connectDb() {
@@ -440,6 +448,8 @@ async function connectDb() {
     const [db, user] = await Promise.all([use("db"), use("user")]);
     if (db) {
       libCol = db.collection("library");
+      dbgCol = db.collection("debug"); dbgQueue.splice(0).forEach((r) => dbgCol.add(r).catch(() => {}));
+      dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 8 });
       libCol.onSnapshot((snap) => {
         const byId = new Map(state.library.map((x) => [x.id, x]));
         snap.docs.forEach((d) => byId.set(d.id, { ...d.data(), id: d.id }));
@@ -707,6 +717,7 @@ function attachFeedback(w, fb) {
 }
 async function send(retryEl) {
   const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
+  dbg("send_called", { len: text.length, busy, hasTopic: !!topic, retry: !!retryEl });
   if (!text || busy || !topic) return;
   if (hasTTS && speechSynthesis.speaking) speechSynthesis.cancel();
   await aiReady;
@@ -733,16 +744,20 @@ async function send(retryEl) {
   const watchdog = setTimeout(() => { timedOut = true; ctl.abort(); }, 90000);
   setLive("thinking");
   try {
+    dbg("reply_call_start", { turns: turns.length, hasSample: !!sample });
+    let firstText = true;
     const { text: reply } = await askMam(topic, turns, {
       signal: ctl.signal,
-      onText: ({ text: t }) => { wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = t; scrollDown(); },
+      onText: ({ text: t }) => { if (firstText) { firstText = false; dbg("reply_first_text"); } wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = t; scrollDown(); },
     });
+    dbg("reply_done", { len: reply.length });
     wait.remove();
     const res = { reply: reply.trim().replace(/^(Mam:\s*)/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?" };
     turns.push({ role: "assistant", content: res.reply });
     addTutor(res);
     if (state.settings.voice) speak(res.reply, 0.88, afterSpeak); else setTimeout(afterSpeak, 50);
   } catch (e) {
+    dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300), timedOut });
     wait.remove();
     const m = errText(timedOut ? { code: "timeout" } : e);
     if (m) {
@@ -766,11 +781,13 @@ Student answered: "${text}"
 Reply with ONLY this JSON:
 {"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why_ur": "very short reason in Urdu script"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "ur": "meaning in Urdu script", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
 "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items. "new_words" has 0 to 2 items and never repeats these known words: ${known}.`, { modelTier: "quick", cache: false });
+    dbg("check_done");
     tag.remove();
     attachFeedback(meEl, r);
     const err0 = Array.isArray(r?.errors) ? r.errors.find((e) => e?.right) : null;
     saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why_ur: String(err0.why_ur || "") } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] });
   } catch (e) {
+    dbg("check_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300) });
     tag.disabled = false; tag.textContent = "Check failed (" + (e?.code || "error") + ") · tap to retry";
     tag.onclick = () => checkAnswer(meEl, text, lastQ);
   }
