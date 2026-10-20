@@ -46,7 +46,7 @@
     if (/Write Mam's next reply now/.test(prompt)) return window.__reply || "Nice! Lahore is a big city. What food do you like there?";
     if (/Rewrite this in very simple English/.test(prompt)) return "Lahore is big. What food do you like?";
     if (/checking one spoken answer/.test(prompt)) return JSON.stringify({ verdict: "fix", errors: [{ wrong: "I living in Lahore", right: "I live in Lahore", why: 'Use "live" for where you stay.' }], better: [{ label: "More natural", text: "I live in Lahore with my family." }, { label: "CSS interview", text: "I am from Lahore, where I live with my family." }], new_words: [{ word: "capital", meaning: "the main city of a place", example: "Lahore is the capital of Punjab.", emoji: "🏛️" }] });
-    if (/Score the student's speaking/.test(prompt)) return JSON.stringify({ score: 6, level: "A2", did_well: ["Clear answers", "Good effort"], work_on: [{ wrong: "I living in Lahore", right: "I live in Lahore" }], tip: "Speak for ten minutes every day.", useful_line: "I am from Lahore." });
+    if (/Score the student's speaking|score their speaking fairly/.test(prompt)) return JSON.stringify({ score: 6, level: "A2", did_well: ["Clear answers", "Good effort"], work_on: [{ wrong: "I living in Lahore", right: "I live in Lahore" }], tip: "Speak for ten minutes every day.", useful_line: "I am from Lahore." });
     if (/reading material from/.test(prompt)) return JSON.stringify({ title: "Floods in Sindh", emoji: "🌊", simple_en: "Heavy rain caused floods.", css_angle: "Current Affairs.", words: [{ word: "flood", meaning: "too much water on dry land", example: "The flood was big.", emoji: "🌊" }], questions: ["Why do floods happen?"], other_headlines: [] });
     if (/Reply with ONLY this JSON: \{"right"/.test(prompt)) return JSON.stringify({ right: "I live in Lahore" });
     return "OK";
@@ -63,7 +63,7 @@
   const run = async (input, opts = {}) => {
     validate(input, opts);
     const prompt = flat(input);
-    window.__calls.push({ prompt: prompt.slice(0, 200), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
+    window.__calls.push({ prompt: prompt.slice(0, 600), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
     if (window.__failNext) { const c = window.__failNext; window.__failNext = null; throw { code: c, message: "forced " + c }; }
     if (window.__hangNext) { window.__hangNext = false; await new Promise((_, rej) => opts.signal?.addEventListener("abort", () => rej({ code: "cancelled", message: "aborted" }))); }
     await new Promise((r) => setTimeout(r, 30));

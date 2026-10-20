@@ -237,6 +237,48 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .hitem .ttl { font-family: var(--display); font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .hitem .sub2 { font-size: 13px; color: var(--muted); }
 .hitem .sc { font-family: var(--display); font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.lvchip { border: 0; background: var(--accent); color: var(--accent-fg); font-weight: 800; font-family: var(--display); border-radius: 99px; padding: 4px 10px; font-size: 13px; min-height: 28px; }
+.toast { position: fixed; z-index: 20; top: calc(env(safe-area-inset-top, 0px) + 8px); left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); max-width: 640px; margin: 0 auto; background: var(--fg); color: var(--bg); border-radius: 16px; padding: 12px 14px; font-size: 15px; box-shadow: 0 6px 24px rgb(0 0 0 / 25%); }
+.toast .mini { margin-top: 6px; }
+.levelcard, .flucard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.lvtop { display: flex; gap: 12px; align-items: center; }
+.lvtop div { display: flex; flex-direction: column; }
+.lvtop strong { font-family: var(--display); font-size: 18px; }
+.lvtop div span { color: var(--muted); font-size: 14px; }
+.lvbadge { width: 56px; height: 56px; border-radius: 16px; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 22px; flex: none; }
+.lvsteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.lvsteps span { text-align: center; font-size: 12px; font-weight: 700; padding: 4px 0; border-radius: 8px; background: var(--sunk); color: var(--muted); }
+.lvsteps .done { background: color-mix(in srgb, var(--accent) 25%, var(--surface)); color: var(--fg); }
+.lvsteps .now { background: var(--accent); color: var(--accent-fg); }
+.req { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l v" "b b"; gap: 4px 8px; font-size: 14px; }
+.req .rl { grid-area: l; }
+.req .rv { grid-area: v; color: var(--muted); font-variant-numeric: tabular-nums; }
+.req i { grid-area: b; height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.req i b { display: block; height: 100%; background: var(--sun); border-radius: 99px; }
+.req.ok i b { background: var(--good); }
+.req.ok .rl { color: var(--good); font-weight: 700; }
+.flutiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flutiles .stat b { font-size: 22px; font-variant-numeric: normal; }
+.flutiles .stat span { font-size: 11px; }
+.flutiles .stat b small { font-size: 12px; font-weight: 600; color: var(--muted); font-family: var(--body); }
+.flutiles .stat em { display: block; font-style: normal; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.flutiles .stat em.up { color: var(--good); }
+.flutiles .stat em.down { color: var(--bad); }
+.fluchart { position: relative; min-height: 190px; }
+.fluchart svg { display: block; max-width: 100%; height: auto; touch-action: pan-y; }
+.fluchart .grid { stroke: var(--line); stroke-width: 1; }
+.fluchart .target { stroke: var(--muted); stroke-width: 1; opacity: .6; }
+.fluchart .lvmark { stroke: var(--sun); stroke-width: 1; }
+.fluchart .tick { fill: var(--muted); font-size: 11px; font-family: var(--body); font-variant-numeric: tabular-nums; }
+.fluchart .endlab { fill: var(--fg); font-size: 12px; font-weight: 700; font-family: var(--body); }
+.fluchart .ln { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.fluchart .area { fill: var(--accent); opacity: .1; stroke: none; }
+.fluchart .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.fluchart .cross { stroke: var(--muted); stroke-width: 1; }
+.ctip { position: absolute; top: 0; background: var(--fg); color: var(--bg); border-radius: 10px; padding: 6px 10px; font-size: 12px; pointer-events: none; display: flex; flex-direction: column; min-width: 110px; }
+.ctip b { font-size: 15px; }
+.flutable { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.flutable th, .flutable td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
 nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
 nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
 nav.tabs button .i { font-size: 20px; line-height: 1; }
@@ -248,6 +290,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 <div class="app">
   <header class="top pad">
     <div class="brand">Bolo <b>English</b></div>
+    <button class="lvchip" id="lvChip" type="button" aria-label="Your level">A1</button>
     <div class="streak" title="Daily speaking goal">
       <span id="streakTxt">🔥 <strong>0</strong></span>
       <div class="meter" aria-label="Today's goal"><i id="goalBar"></i></div>
@@ -374,8 +417,21 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <!-- HISTORY -->
     <section class="view pad" id="v-history" hidden>
       <div>
-        <h2>Your history</h2>
+        <h2>Your progress</h2>
         <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. A little every day adds up.</p>
+      </div>
+      <div class="levelcard" id="levelCard"></div>
+      <div class="flucard">
+        <h3>Your fluency</h3>
+        <div class="flutiles" id="fluTiles"></div>
+        <div class="seg" role="group" aria-label="Fluency measure" id="fluSeg">
+          <button type="button" data-m="speed" aria-pressed="true">Speed</button>
+          <button type="button" data-m="length" aria-pressed="false">Answer length</button>
+          <button type="button" data-m="score" aria-pressed="false">Score</button>
+        </div>
+        <div class="sub" id="fluTitle"></div>
+        <div class="fluchart" id="fluChart"></div>
+        <details id="fluTableWrap"><summary class="sub">Show as a table</summary><table class="flutable" id="fluTable"></table></details>
       </div>
       <div class="stats" id="stats"></div>
       <h3>Last 7 days (minutes)</h3>
@@ -388,6 +444,8 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
       </div>
       <h3>Settings</h3>
       <div class="settings">
+        <label for="lvSel">Your level (it also rises by itself as you improve)</label>
+        <select id="lvSel"><option value="A1">A1 · Starter</option><option value="A2">A2 · Basic</option><option value="B1">B1 · Confident</option><option value="B2">B2 · Fluent</option></select>
         <label for="goalSel">Daily speaking goal</label>
         <select id="goalSel"><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option></select>
         <div id="keyBox" class="settings" style="padding:0;border:0" hidden>
@@ -419,6 +477,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
     <p class="hint" id="hint">Tip: tap the 🎤 on your iPhone keyboard and just speak. Tap your own message to see your mistakes and better ways to say it.</p>
   </div>
 
+  <div class="toast" id="toast" role="status" hidden></div>
   <nav class="tabs" aria-label="Sections">
     <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
     <button type="button" data-tab="minute"><span class="i">⏱️</span>1-Minute</button>
@@ -579,7 +638,7 @@ async function connectDb() {
     state.settings = { ...state.settings, ...(meta.settings || {}) };
     putMeta();
   }
-  saveLocal(); renderAll(); libraryWords(); restoreChat();
+  saveLocal(); renderAll(); libraryWords(); restoreChat(); checkLevel();
 }
 
 function logTime(ms, words) {
@@ -707,9 +766,9 @@ function errText(e, where) {
     default: return where === "read" ? "Mam could not read this (" + (e?.code || "error") + "). Tap Make it simple to try again." : "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
   }
 }
-const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is a total beginner from Pakistan (first language Urdu) who is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
+const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is from Pakistan (first language Urdu), is at English level ${levelId()} and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
 Rules:
-- Use very simple English (CEFR A1-A2). Short sentences. At most 2 short sentences, then ONE simple question so the student keeps talking.
+- ${LEVEL_STYLE[levelId()]} Always end with ONE question so the student keeps talking.
 - Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
 - Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say the sentence again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
@@ -756,7 +815,7 @@ function splitSpeaker(s) {
 function speakLine(line, onend, rate = 0.88) { const { who, text } = splitSpeaker(line); speak(text, rate, onend, PITCH[who.toLowerCase()] || 1); }
 const BOARD_RULES = (answered) => `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is a beginner in English who is practising for the real interview.
 Rules:
-- Ask ONE short, clear question per turn in simple, natural interview English (B1 level). Take turns between the members.
+- Ask ONE short, clear question per turn in ${BOARD_STYLE[levelId()]}. Take turns between the members. The candidate's English level is ${levelId()}.
 - Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
 - Do not teach or correct English during the interview (feedback is shown separately). If the candidate did not understand, repeat the question in simpler words.
 - English only. Never write Urdu or Roman Urdu.
@@ -1032,7 +1091,7 @@ async function checkAnswer(meEl, text, lastQ, turn, c) {
   meEl.append(tag);
   const known = state.cards.filter((x) => x.type === "word").map((x) => x.word).slice(0, 80).join(", ") || "none";
   try {
-    const r = await askJson(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu.
+    const r = await askJson(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[levelId()]}
 Question: "${lastQ}"
 Student answered: "${text}"
 Reply with ONLY this JSON:
@@ -1045,6 +1104,7 @@ Reply with ONLY this JSON:
     const m = $("main"), atEnd = m.scrollHeight - m.scrollTop - m.clientHeight < 120;
     attachFeedback(meEl, fb);
     if (atEnd && c === chat) scrollDown(); // keep Mam's newest question in view below the corrections
+    checkLevel();
     const err0 = fb.errors[0];
     saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] }, c);
   } catch (e) {
@@ -1101,7 +1161,7 @@ async function finish() {
 Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for next week's interview", "useful_line": "one strong, simple sentence the candidate can use in the real interview"}
 
 ${transcript.slice(-14000)}`
-      : `You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. Score the student's speaking for a beginner (be kind but honest). Write in simple English only.
+      : `You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. The student's English level is ${levelId()}: score their speaking fairly for that level (be kind but honest). Write in simple English only.
 Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for tomorrow in simple English", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
 
 Topic: ${t.name}
@@ -1110,7 +1170,7 @@ ${transcript.slice(-12000)}`, { modelTier: "default", signal: myCtl.signal });
   finally { busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label; }
   if (rep === "shown") return;
   if (!rep || typeof rep !== "object") { if (c === chat) chatNote("The report could not be made this time. Tap " + label + " again.", false); return; }
-  c.report = { ...rep, date: Date.now() }; putChat(c, true);
+  c.report = { ...rep, date: Date.now() }; putChat(c, true); checkLevel();
   if (c === chat) { $("msgs").querySelectorAll(".report").forEach((x) => x.remove()); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
 }
 function reportCard(c) {
@@ -1530,12 +1590,12 @@ async function evaluateMinute(at, prev) {
     const r = await askJson(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
 Question: "${rec.topic.name}"
 ${rec.topic.ctx ? "The question is about this article: " + rec.topic.ctx.slice(0, 3000) + "\n" : ""}Student's answer (voice dictation, so ignore capital letters and punctuation): "${at.text}"
-Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words.
+Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words. The student's English level is ${levelId()}; score fairly for that level, and write the better answer one small step above it.
 Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
 {"score": number 1-10 for a beginner (fluency, clarity and answering the question), "comment": "one or two short sentences about the fluency, kind and honest", "errors": [{"wrong": "exact wrong words", "right": "corrected words", "why": "very short reason, at most 10 words"}], "better": "a better answer to the same question in 70 to 100 words of simple (A2-B1) English, keeping the student's own ideas", "tip": "one practical tip for the next try"}
 "errors" has 0 to 3 items.`, { modelTier: "default", cache: false });
     at.result = { score: Number(r?.score) || 0, comment: String(r?.comment || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: String(r?.better || ""), tip: String(r?.tip || "") };
-    putChat(rec, true);
+    putChat(rec, true); checkLevel();
     if (rec === minRec) { renderMinResult(at, prev); renderMinPast(); }
   } catch (e) {
     if (rec === minRec) {
@@ -1588,15 +1648,227 @@ function renderMinPast() {
 }
 function openMinute(rec) { show("minute"); loadQuestion(rec.topic.name, rec.topic.ctx, rec); }
 
+// ---------- level + fluency ----------
+const LEVELS = [
+  { id: "A1", name: "Starter", gets: "Mam uses very simple English and gives you sentences to copy." },
+  { id: "A2", name: "Basic", gets: "Mam uses a little more English and asks you \"why\" and \"how\"." },
+  { id: "B1", name: "Confident", gets: "Mam talks naturally and asks for reasons and examples. The board asks real interview questions." },
+  { id: "B2", name: "Fluent", gets: "Mam challenges your opinions like a CSS board. Corrections cover small details too." },
+];
+// What it takes to leave each level, measured only on practice done at that level.
+const NEEDS = {
+  A1: { answers: 15, words: 7, good: 0.5, score: 6, speed: 0 },
+  A2: { answers: 20, words: 11, good: 0.6, score: 6.5, speed: 80 },
+  B1: { answers: 25, words: 16, good: 0.7, score: 7.5, speed: 100 },
+};
+const LEVEL_STYLE = {
+  A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences, then ONE simple question. Often give a model sentence the student can copy (\"You can say: ...\").",
+  A2: "Use simple English (CEFR A2): up to 3 short sentences, then ONE question. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
+  B1: "Use natural everyday English (CEFR B1): up to 3 sentences, then ONE open question. Ask for reasons and examples, and sometimes offer a useful CSS-interview phrase. Encourage answers of 3 to 4 sentences.",
+  B2: "Use fluent, natural English (CEFR B2), like a friendly CSS interviewer: politely challenge the student's opinion and ask follow-ups that need explanation, comparison or examples. Expect answers of 4 to 6 sentences.",
+};
+const BOARD_STYLE = { A1: "very simple, slow questions with common words (A2)", A2: "simple, clear questions (A2-B1)", B1: "normal interview English (B1)", B2: "real CSS board English (B2) with tougher follow-ups" };
+const CHECK_STYLE = {
+  A1: "The student is at level A1: only correct mistakes that change the meaning or are very common; ignore small article mistakes.",
+  A2: "The student is at level A2: correct grammar and word mistakes; ignore tiny style points.",
+  B1: "The student is at level B1: also correct articles, prepositions and word choice.",
+  B2: "The student is at level B2: also correct style, collocations and anything that sounds unnatural.",
+};
+const levelId = () => (LEVELS.some((l) => l.id === state.settings.level) ? state.settings.level : "A1");
+const levelOf = (id) => LEVELS.find((l) => l.id === id) || LEVELS[0];
+const levelSince = () => { const h = state.settings.levelHistory || []; const last = h.filter((x) => x.level === levelId()).pop(); return last?.at || 0; };
+const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
+const wordCount = (s) => toks(s).length;
+
+// Every answer, score and 1-minute speed, with a time, from all saved chats.
+function practiceData() {
+  const answers = [], scores = [], speeds = [];
+  state.chats.forEach((c) => {
+    if (c.turns) {
+      c.turns.forEach((t) => { if (t.role === "user") answers.push({ at: t.at || c.updated || 0, words: wordCount(t.content), fb: t.fb || null }); });
+      if (c.report?.score) scores.push({ at: c.report.date || c.updated, v: Number(c.report.score), kind: c.kind });
+    }
+    (c.attempts || []).forEach((a) => {
+      speeds.push({ at: a.at, v: a.wpm, words: a.words });
+      if (a.result?.score) scores.push({ at: a.at, v: Number(a.result.score), kind: "minute" });
+    });
+  });
+  state.sessions.forEach((s) => { if (s.score) scores.push({ at: s.date, v: Number(s.score), kind: "talk" }); });
+  const byT = (a, b) => a.at - b.at;
+  return { answers: answers.sort(byT), scores: scores.sort(byT), speeds: speeds.sort(byT) };
+}
+function levelProgress() {
+  const id = levelId(), need = NEEDS[id];
+  if (!need) return { id, top: true, reqs: [] };
+  const since = levelSince(), d = practiceData();
+  const ans = d.answers.filter((x) => x.at >= since);
+  const recent = ans.slice(-15), checked = recent.filter((x) => x.fb);
+  const good = checked.length ? checked.filter((x) => !(x.fb.errors || []).length).length / checked.length : 0;
+  const sc = d.scores.filter((x) => x.at >= since).slice(-4).map((x) => x.v);
+  const sp = d.speeds.filter((x) => x.at >= since).slice(-3).map((x) => x.v);
+  const reqs = [
+    { label: "Answers at this level", cur: ans.length, target: need.answers, show: (v) => Math.min(v, need.answers) + " / " + need.answers },
+    { label: "Words per answer", cur: avg(recent.map((x) => x.words)), target: need.words, show: (v) => v.toFixed(1) + " / " + need.words },
+    { label: "Answers with no mistakes", cur: good, target: need.good, show: (v) => Math.round(v * 100) + "% / " + Math.round(need.good * 100) + "%" },
+    { label: sc.length < 2 ? "Average score (finish 2 talks or 1-minute answers)" : "Average score", cur: sc.length >= 2 ? avg(sc) : 0, target: need.score, show: (v) => (sc.length ? v.toFixed(1) : "–") + " / " + need.score },
+  ];
+  if (need.speed) reqs.push({ label: sp.length < 2 ? "Speaking speed (do 2 one-minute answers)" : "Speaking speed", cur: sp.length >= 2 ? avg(sp) : 0, target: need.speed, show: (v) => (sp.length ? Math.round(v) : "–") + " / " + need.speed + " words/min" });
+  reqs.forEach((r) => { r.ok = r.cur >= r.target; });
+  return { id, reqs, ready: reqs.every((r) => r.ok) };
+}
+function setLevel(id, auto) {
+  const h = state.settings.levelHistory || (state.settings.levelHistory = [{ level: levelId(), at: 0 }]);
+  if (id === levelId()) return;
+  state.settings.level = id; h.push({ level: id, at: Date.now(), auto: !!auto });
+  putMeta(); renderHeader();
+}
+// Called after every checked answer, report and 1-minute score.
+function checkLevel() {
+  const p = levelProgress();
+  if (!p.ready) return;
+  const next = LEVELS[LEVELS.findIndex((l) => l.id === p.id) + 1];
+  if (!next) return;
+  setLevel(next.id, true);
+  dbg("level_up", { to: next.id });
+  toast("🎉 Level up! You are now " + next.id + " · " + next.name + ". " + next.gets);
+  speak("Congratulations! You moved up to level " + next.id.split("").join(" ") + ".", 0.9);
+  if (!$("v-history").hidden) renderHistory();
+}
+let toastT = 0;
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.hidden = false;
+  const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "See my level"; b.onclick = () => { t.hidden = true; show("history"); }; t.append(" ", b);
+  clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 9000);
+}
+function renderLevel() {
+  const p = levelProgress(), L = levelOf(p.id), next = LEVELS[LEVELS.indexOf(L) + 1];
+  const box = $("levelCard"); box.innerHTML = "";
+  const top = document.createElement("div"); top.className = "lvtop";
+  top.innerHTML = '<span class="lvbadge"></span><div><strong></strong><span class="lvnext"></span></div>';
+  top.querySelector(".lvbadge").textContent = L.id;
+  top.querySelector("strong").textContent = "Level " + L.id + " · " + L.name;
+  top.querySelector(".lvnext").textContent = next ? "Next: " + next.id + " · " + next.name : "Top level. Keep practising to stay fluent!";
+  box.append(top);
+  const steps = document.createElement("div"); steps.className = "lvsteps";
+  LEVELS.forEach((l, i) => { const s = document.createElement("span"); s.className = i < LEVELS.indexOf(L) ? "done" : i === LEVELS.indexOf(L) ? "now" : ""; s.textContent = l.id; steps.append(s); });
+  box.append(steps);
+  p.reqs.forEach((r) => {
+    const row = document.createElement("div"); row.className = "req" + (r.ok ? " ok" : "");
+    row.innerHTML = '<span class="rl"></span><i><b></b></i><span class="rv"></span>';
+    row.querySelector(".rl").textContent = (r.ok ? "✓ " : "") + r.label;
+    row.querySelector("b").style.width = Math.min(100, (r.cur / r.target) * 100) + "%";
+    row.querySelector(".rv").textContent = r.show(r.cur);
+    box.append(row);
+  });
+  const note = document.createElement("p"); note.className = "sub";
+  note.textContent = next ? "When every line is green you move up to " + next.id + " automatically. " + next.gets : L.gets;
+  box.append(note);
+}
+
+// Daily averages for the fluency chart.
+const METRICS = {
+  speed: { label: "Speaking speed", unit: "words/min", empty: "Do 1-minute answers on two different days to see your speed line.", target: 120, targetLabel: "fluent ≈ 120" },
+  length: { label: "Words per answer", unit: "words", empty: "Talk with Mam on two different days to see how your answers grow.", target: 0 },
+  score: { label: "Score", unit: "/ 10", empty: "Finish talks or 1-minute answers on two different days to see your scores.", target: 0, max: 10 },
+};
+let metric = "speed";
+const dayKey = (t) => new Date(t).toLocaleDateString("en-CA");
+function daily(points, val) {
+  const m = new Map();
+  points.forEach((p) => { if (!p.at) return; const k = dayKey(p.at); if (!m.has(k)) m.set(k, []); m.get(k).push(val(p)); });
+  return [...m.entries()].map(([k, v]) => ({ day: k, t: new Date(k + "T12:00:00").getTime(), v: avg(v), n: v.length })).sort((a, b) => a.t - b.t);
+}
+function seriesFor(m) {
+  const d = practiceData();
+  if (m === "speed") return daily(d.speeds, (p) => p.v);
+  if (m === "length") return daily(d.answers, (p) => p.words);
+  return daily(d.scores, (p) => p.v);
+}
+function niceMax(v) { const steps = [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 120, 150, 200, 250, 300]; return steps.find((s) => s >= v) || Math.ceil(v / 100) * 100; }
+function renderFluency() {
+  const pts = (k) => seriesFor(k);
+  // headline numbers: recent vs first
+  const tiles = $("fluTiles"); tiles.innerHTML = "";
+  const d = practiceData();
+  const tile = (label, now, first, unit, fmt) => {
+    const el = document.createElement("div"); el.className = "stat";
+    el.innerHTML = "<span></span><b></b><em></em>";
+    el.children[0].textContent = label;
+    el.children[1].textContent = now == null ? "–" : fmt(now); if (now != null && unit) { const u = document.createElement("small"); u.textContent = " " + unit; el.children[1].append(u); }
+    if (now != null && first != null && Math.abs(now - first) >= 0.05) {
+      const up = now > first; el.children[2].className = up ? "up" : "down";
+      el.children[2].textContent = (up ? "▲ +" : "▼ ") + fmt(Math.abs(now - first) * (up ? 1 : -1)).replace("-", "−") + " since you started";
+    } else el.children[2].textContent = now == null ? "no data yet" : "keep going";
+    tiles.append(el);
+  };
+  const lastAvg = (a, n) => (a.length ? avg(a.slice(-n)) : null);
+  const firstAvg = (a, n) => (a.length > n ? avg(a.slice(0, n)) : null);
+  const sp = d.speeds.map((x) => x.v), ln = d.answers.map((x) => x.words), sc = d.scores.map((x) => x.v);
+  tile("Speaking speed", lastAvg(sp, 3), firstAvg(sp, 3), "w/min", (v) => String(Math.round(v)));
+  tile("Words per answer", lastAvg(ln, 15), firstAvg(ln, 15), "", (v) => v.toFixed(1));
+  tile("Average score", lastAvg(sc, 4), firstAvg(sc, 4), "/10", (v) => v.toFixed(1));
+  // chart
+  const M = METRICS[metric], s = pts(metric);
+  $("fluTitle").textContent = M.label + " per day (" + M.unit + ")";
+  const box = $("fluChart"); box.innerHTML = "";
+  const tbl = $("fluTable"); tbl.innerHTML = "";
+  if (s.length < 2) { const e = document.createElement("div"); e.className = "empty"; e.textContent = M.empty; box.append(e); $("fluTableWrap").hidden = true; return; }
+  $("fluTableWrap").hidden = false;
+  const W = Math.max(280, box.clientWidth || 340), H = 190, L = 34, R = 44, T = 14, B = 24;
+  const t0 = s[0].t, t1 = s[s.length - 1].t, span = Math.max(DAY, t1 - t0);
+  const ymax = M.max || niceMax(Math.max(...s.map((p) => p.v), M.target || 0) * 1.1);
+  const x = (t) => L + ((t - t0) / span) * (W - L - R), y = (v) => T + (1 - v / ymax) * (H - T - B);
+  const NS = "http://www.w3.org/2000/svg", mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).append(e); return e; };
+  const svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", M.label + " per day, from " + s[0].v.toFixed(1) + " to " + s[s.length - 1].v.toFixed(1));
+  [0, 0.5, 1].forEach((f) => { const v = ymax * f; mk("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" }); const tx = mk("text", { x: L - 6, y: y(v) + 4, class: "tick", "text-anchor": "end" }); tx.textContent = Math.round(v); });
+  if (M.target && M.target < ymax) { mk("line", { x1: L, x2: W - R, y1: y(M.target), y2: y(M.target), class: "target" }); const tx = mk("text", { x: W - R, y: y(M.target) - 4, class: "tick", "text-anchor": "end" }); tx.textContent = M.targetLabel; }
+  (state.settings.levelHistory || []).filter((h) => h.at >= t0 && h.at <= t1 + DAY).forEach((h) => { const xx = x(Math.min(h.at, t1)); mk("line", { x1: xx, x2: xx, y1: T, y2: H - B, class: "lvmark" }); const tx = mk("text", { x: xx + 3, y: T + 9, class: "tick" }); tx.textContent = "→ " + h.level; });
+  const line = s.map((p, i) => (i ? "L" : "M") + x(p.t).toFixed(1) + " " + y(p.v).toFixed(1)).join(" ");
+  mk("path", { d: line + ` L${x(t1).toFixed(1)} ${y(0)} L${x(t0).toFixed(1)} ${y(0)} Z`, class: "area" });
+  mk("path", { d: line, class: "ln" });
+  s.forEach((p) => mk("circle", { cx: x(p.t), cy: y(p.v), r: 4, class: "dot" }));
+  const last = s[s.length - 1]; const et = mk("text", { x: x(last.t) + 8, y: y(last.v) + 4, class: "endlab" }); et.textContent = metric === "speed" ? Math.round(last.v) : last.v.toFixed(1);
+  const fmtD = (t) => new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  const a = mk("text", { x: L, y: H - 6, class: "tick" }); a.textContent = fmtD(t0);
+  const z = mk("text", { x: W - R, y: H - 6, class: "tick", "text-anchor": "end" }); z.textContent = fmtD(t1);
+  // crosshair + tooltip: snaps to the nearest day
+  const cross = mk("line", { y1: T, y2: H - B, class: "cross", visibility: "hidden" });
+  const tip = document.createElement("div"); tip.className = "ctip"; tip.hidden = true;
+  const hit = mk("rect", { x: L, y: 0, width: W - L - R + 10, height: H, fill: "transparent", tabindex: "0" });
+  const showAt = (px) => {
+    let best = s[0]; s.forEach((p) => { if (Math.abs(x(p.t) - px) < Math.abs(x(best.t) - px)) best = p; });
+    cross.setAttribute("x1", x(best.t)); cross.setAttribute("x2", x(best.t)); cross.setAttribute("visibility", "visible");
+    tip.innerHTML = "<b></b><span></span>"; tip.firstChild.textContent = (metric === "speed" ? Math.round(best.v) : best.v.toFixed(1)) + " " + M.unit; tip.lastChild.textContent = fmtD(best.t) + " · " + best.n + (metric === "length" ? " answers" : metric === "speed" ? " tries" : " scores");
+    tip.hidden = false; tip.style.left = Math.min(W - 130, Math.max(0, x(best.t) - 60)) + "px";
+  };
+  const px = (e) => { const r = svg.getBoundingClientRect(); return ((e.clientX - r.left) / r.width) * W; };
+  hit.addEventListener("pointermove", (e) => showAt(px(e)));
+  hit.addEventListener("pointerdown", (e) => showAt(px(e)));
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  hit.addEventListener("focus", () => showAt(x(last.t)));
+  hit.addEventListener("blur", () => { cross.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  box.append(svg, tip);
+  // table view: every value is reachable without hovering
+  const head = document.createElement("tr"); head.innerHTML = "<th>Day</th><th></th><th>Count</th>"; head.children[1].textContent = M.label; tbl.append(head);
+  [...s].reverse().forEach((p) => { const r = document.createElement("tr"); [fmtD(p.t), metric === "speed" ? Math.round(p.v) : p.v.toFixed(1), p.n].forEach((v) => { const td = document.createElement("td"); td.textContent = v; r.append(td); }); tbl.append(r); });
+}
+segInit("fluSeg", "m", (m) => { metric = m; renderFluency(); });
+$("lvSel").onchange = () => { setLevel($("lvSel").value, false); renderHistory(); };
+$("lvChip").onclick = () => show("history");
+window.addEventListener("resize", () => { if (!$("v-history").hidden) renderFluency(); });
+
 // ---------- history ----------
 function renderHeader() {
   $("streakTxt").innerHTML = "🔥 <strong>" + streak() + "</strong>";
   const m = state.days[today()]?.min || 0;
   $("goalBar").style.width = Math.min(100, (m / state.settings.goal) * 100) + "%";
   $("goalTxt").textContent = state.settings.goal;
+  $("lvChip").textContent = levelId();
 }
 const KIND_LABEL = { talk: "Talk", interview: "Mock interview", minute: "1-minute answer" };
 function renderHistory() {
+  renderLevel(); renderFluency(); $("lvSel").value = levelId();
   const totalW = Object.values(state.days).reduce((a, d) => a + (d.words || 0), 0);
   const totalM = Object.values(state.days).reduce((a, d) => a + (d.min || 0), 0);
   $("stats").innerHTML = "";
@@ -1724,7 +1996,7 @@ function restoreChat() {
   const c = state.chats.find((x) => x.id === state.settings.lastChat && x.turns);
   if (c) openChat(c);
 }
-loadLocal(); renderAll(); restoreChat();
+loadLocal(); renderAll(); restoreChat(); checkLevel();
 connectDb();
 })();
 </script>
