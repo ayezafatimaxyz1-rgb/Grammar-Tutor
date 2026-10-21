@@ -104,7 +104,10 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .me .bubble { background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 6px; }
 .tools { display: flex; gap: 6px; flex-wrap: wrap; }
 .mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 8px 12px; min-height: 36px; font-size: 13px; }
-#chat .chatbar { position: sticky; top: 0; z-index: 2; background: var(--bg); padding-block: 6px; }
+.talknav { position: sticky; top: 0; z-index: 3; height: 52px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; align-items: center; background: var(--bg); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.talknav button { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 8px 6px; font-size: 14px; white-space: nowrap; min-height: 40px; }
+.talknav button[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 700; }
+#chat .chatbar { position: sticky; top: 52px; z-index: 2; background: var(--bg); padding-block: 6px; }
 .fix { background: var(--surface); border: 1px dashed var(--bad); border-radius: 14px; padding: 10px 12px; font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
 .fix .w { color: var(--bad); text-decoration: line-through; }
 .fix .r { color: var(--good); font-weight: 700; }
@@ -366,6 +369,11 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
   </header>
 
   <main id="main">
+    <div class="talknav" id="talkNav" role="group" aria-label="Talk, 1-minute answer or reading">
+      <button type="button" data-sub="talk" aria-pressed="true">💬 Chat</button>
+      <button type="button" data-sub="minute" aria-pressed="false">⏱️ 1-Minute</button>
+      <button type="button" data-sub="read" aria-pressed="false">📰 Read</button>
+    </div>
     <!-- TALK -->
     <section class="view pad" id="v-talk">
       <div id="pickTopic" class="view" style="padding:0">
@@ -380,10 +388,6 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <span>A board of 3 asks you about 10 questions, with follow-ups. Then you get a full report.</span>
           <span id="heroWhen"></span>
           <button class="btn" type="button" id="heroBtn">Start interview</button>
-        </div>
-        <div class="drills">
-          <button class="drill" type="button" id="goMinute"><span class="em">⏱️</span><strong>1-minute answer</strong><span>Speak for 60 seconds, get your speed and a better answer</span></button>
-          <button class="drill" type="button" id="goRead"><span class="em">📰</span><strong>Read and discuss</strong><span>Upload news, then retell it out loud</span></button>
         </div>
         <a class="voicebar" id="voiceBar" href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener" hidden><span>🎙️</span><span><strong>Speak without the keyboard</strong><br>Claude blocks the microphone here. Open the voice version, where Mam listens directly.</span></a>
         <div class="wotd" id="wotd"></div>
@@ -445,7 +449,6 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
     <!-- 1-MINUTE -->
     <section class="view pad" id="v-minute" hidden>
-      <button class="btn backbtn" type="button" data-back="talk">← Talk</button>
       <div>
         <h2>1-minute answer</h2>
         <p class="sub">Answer one question for 60 seconds without stopping. You get your speed, filler words, mistakes and a better answer to copy.</p>
@@ -472,7 +475,6 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
     <!-- READ -->
     <section class="view pad" id="v-read" hidden>
-      <button class="btn backbtn" type="button" data-back="talk">← Talk</button>
       <div>
         <h2>Read and discuss</h2>
         <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, then you retell it out loud in one minute or discuss it with her.</p>
@@ -2377,6 +2379,8 @@ const NAV_OF = { minute: "talk", read: "talk" }; // screens opened from Talk kee
 function show(tab) {
   TABS.forEach((t) => { $("v-" + t).hidden = t !== tab; });
   const nav = NAV_OF[tab] || tab;
+  $("talkNav").hidden = nav !== "talk"; // switching here never closes the open chat
+  document.querySelectorAll("#talkNav button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.sub === tab)));
   document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === nav) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   $("composer").hidden = tab !== "talk" || !topic;
   if (tab !== "talk" && (handsFree || rec)) { stopListening(); hush(); }
@@ -2391,8 +2395,7 @@ function show(tab) {
 }
 document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
 document.querySelectorAll("[data-back]").forEach((b) => b.onclick = () => show(b.dataset.back));
-$("goMinute").onclick = () => show("minute");
-$("goRead").onclick = () => show("read");
+document.querySelectorAll("#talkNav button").forEach((b) => b.onclick = () => show(b.dataset.sub));
 $("voiceBar").hidden = !inClaude;
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 $("input").addEventListener("input", autoGrow);
