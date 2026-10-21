@@ -28,8 +28,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const open = async (screen) => {
     if (screen !== "minute" && screen !== "read") return p.click(`[data-tab=${screen}]`);
     await p.click("[data-tab=talk]"); await wait(100);
-    if (!(await p.isHidden("#chat"))) { await p.click("#backBtn"); await wait(100); }
-    await p.click(screen === "minute" ? "#goMinute" : "#goRead");
+    await p.click(`#talkNav [data-sub=${screen}]`);
   };
   const chatsIn = (st) => Object.entries(st).filter(([k]) => k.startsWith("chat_") && k !== "chat_cold").map(([, v]) => v);
 
@@ -86,6 +85,14 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("#backBtn");
   await p.reload(); await wait(700);
   check("after ← the app opens on the topic list", await p.isHidden("#chat"));
+
+  // ---- switching to 1-Minute and back keeps the chat open ----
+  await p.click(".topic:nth-child(2)"); await wait(200);
+  await p.click("#talkNav [data-sub=minute]"); await wait(200);
+  check("1-Minute opens from inside a chat", !(await p.isHidden("#v-minute")));
+  await p.click("#talkNav [data-sub=talk]"); await wait(200);
+  check("coming back shows the same chat", !(await p.isHidden("#chat")) && (await p.textContent("#msgs")).includes("I living in Lahore"));
+  await p.click("#backBtn");
 
   // ---- Mock interview ----
   await p.click("#heroBtn"); await wait(200);
