@@ -767,7 +767,7 @@ const PERMANENT = new Set(["sampling_disabled", "not_declared", "capability_disa
 function errText(e, where) {
   switch (e?.code) {
     case "not_granted": return "Mam needs permission to use Claude. Allow it from this page's Permissions menu, then try again.";
-    case "rate_limited": case "queue_overflow": return "Too many messages at once. Wait a minute, then send again.";
+    case "rate_limited": case "queue_overflow": return inClaude ? "Claude's usage limit for your account is reached for now. Wait a few minutes and try again. If it keeps happening, the limit resets after a few hours (or practise in the hands-free web version meanwhile)." : "Too many messages at once. Wait a minute, then send again.";
     case "session_expired": return "Your Claude sign-in expired. Reload the page.";
     case "bad_key": return "Your Gemini key did not work. Check it in History, Settings.";
     case "offline": return "No internet connection. Check your connection and try again.";
