@@ -1,0 +1,2070 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bolo English">
+<meta name="theme-color" content="#0d7a4c">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Bolo English</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: one-screen phone app. Header, scrolling content, composer, bottom tab bar. */
+:root {
+  --bg: #eef3ef;
+  --surface: #ffffff;
+  --sunk: #e2eae4;
+  --fg: #13241b;
+  --muted: #5a6d62;
+  --line: #cfdcd3;
+  --accent: #0d7a4c;
+  --accent-fg: #ffffff;
+  --sun: #e39a2d;
+  --bad: #b8402a;
+  --good: #1f8a57;
+  --tint-l: 90%;
+  --tint-s: 70%;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
+    --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193;
+    --tint-l: 22%; --tint-s: 40%; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
+  --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193;
+  --tint-l: 22%; --tint-s: 40%; color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible, select:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.app { height: 100%; display: flex; flex-direction: column; max-width: 680px; margin: 0 auto; }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { display: flex; align-items: center; gap: 10px; padding-block: 12px 8px; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; }
+.brand b { color: var(--accent); }
+.streak { margin-left: auto; display: flex; gap: 6px; align-items: center; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.streak strong { color: var(--fg); }
+.meter { width: 64px; height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--sun); width: 0; transition: width .4s; }
+main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.view { padding-block: 8px 24px; display: flex; flex-direction: column; gap: 14px; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1.1; margin: 4px 0 0; text-wrap: balance; letter-spacing: -0.02em; }
+h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; }
+.sub { color: var(--muted); margin: 0; }
+.mean { font-size: 15px; color: var(--fg); }
+.banner { background: var(--sunk); border-radius: 12px; padding: 12px 14px; font-size: 15px; }
+.banner.warn { border-left: 4px solid var(--sun); }
+
+/* Topics */
+.topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.topic { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; min-height: 112px; }
+.topic .em { font-size: 30px; line-height: 1; }
+.topic strong { font-family: var(--display); font-size: 16px; }
+.topic span { color: var(--muted); font-size: 13px; }
+.topic.css { border-color: var(--accent); }
+.wotd { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 110px minmax(0, 1fr); }
+.wotd .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 44px; display: grid; place-items: center; letter-spacing: 2px; }
+.wotd .body { padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.wotd .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.wotd .word { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; }
+.wotd .ex { color: var(--muted); font-size: 14px; }
+.own { display: flex; gap: 8px; }
+.own input { flex: 1; min-width: 0; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 99px; padding: 10px 14px; font: inherit; }
+.topic .tag { color: var(--accent-fg); font-size: 11px; }
+.tag { display: inline-block; align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: var(--accent-fg); padding: 2px 7px; border-radius: 99px; }
+
+/* Chat */
+.chatbar { display: flex; align-items: center; gap: 8px; }
+.chatbar .t { font-family: var(--display); font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chatbar .btn { padding: 8px 12px; white-space: nowrap; }
+.daysep { align-self: center; font-size: 12px; color: var(--muted); background: var(--sunk); border-radius: 99px; padding: 4px 12px; }
+.topic .cont { font-size: 12px; font-weight: 700; color: var(--accent); }
+.btn { border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 8px 14px; font-size: 14px; }
+.btn.primary { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); font-weight: 700; }
+.btn:disabled { opacity: .5; cursor: default; }
+.msgs { display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 88%; display: flex; flex-direction: column; gap: 6px; }
+.msg.tutor { align-self: flex-start; }
+.msg.me { align-self: flex-end; align-items: flex-end; }
+.bubble { padding: 10px 14px; border-radius: 18px; font-size: 17px; }
+.tutor .bubble { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.me .bubble { background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 6px; }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; }
+.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 8px 12px; min-height: 36px; font-size: 13px; }
+#chat .chatbar { position: sticky; top: 0; z-index: 2; background: var(--bg); padding-block: 6px; }
+.fix { background: var(--surface); border: 1px dashed var(--bad); border-radius: 14px; padding: 10px 12px; font-size: 15px; display: flex; flex-direction: column; gap: 2px; }
+.fix .w { color: var(--bad); text-decoration: line-through; }
+.fix .r { color: var(--good); font-weight: 700; }
+.praise { color: var(--good); font-size: 14px; font-weight: 700; }
+.me .bubble { cursor: pointer; }
+.verdict { border: 0; background: none; padding: 10px 6px; min-height: 44px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.verdict.great { color: var(--good); }
+.verdict.fix { color: var(--bad); }
+.fb { align-self: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 15px; color: var(--fg); }
+.fb .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.fb .err { display: flex; flex-direction: column; gap: 1px; }
+.fb .w { color: var(--bad); text-decoration: line-through; }
+.fb .r { color: var(--good); font-weight: 700; }
+.fb .alt { display: flex; gap: 8px; align-items: baseline; justify-content: space-between; }
+.fb .alt span { min-width: 0; }
+.fb .alt em { font-style: normal; color: var(--muted); font-size: 12px; display: block; }
+.retry { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.live { display: flex; align-items: center; justify-content: center; gap: 14px; padding-block: 4px; }
+.live .state { font-size: 14px; color: var(--muted); min-width: 0; }
+.bigmic { width: 72px; height: 72px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 28px; flex: none; }
+.bigmic.on { background: var(--bad); animation: pulse 1.4s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bad) 50%, transparent); } 100% { box-shadow: 0 0 0 18px transparent; } }
+.linkbtn { border: 0; background: none; color: var(--accent); font-weight: 700; padding: 0; text-decoration: underline; }
+.settings { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.settings input, .settings select { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; width: 100%; }
+.settings ol { margin: 0; padding-left: 20px; font-size: 14px; }
+.settings a { color: var(--accent); }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.chip { display: flex; gap: 6px; align-items: center; border-radius: 99px; padding: 4px 10px 4px 6px; font-size: 14px; background: hsl(var(--h) var(--tint-s) var(--tint-l)); }
+.chip .e { font-size: 18px; }
+.typing { color: var(--muted); font-style: italic; }
+
+/* Composer */
+.composer { border-top: 1px solid var(--line); background: var(--bg); padding-block: 10px; display: flex; flex-direction: column; gap: 6px; }
+.composer .row { display: flex; gap: 8px; align-items: flex-end; }
+.composer textarea { flex: 1; min-width: 0; resize: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 18px; padding: 10px 14px; font: inherit; font-size: 17px; max-height: 140px; }
+.send { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 20px; font-weight: 700; flex: none; }
+.mic { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--accent); background: var(--surface); color: var(--accent); font-weight: 700; flex: none; font-size: 12px; }
+.mic.on { background: var(--bad); border-color: var(--bad); color: #fff; }
+.hint { font-size: 13px; color: var(--muted); margin: 0; }
+
+/* Cards */
+.seg { display: flex; gap: 6px; background: var(--sunk); padding: 4px; border-radius: 99px; align-self: flex-start; }
+.seg button { border: 0; background: none; padding: 6px 14px; border-radius: 99px; font-size: 14px; }
+.seg button[aria-pressed="true"] { background: var(--surface); font-weight: 700; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.card { border: 0; border-radius: 18px; padding: 0; text-align: left; background: var(--surface); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 1px 0 var(--line); }
+.card .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 46px; height: 96px; display: grid; place-items: center; letter-spacing: 4px; }
+.card .body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.card .word { font-family: var(--display); font-weight: 800; font-size: 19px; overflow-wrap: anywhere; }
+.card .ex { color: var(--muted); font-size: 13px; }
+.card.fixcard .word { font-size: 15px; font-family: var(--body); }
+.empty { text-align: center; color: var(--muted); padding: 30px 10px; border: 2px dashed var(--line); border-radius: 18px; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.empty .big { font-size: 40px; }
+
+/* Review */
+.flash { background: var(--surface); border-radius: 24px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.flash .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); font-size: 72px; height: 170px; display: grid; place-items: center; letter-spacing: 6px; }
+.flash .body { padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+.flash .answer { font-family: var(--display); font-size: 24px; font-weight: 800; }
+.flash .row { display: flex; gap: 8px; flex-wrap: wrap; }
+.flash .row .btn { flex: 1; min-width: 120px; padding-block: 12px; }
+
+/* Progress */
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.stat { background: var(--surface); border-radius: 16px; padding: 12px; border: 1px solid var(--line); }
+.stat b { display: block; font-family: var(--display); font-size: 28px; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; align-items: end; height: 110px; padding: 12px; background: var(--surface); border-radius: 16px; border: 1px solid var(--line); }
+.week div { display: flex; flex-direction: column; align-items: center; gap: 4px; height: 100%; justify-content: flex-end; font-size: 11px; color: var(--muted); }
+.week i { width: 100%; max-width: 28px; background: var(--accent); border-radius: 6px 6px 2px 2px; min-height: 3px; }
+.week i.zero { background: var(--sunk); }
+.report { background: var(--surface); border-radius: 18px; border: 1px solid var(--line); padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.score { font-family: var(--display); font-weight: 800; font-size: 40px; color: var(--accent); line-height: 1; }
+.report ul { margin: 0; padding-left: 20px; }
+.report .when { color: var(--muted); font-size: 13px; }
+
+/* Tabs */
+.addbox { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.addbox input[type=text], .addbox textarea, .addbox input[type=number] { border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; width: 100%; }
+.addbox textarea { min-height: 70px; resize: vertical; }
+.addbox .pages { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 14px; }
+.addbox .pages input { width: 72px; }
+.vh { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; }
+.upload { display: flex; align-items: center; justify-content: center; gap: 8px; border: 2px dashed var(--accent); color: var(--accent); border-radius: 14px; padding: 14px; font-weight: 700; cursor: pointer; text-align: center; }
+.thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.thumbs img { width: 56px; height: 72px; object-fit: cover; border-radius: 6px; border: 1px solid var(--line); }
+.thumbs .pdf { font-size: 13px; background: var(--sunk); border-radius: 8px; padding: 6px 10px; }
+.status { font-size: 14px; color: var(--muted); }
+.status.err { color: var(--bad); }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+.item summary { list-style: none; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 12px; padding: 12px; cursor: pointer; align-items: center; }
+.item summary::-webkit-details-marker { display: none; }
+.item .pic { background: hsl(var(--h) var(--tint-s) var(--tint-l)); border-radius: 14px; height: 64px; display: grid; place-items: center; font-size: 28px; }
+.item .meta { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.item .ttl { font-family: var(--display); font-weight: 600; font-size: 17px; line-height: 1.25; }
+.item .more { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.item .lbl { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.item .simple { font-size: 17px; }
+.item .angle { border-left: 4px solid var(--sun); padding: 6px 10px; background: var(--sunk); border-radius: 0 10px 10px 0; font-size: 15px; }
+.item ol, .item ul { margin: 0; padding-left: 20px; }
+.hero { background: var(--accent); color: var(--accent-fg); border-radius: 20px; padding: 16px; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 14px; align-items: center; }
+.hero .em { font-size: 40px; grid-row: span 3; }
+.hero strong { font-family: var(--display); font-size: 20px; }
+.hero span { font-size: 14px; opacity: .9; }
+.hero .btn { grid-column: 2; justify-self: start; background: var(--accent-fg); color: var(--accent); border: 0; font-weight: 700; margin-top: 6px; }
+.starters { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px; }
+.starters summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--muted); }
+.starters .chips { margin-top: 8px; }
+.chip.starter { border: 1px solid var(--line); background: var(--sunk); color: var(--fg); padding: 6px 12px; font-size: 14px; }
+.who { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); padding-left: 6px; }
+.areas { display: flex; flex-direction: column; gap: 6px; }
+.area { display: grid; grid-template-columns: 110px minmax(0, 1fr) 44px; gap: 8px; align-items: center; font-size: 14px; }
+.area i { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.area b { display: block; height: 100%; background: var(--accent); }
+.area em { font-style: normal; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px; }
+.qcard .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.qcard .q { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.timerbox { display: flex; align-items: center; gap: 16px; }
+.ring { --p: 1; width: 84px; height: 84px; border-radius: 50%; flex: none; display: grid; place-items: center; background: conic-gradient(var(--accent) calc(var(--p) * 360deg), var(--sunk) 0); }
+.ring span { width: 66px; height: 66px; border-radius: 50%; background: var(--bg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 26px; font-variant-numeric: tabular-nums; }
+.timerbox .btn { padding: 12px 18px; font-size: 16px; }
+.answerbox { width: 100%; min-height: 120px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 16px; padding: 12px 14px; font: inherit; font-size: 17px; resize: vertical; }
+.answerbox:disabled { opacity: .6; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.metric { background: var(--sunk); border-radius: 12px; padding: 8px; text-align: center; }
+.metric b { display: block; font-family: var(--display); font-size: 20px; font-variant-numeric: tabular-nums; }
+.metric span { font-size: 11px; color: var(--muted); }
+.metric b i { font-style: normal; font-size: 14px; }
+.metric b i.good { color: var(--good); }
+.metric b i.bad { color: var(--bad); }
+.better { margin: 0; font-size: 16px; line-height: 1.5; }
+.flash textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 17px; resize: vertical; }
+.flash .prompt { font-family: var(--display); font-size: 20px; font-weight: 600; color: var(--bad); }
+.flash .out { display: flex; flex-direction: column; gap: 6px; }
+.fixline { color: var(--good); font-weight: 700; }
+.diff { font-size: 17px; line-height: 1.6; }
+.diff .ok { color: var(--good); font-weight: 700; }
+.diff .miss { color: var(--bad); text-decoration: underline; }
+.hitem { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 10px 12px; display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; gap: 12px; align-items: center; text-align: left; width: 100%; }
+.hitem .pic { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-size: 24px; background: hsl(var(--h) var(--tint-s) var(--tint-l)); }
+.hitem .txt { display: flex; flex-direction: column; min-width: 0; }
+.hitem .meta { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.hitem .ttl { font-family: var(--display); font-weight: 600; font-size: 16px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hitem .sub2 { font-size: 13px; color: var(--muted); }
+.hitem .sc { font-family: var(--display); font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+.lvchip { border: 0; background: var(--accent); color: var(--accent-fg); font-weight: 800; font-family: var(--display); border-radius: 99px; padding: 4px 10px; font-size: 13px; min-height: 28px; }
+.toast { position: fixed; z-index: 20; top: calc(env(safe-area-inset-top, 0px) + 8px); left: max(12px, env(safe-area-inset-left, 0px)); right: max(12px, env(safe-area-inset-right, 0px)); max-width: 640px; margin: 0 auto; background: var(--fg); color: var(--bg); border-radius: 16px; padding: 12px 14px; font-size: 15px; box-shadow: 0 6px 24px rgb(0 0 0 / 25%); }
+.toast .mini { margin-top: 6px; }
+.levelcard, .flucard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.lvtop { display: flex; gap: 12px; align-items: center; }
+.lvtop div { display: flex; flex-direction: column; }
+.lvtop strong { font-family: var(--display); font-size: 18px; }
+.lvtop div span { color: var(--muted); font-size: 14px; }
+.lvbadge { width: 56px; height: 56px; border-radius: 16px; background: var(--accent); color: var(--accent-fg); display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 22px; flex: none; }
+.lvsteps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.lvsteps span { text-align: center; font-size: 12px; font-weight: 700; padding: 4px 0; border-radius: 8px; background: var(--sunk); color: var(--muted); }
+.lvsteps .done { background: color-mix(in srgb, var(--accent) 25%, var(--surface)); color: var(--fg); }
+.lvsteps .now { background: var(--accent); color: var(--accent-fg); }
+.req { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "l v" "b b"; gap: 4px 8px; font-size: 14px; }
+.req .rl { grid-area: l; }
+.req .rv { grid-area: v; color: var(--muted); font-variant-numeric: tabular-nums; }
+.req i { grid-area: b; height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.req i b { display: block; height: 100%; background: var(--sun); border-radius: 99px; }
+.req.ok i b { background: var(--good); }
+.req.ok .rl { color: var(--good); font-weight: 700; }
+.flutiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.flutiles .stat b { font-size: 22px; font-variant-numeric: normal; }
+.flutiles .stat span { font-size: 11px; }
+.flutiles .stat b small { font-size: 12px; font-weight: 600; color: var(--muted); font-family: var(--body); }
+.flutiles .stat em { display: block; font-style: normal; font-size: 11px; color: var(--muted); margin-top: 2px; }
+.flutiles .stat em.up { color: var(--good); }
+.flutiles .stat em.down { color: var(--bad); }
+.fluchart { position: relative; min-height: 190px; }
+.fluchart svg { display: block; max-width: 100%; height: auto; touch-action: pan-y; }
+.fluchart .grid { stroke: var(--line); stroke-width: 1; }
+.fluchart .target { stroke: var(--muted); stroke-width: 1; opacity: .6; }
+.fluchart .lvmark { stroke: var(--sun); stroke-width: 1; }
+.fluchart .tick { fill: var(--muted); font-size: 11px; font-family: var(--body); font-variant-numeric: tabular-nums; }
+.fluchart .endlab { fill: var(--fg); font-size: 12px; font-weight: 700; font-family: var(--body); }
+.fluchart .ln { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.fluchart .area { fill: var(--accent); opacity: .1; stroke: none; }
+.fluchart .dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.fluchart .cross { stroke: var(--muted); stroke-width: 1; }
+.ctip { position: absolute; top: 0; background: var(--fg); color: var(--bg); border-radius: 10px; padding: 6px 10px; font-size: 12px; pointer-events: none; display: flex; flex-direction: column; min-width: 110px; }
+.ctip b { font-size: 15px; }
+.flutable { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
+.flutable th, .flutable td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
+nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
+nav.tabs button .i { font-size: 20px; line-height: 1; }
+nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
+.badge { background: var(--bad); color: #fff; border-radius: 99px; font-size: 10px; padding: 0 5px; margin-left: 2px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="app">
+  <header class="top pad">
+    <div class="brand">Bolo <b>English</b></div>
+    <button class="lvchip" id="lvChip" type="button" aria-label="Your level">A1</button>
+    <div class="streak" title="Daily speaking goal">
+      <span id="streakTxt">🔥 <strong>0</strong></span>
+      <div class="meter" aria-label="Today's goal"><i id="goalBar"></i></div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- TALK -->
+    <section class="view pad" id="v-talk">
+      <div id="pickTopic" class="view" style="padding:0">
+        <div>
+          <h2>What shall we talk about today?</h2>
+          <p class="sub">Pick a topic. Your teacher, Mam, speaks slowly and corrects one mistake at a time.</p>
+        </div>
+        <div id="noAI" class="banner warn" hidden></div>
+        <div class="hero">
+          <span class="em">🏛️</span>
+          <strong>Mock CSS interview</strong>
+          <span>A board of 3 asks you about 10 questions, with follow-ups. Then you get a full report.</span>
+          <span id="heroWhen"></span>
+          <button class="btn" type="button" id="heroBtn">Start interview</button>
+        </div>
+        <div class="wotd" id="wotd"></div>
+        <h3>Talk topics</h3>
+        <div class="topics" id="topics"></div>
+        <form class="own" id="ownForm" hidden>
+          <input id="ownInput" type="text" maxlength="80" placeholder="e.g. My favourite book" aria-label="Your own topic">
+          <button class="btn primary" type="submit">Start</button>
+        </form>
+      </div>
+      <div id="chat" class="view" style="padding:0" hidden>
+        <div class="chatbar">
+          <button class="btn" id="backBtn" type="button" aria-label="Back to topics">←</button>
+          <span class="t" id="chatTitle"></span>
+          <button class="btn" id="voiceBtn" type="button" aria-pressed="true" aria-label="Mam's voice">🔊</button>
+          <button class="btn" id="newBtn" type="button" aria-label="Start a new chat on this topic">＋ New</button>
+          <button class="btn primary" id="finishBtn" type="button">Finish</button>
+        </div>
+        <div id="startersSlot"></div>
+        <div class="msgs" id="msgs" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- 1-MINUTE -->
+    <section class="view pad" id="v-minute" hidden>
+      <div>
+        <h2>1-minute answer</h2>
+        <p class="sub">Answer one question for 60 seconds without stopping. You get your speed, filler words, mistakes and a better answer to copy.</p>
+      </div>
+      <div class="qcard">
+        <span class="k">Question</span>
+        <div class="q" id="qText"></div>
+        <div class="tools"><button class="mini" type="button" id="qListen">🔊 Listen</button><button class="mini" type="button" id="qNext">🔀 Another question</button></div>
+      </div>
+      <div id="minStartersSlot"></div>
+      <div class="timerbox">
+        <div class="ring" id="ring"><span id="timer">60</span></div>
+        <button class="btn primary" type="button" id="minStart">▶ Start 60 seconds</button>
+        <button class="btn primary" type="button" id="minDone" hidden>■ Done</button>
+      </div>
+      <textarea class="answerbox" id="minIn" disabled placeholder="Tap Start, then tap the 🎤 on your keyboard and keep talking…" aria-label="Your answer"></textarea>
+      <div class="status" id="minStatus" aria-live="polite"></div>
+      <div id="minResult"></div>
+      <div id="minPastWrap" class="view" style="padding:0" hidden>
+        <h3>Earlier attempts</h3>
+        <div id="minPast" class="view" style="padding:0"></div>
+      </div>
+    </section>
+
+    <!-- READ -->
+    <section class="view pad" id="v-read" hidden>
+      <div>
+        <h2>Read and discuss</h2>
+        <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, then you retell it out loud in one minute or discuss it with her.</p>
+      </div>
+      <form class="addbox" id="addForm">
+        <div class="seg" role="group" aria-label="What are you adding" id="kindSeg">
+          <button type="button" data-k="daily" aria-pressed="true">Daily news</button>
+          <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+          <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+        </div>
+        <input type="text" id="srcInput" list="srcList" maxlength="60" placeholder="Source, e.g. Dawn" aria-label="Source">
+        <datalist id="srcList"></datalist>
+        <label class="upload" for="fileIn">📷 Add screenshots or a PDF</label>
+        <input class="vh" type="file" id="fileIn" multiple accept="image/*,application/pdf">
+        <div class="thumbs" id="thumbs"></div>
+        <div class="pages" id="pdfPages" hidden>
+          <span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="3" aria-label="To page"><span id="pOf"></span>
+        </div>
+        <textarea id="pasteIn" placeholder="…or paste the article text here"></textarea>
+        <button class="btn primary" type="submit" id="processBtn">Make it simple</button>
+        <div class="status" id="readStatus" aria-live="polite"></div>
+      </form>
+      <div class="seg" role="group" aria-label="Show" id="libSeg">
+        <button type="button" data-k="all" aria-pressed="true">All</button>
+        <button type="button" data-k="daily" aria-pressed="false">Daily</button>
+        <button type="button" data-k="weekly" aria-pressed="false">Weekly</button>
+        <button type="button" data-k="monthly" aria-pressed="false">Monthly</button>
+      </div>
+      <div class="view" style="padding:0" id="lib"></div>
+    </section>
+
+    <!-- REVIEW -->
+    <section class="view pad" id="v-review" hidden>
+      <div>
+        <h2>Speak your cards</h2>
+        <p class="sub">Each card comes back on the right day. Say a sentence with the word, or say the corrected sentence, and Mam checks it.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Review view" id="revSeg">
+        <button type="button" data-v="today" aria-pressed="true">Today</button>
+        <button type="button" data-v="all" aria-pressed="false">All cards</button>
+      </div>
+      <div id="flashWrap"></div>
+      <div id="cardsWrap" class="view" style="padding:0" hidden>
+        <div class="seg" role="group" aria-label="Card type" id="cardSeg">
+          <button type="button" data-f="all" aria-pressed="true">All</button>
+          <button type="button" data-f="word" aria-pressed="false">Words</button>
+          <button type="button" data-f="fix" aria-pressed="false">Fixes</button>
+        </div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <!-- HISTORY -->
+    <section class="view pad" id="v-history" hidden>
+      <div>
+        <h2>Your progress</h2>
+        <p class="sub">Goal: <span id="goalTxt">10</span> minutes of speaking every day. A little every day adds up.</p>
+      </div>
+      <div class="levelcard" id="levelCard"></div>
+      <div class="flucard">
+        <h3>Your fluency</h3>
+        <div class="flutiles" id="fluTiles"></div>
+        <div class="seg" role="group" aria-label="Fluency measure" id="fluSeg">
+          <button type="button" data-m="speed" aria-pressed="true">Speed</button>
+          <button type="button" data-m="length" aria-pressed="false">Answer length</button>
+          <button type="button" data-m="score" aria-pressed="false">Score</button>
+        </div>
+        <div class="sub" id="fluTitle"></div>
+        <div class="fluchart" id="fluChart"></div>
+        <details id="fluTableWrap"><summary class="sub">Show as a table</summary><table class="flutable" id="fluTable"></table></details>
+      </div>
+      <div class="stats" id="stats"></div>
+      <h3>Last 7 days (minutes)</h3>
+      <div class="week" id="week"></div>
+      <h3>Your chats</h3>
+      <div id="hist" class="view" style="padding:0"></div>
+      <div id="oldWrap" class="view" style="padding:0" hidden>
+        <h3>Earlier reports</h3>
+        <div id="oldReports" class="view" style="padding:0"></div>
+      </div>
+      <h3>Settings</h3>
+      <div class="settings">
+        <label for="lvSel">Your level (it also rises by itself as you improve)</label>
+        <select id="lvSel"><option value="A1">A1 · Starter</option><option value="A2">A2 · Basic</option><option value="B1">B1 · Confident</option><option value="B2">B2 · Fluent</option></select>
+        <label for="goalSel">Daily speaking goal</label>
+        <select id="goalSel"><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="15">15 minutes</option><option value="20">20 minutes</option><option value="30">30 minutes</option></select>
+        <div id="keyBox" class="settings" style="padding:0;border:0" hidden>
+          <label for="keyIn"><strong>Free AI key (Google Gemini)</strong></label>
+          <ol>
+            <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with your Google account.</li>
+            <li>Tap <strong>Create API key</strong> and copy it.</li>
+            <li>Paste it here and tap Save. It stays only on this phone.</li>
+          </ol>
+          <input type="password" id="keyIn" autocomplete="off" placeholder="Paste your key (starts with AIza…)">
+          <div class="retry"><button class="btn primary" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button><span class="status" id="keyStatus"></span></div>
+        </div>
+        <p class="sub" id="handsfreeNote" hidden></p>
+        <div class="retry"><button class="btn" type="button" id="diagBtn">Check connection</button></div>
+        <pre class="status" id="diagOut" style="white-space:pre-wrap;margin:0;font-family:inherit"></pre>
+      </div>
+    </section>
+  </main>
+
+  <div class="composer pad" id="composer" hidden>
+    <div class="live" id="live" hidden>
+      <button class="bigmic" id="micBtn" type="button" aria-label="Start talking">🎤</button>
+      <span class="state" id="liveState">Tap the mic and speak. Mam listens until you pause.</span>
+    </div>
+    <div class="row" id="typeRow">
+      <textarea id="input" rows="1" placeholder="Speak or type in English…" aria-label="Your message"></textarea>
+      <button class="send" id="sendBtn" type="button" aria-label="Send">↑</button>
+    </div>
+    <p class="hint" id="hint">Tip: tap the 🎤 on your iPhone keyboard and just speak. Tap your own message to see your mistakes and better ways to say it.</p>
+  </div>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+  <nav class="tabs" aria-label="Sections">
+    <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
+    <button type="button" data-tab="minute"><span class="i">⏱️</span>1-Minute</button>
+    <button type="button" data-tab="read"><span class="i">📰</span>Read</button>
+    <button type="button" data-tab="review"><span class="i">🔁</span><span>Review<span class="badge" id="dueBadge" hidden></span></span></button>
+    <button type="button" data-tab="history"><span class="i">🗂️</span>History</button>
+  </nav>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (id) => document.getElementById(id);
+const TOPICS = [
+  { id: "intro", em: "🙋", name: "Introduce yourself", desc: "Name, city, studies", open: "Hello! I am your English teacher. You can call me Mam. What is your name, and where are you from?" },
+  { id: "routine", em: "⏰", name: "My daily routine", desc: "Wake up, work, sleep", open: "Let's talk about your day. What time do you wake up in the morning?" },
+  { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
+  { id: "city", em: "🏙️", name: "My city", desc: "Places and food", open: "Which city do you live in? What is it famous for?" },
+  { id: "whycss", em: "🎯", name: "Why CSS?", desc: "Your dream and goals", css: true, open: "Many people dream of the civil service. Why do you want to pass the CSS exam?" },
+  { id: "pakistan", em: "🇵🇰", name: "Pakistan today", desc: "Easy current affairs", css: true, open: "Let's talk about Pakistan. In your opinion, what is one big problem in Pakistan today?" },
+  { id: "viva", em: "🪑", name: "Interview practice", desc: "Mock CSS viva, slow", css: true, open: "Good morning. Please have a seat. First, tell us a little about yourself." },
+  { id: "free", em: "☕", name: "Free talk", desc: "Anything you like", open: "Hi! What would you like to talk about today?" },
+];
+const WORLD = [
+  ["🌊", "Climate change and floods", "Climate change is a big problem for the whole world. Have you seen its effects in Pakistan?"],
+  ["🤖", "Artificial intelligence", "Artificial intelligence is changing the world very fast. Do you use any AI apps?"],
+  ["🕊️", "War and peace", "Some countries in the world are at war today. Why is peace important for everyone?"],
+  ["🌐", "USA and China", "The USA and China are the two biggest powers today. Why are they important for Pakistan?"],
+  ["💹", "Prices and the world economy", "Prices are rising in many countries. Why do you think things are so expensive?"],
+  ["🧳", "People moving abroad", "Many young people leave their country to work abroad. Would you like to live abroad? Why or why not?"],
+  ["💧", "The water crisis", "Many countries do not have enough clean water. Is water a problem in your city?"],
+  ["🤝", "Pakistan and its neighbours", "Pakistan has four neighbours. Which neighbour is most important for Pakistan, in your opinion?"],
+  ["🏛️", "The United Nations", "The United Nations tries to keep peace in the world. Do you think it does a good job?"],
+  ["📱", "Social media and fake news", "Many people read news on social media. Do you trust news on Facebook or TikTok?"],
+];
+const WORDS = [
+  ["democracy","people choose their government by voting","Pakistan is a democracy.","🗳️"],["economy","the money, jobs and trade of a country","The economy needs more jobs.","💰📈"],
+  ["inflation","prices keep going up","Inflation makes food expensive.","🛒📈"],["corruption","dishonest use of power for money","Corruption hurts poor people.","💸🚫"],
+  ["education","learning at school and college","Education changes lives.","🎓📚"],["climate change","the earth's weather changing over many years","Climate change brings more floods.","🌍🔥"],
+  ["pollution","dirty air, water or land","Air pollution is very high in Lahore.","🏭🌫️"],["population","the number of people living in a place","Pakistan has a large population.","👥👥"],
+  ["unemployment","not having a job","Unemployment is a big problem for young people.","🧑‍💼❌"],["government","the people who run a country","The government made a new law.","🏛️"],
+  ["policy","a plan or rule for doing things","We need a better education policy.","📜"],["justice","fair treatment for everyone","Everyone wants justice.","⚖️"],
+  ["rights","things every person is allowed to have or do","Women and men have equal rights.","✊"],["responsibility","a duty you must do","Voting is our responsibility.","🤝"],
+  ["opportunity","a good chance to do something","CSS is a big opportunity for me.","🚪✨"],["challenge","something difficult to do","Water shortage is a big challenge.","🧗"],
+  ["solution","an answer to a problem","Education is the best solution.","💡"],["improve","to make something better","I want to improve my English.","📈"],
+  ["develop","to grow and become better","Pakistan can develop very fast.","🏗️"],["resources","useful things like water, land and minerals","Pakistan has many natural resources.","⛏️🌾"],
+  ["agriculture","farming and growing crops","Agriculture is very important for Pakistan.","🌾🚜"],["energy crisis","not enough electricity or gas","The energy crisis causes load shedding.","🔌⚡"],
+  ["security","being safe from danger","Security is important for peace.","🛡️"],["peace","no war or fighting","We all want peace.","🕊️"],
+  ["foreign policy","how a country deals with other countries","Foreign policy is about our relations with other countries.","🌐🤝"],["trade","buying and selling between countries","Trade with China is growing.","🚢📦"],
+  ["technology","machines and computers that help us","Technology makes life easier.","💻"],["artificial intelligence","computers that can think and learn","Artificial intelligence is changing jobs.","🤖"],
+  ["public service","working to help the people","I want to do public service.","🏛️🙋"],["honest","always telling the truth","A good officer must be honest.","😇"],
+  ["discipline","doing the right thing every day, on time","Discipline helps me study every day.","⏰✅"],["confident","sure of yourself","I feel confident in my interview.","💪"],
+  ["opinion","what you think about something","In my opinion, education is the key.","💬"],["however","but (shows a different idea)","It is hard; however, I will try.","↔️"],
+  ["because of","for this reason","Prices went up because of inflation.","➡️"],["health care","doctors, hospitals and medicine","Health care should be free for poor people.","🏥"],
+  ["water shortage","not enough water","Water shortage is a big threat.","🚰❌"],["tolerance","accepting people who are different","Tolerance makes society strong.","🤲"],
+  ["accountability","having to explain and answer for what you did","Accountability can stop corruption.","🔍"],["sustainable","able to continue for a long time without harm","We need sustainable development.","♻️"],
+];
+const dayNum = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / DAY);
+function worldTopic() {
+  const [em, theme, open] = WORLD[dayNum() % WORLD.length];
+  return { id: "world", em: "🌍", name: "World today", desc: em + " " + theme, css: true, open: "Let's talk about the world today. " + open,
+    extra: `Today's world theme is "${theme}". You have no live news, so talk about the general situation, give one simple fact the student can use in the CSS exam, and ask for the student's opinion. Never invent specific recent events, dates or numbers.` };
+}
+function todayWord() { const [word, mean, example, emoji] = WORDS[dayNum() % WORDS.length]; return { word, mean, example, emoji }; }
+const WORD_MEAN = Object.fromEntries(WORDS.map(([w, m]) => [w, m]));
+const isEnglish = (t) => !!t && !/[\u0600-\u06FF]/.test(t);
+// Older cards were saved with Urdu meanings; show an English meaning instead (or nothing).
+function cardMeaning(c) { if (isEnglish(c.mean)) return c.mean; if (isEnglish(c.ur)) return c.ur; return c.type === "word" ? WORD_MEAN[String(c.word).toLowerCase()] || "" : ""; }
+const INTERVALS = [0, 1, 3, 7, 16, 35]; // days per review box
+const DAY = 86400000;
+const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
+const today = () => new Date().toLocaleDateString("en-CA");
+
+// ---------- state ----------
+let state = { cards: [], sessions: [], days: {}, settings: { voice: true, goal: 10 }, library: [], chats: [] };
+const LS = "bolo.v1";
+function loadLocal() { try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s) state = { ...state, ...s, settings: { ...state.settings, ...(s.settings || {}) } }; } catch {} }
+// With the account store the phone keeps the 30 newest chats; without it (web version) this is the only copy, so keep far more.
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...state, chats: state.chats.slice(0, col ? 30 : 300) })); } catch {} }
+
+let col = null; // db collection for this person
+let metaTimer = 0;
+function putCard(c) { saveLocal(); if (col) col.doc("card_" + c.id).set(c).catch(() => {}); }
+let metaReady = false; // until the account's own meta is read, writing ours would wipe its streak and reports
+function putMeta() {
+  saveLocal();
+  if (!col || !metaReady) return;
+  clearTimeout(metaTimer);
+  metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
+}
+let libCol = null; // "library": readings, also filled by Claude from chat uploads
+let dbgCol = null, dbgRows = [], dbgTimer = 0;
+const visitId = "v" + Date.now().toString(36);
+// Documents from the store arrive frozen; the app edits its state in place, so always work on a copy.
+const thaw = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
+let idSeq = 0;
+const newId = (tag) => Date.now().toString(36) + tag + (++idSeq).toString(36);
+// Step log so Claude can read what happened on the learner's phone: one owner-only document per visit,
+// at most 150 rows, and visits older than a week are deleted, so the store never fills up.
+function dbg(step, extra) {
+  dbgRows.push({ t: Date.now(), step, ...(extra || {}) }); if (dbgRows.length > 150) dbgRows.shift();
+  clearTimeout(dbgTimer); dbgTimer = setTimeout(() => { if (dbgCol) dbgCol.doc(visitId).set({ t: Date.now(), rows: dbgRows }).catch(() => {}); }, 1500);
+}
+window.addEventListener("error", (e) => dbg("page_error", { message: String(e.message || "").slice(0, 300), line: e.lineno || 0 }));
+window.addEventListener("unhandledrejection", (e) => dbg("unhandled", { message: String(e.reason?.message || e.reason?.code || e.reason || "").slice(0, 300) }));
+const pendingLib = new Set();
+function putItem(it) { saveLocal(); if (!libCol) return; pendingLib.add(it.id); libCol.doc(it.id).set(it).then(() => pendingLib.delete(it.id), () => {}); }
+function delItem(it) { state.library = state.library.filter((x) => x.id !== it.id); saveLocal(); if (libCol) libCol.doc(it.id).delete().catch(() => {}); renderLib(); }
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+// The store can be briefly unavailable on a weak connection: retry once after a short random pause.
+async function getRetry(q) { try { return await q.get(); } catch (e) { await pause(500 + Math.random() * 1000); return q.get(); } }
+let cardsReady = false; // true once this person's saved cards are loaded, so word cards are never made twice
+// Articles Claude adds from chat arrive only through the store: give them their word cards once.
+function libraryWords() { if (!cardsReady) return; state.library.forEach((x) => { if (!x.cardsMade) { addWords(x); x.cardsMade = true; putItem(x); } }); }
+function onLibrary(snap) {
+  const docs = snap.docs.map((d) => ({ ...thaw(d.data()), id: d.id }));
+  const ids = new Set(docs.map((x) => x.id));
+  const next = [...docs, ...state.library.filter((x) => !ids.has(x.id) && pendingLib.has(x.id))].sort((a, b) => b.created - a.created);
+  const changed = JSON.stringify(next) !== JSON.stringify(state.library);
+  state.library = next;
+  if (changed) { saveLocal(); renderLib(); }
+  libraryWords();
+}
+async function connectDb() {
+  const [db, user] = await Promise.all([use("db"), use("user")]).catch(() => [null, null]);
+  if (db && !libCol) {
+    libCol = db.collection("library");
+    dbgCol = db.collection("debug");
+    dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: 12 });
+    libCol.onSnapshot(onLibrary, () => {});
+    getRetry(dbgCol).then((sn) => sn.docs.forEach((d) => { if ((d.data()?.t || 0) < Date.now() - 7 * DAY) dbgCol.doc(d.id).delete().catch(() => {}); })).catch(() => {});
+  }
+  if (!db || !user) { cardsReady = true; libraryWords(); return; }
+  let uid = null;
+  try { uid = await user.id(); } catch {}
+  if (!uid) { cardsReady = true; libraryWords(); return; }
+  col = db.collection("data/users/" + uid);
+  let snap;
+  try { snap = await getRetry(col); }
+  catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; } // writes still go to the store meanwhile
+  cardsReady = true; metaReady = true;
+  if (snap.empty) { // first time on the account: copy anything this browser already has
+    state.cards.forEach(putCard); state.chats.forEach((c) => putChat(c, true, true)); putMeta(); libraryWords(); return;
+  }
+  const cards = [], chats = []; let meta = null;
+  snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("card_")) cards.push(thaw(d.data())); else if (d.id.startsWith("chat_")) chats.push(thaw(d.data())); });
+  // Keep whichever copy of a chat is newer; the open chat object is updated in place so the screen keeps working.
+  const byChat = new Map(state.chats.map((c) => [c.id, c]));
+  let redraw = false;
+  chats.forEach((c) => { const l = byChat.get(c.id); if (!l) byChat.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat || l === minRec) { Object.assign(l, c); redraw = redraw || l === chat; } else byChat.set(c.id, c); } });
+  state.chats.forEach((c) => { if (!chats.some((x) => x.id === c.id)) putChat(c, true, true); }); // upload without re-dating them
+  state.chats = [...byChat.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
+  const byId = new Map(cards.map((c) => [c.id, c]));
+  state.cards.forEach((c) => { const sc = byId.get(c.id); if (!sc) { byId.set(c.id, c); putCard(c); } else if ((c.due || 0) > (sc.due || 0)) { byId.set(c.id, c); putCard(c); } });
+  state.cards = [...byId.values()].sort((a, b) => b.created - a.created);
+  if (meta) {
+    // Union, never replace: a visit that could not reach the store must not lose its minutes or reports.
+    const ses = new Map([...(meta.sessions || []), ...state.sessions].map((x) => [x.id, x]));
+    state.sessions = [...ses.values()].sort((a, b) => (b.date || 0) - (a.date || 0)).slice(0, 40);
+    const days = { ...(meta.days || {}) };
+    for (const [d, v] of Object.entries(state.days)) { const o = days[d]; days[d] = o ? { min: Math.max(o.min || 0, v.min || 0), words: Math.max(o.words || 0, v.words || 0) } : v; }
+    state.days = days;
+    state.settings = { ...state.settings, ...(meta.settings || {}) };
+    putMeta();
+  }
+  saveLocal(); renderAll(); libraryWords(); restoreChat(); checkLevel();
+  if (redraw && chat && !busy && !$("chat").hidden) openChat(chat); // another device added turns to the open chat
+}
+
+function logTime(ms, words) {
+  const d = today();
+  const e = state.days[d] || { min: 0, words: 0 };
+  e.min = Math.round((e.min + ms / 60000) * 10) / 10;
+  e.words += words;
+  state.days[d] = e;
+  putMeta(); renderHeader();
+}
+function streak() {
+  let n = 0, t = Date.now();
+  if (!(state.days[today()]?.words > 0)) t -= DAY; // today not done yet still keeps yesterday's streak
+  for (;;) { const d = new Date(t).toLocaleDateString("en-CA"); if (state.days[d]?.words > 0) { n++; t -= DAY; } else break; }
+  return n;
+}
+
+// ---------- speech out ----------
+let voice = null;
+function pickVoice() {
+  const vs = speechSynthesis.getVoices().filter((v) => /^en[-_]/i.test(v.lang));
+  for (const n of ["Samantha", "Google US English", "Karen", "Moira", "Tessa", "Google UK English Female", "Serena", "Martha"]) { const v = vs.find((x) => x.name.startsWith(n)); if (v) { voice = v; return; } }
+  const male = /Daniel|Rishi|Fred|Albert|Aaron|Arthur|Gordon|Ralph|Junior|Bad News|Bells|Boing|Bubbles|Cellos|Wobble|Zarvox|Trinoids|Whisper|Organ|Jester|Superstar/i;
+  voice = vs.find((v) => /en[-_]US/i.test(v.lang) && !male.test(v.name)) || vs.find((v) => /en[-_]GB/i.test(v.lang) && !male.test(v.name)) || vs[0] || null;
+}
+const hasTTS = "speechSynthesis" in window;
+if (hasTTS) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+let curU = null, ttsPrimed = false;
+// Stop speaking without firing the old line's callbacks (a cancelled line must not reopen the mic).
+function hush() { if (!hasTTS) return; if (curU) { curU.onend = curU.onerror = null; curU = null; } speechSynthesis.cancel(); }
+// iOS only lets a page speak after one utterance started inside a tap; call this from tap handlers.
+function primeTTS() { if (ttsPrimed || !hasTTS) return; try { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); ttsPrimed = true; } catch {} }
+function speak(text, rate = 0.88, onend, pitch = 1) {
+  if (!hasTTS) { onend?.(); return; }
+  hush(); ttsPrimed = true;
+  const u = new SpeechSynthesisUtterance(text); curU = u;
+  if (voice) u.voice = voice;
+  u.lang = voice?.lang || "en-US"; u.rate = rate; u.pitch = pitch;
+  if (onend) setLive("speaking");
+  u.onend = () => { if (curU === u) curU = null; onend?.(); }; u.onerror = (e) => { if (curU === u) curU = null; if (e?.error !== "interrupted" && e?.error !== "canceled") onend?.(); };
+  speechSynthesis.speak(u);
+}
+
+// ---------- Claude ----------
+let sample = null;
+const inClaude = !!window.claude;
+const GKEY = "bolo.gemini";
+function gget() { try { return JSON.parse(localStorage.getItem(GKEY) || "null"); } catch { return null; } }
+const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1]); r.onerror = no; r.readAsDataURL(blob); });
+function parseLoose(t) {
+  try { return JSON.parse(t); } catch {}
+  const m = t.match(/```(?:json)?\s*([\s\S]*?)```/); if (m) { try { return JSON.parse(m[1]); } catch {} }
+  const i = t.search(/[[{]/), j = Math.max(t.lastIndexOf("}"), t.lastIndexOf("]"));
+  if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch {} }
+  throw { code: "invalid_json", text: t };
+}
+// Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
+function geminiAI() {
+  const cfg = gget(); if (!cfg?.key) return null;
+  const call = async (input, opts = {}, json = false, retried = false) => {
+    const turnsIn = typeof input === "string" ? [{ role: "user", content: input }] : input;
+    const contents = [];
+    for (const t of turnsIn) {
+      const role = t.role === "assistant" ? "model" : "user", last = contents[contents.length - 1];
+      if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] });
+    }
+    const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
+    for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
+    const body = { contents, generationConfig: { temperature: 0.7, ...(json ? { responseMimeType: "application/json" } : {}) } };
+    let res;
+    try {
+      res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal });
+    } catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
+    if (!res.ok) {
+      let body = ""; try { body = JSON.stringify(await res.json()); } catch {}
+      if (res.status === 404 && !retried) { // Google retired the model: pick the current one and try once more
+        try { const m = await pickModel(cfg.key); if (m && m !== cfg.model) { cfg.model = m; try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} return call(input, opts, json, true); } } catch {}
+      }
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(body) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(body)) ? "bad_key" : "upstream_error" };
+    }
+    const data = await res.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
+    if (!text) throw { code: "empty_completion" };
+    try { opts.onText?.({ text, delta: text }); } catch {}
+    return text;
+  };
+  const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
+  fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
+  fn.limits = async () => ({ maxPromptBytes: 900000, images: { maxCount: 10, maxInputBytes: 20e6, mediaTypes: ["image/jpeg", "image/png", "image/webp"] } });
+  return fn;
+}
+async function pickModel(key) {
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", { headers: { "x-goog-api-key": key } });
+  if (!r.ok) throw { code: "bad_key" };
+  const names = ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
+  if (names.includes("gemini-flash-latest")) return "gemini-flash-latest";
+  const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
+  const flash = names.filter((n) => /^gemini-[\d.]+-flash$/.test(n)).sort((a, b) => ver(b) - ver(a));
+  return flash[0] || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+}
+function aiBanner() {
+  const nb = $("noAI");
+  if (sample) { nb.hidden = true; return; }
+  nb.hidden = false;
+  if (inClaude) { nb.textContent = "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai and allow it to use Claude."; return; }
+  nb.innerHTML = 'To talk with Mam here, add your free Gemini key once. <button class="linkbtn" type="button" id="goKey">Add key</button>';
+  $("goKey").onclick = () => { show("history"); $("keyIn").focus(); };
+}
+const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); aiBanner(); return sample; });
+// Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
+const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
+  if (e?.code !== "capability_removed") throw e;
+  const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
+  return parseLoose(text);
+});
+const PERMANENT = new Set(["sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function errText(e, where) {
+  switch (e?.code) {
+    case "not_granted": return "Mam needs permission to use Claude. Allow it from this page's Permissions menu, then try again.";
+    case "rate_limited": case "queue_overflow": return inClaude ? "Claude's usage limit for your account is reached for now. Wait a few minutes and try again. If it keeps happening, the limit resets after a few hours (or practise in the hands-free web version meanwhile)." : "Too many messages at once. Wait a minute, then send again.";
+    case "session_expired": return "Your Claude sign-in expired. Reload the page.";
+    case "bad_key": return "Your Gemini key did not work. Check it in History, Settings.";
+    case "offline": return "No internet connection. Check your connection and try again.";
+    case "quota": return "Google's free limit for today is used up. Try again tomorrow, or add a different key in History, Settings.";
+    case "timeout": return "Mam took too long to answer.";
+    case "cancelled": return "";
+    case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view (" + e.code + "). Open the page on claude.ai in Safari, or update the Claude app.";
+    case "image_rejected": return "One of the pictures could not be read. Try a different screenshot.";
+    case "prompt_too_large": return "This is too long. Choose fewer pages or paste a shorter part.";
+    case "refused": case "empty_completion": return where === "read" ? "Mam could not use this text. Try a different article or page." : "Mam could not answer that. Try saying it in a different way.";
+    case "invalid_json": return where === "read" ? "Mam could not read this clearly. Try clearer screenshots or fewer pages." : "Mam's answer came back in the wrong shape. Try again.";
+    default: return where === "read" ? "Mam could not read this (" + (e?.code || "error") + "). Tap Make it simple to try again." : "Mam could not answer this time (" + (e?.code || "error") + "). Tap Try again on your message.";
+  }
+}
+const RULES = (topic) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is from Pakistan (first language Urdu), is at English level ${levelId()} and is preparing for the CSS exam (especially the interview / viva). Today's topic: "${topic.name}" (${topic.desc}). ${topic.extra || ""}
+Rules:
+- ${LEVEL_STYLE[levelId()]} Always end with ONE question so the student keeps talking.
+- Keep the conversation going on the topic; if the student is stuck, give a model sentence they can copy ("You can say: ...").
+- Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say the sentence again in English.
+- Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
+Reply with only the words you say: no labels, no quotes, no JSON.`;
+
+// ---------- talk ----------
+const INTERVIEW = { id: "interview", kind: "interview", em: "🏛️", name: "Mock CSS interview", desc: "A board of 3 asks about 10 questions", css: true,
+  open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." };
+const STARTERS = {
+  intro: ["My name is …", "I am from …", "I studied … at …", "I live with my …", "In my free time, I like to …"],
+  routine: ["I wake up at …", "After that, I …", "In the afternoon, I usually …", "In the evening, I …", "I go to bed at … because …"],
+  family: ["There are … people in my family.", "My father is a …", "My mother is a …", "I have … brothers and … sisters.", "I love my family because …"],
+  city: ["I live in …", "My city is famous for …", "The best place in my city is …", "One problem in my city is …", "I like my city because …"],
+  whycss: ["I want to join the civil service because …", "My dream is to …", "I want to serve my country by …", "As an officer, I will …", "I am preparing by …"],
+  pakistan: ["In my opinion, the biggest problem is …", "One reason is …", "For example, …", "The government should …", "I think the solution is …"],
+  world: ["Today the world is facing …", "This affects Pakistan because …", "One reason is …", "In my opinion, …", "One solution could be …"],
+  interview: ["Thank you, sir. My name is …", "Could you please repeat the question?", "In my view, …", "I am not sure, but I think …", "For example, …"],
+  free: ["I want to talk about …", "I think …", "The reason is …", "For example, …", "What do you think about …?"],
+  general: ["I think …", "In my opinion, …", "One reason is …", "For example, …", "So, I believe …"],
+};
+STARTERS.viva = STARTERS.interview;
+const startersFor = (t) => STARTERS[t?.id] || STARTERS.general;
+function startersBox(list, target) {
+  const d = document.createElement("details"); d.className = "starters"; d.open = true;
+  d.innerHTML = "<summary>💡 Sentence starters · tap one to use it</summary><div class=\"chips\"></div>";
+  list.forEach((s) => { const b = document.createElement("button"); b.type = "button"; b.className = "chip starter"; b.textContent = s; b.onclick = () => useStarter(s, target); d.lastChild.append(b); });
+  return d;
+}
+// Puts the start of the sentence in the box so the learner only has to say the rest.
+function useStarter(s, target) {
+  if (target === "minIn" && !minRunning) $("minStart").click(); // a starter on the 1-minute screen starts the clock
+  const el = $(target), v = el.value.trim();
+  el.value = (v ? v + " " : "") + s.split("…")[0];
+  if (target === "minIn") minBase = el.value; // the 1-minute recogniser adds to the starter instead of replacing it
+  if (target === "input") autoGrow();
+  el.focus(); try { el.setSelectionRange(el.value.length, el.value.length); } catch {}
+  speak(s.replace(/…/g, ", "), 0.8);
+}
+
+const PITCH = { chairman: 0.8, "member 1": 1, "member 2": 1.25 };
+const WHO = "Chairman|Member\\s*(?:1|2|one|two)";
+function splitSpeaker(s) {
+  const str = String(s);
+  const m = str.match(new RegExp("^\\s*\\**\\s*(?:\\[\\s*(" + WHO + ")\\s*\\]|(" + WHO + ")\\s*:)\\s*\\**\\s*:?\\s*", "i"));
+  const strip = (t) => t.replace(new RegExp("\\s*\\[\\s*(?:" + WHO + ")\\s*\\]\\s*", "gi"), " ").trim(); // a second label inside the line
+  if (!m) return { who: "", text: strip(str) };
+  const who = (m[1] || m[2]).replace(/\s+/g, " ").replace(/one$/i, "1").replace(/two$/i, "2").replace(/^./, (x) => x.toUpperCase()).replace(/member\s*/i, "Member ");
+  return { who, text: strip(str.slice(m[0].length)) };
+}
+function speakLine(line, onend, rate = 0.88) { const { who, text } = splitSpeaker(line); speak(text, rate, onend, PITCH[who.toLowerCase()] || 1); }
+const BOARD_RULES = (answered) => `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is a beginner in English who is practising for the real interview.
+Rules:
+- Ask ONE short, clear question per turn in ${BOARD_STYLE[levelId()]}. Take turns between the members. The candidate's English level is ${levelId()}.
+- Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
+- Do not teach or correct English during the interview (feedback is shown separately). If the candidate did not understand, repeat the question in simpler words.
+- English only. Never write Urdu or Roman Urdu.
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?
+- The candidate has answered ${answered} question${answered === 1 ? "" : "s"} so far. ${answered >= 9 ? 'This is the last turn: the Chairman thanks the candidate and says exactly "The interview is over."' : "Keep the interview going."}
+Reply with only the board's words.`;
+
+// The next line from Mam (or the board), sent as one plain prompt (the same call shape the connection check uses).
+function askMam(t, history, opts) {
+  const board = t.kind === "interview";
+  const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
+  const head = board ? BOARD_RULES(history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length) : RULES(t);
+  return sample(head + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now."), { modelTier: "quick", cache: false, ...opts });
+}
+
+// Every chat is saved after each message, so the learner can reopen and continue it from History.
+let topic = null, chat = null, sess = null, busy = false, ctl = null;
+const saveTimers = new Map();
+function newChat(t) {
+  const now = Date.now();
+  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", css: !!t.css, kind: t.kind || "talk" },
+    started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0, min: 0, newCards: 0 };
+}
+// A store document holds at most 256 KiB: keep the newest turns that fit well under that.
+function slimChat(c) {
+  if (!c.turns) return { ...c, attempts: (c.attempts || []).slice(-30) };
+  let turns = c.turns.slice(-300), out = { ...c, turns };
+  while (turns.length > 20 && new Blob([JSON.stringify(out)]).size > 200000) { turns = turns.slice(Math.ceil(turns.length / 5)); out = { ...c, turns }; }
+  return out;
+}
+const saveRetries = new Map();
+function putChat(c, now, keepTime) {
+  if (!keepTime) c.updated = Date.now();
+  const i = state.chats.indexOf(c); if (i > 0) state.chats.splice(i, 1); if (i !== 0) state.chats.unshift(c);
+  clearTimeout(saveTimers.get(c.id));
+  const write = () => {
+    saveTimers.delete(c.id); saveLocal();
+    if (col) col.doc("chat_" + c.id).set(slimChat(c)).then(() => saveRetries.delete(c.id), (e) => {
+      dbg("chat_save_error", { code: String(e?.code || ""), message: String(e?.message || "").slice(0, 200) });
+      const n = (saveRetries.get(c.id) || 0) + 1; saveRetries.set(c.id, n);
+      if (n <= 3) setTimeout(() => putChat(c, true, true), 10000 * n); // try again a few times so nothing is lost
+    });
+  };
+  if (now) write(); else saveTimers.set(c.id, setTimeout(write, 700));
+}
+// One ongoing chat per topic: tapping a topic again continues it with all earlier messages.
+const PER_NAME = new Set(["world", "own", "read", "wotd"]);
+function findThread(t) {
+  const kind = t.kind || "talk";
+  return state.chats.filter((c) => c.kind === kind && c.topic?.id === t.id && (!PER_NAME.has(t.id) || (c.topic.name === t.name && (t.id !== "world" || c.topic.desc === t.desc))) && (kind !== "interview" || !(c.report || c.turns.some((x) => /interview is over/i.test(x.content)))))
+    .sort((a, b) => b.updated - a.updated)[0] || null;
+}
+const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
+function renderTopics() {
+  $("topics").innerHTML = "";
+  const list = [worldTopic(), ...TOPICS, { id: "own", em: "✏️", name: "My own topic", desc: "Type any topic you like" }];
+  list.forEach((t) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "topic" + (t.css ? " css" : "");
+    b.innerHTML = `<span class="em">${t.em}</span>${t.css ? '<span class="tag">CSS</span>' : ""}<strong></strong><span></span>`;
+    b.querySelector("strong").textContent = t.name; b.querySelector("span:last-child").textContent = t.desc;
+    const th = t.id !== "own" && findThread(t);
+    if (th) { const n = th.turns.filter((x) => x.role === "user").length; const k = document.createElement("span"); k.className = "cont"; k.textContent = "↻ Continue · " + n + " answer" + (n === 1 ? "" : "s"); b.append(k); }
+    b.onclick = () => { if (t.id === "own") { $("ownForm").hidden = false; $("ownInput").focus(); } else startTopic(t); };
+    $("topics").append(b);
+  });
+  const last = state.chats.filter((c) => c.kind === "interview").sort((a, b) => b.updated - a.updated)[0];
+  const days = last ? Math.floor((Date.now() - last.updated) / DAY) : -1;
+  $("heroBtn").textContent = findThread(INTERVIEW) ? "Continue interview" : "Start interview";
+  $("heroWhen").textContent = days < 0 ? "Best once a week. You haven't tried it yet." : days === 0 ? "Last interview: today." : "Last interview: " + days + " day" + (days === 1 ? "" : "s") + " ago." + (days >= 7 ? " Time for this week's!" : "");
+}
+function renderWotd() {
+  const w = todayWord(), box = $("wotd");
+  box.style.setProperty("--h", hue(w.word));
+  box.innerHTML = `<div class="pic"></div><div class="body"><span class="k">Word of the day</span><span class="word"></span><span class="mean"></span><span class="ex"></span><div class="tools"></div></div>`;
+  box.querySelector(".pic").textContent = w.emoji;
+  box.querySelector(".word").textContent = w.word;
+  box.querySelector(".mean").textContent = w.mean;
+  box.querySelector(".ex").textContent = w.example;
+  const tools = box.querySelector(".tools");
+  const saved = state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === w.word);
+  const save = tool(saved ? "✓ In your cards" : "+ Save card", () => {
+    const now = Date.now();
+    const c = { id: newId("d"), type: "word", word: w.word, mean: w.mean, example: w.example, emoji: w.emoji, box: 0, due: now, created: now, topic: "Word of the day" };
+    state.cards.unshift(c); putCard(c); renderCards(); renderDue(); renderWotd();
+  });
+  save.disabled = saved;
+  tools.append(tool("🔊 Listen", () => speak(w.word + ". " + w.example, 0.8)), save,
+    tool("💬 Practice with Mam", () => startTopic({ id: "wotd", em: w.emoji, name: "Word: " + w.word, desc: "Use today's word",
+      open: `Today's word is "${w.word}". ${w.example} Can you make your own sentence with "${w.word}"?`,
+      extra: `Today's target word is "${w.word}". Help the student use it in their own sentences at least three times, with simple examples.` })));
+}
+$("ownForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = $("ownInput").value.trim(); if (!name) return;
+  $("ownInput").value = ""; $("ownForm").hidden = true;
+  startTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
+});
+$("heroBtn").onclick = () => startTopic(INTERVIEW);
+function daySep(t) { const d = document.createElement("div"); d.className = "daysep"; d.textContent = new Date(t).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); $("msgs").append(d); }
+// Remember the open chat so reopening the app goes straight back into it.
+function rememberChat(id) { if (state.settings.lastChat === id) return; state.settings.lastChat = id; putMeta(); }
+function enterChat() {
+  rememberChat(chat?.id || null);
+  $("pickTopic").hidden = true; $("chat").hidden = false; $("composer").hidden = false;
+  $("msgs").innerHTML = "";
+  $("chatTitle").textContent = topic.em + " " + topic.name;
+  $("startersSlot").innerHTML = "";
+  const sb = startersBox(startersFor(topic), "input"); sb.open = !chat?.turns.some((x) => x.role === "user"); $("startersSlot").append(sb);
+  $("finishBtn").textContent = topic.kind === "interview" ? "End interview" : "Finish";
+}
+function startTopic(t, fresh) {
+  const th = !fresh && findThread(t);
+  if (th) {
+    openChat(th);
+    if (Date.now() - th.updated > 30 * 60000) { // coming back later: Mam picks the conversation up again
+      const q = lastQuestion(th.turns.filter((x) => x.role === "assistant").pop()?.content || "") || splitSpeaker(th.topic.open).text;
+      const line = (th.kind === "interview" ? "[Chairman] Welcome back. Let us continue. " : "Welcome back! Let's continue. ") + q;
+      th.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(th);
+      daySep(Date.now()); addTutor({ reply: line });
+      primeTTS(); if (state.settings.voice) speakLine(line, afterSpeak); else afterSpeak();
+    }
+    return;
+  }
+  stopListening(); ctl?.abort();
+  topic = t; chat = newChat(t);
+  sess = { last: Date.now() };
+  show("talk"); enterChat();
+  addTutor({ reply: t.open });
+  if (canHandsFree) handsFree = true; // no auto-focus: the iOS keyboard would push Mam's first question off screen
+  primeTTS();
+  if (state.settings.voice) speakLine(t.open, afterSpeak); else afterSpeak();
+}
+function openChat(c) {
+  if (c === chat && !$("chat").hidden && busy) { show("talk"); return; }
+  stopListening(); ctl?.abort(); hush();
+  topic = c.topic; chat = c; sess = { last: Date.now() };
+  show("talk"); enterChat();
+  let prevAt = c.started || 0;
+  c.turns.forEach((tn, i) => {
+    if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
+    if (tn.at) prevAt = tn.at;
+    const repHere = () => { if (c.report?.turns > 0 && c.report.turns === i + 1 && c.report.turns < c.turns.length) $("msgs").append(reportCard(c)); };
+    if (tn.role === "assistant") { addTutor({ reply: tn.content }); repHere(); return; }
+    const el = addMe(tn.content); el.dataset.text = tn.content; el.dataset.idx = i;
+    if (tn.fb) attachFeedback(el, tn.fb, true);
+    else if (i === c.turns.length - 1) markNotSent(el);
+    else { const q = splitSpeaker(c.turns[i - 1]?.content || "").text; const b = document.createElement("button"); b.type = "button"; b.className = "verdict"; b.textContent = "Check this sentence"; b.onclick = () => { b.remove(); checkAnswer(el, tn.content, q, tn, c); }; el.append(b); }
+    repHere();
+  });
+  if (c.report && !(c.report.turns > 0 && c.report.turns < c.turns.length)) $("msgs").append(reportCard(c));
+  if (interviewOver(c) && !c.report) boardDone();
+  scrollDown();
+}
+function endChat() {
+  stopListening(); hush(); ctl?.abort();
+  topic = null; chat = null; $("pickTopic").hidden = false; $("chat").hidden = true; $("composer").hidden = true;
+  rememberChat(null); renderTopics();
+}
+function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
+function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
+function addTutor(r) {
+  const w = document.createElement("div"); w.className = "msg tutor";
+  const { who, text } = splitSpeaker(r.reply);
+  if (who) { const l = document.createElement("div"); l.className = "who"; l.textContent = who; w.append(l); }
+  const b = document.createElement("div"); b.className = "bubble"; b.textContent = text; w.append(b);
+  const tools = document.createElement("div"); tools.className = "tools";
+  tools.append(tool("🔊 Again", () => speakLine(r.reply)), tool("🐢 Slow", () => speakLine(r.reply, null, 0.6)));
+  const simpler = tool("🧩 Simpler", async () => {
+    if (!sample) return;
+    simpler.disabled = true; simpler.textContent = "…";
+    try {
+      const { text: s } = await sample(`Rewrite this in very simple English for a total beginner (A1 level, short common words). Reply with only the rewritten words.\n\n${text}`, { modelTier: "quick" });
+      const u = document.createElement("div"); u.className = "mean"; u.textContent = s.trim(); u.append(" ", tool("🔊", () => speak(s.trim(), 0.75))); tools.after(u); simpler.remove();
+    } catch (e) { simpler.disabled = false; simpler.textContent = "🧩 Simpler"; }
+  });
+  if (sample) tools.append(simpler);
+  w.append(tools);
+  $("msgs").append(w); scrollDown();
+}
+function addMe(text) {
+  const w = document.createElement("div"); w.className = "msg me";
+  const b = document.createElement("div"); b.className = "bubble"; b.textContent = text; w.append(b);
+  $("msgs").append(w); scrollDown();
+  return w;
+}
+function markNotSent(el) {
+  const ns = document.createElement("button"); ns.type = "button"; ns.className = "verdict fix notsent"; ns.textContent = "No answer yet · tap to try again";
+  ns.onclick = () => send(el); el.append(ns);
+}
+function attachFeedback(w, fb, collapsed) {
+  if (!fb) return;
+  const errs = (Array.isArray(fb.errors) ? fb.errors : []).filter((e) => e?.right);
+  const better = (Array.isArray(fb.better) ? fb.better : []).filter((x) => x?.text);
+  const verdict = errs.length ? "fix" : fb.verdict === "great" ? "great" : "good";
+  const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict " + verdict;
+  tag.textContent = verdict === "fix" ? "⚠ " + errs.length + " to fix · tap" : (verdict === "great" ? "✓ Great" : "✓ Good") + " · tap for better ways";
+  const panel = document.createElement("div"); panel.className = "fb"; panel.hidden = true;
+  if (errs.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Mistakes"; panel.append(l);
+    errs.forEach((e) => { const d = document.createElement("div"); d.className = "err"; d.innerHTML = '<span class="w"></span><span class="r"></span><span class="mean"></span>'; d.children[0].textContent = e.wrong || ""; d.children[1].textContent = "✓ " + e.right; d.children[2].textContent = isEnglish(e.why) ? e.why : ""; panel.append(d); });
+  }
+  if (better.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Better ways to say it"; panel.append(l);
+    better.forEach((x) => { const d = document.createElement("div"); d.className = "alt"; d.innerHTML = "<span><em></em></span>"; d.firstChild.firstChild.textContent = x.label || ""; d.firstChild.append(String(x.text)); d.append(tool("🔊", () => speak(String(x.text), 0.8))); panel.append(d); });
+  }
+  const toggle = () => { panel.hidden = !panel.hidden; if (!panel.hidden) panel.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
+  tag.onclick = toggle; w.querySelector(".bubble").onclick = toggle;
+  if (verdict === "fix" && !collapsed) panel.hidden = false;
+  w.append(tag, panel);
+}
+async function send(retryEl) {
+  const c = chat, t = topic;
+  const text = retryEl ? retryEl.dataset.text : $("input").value.trim();
+  dbg("send_called", { len: text.length, busy, hasTopic: !!t, retry: !!retryEl });
+  if (!text || busy || !c) return;
+  if (interviewOver(c)) { chatNote("This interview is over. Tap " + (c.report ? "＋ New for a new interview." : "Get my interview report, or ＋ New for a new interview."), false); return; }
+  hush();
+  await aiReady;
+  if (c !== chat) return;
+  if (!sample) { chatNote(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai, then try again." : "Add your free Gemini key first (History, Settings).", false); return; }
+  document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
+  let meEl = retryEl, turn;
+  if (meEl) { meEl.querySelector(".notsent")?.remove(); turn = c.turns[+meEl.dataset.idx]; }
+  else {
+    $("input").value = ""; autoGrow();
+    document.querySelectorAll("#msgs .notsent").forEach((x) => x.remove());
+    meEl = addMe(text); meEl.dataset.text = text;
+    const now = Date.now(), gap = Math.min(now - sess.last, 3 * 60000); sess.last = now;
+    const words = text.split(/\s+/).filter(Boolean).length;
+    c.words += words; c.min = Math.round((c.min + gap / 60000) * 10) / 10;
+    logTime(gap, words);
+    turn = { role: "user", content: text, at: now }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
+    const st = $("startersSlot").querySelector("details"); if (st) st.open = false; // make room for the conversation
+    putChat(c);
+  }
+  const idx = c.turns.indexOf(turn);
+  const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
+  busy = true; $("sendBtn").disabled = true;
+  const wait = document.createElement("div"); wait.className = "msg tutor";
+  wait.innerHTML = '<div class="bubble typing">' + (t.kind === "interview" ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
+  const myCtl = (ctl = new AbortController());
+  let timedOut = false, replied = false, stopped = false;
+  const slow = setTimeout(() => {
+    if (!wait.isConnected || wait.dataset.got) return;
+    wait.firstChild.textContent = inClaude ? "Still waiting… If a box asks you to allow Claude, tap Allow." : "Still waiting…";
+    wait.append(tool("■ Stop", () => { stopped = true; myCtl.abort(); }));
+  }, 7000);
+  const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 180000);
+  setLive("thinking");
+  try {
+    dbg("reply_call_start", { turns: c.turns.length, hasSample: !!sample, kind: c.kind });
+    let firstText = true;
+    const { text: reply } = await askMam(t, c.turns.slice(0, idx + 1), {
+      signal: myCtl.signal,
+      onText: ({ text: s }) => { if (firstText) { firstText = false; dbg("reply_first_text"); } wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = splitSpeaker(s).text; scrollDown(); },
+    });
+    dbg("reply_done", { len: reply.length });
+    wait.remove();
+    const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
+    c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c);
+    if (c === chat) {
+      addTutor({ reply: line }); replied = true;
+      if (t.kind === "interview" && /interview is over/i.test(line)) boardDone();
+      if (state.settings.voice) speakLine(line, afterSpeak); else setTimeout(afterSpeak, 50);
+    }
+  } catch (e) {
+    dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300), timedOut });
+    wait.remove();
+    const code = timedOut ? "timeout" : e?.code;
+    if (c === chat) {
+      if (code === "not_granted") { markNotSent(meEl); chatNote(errText(e), false, allowAction(() => send(meEl))); }
+      else if (PERMANENT.has(code)) chatNote(errText(e), false);
+      else if (code === "cancelled") { if (stopped) markNotSent(meEl); setLive("idle"); }
+      else { markNotSent(meEl); chatNote(errText({ code }), false); }
+    } else setLive("idle");
+  } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; $("sendBtn").disabled = false; }
+  if (replied && !turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // only after a real reply, so the two calls never compete
+}
+const interviewOver = (c) => c?.kind === "interview" && c.turns.some((x) => x.role === "assistant" && /interview is over/i.test(x.content));
+function boardDone() {
+  stopListening();
+  if (chat?.report) return; // the report is already in the chat
+  const d = document.createElement("div"); d.className = "banner retry";
+  d.append("The board has finished. ");
+  const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my interview report"; b.onclick = () => { d.remove(); finish(); };
+  d.append(b); $("msgs").append(d); scrollDown();
+}
+// Corrections come from their own call, so a slow or failed check never blocks the reply.
+async function checkAnswer(meEl, text, lastQ, turn, c) {
+  meEl.querySelectorAll(".verdict:not(.notsent), .fb").forEach((x) => x.remove());
+  const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict"; tag.textContent = "Checking your sentence…"; tag.disabled = true;
+  meEl.append(tag);
+  const known = state.cards.filter((x) => x.type === "word").map((x) => x.word).slice(0, 80).join(", ") || "none";
+  try {
+    const r = await askJson(`You are an English teacher checking one spoken answer from a total beginner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the student speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[levelId()]}
+Question: "${lastQ}"
+Student answered: "${text}"
+Reply with ONLY this JSON:
+{"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the student said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the student's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}], "new_words": [{"word": "useful word or phrase for this answer", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji that picture the meaning"}]}
+"errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items. "new_words" has 0 to 2 items and never repeats these known words: ${known}.`, { modelTier: "quick", cache: false });
+    dbg("check_done");
+    tag.remove();
+    const fb = { verdict: String(r?.verdict || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] };
+    if (turn) { turn.fb = fb; putChat(c); }
+    const m = $("main"), atEnd = m.scrollHeight - m.scrollTop - m.clientHeight < 120;
+    attachFeedback(meEl, fb);
+    if (atEnd && c === chat) scrollDown(); // keep Mam's newest question in view below the corrections
+    checkLevel();
+    const err0 = fb.errors[0];
+    saveCards({ correction: err0 ? { wrong: String(err0.wrong || ""), right: String(err0.right), why: isEnglish(err0.why) ? String(err0.why) : "" } : null, new_words: Array.isArray(r?.new_words) ? r.new_words.filter((x) => x?.word).slice(0, 2) : [] }, c);
+  } catch (e) {
+    dbg("check_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 300) });
+    tag.disabled = false; tag.textContent = "Check failed (" + (e?.code || "error") + ") · tap to retry";
+    tag.onclick = () => checkAnswer(meEl, text, lastQ, turn, c);
+  }
+}
+function chatNote(msg, canRetry, action) {
+  stopListening();
+  const d = document.createElement("div"); d.className = "banner warn retry retrybox";
+  const sp = document.createElement("span"); sp.textContent = msg; d.append(sp);
+  if (canRetry) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Try again"; b.onclick = () => { d.remove(); send(); }; d.append(b); }
+  if (action) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = action.label; b.onclick = () => action.fn(d); d.append(b); }
+  $("msgs").append(d); scrollDown();
+}
+// After a "Don't allow", only the Permissions panel can turn Claude back on; offer it as a button.
+function allowAction(retry) {
+  return { label: "Allow Claude", fn: async (box) => {
+    const pm = await use("permissions");
+    try { await pm?.manage(); } catch { box.querySelector("span").textContent = "Open the menu at the top of this page, choose Permissions, and allow Claude. Then try again."; return; }
+    if ((await pm?.state("sample")) === "granted") { box.remove(); retry(); }
+  } };
+}
+function saveCards(res, c) {
+  const now = Date.now(), from = c?.topic?.name || "Talk";
+  const norm = (x) => toks(x).join(" ");
+  if (res.correction && !state.cards.some((x) => x.type === "fix" && norm(x.word) === norm(res.correction.right))) {
+    const card = { id: newId("f"), type: "fix", word: res.correction.right, wrong: res.correction.wrong || "", mean: res.correction.why || "", emoji: "✍️", example: "", box: 0, due: now, created: now, topic: from };
+    state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
+  }
+  res.new_words.forEach((w, i) => {
+    if (state.cards.some((x) => x.type === "word" && x.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const card = { id: newId("w"), type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "✨").slice(0, 12), box: 0, due: now, created: now, topic: from };
+    state.cards.unshift(card); putCard(card); if (c) c.newCards = (c.newCards || 0) + 1;
+  });
+  if (c) putChat(c);
+  renderCards(); renderDue();
+}
+async function finish() {
+  const c = chat, t = topic;
+  if (!c || busy) return;
+  stopListening(); hush();
+  if (c.turns.filter((x) => x.role === "user").length < 2) { chatNote("Say at least two things first, then tap " + $("finishBtn").textContent + " for your report.", false); return; }
+  await aiReady;
+  if (!sample) { chatNote("The report needs Mam's connection. Check History, Settings.", false); return; }
+  busy = true; $("finishBtn").disabled = true; const label = $("finishBtn").textContent; $("finishBtn").textContent = "Scoring…";
+  const myCtl = (ctl = new AbortController());
+  const board = t.kind === "interview";
+  const transcript = c.turns.map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
+  let rep = null;
+  try {
+    rep = await askJson(board
+      ? `You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a beginner English speaker from Pakistan. Judge it kindly but honestly, as a real board would, and focus on spoken fluency. Write in simple English only.
+Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for next week's interview", "useful_line": "one strong, simple sentence the candidate can use in the real interview"}
+
+${transcript.slice(-14000)}`
+      : `You are an English speaking coach. Below is a practice conversation with a total beginner from Pakistan preparing for the CSS exam interview. The student's English level is ${levelId()}: score their speaking fairly for that level (be kind but honest). Write in simple English only.
+Reply with ONLY JSON: {"score": number 1-10, "level": "short CEFR guess like A1 or A2", "did_well": ["2 short points"], "work_on": [{"wrong": "student's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for tomorrow in simple English", "useful_line": "one ready-made English sentence for the CSS interview on this topic"}
+
+Topic: ${t.name}
+${transcript.slice(-12000)}`, { modelTier: "default", signal: myCtl.signal });
+  } catch (e) { dbg("report_error", { code: String(e?.code || "none") }); if (e?.code === "not_granted" && c === chat) { chatNote(errText(e), false, allowAction(finish)); rep = "shown"; } }
+  finally { busy = false; $("finishBtn").disabled = false; $("finishBtn").textContent = label; }
+  if (rep === "shown") return;
+  if (!rep || typeof rep !== "object") { if (c === chat) chatNote("The report could not be made this time. Tap " + label + " again.", false); return; }
+  c.report = { ...rep, date: Date.now(), turns: c.turns.length }; putChat(c, true); checkLevel();
+  if (c === chat) { $("msgs").querySelectorAll(".report").forEach((x) => x.remove()); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
+}
+function reportCard(c) {
+  const s = c.report || {};
+  const r = document.createElement("div"); r.className = "report";
+  r.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="areas"></div><p class="sub bv"></p><div class="wd"></div><div class="wo"></div><div class="mean tip"></div><div class="ul"></div>`;
+  r.querySelector(".score").textContent = s.score ? s.score + "/10" : c.topic.em;
+  r.querySelector("h3").textContent = (c.kind === "interview" ? "Interview report" : "Your report") + (s.level ? " · " + s.level : "");
+  r.querySelector(".when").textContent = new Date(s.date || c.updated).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }) + " · " + (c.min || 0) + " min · " + (c.words || 0) + " words · " + (c.newCards || 0) + " new cards";
+  if (s.areas && typeof s.areas === "object") {
+    const a = r.querySelector(".areas");
+    [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["english", "English"]].forEach(([k, l]) => {
+      const v = Math.max(0, Math.min(10, Number(s.areas[k]) || 0));
+      const row = document.createElement("div"); row.className = "area"; row.innerHTML = "<span></span><i><b></b></i><em></em>";
+      row.children[0].textContent = l; row.querySelector("b").style.width = v * 10 + "%"; row.children[2].textContent = v + "/10"; a.append(row);
+    });
+  }
+  r.querySelector(".bv").textContent = isEnglish(s.board_view) ? s.board_view : "";
+  if (Array.isArray(s.did_well) && s.did_well.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
+  (Array.isArray(s.work_on) ? s.work_on : []).forEach((w) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span>'; f.firstChild.textContent = w.wrong || ""; f.lastChild.textContent = "✓ " + (w.right || ""); r.querySelector(".wo").append(f); });
+  r.querySelector(".tip").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
+  if (s.useful_line) { const u = r.querySelector(".ul"); u.innerHTML = "<strong>Line to learn: </strong><span></span>"; u.lastChild.textContent = s.useful_line; u.append(" ", tool("🔊", () => speak(s.useful_line, 0.8))); }
+  return r;
+}
+
+// ---------- hands-free (only outside Claude: the Claude frame never gets the microphone) ----------
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const canHandsFree = !!SR && !inClaude;
+let rec = null, handsFree = false, silenceT = 0;
+function setLive(st) {
+  if (!canHandsFree) return;
+  const m = $("micBtn");
+  m.classList.toggle("on", st === "listening");
+  m.textContent = st === "listening" ? "■" : "🎤";
+  m.setAttribute("aria-label", st === "listening" ? "Send now" : "Start talking");
+  $("liveState").textContent = { listening: "Listening… pause when you finish, or tap ■ to send.", thinking: "Mam is thinking…", speaking: "Mam is speaking…", idle: "Tap the mic and speak. Mam listens until you pause." }[st] || "";
+}
+if (canHandsFree) {
+  $("live").hidden = false;
+  $("hint").textContent = "Speak freely in English. Tap your own message to see mistakes and better ways to say it.";
+  $("micBtn").onclick = () => {
+    if (rec) { try { rec.stop(); } catch {} return; } // tapping while listening sends what was heard
+    hush();
+    handsFree = true; startListening();
+  };
+}
+function startListening() {
+  if (!canHandsFree || busy || !topic) return;
+  try {
+    rec = new SR(); rec.lang = "en-US"; rec.interimResults = true; rec.continuous = true;
+    let heard = ""; const base = $("input").value.trim();
+    const arm = () => { clearTimeout(silenceT); silenceT = setTimeout(() => { try { rec?.stop(); } catch {} }, 2200); };
+    rec.onresult = (e) => { let s = ""; for (const r of e.results) s += r[0].transcript; heard = s; $("input").value = (base + " " + s).trim(); autoGrow(); arm(); };
+    rec.onerror = (e) => {
+      if (e.error === "not-allowed" || e.error === "service-not-allowed") { handsFree = false; $("liveState").textContent = "Allow the microphone for this site in your phone settings, then tap the mic again."; }
+    };
+    rec.onend = () => { clearTimeout(silenceT); rec = null; if (heard.trim()) send(); else if (topic && !busy) setLive("idle"); };
+    rec.start(); setLive("listening");
+  } catch { rec = null; setLive("idle"); }
+}
+function stopListening() { handsFree = false; clearTimeout(silenceT); try { rec?.abort(); } catch {} rec = null; setLive("idle"); }
+function afterSpeak() { if (rec) return; if (handsFree && topic && !busy) startListening(); else setLive("idle"); }
+
+// ---------- cards ----------
+// ---------- read ----------
+const SOURCES = { daily: ["Dawn", "The Express Tribune", "The News", "BBC News", "Al Jazeera"], weekly: ["The Economist", "TIME", "The Friday Times"], monthly: ["Jahangir's World Times", "Foreign Affairs", "The Diplomat", "Foreign Policy"] };
+const KIND = { daily: "Daily news", weekly: "Weekly magazine", monthly: "Monthly magazine" };
+let kind = "daily", libFilter = "all", files = [], pdfDoc = null;
+function segInit(id, key, cb) {
+  document.querySelectorAll("#" + id + " button").forEach((b) => b.onclick = () => {
+    document.querySelectorAll("#" + id + " button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); cb(b.dataset[key]);
+  });
+}
+function fillSources() { $("srcList").innerHTML = ""; SOURCES[kind].forEach((n) => { const o = document.createElement("option"); o.value = n; $("srcList").append(o); }); $("srcInput").placeholder = "Source, e.g. " + SOURCES[kind][0]; }
+segInit("kindSeg", "k", (k) => { kind = k; fillSources(); });
+segInit("libSeg", "k", (k) => { libFilter = k; renderLib(); });
+fillSources();
+function status(t, err) { $("readStatus").textContent = t; $("readStatus").classList.toggle("err", !!err); }
+let pdfLib = null;
+function loadScript(src) { return new Promise((ok, no) => { const sc = document.createElement("script"); sc.src = src; sc.onload = ok; sc.onerror = no; document.head.append(sc); }); }
+async function getPdfLib() {
+  if (pdfLib) return pdfLib;
+  const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  await loadScript(base + "pdf.worker.min.js"); // runs on the page itself, since the frame cannot start an outside worker
+  await loadScript(base + "pdf.min.js");
+  pdfLib = window.pdfjsLib; pdfLib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+  return pdfLib;
+}
+$("fileIn").addEventListener("change", async () => {
+  files = [...$("fileIn").files]; $("fileIn").value = ""; pdfDoc = null;
+  const th = $("thumbs"); th.innerHTML = ""; $("pdfPages").hidden = true; status("");
+  const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+  if (pdf) {
+    files = [pdf];
+    const d = document.createElement("span"); d.className = "pdf"; d.textContent = "📄 " + pdf.name; th.append(d);
+    try {
+      status("Opening PDF…");
+      const lib = await getPdfLib();
+      pdfDoc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise;
+      $("pdfPages").hidden = false; $("pOf").textContent = "of " + pdfDoc.numPages + " (up to 10 at a time)";
+      $("pFrom").value = 1; $("pTo").value = Math.min(3, pdfDoc.numPages); $("pFrom").max = $("pTo").max = pdfDoc.numPages;
+      status("Choose the pages with your article, then tap Make it simple.");
+    } catch { status("This PDF could not be opened. Try screenshots of the pages instead.", true); files = []; }
+    return;
+  }
+  files = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
+  files.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
+  if (files.length) status(files.length + " screenshot" + (files.length > 1 ? "s" : "") + " ready.");
+});
+// Canvases are released right after use: iOS kills the page when canvas memory runs out.
+const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
+function shrink(source, w, h) {
+  const scale = Math.min(1, 1800 / Math.max(w, h));
+  const c = document.createElement("canvas"); c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+  c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
+  return toJpeg(c);
+}
+async function imageBlob(file) {
+  const bmp = await createImageBitmap(file).catch(() => null);
+  if (!bmp) return file;
+  try { return await shrink(bmp, bmp.width, bmp.height); } finally { bmp.close?.(); }
+}
+async function pdfContent() {
+  const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 9);
+  let text = ""; const imgs = [];
+  for (let n = from; n <= to; n++) {
+    const page = await pdfDoc.getPage(n);
+    const tc = await page.getTextContent();
+    const t = tc.items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
+    if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
+    const v1 = page.getViewport({ scale: 1 }); // a scanned page has no text, so send its picture
+    const vp = page.getViewport({ scale: Math.min(1.6, 1800 / Math.max(v1.width, v1.height)) });
+    const c = document.createElement("canvas"); c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+    await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    imgs.push(await toJpeg(c)); page.cleanup();
+  }
+  return { text, imgs, pages: from + "-" + to };
+}
+$("addForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  await aiReady;
+  if (!sample) { status(inClaude ? "Mam can't reach Claude from this view. Open the page in the Claude app or on claude.ai." : "Add your free Gemini key first (History, Settings).", true); return; }
+  const pasted = $("pasteIn").value.trim();
+  if (!files.length && !pasted) { status("Add screenshots, a PDF, or paste some text first.", true); return; }
+  const source = $("srcInput").value.trim() || "Unknown source";
+  $("processBtn").disabled = true;
+  try {
+    let text = pasted, imgs = [], pages = "";
+    if (pdfDoc) { status("Reading the PDF pages…"); const r = await pdfContent(); text = (r.text + "\n\n" + pasted).trim(); imgs = r.imgs; pages = r.pages; }
+    const lim = await sample.limits().catch(() => null);
+    if (!pdfDoc && files.length) {
+      status("Preparing screenshots…");
+      const ok = (f) => inClaude && lim?.images && lim.images.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes;
+      for (const f of files) imgs.push(ok(f) ? f : await imageBlob(f)); // one at a time; Claude shrinks accepted files itself
+    }
+    if (imgs.length && !lim?.images) { status("Pictures can't be sent from this view. Paste the article text instead.", true); return; }
+    if (lim?.images) imgs = imgs.slice(0, lim.images.maxCount);
+    status("Mam is reading it… this can take up to a minute.");
+    const r = await askJson(`You help a total beginner English learner from Pakistan who is preparing for the CSS exam. Write everything in simple English only, never Urdu. Below is reading material from "${source}" (${KIND[kind]})${imgs.length ? ", given as page images" : ""}${text ? " and text" : ""}. If there are several stories, cover the one most important for CSS and list the other headlines.
+Reply with ONLY JSON:
+{"title": "short headline in simple English", "emoji": "1 to 3 emoji that picture the story", "simple_en": "the story retold in 6 to 10 very simple English sentences (A2 level)", "css_angle": "1 or 2 simple sentences: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.) and why", "words": [{"word": "important or hard word from the text", "meaning": "very simple English meaning, at most 8 words", "example": "short simple example sentence", "emoji": "1 to 3 emoji"}], "questions": ["3 simple discussion questions"], "other_headlines": ["up to 5 other headlines in simple English, or empty"]}
+Give exactly 5 words.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default" });
+    if (!r?.title || !r?.simple_en) throw { code: "invalid_json" };
+    const now = Date.now();
+    const it = { id: "r" + now.toString(36), kind, source, pages, created: now, cardsMade: true, title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 12), simple_en: String(r.simple_en), css_angle: String(r.css_angle || ""),
+      words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6), questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), other_headlines: (Array.isArray(r.other_headlines) ? r.other_headlines : []).slice(0, 6).map(String) };
+    state.library.unshift(it); putItem(it); addWords(it);
+    files = []; pdfDoc = null; $("thumbs").innerHTML = ""; $("pdfPages").hidden = true; $("pasteIn").value = "";
+    status("Done. " + it.words.length + " new words were added to your cards.");
+    libFilter = "all"; document.querySelectorAll("#libSeg button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.k === "all")));
+    renderLib(it.id);
+  } catch (err) {
+    status(errText(err, "read") || "Stopped.", true); if (err?.code === "not_granted") status("Mam needs permission to use Claude. Open this page's Permissions menu and allow Claude, then try again.", true);
+  } finally { $("processBtn").disabled = false; }
+});
+function addWords(it) {
+  const now = Date.now();
+  (it.words || []).forEach((w, i) => {
+    if (state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === String(w.word).toLowerCase())) return;
+    const c = { id: newId("r"), type: "word", word: String(w.word), mean: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "📰").slice(0, 12), box: 0, due: now, created: now, topic: it.source };
+    state.cards.unshift(c); putCard(c);
+  });
+  renderCards(); renderDue();
+}
+function renderLib(openId) {
+  const box = $("lib"); if (!box) return;
+  const open = new Set([...box.querySelectorAll("details[open]")].map((d) => d.dataset.id)); if (openId) open.add(openId);
+  const list = state.library.filter((x) => libFilter === "all" || x.kind === libFilter);
+  box.innerHTML = "";
+  if (!list.length) {
+    box.innerHTML = `<div class="empty"><span class="big">📰</span><strong>Nothing here yet</strong><span>Add a page from Dawn today, or from your Economist or JWT. You can also send the screenshots to Claude in chat.</span></div>`;
+    return;
+  }
+  list.forEach((it) => {
+    const d = document.createElement("details"); d.className = "item"; d.dataset.id = it.id; d.style.setProperty("--h", hue(it.title)); if (open.has(it.id)) d.open = true;
+    d.innerHTML = `<summary><div class="pic"></div><div style="min-width:0"><div class="meta"></div><div class="ttl"></div></div></summary><div class="more"></div>`;
+    d.querySelector(".pic").textContent = it.emoji;
+    d.querySelector(".meta").textContent = (KIND[it.kind] || "Reading") + " · " + it.source + " · " + new Date(it.created).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+    d.querySelector(".ttl").textContent = it.title;
+    const m = d.querySelector(".more");
+    const add = (cls, label, text) => { if (!text) return; if (label) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = label; m.append(l); } const x = document.createElement("div"); x.className = cls; x.textContent = text; m.append(x); };
+    add("simple", "Simple English", it.simple_en);
+    const t = document.createElement("div"); t.className = "tools";
+    t.append(tool("🔊 Listen", () => speak(it.simple_en, 0.85)), tool("🐢 Slow", () => speak(it.simple_en, 0.65)));
+    m.append(t);
+    add("angle", "CSS angle", it.css_angle);
+    if (it.words?.length) {
+      const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Key words (saved to your cards)"; m.append(l);
+      const c = document.createElement("div"); c.className = "chips";
+      it.words.forEach((w) => { const ch = document.createElement("button"); ch.type = "button"; ch.className = "chip"; ch.style.border = "0"; ch.style.setProperty("--h", hue(w.word)); ch.innerHTML = `<span class="e"></span><span></span>`; ch.firstChild.textContent = w.emoji || "✨"; ch.lastChild.textContent = w.word + (isEnglish(w.meaning) ? " · " + w.meaning : ""); ch.onclick = () => speak(w.word + ". " + (w.example || ""), 0.8); c.append(ch); });
+      m.append(c);
+    }
+    if (it.questions?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Think and answer"; m.append(l); const ol = document.createElement("ol"); it.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ol.append(li); }); m.append(ol); }
+    if (it.other_headlines?.length) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Other headlines"; m.append(l); const ul = document.createElement("ul"); it.other_headlines.forEach((q) => { const li = document.createElement("li"); li.textContent = q; ul.append(li); }); m.append(ul); }
+    const row = document.createElement("div"); row.className = "tools";
+    const retell = document.createElement("button"); retell.type = "button"; retell.className = "btn primary"; retell.textContent = "⏱️ Retell it in 1 minute";
+    retell.onclick = () => { show("minute"); loadQuestion(`Retell this story in your own words: "${it.title}"`, it.simple_en); };
+    const go = document.createElement("button"); go.type = "button"; go.className = "btn"; go.textContent = "💬 Discuss with Mam";
+    go.onclick = () => { startTopic({ id: "read", em: it.emoji, name: it.title, desc: "from " + it.source,
+      open: `Let's talk about the ${KIND[it.kind]?.toLowerCase() || "article"} you read from ${it.source}: "${it.title}". ${it.questions?.[0] || "What is this story about, in your own words?"}`,
+      extra: `The student read this article. Simple summary: ${it.simple_en} Help them explain it in their own words, teach the key words (${(it.words || []).map((w) => w.word).join(", ")}), and ask their opinion. Useful questions: ${(it.questions || []).join(" | ")}` }); };
+    const del = document.createElement("button"); del.type = "button"; del.className = "btn"; del.textContent = "Remove";
+    del.onclick = () => { if (del.dataset.sure) delItem(it); else { del.dataset.sure = "1"; del.textContent = "Tap again to remove"; } };
+    row.append(retell, go, del); m.append(row);
+    box.append(d);
+  });
+}
+
+function hue(s) { let h = 0; for (const ch of String(s)) h = (h * 31 + ch.codePointAt(0)) % 360; return h; }
+
+// ---------- words: compare what was said with a target sentence ----------
+const toks = (s) => String(s).toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' ]+/g, " ").split(/\s+/).filter(Boolean);
+// Marks which words of the target sentence the learner said, in order (longest common subsequence).
+function matchWords(said, target) {
+  const a = toks(said), b = toks(target), dp = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+  for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) dp[i][j] = a[i] === b[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+  const hit = new Array(b.length).fill(false);
+  for (let i = 0, j = 0; i < a.length && j < b.length;) { if (a[i] === b[j]) { hit[j] = true; i++; j++; } else if (dp[i + 1][j] >= dp[i][j + 1]) i++; else j++; }
+  return { score: b.length ? dp[0][0] / b.length : 0, words: b, hit };
+}
+function diffView(m) {
+  const d = document.createElement("div"); d.className = "diff";
+  m.words.forEach((w, i) => { const s = document.createElement("span"); s.className = m.hit[i] ? "ok" : "miss"; s.textContent = w; d.append(s, " "); });
+  return d;
+}
+
+// ---------- cards ----------
+let filter = "all";
+function renderCards() {
+  const g = $("grid"); g.innerHTML = "";
+  const list = state.cards.filter((c) => filter === "all" || c.type === filter);
+  if (!list.length) {
+    g.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="big">🖼️</span><strong>No cards yet</strong><span>Have a talk with Mam. New words and corrected sentences turn into picture cards here.</span></div>`;
+    return;
+  }
+  list.forEach((c) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "card" + (c.type === "fix" ? " fixcard" : "");
+    b.style.setProperty("--h", hue(c.word));
+    b.innerHTML = `<div class="pic"></div><div class="body"><span class="word"></span><span class="mean"></span><span class="ex"></span></div>`;
+    b.querySelector(".pic").textContent = c.emoji;
+    b.querySelector(".word").textContent = c.word;
+    b.querySelector(".mean").textContent = cardMeaning(c);
+    b.querySelector(".ex").textContent = c.type === "fix" ? (c.wrong ? "Not: " + c.wrong : "") : c.example;
+    b.onclick = () => speak(c.type === "fix" ? c.word : c.word + ". " + c.example, 0.8);
+    g.append(b);
+  });
+}
+segInit("cardSeg", "f", (f) => { filter = f; renderCards(); });
+$("minStartersSlot").append(startersBox(STARTERS.general, "minIn"));
+let revView = "today";
+segInit("revSeg", "v", (v) => { revView = v; renderReview(); });
+
+// ---------- review: every card is answered out loud ----------
+function dueCards() { const now = Date.now(); return state.cards.filter((c) => c.due <= now).sort((a, b) => a.due - b.due); }
+function renderDue() { const n = dueCards().length; $("dueBadge").hidden = !n; $("dueBadge").textContent = n; }
+function renderReview() {
+  $("flashWrap").hidden = revView !== "today"; $("cardsWrap").hidden = revView === "today";
+  if (revView !== "today") { renderCards(); return; }
+  const wrap = $("flashWrap"); wrap.innerHTML = "";
+  const due = dueCards();
+  if (!due.length) {
+    const next = state.cards.length ? Math.min(...state.cards.map((c) => c.due)) : 0;
+    wrap.innerHTML = `<div class="empty"><span class="big">✅</span><strong>${state.cards.length ? "All done for now" : "Nothing to review yet"}</strong><span></span></div>`;
+    wrap.querySelector("span:last-child").textContent = state.cards.length ? "Next card comes back " + new Date(next).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "short" }) + ". Go talk with Mam!" : "Your cards from Talk will come back here on the right days so you never forget them.";
+    return;
+  }
+  const c = due[0], fix = c.type === "fix";
+  const f = document.createElement("div"); f.className = "flash"; f.style.setProperty("--h", hue(c.word));
+  f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="prompt"></span><span class="mean"></span><textarea id="revIn" rows="2"></textarea><div class="out"></div><div class="row"></div></div>`;
+  f.querySelector(".pic").textContent = c.emoji;
+  f.querySelector(".sub").textContent = (fix ? "Say this sentence correctly" : "Say a sentence with the word that means this") + " · " + due.length + " left";
+  f.querySelector(".prompt").textContent = fix ? c.wrong || "" : "";
+  f.querySelector(".mean").textContent = cardMeaning(c);
+  const inp = f.querySelector("textarea"); inp.placeholder = "Tap here, then the 🎤 on your keyboard, and say it";
+  const out = f.querySelector(".out"), row = f.querySelector(".row");
+  const btn = (label, cls, fn) => { const b = document.createElement("button"); b.type = "button"; b.className = "btn " + cls; b.textContent = label; b.onclick = fn; return b; };
+  const answer = () => { speak(fix ? c.word : c.word + ". " + (c.example || ""), 0.8); };
+  const finishCard = (ok) => { row.innerHTML = ""; row.append(btn("Next card →", "primary", () => grade(c, ok))); };
+  const check = btn("✓ Check", "primary", async () => {
+    const said = inp.value.trim();
+    if (!said) { out.textContent = "Say or type your answer first."; return; }
+    check.disabled = true;
+    if (fix) {
+      const m = matchWords(said, c.word), ok = m.score >= 0.8;
+      out.innerHTML = ""; const h = document.createElement("strong"); h.textContent = ok ? "✓ Well said!" : "Almost. Green words you said, red words you missed:"; out.append(h, diffView(m));
+      answer(); finishCard(ok); return;
+    }
+    out.textContent = "Checking…";
+    let res = null; await aiReady;
+    if (sample) {
+      try {
+        res = await askJson(`A beginner English learner is practising the word "${c.word}" (meaning: ${cardMeaning(c) || "see the word"}). They said: "${said}". Ignore capital letters and punctuation (voice dictation). Write in simple English only.
+Reply with ONLY JSON: {"used_word": true if they used "${c.word}" or a form of it (plural, past tense, etc.), "correct": true if the sentence is correct English, "fixed": "the corrected sentence (the same as theirs if it is correct)", "note": "very short encouragement or tip"}`, { modelTier: "quick", cache: false });
+      } catch {}
+    }
+    const used = res ? !!res.used_word : toks(said).join(" ").includes(toks(c.word).join(" "));
+    out.innerHTML = "";
+    const h = document.createElement("strong"); h.textContent = used ? "✓ You used “" + c.word + "”." : "The word was “" + c.word + "”."; out.append(h);
+    if (res && res.correct === false && res.fixed) { const p = document.createElement("div"); p.className = "fixline"; p.textContent = "Better: " + res.fixed; p.append(" ", tool("🔊", () => speak(String(res.fixed), 0.8))); out.append(p); }
+    if (res?.note && isEnglish(res.note)) { const p = document.createElement("div"); p.className = "sub"; p.textContent = res.note; out.append(p); }
+    if (!used && c.example) { const p = document.createElement("div"); p.className = "sub"; p.textContent = "Example: " + c.example; out.append(p); }
+    answer(); finishCard(used);
+  });
+  const forgot = btn("I forgot", "", () => {
+    out.innerHTML = ""; const a = document.createElement("div"); a.className = "answer"; a.textContent = c.word; out.append(a);
+    if (!fix && c.example) { const ex = document.createElement("div"); ex.className = "sub"; ex.textContent = c.example; out.append(ex); }
+    answer(); finishCard(false);
+  });
+  row.append(forgot, check);
+  wrap.append(f);
+}
+function grade(card, ok) {
+  const c = state.cards.find((x) => x.id === card.id) || card; // the list may have been replaced by a sync meanwhile
+  c.box = ok ? Math.min((c.box || 0) + 1, INTERVALS.length - 1) : 0;
+  c.due = ok ? Date.now() + INTERVALS[c.box] * DAY : Date.now() + 60000 * 5;
+  putCard(c); renderDue(); renderReview();
+}
+
+// ---------- 1-minute answer ----------
+const QUESTIONS = [
+  "Tell us about yourself.", "Why do you want to join the civil service?", "What is the biggest problem of Pakistan?", "What are your hobbies?",
+  "Who is your role model, and why?", "Describe your hometown.", "Why is education important?", "How can we reduce corruption in Pakistan?",
+  "What is the role of young people in Pakistan?", "How can Pakistan solve its energy crisis?", "What is climate change, and how does it affect Pakistan?",
+  "What makes a good officer?", "What is your biggest strength?", "What is your weakness, and how are you working on it?", "What did you do last weekend?",
+  "What is democracy?", "How can we improve our police?", "How does social media affect young people?", "What is your favourite book, and why?",
+  "What will you do in your first month as an officer?", "Why is tolerance important in our society?", "What is the role of women in Pakistan's development?",
+  "Tell us about a challenge you faced and how you solved it.", "How can we save water in Pakistan?", "What is artificial intelligence, and is it good for Pakistan?",
+  "Should Pakistan focus more on agriculture or industry?", "Which service group do you want, and why?", "How can we make our cities cleaner?",
+  "What do you do to stay healthy?", "Why do so many young people want to go abroad?",
+];
+let minQ = null, minRec = null, minTimer = 0, minStartAt = 0, minRunning = false, minSR = null, minBusy = false, minBase = "";
+function minStatus(t, err) { $("minStatus").textContent = t; $("minStatus").classList.toggle("err", !!err); }
+function loadQuestion(q, ctx, rec) {
+  stopMinute(true);
+  minQ = { q, ctx: ctx || "" };
+  minRec = rec || state.chats.filter((c) => c.kind === "minute" && c.topic?.name === q).sort((a, b) => b.updated - a.updated)[0] || null;
+  rec = minRec;
+  $("qText").textContent = q; $("minIn").value = ""; $("minResult").innerHTML = ""; minStatus("");
+  setTimer(60); renderMinPast();
+  if (rec?.attempts?.length) {
+    const last = rec.attempts[rec.attempts.length - 1], prev = rec.attempts[rec.attempts.length - 2];
+    if (last.result) renderMinResult(last, prev);
+    else { renderMinResult(last, prev, "Mam's feedback for this answer did not arrive."); $("minResult").append(tool("Get feedback now", () => evaluateMinute(last, prev))); }
+  }
+}
+function nextQuestion() { const pool = QUESTIONS.filter((x) => x !== minQ?.q); loadQuestion(pool[Math.floor(Math.random() * pool.length)]); }
+function setTimer(left) { $("timer").textContent = Math.max(0, Math.ceil(left)); $("ring").style.setProperty("--p", Math.max(0, Math.min(1, left / 60))); }
+$("qListen").onclick = () => minQ && speak(minQ.q, 0.85);
+$("qNext").onclick = () => nextQuestion();
+$("minStart").onclick = () => {
+  if (minRunning || minBusy) return;
+  $("minResult").innerHTML = ""; minStatus("");
+  minRunning = true; minStartAt = Date.now();
+  $("minStart").hidden = true; $("minDone").hidden = false;
+  const inp = $("minIn"); inp.disabled = false; inp.value = ""; inp.focus();
+  minTimer = setInterval(() => { const left = 60 - (Date.now() - minStartAt) / 1000; setTimer(left); if (left <= 0) endMinute(); }, 250);
+  if (canHandsFree) {
+    try {
+      minBase = "";
+      const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+      r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (minBase + " " + s).trim(); };
+      r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; minStatus("Allow the microphone for this site in your phone settings, or type your answer.", true); } };
+      r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; try { r.start(); } catch {} } };
+      r.start(); minSR = r; minStatus("Listening… speak until the timer ends.");
+    } catch { minSR = null; }
+  } else minStatus("Tap the 🎤 on your keyboard and keep talking until the timer ends.");
+};
+$("minDone").onclick = () => endMinute();
+function stopMinute(silent) {
+  clearInterval(minTimer); const r = minSR; minSR = null; try { r?.abort(); } catch {}
+  const was = minRunning; minRunning = false;
+  const inp = $("minIn"); inp.blur(); inp.disabled = true; // closes the keyboard so the result is visible
+  $("minStart").hidden = false; $("minDone").hidden = true; $("minStart").textContent = "▶ Start 60 seconds";
+  if (silent && was) $("minIn").value = "";
+  return was;
+}
+async function endMinute() {
+  if (!stopMinute()) return;
+  const secs = Math.min(60, Math.max(1, (Date.now() - minStartAt) / 1000));
+  setTimer(0);
+  const text = $("minIn").value.trim();
+  if (!text) { minStatus("I didn't get any words. Tap Start, then the 🎤 on your keyboard, and speak.", true); setTimer(60); return; }
+  const words = toks(text).length;
+  const wpm = Math.round(words / Math.max(secs, 10) * 60);
+  const fillers = (text.match(/\b(um+|uh+|er+m*|ah+|hmm+|you know)\b/gi) || []).length;
+  const t = toks(text); let repeats = 0; for (let i = 1; i < t.length; i++) if (t[i] === t[i - 1]) repeats++;
+  logTime(secs * 1000, words);
+  if (!minRec) { const now = Date.now(); minRec = { id: "m" + now.toString(36), kind: "minute", topic: { em: "⏱️", name: minQ.q, ctx: minQ.ctx || "" }, started: now, updated: now, attempts: [], words: 0, min: 0 }; }
+  const prev = minRec.attempts[minRec.attempts.length - 1];
+  const at = { at: Date.now(), text, secs: Math.round(secs), words, wpm, fillers, repeats, result: null };
+  minRec.attempts.push(at); minRec.words += words; minRec.min = Math.round((minRec.min + secs / 60) * 10) / 10;
+  putChat(minRec, true);
+  $("minStart").textContent = "🔁 Try again";
+  renderMinPast();
+  await evaluateMinute(at, prev);
+  $("minResult").scrollIntoView({ block: "start", behavior: "smooth" });
+}
+async function evaluateMinute(at, prev) {
+  renderMinResult(at, prev, "Mam is listening to your answer…");
+  await aiReady;
+  if (!sample) { renderMinResult(at, prev, inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in History, Settings, to get Mam's feedback."); return; }
+  minBusy = true;
+  const rec = minRec, mc = new AbortController(), mt = setTimeout(() => mc.abort(), 120000); // never leave the screen stuck
+  try {
+    const r = await askJson(`You are an English speaking coach for a total beginner from Pakistan preparing for the CSS exam interview. The student spoke for ${at.secs} seconds to answer this question.
+Question: "${rec.topic.name}"
+${rec.topic.ctx ? "The question is about this article: " + rec.topic.ctx.slice(0, 3000) + "\n" : ""}Student's answer (voice dictation, so ignore capital letters and punctuation): "${at.text}"
+Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words. The student's English level is ${levelId()}; score fairly for that level, and write the better answer one small step above it.
+Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
+{"score": number 1-10 for a beginner (fluency, clarity and answering the question), "comment": "one or two short sentences about the fluency, kind and honest", "errors": [{"wrong": "exact wrong words", "right": "corrected words", "why": "very short reason, at most 10 words"}], "better": "a better answer to the same question in 70 to 100 words of simple (A2-B1) English, keeping the student's own ideas", "tip": "one practical tip for the next try"}
+"errors" has 0 to 3 items.`, { modelTier: "default", cache: false, signal: mc.signal });
+    at.result = { score: Number(r?.score) || 0, comment: String(r?.comment || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: String(r?.better || ""), tip: String(r?.tip || "") };
+    putChat(rec, true); checkLevel();
+    if (rec === minRec) { renderMinResult(at, prev); renderMinPast(); }
+  } catch (e) {
+    if (rec === minRec) {
+      renderMinResult(at, prev, errText(e) || "Stopped.");
+      const b = tool("Get feedback again", () => evaluateMinute(at, prev)); $("minResult").append(b);
+    }
+  } finally { minBusy = false; clearTimeout(mt); }
+}
+function renderMinResult(at, prev, note) {
+  const box = $("minResult"); box.innerHTML = "";
+  const r = at.result;
+  const card = document.createElement("div"); card.className = "report";
+  card.innerHTML = `<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3></h3><span class="when"></span></div></div><div class="metrics"></div><p class="sub cm"></p><div class="wo"></div><div class="bt"></div><div class="mean tip"></div>`;
+  card.querySelector(".score").textContent = r?.score ? r.score + "/10" : "⏱️";
+  card.querySelector("h3").textContent = "Attempt " + (minRec?.attempts.indexOf(at) + 1 || 1);
+  card.querySelector(".when").textContent = at.secs + " second" + (at.secs === 1 ? "" : "s") + " of speaking";
+  const mt = card.querySelector(".metrics");
+  const chipM = (val, label, d) => { const el = document.createElement("div"); el.className = "metric"; el.innerHTML = "<b></b><span></span>"; el.firstChild.textContent = val; if (d) { const a = document.createElement("i"); a.className = d.good ? "good" : "bad"; a.textContent = " " + d.arrow; el.firstChild.append(a); } el.lastChild.textContent = label; mt.append(el); };
+  // the arrow shows which way the number moved; its colour shows whether that is good
+  const dl = (a, b, upGood) => (b == null || a === b ? null : { arrow: a > b ? "▲" : "▼", good: (a > b) === upGood });
+  chipM(at.words, "words", dl(at.words, prev?.words, true));
+  chipM(at.wpm, "words / min", dl(at.wpm, prev?.wpm, true));
+  chipM(at.fillers, "fillers (um, uh)", dl(at.fillers, prev?.fillers, false));
+  chipM(at.repeats, "repeated words", dl(at.repeats, prev?.repeats, false));
+  card.querySelector(".cm").textContent = note || (r && isEnglish(r.comment) ? r.comment : "") || "Fluent speakers say about 120 to 150 words per minute. Aim to talk the whole minute without stopping.";
+  (r?.errors || []).forEach((e) => { const f = document.createElement("div"); f.className = "fix"; f.innerHTML = '<span class="w"></span><span class="r"></span><span class="mean"></span>'; f.children[0].textContent = e.wrong || ""; f.children[1].textContent = "✓ " + e.right; f.children[2].textContent = isEnglish(e.why) ? e.why : ""; card.querySelector(".wo").append(f); });
+  if (r?.better && isEnglish(r.better)) {
+    const b = card.querySelector(".bt"); const l = document.createElement("div"); l.className = "lbl"; l.textContent = "A better answer (listen, then try again)"; b.append(l);
+    const p = document.createElement("p"); p.className = "better"; p.textContent = r.better; b.append(p);
+    const tl = document.createElement("div"); tl.className = "tools"; tl.append(tool("🔊 Listen", () => speak(r.better, 0.85)), tool("🐢 Slow", () => speak(r.better, 0.65))); b.append(tl);
+  }
+  card.querySelector(".tip").textContent = r?.tip && isEnglish(r.tip) ? "💡 " + r.tip : "";
+  const row = document.createElement("div"); row.className = "tools";
+  const again = document.createElement("button"); again.type = "button"; again.className = "btn primary"; again.textContent = "🔁 Try again"; again.onclick = () => { $("minIn").value = ""; $("minStart").click(); };
+  const next = document.createElement("button"); next.type = "button"; next.className = "btn"; next.textContent = "Next question →"; next.onclick = () => nextQuestion();
+  row.append(again, next); card.append(row);
+  box.append(card);
+}
+function renderMinPast() {
+  const box = $("minPast"); box.innerHTML = "";
+  const list = minRec?.attempts || [];
+  $("minPastWrap").hidden = list.length < 2;
+  list.slice(0, -1).reverse().forEach((a, i) => {
+    const d = document.createElement("details"); d.className = "item";
+    d.innerHTML = "<summary style=\"grid-template-columns:auto minmax(0,1fr)\"><b></b><span></span></summary><div class=\"more\"><p></p></div>";
+    d.querySelector("b").textContent = a.result?.score ? a.result.score + "/10" : "–";
+    d.querySelector("summary span").textContent = "Attempt " + (list.length - 1 - i) + " · " + a.words + " words · " + a.wpm + " words/min";
+    d.querySelector("p").textContent = a.text;
+    box.append(d);
+  });
+}
+function openMinute(rec) { show("minute"); loadQuestion(rec.topic.name, rec.topic.ctx, rec); }
+
+// ---------- level + fluency ----------
+const LEVELS = [
+  { id: "A1", name: "Starter", gets: "Mam uses very simple English and gives you sentences to copy." },
+  { id: "A2", name: "Basic", gets: "Mam uses a little more English and asks you \"why\" and \"how\"." },
+  { id: "B1", name: "Confident", gets: "Mam talks naturally and asks for reasons and examples. The board asks real interview questions." },
+  { id: "B2", name: "Fluent", gets: "Mam challenges your opinions like a CSS board. Corrections cover small details too." },
+];
+// What it takes to leave each level, measured only on practice done at that level.
+const NEEDS = {
+  A1: { answers: 15, words: 7, good: 0.5, score: 6, speed: 0 },
+  A2: { answers: 20, words: 11, good: 0.6, score: 6.5, speed: 80 },
+  B1: { answers: 25, words: 16, good: 0.7, score: 7.5, speed: 100 },
+};
+const LEVEL_STYLE = {
+  A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences, then ONE simple question. Often give a model sentence the student can copy (\"You can say: ...\").",
+  A2: "Use simple English (CEFR A2): up to 3 short sentences, then ONE question. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
+  B1: "Use natural everyday English (CEFR B1): up to 3 sentences, then ONE open question. Ask for reasons and examples, and sometimes offer a useful CSS-interview phrase. Encourage answers of 3 to 4 sentences.",
+  B2: "Use fluent, natural English (CEFR B2), like a friendly CSS interviewer: politely challenge the student's opinion and ask follow-ups that need explanation, comparison or examples. Expect answers of 4 to 6 sentences.",
+};
+const BOARD_STYLE = { A1: "very simple, slow questions with common words (A2)", A2: "simple, clear questions (A2-B1)", B1: "normal interview English (B1)", B2: "real CSS board English (B2) with tougher follow-ups" };
+const CHECK_STYLE = {
+  A1: "The student is at level A1: only correct mistakes that change the meaning or are very common; ignore small article mistakes.",
+  A2: "The student is at level A2: correct grammar and word mistakes; ignore tiny style points.",
+  B1: "The student is at level B1: also correct articles, prepositions and word choice.",
+  B2: "The student is at level B2: also correct style, collocations and anything that sounds unnatural.",
+};
+const levelId = () => (LEVELS.some((l) => l.id === state.settings.level) ? state.settings.level : "A1");
+const levelOf = (id) => LEVELS.find((l) => l.id === id) || LEVELS[0];
+const levelSince = () => { const h = state.settings.levelHistory || []; const last = h.filter((x) => x.level === levelId()).pop(); return last?.at || 0; };
+const avg = (a) => (a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0);
+const wordCount = (s) => toks(s).length;
+
+// Every answer, score and 1-minute speed, with a time, from all saved chats.
+function practiceData() {
+  const answers = [], scores = [], speeds = [];
+  state.chats.forEach((c) => {
+    if (c.turns) {
+      c.turns.forEach((t) => { if (t.role === "user") answers.push({ at: t.at || c.updated || 0, words: wordCount(t.content), fb: t.fb || null }); });
+      if (c.report?.score) scores.push({ at: c.report.date || c.updated, v: Number(c.report.score), kind: c.kind });
+    }
+    (c.attempts || []).forEach((a) => {
+      speeds.push({ at: a.at, v: a.wpm, words: a.words });
+      if (a.result?.score) scores.push({ at: a.at, v: Number(a.result.score), kind: "minute" });
+    });
+  });
+  state.sessions.forEach((s) => { if (s.score) scores.push({ at: s.date, v: Number(s.score), kind: "talk" }); });
+  const byT = (a, b) => a.at - b.at;
+  return { answers: answers.sort(byT), scores: scores.sort(byT), speeds: speeds.sort(byT) };
+}
+function levelProgress() {
+  const id = levelId(), need = NEEDS[id];
+  if (!need) return { id, top: true, reqs: [] };
+  const since = levelSince(), d = practiceData();
+  const ans = d.answers.filter((x) => x.at >= since);
+  const recent = ans.slice(-15), checked = recent.filter((x) => x.fb);
+  const good = checked.length ? checked.filter((x) => !(x.fb.errors || []).length).length / checked.length : 0;
+  const sc = d.scores.filter((x) => x.at >= since).slice(-4).map((x) => x.v);
+  const sp = d.speeds.filter((x) => x.at >= since).slice(-3).map((x) => x.v);
+  const reqs = [
+    { label: "Answers at this level", cur: ans.length, target: need.answers, show: (v) => Math.min(v, need.answers) + " / " + need.answers },
+    { label: "Words per answer", cur: avg(recent.map((x) => x.words)), target: need.words, show: (v) => v.toFixed(1) + " / " + need.words },
+    { label: "Answers with no mistakes", cur: good, target: need.good, show: (v) => Math.round(v * 100) + "% / " + Math.round(need.good * 100) + "%" },
+    { label: sc.length < 2 ? "Average score (finish 2 talks or 1-minute answers)" : "Average score", cur: sc.length >= 2 ? avg(sc) : 0, target: need.score, show: (v) => (sc.length ? v.toFixed(1) : "–") + " / " + need.score },
+  ];
+  if (need.speed) reqs.push({ label: sp.length < 2 ? "Speaking speed (do 2 one-minute answers)" : "Speaking speed", cur: sp.length >= 2 ? avg(sp) : 0, target: need.speed, show: (v) => (sp.length ? Math.round(v) : "–") + " / " + need.speed + " words/min" });
+  reqs.forEach((r) => { r.ok = r.cur >= r.target; });
+  return { id, reqs, ready: reqs.every((r) => r.ok) };
+}
+function setLevel(id, auto) {
+  const h = state.settings.levelHistory || (state.settings.levelHistory = [{ level: levelId(), at: 0 }]);
+  if (id === levelId()) return;
+  state.settings.level = id; h.push({ level: id, at: Date.now(), auto: !!auto });
+  putMeta(); renderHeader();
+}
+// Called after every checked answer, report and 1-minute score.
+function checkLevel() {
+  const p = levelProgress();
+  if (!p.ready) return;
+  const next = LEVELS[LEVELS.findIndex((l) => l.id === p.id) + 1];
+  if (!next) return;
+  setLevel(next.id, true);
+  dbg("level_up", { to: next.id });
+  toast("🎉 Level up! You are now " + next.id + " · " + next.name + ". " + next.gets);
+  speak("Congratulations! You moved up to level " + next.id.split("").join(" ") + ".", 0.9);
+  if (!$("v-history").hidden) renderHistory();
+}
+let toastT = 0;
+function toast(msg) {
+  const t = $("toast"); t.textContent = msg; t.hidden = false;
+  const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "See my level"; b.onclick = () => { t.hidden = true; show("history"); }; t.append(" ", b);
+  clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 9000);
+}
+function renderLevel() {
+  const p = levelProgress(), L = levelOf(p.id), next = LEVELS[LEVELS.indexOf(L) + 1];
+  const box = $("levelCard"); box.innerHTML = "";
+  const top = document.createElement("div"); top.className = "lvtop";
+  top.innerHTML = '<span class="lvbadge"></span><div><strong></strong><span class="lvnext"></span></div>';
+  top.querySelector(".lvbadge").textContent = L.id;
+  top.querySelector("strong").textContent = "Level " + L.id + " · " + L.name;
+  top.querySelector(".lvnext").textContent = next ? "Next: " + next.id + " · " + next.name : "Top level. Keep practising to stay fluent!";
+  box.append(top);
+  const steps = document.createElement("div"); steps.className = "lvsteps";
+  LEVELS.forEach((l, i) => { const s = document.createElement("span"); s.className = i < LEVELS.indexOf(L) ? "done" : i === LEVELS.indexOf(L) ? "now" : ""; s.textContent = l.id; steps.append(s); });
+  box.append(steps);
+  p.reqs.forEach((r) => {
+    const row = document.createElement("div"); row.className = "req" + (r.ok ? " ok" : "");
+    row.innerHTML = '<span class="rl"></span><i><b></b></i><span class="rv"></span>';
+    row.querySelector(".rl").textContent = (r.ok ? "✓ " : "") + r.label;
+    row.querySelector("b").style.width = Math.min(100, (r.cur / r.target) * 100) + "%";
+    row.querySelector(".rv").textContent = r.show(r.cur);
+    box.append(row);
+  });
+  const note = document.createElement("p"); note.className = "sub";
+  note.textContent = next ? "When every line is green you move up to " + next.id + " automatically. " + next.gets : L.gets;
+  box.append(note);
+}
+
+// Daily averages for the fluency chart.
+const METRICS = {
+  speed: { label: "Speaking speed", unit: "words/min", empty: "Do 1-minute answers on two different days to see your speed line.", target: 120, targetLabel: "fluent ≈ 120" },
+  length: { label: "Words per answer", unit: "words", empty: "Talk with Mam on two different days to see how your answers grow.", target: 0 },
+  score: { label: "Score", unit: "/ 10", empty: "Finish talks or 1-minute answers on two different days to see your scores.", target: 0, max: 10 },
+};
+let metric = "speed";
+const dayKey = (t) => new Date(t).toLocaleDateString("en-CA");
+function daily(points, val) {
+  const m = new Map();
+  points.forEach((p) => { if (!p.at) return; const k = dayKey(p.at); if (!m.has(k)) m.set(k, []); m.get(k).push(val(p)); });
+  return [...m.entries()].map(([k, v]) => ({ day: k, t: new Date(k + "T12:00:00").getTime(), v: avg(v), n: v.length })).sort((a, b) => a.t - b.t);
+}
+function seriesFor(m) {
+  const d = practiceData();
+  if (m === "speed") return daily(d.speeds, (p) => p.v);
+  if (m === "length") return daily(d.answers, (p) => p.words);
+  return daily(d.scores, (p) => p.v);
+}
+function niceMax(v) { const steps = [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 120, 150, 200, 250, 300]; return steps.find((s) => s >= v) || Math.ceil(v / 100) * 100; }
+function renderFluency() {
+  const pts = (k) => seriesFor(k);
+  // headline numbers: recent vs first
+  const tiles = $("fluTiles"); tiles.innerHTML = "";
+  const d = practiceData();
+  const tile = (label, now, first, unit, fmt) => {
+    const el = document.createElement("div"); el.className = "stat";
+    el.innerHTML = "<span></span><b></b><em></em>";
+    el.children[0].textContent = label;
+    el.children[1].textContent = now == null ? "–" : fmt(now); if (now != null && unit) { const u = document.createElement("small"); u.textContent = " " + unit; el.children[1].append(u); }
+    if (now != null && first != null && Math.abs(now - first) >= 0.05) {
+      const up = now > first; el.children[2].className = up ? "up" : "down";
+      el.children[2].textContent = (up ? "▲ +" : "▼ ") + fmt(Math.abs(now - first) * (up ? 1 : -1)).replace("-", "−") + " since you started";
+    } else el.children[2].textContent = now == null ? "no data yet" : "keep going";
+    tiles.append(el);
+  };
+  const lastAvg = (a, n) => (a.length ? avg(a.slice(-n)) : null);
+  const firstAvg = (a, n) => (a.length > n ? avg(a.slice(0, n)) : null);
+  const sp = d.speeds.map((x) => x.v), ln = d.answers.map((x) => x.words), sc = d.scores.map((x) => x.v);
+  tile("Speaking speed", lastAvg(sp, 3), firstAvg(sp, 3), "w/min", (v) => String(Math.round(v)));
+  tile("Words per answer", lastAvg(ln, 15), firstAvg(ln, 15), "", (v) => v.toFixed(1));
+  tile("Average score", lastAvg(sc, 4), firstAvg(sc, 4), "/10", (v) => v.toFixed(1));
+  // chart
+  const M = METRICS[metric], s = pts(metric);
+  $("fluTitle").textContent = M.label + " per day (" + M.unit + ")";
+  const box = $("fluChart"); box.innerHTML = "";
+  const tbl = $("fluTable"); tbl.innerHTML = "";
+  if (s.length < 2) { const e = document.createElement("div"); e.className = "empty"; e.textContent = M.empty; box.append(e); $("fluTableWrap").hidden = true; return; }
+  $("fluTableWrap").hidden = false;
+  const W = Math.max(280, box.clientWidth || 340), H = 190, L = 34, R = 44, T = 14, B = 24;
+  const t0 = s[0].t, t1 = s[s.length - 1].t, span = Math.max(DAY, t1 - t0);
+  const ymax = M.max || niceMax(Math.max(...s.map((p) => p.v), M.target || 0) * 1.1);
+  const x = (t) => L + ((t - t0) / span) * (W - L - R), y = (v) => T + (1 - v / ymax) * (H - T - B);
+  const NS = "http://www.w3.org/2000/svg", mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); (parent || svg).append(e); return e; };
+  const svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("role", "img");
+  svg.setAttribute("aria-label", M.label + " per day, from " + s[0].v.toFixed(1) + " to " + s[s.length - 1].v.toFixed(1));
+  [0, 0.5, 1].forEach((f) => { const v = ymax * f; mk("line", { x1: L, x2: W - R, y1: y(v), y2: y(v), class: "grid" }); const tx = mk("text", { x: L - 6, y: y(v) + 4, class: "tick", "text-anchor": "end" }); tx.textContent = Math.round(v); });
+  if (M.target && M.target < ymax) { mk("line", { x1: L, x2: W - R, y1: y(M.target), y2: y(M.target), class: "target" }); const tx = mk("text", { x: W - R, y: y(M.target) - 4, class: "tick", "text-anchor": "end" }); tx.textContent = M.targetLabel; }
+  (state.settings.levelHistory || []).filter((h) => h.at >= t0 && h.at <= t1 + DAY).forEach((h) => { const xx = x(Math.min(h.at, t1)); mk("line", { x1: xx, x2: xx, y1: T, y2: H - B, class: "lvmark" }); const tx = mk("text", { x: xx + 3, y: T + 9, class: "tick" }); tx.textContent = "→ " + h.level; });
+  const line = s.map((p, i) => (i ? "L" : "M") + x(p.t).toFixed(1) + " " + y(p.v).toFixed(1)).join(" ");
+  mk("path", { d: line + ` L${x(t1).toFixed(1)} ${y(0)} L${x(t0).toFixed(1)} ${y(0)} Z`, class: "area" });
+  mk("path", { d: line, class: "ln" });
+  s.forEach((p) => mk("circle", { cx: x(p.t), cy: y(p.v), r: 4, class: "dot" }));
+  const last = s[s.length - 1]; const et = mk("text", { x: x(last.t) + 8, y: y(last.v) + 4, class: "endlab" }); et.textContent = metric === "speed" ? Math.round(last.v) : last.v.toFixed(1);
+  const fmtD = (t) => new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  const a = mk("text", { x: L, y: H - 6, class: "tick" }); a.textContent = fmtD(t0);
+  const z = mk("text", { x: W - R, y: H - 6, class: "tick", "text-anchor": "end" }); z.textContent = fmtD(t1);
+  // crosshair + tooltip: snaps to the nearest day
+  const cross = mk("line", { y1: T, y2: H - B, class: "cross", visibility: "hidden" });
+  const tip = document.createElement("div"); tip.className = "ctip"; tip.hidden = true;
+  const hit = mk("rect", { x: L, y: 0, width: W - L - R + 10, height: H, fill: "transparent", tabindex: "0" });
+  const showAt = (px) => {
+    let best = s[0]; s.forEach((p) => { if (Math.abs(x(p.t) - px) < Math.abs(x(best.t) - px)) best = p; });
+    cross.setAttribute("x1", x(best.t)); cross.setAttribute("x2", x(best.t)); cross.setAttribute("visibility", "visible");
+    tip.innerHTML = "<b></b><span></span>"; tip.firstChild.textContent = (metric === "speed" ? Math.round(best.v) : best.v.toFixed(1)) + " " + M.unit; tip.lastChild.textContent = fmtD(best.t) + " · " + best.n + (metric === "length" ? " answers" : metric === "speed" ? " tries" : " scores");
+    tip.hidden = false; tip.style.left = Math.min(W - 130, Math.max(0, x(best.t) - 60)) + "px";
+  };
+  const px = (e) => { const r = svg.getBoundingClientRect(); return ((e.clientX - r.left) / r.width) * W; };
+  hit.addEventListener("pointermove", (e) => showAt(px(e)));
+  hit.addEventListener("pointerdown", (e) => showAt(px(e)));
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  hit.addEventListener("focus", () => showAt(x(last.t)));
+  hit.addEventListener("blur", () => { cross.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  box.append(svg, tip);
+  // table view: every value is reachable without hovering
+  const head = document.createElement("tr"); head.innerHTML = "<th>Day</th><th></th><th>Count</th>"; head.children[1].textContent = M.label; tbl.append(head);
+  [...s].reverse().forEach((p) => { const r = document.createElement("tr"); [fmtD(p.t), metric === "speed" ? Math.round(p.v) : p.v.toFixed(1), p.n].forEach((v) => { const td = document.createElement("td"); td.textContent = v; r.append(td); }); tbl.append(r); });
+}
+segInit("fluSeg", "m", (m) => { metric = m; renderFluency(); });
+$("lvSel").onchange = () => { setLevel($("lvSel").value, false); renderHistory(); };
+$("lvChip").onclick = () => show("history");
+window.addEventListener("resize", () => { if (!$("v-history").hidden) renderFluency(); });
+
+// ---------- history ----------
+function renderHeader() {
+  $("streakTxt").innerHTML = "🔥 <strong>" + streak() + "</strong>";
+  const m = state.days[today()]?.min || 0;
+  $("goalBar").style.width = Math.min(100, (m / state.settings.goal) * 100) + "%";
+  $("goalTxt").textContent = state.settings.goal;
+  $("lvChip").textContent = levelId();
+}
+const KIND_LABEL = { talk: "Talk", interview: "Mock interview", minute: "1-minute answer" };
+function renderHistory() {
+  renderLevel(); renderFluency(); $("lvSel").value = levelId();
+  const totalW = Object.values(state.days).reduce((a, d) => a + (d.words || 0), 0);
+  const totalM = Object.values(state.days).reduce((a, d) => a + (d.min || 0), 0);
+  $("stats").innerHTML = "";
+  [[streak(), "day streak"], [Math.round(totalM), "minutes"], [totalW, "words spoken"]].forEach(([v, l]) => {
+    const d = document.createElement("div"); d.className = "stat"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = v; d.lastChild.textContent = l; $("stats").append(d);
+  });
+  const wk = $("week"); wk.innerHTML = "";
+  const days = [...Array(7)].map((_, i) => new Date(Date.now() - (6 - i) * DAY));
+  const max = Math.max(state.settings.goal, ...days.map((d) => state.days[d.toLocaleDateString("en-CA")]?.min || 0));
+  days.forEach((d) => {
+    const m = state.days[d.toLocaleDateString("en-CA")]?.min || 0;
+    const el = document.createElement("div"); el.innerHTML = "<i></i><span></span>";
+    el.firstChild.style.height = Math.max(3, (m / max) * 80) + "px"; if (!m) el.firstChild.className = "zero";
+    el.firstChild.title = m + " min";
+    el.lastChild.textContent = d.toLocaleDateString(undefined, { weekday: "narrow" });
+    wk.append(el);
+  });
+  const box = $("hist"); box.innerHTML = "";
+  const list = [...state.chats].sort((a, b) => b.updated - a.updated);
+  if (!list.length) box.innerHTML = `<div class="empty"><span class="big">🗂️</span><strong>No chats yet</strong><span>Every talk, interview and 1-minute answer is saved here automatically. Tap one to read it again or continue.</span></div>`;
+  list.forEach((c) => {
+    const b = document.createElement("button"); b.type = "button"; b.className = "hitem";
+    b.innerHTML = `<span class="pic"></span><span class="txt"><span class="meta"></span><span class="ttl"></span><span class="sub2"></span></span><span class="sc"></span>`;
+    b.style.setProperty("--h", hue(c.topic?.name || c.id));
+    b.querySelector(".pic").textContent = c.topic?.em || "💬";
+    b.querySelector(".meta").textContent = (KIND_LABEL[c.kind] || "Talk") + " · " + new Date(c.updated).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" });
+    b.querySelector(".ttl").textContent = c.topic?.name || "Chat";
+    const answers = c.kind === "minute" ? (c.attempts || []).length + " attempt" + ((c.attempts || []).length === 1 ? "" : "s") : ((n) => n + " answer" + (n === 1 ? "" : "s"))((c.turns || []).filter((x) => x.role === "user").length);
+    b.querySelector(".sub2").textContent = answers + " · " + (c.words || 0) + " words";
+    const best = c.kind === "minute" ? Math.max(0, ...(c.attempts || []).map((a) => a.result?.score || 0)) : c.report?.score;
+    b.querySelector(".sc").textContent = best ? best + "/10" : "";
+    b.onclick = () => (c.kind === "minute" ? openMinute(c) : openChat(c));
+    box.append(b);
+  });
+  const old = $("oldReports"); old.innerHTML = "";
+  $("oldWrap").hidden = !state.sessions.length;
+  state.sessions.slice(0, 15).forEach((s) => old.append(reportCard({ kind: "talk", topic: { em: s.em, name: s.topic }, report: { ...s }, min: s.min, words: s.words, newCards: s.newCards, updated: s.date })));
+}
+
+// ---------- shell ----------
+const TABS = ["talk", "minute", "read", "review", "history"];
+function show(tab) {
+  TABS.forEach((t) => { $("v-" + t).hidden = t !== tab; });
+  document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  $("composer").hidden = tab !== "talk" || !topic;
+  if (tab !== "talk" && (handsFree || rec)) { stopListening(); hush(); }
+  if (tab !== "minute" && minRunning) endMinute();
+  if (tab === "review") renderReview();
+  if (tab === "read") renderLib();
+  if (tab === "history") renderHistory();
+  if (tab === "minute" && !minQ) nextQuestion();
+  $("main").scrollTop = tab === "talk" ? $("main").scrollHeight : 0;
+}
+document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
+function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
+$("input").addEventListener("input", autoGrow);
+$("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); primeTTS(); send(); } });
+$("sendBtn").onclick = () => { primeTTS(); send(); };
+$("backBtn").onclick = endChat;
+$("newBtn").onclick = () => { if (topic && !busy) startTopic(topic.kind === "interview" ? INTERVIEW : topic, true); };
+$("finishBtn").onclick = finish;
+$("voiceBtn").onclick = () => {
+  state.settings.voice = !state.settings.voice; putMeta();
+  $("voiceBtn").textContent = state.settings.voice ? "🔊" : "🔇"; $("voiceBtn").setAttribute("aria-pressed", String(state.settings.voice));
+  if (!state.settings.voice) hush();
+  else { const last = chat?.turns.filter((x) => x.role === "assistant").pop(); if (last && topic) speakLine(last.content); else primeTTS(); } // a tap: unlocks speech on iOS
+};
+$("goalSel").onchange = () => { state.settings.goal = +$("goalSel").value; putMeta(); renderHeader(); };
+if (!inClaude) {
+  $("keyBox").hidden = false;
+  if (gget()?.key) $("keyStatus").textContent = "Key saved ✓";
+  $("keySave").onclick = async () => {
+    const key = $("keyIn").value.trim(); if (!key) return;
+    $("keyStatus").textContent = "Checking…";
+    try {
+      const model = await pickModel(key);
+      try { localStorage.setItem(GKEY, JSON.stringify({ key, model })); } catch {}
+      sample = geminiAI(); aiBanner(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready.";
+    } catch { $("keyStatus").textContent = "That key did not work. Copy it again and paste."; }
+  };
+  $("keyDel").onclick = () => { try { localStorage.removeItem(GKEY); } catch {} sample = null; aiBanner(); $("keyStatus").textContent = "Key removed."; };
+} else {
+  $("handsfreeNote").hidden = false;
+  $("handsfreeNote").textContent = "Want hands-free talking like Loora? Inside Claude the microphone is blocked, so use the free web version of Bolo English in Safari for that.";
+}
+$("diagBtn").onclick = async () => {
+  const out = $("diagOut"), lines = [];
+  const put = (l) => { lines.push(l); out.textContent = lines.join("\n"); };
+  $("diagBtn").disabled = true;
+  put("Inside Claude: " + (inClaude ? "yes" : "no"));
+  await aiReady;
+  put("Teacher connection: " + (sample ? "available" : "not available"));
+  if (inClaude) {
+    try {
+      const pm = await use("permissions"), stt = pm ? await pm.state("sample") : "unknown"; put("Permission: " + stt);
+      if (stt === "denied" && !$("diagAllow")) { const b = document.createElement("button"); b.type = "button"; b.id = "diagAllow"; b.className = "btn primary"; b.textContent = "Allow Claude"; b.onclick = async () => { try { await pm.manage(); } catch { put("Open the menu at the top of this page, choose Permissions, and allow Claude."); } }; $("diagBtn").after(b); }
+    } catch { put("Permission: unknown"); }
+  }
+  put("Saved chats: " + state.chats.length + (col ? " (synced to your account)" : " (on this device only)"));
+  if (sample) {
+    put("Sending a test message… (tap Allow if asked)");
+    const step = () => { const c = new AbortController(); setTimeout(() => c.abort(), 120000); return c.signal; }; // a fresh limit per step; the consent sheet can take a while
+    try { const { text } = await sample("Reply with exactly the word OK.", { modelTier: "quick", cache: false, signal: step() }); put("1. Simple test: " + text.trim().slice(0, 40) + " ✓"); }
+    catch (e) { put("1. Simple test failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    put("Testing a chat reply…");
+    try {
+      const { text } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: step(), onText: () => {} });
+      put("2. Chat reply ✓ " + text.trim().slice(0, 80));
+    } catch (e) { put("2. Chat reply failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+    put("Testing sentence check…");
+    try {
+      const r = await askJson('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", cache: false, signal: step() });
+      put("3. Sentence check ✓ " + JSON.stringify(r).slice(0, 60));
+    } catch (e) { put("3. Sentence check failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
+  }
+  $("diagBtn").disabled = false;
+};
+function renderAll() {
+  $("goalSel").value = String(state.settings.goal);
+  renderTopics(); renderWotd(); renderLib(); renderCards(); renderDue(); renderHeader();
+  if (!$("v-history").hidden) renderHistory();
+  $("voiceBtn").textContent = state.settings.voice ? "🔊" : "🔇";
+}
+function restoreChat() {
+  if (chat || !state.settings.lastChat || $("v-talk").hidden) return; // never pull the learner away from another tab
+  const c = state.chats.find((x) => x.id === state.settings.lastChat && x.turns);
+  if (c) openChat(c);
+}
+loadLocal(); renderAll(); restoreChat(); checkLevel();
+connectDb();
+})();
+</script>
+
+</body>
+</html>
