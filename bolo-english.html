@@ -87,7 +87,7 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .orbrow { display: flex; align-items: center; gap: 18px; }
 .orb { width: 96px; height: 96px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 34px; display: grid; place-items: center; position: relative; flex: none; }
 .orb::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 3px solid transparent; }
-.orb.listening { background: var(--bad); color: #fff; }
+.orb.listening { background: var(--bad); color: #fff; font-family: var(--display); font-weight: 800; }
 .orb.listening::after { border-color: var(--bad); animation: ring 1.3s ease-out infinite; }
 .orb.speaking::after { border-color: var(--accent); animation: ring 1s ease-out infinite; }
 .orb.thinking::after { border-color: var(--accent) transparent transparent; animation: spin .9s linear infinite; }
@@ -99,6 +99,27 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .send { width: 46px; height: 46px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 20px; font-weight: 700; flex: none; }
 .hint { font-size: 13px; color: var(--muted); margin: 0; text-align: center; }
 .hint a { color: var(--accent); font-weight: 700; }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.qcard .q { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.brain { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+.ideas { display: flex; flex-direction: column; gap: 8px; }
+.idea { text-align: left; border: 1px solid var(--line); background: var(--bg); border-radius: 14px; padding: 10px 12px; }
+.idea strong { font-family: var(--display); font-size: 16px; }
+.idea ul { margin: 4px 0 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+.idea.on { border-color: var(--accent); box-shadow: inset 0 0 0 2px var(--accent); }
+.idea.on ul { color: var(--fg); }
+.plan { margin: 0; padding-left: 20px; font-size: 15px; }
+.answerbox { width: 100%; min-height: 110px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 16px; padding: 12px 14px; font: inherit; font-size: 17px; resize: vertical; }
+.answerbox:disabled { opacity: .7; }
+.metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.metric { background: var(--sunk); border-radius: 12px; padding: 8px 4px; text-align: center; }
+.metric b { display: block; font-family: var(--display); font-size: 20px; }
+.metric b i { font-style: normal; font-size: 14px; }
+.metric b i.good { color: var(--good); }
+.metric b i.bad { color: var(--bad); }
+.metric span { font-size: 11px; color: var(--muted); }
+.better { margin: 0; font-size: 16px; line-height: 1.5; }
+.err { display: flex; flex-direction: column; gap: 1px; }
 
 /* sheets: topics and settings */
 .sheet { position: fixed; inset: 0; z-index: 30; background: rgb(0 0 0 / 40%); display: flex; align-items: flex-end; justify-content: center; }
@@ -208,6 +229,7 @@ const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 // ---------- topics ----------
 const TOPICS = [
   { id: "free", em: "💬", name: "Free talk", desc: "Anything you like", open: "Hi! I am Mam, your English partner. What would you like to talk about today?" },
+  { id: "minute", kind: "minute", em: "⏱️", name: "1-minute challenge", desc: "Brainstorm ideas, then speak for 60 seconds" },
   { id: "routine", em: "⏰", name: "My day", desc: "Routine, work, plans", open: "Let's talk about your day. What did you do today?" },
   { id: "intro", em: "🙋", name: "About me", desc: "Name, city, studies", open: "Hello! I am Mam, your English teacher. What is your name, and where are you from?" },
   { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
@@ -240,7 +262,7 @@ const level = () => (LEVEL_STYLE[state.settings.level] ? state.settings.level : 
 function loadLocal() {
   try { raw = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch { raw = {}; }
   state.settings = { ...state.settings, ...(raw.settings || {}) };
-  state.chats = (Array.isArray(raw.chats) ? raw.chats : []).filter((c) => c && c.turns);
+  state.chats = (Array.isArray(raw.chats) ? raw.chats : []).filter((c) => c && (c.turns || c.attempts));
 }
 // Keeps fields written by older versions of the app; with the account store the phone keeps the 30 newest chats, without it (web version) far more.
 function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...raw, settings: state.settings, chats: state.chats.slice(0, col ? 30 : 300) })); } catch {} }
@@ -263,6 +285,7 @@ function putMeta() {
 }
 // A store document holds at most 256 KiB: keep the newest turns that fit well under that.
 function slimChat(c) {
+  if (!c.turns) return { ...c, attempts: (c.attempts || []).slice(-30) };
   let turns = c.turns.slice(-300), out = { ...c, turns };
   while (turns.length > 20 && new Blob([JSON.stringify(out)]).size > 200000) { turns = turns.slice(Math.ceil(turns.length / 5)); out = { ...c, turns }; }
   return out;
@@ -294,7 +317,7 @@ async function connectDb() {
   try { snap = await getRetry(col); } catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; }
   metaReady = true;
   const chats = []; let meta = null;
-  snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("chat_")) { const c = thaw(d.data()); if (c?.turns) chats.push(c); } });
+  snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("chat_")) { const c = thaw(d.data()); if (c?.turns || c?.attempts) chats.push(c); } });
   // Keep whichever copy of a chat is newer; the open chat is updated in place so the screen keeps working.
   const by = new Map(state.chats.map((c) => [c.id, c])); let redraw = false;
   chats.forEach((c) => { const l = by.get(c.id); if (!l) by.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) { Object.assign(l, c); redraw = true; } else by.set(c.id, c); } });
@@ -303,7 +326,8 @@ async function connectDb() {
   if (meta?.settings) state.settings = { ...state.settings, ...meta.settings };
   saveLocal(); putMeta(); renderVoiceBtn();
   // show the conversation from the account (unless the learner is in the middle of talking)
-  if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
+  if (mode === "minute") { if (!minRunning && !minBusy) { minRec = minuteRecord(state.settings.minuteQ); renderMinute(); } }
+  else if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
 }
 
 // ---------- Claude, or Gemini in the web version ----------
@@ -460,7 +484,9 @@ function newChat(t) {
 const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
 // Opens the topic's conversation (or starts it) and shows every earlier message.
 function openTopic(t, quiet) {
-  stopLoop(); ctl?.abort(); hush();
+  stopLoop(); ctl?.abort(); hush(); stopMinute();
+  if (t.kind === "minute") { openMinute(); return; }
+  mode = "chat"; applyDock();
   let c = findThread(t);
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
   if (!c) c = newChat(t);
@@ -708,6 +734,7 @@ function stopLoop() { listening = false; clearTimeout(silenceT); const r = rec; 
 function afterMam() { if (listening && !rec && !busy) startListening(); else setState("idle"); }
 $("orb").onclick = () => {
   primeTTS();
+  if (mode === "minute") { if (minRunning) endMinute(); else startMinute(); return; }
   if (!canListen) { $("typeRow").hidden = false; $("input").focus(); return; }
   if (rec) { listening = false; try { rec.stop(); } catch {} return; } // pause; what was already heard is still sent
   if (busy) return;
@@ -717,7 +744,210 @@ $("orb").onclick = () => {
   if (last?.role === "assistant" && state.settings.voice) { setState("speaking"); speakLine(last.content, afterMam); } // Mam asks her question out loud first
   else startListening();
 };
-document.addEventListener("visibilitychange", () => { if (document.hidden) { stopLoop(); hush(); setState("idle"); } });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { stopLoop(); hush(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
+
+// ---------- 1-minute challenge: brainstorm, then speak for 60 seconds ----------
+const QUESTIONS = [
+  "Tell us about yourself.", "Why do you want to join the civil service?", "What is the biggest problem of Pakistan?", "What are your hobbies?",
+  "Who is your role model, and why?", "Describe your hometown.", "Why is education important?", "How can we reduce corruption in Pakistan?",
+  "What is the role of young people in Pakistan?", "How can Pakistan solve its energy crisis?", "What is climate change, and how does it affect Pakistan?",
+  "What makes a good officer?", "What is your biggest strength?", "What is your weakness, and how are you working on it?", "What did you do last weekend?",
+  "What is democracy?", "How can we improve our police?", "How does social media affect young people?", "What is your favourite book, and why?",
+  "What will you do in your first month as an officer?", "Why is tolerance important in our society?", "What is the role of women in Pakistan's development?",
+  "Tell us about a challenge you faced and how you solved it.", "How can we save water in Pakistan?", "What is artificial intelligence, and is it good for Pakistan?",
+  "Should Pakistan focus more on agriculture or industry?", "Which service group do you want, and why?", "How can we make our cities cleaner?",
+  "What do you do to stay healthy?", "Why do so many young people want to go abroad?",
+];
+const PLAN_FALLBACK = ["Start: In my opinion, …", "Reason: The main reason is …", "Example: For example, …", "End: So, I believe …"];
+let mode = "chat", minRec = null, minRunning = false, minStartAt = 0, minTimer = 0, minSR = null, minBase = "", minBusy = false, minIdea = -1;
+const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.topic?.name === q) || null;
+// The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge.
+function applyDock() {
+  const minute = mode === "minute";
+  $("orbRow").hidden = !minute && !canListen;
+  $("typeRow").hidden = minute || canListen;
+  $("typeBtn").hidden = minute || !canListen;
+}
+function openMinute(q) {
+  mode = "minute";
+  const question = q || state.settings.minuteQ || QUESTIONS[Math.floor(Math.random() * QUESTIONS.length)];
+  state.settings.minuteQ = question; state.settings.lastTopic = "minute"; putMeta();
+  minRec = minuteRecord(question); minIdea = -1;
+  $("topicName").textContent = "⏱️ 1-minute challenge";
+  applyDock(); renderMinute(); setMinState("idle");
+  loadBrainstorm(question);
+}
+function renderMinute() {
+  const q = state.settings.minuteQ, box = $("msgs"); box.innerHTML = "";
+  const card = document.createElement("div"); card.className = "qcard";
+  card.innerHTML = '<span class="lbl">Your question</span><div class="q"></div><div class="tools"></div>';
+  card.querySelector(".q").textContent = q;
+  card.querySelector(".tools").append(tool("🔊 Listen", () => { primeTTS(); speak(q, 0.85); }), tool("🔀 Another question", () => { if (!minRunning && !minBusy) { const pool = QUESTIONS.filter((x) => x !== q); openMinute(pool[Math.floor(Math.random() * pool.length)]); } }));
+  box.append(card);
+  const bs = document.createElement("div"); bs.className = "brain"; bs.id = "brain"; box.append(bs); renderBrainstorm();
+  const ans = document.createElement("textarea"); ans.id = "minIn"; ans.className = "answerbox"; ans.disabled = true; ans.setAttribute("aria-label", "Your answer");
+  ans.placeholder = canListen ? "Your words appear here while you speak…" : "Tap ▶, then tap here and the 🎤 on your keyboard, and keep talking…";
+  box.append(ans);
+  const res = document.createElement("div"); res.id = "minResult"; box.append(res);
+  const past = (minRec?.attempts || []).slice();
+  if (past.length) {
+    const last = past[past.length - 1];
+    if (last.result) renderMinResult(last, past[past.length - 2]);
+    else { renderMinResult(last, past[past.length - 2], "Mam's feedback for this answer did not arrive."); res.append(tool("Get feedback now", () => evaluateMinute(last, past[past.length - 2]))); }
+  }
+  box.parentElement.scrollTop = 0;
+}
+// Three different angles to choose from, useful words, and a four-step plan for the minute.
+function renderBrainstorm() {
+  const bs = $("brain"); if (!bs) return;
+  const b = minRec?.brainstorm || brainCache[state.settings.minuteQ];
+  bs.innerHTML = '<div class="lbl">💡 Brainstorm · pick one idea</div>';
+  if (!b) { const p = document.createElement("div"); p.className = "typing"; p.textContent = "Mam is finding ideas for you…"; bs.append(p); }
+  const ideas = (b?.ideas || []).slice(0, 3);
+  if (ideas.length) {
+    const list = document.createElement("div"); list.className = "ideas";
+    ideas.forEach((idea, i) => {
+      const o = document.createElement("button"); o.type = "button"; o.className = "idea" + (minIdea === i ? " on" : "");
+      o.innerHTML = "<strong></strong><ul></ul>"; o.querySelector("strong").textContent = idea.title || "Idea " + (i + 1);
+      (idea.points || []).slice(0, 3).forEach((pt) => { const li = document.createElement("li"); li.textContent = pt; o.querySelector("ul").append(li); });
+      o.onclick = () => { minIdea = minIdea === i ? -1 : i; renderBrainstorm(); };
+      list.append(o);
+    });
+    bs.append(list);
+  }
+  const words = (b?.words || []).slice(0, 6);
+  if (words.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Useful words"; bs.append(l);
+    const c = document.createElement("div"); c.className = "tools";
+    words.forEach((w) => c.append(tool(String(w), () => { primeTTS(); speak(String(w), 0.8); })));
+    bs.append(c);
+  }
+  const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Plan your minute"; bs.append(l);
+  const ol = document.createElement("ol"); ol.className = "plan";
+  ((b?.plan || []).length ? b.plan : PLAN_FALLBACK).slice(0, 4).forEach((s) => { const li = document.createElement("li"); li.textContent = s; ol.append(li); });
+  bs.append(ol);
+}
+const brainCache = {};
+async function loadBrainstorm(q) {
+  if (minRec?.brainstorm || brainCache[q]) return;
+  await aiReady;
+  if (!sample) { brainCache[q] = { ideas: [], words: [], plan: PLAN_FALLBACK }; if (state.settings.minuteQ === q && mode === "minute") renderBrainstorm(); return; }
+  try {
+    const r = await askJson(`A learner from Pakistan (English level ${level()}) will speak for one minute to answer this question: "${q}". Help them brainstorm before they speak. Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"ideas": [{"title": "a short angle to answer from, at most 6 words", "points": ["2 short supporting points, at most 10 words each"]}], "words": ["5 useful words or phrases for this answer"], "plan": ["Start: a sentence starter for this question", "Reason: …", "Example: …", "End: …"]}
+"ideas" has exactly 3 different angles.`, { modelTier: "quick" });
+    const b = { ideas: Array.isArray(r?.ideas) ? r.ideas.filter((x) => x?.title).slice(0, 3).map((x) => ({ title: String(x.title), points: (Array.isArray(x.points) ? x.points : []).slice(0, 3).map(String) })) : [],
+      words: Array.isArray(r?.words) ? r.words.slice(0, 6).map(String) : [], plan: Array.isArray(r?.plan) ? r.plan.slice(0, 4).map(String) : [] };
+    brainCache[q] = b;
+    if (minRec) { minRec.brainstorm = b; putChat(minRec, false, true); }
+  } catch (e) { brainCache[q] = { ideas: [], words: [], plan: PLAN_FALLBACK }; dbg("brainstorm_error", { code: String(e?.code || "") }); }
+  if (state.settings.minuteQ === q && mode === "minute") renderBrainstorm();
+}
+function setMinState(st, left) {
+  const o = $("orb"); o.className = "orb " + (st === "running" ? "listening" : st === "scoring" ? "thinking" : "");
+  o.style.setProperty("--p", st === "running" ? Math.max(0, left / 60) : 1);
+  o.textContent = st === "running" ? String(Math.max(0, Math.ceil(left))) : st === "scoring" ? "…" : "▶";
+  o.setAttribute("aria-label", st === "running" ? "Finish now" : "Start 60 seconds");
+  $("state").textContent = st === "running" ? (canListen ? "Speak! Mam is listening. Tap to finish early." : "Keep talking (keyboard 🎤). Tap the timer to finish early.") : st === "scoring" ? "Mam is listening to your answer…" : "Pick an idea, then tap ▶ and speak for one minute";
+}
+function startMinute() {
+  if (minRunning || minBusy) return;
+  hush(); $("minResult").innerHTML = "";
+  minRunning = true; minStartAt = Date.now(); minBase = "";
+  const inp = $("minIn"); inp.disabled = false; inp.value = "";
+  if (!canListen) inp.focus();
+  const sel = document.querySelector(".idea.on"); if (sel) sel.scrollIntoView({ block: "nearest" });
+  minTimer = setInterval(() => { const left = 60 - (Date.now() - minStartAt) / 1000; setMinState("running", left); if (left <= 0) endMinute(); }, 250);
+  setMinState("running", 60);
+  if (canListen) {
+    try {
+      const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+      r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (minBase + " " + s).trim(); };
+      r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; note("Allow the microphone for this site in your phone settings, or type your answer."); } };
+      r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; try { r.start(); } catch {} } };
+      r.start(); minSR = r;
+    } catch { minSR = null; }
+  }
+}
+function stopMinute() {
+  clearInterval(minTimer); const r = minSR; minSR = null; if (r) { r.onend = r.onresult = r.onerror = null; try { r.abort(); } catch {} }
+  const was = minRunning; minRunning = false;
+  const inp = $("minIn"); if (inp) { inp.blur(); inp.disabled = true; } // closes the keyboard so the result is visible
+  return was;
+}
+async function endMinute() {
+  if (!stopMinute()) return;
+  const secs = Math.min(60, Math.max(1, (Date.now() - minStartAt) / 1000));
+  const text = $("minIn").value.trim();
+  if (!text) { setMinState("idle"); note("I didn't get any words. Tap ▶ and speak."); return; }
+  const t = toks(text), words = t.length;
+  const wpm = Math.round(words / Math.max(secs, 10) * 60);
+  const fillers = (text.match(/\b(um+|uh+|er+m*|ah+|hmm+|you know)\b/gi) || []).length;
+  let repeats = 0; for (let i = 1; i < t.length; i++) if (t[i] === t[i - 1]) repeats++;
+  const q = state.settings.minuteQ;
+  if (!minRec) { const now = Date.now(); minRec = { id: "m" + now.toString(36), kind: "minute", topic: { id: "minute", em: "⏱️", name: q }, started: now, updated: now, attempts: [], words: 0, brainstorm: brainCache[q] || null }; }
+  const prev = minRec.attempts[minRec.attempts.length - 1];
+  const idea = (minRec.brainstorm || brainCache[q])?.ideas?.[minIdea]?.title || "";
+  const at = { at: Date.now(), text, secs: Math.round(secs), words, wpm, fillers, repeats, idea, result: null };
+  minRec.attempts.push(at); minRec.words = (minRec.words || 0) + words;
+  putChat(minRec, true);
+  await evaluateMinute(at, prev);
+}
+async function evaluateMinute(at, prev) {
+  const rec = minRec;
+  setMinState("scoring"); renderMinResult(at, prev, "Mam is listening to your answer…");
+  await aiReady;
+  if (!sample) { setMinState("idle"); renderMinResult(at, prev, inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in Settings (⚙) to get Mam's feedback."); return; }
+  minBusy = true;
+  const mc = new AbortController(), mt = setTimeout(() => mc.abort(), 120000); // never leave the screen stuck
+  try {
+    const r = await askJson(`You are an English speaking coach for a learner from Pakistan (English level ${level()}) preparing for the CSS exam interview. The learner spoke for ${at.secs} seconds to answer this question.
+Question: "${rec.topic.name}"
+${at.idea ? "They chose to answer from this angle: " + at.idea + "\n" : ""}Learner's answer (voice dictation, so ignore capital letters and punctuation): "${at.text}"
+Facts: ${at.words} words, ${at.wpm} words per minute, ${at.fillers} filler words, ${at.repeats} repeated words.
+Write everything in simple English only, never Urdu. Reply with ONLY this JSON:
+{"score": number 1-10 for their level (fluency, clarity and answering the question), "comment": "one or two short sentences about the fluency, kind and honest", "errors": [{"wrong": "exact wrong words", "right": "corrected words", "why": "very short reason, at most 10 words"}], "better": "a better answer to the same question in 70 to 100 words of simple English, keeping the learner's own ideas and angle", "tip": "one practical tip for the next try"}
+"errors" has 0 to 3 items.`, { modelTier: "default", cache: false, signal: mc.signal });
+    at.result = { score: Number(r?.score) || 0, comment: String(r?.comment || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: String(r?.better || ""), tip: String(r?.tip || "") };
+    putChat(rec, true);
+    if (rec === minRec && mode === "minute") renderMinResult(at, prev);
+  } catch (e) {
+    if (rec === minRec && mode === "minute") { renderMinResult(at, prev, errText(e) || "Stopped."); $("minResult").append(tool("Get feedback again", () => evaluateMinute(at, prev))); }
+  } finally { clearTimeout(mt); minBusy = false; if (mode === "minute") setMinState("idle"); }
+}
+function renderMinResult(at, prev, msg) {
+  const box = $("minResult"); if (!box) return; box.innerHTML = "";
+  const r = at.result;
+  const card = document.createElement("div"); card.className = "report";
+  card.innerHTML = '<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><strong class="h"></strong><div class="when"></div></div></div><div class="metrics"></div><p class="cm" style="margin:0"></p><div class="wo"></div><div class="bt"></div><div class="tip"></div><div class="tools act"></div>';
+  card.querySelector(".score").textContent = r?.score ? r.score + "/10" : "⏱️";
+  card.querySelector(".h").textContent = "Attempt " + ((minRec?.attempts.indexOf(at) ?? 0) + 1);
+  card.querySelector(".when").textContent = at.secs + " second" + (at.secs === 1 ? "" : "s") + " of speaking" + (at.idea ? " · idea: " + at.idea : "");
+  const mt = card.querySelector(".metrics");
+  // the arrow shows which way the number moved; its colour shows whether that is good
+  const dl = (a, b, upGood) => (b == null || a === b ? null : { arrow: a > b ? "▲" : "▼", good: (a > b) === upGood });
+  const chipM = (val, label, d) => { const el = document.createElement("div"); el.className = "metric"; el.innerHTML = "<b></b><span></span>"; el.firstChild.textContent = val; if (d) { const a = document.createElement("i"); a.className = d.good ? "good" : "bad"; a.textContent = " " + d.arrow; el.firstChild.append(a); } el.lastChild.textContent = label; mt.append(el); };
+  chipM(at.words, "words", dl(at.words, prev?.words, true));
+  chipM(at.wpm, "words / min", dl(at.wpm, prev?.wpm, true));
+  chipM(at.fillers, "fillers (um, uh)", dl(at.fillers, prev?.fillers, false));
+  chipM(at.repeats, "repeats", dl(at.repeats, prev?.repeats, false));
+  card.querySelector(".cm").textContent = msg || (r && isEnglish(r.comment) ? r.comment : "") || "Fluent speakers say about 120 to 150 words per minute. Aim to talk the whole minute without stopping.";
+  (r?.errors || []).forEach((e) => { const f = document.createElement("div"); f.className = "err"; f.innerHTML = '<div class="w"></div><div class="r"></div><div></div>'; f.children[0].textContent = e.wrong || ""; f.children[1].textContent = "✓ " + e.right; f.children[2].textContent = isEnglish(e.why) ? e.why : ""; card.querySelector(".wo").append(f); });
+  if (r?.better && isEnglish(r.better)) {
+    const b = card.querySelector(".bt"); const l = document.createElement("div"); l.className = "lbl"; l.textContent = "A better answer (listen, then try again)"; b.append(l);
+    const p = document.createElement("p"); p.className = "better"; p.textContent = r.better; b.append(p);
+    const tl = document.createElement("div"); tl.className = "tools"; tl.append(tool("🔊 Listen", () => { primeTTS(); speak(r.better, 0.85); }), tool("🐢 Slow", () => { primeTTS(); speak(r.better, 0.65); })); b.append(tl);
+  }
+  card.querySelector(".tip").textContent = r?.tip && isEnglish(r.tip) ? "💡 " + r.tip : "";
+  if (r) {
+    const act = card.querySelector(".act");
+    const again = document.createElement("button"); again.type = "button"; again.className = "btn primary"; again.textContent = "🔁 Try again"; again.onclick = () => { primeTTS(); $("main").scrollTop = 0; startMinute(); };
+    const next = document.createElement("button"); next.type = "button"; next.className = "btn"; next.textContent = "Next question →"; next.onclick = () => { const pool = QUESTIONS.filter((x) => x !== state.settings.minuteQ); openMinute(pool[Math.floor(Math.random() * pool.length)]); };
+    act.append(again, next);
+  }
+  box.append(card);
+  if (!msg || r) card.scrollIntoView({ block: "start", behavior: "smooth" });
+}
 
 // ---------- typing ----------
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
@@ -742,8 +972,8 @@ function topicRow(em, name, desc, n, on, fn) {
 }
 $("topicBtn").onclick = () => {
   const box = $("topicList"); box.innerHTML = "";
-  const answers = (c) => (c ? c.turns.filter((x) => x.role === "user").length : 0);
-  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.desc, answers(findThread(t)), chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
+  const answers = (c) => (c?.turns ? c.turns.filter((x) => x.role === "user").length : 0);
+  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.desc, t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : answers(findThread(t)), t.kind === "minute" ? mode === "minute" : mode === "chat" && chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
   state.chats.filter((c) => c.topic?.id === "own").slice(0, 5).forEach((c) => box.append(topicRow("✏️", c.topic.name, "Your own topic", answers(c), chat === c, () => { $("topicSheet").hidden = true; openTopic(c.topic); })));
   $("topicSheet").hidden = false;
 };
@@ -795,7 +1025,7 @@ loadLocal();
 renderVoiceBtn();
 $("typeRow").hidden = canListen; // the web version talks by voice; typing is one tap away
 if (!canListen) { // no microphone here (Claude blocks it): just the typing box, with Mam's voice switch beside it
-  $("orbRow").hidden = true; $("typeRow").prepend($("voiceBtn"));
+  $("typeRow").prepend($("voiceBtn"));
   $("hint").hidden = false;
   $("hint").innerHTML = inClaude ? 'Tap 🎤 on your keyboard to speak. For hands-free talking, <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">open the voice version</a>.' : "This browser has no speech recognition: type, or use your keyboard's 🎤.";
 }

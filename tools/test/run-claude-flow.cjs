@@ -111,6 +111,27 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("text=Start a new interview"); await wait(300);
   check("a new interview starts fresh", !(await msgs()).includes("I want serve my country"));
 
+  // ---- 1-minute challenge with brainstorming ----
+  await topic("1-minute challenge"); await wait(500);
+  check("challenge shows a question", (await p.textContent(".qcard .q")).length > 8);
+  check("brainstorm offers 3 ideas, useful words and a plan", (await p.$$(".idea")).length === 3 && (await p.textContent("#brain")).includes("public service") && (await p.$$(".plan li")).length === 4);
+  await p.click(".idea:nth-child(1)"); await wait(100);
+  check("tapping an idea selects it", !!(await p.$(".idea.on")));
+  check("the timer button is shown (Claude version too)", !(await p.isHidden("#orb")) && (await p.textContent("#orb")).includes("▶"));
+  await p.click("#orb"); await wait(400);
+  check("timer runs and the answer box opens", /^\d+$/.test((await p.textContent("#orb")).trim()) && !(await p.evaluate(() => document.getElementById("minIn").disabled)));
+  await p.fill("#minIn", "um I am agree that I want to join the civil service because because I love my country");
+  await p.click("#orb"); await wait(900);
+  const mr = await p.textContent("#minResult");
+  check("result: score, speed, fillers and a better answer", mr.includes("7/10") && mr.includes("words / min") && mr.includes("I agree") && mr.includes("Serving my country"));
+  check("answer box closes when finished", await p.evaluate(() => document.getElementById("minIn").disabled));
+  cs = await chats();
+  check("challenge attempts are saved", cs.some((c) => c.kind === "minute" && c.attempts?.some((a) => a.result?.score === 7 && a.idea === "Serving my country")));
+  await p.click("text=Next question →"); await wait(400);
+  check("next question loads new ideas", (await p.$$(".idea")).length === 3 && !(await p.textContent("#minResult")).includes("7/10"));
+  await topic("Free talk");
+  check("back in Free talk the chat is still there", (await msgs()).includes("I like biryani") && (await p.isHidden("#orb")));
+
   // ---- settings ----
   await p.click("#setBtn"); await wait(150);
   await p.selectOption("#lvSel", "A2"); await p.click("#setSheet [data-close].btn.primary"); await wait(150);

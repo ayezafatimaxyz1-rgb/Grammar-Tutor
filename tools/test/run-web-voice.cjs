@@ -36,7 +36,10 @@ const fakes = () => {
     if (u.includes("/models?")) return r.fulfill({ json: { models: [{ name: "models/gemini-flash-latest", supportedGenerationMethods: ["generateContent"] }] } });
     const body = JSON.parse(r.request().postData());
     const json = body.generationConfig.responseMimeType === "application/json";
-    const text = json
+    const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
+    const text = /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
+      : /spoke for/.test(prompt) ? JSON.stringify({ score: 6, comment: "Good start.", errors: [], better: "I want to join the civil service to serve my country.", tip: "Give an example." })
+      : json
       ? JSON.stringify({ verdict: "fix", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] })
       : "That sounds nice! What did you buy at the market?";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
@@ -66,6 +69,14 @@ const fakes = () => {
   check("tapping the button pauses", /Tap the button|Mam is/.test(st), st);
   await p.click("#typeBtn");
   check("typing is one tap away", !(await p.isHidden("#typeRow")));
+  // 1-minute challenge by voice
+  await p.evaluate(() => { window.__toSay.push("I want to join the civil service because I love my country"); });
+  await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("1-minute challenge")'); await p.waitForTimeout(600);
+  check("challenge: brainstorm ideas shown", (await p.$$(".idea")).length === 3);
+  await p.click("#orb"); await p.waitForTimeout(800);
+  check("challenge: my spoken words fill the answer", (await p.inputValue("#minIn")).includes("civil service"));
+  await p.click("#orb"); await p.waitForTimeout(900);
+  check("challenge: result after finishing", (await p.textContent("#minResult")).includes("words / min"));
   check("no page errors", errs.length === 0, errs.join(";"));
   await b.close();
   const failed = results.filter((x) => !x).length;
