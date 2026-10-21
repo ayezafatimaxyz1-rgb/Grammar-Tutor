@@ -282,6 +282,59 @@ h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 0; 
 .ctip b { font-size: 15px; }
 .flutable { width: 100%; border-collapse: collapse; font-size: 14px; font-variant-numeric: tabular-nums; }
 .flutable th, .flutable td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); }
+.voicebar { display: flex; gap: 10px; align-items: center; background: var(--sunk); border-radius: 14px; padding: 10px 12px; font-size: 14px; text-decoration: none; color: var(--fg); }
+.voicebar strong { color: var(--accent); }
+.drills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.drill { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 12px; display: flex; flex-direction: column; gap: 4px; }
+.drill .em { font-size: 26px; }
+.drill strong { font-family: var(--display); font-size: 16px; }
+.drill span { color: var(--muted); font-size: 13px; }
+.backbtn { align-self: flex-start; }
+.btn.big { padding: 14px 18px; font-size: 17px; }
+.pack { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 12px; display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 12px; align-items: center; text-align: left; width: 100%; }
+.pack .em { font-size: 28px; text-align: center; }
+.pack .txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.pack strong { font-family: var(--display); font-size: 17px; }
+.pack .sub2 { font-size: 13px; color: var(--muted); }
+.pack i { height: 6px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.pack i b { display: block; height: 100%; background: var(--good); }
+.pack .n { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 700; }
+.wordlist { display: flex; flex-direction: column; gap: 8px; }
+.witem { border: 1px solid var(--line); background: var(--surface); border-radius: 14px; padding: 10px 12px; display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left; width: 100%; }
+.witem .em { font-size: 22px; }
+.witem .txt { display: flex; flex-direction: column; min-width: 0; }
+.witem .txt span { font-size: 13px; color: var(--muted); }
+.witem .badge2 { font-size: 12px; font-weight: 700; color: var(--muted); }
+.witem.active .badge2 { color: var(--good); }
+.witem.learning .badge2 { color: var(--sun); }
+.dots { display: flex; gap: 4px; }
+.dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--sunk); }
+.dots i.done { background: var(--good); }
+.dots i.now { background: var(--accent); }
+.lessoncard .k { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.lessoncard .ex { font-size: 16px; font-style: italic; }
+.stepbox { display: flex; flex-direction: column; gap: 10px; border-top: 1px solid var(--line); padding-top: 10px; }
+.task { font-family: var(--display); font-weight: 600; font-size: 19px; line-height: 1.3; }
+.practise { display: flex; flex-direction: column; gap: 8px; }
+.prow { display: flex; gap: 8px; align-items: flex-start; }
+.prow textarea, #sayIn { flex: 1; min-width: 0; width: 100%; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; font-size: 17px; resize: vertical; }
+.micbtn { width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--accent); color: var(--accent-fg); font-size: 20px; flex: none; }
+.micbtn.on { background: var(--bad); color: #fff; }
+.pout { display: flex; flex-direction: column; gap: 6px; }
+.okline { color: var(--good); }
+.missline { color: var(--fg); }
+.vid { text-decoration: none; display: inline-flex; align-items: center; }
+.way { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; }
+.way .lbl { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.waytext { font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.3; }
+.pron { font-size: 16px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.guide { font-size: 16px; color: var(--muted); letter-spacing: .02em; }
+.guide b { color: var(--accent); font-weight: 800; }
+.sayg .guide { font-size: 15px; }
+.phrase { display: flex; flex-direction: column; gap: 4px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.phrase:last-child { border-bottom: 0; }
+.ptext { border: 0; background: none; padding: 0; text-align: left; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--fg); }
+.phrase .sub2 { font-size: 13px; color: var(--muted); }
 nav.tabs { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line); background: var(--surface); padding-bottom: env(safe-area-inset-bottom, 0px); }
 nav.tabs button { border: 0; background: none; padding: 9px 0 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; color: var(--muted); }
 nav.tabs button .i { font-size: 20px; line-height: 1; }
@@ -316,6 +369,11 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <span id="heroWhen"></span>
           <button class="btn" type="button" id="heroBtn">Start interview</button>
         </div>
+        <div class="drills">
+          <button class="drill" type="button" id="goMinute"><span class="em">⏱️</span><strong>1-minute answer</strong><span>Speak for 60 seconds, get your speed and a better answer</span></button>
+          <button class="drill" type="button" id="goRead"><span class="em">📰</span><strong>Read and discuss</strong><span>Upload news, then retell it out loud</span></button>
+        </div>
+        <a class="voicebar" id="voiceBar" href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener" hidden><span>🎙️</span><span><strong>Speak without the keyboard</strong><br>Claude blocks the microphone here. Open the voice version, where Mam listens directly.</span></a>
         <div class="wotd" id="wotd"></div>
         <h3>Talk topics</h3>
         <div class="topics" id="topics"></div>
@@ -337,8 +395,45 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
       </div>
     </section>
 
+    <!-- LEARN -->
+    <section class="view pad" id="v-learn" hidden>
+      <div id="learnHome" class="view" style="padding:0">
+        <div>
+          <h2>Learn by speaking</h2>
+          <p class="sub">Short lessons: see a word, hear it, say it, then use it in your own answer. A word becomes active when you use it correctly twice.</p>
+        </div>
+        <div class="stats" id="vocabStats"></div>
+        <button class="btn primary big" type="button" id="lessonBtn">▶ Start today's lesson (3 words)</button>
+        <h3>Word packs</h3>
+        <div id="packs" class="view" style="padding:0"></div>
+      </div>
+      <div id="packView" class="view" style="padding:0" hidden></div>
+      <div id="lessonView" class="view" style="padding:0" hidden></div>
+    </section>
+
+    <!-- SAY -->
+    <section class="view pad" id="v-say" hidden>
+      <div>
+        <h2>How to say it</h2>
+        <p class="sub">Type or say what you want to say, in any words, even Urdu. Mam shows you three ways to say it in English, how to pronounce it, and lets you practise.</p>
+      </div>
+      <form class="addbox" id="sayForm">
+        <div class="prow"><textarea id="sayIn" rows="2" placeholder="e.g. mujhe interview se dar lagta hai, or: how to say I am nervous" aria-label="What do you want to say?"></textarea><span id="sayMic"></span></div>
+        <button class="btn primary" type="submit" id="sayBtn">Show me how to say it</button>
+        <div class="status" id="sayStatus" aria-live="polite"></div>
+      </form>
+      <div id="sayOut" class="view" style="padding:0"></div>
+      <div class="seg" role="group" aria-label="Phrases" id="saySeg">
+        <button type="button" data-v="book" aria-pressed="true">Phrasebook</button>
+        <button type="button" data-v="tricky" aria-pressed="false">Tricky words</button>
+        <button type="button" data-v="mine" aria-pressed="false">My phrases</button>
+      </div>
+      <div id="sayList" class="view" style="padding:0"></div>
+    </section>
+
     <!-- 1-MINUTE -->
     <section class="view pad" id="v-minute" hidden>
+      <button class="btn backbtn" type="button" data-back="talk">← Talk</button>
       <div>
         <h2>1-minute answer</h2>
         <p class="sub">Answer one question for 60 seconds without stopping. You get your speed, filler words, mistakes and a better answer to copy.</p>
@@ -365,6 +460,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
 
     <!-- READ -->
     <section class="view pad" id="v-read" hidden>
+      <button class="btn backbtn" type="button" data-back="talk">← Talk</button>
       <div>
         <h2>Read and discuss</h2>
         <p class="sub">Upload screenshots or a PDF of today's paper or your magazine. Mam makes it simple, then you retell it out loud in one minute or discuss it with her.</p>
@@ -412,6 +508,7 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
           <button type="button" data-f="all" aria-pressed="true">All</button>
           <button type="button" data-f="word" aria-pressed="false">Words</button>
           <button type="button" data-f="fix" aria-pressed="false">Fixes</button>
+          <button type="button" data-f="phrase" aria-pressed="false">Phrases</button>
         </div>
         <div class="grid" id="grid"></div>
       </div>
@@ -483,8 +580,8 @@ nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 700; }
   <div class="toast" id="toast" role="status" hidden></div>
   <nav class="tabs" aria-label="Sections">
     <button type="button" data-tab="talk" aria-current="page"><span class="i">💬</span>Talk</button>
-    <button type="button" data-tab="minute"><span class="i">⏱️</span>1-Minute</button>
-    <button type="button" data-tab="read"><span class="i">📰</span>Read</button>
+    <button type="button" data-tab="learn"><span class="i">📚</span>Learn</button>
+    <button type="button" data-tab="say"><span class="i">🗣️</span>Say</button>
     <button type="button" data-tab="review"><span class="i">🔁</span><span>Review<span class="badge" id="dueBadge" hidden></span></span></button>
     <button type="button" data-tab="history"><span class="i">🗂️</span>History</button>
   </nav>
@@ -538,6 +635,13 @@ const WORDS = [
   ["water shortage","not enough water","Water shortage is a big threat.","🚰❌"],["tolerance","accepting people who are different","Tolerance makes society strong.","🤲"],
   ["accountability","having to explain and answer for what you did","Accountability can stop corruption.","🔍"],["sustainable","able to continue for a long time without harm","We need sustainable development.","♻️"],
 ];
+// ---- content (generated by tools: written and checked by an English-teacher review) ----
+const PHRASAL = [{"phrase": "get up", "meaning": "to get out of bed", "example": "I get up at five for the morning prayer.", "emoji": "⏰🛏️", "task": "What time do you get up on weekdays, and why?"}, {"phrase": "wake up", "meaning": "to stop sleeping", "example": "I wake up when the fan stops during load shedding.", "emoji": "😴⏰", "task": "What time did you wake up today, and how did you feel?"}, {"phrase": "look after", "meaning": "to take care of someone or something", "example": "I look after my grandmother in Lahore.", "emoji": "👵❤️", "task": "Who do you look after in your family, and how?"}, {"phrase": "find out", "meaning": "to learn new information", "example": "I found out my exam result online this morning.", "emoji": "🔍💡", "task": "How did you find out about the CSS exam?"}, {"phrase": "give up", "meaning": "to stop doing something; to quit", "example": "My father gave up smoking last year.", "emoji": "🚭✋", "task": "What is one bad habit you want to give up, and why?"}, {"phrase": "carry out", "meaning": "to do a task or plan", "example": "Civil servants carry out government policies.", "emoji": "✅📋", "task": "How would you carry out a plan to clean your city?"}, {"phrase": "deal with", "meaning": "to handle a problem or person", "example": "I deal with stress by walking in the park.", "emoji": "🤝🧩", "task": "How do you deal with pressure before an exam?"}, {"phrase": "set up", "meaning": "to start a business or system", "example": "My uncle set up a small chai shop.", "emoji": "🏗️🏪", "task": "If you could set up one new service in your area, what would it be?"}, {"phrase": "bring up", "meaning": "to start talking about a topic", "example": "She brought up the problem of load shedding.", "emoji": "🗣️💬", "task": "What problem in Pakistan would you bring up with the Prime Minister?"}, {"phrase": "come across", "meaning": "to find or meet by chance", "example": "I came across my old cricket bat at home.", "emoji": "👀🎁", "task": "What useful thing did you come across online this week?"}, {"phrase": "figure out", "meaning": "to understand or solve something", "example": "I finally figured out this math problem.", "emoji": "🤔💡", "task": "How do you figure out the meaning of a new English word?"}, {"phrase": "look forward to", "meaning": "to feel happy about a future event", "example": "I'm looking forward to Eid with my family.", "emoji": "😊📅", "task": "What are you looking forward to this year?"}, {"phrase": "go on", "meaning": "to continue", "example": "The cricket match went on even in the rain.", "emoji": "▶️🔁", "task": "What helps you go on studying when you feel tired?"}, {"phrase": "put off", "meaning": "to delay something until later", "example": "Don't put off your studies until tomorrow.", "emoji": "⏳📆", "task": "What task do you often put off, and why?"}, {"phrase": "turn down", "meaning": "to say no to an offer", "example": "He turned down a job in Dubai.", "emoji": "🙅👎", "task": "Would you ever turn down a high-paying job abroad, and why?"}, {"phrase": "look up", "meaning": "to search for a word or fact", "example": "I look up new words in my dictionary.", "emoji": "📖🔎", "task": "What do you look up online most often?"}, {"phrase": "pick up", "meaning": "to collect someone or something", "example": "I pick up my sister from school every day.", "emoji": "🚗👧", "task": "Who do you usually pick up from school or work?"}, {"phrase": "grow up", "meaning": "to change from a child to an adult", "example": "I grew up in a small village near Sialkot.", "emoji": "👶➡️🧑", "task": "Where did you grow up, and what was it like?"}, {"phrase": "work out", "meaning": "to exercise to stay fit", "example": "I work out at the gym three times a week.", "emoji": "🏋️💪", "task": "How often do you work out, and where?"}, {"phrase": "point out", "meaning": "to show someone a fact or mistake", "example": "My teacher pointed out my grammar mistakes.", "emoji": "👉❗", "task": "What weakness would you point out in our education system?"}, {"phrase": "come up with", "meaning": "to think of an idea or plan", "example": "We came up with a plan to plant trees.", "emoji": "💡🧠", "task": "Can you come up with one idea to reduce traffic in Lahore?"}, {"phrase": "run out of", "meaning": "to have none of something left", "example": "We often run out of gas in winter.", "emoji": "🫙❌", "task": "What do you do when your phone runs out of battery?"}, {"phrase": "get along with", "meaning": "to have a friendly relationship", "example": "I get along with all my cousins.", "emoji": "🤝😊", "task": "Who do you get along with best in your family?"}, {"phrase": "look into", "meaning": "to check or study something carefully", "example": "The police will look into the complaint.", "emoji": "🔍📂", "task": "As an officer, what problem would you look into first?"}, {"phrase": "take over", "meaning": "to take control or responsibility", "example": "My brother took over my father's shop.", "emoji": "🔄👔", "task": "If you took over your district office, what would you change first?"}, {"phrase": "call off", "meaning": "to cancel a planned event", "example": "The college called off the trip because of smog.", "emoji": "❌📅", "task": "Why might a school call off classes in Pakistan?"}, {"phrase": "fill in", "meaning": "to write information on a form", "example": "Please fill in your name and CNIC number.", "emoji": "📝✍️", "task": "What information do you fill in on a job form?"}, {"phrase": "go through", "meaning": "to experience a difficult time", "example": "Pakistan went through hard times during the 2022 floods.", "emoji": "🌊😔", "task": "What difficult time have you gone through, and what did you learn?"}, {"phrase": "keep up with", "meaning": "to know the latest news or changes", "example": "I read the newspaper daily to keep up with the news.", "emoji": "📰📈", "task": "How do you keep up with current affairs?"}, {"phrase": "put forward", "meaning": "to suggest an idea or plan", "example": "She put forward a plan for clean water.", "emoji": "🙋💡", "task": "What idea would you put forward to improve education?"}, {"phrase": "stand for", "meaning": "to be a short form of", "example": "PIA stands for Pakistan International Airlines.", "emoji": "🔤➡️💬", "task": "What does CSS stand for, and why did you choose it?"}, {"phrase": "break down", "meaning": "to stop working (for a machine)", "example": "Our bus broke down on the motorway.", "emoji": "🚌🔧", "task": "What do you do when your bike or car breaks down?"}, {"phrase": "cut down on", "meaning": "to use or do less of something", "example": "I am cutting down on sugar in my chai.", "emoji": "✂️🍬☕", "task": "What should people cut down on to save electricity?"}, {"phrase": "sort out", "meaning": "to fix or solve a problem", "example": "The manager sorted out the water problem quickly.", "emoji": "🛠️✅", "task": "How would you sort out a fight between two colleagues?"}, {"phrase": "show up", "meaning": "to arrive or appear somewhere", "example": "He showed up late for the interview.", "emoji": "🚪🙋", "task": "Why is it important to show up on time for an interview?"}, {"phrase": "take part in", "meaning": "to join an activity or event", "example": "I took part in a debate at college.", "emoji": "🙋‍♂️🎤🏆", "task": "What activities did you take part in at university?"}, {"phrase": "get over", "meaning": "to feel better after something bad", "example": "It took me weeks to get over the flu.", "emoji": "🤒➡️😊", "task": "How do you get over a failure or a bad day?"}, {"phrase": "depend on", "meaning": "to need someone or something for support", "example": "Many families depend on farming for their income.", "emoji": "🤲🌾", "task": "What does Pakistan's economy depend on most?"}, {"phrase": "look up to", "meaning": "to respect and admire someone", "example": "I look up to my mother for her courage.", "emoji": "🙏⭐", "task": "Who do you look up to, and why?"}, {"phrase": "end up", "meaning": "to finally be in a place or situation", "example": "We got lost and ended up in Anarkali.", "emoji": "🗺️🏁", "task": "How did you end up wanting to join the civil service?"}];
+const IDIOMS = [{"phrase": "on the other hand", "meaning": "used to show the opposite side", "example": "Karachi is hot. On the other hand, Murree is cool.", "emoji": "⚖️🤚", "task": "Using 'on the other hand', can you compare city life and village life?"}, {"phrase": "a piece of cake", "meaning": "very easy to do", "example": "The first interview question was a piece of cake.", "emoji": "🍰😌", "task": "What is one thing that is a piece of cake for you?"}, {"phrase": "in the long run", "meaning": "after a long time, in the future", "example": "Reading every day will help you in the long run.", "emoji": "⏳🌱", "task": "How will good education help Pakistan in the long run?"}, {"phrase": "make ends meet", "meaning": "have just enough money to live", "example": "Many people work two jobs to make ends meet.", "emoji": "💵🏠", "task": "How do people in Pakistan make ends meet when prices go up?"}, {"phrase": "keep in mind", "meaning": "remember something important", "example": "Keep in mind that the interview starts at nine sharp.", "emoji": "🧠📌", "task": "What should a candidate keep in mind before an interview?"}, {"phrase": "at the end of the day", "meaning": "when you think about everything", "example": "At the end of the day, hard work matters most.", "emoji": "🌇✅", "task": "At the end of the day, what matters most in a good officer?"}, {"phrase": "the tip of the iceberg", "meaning": "a small part of a big problem", "example": "Load shedding is just the tip of the iceberg.", "emoji": "🧊🌊", "task": "Using 'the tip of the iceberg', can you talk about a problem in Pakistan?"}, {"phrase": "break the ice", "meaning": "start talking in a friendly way", "example": "He broke the ice by talking about cricket.", "emoji": "🧊🗣️😊", "task": "How do you break the ice when you meet someone new?"}, {"phrase": "under the weather", "meaning": "a little sick", "example": "I'm feeling under the weather, so I'll stay home.", "emoji": "🤒🌧️", "task": "What do you do when you feel under the weather?"}, {"phrase": "once in a while", "meaning": "sometimes, not often", "example": "Once in a while, we eat out in Anarkali.", "emoji": "🔄📅", "task": "What do you do once in a while to relax?"}, {"phrase": "on the same page", "meaning": "agreeing and understanding the same thing", "example": "Let's make sure we're on the same page before the meeting.", "emoji": "📖🤝", "task": "Why is it important for a team to be on the same page?"}, {"phrase": "step by step", "meaning": "slowly, one part at a time", "example": "I am improving my English step by step.", "emoji": "👣📈", "task": "How are you learning English step by step?"}, {"phrase": "get the hang of", "meaning": "slowly learn how to do something", "example": "You'll soon get the hang of driving in Lahore.", "emoji": "🎯🚗", "task": "What skill was hard at first, before you got the hang of it?"}, {"phrase": "better late than never", "meaning": "doing it late is better than not", "example": "I started learning English at thirty. Better late than never!", "emoji": "⏰👍", "task": "Using 'better late than never', can you talk about something you started late?"}, {"phrase": "a blessing in disguise", "meaning": "a bad thing that later becomes good", "example": "Failing my first exam was a blessing in disguise.", "emoji": "🎁🎭😊", "task": "Can you share a problem that was a blessing in disguise?"}, {"phrase": "call it a day", "meaning": "stop working for today", "example": "It's late and the power is out. Let's call it a day.", "emoji": "🏁🌙", "task": "What time do you usually call it a day?"}, {"phrase": "in a nutshell", "meaning": "in a few words; in short", "example": "In a nutshell, I want to serve my country.", "emoji": "🥜📝", "task": "In a nutshell, why do you want to join the civil service?"}, {"phrase": "take it easy", "meaning": "relax; don't worry too much", "example": "Take it easy! The results come out next week.", "emoji": "😌🛋️", "task": "How do you take it easy after a long, busy day?"}, {"phrase": "around the clock", "meaning": "all day and all night", "example": "Doctors at Mayo Hospital work around the clock.", "emoji": "🕛🔄🌙", "task": "Which people in your city work around the clock?"}, {"phrase": "think outside the box", "meaning": "think in a new, creative way", "example": "To solve traffic jams, we must think outside the box.", "emoji": "📦💡", "task": "How can we think outside the box to save water?"}, {"phrase": "the bottom line", "meaning": "the most important point", "example": "The bottom line is that we need more schools.", "emoji": "🎯📌", "task": "What is the bottom line about climate change in Pakistan?"}, {"phrase": "learn the ropes", "meaning": "learn the basics of a new job", "example": "It took me a month to learn the ropes.", "emoji": "🪢📚", "task": "How long does it take to learn the ropes at a new job?"}, {"phrase": "bite off more than you can chew", "meaning": "try to do too much at once", "example": "I took six subjects and bit off more than I could chew.", "emoji": "🍔😵", "task": "Have you ever bitten off more than you could chew?"}, {"phrase": "as far as I know", "meaning": "I think so, but I'm not sure", "example": "As far as I know, the exam is in February.", "emoji": "🤔ℹ️", "task": "As far as you know, when is the next CSS exam?"}, {"phrase": "to be honest", "meaning": "saying what I really think", "example": "To be honest, I was nervous before my interview.", "emoji": "😇💬", "task": "What is your biggest weakness? Start with 'To be honest'."}, {"phrase": "go the extra mile", "meaning": "do more than people expect", "example": "A good officer goes the extra mile for people.", "emoji": "🏃🛣️⭐", "task": "When did you go the extra mile to help someone?"}, {"phrase": "on the bright side", "meaning": "the good part of a bad situation", "example": "It rained all day. On the bright side, it's cooler now.", "emoji": "☀️🙂", "task": "Load shedding is bad, but what is good about it? Start with 'On the bright side'."}, {"phrase": "easier said than done", "meaning": "easy to say, hard to do", "example": "Waking up at five is easier said than done.", "emoji": "🗣️😅", "task": "What is something that is easier said than done for you?"}, {"phrase": "first and foremost", "meaning": "most important, before everything else", "example": "First and foremost, an officer must be honest.", "emoji": "🥇☝️", "task": "What quality should a civil servant have first and foremost?"}, {"phrase": "in the same boat", "meaning": "in the same difficult situation", "example": "All students are in the same boat before exams.", "emoji": "🚣👥", "task": "Who is in the same boat as you before the CSS exam?"}];
+const PHRASEBOOK = [{"situation": "Starting the interview", "emoji": "🤝👋", "phrases": [{"text": "Good morning, sir. Thank you for having me.", "use": "Greeting the panel when you enter"}, {"text": "May I sit down, please?", "use": "Before you take your seat"}, {"text": "My name is … and I am from …", "use": "Introducing yourself at the start"}, {"text": "It is an honour to be here today.", "use": "Showing respect to the panel"}, {"text": "I have a degree in … from …", "use": "Talking about your education"}, {"text": "I am happy to answer your questions.", "use": "Showing you are ready to begin"}]}, {"situation": "Giving your opinion", "emoji": "💭🗣️", "phrases": [{"text": "In my opinion, …", "use": "Sharing your view in a formal way"}, {"text": "I believe that …", "use": "Stating a clear, strong view"}, {"text": "From my point of view, …", "use": "Giving your personal view"}, {"text": "As far as I know, …", "use": "Sharing facts you are not fully sure of"}, {"text": "I strongly feel that …", "use": "Showing a very strong opinion"}, {"text": "To be honest, I think …", "use": "Giving an honest, open opinion"}]}, {"situation": "Agreeing and disagreeing politely", "emoji": "👍👎🙂", "phrases": [{"text": "I agree with you, sir.", "use": "Simple, polite agreement"}, {"text": "That is a very good point.", "use": "Praising someone's idea"}, {"text": "I see your point, but …", "use": "Disagreeing gently"}, {"text": "I am not sure I agree, because …", "use": "Disagreeing with a reason"}, {"text": "I partly agree with that.", "use": "Agreeing with only part of an idea"}, {"text": "With respect, I see it differently.", "use": "Disagreeing politely with a senior person"}]}, {"situation": "Buying time to think", "emoji": "⏳🤔", "phrases": [{"text": "That is a good question.", "use": "Getting a few seconds to think"}, {"text": "Let me think about that for a moment.", "use": "When you need more time"}, {"text": "Well, let me see …", "use": "Starting your answer slowly"}, {"text": "Could I have a moment, please?", "use": "Politely asking for a short pause"}, {"text": "That is a difficult question, but I think …", "use": "Starting an answer to a hard question"}, {"text": "I have never thought about that before, but …", "use": "For a new, unexpected question"}]}, {"situation": "Asking to repeat or explain", "emoji": "🔁❓👂", "phrases": [{"text": "Sorry, could you repeat that, please?", "use": "When you did not hear clearly"}, {"text": "Could you speak a little more slowly, please?", "use": "When someone speaks too fast"}, {"text": "What do you mean by …?", "use": "When a word or idea is not clear"}, {"text": "Do you mean that …?", "use": "Checking that you understood"}, {"text": "Could you explain that a little more?", "use": "Asking for more detail"}, {"text": "Sorry, I didn't catch that.", "use": "Friendly way to say you missed it"}]}, {"situation": "Giving examples and reasons", "emoji": "📌💡", "phrases": [{"text": "For example, …", "use": "Adding an example to your point"}, {"text": "For instance, in Pakistan …", "use": "Giving an example from your country"}, {"text": "The main reason is that …", "use": "Giving the most important reason"}, {"text": "This is because …", "use": "Explaining why something happens"}, {"text": "A good example of this is …", "use": "Introducing a strong example"}, {"text": "Firstly, … Secondly, …", "use": "Giving reasons in order"}]}, {"situation": "Comparing two things", "emoji": "⚖️🔄", "phrases": [{"text": "… is better than … because …", "use": "Saying one thing is better"}, {"text": "On the one hand, … On the other hand, …", "use": "Showing two sides of an issue"}, {"text": "Both … and … are important.", "use": "Saying two things both matter"}, {"text": "Unlike …, …", "use": "Showing a clear difference"}, {"text": "… is similar to … in some ways.", "use": "Showing how two things are alike"}, {"text": "The main difference is that …", "use": "Pointing out the key difference"}]}, {"situation": "Finishing your answer", "emoji": "✅🏁", "phrases": [{"text": "In short, …", "use": "Giving a quick summary"}, {"text": "To sum up, …", "use": "Ending a long answer"}, {"text": "So, overall, I think …", "use": "Giving your final view"}, {"text": "That is all I would like to say.", "use": "Showing you have finished"}, {"text": "I hope that answers your question.", "use": "Ending your answer politely"}, {"text": "Thank you for your time, sir.", "use": "When the interview ends"}]}, {"situation": "Daily small talk", "emoji": "☕😊", "phrases": [{"text": "How are you doing today?", "use": "A friendly everyday greeting"}, {"text": "It's really hot today, isn't it?", "use": "Starting a light chat"}, {"text": "Did you watch the cricket match yesterday?", "use": "Chatting about sports"}, {"text": "Would you like a cup of chai?", "use": "Offering tea to a guest"}, {"text": "So, what do you do?", "use": "Asking about someone's job"}, {"text": "Load shedding is really bad these days.", "use": "Chatting about daily problems"}]}, {"situation": "Thanking and apologising", "emoji": "🙏😔", "phrases": [{"text": "Thank you so much for your help.", "use": "Thanking someone warmly"}, {"text": "I really appreciate it.", "use": "Saying thanks in a stronger way"}, {"text": "Sorry, let me say that again.", "use": "Fixing a mistake while speaking"}, {"text": "I'm afraid I don't know much about that.", "use": "Politely saying you do not know"}, {"text": "Sorry I'm late.", "use": "When you arrive late"}, {"text": "No problem at all.", "use": "Replying to thanks or sorry"}]}];
+const TRICKY = [{"word": "development", "say": "dih-VEL-up-ment", "tip": "Stress VEL; don't say 'DEV-lop-ment' or 'de-ve-LOP-ment'."}, {"word": "vegetable", "say": "VEJ-tuh-bul", "tip": "Stress VEJ and say three parts; not 've-ge-TAY-bul'."}, {"word": "comfortable", "say": "KUMF-tuh-bul", "tip": "Not 'com-FOR-ta-bul'; stress KUMF and drop the 'or' sound."}, {"word": "Wednesday", "say": "WENZ-day", "tip": "The first 'd' is silent; not 'Wed-nes-day'."}, {"word": "island", "say": "EYE-lund", "tip": "The 's' is silent; not 'is-land'."}, {"word": "debt", "say": "DET", "tip": "The 'b' is silent; it rhymes with 'bet'."}, {"word": "schedule", "say": "SHED-yool", "tip": "Stress SHED; not 'she-DULE'. US 'SKEJ-ool' is also fine."}, {"word": "determine", "say": "dih-TUR-min", "tip": "Stress TUR; the end sounds like 'min', not 'mine'."}, {"word": "examine", "say": "ig-ZAM-in", "tip": "Stress ZAM; the end rhymes with 'pin', not 'mine'."}, {"word": "purpose", "say": "PUR-pus", "tip": "Ends in 'pus', not 'pose'; stress the first part."}, {"word": "hotel", "say": "hoh-TEL", "tip": "Stress the second part; not 'HO-tel'."}, {"word": "receipt", "say": "rih-SEET", "tip": "The 'p' is silent; not 'ri-SEEPT'."}, {"word": "genre", "say": "ZHON-ruh", "tip": "Start with 'zh', like the 's' in 'measure'; not 'jen-ray'."}, {"word": "chaos", "say": "KAY-os", "tip": "'Ch' sounds like 'k' here; not 'cha-os'."}, {"word": "specific", "say": "spuh-SIF-ik", "tip": "Start with 'sp'; don't say 'is-pe-si-fik'. Stress SIF."}, {"word": "pronunciation", "say": "pruh-nun-see-AY-shun", "tip": "Say 'nun' in the middle, not 'noun' like in 'pronounce'."}, {"word": "thoroughly", "say": "THUR-uh-lee", "tip": "Tongue between your teeth for 'th'; not 'through-ly' or 'tho-ROUGH-ly'."}, {"word": "colonel", "say": "KUR-nul", "tip": "Sounds exactly like 'kernel'; not 'ko-lo-nel'."}, {"word": "women", "say": "WIM-in", "tip": "Don't say it like 'woman'; the first part is WIM."}, {"word": "often", "say": "OF-un", "tip": "The 't' is usually silent; stress OF, not 'of-TEN'."}, {"word": "school", "say": "SKOOL", "tip": "Start straight with 'sk'; not 'is-kool' or 'sa-kool'."}, {"word": "says", "say": "SEZ", "tip": "Sounds like 'sez', not 'say-z'."}, {"word": "interview", "say": "IN-ter-vyoo", "tip": "Stress the first part; not 'in-ter-VIEW'."}, {"word": "government", "say": "GUV-ern-ment", "tip": "The first part is GUV, not GOV; don't say 'gor-ment'."}, {"word": "police", "say": "puh-LEES", "tip": "Stress LEES at the end; not 'PO-lice'."}, {"word": "February", "say": "FEB-roo-er-ee", "tip": "Stress FEB at the start; not 'feb-ru-AR-y'."}, {"word": "vehicle", "say": "VEE-ih-kul", "tip": "The 'h' is silent; not 've-HI-kal'."}, {"word": "parliament", "say": "PAR-luh-ment", "tip": "The 'ia' is a short 'luh'; not 'par-li-a-ment'."}, {"word": "bureaucracy", "say": "byoo-ROK-ruh-see", "tip": "Stress ROK; not 'bu-ro-CRA-cy'."}, {"word": "democracy", "say": "dih-MOK-ruh-see", "tip": "Stress MOK; not 'de-mo-CRA-cy'."}, {"word": "category", "say": "KAT-uh-gor-ee", "tip": "Stress the first part; not 'ka-TE-go-ry'."}, {"word": "committee", "say": "kuh-MIT-ee", "tip": "Stress MIT in the middle; not 'KOM-mit-tee'."}, {"word": "economy", "say": "ih-KON-uh-mee", "tip": "Stress KON; not 'e-ko-NO-mee'."}, {"word": "knowledge", "say": "NOL-ij", "tip": "Silent 'k'; the first part rhymes with 'doll', not 'know'."}, {"word": "foreign", "say": "FOR-in", "tip": "The 'g' is silent; it ends like 'in', not 'rain'."}, {"word": "hour", "say": "OW-er", "tip": "The 'h' is silent; it sounds like 'our'."}, {"word": "walk", "say": "WAWK", "tip": "The 'l' is silent; don't mix it up with 'work'."}, {"word": "three", "say": "THREE", "tip": "Put your tongue between your teeth; don't say 'tree'."}, {"word": "very", "say": "VEH-ree", "tip": "Top teeth touch your lower lip for 'v'; not 'wery'."}, {"word": "world", "say": "WURLD", "tip": "Round your lips for 'w', not 'v'; say it in one beat."}];
+const WORD_TASKS = ["Is democracy good for Pakistan? Why? Start with 'Democracy is...'", "How is Pakistan's economy doing these days? Start with 'Our economy is...'", "How does inflation change the price of chai and roti? Start with 'Inflation makes...'", "How can we stop corruption in government offices? Start with 'We can stop corruption by...'", "Why is education important for girls in Pakistan? Start with 'Education helps girls...'", "How does climate change affect the weather in Pakistan? Use 'climate change' in your answer.", "What causes air pollution in Lahore in winter? Start with 'Air pollution comes from...'", "Is Pakistan's growing population a problem? Why? Use 'population' in your answer.", "Why is unemployment high among young people in Pakistan? Start with 'Unemployment is high because...'", "What should the government do first for poor people? Start with 'The government should...'", "Which government policy would you change, and why? Use 'policy' in your answer.", "How can poor people get justice faster in courts? Use 'justice' in your answer.", "Name two rights every citizen of Pakistan should have. Start with 'Two important rights are...'", "What is the biggest responsibility of a civil servant? Start with 'The biggest responsibility is...'", "What opportunity does CSS give you? Start with 'CSS gives me the opportunity to...'", "What is the biggest challenge for Pakistan today? Start with 'The biggest challenge is...'", "What is one good solution to load shedding? Start with 'One good solution is...'", "How can we improve schools in villages? Start with 'We can improve schools by...'", "How can Pakistan develop its small towns and villages? Use 'develop' in your answer.", "What natural resources does Pakistan have? Start with 'Pakistan has natural resources like...'", "Why is agriculture important for Pakistan's economy? Start with 'Agriculture is important because...'", "How does the energy crisis affect your daily life? Use 'energy crisis' in your answer.", "Why is security important for business and tourism in Pakistan? Use 'security' in your answer.", "How can Pakistan live in peace with its neighbours? Use 'peace' in your answer.", "What should Pakistan's foreign policy focus on? Start with 'Our foreign policy should focus on...'", "Which countries should Pakistan trade with more, and why? Start with 'Pakistan should trade more with...'", "How can technology help government offices work better? Start with 'Technology can...'", "How can artificial intelligence help farmers or doctors in Pakistan? Start with 'Artificial intelligence can...'", "Why do you want a career in public service? Use 'public service' in your answer.", "Why should a civil servant always be honest? Start with 'An honest officer...'", "How does discipline help you prepare for CSS? Start with 'Discipline helps me...'", "What makes you feel confident in an interview? Start with 'I feel confident when...'", "What is Pakistan's biggest problem? Start with 'In my opinion...'", "Name one good thing and one bad thing about city life. Use 'however'.", "Why is traffic so bad in Lahore? Use 'because of' in your answer.", "How can we make health care better in villages? Use 'health care' in your answer.", "What can families do about the water shortage? Use 'water shortage' in your answer.", "Why is tolerance important in a country with many cultures? Use 'tolerance' in your answer.", "Why is accountability important for government officers? Start with 'Accountability is important because...'", "What is one sustainable way to save water or energy? Start with 'One sustainable way is...'"];
+// ---- end content ----
 const dayNum = () => Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / DAY);
 function worldTopic() {
   const [em, theme, open] = WORLD[dayNum() % WORLD.length];
@@ -569,7 +673,7 @@ function putMeta() {
   saveLocal();
   if (!col || !metaReady) return;
   clearTimeout(metaTimer);
-  metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings }).catch(() => {}); }, 800);
+  metaTimer = setTimeout(() => { col.doc("meta").set({ sessions: state.sessions.slice(0, 40), days: state.days, settings: state.settings, vocab: state.vocab || {} }).catch(() => {}); }, 800);
 }
 let libCol = null; // "library": readings, also filled by Claude from chat uploads
 let dbgCol = null, dbgRows = [], dbgTimer = 0;
@@ -644,6 +748,9 @@ async function connectDb() {
     for (const [d, v] of Object.entries(state.days)) { const o = days[d]; days[d] = o ? { min: Math.max(o.min || 0, v.min || 0), words: Math.max(o.words || 0, v.words || 0) } : v; }
     state.days = days;
     state.settings = { ...state.settings, ...(meta.settings || {}) };
+    const vb = { ...(meta.vocab || {}) }; // learned words: keep the higher count from either copy
+    for (const [k, v] of Object.entries(state.vocab || {})) { const o = vb[k]; vb[k] = o ? { uses: Math.max(o.uses || 0, v.uses || 0), tries: Math.max(o.tries || 0, v.tries || 0), last: Math.max(o.last || 0, v.last || 0) } : v; }
+    state.vocab = vb;
     putMeta();
   }
   saveLocal(); renderAll(); libraryWords(); restoreChat(); checkLevel();
@@ -1500,14 +1607,16 @@ function renderReview() {
     wrap.querySelector("span:last-child").textContent = state.cards.length ? "Next card comes back " + new Date(next).toLocaleDateString(undefined, { weekday: "long", day: "numeric", month: "short" }) + ". Go talk with Mam!" : "Your cards from Talk will come back here on the right days so you never forget them.";
     return;
   }
-  const c = due[0], fix = c.type === "fix";
+  const c = due[0], fix = c.type === "fix" || c.type === "phrase", phrase = c.type === "phrase";
   const f = document.createElement("div"); f.className = "flash"; f.style.setProperty("--h", hue(c.word));
   f.innerHTML = `<div class="pic"></div><div class="body"><span class="sub"></span><span class="prompt"></span><span class="mean"></span><textarea id="revIn" rows="2"></textarea><div class="out"></div><div class="row"></div></div>`;
   f.querySelector(".pic").textContent = c.emoji;
-  f.querySelector(".sub").textContent = (fix ? "Say this sentence correctly" : "Say a sentence with the word that means this") + " · " + due.length + " left";
-  f.querySelector(".prompt").textContent = fix ? c.wrong || "" : "";
+  f.querySelector(".sub").textContent = (phrase ? "Say this in English" : fix ? "Say this sentence correctly" : "Say a sentence with the word that means this") + " · " + due.length + " left";
+  f.querySelector(".prompt").textContent = phrase ? "" : fix ? c.wrong || "" : "";
+  if (phrase) { const h = document.createElement("button"); h.type = "button"; h.className = "mini"; h.textContent = "Show a hint"; h.onclick = () => { h.textContent = toks(c.word).slice(0, 2).join(" ") + " …"; h.disabled = true; }; f.querySelector(".mean").after(h); }
   f.querySelector(".mean").textContent = cardMeaning(c);
-  const inp = f.querySelector("textarea"); inp.placeholder = "Tap here, then the 🎤 on your keyboard, and say it";
+  const inp = f.querySelector("textarea"); inp.placeholder = SPEAK_HINT();
+  const revMic = micFor(inp, () => check.click()); if (revMic) { const pr = document.createElement("div"); pr.className = "prow"; inp.before(pr); pr.append(inp, revMic); }
   const out = f.querySelector(".out"), row = f.querySelector(".row");
   const btn = (label, cls, fn) => { const b = document.createElement("button"); b.type = "button"; b.className = "btn " + cls; b.textContent = label; b.onclick = fn; return b; };
   const answer = () => { speak(fix ? c.word : c.word + ". " + (c.example || ""), 0.8); };
@@ -1782,14 +1891,14 @@ function checkLevel() {
   if (!next) return;
   setLevel(next.id, true);
   dbg("level_up", { to: next.id });
-  toast("🎉 Level up! You are now " + next.id + " · " + next.name + ". " + next.gets);
+  toast("🎉 Level up! You are now " + next.id + " · " + next.name + ". " + next.gets, { label: "See my level", fn: () => show("history") });
   speak("Congratulations! You moved up to level " + next.id.split("").join(" ") + ".", 0.9);
   if (!$("v-history").hidden) renderHistory();
 }
 let toastT = 0;
-function toast(msg) {
+function toast(msg, action) {
   const t = $("toast"); t.textContent = msg; t.hidden = false;
-  const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = "See my level"; b.onclick = () => { t.hidden = true; show("history"); }; t.append(" ", b);
+  if (action) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = action.label; b.onclick = () => { t.hidden = true; action.fn(); }; t.append(" ", b); }
   clearTimeout(toastT); toastT = setTimeout(() => { t.hidden = true; }, 9000);
 }
 function renderLevel() {
@@ -1910,6 +2019,296 @@ $("lvSel").onchange = () => { setLevel($("lvSel").value, false); renderHistory()
 $("lvChip").onclick = () => show("history");
 window.addEventListener("resize", () => { if (!$("v-history").hidden) renderFluency(); });
 
+// ---------- shared: speak an answer (mic in the web version) and check it ----------
+const VOICE_URL = "https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/";
+const slug = (s) => toks(s).join("-");
+const videoLink = (phrase) => { const a = document.createElement("a"); a.className = "mini vid"; a.href = "https://youglish.com/pronounce/" + encodeURIComponent(phrase) + "/english"; a.target = "_blank"; a.rel = "noopener"; a.textContent = "🎬 Hear it in real videos"; return a; };
+// Respelling like "dih-VEL-up-ment": the stressed part (capitals) is shown bold.
+function sayGuide(say) { const s = document.createElement("span"); s.className = "guide"; String(say).split(/(-)/).forEach((p) => { if (p === "-") s.append("·"); else if (p && p === p.toUpperCase() && /[A-Z]/.test(p)) { const b = document.createElement("b"); b.textContent = p.toLowerCase(); s.append(b); } else s.append(p.toLowerCase()); }); return s; }
+// A 🎤 button that fills a text box by voice (web version only; Claude blocks the microphone).
+function micFor(el, onDone) {
+  if (!canHandsFree) return null;
+  const b = document.createElement("button"); b.type = "button"; b.className = "micbtn"; b.textContent = "🎤"; b.setAttribute("aria-label", "Speak");
+  let r = null;
+  b.onclick = () => {
+    if (r) { try { r.stop(); } catch {} return; }
+    stopListening(); hush();
+    const base = el.value.trim(); let heard = "", t = 0;
+    r = new SR(); r.lang = "en-US"; r.interimResults = true; r.continuous = true;
+    const arm = () => { clearTimeout(t); t = setTimeout(() => { try { r?.stop(); } catch {} }, 2000); };
+    r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; heard = s; el.value = (base + " " + s).trim(); el.dispatchEvent(new Event("input")); arm(); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { el.placeholder = "Allow the microphone for this site in your phone settings, or type."; } };
+    r.onend = () => { clearTimeout(t); r = null; b.classList.remove("on"); b.textContent = "🎤"; if (heard.trim()) onDone?.(); };
+    try { r.start(); b.classList.add("on"); b.textContent = "■"; arm(); } catch { r = null; }
+  };
+  return b;
+}
+const SPEAK_HINT = () => (canHandsFree ? "Tap 🎤 and say it" : "Tap here, then the 🎤 on your keyboard, and say it");
+// Say a target sentence and see which words came through (speech recognition hears what you pronounced).
+function practiseBox(target, opts = {}) {
+  const box = document.createElement("div"); box.className = "practise";
+  const row = document.createElement("div"); row.className = "prow";
+  const inp = document.createElement("textarea"); inp.rows = 2; inp.placeholder = SPEAK_HINT(); inp.setAttribute("aria-label", "Your try");
+  const out = document.createElement("div"); out.className = "pout";
+  const check = () => {
+    const said = inp.value.trim(); if (!said) { out.textContent = "Say it first."; return; }
+    const m = matchWords(said, target), ok = m.score >= (opts.pass || 0.8);
+    out.innerHTML = ""; const h = document.createElement("strong"); h.className = ok ? "okline" : "missline";
+    h.textContent = ok ? "✓ Well said! Every word came through." : "Almost. Green words came through; red words were missed or sounded different:"; out.append(h, diffView(m));
+    logTime(15000, toks(said).length);
+    opts.onResult?.(ok, said);
+  };
+  const mic = micFor(inp, check);
+  row.append(inp); if (mic) row.append(mic);
+  const btns = document.createElement("div"); btns.className = "tools";
+  const c = document.createElement("button"); c.type = "button"; c.className = "btn primary"; c.textContent = "✓ Check"; c.onclick = check;
+  btns.append(c, tool("🔊 Hear it", () => speak(target, 0.85)), tool("🐢 Slow", () => speak(target, 0.6)));
+  box.append(row, btns, out);
+  return box;
+}
+
+// ---------- Learn: Glite-style speaking lessons with active vocabulary ----------
+const PACKS = [
+  { id: "css", em: "🏛️", name: "CSS words", desc: "democracy, inflation, policy…", kind: "word", items: () => WORDS.map(([w, m, ex, em], i) => ({ id: "w:" + slug(w), phrase: w, meaning: m, example: ex, emoji: em, task: WORD_TASKS[i] || `Make your own sentence with "${w}".` })) },
+  { id: "phrasal", em: "🧩", name: "Phrasal verbs", desc: "get up, find out, give up…", kind: "phrasal verb", items: () => PHRASAL.map((x) => ({ id: "pv:" + slug(x.phrase), ...x })) },
+  { id: "idioms", em: "💬", name: "Idioms", desc: "on the other hand, in the long run…", kind: "idiom", items: () => IDIOMS.map((x) => ({ id: "id:" + slug(x.phrase), ...x })) },
+  { id: "reading", em: "📰", name: "From your reading", desc: "hard words from articles you added", kind: "word", items: () => {
+    const seen = new Set(), out = [];
+    state.library.forEach((it) => (it.words || []).forEach((w) => { const id = "rd:" + slug(w.word); if (w.word && !seen.has(id)) { seen.add(id); out.push({ id, phrase: String(w.word), meaning: isEnglish(w.meaning) ? String(w.meaning) : "", example: String(w.example || ""), emoji: String(w.emoji || "📰"), task: `Say something about the news "${it.title}" using "${w.word}".` }); } }));
+    return out;
+  } },
+];
+const vocab = () => state.vocab || (state.vocab = {});
+const vstate = (it) => { const v = vocab()[it.id]; return !v ? "new" : (v.uses || 0) >= 2 ? "active" : "learning"; };
+function renderLearn() {
+  $("lessonView").hidden = true; $("packView").hidden = true; $("learnHome").hidden = false;
+  const all = PACKS.flatMap((p) => p.items());
+  const active = all.filter((x) => vstate(x) === "active").length, learning = all.filter((x) => vstate(x) === "learning").length;
+  const st = $("vocabStats"); st.innerHTML = "";
+  [[active, "active words"], [learning, "learning"], [all.length - active - learning, "new to learn"]].forEach(([v, l]) => { const d = document.createElement("div"); d.className = "stat"; d.innerHTML = "<b></b><span></span>"; d.firstChild.textContent = v; d.lastChild.textContent = l; st.append(d); });
+  const box = $("packs"); box.innerHTML = "";
+  PACKS.forEach((p) => {
+    const items = p.items(); if (!items.length && p.id === "reading") return;
+    const a = items.filter((x) => vstate(x) === "active").length;
+    const b = document.createElement("button"); b.type = "button"; b.className = "pack";
+    b.innerHTML = '<span class="em"></span><span class="txt"><strong></strong><span class="sub2"></span><i><b></b></i></span><span class="n"></span>';
+    b.querySelector(".em").textContent = p.em; b.querySelector("strong").textContent = p.name; b.querySelector(".sub2").textContent = p.desc;
+    b.querySelector("i b").style.width = (items.length ? (a / items.length) * 100 : 0) + "%"; b.querySelector(".n").textContent = a + "/" + items.length;
+    b.onclick = () => openPack(p);
+    box.append(b);
+  });
+}
+function openPack(p) {
+  $("learnHome").hidden = true; $("lessonView").hidden = true;
+  const v = $("packView"); v.hidden = false; v.innerHTML = "";
+  const top = document.createElement("div"); top.className = "chatbar";
+  const back = document.createElement("button"); back.type = "button"; back.className = "btn"; back.textContent = "←"; back.setAttribute("aria-label", "Back to packs"); back.onclick = renderLearn;
+  const t = document.createElement("span"); t.className = "t"; t.textContent = p.em + " " + p.name;
+  const go = document.createElement("button"); go.type = "button"; go.className = "btn primary"; go.textContent = "▶ Lesson"; go.onclick = () => startLesson(p.id);
+  top.append(back, t, go); v.append(top);
+  const list = document.createElement("div"); list.className = "wordlist";
+  p.items().forEach((it) => {
+    const s = vstate(it);
+    const b = document.createElement("button"); b.type = "button"; b.className = "witem " + s;
+    b.innerHTML = '<span class="em"></span><span class="txt"><strong></strong><span></span></span><span class="badge2"></span>';
+    b.querySelector(".em").textContent = it.emoji; b.querySelector("strong").textContent = it.phrase; b.querySelector(".txt span").textContent = it.meaning;
+    b.querySelector(".badge2").textContent = s === "active" ? "✓ active" : s === "learning" ? "learning" : "new";
+    b.onclick = () => startLesson(p.id, [{ ...it, pack: p.id }]);
+    list.append(b);
+  });
+  v.append(list); $("main").scrollTop = 0;
+}
+// Today's lesson: words already started come back first, then new ones.
+function pickLesson(packId) {
+  const packs = packId ? PACKS.filter((p) => p.id === packId) : PACKS.filter((p) => p.id !== "reading" || p.items().length);
+  const all = packs.flatMap((p) => p.items().map((it) => ({ ...it, pack: p.id })));
+  const learning = all.filter((x) => vstate(x) === "learning").sort((a, b) => (vocab()[a.id].last || 0) - (vocab()[b.id].last || 0));
+  const order = levelId() === "A1" ? ["css", "phrasal", "reading", "idioms"] : ["phrasal", "idioms", "css", "reading"];
+  const fresh = all.filter((x) => vstate(x) === "new").sort((a, b) => order.indexOf(a.pack) - order.indexOf(b.pack));
+  return [...learning.slice(0, 2), ...fresh].slice(0, 3);
+}
+let lesson = null;
+function startLesson(packId, items) {
+  const list = items || pickLesson(packId);
+  if (!list.length) { toast("You have learned every word here. Try another pack!"); return; }
+  lesson = { items: list, i: 0, step: "learn", used: 0, last: Date.now() };
+  $("learnHome").hidden = true; $("packView").hidden = true; $("lessonView").hidden = false;
+  show("learn", true); primeTTS(); renderLessonStep();
+}
+function packKind(it) { return PACKS.find((p) => p.id === it.pack)?.kind || "word"; }
+function markSeen(it, used) {
+  const v = vocab()[it.id] || (vocab()[it.id] = { uses: 0, tries: 0 });
+  v.last = Date.now(); if (used !== undefined) { v.tries++; if (used) v.uses++; }
+  putMeta();
+  // the word also goes into Review so it keeps coming back on the right days
+  if (!state.cards.some((c) => c.type === "word" && c.word.toLowerCase() === it.phrase.toLowerCase())) {
+    const now = Date.now(); const c = { id: newId("l"), type: "word", word: it.phrase, mean: it.meaning, example: it.example, emoji: it.emoji, box: 0, due: now + DAY, created: now, topic: PACKS.find((p) => p.id === it.pack)?.name || "Learn" };
+    state.cards.unshift(c); putCard(c); renderDue();
+  }
+}
+function renderLessonStep() {
+  const v = $("lessonView"); v.innerHTML = "";
+  const L = lesson, it = L.items[L.i];
+  const top = document.createElement("div"); top.className = "chatbar";
+  const back = document.createElement("button"); back.type = "button"; back.className = "btn"; back.textContent = "←"; back.setAttribute("aria-label", "Stop the lesson"); back.onclick = () => { lesson = null; renderLearn(); };
+  const t = document.createElement("span"); t.className = "t"; t.textContent = "Lesson · word " + Math.min(L.i + 1, L.items.length) + " of " + L.items.length;
+  const dots = document.createElement("span"); dots.className = "dots"; L.items.forEach((_, k) => { const d = document.createElement("i"); d.className = k < L.i ? "done" : k === L.i ? "now" : ""; dots.append(d); });
+  top.append(back, t, dots); v.append(top);
+  if (L.i >= L.items.length) return lessonDone(v);
+  const card = document.createElement("div"); card.className = "flash lessoncard"; card.style.setProperty("--h", hue(it.phrase));
+  card.innerHTML = '<div class="pic"></div><div class="body"><span class="k"></span><span class="answer"></span><span class="mean"></span><span class="ex"></span><div class="tools t1"></div><div class="stepbox"></div></div>';
+  card.querySelector(".pic").textContent = it.emoji;
+  card.querySelector(".k").textContent = packKind(it);
+  card.querySelector(".answer").textContent = it.phrase;
+  card.querySelector(".mean").textContent = it.meaning;
+  card.querySelector(".ex").textContent = "“" + it.example + "”";
+  card.querySelector(".t1").append(tool("🔊 Hear it", () => speak(it.phrase + ". " + it.example, 0.85)), tool("🐢 Slow", () => speak(it.phrase + ". " + it.example, 0.6)), videoLink(it.phrase));
+  const sb = card.querySelector(".stepbox");
+  const nextBtn = (label, fn) => { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = label; b.onclick = fn; return b; };
+  if (L.step === "learn") {
+    const p = document.createElement("p"); p.className = "sub"; p.textContent = "Look at the picture, listen, and read the example. Then say it yourself.";
+    sb.append(p, nextBtn("I'm ready: let me say it →", () => { L.step = "repeat"; renderLessonStep(); }));
+    if (L.i === 0 || L.autoplay) speak(it.phrase + ". " + it.example, 0.85);
+  } else if (L.step === "repeat") {
+    const h = document.createElement("div"); h.className = "lbl"; h.textContent = "Step 1 · Repeat the example out loud";
+    sb.append(h, practiseBox(it.example, { onResult: () => { if (!sb.querySelector(".gonext")) { const n = nextBtn("Next: use it in your own answer →", () => { L.step = "use"; renderLessonStep(); }); n.classList.add("gonext"); sb.append(n); } } }));
+  } else {
+    const h = document.createElement("div"); h.className = "lbl"; h.textContent = "Step 2 · Use “" + it.phrase + "” in your answer";
+    const q = document.createElement("div"); q.className = "task"; q.textContent = it.task;
+    const row = document.createElement("div"); row.className = "prow";
+    const inp = document.createElement("textarea"); inp.rows = 3; inp.placeholder = SPEAK_HINT(); inp.setAttribute("aria-label", "Your answer");
+    const out = document.createElement("div"); out.className = "pout";
+    const check = async () => {
+      const said = inp.value.trim(); if (!said) { out.textContent = "Say your answer first."; return; }
+      cb.disabled = true; out.textContent = "Mam is checking…";
+      const now = Date.now(); logTime(Math.min(now - L.last, 3 * 60000), toks(said).length); L.last = now;
+      let res = null; await aiReady;
+      if (sample) {
+        try {
+          res = await askJson(`A beginner English learner (level ${levelId()}) is practising the ${packKind(it)} "${it.phrase}" (meaning: ${it.meaning}). Question: "${it.task}". They answered (voice dictation, so ignore capital letters and punctuation): "${said}". Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"used": true if they used "${it.phrase}" (any correct form, for example past tense) with the right meaning, "correct": true if their answer is correct English, "fixed": "their answer corrected, keeping their own idea (the same if it is correct)", "note": "very short encouragement or tip"}`, { modelTier: "quick", cache: false });
+        } catch {}
+      }
+      const used = res ? !!res.used : toks(said).join(" ").includes(toks(it.phrase).join(" "));
+      if (used) L.used++;
+      markSeen(it, used);
+      out.innerHTML = "";
+      const s = document.createElement("strong"); s.className = used ? "okline" : "missline"; s.textContent = used ? "✓ You used “" + it.phrase + "”!" : "You didn't use “" + it.phrase + "” yet."; out.append(s);
+      if (res && res.correct === false && res.fixed) { const f = document.createElement("div"); f.className = "fixline"; f.textContent = "Better: " + res.fixed; f.append(" ", tool("🔊", () => speak(String(res.fixed), 0.8))); out.append(f); }
+      if (res?.note && isEnglish(res.note)) { const n = document.createElement("div"); n.className = "sub"; n.textContent = res.note; out.append(n); }
+      cb.disabled = false; cb.textContent = used ? "✓ Check again" : "Try again";
+      if (!sb.querySelector(".gonext")) { const n = nextBtn(L.i + 1 < L.items.length ? "Next word →" : "Finish lesson →", () => { L.i++; L.step = "learn"; L.autoplay = true; renderLessonStep(); }); n.classList.add("gonext"); sb.append(n); }
+    };
+    const mic = micFor(inp, check);
+    row.append(inp); if (mic) row.append(mic);
+    const cb = document.createElement("button"); cb.type = "button"; cb.className = "btn primary"; cb.textContent = "✓ Check my answer"; cb.onclick = check;
+    const tl = document.createElement("div"); tl.className = "tools"; tl.append(cb, tool("🔊 Hear the question", () => speak(it.task, 0.85)));
+    sb.append(h, q, row, tl, out);
+    speak(it.task, 0.85);
+  }
+  v.append(card); $("main").scrollTop = 0;
+}
+function lessonDone(v) {
+  const L = lesson;
+  const d = document.createElement("div"); d.className = "report";
+  d.innerHTML = '<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><div><h3>Lesson done!</h3><span class="when"></span></div></div><p class="sub"></p><div class="tools"></div>';
+  d.querySelector(".score").textContent = L.used + "/" + L.items.length;
+  d.querySelector(".when").textContent = "You used " + L.used + " of " + L.items.length + " words correctly in your own answers.";
+  d.querySelector("p").textContent = "Each word now comes back in Review. Use a word correctly twice and it becomes active.";
+  const t = d.querySelector(".tools");
+  const again = document.createElement("button"); again.type = "button"; again.className = "btn primary"; again.textContent = "▶ Another lesson"; again.onclick = () => startLesson();
+  const home = document.createElement("button"); home.type = "button"; home.className = "btn"; home.textContent = "Back to packs"; home.onclick = () => { lesson = null; renderLearn(); };
+  t.append(again, home); v.append(d);
+  speak("Well done! Lesson finished.", 0.9);
+  lesson = null;
+}
+$("lessonBtn").onclick = () => startLesson();
+
+// ---------- Say: how to say it, phrasebook, tricky words ----------
+let sayView = "book";
+function renderSay() {
+  const mic = $("sayMic"); if (!mic.firstChild) { const m = micFor($("sayIn"), () => $("sayForm").requestSubmit()); if (m) mic.append(m); }
+  const box = $("sayList"); box.innerHTML = "";
+  if (sayView === "book") {
+    PHRASEBOOK.forEach((sec) => {
+      const d = document.createElement("details"); d.className = "item";
+      d.innerHTML = '<summary style="grid-template-columns:44px minmax(0,1fr)"><div class="pic"></div><div class="ttl"></div></summary><div class="more"></div>';
+      d.style.setProperty("--h", hue(sec.situation)); d.querySelector(".pic").textContent = sec.emoji; d.querySelector(".ttl").textContent = sec.situation;
+      const m = d.querySelector(".more");
+      sec.phrases.forEach((ph) => m.append(phraseRow(ph.text, ph.use)));
+      box.append(d);
+    });
+  } else if (sayView === "tricky") {
+    const p = document.createElement("p"); p.className = "sub"; p.textContent = "The bold part is said louder and longer. Listen, then say the word: if it comes through right, your pronunciation was understood.";
+    box.append(p);
+    TRICKY.forEach((w) => {
+      const d = document.createElement("details"); d.className = "item";
+      d.innerHTML = '<summary style="grid-template-columns:minmax(0,1fr) auto"><div><div class="ttl"></div><div class="meta"></div></div><span class="sayg"></span></summary><div class="more"></div>';
+      d.querySelector(".ttl").textContent = w.word; d.querySelector(".meta").textContent = w.tip; d.querySelector(".sayg").append(sayGuide(w.say));
+      d.addEventListener("toggle", () => { if (d.open && !d.querySelector(".practise")) { d.querySelector(".more").append(practiseBox(w.word, { pass: 1 })); speak(w.word, 0.75); } });
+      box.append(d);
+    });
+  } else {
+    const mine = state.cards.filter((c) => c.type === "phrase");
+    if (!mine.length) { box.innerHTML = '<div class="empty"><span class="big">🗂️</span><strong>No saved phrases yet</strong><span>Ask "How to say it" above and tap + Save on the ones you like. They come back in Review.</span></div>'; return; }
+    mine.forEach((c) => box.append(phraseRow(c.word, cardMeaning(c))));
+  }
+}
+function phraseRow(text, use) {
+  const d = document.createElement("div"); d.className = "phrase";
+  const t = document.createElement("button"); t.type = "button"; t.className = "ptext"; t.textContent = text; t.onclick = () => speak(text.replace(/…/g, ", "), 0.85);
+  const u = document.createElement("span"); u.className = "sub2"; u.textContent = use || "";
+  const tl = document.createElement("div"); tl.className = "tools";
+  const pr = tool("🎤 Practise", () => { if (!d.querySelector(".practise")) d.append(practiseBox(text.replace(/…/g, "").trim())); pr.remove(); });
+  tl.append(tool("🔊", () => speak(text.replace(/…/g, ", "), 0.85)), tool("🐢", () => speak(text.replace(/…/g, ", "), 0.6)), pr);
+  d.append(t, u, tl); return d;
+}
+function savePhrase(text, meaning) {
+  if (state.cards.some((c) => c.type === "phrase" && toks(c.word).join(" ") === toks(text).join(" "))) return false;
+  const now = Date.now(); const c = { id: newId("p"), type: "phrase", word: text, mean: meaning, example: "", emoji: "🗣️", box: 0, due: now + DAY, created: now, topic: "How to say" };
+  state.cards.unshift(c); putCard(c); renderDue(); return true;
+}
+$("sayForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const q = $("sayIn").value.trim(); if (!q) { $("sayStatus").textContent = "Type or say what you want to say first."; return; }
+  await aiReady;
+  if (!sample) { $("sayStatus").textContent = inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key first (History, Settings)."; return; }
+  $("sayBtn").disabled = true; $("sayStatus").textContent = "Mam is thinking…"; $("sayOut").innerHTML = "";
+  try {
+    const r = await askJson(`A beginner English learner from Pakistan (level ${levelId()}) wants to say something in English. They wrote (it may be English, broken English, Urdu or Roman Urdu): "${q}". Write everything in English only: never Urdu script or Roman Urdu.
+Reply with ONLY JSON: {"meaning": "what they want to say, in one simple English sentence", "ways": [{"label": "Simple", "text": "the easiest correct way to say it"}, {"label": "Natural", "text": "how a fluent speaker would say it in daily life"}, {"label": "Formal", "text": "a polite, formal way for the CSS interview or the office"}], "words": [{"word": "a word in these sentences that is hard to pronounce", "say": "easy respelling with hyphens and the stressed syllable in CAPITALS, like dih-VEL-up-ment"}], "tip": "one short tip about using these phrases"}
+"words" has 0 to 3 items.`, { modelTier: "quick", cache: false });
+    renderSayResult(r, q);
+    $("sayStatus").textContent = "";
+  } catch (err) { $("sayStatus").textContent = errText(err) || "Stopped."; }
+  finally { $("sayBtn").disabled = false; }
+});
+function renderSayResult(r, q) {
+  const box = $("sayOut"); box.innerHTML = "";
+  if (isEnglish(r?.meaning)) { const m = document.createElement("p"); m.className = "sub"; m.textContent = "You mean: " + r.meaning; box.append(m); }
+  (Array.isArray(r?.ways) ? r.ways : []).filter((w) => w?.text && isEnglish(w.text)).slice(0, 3).forEach((w) => {
+    const c = document.createElement("div"); c.className = "way";
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = w.label || "";
+    const t = document.createElement("div"); t.className = "waytext"; t.textContent = w.text;
+    const tl = document.createElement("div"); tl.className = "tools";
+    const save = tool("+ Save", () => { save.textContent = savePhrase(w.text, (w.label ? w.label + ": " : "") + (isEnglish(r.meaning) ? r.meaning : "")) ? "✓ Saved to Review" : "✓ Already saved"; save.disabled = true; });
+    const pr = tool("🎤 Practise", () => { c.append(practiseBox(w.text)); pr.remove(); });
+    tl.append(tool("🔊", () => speak(w.text, 0.85)), tool("🐢", () => speak(w.text, 0.6)), pr, save);
+    if (toks(w.text).length <= 6) tl.append(videoLink(w.text));
+    c.append(l, t, tl); box.append(c);
+  });
+  const words = (Array.isArray(r?.words) ? r.words : []).filter((w) => w?.word && w?.say);
+  if (words.length) {
+    const c = document.createElement("div"); c.className = "way";
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "How to pronounce"; c.append(l);
+    words.forEach((w) => { const row = document.createElement("div"); row.className = "pron"; const b = document.createElement("strong"); b.textContent = w.word; row.append(b, " ", sayGuide(w.say), " ", tool("🔊", () => speak(String(w.word), 0.7))); c.append(row); });
+    box.append(c);
+  }
+  if (isEnglish(r?.tip)) { const p = document.createElement("div"); p.className = "mean tip"; p.textContent = "💡 " + r.tip; box.append(p); }
+  if (!box.children.length) box.textContent = "Mam could not understand that. Try saying it a different way.";
+}
+segInit("saySeg", "v", (v) => { sayView = v; renderSay(); });
+
 // ---------- history ----------
 function renderHeader() {
   $("streakTxt").innerHTML = "🔥 <strong>" + streak() + "</strong>";
@@ -1961,20 +2360,28 @@ function renderHistory() {
 }
 
 // ---------- shell ----------
-const TABS = ["talk", "minute", "read", "review", "history"];
+const TABS = ["talk", "learn", "say", "minute", "read", "review", "history"];
+const NAV_OF = { minute: "talk", read: "talk" }; // screens opened from Talk keep Talk lit in the tab bar
 function show(tab) {
   TABS.forEach((t) => { $("v-" + t).hidden = t !== tab; });
-  document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const nav = NAV_OF[tab] || tab;
+  document.querySelectorAll("nav.tabs button").forEach((b) => { if (b.dataset.tab === nav) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   $("composer").hidden = tab !== "talk" || !topic;
   if (tab !== "talk" && (handsFree || rec)) { stopListening(); hush(); }
   if (tab !== "minute" && minRunning) endMinute();
   if (tab === "review") renderReview();
   if (tab === "read") renderLib();
   if (tab === "history") renderHistory();
+  if (tab === "learn" && !lesson) renderLearn();
+  if (tab === "say") renderSay();
   if (tab === "minute" && !minQ) nextQuestion();
   $("main").scrollTop = tab === "talk" ? $("main").scrollHeight : 0;
 }
 document.querySelectorAll("nav.tabs button").forEach((b) => b.onclick = () => show(b.dataset.tab));
+document.querySelectorAll("[data-back]").forEach((b) => b.onclick = () => show(b.dataset.back));
+$("goMinute").onclick = () => show("minute");
+$("goRead").onclick = () => show("read");
+$("voiceBar").hidden = !inClaude;
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 $("input").addEventListener("input", autoGrow);
 $("input").addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); primeTTS(); send(); } });

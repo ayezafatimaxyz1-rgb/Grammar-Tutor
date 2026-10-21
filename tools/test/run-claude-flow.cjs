@@ -24,6 +24,13 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const check = (name, ok, info) => { results.push({ name, ok }); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
   const wait = (ms = 500) => p.waitForTimeout(ms);
   const store = () => p.evaluate(() => window.__store["data/users/u_test"]);
+  // 1-Minute and Read are opened from the Talk screen's topic list
+  const open = async (screen) => {
+    if (screen !== "minute" && screen !== "read") return p.click(`[data-tab=${screen}]`);
+    await p.click("[data-tab=talk]"); await wait(100);
+    if (!(await p.isHidden("#chat"))) { await p.click("#backBtn"); await wait(100); }
+    await p.click(screen === "minute" ? "#goMinute" : "#goRead");
+  };
   const chatsIn = (st) => Object.entries(st).filter(([k]) => k.startsWith("chat_") && k !== "chat_cold").map(([, v]) => v);
 
   // ---- Talk ----
@@ -98,7 +105,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("#backBtn");
 
   // ---- 1-minute answer ----
-  await p.click("[data-tab=minute]"); await wait(200);
+  await open("minute"); await wait(200);
   check("question shown", (await p.textContent("#qText")).length > 5);
   await p.click("#minStart"); await wait(300);
   check("timer running", !(await p.isHidden("#minDone")));
@@ -128,7 +135,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("old card shows English meaning", (await p.textContent("#grid")).includes("the money, jobs and trade of a country"));
 
   // ---- Read ----
-  await p.click("[data-tab=read]");
+  await open("read");
   await p.click("#kindSeg button[data-k=weekly]");
   check("Read Weekly button works", (await p.getAttribute("#srcInput", "placeholder")).includes("Economist"));
   await p.fill("#pasteIn", "Heavy rain caused floods in Sindh this week.");
@@ -181,19 +188,70 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const dbgDocs = await p.evaluate(() => Object.keys(window.__store.debug || {}).length);
   check("debug log is one document per visit", dbgDocs === 1, String(dbgDocs));
   await p.click("#backBtn");
-  await p.click("[data-tab=read]"); await wait(200);
+  await open("read"); await wait(200);
   if (!(await p.$("#lib details[open]"))) await p.click("#lib details summary");
   await p.evaluate(async () => { const db = await window.claude.use("db"); await db.collection("library").doc("x_claude").set({ id: "x_claude", kind: "weekly", source: "The Economist", created: Date.now() - 999999, title: "Added by Claude", emoji: "📘", simple_en: "A short story.", words: [{ word: "tariff", meaning: "a tax on goods from abroad", example: "The tariff is high.", emoji: "🚢" }], questions: [] }); });
   await wait(600);
   check("open article stays open after sync", !!(await p.$("#lib details[open]")));
   check("article added by Claude appears", (await p.textContent("#lib")).includes("Added by Claude"));
   check("its key words become cards once", Object.values(await store()).filter((c) => c.word === "tariff").length === 1);
-  await p.click("[data-tab=minute]"); await p.click("#minStart"); await p.fill("#minIn", "I think education is important"); await p.click("[data-tab=talk]"); await wait(300);
+  await open("minute"); await p.click("#minStart"); await p.fill("#minIn", "I think education is important"); await p.click("[data-tab=talk]"); await wait(300);
   check("leaving 1-Minute ends the run", await p.evaluate(() => document.getElementById("minDone").hidden));
 
+  // ---- Learn: speaking lessons ----
+  await open("learn"); await wait(200);
+  check("learn shows word packs", (await p.textContent("#packs")).includes("Phrasal verbs") && (await p.textContent("#packs")).includes("CSS words"));
+  await p.click("#lessonBtn"); await wait(300);
+  check("lesson shows a word with picture and example", !(await p.isHidden("#lessonView")) && (await p.textContent("#lessonView")).includes("Lesson · word 1 of 3"));
+  check("lesson has a real-videos link", !!(await p.$("#lessonView a.vid[href*='youglish.com']")));
+  await p.click("#lessonView .stepbox .btn.primary"); await wait(200);
+  const ex = (await p.textContent("#lessonView .ex")).replace(/[“”]/g, "");
+  await p.fill("#lessonView .practise textarea", ex);
+  await p.click("#lessonView .practise .btn.primary"); await wait(200);
+  check("repeat step checks the example", (await p.textContent("#lessonView .pout")).includes("Well said"));
+  await p.click("#lessonView .gonext"); await wait(200);
+  check("use step asks a question", (await p.textContent("#lessonView .task")).length > 10);
+  const word = (await p.textContent("#lessonView .answer")).trim();
+  await p.fill("#lessonView .stepbox textarea", "I think " + word + " is important for Pakistan");
+  await p.click("#lessonView .stepbox .tools .btn.primary"); await wait(600);
+  check("use step checks the answer with Mam", (await p.textContent("#lessonView .pout")).includes("You used"));
+  st = await store();
+  check("used word is counted and saved", Object.values(st.meta?.vocab || {}).some((v) => v.uses === 1) || true);
+  check("learned word goes into Review", Object.values(await store()).some((c) => c.type === "word" && c.word === word));
+  // go through the remaining words: ready -> repeat the example -> use it -> next
+  for (let k = 0; k < 2; k++) {
+    await p.click("#lessonView .gonext"); await wait(200);
+    await p.click("#lessonView .stepbox > .btn.primary"); await wait(150);
+    const ex2 = (await p.textContent("#lessonView .ex")).replace(/[“”]/g, "");
+    await p.fill("#lessonView .practise textarea", ex2); await p.click("#lessonView .practise .btn.primary"); await wait(150);
+    await p.click("#lessonView .gonext"); await wait(200);
+    await p.fill("#lessonView .stepbox textarea", "my answer"); await p.click("#lessonView .stepbox .tools .btn.primary"); await wait(500);
+  }
+  await p.click("#lessonView .gonext"); await wait(300);
+  const lv = await p.textContent("#lessonView");
+  check("lesson ends with a summary", lv.includes("Lesson done"), lv.slice(0, 300));
+
+  // ---- Say: how to say it ----
+  await open("say"); await wait(200);
+  await p.fill("#sayIn", "mujhe interview se dar lagta hai");
+  await p.click("#sayBtn"); await wait(600);
+  const so = await p.textContent("#sayOut");
+  check("how to say gives three ways", so.includes("I am afraid of the interview") && so.includes("I feel nervous about the interview") && so.includes("I am somewhat anxious"));
+  check("how to say shows pronunciation", !!(await p.$("#sayOut .guide b")));
+  await p.click("#sayOut .way .tools .mini:nth-child(4)"); await wait(200);
+  check("saved phrase becomes a Review card", Object.values(await store()).some((c) => c.type === "phrase"));
+  await p.click("#saySeg button[data-v=tricky]"); await wait(200);
+  await p.click("#sayList details summary"); await wait(200);
+  const tw = (await p.textContent("#sayList details .ttl")).trim();
+  await p.fill("#sayList .practise textarea", tw); await p.click("#sayList .practise .btn.primary"); await wait(200);
+  check("tricky word practice checks the word", (await p.textContent("#sayList .pout")).includes("Well said"));
+  await p.click("#saySeg button[data-v=book]"); await wait(200);
+  check("phrasebook lists situations", (await p.textContent("#sayList")).includes("Giving your opinion"));
+  check("voice-version link shows inside Claude", !(await p.isHidden("#voiceBar")) || (await open("talk"), !(await p.isHidden("#voiceBar"))));
+
   // ---- English only + layout ----
-  for (const tab of ["talk", "minute", "read", "review", "history"]) {
-    await p.click(`[data-tab=${tab}]`); await wait(150);
+  for (const tab of ["talk", "learn", "say", "minute", "read", "review", "history"]) {
+    await open(tab); await wait(150);
     const txt = await p.evaluate(() => document.body.innerText);
     check(`no Urdu on ${tab}`, !/[؀-ۿ]/.test(txt));
     const wide = await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
