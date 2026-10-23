@@ -119,7 +119,7 @@ const fakes = () => {
   check("my spoken answer about the story is sent", (await p.textContent("#msgs")).includes("We need dams for water") && gem.some((g) => /Write Mam's next reply now/.test(g.prompt) && g.prompt.includes("store water for farmers")));
   await p.click("#orb"); await p.waitForTimeout(200);
   const before = gem.length;
-  await p.click("text=📰 All news"); await p.waitForTimeout(300);
+  await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(300); // from a story, the News tab goes back to the news page
   check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
