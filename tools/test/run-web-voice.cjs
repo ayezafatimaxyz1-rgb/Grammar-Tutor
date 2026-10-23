@@ -35,6 +35,14 @@ const fakes = () => {
   let rejectThinking = 1; // the first "thinking off" setting is refused, as some models do
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
+  // what the news robot saves (news.json on the gh-pages branch)
+  const robot = { updated: Date.now() - 2 * 3600000, sources: ["Dawn", "BBC News"], items: [
+    { t: "Senate passes new water bill", s: "The bill aims to build small dams in every province.", u: "https://www.dawn.com/news/111", src: "Dawn", w: "Pakistan", at: Date.now() - 3600000 },
+    { t: "Wheat prices fall in Punjab", s: "A good harvest has lowered flour prices.", u: "https://www.dawn.com/news/112", src: "Dawn", w: "Pakistan", at: Date.now() - 7200000 },
+    { t: "Climate talks open in Geneva", s: "Leaders discuss funding for poor countries.", u: "https://www.bbc.com/news/1", src: "BBC News", w: "World", at: Date.now() - 5400000 },
+  ] };
+  let robotCalls = 0;
+  await p.route("https://raw.githubusercontent.com/**", (r) => { robotCalls++; return r.fulfill({ json: robot, headers: { "access-control-allow-origin": "*" } }); });
   await p.route("https://generativelanguage.googleapis.com/**", async (r) => {
     const u = r.request().url();
     if (u.includes("/models?")) return r.fulfill({ json: { models: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3.1-flash-lite-preview", "gemini-flash-lite-latest", "gemini-2.5-flash-preview-tts"].map((n) => ({ name: "models/" + n, supportedGenerationMethods: ["generateContent"] })) } });
@@ -102,13 +110,20 @@ const fakes = () => {
   await p.click("#orb"); await p.waitForTimeout(900);
   check("challenge: result after finishing", (await p.textContent("#minResult")).includes("words / min"));
   // newspaper: today's headlines from Google Search, then talk about one by voice
+  await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(500);
+  const fd = await p.textContent("#feed");
+  check("free headlines from the news robot, no key needed", robotCalls === 1 && fd.includes("From the newspapers") && fd.includes("🇵🇰 Pakistan") && fd.includes("Senate passes new water bill") && fd.includes("🌍 World") && fd.includes("Climate talks open in Geneva") && fd.includes("Updated 2 hours ago"));
+  await p.click('#feed .hl:has-text("Senate passes new water bill")'); await p.waitForTimeout(800);
+  check("a robot headline becomes a story, made from its summary", gem.some((g) => /Below is a news story from "Dawn"/.test(g.prompt) && g.prompt.includes("small dams in every province")));
+  check("the story links to the full article on the newspaper's site", (await p.getAttribute('a:has-text("Full story on Dawn")', "href")) === "https://www.dawn.com/news/111");
   await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(300);
+  check("a headline already read is marked", (await p.textContent('#feed .hl:has-text("Senate passes")')).includes("✓ read") && robotCalls === 1);
   await p.click("text=Get today's news"); await p.waitForTimeout(600);
-  check("today's headlines arrive", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("New dam opens in KPK"));
+  check("today's headlines arrive", (await p.$$("#headlines .hl")).length === 3 && (await p.textContent("#headlines")).includes("New dam opens in KPK"));
   const hs = gem.find((g) => /Use Google Search/.test(g.prompt));
   check("headlines use Google Search (without JSON mode)", !!hs && hs.search && !hs.mime);
   check("if search is refused, it tries the older free model", gem.filter((g) => g.search).map((g) => g.model).join() === "gemini-flash-latest,gemini-2.5-flash");
-  await p.click(".hl >> nth=0"); await p.waitForTimeout(700);
+  await p.click("#headlines .hl >> nth=0"); await p.waitForTimeout(700);
   check("a headline becomes a story to talk about", (await p.textContent("#topicName")).includes("A new dam for Pakistan") && (await p.textContent("#msgs")).includes("Words · 1"));
   await p.click('.tab[data-k="orig"]'); await p.waitForTimeout(100);
   check("a headline's original tab says it is a short report", (await p.textContent("#msgs")).includes("not the full article"));
@@ -122,7 +137,7 @@ const fakes = () => {
   await p.click("#orb"); await p.waitForTimeout(200);
   const before = gem.length;
   await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(300); // from a story, the News tab goes back to the news page
-  check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
+  check("headlines are kept for the day (no new search)", (await p.$$("#headlines .hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
   await p.click('#tabbar [data-tab="words"]'); await p.waitForTimeout(200);

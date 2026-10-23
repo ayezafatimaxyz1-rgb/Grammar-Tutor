@@ -1228,7 +1228,10 @@ function section(cls, label) {
 function renderNews() {
   $("msgs").innerHTML = "";
   section("").id = "newsStatus";
-  if (!inClaude) { section("brain").id = "headlines"; renderHeadlines(); } // only Gemini can search today's news
+  if (!inClaude) { // inside Claude the page cannot reach the internet
+    section("brain").id = "feed"; renderFeed(); loadFeed();
+    section("brain").id = "headlines"; renderHeadlines();
+  }
   const add = section("brain", "📰 Add a news story");
   add.insertAdjacentHTML("beforeend", `<p class="hint" style="text-align:left;margin:0">Take a screenshot of one story in a newspaper or magazine, then add it here. Mam makes it simple, and then you talk about it with her.</p>
 <div class="tools"><label class="btn primary" for="newsFile">📷 Screenshot, photo or PDF</label><button class="btn" type="button" id="newsPasteBtn">📋 Paste text</button></div>
@@ -1276,12 +1279,12 @@ function newsStatus(msg, err, stop, action) {
 }
 function renderHeadlines() {
   const box = $("headlines"); if (!box) return;
-  box.innerHTML = '<div class="lbl">🌍 Today\'s headlines</div>';
+  box.innerHTML = '<div class="lbl">🔎 Search the news with Google</div>';
   const p = (cls, text) => { const x = document.createElement("p"); x.className = cls; x.style.cssText = "text-align:left;margin:0"; x.textContent = text; box.append(x); };
   if (hlBusy) { p("typing", "Mam is checking today's news…"); return; }
   const items = headlines?.day === dayKey() ? headlines.items : [];
   if (!items.length) {
-    p("hint", "Mam can find today's big stories from Pakistan and the world for you.");
+    p("hint", "Mam can also search Google for today's big stories (this uses your Gemini key).");
     if (hlErr) p("status", hlErr);
     const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get today's news"; b.onclick = () => loadHeadlines(); box.append(b);
     return;
@@ -1296,6 +1299,39 @@ function renderHeadlines() {
     box.append(b);
   });
   const t = document.createElement("div"); t.className = "tools"; t.append(tool("↻ Check again", () => loadHeadlines())); box.append(t);
+}
+// Headlines collected every 3 hours by the news robot (tools/fetch-news.mjs), free and without a key.
+const FEED_URLS = ["https://raw.githubusercontent.com/ayezafatimaxyz1-rgb/Grammar-Tutor/gh-pages/news.json", "news.json"];
+let feed = null, feedBusy = false, feedMore = false;
+async function loadFeed() {
+  if (inClaude || feedBusy || feed) return;
+  feedBusy = true;
+  for (const u of FEED_URLS) {
+    try { const r = await fetch(u, { cache: "no-cache" }); if (!r.ok) continue; const j = await r.json(); if (Array.isArray(j?.items) && j.items.length) { feed = j; break; } } catch {}
+  }
+  feedBusy = false;
+  if (mode === "news") renderFeed();
+}
+const ago = (t) => { const m = Math.max(0, Math.round((Date.now() - t) / 60000)); return !t ? "" : m < 2 ? "just now" : m < 60 ? m + " min ago" : m < 1440 ? Math.round(m / 60) + (m < 90 ? " hour ago" : " hours ago") : Math.round(m / 1440) + (m < 2160 ? " day ago" : " days ago"); };
+function renderFeed() {
+  const box = $("feed"); if (!box) return;
+  box.innerHTML = ""; box.append(el("div", "lbl", "🗞️ From the newspapers"));
+  if (!feed) { const p = el("p", feedBusy ? "typing" : "hint", feedBusy ? "Getting the latest headlines…" : "The headlines could not be loaded. Pull the page down to try again."); p.style.cssText = "text-align:left;margin:0"; box.append(p); return; }
+  const meta = el("p", "hint", "Updated " + ago(feed.updated) + " · " + (feed.sources || []).join(", ")); meta.style.cssText = "text-align:left;margin:0"; box.append(meta);
+  [["Pakistan", "🇵🇰 Pakistan"], ["World", "🌍 World"]].forEach(([w, label]) => {
+    const list = feed.items.filter((x) => x.w === w).slice(0, feedMore ? 15 : 5);
+    if (!list.length) return;
+    box.append(el("div", "lbl", label));
+    list.forEach((it) => {
+      const done = state.chats.find((c) => c.article?.from === it.t);
+      const b = el("button", "hl"); b.type = "button";
+      b.append(el("span", "em", "📰"));
+      const tx = el("span"); tx.append(el("strong", "", it.t), el("small", "", [it.src, ago(it.at)].filter(Boolean).join(" · ") + (done ? " · ✓ read" : ""))); b.append(tx);
+      b.onclick = () => (done ? openTopic(done.topic) : readNews({ text: it.t + (it.s ? "\n\n" + it.s : ""), source: it.src, from: it.t, link: it.u }));
+      box.append(b);
+    });
+  });
+  const t = el("div", "tools"); t.append(tool(feedMore ? "Show fewer" : "Show more headlines", () => { feedMore = !feedMore; renderFeed(); })); box.append(t);
 }
 async function loadHeadlines() {
   if (hlBusy) return;
@@ -1402,7 +1438,7 @@ Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions
     const now = Date.now(), id = "n" + now.toString(36);
     const paras = (Array.isArray(r.paragraphs) ? r.paragraphs : []).map((x) => String(x || "").trim()).filter(Boolean).slice(0, 60).map((x) => ({ text: x }));
     const seen = new Set();
-    const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), story: String(r.story), css: String(r.css || ""), from: input.from || "",
+    const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), link: input.link || "", story: String(r.story), css: String(r.css || ""), from: input.from || "",
       questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), paras,
       sections: cleanSections(r.sections, paras.length),
       vocab: (Array.isArray(r.vocab) ? r.vocab : []).filter((w) => w?.word && !seen.has(String(w.word).toLowerCase()) && seen.add(String(w.word).toLowerCase())).slice(0, 40).map((w) => ({ word: String(w.word).trim(), type: String(w.type || ""), meaning: String(w.meaning || "") })) };
@@ -1430,6 +1466,7 @@ function articleCard(c) {
   const d = el("div", "report art");
   d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><div class="css"></div><div class="tabs" role="tablist"></div><div class="tabbody"></div>';
   d.querySelector(".back").append(tool("📰 All news", () => openTopic(NEWS)));
+  if (/^https?:\/\//.test(a.link || "")) { const l = el("a", "mini", "Full story" + (a.source ? " on " + a.source : "") + " ↗"); l.href = a.link; l.target = "_blank"; l.rel = "noopener"; d.querySelector(".back").append(l); }
   d.querySelector(".aem").textContent = a.emoji || "📰";
   d.querySelector("strong").textContent = a.title;
   d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
@@ -1562,7 +1599,7 @@ function originalTab(c, body) {
     const b = el("button", "btn primary", "📰 Add the story again"); b.type = "button"; b.onclick = () => openTopic(NEWS); wrap.append(b);
     return;
   }
-  if (a.from) wrap.append(el("p", "hint", "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it."));
+  if (a.from) wrap.append(el("p", "hint", "This is the short report from today's headlines, not the full article. For the full article, tap “Full story” above, take a screenshot and add it."));
   else { const tp = tip("orig", "Tap any word you think is hard: Mam explains it under the paragraph, and you can save it. For a phrase, tap its first word, then ＋ Word after."); if (tp) wrap.append(tp); }
   const bar = el("div", "tools"), toggle = el("button", "mini"); toggle.type = "button";
   const paint = () => { wrap.classList.toggle("picks", !!state.settings.showPicks); toggle.textContent = state.settings.showPicks ? "🙈 Hide Mam's hard words" : "💡 Show Mam's hard words"; };

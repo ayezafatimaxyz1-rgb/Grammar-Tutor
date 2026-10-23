@@ -9,6 +9,7 @@ trap 'git -C "$root" worktree remove --force "$work" >/dev/null 2>&1 || true' EX
 git -C "$root" fetch -q origin gh-pages
 git -C "$root" worktree add -q --detach "$work" origin/gh-pages
 cp -R "$root/docs/." "$work/"
+cp "$root/tools/fetch-news.mjs" "$work/fetch-news.mjs" # the news robot runs from gh-pages (workflow on main)
 touch "$work/.nojekyll"
 cd "$work"
 git add -A
