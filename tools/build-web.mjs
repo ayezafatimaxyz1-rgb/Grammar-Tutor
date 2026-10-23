@@ -22,7 +22,7 @@ const head = `<!doctype html>
 `;
 const manifest = (display) => JSON.stringify({
   name: "Bolo English", short_name: "Bolo", description: "Speak English every day with Mam.",
-  start_url: "./", scope: "./", display, background_color: "#eef3ef", theme_color: "#0d7a4c",
+  start_url: "./", scope: "./", display, background_color: "#e9f3ee", theme_color: "#0d7a4c",
   icons: [
     { src: "icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
     { src: "icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },

@@ -5,12 +5,20 @@ const fs = require("fs");
 let pw;
 try { pw = require("playwright"); } catch { pw = require(require("child_process").execSync("npm root -g").toString().trim() + "/playwright"); }
 
-// A speech bubble with sound bars, kept inside the middle 80% so Android can crop it to any shape.
+// The app's glass look: a soft green, blue and gold background with a green speech bubble and sound bars.
+// Everything sits inside the middle 80%, so Android can crop it to any shape.
 const bars = [[168, 40], [212, 90], [256, 130], [300, 90], [344, 40]]
-  .map(([x, h], i) => `<rect x="${x - 13}" y="${250 - h / 2}" width="26" height="${h}" rx="13" fill="${i === 2 ? "#e39a2d" : "#0d7a4c"}"/>`).join("");
+  .map(([x, h], i) => `<rect x="${x - 13}" y="${250 - h / 2}" width="26" height="${h}" rx="13" fill="${i === 2 ? "#ffcd82" : "#ffffff"}"/>`).join("");
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-<rect width="512" height="512" fill="#0d7a4c"/>
-<path d="M136 150h240a40 40 0 0 1 40 40v120a40 40 0 0 1-40 40H256l-70 56v-56h-50a40 40 0 0 1-40-40V190a40 40 0 0 1 40-40z" fill="#fff"/>
+<defs>
+<radialGradient id="m" cx="40" cy="30" r="420" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#7ddcae"/><stop offset="1" stop-color="#7ddcae" stop-opacity="0"/></radialGradient>
+<radialGradient id="b" cx="500" cy="160" r="330" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#9cc6ff"/><stop offset="1" stop-color="#9cc6ff" stop-opacity="0"/></radialGradient>
+<radialGradient id="g" cx="120" cy="520" r="360" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#ffd08c"/><stop offset="1" stop-color="#ffd08c" stop-opacity="0"/></radialGradient>
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d7a4c"/><stop offset="1" stop-color="#17a56c"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#0b5235" flood-opacity=".35"/></filter>
+</defs>
+<rect width="512" height="512" fill="#e9f3ee"/><rect width="512" height="512" fill="url(#m)"/><rect width="512" height="512" fill="url(#b)"/><rect width="512" height="512" fill="url(#g)"/>
+<path d="M136 150h240a40 40 0 0 1 40 40v120a40 40 0 0 1-40 40H256l-70 56v-56h-50a40 40 0 0 1-40-40V190a40 40 0 0 1 40-40z" fill="url(#gb)" filter="url(#sh)"/>
 ${bars}</svg>`;
 
 (async () => {
