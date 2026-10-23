@@ -112,7 +112,7 @@ const fakes = () => {
   // newspaper: today's headlines from Google Search, then talk about one by voice
   await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(500);
   const fd = await p.textContent("#feed");
-  check("free headlines from the news robot, no key needed", robotCalls === 1 && fd.includes("From the newspapers") && fd.includes("🇵🇰 Pakistan") && fd.includes("Senate passes new water bill") && fd.includes("🌍 World") && fd.includes("Climate talks open in Geneva") && fd.includes("Updated 2 hours ago"));
+  check("free headlines from the news robot, no key needed", robotCalls === 1 && fd.includes("From the newspapers") && fd.includes("🇵🇰 Pakistani papers") && fd.includes("Senate passes new water bill") && fd.includes("🌍 International papers") && fd.includes("Climate talks open in Geneva") && fd.includes("Updated 2 hours ago"));
   await p.click('#feed .hl:has-text("Senate passes new water bill")'); await p.waitForTimeout(800);
   check("a robot headline becomes a story, made from its summary", gem.some((g) => /Below is a news story from "Dawn"/.test(g.prompt) && g.prompt.includes("small dams in every province")));
   check("the story links to the full article on the newspaper's site", (await p.getAttribute('a:has-text("Full story on Dawn")', "href")) === "https://www.dawn.com/news/111");
