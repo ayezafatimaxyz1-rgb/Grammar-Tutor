@@ -33,7 +33,13 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const store = () => p.evaluate(() => window.__store["data/users/u_test"]);
   const chats = async () => Object.entries(await store()).filter(([k]) => k.startsWith("chat_")).map(([, v]) => v);
   const say = async (text, ms = 700) => { await p.fill("#input", text); await p.click("#sendBtn"); await wait(ms); };
-  const topic = async (name) => { await p.click("#topicBtn"); await wait(150); await p.click(`#topicList .trow:has-text("${name}")`); await wait(300); };
+  const TABS = { "1-minute challenge": "minute", Newspaper: "news", "My words": "words" };
+  const tab = async (k) => { await p.click(`#tabbar [data-tab="${k}"]`); await wait(300); };
+  const topic = async (name) => { // the tools have their own tabs; conversation topics are in the Talk tab's list
+    if (TABS[name]) return tab(TABS[name]);
+    if (await p.isDisabled("#topicBtn")) await tab("talk");
+    await p.click("#topicBtn"); await wait(150); await p.click(`#topicList .trow:has-text("${name}")`); await wait(300);
+  };
   const msgs = () => p.textContent("#msgs");
   const lastTag = () => p.evaluate(() => [...document.querySelectorAll(".msg.me")].pop()?.querySelector(".verdict")?.textContent || "");
 
@@ -41,7 +47,13 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("opens on Free talk with Mam's question", (await p.textContent("#topicName")).includes("Free talk") && (await msgs()).includes("What would you like to talk about today"));
   check("no fake mic button inside Claude (it cannot listen there)", await p.isHidden("#orb"));
   check("inside Claude: typing box and voice-version link", !(await p.isHidden("#typeRow")) && (await p.textContent("#hint")).includes("voice version"));
-  check("only the simple screen (no tabs)", !(await p.$("nav")));
+  check("four tabs at the bottom, Talk is open", (await p.$$("#tabbar button")).length === 4 && (await p.getAttribute('#tabbar [data-tab="talk"]', "aria-current")) === "page");
+  await p.click("#topicBtn"); await wait(150);
+  const tl = await p.textContent("#topicList");
+  check("the topic list has only conversation topics", tl.includes("My city") && tl.includes("CSS interview") && !tl.includes("Newspaper") && !tl.includes("1-minute challenge") && !tl.includes("My words"));
+  await p.click("#topicSheet [data-close]"); await wait(100);
+  await p.click("#hint .x"); await wait(100);
+  check("the long tip at the bottom can be closed", await p.isHidden("#hint"));
 
   // ---- talk + corrections on tap ----
   await say("I living in Lahore");
@@ -152,6 +164,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("next question loads new ideas", (await p.$$(".idea")).length === 3 && !(await p.textContent("#minResult")).includes("7/10"));
   await topic("Free talk");
   check("back in Free talk the chat is still there", (await msgs()).includes("I like biryani") && (await p.isHidden("#orb")));
+  check("Again and Slow only under Mam's newest message", await p.evaluate(() => { const t = [...document.querySelectorAll("#msgs .msg.tutor")]; return t.length > 2 && !!t[t.length - 1].querySelector(".say") && document.querySelectorAll("#msgs .say").length === 1; }));
 
   // ---- newspaper ----
   await topic("Newspaper"); await wait(300);
@@ -162,7 +175,8 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("a screenshot becomes a story", (await p.textContent("#topicName")).includes("Floods in Sindh"));
   check("the screenshot goes to Mam as a picture", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Below is a news story") && c.images === 1)));
   m = await msgs();
-  check("story card: CSS link and Mam's first question", m.includes("For CSS") && m.includes("What happened in Sindh?"));
+  check("story card: CSS link, and no chat or talk button while reading", m.includes("For CSS") && !m.includes("What happened in Sindh?") && (await p.isHidden("#dock")) && !!(await p.$("text=💬 Talk about it with Mam")));
+  check("the News tab is lit while reading a story", (await p.getAttribute('#tabbar [data-tab="news"]', "aria-current")) === "page" && (await p.isDisabled("#topicBtn")));
   check("the story opens on its original text", (await p.textContent('.tab[aria-selected="true"]')).includes("Original"));
   check("every word of the original can be tapped, and Mam's picks stay hidden", (await p.$$(".tw")).length >= 45 && !(await p.$(".orig.picks")) && (await p.textContent(".orig")).includes("Show Mam's hard words"));
   await p.click('.tw:text-is("lashed")'); await wait(500);
@@ -206,8 +220,13 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click('text=🔍 Analyse paragraph 1'); await wait(500);
   const an = await p.textContent(".para >> nth=0 >> .analysis");
   check("paragraph analysis: main idea, simple English, structure, hard sentence, tone, CSS tip", an.includes("Main idea") && an.includes("In simple English") && an.includes("Topic sentence") && an.includes("The hardest sentence") && an.includes("Tone:") && an.includes("For CSS"));
+  await p.click(".orig .tipbox .x"); await wait(100);
+  await p.click('.tab[data-k="words"]'); await p.click('.tab[data-k="orig"]'); await wait(100);
+  check("a closed tip stays closed", !(await p.$(".orig .tipbox")) && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).settings.tips.orig)) === true);
   await p.click('.tab[data-k="story"]'); await wait(100);
   check("the simple story is one tap away", (await msgs()).includes("Heavy rain caused floods"));
+  await p.click('.tab[data-k="talk"]'); await wait(200);
+  check("the story's Talk tab: Mam's first question and the talk bar", (await msgs()).includes("What happened in Sindh?") && !(await p.isHidden("#dock")) && !(await msgs()).includes("Heavy rain caused floods"));
   await say("Many people lost there homes in the flood", 900);
   check("talking about the story: Mam knows the story", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Write Mam's next reply now") && c.prompt.includes("Heavy rain caused floods"))));
   check("corrections work in the news talk too", !!(await p.$(".msg.me .verdict")));
@@ -247,9 +266,8 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
     check("the PDF's words go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals"))));
   } else console.log("SKIP PDF checks (set PDFJS_DIR to a pdfjs-dist 3.11.174 build folder)");
   // ---- My words ----
-  await p.click("#topicBtn"); await wait(150);
-  check("the topic list shows words to review", (await p.textContent('#topicList .trow:has-text("My words")')).includes("2 to review today"));
-  await p.click('#topicList .trow:has-text("My words")'); await wait(300);
+  check("the Words tab shows how many words to review", (await p.textContent("#wordsBadge")) === "2" && !(await p.isHidden("#wordsBadge")));
+  await tab("words");
   let wl = await p.textContent("#wordList");
   check("My words lists the saved words with their meaning", (await p.$$("#wordList .vrow")).length === 2 && wl.includes("torrential") && wl.includes("covering with water") && wl.includes("review today"));
   await p.click('#wordList .vrow:has-text("torrential") .vword'); await wait(300);
@@ -278,8 +296,10 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("practise saved words in a talk with Mam", (await p.textContent("#topicName")).includes("Practise my words") && (await msgs()).includes("Let's use your words"));
   await say("The torrential rain was scary", 900);
   check("Mam knows which words to practise", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("practising these saved words") && c.prompt.includes("resilience") && !c.prompt.includes("submerging"))));
-  await topic("Newspaper"); await wait(200);
-  check("the newspaper page links to My words", (await msgs()).includes("My words") && (await msgs()).includes("2 words saved"));
+  await tab("news");
+  check("the News tab comes back to the story I was reading", (await p.textContent("#topicName")).includes("Floods in Sindh"));
+  await tab("news");
+  check("tapping News again goes to the news page", !!(await p.$("label[for=newsFile]")));
   await topic("Free talk");
   check("leaving the newspaper brings the chat back", (await msgs()).includes("I like biryani") && !(await p.isHidden("#dock")));
 

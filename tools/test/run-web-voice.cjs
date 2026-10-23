@@ -93,14 +93,14 @@ const fakes = () => {
   check("typing is one tap away", !(await p.isHidden("#typeRow")));
   // 1-minute challenge by voice
   await p.evaluate(() => { window.__toSay.push("I want to join the civil service because I love my country"); });
-  await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("1-minute challenge")'); await p.waitForTimeout(600);
+  await p.click('#tabbar [data-tab="minute"]'); await p.waitForTimeout(600);
   check("challenge: brainstorm ideas shown", (await p.$$(".idea")).length === 3);
   await p.click("#orb"); await p.waitForTimeout(800);
   check("challenge: my spoken words fill the answer", (await p.inputValue("#minIn")).includes("civil service"));
   await p.click("#orb"); await p.waitForTimeout(900);
   check("challenge: result after finishing", (await p.textContent("#minResult")).includes("words / min"));
   // newspaper: today's headlines from Google Search, then talk about one by voice
-  await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("Newspaper")'); await p.waitForTimeout(300);
+  await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(300);
   await p.click("text=Get today's news"); await p.waitForTimeout(600);
   check("today's headlines arrive", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("New dam opens in KPK"));
   const hs = gem.find((g) => /Use Google Search/.test(g.prompt));
@@ -111,6 +111,8 @@ const fakes = () => {
   await p.click('.tab[data-k="orig"]'); await p.waitForTimeout(100);
   check("a headline's original tab says it is a short report", (await p.textContent("#msgs")).includes("not the full article"));
   check("the story is made from the headline's facts", gem.some((g) => /Below is a news story/.test(g.prompt) && g.prompt.includes("A new dam opened today")));
+  check("while reading a story, the talk button is out of the way", await p.isHidden("#dock"));
+  await p.click('.tab[data-k="talk"]'); await p.waitForTimeout(200);
   await p.evaluate(() => { window.__toSay.push("We need dams for water"); });
   await p.click("#orb"); await p.waitForTimeout(3600);
   check("Mam asks about the story out loud", (await p.evaluate(() => window.__spoken.join("|"))).includes("Why do we need dams?"));
@@ -121,8 +123,7 @@ const fakes = () => {
   check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
-  await p.click("text=📰 All news"); await p.waitForTimeout(200);
-  await p.click('.trow:has-text("My words")'); await p.waitForTimeout(200);
+  await p.click('#tabbar [data-tab="words"]'); await p.waitForTimeout(200);
   await p.fill("#wordIn", "resilience"); await p.click('form:has(#wordIn) button'); await p.waitForTimeout(600);
   check("My words works in the voice version too (kept on this phone)", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).words.map((w) => w.word).join())) === "resilience");
   await p.evaluate(() => localStorage.setItem("bolo.gemini", JSON.stringify({ key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest" })));
