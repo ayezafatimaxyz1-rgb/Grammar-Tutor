@@ -121,6 +121,10 @@ const fakes = () => {
   check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
+  await p.click("text=📰 All news"); await p.waitForTimeout(200);
+  await p.click('.trow:has-text("My words")'); await p.waitForTimeout(200);
+  await p.fill("#wordIn", "resilience"); await p.click('form:has(#wordIn) button'); await p.waitForTimeout(600);
+  check("My words works in the voice version too (kept on this phone)", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).words.map((w) => w.word).join())) === "resilience");
   await p.evaluate(() => localStorage.setItem("bolo.gemini", JSON.stringify({ key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest" })));
   await p.reload(); await p.waitForTimeout(800);
   check("a key saved by the old version gets the fast model too", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).fast)) === "gemini-2.5-flash-lite");

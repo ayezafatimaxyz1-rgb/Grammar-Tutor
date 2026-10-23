@@ -149,6 +149,10 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .vrow { border-bottom: 1px solid var(--line); }
 .vrow:last-child { border-bottom: 0; }
 .vword { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 10px 2px; min-height: 44px; }
+.vhead { display: flex; align-items: center; gap: 4px; }
+.vhead .vword { flex: 1; min-width: 0; }
+.star { flex: none; width: 44px; height: 44px; border: 0; background: none; font-size: 22px; color: var(--sun); }
+.toast { position: fixed; left: 50%; top: calc(72px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 40; background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 15px; font-weight: 700; max-width: calc(100% - 32px); }
 .vword b { font-size: 16px; }
 .vword small { color: var(--muted); font-size: 12px; }
 .vword span { display: block; font-size: 14px; color: var(--muted); }
@@ -278,6 +282,7 @@ const TOPICS = [
   { id: "free", em: "💬", name: "Free talk", desc: "Anything you like", open: "Hi! I am Mam, your English partner. What would you like to talk about today?" },
   { id: "minute", kind: "minute", em: "⏱️", name: "1-minute challenge", desc: "Brainstorm ideas, then speak for 60 seconds" },
   { id: "news", kind: "news", em: "📰", name: "Newspaper", desc: "Read a news story, then talk about it" },
+  { id: "mywords", kind: "words", em: "⭐", name: "My words", desc: "Save words and review them" },
   { id: "routine", em: "⏰", name: "My day", desc: "Routine, work, plans", open: "Let's talk about your day. What did you do today?" },
   { id: "intro", em: "🙋", name: "About me", desc: "Name, city, studies", open: "Hello! I am Mam, your English teacher. What is your name, and where are you from?" },
   { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
@@ -288,7 +293,7 @@ const TOPICS = [
     extra: "Talk about world issues in general terms (climate change, AI, war and peace, prices, water). You have no live news, so never invent recent events, dates or numbers." },
   { id: "interview", kind: "interview", em: "🏛️", name: "CSS interview", desc: "A board of 3 asks about 10 questions", open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." },
 ];
-const NEWS = TOPICS.find((t) => t.kind === "news");
+const NEWS = TOPICS.find((t) => t.kind === "news"), MYWORDS = TOPICS.find((t) => t.kind === "words");
 const LEVEL_STYLE = {
   A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences. Often give a model sentence the student can copy (\"You can say: ...\").",
   A2: "Use simple English (CEFR A2): up to 3 short sentences. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
@@ -306,15 +311,16 @@ const BOARD_STYLE = { A1: "very simple, slow questions with common words", A2: "
 // ---------- state ----------
 const LS = "bolo.v1";
 let raw = {};
-let state = { settings: { voice: true, level: "A1", rate: 0.88, lastTopic: "free" }, chats: [] };
+let state = { settings: { voice: true, level: "A1", rate: 0.88, lastTopic: "free" }, chats: [], words: [] };
 const level = () => (LEVEL_STYLE[state.settings.level] ? state.settings.level : "A1");
 function loadLocal() {
   try { raw = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch { raw = {}; }
   state.settings = { ...state.settings, ...(raw.settings || {}) };
   state.chats = (Array.isArray(raw.chats) ? raw.chats : []).filter((c) => c && (c.turns || c.attempts));
+  state.words = (Array.isArray(raw.words) ? raw.words : []).filter((w) => w?.id && w.word);
 }
 // Keeps fields written by older versions of the app; with the account store the phone keeps the 30 newest chats, without it (web version) far more.
-function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...raw, settings: state.settings, chats: state.chats.slice(0, col ? 30 : 300) })); } catch {} }
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...raw, settings: state.settings, chats: state.chats.slice(0, col ? 30 : 300), words: state.words })); } catch {} }
 
 let col = null, metaReady = false, metaTimer = 0, dbgCol = null, dbgRows = [], dbgTimer = 0;
 const visitId = "v" + Date.now().toString(36);
@@ -331,6 +337,13 @@ function putMeta() {
   if (!col || !metaReady) return;
   clearTimeout(metaTimer);
   metaTimer = setTimeout(() => { const d = col.doc("meta"); d.update({ settings: state.settings }).catch(() => d.set({ settings: state.settings }).catch(() => {})); }, 800);
+}
+const wordTimers = new Map();
+function putWord(w) {
+  w.updated = Date.now(); saveLocal();
+  if (!col) return;
+  clearTimeout(wordTimers.get(w.id));
+  wordTimers.set(w.id, setTimeout(() => { wordTimers.delete(w.id); col.doc("word_" + w.id).set(w).catch((e) => dbg("word_save_error", { code: String(e?.code || "") })); }, 600));
 }
 // A store document holds at most 256 KiB: keep the newest turns that fit well under that.
 function slimChat(c) {
@@ -366,7 +379,17 @@ async function connectDb() {
   try { snap = await getRetry(col); } catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; }
   metaReady = true;
   const chats = []; let meta = null;
-  snap.docs.forEach((d) => { if (d.id === "meta") meta = thaw(d.data()); else if (d.id.startsWith("chat_")) { const c = thaw(d.data()); if (c?.turns || c?.attempts) chats.push(c); } });
+  const words = [];
+  snap.docs.forEach((d) => {
+    if (d.id === "meta") meta = thaw(d.data());
+    else if (d.id.startsWith("chat_")) { const c = thaw(d.data()); if (c?.turns || c?.attempts) chats.push(c); }
+    else if (d.id.startsWith("word_")) { const w = thaw(d.data()); if (w?.id && w.word) words.push(w); }
+  });
+  // saved words: the newer copy wins (a removed word stays as a small "removed" record so it is not brought back)
+  const wb = new Map(state.words.map((w) => [w.id, w]));
+  words.forEach((w) => { const l = wb.get(w.id); if (!l || (w.updated || 0) > (l.updated || 0)) wb.set(w.id, w); });
+  state.words.forEach((w) => { if (!words.some((x) => x.id === w.id)) col.doc("word_" + w.id).set(w).catch(() => {}); });
+  state.words = [...wb.values()];
   // Keep whichever copy of a chat is newer; the open chat is updated in place so the screen keeps working.
   const by = new Map(state.chats.map((c) => [c.id, c])); let redraw = false;
   chats.forEach((c) => { const l = by.get(c.id); if (!l) by.set(c.id, c); else if ((c.updated || 0) > (l.updated || 0)) { if (l === chat) { Object.assign(l, c); redraw = true; } else by.set(c.id, c); } });
@@ -377,6 +400,7 @@ async function connectDb() {
   // show the conversation from the account (unless the learner is in the middle of talking)
   if (mode === "minute") { if (!minRunning && !minBusy) { minRec = minuteRecord(state.settings.minuteQ); renderMinute(); } }
   else if (mode === "news") renderNewsList();
+  else if (mode === "words") { if (wordsView === "home") renderMyWords(); }
   else if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
 }
 
@@ -573,6 +597,7 @@ function openTopic(t, quiet) {
   stopLoop(); ctl?.abort(); hush(); stopMinute();
   if (t.kind === "minute") { openMinute(); return; }
   if (t.kind === "news") { openNews(); return; }
+  if (t.kind === "words") { openMyWords(); return; }
   mode = "chat"; applyDock();
   let c = findThread(t);
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
@@ -878,7 +903,7 @@ const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.top
 // The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge; nothing on the newspaper page.
 function applyDock() {
   const minute = mode === "minute";
-  $("dock").hidden = mode === "news";
+  $("dock").hidden = mode === "news" || mode === "words";
   $("orbRow").hidden = !minute && !canListen;
   $("typeRow").hidden = minute || canListen;
   $("typeBtn").hidden = minute || !canListen;
@@ -1089,6 +1114,7 @@ function section(cls, label) {
 function renderNews() {
   $("msgs").innerHTML = "";
   section("").id = "newsStatus";
+  $("msgs").append(topicRow("⭐", "My words", myWordsLine(), 0, false, () => openTopic(MYWORDS)));
   if (!inClaude) { section("brain").id = "headlines"; renderHeadlines(); } // only Gemini can search today's news
   const add = section("brain", "📰 Add a news story");
   add.insertAdjacentHTML("beforeend", `<p class="hint" style="text-align:left;margin:0">Take a screenshot of one story in a newspaper or magazine, then add it here. Mam makes it simple, and then you talk about it with her.</p>
@@ -1317,14 +1343,15 @@ function storyTab(c, body) {
 function wordsTab(c, body) {
   const vocab = vocabOf(c.article);
   if (!vocab.length) { body.append(el("p", "hint", "Mam found no hard words in this story.")); return; }
-  body.append(el("p", "hint", "Every advanced word in the story. Tap one to ask Mam what it means and how to learn it."));
+  body.append(el("p", "hint", "Every advanced word in the story. Tap one to ask Mam what it means and how to learn it. Tap ☆ to save it to ⭐ My words."));
   vocab.forEach((w) => {
     const row = el("div", "vrow");
     const b = el("button", "vword"); b.type = "button";
     b.append(el("b", "", w.word), el("small", "", w.type ? " " + w.type : ""), el("span", "", isEnglish(w.meaning) ? w.meaning : ""));
     const box = el("div", "vinfo"); box.hidden = true;
-    b.onclick = () => { box.hidden = !box.hidden; if (!box.hidden) wordInfo(c, w, box); };
-    row.append(b, box); body.append(row);
+    b.onclick = () => { box.hidden = !box.hidden; if (!box.hidden) wordInfo(artCtx(c), w, box); };
+    const head = el("div", "vhead"); head.append(b, starBtn(w, artCtx(c)));
+    row.append(head, box); body.append(row);
   });
 }
 // The sentence of the original (or of the simple story) that uses the word.
@@ -1336,8 +1363,11 @@ function sentenceWith(a, word) {
   }
   return "";
 }
+// Where a word card gets its example sentence and saves what Mam explains: a news story, or My words.
+const artCtx = (c) => ({ sentence: (word) => sentenceWith(c.article, word), save: () => putChat(c, false, true), from: c.article.title });
+const myCtx = (w) => ({ sentence: () => w.sentence || "", save: () => putWord(w), from: w.from || "", mine: true });
 // A word's card: how to say it, what it means here, examples, related words, and how to learn it (with practice).
-async function wordInfo(c, w, box) {
+async function wordInfo(ctx, w, box) {
   box.innerHTML = "";
   if (!w.info) {
     const wait = el("p", "typing", "Mam is explaining “" + w.word + "”…"); box.append(wait);
@@ -1346,20 +1376,26 @@ async function wordInfo(c, w, box) {
     if (!sample) { wait.textContent = inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in Settings (⚙) first."; return; }
     loadingInfo.add(w);
     try {
-      const r = await askJson(`You are an English teacher for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Explain the word or phrase "${w.word}" as it is used in this sentence from a news story: "${sentenceWith(c.article, w.word)}". Simple English only, never Urdu.
-Reply with ONLY JSON: {"say": "how to pronounce it in simple syllables, stressed part in capitals, like ek-SPLOY-tay-shun", "meaning": "its simple meaning in this story", "examples": ["2 short new example sentences"], "synonyms": ["up to 3 similar words, simpler ones first"], "opposites": ["up to 2 opposite words, or none"], "family": ["other forms of the word with their type, like exploit (verb)"], "partners": ["up to 3 words often used with it, like child exploitation"], "remember": "one memory trick to learn it", "css": "one sentence: how to use it in a CSS essay or interview"}`, { modelTier: "quick" });
+      const sent = ctx.sentence(w.word);
+      const r = await askJson(`You are an English teacher for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Explain the word or phrase "${w.word}"${sent ? ` as it is used in this sentence: "${sent}"` : " (its most common meaning)"}. Simple English only, never Urdu.
+Reply with ONLY JSON: {"type": "noun, verb, adjective, adverb, phrase or idiom", "say": "how to pronounce it in simple syllables, stressed part in capitals, like ek-SPLOY-tay-shun", "meaning": "its simple meaning in this story", "examples": ["2 short new example sentences"], "synonyms": ["up to 3 similar words, simpler ones first"], "opposites": ["up to 2 opposite words, or none"], "family": ["other forms of the word with their type, like exploit (verb)"], "partners": ["up to 3 words often used with it, like child exploitation"], "remember": "one memory trick to learn it", "css": "one sentence: how to use it in a CSS essay or interview"}`, { modelTier: "quick" });
       w.info = { say: String(r?.say || ""), meaning: String(r?.meaning || w.meaning || ""), examples: arr(r?.examples, 3), synonyms: arr(r?.synonyms, 4), opposites: arr(r?.opposites, 3), family: arr(r?.family, 4), partners: arr(r?.partners, 4), remember: String(r?.remember || ""), css: String(r?.css || "") };
-      putChat(c, false, true);
+      if (!w.type && r?.type) w.type = String(r.type);
+      if (!w.meaning) w.meaning = w.info.meaning;
+      ctx.save();
+      const kept = findSaved(w.word); if (kept && kept !== w && !kept.info) { kept.info = w.info; putWord(kept); } // a saved copy learns it too
     } catch (e) {
-      wait.textContent = errText(e) || "Stopped."; box.append(tool("↻ Try again", () => wordInfo(c, w, box))); return;
+      wait.textContent = errText(e) || "Stopped."; box.append(tool("↻ Try again", () => wordInfo(ctx, w, box))); return;
     } finally { loadingInfo.delete(w); }
     if (!box.isConnected) return;
     box.innerHTML = "";
   }
   const i = w.info, line = (label, text) => { if (!text || !isEnglish(text)) return; const p = el("div", "vline"); p.append(el("b", "", label + " "), text); box.append(p); };
-  const head = el("div", "tools"); head.append(tool("🔊 " + w.word, () => { primeTTS(); speak(w.word, 0.75); }), tool("🐢 Slow", () => { primeTTS(); speak(w.word, 0.5); })); box.append(head);
+  const head = el("div", "tools"); head.append(tool("🔊 " + w.word, () => { primeTTS(); speak(w.word, 0.75); }), tool("🐢 Slow", () => { primeTTS(); speak(w.word, 0.5); }));
+  if (!ctx.mine) head.append(starBtn(w, ctx, true));
+  box.append(head);
   line("Say it:", i.say); line("Meaning:", i.meaning);
-  const inText = sentenceWith(c.article, w.word); if (inText) line("In the story:", "“" + inText + "”");
+  const inText = ctx.sentence(w.word); if (inText) line(ctx.mine ? "From " + (ctx.from ? "“" + ctx.from + "”" : "the story") + ":" : "In the story:", "“" + inText + "”");
   if (i.examples.length) { box.append(el("div", "lbl", "Examples")); i.examples.forEach((x) => { const r = el("div", "alt"); r.append(el("span", "", x), speakBtn(x)); box.append(r); }); }
   line("Similar:", i.synonyms.join(", ")); line("Opposite:", i.opposites.join(", "));
   line("Word family:", i.family.join(", ")); line("Used with:", i.partners.join(", "));
@@ -1374,11 +1410,11 @@ Reply with ONLY JSON: {"say": "how to pronounce it in simple syllables, stressed
   const out = el("div", "vout");
   const act = el("div", "tools");
   const go = (label, cls, fn) => { const b = el("button", "btn" + (cls ? " " + cls : ""), label); b.type = "button"; b.onclick = async () => { const v = ta.value.trim(); if (!v) { ta.focus(); return; } b.disabled = true; try { await fn(v); } finally { b.disabled = false; } }; act.append(b); };
-  go("✓ Check my sentence", "primary", (v) => practiseWord(c, w, v, out));
-  go("❓ Ask Mam", "", (v) => askAboutWord(c, w, v, out));
+  go("✓ Check my sentence", "primary", (v) => practiseWord(ctx, w, v, out));
+  go("❓ Ask Mam", "", (v) => askAboutWord(ctx, w, v, out));
   box.append(ta, act, out);
 }
-async function practiseWord(c, w, s, out) {
+async function practiseWord(ctx, w, s, out) {
   out.textContent = "Mam is reading your sentence…";
   await aiReady; if (!sample) { out.textContent = "Mam is not connected yet."; return; }
   try {
@@ -1391,11 +1427,11 @@ Reply with ONLY JSON: {"used": true if they used the word or a form of it, "corr
     if (r?.note && isEnglish(r.note)) out.append(el("div", "", String(r.note)));
   } catch (e) { out.textContent = errText(e) || "Stopped."; }
 }
-async function askAboutWord(c, w, q, out) {
+async function askAboutWord(ctx, w, q, out) {
   out.textContent = "Mam is thinking…";
   await aiReady; if (!sample) { out.textContent = "Mam is not connected yet."; return; }
   try {
-    const { text } = await sample(`A learner from Pakistan (English level ${level()}) is learning the word "${w.word}" from a news story, where it is used in: "${sentenceWith(c.article, w.word)}". They ask: "${q}". Answer in 1 to 4 short sentences of simple English, never Urdu. Plain text only.`, { modelTier: "quick", cache: false });
+    const { text } = await sample(`A learner from Pakistan (English level ${level()}) is learning the word "${w.word}"${ctx.sentence(w.word) ? `, used in: "${ctx.sentence(w.word)}"` : ""}. They ask: "${q}". Answer in 1 to 4 short sentences of simple English, never Urdu. Plain text only.`, { modelTier: "quick", cache: false });
     out.innerHTML = ""; const r = el("div", "alt"); r.append(el("span", "", text.trim()), speakBtn(text.trim())); out.append(r);
   } catch (e) { out.textContent = errText(e) || "Stopped."; }
 }
@@ -1414,7 +1450,7 @@ function originalTab(c, body) {
     }
     const pd = el("div", "para"), pt = el("p", "ptext"), wbox = el("div", "vinfo"), abox = el("div", "analysis");
     wbox.hidden = true; abox.hidden = !p.an;
-    markWords(pt, p.text, vocab, (w) => { wbox.hidden = false; wordInfo(c, w, wbox); wbox.prepend(el("div", "lbl", w.word)); });
+    markWords(pt, p.text, vocab, (w) => { wbox.hidden = false; wordInfo(artCtx(c), w, wbox); wbox.prepend(el("div", "lbl", w.word)); });
     const t = el("div", "tools");
     const ab = tool("🔍 Analyse paragraph " + (i + 1), () => { if (!abox.hidden && p.an) { abox.hidden = true; return; } analysePara(c, p, abox, ab); });
     t.append(ab, tool("🔊", () => { primeTTS(); speak(p.text, 0.85); }));
@@ -1470,6 +1506,142 @@ function renderAnalysis(an, box) {
   line("🎯 For CSS:", an.css);
 }
 
+// ---------- My words: save words, then review them on a growing schedule ----------
+// A word comes back after 1, 3, 7, 14, then 30 days each time it is remembered; a forgotten word starts again.
+const REVIEW_DAYS = [0, 1, 3, 7, 14, 30];
+const wkey = (x) => String(x || "").trim().toLowerCase();
+const savedWords = () => state.words.filter((w) => !w.removed);
+const findSaved = (word) => savedWords().find((w) => wkey(w.word) === wkey(word)) || null;
+const dueWords = () => savedWords().filter((w) => (w.due || 0) <= Date.now()).sort((a, b) => (a.due || 0) - (b.due || 0));
+function myWordsLine() {
+  const n = savedWords().length, d = dueWords().length;
+  return !n ? "Save words and review them" : d ? d + " to review today · " + n + " saved" : n + (n === 1 ? " word" : " words") + " saved · nothing due";
+}
+function saveWord(v, ctx) {
+  const now = Date.now(), old = state.words.find((w) => wkey(w.word) === wkey(v.word));
+  const w = old || { id: "w" + now.toString(36) + Math.random().toString(36).slice(2, 5), added: now, box: 0, due: now };
+  if (old?.removed) { w.box = 0; w.due = now; w.added = now; }
+  Object.assign(w, { word: String(v.word).trim(), type: v.type || w.type || "", meaning: v.meaning || w.meaning || "", info: v.info || w.info || null, sentence: ctx?.sentence?.(v.word) || w.sentence || "", from: ctx?.from || w.from || "", removed: false });
+  if (!old) state.words.unshift(w);
+  putWord(w); return w;
+}
+function unsaveWord(word) { const w = findSaved(word); if (w) { w.removed = true; putWord(w); } }
+function toast(msg) {
+  const t = el("div", "toast", msg); document.body.append(t);
+  setTimeout(() => t.remove(), 1800);
+}
+// ☆ / ⭐ on a story's word: save it to My words, or take it out again.
+function starBtn(v, ctx, long) {
+  const b = el("button", long ? "mini" : "star"); b.type = "button";
+  const paint = () => { const on = !!findSaved(v.word); b.textContent = long ? (on ? "⭐ In My words" : "☆ Save to My words") : on ? "⭐" : "☆"; b.setAttribute("aria-label", on ? "Remove " + v.word + " from My words" : "Save " + v.word + " to My words"); b.setAttribute("aria-pressed", String(on)); };
+  b.onclick = (e) => {
+    e.stopPropagation();
+    if (findSaved(v.word)) unsaveWord(v.word); else { saveWord(v, ctx); toast("Saved to ⭐ My words"); }
+    document.querySelectorAll("[data-word]").forEach((x) => { if (wkey(x.dataset.word) === wkey(v.word)) x.dispatchEvent(new Event("repaint")); });
+  };
+  b.dataset.word = v.word; b.addEventListener("repaint", paint);
+  paint(); return b;
+}
+let wordsView = "home", reviewQ = [], reviewI = 0, reviewAgain = new Set(), reviewKnew = 0;
+function openMyWords() {
+  mode = "words"; state.settings.lastTopic = "mywords"; putMeta();
+  $("topicName").textContent = "⭐ My words";
+  applyDock(); renderMyWords();
+}
+function renderMyWords() {
+  wordsView = "home"; $("msgs").innerHTML = "";
+  const list = savedWords(), due = dueWords();
+  const head = section("qcard");
+  head.append(el("div", "lbl", "⭐ My words"), el("div", "q", list.length ? list.length + (list.length === 1 ? " word saved" : " words saved") : "No words yet"));
+  let sub = "Save words with ☆ in a news story, or add your own below.";
+  if (list.length && due.length) sub = due.length + (due.length === 1 ? " word" : " words") + " to review today.";
+  else if (list.length) { const next = Math.min(...list.map((w) => w.due || 0)), days = Math.max(1, Math.ceil((next - Date.now()) / DAY)); sub = "Nothing to review now. Next review " + (days === 1 ? "tomorrow." : "in " + days + " days."); }
+  head.append(el("p", "hint", sub)); head.lastChild.style.cssText = "text-align:left;margin:0";
+  const acts = el("div", "tools");
+  if (due.length) { const b = el("button", "btn primary", "▶ Review " + Math.min(due.length, 20) + (Math.min(due.length, 20) === 1 ? " word" : " words")); b.type = "button"; b.onclick = startReview; acts.append(b); }
+  if (list.length) { const b = el("button", "btn", "💬 Practise them with Mam"); b.type = "button"; b.onclick = practiseWithMam; acts.append(b); }
+  if (acts.childElementCount) head.append(acts);
+  const add = section("brain", "Add a word");
+  const f = el("form", "typerow"), inp = el("input"); inp.id = "wordIn"; inp.type = "text"; inp.maxLength = 60; inp.placeholder = "A word or phrase you want to learn"; inp.setAttribute("aria-label", "New word"); inp.style.cssText = "flex:1;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:12px;padding:10px 12px;font:inherit;min-height:44px";
+  const ab = el("button", "btn primary", "Add"); ab.type = "submit"; f.append(inp, ab); add.append(f);
+  f.onsubmit = (e) => {
+    e.preventDefault(); const v = inp.value.trim(); if (!v) return;
+    const w = findSaved(v) || saveWord({ word: v }, null);
+    renderMyWords(); openWordRow(w);
+  };
+  const box = section("newslist"); box.id = "wordList";
+  const status = (w) => ((w.box || 0) >= 4 ? "known ✓" : (w.box || 0) >= 1 ? "learning" : "new") + ((w.due || 0) <= Date.now() ? " · review today" : "");
+  list.slice().sort((a, b) => (b.added || 0) - (a.added || 0)).forEach((w) => {
+    const row = el("div", "vrow"); row.dataset.id = w.id;
+    const b = el("button", "vword"); b.type = "button";
+    b.append(el("b", "", w.word), el("small", "", (w.type ? " " + w.type : "") + " · " + status(w)), el("span", "", isEnglish(w.meaning) ? w.meaning : ""));
+    const info = el("div", "vinfo"); info.hidden = true;
+    b.onclick = () => { info.hidden = !info.hidden; if (!info.hidden) showSaved(w, info); };
+    row.append(b, info); box.append(row);
+  });
+}
+function openWordRow(w) {
+  const row = document.querySelector('#wordList .vrow[data-id="' + w.id + '"]'); if (!row) return;
+  const info = row.querySelector(".vinfo"); info.hidden = false; showSaved(w, info); row.scrollIntoView({ block: "start", behavior: "smooth" });
+}
+async function showSaved(w, box) {
+  await wordInfo(myCtx(w), w, box);
+  if (!box.isConnected || box.querySelector(".rm")) return;
+  const t = el("div", "tools rm");
+  t.append(tool("🗑 Remove from My words", () => { unsaveWord(w.word); toast("Removed from My words"); renderMyWords(); }));
+  box.append(t);
+}
+function startReview() { reviewQ = dueWords().slice(0, 20); reviewI = 0; reviewAgain = new Set(); reviewKnew = 0; wordsView = "review"; renderReview(); }
+// One card at a time: remember the meaning first, then check, then say honestly whether you knew it.
+function renderReview() {
+  wordsView = "review"; $("msgs").innerHTML = ""; $("main").scrollTop = 0;
+  if (reviewI >= reviewQ.length) {
+    const done = section("qcard");
+    done.append(el("div", "lbl", "Review finished"), el("div", "q", "🎉 Well done!"), el("p", "hint", "You knew " + reviewKnew + " of " + new Set(reviewQ.map((w) => w.id)).size + " words. The words you knew will come back later; the others come back sooner."));
+    done.lastChild.style.cssText = "text-align:left;margin:0";
+    const t = el("div", "tools"), back = el("button", "btn primary", "Back to My words"), talk = el("button", "btn", "💬 Use them with Mam");
+    back.type = talk.type = "button"; back.onclick = renderMyWords; talk.onclick = practiseWithMam; t.append(back, talk); done.append(t);
+    return;
+  }
+  const w = reviewQ[reviewI], card = section("qcard");
+  card.append(el("div", "lbl", "Review · " + (reviewI + 1) + " of " + reviewQ.length), el("div", "q", w.word));
+  if (w.type) card.append(el("div", "when", w.type));
+  const say = el("div", "tools"); say.append(tool("🔊 Say it", () => { primeTTS(); speak(w.word, 0.75); }), tool("🐢 Slow", () => { primeTTS(); speak(w.word, 0.5); })); card.append(say);
+  const ask = el("p", "hint", "What does it mean? Say the meaning out loud, then check."); ask.style.cssText = "text-align:left;margin:0"; card.append(ask);
+  const show = el("button", "btn primary", "Show the meaning"); show.type = "button"; card.append(show);
+  const ans = el("div", "vinfo"); ans.hidden = true; card.append(ans);
+  show.onclick = () => {
+    show.remove(); ask.remove(); ans.hidden = false;
+    const line = (label, text) => { if (!text || !isEnglish(text)) return; const p = el("div", "vline"); p.append(el("b", "", label + " "), text); ans.append(p); };
+    line("Meaning:", w.meaning || w.info?.meaning || "");
+    if (w.info?.say) line("Say it:", w.info.say);
+    if (w.sentence) line("In the story:", "“" + w.sentence + "”");
+    if (w.info?.examples?.[0]) line("Example:", w.info.examples[0]);
+    if (!w.meaning && !w.info) line("Meaning:", "Open “More about this word” below and Mam will explain it.");
+    const g = el("div", "tools"), no = el("button", "btn", "😕 I didn't know"), yes = el("button", "btn primary", "🙂 I knew it");
+    no.type = yes.type = "button"; no.onclick = () => gradeWord(w, false); yes.onclick = () => gradeWord(w, true); g.append(no, yes); ans.append(g);
+    const more = el("div", "vinfo"); more.hidden = true;
+    ans.append(tool("📖 More about this word, and practise it", () => { more.hidden = !more.hidden; if (!more.hidden) wordInfo(myCtx(w), w, more); }), more);
+  };
+  const stop = el("div", "tools"); stop.append(tool("✕ Stop the review", renderMyWords)); card.append(stop);
+}
+function gradeWord(w, knew) {
+  const now = Date.now();
+  if (knew) { w.box = Math.min((w.box || 0) + 1, REVIEW_DAYS.length - 1); w.due = now + REVIEW_DAYS[w.box] * DAY; if (!reviewAgain.has(w.id)) reviewKnew++; }
+  else { w.box = 0; w.due = now; if (!reviewAgain.has(w.id)) { reviewAgain.add(w.id); reviewQ.push(w); } } // once more at the end
+  w.reviewed = now; putWord(w);
+  reviewI++; renderReview();
+}
+// A conversation where Mam gets the learner to use their saved words, one at a time.
+function practiseWithMam() {
+  const ws = (dueWords().length ? dueWords() : savedWords()).slice(0, 10).map((w) => w.word);
+  if (!ws.length) return;
+  const t = { id: "own", em: "⭐", name: "Practise my words", desc: "using the student's saved words", open: `Let's use your words! Can you make a sentence with "${ws[0]}"?`,
+    extra: `The student is practising these saved words: ${ws.join(", ")}. Ask one question at a time that makes them use one of the words. When they use a word well, praise them and move on to the next word; if they use it wrongly, show the right way in a simple model sentence.` };
+  openTopic(t);
+  if (chat?.topic?.name === t.name) { chat.topic.extra = t.extra; putChat(chat, false, true); } // always the newest list of words
+}
+
 // ---------- typing ----------
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 function sendTyped() { const v = $("input").value.trim(); if (!v || busy) return; $("input").value = ""; autoGrow(); primeTTS(); send(v); }
@@ -1494,9 +1666,9 @@ function topicRow(em, name, desc, n, on, fn) {
 $("topicBtn").onclick = () => {
   const box = $("topicList"); box.innerHTML = "";
   const answers = (c) => (c?.turns ? c.turns.filter((x) => x.role === "user").length : 0);
-  const count = (t) => t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : t.kind === "news" ? articles().length : answers(findThread(t));
-  const isOn = (t) => t.kind === "minute" || t.kind === "news" ? mode === t.kind || (t.kind === "news" && mode === "chat" && !!chat?.article) : mode === "chat" && chat?.topic?.id === t.id;
-  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.desc, count(t), isOn(t), () => { $("topicSheet").hidden = true; openTopic(t); })));
+  const count = (t) => t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : t.kind === "news" ? articles().length : t.kind === "words" ? 0 : answers(findThread(t));
+  const isOn = (t) => t.kind === "minute" || t.kind === "news" || t.kind === "words" ? mode === t.kind || (t.kind === "news" && mode === "chat" && !!chat?.article) : mode === "chat" && chat?.topic?.id === t.id;
+  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.kind === "words" ? myWordsLine() : t.desc, count(t), isOn(t), () => { $("topicSheet").hidden = true; openTopic(t); })));
   state.chats.filter((c) => c.topic?.id === "own").slice(0, 5).forEach((c) => box.append(topicRow("✏️", c.topic.name, "Your own topic", answers(c), chat === c, () => { $("topicSheet").hidden = true; openTopic(c.topic); })));
   $("topicSheet").hidden = false;
 };
