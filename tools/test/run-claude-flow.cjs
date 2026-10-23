@@ -305,11 +305,11 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
 
   // ---- Structures ----
   await tab("learn");
-  check("Structures tab: three levels, Basic first for a beginner", (await p.$$("#msgs .tabs .tab")).length === 3 && (await p.textContent('.tab[aria-selected="true"]')).includes("Basic") && (await p.$$("#structList .trow")).length === 12 && (await msgs()).includes("0 of 12 learned"));
+  check("Structures tab: three levels, Basic first for a beginner", (await p.$$("#msgs .tabs .tab")).length === 3 && (await p.textContent('.tab[aria-selected="true"]')).includes("Basic") && (await p.$$("#structList .trow")).length === 29 && (await msgs()).includes("0 of 29 learned") && (await p.textContent("#structList")).includes("Time and tense"));
   await p.click('.tab:has-text("Intermediate")'); await wait(100);
-  check("Intermediate has its own structures", (await p.$$("#structList .trow")).length === 12 && (await msgs()).includes("Giving your opinion"));
+  check("Intermediate has its own structures", (await p.$$("#structList .trow")).length === 30 && (await msgs()).includes("Giving your opinion"));
   await p.click('.tab:has-text("Advanced")'); await wait(100);
-  check("Advanced: arguments, essays and interview answers", (await p.$$("#structList .trow")).length === 13 && (await msgs()).includes("PEEL paragraph") && (await msgs()).includes("STAR"));
+  check("Advanced: arguments, essays and interview answers", (await p.$$("#structList .trow")).length === 33 && (await msgs()).includes("PEEL paragraph") && (await msgs()).includes("STAR"));
   await p.click('.tab:has-text("Basic")'); await wait(100);
   await p.click('#structList .trow:has-text("Giving a reason")'); await wait(500);
   m = await msgs();
@@ -324,7 +324,12 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   for (let k = 0; k < 2; k++) { await p.fill("#structIn", "I like my city because it is green"); await p.click("#structCheck"); await wait(400); }
   check("three correct answers: learned", (await p.textContent("#structStatus")).includes("Learned"));
   await p.click("text=← All structures"); await wait(200);
-  check("the list shows it learned, and the level's progress", (await p.textContent('#structList .trow:has-text("Giving a reason")')).includes("learned") && (await msgs()).includes("1 of 12 learned"));
+  check("the list shows it learned, and the level's progress", (await p.textContent('#structList .trow:has-text("Giving a reason")')).includes("learned") && (await msgs()).includes("1 of 29 learned"));
+  await p.fill("#structAsk", "No sooner than"); await p.click("form:has(#structAsk) button"); await wait(500);
+  check("Learn any structure: Mam makes a lesson from a pattern I type", (await p.textContent(".qcard .q")).includes("No sooner") && (await p.$$(".formula .slot")).length >= 2 && (await msgs()).includes("⭐ Mine"));
+  await p.click("text=← All structures"); await wait(200);
+  check("my structures are kept under ⭐ Mine", (await p.textContent('.tab[aria-selected="true"]')).includes("Mine · 1") && (await p.$$("#structList .trow")).length === 1);
+  await p.click('.tab:has-text("Basic")'); await wait(100);
   await p.click('#structList .trow:has-text("Comparing two things")'); await wait(400);
   await tab("talk"); await tab("learn");
   check("the Structures tab comes back to the same page", (await p.textContent(".qcard .q")).includes("Comparing two things"));
