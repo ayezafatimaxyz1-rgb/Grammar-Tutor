@@ -126,6 +126,9 @@ const fakes = () => {
   await p.click('#tabbar [data-tab="words"]'); await p.waitForTimeout(200);
   await p.fill("#wordIn", "resilience"); await p.click('form:has(#wordIn) button'); await p.waitForTimeout(600);
   check("My words works in the voice version too (kept on this phone)", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).words.map((w) => w.word).join())) === "resilience");
+  await p.evaluate(() => { window.__before = true; const m = document.getElementById("main"); m.scrollTop = 0; const ev = (type, y) => { const e = new Event(type); e.touches = y == null ? [] : [{ clientX: 100, clientY: y }]; m.dispatchEvent(e); }; ev("touchstart", 100); ev("touchmove", 300); ev("touchend"); });
+  await p.waitForTimeout(1200);
+  check("pulling the page down reloads the app (to get updates)", (await p.evaluate(() => window.__before)) === undefined && !!(await p.$("#tabbar")));
   await p.evaluate(() => localStorage.setItem("bolo.gemini", JSON.stringify({ key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest" })));
   await p.reload(); await p.waitForTimeout(800);
   check("a key saved by the old version gets the fast model too", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).fast)) === "gemini-2.5-flash-lite");

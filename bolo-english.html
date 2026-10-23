@@ -104,6 +104,8 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .tabbar button[aria-current="page"] span { filter: none; opacity: 1; }
 .tabbar .badge { position: absolute; top: 3px; left: calc(50% + 6px); min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--bad); color: #fff; font-size: 11px; font-style: normal; line-height: 18px; text-align: center; }
 .kb .tabbar { display: none; }
+.ptr { height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--accent); transition: height .2s ease; flex: none; }
+.ptr.pulling { transition: none; }
 .tipbox { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); background: var(--inset); border: 1px solid var(--rim); border-radius: 12px; padding: 8px 4px 8px 12px; }
 .tipbox span { flex: 1; min-width: 0; padding-top: 4px; }
 .tipbox .x, .hint .x { flex: none; border: 0; background: none; width: 32px; height: 32px; color: var(--muted); font-size: 14px; }
@@ -180,7 +182,7 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .vhead { display: flex; align-items: center; gap: 4px; }
 .vhead .vword { flex: 1; min-width: 0; }
 .star { flex: none; width: 44px; height: 44px; border: 0; background: none; font-size: 22px; color: var(--sun); }
-.toast { position: fixed; left: 50%; top: calc(72px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 40; background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 15px; font-weight: 700; max-width: calc(100% - 32px); }
+.toast { position: fixed; left: 50%; top: calc(72px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 40; background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 15px; font-weight: 700; width: max-content; max-width: calc(100vw - 32px); }
 .vword b { font-size: 16px; }
 .vword small { color: var(--muted); font-size: 12px; }
 .vword span { display: block; font-size: 14px; color: var(--muted); }
@@ -248,6 +250,7 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
     <button class="iconbtn" type="button" id="setBtn" aria-label="Settings">⚙</button>
   </header>
 
+  <div class="ptr" id="ptr" aria-live="polite"></div>
   <main id="main">
     <div class="msgs pad" id="msgs" aria-live="polite"></div>
   </main>
@@ -295,7 +298,7 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
     </div>
     <div class="field">
       <label for="rateSel"><strong>Mam's speaking speed</strong></label>
-      <select id="rateSel"><option value="0.75">Slow</option><option value="0.88">Normal</option><option value="1">Fast</option></select>
+      <select id="rateSel"><option value="0.6">Very slow</option><option value="0.75">Slow</option><option value="0.88">Normal</option><option value="1">Fast</option><option value="1.15">Faster</option><option value="1.3">Very fast</option></select>
     </div>
     <div class="field" id="voiceLink" hidden>
       <strong>Speak without the keyboard</strong>
@@ -688,7 +691,7 @@ function renderChat() {
   c.turns.forEach((tn, i) => {
     if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
     if (tn.at) prevAt = tn.at;
-    if (tn.role === "assistant") addTutor(tn.content);
+    if (tn.role === "assistant") { if (tn.restated) levelNote(tn.restated); addTutor(tn.content); }
     else {
       const el = addMe(tn.content); el.dataset.idx = i;
       if (tn.fb) attachFeedback(el, tn.fb);
@@ -709,7 +712,7 @@ function addTutor(line) {
   b.title = "Tap to hear it again"; b.onclick = () => { primeTTS(); speakLineAnyway(line); };
   document.querySelectorAll("#msgs .msg.tutor .say").forEach((x) => x.remove());
   const tools = document.createElement("div"); tools.className = "tools say";
-  tools.append(tool("🔊 Again", () => { primeTTS(); speakLineAnyway(line); }), tool("🐢 Slow", () => { primeTTS(); speakLineAnyway(line, 0.6); }));
+  tools.append(tool("🔊 Again", () => { primeTTS(); speakLineAnyway(line); }), tool("🐢 Slow", () => { primeTTS(); speakLineAnyway(line, 0.6); }), tool("⚡ Fast", () => { primeTTS(); speakLineAnyway(line, 1.25); }));
   w.append(tools); $("msgs").append(w); scrollDown();
 }
 // "Again" and "Slow" play even when Mam's voice is switched off.
@@ -1841,7 +1844,7 @@ $("voiceBtn").onclick = () => {
 };
 
 // ---------- topic and settings sheets ----------
-document.querySelectorAll(".sheet").forEach((s) => { s.addEventListener("click", (e) => { if (e.target === s || e.target.closest("[data-close]")) s.hidden = true; }); });
+document.querySelectorAll(".sheet").forEach((s) => { s.addEventListener("click", (e) => { if (e.target === s || e.target.closest("[data-close]")) { s.hidden = true; if (s.id === "setSheet") settingsClosed(); } }); });
 function topicRow(em, name, desc, n, on, fn) {
   const b = document.createElement("button"); b.type = "button"; b.className = "trow" + (on ? " on" : "");
   b.innerHTML = '<span class="em"></span><span><strong></strong><span></span></span><span class="n"></span>';
@@ -1861,7 +1864,29 @@ $("ownForm").addEventListener("submit", (e) => {
   $("ownIn").value = ""; $("topicSheet").hidden = true;
   openTopic({ id: "own", em: "✏️", name, desc: "chosen by the student", open: `Great choice! Let's talk about ${name}. What do you want to say first about it?` });
 });
-$("setBtn").onclick = () => { $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("setSheet").hidden = false; };
+let levelAtOpen = null;
+$("setBtn").onclick = () => { levelAtOpen = level(); $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("setSheet").hidden = false; };
+const LEVEL_NAME = { A1: "Very simple", A2: "Simple", B1: "Normal", B2: "Fluent" };
+function settingsClosed() { const was = levelAtOpen; levelAtOpen = null; if (was && was !== level()) levelChanged(); }
+function levelNote(lv) { $("msgs").append(el("div", "daysep", "Mam's English: " + (LEVEL_NAME[lv] || lv) + " (" + lv + ")")); }
+// A new level shows at once: Mam says her last message again in the new kind of English.
+async function levelChanged() {
+  toast("Mam's English: " + LEVEL_NAME[level()] + " ✓");
+  const c = chat, last = c?.turns[c.turns.length - 1];
+  if (mode !== "chat" || !c || busy || interviewOver(c) || (c.article && storyView(c) !== "talk") || last?.role !== "assistant") return;
+  await aiReady; if (!sample || c !== chat || busy) return;
+  busy = true; setState("thinking");
+  try {
+    const lv = level(), { text } = await sample(`You are Mam, a warm English speaking teacher for a learner from Pakistan. ${LEVEL_STYLE[lv]} Keep the same meaning and end with the same question.${c.kind === "interview" ? " Keep the speaker in square brackets at the start, like [Member 1]." : ""} English only, never Urdu. Reply with only the words you say.
+Say it again for a learner at level ${lv}: "${last.content}"`, { modelTier: "quick", cache: false });
+    const line = text.trim().replace(/^"|"$/g, "");
+    if (!line || c !== chat) return;
+    c.turns.push({ role: "assistant", content: line, at: Date.now(), restated: lv }); putChat(c);
+    levelNote(lv); addTutor(line);
+    setState("speaking"); speakLine(line, () => setState("idle"));
+  } catch (e) { dbg("restate_error", { code: String(e?.code || "") }); setState("idle"); }
+  finally { busy = false; }
+}
 $("lvSel").onchange = () => { state.settings.level = $("lvSel").value; putMeta(); };
 $("rateSel").onchange = () => { state.settings.rate = Number($("rateSel").value); putMeta(); primeTTS(); speak("This is my speaking speed.", state.settings.rate); };
 if (!inClaude) {
@@ -1930,6 +1955,36 @@ $("diagBtn").onclick = async () => {
   $("diagBtn").disabled = false;
 };
 
+// ---------- pull down to refresh ----------
+// The Home Screen app has no reload button: pulling the page down from the top reloads it (and gets the newest version).
+// Inside Claude it brings in what was saved on other devices and redraws the screen.
+function setupPullToRefresh() {
+  const m = $("main"), bar = $("ptr"); let y0 = null, x0 = 0, dist = 0;
+  const reset = () => { y0 = null; dist = 0; bar.classList.remove("pulling"); bar.style.height = "0px"; };
+  m.addEventListener("touchstart", (e) => { if (m.scrollTop > 0 || busy || minRunning || listening || !e.touches?.length) return; y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; }, { passive: true });
+  m.addEventListener("touchmove", (e) => {
+    if (y0 == null || !e.touches?.length) return;
+    const t = e.touches[0], dy = t.clientY - y0;
+    if (m.scrollTop > 0 || dy < 0) { reset(); return; }
+    if (Math.abs(t.clientX - x0) > dy) return; // a sideways swipe
+    dist = Math.min(90, dy * 0.5);
+    bar.classList.add("pulling"); bar.style.height = dist + "px";
+    bar.textContent = dist >= 60 ? "↻ Let go to refresh" : "↓ Pull down to refresh";
+  }, { passive: true });
+  m.addEventListener("touchend", () => { if (y0 == null) return; const go = dist >= 60; reset(); if (go) refreshApp(); });
+  m.addEventListener("touchcancel", reset);
+}
+async function refreshApp() {
+  const bar = $("ptr"); bar.textContent = "Refreshing…"; bar.style.height = "36px";
+  if (!inClaude) { location.reload(); return; }
+  try { await connectDb(); } catch {}
+  if (mode === "chat" && chat && !busy) renderChat();
+  else if (mode === "news" && !newsBusy) renderNews();
+  else if (mode === "words" && wordsView === "home") renderMyWords();
+  else if (mode === "minute" && !minRunning && !minBusy) renderMinute();
+  bar.style.height = "0px"; toast("Up to date ✓");
+}
+
 // ---------- start ----------
 loadLocal();
 renderVoiceBtn();
@@ -1950,6 +2005,7 @@ const kbCheck = () => { fullH = Math.max(fullH, window.innerHeight); document.bo
 window.visualViewport?.addEventListener("resize", kbCheck); window.addEventListener("resize", kbCheck);
 window.addEventListener("orientationchange", () => { fullH = 0; setTimeout(kbCheck, 400); });
 openTopic(currentTopic(), true);
+setupPullToRefresh();
 // Keys saved before the fast talking model existed get it now.
 aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = geminiAI(); } catch {} } });
 aiReady.then(() => { if (!sample && !inClaude && mode === "chat") note("To talk with Mam, add your free Gemini key once. It takes one minute.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });

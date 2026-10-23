@@ -304,9 +304,17 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("leaving the newspaper brings the chat back", (await msgs()).includes("I like biryani") && !(await p.isHidden("#dock")));
 
   // ---- settings ----
-  await p.click("#setBtn"); await wait(150);
-  await p.selectOption("#lvSel", "A2"); await p.click("#setSheet [data-close].btn.primary"); await wait(150);
   await topic("Free talk");
+  // pull down to refresh (inside Claude: sync and redraw)
+  const pull = (dy) => p.evaluate((dy) => { const m = document.getElementById("main"); m.scrollTop = 0; const ev = (type, y) => { const e = new Event(type); e.touches = y == null ? [] : [{ clientX: 100, clientY: y }]; m.dispatchEvent(e); }; ev("touchstart", 100); ev("touchmove", 100 + dy); return document.getElementById("ptr").textContent; }, dy);
+  check("pulling the page down shows Pull down to refresh, then Let go", (await pull(60)).includes("Pull down to refresh") && (await pull(200)).includes("Let go to refresh"));
+  await p.evaluate(() => document.getElementById("main").dispatchEvent(new Event("touchend"))); await wait(600);
+  check("letting go refreshes the screen", (await p.textContent(".toast")).includes("Up to date") && (await msgs()).includes("I like biryani"));
+  await p.click("#setBtn"); await wait(150);
+  check("Mam's speaking speed has six choices, up to Very fast", (await p.$$("#rateSel option")).length === 6 && (await p.textContent("#rateSel")).includes("Very fast"));
+  await p.selectOption("#lvSel", "A2"); await p.click("#setSheet [data-close].btn.primary"); await wait(700);
+  check("a new level shows at once: Mam says her last message again at that level", (await msgs()).includes("Mam's English: Simple (A2)") && (await msgs()).includes("Okay, in simple words") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Say it again for a learner at level A2") && c.prompt.includes("CEFR A2"))));
+  check("⚡ Fast beside 🐢 Slow under Mam's newest message", (await p.textContent("#msgs .say")).includes("⚡ Fast") && (await p.textContent("#msgs .say")).includes("🐢 Slow"));
   await say("I went to the market today");
   check("Mam's English follows the setting", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("CEFR A2"))));
   await p.click("#setBtn"); await p.click("#diagBtn"); await wait(900);
