@@ -186,6 +186,10 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .orig { display: flex; flex-direction: column; gap: 8px; }
 .orig > .hint { text-align: left; margin: 0; }
 .pickhead { display: flex; flex-direction: column; gap: 6px; }
+.outline { display: flex; flex-direction: column; gap: 6px; background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+.olink { text-align: left; border: 0; background: none; padding: 6px 0; min-height: 44px; }
+.olink b { display: block; font-family: var(--display); font-size: 16px; color: var(--accent); }
+.olink small { display: block; font-size: 14px; color: var(--muted); }
 .pickhead strong { font-family: var(--display); font-size: 18px; }
 .pickcard { display: flex; flex-direction: column; gap: 8px; }
 .analysis { background: var(--bg); border: 1px solid var(--line); border-left: 4px solid var(--sun); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
@@ -1313,7 +1317,7 @@ Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions
     const seen = new Set();
     const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), story: String(r.story), css: String(r.css || ""), from: input.from || "",
       questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), paras,
-      sections: (Array.isArray(r.sections) ? r.sections : []).map((x) => ({ title: String(x?.title || ""), gist: String(x?.gist || ""), from: parseInt(x?.from) || 0, to: parseInt(x?.to) || 0 })).filter((x) => x.from >= 1 && x.from <= paras.length).slice(0, 8),
+      sections: cleanSections(r.sections, paras.length),
       vocab: (Array.isArray(r.vocab) ? r.vocab : []).filter((w) => w?.word && !seen.has(String(w.word).toLowerCase()) && seen.add(String(w.word).toLowerCase())).slice(0, 40).map((w) => ({ word: String(w.word).trim(), type: String(w.type || ""), meaning: String(w.meaning || "") })) };
     const t = { id: "news:" + id, em: "📰", name: art.title, desc: "a news story" + (art.source ? " from " + art.source : ""), open: "Let's talk about this story. " + (art.questions[0] || "What is this news about?"),
       extra: `You and the student are talking about this news story: "${art.title}". The story in simple English: ${art.story} Ask about the story and the student's opinion, one question at a time, for example: ${art.questions.join(" | ")}. The student is learning these words from the story; help them use some: ${art.vocab.slice(0, 15).map((w) => w.word).join(", ")}. If they ask what a word means, explain it simply. Use only the facts in the story; never invent new facts, dates or numbers.` };
@@ -1344,7 +1348,7 @@ function articleCard(c) {
   d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
   d.querySelector(".css").textContent = a.css && isEnglish(a.css) ? "🎯 For CSS: " + a.css : "";
   const parts = (a.sections || []).length;
-  const tabs = [...(paras.length ? [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")]] : []), ["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"]];
+  const tabs = [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")], ["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"]];
   const bar = d.querySelector(".tabs"), body = d.querySelector(".tabbody");
   const show = (k) => {
     artTab.set(c.id, k);
@@ -1468,18 +1472,32 @@ const WORD_RE = /[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g;
 function originalTab(c, body) {
   const a = c.article, vocab = vocabOf(a), paras = a.paras || [];
   const wrap = el("div", "orig"); body.append(wrap);
+  if (!paras.length) { // stories added before Mam kept the original text
+    wrap.append(el("p", "hint", "This story was added before Mam kept the original text, so it has no parts and headings. Add the screenshot again and Mam will divide it into parts with headings, and you can tap any word."));
+    const b = el("button", "btn primary", "📰 Add the story again"); b.type = "button"; b.onclick = () => openTopic(NEWS); wrap.append(b);
+    return;
+  }
   wrap.append(el("p", "hint", a.from ? "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it." : "Read the story's own words. Tap any word you think is hard: Mam explains it under the paragraph, and you can save it. For a phrase, tap its first word, then ＋ Word after."));
   const bar = el("div", "tools"), toggle = el("button", "mini"); toggle.type = "button";
   const paint = () => { wrap.classList.toggle("picks", !!state.settings.showPicks); toggle.textContent = state.settings.showPicks ? "🙈 Hide Mam's hard words" : "💡 Show Mam's hard words"; };
   toggle.onclick = () => { state.settings.showPicks = !state.settings.showPicks; putMeta(); paint(); };
   bar.append(toggle); wrap.append(bar); paint();
-  const secs = (a.sections || []).slice().sort((x, y) => x.from - y.from);
+  const secs = (a.sections || []).slice().sort((x, y) => x.from - y.from), heads = [];
+  // the headings first, as a list: tap one to jump to that part
+  const outline = el("div", "outline");
+  if (secs.length) {
+    outline.append(el("div", "lbl", "📑 Headings"));
+    secs.forEach((x, k) => { const b = el("button", "olink"); b.type = "button"; b.append(el("b", "", (k + 1) + ". " + (x.title || "Part " + (k + 1))), el("small", "", isEnglish(x.gist) ? x.gist : "")); b.onclick = () => heads[k]?.scrollIntoView({ block: "start", behavior: "smooth" }); outline.append(b); });
+  } else if (paras.length > 2) {
+    const b = el("button", "btn", "📑 Make headings"); b.type = "button"; b.onclick = () => makeSections(c, b, () => { body.innerHTML = ""; originalTab(c, body); }); outline.append(b);
+  }
+  if (outline.childElementCount) wrap.append(outline);
   paras.forEach((p, i) => {
     const k = secs.findIndex((x) => x.from === i + 1);
     if (k >= 0) {
       const h = el("div", "sec"); h.append(el("strong", "", "Part " + (k + 1) + " of " + secs.length + (secs[k].title ? " · " + secs[k].title : "")));
       if (secs[k].gist && isEnglish(secs[k].gist)) h.append(el("small", "", secs[k].gist));
-      wrap.append(h);
+      wrap.append(h); heads[k] = h;
     }
     const pd = el("div", "para"), pt = el("p", "ptext"), wbox = el("div", "vinfo"), abox = el("div", "analysis");
     wbox.hidden = true; abox.hidden = !p.an;
@@ -1578,6 +1596,28 @@ function renderAnalysis(an, box) {
   line("Tone:", an.tone);
   if (an.phrases.length) { box.append(el("div", "lbl", "Useful phrases")); an.phrases.forEach((x) => { const r = el("div", "vline"); r.append(el("b", "", x.phrase + ": "), isEnglish(x.meaning) ? x.meaning : ""); box.append(r); }); }
   line("🎯 For CSS:", an.css);
+}
+
+function cleanSections(raw, n) {
+  const list = Array.isArray(raw) ? raw : [], shift = list.some((x) => parseInt(x?.from) === 0) ? 1 : 0;
+  const out = list.map((x) => ({ title: String(x?.title || ""), gist: String(x?.gist || ""), from: (parseInt(x?.from) || 0) + shift, to: (parseInt(x?.to) || 0) + shift }))
+    .filter((x) => x.from >= 1 && x.from <= n).sort((a, b) => a.from - b.from);
+  return out.filter((x, i) => !i || x.from !== out[i - 1].from).slice(0, 8);
+}
+// For a story whose parts are missing: Mam divides the saved paragraphs and gives each part a heading.
+async function makeSections(c, btn, rerender) {
+  const a = c.article; btn.disabled = true; btn.textContent = "Mam is making the headings…";
+  await aiReady;
+  try {
+    if (!sample) throw { code: "no_ai" };
+    const r = await askJson(`Divide this news story into parts for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Write in simple English only, never Urdu. The paragraphs are numbered.
+${a.paras.map((p, i) => "[" + (i + 1) + "] " + p.text).join("\n").slice(0, 60000)}
+Reply with ONLY JSON: {"sections": [{"title": "a short heading for this part, at most 5 words", "gist": "one simple sentence: what this part says", "from": the number of its first paragraph, "to": the number of its last paragraph}]}
+Use 2 to 6 parts, in order, that cover every paragraph (1 part if there are only 1 or 2 paragraphs).`, { modelTier: "quick" });
+    a.sections = cleanSections(r?.sections, a.paras.length);
+    if (!a.sections.length) throw { code: "empty_completion" };
+    putChat(c, false, true); rerender();
+  } catch (e) { btn.disabled = false; btn.textContent = "📑 Make headings (try again)"; toast(errText(e) || "Stopped."); }
 }
 
 // ---------- My words: save words, then review them on a growing schedule ----------
