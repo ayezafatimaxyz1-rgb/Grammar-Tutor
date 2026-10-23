@@ -357,6 +357,23 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("connection check passes", !/failed/i.test(diag) && diag.includes("2. Corrections ✓"), diag);
   await p.click("#setSheet [data-close].btn.primary");
 
+  // ---- my progress ----
+  await p.click("#progBtn"); await wait(400);
+  const pg = await msgs();
+  check("My progress: a fluency level and score", /^(A1|A2|B1|B2|C1)$/.test((await p.textContent(".hero")).trim()) && /Fluency score \d+ \/ 100/.test(pg) && pg.includes("of the way to"));
+  check("a line chart of the fluency score, with the level lines", (await p.$$("#fluChart .pt")).length >= 1 && (await p.$$("#fluChart .grid")).length === 5 && (await p.textContent("#fluChart")).includes("B1"));
+  const box = await p.$eval("#fluChart", (s) => { const r = s.getBoundingClientRect(); return { x: r.left + r.width - 20, y: r.top + r.height / 2 }; });
+  await p.mouse.move(box.x, box.y); await wait(100);
+  check("tapping the chart shows that day's score", !(await p.isHidden(".chartbox .tip")) && (await p.textContent(".chartbox .tip")).includes("Score"));
+  check("this week: words, answers, accuracy, speed and streak", pg.includes("words spoken") && pg.includes("accuracy") && pg.includes("best words / min") && /🔥 \d+/.test(pg));
+  check("what the score is made of, with a tip for the weakest part", pg.includes("Accuracy") && pg.includes("Answer length") && pg.includes("Speaking speed") && pg.includes("Mam's scores") && pg.includes("To level up"));
+  check("words spoken each day as columns", (await p.$$("#wordChart .bar")).length >= 1);
+  check("totals: structures learned, words saved, stories read", pg.includes("structures learned") && pg.includes("words saved") && pg.includes("stories read"));
+  check("the numbers are also in a table", (await p.$$(".tbl tr")).length >= 2);
+  check("the 📈 button shows the level, and the level is remembered", /📈 (A1|A2|B1|B2|C1)/.test(await p.textContent("#progBtn")) && /^(A1|A2|B1|B2|C1)$/.test(await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).settings.fluencyBest)));
+  check("no talk bar on the progress page", await p.isHidden("#dock"));
+  await tab("talk");
+
   // ---- English only, layout, errors ----
   const txt = await p.evaluate(() => document.body.innerText);
   check("no Urdu on screen", !/[؀-ۿ]/.test(txt));
