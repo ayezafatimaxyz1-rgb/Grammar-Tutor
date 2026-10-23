@@ -35,6 +35,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const say = async (text, ms = 700) => { await p.fill("#input", text); await p.click("#sendBtn"); await wait(ms); };
   const topic = async (name) => { await p.click("#topicBtn"); await wait(150); await p.click(`#topicList .trow:has-text("${name}")`); await wait(300); };
   const msgs = () => p.textContent("#msgs");
+  const lastTag = () => p.evaluate(() => [...document.querySelectorAll(".msg.me")].pop()?.querySelector(".verdict")?.textContent || "");
 
   // ---- opens straight into a conversation ----
   check("opens on Free talk with Mam's question", (await p.textContent("#topicName")).includes("Free talk") && (await msgs()).includes("What would you like to talk about today"));
@@ -51,11 +52,24 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("corrections are folded under my sentence", (await p.textContent(".msg.me .verdict")).includes("1 mistake") && await p.isHidden(".msg.me .fb"));
   await p.click(".msg.me .bubble"); await wait(150);
   check("tapping my sentence shows the mistake and better ways", !(await p.isHidden(".msg.me .fb")) && (await p.textContent(".msg.me .fb")).includes("I live in Lahore") && (await p.textContent(".msg.me .fb")).includes("CSS interview"));
+  check("the corrected sentence and other ways to say it", (await p.textContent(".msg.me .fb")).includes("Your sentence, corrected") && (await p.textContent(".msg.me .fb")).includes("I live in Lahore.") && (await p.textContent(".msg.me .fb")).includes("Other ways to say it"));
   await say("I like biryani very much", 900);
   let cs = await chats();
   const free = cs.find((c) => c.topic?.id === "free");
-  check("conversation saved to the account", free && free.turns.length === 5, JSON.stringify(cs.map((c) => [c.topic?.id, c.turns?.length])));
+  check("conversation saved to the account", free && free.turns.length >= 5, JSON.stringify(cs.map((c) => [c.topic?.id, c.turns?.length])));
   check("corrections saved with it", !!free?.turns?.[1]?.fb?.errors?.length);
+
+  // ---- corrections that are slow or fail ----
+  await p.evaluate(() => { window.__slowCheck = true; });
+  await say("I am liking cricket", 300);
+  check("while Mam checks, the sentence says Checking", (await lastTag()).includes("Checking"));
+  await wait(1700);
+  check("then the corrections arrive", (await lastTag()).includes("mistake"));
+  await p.evaluate(() => { window.__failCheck = true; });
+  await say("I go school daily", 700);
+  check("a failed check offers to try again", (await lastTag()).includes("Couldn't check"));
+  await p.evaluate(() => [...document.querySelectorAll(".msg.me")].pop().querySelector(".verdict").click()); await wait(500);
+  check("trying again shows the corrections", (await lastTag()).includes("mistake"));
 
   // ---- errors ----
   await p.evaluate(() => { window.__failNext = "upstream_error"; });

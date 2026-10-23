@@ -48,7 +48,7 @@
     if (/is practising the word/.test(prompt)) return JSON.stringify({ used_word: true, correct: false, fixed: "The economy of Pakistan is growing.", note: "Good try!" });
     if (/Write Mam's next reply now/.test(prompt)) return window.__reply || "Nice! Lahore is a big city. What food do you like there?";
     if (/Rewrite this in very simple English/.test(prompt)) return "Lahore is big. What food do you like?";
-    if (/checking one spoken answer/.test(prompt)) return JSON.stringify({ verdict: "fix", errors: [{ wrong: "I living in Lahore", right: "I live in Lahore", why: 'Use "live" for where you stay.' }], better: [{ label: "More natural", text: "I live in Lahore with my family." }, { label: "CSS interview", text: "I am from Lahore, where I live with my family." }], new_words: [{ word: "capital", meaning: "the main city of a place", example: "Lahore is the capital of Punjab.", emoji: "🏛️" }] });
+    if (/checking one spoken answer/.test(prompt)) return JSON.stringify({ verdict: "fix", fixed: "I live in Lahore.", errors: [{ wrong: "I living in Lahore", right: "I live in Lahore", why: 'Use "live" for where you stay.' }], better: [{ label: "More natural", text: "I live in Lahore with my family." }, { label: "CSS interview", text: "I am from Lahore, where I live with my family." }], new_words: [{ word: "capital", meaning: "the main city of a place", example: "Lahore is the capital of Punjab.", emoji: "🏛️" }] });
     if (/Score the student's speaking|score their speaking fairly/.test(prompt)) return JSON.stringify({ score: 6, level: "A2", did_well: ["Clear answers", "Good effort"], work_on: [{ wrong: "I living in Lahore", right: "I live in Lahore" }], tip: "Speak for ten minutes every day.", useful_line: "I am from Lahore." });
     if (/Below is a news story/.test(prompt)) return window.__noStory ? JSON.stringify({ title: "" }) : JSON.stringify({ title: "Floods in Sindh", emoji: "🌊", source: "Dawn", story: "Heavy rain caused floods in Sindh. Many people lost their homes. The government is sending food and tents.", css: "Pakistan Affairs: climate change and disasters.", words: [{ word: "flood", meaning: "too much water on dry land", example: "The flood damaged many homes." }, { word: "relief", meaning: "help for people in trouble", example: "Relief camps give food." }], questions: ["What happened in Sindh?", "How can Pakistan prepare for floods?", "Who should help the people?"] });
     if (/Reply with ONLY this JSON: \{"right"/.test(prompt)) return JSON.stringify({ right: "I live in Lahore" });
@@ -68,6 +68,10 @@
     const prompt = flat(input);
     window.__calls.push({ prompt: prompt.slice(0, 2000), tier: opts.modelTier, images: opts.images ? [].concat(opts.images).length : 0 });
     if (window.__failNext) { const c = window.__failNext; window.__failNext = null; throw { code: c, message: "forced " + c }; }
+    if (/checking one spoken answer/.test(prompt)) {
+      if (window.__failCheck) { window.__failCheck = false; throw { code: "upstream_error", message: "forced check failure" }; }
+      if (window.__slowCheck) { window.__slowCheck = false; await new Promise((r) => setTimeout(r, 1500)); }
+    }
     if (window.__hangNext) { window.__hangNext = false; await new Promise((_, rej) => opts.signal?.addEventListener("abort", () => rej({ code: "cancelled", message: "aborted" }))); }
     await new Promise((r) => setTimeout(r, 30));
     if (opts.signal?.aborted) throw { code: "cancelled", message: "aborted" };

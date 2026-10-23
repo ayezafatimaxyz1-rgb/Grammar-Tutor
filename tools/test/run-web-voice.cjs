@@ -32,22 +32,26 @@ const fakes = () => {
   const errs = []; p.on("pageerror", (e) => errs.push(e.message));
   const gem = []; // what the page sent to Gemini
   let failSearch = 1; // the first search is refused, as when the newest model has no free search
+  let rejectThinking = 1; // the first "thinking off" setting is refused, as some models do
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
   await p.route("https://generativelanguage.googleapis.com/**", async (r) => {
     const u = r.request().url();
-    if (u.includes("/models?")) return r.fulfill({ json: { models: [{ name: "models/gemini-flash-latest", supportedGenerationMethods: ["generateContent"] }] } });
+    if (u.includes("/models?")) return r.fulfill({ json: { models: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3.1-flash-lite-preview", "gemini-flash-lite-latest", "gemini-2.5-flash-preview-tts"].map((n) => ({ name: "models/" + n, supportedGenerationMethods: ["generateContent"] })) } });
     const body = JSON.parse(r.request().postData());
     const json = body.generationConfig.responseMimeType === "application/json";
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
-    gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], search: !!body.tools?.some((t) => t.google_search), mime: body.generationConfig.responseMimeType || "", imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], search: !!body.tools?.some((t) => t.google_search), mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    if (body.generationConfig.thinkingConfig && rejectThinking > 0) { rejectThinking--; return r.fulfill({ status: 400, json: { error: { message: "Thinking budget is not supported for this model." } } }); }
+    const check = { verdict: "fix", fixed: "I went to the market yesterday.", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] };
     if (/Use Google Search to find today/.test(prompt) && failSearch > 0) { failSearch--; return r.fulfill({ status: 429, json: { error: { message: "Quota exceeded, limit: 0, PerDay" } } }); }
     const text = /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
       : /Below is a news story/.test(prompt) ? JSON.stringify({ title: "A new dam for Pakistan", emoji: "💧", source: "Dawn", story: "A new dam opened in KPK. It will store water for farmers and make electricity.", css: "Pakistan Affairs: water and energy.", words: [{ word: "dam", meaning: "a wall that holds back water", example: "The dam stores water." }], questions: ["Why do we need dams?", "How can we save water?"] })
       : /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
       : /spoke for/.test(prompt) ? JSON.stringify({ score: 6, comment: "Good start.", errors: [], better: "I want to join the civil service to serve my country.", tip: "Give an example." })
+      : json && /"reply":/.test(prompt) ? JSON.stringify({ reply: "That sounds nice! What did you buy at the market?", check })
       : json
-      ? JSON.stringify({ verdict: "fix", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] })
+      ? JSON.stringify(check)
       : "That sounds nice! What did you buy at the market?";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
   });
@@ -60,7 +64,9 @@ const fakes = () => {
   check("settings show how to keep Bolo on the phone", (await p.textContent("#installSteps")).includes("Add to Home screen"));
   await p.evaluate(() => { window.__clip = " Your key: AIzaSyTEST_0123456789abcdefghijklmnopqr "; });
   await p.click("#keyPaste"); await p.waitForTimeout(400);
-  check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).key)) === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
+  const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));
+  check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && saved.key === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
+  check("talking uses the fast stable Flash-Lite model; harder jobs use Flash", saved.fast === "gemini-2.5-flash-lite" && saved.model === "gemini-flash-latest", JSON.stringify(saved));
   await p.click("#setSheet [data-close].btn.primary");
   check("voice version: big talk button, no typing box", !(await p.isHidden("#orb")) && (await p.isHidden("#typeRow")));
 
@@ -74,6 +80,12 @@ const fakes = () => {
   const m2 = await p.textContent("#msgs");
   check("it listens again by itself (second answer sent)", m2.includes("I bought some mangoes"));
   check("corrections folded under my sentence", (await p.textContent(".msg.me .verdict")).includes("mistake"));
+  const talk = gem.filter((g) => /Write Mam's next reply now/.test(g.prompt));
+  check("one request per answer brings the reply and the corrections together", talk.length >= 2 && talk.every((g) => /"reply":/.test(g.prompt) && g.mime === "application/json") && !gem.some((g) => /checking one spoken answer/.test(g.prompt)));
+  check("talking uses Flash-Lite with thinking off", talk.every((g) => g.model === "gemini-2.5-flash-lite") && talk[0].think?.thinkingBudget === 0);
+  check("a model that refuses the thinking setting is asked again without it", talk[1].think === null && talk[talk.length - 1].think === null && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).think["gemini-2.5-flash-lite"])) === "none");
+  await p.click(".msg.me .bubble"); await p.waitForTimeout(150);
+  check("tapping my sentence: corrected sentence and other ways", (await p.textContent(".msg.me .fb")).includes("I went to the market yesterday.") && (await p.textContent(".msg.me .fb")).includes("Other ways to say it"));
   await p.click("#orb"); await p.waitForTimeout(300); // pause
   const st = await p.textContent("#state");
   check("tapping the button pauses", /Tap the button|Mam is/.test(st), st);
@@ -107,6 +119,9 @@ const fakes = () => {
   check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
+  await p.evaluate(() => localStorage.setItem("bolo.gemini", JSON.stringify({ key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest" })));
+  await p.reload(); await p.waitForTimeout(800);
+  check("a key saved by the old version gets the fast model too", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).fast)) === "gemini-2.5-flash-lite");
   check("no page errors", errs.length === 0, errs.join(";"));
   await b.close();
   const failed = results.filter((x) => !x).length;
