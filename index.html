@@ -179,7 +179,15 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .sec small { font-size: 14px; color: var(--muted); }
 .para { display: flex; flex-direction: column; gap: 6px; }
 .ptext { margin: 0; font-size: 16px; line-height: 1.6; }
-button.vw { font: inherit; color: inherit; border: 0; padding: 0 2px; margin: 0; background: rgb(227 154 45 / 22%); border-radius: 4px; text-decoration: underline dotted; text-underline-offset: 3px; }
+.tw { cursor: pointer; border-radius: 3px; -webkit-tap-highlight-color: transparent; }
+.tw.mine { text-decoration: underline; text-decoration-color: var(--sun); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.orig.picks .tw.mam { background: rgb(227 154 45 / 22%); }
+.tw.sel, .orig.picks .tw.sel { background: var(--accent); color: var(--accent-fg); }
+.orig { display: flex; flex-direction: column; gap: 8px; }
+.orig > .hint { text-align: left; margin: 0; }
+.pickhead { display: flex; flex-direction: column; gap: 6px; }
+.pickhead strong { font-family: var(--display); font-size: 18px; }
+.pickcard { display: flex; flex-direction: column; gap: 8px; }
 .analysis { background: var(--bg); border: 1px solid var(--line); border-left: 4px solid var(--sun); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
 
 /* sheets: topics and settings */
@@ -1319,9 +1327,9 @@ Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions
     else newsStatus(e?.code === "cancelled" ? "Stopped. Add the story again when you are ready." : errText(e), true);
   } finally { clearTimeout(mt); newsBusy = false; if (newsCtl === myCtl) newsCtl = null; }
 }
-// The story sits on top of its conversation, in three tabs: its hard words (first), the simple story,
-// and the original text in parts, where every paragraph can be analysed. Then the learner talks with Mam below.
-const artTab = new Map(), loadingInfo = new WeakSet();
+// The story sits on top of its conversation, in three tabs: the original text in parts (first), where the learner
+// taps any word they find hard and can analyse every paragraph; the word list; and the simple story. Then the talk with Mam.
+const artTab = new Map(), infoLoads = new WeakMap();
 const escRe = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const arr = (x, n) => (Array.isArray(x) ? x : []).map((v) => String(v ?? "")).filter(Boolean).slice(0, n);
 const vocabOf = (a) => (a.vocab || a.words || []).filter((w) => w?.word);
@@ -1336,7 +1344,7 @@ function articleCard(c) {
   d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
   d.querySelector(".css").textContent = a.css && isEnglish(a.css) ? "🎯 For CSS: " + a.css : "";
   const parts = (a.sections || []).length;
-  const tabs = [["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"], ...(paras.length ? [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")]] : [])];
+  const tabs = [...(paras.length ? [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")]] : []), ["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"]];
   const bar = d.querySelector(".tabs"), body = d.querySelector(".tabbody");
   const show = (k) => {
     artTab.set(c.id, k);
@@ -1346,7 +1354,7 @@ function articleCard(c) {
   };
   tabs.forEach(([k, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.k = k; b.onclick = () => show(k); bar.append(b); });
   const want = artTab.get(c.id);
-  show(tabs.some(([k]) => k === want) ? want : vocab.length ? "words" : "story");
+  show(tabs.some(([k]) => k === want) ? want : paras.length ? "orig" : vocab.length ? "words" : "story");
   return d;
 }
 function storyTab(c, body) {
@@ -1355,10 +1363,11 @@ function storyTab(c, body) {
   const t = el("div", "tools"); t.append(tool("🔊 Listen", () => { primeTTS(); speak(a.story, 0.85); }), tool("🐢 Slow", () => { primeTTS(); speak(a.story, 0.65); })); body.append(t);
 }
 function wordsTab(c, body) {
-  const vocab = vocabOf(c.article);
-  if (!vocab.length) { body.append(el("p", "hint", "Mam found no hard words in this story.")); return; }
-  body.append(el("p", "hint", "Every advanced word in the story. Tap one to ask Mam what it means and how to learn it. Tap ☆ to save it to ⭐ My words."));
-  vocab.forEach((w) => {
+  const vocab = vocabOf(c.article), mine = vocab.filter((w) => w.picked), mams = vocab.filter((w) => !w.picked);
+  if (!vocab.length) { body.append(el("p", "hint", "No words yet. Tap any word in the Original tab to ask Mam about it.")); return; }
+  body.append(el("p", "hint", "Tap a word to ask Mam what it means and how to learn it. Tap ☆ to save it to ⭐ My words."));
+  const group = (label, list) => { if (list.length) body.append(el("div", "lbl", label + " · " + list.length)); list.forEach(row); };
+  const row = (w) => {
     const row = el("div", "vrow");
     const b = el("button", "vword"); b.type = "button";
     b.append(el("b", "", w.word), el("small", "", w.type ? " " + w.type : ""), el("span", "", isEnglish(w.meaning) ? w.meaning : ""));
@@ -1366,7 +1375,9 @@ function wordsTab(c, body) {
     b.onclick = () => { box.hidden = !box.hidden; if (!box.hidden) wordInfo(artCtx(c), w, box); };
     const head = el("div", "vhead"); head.append(b, starBtn(w, artCtx(c)));
     row.append(head, box); body.append(row);
-  });
+  };
+  group("Words you picked", mine);
+  group(mine.length ? "Mam's list of hard words" : "Mam's list of hard words in the story", mams);
 }
 // The sentence of the original (or of the simple story) that uses the word.
 function sentenceWith(a, word) {
@@ -1382,28 +1393,30 @@ const artCtx = (c) => ({ sentence: (word) => sentenceWith(c.article, word), save
 const myCtx = (w) => ({ sentence: () => w.sentence || "", save: () => putWord(w), from: w.from || "", mine: true });
 // A word's card: how to say it, what it means here, examples, related words, and how to learn it (with practice).
 async function wordInfo(ctx, w, box) {
-  box.innerHTML = "";
+  const tok = {}; box._tok = tok; box.innerHTML = "";
   if (!w.info) {
     const wait = el("p", "typing", "Mam is explaining “" + w.word + "”…"); box.append(wait);
-    if (loadingInfo.has(w)) return;
     await aiReady;
     if (!sample) { wait.textContent = inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in Settings (⚙) first."; return; }
-    loadingInfo.add(w);
-    try {
-      const sent = ctx.sentence(w.word);
-      const r = await askJson(`You are an English teacher for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Explain the word or phrase "${w.word}"${sent ? ` as it is used in this sentence: "${sent}"` : " (its most common meaning)"}. Simple English only, never Urdu.
-Reply with ONLY JSON: {"type": "noun, verb, adjective, adverb, phrase or idiom", "say": "how to pronounce it in simple syllables, stressed part in capitals, like ek-SPLOY-tay-shun", "meaning": "its simple meaning in this story", "examples": ["2 short new example sentences"], "synonyms": ["up to 3 similar words, simpler ones first"], "opposites": ["up to 2 opposite words, or none"], "family": ["other forms of the word with their type, like exploit (verb)"], "partners": ["up to 3 words often used with it, like child exploitation"], "remember": "one memory trick to learn it", "css": "one sentence: how to use it in a CSS essay or interview"}`, { modelTier: "quick" });
-      w.info = { say: String(r?.say || ""), meaning: String(r?.meaning || w.meaning || ""), examples: arr(r?.examples, 3), synonyms: arr(r?.synonyms, 4), opposites: arr(r?.opposites, 3), family: arr(r?.family, 4), partners: arr(r?.partners, 4), remember: String(r?.remember || ""), css: String(r?.css || "") };
-      if (!w.type && r?.type) w.type = String(r.type);
-      if (!w.meaning) w.meaning = w.info.meaning;
-      ctx.save();
-      const kept = findSaved(w.word); if (kept && kept !== w && !kept.info) { kept.info = w.info; putWord(kept); } // a saved copy learns it too
-    } catch (e) {
-      wait.textContent = errText(e) || "Stopped."; box.append(tool("↻ Try again", () => wordInfo(ctx, w, box))); return;
-    } finally { loadingInfo.delete(w); }
-    if (!box.isConnected) return;
+    if (!infoLoads.has(w)) infoLoads.set(w, fetchInfo(ctx, w).finally(() => infoLoads.delete(w)));
+    try { await infoLoads.get(w); }
+    catch (e) { if (box._tok === tok) { wait.textContent = errText(e) || "Stopped."; box.append(tool("↻ Try again", () => wordInfo(ctx, w, box))); } return; }
+    if (!box.isConnected || box._tok !== tok) return; // the learner picked another word meanwhile
     box.innerHTML = "";
   }
+  renderInfo(ctx, w, box);
+}
+async function fetchInfo(ctx, w) {
+  const sent = ctx.sentence(w.word);
+  const r = await askJson(`You are an English teacher for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Explain the word or phrase "${w.word}"${sent ? ` as it is used in this sentence: "${sent}"` : " (its most common meaning)"}. Simple English only, never Urdu.
+Reply with ONLY JSON: {"type": "noun, verb, adjective, adverb, phrase or idiom", "say": "how to pronounce it in simple syllables, stressed part in capitals, like ek-SPLOY-tay-shun", "meaning": "its simple meaning in this story", "examples": ["2 short new example sentences"], "synonyms": ["up to 3 similar words, simpler ones first"], "opposites": ["up to 2 opposite words, or none"], "family": ["other forms of the word with their type, like exploit (verb)"], "partners": ["up to 3 words often used with it, like child exploitation"], "remember": "one memory trick to learn it", "css": "one sentence: how to use it in a CSS essay or interview"}`, { modelTier: "quick" });
+  w.info = { say: String(r?.say || ""), meaning: String(r?.meaning || w.meaning || ""), examples: arr(r?.examples, 3), synonyms: arr(r?.synonyms, 4), opposites: arr(r?.opposites, 3), family: arr(r?.family, 4), partners: arr(r?.partners, 4), remember: String(r?.remember || ""), css: String(r?.css || "") };
+  if (!w.type && r?.type) w.type = String(r.type);
+  if (!w.meaning) w.meaning = w.info.meaning;
+  ctx.save();
+  const kept = findSaved(w.word); if (kept && kept !== w && !kept.info) { kept.info = w.info; putWord(kept); } // a saved copy learns it too
+}
+function renderInfo(ctx, w, box) {
   const i = w.info, line = (label, text) => { if (!text || !isEnglish(text)) return; const p = el("div", "vline"); p.append(el("b", "", label + " "), text); box.append(p); };
   const head = el("div", "tools"); head.append(tool("🔊 " + w.word, () => { primeTTS(); speak(w.word, 0.75); }), tool("🐢 Slow", () => { primeTTS(); speak(w.word, 0.5); }));
   if (!ctx.mine) head.append(starBtn(w, ctx, true));
@@ -1449,42 +1462,89 @@ async function askAboutWord(ctx, w, q, out) {
     out.innerHTML = ""; const r = el("div", "alt"); r.append(el("span", "", text.trim()), speakBtn(text.trim())); out.append(r);
   } catch (e) { out.textContent = errText(e) || "Stopped."; }
 }
-// The original text, part by part. Hard words are marked (tap for the word's card); each paragraph can be analysed.
+// The original text, part by part. Every word can be tapped: the learner decides which words are hard, Mam explains them
+// right under the paragraph, and a word can grow into a phrase. Mam's own list of hard words is shown only on request.
+const WORD_RE = /[A-Za-z0-9]+(?:['’-][A-Za-z0-9]+)*/g;
 function originalTab(c, body) {
   const a = c.article, vocab = vocabOf(a), paras = a.paras || [];
-  if (a.from) body.append(el("p", "hint", "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it."));
-  else body.append(el("p", "hint", "The story's own words, in parts. Tap a marked word for its meaning, or analyse any paragraph."));
+  const wrap = el("div", "orig"); body.append(wrap);
+  wrap.append(el("p", "hint", a.from ? "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it." : "Read the story's own words. Tap any word you think is hard: Mam explains it under the paragraph, and you can save it. For a phrase, tap its first word, then ＋ Word after."));
+  const bar = el("div", "tools"), toggle = el("button", "mini"); toggle.type = "button";
+  const paint = () => { wrap.classList.toggle("picks", !!state.settings.showPicks); toggle.textContent = state.settings.showPicks ? "🙈 Hide Mam's hard words" : "💡 Show Mam's hard words"; };
+  toggle.onclick = () => { state.settings.showPicks = !state.settings.showPicks; putMeta(); paint(); };
+  bar.append(toggle); wrap.append(bar); paint();
   const secs = (a.sections || []).slice().sort((x, y) => x.from - y.from);
   paras.forEach((p, i) => {
     const k = secs.findIndex((x) => x.from === i + 1);
     if (k >= 0) {
       const h = el("div", "sec"); h.append(el("strong", "", "Part " + (k + 1) + " of " + secs.length + (secs[k].title ? " · " + secs[k].title : "")));
       if (secs[k].gist && isEnglish(secs[k].gist)) h.append(el("small", "", secs[k].gist));
-      body.append(h);
+      wrap.append(h);
     }
     const pd = el("div", "para"), pt = el("p", "ptext"), wbox = el("div", "vinfo"), abox = el("div", "analysis");
     wbox.hidden = true; abox.hidden = !p.an;
-    markWords(pt, p.text, vocab, (w) => { wbox.hidden = false; wordInfo(artCtx(c), w, wbox); wbox.prepend(el("div", "lbl", w.word)); });
+    const spans = tokenize(pt, p.text);
+    markRuns(spans, vocab.filter((w) => !w.picked), "mam"); markRuns(spans, savedWords(), "mine");
+    const pick = (from, to) => { spans.forEach((x, j) => x.classList.toggle("sel", j >= from && j <= to)); showPick(c, p, spans, from, to, wbox, pick); };
+    pt.onclick = (e) => {
+      const sp = e.target.closest(".tw"); if (!sp) return;
+      if (state.settings.showPicks && sp.dataset.s) pick(+sp.dataset.s, +sp.dataset.e); // a marked phrase is picked whole
+      else pick(+sp.dataset.k, +sp.dataset.k);
+    };
     const t = el("div", "tools");
     const ab = tool("🔍 Analyse paragraph " + (i + 1), () => { if (!abox.hidden && p.an) { abox.hidden = true; return; } analysePara(c, p, abox, ab); });
     t.append(ab, tool("🔊", () => { primeTTS(); speak(p.text, 0.85); }));
-    pd.append(pt, t, wbox, abox); body.append(pd);
+    pd.append(pt, wbox, t, abox); wrap.append(pd);
     if (p.an) renderAnalysis(p.an, abox);
   });
 }
-function markWords(target, text, vocab, onPick) {
-  const list = vocab.map((w) => w.word.trim()).filter((x) => x.length > 2).sort((x, y) => y.length - x.length);
-  if (!list.length) { target.textContent = text; return; }
-  const re = new RegExp("(" + list.map(escRe).join("|") + ")", "gi");
-  let last = 0;
-  for (const m of text.matchAll(re)) {
-    if (/\w/.test(text[m.index - 1] || "") || /\w/.test(text[m.index + m[0].length] || "")) continue; // whole words only
-    const w = vocab.find((x) => x.word.trim().toLowerCase() === m[0].toLowerCase()); if (!w) continue;
+function tokenize(target, text) {
+  const spans = []; let last = 0;
+  for (const m of text.matchAll(WORD_RE)) {
     target.append(text.slice(last, m.index));
-    const b = el("button", "vw", m[0]); b.type = "button"; b.onclick = () => onPick(w); target.append(b);
-    last = m.index + m[0].length;
+    const sp = el("span", "tw", m[0]); sp.dataset.k = spans.length; sp.dataset.a = m.index; sp.dataset.b = m.index + m[0].length;
+    spans.push(sp); target.append(sp); last = m.index + m[0].length;
   }
   target.append(text.slice(last));
+  return spans;
+}
+// Marks every place a word or phrase from the list appears (whole words, any case).
+function markRuns(spans, list, cls) {
+  const norm = (x) => x.toLowerCase().replace(/’/g, "'"), low = spans.map((x) => norm(x.textContent));
+  for (const w of list) {
+    const wt = norm(String(w.word)).match(WORD_RE) || []; if (!wt.length) continue;
+    for (let i = 0; i + wt.length <= low.length; i++) {
+      if (!wt.every((t, j) => low[i + j] === t)) continue;
+      for (let j = 0; j < wt.length; j++) { const sp = spans[i + j]; sp.classList.add(cls); if (cls === "mam") { sp.dataset.s = i; sp.dataset.e = i + wt.length - 1; } }
+    }
+  }
+}
+function sentenceIn(text, at) {
+  let pos = 0;
+  for (const x of text.match(/[^.!?]+[.!?]*["”’)]*\s*/g) || [text]) { if (at < pos + x.length) return x.trim(); pos += x.length; }
+  return text.trim();
+}
+// The learner's pick: the words, buttons to make it a phrase, and Mam's card for it (kept with the story once explained).
+function showPick(c, p, spans, from, to, wbox, pick) {
+  const a = c.article; if (!a.vocab) a.vocab = (a.words || []).slice();
+  const text = p.text.slice(+spans[from].dataset.a, +spans[to].dataset.b);
+  const w = a.vocab.find((x) => wkey(x.word) === wkey(text)) || { word: text, type: "", meaning: "", picked: true };
+  const sentence = sentenceIn(p.text, +spans[from].dataset.a);
+  wbox.hidden = false; wbox.innerHTML = "";
+  const head = el("div", "pickhead"); head.append(el("strong", "", "“" + text + "”"));
+  const t = el("div", "tools");
+  if (from > 0) t.append(tool("＋ Word before", () => pick(from - 1, to)));
+  if (to < spans.length - 1) t.append(tool("＋ Word after", () => pick(from, to + 1)));
+  t.append(tool("✕ Close", () => { wbox.hidden = true; wbox._tok = null; spans.forEach((x) => x.classList.remove("sel")); }));
+  head.append(t);
+  const card = el("div", "pickcard"); wbox.append(head, card);
+  const ctx = { sentence: () => sentence, from: a.title, save: () => {
+    if (!a.vocab.includes(w)) a.vocab.push(w);
+    putChat(c, false, true);
+    const tb = document.querySelector('.tab[data-k="words"]'); if (tb) tb.textContent = "🔤 Words · " + vocabOf(a).length;
+  } };
+  wordInfo(ctx, w, card);
+  wbox.scrollIntoView({ block: "nearest", behavior: "smooth" });
 }
 async function analysePara(c, p, box, btn) {
   box.hidden = false;
