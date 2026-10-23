@@ -1332,7 +1332,7 @@ function renderFeed() {
   box.innerHTML = ""; box.append(el("div", "lbl", "🗞️ From the newspapers"));
   if (!feed) { const p = el("p", feedBusy ? "typing" : "hint", feedBusy ? "Getting the latest headlines…" : "The headlines could not be loaded. Pull the page down to try again."); p.style.cssText = "text-align:left;margin:0"; box.append(p); return; }
   const meta = el("p", "hint", "Updated " + ago(feed.updated) + " · " + (feed.sources || []).join(", ")); meta.style.cssText = "text-align:left;margin:0"; box.append(meta);
-  [["Pakistan", "🇵🇰 Pakistan"], ["World", "🌍 World"]].forEach(([w, label]) => {
+  [["Pakistan", "🇵🇰 Pakistani papers"], ["World", "🌍 International papers"]].forEach(([w, label]) => {
     const list = feed.items.filter((x) => x.w === w).slice(0, feedMore ? 15 : 5);
     if (!list.length) return;
     box.append(el("div", "lbl", label));
