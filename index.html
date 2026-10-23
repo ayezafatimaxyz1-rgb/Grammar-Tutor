@@ -71,6 +71,7 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .verdict { border: 0; background: none; padding: 10px 6px; min-height: 44px; font-size: 14px; font-weight: 700; color: var(--muted); }
 .verdict.great { color: var(--good); }
 .verdict.fix { color: var(--bad); }
+.verdict.check { color: var(--accent); }
 .fb { align-self: stretch; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; text-align: left; font-size: 15px; color: var(--fg); }
 .fb .lbl, .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
 .fb .err { display: flex; flex-direction: column; gap: 1px; }
@@ -385,29 +386,40 @@ function parseLoose(t) {
 }
 const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
-// Two extras only the web version uses: opts.search (Google Search for today's news) and opts.model.
+// Like Claude's tiers, "quick" jobs (talking, corrections) use the fast Flash-Lite model without thinking, which also
+// has the bigger free limit; the rest use Flash. Extras only the web version uses: opts.search (Google Search) and opts.model.
+const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
+// Thinking is switched off in whichever way the model accepts: Gemini 3 takes a level, 2.5 a budget, some neither.
+const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
+const thinkMode = (cfg, model) => cfg.think?.[model] || (/gemini-2\./.test(model) ? "budget" : "level");
 function geminiAI() {
   const cfg = gget(); if (!cfg?.key) return null;
-  const call = async (input, opts = {}, json = false, retried = false) => {
+  const call = async (input, opts = {}, json = false, retried = false, tries = 0) => {
+    const model = opts.model || (opts.modelTier === "quick" ? cfg.fast || cfg.model : cfg.model);
     const turnsIn = typeof input === "string" ? [{ role: "user", content: input }] : input;
     const contents = [];
     for (const t of turnsIn) { const role = t.role === "assistant" ? "model" : "user", last = contents[contents.length - 1]; if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] }); }
     const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
     for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
+    const tm = opts.modelTier === "quick" ? thinkMode(cfg, model) : "none";
     // JSON mode cannot be combined with search, so a searched answer is parsed from plain text
-    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}) } };
+    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
     let res;
-    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${opts.model || cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
+    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
     catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
     if (!res.ok) {
       let bodyText = ""; try { bodyText = JSON.stringify(await res.json()); } catch {}
-      if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current one and try once more
-        try { const m = await pickModel(cfg.key); if (m && m !== cfg.model) { cfg.model = m; try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} return call(input, opts, json, true); } } catch {}
+      if (res.status === 400 && /think/i.test(bodyText) && tm !== "none" && tries < 2) { // this model wants thinking switched off another way
+        cfg.think = { ...cfg.think, [model]: tm === "level" ? "budget" : "none" }; saveG(cfg);
+        return call(input, opts, json, retried, tries + 1);
+      }
+      if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current ones and try once more
+        try { const m = chooseModels(await listModels(cfg.key)); if (m.model !== cfg.model || m.fast !== cfg.fast) { Object.assign(cfg, m); saveG(cfg); return call(input, opts, json, true, tries); } } catch {}
       }
       throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : "upstream_error" };
     }
     const data = await res.json();
-    const text = (data.candidates?.[0]?.content?.parts || []).map((x) => x.text || "").join("");
+    const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
     if (!text) throw { code: "empty_completion" };
     try { opts.onText?.({ text, delta: text }); } catch {}
     return text;
@@ -415,16 +427,21 @@ function geminiAI() {
   const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
   fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
   fn.limits = async () => ({ maxPromptBytes: 900000, images: { maxCount: 10, maxInputBytes: 20e6, mediaTypes: ["image/jpeg", "image/png", "image/webp"] } });
+  fn.models = () => ({ model: cfg.model, fast: cfg.fast || cfg.model });
   return fn;
 }
-async function pickModel(key) {
+async function listModels(key) {
   const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", { headers: { "x-goog-api-key": key } });
   if (!r.ok) throw { code: "bad_key" };
-  const names = ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
-  if (names.includes("gemini-flash-latest")) return "gemini-flash-latest";
+  return ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
+}
+// Flash for harder jobs; for talking, the newest stable Flash-Lite (a preview has smaller free limits).
+function chooseModels(names) {
   const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
-  const flash = names.filter((n) => /^gemini-[\d.]+-flash$/.test(n)).sort((a, b) => ver(b) - ver(a));
-  return flash[0] || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+  const newest = (re) => names.filter((n) => re.test(n)).sort((a, b) => ver(b) - ver(a))[0];
+  const model = names.includes("gemini-flash-latest") ? "gemini-flash-latest" : newest(/^gemini-[\d.]+-flash$/) || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+  const fast = newest(/^gemini-[\d.]+-flash-lite$/) || (names.includes("gemini-flash-lite-latest") ? "gemini-flash-lite-latest" : model);
+  return { model, fast };
 }
 // Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
 const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
@@ -506,11 +523,24 @@ Rules:
 - Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?
 - The candidate has answered ${answered} question${answered === 1 ? "" : "s"} so far. ${answered >= 9 ? 'This is the last turn: the Chairman thanks the candidate and says exactly "The interview is over."' : "Keep the interview going."}
 Reply with only the board's words.`;
-function askMam(t, history, opts) {
+// What a correction looks like, for the separate check (Claude) and the combined call (Gemini).
+const CHECK_JSON = `{"verdict": "great or good or fix", "fixed": "the learner's whole answer with only the mistakes corrected", "errors": [{"wrong": "the exact wrong words the learner said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the learner's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}]}`;
+const CHECK_RULES = () => `Ignore capital letters and punctuation, because the learner speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[level()]} "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items.`;
+const toFb = (r) => ({ verdict: String(r?.verdict || ""), fixed: String(r?.fixed || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] });
+// With `check` (Gemini), one call brings Mam's reply and the corrections together: half the free requests and no second wait.
+async function askMam(t, history, opts, check) {
   const board = t.kind === "interview";
   const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   const answered = history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length;
-  return sample((board ? BOARD_RULES(answered) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now."), { modelTier: "quick", cache: false, ...opts });
+  const base = (board ? BOARD_RULES(answered) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now.");
+  if (check) {
+    try {
+      const r = await askJson(base + `\n\nAlso, as an English teacher, check the learner's last answer to the question "${check.lastQ}": "${check.text}". ${CHECK_RULES()}
+Reply with ONLY this JSON: {"reply": "exactly the words for the reply above", "check": ${CHECK_JSON}}`, { modelTier: "quick", cache: false, signal: opts?.signal });
+      if (typeof r?.reply === "string" && r.reply.trim()) return { text: r.reply, fb: r.check && typeof r.check === "object" ? toFb(r.check) : null };
+    } catch (e) { if (e?.code !== "invalid_json") throw e; }
+  }
+  return sample(base, { modelTier: "quick", cache: false, ...opts }); // the corrections then come from checkAnswer
 }
 
 // ---------- conversations: one per topic, always saved ----------
@@ -566,6 +596,7 @@ function renderChat() {
       const el = addMe(tn.content); el.dataset.idx = i;
       if (tn.fb) attachFeedback(el, tn.fb);
       else if (i === c.turns.length - 1) markNotSent(el);
+      else markUnchecked(el, tn, c);
     }
   });
   if (interviewOver(c)) boardDone(c);
@@ -593,23 +624,38 @@ function markNotSent(el) {
   const ns = document.createElement("button"); ns.type = "button"; ns.className = "verdict fix notsent"; ns.textContent = "No answer yet · tap to try again";
   ns.onclick = () => { primeTTS(); send(null, el); }; el.append(ns);
 }
+// The label under the learner's message: "Checking…" at once, then the corrections (or a way to check again).
+function setTag(w, cls, label, fn) {
+  w.querySelectorAll(".verdict:not(.notsent), .fb").forEach((x) => x.remove());
+  if (!cls) { w.querySelector(".bubble").onclick = null; return; }
+  const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict " + cls; tag.textContent = label;
+  tag.onclick = fn || null; w.querySelector(".bubble").onclick = fn || null;
+  w.append(tag);
+}
+function markUnchecked(el, turn, c) { setTag(el, "check", "✎ Tap to check this sentence", () => checkAnswer(el, turn, c)); }
+const speakBtn = (text) => tool("🔊", () => { primeTTS(); speak(String(text), 0.8); });
 // Corrections stay folded under the learner's message; tapping the message opens them.
 function attachFeedback(w, fb) {
   if (!fb) return;
-  w.querySelectorAll(".verdict:not(.notsent), .fb").forEach((x) => x.remove());
+  setTag(w, null);
   const errs = (Array.isArray(fb.errors) ? fb.errors : []).filter((e) => e?.right);
   const better = (Array.isArray(fb.better) ? fb.better : []).filter((x) => x?.text);
   const verdict = errs.length ? "fix" : fb.verdict === "great" ? "great" : "good";
   const tag = document.createElement("button"); tag.type = "button"; tag.className = "verdict " + verdict;
-  tag.textContent = verdict === "fix" ? "⚠ " + errs.length + (errs.length === 1 ? " mistake" : " mistakes") + " · tap to see" : (verdict === "great" ? "✓ Great" : "✓ Good") + " · tap for better ways";
+  tag.textContent = verdict === "fix" ? "⚠ " + errs.length + (errs.length === 1 ? " mistake" : " mistakes") + " · tap to see" : (verdict === "great" ? "✓ Great" : "✓ Good") + " · tap for other ways";
   const panel = document.createElement("div"); panel.className = "fb"; panel.hidden = true;
+  const fixed = String(fb.fixed || "").trim(), mine = w.querySelector(".bubble").textContent;
+  if (errs.length && fixed && isEnglish(fixed) && toks(fixed).join(" ") !== toks(mine).join(" ")) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Your sentence, corrected"; panel.append(l);
+    const d = document.createElement("div"); d.className = "alt"; d.innerHTML = '<span class="r"></span>'; d.firstChild.textContent = fixed; d.append(speakBtn(fixed)); panel.append(d);
+  }
   if (errs.length) {
     const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Mistakes"; panel.append(l);
     errs.forEach((e) => { const d = document.createElement("div"); d.className = "err"; d.innerHTML = '<span class="w"></span><span class="r"></span><span></span>'; d.children[0].textContent = e.wrong || ""; d.children[1].textContent = "✓ " + e.right; d.children[2].textContent = isEnglish(e.why) ? e.why : ""; panel.append(d); });
   }
   if (better.length) {
-    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Better ways to say it"; panel.append(l);
-    better.forEach((x) => { const d = document.createElement("div"); d.className = "alt"; d.innerHTML = "<span><em></em></span>"; d.firstChild.firstChild.textContent = x.label || ""; d.firstChild.append(String(x.text)); d.append(tool("🔊", () => { primeTTS(); speak(String(x.text), 0.8); })); panel.append(d); });
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "Other ways to say it"; panel.append(l);
+    better.forEach((x) => { const d = document.createElement("div"); d.className = "alt"; d.innerHTML = "<span><em></em></span>"; d.firstChild.firstChild.textContent = x.label || ""; d.firstChild.append(String(x.text)); d.append(speakBtn(x.text)); panel.append(d); });
   }
   const toggle = () => { panel.hidden = !panel.hidden; if (!panel.hidden) panel.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
   tag.onclick = toggle; w.querySelector(".bubble").onclick = toggle;
@@ -650,6 +696,7 @@ async function send(textIn, retryEl) {
     turn = { role: "user", content: text, at: Date.now() }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
     c.words = (c.words || 0) + toks(text).length; putChat(c);
   }
+  setTag(meEl, "wait", "⏳ Checking your sentence…");
   const idx = c.turns.indexOf(turn);
   const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
   busy = true; setState("thinking");
@@ -665,11 +712,12 @@ async function send(textIn, retryEl) {
   const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 180000);
   try {
     dbg("reply_call_start", { turns: c.turns.length });
-    const { text: reply } = await askMam(t, c.turns.slice(0, idx + 1), {
+    const { text: reply, fb } = await askMam(t, c.turns.slice(0, idx + 1), {
       signal: myCtl.signal,
       onText: ({ text: s }) => { wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = splitSpeaker(s).text; scrollDown(); },
-    });
-    dbg("reply_done", { len: reply.length });
+    }, inClaude ? null : { text, lastQ });
+    dbg("reply_done", { len: reply.length, fb: !!fb });
+    if (fb) { turn.fb = fb; if (c === chat && meEl.isConnected) attachFeedback(meEl, fb); }
     wait.remove();
     const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
     c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c); replied = true;
@@ -680,7 +728,7 @@ async function send(textIn, retryEl) {
     }
   } catch (e) {
     dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 200), timedOut });
-    wait.remove(); stopLoop();
+    wait.remove(); stopLoop(); setTag(meEl, null);
     const code = timedOut ? "timeout" : e?.code;
     if (c === chat) {
       if (code === "not_granted") { markNotSent(meEl); note(errText(e), allowAction(() => send(null, meEl))); }
@@ -690,20 +738,27 @@ async function send(textIn, retryEl) {
     }
     setState("idle");
   } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; }
-  if (replied && !turn.fb) checkAnswer(meEl, text, lastQ, turn, c); // only after a real reply, so the two calls never compete
+  if (replied && !turn.fb) checkAnswer(meEl, turn, c); // only after a real reply, so the two calls never compete
 }
-async function checkAnswer(meEl, text, lastQ, turn, c) {
+async function checkAnswer(meEl, turn, c) {
+  const idx = c.turns.indexOf(turn);
+  const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
+  setTag(meEl, "wait", "⏳ Checking your sentence…");
+  await aiReady;
+  const cc = new AbortController(), ct = setTimeout(() => cc.abort(), 60000);
   try {
-    const r = await askJson(`You are an English teacher checking one spoken answer from a learner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. Ignore capital letters and punctuation, because the learner speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[level()]}
+    if (!sample) throw { code: "no_ai" };
+    const r = await askJson(`You are an English teacher checking one spoken answer from a learner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. ${CHECK_RULES()}
 Question: "${lastQ}"
-Learner answered: "${text}"
+Learner answered: "${turn.content}"
 Reply with ONLY this JSON:
-{"verdict": "great or good or fix", "errors": [{"wrong": "the exact wrong words the learner said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the learner's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}]}
-"errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items.`, { modelTier: "quick", cache: false });
-    const fb = { verdict: String(r?.verdict || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] };
-    turn.fb = fb; putChat(c);
-    if (c === chat && meEl.isConnected) { const m = $("main"), atEnd = m.scrollHeight - m.scrollTop - m.clientHeight < 120; attachFeedback(meEl, fb); if (atEnd) scrollDown(); }
-  } catch (e) { dbg("check_error", { code: String(e?.code || "none") }); }
+${CHECK_JSON}`, { modelTier: "quick", cache: false, signal: cc.signal });
+    turn.fb = toFb(r); putChat(c);
+    if (c === chat && meEl.isConnected) { const m = $("main"), atEnd = m.scrollHeight - m.scrollTop - m.clientHeight < 120; attachFeedback(meEl, turn.fb); if (atEnd) scrollDown(); }
+  } catch (e) {
+    dbg("check_error", { code: String(e?.code || "none") });
+    if (meEl.isConnected) setTag(meEl, "fix", "↻ Couldn't check · tap to try again", () => checkAnswer(meEl, turn, c));
+  } finally { clearTimeout(ct); }
 }
 function boardDone(c) {
   if (document.querySelector("#msgs .boarddone")) return;
@@ -1284,8 +1339,7 @@ if (!inClaude) {
     if (!key || keyBusy) return;
     keyBusy = true; $("keyStatus").textContent = "Checking your key…";
     try {
-      const model = await pickModel(key);
-      try { localStorage.setItem(GKEY, JSON.stringify({ key, model })); } catch {}
+      saveG({ key, ...chooseModels(await listModels(key)) });
       sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done, then tap the big button to talk.";
       document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
     } catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
@@ -1326,12 +1380,13 @@ $("diagBtn").onclick = async () => {
   $("diagBtn").disabled = true;
   put(inClaude ? "Running inside Claude" : "Voice version (Gemini)" + (canListen ? ", microphone available" : ", no speech recognition in this browser"));
   await aiReady;
-  put("Teacher connection: " + (sample ? "available" : "not available"));
+  put("Teacher connection: " + (sample ? "available" : "not available") + (sample?.models ? " · talking: " + sample.models().fast + " · harder jobs: " + sample.models().model : ""));
   if (inClaude) { try { const pm = await use("permissions"); put("Permission: " + (pm ? await pm.state("sample") : "unknown")); } catch {} }
   put("Saved conversations: " + state.chats.length + (col ? " (synced to your account)" : " (on this phone)"));
   if (sample) {
     const step = () => { const c = new AbortController(); setTimeout(() => c.abort(), 120000); return c.signal; };
-    try { const { text } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: step() }); put("1. Mam's reply ✓ " + text.trim().slice(0, 70)); }
+    const t0 = Date.now(), secs = () => " (" + ((Date.now() - t0) / 1000).toFixed(1) + " s)";
+    try { const { text, fb } = await askMam(TOPICS[0], [{ role: "assistant", content: TOPICS[0].open }, { role: "user", content: "my name is ali i living in lahore" }], { signal: step() }, inClaude ? null : { text: "my name is ali i living in lahore", lastQ: "What is your name?" }); put("1. Mam's reply ✓" + secs() + (fb ? " with corrections" : "") + " " + text.trim().slice(0, 60)); }
     catch (e) { put("1. Mam's reply failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
     try { const r = await askJson('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", cache: false, signal: step() }); put("2. Corrections ✓ " + JSON.stringify(r).slice(0, 50)); }
     catch (e) { put("2. Corrections failed: " + (e?.code || "error") + (e?.message ? " · " + e.message : "")); }
@@ -1349,6 +1404,8 @@ if (!canListen) { // no microphone here (Claude blocks it): just the typing box,
   $("hint").innerHTML = inClaude ? 'Tap 🎤 on your keyboard to speak. For hands-free talking, <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">open the voice version</a>.' : "This browser has no speech recognition: type, or use your keyboard's 🎤.";
 }
 openTopic(currentTopic(), true);
+// Keys saved before the fast talking model existed get it now.
+aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = geminiAI(); } catch {} } });
 aiReady.then(() => { if (!sample && !inClaude && mode === "chat") note("To talk with Mam, add your free Gemini key once. It takes one minute.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });
 connectDb();
 })();
