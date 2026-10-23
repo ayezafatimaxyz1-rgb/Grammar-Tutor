@@ -132,8 +132,8 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .chart .pt { fill: var(--chart); stroke: var(--ring); stroke-width: 2; }
 .chart .bar { fill: var(--chart); }
 .chart .xh { stroke: var(--muted); stroke-width: 1; }
-.tip { position: absolute; pointer-events: none; background: var(--sheet); border: 1px solid var(--rim); border-radius: 10px; padding: 6px 10px; font-size: 13px; color: var(--muted); box-shadow: var(--shadow); white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
-.tip b { display: block; font-size: 15px; color: var(--fg); }
+.chartbox .tip { position: absolute; pointer-events: none; background: var(--sheet); border: 1px solid var(--rim); border-radius: 10px; padding: 6px 10px; font-size: 13px; color: var(--muted); box-shadow: var(--shadow); white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.chartbox .tip b { display: block; font-size: 15px; color: var(--fg); }
 .tbl summary { cursor: pointer; font-size: 14px; color: var(--accent); font-weight: 700; padding: 6px 0; }
 .tbl table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
 .tbl th, .tbl td { padding: 5px 4px; border-bottom: 1px solid var(--line); text-align: right; }
@@ -401,8 +401,9 @@ const TOPICS = [
   { id: "world", em: "🌍", name: "World today", desc: "Climate, AI, peace, prices", open: "Let's talk about the world today. Which world problem worries you the most, and why?",
     extra: "Talk about world issues in general terms (climate change, AI, war and peace, prices, water). You have no live news, so never invent recent events, dates or numbers." },
   { id: "interview", kind: "interview", em: "🏛️", name: "CSS interview", desc: "A board of 3 asks about 10 questions", open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." },
+  { id: "ivsetup", kind: "ivsetup", em: "🎤", name: "Interview me on a topic", desc: "A book, a lesson or anything you learned" },
 ];
-const NEWS = TOPICS.find((t) => t.kind === "news"), MYWORDS = TOPICS.find((t) => t.kind === "words");
+const NEWS = TOPICS.find((t) => t.kind === "news"), MYWORDS = TOPICS.find((t) => t.kind === "words"), IVSETUP = TOPICS.find((t) => t.kind === "ivsetup");
 const LEVEL_STYLE = {
   A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences. Often give a model sentence the student can copy (\"You can say: ...\").",
   A2: "Use simple English (CEFR A2): up to 3 short sentences. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
@@ -512,6 +513,7 @@ async function connectDb() {
   else if (mode === "words") { if (wordsView === "home") renderMyWords(); }
   else if (mode === "learn") { if (!learnId) renderLearnHome(); }
   else if (mode === "progress") renderProgress();
+  else if (mode === "ivsetup") renderIvList();
   else if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
   renderProgBtn();
 }
@@ -657,25 +659,41 @@ Rules:
 - Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say it again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no emoji, no lists.`;
-const BOARD_RULES = (answered) => `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is practising for the real interview.
+// The board (or Mam) for an interview; a topic interview (a book or lesson the learner studied) also has its notes and length.
+const BOARD_RULES = (answered, t = {}) => {
+  const total = t.total || 9, mam = t.panel === "mam";
+  const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (answered >= total ? `This is the last turn: ${mam ? "thank the student warmly and say" : "the Chairman thanks the candidate and says"} exactly "The interview is over."` : "Keep the interview going.");
+  const about = t.subject ? `\n- This interview is about one thing the ${mam ? "student" : "candidate"} studied: "${t.subject}". Ask only about it: what it is about, its main ideas and facts, what they understood, their opinion, and how it connects to Pakistan, society or the civil service. Go from easy questions to harder ones, and ask a follow-up when an answer is short or unclear.\n- Notes to guide your questions and to check the answers (never read them out or mention them): ${t.extra}` : "";
+  if (mam) return `You are Mam, a warm and patient female English teacher (the student calls you "Mam"; never use any other name for yourself). You are giving your student from Pakistan (first language Urdu) a practice interview, to check what they understood and to help them speak about it.
+Rules:
+- Ask ONE short, clear question per turn in ${BOARD_STYLE[level()]}.
+- Before each new question, react to the last answer in one short sentence: say what was right, or kindly add the missing fact.
+- Do not correct English grammar (corrections are shown separately). If the student did not understand, ask again in simpler words.
+- English only. Never write Urdu or Roman Urdu. No labels, no lists, no emoji.${about}
+- ${so}
+Reply with only the words you say.`;
+  return `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is practising for the real interview.
 Rules:
 - Ask ONE short, clear question per turn in ${BOARD_STYLE[level()]}. Take turns between the members.
 - Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
 - Do not teach or correct English during the interview. If the candidate did not understand, repeat the question in simpler words.
 - English only. Never write Urdu or Roman Urdu.
-- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?
-- The candidate has answered ${answered} question${answered === 1 ? "" : "s"} so far. ${answered >= 9 ? 'This is the last turn: the Chairman thanks the candidate and says exactly "The interview is over."' : "Keep the interview going."}
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?${about}
+- ${so}
 Reply with only the board's words.`;
+};
+// The three-member board speaks with labels; in a topic interview Mam can be the interviewer instead.
+const isBoard = (c) => c?.kind === "interview" && c.topic?.panel !== "mam";
 // What a correction looks like, for the separate check (Claude) and the combined call (Gemini).
 const CHECK_JSON = `{"verdict": "great or good or fix", "fixed": "the learner's whole answer with only the mistakes corrected", "errors": [{"wrong": "the exact wrong words the learner said", "right": "the corrected words", "why": "very short reason in simple English, at most 10 words"}], "better": [{"label": "More natural", "text": "the learner's whole answer said the way a fluent speaker would, still simple"}, {"label": "CSS interview", "text": "a more formal, confident version for the CSS interview"}]}`;
 const CHECK_RULES = () => `Ignore capital letters and punctuation, because the learner speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[level()]} "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items.`;
 const toFb = (r) => ({ verdict: String(r?.verdict || ""), fixed: String(r?.fixed || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] });
 // With `check` (Gemini), one call brings Mam's reply and the corrections together: half the free requests and no second wait.
 async function askMam(t, history, opts, check) {
-  const board = t.kind === "interview";
+  const iv = t.kind === "interview", board = iv && t.panel !== "mam";
   const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   const answered = history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length;
-  const base = (board ? BOARD_RULES(answered) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : "Write Mam's next reply now.");
+  const base = (iv ? BOARD_RULES(answered, t) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : iv ? "Write Mam's next interview turn now." : "Write Mam's next reply now.");
   if (check) {
     try {
       const r = await askJson(base + `\n\nAlso, as an English teacher, check the learner's last answer to the question "${check.lastQ}": "${check.text}". ${CHECK_RULES()}
@@ -693,6 +711,7 @@ function currentTopic() {
   const id = state.settings.lastTopic;
   if (id === "own") { const c = state.chats.find((x) => x.id === state.settings.lastOwn && x.topic?.id === "own"); if (c) return c.topic; }
   if (String(id).startsWith("news:")) return state.chats.find((x) => x.topic?.id === id && x.article)?.topic || NEWS;
+  if (String(id).startsWith("iv:")) return ivTopic(id);
   return TOPICS.find((t) => t.id === id) || TOPICS[0];
 }
 function findThread(t) {
@@ -701,7 +720,8 @@ function findThread(t) {
 }
 function newChat(t) {
   const now = Date.now();
-  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", kind: t.kind || "talk" }, started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0 };
+  const iv = t.subject ? { subject: t.subject, panel: t.panel || "board", total: t.total || 8 } : {};
+  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", kind: t.kind || "talk", ...iv }, started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0 };
 }
 const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
 // Opens the topic's conversation (or starts it) and shows every earlier message.
@@ -712,6 +732,7 @@ function openTopic(t, quiet) {
   if (t.kind === "words") { openMyWords(); return; }
   if (t.kind === "learn") { openLearn(); return; }
   if (t.kind === "progress") { openProgress(); return; }
+  if (t.kind === "ivsetup") { openIvSetup(); return; }
   mode = "chat"; applyDock();
   let c = findThread(t);
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
@@ -725,7 +746,7 @@ function openTopic(t, quiet) {
   renderChat();
   if (!quiet && c.turns.length > 1 && Date.now() - c.updated > 30 * 60000 && !interviewOver(c)) { // back after a break: Mam picks it up again
     const q = lastQuestion(c.turns.filter((x) => x.role === "assistant").pop()?.content || "") || splitSpeaker(c.topic.open).text;
-    const line = (c.kind === "interview" ? "[Chairman] Welcome back. Let us continue. " : "Welcome back! Let's continue. ") + q;
+    const line = (isBoard(c) ? "[Chairman] Welcome back. Let us continue. " : "Welcome back! Let's continue. ") + q;
     c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c);
     if (!c.article || storyView(c) === "talk") { daySep(Date.now()); addTutor(line); }
   }
@@ -835,7 +856,7 @@ async function send(textIn, retryEl) {
   dbg("send_called", { len: text.length, busy, retry: !!retryEl });
   if (!text || busy || !c) return;
   hush();
-  if (interviewOver(c)) { note("This interview is over. Tap \"Start a new interview\" above."); return; }
+  if (interviewOver(c)) { note(`This interview is over. Tap "${c.topic?.subject ? "Interview me again" : "Start a new interview"}" above.`); return; }
   await aiReady;
   if (c !== chat) return;
   if (!sample) { stopLoop(); setState("idle"); note(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first."); return; }
@@ -853,7 +874,7 @@ async function send(textIn, retryEl) {
   const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
   busy = true; setState("thinking");
   const wait = document.createElement("div"); wait.className = "msg tutor";
-  wait.innerHTML = '<div class="bubble typing">' + (c.kind === "interview" ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
+  wait.innerHTML = '<div class="bubble typing">' + (isBoard(c) ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
   const myCtl = (ctl = new AbortController());
   let timedOut = false, replied = false, stopped = false;
   const slow = setTimeout(() => {
@@ -917,19 +938,24 @@ function boardDone(c) {
   const d = document.createElement("div"); d.className = "banner boarddone";
   d.append("The interview is finished. ");
   if (!c.report) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my feedback"; b.onclick = () => interviewReport(c, b); d.append(b); }
-  const n = document.createElement("button"); n.type = "button"; n.className = "btn"; n.textContent = "Start a new interview";
-  n.onclick = () => { stopLoop(); hush(); chat = newChat(TOPICS.find((x) => x.id === "interview")); state.settings.lastTopic = state.settings.lastTalk = "interview"; putMeta(); renderChat(); setState("idle"); };
-  d.append(n); $("msgs").append(d);
+  const iv = !!c.topic?.subject, t = iv ? c.topic : TOPICS.find((x) => x.id === "interview");
+  const n = document.createElement("button"); n.type = "button"; n.className = "btn"; n.textContent = iv ? "Interview me again" : "Start a new interview";
+  n.onclick = () => { stopLoop(); hush(); chat = newChat(t); state.settings.lastTopic = state.settings.lastTalk = t.id; putMeta(); renderChat(); setState("idle"); };
+  d.append(n);
+  if (iv) { const o = document.createElement("button"); o.type = "button"; o.className = "btn"; o.textContent = "🎤 Another topic"; o.onclick = () => openTopic(IVSETUP); d.append(o); }
+  $("msgs").append(d);
   if (c.report) $("msgs").append(reportCard(c));
   scrollDown();
 }
 async function interviewReport(c, btn) {
   await aiReady; if (!sample) return;
   btn.disabled = true; btn.textContent = "Scoring…";
-  const transcript = c.turns.map((x) => (x.role === "user" ? "Candidate: " : "Board: ") + x.content).join("\n");
+  const s = c.topic || {}, who = isBoard(c) ? "Board: " : "Mam: ";
+  const transcript = c.turns.map((x) => (x.role === "user" ? "Candidate: " : who) + x.content).join("\n");
+  const about = s.subject ? ` The interview was about something the learner studied: "${s.subject}". Notes on it: ${s.extra} Judge "knowledge" by how well they know this topic.` : "";
   try {
-    const rep = await askJson(`You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a learner from Pakistan whose English level is ${level()}. Judge it kindly but honestly, as a real board would, and focus on spoken fluency. Write in simple English only.
-Reply with ONLY JSON: {"score": number 1-10, "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "tip": "one practical tip for the next interview"}
+    const rep = await askJson(`You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a learner from Pakistan whose English level is ${level()}. Judge it kindly but honestly, as a real board would, and focus on spoken fluency.${about} Write in simple English only.
+Reply with ONLY JSON: {"score": number 1-10, "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "study": ["up to 3 things to learn again before the next interview: a point they missed or got wrong, with the right fact in one short sentence"], "tip": "one practical tip for the next interview"}
 
 ${transcript.slice(-14000)}`, { modelTier: "default" });
     c.report = { ...rep, date: Date.now() }; putChat(c, true); checkLevelUp();
@@ -939,7 +965,7 @@ ${transcript.slice(-14000)}`, { modelTier: "default" });
 function reportCard(c) {
   const s = c.report || {};
   const r = document.createElement("div"); r.className = "report";
-  r.innerHTML = '<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><strong>Interview feedback</strong></div><div class="areas"></div><p class="bv" style="margin:0"></p><div class="wd"></div><div class="wo"></div><div class="tip"></div>';
+  r.innerHTML = '<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><strong>Interview feedback</strong></div><div class="areas"></div><p class="bv" style="margin:0"></p><div class="wd"></div><div class="wo"></div><div class="st"></div><div class="tip"></div>';
   r.querySelector(".score").textContent = s.score ? s.score + "/10" : "🏛️";
   if (s.areas && typeof s.areas === "object") [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["english", "English"]].forEach(([k, l]) => {
     const v = Math.max(0, Math.min(10, Number(s.areas[k]) || 0)); const row = document.createElement("div"); row.className = "area"; row.innerHTML = "<span></span><i><b></b></i><em></em>";
@@ -948,8 +974,129 @@ function reportCard(c) {
   r.querySelector(".bv").textContent = isEnglish(s.board_view) ? s.board_view : "";
   if (Array.isArray(s.did_well)) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
   (Array.isArray(s.work_on) ? s.work_on : []).forEach((w) => { const f = document.createElement("div"); f.innerHTML = '<div class="w"></div><div class="r"></div>'; f.firstChild.textContent = w.wrong || ""; f.lastChild.textContent = "✓ " + (w.right || ""); r.querySelector(".wo").append(f); });
+  const study = arr(s.study, 3).filter(isEnglish);
+  if (study.length) { const st = r.querySelector(".st"), ul = el("ul"); st.append(el("div", "lbl", "📚 Study again")); study.forEach((x) => ul.append(el("li", "", x))); st.append(ul); }
   r.querySelector(".tip").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
   return r;
+}
+
+// ---------- interview me on a topic: a book, a lesson or anything the learner studied ----------
+// Mam reads the learner's pages or notes (or uses what she knows about the topic) and plans questions from easy to hard.
+// The interview then runs like the CSS interview, by the board or by Mam, with feedback and what to study again.
+const IV_WHO = [["board", "🏛️ CSS board"], ["mam", "👩‍🏫 Mam"]], IV_LEN = [[5, "Short · 5"], [8, "Normal · 8"], [12, "Long · 12"]], IV_PAGES = 10;
+const IV_IDEAS = ["The 18th Amendment", "CPEC", "Climate change in Pakistan", "The Kashmir issue", "Atomic Habits (book)"];
+let ivBusy = false, ivCtl = null, ivPdf = null, ivImgs = [];
+const ivTopic = (id) => state.chats.find((c) => c.topic?.id === id)?.topic || IVSETUP;
+const ivStatus = (...a) => statusIn("ivStatus", () => ivCtl?.abort(), ...a);
+function openIvSetup(pre) {
+  stopLoop(); ctl?.abort(); hush(); stopMinute(); stopDictation();
+  mode = "ivsetup"; state.settings.lastTopic = state.settings.lastTalk = IVSETUP.id; putMeta();
+  $("topicName").textContent = IVSETUP.em + " " + IVSETUP.name;
+  applyDock(); renderIvSetup(pre);
+}
+function renderIvSetup(pre) {
+  $("msgs").innerHTML = ""; ivPdf = null; ivImgs = [];
+  section("").id = "ivStatus";
+  const box = section("brain", "🎤 Interview me on a topic");
+  box.insertAdjacentHTML("beforeend", `<p class="hint" style="text-align:left;margin:0">Did you read a book, a chapter or an article, or learn a topic? Tell Mam what it is. She prepares questions and interviews you on it, and at the end she tells you what to study again.</p>
+<div class="field"><label for="ivTopic"><strong>What did you study?</strong></label><input id="ivTopic" type="text" maxlength="120" placeholder="A book, a chapter or a topic" autocomplete="off"></div>
+<div class="tools" id="ivIdeas"></div>
+<div class="lbl">Add your pages or notes (if Mam may not know it)</div>
+<div class="tools"><label class="btn" for="ivFile">📷 Photo or PDF</label><button class="btn" type="button" id="ivPasteBtn">📋 Paste text</button></div>
+<input class="vh" type="file" id="ivFile" multiple accept="image/*,application/pdf">
+<div class="thumbs" id="ivThumbs"></div>
+<div class="pages" id="ivPages" hidden><span>Pages</span><input type="number" id="ivFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="ivTo" min="1" value="1" aria-label="To page"><span id="ivOf"></span></div>
+<div class="field" id="ivPaste" hidden><textarea class="answerbox" id="ivText" placeholder="Paste your notes or the text here…" aria-label="Your notes or text"></textarea></div>
+<div class="lbl">Who interviews you?</div><div class="tabs" id="ivWho" role="tablist"></div>
+<div class="lbl">How many questions?</div><div class="tabs" id="ivLen" role="tablist"></div>
+<button class="btn primary" type="button" id="ivGo">▶ Start the interview</button>`);
+  IV_IDEAS.forEach((x) => $("ivIdeas").append(tool(x, () => { $("ivTopic").value = x; })));
+  $("ivTopic").value = pre?.topic || "";
+  if (pre?.text) { $("ivText").value = pre.text; $("ivPaste").hidden = false; }
+  const choose = (id, list, key, def) => {
+    const bar = $(id);
+    const draw = () => { bar.innerHTML = ""; list.forEach(([v, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String(v === (state.settings[key] ?? def))); b.onclick = () => { state.settings[key] = v; putMeta(); draw(); }; bar.append(b); }); };
+    draw();
+  };
+  choose("ivWho", IV_WHO, "ivWho", "board"); choose("ivLen", IV_LEN, "ivLen", 8);
+  $("ivFile").onchange = ivPick;
+  $("ivPasteBtn").onclick = () => { $("ivPaste").hidden = !$("ivPaste").hidden; if (!$("ivPaste").hidden) $("ivText").focus(); };
+  $("ivGo").onclick = () => { primeTTS(); startIv(); };
+  section("newslist", "Your interviews").id = "ivList"; renderIvList();
+  $("main").scrollTop = 0;
+}
+// Each topic once (its newest interview), with the last score.
+function renderIvList() {
+  const box = $("ivList"); if (!box) return;
+  box.querySelectorAll(".trow, .hint").forEach((x) => x.remove());
+  const seen = new Set(), list = state.chats.filter((c) => String(c.topic?.id).startsWith("iv:") && c.turns && !seen.has(c.topic.id) && seen.add(c.topic.id));
+  if (!list.length) { const p = el("p", "hint", "Your topic interviews are saved here, so you can take them again."); p.style.cssText = "text-align:left;margin:0"; box.append(p); return; }
+  list.slice(0, 20).forEach((c) => {
+    const rep = state.chats.find((x) => x.topic?.id === c.topic.id && x.report?.score)?.report;
+    const desc = [c.topic.panel === "mam" ? "Mam" : "CSS board", c.topic.total + " questions", rep ? "last score " + rep.score + "/10" : ""].filter(Boolean).join(" · ");
+    box.append(topicRow(c.topic.em || "🎤", c.topic.subject || c.topic.name, desc, c.turns.filter((x) => x.role === "user").length, false, () => openTopic(c.topic)));
+  });
+}
+async function ivPick() {
+  const inp = $("ivFile"), files = [...inp.files]; inp.value = "";
+  const th = $("ivThumbs"); th.innerHTML = ""; $("ivPages").hidden = true; ivPdf = null; ivImgs = [];
+  const clear = () => tool("✕ Remove", () => { ivPdf = null; ivImgs = []; th.innerHTML = ""; $("ivPages").hidden = true; });
+  const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+  if (pdf) {
+    th.append(el("span", "mini", "📄 " + pdf.name));
+    ivStatus("Opening the PDF…");
+    let doc;
+    try { const lib = await getPdfLib(); doc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise; }
+    catch { if (th.isConnected) { th.innerHTML = ""; ivStatus("This PDF could not be opened. Take photos of the pages instead.", true); } return; }
+    if (!th.isConnected) return; // the learner left this page meanwhile
+    ivPdf = doc; th.append(clear());
+    $("ivPages").hidden = false; $("ivOf").textContent = "of " + doc.numPages + " · up to " + IV_PAGES;
+    $("ivFrom").value = 1; $("ivTo").value = Math.min(IV_PAGES, doc.numPages); $("ivFrom").max = $("ivTo").max = doc.numPages;
+    ivStatus(doc.numPages > IV_PAGES ? "Choose the pages you studied (up to " + IV_PAGES + "), then tap Start." : "");
+    return;
+  }
+  ivImgs = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
+  ivImgs.forEach((f) => { const im = el("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
+  if (ivImgs.length) th.append(clear());
+}
+async function startIv() {
+  if (ivBusy) return;
+  const name = $("ivTopic").value.trim(), pasted = $("ivText").value.trim();
+  if (!name && !pasted && !ivImgs.length && !ivPdf) { ivStatus("First write the name of the book or topic, or add your notes.", true); $("ivTopic").focus(); return; }
+  await aiReady;
+  if (!sample) { ivStatus(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.", true); return; }
+  const n = state.settings.ivLen || 8, panel = state.settings.ivWho || "board";
+  ivBusy = true; $("ivGo").disabled = true;
+  const myCtl = (ivCtl = new AbortController()), mt = setTimeout(() => myCtl.abort(), 150000);
+  try {
+    let text = pasted, imgs = [];
+    if (ivPdf) { ivStatus("Reading the PDF pages…", false, true); const r = await pdfPagesContent(ivPdf, $("ivFrom").value, $("ivTo").value, IV_PAGES); text = [text, r.text].filter(Boolean).join("\n\n"); imgs = r.imgs; }
+    const lim = ivImgs.length || imgs.length ? await sample.limits?.().catch(() => null) : null;
+    for (const f of ivImgs) imgs.push(inClaude && lim?.images?.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes ? f : await imageBlob(f));
+    if (imgs.length && !lim?.images) { ivStatus("Pictures can't be sent from this view. Tap 📋 Paste text and paste your notes instead.", true); return; }
+    if (imgs.length) imgs = imgs.slice(0, lim.images.maxCount);
+    if (myCtl.signal.aborted) throw { code: "cancelled" };
+    ivStatus("Mam is reading and preparing your questions… this can take up to a minute.", false, true);
+    const has = !!(imgs.length || text);
+    const r = await askJson(`You are preparing a practice interview for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. They studied something (a book, a chapter, a lesson, an article or a topic) and want to be interviewed on it, to check what they understood and to practise speaking about it.
+${name ? `They say it is: "${name}".` : "They did not write its name."}${imgs.length ? " Their material is given as images (photos or screenshots of pages or notes)." : ""}${text ? " Their material is given as text below." : ""}
+${has ? `Base the questions on the material${name ? ", and on what you reliably know about it" : ""}. If there is nothing readable in the material, reply {"known": false}.` : `Use what you reliably know about it. If you do not know this book or topic well enough to ask correct questions about it, reply {"known": false}.`}
+Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"known": true, "title": "the short name of the book or topic", "emoji": "1 emoji for it", "summary": "what it is about in 3 to 5 simple sentences", "points": ["6 to 8 key ideas or facts to know, one short sentence each"], "questions": ["exactly ${n} interview questions, one short question each, from easy to hard: first what it is about, then its main ideas and facts, then the learner's opinion, then how it connects to Pakistan, society or the civil service"]}${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
+    const qs = arr(r?.questions, n).filter(isEnglish);
+    if (!r?.known || r.known === "false" || qs.length < 2) { ivStatus(has ? "Mam could not read enough in your pages. Try clearer photos, or paste the text." : "Mam doesn't know enough about this topic. Add a photo, a PDF or your notes about it.", true); return; }
+    const title = String(r.title || name || "your topic").trim().slice(0, 80), pts = arr(r.points, 8).filter(isEnglish);
+    const t = { id: "iv:" + Date.now().toString(36), kind: "interview", em: String(r.emoji || "🎤").slice(0, 8), name: "Interview: " + title, desc: "questions about " + title, subject: title, panel, total: qs.length,
+      extra: `${isEnglish(r.summary) ? String(r.summary) : ""} Key points: ${pts.join(" | ")}. Planned questions, from easy to hard (ask them in your own words, with follow-ups): ${qs.join(" | ")}`,
+      open: panel === "mam" ? `Hello! Today I will interview you about ${title}. Let's begin. ${qs[0]}` : `[Chairman] Good morning. Please have a seat. Today we will ask you about ${title}. Let us begin. ${qs[0]}` };
+    putChat(newChat(t), true);
+    ivStatus("");
+    if (mode === "ivsetup") openTopic(t);
+  } catch (e) {
+    dbg("iv_error", { code: String(e?.code || "none") });
+    if (e?.code === "not_granted") ivStatus(errText(e), true, false, allowAction(() => startIv()));
+    else ivStatus(e?.code === "cancelled" ? "Stopped. Tap Start when you are ready." : errText(e), true);
+  } finally { clearTimeout(mt); ivBusy = false; if (ivCtl === myCtl) ivCtl = null; if ($("ivGo")) $("ivGo").disabled = false; }
 }
 
 // ---------- the talk button: hands-free in the web version ----------
@@ -959,8 +1106,8 @@ let rec = null, listening = false, silenceT = 0, liveEl = null;
 const STATES = {
   idle: () => (canListen ? "Tap the button and start talking" : ""),
   listening: () => "Listening… just talk. Pause when you finish.",
-  thinking: () => (chat?.kind === "interview" ? "The board is thinking…" : "Mam is thinking…"),
-  speaking: () => (chat?.kind === "interview" ? "The board is speaking… tap to answer now" : "Mam is speaking… tap to answer now"),
+  thinking: () => (isBoard(chat) ? "The board is thinking…" : "Mam is thinking…"),
+  speaking: () => (isBoard(chat) ? "The board is speaking… tap to answer now" : "Mam is speaking… tap to answer now"),
 };
 function setState(st) {
   const o = $("orb"); o.className = "orb " + st;
@@ -1002,7 +1149,9 @@ $("orb").onclick = () => {
   if (last?.role === "assistant" && state.settings.voice) { setState("speaking"); speakLine(last.content, afterMam); } // Mam asks her question out loud first
   else startListening();
 };
-document.addEventListener("visibilitychange", () => { if (document.hidden) { stopLoop(); hush(); stopDictation(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
+// Leaving the page saves the newest answers on the phone at once (the account copy follows a moment later).
+window.addEventListener("pagehide", saveLocal);
+document.addEventListener("visibilitychange", () => { if (document.hidden) { saveLocal(); stopLoop(); hush(); stopDictation(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
 
 // ---------- 1-minute challenge: brainstorm, then speak for 60 seconds ----------
 const QUESTIONS = [
@@ -1023,17 +1172,18 @@ const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.top
 // nothing on the newspaper and word pages, or while reading a story. Then the four tabs.
 function applyDock() {
   const minute = mode === "minute";
-  $("dock").hidden = mode === "news" || mode === "words" || mode === "learn" || mode === "progress" || (mode === "chat" && !!chat?.article && storyView(chat) !== "talk");
+  $("dock").hidden = mode === "news" || mode === "words" || mode === "learn" || mode === "progress" || mode === "ivsetup" || (mode === "chat" && !!chat?.article && storyView(chat) !== "talk");
   renderTabs();
   $("orbRow").hidden = !minute && !canListen;
   $("typeRow").hidden = minute || canListen;
   $("typeBtn").hidden = minute || !canListen;
 }
 const TOOL_KINDS = new Set(["minute", "news", "words", "learn", "progress"]);
-const currentTab = () => (["minute", "news", "words", "learn", "progress"].includes(mode) ? mode : chat?.article ? "news" : "talk");
+const currentTab = () => (["minute", "news", "words", "learn", "progress"].includes(mode) ? mode : mode === "chat" && chat?.article ? "news" : "talk");
 function talkTopic() {
   const id = state.settings.lastTalk || "free";
   if (id === "own") { const c = state.chats.find((x) => x.id === state.settings.lastOwn && x.topic?.id === "own"); if (c) return c.topic; }
+  if (String(id).startsWith("iv:")) return ivTopic(id);
   return TOPICS.find((t) => t.id === id && !TOOL_KINDS.has(t.kind)) || TOPICS[0];
 }
 function renderTabs() {
@@ -1310,15 +1460,16 @@ function renderNewsList() {
   arts.slice(0, 20).forEach((c) => box.append(topicRow(c.article.emoji || "📰", c.article.title, [c.article.source, when(c)].filter(Boolean).join(" · "), c.turns.filter((x) => x.role === "user").length, false, () => openTopic(c.topic))));
 }
 // A message at the top of the newspaper page (with Stop while Mam reads).
-function newsStatus(msg, err, stop, action) {
-  const s = $("newsStatus"); if (!s) return;
+function statusIn(id, onStop, msg, err, stop, action) {
+  const s = $(id); if (!s) return;
   s.innerHTML = ""; if (!msg) return;
   const d = document.createElement("div"); d.className = "banner" + (err ? " warn" : "");
   const sp = document.createElement("span"); sp.textContent = msg; d.append(sp);
-  if (stop) d.append(tool("■ Stop", () => newsCtl?.abort()));
+  if (stop) d.append(tool("■ Stop", onStop));
   if (action) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = action.label; b.onclick = () => action.fn(d); d.append(b); }
   s.append(d); $("main").scrollTop = 0;
 }
+const newsStatus = (...a) => statusIn("newsStatus", () => newsCtl?.abort(), ...a);
 function renderHeadlines() {
   const box = $("headlines"); if (!box) return;
   box.innerHTML = '<div class="lbl">🔎 Search the news with Google</div>';
@@ -1437,11 +1588,11 @@ async function imageBlob(file) {
   if (!bmp) return file;
   try { return await shrink(bmp, bmp.width, bmp.height); } finally { bmp.close?.(); }
 }
-async function pdfContent() {
-  const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 4);
+async function pdfPagesContent(doc, fromIn, toIn, most) {
+  const from = Math.min(doc.numPages, Math.max(1, +fromIn || 1)), to = Math.min(doc.numPages, Math.max(from, +toIn || from), from + most - 1);
   let text = ""; const imgs = [];
   for (let n = from; n <= to; n++) {
-    const page = await pdfDoc.getPage(n);
+    const page = await doc.getPage(n);
     const t = (await page.getTextContent()).items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
     if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
     const v1 = page.getViewport({ scale: 1 }); // a scanned page has no text, so send its picture
@@ -1460,7 +1611,7 @@ async function readNews(input) {
   const mt = setTimeout(() => myCtl.abort(), 150000); // never leave the page stuck
   try {
     let text = input.text || "", imgs = [];
-    if (input.pdf) { newsStatus("Reading the PDF pages…", false, true); const r = await pdfContent(); text = r.text; imgs = r.imgs; }
+    if (input.pdf) { newsStatus("Reading the PDF pages…", false, true); const r = await pdfPagesContent(pdfDoc, $("pFrom").value, $("pTo").value, 5); text = r.text; imgs = r.imgs; }
     const lim = input.files || imgs.length ? await sample.limits?.().catch(() => null) : null;
     if (input.files) { // Claude takes the photo as it is; Gemini gets a smaller copy
       for (const f of input.files) imgs.push(inClaude && lim?.images?.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes ? f : await imageBlob(f));
@@ -1521,6 +1672,8 @@ function articleCard(c) {
   if (k === "talk") { body.remove(); d.classList.add("compact"); return d; } // talking: a small header, the chat gets the room
   (k === "words" ? wordsTab : k === "orig" ? originalTab : storyTab)(c, body);
   const talk = el("button", "btn primary", "💬 Talk about it with Mam"); talk.type = "button"; talk.onclick = () => show("talk"); d.append(talk);
+  const iv = el("button", "btn", "🎤 Interview me on this story"); iv.type = "button";
+  iv.onclick = () => openIvSetup({ topic: a.title, text: (paras.length ? paras.map((x) => x.text).join("\n\n") : a.story) + (a.source ? "\n\n(From " + a.source + ")" : "") }); d.append(iv);
   return d;
 }
 // Which tab of a story is open: the original text first (or the words, for older stories).
@@ -2459,7 +2612,7 @@ function topicRow(em, name, desc, n, on, fn) {
 $("topicBtn").onclick = () => {
   const box = $("topicList"); box.innerHTML = "";
   const answers = (c) => (c?.turns ? c.turns.filter((x) => x.role === "user").length : 0);
-  TOPICS.filter((t) => !TOOL_KINDS.has(t.kind)).forEach((t) => box.append(topicRow(t.em, t.name, t.desc, answers(findThread(t)), mode === "chat" && chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
+  TOPICS.filter((t) => !TOOL_KINDS.has(t.kind)).forEach((t) => box.append(topicRow(t.em, t.name, t.desc, answers(findThread(t)), t.kind === "ivsetup" ? mode === "ivsetup" : mode === "chat" && chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
   state.chats.filter((c) => c.topic?.id === "own").slice(0, 5).forEach((c) => box.append(topicRow("✏️", c.topic.name, "Your own topic", answers(c), chat === c, () => { $("topicSheet").hidden = true; openTopic(c.topic); })));
   $("topicSheet").hidden = false;
 };
@@ -2483,7 +2636,7 @@ async function levelChanged() {
   await aiReady; if (!sample || c !== chat || busy) return;
   busy = true; setState("thinking");
   try {
-    const lv = level(), { text } = await sample(`You are Mam, a warm English speaking teacher for a learner from Pakistan. ${LEVEL_STYLE[lv]} Keep the same meaning and end with the same question.${c.kind === "interview" ? " Keep the speaker in square brackets at the start, like [Member 1]." : ""} English only, never Urdu. Reply with only the words you say.
+    const lv = level(), { text } = await sample(`You are Mam, a warm English speaking teacher for a learner from Pakistan. ${LEVEL_STYLE[lv]} Keep the same meaning and end with the same question.${isBoard(c) ? " Keep the speaker in square brackets at the start, like [Member 1]." : ""} English only, never Urdu. Reply with only the words you say.
 Say it again for a learner at level ${lv}: "${last.content}"`, { modelTier: "quick", cache: false });
     const line = text.trim().replace(/^"|"$/g, "");
     if (!line || c !== chat) return;
@@ -2590,6 +2743,7 @@ async function refreshApp() {
   else if (mode === "minute" && !minRunning && !minBusy) renderMinute();
   else if (mode === "learn") renderLearn();
   else if (mode === "progress") renderProgress();
+  else if (mode === "ivsetup") renderIvList();
   bar.style.height = "0px"; toast("Up to date ✓");
 }
 

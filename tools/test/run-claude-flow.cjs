@@ -144,6 +144,48 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("text=Start a new interview"); await wait(300);
   check("a new interview starts fresh", !(await msgs()).includes("I want serve my country"));
 
+  // ---- interview me on a topic: a book or anything I studied ----
+  await topic("Interview me on a topic");
+  check("Interview me on a topic: a page to name it or add pages and notes", (await p.textContent("#topicName")).includes("Interview me on a topic") && !!(await p.$("#ivTopic")) && !!(await p.$("label[for=ivFile]")) && !!(await p.$("#ivPasteBtn")) && (await p.isHidden("#dock")) && (await p.getAttribute('#tabbar [data-tab="talk"]', "aria-current")) === "page");
+  await p.click("#ivGo"); await wait(200);
+  check("starting with nothing asks for the topic first", (await p.textContent("#ivStatus")).includes("name of the book or topic"));
+  await p.fill("#ivTopic", "Zzzz pamphlet"); await p.click("#ivGo"); await wait(500);
+  check("a topic Mam doesn't know: she asks for pages or notes", (await p.textContent("#ivStatus")).includes("doesn't know enough") && !(await p.isDisabled("#ivGo")));
+  await p.click('#ivIdeas .mini:has-text("Atomic Habits")');
+  check("idea buttons fill in a topic", (await p.inputValue("#ivTopic")) === "Atomic Habits (book)");
+  await p.click('#ivLen .tab:has-text("Short")'); await p.click("#ivGo"); await wait(700);
+  check("Mam prepares questions on the topic from what she knows", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("preparing a practice interview") && c.prompt.includes('"Atomic Habits (book)"') && c.prompt.includes("exactly 5 interview questions") && c.prompt.includes("what you reliably know") && c.tier === "default")));
+  m = await msgs();
+  check("the board opens with the topic's first question", (await p.textContent("#topicName")).includes("Interview: Atomic Habits") && m.includes("Chairman") && m.includes("Today we will ask you about Atomic Habits") && m.includes("What is the book Atomic Habits about?") && !(await p.isHidden("#dock")));
+  await say("It is about small habits what grow over time");
+  check("the board asks about the topic, guided by Mam's notes", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Write the board's next turn now") && c.prompt.includes('studied: "Atomic Habits"') && c.prompt.includes("1% better") && c.prompt.includes("the interview has 5"))));
+  check("corrections work in the topic interview too", !!(await p.$(".msg.me .verdict")));
+  await p.evaluate(() => { window.__forceOver = true; });
+  await say("Identity based habits are the strongest");
+  await p.evaluate(() => { window.__forceOver = false; });
+  m = await msgs();
+  check("the end offers feedback, the same topic again, or another topic", m.includes("Get my feedback") && m.includes("Interview me again") && m.includes("Another topic"));
+  await p.click("text=Get my feedback"); await wait(800);
+  check("feedback knows the topic and says what to study again", (await msgs()).includes("📚 Study again") && (await msgs()).includes("The four laws of behaviour change") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("interview examiner") && c.prompt.includes('studied: "Atomic Habits"') && c.prompt.includes('"study"'))));
+  cs = await chats();
+  check("the topic interview is saved with its plan", cs.some((c) => c.topic?.subject === "Atomic Habits" && c.topic.total === 5 && c.topic.panel === "board" && c.topic.extra.includes("1% better") && c.report?.study?.length === 1));
+  await p.click("text=Interview me again"); await wait(300);
+  check("Interview me again starts the same topic fresh", (await p.textContent("#topicName")).includes("Interview: Atomic Habits") && !(await msgs()).includes("Identity based habits"));
+  await topic("Interview me on a topic");
+  check("Your interviews lists it with its last score", (await p.textContent("#ivList")).includes("Atomic Habits") && (await p.textContent("#ivList")).includes("last score 5/10"));
+  await p.click('#ivWho .tab:has-text("Mam")');
+  await p.click("#ivPasteBtn"); await p.fill("#ivText", "Photosynthesis: plants use sunlight, water and carbon dioxide to make food and oxygen.");
+  await p.click("#ivGo"); await wait(700);
+  check("pasted notes go to Mam with the questions plan", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("preparing a practice interview") && c.prompt.includes("They did not write its name") && c.prompt.includes("TEXT:\nPhotosynthesis"))));
+  m = await msgs();
+  check("Mam can be the interviewer: no board, her own words", (await p.textContent("#topicName")).includes("Interview: Photosynthesis") && m.includes("Today I will interview you about Photosynthesis") && !m.includes("Chairman"));
+  await say("Plants make food from sunlight");
+  check("Mam interviews, reacts and asks the next question", (await msgs()).includes("And what is the main idea of it?") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Write Mam's next interview turn now") && c.prompt.includes("practice interview") && c.prompt.includes('studied: "Photosynthesis"') && !c.prompt.includes("[Member 1]"))));
+  await p.reload(); await wait(900);
+  check("reopening the app goes back into the topic interview", (await p.textContent("#topicName")).includes("Interview: Photosynthesis") && (await msgs()).includes("Plants make food from sunlight"));
+  await topic("Interview me on a topic");
+  check("both topics are in Your interviews", (await p.$$("#ivList .trow")).length === 2 && (await p.textContent("#ivList")).includes("Mam · 3 questions"));
+
   // ---- 1-minute challenge with brainstorming ----
   await topic("1-minute challenge"); await wait(500);
   check("challenge shows a question", (await p.textContent(".qcard .q")).length > 8);
@@ -256,15 +298,24 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.click("text=📑 Make headings"); await wait(600);
   check("Make headings divides the story into parts", (await p.$$(".sec")).length === 2 && (await p.textContent(".outline")).includes("1. What happened") && (await p.textContent(".sec >> nth=0")).includes("Part 1 of 2"));
   const pdfDir = process.env.PDFJS_DIR;
+  let pdfBuf = null;
   if (pdfDir && fs.existsSync(path.join(pdfDir, "pdf.min.js"))) {
     const pp = await b.newPage(); await pp.setContent("<h1>Budget for next year</h1><p>" + "The federal budget gives more money to schools and hospitals in every province of Pakistan. ".repeat(6) + "</p>");
-    const pdfBuf = await pp.pdf(); await pp.close();
+    pdfBuf = await pp.pdf(); await pp.close();
     await p.click("text=📰 All news"); await wait(300);
     await p.setInputFiles("#newsFile", { name: "paper.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(2500);
     check("a PDF opens and asks which pages", !(await p.isHidden("#newsPages")) && (await p.textContent("#pOf")).includes("of 1"), await p.textContent("#newsStatus"));
     await p.click("#pdfGo"); await wait(1500);
     check("the PDF's words go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals"))));
   } else console.log("SKIP PDF checks (set PDFJS_DIR to a pdfjs-dist 3.11.174 build folder)");
+  await p.click("text=🎤 Interview me on this story"); await wait(300);
+  check("a story I read: Interview me on this story fills in its title and text", (await p.textContent("#topicName")).includes("Interview me on a topic") && (await p.inputValue("#ivTopic")) === "Floods in Sindh" && (await p.inputValue("#ivText")).includes("Torrential rains lashed Sindh") && !(await p.isHidden("#ivPaste")));
+  if (pdfBuf) {
+    await p.setInputFiles("#ivFile", { name: "chapter.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(2000);
+    check("a PDF for the interview asks which pages", !(await p.isHidden("#ivPages")) && (await p.textContent("#ivOf")).includes("of 1"));
+    await p.click("#ivGo"); await wait(1500);
+    check("the PDF's words go to Mam for the interview", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("preparing a practice interview") && c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals") && c.prompt.includes("Torrential rains"))));
+  }
   // ---- My words ----
   check("the Words tab shows how many words to review", (await p.textContent("#wordsBadge")) === "2" && !(await p.isHidden("#wordsBadge")));
   await tab("words");
