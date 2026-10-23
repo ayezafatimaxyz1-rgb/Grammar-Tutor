@@ -97,13 +97,20 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 
 /* Mam's talk button */
 .dock { border-top: 1px solid var(--rim); background: var(--surface); padding-block: 10px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
-.tabbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
-.tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 2px; min-height: 54px; font-size: 12px; font-weight: 700; color: var(--muted); position: relative; border-radius: 16px; }
+.tabbar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
+.tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; min-height: 54px; font-size: 11px; white-space: nowrap; font-weight: 700; color: var(--muted); position: relative; border-radius: 16px; }
 .tabbar button span { font-size: 22px; line-height: 1.1; filter: grayscale(.7); opacity: .75; }
 .tabbar button[aria-current="page"] { color: var(--accent); background: var(--sunk); }
 .tabbar button[aria-current="page"] span { filter: none; opacity: 1; }
 .tabbar .badge { position: absolute; top: 3px; left: calc(50% + 6px); min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--bad); color: #fff; font-size: 11px; font-style: normal; line-height: 18px; text-align: center; }
 .kb .tabbar { display: none; }
+.formula { font-family: var(--display); font-size: 18px; line-height: 1.7; background: var(--inset); border: 1px solid var(--rim); border-radius: 14px; padding: 10px 12px; }
+.formula b { font-weight: 800; }
+.formula .slot { display: inline-block; background: rgb(13 122 76 / 13%); color: var(--accent); border-radius: 8px; padding: 0 8px; margin: 1px 0; font-weight: 700; line-height: 1.5; }
+.pbar { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.pbar b { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; }
+.task strong { font-family: var(--display); font-size: 18px; line-height: 1.3; }
+.btn.on { background: var(--bad); color: #fff; border-color: transparent; }
 .ptr { height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--accent); transition: height .2s ease; flex: none; }
 .ptr.pulling { transition: none; }
 .tipbox { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); background: var(--inset); border: 1px solid var(--rim); border-radius: 12px; padding: 8px 4px 8px 12px; }
@@ -170,8 +177,8 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .art.compact .aem { font-size: 26px; }
 .art.compact .arthead strong { font-size: 17px; }
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.vinfo .alt, .analysis .alt, .vout .alt { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
-.vinfo .alt span, .analysis .alt span, .vout .alt span { min-width: 0; }
+.vinfo .alt, .analysis .alt, .vout .alt, .qcard .alt, .task .alt { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.vinfo .alt span, .analysis .alt span, .vout .alt span, .qcard .alt span, .task .alt strong { min-width: 0; }
 .tab { border: 1px solid var(--line); background: var(--bg); border-radius: 99px; padding: 8px 12px; min-height: 40px; font-size: 14px; font-weight: 700; white-space: nowrap; flex: none; }
 .tab[aria-selected="true"] { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
 .tabbody { display: flex; flex-direction: column; gap: 8px; }
@@ -270,6 +277,7 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
   </div>
   <nav class="tabbar" id="tabbar" aria-label="Parts of the app">
     <button type="button" data-tab="talk"><span>💬</span>Talk</button>
+    <button type="button" data-tab="learn"><span>🧩</span>Structures</button>
     <button type="button" data-tab="minute"><span>⏱️</span>Challenge</button>
     <button type="button" data-tab="news"><span>📰</span>News</button>
     <button type="button" data-tab="words"><span>⭐</span>Words<i class="badge" id="wordsBadge" hidden></i></button>
@@ -347,6 +355,7 @@ const TOPICS = [
   { id: "minute", kind: "minute", em: "⏱️", name: "1-minute challenge", desc: "Brainstorm ideas, then speak for 60 seconds" },
   { id: "news", kind: "news", em: "📰", name: "Newspaper", desc: "Read a news story, then talk about it" },
   { id: "mywords", kind: "words", em: "⭐", name: "My words", desc: "Save words and review them" },
+  { id: "learn", kind: "learn", em: "🧩", name: "Structures", desc: "Sentence patterns for speaking and writing" },
   { id: "routine", em: "⏰", name: "My day", desc: "Routine, work, plans", open: "Let's talk about your day. What did you do today?" },
   { id: "intro", em: "🙋", name: "About me", desc: "Name, city, studies", open: "Hello! I am Mam, your English teacher. What is your name, and where are you from?" },
   { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
@@ -465,6 +474,7 @@ async function connectDb() {
   if (mode === "minute") { if (!minRunning && !minBusy) { minRec = minuteRecord(state.settings.minuteQ); renderMinute(); } }
   else if (mode === "news") renderNewsList();
   else if (mode === "words") { if (wordsView === "home") renderMyWords(); }
+  else if (mode === "learn") { if (!learnId) renderLearnHome(); }
   else if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
 }
 
@@ -658,10 +668,11 @@ function newChat(t) {
 const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
 // Opens the topic's conversation (or starts it) and shows every earlier message.
 function openTopic(t, quiet) {
-  stopLoop(); ctl?.abort(); hush(); stopMinute();
+  stopLoop(); ctl?.abort(); hush(); stopMinute(); stopDictation();
   if (t.kind === "minute") { openMinute(); return; }
   if (t.kind === "news") { openNews(); return; }
   if (t.kind === "words") { openMyWords(); return; }
+  if (t.kind === "learn") { openLearn(); return; }
   mode = "chat"; applyDock();
   let c = findThread(t);
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
@@ -952,7 +963,7 @@ $("orb").onclick = () => {
   if (last?.role === "assistant" && state.settings.voice) { setState("speaking"); speakLine(last.content, afterMam); } // Mam asks her question out loud first
   else startListening();
 };
-document.addEventListener("visibilitychange", () => { if (document.hidden) { stopLoop(); hush(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
+document.addEventListener("visibilitychange", () => { if (document.hidden) { stopLoop(); hush(); stopDictation(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
 
 // ---------- 1-minute challenge: brainstorm, then speak for 60 seconds ----------
 const QUESTIONS = [
@@ -973,14 +984,14 @@ const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.top
 // nothing on the newspaper and word pages, or while reading a story. Then the four tabs.
 function applyDock() {
   const minute = mode === "minute";
-  $("dock").hidden = mode === "news" || mode === "words" || (mode === "chat" && !!chat?.article && storyView(chat) !== "talk");
+  $("dock").hidden = mode === "news" || mode === "words" || mode === "learn" || (mode === "chat" && !!chat?.article && storyView(chat) !== "talk");
   renderTabs();
   $("orbRow").hidden = !minute && !canListen;
   $("typeRow").hidden = minute || canListen;
   $("typeBtn").hidden = minute || !canListen;
 }
-const TOOL_KINDS = new Set(["minute", "news", "words"]);
-const currentTab = () => (mode === "minute" ? "minute" : mode === "news" ? "news" : mode === "words" ? "words" : chat?.article ? "news" : "talk");
+const TOOL_KINDS = new Set(["minute", "news", "words", "learn"]);
+const currentTab = () => (mode === "minute" ? "minute" : mode === "news" ? "news" : mode === "words" ? "words" : mode === "learn" ? "learn" : chat?.article ? "news" : "talk");
 function talkTopic() {
   const id = state.settings.lastTalk || "free";
   if (id === "own") { const c = state.chats.find((x) => x.id === state.settings.lastOwn && x.topic?.id === "own"); if (c) return c.topic; }
@@ -996,6 +1007,7 @@ function renderTabs() {
 function goTab(tab) {
   const here = currentTab();
   if (tab === "talk") { if (here !== "talk") openTopic(talkTopic()); }
+  else if (tab === "learn") { if (here !== "learn") openTopic(LEARN); else if (learnId) { renderLearnHome(); $("main").scrollTop = 0; } }
   else if (tab === "minute") { if (here !== "minute") openTopic(TOPICS.find((t) => t.kind === "minute")); }
   else if (tab === "news") {
     const story = state.chats.find((c) => c.article && c.topic?.id === state.settings.lastStory);
@@ -1830,6 +1842,197 @@ function practiseWithMam() {
   if (chat?.topic?.name === t.name) { chat.topic.extra = t.extra; putChat(chat, false, true); } // always the newest list of words
 }
 
+// ---------- Structures: sentence patterns for speaking and writing, in three levels ----------
+// Each pattern has its formula ([slots] are the parts you fill), when to use it, examples, a tip, and k: speak, write or both.
+const STRUCT_LEVELS = [
+  { id: "basic", name: "Basic", code: "A1 · A2", line: "Simple, clear sentences", items: [
+    { id: "svo", t: "A simple sentence", f: "[Who] + [does what] + [what / where / when]", u: "The basic English sentence: the person first, then the action, then the rest.", ex: ["I study English every evening.", "My father works in a bank.", "We live in Multan."], tip: "Never start with the verb. Say “I like tea”, not “Like tea”.", k: "both" },
+    { id: "thereis", t: "There is / There are", f: "There is [one thing] … / There are [many things] …", u: "To say that something exists or is in a place.", ex: ["There is a big park near my house.", "There are four people in my family.", "There are many problems in our cities."], tip: "Use “is” for one thing and “are” for many things.", k: "both" },
+    { id: "habits", t: "Daily habits", f: "[I / We / They] + [verb] … / [He / She] + [verb + s] …", u: "For things you do again and again (present simple).", ex: ["I usually wake up at six.", "My mother cooks very well.", "She reads the newspaper every morning."], tip: "With he, she and it, add -s: he works, she studies.", k: "both" },
+    { id: "past", t: "Finished actions", f: "[Who] + [verb in the past] + [when]", u: "For things that happened and finished, like yesterday or last year (past simple).", ex: ["Yesterday I went to the market.", "I passed my BA in 2022.", "We visited Murree last summer."], tip: "Use the past form every time: go, went; see, saw; buy, bought.", k: "both" },
+    { id: "future", t: "Plans: going to / will", f: "I am going to [plan]. / I will [decision or promise].", u: "“Going to” for plans you already made; “will” for quick decisions and promises.", ex: ["I am going to apply for CSS next year.", "I will call you tonight.", "We are going to visit my uncle on Sunday."], tip: "Say “I am going to”, not “I going to”.", k: "speak" },
+    { id: "can", t: "Ability: can / can't", f: "[Who] + can / can't + [verb]", u: "To say what you are able or not able to do.", ex: ["I can speak three languages.", "I can't swim very well.", "Can you help me, please?"], tip: "After can, use the simple verb: “can speak”, not “can speaks” or “can to speak”.", k: "speak" },
+    { id: "like", t: "Likes: like / love / enjoy + -ing", f: "I like / love / enjoy + [verb-ing]", u: "To talk about hobbies and things you like.", ex: ["I enjoy reading the newspaper.", "My brother loves playing cricket.", "I don't like waiting in traffic."], tip: "After enjoy, always use -ing: “enjoy reading”, not “enjoy to read”.", k: "speak" },
+    { id: "because", t: "Giving a reason: because", f: "[Idea] because [reason].", u: "To answer “Why?”. Interviewers ask why all the time.", ex: ["I want to join the civil service because I want to serve people.", "I like Lahore because the food is great.", "I study at night because it is quiet."], tip: "Answer every “why” question with because, then add one more detail.", k: "both" },
+    { id: "andbutso", t: "Joining ideas: and / but / so", f: "[Idea 1], and / but / so [idea 2].", u: "And adds an idea, but shows a difference, so shows a result.", ex: ["My city is old, and it is very beautiful.", "The roads are wide, but the traffic is bad.", "It was raining, so we stayed at home."], tip: "Two ideas joined with and, but or so sound more fluent than two short sentences.", k: "both" },
+    { id: "compare", t: "Comparing two things", f: "[A] is [adjective + er] than [B]. / [A] is more [adjective] than [B].", u: "To compare two people, places or things.", ex: ["Karachi is bigger than Lahore.", "Cricket is more popular than hockey in Pakistan.", "Today is hotter than yesterday."], tip: "Short words take -er (big, bigger); long words take more (more important).", k: "both" },
+    { id: "want", t: "Wishes: want to / would like to", f: "I want to [verb]. / I would like to [verb].", u: "To say what you wish to do. “Would like” is more polite, so it is perfect for interviews.", ex: ["I would like to become an officer.", "I want to improve my English.", "Would you like some tea?"], tip: "In the interview, say “I would like to …”. It sounds polite and confident.", k: "speak" },
+    { id: "questions", t: "Asking questions", f: "[Wh- word] + do / does / did + [who] + [verb]?", u: "To ask for information and keep a conversation going.", ex: ["Where do you live?", "Why did you choose this subject?", "What does your father do?"], tip: "Use do, does or did in questions: “Where do you live?”, not “Where you live?”.", k: "speak" },
+  ] },
+  { id: "mid", name: "Intermediate", code: "B1", line: "Explain, connect and give examples", items: [
+    { id: "opinion", t: "Giving your opinion", f: "In my opinion, / I believe that [idea], because [reason].", u: "To give a clear opinion and support it.", ex: ["In my opinion, education is the key to progress, because educated people find better jobs.", "I believe that young people can change Pakistan.", "Personally, I think online classes are useful."], tip: "Opinion, then because, then one example: that is a complete short answer.", k: "both" },
+    { id: "example", t: "Giving examples", f: "[Idea]. For example, [example]. / [Things] such as [A] and [B].", u: "To prove your point with a real example.", ex: ["Pakistan has many natural resources. For example, it has coal in Thar.", "Many cities, such as Lahore and Karachi, have air pollution.", "Small steps help. For instance, we can switch off lights we don't need."], tip: "In CSS answers, one real example is worth more than three general words.", k: "both" },
+    { id: "contrast", t: "Showing contrast: although / however", f: "Although [fact], [opposite idea]. / [Idea]. However, [opposite idea].", u: "To show two sides of a topic.", ex: ["Although the economy is weak, there is hope.", "Social media connects people. However, it also spreads fake news.", "Although I was tired, I finished my work."], tip: "Don't use but with although. Say “Although it rained, we went”, not “Although it rained, but we went”.", k: "both" },
+    { id: "result", t: "Cause and effect", f: "[Cause]. As a result, / Therefore, [effect]. / Due to [cause], [effect].", u: "To explain why something happens and what it causes.", ex: ["Many trees were cut. As a result, the floods were worse.", "Due to heavy rain, schools were closed.", "Prices went up. Therefore, people are saving more."], tip: "Due to + a noun (due to rain); because + a sentence (because it rained).", k: "both" },
+    { id: "firstcond", t: "Real possibilities: if … will", f: "If [present simple], [will + verb].", u: "For things that can really happen in the future.", ex: ["If we plant more trees, the air will be cleaner.", "If I pass the exam, I will join the Foreign Service.", "If the government builds more schools, more children will study."], tip: "No will after if. Say “If I pass”, not “If I will pass”.", k: "both" },
+    { id: "presperf", t: "Life experience: have done", f: "I have / She has + [past participle] (+ ever / never / already).", u: "For experiences in your life, without saying when (present perfect).", ex: ["I have visited Islamabad twice.", "I have never seen the sea.", "Pakistan has made progress in IT."], tip: "With yesterday or last year, use the past simple instead: “I visited Islamabad last year”.", k: "speak" },
+    { id: "relative", t: "Adding detail: who / which / that", f: "[Person], who [detail], … / [Thing] which / that [detail] …", u: "To join two sentences into one and add detail.", ex: ["Quaid-e-Azam, who founded Pakistan, was a lawyer.", "The book that I am reading is about history.", "Lahore, which is my hometown, is famous for its food."], tip: "Who for people; which or that for things.", k: "both" },
+    { id: "purpose", t: "Purpose: to / in order to / so that", f: "[Action] to / in order to [verb]. / [Action] so that [result].", u: "To explain the aim of an action.", ex: ["I read Dawn every day to improve my vocabulary.", "The government built dams in order to store water.", "I wake up early so that I can study."], tip: "After in order to, use the simple verb: “in order to save”.", k: "both" },
+    { id: "sequence", t: "Telling steps in order", f: "First, [step]. Then, [step]. After that, [step]. Finally, [step].", u: "To describe a process, your day or an event, step by step.", ex: ["First, I wake up and pray. Then, I read the news. After that, I go to the academy. Finally, I revise at night.", "First, fill in the form. Then, pay the fee. Finally, submit your documents."], tip: "These words help the listener follow you, and they give you a moment to think.", k: "speak" },
+    { id: "agree", t: "Agreeing and disagreeing politely", f: "I agree that [idea]. / I partly agree, but [your view]. / I see your point, but [your view].", u: "In discussions and interviews, to disagree without being rude.", ex: ["I agree that education is important.", "I partly agree, but I think the main problem is corruption.", "I see your point, but I have a different view."], tip: "Never say “You are wrong”. Say “I see your point, but …”.", k: "speak" },
+    { id: "passive", t: "Passive voice: is done / was done", f: "[Thing] is / was + [past participle] (by [who]).", u: "When the action matters more than who did it. Very common in news and essays.", ex: ["The bridge was built in 2010.", "English is spoken all over the world.", "Thousands of people were affected by the floods."], tip: "Use it when the doer is unknown or not important.", k: "write" },
+    { id: "usedto", t: "Past habits: used to", f: "I used to [verb] (but now …).", u: "For habits in the past that are not true now.", ex: ["I used to play cricket every evening.", "Lahore used to be a city of gardens.", "I didn't use to like reading, but now I love it."], tip: "Used to + the simple verb: “used to play”, not “used to playing”.", k: "speak" },
+  ] },
+  { id: "adv", name: "Advanced", code: "B2 · CSS", line: "Argue, write and answer like a CSS candidate", items: [
+    { id: "notonly", t: "Not only … but also", f: "[Subject] not only [A] but also [B].", u: "To add a second, stronger point with style.", ex: ["Education not only creates jobs but also builds tolerance.", "Climate change is not only an environmental issue but also an economic one.", "She is not only intelligent but also hardworking."], tip: "Keep both parts the same type: not only + verb … but also + verb.", k: "both" },
+    { id: "secondcond", t: "Imagining: if I were … I would …", f: "If [past simple / were], [would + verb].", u: "For imagined situations. Interviewers love “What would you do if …?”.", ex: ["If I were the Prime Minister, I would invest in schools.", "If I were posted to a flood area, I would first make sure people are safe.", "If we had better roads, trade would grow."], tip: "In formal English say “If I were”, not “If I was”.", k: "speak" },
+    { id: "thirdcond", t: "The past that didn't happen", f: "If [had + past participle], [would have + past participle].", u: "To talk about past mistakes and the lessons from them.", ex: ["If we had built more dams, the floods would have been less harmful.", "If I had started earlier, I would have finished the syllabus.", "If the warning had come sooner, more people would have been saved."], tip: "Useful for analysing history and policy in essays.", k: "both" },
+    { id: "concession", t: "Accepting the other side", f: "While it is true that [other view], [your stronger point]. / Admittedly, [other view]; however, [your point].", u: "To show a balanced, mature argument. Examiners love it.", ex: ["While it is true that technology creates jobs, it also replaces many workers.", "Admittedly, the budget is limited; however, education cannot wait.", "While it is true that the population is a challenge, it can also be our strength."], tip: "First admit the other side, then win the argument.", k: "both" },
+    { id: "cleft", t: "Emphasis: what … is … / it is … that …", f: "What [someone] needs most is [thing]. / It is [thing] that [result].", u: "To put a spotlight on your main point.", ex: ["What Pakistan needs most is good governance.", "It is education that changes a nation.", "What worries me most is the water crisis."], tip: "Use it once in an answer, for your strongest point.", k: "both" },
+    { id: "inversion", t: "Strong openings: rarely / never / seldom", f: "Rarely / Never / Seldom + [have / has / do] + [subject] + [verb] …", u: "Formal emphasis for essays and speeches.", ex: ["Rarely has Pakistan faced such a serious economic crisis.", "Never before have so many young people been online.", "Seldom do we discuss mental health openly."], tip: "Use it in writing, and only once or twice in an essay.", k: "write" },
+    { id: "hedging", t: "Careful claims", f: "It could be argued that [idea]. / This may suggest that [idea]. / [Idea] is likely to [result].", u: "To sound academic and avoid claims you cannot prove.", ex: ["It could be argued that the media shapes public opinion.", "The new data may suggest that unemployment is falling.", "These reforms are likely to take years."], tip: "In essays, avoid “always” and “never” unless you have proof.", k: "write" },
+    { id: "problemsolution", t: "Problem and solution", f: "One of the main problems is [problem]. This is mainly because [cause]. One solution would be to [solution], which would [benefit].", u: "For current affairs answers and essays about issues.", ex: ["One of the main problems is the energy shortage. This is mainly because our power plants are old. One solution would be to invest in solar energy, which would lower costs."], tip: "Problem, cause, solution, benefit: four steps, every time.", k: "both" },
+    { id: "peel", t: "PEEL paragraph", f: "[Point]. For instance, [evidence]. This shows that [explanation]. Therefore, [link to the question].", u: "The standard body paragraph for CSS essays: Point, Evidence, Explain, Link.", ex: ["Education is the key to Pakistan's progress. For instance, South Korea grew fast after investing in its schools. This shows that skilled people build strong economies. Therefore, Pakistan must make education its first priority."], tip: "One paragraph, one main point.", k: "write" },
+    { id: "intro", t: "Essay introduction", f: "[Hook]. [Background]. This essay will argue that [thesis].", u: "To open an essay clearly: catch attention, give context, state your answer.", ex: ["“A nation is built in its classrooms.” Pakistan has millions of children who are not in school. This essay will argue that investing in education is the surest path to development."], tip: "End the introduction with your thesis: one clear sentence that answers the question.", k: "write" },
+    { id: "conclusion", t: "Essay conclusion", f: "In conclusion, [your thesis again]. [Main points in short]. [Way forward].", u: "To finish strongly and give a hopeful way forward.", ex: ["In conclusion, education is the foundation of progress. Better schools, trained teachers and equal access can change our future. If we act now, Pakistan can become a knowledge economy."], tip: "No new arguments in the conclusion. End with a way forward.", k: "write" },
+    { id: "linking", t: "Formal linking words", f: "[Idea]. Moreover, [another idea]. / [Idea]. Nevertheless, [contrast]. / [Cause]. Consequently, [result].", u: "To connect ideas in formal speaking and writing.", ex: ["The plan is costly. Nevertheless, it is necessary.", "Corruption slows growth. Moreover, it destroys public trust.", "Exports fell. Consequently, the rupee lost value."], tip: "Don't start every sentence with a linker. One or two per paragraph is enough.", k: "both" },
+    { id: "star", t: "Interview answers: STAR", f: "[Situation: when and where]. [Task: what I had to do]. [Action: what I did]. [Result: what happened and what I learned].", u: "For questions like “Tell us about a challenge you faced.”", ex: ["In my final year, our group project was failing. I had to lead the team. I divided the work and met the team every day. We submitted on time and got an A, and I learned how to lead."], tip: "Keep it under one minute and end with what you learned.", k: "speak" },
+  ] },
+];
+const KIND_LABEL = { speak: "🗣️ Speaking", write: "✍️ Writing", both: "🗣️ Speaking and ✍️ writing" };
+const LEARN = TOPICS.find((t) => t.kind === "learn");
+const structById = (id) => { for (const lv of STRUCT_LEVELS) { const s = lv.items.find((x) => x.id === id); if (s) return { s, lv }; } return null; };
+const structProgress = (id) => state.settings.struct?.[id] || { n: 0, ok: 0 };
+const learned = (id) => structProgress(id).ok >= 3;
+let learnId = null, taskCache = {}, taskAt = {}, dictRec = null;
+function openLearn() {
+  mode = "learn"; state.settings.lastTopic = "learn"; putMeta();
+  $("topicName").textContent = "🧩 Structures";
+  applyDock(); renderLearn();
+}
+function renderLearn() { if (learnId && structById(learnId)) renderStructure(learnId); else renderLearnHome(); }
+function learnLevel() { return STRUCT_LEVELS.find((l) => l.id === state.settings.structLevel)?.id || (level() === "B2" ? "adv" : level() === "B1" ? "mid" : "basic"); }
+function formulaEl(f) {
+  const d = el("div", "formula");
+  f.split(/(\[[^\]]+\])/).forEach((part) => { if (!part) return; d.append(/^\[/.test(part) ? el("span", "slot", part.slice(1, -1)) : el("b", "", part)); });
+  return d;
+}
+function renderLearnHome() {
+  learnId = null; stopDictation(); $("msgs").innerHTML = "";
+  const lv = STRUCT_LEVELS.find((l) => l.id === learnLevel());
+  const head = section("qcard");
+  head.append(el("div", "lbl", "🧩 Sentence structures"), el("div", "q", "Build better sentences"));
+  const sub = el("p", "hint", "Learn a pattern, listen to it, then use it in your own answers. Mam checks every answer."); sub.style.cssText = "text-align:left;margin:0"; head.append(sub);
+  const seg = el("div", "tabs"); seg.setAttribute("role", "tablist");
+  STRUCT_LEVELS.forEach((l) => { const b = el("button", "tab", l.name + " · " + l.code); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String(l.id === lv.id)); b.onclick = () => { state.settings.structLevel = l.id; putMeta(); renderLearnHome(); }; seg.append(b); });
+  head.append(seg);
+  const done = lv.items.filter((s) => learned(s.id)).length;
+  const prog = el("div", "vline"); prog.append(el("b", "", lv.line + ". "), done + " of " + lv.items.length + " learned"); head.append(prog);
+  const bar = el("div", "pbar"), fill = el("b"); fill.style.width = Math.round(done / lv.items.length * 100) + "%"; bar.append(fill); head.append(bar);
+  const rnd = el("button", "btn", "🔀 Practise a random one"); rnd.type = "button";
+  rnd.onclick = () => { const pool = lv.items.filter((s) => !learned(s.id)); const list = pool.length ? pool : lv.items; openStructure(list[Math.floor(Math.random() * list.length)].id); };
+  head.append(rnd);
+  const box = section("newslist"); box.id = "structList";
+  lv.items.forEach((s, i) => {
+    const p = structProgress(s.id);
+    box.append(topicRow(learned(s.id) ? "✅" : String(i + 1), s.t, s.ex[0], 0, false, () => openStructure(s.id)));
+    const n = box.lastChild.querySelector(".n"); n.textContent = learned(s.id) ? "learned" : p.ok ? p.ok + " / 3" : "";
+  });
+}
+function openStructure(id) { learnId = id; renderStructure(id); $("main").scrollTop = 0; }
+// One pattern: the formula, when to use it, examples to listen to and repeat, then practice that Mam checks.
+function renderStructure(id) {
+  stopDictation(); $("msgs").innerHTML = "";
+  const { s, lv } = structById(id);
+  const back = el("div", "tools"); back.append(tool("← All structures", () => { renderLearnHome(); $("main").scrollTop = 0; })); $("msgs").append(back);
+  const card = section("qcard");
+  card.append(el("div", "lbl", lv.name + " · " + lv.code + " · " + KIND_LABEL[s.k]), el("div", "q", s.t), formulaEl(s.f));
+  const use = el("div", "vline"); use.append(el("b", "", "When to use it: "), s.u); card.append(use);
+  card.append(el("div", "lbl", "Examples · listen and say them after Mam"));
+  s.ex.forEach((x) => { const r = el("div", "alt"); r.append(el("span", "", x), speakBtn(x)); card.append(r); });
+  const tp = el("div", "vline", "💡 " + s.tip); card.append(tp);
+  const pr = section("brain", "🎯 Your turn"); pr.id = "practice";
+  const p = structProgress(id);
+  const st = el("div", "vline"); st.id = "structStatus";
+  st.textContent = learned(id) ? "✅ Learned. Keep practising to make it automatic." : "Correct answers: " + p.ok + " of 3 to learn it.";
+  pr.append(st);
+  const task = el("div", "task"); task.id = "structTask"; pr.append(task);
+  const ta = el("textarea", "answerbox"); ta.id = "structIn"; ta.rows = 3; ta.style.minHeight = "84px"; ta.setAttribute("aria-label", "Your answer");
+  ta.placeholder = canListen ? "Tap 🎙️ and say your answer, or type it…" : "Type your answer, or tap 🎤 on your keyboard and say it…";
+  pr.append(ta);
+  const act = el("div", "tools");
+  if (canListen) { const mic = el("button", "btn", "🎙️ Speak"); mic.type = "button"; mic.id = "structMic"; mic.onclick = () => dictate(ta, mic); act.append(mic); }
+  const chk = el("button", "btn primary", "✓ Check my answer"); chk.type = "button"; chk.id = "structCheck"; chk.onclick = () => checkStructure(s, ta, chk); act.append(chk);
+  pr.append(act);
+  const out = el("div", "vout"); out.id = "structOut"; pr.append(out);
+  const t2 = el("div", "tools"); t2.append(tool("Next question →", () => nextTask(s)), tool("💬 Use it with Mam", () => practiseStructure(s))); pr.append(t2);
+  showTask(s);
+}
+// Practice questions come from Mam (five at a time); without her, two simple ones.
+async function showTask(s) {
+  const box = $("structTask"); if (!box) return;
+  const tasks = taskCache[s.id];
+  if (!tasks) {
+    box.innerHTML = ""; box.append(el("p", "typing", "Mam is preparing a question…"));
+    await loadTasks(s);
+    if (learnId !== s.id || !$("structTask")) return;
+    return showTask(s);
+  }
+  const q = tasks[(taskAt[s.id] || 0) % tasks.length];
+  box.innerHTML = ""; const r = el("div", "alt"); r.append(el("strong", "", q), speakBtn(q)); box.append(r);
+}
+async function loadTasks(s) {
+  await aiReady;
+  const basic = s.k === "write" ? ["Write two or three sentences about education in Pakistan using this structure.", "Write about your city using this structure."] : ["Tell me about your day using this structure.", "Why do you want to pass the CSS exam? Use this structure."];
+  if (!sample) { taskCache[s.id] = basic; return; }
+  try {
+    const r = await askJson(`Give 5 short practice tasks for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam, to practise this English structure: "${s.t}". Pattern: ${s.f}. ${s.k === "write" ? "These are writing tasks: each asks for a short piece of writing (2 to 5 sentences) that uses the structure." : "Each task is a question they answer out loud in 1 to 3 sentences using the structure."} Mix daily life, Pakistan and CSS topics. Simple English only, never Urdu.
+Reply with ONLY JSON: {"tasks": ["5 tasks"]}`, { modelTier: "quick" });
+    const list = arr(r?.tasks, 6).filter(isEnglish);
+    taskCache[s.id] = list.length ? list : basic;
+  } catch (e) { dbg("tasks_error", { code: String(e?.code || "") }); taskCache[s.id] = basic; }
+}
+function nextTask(s) { taskAt[s.id] = (taskAt[s.id] || 0) + 1; $("structIn").value = ""; $("structOut").innerHTML = ""; showTask(s); }
+async function checkStructure(s, ta, btn) {
+  const ans = ta.value.trim(), out = $("structOut");
+  if (!ans) { ta.focus(); return; }
+  stopDictation();
+  const task = (taskCache[s.id] || [])[(taskAt[s.id] || 0) % (taskCache[s.id]?.length || 1)] || "Make your own sentence.";
+  out.innerHTML = ""; out.append(el("p", "typing", "Mam is checking your answer…"));
+  await aiReady;
+  if (!sample) { out.textContent = inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in Settings (⚙) first."; return; }
+  btn.disabled = true;
+  try {
+    const r = await askJson(`Check this answer to a structure practice task. The learner is from Pakistan (English level ${level()}) and is preparing for the CSS exam. Structure: "${s.t}". Pattern: ${s.f}.
+Task: "${task}"
+Learner's answer (it may come from voice dictation, so ignore capital letters and punctuation): "${ans}"
+Write in simple English only, never Urdu. Reply with ONLY JSON: {"used": true if they used the structure, "correct": true if the answer is correct English and uses the structure well, "fixed": "their answer corrected, keeping their own ideas", "better": "a stronger answer to the task that uses the structure", "note": "one short, kind comment: what was good, or what to fix"}`, { modelTier: "quick", cache: false });
+    const ok = !!r?.correct && r?.used !== false;
+    const pg = { ...structProgress(s.id) }; pg.n++; if (ok) pg.ok++; pg.last = Date.now();
+    state.settings.struct = { ...state.settings.struct, [s.id]: pg }; putMeta();
+    out.innerHTML = "";
+    out.append(el("div", ok ? "r" : "", ok ? "✓ Well done! You used the structure correctly." : r?.used === false ? "Try again, and use the pattern in your answer." : "Almost! Here is your answer corrected:"));
+    if (!ok && r?.fixed && isEnglish(r.fixed)) { const f = el("div", "alt"); f.append(el("span", "r", String(r.fixed)), speakBtn(r.fixed)); out.append(f); }
+    if (r?.note && isEnglish(r.note)) out.append(el("div", "", String(r.note)));
+    if (r?.better && isEnglish(r.better)) { out.append(el("div", "lbl", "A stronger answer")); const b = el("div", "alt"); b.append(el("span", "", String(r.better)), speakBtn(r.better)); out.append(b); }
+    const st = $("structStatus");
+    if (st) st.textContent = learned(s.id) ? (ok && pg.ok === 3 ? "🎉 Learned! Three correct answers." : "✅ Learned. Keep practising to make it automatic.") : "Correct answers: " + pg.ok + " of 3 to learn it.";
+  } catch (e) { out.textContent = errText(e) || "Stopped."; }
+  finally { btn.disabled = false; }
+}
+// A talk where Mam asks questions that need this structure.
+function practiseStructure(s) {
+  const t = { id: "own", em: "🧩", name: "Practise: " + s.t, desc: "using one sentence structure", open: `Let's practise “${s.t}”. ${(taskCache[s.id] || [])[0] || "Tell me about your day, and use this pattern."}`,
+    extra: `The student wants to practise this sentence structure: "${s.t}" (pattern: ${s.f}). Ask one question at a time that makes them use it. When they use it well, praise them briefly; when they don't, give a short model answer that uses it, then ask the next question.` };
+  openTopic(t);
+}
+// The web version can listen: words appear in the answer box while the learner speaks.
+function dictate(ta, btn) {
+  if (dictRec) { stopDictation(); return; }
+  if (!canListen) return;
+  try {
+    const r = new SR(); r.lang = "en-US"; r.interimResults = true; r.continuous = true;
+    const base = ta.value.trim() ? ta.value.trim() + " " : "";
+    let quiet = 0;
+    const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 2500); };
+    r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; ta.value = (base + s).trim(); arm(); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type your answer."); };
+    r.onend = () => { if (dictRec === r) { dictRec = null; btn.textContent = "🎙️ Speak"; btn.classList.remove("on"); } };
+    r.start(); dictRec = r; btn.textContent = "■ Stop"; btn.classList.add("on"); hush(); arm();
+  } catch { dictRec = null; }
+}
+function stopDictation() { const r = dictRec; dictRec = null; if (r) { try { r.stop(); } catch {} } const b = $("structMic"); if (b) { b.textContent = "🎙️ Speak"; b.classList.remove("on"); } }
+
 // ---------- typing ----------
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 function sendTyped() { const v = $("input").value.trim(); if (!v || busy) return; $("input").value = ""; autoGrow(); primeTTS(); send(v); }
@@ -1982,6 +2185,7 @@ async function refreshApp() {
   else if (mode === "news" && !newsBusy) renderNews();
   else if (mode === "words" && wordsView === "home") renderMyWords();
   else if (mode === "minute" && !minRunning && !minBusy) renderMinute();
+  else if (mode === "learn") renderLearn();
   bar.style.height = "0px"; toast("Up to date ✓");
 }
 

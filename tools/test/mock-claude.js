@@ -47,6 +47,8 @@
     if (/wants to say something in English/.test(prompt)) return JSON.stringify({ meaning: "You are afraid of the interview.", ways: [{ label: "Simple", text: "I am afraid of the interview." }, { label: "Natural", text: "I feel nervous about the interview." }, { label: "Formal", text: "I am somewhat anxious about the interview." }], words: [{ word: "anxious", say: "ANK-shus" }], tip: "Use nervous in daily talk." });
     if (/is practising the (word|phrasal verb|idiom) "/.test(prompt) && /"used": true if they used/.test(prompt)) return JSON.stringify({ used: true, correct: false, fixed: "I think it is important for Pakistan.", note: "Nice try!" });
     if (/is practising the word/.test(prompt)) return JSON.stringify({ used_word: true, correct: false, fixed: "The economy of Pakistan is growing.", note: "Good try!" });
+    if (/practise this English structure/.test(prompt)) return JSON.stringify({ tasks: ["Why do you want to join the civil service?", "Why do you like your city?", "Why do you study English?", "Why is education important?", "Why do you read the newspaper?"] });
+    if (/Check this answer to a structure practice task/.test(prompt)) return JSON.stringify({ used: true, correct: true, fixed: "I want to join the civil service because I want to serve people.", better: "I want to join the civil service because I want to serve the people of Pakistan.", note: "Great use of because!" });
     if (/Say it again for a learner at level/.test(prompt)) return "Okay, in simple words: what food do you like?";
     if (/Write Mam's next reply now/.test(prompt)) return window.__reply || "Nice! Lahore is a big city. What food do you like there?";
     if (/Rewrite this in very simple English/.test(prompt)) return "Lahore is big. What food do you like?";

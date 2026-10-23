@@ -47,7 +47,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("opens on Free talk with Mam's question", (await p.textContent("#topicName")).includes("Free talk") && (await msgs()).includes("What would you like to talk about today"));
   check("no fake mic button inside Claude (it cannot listen there)", await p.isHidden("#orb"));
   check("inside Claude: typing box and voice-version link", !(await p.isHidden("#typeRow")) && (await p.textContent("#hint")).includes("voice version"));
-  check("four tabs at the bottom, Talk is open", (await p.$$("#tabbar button")).length === 4 && (await p.getAttribute('#tabbar [data-tab="talk"]', "aria-current")) === "page");
+  check("five tabs at the bottom, Talk is open", (await p.$$("#tabbar button")).length === 5 && (await p.getAttribute('#tabbar [data-tab="talk"]', "aria-current")) === "page");
   await p.click("#topicBtn"); await wait(150);
   const tl = await p.textContent("#topicList");
   check("the topic list has only conversation topics", tl.includes("My city") && tl.includes("CSS interview") && !tl.includes("Newspaper") && !tl.includes("1-minute challenge") && !tl.includes("My words"));
@@ -302,6 +302,36 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("tapping News again goes to the news page", !!(await p.$("label[for=newsFile]")));
   await topic("Free talk");
   check("leaving the newspaper brings the chat back", (await msgs()).includes("I like biryani") && !(await p.isHidden("#dock")));
+
+  // ---- Structures ----
+  await tab("learn");
+  check("Structures tab: three levels, Basic first for a beginner", (await p.$$("#msgs .tabs .tab")).length === 3 && (await p.textContent('.tab[aria-selected="true"]')).includes("Basic") && (await p.$$("#structList .trow")).length === 12 && (await msgs()).includes("0 of 12 learned"));
+  await p.click('.tab:has-text("Intermediate")'); await wait(100);
+  check("Intermediate has its own structures", (await p.$$("#structList .trow")).length === 12 && (await msgs()).includes("Giving your opinion"));
+  await p.click('.tab:has-text("Advanced")'); await wait(100);
+  check("Advanced: arguments, essays and interview answers", (await p.$$("#structList .trow")).length === 13 && (await msgs()).includes("PEEL paragraph") && (await msgs()).includes("STAR"));
+  await p.click('.tab:has-text("Basic")'); await wait(100);
+  await p.click('#structList .trow:has-text("Giving a reason")'); await wait(500);
+  m = await msgs();
+  check("a structure: pattern with slots, when to use it, examples, tip", (await p.$$(".formula .slot")).length === 2 && m.includes("When to use it") && m.includes("I like Lahore because the food is great.") && m.includes("💡"));
+  check("Mam gives a practice question", (await p.textContent("#structTask")).includes("Why do you want to join the civil service?"));
+  await p.fill("#structIn", "i want to join civil service because i want serve people"); await p.click("#structCheck"); await wait(500);
+  const so = await p.textContent("#structOut");
+  check("Mam checks my answer and shows a stronger one", so.includes("Well done") && so.includes("A stronger answer") && (await p.textContent("#structStatus")).includes("1 of 3"));
+  check("the check knows the task and the pattern", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Check this answer to a structure practice task") && c.prompt.includes("[Idea] because [reason]") && c.prompt.includes("Why do you want to join"))));
+  await p.click("text=Next question →"); await wait(200);
+  check("next question, with an empty answer box", (await p.textContent("#structTask")).includes("Why do you like your city?") && (await p.inputValue("#structIn")) === "");
+  for (let k = 0; k < 2; k++) { await p.fill("#structIn", "I like my city because it is green"); await p.click("#structCheck"); await wait(400); }
+  check("three correct answers: learned", (await p.textContent("#structStatus")).includes("Learned"));
+  await p.click("text=← All structures"); await wait(200);
+  check("the list shows it learned, and the level's progress", (await p.textContent('#structList .trow:has-text("Giving a reason")')).includes("learned") && (await msgs()).includes("1 of 12 learned"));
+  await p.click('#structList .trow:has-text("Comparing two things")'); await wait(400);
+  await tab("talk"); await tab("learn");
+  check("the Structures tab comes back to the same page", (await p.textContent(".qcard .q")).includes("Comparing two things"));
+  await p.click("text=💬 Use it with Mam"); await wait(300);
+  check("practise a structure in a talk with Mam", (await p.textContent("#topicName")).includes("Practise: Comparing two things"));
+  await say("Karachi is more big than Lahore", 900);
+  check("Mam knows which structure to practise", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Write Mam's next reply now") && c.prompt.includes("practise this sentence structure") && c.prompt.includes("Comparing two things"))));
 
   // ---- settings ----
   await topic("Free talk");

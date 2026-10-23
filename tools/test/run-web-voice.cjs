@@ -45,7 +45,9 @@ const fakes = () => {
     if (body.generationConfig.thinkingConfig && rejectThinking > 0) { rejectThinking--; return r.fulfill({ status: 400, json: { error: { message: "Thinking budget is not supported for this model." } } }); }
     const check = { verdict: "fix", fixed: "I went to the market yesterday.", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] };
     if (/Use Google Search to find today/.test(prompt) && failSearch > 0) { failSearch--; return r.fulfill({ status: 429, json: { error: { message: "Quota exceeded, limit: 0, PerDay" } } }); }
-    const text = /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
+    const text = /practise this English structure/.test(prompt) ? JSON.stringify({ tasks: ["Why do you study English?", "Why do you like your city?"] })
+      : /Check this answer to a structure practice task/.test(prompt) ? JSON.stringify({ used: true, correct: true, fixed: "", better: "I study English because I want to pass the CSS exam.", note: "Good!" })
+      : /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
       : /Below is a news story/.test(prompt) ? JSON.stringify({ title: "A new dam for Pakistan", emoji: "💧", source: "Dawn", story: "A new dam opened in KPK. It will store water for farmers and make electricity.", css: "Pakistan Affairs: water and energy.", questions: ["Why do we need dams?", "How can we save water?"], paragraphs: ["A new dam opened today. It will give water and electricity."], sections: [{ title: "The new dam", gist: "A dam opened.", from: 1, to: 1 }], vocab: [{ word: "electricity", type: "noun", meaning: "power for lights and machines" }] })
       : /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
       : /spoke for/.test(prompt) ? JSON.stringify({ score: 6, comment: "Good start.", errors: [], better: "I want to join the civil service to serve my country.", tip: "Give an example." })
@@ -126,6 +128,13 @@ const fakes = () => {
   await p.click('#tabbar [data-tab="words"]'); await p.waitForTimeout(200);
   await p.fill("#wordIn", "resilience"); await p.click('form:has(#wordIn) button'); await p.waitForTimeout(600);
   check("My words works in the voice version too (kept on this phone)", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).words.map((w) => w.word).join())) === "resilience");
+  await p.click('#tabbar [data-tab="learn"]'); await p.waitForTimeout(300);
+  await p.click('#structList .trow:has-text("Giving a reason")'); await p.waitForTimeout(600);
+  await p.evaluate(() => { window.__toSay.push("I study English because I want to pass CSS"); });
+  await p.click("#structMic"); await p.waitForTimeout(700);
+  check("Structures: I say my answer and it fills the box", (await p.inputValue("#structIn")).includes("because I want to pass CSS"));
+  await p.click("#structCheck"); await p.waitForTimeout(600);
+  check("Structures: Mam checks the spoken answer", (await p.textContent("#structOut")).includes("Well done"));
   await p.evaluate(() => { window.__before = true; const m = document.getElementById("main"); m.scrollTop = 0; const ev = (type, y) => { const e = new Event(type); e.touches = y == null ? [] : [{ clientX: 100, clientY: y }]; m.dispatchEvent(e); }; ev("touchstart", 100); ev("touchmove", 300); ev("touchend"); });
   await p.waitForTimeout(1200);
   check("pulling the page down reloads the app (to get updates)", (await p.evaluate(() => window.__before)) === undefined && !!(await p.$("#tabbar")));
