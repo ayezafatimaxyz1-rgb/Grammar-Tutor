@@ -1,5 +1,6 @@
 // End-to-end check of the simple talking app inside a fake Claude runtime (tools/test/mock-claude.js).
 // Usage: node tools/test/run-claude-flow.cjs   (needs Playwright; uses /opt/pw-browsers/chromium when present)
+// PDF checks run when PDFJS_DIR points at pdfjs-dist@3.11.174/build (npm pack pdfjs-dist@3.11.174).
 const path = require("path");
 const fs = require("fs");
 let pw;
@@ -16,7 +17,13 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const p = await b.newPage({ viewport: { width: 390, height: 844 } });
   const pageErrors = [];
   p.on("pageerror", (e) => pageErrors.push(e.message));
-  await p.route("**/*", (r) => r.request().url().startsWith("http://bolo.test/") ? r.fulfill({ contentType: "text/html", body: html }) : r.abort());
+  await p.route("**/*", (r) => {
+    const u = r.request().url();
+    if (u.startsWith("http://bolo.test/")) return r.fulfill({ contentType: "text/html", body: html });
+    const pdfFile = u.match(/cdnjs\.cloudflare\.com\/ajax\/libs\/pdf\.js\/3\.11\.174\/(pdf(?:\.worker)?\.min\.js)$/);
+    if (pdfFile && process.env.PDFJS_DIR) return r.fulfill({ contentType: "text/javascript", body: fs.readFileSync(path.join(process.env.PDFJS_DIR, pdfFile[1])) });
+    return r.abort();
+  });
   await p.addInitScript(mock);
   await p.goto("http://bolo.test/");
   await p.waitForTimeout(500);
@@ -131,6 +138,46 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("next question loads new ideas", (await p.$$(".idea")).length === 3 && !(await p.textContent("#minResult")).includes("7/10"));
   await topic("Free talk");
   check("back in Free talk the chat is still there", (await msgs()).includes("I like biryani") && (await p.isHidden("#orb")));
+
+  // ---- newspaper ----
+  await topic("Newspaper"); await wait(300);
+  check("newspaper page: add a story and daily, weekly, monthly papers", !!(await p.$("label[for=newsFile]")) && !!(await p.$('a[href*="dawn.com"]')) && !!(await p.$('a[href*="economist.com"]')) && !!(await p.$('a[href*="jworldtimes.com"]')));
+  check("newspaper page has no talk button and no search inside Claude", (await p.isHidden("#dock")) && !(await p.$("#headlines")));
+  const png = await p.screenshot({ clip: { x: 0, y: 0, width: 200, height: 200 } });
+  await p.setInputFiles("#newsFile", { name: "dawn.png", mimeType: "image/png", buffer: png }); await wait(900);
+  check("a screenshot becomes a simple story", (await p.textContent("#topicName")).includes("Floods in Sindh") && (await msgs()).includes("Heavy rain caused floods"));
+  check("the screenshot goes to Mam as a picture", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Below is a news story") && c.images === 1)));
+  m = await msgs();
+  check("story card: new words, CSS link and Mam's first question", m.includes("relief") && m.includes("For CSS") && m.includes("What happened in Sindh?"));
+  await say("Many people lost there homes in the flood", 900);
+  check("talking about the story: Mam knows the story", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Write Mam's next reply now") && c.prompt.includes("Heavy rain caused floods"))));
+  check("corrections work in the news talk too", !!(await p.$(".msg.me .verdict")));
+  cs = await chats();
+  check("the story and the talk are saved", cs.some((c) => c.article?.title === "Floods in Sindh" && c.turns.length >= 3));
+  await p.reload(); await wait(900);
+  check("reopening the app goes back to the story", (await p.textContent("#topicName")).includes("Floods in Sindh") && (await msgs()).includes("Heavy rain caused floods"));
+  await p.click("text=📰 All news"); await wait(300);
+  check("All news lists the saved story", (await p.textContent("#newsList")).includes("Floods in Sindh"));
+  await p.click("#newsPasteBtn"); await p.fill("#newsText", "https://www.dawn.com/news/123"); await p.click("#newsGo"); await wait(200);
+  check("a link alone is explained", (await p.textContent("#newsStatus")).includes("can't open links"));
+  await p.evaluate(() => { window.__noStory = true; });
+  await p.fill("#newsText", "Eggs, milk, bread, rice, sugar and tea for the whole week at home."); await p.click("#newsGo"); await wait(700);
+  await p.evaluate(() => { window.__noStory = false; });
+  check("no story found is explained", (await p.textContent("#newsStatus")).includes("could not find a news story"));
+  await p.fill("#newsText", "ISLAMABAD: The government announced a plan to plant ten million trees across the country this year."); await p.click("#newsGo"); await wait(800);
+  check("pasted text becomes a story too", (await msgs()).includes("Heavy rain caused floods") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Below is a news story") && c.prompt.includes("ten million trees"))));
+  const pdfDir = process.env.PDFJS_DIR;
+  if (pdfDir && fs.existsSync(path.join(pdfDir, "pdf.min.js"))) {
+    const pp = await b.newPage(); await pp.setContent("<h1>Budget for next year</h1><p>" + "The federal budget gives more money to schools and hospitals in every province of Pakistan. ".repeat(6) + "</p>");
+    const pdfBuf = await pp.pdf(); await pp.close();
+    await p.click("text=📰 All news"); await wait(300);
+    await p.setInputFiles("#newsFile", { name: "paper.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(2500);
+    check("a PDF opens and asks which pages", !(await p.isHidden("#newsPages")) && (await p.textContent("#pOf")).includes("of 1"), await p.textContent("#newsStatus"));
+    await p.click("#pdfGo"); await wait(1500);
+    check("the PDF's words go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals"))));
+  } else console.log("SKIP PDF checks (set PDFJS_DIR to a pdfjs-dist 3.11.174 build folder)");
+  await topic("Free talk");
+  check("leaving the newspaper brings the chat back", (await msgs()).includes("I like biryani") && !(await p.isHidden("#dock")));
 
   // ---- settings ----
   await p.click("#setBtn"); await wait(150);

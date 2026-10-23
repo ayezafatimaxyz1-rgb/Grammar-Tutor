@@ -22,6 +22,7 @@ const fakes = () => {
     cancel() { const u = this._u; this._u = null; if (u) u.onerror?.({ error: "interrupted" }); } };
   Object.defineProperty(window, "speechSynthesis", { value: synth, configurable: true });
   window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+  Object.defineProperty(navigator, "clipboard", { value: { readText: async () => window.__clip || "" }, configurable: true });
 };
 
 (async () => {
@@ -29,6 +30,8 @@ const fakes = () => {
   const b = await pw.chromium.launch(exe ? { executablePath: exe } : {});
   const p = await b.newPage({ viewport: { width: 390, height: 844 } });
   const errs = []; p.on("pageerror", (e) => errs.push(e.message));
+  const gem = []; // what the page sent to Gemini
+  let failSearch = 1; // the first search is refused, as when the newest model has no free search
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
   await p.route("https://generativelanguage.googleapis.com/**", async (r) => {
@@ -37,7 +40,11 @@ const fakes = () => {
     const body = JSON.parse(r.request().postData());
     const json = body.generationConfig.responseMimeType === "application/json";
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
-    const text = /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
+    gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], search: !!body.tools?.some((t) => t.google_search), mime: body.generationConfig.responseMimeType || "", imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    if (/Use Google Search to find today/.test(prompt) && failSearch > 0) { failSearch--; return r.fulfill({ status: 429, json: { error: { message: "Quota exceeded, limit: 0, PerDay" } } }); }
+    const text = /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
+      : /Below is a news story/.test(prompt) ? JSON.stringify({ title: "A new dam for Pakistan", emoji: "💧", source: "Dawn", story: "A new dam opened in KPK. It will store water for farmers and make electricity.", css: "Pakistan Affairs: water and energy.", words: [{ word: "dam", meaning: "a wall that holds back water", example: "The dam stores water." }], questions: ["Why do we need dams?", "How can we save water?"] })
+      : /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
       : /spoke for/.test(prompt) ? JSON.stringify({ score: 6, comment: "Good start.", errors: [], better: "I want to join the civil service to serve my country.", tip: "Give an example." })
       : json
       ? JSON.stringify({ verdict: "fix", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] })
@@ -49,8 +56,11 @@ const fakes = () => {
   const check = (name, ok, info) => { results.push(ok); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
 
   check("asks for the free key on first use", (await p.textContent("#msgs")).includes("add your free Gemini key"));
-  await p.click("text=Open Settings"); await p.fill("#keyIn", "AIzaTEST"); await p.click("#keySave"); await p.waitForTimeout(400);
-  check("key saved", (await p.textContent("#keyStatus")).includes("Mam is ready"));
+  await p.click("text=Open Settings");
+  check("settings show how to keep Bolo on the phone", (await p.textContent("#installSteps")).includes("Add to Home screen"));
+  await p.evaluate(() => { window.__clip = " Your key: AIzaSyTEST_0123456789abcdefghijklmnopqr "; });
+  await p.click("#keyPaste"); await p.waitForTimeout(400);
+  check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).key)) === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
   await p.click("#setSheet [data-close].btn.primary");
   check("voice version: big talk button, no typing box", !(await p.isHidden("#orb")) && (await p.isHidden("#typeRow")));
 
@@ -77,6 +87,26 @@ const fakes = () => {
   check("challenge: my spoken words fill the answer", (await p.inputValue("#minIn")).includes("civil service"));
   await p.click("#orb"); await p.waitForTimeout(900);
   check("challenge: result after finishing", (await p.textContent("#minResult")).includes("words / min"));
+  // newspaper: today's headlines from Google Search, then talk about one by voice
+  await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("Newspaper")'); await p.waitForTimeout(300);
+  await p.click("text=Get today's news"); await p.waitForTimeout(600);
+  check("today's headlines arrive", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("New dam opens in KPK"));
+  const hs = gem.find((g) => /Use Google Search/.test(g.prompt));
+  check("headlines use Google Search (without JSON mode)", !!hs && hs.search && !hs.mime);
+  check("if search is refused, it tries the older free model", gem.filter((g) => g.search).map((g) => g.model).join() === "gemini-flash-latest,gemini-2.5-flash");
+  await p.click(".hl >> nth=0"); await p.waitForTimeout(700);
+  check("a headline becomes a story to talk about", (await p.textContent("#topicName")).includes("A new dam for Pakistan") && (await p.textContent("#msgs")).includes("store water for farmers"));
+  check("the story is made from the headline's facts", gem.some((g) => /Below is a news story/.test(g.prompt) && g.prompt.includes("A new dam opened today")));
+  await p.evaluate(() => { window.__toSay.push("We need dams for water"); });
+  await p.click("#orb"); await p.waitForTimeout(3600);
+  check("Mam asks about the story out loud", (await p.evaluate(() => window.__spoken.join("|"))).includes("Why do we need dams?"));
+  check("my spoken answer about the story is sent", (await p.textContent("#msgs")).includes("We need dams for water") && gem.some((g) => /Write Mam's next reply now/.test(g.prompt) && g.prompt.includes("store water for farmers")));
+  await p.click("#orb"); await p.waitForTimeout(200);
+  const before = gem.length;
+  await p.click("text=📰 All news"); await p.waitForTimeout(300);
+  check("headlines are kept for the day (no new search)", (await p.$$(".hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
+  await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
+  check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
   check("no page errors", errs.length === 0, errs.join(";"));
   await b.close();
   const failed = results.filter((x) => !x).length;

@@ -8,10 +8,10 @@ work="$(mktemp -d)"
 trap 'git -C "$root" worktree remove --force "$work" >/dev/null 2>&1 || true' EXIT
 git -C "$root" fetch -q origin gh-pages
 git -C "$root" worktree add -q --detach "$work" origin/gh-pages
-cp "$root/docs/index.html" "$work/index.html"
+cp -R "$root/docs/." "$work/"
 touch "$work/.nojekyll"
 cd "$work"
-git add index.html .nojekyll
+git add -A
 if git diff --cached --quiet; then echo "Web version already up to date."; exit 0; fi
 git commit -qm "Publish web version from $(git -C "$root" rev-parse --short HEAD)"
 git push -q origin HEAD:gh-pages

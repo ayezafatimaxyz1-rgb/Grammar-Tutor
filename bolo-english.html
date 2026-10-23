@@ -120,6 +120,27 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .metric span { font-size: 11px; color: var(--muted); }
 .better { margin: 0; font-size: 16px; line-height: 1.5; }
 .err { display: flex; flex-direction: column; gap: 1px; }
+.when { font-size: 13px; color: var(--muted); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+a.btn, label.btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; color: inherit; cursor: pointer; }
+a.btn.primary, label.btn.primary { color: var(--accent-fg); }
+a.mini { display: inline-flex; align-items: center; text-decoration: none; }
+.thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.thumbs:empty { display: none; }
+.thumbs img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.pages { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+.pages input { width: 64px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 8px; font: inherit; min-height: 44px; }
+.hl { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 8px; text-align: left; border: 1px solid var(--line); background: var(--bg); border-radius: 14px; padding: 10px 12px; width: 100%; }
+.hl .em { font-size: 22px; }
+.hl strong { display: block; font-family: var(--display); font-size: 16px; line-height: 1.25; }
+.hl small { display: block; font-size: 13px; color: var(--muted); }
+.newslist { display: flex; flex-direction: column; gap: 8px; }
+.arthead { display: flex; gap: 12px; align-items: center; }
+.arthead .aem { font-size: 34px; line-height: 1; flex: none; }
+.arthead strong { font-family: var(--display); font-size: 20px; line-height: 1.2; display: block; }
+.word { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 15px; }
+.word span { min-width: 0; }
+.word em { display: block; font-style: normal; color: var(--muted); font-size: 13px; }
 
 /* sheets: topics and settings */
 .sheet { position: fixed; inset: 0; z-index: 30; background: rgb(0 0 0 / 40%); display: flex; align-items: flex-end; justify-content: center; }
@@ -150,7 +171,7 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
     <div class="msgs pad" id="msgs" aria-live="polite"></div>
   </main>
 
-  <div class="dock pad">
+  <div class="dock pad" id="dock">
     <div class="state" id="state"></div>
     <div class="orbrow" id="orbRow">
       <button class="side" type="button" id="typeBtn" aria-label="Type instead">⌨️</button>
@@ -191,19 +212,23 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
     </div>
     <div class="field" id="voiceLink" hidden>
       <strong>Speak without the keyboard</strong>
-      <span class="hint" style="text-align:left">Claude blocks the microphone here. In the voice version Mam listens directly: you just talk.</span>
+      <span class="hint" style="text-align:left">Claude blocks the microphone here. In the voice version Mam listens directly: you just talk. You can also keep the voice version on your phone's Home Screen, like an app.</span>
       <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">Open the voice version →</a>
     </div>
     <div class="field" id="keyBox" hidden>
-      <label for="keyIn"><strong>Free AI key (Google Gemini)</strong></label>
-      <ol>
-        <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with Google.</li>
-        <li>Tap <strong>Create API key</strong> and copy it.</li>
-        <li>Paste it here and tap Save. It stays only on this phone.</li>
-      </ol>
-      <input type="password" id="keyIn" autocomplete="off" placeholder="Paste your key (starts with AIza…)">
-      <div class="tools"><button class="btn primary" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button></div>
+      <strong>Free AI key (Google Gemini)</strong>
+      <span class="hint" style="text-align:left">Mam needs a free key from Google, once. Only you can make it, because it belongs to your Google account. Never send it to anyone: it stays only on this phone.</span>
+      <a class="btn primary" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">1 · Get my free key ↗</a>
+      <span class="hint" style="text-align:left">Sign in with Google, tap <strong>Create API key</strong>, then tap the copy button next to the key. Come back to this page.</span>
+      <button class="btn primary" type="button" id="keyPaste">2 · 📋 Paste my key</button>
+      <input type="password" id="keyIn" autocomplete="off" placeholder="…or paste it here (it starts with AIza)" aria-label="Your Gemini key">
+      <div class="tools"><button class="btn" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button></div>
       <span class="status" id="keyStatus"></span>
+    </div>
+    <div class="field" id="installBox" hidden>
+      <strong>📲 Keep Bolo on your phone</strong>
+      <button class="btn primary" type="button" id="installBtn" hidden>Add Bolo to my Home Screen</button>
+      <ol id="installSteps"></ol>
     </div>
     <div class="field">
       <button class="btn" type="button" id="diagBtn">Check connection</button>
@@ -230,6 +255,7 @@ const pause = (ms) => new Promise((r) => setTimeout(r, ms));
 const TOPICS = [
   { id: "free", em: "💬", name: "Free talk", desc: "Anything you like", open: "Hi! I am Mam, your English partner. What would you like to talk about today?" },
   { id: "minute", kind: "minute", em: "⏱️", name: "1-minute challenge", desc: "Brainstorm ideas, then speak for 60 seconds" },
+  { id: "news", kind: "news", em: "📰", name: "Newspaper", desc: "Read a news story, then talk about it" },
   { id: "routine", em: "⏰", name: "My day", desc: "Routine, work, plans", open: "Let's talk about your day. What did you do today?" },
   { id: "intro", em: "🙋", name: "About me", desc: "Name, city, studies", open: "Hello! I am Mam, your English teacher. What is your name, and where are you from?" },
   { id: "family", em: "👨‍👩‍👧", name: "My family", desc: "People at home", open: "Tell me about your family. How many people live in your home?" },
@@ -240,6 +266,7 @@ const TOPICS = [
     extra: "Talk about world issues in general terms (climate change, AI, war and peace, prices, water). You have no live news, so never invent recent events, dates or numbers." },
   { id: "interview", kind: "interview", em: "🏛️", name: "CSS interview", desc: "A board of 3 asks about 10 questions", open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." },
 ];
+const NEWS = TOPICS.find((t) => t.kind === "news");
 const LEVEL_STYLE = {
   A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences. Often give a model sentence the student can copy (\"You can say: ...\").",
   A2: "Use simple English (CEFR A2): up to 3 short sentences. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
@@ -327,6 +354,7 @@ async function connectDb() {
   saveLocal(); putMeta(); renderVoiceBtn();
   // show the conversation from the account (unless the learner is in the middle of talking)
   if (mode === "minute") { if (!minRunning && !minBusy) { minRec = minuteRecord(state.settings.minuteQ); renderMinute(); } }
+  else if (mode === "news") renderNewsList();
   else if (!busy && !listening && (redraw || !state.chats.includes(chat))) openTopic(currentTopic(), true);
 }
 
@@ -341,20 +369,25 @@ function parseLoose(t) {
   if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch {} }
   throw { code: "invalid_json", text: t };
 }
+const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
+// Two extras only the web version uses: opts.search (Google Search for today's news) and opts.model.
 function geminiAI() {
   const cfg = gget(); if (!cfg?.key) return null;
   const call = async (input, opts = {}, json = false, retried = false) => {
     const turnsIn = typeof input === "string" ? [{ role: "user", content: input }] : input;
     const contents = [];
     for (const t of turnsIn) { const role = t.role === "assistant" ? "model" : "user", last = contents[contents.length - 1]; if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] }); }
-    const body = { contents, generationConfig: { temperature: 0.7, ...(json ? { responseMimeType: "application/json" } : {}) } };
+    const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
+    for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
+    // JSON mode cannot be combined with search, so a searched answer is parsed from plain text
+    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}) } };
     let res;
-    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
+    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${opts.model || cfg.model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
     catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
     if (!res.ok) {
       let bodyText = ""; try { bodyText = JSON.stringify(await res.json()); } catch {}
-      if (res.status === 404 && !retried) { // Google retired the model: pick the current one and try once more
+      if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current one and try once more
         try { const m = await pickModel(cfg.key); if (m && m !== cfg.model) { cfg.model = m; try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} return call(input, opts, json, true); } } catch {}
       }
       throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : "upstream_error" };
@@ -367,6 +400,7 @@ function geminiAI() {
   };
   const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
   fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
+  fn.limits = async () => ({ maxPromptBytes: 900000, images: { maxCount: 10, maxInputBytes: 20e6, mediaTypes: ["image/jpeg", "image/png", "image/webp"] } });
   return fn;
 }
 async function pickModel(key) {
@@ -471,6 +505,7 @@ const interviewOver = (c) => c?.kind === "interview" && c.turns.some((x) => x.ro
 function currentTopic() {
   const id = state.settings.lastTopic;
   if (id === "own") { const c = state.chats.find((x) => x.id === state.settings.lastOwn && x.topic?.id === "own"); if (c) return c.topic; }
+  if (String(id).startsWith("news:")) return state.chats.find((x) => x.topic?.id === id && x.article)?.topic || NEWS;
   return TOPICS.find((t) => t.id === id) || TOPICS[0];
 }
 function findThread(t) {
@@ -486,6 +521,7 @@ const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q 
 function openTopic(t, quiet) {
   stopLoop(); ctl?.abort(); hush(); stopMinute();
   if (t.kind === "minute") { openMinute(); return; }
+  if (t.kind === "news") { openNews(); return; }
   mode = "chat"; applyDock();
   let c = findThread(t);
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
@@ -506,6 +542,7 @@ function openTopic(t, quiet) {
 function daySep(t) { const d = document.createElement("div"); d.className = "daysep"; d.textContent = new Date(t).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); $("msgs").append(d); }
 function renderChat() {
   const c = chat; $("msgs").innerHTML = "";
+  if (c.article) $("msgs").append(articleCard(c));
   let prevAt = c.started || 0;
   c.turns.forEach((tn, i) => {
     if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
@@ -761,9 +798,10 @@ const QUESTIONS = [
 const PLAN_FALLBACK = ["Start: In my opinion, …", "Reason: The main reason is …", "Example: For example, …", "End: So, I believe …"];
 let mode = "chat", minRec = null, minRunning = false, minStartAt = 0, minTimer = 0, minSR = null, minBase = "", minBusy = false, minIdea = -1;
 const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.topic?.name === q) || null;
-// The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge.
+// The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge; nothing on the newspaper page.
 function applyDock() {
   const minute = mode === "minute";
+  $("dock").hidden = mode === "news";
   $("orbRow").hidden = !minute && !canListen;
   $("typeRow").hidden = minute || canListen;
   $("typeBtn").hidden = minute || !canListen;
@@ -949,6 +987,239 @@ function renderMinResult(at, prev, msg) {
   if (!msg || r) card.scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
+// ---------- newspaper: read a story, Mam makes it simple, then you talk about it ----------
+// Each story becomes its own saved conversation (a chat with an "article"), shown with the story on top.
+const PAPERS = [
+  ["Daily", [["Dawn", "https://www.dawn.com"], ["The Express Tribune", "https://tribune.com.pk"], ["The News", "https://www.thenews.com.pk"], ["Business Recorder", "https://www.brecorder.com"], ["BBC News", "https://www.bbc.com/news"], ["Al Jazeera", "https://www.aljazeera.com"]]],
+  ["Weekly", [["The Economist", "https://www.economist.com"], ["TIME", "https://time.com"], ["The Friday Times", "https://thefridaytimes.com"]]],
+  ["Monthly", [["Jahangir's World Times", "https://jworldtimes.com"], ["Foreign Affairs", "https://www.foreignaffairs.com"], ["The Diplomat", "https://thediplomat.com"]]],
+];
+const HKEY = "bolo.headlines";
+const dayKey = () => new Date().toLocaleDateString("en-CA");
+let newsBusy = false, newsCtl = null, pdfDoc = null, pdfLib = null, headlines = null, hlBusy = false, hlErr = "";
+const articles = () => state.chats.filter((c) => c.article && c.turns).sort((a, b) => (b.updated || 0) - (a.updated || 0));
+function openNews() {
+  mode = "news"; state.settings.lastTopic = "news"; putMeta();
+  if (!inClaude && !headlines) { try { const h = JSON.parse(localStorage.getItem(HKEY) || "null"); if (h?.day === dayKey() && h.items?.length) headlines = h; } catch {} }
+  $("topicName").textContent = "📰 Newspaper";
+  applyDock(); renderNews();
+}
+function section(cls, label) {
+  const d = document.createElement("div"); d.className = cls;
+  if (label) { const l = document.createElement("div"); l.className = "lbl"; l.textContent = label; d.append(l); }
+  $("msgs").append(d); return d;
+}
+function renderNews() {
+  $("msgs").innerHTML = "";
+  section("").id = "newsStatus";
+  if (!inClaude) { section("brain").id = "headlines"; renderHeadlines(); } // only Gemini can search today's news
+  const add = section("brain", "📰 Add a news story");
+  add.insertAdjacentHTML("beforeend", `<p class="hint" style="text-align:left;margin:0">Take a screenshot of one story in a newspaper or magazine, then add it here. Mam makes it simple, and then you talk about it with her.</p>
+<div class="tools"><label class="btn primary" for="newsFile">📷 Screenshot, photo or PDF</label><button class="btn" type="button" id="newsPasteBtn">📋 Paste text</button></div>
+<input class="vh" type="file" id="newsFile" multiple accept="image/*,application/pdf">
+<div class="thumbs" id="newsThumbs"></div>
+<div class="pages" id="newsPages" hidden><span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="2" aria-label="To page"><span id="pOf"></span><button class="btn primary" type="button" id="pdfGo">Read these pages</button></div>
+<div class="field" id="newsPaste" hidden><textarea class="answerbox" id="newsText" placeholder="Paste the story's words here…" aria-label="Story text"></textarea><button class="btn primary" type="button" id="newsGo">Make it simple</button></div>`);
+  $("newsFile").onchange = pickNewsFiles;
+  $("pdfGo").onclick = () => { if (pdfDoc) readNews({ pdf: true }); };
+  $("newsPasteBtn").onclick = () => { $("newsPaste").hidden = !$("newsPaste").hidden; if (!$("newsPaste").hidden) $("newsText").focus(); };
+  $("newsGo").onclick = () => {
+    const t = $("newsText").value.trim();
+    if (/^https?:\/\/\S+$/.test(t)) { newsStatus("Mam can't open links. Copy the story's words instead, or take a screenshot.", true); return; }
+    if (t.length < 40) { newsStatus("Paste a bit more of the story first.", true); return; }
+    readNews({ text: t });
+  };
+  section("newslist", "Your news").id = "newsList"; renderNewsList();
+  const pp = section("brain", "Newspapers and magazines");
+  pp.insertAdjacentHTML("beforeend", '<p class="hint" style="text-align:left;margin:0">Open one, choose a story, and take a screenshot of it.</p>');
+  PAPERS.forEach(([kind, list]) => {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = kind;
+    const t = document.createElement("div"); t.className = "tools";
+    list.forEach(([n, u]) => { const a = document.createElement("a"); a.className = "mini"; a.href = u; a.target = "_blank"; a.rel = "noopener"; a.textContent = n; t.append(a); });
+    pp.append(l, t);
+  });
+  $("main").scrollTop = 0;
+}
+function renderNewsList() {
+  const box = $("newsList"); if (!box) return;
+  box.querySelectorAll(".trow, .hint").forEach((x) => x.remove());
+  const arts = articles();
+  if (!arts.length) { const p = document.createElement("p"); p.className = "hint"; p.style.cssText = "text-align:left;margin:0"; p.textContent = "Stories you read with Mam are saved here, so you can talk about them again."; box.append(p); return; }
+  const when = (c) => new Date(c.started).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  arts.slice(0, 20).forEach((c) => box.append(topicRow(c.article.emoji || "📰", c.article.title, [c.article.source, when(c)].filter(Boolean).join(" · "), c.turns.filter((x) => x.role === "user").length, false, () => openTopic(c.topic))));
+}
+// A message at the top of the newspaper page (with Stop while Mam reads).
+function newsStatus(msg, err, stop, action) {
+  const s = $("newsStatus"); if (!s) return;
+  s.innerHTML = ""; if (!msg) return;
+  const d = document.createElement("div"); d.className = "banner" + (err ? " warn" : "");
+  const sp = document.createElement("span"); sp.textContent = msg; d.append(sp);
+  if (stop) d.append(tool("■ Stop", () => newsCtl?.abort()));
+  if (action) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = action.label; b.onclick = () => action.fn(d); d.append(b); }
+  s.append(d); $("main").scrollTop = 0;
+}
+function renderHeadlines() {
+  const box = $("headlines"); if (!box) return;
+  box.innerHTML = '<div class="lbl">🌍 Today\'s headlines</div>';
+  const p = (cls, text) => { const x = document.createElement("p"); x.className = cls; x.style.cssText = "text-align:left;margin:0"; x.textContent = text; box.append(x); };
+  if (hlBusy) { p("typing", "Mam is checking today's news…"); return; }
+  const items = headlines?.day === dayKey() ? headlines.items : [];
+  if (!items.length) {
+    p("hint", "Mam can find today's big stories from Pakistan and the world for you.");
+    if (hlErr) p("status", hlErr);
+    const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get today's news"; b.onclick = () => loadHeadlines(); box.append(b);
+    return;
+  }
+  items.forEach((it) => {
+    const done = state.chats.find((c) => c.article?.from === it.title);
+    const b = document.createElement("button"); b.type = "button"; b.className = "hl";
+    b.innerHTML = '<span class="em"></span><span><strong></strong><small></small></span>';
+    b.querySelector(".em").textContent = it.emoji || "📰"; b.querySelector("strong").textContent = it.title;
+    b.querySelector("small").textContent = [it.where, it.source].filter(Boolean).join(" · ") + (done ? " · ✓ read" : "");
+    b.onclick = () => (done ? openTopic(done.topic) : readNews({ text: it.title + "\n\n" + it.story, source: it.source, from: it.title }));
+    box.append(b);
+  });
+  const t = document.createElement("div"); t.className = "tools"; t.append(tool("↻ Check again", () => loadHeadlines())); box.append(t);
+}
+async function loadHeadlines() {
+  if (hlBusy) return;
+  await aiReady;
+  if (!sample) { hlErr = "Add your free Gemini key in Settings (⚙) first."; renderHeadlines(); return; }
+  hlBusy = true; hlErr = ""; renderHeadlines();
+  const prompt = `Use Google Search to find today's most important news (${new Date().toDateString()}) for a student in Pakistan who is preparing for the CSS exam: 3 stories about Pakistan and 3 world stories, from trusted sources such as Dawn, The Express Tribune, The News, BBC, Reuters and Al Jazeera. Use only facts from today's search results; never invent news. Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"items": [{"title": "short headline in simple English", "emoji": "1 or 2 emoji", "source": "the newspaper or website", "where": "Pakistan or World", "story": "the main facts in 4 to 6 simple sentences"}]}`;
+  const ask = (model) => { const c = new AbortController(), t = setTimeout(() => c.abort(), 90000); return askJson(prompt, { search: true, model, signal: c.signal }).finally(() => clearTimeout(t)); };
+  try {
+    let r;
+    try { r = await ask(); } catch (e) { if (e?.code === "bad_key" || e?.code === "offline") throw e; r = await ask("gemini-2.5-flash"); } // free search is not offered on every model
+    const items = (Array.isArray(r?.items) ? r.items : []).filter((x) => x?.title && x?.story).slice(0, 6)
+      .map((x) => ({ title: String(x.title), emoji: String(x.emoji || "📰").slice(0, 8), source: String(x.source || ""), where: String(x.where || ""), story: String(x.story) }));
+    if (!items.length) throw { code: "empty_completion" };
+    headlines = { day: dayKey(), at: Date.now(), items };
+    try { localStorage.setItem(HKEY, JSON.stringify(headlines)); } catch {}
+  } catch (e) {
+    dbg("headlines_error", { code: String(e?.code || "") });
+    hlErr = (e?.code === "cancelled" ? "Mam took too long." : e?.code === "empty_completion" ? "Mam found no news this time." : errText(e)) + " You can still add a screenshot of a story below.";
+  } finally { hlBusy = false; if (mode === "news") renderHeadlines(); }
+}
+function loadScript(src) { return new Promise((ok, no) => { const sc = document.createElement("script"); sc.src = src; sc.onload = ok; sc.onerror = no; document.head.append(sc); }); }
+async function getPdfLib() {
+  if (pdfLib) return pdfLib;
+  const base = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";
+  await loadScript(base + "pdf.worker.min.js"); // runs on the page itself, since the Claude frame cannot start an outside worker
+  await loadScript(base + "pdf.min.js");
+  pdfLib = window.pdfjsLib; pdfLib.GlobalWorkerOptions.workerSrc = base + "pdf.worker.min.js";
+  return pdfLib;
+}
+async function pickNewsFiles() {
+  const inp = $("newsFile"), files = [...inp.files]; inp.value = "";
+  const th = $("newsThumbs"); th.innerHTML = ""; $("newsPages").hidden = true; pdfDoc = null;
+  const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
+  if (pdf) {
+    const d = document.createElement("span"); d.className = "mini"; d.textContent = "📄 " + pdf.name; th.append(d);
+    newsStatus("Opening the PDF…");
+    try { const lib = await getPdfLib(); pdfDoc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise; }
+    catch { newsStatus("This PDF could not be opened. Take screenshots of the story instead.", true); return; }
+    $("newsPages").hidden = false; $("pOf").textContent = "of " + pdfDoc.numPages;
+    $("pFrom").value = 1; $("pTo").value = Math.min(2, pdfDoc.numPages); $("pFrom").max = $("pTo").max = pdfDoc.numPages;
+    newsStatus("Choose the pages with your story (up to 5), then tap Read these pages.");
+    return;
+  }
+  const imgs = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
+  if (!imgs.length) return;
+  imgs.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
+  readNews({ files: imgs });
+}
+// Canvases are released right after use: iOS kills the page when canvas memory runs out.
+const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
+function shrink(source, w, h) {
+  const scale = Math.min(1, 1800 / Math.max(w, h));
+  const c = document.createElement("canvas"); c.width = Math.round(w * scale); c.height = Math.round(h * scale);
+  c.getContext("2d").drawImage(source, 0, 0, c.width, c.height);
+  return toJpeg(c);
+}
+async function imageBlob(file) {
+  const bmp = await createImageBitmap(file).catch(() => null);
+  if (!bmp) return file;
+  try { return await shrink(bmp, bmp.width, bmp.height); } finally { bmp.close?.(); }
+}
+async function pdfContent() {
+  const from = Math.max(1, +$("pFrom").value || 1), to = Math.min(pdfDoc.numPages, Math.max(from, +$("pTo").value || from), from + 4);
+  let text = ""; const imgs = [];
+  for (let n = from; n <= to; n++) {
+    const page = await pdfDoc.getPage(n);
+    const t = (await page.getTextContent()).items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
+    if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
+    const v1 = page.getViewport({ scale: 1 }); // a scanned page has no text, so send its picture
+    const vp = page.getViewport({ scale: Math.min(1.6, 1800 / Math.max(v1.width, v1.height)) });
+    const c = document.createElement("canvas"); c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+    await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
+    imgs.push(await toJpeg(c)); page.cleanup();
+  }
+  return { text: text.trim(), imgs };
+}
+async function readNews(input) {
+  if (newsBusy) return;
+  await aiReady;
+  if (!sample) { newsStatus(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.", true); return; }
+  newsBusy = true; const myCtl = (newsCtl = new AbortController());
+  const mt = setTimeout(() => myCtl.abort(), 150000); // never leave the page stuck
+  try {
+    let text = input.text || "", imgs = [];
+    if (input.pdf) { newsStatus("Reading the PDF pages…", false, true); const r = await pdfContent(); text = r.text; imgs = r.imgs; }
+    const lim = input.files || imgs.length ? await sample.limits?.().catch(() => null) : null;
+    if (input.files) { // Claude takes the photo as it is; Gemini gets a smaller copy
+      for (const f of input.files) imgs.push(inClaude && lim?.images?.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes ? f : await imageBlob(f));
+    }
+    if (imgs.length && !lim?.images) { newsStatus("Pictures can't be sent from this view. Tap 📋 Paste text and paste the story instead.", true); return; }
+    if (imgs.length) imgs = imgs.slice(0, lim.images.maxCount);
+    if (myCtl.signal.aborted) throw { code: "cancelled" };
+    newsStatus("Mam is reading the story… this can take up to a minute.", false, true);
+    const r = await askJson(`You help a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam and practising spoken English. Write everything in simple English only, never Urdu. Below is a news story${input.source ? ` from "${input.source}"` : ""}${imgs.length ? ", given as images (screenshots or photos of a newspaper or magazine page)" : ""}${text ? (imgs.length ? " and text" : ", given as text") : ""}. If there are several stories, choose the one that matters most for CSS.
+Reply with ONLY JSON:
+{"title": "short headline in simple English", "emoji": "1 or 2 emoji that picture the story", "source": "the newspaper or magazine name if you can tell, else empty", "story": "the story retold in 5 to 8 simple English sentences for level ${level()}, using only facts from the material", "css": "one short sentence: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.)", "words": [{"word": "an important word from the story", "meaning": "very simple meaning, at most 8 words", "example": "a short example sentence"}], "questions": ["3 simple questions to talk about the story and the learner's opinion"]}
+Give exactly 5 words. If there is no news story in the material, reply {"title": ""}.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
+    if (!r?.title || !r?.story) { newsStatus("Mam could not find a news story there. Try a clear screenshot of one story.", true); return; }
+    const now = Date.now(), id = "n" + now.toString(36);
+    const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), story: String(r.story), css: String(r.css || ""), from: input.from || "",
+      words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6).map((w) => ({ word: String(w.word), meaning: String(w.meaning || ""), example: String(w.example || "") })),
+      questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String) };
+    const t = { id: "news:" + id, em: "📰", name: art.title, desc: "a news story" + (art.source ? " from " + art.source : ""), open: "Let's talk about this story. " + (art.questions[0] || "What is this news about?"),
+      extra: `You and the student are talking about this news story: "${art.title}". The story in simple English: ${art.story} Ask about the story and the student's opinion, one question at a time, for example: ${art.questions.join(" | ")}. Help the student use these words: ${art.words.map((w) => w.word).join(", ")}. Use only the facts in the story; never invent new facts, dates or numbers.` };
+    const c = newChat(t); c.id = id; c.article = art;
+    putChat(c, true);
+    newsStatus("");
+    if (mode === "news") openTopic(t);
+  } catch (e) {
+    dbg("news_error", { code: String(e?.code || "none") });
+    if (e?.code === "not_granted") newsStatus(errText(e), true, false, allowAction(() => readNews(input)));
+    else newsStatus(e?.code === "cancelled" ? "Stopped. Add the story again when you are ready." : errText(e), true);
+  } finally { clearTimeout(mt); newsBusy = false; if (newsCtl === myCtl) newsCtl = null; }
+}
+// The story sits on top of its conversation: listen to it, learn its words, then answer Mam.
+function articleCard(c) {
+  const a = c.article;
+  const d = document.createElement("div"); d.className = "report art";
+  d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><p class="better"></p><div class="tools st"></div><div class="wl"></div><div class="css"></div>';
+  d.querySelector(".back").append(tool("📰 All news", () => openTopic(NEWS)));
+  d.querySelector(".aem").textContent = a.emoji || "📰";
+  d.querySelector("strong").textContent = a.title;
+  d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
+  d.querySelector(".better").textContent = a.story;
+  d.querySelector(".st").append(tool("🔊 Listen", () => { primeTTS(); speak(a.story, 0.85); }), tool("🐢 Slow", () => { primeTTS(); speak(a.story, 0.65); }));
+  const words = (a.words || []).filter((w) => w?.word), wl = d.querySelector(".wl");
+  if (words.length) {
+    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "New words"; wl.append(l);
+    words.forEach((w) => {
+      const row = document.createElement("div"); row.className = "word"; row.innerHTML = "<span><b></b> <i></i><em></em></span>";
+      row.querySelector("b").textContent = w.word; row.querySelector("i").textContent = isEnglish(w.meaning) ? w.meaning : ""; row.querySelector("em").textContent = w.example || "";
+      row.append(tool("🔊", () => { primeTTS(); speak(w.word + ". " + (w.example || ""), 0.8); })); wl.append(row);
+    });
+  }
+  d.querySelector(".css").textContent = a.css && isEnglish(a.css) ? "🎯 For CSS: " + a.css : "";
+  return d;
+}
+
 // ---------- typing ----------
 function autoGrow() { const t = $("input"); t.style.height = "auto"; t.style.height = Math.min(140, t.scrollHeight) + "px"; }
 function sendTyped() { const v = $("input").value.trim(); if (!v || busy) return; $("input").value = ""; autoGrow(); primeTTS(); send(v); }
@@ -973,7 +1244,9 @@ function topicRow(em, name, desc, n, on, fn) {
 $("topicBtn").onclick = () => {
   const box = $("topicList"); box.innerHTML = "";
   const answers = (c) => (c?.turns ? c.turns.filter((x) => x.role === "user").length : 0);
-  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.desc, t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : answers(findThread(t)), t.kind === "minute" ? mode === "minute" : mode === "chat" && chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
+  const count = (t) => t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : t.kind === "news" ? articles().length : answers(findThread(t));
+  const isOn = (t) => t.kind === "minute" || t.kind === "news" ? mode === t.kind || (t.kind === "news" && mode === "chat" && !!chat?.article) : mode === "chat" && chat?.topic?.id === t.id;
+  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.desc, count(t), isOn(t), () => { $("topicSheet").hidden = true; openTopic(t); })));
   state.chats.filter((c) => c.topic?.id === "own").slice(0, 5).forEach((c) => box.append(topicRow("✏️", c.topic.name, "Your own topic", answers(c), chat === c, () => { $("topicSheet").hidden = true; openTopic(c.topic); })));
   $("topicSheet").hidden = false;
 };
@@ -989,17 +1262,49 @@ $("rateSel").onchange = () => { state.settings.rate = Number($("rateSel").value)
 if (!inClaude) {
   $("keyBox").hidden = false;
   if (gget()?.key) $("keyStatus").textContent = "Key saved ✓";
-  $("keySave").onclick = async () => {
-    const key = $("keyIn").value.trim(); if (!key) return;
-    $("keyStatus").textContent = "Checking…";
+  const KEY_RE = /AIza[\w-]{30,}/;
+  let keyBusy = false;
+  // Checks the key with Google, then keeps it only in this browser.
+  const saveKey = async (raw) => {
+    const key = (String(raw || "").match(KEY_RE) || [])[0] || String(raw || "").trim();
+    if (!key || keyBusy) return;
+    keyBusy = true; $("keyStatus").textContent = "Checking your key…";
     try {
       const model = await pickModel(key);
       try { localStorage.setItem(GKEY, JSON.stringify({ key, model })); } catch {}
-      sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Close Settings and tap the big button to talk.";
+      sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done, then tap the big button to talk.";
       document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
-    } catch { $("keyStatus").textContent = "That key did not work. Copy it again and paste."; }
+    } catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
+    finally { keyBusy = false; }
+  };
+  $("keySave").onclick = () => saveKey($("keyIn").value);
+  $("keyIn").addEventListener("input", () => { if (KEY_RE.test($("keyIn").value)) saveKey($("keyIn").value); }); // pasting is enough
+  $("keyPaste").onclick = async () => {
+    let t = ""; try { t = await navigator.clipboard.readText(); } catch {}
+    if (KEY_RE.test(t)) { saveKey(t); return; }
+    $("keyIn").focus();
+    $("keyStatus").textContent = t ? "That is not a Gemini key (a key starts with AIza). Copy the key again." : "Long-press the box above and tap Paste.";
   };
   $("keyDel").onclick = () => { try { localStorage.removeItem(GKEY); } catch {} sample = null; $("keyStatus").textContent = "Key removed."; };
+  // Keeping the app on the Home Screen: a real install button where the browser offers one, else the steps.
+  $("installBox").hidden = false;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let installEv = null;
+  const renderInstall = (done) => {
+    const steps = done || matchMedia("(display-mode: standalone)").matches || navigator.standalone === true ? ["✓ Bolo is on your Home Screen. Open it from its icon."]
+      : isIOS ? ["Open this page in Safari.", "Tap the Share button (the square with an arrow).", "Tap Add to Home Screen. If you see Open as Web App, switch it off, so the microphone works.", "Tap Add. Now Bolo has its own icon."]
+      : ["Open this page in Chrome.", "Tap ⋮ at the top right.", "Tap Add to Home screen, then Install.", "Now Bolo has its own icon."];
+    const ol = $("installSteps"); ol.innerHTML = "";
+    steps.forEach((s) => { const li = document.createElement("li"); li.textContent = s; ol.append(li); });
+  };
+  renderInstall();
+  window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEv = e; $("installBtn").hidden = false; });
+  window.addEventListener("appinstalled", () => { installEv = null; $("installBtn").hidden = true; renderInstall(true); });
+  $("installBtn").onclick = async () => {
+    const ev = installEv; if (!ev) return;
+    installEv = null; $("installBtn").hidden = true;
+    try { ev.prompt(); if ((await ev.userChoice)?.outcome === "accepted") renderInstall(true); } catch {}
+  };
 } else $("voiceLink").hidden = false;
 $("diagBtn").onclick = async () => {
   const out = $("diagOut"), lines = [];
@@ -1030,7 +1335,7 @@ if (!canListen) { // no microphone here (Claude blocks it): just the typing box,
   $("hint").innerHTML = inClaude ? 'Tap 🎤 on your keyboard to speak. For hands-free talking, <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">open the voice version</a>.' : "This browser has no speech recognition: type, or use your keyboard's 🎤.";
 }
 openTopic(currentTopic(), true);
-aiReady.then(() => { if (!sample && !inClaude) note("To talk with Mam, add your free Gemini key once.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });
+aiReady.then(() => { if (!sample && !inClaude && mode === "chat") note("To talk with Mam, add your free Gemini key once. It takes one minute.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });
 connectDb();
 })();
 </script>
