@@ -16,15 +16,24 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <style>
-/* Layout: one screen. Topic chip on top, the conversation in the middle, Mam's talk button at the bottom. */
+/* Layout: header on top, the screen in the middle, then Mam's talk button and the four tabs at the bottom.
+   Look: frosted glass. Cards and bars are see-through over a soft coloured background. */
 :root {
-  --bg: #eef3ef;
-  --surface: #ffffff;
-  --sunk: #e2eae4;
-  --fg: #13241b;
-  --muted: #5a6d62;
-  --line: #cfdcd3;
+  --bg: #e6f0ea;
+  --surface: rgb(255 255 255 / 62%);
+  --inset: rgb(255 255 255 / 58%);
+  --sheet: rgb(244 250 246 / 86%);
+  --sunk: rgb(13 122 76 / 9%);
+  --fg: #12231a;
+  --muted: #4b5f55;
+  --line: rgb(18 60 40 / 14%);
+  --rim: rgb(255 255 255 / 85%);
+  --shadow: 0 6px 22px rgb(20 70 45 / 10%);
+  --blob1: rgb(110 215 165 / 55%);
+  --blob2: rgb(140 190 255 / 45%);
+  --blob3: rgb(255 205 130 / 45%);
   --accent: #0d7a4c;
+  --accent2: #138a5a;
   --accent-fg: #ffffff;
   --sun: #e39a2d;
   --bad: #b8402a;
@@ -34,27 +43,32 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
-    --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193; color-scheme: dark;
+    --bg: #06110c; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sheet: rgb(14 26 20 / 88%); --sunk: rgb(255 255 255 / 9%);
+    --fg: #e7f2eb; --muted: #a2b8ab; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+    --blob1: rgb(30 150 95 / 40%); --blob2: rgb(40 90 180 / 32%); --blob3: rgb(170 110 30 / 22%);
+    --accent: #3cc485; --accent2: #2bb59a; --accent-fg: #04140c; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0e1712; --surface: #16231b; --sunk: #1d2d23; --fg: #e6efe9; --muted: #9db1a5;
-  --line: #2a3d31; --accent: #3cc485; --accent-fg: #06150d; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193; color-scheme: dark;
+  --bg: #06110c; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sheet: rgb(14 26 20 / 88%); --sunk: rgb(255 255 255 / 9%);
+  --fg: #e7f2eb; --muted: #a2b8ab; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+  --blob1: rgb(30 150 95 / 40%); --blob2: rgb(40 90 180 / 32%); --blob3: rgb(170 110 30 / 22%);
+  --accent: #3cc485; --accent2: #2bb59a; --accent-fg: #04140c; --sun: #f0b450; --bad: #ef7d63; --good: #4fd193; color-scheme: dark;
 }
 html, body { height: 100%; }
 [hidden] { display: none !important; }
-body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+body { background-color: var(--bg); background-image: radial-gradient(60% 45% at 0% 0%, var(--blob1), transparent 70%), radial-gradient(55% 45% at 100% 30%, var(--blob2), transparent 70%), radial-gradient(70% 50% at 25% 100%, var(--blob3), transparent 70%); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
 * { box-sizing: border-box; }
 button { font: inherit; color: inherit; cursor: pointer; }
 button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
 .app { height: 100%; display: flex; flex-direction: column; max-width: 680px; margin: 0 auto; }
 .pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
-header { display: flex; align-items: center; gap: 10px; padding-block: 10px; }
-.brand { font-family: var(--display); font-weight: 800; font-size: 20px; letter-spacing: -0.02em; white-space: nowrap; }
+header { display: flex; align-items: center; gap: 10px; padding-block: 8px; background: var(--surface); border-bottom: 1px solid var(--rim); }
+.brand { font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; white-space: nowrap; }
 .brand b { color: var(--accent); }
 .chip { margin-left: auto; min-width: 0; border: 1px solid var(--line); background: var(--surface); border-radius: 99px; padding: 8px 14px; font-weight: 700; display: flex; gap: 6px; align-items: center; min-height: 44px; }
 .chip span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip:disabled { cursor: default; }
 .iconbtn { border: 1px solid var(--line); background: var(--surface); border-radius: 50%; width: 44px; height: 44px; flex: none; font-size: 18px; }
 main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .msgs { display: flex; flex-direction: column; gap: 12px; padding-block: 8px 20px; }
@@ -62,7 +76,7 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .msg.tutor { align-self: flex-start; }
 .msg.me { align-self: flex-end; align-items: flex-end; }
 .bubble { padding: 10px 14px; border-radius: 18px; font-size: 17px; }
-.tutor .bubble { background: var(--surface); border: 1px solid var(--line); border-bottom-left-radius: 6px; }
+.tutor .bubble { background: var(--surface); border: 1px solid var(--rim); border-bottom-left-radius: 6px; box-shadow: var(--shadow); cursor: pointer; }
 .me .bubble { background: var(--accent); color: var(--accent-fg); border-bottom-right-radius: 6px; cursor: pointer; }
 .me.live .bubble { opacity: .6; font-style: italic; }
 .who { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); padding-left: 6px; }
@@ -96,7 +110,17 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
 .area em { font-style: normal; color: var(--muted); text-align: right; }
 
 /* Mam's talk button */
-.dock { border-top: 1px solid var(--line); background: var(--bg); padding-block: 10px calc(10px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.dock { border-top: 1px solid var(--rim); background: var(--surface); padding-block: 10px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.tabbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
+.tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 2px; min-height: 54px; font-size: 12px; font-weight: 700; color: var(--muted); position: relative; border-radius: 16px; }
+.tabbar button span { font-size: 22px; line-height: 1.1; filter: grayscale(.7); opacity: .75; }
+.tabbar button[aria-current="page"] { color: var(--accent); background: var(--sunk); }
+.tabbar button[aria-current="page"] span { filter: none; opacity: 1; }
+.tabbar .badge { position: absolute; top: 3px; left: calc(50% + 6px); min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--bad); color: #fff; font-size: 11px; font-style: normal; line-height: 18px; text-align: center; }
+.kb .tabbar { display: none; }
+.tipbox { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); background: var(--inset); border: 1px solid var(--rim); border-radius: 12px; padding: 8px 4px 8px 12px; }
+.tipbox span { flex: 1; min-width: 0; padding-top: 4px; }
+.tipbox .x, .hint .x { flex: none; border: 0; background: none; width: 32px; height: 32px; color: var(--muted); font-size: 14px; }
 .state { font-size: 15px; color: var(--muted); text-align: center; }
 .state:empty { display: none; }
 .orbrow { display: flex; align-items: center; gap: 18px; }
@@ -153,6 +177,10 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .arthead { display: flex; gap: 12px; align-items: center; }
 .arthead .aem { font-size: 34px; line-height: 1; flex: none; }
 .arthead strong { font-family: var(--display); font-size: 20px; line-height: 1.2; display: block; }
+.art.compact { padding-block: 10px; }
+.art.compact .back, .art.compact .css { display: none; }
+.art.compact .aem { font-size: 26px; }
+.art.compact .arthead strong { font-size: 17px; }
 .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
 .vinfo .alt, .analysis .alt, .vout .alt { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
 .vinfo .alt span, .analysis .alt span, .vout .alt span { min-width: 0; }
@@ -209,13 +237,28 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .field ol { margin: 0; padding-left: 20px; font-size: 14px; }
 .field a, .panel a { color: var(--accent); }
 .status { font-size: 14px; color: var(--muted); white-space: pre-wrap; }
+
+/* Glass: see-through surfaces with a frosted blur, a light rim and a soft shadow */
+.report, .qcard, .brain, .trow, .chip, .iconbtn, .side, .fb, .btn:not(.primary) { background: var(--surface); border-color: var(--rim); }
+header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side { -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
+.report, .qcard, .brain, .trow { box-shadow: var(--shadow); }
+.idea, .hl, .vinfo, .analysis, .outline, .tab, .answerbox, .typerow textarea, .field select, .field input, .pages input, form.typerow input { background: var(--inset); border-color: var(--rim); }
+.me .bubble, .btn.primary, .send, .orb, .tab[aria-selected="true"] { background: linear-gradient(135deg, var(--accent), var(--accent2)); border-color: transparent; color: var(--accent-fg); }
+.me .bubble { box-shadow: 0 6px 18px rgb(13 122 76 / 22%); }
+.orb { box-shadow: 0 10px 30px rgb(13 122 76 / 35%); }
+.orb.listening { background: var(--bad); box-shadow: 0 10px 30px rgb(184 64 42 / 35%); }
+.panel { background: var(--sheet); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); border-top: 1px solid var(--rim); }
+.sheet { background: rgb(0 0 0 / 28%); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root:not([data-theme="dark"]) { --surface: rgb(255 255 255 / 90%); --sheet: #f4faf6; }
+}
 @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
 </style>
 
 <div class="app">
   <header class="pad">
     <div class="brand">Bolo <b>English</b></div>
-    <button class="chip" type="button" id="topicBtn" aria-label="Change topic"><span id="topicName">💬 Free talk</span>▾</button>
+    <button class="chip" type="button" id="topicBtn" aria-label="Change topic"><span id="topicName">💬 Free talk</span><b id="topicCaret">▾</b></button>
     <button class="iconbtn" type="button" id="setBtn" aria-label="Settings">⚙</button>
   </header>
 
@@ -236,6 +279,12 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
     </div>
     <p class="hint" id="hint" hidden></p>
   </div>
+  <nav class="tabbar" id="tabbar" aria-label="Parts of the app">
+    <button type="button" data-tab="talk"><span>💬</span>Talk</button>
+    <button type="button" data-tab="minute"><span>⏱️</span>Challenge</button>
+    <button type="button" data-tab="news"><span>📰</span>News</button>
+    <button type="button" data-tab="words"><span>⭐</span>Words<i class="badge" id="wordsBadge" hidden></i></button>
+  </nav>
 </div>
 
 <div class="sheet" id="topicSheet" hidden>
@@ -366,7 +415,7 @@ function putMeta() {
 }
 const wordTimers = new Map();
 function putWord(w) {
-  w.updated = Date.now(); saveLocal();
+  w.updated = Date.now(); saveLocal(); renderTabs();
   if (!col) return;
   clearTimeout(wordTimers.get(w.id));
   wordTimers.set(w.id, setTimeout(() => { wordTimers.delete(w.id); col.doc("word_" + w.id).set(w).catch((e) => dbg("word_save_error", { code: String(e?.code || "") })); }, 600));
@@ -629,7 +678,9 @@ function openTopic(t, quiet) {
   if (c && interviewOver(c) && c.report && !quiet) c = null; // a finished and scored interview: the next one starts fresh
   if (!c) c = newChat(t);
   chat = c;
-  state.settings.lastTopic = t.id; state.settings.lastOwn = t.id === "own" ? c.id : null;
+  state.settings.lastTopic = t.id;
+  if (t.id === "own") state.settings.lastOwn = c.id;
+  if (c.article) state.settings.lastStory = t.id; else state.settings.lastTalk = t.id; // each tab comes back to where it was
   putMeta();
   $("topicName").textContent = (c.topic.em || "💬") + " " + c.topic.name;
   renderChat();
@@ -637,14 +688,16 @@ function openTopic(t, quiet) {
     const q = lastQuestion(c.turns.filter((x) => x.role === "assistant").pop()?.content || "") || splitSpeaker(c.topic.open).text;
     const line = (c.kind === "interview" ? "[Chairman] Welcome back. Let us continue. " : "Welcome back! Let's continue. ") + q;
     c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c);
-    daySep(Date.now()); addTutor(line);
+    if (!c.article || storyView(c) === "talk") { daySep(Date.now()); addTutor(line); }
   }
   setState("idle");
 }
 function daySep(t) { const d = document.createElement("div"); d.className = "daysep"; d.textContent = new Date(t).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "numeric", minute: "2-digit" }); $("msgs").append(d); }
 function renderChat() {
   const c = chat; $("msgs").innerHTML = "";
+  const reading = !!c.article && storyView(c) !== "talk";
   if (c.article) $("msgs").append(articleCard(c));
+  if (reading) { applyDock(); $("main").scrollTop = 0; return; }
   let prevAt = c.started || 0;
   c.turns.forEach((tn, i) => {
     if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
@@ -658,8 +711,7 @@ function renderChat() {
     }
   });
   if (interviewOver(c)) boardDone(c);
-  if (c.article && !c.turns.some((x) => x.role === "user")) $("main").scrollTop = 0; // a new story: start with its words
-  else scrollDown();
+  applyDock(); scrollDown();
 }
 function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
 function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
@@ -668,7 +720,9 @@ function addTutor(line) {
   const { who, text } = splitSpeaker(line);
   if (who) { const l = document.createElement("div"); l.className = "who"; l.textContent = who; w.append(l); }
   const b = document.createElement("div"); b.className = "bubble"; b.textContent = text; w.append(b);
-  const tools = document.createElement("div"); tools.className = "tools";
+  b.title = "Tap to hear it again"; b.onclick = () => { primeTTS(); speakLineAnyway(line); };
+  document.querySelectorAll("#msgs .msg.tutor .say").forEach((x) => x.remove());
+  const tools = document.createElement("div"); tools.className = "tools say";
   tools.append(tool("🔊 Again", () => { primeTTS(); speakLineAnyway(line); }), tool("🐢 Slow", () => { primeTTS(); speakLineAnyway(line, 0.6); }));
   w.append(tools); $("msgs").append(w); scrollDown();
 }
@@ -825,7 +879,7 @@ function boardDone(c) {
   d.append("The interview is finished. ");
   if (!c.report) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my feedback"; b.onclick = () => interviewReport(c, b); d.append(b); }
   const n = document.createElement("button"); n.type = "button"; n.className = "btn"; n.textContent = "Start a new interview";
-  n.onclick = () => { stopLoop(); hush(); chat = newChat(TOPICS.find((x) => x.id === "interview")); state.settings.lastTopic = "interview"; putMeta(); renderChat(); setState("idle"); };
+  n.onclick = () => { stopLoop(); hush(); chat = newChat(TOPICS.find((x) => x.id === "interview")); state.settings.lastTopic = state.settings.lastTalk = "interview"; putMeta(); renderChat(); setState("idle"); };
   d.append(n); $("msgs").append(d);
   if (c.report) $("msgs").append(reportCard(c));
   scrollDown();
@@ -926,13 +980,46 @@ const QUESTIONS = [
 const PLAN_FALLBACK = ["Start: In my opinion, …", "Reason: The main reason is …", "Example: For example, …", "End: So, I believe …"];
 let mode = "chat", minRec = null, minRunning = false, minStartAt = 0, minTimer = 0, minSR = null, minBase = "", minBusy = false, minIdea = -1;
 const minuteRecord = (q) => state.chats.find((c) => c.kind === "minute" && c.topic?.name === q) || null;
-// The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge; nothing on the newspaper page.
+// The bottom bar: the talk button and the typing box in a chat; the start/finish button in the challenge;
+// nothing on the newspaper and word pages, or while reading a story. Then the four tabs.
 function applyDock() {
   const minute = mode === "minute";
-  $("dock").hidden = mode === "news" || mode === "words";
+  $("dock").hidden = mode === "news" || mode === "words" || (mode === "chat" && !!chat?.article && storyView(chat) !== "talk");
+  renderTabs();
   $("orbRow").hidden = !minute && !canListen;
   $("typeRow").hidden = minute || canListen;
   $("typeBtn").hidden = minute || !canListen;
+}
+const TOOL_KINDS = new Set(["minute", "news", "words"]);
+const currentTab = () => (mode === "minute" ? "minute" : mode === "news" ? "news" : mode === "words" ? "words" : chat?.article ? "news" : "talk");
+function talkTopic() {
+  const id = state.settings.lastTalk || "free";
+  if (id === "own") { const c = state.chats.find((x) => x.id === state.settings.lastOwn && x.topic?.id === "own"); if (c) return c.topic; }
+  return TOPICS.find((t) => t.id === id && !TOOL_KINDS.has(t.kind)) || TOPICS[0];
+}
+function renderTabs() {
+  const cur = currentTab();
+  document.querySelectorAll("#tabbar button").forEach((b) => { if (b.dataset.tab === cur) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const due = dueWords().length, badge = $("wordsBadge"); badge.hidden = !due; badge.textContent = due > 99 ? "99+" : String(due);
+  const talk = cur === "talk"; $("topicBtn").disabled = !talk; $("topicCaret").hidden = !talk; // the topic list is for conversations
+}
+// A tab opens where it was left; tapping the tab you are on goes back to its first page.
+function goTab(tab) {
+  const here = currentTab();
+  if (tab === "talk") { if (here !== "talk") openTopic(talkTopic()); }
+  else if (tab === "minute") { if (here !== "minute") openTopic(TOPICS.find((t) => t.kind === "minute")); }
+  else if (tab === "news") {
+    const story = state.chats.find((c) => c.article && c.topic?.id === state.settings.lastStory);
+    if (here === "news" || !story) { if (mode !== "news") openTopic(NEWS); } else openTopic(story.topic);
+  } else if (tab === "words") { if (here !== "words" || wordsView !== "home") openTopic(MYWORDS); }
+}
+// Tips that can be closed for good.
+function tip(key, text) {
+  if (state.settings.tips?.[key]) return null;
+  const d = el("div", "tipbox"); d.append(el("span", "", "💡 " + text));
+  const x = el("button", "x", "✕"); x.type = "button"; x.setAttribute("aria-label", "Hide this tip");
+  x.onclick = () => { state.settings.tips = { ...state.settings.tips, [key]: true }; putMeta(); d.remove(); };
+  d.append(x); return d;
 }
 function openMinute(q) {
   mode = "minute";
@@ -1140,7 +1227,6 @@ function section(cls, label) {
 function renderNews() {
   $("msgs").innerHTML = "";
   section("").id = "newsStatus";
-  $("msgs").append(topicRow("⭐", "My words", myWordsLine(), 0, false, () => openTopic(MYWORDS)));
   if (!inClaude) { section("brain").id = "headlines"; renderHeadlines(); } // only Gemini can search today's news
   const add = section("brain", "📰 Add a news story");
   add.insertAdjacentHTML("beforeend", `<p class="hint" style="text-align:left;margin:0">Take a screenshot of one story in a newspaper or magazine, then add it here. Mam makes it simple, and then you talk about it with her.</p>
@@ -1341,26 +1427,24 @@ function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.
 function articleCard(c) {
   const a = c.article, vocab = vocabOf(a), paras = Array.isArray(a.paras) ? a.paras : [];
   const d = el("div", "report art");
-  d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><div class="css"></div><div class="tabs" role="tablist"></div><div class="tabbody"></div><p class="hint" style="text-align:left;margin:0">Then talk about it with Mam below ↓</p>';
+  d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><div class="css"></div><div class="tabs" role="tablist"></div><div class="tabbody"></div>';
   d.querySelector(".back").append(tool("📰 All news", () => openTopic(NEWS)));
   d.querySelector(".aem").textContent = a.emoji || "📰";
   d.querySelector("strong").textContent = a.title;
   d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
   d.querySelector(".css").textContent = a.css && isEnglish(a.css) ? "🎯 For CSS: " + a.css : "";
   const parts = (a.sections || []).length;
-  const tabs = [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")], ["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"]];
-  const bar = d.querySelector(".tabs"), body = d.querySelector(".tabbody");
-  const show = (k) => {
-    artTab.set(c.id, k);
-    bar.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.k === k)));
-    body.innerHTML = "";
-    (k === "words" ? wordsTab : k === "orig" ? originalTab : storyTab)(c, body);
-  };
-  tabs.forEach(([k, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.k = k; b.onclick = () => show(k); bar.append(b); });
-  const want = artTab.get(c.id);
-  show(tabs.some(([k]) => k === want) ? want : paras.length ? "orig" : vocab.length ? "words" : "story");
+  const tabs = [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")], ["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple"], ["talk", "💬 Talk"]];
+  const bar = d.querySelector(".tabs"), body = d.querySelector(".tabbody"), k = storyView(c);
+  const show = (x) => { if (x === storyView(c)) return; artTab.set(c.id, x); stopLoop(); hush(); renderChat(); };
+  tabs.forEach(([x, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.k = x; b.setAttribute("aria-selected", String(x === k)); b.onclick = () => show(x); bar.append(b); });
+  if (k === "talk") { body.remove(); d.classList.add("compact"); return d; } // talking: a small header, the chat gets the room
+  (k === "words" ? wordsTab : k === "orig" ? originalTab : storyTab)(c, body);
+  const talk = el("button", "btn primary", "💬 Talk about it with Mam"); talk.type = "button"; talk.onclick = () => show("talk"); d.append(talk);
   return d;
 }
+// Which tab of a story is open: the original text first (or the words, for older stories).
+const storyView = (c) => artTab.get(c.id) || (c.article.paras?.length ? "orig" : vocabOf(c.article).length ? "words" : "story");
 function storyTab(c, body) {
   const a = c.article;
   body.append(el("p", "better", a.story));
@@ -1369,7 +1453,7 @@ function storyTab(c, body) {
 function wordsTab(c, body) {
   const vocab = vocabOf(c.article), mine = vocab.filter((w) => w.picked), mams = vocab.filter((w) => !w.picked);
   if (!vocab.length) { body.append(el("p", "hint", "No words yet. Tap any word in the Original tab to ask Mam about it.")); return; }
-  body.append(el("p", "hint", "Tap a word to ask Mam what it means and how to learn it. Tap ☆ to save it to ⭐ My words."));
+  const tp = tip("words", "Tap a word to ask Mam what it means and how to learn it. Tap ☆ to save it to ⭐ My words."); if (tp) body.append(tp);
   const group = (label, list) => { if (list.length) body.append(el("div", "lbl", label + " · " + list.length)); list.forEach(row); };
   const row = (w) => {
     const row = el("div", "vrow");
@@ -1477,7 +1561,8 @@ function originalTab(c, body) {
     const b = el("button", "btn primary", "📰 Add the story again"); b.type = "button"; b.onclick = () => openTopic(NEWS); wrap.append(b);
     return;
   }
-  wrap.append(el("p", "hint", a.from ? "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it." : "Read the story's own words. Tap any word you think is hard: Mam explains it under the paragraph, and you can save it. For a phrase, tap its first word, then ＋ Word after."));
+  if (a.from) wrap.append(el("p", "hint", "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it."));
+  else { const tp = tip("orig", "Tap any word you think is hard: Mam explains it under the paragraph, and you can save it. For a phrase, tap its first word, then ＋ Word after."); if (tp) wrap.append(tp); }
   const bar = el("div", "tools"), toggle = el("button", "mini"); toggle.type = "button";
   const paint = () => { wrap.classList.toggle("picks", !!state.settings.showPicks); toggle.textContent = state.settings.showPicks ? "🙈 Hide Mam's hard words" : "💡 Show Mam's hard words"; };
   toggle.onclick = () => { state.settings.showPicks = !state.settings.showPicks; putMeta(); paint(); };
@@ -1683,7 +1768,7 @@ function renderMyWords() {
     const w = findSaved(v) || saveWord({ word: v }, null);
     renderMyWords(); openWordRow(w);
   };
-  const box = section("newslist"); box.id = "wordList";
+  const box = section(list.length ? "brain" : "newslist", list.length ? "Your words" : ""); box.id = "wordList";
   const status = (w) => ((w.box || 0) >= 4 ? "known ✓" : (w.box || 0) >= 1 ? "learning" : "new") + ((w.due || 0) <= Date.now() ? " · review today" : "");
   list.slice().sort((a, b) => (b.added || 0) - (a.added || 0)).forEach((w) => {
     const row = el("div", "vrow"); row.dataset.id = w.id;
@@ -1780,9 +1865,7 @@ function topicRow(em, name, desc, n, on, fn) {
 $("topicBtn").onclick = () => {
   const box = $("topicList"); box.innerHTML = "";
   const answers = (c) => (c?.turns ? c.turns.filter((x) => x.role === "user").length : 0);
-  const count = (t) => t.kind === "minute" ? state.chats.filter((c) => c.kind === "minute").reduce((n, c) => n + (c.attempts || []).length, 0) : t.kind === "news" ? articles().length : t.kind === "words" ? 0 : answers(findThread(t));
-  const isOn = (t) => t.kind === "minute" || t.kind === "news" || t.kind === "words" ? mode === t.kind || (t.kind === "news" && mode === "chat" && !!chat?.article) : mode === "chat" && chat?.topic?.id === t.id;
-  TOPICS.forEach((t) => box.append(topicRow(t.em, t.name, t.kind === "words" ? myWordsLine() : t.desc, count(t), isOn(t), () => { $("topicSheet").hidden = true; openTopic(t); })));
+  TOPICS.filter((t) => !TOOL_KINDS.has(t.kind)).forEach((t) => box.append(topicRow(t.em, t.name, t.desc, answers(findThread(t)), mode === "chat" && chat?.topic?.id === t.id, () => { $("topicSheet").hidden = true; openTopic(t); })));
   state.chats.filter((c) => c.topic?.id === "own").slice(0, 5).forEach((c) => box.append(topicRow("✏️", c.topic.name, "Your own topic", answers(c), chat === c, () => { $("topicSheet").hidden = true; openTopic(c.topic); })));
   $("topicSheet").hidden = false;
 };
@@ -1869,7 +1952,17 @@ if (!canListen) { // no microphone here (Claude blocks it): just the typing box,
   $("typeRow").prepend($("voiceBtn"));
   $("hint").hidden = false;
   $("hint").innerHTML = inClaude ? 'Tap 🎤 on your keyboard to speak. For hands-free talking, <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">open the voice version</a>.' : "This browser has no speech recognition: type, or use your keyboard's 🎤.";
+  if (state.settings.tips?.dock) $("hint").hidden = true;
+  const x = document.createElement("button"); x.type = "button"; x.className = "x"; x.textContent = "✕"; x.setAttribute("aria-label", "Hide this tip");
+  x.onclick = () => { state.settings.tips = { ...state.settings.tips, dock: true }; putMeta(); $("hint").hidden = true; };
+  $("hint").append(" ", x);
 }
+document.querySelectorAll("#tabbar button").forEach((b) => { b.onclick = () => { primeTTS(); goTab(b.dataset.tab); }; });
+// While the phone keyboard is open, the tabs step aside so the typing box has room.
+let fullH = window.innerHeight;
+const kbCheck = () => { fullH = Math.max(fullH, window.innerHeight); document.body.classList.toggle("kb", (window.visualViewport?.height || window.innerHeight) < fullH * 0.75); };
+window.visualViewport?.addEventListener("resize", kbCheck); window.addEventListener("resize", kbCheck);
+window.addEventListener("orientationchange", () => { fullH = 0; setTimeout(kbCheck, 400); });
 openTopic(currentTopic(), true);
 // Keys saved before the fast talking model existed get it now.
 aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = geminiAI(); } catch {} } });
