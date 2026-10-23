@@ -139,9 +139,30 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .arthead { display: flex; gap: 12px; align-items: center; }
 .arthead .aem { font-size: 34px; line-height: 1; flex: none; }
 .arthead strong { font-family: var(--display); font-size: 20px; line-height: 1.2; display: block; }
-.word { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: 15px; }
-.word span { min-width: 0; }
-.word em { display: block; font-style: normal; color: var(--muted); font-size: 13px; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.vinfo .alt, .analysis .alt, .vout .alt { display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+.vinfo .alt span, .analysis .alt span, .vout .alt span { min-width: 0; }
+.tab { border: 1px solid var(--line); background: var(--bg); border-radius: 99px; padding: 8px 12px; min-height: 40px; font-size: 14px; font-weight: 700; white-space: nowrap; flex: none; }
+.tab[aria-selected="true"] { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+.tabbody { display: flex; flex-direction: column; gap: 8px; }
+.tabbody > .hint { text-align: left; margin: 0; }
+.vrow { border-bottom: 1px solid var(--line); }
+.vrow:last-child { border-bottom: 0; }
+.vword { display: block; width: 100%; text-align: left; border: 0; background: none; padding: 10px 2px; min-height: 44px; }
+.vword b { font-size: 16px; }
+.vword small { color: var(--muted); font-size: 12px; }
+.vword span { display: block; font-size: 14px; color: var(--muted); }
+.vinfo { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
+.vline b { font-weight: 700; }
+.vout { display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+.vout:empty { display: none; }
+.sec { display: flex; flex-direction: column; gap: 2px; border-left: 4px solid var(--accent); padding: 4px 0 4px 10px; margin-top: 6px; }
+.sec strong { font-family: var(--display); font-size: 17px; }
+.sec small { font-size: 14px; color: var(--muted); }
+.para { display: flex; flex-direction: column; gap: 6px; }
+.ptext { margin: 0; font-size: 16px; line-height: 1.6; }
+button.vw { font: inherit; color: inherit; border: 0; padding: 0 2px; margin: 0; background: rgb(227 154 45 / 22%); border-radius: 4px; text-decoration: underline dotted; text-underline-offset: 3px; }
+.analysis { background: var(--bg); border: 1px solid var(--line); border-left: 4px solid var(--sun); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; font-size: 15px; }
 
 /* sheets: topics and settings */
 .sheet { position: fixed; inset: 0; z-index: 30; background: rgb(0 0 0 / 40%); display: flex; align-items: flex-end; justify-content: center; }
@@ -586,7 +607,8 @@ function renderChat() {
     }
   });
   if (interviewOver(c)) boardDone(c);
-  scrollDown();
+  if (c.article && !c.turns.some((x) => x.role === "user")) $("main").scrollTop = 0; // a new story: start with its words
+  else scrollDown();
 }
 function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
 function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
@@ -1229,18 +1251,24 @@ async function readNews(input) {
     if (imgs.length && !lim?.images) { newsStatus("Pictures can't be sent from this view. Tap 📋 Paste text and paste the story instead.", true); return; }
     if (imgs.length) imgs = imgs.slice(0, lim.images.maxCount);
     if (myCtl.signal.aborted) throw { code: "cancelled" };
-    newsStatus("Mam is reading the story… this can take up to a minute.", false, true);
-    const r = await askJson(`You help a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam and practising spoken English. Write everything in simple English only, never Urdu. Below is a news story${input.source ? ` from "${input.source}"` : ""}${imgs.length ? ", given as images (screenshots or photos of a newspaper or magazine page)" : ""}${text ? (imgs.length ? " and text" : ", given as text") : ""}. If there are several stories, choose the one that matters most for CSS.
+    newsStatus("Mam is reading the story and finding the hard words… this can take up to a minute.", false, true);
+    const r = await askJson(`You help a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam and practising English. Write your own words in simple English only, never Urdu. Below is a news story${input.source ? ` from "${input.source}"` : ""}${imgs.length ? ", given as images (screenshots or photos of a newspaper or magazine page)" : ""}${text ? (imgs.length ? " and text" : ", given as text") : ""}. If there are several stories, choose the one that matters most for CSS.
 Reply with ONLY JSON:
-{"title": "short headline in simple English", "emoji": "1 or 2 emoji that picture the story", "source": "the newspaper or magazine name if you can tell, else empty", "story": "the story retold in 5 to 8 simple English sentences for level ${level()}, using only facts from the material", "css": "one short sentence: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.)", "words": [{"word": "an important word from the story", "meaning": "very simple meaning, at most 8 words", "example": "a short example sentence"}], "questions": ["3 simple questions to talk about the story and the learner's opinion"]}
-Give exactly 5 words. If there is no news story in the material, reply {"title": ""}.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
+{"title": "short headline in simple English", "emoji": "1 or 2 emoji that picture the story", "source": "the newspaper or magazine name if you can tell, else empty", "story": "the story retold in 5 to 8 simple English sentences for level ${level()}, using only facts from the material", "css": "one short sentence: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.)", "questions": ["3 simple questions to talk about the story and the learner's opinion"],
+"paragraphs": ["the ORIGINAL story copied exactly, word for word, one string per paragraph"],
+"sections": [{"title": "a short name for this part, at most 5 words", "gist": "one simple sentence: what this part says", "from": the number of its first paragraph (the first paragraph is 1), "to": the number of its last paragraph}],
+"vocab": [{"word": "an advanced word or phrase exactly as it is written in the original", "type": "noun, verb, adjective, adverb, phrase or idiom", "meaning": "very simple meaning in this story, at most 10 words"}]}
+Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions, bylines and other stories); if it is longer than 1,200 words, copy the first 1,200 words. "sections" divides the paragraphs, in order, into 2 to 6 parts that cover every paragraph (1 part if there are only 1 or 2 paragraphs). "vocab" lists EVERY advanced word and phrase in the original that a ${level()} learner may not know (B2 level and above, including idioms and phrasal verbs), in the order they appear, up to 40. If there is no news story in the material, reply {"title": ""}.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
     if (!r?.title || !r?.story) { newsStatus("Mam could not find a news story there. Try a clear screenshot of one story.", true); return; }
     const now = Date.now(), id = "n" + now.toString(36);
+    const paras = (Array.isArray(r.paragraphs) ? r.paragraphs : []).map((x) => String(x || "").trim()).filter(Boolean).slice(0, 60).map((x) => ({ text: x }));
+    const seen = new Set();
     const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), story: String(r.story), css: String(r.css || ""), from: input.from || "",
-      words: (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word).slice(0, 6).map((w) => ({ word: String(w.word), meaning: String(w.meaning || ""), example: String(w.example || "") })),
-      questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String) };
+      questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), paras,
+      sections: (Array.isArray(r.sections) ? r.sections : []).map((x) => ({ title: String(x?.title || ""), gist: String(x?.gist || ""), from: parseInt(x?.from) || 0, to: parseInt(x?.to) || 0 })).filter((x) => x.from >= 1 && x.from <= paras.length).slice(0, 8),
+      vocab: (Array.isArray(r.vocab) ? r.vocab : []).filter((w) => w?.word && !seen.has(String(w.word).toLowerCase()) && seen.add(String(w.word).toLowerCase())).slice(0, 40).map((w) => ({ word: String(w.word).trim(), type: String(w.type || ""), meaning: String(w.meaning || "") })) };
     const t = { id: "news:" + id, em: "📰", name: art.title, desc: "a news story" + (art.source ? " from " + art.source : ""), open: "Let's talk about this story. " + (art.questions[0] || "What is this news about?"),
-      extra: `You and the student are talking about this news story: "${art.title}". The story in simple English: ${art.story} Ask about the story and the student's opinion, one question at a time, for example: ${art.questions.join(" | ")}. Help the student use these words: ${art.words.map((w) => w.word).join(", ")}. Use only the facts in the story; never invent new facts, dates or numbers.` };
+      extra: `You and the student are talking about this news story: "${art.title}". The story in simple English: ${art.story} Ask about the story and the student's opinion, one question at a time, for example: ${art.questions.join(" | ")}. The student is learning these words from the story; help them use some: ${art.vocab.slice(0, 15).map((w) => w.word).join(", ")}. If they ask what a word means, explain it simply. Use only the facts in the story; never invent new facts, dates or numbers.` };
     const c = newChat(t); c.id = id; c.article = art;
     putChat(c, true);
     newsStatus("");
@@ -1251,28 +1279,195 @@ Give exactly 5 words. If there is no news story in the material, reply {"title":
     else newsStatus(e?.code === "cancelled" ? "Stopped. Add the story again when you are ready." : errText(e), true);
   } finally { clearTimeout(mt); newsBusy = false; if (newsCtl === myCtl) newsCtl = null; }
 }
-// The story sits on top of its conversation: listen to it, learn its words, then answer Mam.
+// The story sits on top of its conversation, in three tabs: its hard words (first), the simple story,
+// and the original text in parts, where every paragraph can be analysed. Then the learner talks with Mam below.
+const artTab = new Map(), loadingInfo = new WeakSet();
+const escRe = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const arr = (x, n) => (Array.isArray(x) ? x : []).map((v) => String(v ?? "")).filter(Boolean).slice(0, n);
+const vocabOf = (a) => (a.vocab || a.words || []).filter((w) => w?.word);
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 function articleCard(c) {
-  const a = c.article;
-  const d = document.createElement("div"); d.className = "report art";
-  d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><p class="better"></p><div class="tools st"></div><div class="wl"></div><div class="css"></div>';
+  const a = c.article, vocab = vocabOf(a), paras = Array.isArray(a.paras) ? a.paras : [];
+  const d = el("div", "report art");
+  d.innerHTML = '<div class="tools back"></div><div class="arthead"><span class="aem"></span><div><strong></strong><div class="when"></div></div></div><div class="css"></div><div class="tabs" role="tablist"></div><div class="tabbody"></div><p class="hint" style="text-align:left;margin:0">Then talk about it with Mam below ↓</p>';
   d.querySelector(".back").append(tool("📰 All news", () => openTopic(NEWS)));
   d.querySelector(".aem").textContent = a.emoji || "📰";
   d.querySelector("strong").textContent = a.title;
   d.querySelector(".when").textContent = [a.source, new Date(c.started).toLocaleDateString(undefined, { weekday: "short", day: "numeric", month: "short" })].filter(Boolean).join(" · ");
-  d.querySelector(".better").textContent = a.story;
-  d.querySelector(".st").append(tool("🔊 Listen", () => { primeTTS(); speak(a.story, 0.85); }), tool("🐢 Slow", () => { primeTTS(); speak(a.story, 0.65); }));
-  const words = (a.words || []).filter((w) => w?.word), wl = d.querySelector(".wl");
-  if (words.length) {
-    const l = document.createElement("div"); l.className = "lbl"; l.textContent = "New words"; wl.append(l);
-    words.forEach((w) => {
-      const row = document.createElement("div"); row.className = "word"; row.innerHTML = "<span><b></b> <i></i><em></em></span>";
-      row.querySelector("b").textContent = w.word; row.querySelector("i").textContent = isEnglish(w.meaning) ? w.meaning : ""; row.querySelector("em").textContent = w.example || "";
-      row.append(tool("🔊", () => { primeTTS(); speak(w.word + ". " + (w.example || ""), 0.8); })); wl.append(row);
-    });
-  }
   d.querySelector(".css").textContent = a.css && isEnglish(a.css) ? "🎯 For CSS: " + a.css : "";
+  const parts = (a.sections || []).length;
+  const tabs = [["words", "🔤 Words · " + vocab.length], ["story", "📖 Simple story"], ...(paras.length ? [["orig", "📄 Original" + (parts > 1 ? " · " + parts + " parts" : "")]] : [])];
+  const bar = d.querySelector(".tabs"), body = d.querySelector(".tabbody");
+  const show = (k) => {
+    artTab.set(c.id, k);
+    bar.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.k === k)));
+    body.innerHTML = "";
+    (k === "words" ? wordsTab : k === "orig" ? originalTab : storyTab)(c, body);
+  };
+  tabs.forEach(([k, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.dataset.k = k; b.onclick = () => show(k); bar.append(b); });
+  const want = artTab.get(c.id);
+  show(tabs.some(([k]) => k === want) ? want : vocab.length ? "words" : "story");
   return d;
+}
+function storyTab(c, body) {
+  const a = c.article;
+  body.append(el("p", "better", a.story));
+  const t = el("div", "tools"); t.append(tool("🔊 Listen", () => { primeTTS(); speak(a.story, 0.85); }), tool("🐢 Slow", () => { primeTTS(); speak(a.story, 0.65); })); body.append(t);
+}
+function wordsTab(c, body) {
+  const vocab = vocabOf(c.article);
+  if (!vocab.length) { body.append(el("p", "hint", "Mam found no hard words in this story.")); return; }
+  body.append(el("p", "hint", "Every advanced word in the story. Tap one to ask Mam what it means and how to learn it."));
+  vocab.forEach((w) => {
+    const row = el("div", "vrow");
+    const b = el("button", "vword"); b.type = "button";
+    b.append(el("b", "", w.word), el("small", "", w.type ? " " + w.type : ""), el("span", "", isEnglish(w.meaning) ? w.meaning : ""));
+    const box = el("div", "vinfo"); box.hidden = true;
+    b.onclick = () => { box.hidden = !box.hidden; if (!box.hidden) wordInfo(c, w, box); };
+    row.append(b, box); body.append(row);
+  });
+}
+// The sentence of the original (or of the simple story) that uses the word.
+function sentenceWith(a, word) {
+  const re = new RegExp(escRe(word), "i");
+  for (const t of [...(a.paras || []).map((p) => p.text), a.story || ""]) {
+    if (!re.test(t)) continue;
+    return ((t.match(/[^.!?]+[.!?]*/g) || [t]).find((x) => re.test(x)) || t).trim();
+  }
+  return "";
+}
+// A word's card: how to say it, what it means here, examples, related words, and how to learn it (with practice).
+async function wordInfo(c, w, box) {
+  box.innerHTML = "";
+  if (!w.info) {
+    const wait = el("p", "typing", "Mam is explaining “" + w.word + "”…"); box.append(wait);
+    if (loadingInfo.has(w)) return;
+    await aiReady;
+    if (!sample) { wait.textContent = inClaude ? "Mam can't reach Claude from this view." : "Add your free Gemini key in Settings (⚙) first."; return; }
+    loadingInfo.add(w);
+    try {
+      const r = await askJson(`You are an English teacher for a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam. Explain the word or phrase "${w.word}" as it is used in this sentence from a news story: "${sentenceWith(c.article, w.word)}". Simple English only, never Urdu.
+Reply with ONLY JSON: {"say": "how to pronounce it in simple syllables, stressed part in capitals, like ek-SPLOY-tay-shun", "meaning": "its simple meaning in this story", "examples": ["2 short new example sentences"], "synonyms": ["up to 3 similar words, simpler ones first"], "opposites": ["up to 2 opposite words, or none"], "family": ["other forms of the word with their type, like exploit (verb)"], "partners": ["up to 3 words often used with it, like child exploitation"], "remember": "one memory trick to learn it", "css": "one sentence: how to use it in a CSS essay or interview"}`, { modelTier: "quick" });
+      w.info = { say: String(r?.say || ""), meaning: String(r?.meaning || w.meaning || ""), examples: arr(r?.examples, 3), synonyms: arr(r?.synonyms, 4), opposites: arr(r?.opposites, 3), family: arr(r?.family, 4), partners: arr(r?.partners, 4), remember: String(r?.remember || ""), css: String(r?.css || "") };
+      putChat(c, false, true);
+    } catch (e) {
+      wait.textContent = errText(e) || "Stopped."; box.append(tool("↻ Try again", () => wordInfo(c, w, box))); return;
+    } finally { loadingInfo.delete(w); }
+    if (!box.isConnected) return;
+    box.innerHTML = "";
+  }
+  const i = w.info, line = (label, text) => { if (!text || !isEnglish(text)) return; const p = el("div", "vline"); p.append(el("b", "", label + " "), text); box.append(p); };
+  const head = el("div", "tools"); head.append(tool("🔊 " + w.word, () => { primeTTS(); speak(w.word, 0.75); }), tool("🐢 Slow", () => { primeTTS(); speak(w.word, 0.5); })); box.append(head);
+  line("Say it:", i.say); line("Meaning:", i.meaning);
+  const inText = sentenceWith(c.article, w.word); if (inText) line("In the story:", "“" + inText + "”");
+  if (i.examples.length) { box.append(el("div", "lbl", "Examples")); i.examples.forEach((x) => { const r = el("div", "alt"); r.append(el("span", "", x), speakBtn(x)); box.append(r); }); }
+  line("Similar:", i.synonyms.join(", ")); line("Opposite:", i.opposites.join(", "));
+  line("Word family:", i.family.join(", ")); line("Used with:", i.partners.join(", "));
+  box.append(el("div", "lbl", "How to learn it"));
+  const steps = el("ol", "plan");
+  steps.append(el("li", "", "Listen and say it three times: " + (i.say || w.word) + "."));
+  if (i.remember && isEnglish(i.remember)) steps.append(el("li", "", "💡 " + i.remember));
+  steps.append(el("li", "", "Use it in your own sentence below, then use it when you talk with Mam."));
+  box.append(steps);
+  if (i.css && isEnglish(i.css)) box.append(el("div", "vline", "🎯 " + i.css));
+  const ta = el("textarea", "answerbox"); ta.rows = 2; ta.style.minHeight = "64px"; ta.placeholder = "Write a sentence with “" + w.word + "”, or ask Mam a question about it…"; ta.setAttribute("aria-label", "Your sentence or question");
+  const out = el("div", "vout");
+  const act = el("div", "tools");
+  const go = (label, cls, fn) => { const b = el("button", "btn" + (cls ? " " + cls : ""), label); b.type = "button"; b.onclick = async () => { const v = ta.value.trim(); if (!v) { ta.focus(); return; } b.disabled = true; try { await fn(v); } finally { b.disabled = false; } }; act.append(b); };
+  go("✓ Check my sentence", "primary", (v) => practiseWord(c, w, v, out));
+  go("❓ Ask Mam", "", (v) => askAboutWord(c, w, v, out));
+  box.append(ta, act, out);
+}
+async function practiseWord(c, w, s, out) {
+  out.textContent = "Mam is reading your sentence…";
+  await aiReady; if (!sample) { out.textContent = "Mam is not connected yet."; return; }
+  try {
+    const r = await askJson(`A learner from Pakistan (English level ${level()}) is practising the word "${w.word}" (meaning: ${w.info?.meaning || w.meaning}). They wrote this sentence: "${s}". Simple English only, never Urdu.
+Reply with ONLY JSON: {"used": true if they used the word or a form of it, "correct": true if the sentence is correct and the word is used well, "fixed": "their sentence corrected (the same if it is already correct)", "note": "one short, kind comment"}`, { modelTier: "quick", cache: false });
+    out.innerHTML = "";
+    const ok = !!r?.correct && r?.used !== false;
+    out.append(el("div", ok ? "r" : "", ok ? "✓ Great sentence!" : r?.used === false ? "Try again, and use “" + w.word + "” in it." : "Almost! A better way:"));
+    if (!ok && r?.fixed && isEnglish(r.fixed)) { const f = el("div", "alt"); f.append(el("span", "r", String(r.fixed)), speakBtn(r.fixed)); out.append(f); }
+    if (r?.note && isEnglish(r.note)) out.append(el("div", "", String(r.note)));
+  } catch (e) { out.textContent = errText(e) || "Stopped."; }
+}
+async function askAboutWord(c, w, q, out) {
+  out.textContent = "Mam is thinking…";
+  await aiReady; if (!sample) { out.textContent = "Mam is not connected yet."; return; }
+  try {
+    const { text } = await sample(`A learner from Pakistan (English level ${level()}) is learning the word "${w.word}" from a news story, where it is used in: "${sentenceWith(c.article, w.word)}". They ask: "${q}". Answer in 1 to 4 short sentences of simple English, never Urdu. Plain text only.`, { modelTier: "quick", cache: false });
+    out.innerHTML = ""; const r = el("div", "alt"); r.append(el("span", "", text.trim()), speakBtn(text.trim())); out.append(r);
+  } catch (e) { out.textContent = errText(e) || "Stopped."; }
+}
+// The original text, part by part. Hard words are marked (tap for the word's card); each paragraph can be analysed.
+function originalTab(c, body) {
+  const a = c.article, vocab = vocabOf(a), paras = a.paras || [];
+  if (a.from) body.append(el("p", "hint", "This is the short report Mam found in today's headlines, not the full article. For the full article, open the newspaper, take a screenshot and add it."));
+  else body.append(el("p", "hint", "The story's own words, in parts. Tap a marked word for its meaning, or analyse any paragraph."));
+  const secs = (a.sections || []).slice().sort((x, y) => x.from - y.from);
+  paras.forEach((p, i) => {
+    const k = secs.findIndex((x) => x.from === i + 1);
+    if (k >= 0) {
+      const h = el("div", "sec"); h.append(el("strong", "", "Part " + (k + 1) + " of " + secs.length + (secs[k].title ? " · " + secs[k].title : "")));
+      if (secs[k].gist && isEnglish(secs[k].gist)) h.append(el("small", "", secs[k].gist));
+      body.append(h);
+    }
+    const pd = el("div", "para"), pt = el("p", "ptext"), wbox = el("div", "vinfo"), abox = el("div", "analysis");
+    wbox.hidden = true; abox.hidden = !p.an;
+    markWords(pt, p.text, vocab, (w) => { wbox.hidden = false; wordInfo(c, w, wbox); wbox.prepend(el("div", "lbl", w.word)); });
+    const t = el("div", "tools");
+    const ab = tool("🔍 Analyse paragraph " + (i + 1), () => { if (!abox.hidden && p.an) { abox.hidden = true; return; } analysePara(c, p, abox, ab); });
+    t.append(ab, tool("🔊", () => { primeTTS(); speak(p.text, 0.85); }));
+    pd.append(pt, t, wbox, abox); body.append(pd);
+    if (p.an) renderAnalysis(p.an, abox);
+  });
+}
+function markWords(target, text, vocab, onPick) {
+  const list = vocab.map((w) => w.word.trim()).filter((x) => x.length > 2).sort((x, y) => y.length - x.length);
+  if (!list.length) { target.textContent = text; return; }
+  const re = new RegExp("(" + list.map(escRe).join("|") + ")", "gi");
+  let last = 0;
+  for (const m of text.matchAll(re)) {
+    if (/\w/.test(text[m.index - 1] || "") || /\w/.test(text[m.index + m[0].length] || "")) continue; // whole words only
+    const w = vocab.find((x) => x.word.trim().toLowerCase() === m[0].toLowerCase()); if (!w) continue;
+    target.append(text.slice(last, m.index));
+    const b = el("button", "vw", m[0]); b.type = "button"; b.onclick = () => onPick(w); target.append(b);
+    last = m.index + m[0].length;
+  }
+  target.append(text.slice(last));
+}
+async function analysePara(c, p, box, btn) {
+  box.hidden = false;
+  if (p.an) { renderAnalysis(p.an, box); return; }
+  box.innerHTML = ""; box.append(el("p", "typing", "Mam is analysing this paragraph…"));
+  await aiReady;
+  if (!sample) { box.firstChild.textContent = "Mam is not connected yet."; return; }
+  btn.disabled = true;
+  try {
+    const r = await askJson(`You are an English teacher helping a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam read the newspaper. Analyse this paragraph from the story "${c.article.title}"${c.article.source ? " (" + c.article.source + ")" : ""}. Write in simple English only, never Urdu.
+Paragraph: "${p.text}"
+Reply with ONLY JSON: {"main": "the main idea in one simple sentence", "simple": "the whole paragraph said again in simple English", "parts": [{"part": "what this part does, like Topic sentence, Background, Reason, Example, Result, Opinion or Conclusion", "text": "those words from the paragraph"}], "hard": {"sentence": "the hardest sentence, copied", "explain": "that sentence broken into small parts and explained simply"}, "tone": "the writer's tone in a few words, and why", "phrases": [{"phrase": "a useful phrase from the paragraph", "meaning": "its simple meaning"}], "css": "one tip: how a CSS candidate can use this paragraph (essay, précis or interview)"}
+"parts" has 2 to 5 items in order. "phrases" has up to 3 items.`, { modelTier: "quick" });
+    p.an = { main: String(r?.main || ""), simple: String(r?.simple || ""), tone: String(r?.tone || ""), css: String(r?.css || ""),
+      parts: (Array.isArray(r?.parts) ? r.parts : []).filter((x) => x?.text).slice(0, 6).map((x) => ({ part: String(x.part || ""), text: String(x.text) })),
+      hard: r?.hard?.sentence ? { sentence: String(r.hard.sentence), explain: String(r.hard.explain || "") } : null,
+      phrases: (Array.isArray(r?.phrases) ? r.phrases : []).filter((x) => x?.phrase).slice(0, 4).map((x) => ({ phrase: String(x.phrase), meaning: String(x.meaning || "") })) };
+    putChat(c, false, true);
+    if (box.isConnected) renderAnalysis(p.an, box);
+  } catch (e) {
+    box.innerHTML = ""; box.append(el("p", "status", errText(e) || "Stopped."), tool("↻ Try again", () => analysePara(c, p, box, btn)));
+  } finally { btn.disabled = false; }
+}
+function renderAnalysis(an, box) {
+  box.innerHTML = "";
+  const line = (label, text) => { if (!text || !isEnglish(text)) return; const p = el("div", "vline"); p.append(el("b", "", label + " "), text); box.append(p); };
+  line("🎯 Main idea:", an.main);
+  if (an.simple && isEnglish(an.simple)) { box.append(el("div", "lbl", "In simple English")); const r = el("div", "alt"); r.append(el("span", "", an.simple), speakBtn(an.simple)); box.append(r); }
+  if (an.parts.length) { box.append(el("div", "lbl", "How it is built")); an.parts.forEach((x) => { const r = el("div", "vline"); r.append(el("b", "", (x.part || "Part") + ": "), x.text); box.append(r); }); }
+  if (an.hard && isEnglish(an.hard.explain)) { box.append(el("div", "lbl", "The hardest sentence")); box.append(el("div", "vline", "“" + an.hard.sentence + "”"), el("div", "vline", an.hard.explain)); }
+  line("Tone:", an.tone);
+  if (an.phrases.length) { box.append(el("div", "lbl", "Useful phrases")); an.phrases.forEach((x) => { const r = el("div", "vline"); r.append(el("b", "", x.phrase + ": "), isEnglish(x.meaning) ? x.meaning : ""); box.append(r); }); }
+  line("🎯 For CSS:", an.css);
 }
 
 // ---------- typing ----------
