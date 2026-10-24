@@ -50,6 +50,8 @@
         { wrong: "Forest is", right: "Forests are", hint: "One forest, or forests in general?", why: "Use the plural for forests in general.", type: "plural" }];
       const fixedUp = /Every morning I/.test(learner);
       const r = { score: fixedUp ? 8 : 6, areas: { task: 7, organisation: 6, grammar: fixedUp ? 8 : 5, vocabulary: 6 }, mistakes: pool.filter((x) => learner.includes(x.wrong)), good: ["You answered the task.", "Your sentences are short and clear."], next: ["Add one more detail.", "Use time words like Then and After that."], better: "Every morning, I wake up at seven. Yesterday, I went to college by bus. My mother makes breakfast for me, and I enjoy it very much." };
+      if (/"structure": \{"used"/.test(prompt)) r.structure = { used: 3, total: 4, note: "You used I wish I had well in 3 sentences." };
+      if (/"structure": \{"ok"/.test(prompt)) r.structure = /Task \(Objective paragraph/.test(prompt) ? { ok: false, note: "An objective paragraph should not use I think or I feel." } : { ok: true, note: "It follows the plan well." };
       if (/Task \(Précis/.test(prompt)) Object.assign(r, { title_ok: false, copied: true, missed: ["The passage says trees also stop floods."] });
       if (/Task \(Comprehension/.test(prompt)) r.answers = [{ q: 1, ok: true, note: "Correct.", model: "Forests give us clean air, wood and food." }, { q: 2, ok: false, note: "You did not say why.", model: "Because people cut trees for wood and new houses." }];
       return JSON.stringify(r);

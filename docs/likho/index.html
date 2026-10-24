@@ -135,6 +135,13 @@ details[open] > summary::after { content: "▴"; }
 .passage { background: var(--paper); border: 1px solid var(--rim); border-radius: 14px; padding: 10px 12px; }
 .qs { margin: 0; padding-left: 22px; }
 
+/* lessons */
+.formula { font-family: var(--display); font-size: 17px; line-height: 1.5; background: var(--paper); border: 1px solid var(--rim); border-radius: 14px; padding: 10px 12px; }
+.ex { margin: 0; padding-left: 20px; font-size: 17px; line-height: 1.6; }
+b.hl { color: var(--accent); }
+.model { margin: 0; background: var(--paper); border: 1px solid var(--rim); border-left: 4px solid var(--accent); border-radius: 12px; padding: 10px 12px; line-height: 1.6; }
+.model.pre { white-space: pre-wrap; font-size: 15px; }
+
 /* the answer sheet: ruled lines and a red margin, like a CSS answer booklet */
 .editor { display: flex; flex-direction: column; gap: 8px; }
 .edhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
@@ -330,50 +337,116 @@ const PARA_WORDS = { A1: [50, 80], A2: [70, 100], B1: [100, 150], B2: [150, 200]
 const PASSAGE_WORDS = { A1: 150, A2: 200, B1: 250, B2: 320 };
 const band = (lv) => (lv === "B2" ? 2 : lv === "B1" ? 1 : 0);
 const KINDS = {
-  sent: { em: "✏️", name: "Sentences", desc: "3 to 5 sentences on an everyday topic", yours: "Your sentences" },
-  para: { em: "📄", name: "Paragraph", desc: "One paragraph with a clear main idea", yours: "Your paragraph" },
-  essay: { em: "🏛️", name: "CSS essay", desc: "Make an outline first, then write the essay", yours: "Your essay" },
-  precis: { em: "🗜️", name: "Précis", desc: "Shorten a passage to one third, in your own words", yours: "Your précis" },
-  comp: { em: "❓", name: "Comprehension", desc: "Read a passage, then answer questions about it", yours: "Your answers" },
+  free: { em: "📝", name: "Free writing", one: "Free writing", desc: "Write anything you like, and Mam corrects your grammar", yours: "Your writing" },
+  sent: { em: "✏️", name: "Sentences", one: "Sentences", desc: "Every kind of sentence, and every past, present and future structure", yours: "Your sentences" },
+  para: { em: "📄", name: "Paragraphs", one: "Paragraph", desc: "12 kinds of paragraphs, objective and subjective too", yours: "Your paragraph" },
+  essay: { em: "🏛️", name: "Essays", one: "Essay", desc: "9 kinds of essays, the CSS essay too, with an outline first", yours: "Your essay" },
+  precis: { em: "🗜️", name: "Précis", one: "Précis", desc: "Shorten a passage to one third, in your own words", yours: "Your précis" },
+  comp: { em: "❓", name: "Comprehension", one: "Comprehension", desc: "Read a passage, then answer questions about it", yours: "Your answers" },
 };
-const KIND_ORDER = ["sent", "para", "essay", "precis", "comp"];
+const PATH = ["free", "sent", "para", "essay"], EXAM = ["precis", "comp"];
 const ESSAY_PARTS = {
   intro: { name: "Introduction", task: "only the introduction: a hook, some background and the thesis statement", words: [[80, 150], [120, 200], [150, 250]] },
-  body: { name: "One body paragraph", task: "one body paragraph for one argument from the outline: a topic sentence, explanation, evidence or an example, and a link back to the thesis", words: [[80, 150], [120, 200], [150, 250]] },
+  body: { name: "One body paragraph", task: "one body paragraph for one point from the outline: a topic sentence, explanation, evidence or an example, and a link back to the thesis", words: [[80, 150], [120, 200], [150, 250]] },
   whole: { name: "Whole essay", task: "the whole essay: introduction, body paragraphs and conclusion", words: [[300, 600], [600, 1200], [1200, 2500]] },
 };
 const GUIDES = {
-  sent: ["A sentence starts with a capital letter and ends with a full stop (.) or a question mark (?).", "Every sentence needs a subject and a verb: I (subject) live (verb) in Lahore.", "Always write I as a capital letter.", "Keep each sentence short: one idea in one sentence.", "Use time words to join your ideas: First, Then, After that, Finally."],
-  para: ["Point: start with one topic sentence that gives the main idea.", "Explain: give two or three reasons.", "Example: add one real example from Pakistan or your life.", "Link: end with a closing sentence that repeats the main idea in new words.", "Join your sentences with linking words: First, Second, For example, However, In short."],
-  essay: ["Make the outline first: a thesis statement, then your main arguments as I, II, III with short points, then counter arguments, then a way forward or conclusion.", "Introduction: start with a hook, give some background, and end with your thesis statement.", "Body: one paragraph for each argument, each with a topic sentence and evidence or an example.", "Conclusion: sum up your arguments and give your final view or a way forward.", "The examiner reads the outline, the arguments, the order of your ideas and your English. In the exam you have 3 hours for the essay."],
+  free: ["Write about anything: your day, your plans, a news story, what you learned.", "Do not worry about mistakes. Mam marks them, and you fix them yourself.", "Write a little every day. Five sentences is a good start.", "Read your writing once before you tap Check."],
+  sent: ["A sentence starts with a capital letter and ends with a full stop (.), a question mark (?) or an exclamation mark (!).", "Every sentence needs a subject and a verb: I (subject) live (verb) in Lahore.", "Always write I as a capital letter.", "Keep one idea in one short sentence, then learn to join ideas.", "Each lesson teaches one structure. Read it, then write your own sentences with it."],
+  para: ["A paragraph is a group of sentences about one main idea.", "It starts with a topic sentence that gives the main idea.", "The middle sentences explain it with reasons, details and examples.", "A closing sentence ends it.", "Each kind of paragraph has its own plan and its own useful words."],
+  essay: ["An essay has an introduction, body paragraphs and a conclusion.", "The introduction ends with a thesis statement: your main idea in one sentence.", "Each body paragraph explains one point, with evidence or an example.", "The conclusion sums up and gives a final thought.", "Always plan an outline first. Mam checks it before you write."],
   precis: ["Read the passage twice and find the main idea.", "Write about one third of the passage's length.", "Use your own words: do not copy sentences from the passage.", "Keep only the main ideas: leave out examples, numbers and quotations.", "Write one paragraph in the third person.", "Give your précis a short, suitable title."],
   comp: ["Read the passage twice before you answer.", "Answer in your own words, in full sentences.", "Answer only what the question asks, in 2 or 3 sentences.", "Find the part of the passage that answers each question, then say it in your own words."],
 };
-// Built-in topics: [title, task, a way to start, useful words, number of sentences]
-const SENT_TOPICS = [
-  ["My morning", "Write 4 sentences about your morning.", "Every morning I … Then I … After that I …", ["wake up", "get ready", "have breakfast", "leave home"], 4],
-  ["Yesterday", "Write 5 sentences about what you did yesterday.", "Yesterday I … In the afternoon I … In the evening I …", ["went", "met", "watched", "came back"], 5],
-  ["My family", "Write 4 sentences about your family.", "There are … people in my family. My father is …", ["parents", "elder brother", "younger sister", "kind"], 4],
-  ["My city", "Write 4 sentences about your city.", "I live in … It is famous for …", ["famous for", "crowded", "historical", "markets"], 4],
-  ["My best friend", "Write 4 sentences about your best friend.", "My best friend is … We met …", ["honest", "helpful", "since", "together"], 4],
-  ["Tomorrow", "Write 4 sentences about your plans for tomorrow.", "Tomorrow I am going to … After that I will …", ["going to", "will", "plan", "finish"], 4],
-  ["My favourite food", "Write 4 sentences about your favourite food.", "My favourite food is … I like it because …", ["delicious", "spicy", "because", "usually"], 4],
-  ["Why CSS?", "Write 5 sentences about why you want to pass the CSS exam.", "I want to pass the CSS exam because … As an officer, I will …", ["serve", "civil service", "officer", "dream"], 5],
-  ["Eid at home", "Write 5 sentences about how your family celebrates Eid.", "On Eid, we … My mother … In the evening …", ["celebrate", "relatives", "new clothes", "prayer"], 5],
-  ["My studies", "Write 4 sentences about your studies.", "I am studying … My favourite subject is …", ["degree", "subject", "difficult", "prepare"], 4],
-  ["The weather today", "Write 4 sentences about the weather today.", "Today the weather is … It is …", ["sunny", "cloudy", "hot", "humid"], 4],
-  ["A problem in my area", "Write 5 sentences about one problem in your area.", "One big problem in my area is … Because of this, …", ["problem", "because of", "should", "solve"], 5],
+const FREE_IDEAS = ["My day today", "What I learned this week", "A news story I read", "My plans for the weekend", "A problem in my area", "My dream job"];
+// Sentence lessons, unit by unit. In the examples, [brackets] mark the structure being taught.
+const UNITS = { kinds: ["🧱", "Kinds of sentences"], present: ["🕒", "Present"], past: ["⏪", "Past"], future: ["⏩", "Future"] };
+const SENT_LESSONS = [
+  { id: "basic", u: "kinds", lv: "A1", t: "A simple sentence", use: "One complete idea: a subject (who or what) and a verb (what they do).", form: "Subject + verb (+ object or place). Start with a capital letter, end with a full stop.", ex: ["[I live] in Karachi.", "[My brother works] in a bank.", "[We play] cricket on Sundays."], w: "my brother work in bank", r: "My brother works in a bank.", task: "Write 4 simple sentences about yourself: your name, your city, your family and your studies.", n: 4, hint: "My name is … I live in … I have … I study …" },
+  { id: "neg", u: "kinds", lv: "A1", t: "Negative sentences", use: "To say that something is not true.", form: "do not / does not / did not + verb  ·  am not / is not / are not  ·  cannot + verb", ex: ["I [do not eat] fast food.", "She [does not like] cold weather.", "We [did not go] out yesterday."], w: "She does not likes tea.", r: "She does not like tea.", task: "Write 4 negative sentences about things you do not do or do not like.", n: 4, hint: "I do not … My father does not … I cannot …" },
+  { id: "questions", u: "kinds", lv: "A1", t: "Questions", use: "To ask for information: yes or no questions, and questions with what, where, when, why and how.", form: "Do / Does / Did / Is / Are / Can + subject + verb … ?  ·  What / Where / Why + do / does / is + subject + verb … ?", ex: ["[Do you live] in Lahore?", "[Where does your father work]?", "[Why are you learning] English?"], w: "Where you live?", r: "Where do you live?", task: "Write 5 questions you would ask a new friend. End each one with a question mark.", n: 5, hint: "Where do you … ? What is your … ? Do you like … ?" },
+  { id: "commands", u: "kinds", lv: "A1", t: "Commands and exclamations", use: "Commands tell someone to do something. Exclamations show a strong feeling.", form: "Verb first: Open the door. Please sit down. Don't run.  ·  What a / an + adjective + noun!  ·  How + adjective!", ex: ["[Please close] the window.", "[Don't be] late for the exam.", "[What a beautiful] morning!"], w: "You please sit down.", r: "Please sit down.", task: "Write 3 instructions for a guest in your home, and 2 exclamations about something you like.", n: 5, hint: "Please come in. Sit … What a …!" },
+  { id: "compound", u: "kinds", lv: "A2", t: "Compound sentences", use: "Two complete ideas joined by and, but, or, so or yet.", form: "Sentence + comma + and / but / or / so / yet + sentence", ex: ["I was tired, [but] I finished my homework.", "It was raining, [so] we stayed at home.", "You can call me, [or] you can send a message."], w: "I was hungry so I eat bread.", r: "I was hungry, so I ate some bread.", task: "Write 4 compound sentences about your day. Use and, but, so and or.", n: 4, hint: "I woke up early, but … It was hot, so …" },
+  { id: "complex", u: "kinds", lv: "A2", t: "Complex sentences", use: "One main idea and one extra idea, joined by because, although, when, if, while, before, after, until or unless.", form: "Main clause + because / when / although + clause  ·  Because / When / Although + clause + comma + main clause", ex: ["I study at night [because] it is quiet.", "[Although] the exam was hard, I passed it.", "[When] I reached home, my mother was cooking."], w: "Because I was ill. I did not go to college.", r: "Because I was ill, I did not go to college.", task: "Write 4 complex sentences. Use because, although, when and if.", n: 4, hint: "Although it was late, … I read the newspaper because …" },
+  { id: "cc", u: "kinds", lv: "B1", t: "Compound-complex sentences", use: "Two main ideas and at least one extra idea in one sentence. Good writers use some of these, not too many.", form: "When / Because + clause + comma + main clause + comma + and / but / so + main clause", ex: ["[When the rain stopped], we went outside, [and] the children played cricket.", "I wanted to call you, [but] my phone died [because] I forgot to charge it."], w: "When I got home I was tired and I slept.", r: "When I got home, I was tired, and I went to sleep.", task: "Write 3 compound-complex sentences about a busy day.", n: 3, hint: "When I reached college, the class had started, so …" },
+  { id: "relative", u: "kinds", lv: "B1", t: "Relative clauses (who, which, where)", use: "To add information about a person, thing or place inside a sentence.", form: "who for people  ·  which or that for things  ·  where for places  ·  whose for owners", ex: ["The man [who lives next door] is a doctor.", "This is the book [that I told you about].", "Lahore is the city [where I was born]."], w: "The teacher which teaches us is kind.", r: "The teacher who teaches us is kind.", task: "Write 4 sentences with who, which, where and whose about people and places you know.", n: 4, hint: "My uncle, who lives in Dubai, … The park where …" },
+
+  { id: "pres-simple", u: "present", lv: "A1", t: "Present simple", use: "Habits, routines and facts.", form: "I / you / we / they + verb  ·  he / she / it + verb + s or es (works, goes, studies)", ex: ["I [wake up] at six every day.", "My father [reads] the newspaper every morning.", "Water [boils] at 100 degrees."], w: "He go to work by bus.", r: "He goes to work by bus.", task: "Write 5 sentences about your daily routine.", n: 5, hint: "Every day I … My mother usually … On Fridays we …" },
+  { id: "pres-cont", u: "present", lv: "A1", t: "Present continuous", use: "Actions happening now, or for a short time these days.", form: "am / is / are + verb-ing", ex: ["I [am writing] this sentence now.", "She [is preparing] for the CSS exam this year.", "Prices [are rising] these days."], w: "I am study now.", r: "I am studying now.", task: "Write 4 sentences about what is happening around you these days.", n: 4, hint: "These days I am … My brother is … Prices are …" },
+  { id: "pres-perf", u: "present", lv: "A2", t: "Present perfect", use: "Experiences, results you can see now, and time up to now (with ever, never, already, yet, for, since).", form: "have / has + past participle (V3)", ex: ["I [have visited] Islamabad twice.", "She [has lived] here since 2015.", "We [have not finished] the syllabus yet."], w: "I have went to Murree.", r: "I have been to Murree.", task: "Write 5 sentences about your experiences. Use ever, never, already, for or since.", n: 5, hint: "I have never … I have lived in … since … I have already …" },
+  { id: "pres-perf-cont", u: "present", lv: "B1", t: "Present perfect continuous", use: "An action that started in the past and is still going on, often with how long.", form: "have / has been + verb-ing (+ for / since)", ex: ["I [have been learning] English for six months.", "It [has been raining] since morning.", "She [has been working] on her essay all day."], w: "I am learning English since two years.", r: "I have been learning English for two years.", task: "Write 4 sentences about things you have been doing for some time.", n: 4, hint: "I have been preparing for … for … My friend has been …" },
+  { id: "modals", u: "present", lv: "A2", t: "Advice and rules (should, must, can)", use: "should for advice, must and have to for rules, can for ability or permission.", form: "should / must / can / may + verb  ·  have to / has to + verb", ex: ["Students [should read] the newspaper every day.", "Candidates [must bring] their roll number slip.", "I [can write] a paragraph now."], w: "You should to read more.", r: "You should read more.", task: "Write 5 pieces of advice for a student who wants to pass the CSS exam.", n: 5, hint: "You should … You must … You don't have to …" },
+  { id: "cond0", u: "present", lv: "A2", t: "Facts with if (zero conditional)", use: "Things that are always true.", form: "If / When + present simple, … present simple", ex: ["[If you heat] ice, it [melts].", "[When it rains] a lot, the streets [flood].", "[If you don't sleep] well, you [feel] tired."], w: "If you will heat water, it boils.", r: "If you heat water, it boils.", task: "Write 4 true facts with if or when about nature, health or daily life.", n: 4, hint: "If you …, you … When it …, …" },
+  { id: "pres-wish", u: "present", lv: "B1", t: "Wishes about now (I wish I had …)", use: "To say you want your life now to be different. The verb moves one step back into the past.", form: "I wish / If only + subject + past simple (were for be, could for can)", ex: ["I [wish I had] more time to study.", "I [wish I knew] French.", "[If only] my city [were] cleaner."], w: "I wish I have a car.", r: "I wish I had a car.", task: "Write 4 wishes about your life now. Use I wish and If only.", n: 4, hint: "I wish I had … I wish I could … If only …" },
+  { id: "cond2", u: "present", lv: "B1", t: "If I were … (second conditional)", use: "Imagined, unreal situations now or in the future.", form: "If + past simple, … would / could + verb", ex: ["[If I were] the Prime Minister, I [would build] more schools.", "[If I had] a car, I [would drive] to Murree.", "She [would pass] easily [if she studied] every day."], w: "If I will be rich, I will help poor people.", r: "If I were rich, I would help poor people.", task: "Write 4 sentences that start with If I were or If I had.", n: 4, hint: "If I were a CSS officer, I would … If I had more money, …" },
+  { id: "passive", u: "present", lv: "B1", t: "The passive voice", use: "When the action matters more than who does it. It is common in formal and objective writing.", form: "am / is / are + past participle (V3)  ·  in the past: was / were + V3", ex: ["English [is spoken] in many countries.", "The papers [are checked] by examiners.", "The bridge [was built] in 1960."], w: "The results are announce today.", r: "The results are announced today.", task: "Write 4 passive sentences about how something is made or done (for example tea, a cricket bat or the CSS exam).", n: 4, hint: "First, the leaves are picked. Then they are …" },
+
+  { id: "past-simple", u: "past", lv: "A1", t: "Past simple", use: "Finished actions at a time in the past.", form: "verb + ed (worked) or the irregular past (went, saw)  ·  did not + verb  ·  Did + subject + verb?", ex: ["Yesterday I [went] to the market.", "We [watched] the match last night.", "I [did not see] him at college."], w: "Yesterday I go to college.", r: "Yesterday I went to college.", task: "Write 5 sentences about what you did last weekend.", n: 5, hint: "Last Saturday I … Then I … In the evening we …" },
+  { id: "past-cont", u: "past", lv: "A2", t: "Past continuous", use: "An action in progress at a moment in the past, often interrupted by a shorter action.", form: "was / were + verb-ing  ·  … when + past simple", ex: ["I [was cooking] when the phone rang.", "At 8 pm we [were watching] the news.", "While she [was studying], the lights went out."], w: "I was cook when he came.", r: "I was cooking when he came.", task: "Write 4 sentences about what you were doing when something happened.", n: 4, hint: "I was … when … While my brother was …, …" },
+  { id: "used-to", u: "past", lv: "A2", t: "Used to and would (past habits)", use: "Habits and states in the past that are not true now.", form: "used to + verb  ·  did not use to + verb  ·  would + verb (for repeated actions only)", ex: ["I [used to live] in Multan.", "We [didn't use to have] a television.", "Every summer we [would visit] our grandparents."], w: "I use to play cricket when I was a child.", r: "I used to play cricket when I was a child.", task: "Write 5 sentences about your childhood. Use used to, didn't use to and would.", n: 5, hint: "When I was a child, I used to … Every Eid we would …" },
+  { id: "past-perf", u: "past", lv: "B1", t: "Past perfect", use: "The earlier of two actions in the past.", form: "had + past participle (V3)", ex: ["When I reached the station, the train [had left].", "She [had never seen] the sea before that trip.", "I [had finished] my work before my friends arrived."], w: "When I reached, the class already started.", r: "When I reached, the class had already started.", task: "Write 4 sentences about two things that happened, one before the other.", n: 4, hint: "When I got home, my mother had … Before the exam, I had …" },
+  { id: "past-perf-cont", u: "past", lv: "B2", t: "Past perfect continuous", use: "How long an action had been going on before a moment in the past.", form: "had been + verb-ing (+ for / since)", ex: ["I [had been waiting] for two hours when the bus came.", "They were tired because they [had been working] all day.", "It [had been raining] for days before the flood."], w: "I was waiting since two hours when he came.", r: "I had been waiting for two hours when he came.", task: "Write 3 sentences about something that had been going on for a long time before something else happened.", n: 3, hint: "I had been studying for … when … The people had been …" },
+  { id: "regret", u: "past", lv: "B1", t: "Regrets (I wish I had …)", use: "To say you are sorry about something in the past that you cannot change.", form: "I wish / If only + had + past participle (V3)  ·  I wish I hadn't + V3", ex: ["I [wish I had studied] harder in school.", "[If only I hadn't wasted] so much time.", "She [wishes she had taken] the job."], w: "I wish I studied harder last year.", r: "I wish I had studied harder last year.", task: "Write 4 regrets about your past. Use I wish I had, I wish I hadn't and If only.", n: 4, hint: "I wish I had … I wish I hadn't … If only I had …" },
+  { id: "should-have", u: "past", lv: "B1", t: "Should have, could have, must have", use: "should have for a past mistake, could have for a chance you missed, must have for a sure guess about the past.", form: "should / could / might / must + have + past participle (V3)", ex: ["I [should have woken up] earlier.", "You [could have called] me.", "She [must have missed] the bus."], w: "I should have went earlier.", r: "I should have gone earlier.", task: "Write 4 sentences about past mistakes or guesses. Use should have, could have and must have.", n: 4, hint: "I should have … He must have … We could have …" },
+  { id: "cond3", u: "past", lv: "B2", t: "If I had … (third conditional)", use: "Imagining a different past and its result.", form: "If + had + V3, … would have / could have + V3", ex: ["[If I had left] earlier, I [would have caught] the train.", "[If she had studied], she [would have passed].", "We [could have won] [if we had played] better."], w: "If I would have known, I would have come.", r: "If I had known, I would have come.", task: "Write 4 sentences about how things could have been different in your life.", n: 4, hint: "If I had …, I would have … If my friend had …, …" },
+
+  { id: "will", u: "future", lv: "A1", t: "Will", use: "Predictions, promises and quick decisions.", form: "will + verb  ·  will not (won't) + verb", ex: ["I [will call] you tonight.", "Prices [will rise] next year.", "Don't worry, I [won't be] late."], w: "I will to help you.", r: "I will help you.", task: "Write 4 predictions about Pakistan in the year 2040.", n: 4, hint: "In 2040, Pakistan will … People will … There will be …" },
+  { id: "going-to", u: "future", lv: "A1", t: "Going to", use: "Plans you have already made, and things you can see coming.", form: "am / is / are + going to + verb", ex: ["I [am going to apply] for the CSS exam next year.", "We [are going to visit] Hunza in June.", "Look at the clouds. It [is going to rain]."], w: "I going to study tonight.", r: "I am going to study tonight.", task: "Write 4 sentences about your plans for next month.", n: 4, hint: "Next month I am going to … My family is going to …" },
+  { id: "pres-future", u: "future", lv: "A2", t: "The present for the future", use: "Present continuous for arrangements you have made; present simple for timetables.", form: "am / is / are + verb-ing (+ time)  ·  present simple for timetables", ex: ["I [am meeting] my teacher tomorrow at five.", "The exam [starts] at 9 am.", "We [are flying] to Karachi on Friday."], w: "I am meet my teacher tomorrow.", r: "I am meeting my teacher tomorrow.", task: "Write 4 sentences about your arrangements and timetables for next week.", n: 4, hint: "On Monday I am … My class starts at … On Friday we are …" },
+  { id: "cond1", u: "future", lv: "A2", t: "If … will (first conditional)", use: "Real possibilities in the future and their results.", form: "If / Unless + present simple, … will + verb", ex: ["[If I study] every day, I [will pass].", "[If it rains] tomorrow, we [will stay] at home.", "You [will miss] the bus [unless you hurry]."], w: "If I will study, I will pass.", r: "If I study, I will pass.", task: "Write 4 sentences about what will happen if you do (or don't do) something.", n: 4, hint: "If I wake up early, I will … Unless I …, I will …" },
+  { id: "fut-cont", u: "future", lv: "B1", t: "Future continuous", use: "An action that will be in progress at a time in the future.", form: "will be + verb-ing", ex: ["This time next year, I [will be working] as an officer.", "At 8 pm tonight, we [will be watching] the match.", "Don't call at nine; I [will be studying]."], w: "At 8 pm tonight I will watching the match.", r: "At 8 pm tonight I will be watching the match.", task: "Write 4 sentences about what you will be doing at different times in the future.", n: 4, hint: "Tomorrow at 10 am I will be … This time next year …" },
+  { id: "fut-perf", u: "future", lv: "B1", t: "Future perfect", use: "Something that will be finished before a time in the future.", form: "will have + past participle (V3) (+ by …)", ex: ["By 2027, I [will have passed] the CSS exam.", "By Friday, she [will have finished] the essay.", "By the end of this year, we [will have read] ten books."], w: "By 2027 I will passed the exam.", r: "By 2027 I will have passed the exam.", task: "Write 4 sentences about your goals. Start with By next year, By 2030 or By the end of this month.", n: 4, hint: "By the end of this month, I will have … By 2030, …" },
+  { id: "hopes", u: "future", lv: "B1", t: "Hopes and wishes for the future", use: "I hope for things that may happen. I wish … would to complain, or to want someone or something to change.", form: "I hope + present simple or will  ·  I wish + someone + would + verb", ex: ["I [hope I pass] the exam.", "I [hope] it [will be] sunny tomorrow.", "I [wish] the traffic [would get] better."], w: "I wish I will pass the exam.", r: "I hope I will pass the exam.", task: "Write 4 sentences about your hopes and wishes for the future.", n: 4, hint: "I hope I … I hope Pakistan will … I wish people would …" },
 ];
-const PARA_TOPICS = [
-  ["The importance of education", "why education is important"], ["My role model", "your role model and why you admire this person"], ["Social media and young people", "how social media affects young people"],
-  ["Load shedding", "the problem of load shedding in Pakistan"], ["Why reading books helps", "why reading books is useful"], ["Traffic in big cities", "the traffic problem in big cities"],
-  ["Clean water for everyone", "why clean water is a big issue in Pakistan"], ["The benefits of sports", "the benefits of sports for young people"], ["Women at work", "why women should be able to work in every field"], ["Online learning", "the good and bad sides of online learning"],
+// Kinds of paragraphs: what each one does, its plan, useful words, an example paragraph and topics.
+const PARA_TYPES = [
+  { id: "narrative", em: "📖", t: "Narrative paragraph", what: "Tells a story or an event in the order it happened.", steps: ["Topic sentence: say what happened, when and where.", "Tell the events in order, with time words.", "Add details: what you saw, heard and felt.", "Closing sentence: how it ended, or what you learned."], words: ["First", "Then", "After that", "Suddenly", "Finally", "In the end"],
+    model: "Last winter, I got lost in the old city of Lahore. First, I went into a narrow street to buy a shawl. Then I turned left, then right, and soon every street looked the same. Suddenly, the call to prayer started, and I followed the sound to the Badshahi Mosque. From there, I finally found my way back to the main road. Since that day, I always keep a map on my phone.", topics: ["A day I will never forget", "My first day at college", "A journey by train"] },
+  { id: "descriptive", em: "🎨", t: "Descriptive paragraph", what: "Paints a picture of a person, place or thing, so the reader can see it.", steps: ["Topic sentence: give your general impression.", "Describe the details in a clear order (near to far, or top to bottom).", "Use the senses: what you see, hear, smell, feel and taste.", "Closing sentence: the feeling the person or place gives you."], words: ["in front of", "on the left", "bright", "crowded", "peaceful", "smells of"],
+    model: "Anarkali Bazaar is the busiest and most colourful place I know. At the entrance, shopkeepers call out their prices, and bright cloth hangs on both sides of the street. Further inside, the air smells of fried samosas and fresh jalebis. Women bargain for bangles while children hold their parents' hands tightly. By evening, hundreds of lights make the whole bazaar shine. For me, it is the living heart of Lahore.", topics: ["My home town", "A person I admire", "A market in my city"] },
+  { id: "expository", em: "💡", t: "Expository paragraph", what: "Explains a topic with facts and clear information, without your feelings.", steps: ["Topic sentence: name the topic and the main point.", "Give 2 or 3 facts or explanations.", "Add an example or a number.", "Closing sentence: sum up the main point."], words: ["For example", "In addition", "Also", "This means", "In short"],
+    model: "Load shedding happens when the demand for electricity is higher than the supply. In Pakistan, power plants cannot produce enough electricity in summer, when fans and air conditioners run all day. Old transmission lines also waste a large part of the electricity they carry. As a result, power companies switch off areas in turns. In short, load shedding is a sign of weak planning and old infrastructure.", topics: ["How the CSS exam works", "Why Pakistan has floods", "What inflation is"] },
+  { id: "persuasive", em: "📣", t: "Persuasive paragraph", what: "Tries to make the reader agree with you, and act.", steps: ["Topic sentence: give your opinion clearly.", "Give 2 or 3 strong reasons, each with an example.", "Answer one objection that others might have.", "Closing sentence: tell the reader what to do."], words: ["should", "must", "clearly", "most importantly", "therefore"],
+    model: "Every school in Pakistan should have a library. First, books help children think and dream beyond their textbooks. Second, many families cannot buy books, so a school library is their only chance to read. Some people say libraries are too expensive, but even one shelf of donated books can change a child's life. Therefore, the government and parents must work together to open a library in every school.", topics: ["Students should learn a skill", "Plastic bags should be banned", "Everyone should read a newspaper"] },
+  { id: "argumentative", em: "⚖️", t: "Argumentative paragraph", what: "Makes a claim, proves it with evidence, and answers the other side fairly. This is the style of the CSS essay.", steps: ["Claim: state your position in one sentence.", "Evidence: give reasons with facts or examples.", "Counter argument: give the other side fairly.", "Rebuttal: show why your claim is still stronger.", "Conclusion: restate your claim."], words: ["It is argued that", "However", "On the other hand", "Nevertheless", "Thus"],
+    model: "Online classes cannot fully replace classroom teaching. In a classroom, teachers can see when students are confused and explain again at once. Students also learn teamwork and discipline from being with others. On the other hand, online classes are cheaper and reach students in far areas. However, millions of students in Pakistan still have no fast internet or laptop. Thus, online learning should support classrooms, not replace them.", topics: ["Social media does more harm than good", "Exams are the best way to test students", "Big cities are better places to live"] },
+  { id: "compare", em: "🔀", t: "Compare and contrast paragraph", what: "Shows how two things are alike and how they are different.", steps: ["Topic sentence: name the two things and your main point.", "Show how they are similar.", "Show how they are different.", "Closing sentence: which is better, or what we learn."], words: ["Both", "Similarly", "Likewise", "However", "Whereas", "Unlike"],
+    model: "Village life and city life are very different, although both have their own charm. Both villages and cities have friendly people and strong family ties. However, village life is calm, whereas city life is fast and noisy. Villagers eat fresh food from their fields, while city people often depend on markets. On the other hand, cities offer better schools, hospitals and jobs. In my view, the best life would join the peace of a village with the services of a city.", topics: ["Reading books and watching films", "Summer and winter in Pakistan", "Studying alone and studying in a group"] },
+  { id: "cause", em: "➡️", t: "Cause and effect paragraph", what: "Explains why something happens (causes) and what happens because of it (effects).", steps: ["Topic sentence: name the event, and say you will explain its causes or effects.", "Give each cause or effect with an explanation.", "Show the links with linking words.", "Closing sentence: the most important cause or effect."], words: ["because", "due to", "as a result", "therefore", "leads to", "consequently"],
+    model: "Unemployment among young people in Pakistan has several causes. First, the population is growing faster than new jobs. Second, many degrees do not teach the skills that companies need. Due to this gap, employers cannot find trained workers even when they have jobs to offer. As a result, many graduates either stay jobless or go abroad. Therefore, matching education with the job market is the most important step.", topics: ["The effects of smoking", "Why students fail exams", "The effects of climate change on farmers"] },
+  { id: "problem", em: "🛠️", t: "Problem and solution paragraph", what: "Describes a problem and suggests ways to solve it.", steps: ["Topic sentence: state the problem.", "Explain why it is serious (its effects).", "Give 2 or 3 solutions, the best one last.", "Closing sentence: what will happen if we act."], words: ["The main problem is", "One solution is", "Another way is", "should", "If we act, …"],
+    model: "Traffic jams are a daily problem in Karachi. They waste hours of people's time and fill the air with smoke. One solution is to improve public transport, so that fewer people need cars. Another is to manage traffic signals better and stop illegal parking. Most importantly, the city should finish its bus lines. If we act now, Karachi's roads can become faster and cleaner.", topics: ["Waste in our streets", "Water shortage in my city", "Students who cannot afford books"] },
+  { id: "process", em: "🔢", t: "Process paragraph", what: "Explains how to do something, or how something happens, step by step.", steps: ["Topic sentence: say what the process is.", "Give each step in order.", "Use a time word for every step.", "Closing sentence: the result, or a final tip."], words: ["First", "Next", "Then", "After that", "Finally"],
+    model: "Making a good cup of doodh patti is simple. First, boil a cup of milk with a little water in a pan. Next, add a spoon of black tea and sugar to taste. Then let it boil for three or four minutes, until the colour turns deep brown. After that, pour it through a strainer into a cup. Finally, enjoy it hot with a biscuit.", topics: ["How to prepare for an exam", "How to make your favourite dish", "How to apply for a passport"] },
+  { id: "definition", em: "📘", t: "Definition paragraph", what: "Explains what a word or idea means, with its features and an example.", steps: ["Topic sentence: the definition (the group it belongs to, and what makes it special).", "Explain its main features.", "Give an example.", "Closing sentence: why it matters."], words: ["is defined as", "refers to", "is a kind of", "for instance", "in other words"],
+    model: "Democracy is a system of government in which the people choose their rulers through free elections. In a democracy, every adult has the right to vote, and leaders must answer to the people. Laws are made by elected representatives, and courts protect citizens' rights. For instance, in Pakistan, citizens elect the members of the National Assembly. In other words, democracy means that power belongs to the people.", topics: ["What is corruption?", "What is a good citizen?", "What is globalisation?"] },
+  { id: "objective", em: "🔬", t: "Objective paragraph", what: "Gives facts only, in a neutral way, like a report or a news story. The writer's feelings and opinions are not in it.", steps: ["Topic sentence: state the topic as a fact.", "Give facts, numbers and examples that can be checked.", "Use the third person (it, they, the government); avoid I, we and you.", "Use neutral words; avoid words like amazing, terrible or I think.", "Closing sentence: a summary of the facts, not an opinion."], words: ["According to", "Research shows", "It is estimated that", "The data shows", "In total"],
+    model: "Pakistan is the fifth most populous country in the world. According to the 2023 census, its population is about 241 million. More than half of the people live in Punjab, and more than a third live in cities. The population is also young, as most people are under the age of 30. These facts show that the demand for jobs, schools and health care will keep growing.",
+    two: [["Objective", "The Badshahi Mosque in Lahore was completed in 1673, during the rule of the Mughal emperor Aurangzeb."], ["Subjective", "The Badshahi Mosque is the most beautiful building I have ever seen, and I feel peaceful every time I visit it."]], topics: ["The population of Pakistan", "The rivers of Pakistan", "Cricket in Pakistan"] },
+  { id: "subjective", em: "💭", t: "Subjective paragraph", what: "Gives your own opinion and feelings. It can use I, your experiences and strong words.", steps: ["Topic sentence: give your personal view.", "Explain your feelings and reasons.", "Use your own experience as an example.", "Closing sentence: repeat your view in new words."], words: ["I believe", "In my opinion", "I feel", "To me", "I strongly think"],
+    model: "In my opinion, Lahore is the most beautiful city in Pakistan. I feel proud every time I see the Badshahi Mosque lit up at night. To me, the food of the old city tastes better than anything in an expensive hotel. I still remember eating hot nihari with my father on cold winter mornings. Lahore is not just a city for me; it is a feeling.",
+    two: [["Objective", "Lahore is the capital of Punjab and the second largest city in Pakistan."], ["Subjective", "Lahore is the city of my heart, and no other place feels like home."]], topics: ["The best season of the year", "My favourite book or film", "Why I love my home town"] },
 ];
+// Kinds of essays: what each one does, how to plan it, an outline plan and topics.
 const ESSAY_TOPICS = ["Climate change: a threat to Pakistan", "Education is the key to development", "Democracy in Pakistan: problems and solutions", "The role of youth in nation building", "The water crisis in Pakistan", "Social media: a blessing or a curse?",
   "Corruption and its effects on society", "Women empowerment in Pakistan", "Artificial intelligence and the future of work", "Population growth: Pakistan's challenge", "The importance of tolerance in society", "CPEC: opportunities and challenges"];
-const paraPrompt = (about) => `Write one paragraph about ${about}. Start with a topic sentence, give two reasons and one example, and end with a closing sentence.`;
-const PARA_HINT = "Topic sentence: … First, … Second, … For example, … In short, …";
-const essayPrompt = (title) => `Write a CSS essay on: "${title}". Make an outline first, then write the essay.`;
+const ESSAY_TYPES = [
+  { id: "narrative", em: "📖", t: "Narrative essay", what: "Tells a true or imagined story with a beginning, a middle and an end, and a lesson or meaning.", steps: ["Introduction: set the scene (who, where, when) and hint at why the story matters.", "Body: tell the events in order, one main part in each paragraph, with details and feelings.", "The most important moment (the climax) comes near the end.", "Conclusion: how it ended and what you learned."], outline: "The lesson of the story: …\nI. The beginning: …\nII. What happened next: …\nIII. The most important moment: …\nConclusion (what I learned): …", topics: ["A day that changed my life", "The hardest exam I ever took", "An act of kindness I will never forget"] },
+  { id: "descriptive", em: "🎨", t: "Descriptive essay", what: "Describes a person, place, event or object in rich detail, so the reader can see and feel it.", steps: ["Introduction: name what you describe and your main impression.", "Body: one paragraph for each part or feature, using the five senses.", "Use comparisons (as busy as a beehive) and vivid words.", "Conclusion: return to your main impression and why it matters to you."], outline: "Main impression: …\nI. First feature: …\nII. Second feature: …\nIII. Third feature: …\nConclusion: …", topics: ["A visit to the northern areas", "My grandmother", "Eid in my town"] },
+  { id: "expository", em: "💡", t: "Expository essay", what: "Explains a topic with facts, examples and clear reasons, in an objective way, without personal feelings.", steps: ["Introduction: some background on the topic and a clear thesis.", "Body: each paragraph explains one point with facts and examples.", "Keep an objective tone: the third person and neutral words.", "Conclusion: sum up the main points."], outline: "Thesis: …\nI. Point 1, with facts: …\nII. Point 2, with facts: …\nIII. Point 3, with facts: …\nConclusion: …", topics: ["How climate change affects Pakistan", "The role of the Supreme Court", "How the internet changed education"] },
+  { id: "argumentative", em: "⚖️", t: "Argumentative essay", what: "Takes a clear position on an issue, proves it with evidence, and fairly answers the other side.", steps: ["Introduction: background and a thesis that takes a clear side.", "Body: 2 or 3 arguments, each with evidence.", "Counter arguments: give the other side fairly, then answer it.", "Conclusion: restate the thesis and give a final thought."], outline: "Thesis (my position): …\nI. Argument 1 and evidence: …\nII. Argument 2 and evidence: …\nIII. Argument 3 and evidence: …\nIV. The other side, and my answer: …\nConclusion: …", topics: ["Social media does more harm than good", "Pakistan should invest more in technical education", "Online learning can replace classrooms"] },
+  { id: "persuasive", em: "📣", t: "Persuasive essay", what: "Tries to convince the reader to believe or do something, with reasons and some feeling.", steps: ["Introduction: a strong hook and your clear opinion.", "Body: your best reasons, with examples and some emotion.", "Answer the strongest objection.", "Conclusion: a call to action."], outline: "My opinion: …\nI. Reason 1: …\nII. Reason 2: …\nIII. Reason 3: …\nThe objection, and my answer: …\nCall to action: …", topics: ["Every citizen must vote", "We must save water now", "Women should work in every profession"] },
+  { id: "compare", em: "🔀", t: "Compare and contrast essay", what: "Looks at how two things are alike and how they differ, to reach a conclusion.", steps: ["Introduction: name the two things and your thesis (what the comparison shows).", "Body: point by point (one feature in each paragraph, for both things), or one thing first and then the other.", "Use comparison and contrast words.", "Conclusion: what the comparison teaches us."], outline: "Thesis: …\nI. Feature 1: A … and B …\nII. Feature 2: A … and B …\nIII. Feature 3: A … and B …\nConclusion: …", topics: ["Democracy and dictatorship", "Public and private schools in Pakistan", "Life in a village and life in a city"] },
+  { id: "cause", em: "➡️", t: "Cause and effect essay", what: "Explains why something happens, what results from it, or both.", steps: ["Introduction: the issue, and a thesis naming the main causes or effects.", "Body: one paragraph for each cause or effect, with evidence.", "Show the links clearly with because, as a result and therefore.", "Conclusion: sum up and suggest what should be done."], outline: "Thesis: …\nI. Cause or effect 1: …\nII. Cause or effect 2: …\nIII. Cause or effect 3: …\nConclusion: …", topics: ["The causes of inflation in Pakistan", "The effects of brain drain", "The effects of fast urban growth"] },
+  { id: "problem", em: "🛠️", t: "Problem and solution essay", what: "Describes a serious problem, explains it, and argues for the best solutions.", steps: ["Introduction: the problem, and a thesis naming the best solution.", "Body: explain the problem, its causes and its effects.", "Body: give solutions, the strongest one with the most detail.", "Conclusion: restate the solution and call for action."], outline: "Thesis (the best solution): …\nI. The problem, and why it is serious: …\nII. Its causes: …\nIII. Solution 1: …\nIV. Solution 2: …\nConclusion: …", topics: ["The energy crisis in Pakistan", "Corruption in public offices", "The water crisis"] },
+  { id: "css", em: "🏛️", t: "CSS essay", what: "The essay for the CSS English Essay paper: a long, well-argued essay on an issue of national or international importance, with an outline.", steps: ["Outline first: a thesis statement, then main arguments (I, II, III with short points), counter arguments and a way forward.", "Introduction: a hook, background and the thesis statement.", "Body: one argument in each paragraph, with a topic sentence, evidence and examples from Pakistan and the world.", "Counter arguments and your answers to them.", "Conclusion: sum up and give a way forward.", "In the exam you have 3 hours for the essay."], outline: "Thesis statement: …\nI. Introduction\nII. Argument 1: …\nIII. Argument 2: …\nIV. Argument 3: …\nV. Counter arguments and answers: …\nVI. Way forward: …\nVII. Conclusion", topics: ESSAY_TOPICS },
+];
+const LESSONS = { sent: SENT_LESSONS, para: PARA_TYPES, essay: ESSAY_TYPES };
+const lessonById = (kind, id) => (LESSONS[kind] || []).find((L) => L.id === id) || null;
+const lessonOf = (p) => lessonById(p.kind, p.lesson) || (p.kind === "essay" ? lessonById("essay", "css") : null);
+const an = (w) => (/^[aeiou]/i.test(w) ? "an " : "a ") + w;
+const lessonEm = (kind, L) => (kind === "sent" ? UNITS[L.u][0] : L.em);
+const RANK = { A1: 0, A2: 1, B1: 2, B2: 3 };
 // Kinds of mistakes, for the hints, the review and the progress page.
 const TYPES = { tense: "Verb tense", "verb form": "Verb form", agreement: "Subject and verb", article: "a / an / the", preposition: "Prepositions", plural: "Singular and plural", "word choice": "Word choice", spelling: "Spelling",
   "word order": "Word order", "missing word": "Missing word", "extra word": "Extra word", punctuation: "Punctuation", capital: "Capital letters", sentence: "Sentence structure" };
@@ -617,16 +690,21 @@ async function photoBlobs(files) {
 // ---------- what Mam is asked ----------
 const LEARNER = () => `a learner from Pakistan (first language Urdu, English level ${level()}) who is preparing for the CSS exam`;
 function checkPrompt(p, text) {
-  const lv = level(), k = p.kind, t = p.task, part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null;
+  const lv = level(), k = p.kind, t = p.task, part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, L = lessonOf(p);
   const max = MAX_MISTAKES[lv] + (p.part === "whole" ? 8 : 0);
-  let task = `Task (${KINDS[k].name}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
+  let task = `Task (${k === "sent" && L ? "Sentences practising " + L.t : L ? L.t : KINDS[k].one}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
+  if (k === "free") task += " The learner chose what to write about. Focus on grammar, spelling, punctuation and word choice.";
+  if (k === "sent" && L) task += `\nThe structure: ${L.t}. ${L.use} Pattern: ${L.form}.`;
+  if ((k === "para" || k === "essay") && L) task += `\nWhat ${an(L.t.toLowerCase())} needs: ${L.what} ${L.steps.join(" ")}`;
   if (k === "precis") task += ` The précis should be about ${t.target.about} words (one third of the passage), in the learner's own words, with a short title.`;
   if (part) task += ` The learner is writing ${part.task}.` + (p.outline?.text?.trim() ? `\nTheir outline:\n${p.outline.text.trim()}` : "");
   const passage = t.passage ? `\n\nThe passage:\n"""\n${t.passage}\n"""` : "";
   const qs = t.questions?.length ? "\n\nQuestions:\n" + t.questions.map((q, i) => `${i + 1}. ${q}`).join("\n") : "";
-  const extra = k === "precis" ? `, "title_ok": true or false (is there a short, suitable title?), "copied": true or false (did they copy long phrases from the passage?), "missed": ["main ideas of the passage that the précis leaves out, up to 3"]`
-    : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "";
-  const taskArea = k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : "answering the task with good ideas";
+  const structure = k === "sent" && L ? `, "structure": {"used": how many sentences use the structure "${L.t}" correctly, "total": how many sentences there are, "note": "one short sentence on how they used the structure"}`
+    : (k === "para" || k === "essay") && L ? `, "structure": {"ok": true or false (does it follow the plan and the style of ${an(L.t.toLowerCase())}${part && p.part !== "whole" ? ", for the part they wrote" : ""}?), "note": "one short sentence on the plan and the style"}` : "";
+  const extra = structure + (k === "precis" ? `, "title_ok": true or false (is there a short, suitable title?), "copied": true or false (did they copy long phrases from the passage?), "missed": ["main ideas of the passage that the précis leaves out, up to 3"]`
+    : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "");
+  const taskArea = k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : k === "free" ? "clear, interesting ideas" : k === "sent" && L ? "using the structure well" : "answering the task with good ideas";
   return `You are Mam, a kind English writing teacher and a fair CSS examiner, checking writing by ${LEARNER()}.
 ${task}${passage}${qs}
 
@@ -641,15 +719,18 @@ Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner 
 Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
 Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"], "better": "the whole text written well at level ${lv}, keeping the learner's ideas"${extra}}`;
 }
-const outlinePrompt = (p, text) => `You are Mam, a kind English writing teacher and a fair CSS examiner. ${LEARNER().replace(/^a/, "A")} is planning a CSS essay on: "${p.task.title}". Check their essay OUTLINE.
+function outlinePrompt(p, text) {
+  const L = lessonOf(p), css = !L || L.id === "css";
+  return `You are Mam, a kind English writing teacher and a fair CSS examiner. ${LEARNER().replace(/^a/, "A")} is planning ${css ? "a CSS essay" : an(L.t.toLowerCase())} on: "${p.task.title}". Check their essay OUTLINE.
 The outline:
 """
 ${text}
 """
-A good CSS outline has: a clear thesis statement; main arguments in a logical order (I, II, III with short points); counter arguments with replies; and a way forward or conclusion.
+${css ? "A good CSS outline has: a clear thesis statement; main arguments in a logical order (I, II, III with short points); counter arguments with replies; and a way forward or conclusion." : `${L.t}: ${L.what} A good outline follows this plan: ${L.outline.replace(/\n/g, " / ")}`}
 Write in ${LEVEL_STYLE[level()]}, never Urdu.
-Reply with ONLY JSON: {"score": 1 to 10, "thesis": "one short sentence: is there a clear thesis statement, and what is it?", "good": ["2 short things done well"], "next": ["2 or 3 short tips to make the outline better"], "missing": ["important parts or points the outline is missing, up to 3"], "better": "a better outline for this topic at level ${level()}, as short numbered lines, one per line"}`;
-const handPrompt = (p) => `These are photos of handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].name}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
+Reply with ONLY JSON: {"score": 1 to 10, "thesis": "one short sentence: is there a clear thesis statement (or main idea), and what is it?", "good": ["2 short things done well"], "next": ["2 or 3 short tips to make the outline better"], "missing": ["important parts or points the outline is missing, up to 3"], "better": "a better outline for this topic at level ${level()}, as short numbered lines, one per line"}`;
+}
+const handPrompt = (p) => `These are photos of handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].one}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
 Reply with ONLY JSON: {"text": "exactly what they wrote", "unclear": ["words that were hard to read, up to 5"], "handwriting": "one short, kind sentence about how easy their handwriting is to read, with one tip if needed"}`;
 const qsRule = (n) => `If questions about the passage are printed with it, copy them; if there are none, write ${n} good questions that test understanding (not copying), in ${LEVEL_STYLE[level()]}.`;
 const passagePhotoPrompt = (k) => `This is a photo of a passage from a book, a newspaper or an exam paper. Copy the passage EXACTLY, word for word, leaving out page numbers, headers and anything that is not part of it.${k === "comp" ? " " + qsRule(4) : ""}
@@ -661,8 +742,8 @@ TEXT:
 ${text.slice(0, 20000)}`;
 const genPassagePrompt = (k, topic) => `You are Mam, an English teacher preparing ${k === "precis" ? "précis" : "comprehension"} practice for ${LEARNER()}. Write an original passage of about ${PASSAGE_WORDS[level()]} words${topic ? ` about "${topic}"` : ", on a topic like those in the CSS Précis and Composition paper (society, history, science, education, ethics or the environment)"}, in ${LEVEL_STYLE[level()]}, in well-organised paragraphs.${k === "comp" ? " Then write 4 questions about it that test understanding, not copying." : ""} Do not repeat these topics: ${doneTitles(k) || "none"}.
 Reply with ONLY JSON: {"title": "a short title", "passage": "the passage, with a blank line between paragraphs"${k === "comp" ? ', "questions": ["4 questions"]' : ""}}`;
-const genTaskPrompt = (k) => `You are Mam, a kind English writing teacher for ${LEARNER()}. Give ONE new ${{ sent: "sentence-writing task (3 to 5 sentences about everyday life)", para: "paragraph task (one paragraph on a topic useful for daily life or the CSS exam)", essay: "CSS essay topic, like the topics in the CSS English Essay paper" }[k]}. Do not repeat these: ${doneTitles(k) || "none"}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
-Reply with ONLY JSON: {"title": "a short topic name", "prompt": "the task in one or two simple sentences${k === "sent" ? ', saying how many sentences' : ""}", "hint": "a short way to start, or a structure to follow", "words": ["4 to 6 useful words or phrases"]}`;
+const genTaskPrompt = (L) => `You are Mam, a kind English writing teacher for ${LEARNER()}. Give ONE new practice task for the structure "${L.t}" (${L.use} Pattern: ${L.form}). The learner writes ${L.n} sentences that use it, about daily life or a topic useful for the CSS exam. Do not repeat this task: "${L.task}". Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"title": "a short topic name", "prompt": "the task in one or two simple sentences, saying how many sentences to write and which structure to use", "hint": "a short way to start, using the structure"}`;
 const judgePrompt = (m, sentence, fix, whole) => `A learner of English from Pakistan is correcting one mistake in their writing. Their sentence: "${sentence}". The mistake: "${m.wrong}" (${TYPES[m.type]}). The teacher's correction: "${m.right}" instead of "${m.wrong}". The learner's ${whole ? "corrected sentence" : "correction"}: "${fix}". Is the learner's correction right? Accept any correction that is correct English, fixes this mistake and keeps the meaning, even if it is different from the teacher's.
 Reply with ONLY JSON: {"ok": true or false, "note": "a very short reason in simple English, at most 12 words"}`;
 const lessonPrompt = (type, mine) => `You are Mam, a kind English teacher. Write a short lesson about this kind of mistake: "${TYPES[type]}", for ${LEARNER()}. These are the learner's own mistakes of this kind: ${mine.map((m) => `"${m.wrong}" → "${m.right}"`).join("; ")}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
@@ -673,38 +754,44 @@ const doneTitles = (k) => state.pieces.filter((p) => p.kind === k && !p.deleted)
 const live = () => state.pieces.filter((p) => !p.deleted);
 const pieceById = (id) => state.pieces.find((p) => p.id === id && !p.deleted) || null;
 const lastDraft = (p) => (p.drafts || []).filter((d) => d.check).pop() || null;
-function makeTask(kind, t) {
+function makeTask(kind, t, L) {
   const task = { title: String(t.title || "Your topic").trim().slice(0, 90), prompt: String(t.prompt || "").trim(), hint: String(t.hint || "").trim(), words: arr(t.words, 6) };
+  if (kind === "free") task.prompt = task.prompt || "Write about anything you like. Mam corrects your grammar, spelling and punctuation.";
   if (kind === "sent") { const n = t.n || Number((task.prompt.match(/\b([3-6])\b/) || [])[1]) || 4; task.target = { min: n, max: n + 1, unit: "sentences" }; task.prompt = task.prompt || `Write ${n} sentences about ${task.title}.`; }
-  if (kind === "para") { const [min, max] = PARA_WORDS[level()]; task.target = { min, max, unit: "words" }; task.prompt = task.prompt || paraPrompt(task.title); task.hint = task.hint || PARA_HINT; }
-  if (kind === "essay") task.prompt = task.prompt || essayPrompt(task.title);
+  if (kind === "para") { const [min, max] = PARA_WORDS[level()]; task.target = { min, max, unit: "words" }; task.prompt = task.prompt || `Write ${an((L ? L.t : "paragraph").toLowerCase())} about "${task.title}".`; if (L) task.words = L.words.slice(0, 6); }
+  if (kind === "essay") { const nm = L ? L.t : "CSS essay"; task.prompt = task.prompt || `Write ${an(nm.startsWith("CSS") ? nm : nm.toLowerCase())} on "${task.title}". Make an outline first, then write the essay.`; }
   if (kind === "precis" || kind === "comp") { task.passage = String(t.passage || "").trim(); task.questions = arr(t.questions, 6); }
   if (kind === "precis") { const pw = wordCount(task.passage), about = Math.max(20, Math.round(pw / 3)); task.target = { min: Math.round(about * 0.8), max: Math.round(about * 1.2), about, unit: "words" }; task.prompt = `Write a précis of the passage in about ${about} words (one third of ${pw}), in your own words, with a short title.`; }
   if (kind === "comp") task.prompt = "Read the passage, then answer the questions in your own words, in full sentences.";
   return task;
 }
-function startTask(kind, t) {
-  const now = Date.now(), task = makeTask(kind, t);
+function startTask(kind, t, lessonId) {
+  const now = Date.now(), L = lessonById(kind, lessonId), task = makeTask(kind, t, L);
   const p = { id: "p" + now.toString(36), kind, task, text: kind === "comp" ? task.questions.map((_, i) => i + 1 + ". ").join("\n\n") : "", drafts: [], created: now, updated: now };
+  if (L) p.lesson = L.id;
   if (kind === "essay") Object.assign(p, { step: "outline", part: "intro", outline: { text: "" } });
   state.pieces.unshift(p); putPiece(p, true);
   go({ tab: "write", page: "piece", id: p.id });
 }
+const startFree = (title) => startTask("free", { title: title || "Free writing · " + shortDate(Date.now()) });
+// A lesson is done once Mam gives a piece for it 6 or more and the structure is right.
+function lessonStatus(kind, id) {
+  const ds = live().filter((p) => p.kind === kind && p.lesson === id).flatMap((p) => (p.drafts || []).filter((d) => d.check));
+  if (!ds.length) return { tried: false, done: false };
+  return { tried: true, best: Math.max(...ds.map((d) => d.check.score)), done: ds.some((d) => d.check.score >= 6 && d.check.structure?.ok !== false) };
+}
+const doneCount = (kind) => LESSONS[kind].filter((L) => lessonStatus(kind, L.id).done).length;
 const targetOf = (p) => (p.kind === "essay" ? (p.step === "outline" ? null : (([min, max]) => ({ min, max, unit: "words" }))(ESSAY_PARTS[p.part || "intro"].words[band(level())])) : p.task.target || null);
 const targetText = (tg) => (!tg ? "" : tg.about ? `about ${tg.about} words` : `${tg.min} to ${tg.max} ${tg.unit}`);
 const today = () => dayOf(Date.now());
-// A different task each day, for the learner's level; precis and comprehension get a new passage from Mam.
-function todaysTask() {
-  const lv = level(), pool = { A1: ["sent"], A2: ["sent", "para"], B1: ["para", "precis", "comp", "essay"], B2: ["essay", "precis", "comp", "para"] }[lv];
-  let h = 0; for (const c of today()) h = (h * 31 + c.charCodeAt(0)) >>> 0;
-  const kind = pool[h % pool.length], done = new Set(live().map((p) => p.task.title));
-  const list = kind === "sent" ? SENT_TOPICS.map(([title, prompt, hint, words, n]) => ({ title, prompt, hint, words, n }))
-    : kind === "para" ? PARA_TOPICS.map(([title, about]) => ({ title, prompt: paraPrompt(about), hint: PARA_HINT }))
-    : kind === "essay" ? ESSAY_TOPICS.map((title) => ({ title, prompt: essayPrompt(title) })) : null;
-  if (!list) return { kind, passage: true };
-  const fresh = list.filter((x) => !done.has(x.title));
-  const pickFrom = fresh.length ? fresh : list;
-  return { kind, topic: pickFrom[(h >> 4) % pickFrom.length] };
+// The next step on the path: free writing first, then sentences, paragraphs and essays, the easier lessons for the level first.
+function nextStep() {
+  if (!live().some((p) => p.kind === "free" && lastDraft(p))) return { kind: "free" };
+  for (const kind of ["sent", "para", "essay"]) {
+    const open = LESSONS[kind].filter((L) => !lessonStatus(kind, L.id).done);
+    if (open.length) return { kind, L: open.find((L) => (RANK[L.lv] ?? 0) <= RANK[level()] + 1) || open[0] };
+  }
+  return { kind: "free" };
 }
 
 // ---------- pages ----------
@@ -714,6 +801,7 @@ function okView(v) {
   if (!v || !["write", "mistakes", "progress"].includes(v.tab)) return { tab: "write", page: "home" };
   if (v.page === "piece" && !pieceById(v.id)) return { tab: "write", page: "home" };
   if (v.page === "kind" && !KINDS[v.kind]) return { tab: "write", page: "home" };
+  if (v.page === "lesson" && !lessonById(v.kind, v.id)) return { tab: "write", page: "home" };
   if (v.page === "type" && !TYPES[v.type]) return { tab: "mistakes", page: "home" };
   if (v.page === "review") return { tab: "mistakes", page: "home" };
   return v;
@@ -722,7 +810,7 @@ function go(v) { navigated = true; stopDictation(); view = v; tabView[v.tab] = v
 function render(keepScroll) {
   const y = $("main").scrollTop;
   renderTabs(); $("page").innerHTML = "";
-  if (view.tab === "write") { const p = view.page === "piece" && pieceById(view.id); if (p) renderPiece(p); else if (view.page === "kind" && KINDS[view.kind]) renderKind(view.kind); else renderHome(); }
+  if (view.tab === "write") { const p = view.page === "piece" && pieceById(view.id); if (p) renderPiece(p); else if (view.page === "lesson" && lessonById(view.kind, view.id)) renderLesson(view.kind, view.id); else if (view.page === "kind" && KINDS[view.kind]) renderKind(view.kind); else renderHome(); }
   else if (view.tab === "mistakes") { if (view.page === "review" && rv) renderReview(); else if (view.page === "type" && TYPES[view.type]) renderType(view.type); else renderMistakes(); }
   else renderProgress();
   if (keepScroll) $("main").scrollTop = y;
@@ -749,11 +837,13 @@ function tip(key, text) {
 const backBtn = (label, v) => { const b = tool(label, () => go(v)); b.classList.add("back"); $("page").append(b); };
 const shortDate = (t) => new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short" });
 function pieceDesc(p) {
-  const d = lastDraft(p), words = wordCount(p.text || "");
+  const d = lastDraft(p), words = wordCount(p.text || ""), L = lessonOf(p);
   const state0 = d ? "last mark " + d.check.score + "/10" : p.kind === "essay" && p.outline?.check ? "outline " + p.outline.check.score + "/10" : words && !(p.kind === "comp" && !/[A-Za-z]/.test(p.text)) ? words + " words, not checked yet" : "not started";
-  return [KINDS[p.kind].name, state0, shortDate(p.updated)].join(" · ");
+  return [L && p.lesson ? L.t : KINDS[p.kind].one, state0, shortDate(p.updated)].join(" · ");
 }
 const pieceRow = (p) => row(KINDS[p.kind].em, p.task.title, pieceDesc(p), (p.drafts || []).length > 1 ? "✎ " + p.drafts.length : "", () => go({ tab: "write", page: "piece", id: p.id }));
+const lessonView = (kind, id) => ({ tab: "write", page: "lesson", kind, id });
+const stageText = (k) => (k === "free" ? (live().filter((p) => p.kind === "free" && lastDraft(p)).length + " checked") : `${doneCount(k)} of ${LESSONS[k].length} done`);
 
 function renderHome() {
   setTitle("✍️ Write");
@@ -763,44 +853,45 @@ function renderHome() {
     const c = section("card", "Continue writing");
     c.append(el("h2", "", KINDS[open.kind].em + " " + open.task.title), el("p", "hint", pieceDesc(open)), btn("✍️ Continue", () => go({ tab: "write", page: "piece", id: open.id }), "btn primary"));
   }
-  const td = todaysTask(), c = section("card today", "Today's task · " + KINDS[td.kind].name);
-  if (td.passage) {
-    c.append(el("h2", "", KINDS[td.kind].em + " " + (td.kind === "precis" ? "Write a précis" : "Read and answer")), el("p", "", td.kind === "precis" ? "Mam writes a short passage for you. You shorten it to one third, in your own words." : "Mam writes a short passage with questions. You answer them in your own words."));
-    c.append(btn("Start ✍️", () => genPassage(td.kind, "", "homeStatus"), "btn primary"));
+  const nx = nextStep(), step = PATH.indexOf(nx.kind) + 1, c = section("card next", `Next step · ${step}. ${KINDS[nx.kind].name}`);
+  if (nx.L) {
+    c.append(el("h2", "", lessonEm(nx.kind, nx.L) + " " + nx.L.t), el("p", "", nx.kind === "sent" ? nx.L.use : nx.L.what));
+    c.append(btn("📖 Open the lesson", () => go(lessonView(nx.kind, nx.L.id)), "btn primary"));
   } else {
-    c.append(el("h2", "", KINDS[td.kind].em + " " + td.topic.title), el("p", "", td.topic.prompt));
-    c.append(btn("Start ✍️", () => startTask(td.kind, td.topic), "btn primary"));
+    c.append(el("h2", "", "📝 Write anything"), el("p", "", "Write a few sentences about your day or anything you like. Mam corrects your grammar, so you see your common mistakes before the lessons."));
+    c.append(btn("✍️ Start writing", () => startFree(), "btn primary"));
   }
-  const kinds = section("list", "Choose what to write");
-  KIND_ORDER.forEach((k) => { const n = live().filter((p) => p.kind === k).length; kinds.append(row(KINDS[k].em, KINDS[k].name, KINDS[k].desc, n ? "✓ " + n : "", () => go({ tab: "write", page: "kind", kind: k }))); });
+  const path = section("list", "Your path");
+  PATH.forEach((k, i) => path.append(row(KINDS[k].em, `${i + 1}. ${KINDS[k].name}`, KINDS[k].desc + " · " + stageText(k), "", () => go({ tab: "write", page: "kind", kind: k }))));
+  const exam = section("list", "Exam practice");
+  EXAM.forEach((k) => { const n = live().filter((p) => p.kind === k).length; exam.append(row(KINDS[k].em, KINDS[k].name, KINDS[k].desc, n ? "✓ " + n : "", () => go({ tab: "write", page: "kind", kind: k }))); });
   const mine = section("list", "Your writing");
   const ps = live();
   if (!ps.length) mine.append(el("p", "hint", "Everything you write is saved here, with Mam's marks, so you can see how you improve."));
   ps.slice(0, 30).forEach((p) => mine.append(pieceRow(p)));
 }
 function renderKind(k) {
-  const K = KINDS[k], topics = { sent: SENT_TOPICS, para: PARA_TOPICS, essay: ESSAY_TOPICS }[k];
+  const K = KINDS[k];
   setTitle(K.em + " " + K.name);
   backBtn("← Write", { tab: "write", page: "home" });
-  const head = section("card"); head.append(el("h2", "", K.em + " " + K.name), el("p", "hint", K.desc));
+  const head = section("card"), step = PATH.indexOf(k);
+  head.append(el("h2", "", K.em + " " + K.name), el("p", "hint", (step >= 0 ? `Step ${step + 1} of 4. ` : "") + K.desc + "."));
   const g = el("details"); g.open = !live().some((p) => p.kind === k);
-  g.append(el("summary", "", "📖 How to write a good " + K.name.toLowerCase().replace(/s$/, "")));
+  g.append(el("summary", "", k === "free" ? "📖 How free writing works" : "📖 How " + K.name.toLowerCase() + " work" + (k === "precis" || k === "comp" ? "s" : "")));
   const ul = el("ul"); GUIDES[k].forEach((x) => ul.append(el("li", "", x))); g.append(ul); head.append(g);
   section("").id = "kindStatus";
-  if (topics) {
-    const ask = section("card", "A new task");
-    ask.append(el("p", "hint", "Mam gives you a new task for your level."), btn("✨ Mam, give me a task", () => genTask(k), "btn primary"));
-    const own = section("card", "Or your own topic");
-    const f = el("form", "row"); f.innerHTML = '<input id="ownTopic" type="text" maxlength="100" autocomplete="off" aria-label="Your own topic"><button class="btn primary" type="submit">Start</button>';
-    f.querySelector("input").placeholder = k === "essay" ? "An essay topic, or a past paper question" : "e.g. My village";
-    f.onsubmit = (e) => { e.preventDefault(); const v = $("ownTopic").value.trim(); if (v) startTask(k, k === "para" ? { title: v, prompt: paraPrompt(v) } : { title: v }); };
-    own.append(f);
-    const list = section("list", "Topics");
-    topics.forEach((x) => {
-      const t = k === "sent" ? { title: x[0], prompt: x[1], hint: x[2], words: x[3], n: x[4] } : k === "para" ? { title: x[0], prompt: paraPrompt(x[1]), hint: PARA_HINT } : { title: x, prompt: essayPrompt(x) };
-      const done = live().filter((p) => p.task.title === t.title);
-      list.append(row(K.em, t.title, k === "essay" ? "CSS-style essay topic" : t.prompt, done.length ? "✓" : "", () => (done[0] ? go({ tab: "write", page: "piece", id: done[0].id }) : startTask(k, t))));
+  if (k === "free") {
+    const c = section("card", "Write anything");
+    c.append(el("p", "", "Mam marks every mistake, you fix them yourself, and they go to your review list."), btn("✍️ Start writing", () => startFree(), "btn primary"));
+    c.append(el("div", "lbl", "Or pick an idea"));
+    const ideas = el("div", "tools"); FREE_IDEAS.forEach((x) => ideas.append(tool(x, () => startFree(x)))); c.append(ideas);
+  } else if (LESSONS[k]) {
+    if (k === "sent") Object.entries(UNITS).forEach(([u, [em, name]]) => {
+      const list = SENT_LESSONS.filter((L) => L.u === u), done = list.filter((L) => lessonStatus(k, L.id).done).length;
+      const box = section("list", `${em} ${name} · ${done} of ${list.length} done`);
+      list.forEach((L) => box.append(lessonRow(k, L)));
     });
+    else { const box = section("list", `${K.name} · ${doneCount(k)} of ${LESSONS[k].length} done`); LESSONS[k].forEach((L) => box.append(lessonRow(k, L))); }
   } else {
     const gen = section("card", "A passage from Mam");
     const f = el("form", "row"); f.innerHTML = '<input id="passTopic" type="text" maxlength="80" autocomplete="off" placeholder="Topic (you can leave it empty)" aria-label="Topic for the passage"><button class="btn primary" type="submit">✨ Write me a passage</button>';
@@ -815,11 +906,56 @@ function renderKind(k) {
   const mine = live().filter((p) => p.kind === k);
   if (mine.length) { const l = section("list", K.yours + " · " + mine.length); mine.slice(0, 20).forEach((p) => l.append(pieceRow(p))); }
 }
-async function genTask(k) {
-  const r = await aiJob("kindStatus", "Mam is choosing a task for you…", (signal) => askJson(genTaskPrompt(k), { modelTier: "quick", signal }), () => genTask(k));
+function lessonRow(k, L) {
+  const st = lessonStatus(k, L.id);
+  return row(st.done ? "✅" : lessonEm(k, L), L.t, (k === "sent" ? L.lv + " · " + L.use : L.what), st.tried ? st.best + "/10" : "", () => go(lessonView(k, L.id)));
+}
+// Text with [brackets] around the structure being taught: the brackets become highlights.
+function marked(text, tag) {
+  const e = el(tag || "span");
+  String(text).split(/(\[[^\]]+\])/).forEach((part) => { if (/^\[.*\]$/.test(part)) e.append(el("b", "hl", part.slice(1, -1))); else if (part) e.append(part); });
+  return e;
+}
+function renderLesson(k, id) {
+  const L = lessonById(k, id), K = KINDS[k], st = lessonStatus(k, id);
+  setTitle(lessonEm(k, L) + " " + L.t);
+  backBtn("← " + K.name, { tab: "write", page: "kind", kind: k });
+  const c = section("card lesson");
+  c.append(el("div", "lbl", k === "sent" ? `${UNITS[L.u][1]} · level ${L.lv}` : K.name), el("h2", "", L.t), el("p", "", k === "sent" ? L.use : L.what));
+  if (st.done) c.append(el("div", "flag ok", "✓ Done. Your best mark: " + st.best + "/10"));
+  if (k === "sent") {
+    c.append(el("div", "lbl", "The pattern"), el("div", "formula", L.form), el("div", "lbl", "Examples"));
+    const ul = el("ul", "ex"); L.ex.forEach((x) => ul.append(marked(x, "li"))); c.append(ul);
+    c.append(el("div", "lbl", "Watch out")); const wr = el("p"); wr.append(el("s", "", L.w), " → ", el("span", "right", L.r)); c.append(wr);
+  } else {
+    c.append(el("div", "lbl", k === "essay" ? "How to plan and write it" : "How to build it"));
+    const ol = el("ol"); L.steps.forEach((x) => ol.append(el("li", "", x))); c.append(ol);
+    if (L.words) { const w = el("div", "tools"); w.append(el("span", "hint", "Useful words:")); L.words.forEach((x) => w.append(el("span", "chip2", x))); c.append(w); }
+    if (L.model) c.append(el("div", "lbl", "Example paragraph"), el("p", "model", L.model));
+    if (L.two) { c.append(el("div", "lbl", "The same topic, two ways")); L.two.forEach(([lab, x]) => { const d = el("p", "model"); d.append(el("b", "", lab + ": "), x); c.append(d); }); }
+    if (L.outline) c.append(el("div", "lbl", "The outline plan"), el("p", "model pre", L.outline));
+  }
+  section("").id = "lessonStatus";
+  if (k === "sent") {
+    const tc = section("card", "Your task");
+    tc.append(el("p", "", L.task), el("p", "hint", "💡 " + L.hint));
+    const t2 = el("div", "tools"); t2.append(btn("✍️ Start writing", () => startTask("sent", { title: L.t, prompt: L.task, hint: L.hint, n: L.n }, L.id), "btn primary"), btn("✨ A different task", () => genTask(L))); tc.append(t2);
+  } else {
+    const tc = section("card", "Choose a topic"), list = el("div", "list");
+    L.topics.forEach((topic) => list.append(row(L.em, topic, "", "", () => startTask(k, { title: topic }, L.id))));
+    const f = el("form", "row"); f.innerHTML = '<input id="ownTopic" type="text" maxlength="100" autocomplete="off" aria-label="Your own topic"><button class="btn primary" type="submit">Start</button>';
+    f.querySelector("input").placeholder = L.id === "css" ? "An essay topic, or a past paper question" : "Or your own topic";
+    f.onsubmit = (e) => { e.preventDefault(); const v = $("ownTopic").value.trim(); if (v) startTask(k, { title: v }, L.id); };
+    tc.append(list, f);
+  }
+  const mine = live().filter((p) => p.kind === k && p.lesson === id);
+  if (mine.length) { const l = section("list", "Your practice · " + mine.length); mine.forEach((p) => l.append(pieceRow(p))); }
+}
+async function genTask(L) {
+  const r = await aiJob("lessonStatus", "Mam is choosing a task for you…", (signal) => askJson(genTaskPrompt(L), { modelTier: "quick", signal }), () => genTask(L));
   if (!r) return;
-  if (!r.title || !isEnglish(r.title + r.prompt)) { statusIn("kindStatus", "Mam could not make a task this time. Try again, or choose a topic below.", true); return; }
-  startTask(k, { title: r.title, prompt: r.prompt, hint: r.hint, words: r.words });
+  if (!r.prompt || !isEnglish(r.prompt + r.hint)) { statusIn("lessonStatus", "Mam could not make a task this time. Try again, or use the task above.", true); return; }
+  startTask("sent", { title: L.t, prompt: r.prompt, hint: r.hint, n: L.n }, L.id);
 }
 async function genPassage(k, topic, statusId) {
   const r = await aiJob(statusId, "Mam is writing a passage for you… this can take up to a minute.", (signal) => askJson(genPassagePrompt(k, topic), { modelTier: "default", signal }), () => genPassage(k, topic, statusId));
@@ -849,13 +985,15 @@ const textKey = (p) => (p.kind === "essay" && p.step === "outline" ? "outline" :
 const getText = (p) => (textKey(p) === "outline" ? p.outline.text : p.text) || "";
 const setText = (p, v) => { if (textKey(p) === "outline") p.outline.text = v; else p.text = v; };
 function renderPiece(p) {
-  const K = KINDS[p.kind], t = p.task;
+  const K = KINDS[p.kind], t = p.task, L = p.lesson ? lessonOf(p) : null;
   setTitle(K.em + " " + t.title);
-  backBtn("← " + K.name, { tab: "write", page: "kind", kind: p.kind });
+  if (L) backBtn("← " + L.t, lessonView(p.kind, L.id)); else backBtn("← " + K.name, { tab: "write", page: "kind", kind: p.kind });
   const card = section("card task");
-  card.append(el("div", "lbl", K.name + (p.kind !== "essay" && p.task.target ? " · goal " + targetText(p.task.target) : "")), el("div", "q", t.title));
+  card.append(el("div", "lbl", (L && p.kind !== "sent" ? L.t : K.one) + (p.kind !== "essay" && p.task.target ? " · goal " + targetText(p.task.target) : "")), el("div", "q", t.title));
   if (t.prompt && p.kind !== "essay") card.append(el("p", "", t.prompt));
   if (t.hint) card.append(el("p", "hint", "💡 " + t.hint));
+  if (L && p.kind === "sent") card.append(el("div", "formula", L.form));
+  if (L && p.kind !== "sent") { const d = el("details"); d.append(el("summary", "", "📖 The plan of " + an(L.t.toLowerCase()))); const ol = el("ol"); L.steps.forEach((x) => ol.append(el("li", "", x))); d.append(ol); card.append(d); }
   if (t.words?.length) { const w = el("div", "tools"); w.append(el("span", "hint", "Useful words:")); t.words.forEach((x) => w.append(el("span", "chip2", x))); card.append(w); }
   if (t.passage) {
     const d = el("details", "passage"); d.open = !lastDraft(p);
@@ -872,14 +1010,14 @@ function renderPiece(p) {
       const parts = el("div", "tabs"); parts.setAttribute("role", "tablist");
       Object.entries(ESSAY_PARTS).forEach(([k2, x]) => { const b = el("button", "tab", x.name); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String((p.part || "intro") === k2)); b.onclick = () => { p.part = k2; putPiece(p); render(true); }; parts.append(b); });
       card.append(el("div", "lbl", "What will you write?"), parts, el("p", "hint", "Start with the introduction. When it is good, write a body paragraph, and then the whole essay."));
-    } else card.append(el("p", "hint", "Write your thesis statement, your main arguments (I, II, III) with short points, counter arguments, and your conclusion. Mam checks the outline first."));
+    } else card.append(el("p", "hint", "Plan your essay first: your thesis (main idea) and your main points, as in the outline plan. Mam checks the outline before you write."));
   }
   // the answer sheet
   const outline = textKey(p) === "outline";
   const ed = section("editor");
   const head = el("div", "edhead"); head.append(el("strong", "", outline ? "Your outline" : K.yours), el("span", "count")); head.lastChild.id = "count"; ed.append(head);
   const ta = el("textarea", "ruled" + (p.kind === "essay" || p.kind === "precis" ? " long" : "")); ta.id = "draft"; ta.setAttribute("aria-label", outline ? "Your outline" : K.yours);
-  ta.placeholder = outline ? "Thesis statement: …\nI. …\nII. …\nIII. …\nCounter arguments: …\nConclusion: …" : p.kind === "precis" ? "Title: …\n\nYour précis…" : "Start writing here…";
+  ta.placeholder = outline ? lessonOf(p)?.outline || "Thesis statement: …\nI. …\nII. …\nIII. …\nConclusion: …" : p.kind === "precis" ? "Title: …\n\nYour précis…" : "Start writing here…";
   ta.spellcheck = false; ta.autocapitalize = "off"; ta.setAttribute("autocorrect", "off"); // Mam checks the spelling, not the phone
   ta.value = getText(p); ed.append(ta);
   ed.append(el("div", "changed")); ed.lastChild.id = "changed";
@@ -967,6 +1105,11 @@ function cleanCheck(r, text, p) {
     .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.hint + m.why)).slice(0, 25);
   const c = { score: num(r.score, 1, 10), areas: Object.fromEntries(["task", "organisation", "grammar", "vocabulary"].map((k) => [k, num(areas[k], 1, 10)])), mistakes: locate(text, ms),
     good: cleanList(r.good, 3), next: cleanList(r.next, 3), better: isEnglish(r.better) ? String(r.better).trim() : "" };
+  if (p.lesson && r.structure && typeof r.structure === "object") {
+    const note = isEnglish(r.structure.note) ? String(r.structure.note) : "";
+    if (p.kind === "sent") { const total = num(r.structure.total, 1, 40), used = num(r.structure.used, 0, total); c.structure = { used, total, ok: used >= Math.max(1, Math.ceil(total * 0.6)), note }; }
+    else c.structure = { ok: r.structure.ok === true, note };
+  }
   if (p.kind === "precis") Object.assign(c, { title_ok: r.title_ok !== false, copied: r.copied === true, missed: cleanList(r.missed, 3) });
   if (p.kind === "comp") c.answers = (Array.isArray(r.answers) ? r.answers : []).map((a, i) => ({ q: num(a?.q || i + 1, 1, 20), ok: a?.ok === true, note: isEnglish(a?.note) ? String(a.note) : "", model: isEnglish(a?.model) ? String(a.model) : "" })).slice(0, 8);
   return c;
@@ -999,8 +1142,13 @@ function marksCard(p, d) {
   const tx = el("div"); tx.append(el("strong", "", "Mam's marks"), el("div", "when", `Draft ${n} · ${d.words} words · ${ch.mistakes.length} mistake${ch.mistakes.length === 1 ? "" : "s"}`)); top.append(tx); c.append(top);
   const ds = p.drafts.filter((x) => x.check);
   if (ds.length > 1) { const line = el("div", "drafts"); ds.forEach((x, i) => { if (i) line.append(el("span", "", "→")); line.append(el("span", "chip2", `Draft ${i + 1}: ${x.check.score}`)); }); const diff = ch.score - ds[ds.length - 2].check.score; if (diff > 0) line.append(el("span", "up", "↑ " + diff + " better")); c.append(line); }
-  const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
+  const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : p.kind === "free" ? "Ideas" : p.kind === "sent" && p.lesson ? "Structure" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
   Object.entries(labels).forEach(([k, l]) => { const v = ch.areas[k], r = el("div", "area"); r.innerHTML = "<span></span><i><b></b></i><em></em>"; r.children[0].textContent = l; r.querySelector("b").style.width = v * 10 + "%"; r.children[2].textContent = v + "/10"; c.append(r); });
+  const sx = ch.structure, L = lessonOf(p);
+  if (sx && L) {
+    c.append(el("div", "flag " + (sx.ok ? "ok" : "bad"), p.kind === "sent" ? `${sx.ok ? "✓" : "⚠"} ${L.t}: used correctly in ${sx.used} of ${sx.total} sentences.` : `${sx.ok ? "✓ It follows" : "⚠ It does not yet follow"} the plan of ${an(L.t.toLowerCase())}.`));
+    if (sx.note) c.append(el("p", "hint", "🧩 " + sx.note));
+  }
   if (p.kind === "precis") {
     const tg = p.task.target, okLen = d.words >= tg.min && d.words <= tg.max;
     c.append(el("div", "flag " + (okLen ? "ok" : "bad"), `${okLen ? "✓" : "⚠"} Length: ${d.words} words. Goal: about ${tg.about}${okLen ? "." : d.words > tg.max ? ". Make it shorter." : ". Add the main ideas you left out."}`));
@@ -1281,6 +1429,14 @@ function renderProgress() {
     c.append(el("h2", "", "Nothing checked yet"), el("p", "hint", "When Mam checks your writing, your marks, your most common mistakes and your words each day show here."), btn("✍️ Start writing", () => go({ tab: "write", page: "home" }), "btn primary"));
     return;
   }
+  const pc = section("card", "Your path");
+  PATH.forEach((k, i) => {
+    const pr = el("div", "part"), top = el("div", "parttop"), total = k === "free" ? 0 : LESSONS[k].length, done = k === "free" ? 0 : doneCount(k);
+    top.append(el("strong", "", `${i + 1}. ${KINDS[k].name}`), el("span", "", k === "free" ? stageText(k) : `${done} of ${total}`));
+    pr.append(top);
+    if (total) { const mt = el("div", "meter"), b = el("b"); b.style.width = (done / total) * 100 + "%"; mt.append(b); pr.append(mt); }
+    pc.append(pr);
+  });
   const recent = firsts.slice(-10), score = avg(recent.map((x) => x.d.check.score));
   const hero = section("card", "Your writing score");
   const big = el("div", "hero", score.toFixed(1)); big.append(el("small", "", " / 10")); hero.append(big);
