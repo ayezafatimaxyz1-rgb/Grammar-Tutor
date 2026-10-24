@@ -1,0 +1,1459 @@
+<title>Likho English</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: header on top, the page in the middle, three tabs at the bottom.
+   Look: the frosted glass of Bolo English in ink blue, a ruled answer sheet to write on, and the examiner's red pen for mistakes. */
+:root {
+  --bg: #e9eef8;
+  --surface: rgb(255 255 255 / 62%);
+  --inset: rgb(255 255 255 / 60%);
+  --sheet: rgb(244 247 253 / 88%);
+  --sunk: rgb(36 73 168 / 9%);
+  --fg: #121a2e;
+  --muted: #4b566e;
+  --line: rgb(20 40 90 / 14%);
+  --rim: rgb(255 255 255 / 85%);
+  --shadow: 0 6px 22px rgb(25 45 100 / 10%);
+  --blob1: rgb(130 165 255 / 50%);
+  --blob2: rgb(110 215 190 / 38%);
+  --blob3: rgb(255 205 130 / 45%);
+  --accent: #2449a8;
+  --accent2: #3a63c9;
+  --accent-fg: #ffffff;
+  --chart: #2449a8;
+  --ring: #f3f6fc;
+  --paper: rgb(255 255 255 / 80%);
+  --rule: rgb(36 73 168 / 17%);
+  --margin: rgb(200 60 50 / 38%);
+  --pen: #c23b2c;
+  --good: #1f8a57;
+  --goodbg: rgb(31 138 87 / 13%);
+  --sun: #d98f1f;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #070b16; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sheet: rgb(14 20 36 / 90%); --sunk: rgb(255 255 255 / 9%);
+    --fg: #e8edf8; --muted: #a5b0c8; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+    --blob1: rgb(50 90 200 / 38%); --blob2: rgb(30 140 120 / 24%); --blob3: rgb(170 110 30 / 22%);
+    --accent: #86a8ff; --accent2: #6b93fb; --accent-fg: #0a1230; --chart: #6f96f5; --ring: #10162a;
+    --paper: rgb(255 255 255 / 6%); --rule: rgb(140 170 255 / 16%); --margin: rgb(255 120 100 / 35%); --pen: #ff8a76; --good: #4fd193; --goodbg: rgb(79 209 147 / 14%); --sun: #f0b450;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #070b16; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sheet: rgb(14 20 36 / 90%); --sunk: rgb(255 255 255 / 9%);
+  --fg: #e8edf8; --muted: #a5b0c8; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+  --blob1: rgb(50 90 200 / 38%); --blob2: rgb(30 140 120 / 24%); --blob3: rgb(170 110 30 / 22%);
+  --accent: #86a8ff; --accent2: #6b93fb; --accent-fg: #0a1230; --chart: #6f96f5; --ring: #10162a;
+  --paper: rgb(255 255 255 / 6%); --rule: rgb(140 170 255 / 16%); --margin: rgb(255 120 100 / 35%); --pen: #ff8a76; --good: #4fd193; --goodbg: rgb(79 209 147 / 14%); --sun: #f0b450;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background-color: var(--bg); background-image: radial-gradient(60% 45% at 0% 0%, var(--blob1), transparent 70%), radial-gradient(55% 45% at 100% 30%, var(--blob2), transparent 70%), radial-gradient(70% 50% at 25% 100%, var(--blob3), transparent 70%); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.45; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, textarea:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.app { height: 100%; display: flex; flex-direction: column; max-width: 680px; margin: 0 auto; }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: flex; align-items: center; gap: 10px; padding-block: 8px; background: var(--surface); border-bottom: 1px solid var(--rim); }
+.brand { font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; white-space: nowrap; }
+.brand b { color: var(--accent); }
+.ptitle { margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; color: var(--muted); }
+.iconbtn { border: 1px solid var(--rim); background: var(--surface); border-radius: 50%; width: 44px; height: 44px; flex: none; font-size: 18px; }
+main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.page { display: flex; flex-direction: column; gap: 12px; padding-block: 12px 24px; }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 8px 12px; min-height: 36px; font-size: 13px; }
+.btn { border: 1px solid var(--rim); background: var(--surface); border-radius: 99px; padding: 10px 16px; font-size: 15px; min-height: 44px; }
+.btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--accent-fg); border-color: transparent; font-weight: 700; }
+.btn:disabled { opacity: .5; cursor: default; }
+.btn.wide { width: 100%; }
+.btn.on { background: var(--pen); color: #fff; border-color: transparent; }
+label.btn { display: inline-flex; align-items: center; justify-content: center; cursor: pointer; }
+.lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.hint { font-size: 14px; color: var(--muted); margin: 0; }
+.banner { background: var(--sunk); border-radius: 14px; padding: 12px 14px; font-size: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.banner span { min-width: 0; }
+.banner.warn { border-left: 4px solid var(--sun); }
+.card { background: var(--surface); border: 1px solid var(--rim); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow); }
+.card h2 { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.2; margin: 0; text-wrap: balance; }
+.card p { margin: 0; }
+.card ul, .card ol { margin: 0; padding-left: 20px; }
+.card li + li { margin-top: 3px; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+.trow { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: center; border: 1px solid var(--rim); background: var(--surface); border-radius: 14px; padding: 10px 12px; text-align: left; width: 100%; box-shadow: var(--shadow); }
+.trow .em { font-size: 24px; text-align: center; }
+.trow strong { display: block; font-family: var(--display); }
+.trow span { font-size: 13px; color: var(--muted); }
+.trow .n { font-size: 12px; font-weight: 700; color: var(--accent); }
+.chip2 { display: inline-block; background: var(--sunk); color: var(--fg); border-radius: 99px; padding: 3px 10px; font-size: 13px; }
+.type { display: inline-block; border-radius: 99px; padding: 2px 10px; font-size: 12px; font-weight: 700; color: var(--pen); background: color-mix(in srgb, var(--pen) 12%, transparent); }
+.back { align-self: flex-start; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field select, .field input, .row input, .inbox { border: 1px solid var(--rim); background: var(--inset); color: var(--fg); border-radius: 12px; padding: 10px 12px; font: inherit; min-height: 44px; }
+.row { display: flex; gap: 8px; }
+.row input, .row .inbox { flex: 1; min-width: 0; }
+.field a, .panel a { color: var(--accent); }
+.status { font-size: 14px; color: var(--muted); white-space: pre-wrap; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.tab { border: 1px solid var(--rim); background: var(--inset); border-radius: 99px; padding: 8px 12px; min-height: 40px; font-size: 14px; font-weight: 700; white-space: nowrap; }
+.tab[aria-selected="true"] { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--accent-fg); border-color: transparent; }
+details > summary { cursor: pointer; font-weight: 700; color: var(--accent); list-style: none; min-height: 32px; display: flex; align-items: center; gap: 6px; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after { content: "▾"; font-size: 12px; }
+details[open] > summary::after { content: "▴"; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.thumbs { display: flex; gap: 6px; flex-wrap: wrap; }
+.thumbs:empty { display: none; }
+.thumbs img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
+.toast { position: fixed; left: 50%; top: calc(72px + env(safe-area-inset-top, 0px)); transform: translateX(-50%); z-index: 40; background: var(--fg); color: var(--bg); padding: 10px 16px; border-radius: 99px; font-size: 15px; font-weight: 700; width: max-content; max-width: calc(100vw - 32px); }
+.tipbox { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); background: var(--inset); border: 1px solid var(--rim); border-radius: 12px; padding: 8px 4px 8px 12px; }
+.tipbox span { flex: 1; min-width: 0; padding-top: 4px; }
+.tipbox .x { flex: none; border: 0; background: none; width: 32px; height: 32px; color: var(--muted); font-size: 14px; }
+
+/* the task and the passage */
+.task .q { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.2; text-wrap: balance; }
+.passage p { margin: 0 0 8px; line-height: 1.6; }
+.passage { background: var(--paper); border: 1px solid var(--rim); border-radius: 14px; padding: 10px 12px; }
+.qs { margin: 0; padding-left: 22px; }
+
+/* the answer sheet: ruled lines and a red margin, like a CSS answer booklet */
+.editor { display: flex; flex-direction: column; gap: 8px; }
+.edhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.count.ok { color: var(--good); font-weight: 700; }
+.count.over { color: var(--sun); font-weight: 700; }
+.ruled { --lh: 30px; width: 100%; min-height: calc(var(--lh) * 8 + 16px); border: 1px solid var(--rim); border-radius: 14px; color: var(--fg); font: inherit; font-size: 17px; line-height: var(--lh); padding: 8px 12px 8px 54px; resize: vertical;
+  background-color: var(--paper);
+  background-image: linear-gradient(to right, transparent 42px, var(--margin) 42px, var(--margin) 43px, transparent 43px), repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--lh) - 1px), var(--rule) calc(var(--lh) - 1px), var(--rule) var(--lh));
+  background-position: 0 0, 0 8px; background-attachment: local; box-shadow: var(--shadow); }
+.ruled.long { min-height: calc(var(--lh) * 14 + 16px); }
+.changed { font-size: 14px; color: var(--sun); font-weight: 700; }
+
+/* marks */
+.score { font-family: var(--display); font-weight: 800; font-size: 44px; color: var(--accent); line-height: 1; font-variant-numeric: tabular-nums; }
+.scorerow { display: flex; gap: 14px; align-items: center; }
+.scorerow strong { display: block; font-family: var(--display); font-size: 18px; }
+.when { font-size: 13px; color: var(--muted); }
+.area { display: grid; grid-template-columns: 112px minmax(0, 1fr) 40px; gap: 8px; align-items: center; font-size: 14px; }
+.area i { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.area b { display: block; height: 100%; background: var(--chart); border-radius: 99px; }
+.area em { font-style: normal; color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+.drafts { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted); }
+.up { color: var(--good); font-weight: 700; }
+.flag { font-size: 15px; }
+.flag.bad { color: var(--pen); }
+.flag.ok { color: var(--good); }
+.marked, .corrected, .better { margin: 0; white-space: pre-wrap; font-size: 17px; line-height: 1.9; overflow-wrap: anywhere; }
+mark.mk { background: none; color: inherit; text-decoration: underline wavy var(--pen); text-decoration-thickness: 1.5px; text-underline-offset: 5px; }
+mark.mk.done { text-decoration: underline solid var(--good); text-decoration-thickness: 2px; }
+mark.mk sup, .fix .n { display: inline-grid; place-items: center; min-width: 18px; height: 18px; border-radius: 99px; background: var(--pen); color: #fff; font-size: 11px; font-weight: 700; line-height: 1; margin-left: 2px; padding: 0 4px; vertical-align: super; }
+mark.mk.done sup { background: var(--good); }
+ins { text-decoration: none; background: var(--goodbg); color: var(--good); font-weight: 700; border-radius: 4px; padding: 0 2px; }
+.fix { display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 10px; }
+.fix .n { vertical-align: baseline; margin: 0 6px 0 0; }
+.fix .fhead { display: flex; align-items: center; gap: 4px; }
+.fix .wrong { font-size: 16px; }
+.fix .wrong s { text-decoration-color: var(--pen); }
+.fix.ok .n { background: var(--good); }
+.fix.shown .n { background: var(--muted); }
+.fout { font-size: 15px; }
+.fout:empty { display: none; }
+.right { color: var(--good); font-weight: 700; }
+.lock { font-size: 15px; color: var(--muted); }
+.mrow { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; }
+.lbl + .mrow { border-top: 0; padding-top: 0; }
+.mline { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; }
+.mline > div { min-width: 0; }
+.mline .mini { flex: none; }
+.fix > .mini, .card > .mini { align-self: flex-start; }
+.mrow s { color: var(--pen); }
+.mrow small { color: var(--muted); font-size: 13px; }
+.trbar { display: grid; grid-template-columns: minmax(0, 132px) minmax(0, 1fr) 32px; gap: 8px; align-items: center; border: 0; background: none; padding: 6px 0; min-height: 40px; text-align: left; width: 100%; font-size: 14px; }
+.trbar i { height: 10px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.trbar b { display: block; height: 100%; background: var(--pen); border-radius: 99px; opacity: .85; }
+.trbar em { font-style: normal; text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* progress */
+.hero { font-family: var(--body); font-weight: 700; font-size: 56px; line-height: 1; font-variant-numeric: tabular-nums; }
+.hero small { font-size: 22px; color: var(--muted); }
+.metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+.metric { background: var(--sunk); border-radius: 12px; padding: 10px 6px; text-align: center; }
+.metric b { display: block; font-family: var(--display); font-size: 22px; font-variant-numeric: tabular-nums; }
+.metric span { font-size: 12px; color: var(--muted); }
+.chartbox { position: relative; }
+.chart { width: 100%; height: auto; display: block; overflow: visible; touch-action: pan-y; }
+.chart text { fill: var(--muted); font: 11px var(--body); }
+.chart text.end { fill: var(--fg); font-weight: 700; }
+.chart .grid { stroke: var(--line); stroke-width: 1; }
+.chart .line { fill: none; stroke: var(--chart); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.chart .area { fill: var(--chart); opacity: .1; }
+.chart .pt { fill: var(--chart); stroke: var(--ring); stroke-width: 2; }
+.chart .bar { fill: var(--chart); }
+.chart .xh { stroke: var(--muted); stroke-width: 1; }
+.chartbox .tip { position: absolute; pointer-events: none; background: var(--sheet); border: 1px solid var(--rim); border-radius: 10px; padding: 6px 10px; font-size: 13px; color: var(--muted); box-shadow: var(--shadow); white-space: nowrap; transform: translate(-50%, calc(-100% - 10px)); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.chartbox .tip b { display: block; font-size: 15px; color: var(--fg); }
+.tbl { overflow-x: auto; }
+.tbl summary { font-size: 14px; }
+.tbl table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+.tbl th, .tbl td { padding: 5px 4px; border-bottom: 1px solid var(--line); text-align: right; }
+.tbl th:first-child, .tbl td:first-child, .tbl th:nth-child(2), .tbl td:nth-child(2) { text-align: left; }
+.part { display: flex; flex-direction: column; gap: 4px; }
+.parttop { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; }
+.parttop span { color: var(--muted); font-variant-numeric: tabular-nums; }
+.meter { height: 10px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
+.meter b { display: block; height: 100%; background: var(--chart); border-radius: 99px; }
+
+/* tabs at the bottom */
+.tabbar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
+.tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; min-height: 54px; font-size: 12px; white-space: nowrap; font-weight: 700; color: var(--muted); position: relative; border-radius: 16px; }
+.tabbar button span { font-size: 22px; line-height: 1.1; filter: grayscale(.7); opacity: .75; }
+.tabbar button[aria-current="page"] { color: var(--accent); background: var(--sunk); }
+.tabbar button[aria-current="page"] span { filter: none; opacity: 1; }
+.tabbar .badge { position: absolute; top: 3px; left: calc(50% + 6px); min-width: 18px; height: 18px; padding: 0 5px; border-radius: 99px; background: var(--pen); color: #fff; font-size: 11px; font-style: normal; line-height: 18px; text-align: center; }
+.kb .tabbar { display: none; }
+.ptr { height: 0; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--accent); transition: height .2s ease; flex: none; }
+.ptr.pulling { transition: none; }
+
+/* settings sheet */
+.sheet { position: fixed; inset: 0; z-index: 30; background: rgb(0 0 0 / 28%); display: flex; align-items: flex-end; justify-content: center; }
+.panel { background: var(--sheet); width: 100%; max-width: 680px; max-height: 85%; overflow-y: auto; border-radius: 22px 22px 0 0; padding-block: 16px calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 12px; border-top: 1px solid var(--rim); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); }
+.panel h2 { font-family: var(--display); font-size: 22px; margin: 0; }
+.field ol { margin: 0; padding-left: 20px; font-size: 14px; }
+
+header, .tabbar, .card, .trow, .iconbtn, .btn:not(.primary) { -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); }
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root:not([data-theme="dark"]) { --surface: rgb(255 255 255 / 90%); --sheet: #f4f7fd; }
+}
+@media (max-width: 440px) { .brand b { display: none; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="app">
+  <header class="pad">
+    <div class="brand">Likho <b>English</b></div>
+    <div class="ptitle" id="pageTitle">✍️ Write</div>
+    <button class="iconbtn" type="button" id="setBtn" aria-label="Settings">⚙</button>
+  </header>
+  <div class="ptr" id="ptr" aria-live="polite"></div>
+  <main id="main">
+    <div class="page pad" id="page" aria-live="polite"></div>
+  </main>
+  <nav class="tabbar" id="tabbar" aria-label="Parts of the app">
+    <button type="button" data-tab="write"><span>✍️</span>Write</button>
+    <button type="button" data-tab="mistakes"><span>🔁</span>Mistakes<i class="badge" id="mistBadge" hidden></i></button>
+    <button type="button" data-tab="progress"><span>📈</span>Progress</button>
+  </nav>
+</div>
+
+<div class="sheet" id="setSheet" hidden>
+  <div class="panel pad" role="dialog" aria-label="Settings">
+    <h2>Settings</h2>
+    <div class="field">
+      <label for="lvSel"><strong>Your English level</strong></label>
+      <select id="lvSel"><option value="A1">Beginner (A1)</option><option value="A2">Elementary (A2)</option><option value="B1">Intermediate (B1)</option><option value="B2">Upper intermediate (B2), like the CSS exam</option></select>
+      <span class="hint">Mam chooses tasks and checks your writing for this level.</span>
+    </div>
+    <div class="field" id="keyBox" hidden>
+      <strong>Free AI key (Google Gemini)</strong>
+      <span class="hint">Mam needs a free key from Google, once. If you added it in Bolo English on this phone, it is already here. Never send it to anyone: it stays only on this phone.</span>
+      <a class="btn primary" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">1 · Get my free key ↗</a>
+      <span class="hint">Sign in with Google, tap <strong>Create API key</strong>, then tap the copy button next to the key. Come back to this page.</span>
+      <button class="btn primary" type="button" id="keyPaste">2 · 📋 Paste my key</button>
+      <input type="password" id="keyIn" autocomplete="off" placeholder="…or paste it here (it starts with AIza)" aria-label="Your Gemini key">
+      <div class="tools"><button class="btn" type="button" id="keySave">Save key</button><button class="btn" type="button" id="keyDel">Remove</button></div>
+      <span class="status" id="keyStatus"></span>
+    </div>
+    <div class="field" id="installBox" hidden>
+      <strong>📲 Keep Likho on your phone</strong>
+      <button class="btn primary" type="button" id="installBtn" hidden>Add Likho to my Home Screen</button>
+      <ol id="installSteps"></ol>
+    </div>
+    <div class="field">
+      <strong>🗣️ Practise speaking too</strong>
+      <span class="hint">Bolo English is the speaking app, with the same Mam.</span>
+      <a id="boloLink" target="_blank" rel="noopener">Open Bolo English →</a>
+    </div>
+    <div class="field">
+      <button class="btn" type="button" id="diagBtn">Check connection</button>
+      <span class="status" id="diagOut"></span>
+    </div>
+    <button class="btn primary" type="button" data-close>Done</button>
+  </div>
+</div>
+
+<script>
+(() => {
+"use strict";
+const $ = (id) => document.getElementById(id);
+const DAY = 86400000;
+const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
+const inClaude = !!window.claude;
+const isEnglish = (t) => !!t && !/[؀-ۿ]/.test(t);
+// Documents from the store arrive frozen; the app edits its state in place, so always work on a copy.
+const thaw = (v) => (v == null ? v : JSON.parse(JSON.stringify(v)));
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+const dayOf = (t) => new Date(t).toLocaleDateString("en-CA");
+const avg = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+const num = (v, lo, hi) => Math.max(lo, Math.min(hi, Math.round(Number(v) || 0)));
+const arr = (x, n) => (Array.isArray(x) ? x : []).map((v) => String(v ?? "").trim()).filter(Boolean).slice(0, n);
+const wordCount = (s) => (String(s).match(/[A-Za-z0-9][A-Za-z0-9’'-]*/g) || []).length;
+const sentenceCount = (s) => String(s).replace(/([.!?]+)\s+/g, "$1\n").split(/\n+/).filter((x) => /[A-Za-z]/.test(x)).length;
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function btn(label, fn, cls = "btn") { const b = el("button", cls, label); b.type = "button"; b.onclick = fn; return b; }
+const tool = (label, fn) => btn(label, fn, "mini");
+function toast(msg) { const t = el("div", "toast", msg); document.body.append(t); setTimeout(() => t.remove(), 1800); }
+
+// ---------- levels and kinds of writing ----------
+const LEVELS = { A1: "Beginner", A2: "Elementary", B1: "Intermediate", B2: "Upper intermediate" };
+const LEVEL_STYLE = { A1: "very simple English (CEFR A1): short sentences and common words", A2: "simple English (CEFR A2)", B1: "clear everyday English (CEFR B1)", B2: "natural, fluent English (CEFR B2)" };
+const MAX_MISTAKES = { A1: 8, A2: 10, B1: 12, B2: 15 };
+const PARA_WORDS = { A1: [50, 80], A2: [70, 100], B1: [100, 150], B2: [150, 200] };
+const PASSAGE_WORDS = { A1: 150, A2: 200, B1: 250, B2: 320 };
+const band = (lv) => (lv === "B2" ? 2 : lv === "B1" ? 1 : 0);
+const KINDS = {
+  sent: { em: "✏️", name: "Sentences", desc: "3 to 5 sentences on an everyday topic", yours: "Your sentences" },
+  para: { em: "📄", name: "Paragraph", desc: "One paragraph with a clear main idea", yours: "Your paragraph" },
+  essay: { em: "🏛️", name: "CSS essay", desc: "Make an outline first, then write the essay", yours: "Your essay" },
+  precis: { em: "🗜️", name: "Précis", desc: "Shorten a passage to one third, in your own words", yours: "Your précis" },
+  comp: { em: "❓", name: "Comprehension", desc: "Read a passage, then answer questions about it", yours: "Your answers" },
+};
+const KIND_ORDER = ["sent", "para", "essay", "precis", "comp"];
+const ESSAY_PARTS = {
+  intro: { name: "Introduction", task: "only the introduction: a hook, some background and the thesis statement", words: [[80, 150], [120, 200], [150, 250]] },
+  body: { name: "One body paragraph", task: "one body paragraph for one argument from the outline: a topic sentence, explanation, evidence or an example, and a link back to the thesis", words: [[80, 150], [120, 200], [150, 250]] },
+  whole: { name: "Whole essay", task: "the whole essay: introduction, body paragraphs and conclusion", words: [[300, 600], [600, 1200], [1200, 2500]] },
+};
+const GUIDES = {
+  sent: ["A sentence starts with a capital letter and ends with a full stop (.) or a question mark (?).", "Every sentence needs a subject and a verb: I (subject) live (verb) in Lahore.", "Always write I as a capital letter.", "Keep each sentence short: one idea in one sentence.", "Use time words to join your ideas: First, Then, After that, Finally."],
+  para: ["Point: start with one topic sentence that gives the main idea.", "Explain: give two or three reasons.", "Example: add one real example from Pakistan or your life.", "Link: end with a closing sentence that repeats the main idea in new words.", "Join your sentences with linking words: First, Second, For example, However, In short."],
+  essay: ["Make the outline first: a thesis statement, then your main arguments as I, II, III with short points, then counter arguments, then a way forward or conclusion.", "Introduction: start with a hook, give some background, and end with your thesis statement.", "Body: one paragraph for each argument, each with a topic sentence and evidence or an example.", "Conclusion: sum up your arguments and give your final view or a way forward.", "The examiner reads the outline, the arguments, the order of your ideas and your English. In the exam you have 3 hours for the essay."],
+  precis: ["Read the passage twice and find the main idea.", "Write about one third of the passage's length.", "Use your own words: do not copy sentences from the passage.", "Keep only the main ideas: leave out examples, numbers and quotations.", "Write one paragraph in the third person.", "Give your précis a short, suitable title."],
+  comp: ["Read the passage twice before you answer.", "Answer in your own words, in full sentences.", "Answer only what the question asks, in 2 or 3 sentences.", "Find the part of the passage that answers each question, then say it in your own words."],
+};
+// Built-in topics: [title, task, a way to start, useful words, number of sentences]
+const SENT_TOPICS = [
+  ["My morning", "Write 4 sentences about your morning.", "Every morning I … Then I … After that I …", ["wake up", "get ready", "have breakfast", "leave home"], 4],
+  ["Yesterday", "Write 5 sentences about what you did yesterday.", "Yesterday I … In the afternoon I … In the evening I …", ["went", "met", "watched", "came back"], 5],
+  ["My family", "Write 4 sentences about your family.", "There are … people in my family. My father is …", ["parents", "elder brother", "younger sister", "kind"], 4],
+  ["My city", "Write 4 sentences about your city.", "I live in … It is famous for …", ["famous for", "crowded", "historical", "markets"], 4],
+  ["My best friend", "Write 4 sentences about your best friend.", "My best friend is … We met …", ["honest", "helpful", "since", "together"], 4],
+  ["Tomorrow", "Write 4 sentences about your plans for tomorrow.", "Tomorrow I am going to … After that I will …", ["going to", "will", "plan", "finish"], 4],
+  ["My favourite food", "Write 4 sentences about your favourite food.", "My favourite food is … I like it because …", ["delicious", "spicy", "because", "usually"], 4],
+  ["Why CSS?", "Write 5 sentences about why you want to pass the CSS exam.", "I want to pass the CSS exam because … As an officer, I will …", ["serve", "civil service", "officer", "dream"], 5],
+  ["Eid at home", "Write 5 sentences about how your family celebrates Eid.", "On Eid, we … My mother … In the evening …", ["celebrate", "relatives", "new clothes", "prayer"], 5],
+  ["My studies", "Write 4 sentences about your studies.", "I am studying … My favourite subject is …", ["degree", "subject", "difficult", "prepare"], 4],
+  ["The weather today", "Write 4 sentences about the weather today.", "Today the weather is … It is …", ["sunny", "cloudy", "hot", "humid"], 4],
+  ["A problem in my area", "Write 5 sentences about one problem in your area.", "One big problem in my area is … Because of this, …", ["problem", "because of", "should", "solve"], 5],
+];
+const PARA_TOPICS = [
+  ["The importance of education", "why education is important"], ["My role model", "your role model and why you admire this person"], ["Social media and young people", "how social media affects young people"],
+  ["Load shedding", "the problem of load shedding in Pakistan"], ["Why reading books helps", "why reading books is useful"], ["Traffic in big cities", "the traffic problem in big cities"],
+  ["Clean water for everyone", "why clean water is a big issue in Pakistan"], ["The benefits of sports", "the benefits of sports for young people"], ["Women at work", "why women should be able to work in every field"], ["Online learning", "the good and bad sides of online learning"],
+];
+const ESSAY_TOPICS = ["Climate change: a threat to Pakistan", "Education is the key to development", "Democracy in Pakistan: problems and solutions", "The role of youth in nation building", "The water crisis in Pakistan", "Social media: a blessing or a curse?",
+  "Corruption and its effects on society", "Women empowerment in Pakistan", "Artificial intelligence and the future of work", "Population growth: Pakistan's challenge", "The importance of tolerance in society", "CPEC: opportunities and challenges"];
+const paraPrompt = (about) => `Write one paragraph about ${about}. Start with a topic sentence, give two reasons and one example, and end with a closing sentence.`;
+const PARA_HINT = "Topic sentence: … First, … Second, … For example, … In short, …";
+const essayPrompt = (title) => `Write a CSS essay on: "${title}". Make an outline first, then write the essay.`;
+// Kinds of mistakes, for the hints, the review and the progress page.
+const TYPES = { tense: "Verb tense", "verb form": "Verb form", agreement: "Subject and verb", article: "a / an / the", preposition: "Prepositions", plural: "Singular and plural", "word choice": "Word choice", spelling: "Spelling",
+  "word order": "Word order", "missing word": "Missing word", "extra word": "Extra word", punctuation: "Punctuation", capital: "Capital letters", sentence: "Sentence structure" };
+const EXACT = new Set(["punctuation", "capital"]); // for these the capitals and the marks themselves are the answer
+function typeKey(t) {
+  const k = String(t || "").toLowerCase().trim();
+  if (TYPES[k]) return k;
+  const tests = [[/capital/, "capital"], [/tense/, "tense"], [/agree|subject/, "agreement"], [/article/, "article"], [/prepos/, "preposition"], [/plural|singular/, "plural"], [/spell/, "spelling"], [/order/, "word order"],
+    [/missing/, "missing word"], [/extra|unnecessary|repeat/, "extra word"], [/punct|comma|full stop|apostrophe/, "punctuation"], [/run.?on|fragment|sentence/, "sentence"], [/verb/, "verb form"]];
+  return (tests.find(([re]) => re.test(k)) || [0, "word choice"])[1];
+}
+const REVIEW_DAYS = [0, 1, 3, 7, 14, 30];
+
+// ---------- state ----------
+const LS = "likho.v1";
+let raw = {};
+let state = { settings: { level: "A1", tips: {} }, pieces: [], mistakes: [], lessons: {} };
+const level = () => (LEVELS[state.settings.level] ? state.settings.level : "A1");
+function loadLocal() {
+  try { raw = JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch { raw = {}; }
+  state.settings = { ...state.settings, ...(raw.settings || {}) };
+  state.pieces = (Array.isArray(raw.pieces) ? raw.pieces : []).filter((p) => p?.id && p.task);
+  state.mistakes = (Array.isArray(raw.mistakes) ? raw.mistakes : []).filter((m) => m?.id && m.wrong != null);
+  state.lessons = raw.lessons && typeof raw.lessons === "object" ? raw.lessons : {};
+}
+// With the account store the phone keeps the 60 newest pieces; without it (web version) far more.
+function saveLocal() { try { localStorage.setItem(LS, JSON.stringify({ ...raw, settings: state.settings, pieces: state.pieces.slice(0, col ? 60 : 400), mistakes: state.mistakes, lessons: state.lessons })); } catch {} }
+
+let col = null, metaReady = false, metaTimer = 0, dbgCol = null, dbgRows = [], dbgTimer = 0;
+const visitId = "v" + Date.now().toString(36);
+// Step log so Claude can read what happened on the learner's phone: one owner-only document per visit.
+function dbg(step, extra) {
+  dbgRows.push({ t: Date.now(), step, ...(extra || {}) }); if (dbgRows.length > 150) dbgRows.shift();
+  clearTimeout(dbgTimer); dbgTimer = setTimeout(() => { if (dbgCol) dbgCol.doc(visitId).set({ t: Date.now(), rows: dbgRows }).catch(() => {}); }, 1500);
+}
+window.addEventListener("error", (e) => dbg("page_error", { message: String(e.message || "").slice(0, 300), line: e.lineno || 0 }));
+window.addEventListener("unhandledrejection", (e) => dbg("unhandled", { message: String(e.reason?.message || e.reason?.code || e.reason || "").slice(0, 300) }));
+function putMeta() {
+  saveLocal();
+  if (!col || !metaReady) return;
+  clearTimeout(metaTimer);
+  metaTimer = setTimeout(() => { const d = col.doc("meta"); d.update({ settings: state.settings }).catch(() => d.set({ settings: state.settings }).catch(() => {})); }, 800);
+}
+// A store document holds at most 256 KiB: a long essay keeps its newest drafts that fit well under that.
+function slimPiece(p) {
+  let out = { ...p, drafts: (p.drafts || []).slice(-6) };
+  while (out.drafts.length > 1 && new Blob([JSON.stringify(out)]).size > 200000) out = { ...out, drafts: out.drafts.slice(1) };
+  return out;
+}
+const pending = new Map();
+function writeDoc(key, data, now) {
+  clearTimeout(pending.get(key)?.t);
+  const write = () => { pending.delete(key); saveLocal(); if (col) col.doc(key).set(data()).catch((e) => dbg("save_error", { key, code: String(e?.code || "") })); };
+  if (now) write(); else pending.set(key, { t: setTimeout(write, 900), write });
+}
+function putPiece(p, now) {
+  p.updated = Date.now();
+  const i = state.pieces.indexOf(p); if (i > 0) state.pieces.splice(i, 1); if (i !== 0) state.pieces.unshift(p);
+  writeDoc("p_" + p.id, () => slimPiece(p), now);
+}
+function putMistake(m) { m.updated = Date.now(); writeDoc("m_" + m.id, () => m); renderTabs(); }
+function putLesson(type) { writeDoc("lesson_" + type.replace(/\W+/g, "_"), () => state.lessons[type], true); }
+// Leaving the page saves everything still waiting.
+function flushSaves() { [...pending.values()].forEach((x) => { clearTimeout(x.t); x.write(); }); saveLocal(); }
+async function getRetry(q) { try { return await q.get(); } catch { await pause(500 + Math.random() * 1000); return q.get(); } }
+// Keeps whichever copy is newer. Objects on screen are updated in place, so the page keeps working.
+function mergeList(local, remote, put) {
+  const by = new Map(local.map((x) => [x.id, x]));
+  remote.forEach((r) => { const l = by.get(r.id); if (!l) by.set(r.id, r); else if ((r.updated || 0) > (l.updated || 0)) { Object.keys(l).forEach((k) => { if (!(k in r)) delete l[k]; }); Object.assign(l, r); } });
+  local.forEach((l) => { if (!remote.some((r) => r.id === l.id)) put(l); });
+  return [...by.values()].sort((a, b) => (b.updated || 0) - (a.updated || 0));
+}
+let navigated = false;
+async function connectDb() {
+  const [db, user] = await Promise.all([use("db"), use("user")]).catch(() => [null, null]);
+  if (db && !dbgCol) { dbgCol = db.collection("debug"); dbg("app_open", { ua: navigator.userAgent.slice(0, 200), version: "likho-1" }); }
+  if (!db || !user) return;
+  let uid = null; try { uid = await user.id(); } catch {}
+  if (!uid) return;
+  col = db.collection("data/users/" + uid);
+  let snap;
+  try { snap = await getRetry(col); } catch (e) { dbg("sync_error", { code: String(e?.code || "") }); setTimeout(connectDb, 30000); return; }
+  metaReady = true;
+  let meta = null; const pieces = [], mistakes = [];
+  snap.docs.forEach((d) => {
+    if (d.id === "meta") meta = thaw(d.data());
+    else if (d.id.startsWith("p_")) { const p = thaw(d.data()); if (p?.id && p.task) pieces.push(p); }
+    else if (d.id.startsWith("m_")) { const m = thaw(d.data()); if (m?.id && m.wrong != null) mistakes.push(m); }
+    else if (d.id.startsWith("lesson_")) { const l = thaw(d.data()); if (l?.type && !state.lessons[l.type]) state.lessons[l.type] = l; }
+  });
+  state.pieces = mergeList(state.pieces, pieces, (p) => writeDoc("p_" + p.id, () => slimPiece(p), true));
+  state.mistakes = mergeList(state.mistakes, mistakes, (m) => writeDoc("m_" + m.id, () => m, true));
+  if (meta?.settings) {
+    const view0 = state.settings.view;
+    state.settings = { ...state.settings, ...meta.settings };
+    if (navigated) state.settings.view = view0; // this phone's own page wins once the learner has moved
+  }
+  saveLocal(); putMeta();
+  if (!navigated && state.settings.view) view = okView(state.settings.view);
+  if (!editing()) render(true);
+}
+const editing = () => { const a = document.activeElement; return !!a && $("page").contains(a) && /^(TEXTAREA|INPUT)$/.test(a.tagName); };
+
+// ---------- Claude, or Gemini in the web version ----------
+let sample = null;
+const GKEY = "bolo.gemini"; // the same key as Bolo English: on the same site, one key serves both apps
+function gget() { try { return JSON.parse(localStorage.getItem(GKEY) || "null"); } catch { return null; } }
+function parseLoose(t) {
+  try { return JSON.parse(t); } catch {}
+  const m = t.match(/```(?:json)?\s*([\s\S]*?)```/); if (m) { try { return JSON.parse(m[1]); } catch {} }
+  const i = t.search(/[[{]/), j = Math.max(t.lastIndexOf("}"), t.lastIndexOf("]"));
+  if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch {} }
+  throw { code: "invalid_json", text: t };
+}
+const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
+// Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
+// "quick" jobs use the fast Flash-Lite model without thinking; checking writing uses Flash.
+const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
+const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
+const thinkMode = (cfg, model) => cfg.think?.[model] || (/gemini-2\./.test(model) ? "budget" : "level");
+function geminiAI() {
+  const cfg = gget(); if (!cfg?.key) return null;
+  const call = async (input, opts = {}, json = false, retried = false, tries = 0) => {
+    const model = opts.model || (opts.modelTier === "quick" ? cfg.fast || cfg.model : cfg.model);
+    const contents = [{ role: "user", parts: [{ text: String(input) }] }];
+    const imgs = opts.images ? [].concat(opts.images) : [];
+    for (const b of imgs) contents[0].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
+    const tm = opts.modelTier === "quick" ? thinkMode(cfg, model) : "none";
+    const body = { contents, generationConfig: { temperature: 0.4, ...(json ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
+    let res;
+    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
+    catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
+    if (!res.ok) {
+      let bodyText = ""; try { bodyText = JSON.stringify(await res.json()); } catch {}
+      if (res.status === 400 && /think/i.test(bodyText) && tm !== "none" && tries < 2) { cfg.think = { ...cfg.think, [model]: tm === "level" ? "budget" : "none" }; saveG(cfg); return call(input, opts, json, retried, tries + 1); }
+      if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current ones and try once more
+        try { const m = chooseModels(await listModels(cfg.key)); if (m.model !== cfg.model || m.fast !== cfg.fast) { Object.assign(cfg, m); saveG(cfg); return call(input, opts, json, true, tries); } } catch {}
+      }
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : "upstream_error" };
+    }
+    const data = await res.json();
+    const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
+    if (!text) throw { code: "empty_completion" };
+    return text;
+  };
+  const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
+  fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
+  fn.limits = async () => ({ maxPromptBytes: 900000, images: { maxCount: 10, maxInputBytes: 20e6, mediaTypes: ["image/jpeg", "image/png", "image/webp"] } });
+  fn.models = () => ({ model: cfg.model, fast: cfg.fast || cfg.model });
+  return fn;
+}
+async function listModels(key) {
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", { headers: { "x-goog-api-key": key } });
+  if (!r.ok) throw { code: "bad_key" };
+  return ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
+}
+function chooseModels(names) {
+  const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
+  const newest = (re) => names.filter((n) => re.test(n)).sort((a, b) => ver(b) - ver(a))[0];
+  const model = names.includes("gemini-flash-latest") ? "gemini-flash-latest" : newest(/^gemini-[\d.]+-flash$/) || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+  const fast = newest(/^gemini-[\d.]+-flash-lite$/) || (names.includes("gemini-flash-lite-latest") ? "gemini-flash-lite-latest" : model);
+  return { model, fast };
+}
+// Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
+const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
+  if (e?.code !== "capability_removed") throw e;
+  const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
+  return parseLoose(text);
+});
+const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); return sample; });
+const noAI = () => (inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.");
+function errText(e) {
+  switch (e?.code) {
+    case "not_granted": return "Mam needs permission to use Claude.";
+    case "rate_limited": case "queue_overflow": return inClaude ? "Claude's usage limit for your account is reached for now. Wait a few minutes and try again." : "Too many requests at once. Wait a minute, then try again.";
+    case "quota": return "Google's free limit for today is used up. Try again tomorrow.";
+    case "session_expired": return "Your Claude sign-in expired. Reload the page.";
+    case "bad_key": return "Your Gemini key did not work. Check it in Settings.";
+    case "offline": return "No internet connection. Check your connection and try again.";
+    case "timeout": return "Mam took too long to answer. Try again.";
+    case "no_images": return "Photos can't be sent from this view. Type or paste the words instead.";
+    case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai in Safari, or update the Claude app.";
+    case "refused": case "empty_completion": case "invalid_json": return "Mam could not do that this time. Try again.";
+    default: return "Mam could not answer this time (" + (e?.code || "error") + ").";
+  }
+}
+// A message at the top of a page section, with Stop while Mam works.
+function statusIn(id, msg, err, onStop, action) {
+  const s = $(id); if (!s) return;
+  s.innerHTML = ""; if (!msg) return;
+  const d = el("div", "banner" + (err ? " warn" : "")); d.append(el("span", "", msg));
+  if (onStop) d.append(tool("■ Stop", onStop));
+  if (action) d.append(btn(action.label, () => action.fn(d), "btn primary"));
+  s.append(d);
+}
+// After a "Don't allow", only the Permissions panel can turn Claude back on; offer it as a button.
+function allowAction(retry) {
+  return { label: "Allow Claude", fn: async (box) => {
+    const pm = await use("permissions");
+    try { await pm?.manage(); } catch { box.querySelector("span").textContent = "Open the menu at the top of this page, choose Permissions, and allow Claude. Then try again."; return; }
+    if ((await pm?.state("sample")) === "granted") { box.remove(); retry(); }
+  } };
+}
+// One job for Mam at a time, with a message, a Stop button and a time limit.
+let job = null;
+async function aiJob(statusId, msg, fn, retry) {
+  if (job) { toast("Mam is still busy. Wait a moment."); return null; }
+  await aiReady;
+  if (!sample) { statusIn(statusId, noAI(), true); return null; }
+  const ctl = new AbortController(); job = ctl;
+  let timedOut = false; const t = setTimeout(() => { timedOut = true; ctl.abort(); }, 180000);
+  statusIn(statusId, msg, false, () => ctl.abort());
+  try { const r = await fn(ctl.signal); statusIn(statusId, ""); return r; }
+  catch (e) {
+    dbg("ai_error", { code: String(e?.code || "none"), msg: String(e?.message || "").slice(0, 160) });
+    if (e?.code === "not_granted" && retry) statusIn(statusId, errText(e), true, null, allowAction(retry));
+    else statusIn(statusId, timedOut ? errText({ code: "timeout" }) : e?.code === "cancelled" ? "Stopped." : errText(e), true);
+    return null;
+  } finally { clearTimeout(t); if (job === ctl) job = null; }
+}
+// Photos are made smaller first (sharp enough for handwriting); canvases are freed at once, as iOS runs out of canvas memory.
+const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
+async function imageBlob(file) {
+  const bmp = await createImageBitmap(file).catch(() => null);
+  if (!bmp) return file;
+  try {
+    const scale = Math.min(1, 2000 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement("canvas"); c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext("2d").drawImage(bmp, 0, 0, c.width, c.height);
+    return await toJpeg(c);
+  } finally { bmp.close?.(); }
+}
+async function photoBlobs(files) {
+  const lim = await sample.limits?.().catch(() => null);
+  if (!lim?.images) throw { code: "no_images" };
+  const out = [];
+  for (const f of files.slice(0, Math.min(4, lim.images.maxCount))) out.push(await imageBlob(f));
+  return out;
+}
+
+// ---------- what Mam is asked ----------
+const LEARNER = () => `a learner from Pakistan (first language Urdu, English level ${level()}) who is preparing for the CSS exam`;
+function checkPrompt(p, text) {
+  const lv = level(), k = p.kind, t = p.task, part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null;
+  const max = MAX_MISTAKES[lv] + (p.part === "whole" ? 8 : 0);
+  let task = `Task (${KINDS[k].name}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
+  if (k === "precis") task += ` The précis should be about ${t.target.about} words (one third of the passage), in the learner's own words, with a short title.`;
+  if (part) task += ` The learner is writing ${part.task}.` + (p.outline?.text?.trim() ? `\nTheir outline:\n${p.outline.text.trim()}` : "");
+  const passage = t.passage ? `\n\nThe passage:\n"""\n${t.passage}\n"""` : "";
+  const qs = t.questions?.length ? "\n\nQuestions:\n" + t.questions.map((q, i) => `${i + 1}. ${q}`).join("\n") : "";
+  const extra = k === "precis" ? `, "title_ok": true or false (is there a short, suitable title?), "copied": true or false (did they copy long phrases from the passage?), "missed": ["main ideas of the passage that the précis leaves out, up to 3"]`
+    : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "";
+  const taskArea = k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : "answering the task with good ideas";
+  return `You are Mam, a kind English writing teacher and a fair CSS examiner, checking writing by ${LEARNER()}.
+${task}${passage}${qs}
+
+The learner wrote:
+"""
+${text}
+"""
+
+Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
+For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "hint" helps the learner find the fix alone and must NOT contain the answer; "why" is the reason in at most 12 words; "type" is one of: ${Object.keys(TYPES).join(", ")}.
+Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".
+Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
+Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"], "better": "the whole text written well at level ${lv}, keeping the learner's ideas"${extra}}`;
+}
+const outlinePrompt = (p, text) => `You are Mam, a kind English writing teacher and a fair CSS examiner. ${LEARNER().replace(/^a/, "A")} is planning a CSS essay on: "${p.task.title}". Check their essay OUTLINE.
+The outline:
+"""
+${text}
+"""
+A good CSS outline has: a clear thesis statement; main arguments in a logical order (I, II, III with short points); counter arguments with replies; and a way forward or conclusion.
+Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"score": 1 to 10, "thesis": "one short sentence: is there a clear thesis statement, and what is it?", "good": ["2 short things done well"], "next": ["2 or 3 short tips to make the outline better"], "missing": ["important parts or points the outline is missing, up to 3"], "better": "a better outline for this topic at level ${level()}, as short numbered lines, one per line"}`;
+const handPrompt = (p) => `These are photos of handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].name}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
+Reply with ONLY JSON: {"text": "exactly what they wrote", "unclear": ["words that were hard to read, up to 5"], "handwriting": "one short, kind sentence about how easy their handwriting is to read, with one tip if needed"}`;
+const qsRule = (n) => `If questions about the passage are printed with it, copy them; if there are none, write ${n} good questions that test understanding (not copying), in ${LEVEL_STYLE[level()]}.`;
+const passagePhotoPrompt = (k) => `This is a photo of a passage from a book, a newspaper or an exam paper. Copy the passage EXACTLY, word for word, leaving out page numbers, headers and anything that is not part of it.${k === "comp" ? " " + qsRule(4) : ""}
+Reply with ONLY JSON: {"title": "a short title for the passage", "passage": "the passage, with a blank line between paragraphs", "questions": [${k === "comp" ? '"the questions"' : ""}]}`;
+const pastePrompt = (text) => `Below is a passage that ${LEARNER()} will use for comprehension practice. ${qsRule(4)}
+Reply with ONLY JSON: {"title": "a short title for the passage", "passage": "the passage itself, without any questions", "questions": ["the questions"]}
+
+TEXT:
+${text.slice(0, 20000)}`;
+const genPassagePrompt = (k, topic) => `You are Mam, an English teacher preparing ${k === "precis" ? "précis" : "comprehension"} practice for ${LEARNER()}. Write an original passage of about ${PASSAGE_WORDS[level()]} words${topic ? ` about "${topic}"` : ", on a topic like those in the CSS Précis and Composition paper (society, history, science, education, ethics or the environment)"}, in ${LEVEL_STYLE[level()]}, in well-organised paragraphs.${k === "comp" ? " Then write 4 questions about it that test understanding, not copying." : ""} Do not repeat these topics: ${doneTitles(k) || "none"}.
+Reply with ONLY JSON: {"title": "a short title", "passage": "the passage, with a blank line between paragraphs"${k === "comp" ? ', "questions": ["4 questions"]' : ""}}`;
+const genTaskPrompt = (k) => `You are Mam, a kind English writing teacher for ${LEARNER()}. Give ONE new ${{ sent: "sentence-writing task (3 to 5 sentences about everyday life)", para: "paragraph task (one paragraph on a topic useful for daily life or the CSS exam)", essay: "CSS essay topic, like the topics in the CSS English Essay paper" }[k]}. Do not repeat these: ${doneTitles(k) || "none"}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"title": "a short topic name", "prompt": "the task in one or two simple sentences${k === "sent" ? ', saying how many sentences' : ""}", "hint": "a short way to start, or a structure to follow", "words": ["4 to 6 useful words or phrases"]}`;
+const judgePrompt = (m, sentence, fix, whole) => `A learner of English from Pakistan is correcting one mistake in their writing. Their sentence: "${sentence}". The mistake: "${m.wrong}" (${TYPES[m.type]}). The teacher's correction: "${m.right}" instead of "${m.wrong}". The learner's ${whole ? "corrected sentence" : "correction"}: "${fix}". Is the learner's correction right? Accept any correction that is correct English, fixes this mistake and keeps the meaning, even if it is different from the teacher's.
+Reply with ONLY JSON: {"ok": true or false, "note": "a very short reason in simple English, at most 12 words"}`;
+const lessonPrompt = (type, mine) => `You are Mam, a kind English teacher. Write a short lesson about this kind of mistake: "${TYPES[type]}", for ${LEARNER()}. These are the learner's own mistakes of this kind: ${mine.map((m) => `"${m.wrong}" → "${m.right}"`).join("; ")}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"rule": "the rule in 2 or 3 short sentences", "examples": [{"wrong": "...", "right": "..."}] (3, the learner's own mistakes first), "tips": ["2 short tips to avoid this mistake"], "urdu": "one short sentence (in English) on why Urdu speakers often make this mistake, or empty", "practice": [{"wrong": "a new sentence with this kind of mistake", "right": "the corrected sentence"}] (4)}`;
+const doneTitles = (k) => state.pieces.filter((p) => p.kind === k && !p.deleted).slice(0, 15).map((p) => p.task.title).join("; ");
+
+// ---------- pieces of writing ----------
+const live = () => state.pieces.filter((p) => !p.deleted);
+const pieceById = (id) => state.pieces.find((p) => p.id === id && !p.deleted) || null;
+const lastDraft = (p) => (p.drafts || []).filter((d) => d.check).pop() || null;
+function makeTask(kind, t) {
+  const task = { title: String(t.title || "Your topic").trim().slice(0, 90), prompt: String(t.prompt || "").trim(), hint: String(t.hint || "").trim(), words: arr(t.words, 6) };
+  if (kind === "sent") { const n = t.n || Number((task.prompt.match(/\b([3-6])\b/) || [])[1]) || 4; task.target = { min: n, max: n + 1, unit: "sentences" }; task.prompt = task.prompt || `Write ${n} sentences about ${task.title}.`; }
+  if (kind === "para") { const [min, max] = PARA_WORDS[level()]; task.target = { min, max, unit: "words" }; task.prompt = task.prompt || paraPrompt(task.title); task.hint = task.hint || PARA_HINT; }
+  if (kind === "essay") task.prompt = task.prompt || essayPrompt(task.title);
+  if (kind === "precis" || kind === "comp") { task.passage = String(t.passage || "").trim(); task.questions = arr(t.questions, 6); }
+  if (kind === "precis") { const pw = wordCount(task.passage), about = Math.max(20, Math.round(pw / 3)); task.target = { min: Math.round(about * 0.8), max: Math.round(about * 1.2), about, unit: "words" }; task.prompt = `Write a précis of the passage in about ${about} words (one third of ${pw}), in your own words, with a short title.`; }
+  if (kind === "comp") task.prompt = "Read the passage, then answer the questions in your own words, in full sentences.";
+  return task;
+}
+function startTask(kind, t) {
+  const now = Date.now(), task = makeTask(kind, t);
+  const p = { id: "p" + now.toString(36), kind, task, text: kind === "comp" ? task.questions.map((_, i) => i + 1 + ". ").join("\n\n") : "", drafts: [], created: now, updated: now };
+  if (kind === "essay") Object.assign(p, { step: "outline", part: "intro", outline: { text: "" } });
+  state.pieces.unshift(p); putPiece(p, true);
+  go({ tab: "write", page: "piece", id: p.id });
+}
+const targetOf = (p) => (p.kind === "essay" ? (p.step === "outline" ? null : (([min, max]) => ({ min, max, unit: "words" }))(ESSAY_PARTS[p.part || "intro"].words[band(level())])) : p.task.target || null);
+const targetText = (tg) => (!tg ? "" : tg.about ? `about ${tg.about} words` : `${tg.min} to ${tg.max} ${tg.unit}`);
+const today = () => dayOf(Date.now());
+// A different task each day, for the learner's level; precis and comprehension get a new passage from Mam.
+function todaysTask() {
+  const lv = level(), pool = { A1: ["sent"], A2: ["sent", "para"], B1: ["para", "precis", "comp", "essay"], B2: ["essay", "precis", "comp", "para"] }[lv];
+  let h = 0; for (const c of today()) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const kind = pool[h % pool.length], done = new Set(live().map((p) => p.task.title));
+  const list = kind === "sent" ? SENT_TOPICS.map(([title, prompt, hint, words, n]) => ({ title, prompt, hint, words, n }))
+    : kind === "para" ? PARA_TOPICS.map(([title, about]) => ({ title, prompt: paraPrompt(about), hint: PARA_HINT }))
+    : kind === "essay" ? ESSAY_TOPICS.map((title) => ({ title, prompt: essayPrompt(title) })) : null;
+  if (!list) return { kind, passage: true };
+  const fresh = list.filter((x) => !done.has(x.title));
+  const pickFrom = fresh.length ? fresh : list;
+  return { kind, topic: pickFrom[(h >> 4) % pickFrom.length] };
+}
+
+// ---------- pages ----------
+let view = { tab: "write", page: "home" };
+const tabView = {};
+function okView(v) {
+  if (!v || !["write", "mistakes", "progress"].includes(v.tab)) return { tab: "write", page: "home" };
+  if (v.page === "piece" && !pieceById(v.id)) return { tab: "write", page: "home" };
+  if (v.page === "kind" && !KINDS[v.kind]) return { tab: "write", page: "home" };
+  if (v.page === "type" && !TYPES[v.type]) return { tab: "mistakes", page: "home" };
+  if (v.page === "review") return { tab: "mistakes", page: "home" };
+  return v;
+}
+function go(v) { navigated = true; stopDictation(); view = v; tabView[v.tab] = v; state.settings.view = v; putMeta(); render(); $("main").scrollTop = 0; }
+function render(keepScroll) {
+  const y = $("main").scrollTop;
+  renderTabs(); $("page").innerHTML = "";
+  if (view.tab === "write") { const p = view.page === "piece" && pieceById(view.id); if (p) renderPiece(p); else if (view.page === "kind" && KINDS[view.kind]) renderKind(view.kind); else renderHome(); }
+  else if (view.tab === "mistakes") { if (view.page === "review" && rv) renderReview(); else if (view.page === "type" && TYPES[view.type]) renderType(view.type); else renderMistakes(); }
+  else renderProgress();
+  if (keepScroll) $("main").scrollTop = y;
+}
+const setTitle = (t) => { $("pageTitle").textContent = t; };
+function section(cls, label, parent = $("page")) {
+  const d = el("div", cls); if (label) d.append(el("div", "lbl", label));
+  parent.append(d); return d;
+}
+function row(em, name, desc, n, fn) {
+  const b = el("button", "trow"); b.type = "button";
+  b.innerHTML = '<span class="em"></span><span><strong></strong><span></span></span><span class="n"></span>';
+  b.querySelector(".em").textContent = em; b.querySelector("strong").textContent = name; b.querySelector("span span").textContent = desc;
+  b.querySelector(".n").textContent = n || ""; b.onclick = fn; return b;
+}
+// Tips that can be closed for good.
+function tip(key, text) {
+  if (state.settings.tips?.[key]) return null;
+  const d = el("div", "tipbox"); d.append(el("span", "", "💡 " + text));
+  const x = el("button", "x", "✕"); x.type = "button"; x.setAttribute("aria-label", "Hide this tip");
+  x.onclick = () => { state.settings.tips = { ...state.settings.tips, [key]: true }; putMeta(); d.remove(); };
+  d.append(x); return d;
+}
+const backBtn = (label, v) => { const b = tool(label, () => go(v)); b.classList.add("back"); $("page").append(b); };
+const shortDate = (t) => new Date(t).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+function pieceDesc(p) {
+  const d = lastDraft(p), words = wordCount(p.text || "");
+  const state0 = d ? "last mark " + d.check.score + "/10" : p.kind === "essay" && p.outline?.check ? "outline " + p.outline.check.score + "/10" : words && !(p.kind === "comp" && !/[A-Za-z]/.test(p.text)) ? words + " words, not checked yet" : "not started";
+  return [KINDS[p.kind].name, state0, shortDate(p.updated)].join(" · ");
+}
+const pieceRow = (p) => row(KINDS[p.kind].em, p.task.title, pieceDesc(p), (p.drafts || []).length > 1 ? "✎ " + p.drafts.length : "", () => go({ tab: "write", page: "piece", id: p.id }));
+
+function renderHome() {
+  setTitle("✍️ Write");
+  section("").id = "homeStatus";
+  const open = live().find((p) => !lastDraft(p) && wordCount(p.text || p.outline?.text || "") > 3 && Date.now() - p.updated < 7 * DAY);
+  if (open) {
+    const c = section("card", "Continue writing");
+    c.append(el("h2", "", KINDS[open.kind].em + " " + open.task.title), el("p", "hint", pieceDesc(open)), btn("✍️ Continue", () => go({ tab: "write", page: "piece", id: open.id }), "btn primary"));
+  }
+  const td = todaysTask(), c = section("card today", "Today's task · " + KINDS[td.kind].name);
+  if (td.passage) {
+    c.append(el("h2", "", KINDS[td.kind].em + " " + (td.kind === "precis" ? "Write a précis" : "Read and answer")), el("p", "", td.kind === "precis" ? "Mam writes a short passage for you. You shorten it to one third, in your own words." : "Mam writes a short passage with questions. You answer them in your own words."));
+    c.append(btn("Start ✍️", () => genPassage(td.kind, "", "homeStatus"), "btn primary"));
+  } else {
+    c.append(el("h2", "", KINDS[td.kind].em + " " + td.topic.title), el("p", "", td.topic.prompt));
+    c.append(btn("Start ✍️", () => startTask(td.kind, td.topic), "btn primary"));
+  }
+  const kinds = section("list", "Choose what to write");
+  KIND_ORDER.forEach((k) => { const n = live().filter((p) => p.kind === k).length; kinds.append(row(KINDS[k].em, KINDS[k].name, KINDS[k].desc, n ? "✓ " + n : "", () => go({ tab: "write", page: "kind", kind: k }))); });
+  const mine = section("list", "Your writing");
+  const ps = live();
+  if (!ps.length) mine.append(el("p", "hint", "Everything you write is saved here, with Mam's marks, so you can see how you improve."));
+  ps.slice(0, 30).forEach((p) => mine.append(pieceRow(p)));
+}
+function renderKind(k) {
+  const K = KINDS[k], topics = { sent: SENT_TOPICS, para: PARA_TOPICS, essay: ESSAY_TOPICS }[k];
+  setTitle(K.em + " " + K.name);
+  backBtn("← Write", { tab: "write", page: "home" });
+  const head = section("card"); head.append(el("h2", "", K.em + " " + K.name), el("p", "hint", K.desc));
+  const g = el("details"); g.open = !live().some((p) => p.kind === k);
+  g.append(el("summary", "", "📖 How to write a good " + K.name.toLowerCase().replace(/s$/, "")));
+  const ul = el("ul"); GUIDES[k].forEach((x) => ul.append(el("li", "", x))); g.append(ul); head.append(g);
+  section("").id = "kindStatus";
+  if (topics) {
+    const ask = section("card", "A new task");
+    ask.append(el("p", "hint", "Mam gives you a new task for your level."), btn("✨ Mam, give me a task", () => genTask(k), "btn primary"));
+    const own = section("card", "Or your own topic");
+    const f = el("form", "row"); f.innerHTML = '<input id="ownTopic" type="text" maxlength="100" autocomplete="off" aria-label="Your own topic"><button class="btn primary" type="submit">Start</button>';
+    f.querySelector("input").placeholder = k === "essay" ? "An essay topic, or a past paper question" : "e.g. My village";
+    f.onsubmit = (e) => { e.preventDefault(); const v = $("ownTopic").value.trim(); if (v) startTask(k, k === "para" ? { title: v, prompt: paraPrompt(v) } : { title: v }); };
+    own.append(f);
+    const list = section("list", "Topics");
+    topics.forEach((x) => {
+      const t = k === "sent" ? { title: x[0], prompt: x[1], hint: x[2], words: x[3], n: x[4] } : k === "para" ? { title: x[0], prompt: paraPrompt(x[1]), hint: PARA_HINT } : { title: x, prompt: essayPrompt(x) };
+      const done = live().filter((p) => p.task.title === t.title);
+      list.append(row(K.em, t.title, k === "essay" ? "CSS-style essay topic" : t.prompt, done.length ? "✓" : "", () => (done[0] ? go({ tab: "write", page: "piece", id: done[0].id }) : startTask(k, t))));
+    });
+  } else {
+    const gen = section("card", "A passage from Mam");
+    const f = el("form", "row"); f.innerHTML = '<input id="passTopic" type="text" maxlength="80" autocomplete="off" placeholder="Topic (you can leave it empty)" aria-label="Topic for the passage"><button class="btn primary" type="submit">✨ Write me a passage</button>';
+    f.onsubmit = (e) => { e.preventDefault(); genPassage(k, $("passTopic").value.trim(), "kindStatus"); };
+    gen.append(el("p", "hint", k === "precis" ? "Mam writes a passage for your level, like the passages in the CSS Précis and Composition paper." : "Mam writes a passage for your level, with 4 questions."), f);
+    const yours = section("card", "Or a passage from your book or a past paper");
+    yours.insertAdjacentHTML("beforeend", '<div class="tools"><label class="btn" for="passPhoto">📷 Photo of a passage</label><button class="btn" type="button" id="passPasteBtn">📋 Paste a passage</button></div><input class="vh" type="file" id="passPhoto" accept="image/*" multiple><div class="field" id="passPaste" hidden><textarea class="inbox" id="passText" rows="7" placeholder="Paste the passage here…" aria-label="The passage"></textarea><button class="btn primary" type="button" id="passGo">Use this passage</button></div>');
+    $("passPasteBtn").onclick = () => { $("passPaste").hidden = !$("passPaste").hidden; if (!$("passPaste").hidden) $("passText").focus(); };
+    $("passPhoto").onchange = () => { const files = [...$("passPhoto").files]; $("passPhoto").value = ""; if (files.length) passageFromPhoto(k, files); };
+    $("passGo").onclick = () => passageFromText(k, $("passText").value.trim());
+  }
+  const mine = live().filter((p) => p.kind === k);
+  if (mine.length) { const l = section("list", K.yours + " · " + mine.length); mine.slice(0, 20).forEach((p) => l.append(pieceRow(p))); }
+}
+async function genTask(k) {
+  const r = await aiJob("kindStatus", "Mam is choosing a task for you…", (signal) => askJson(genTaskPrompt(k), { modelTier: "quick", signal }), () => genTask(k));
+  if (!r) return;
+  if (!r.title || !isEnglish(r.title + r.prompt)) { statusIn("kindStatus", "Mam could not make a task this time. Try again, or choose a topic below.", true); return; }
+  startTask(k, { title: r.title, prompt: r.prompt, hint: r.hint, words: r.words });
+}
+async function genPassage(k, topic, statusId) {
+  const r = await aiJob(statusId, "Mam is writing a passage for you… this can take up to a minute.", (signal) => askJson(genPassagePrompt(k, topic), { modelTier: "default", signal }), () => genPassage(k, topic, statusId));
+  if (!r) return;
+  if (wordCount(r.passage || "") < 40 || (k === "comp" && !arr(r.questions, 6).length)) { statusIn(statusId, "Mam could not write a passage this time. Try again.", true); return; }
+  startTask(k, { title: r.title || "A passage", passage: r.passage, questions: r.questions });
+}
+async function passageFromPhoto(k, files) {
+  const r = await aiJob("kindStatus", "Mam is reading the passage…", async (signal) => askJson(passagePhotoPrompt(k), { images: await photoBlobs(files), modelTier: "default", signal }), () => passageFromPhoto(k, files));
+  if (!r) return;
+  if (wordCount(r.passage || "") < 30) { statusIn("kindStatus", "Mam could not read a passage in this photo. Take a clear photo of the page, in good light.", true); return; }
+  startTask(k, { title: r.title || "Your passage", passage: r.passage, questions: r.questions });
+}
+async function passageFromText(k, text) {
+  if (/^https?:\/\/\S+$/.test(text)) { statusIn("kindStatus", "Mam can't open links. Copy the passage's words instead.", true); return; }
+  if (wordCount(text) < 40) { statusIn("kindStatus", "Paste the whole passage first (at least 40 words).", true); return; }
+  if (k === "precis") { startTask(k, { title: "Your passage: " + text.split(/\s+/).slice(0, 5).join(" ") + "…", passage: text }); return; }
+  const r = await aiJob("kindStatus", "Mam is reading the passage and preparing questions…", (signal) => askJson(pastePrompt(text), { modelTier: "default", signal }), () => passageFromText(k, text));
+  if (!r) return;
+  const qs = arr(r.questions, 6);
+  if (!qs.length) { statusIn("kindStatus", "Mam could not make questions this time. Try again.", true); return; }
+  startTask(k, { title: r.title || "Your passage", passage: wordCount(r.passage || "") >= 30 ? r.passage : text, questions: qs });
+}
+
+// ---------- writing a piece, and Mam's check ----------
+const textKey = (p) => (p.kind === "essay" && p.step === "outline" ? "outline" : "text");
+const getText = (p) => (textKey(p) === "outline" ? p.outline.text : p.text) || "";
+const setText = (p, v) => { if (textKey(p) === "outline") p.outline.text = v; else p.text = v; };
+function renderPiece(p) {
+  const K = KINDS[p.kind], t = p.task;
+  setTitle(K.em + " " + t.title);
+  backBtn("← " + K.name, { tab: "write", page: "kind", kind: p.kind });
+  const card = section("card task");
+  card.append(el("div", "lbl", K.name + (p.kind !== "essay" && p.task.target ? " · goal " + targetText(p.task.target) : "")), el("div", "q", t.title));
+  if (t.prompt && p.kind !== "essay") card.append(el("p", "", t.prompt));
+  if (t.hint) card.append(el("p", "hint", "💡 " + t.hint));
+  if (t.words?.length) { const w = el("div", "tools"); w.append(el("span", "hint", "Useful words:")); t.words.forEach((x) => w.append(el("span", "chip2", x))); card.append(w); }
+  if (t.passage) {
+    const d = el("details", "passage"); d.open = !lastDraft(p);
+    d.append(el("summary", "", "📜 The passage · " + wordCount(t.passage) + " words"));
+    t.passage.split(/\n\s*\n|\n/).filter((x) => x.trim()).forEach((x) => d.append(el("p", "", x.trim())));
+    card.append(d);
+  }
+  if (t.questions?.length) { card.append(el("div", "lbl", "Questions")); const ol = el("ol", "qs"); t.questions.forEach((q) => ol.append(el("li", "", q))); card.append(ol); }
+  if (p.kind === "essay") {
+    const steps = el("div", "tabs"); steps.setAttribute("role", "tablist");
+    [["outline", "1 · Outline"], ["essay", "2 · Essay"]].forEach(([s, label]) => { const b = el("button", "tab", label); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String((p.step || "outline") === s)); b.onclick = () => { if (p.step === s) return; stopDictation(); p.step = s; putPiece(p); render(); }; steps.append(b); });
+    card.append(steps);
+    if (p.step === "essay") {
+      const parts = el("div", "tabs"); parts.setAttribute("role", "tablist");
+      Object.entries(ESSAY_PARTS).forEach(([k2, x]) => { const b = el("button", "tab", x.name); b.type = "button"; b.setAttribute("role", "tab"); b.setAttribute("aria-selected", String((p.part || "intro") === k2)); b.onclick = () => { p.part = k2; putPiece(p); render(true); }; parts.append(b); });
+      card.append(el("div", "lbl", "What will you write?"), parts, el("p", "hint", "Start with the introduction. When it is good, write a body paragraph, and then the whole essay."));
+    } else card.append(el("p", "hint", "Write your thesis statement, your main arguments (I, II, III) with short points, counter arguments, and your conclusion. Mam checks the outline first."));
+  }
+  // the answer sheet
+  const outline = textKey(p) === "outline";
+  const ed = section("editor");
+  const head = el("div", "edhead"); head.append(el("strong", "", outline ? "Your outline" : K.yours), el("span", "count")); head.lastChild.id = "count"; ed.append(head);
+  const ta = el("textarea", "ruled" + (p.kind === "essay" || p.kind === "precis" ? " long" : "")); ta.id = "draft"; ta.setAttribute("aria-label", outline ? "Your outline" : K.yours);
+  ta.placeholder = outline ? "Thesis statement: …\nI. …\nII. …\nIII. …\nCounter arguments: …\nConclusion: …" : p.kind === "precis" ? "Title: …\n\nYour précis…" : "Start writing here…";
+  ta.spellcheck = false; ta.autocapitalize = "off"; ta.setAttribute("autocorrect", "off"); // Mam checks the spelling, not the phone
+  ta.value = getText(p); ed.append(ta);
+  ed.append(el("div", "changed")); ed.lastChild.id = "changed";
+  const tools = el("div", "tools");
+  tools.insertAdjacentHTML("beforeend", '<label class="btn" for="photoIn">📷 Photo of my handwriting</label><input class="vh" type="file" id="photoIn" accept="image/*" multiple>');
+  if (canListen) { const d = btn("🎙️ Speak", () => dictate(ta, d)); d.id = "dictBtn"; tools.append(d); }
+  const cb = btn(outline ? "✓ Check my outline" : "✓ Check my writing", () => checkPiece(p), "btn primary"); cb.id = "checkBtn"; tools.append(cb);
+  ed.append(tools, el("div", "thumbs"));
+  ed.lastChild.id = "photoThumbs";
+  if (!p.drafts.length && !outline) { const tp = tip("photo", "You can write on paper, like in the exam, and send a photo. Mam reads your handwriting."); if (tp) ed.append(tp); }
+  section("").id = "pieceStatus";
+  const result = section(""); result.id = "result"; result.style.cssText = "display:flex;flex-direction:column;gap:12px";
+  renderResult(p);
+  ta.addEventListener("input", () => { setText(p, ta.value); putPiece(p); updateCount(p); });
+  $("photoIn").onchange = () => { const files = [...$("photoIn").files]; $("photoIn").value = ""; if (files.length) readHandwriting(p, files); };
+  updateCount(p);
+  const del = btn("🗑 Delete this piece", () => {
+    if (del.dataset.sure) { p.deleted = true; const keep = { id: p.id, kind: p.kind, task: { title: p.task.title }, deleted: true, drafts: [] }; Object.keys(p).forEach((k2) => delete p[k2]); Object.assign(p, keep); putPiece(p, true); toast("Deleted"); go({ tab: "write", page: "kind", kind: keep.kind }); return; }
+    del.dataset.sure = "1"; del.textContent = "Tap again to delete it for good";
+  }, "mini"); del.classList.add("back"); $("page").append(del);
+}
+function updateCount(p) {
+  const c = $("count"); if (!c) return;
+  const text = getText(p), w = wordCount(text), s = sentenceCount(text), tg = targetOf(p);
+  const n = tg?.unit === "sentences" ? s : w;
+  c.textContent = `${w} words · ${s} sentence${s === 1 ? "" : "s"}` + (tg ? " · goal " + targetText(tg) : "");
+  c.className = "count" + (tg && n >= tg.min ? (n > tg.max ? " over" : " ok") : "");
+  const d = lastDraft(p), ch = $("changed");
+  if (ch) ch.textContent = textKey(p) !== "outline" && d && text.trim() !== d.text.trim() ? "You changed your writing. Tap Check to see your new marks." : "";
+}
+async function readHandwriting(p, files) {
+  const th = $("photoThumbs"); th.innerHTML = "";
+  files.slice(0, 4).forEach((f) => { const im = el("img"); im.alt = "Your photo"; im.src = URL.createObjectURL(f); th.append(im); });
+  const r = await aiJob("pieceStatus", "Mam is reading your handwriting…", async (signal) => askJson(handPrompt(p), { images: await photoBlobs(files), modelTier: "default", signal }), () => readHandwriting(p, files));
+  if (!r) return;
+  const text = String(r.text || "").trim();
+  if (!text) { statusIn("pieceStatus", "Mam could not read any writing in this photo. Take a clear photo in good light, from straight above.", true); return; }
+  const cur = getText(p), empty = !/[A-Za-z]{2}/.test(cur.replace(/^\s*\d+\.\s*$/gm, ""));
+  setText(p, empty ? text : cur.trimEnd() + "\n\n" + text); putPiece(p, true);
+  if (!$("draft")) return;
+  $("draft").value = getText(p); updateCount(p);
+  const unclear = arr(r.unclear, 5);
+  statusIn("pieceStatus", "✓ Mam read your handwriting. Check that the words match your paper and fix only what Mam read wrong, not your own mistakes. Then tap Check." + (isEnglish(r.handwriting) ? "\n✍️ " + r.handwriting : "") + (unclear.length ? "\nHard to read: " + unclear.join(", ") : ""));
+  p.photo = { note: isEnglish(r.handwriting) ? String(r.handwriting) : "", at: Date.now() };
+}
+async function checkPiece(p) {
+  const outline = textKey(p) === "outline", text = getText(p).trim();
+  const enough = outline ? 8 : p.kind === "sent" ? 6 : p.kind === "comp" ? 6 : 15;
+  if (wordCount(text) < enough) { statusIn("pieceStatus", outline ? "Write your outline first: a thesis statement and your main points." : "Write a little more first.", true); return; }
+  stopDictation();
+  const b = $("checkBtn"); if (b) b.disabled = true;
+  const long = wordCount(text) > 300;
+  const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : "Mam is checking your writing…" + (long ? " A long piece can take a minute or two." : ""), (signal) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: "default", signal }), () => checkPiece(p));
+  if ($("checkBtn")) $("checkBtn").disabled = false;
+  if (!r) return;
+  if (outline) p.outline.check = cleanOutline(r);
+  else {
+    const d = { text, at: Date.now(), words: wordCount(text), check: cleanCheck(r, text, p), fixes: [] };
+    if (p.photo && Date.now() - p.photo.at < 3 * 3600000) { d.photo = p.photo; delete p.photo; }
+    p.drafts.push(d);
+  }
+  putPiece(p, true); renderTabs();
+  dbg("checked", { kind: p.kind, outline, words: wordCount(text) });
+  if (view.page === "piece" && view.id === p.id) { renderResult(p); updateCount(p); $("result").scrollIntoView({ block: "start", behavior: "smooth" }); }
+}
+const cleanList = (x, n) => arr(x, n).filter(isEnglish);
+function cleanOutline(r) { return { score: num(r.score, 1, 10), thesis: isEnglish(r.thesis) ? String(r.thesis) : "", good: cleanList(r.good, 3), next: cleanList(r.next, 3), missing: cleanList(r.missing, 3), better: isEnglish(r.better) ? String(r.better) : "", at: Date.now() }; }
+// Finds each mistake in the learner's own text (the first place not already marked), then orders them as they appear.
+function locate(text, list) {
+  const used = [], lower = text.toLowerCase();
+  const free = (a, n) => !used.some(([s, e]) => a < e && a + n > s);
+  return list.map((m) => {
+    let at = -1;
+    for (const [hay, needle] of [[text, m.wrong], [lower, m.wrong.toLowerCase()]]) {
+      for (let i = hay.indexOf(needle); i >= 0; i = hay.indexOf(needle, i + 1)) if (free(i, needle.length)) { at = i; break; }
+      if (at >= 0) break;
+    }
+    if (at >= 0) { used.push([at, at + m.wrong.length]); m.wrong = text.slice(at, at + m.wrong.length); }
+    return { ...m, at: at >= 0 ? at : null };
+  }).sort((a, b) => (a.at ?? 1e9) - (b.at ?? 1e9));
+}
+function cleanCheck(r, text, p) {
+  const areas = r.areas && typeof r.areas === "object" ? r.areas : {};
+  const ms = (Array.isArray(r.mistakes) ? r.mistakes : []).map((m) => ({ wrong: String(m?.wrong || "").trim(), right: String(m?.right ?? "").trim(), hint: String(m?.hint || ""), why: String(m?.why || ""), type: typeKey(m?.type) }))
+    .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.hint + m.why)).slice(0, 25);
+  const c = { score: num(r.score, 1, 10), areas: Object.fromEntries(["task", "organisation", "grammar", "vocabulary"].map((k) => [k, num(areas[k], 1, 10)])), mistakes: locate(text, ms),
+    good: cleanList(r.good, 3), next: cleanList(r.next, 3), better: isEnglish(r.better) ? String(r.better).trim() : "" };
+  if (p.kind === "precis") Object.assign(c, { title_ok: r.title_ok !== false, copied: r.copied === true, missed: cleanList(r.missed, 3) });
+  if (p.kind === "comp") c.answers = (Array.isArray(r.answers) ? r.answers : []).map((a, i) => ({ q: num(a?.q || i + 1, 1, 20), ok: a?.ok === true, note: isEnglish(a?.note) ? String(a.note) : "", model: isEnglish(a?.model) ? String(a.model) : "" })).slice(0, 8);
+  return c;
+}
+const resolved = (d, i) => !!(d.fixes[i]?.ok || d.fixes[i]?.shown);
+const allResolved = (d) => d.check.mistakes.every((_, i) => resolved(d, i));
+function renderResult(p) {
+  const box = $("result"); if (!box) return;
+  box.innerHTML = "";
+  if (textKey(p) === "outline") { if (p.outline?.check) box.append(outlineCard(p)); return; }
+  const d = lastDraft(p); if (!d) return;
+  box.append(marksCard(p, d));
+  const ms = d.check.mistakes;
+  if (ms.length) { box.append(markedCard(d)); box.append(fixesCard(p, d)); }
+  box.append(afterCard(p, d));
+}
+function outlineCard(p) {
+  const o = p.outline.check, c = el("div", "card");
+  const top = el("div", "scorerow"); top.append(el("span", "score", o.score + "/10")); const tx = el("div"); tx.append(el("strong", "", "Mam's marks for your outline"), el("div", "when", shortDate(o.at))); top.append(tx); c.append(top);
+  if (o.thesis) c.append(el("p", "", "🎯 " + o.thesis));
+  const list = (label, items) => { if (!items.length) return; c.append(el("div", "lbl", label)); const ul = el("ul"); items.forEach((x) => ul.append(el("li", "", x))); c.append(ul); };
+  list("What you did well", o.good); list("Make it better", o.next); list("Missing", o.missing);
+  if (o.better) { const d = el("details"); d.append(el("summary", "", "✨ Mam's outline for this topic"), el("p", "better", o.better)); c.append(d); }
+  c.append(btn("Next: write the essay →", () => { p.step = "essay"; putPiece(p); render(); }, "btn primary"));
+  return c;
+}
+function marksCard(p, d) {
+  const ch = d.check, c = el("div", "card"), n = p.drafts.filter((x) => x.check).length;
+  const top = el("div", "scorerow"); top.append(el("span", "score", ch.score + "/10"));
+  const tx = el("div"); tx.append(el("strong", "", "Mam's marks"), el("div", "when", `Draft ${n} · ${d.words} words · ${ch.mistakes.length} mistake${ch.mistakes.length === 1 ? "" : "s"}`)); top.append(tx); c.append(top);
+  const ds = p.drafts.filter((x) => x.check);
+  if (ds.length > 1) { const line = el("div", "drafts"); ds.forEach((x, i) => { if (i) line.append(el("span", "", "→")); line.append(el("span", "chip2", `Draft ${i + 1}: ${x.check.score}`)); }); const diff = ch.score - ds[ds.length - 2].check.score; if (diff > 0) line.append(el("span", "up", "↑ " + diff + " better")); c.append(line); }
+  const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
+  Object.entries(labels).forEach(([k, l]) => { const v = ch.areas[k], r = el("div", "area"); r.innerHTML = "<span></span><i><b></b></i><em></em>"; r.children[0].textContent = l; r.querySelector("b").style.width = v * 10 + "%"; r.children[2].textContent = v + "/10"; c.append(r); });
+  if (p.kind === "precis") {
+    const tg = p.task.target, okLen = d.words >= tg.min && d.words <= tg.max;
+    c.append(el("div", "flag " + (okLen ? "ok" : "bad"), `${okLen ? "✓" : "⚠"} Length: ${d.words} words. Goal: about ${tg.about}${okLen ? "." : d.words > tg.max ? ". Make it shorter." : ". Add the main ideas you left out."}`));
+    c.append(el("div", "flag " + (ch.title_ok ? "ok" : "bad"), ch.title_ok ? "✓ It has a title." : "⚠ Add a short title at the top."));
+    if (ch.copied) c.append(el("div", "flag bad", "⚠ Some phrases are copied from the passage. Say them in your own words."));
+    if (ch.missed?.length) { c.append(el("div", "lbl", "Main ideas you left out")); const ul = el("ul"); ch.missed.forEach((x) => ul.append(el("li", "", x))); c.append(ul); }
+  }
+  if (p.kind === "comp" && ch.answers?.length) {
+    c.append(el("div", "lbl", "Your answers"));
+    ch.answers.forEach((a) => {
+      const r = el("div", "mrow"); r.append(el("div", "flag " + (a.ok ? "ok" : "bad"), `${a.ok ? "✓" : "✗"} Question ${a.q}${a.note ? ": " + a.note : ""}`));
+      if (a.model) { const dd = el("details"); dd.append(el("summary", "", "A model answer"), el("p", "", a.model)); r.append(dd); }
+      c.append(r);
+    });
+  }
+  const list = (label, items) => { if (!items.length) return; c.append(el("div", "lbl", label)); const ul = el("ul"); items.forEach((x) => ul.append(el("li", "", x))); c.append(ul); };
+  list("What you did well", ch.good); list("Next time", ch.next);
+  if (d.photo?.note) c.append(el("p", "hint", "✍️ Handwriting: " + d.photo.note));
+  return c;
+}
+// The learner's own text with the examiner's marks: a red line under each mistake, green once it is fixed.
+function markedCard(d) {
+  const c = el("div", "card"); c.append(el("div", "lbl", "Your writing, marked"));
+  const pEl = el("p", "marked"); let pos = 0;
+  d.check.mistakes.forEach((m, i) => {
+    if (m.at == null) return;
+    pEl.append(d.text.slice(pos, m.at));
+    const mk = el("mark", "mk" + (resolved(d, i) ? " done" : ""), m.wrong); const sup = el("sup", "", String(i + 1)); mk.append(sup);
+    mk.onclick = () => document.getElementById("fix" + i)?.scrollIntoView({ block: "center", behavior: "smooth" });
+    pEl.append(mk); pos = m.at + m.wrong.length;
+  });
+  pEl.append(d.text.slice(pos)); c.append(pEl);
+  return c;
+}
+function fixesCard(p, d) {
+  const ms = d.check.mistakes, c = el("div", "card"); c.id = "fixes";
+  const done = ms.filter((_, i) => resolved(d, i)).length;
+  c.append(el("div", "lbl", `Fix your mistakes · ${done} of ${ms.length} done`));
+  const tp = tip("fixfirst", "Try to fix each mistake yourself first: change the words in the box and tap Check. The hint helps you. If you are stuck, tap Show the answer.");
+  if (tp) c.append(tp);
+  ms.forEach((m, i) => c.append(fixRow(p, d, i)));
+  if (done < ms.length) c.append(tool("Show all the answers", () => { ms.forEach((_, i) => { if (!resolved(d, i)) { d.fixes[i] = { ...(d.fixes[i] || { tries: 0 }), shown: true }; saveMistake(p, d, i); } }); putPiece(p); renderResult(p); }));
+  return c;
+}
+function fixRow(p, d, i) {
+  const m = d.check.mistakes[i], f = d.fixes[i] || { tries: 0 };
+  const r = el("div", "fix" + (f.ok ? " ok" : f.shown ? " shown" : "")); r.id = "fix" + i;
+  const h = el("div", "fhead"); h.append(el("span", "n", String(i + 1)), el("span", "type", TYPES[m.type] || "Other")); r.append(h);
+  const w = el("div", "wrong"); w.append(resolved(d, i) ? el("s", "", m.wrong) : el("span", "", "“" + m.wrong + "”")); r.append(w);
+  if (resolved(d, i)) {
+    const a = el("div", "fout"); a.append(f.ok ? "✓ You fixed it: " : "Answer: "); a.append(el("span", "right", f.ok && f.last ? f.last : m.right || "(take it out)")); r.append(a);
+    if (f.ok && f.last && !same(f.last, m.right, EXACT.has(m.type))) r.append(el("div", "hint", "Mam's version: " + (m.right || "(take it out)")));
+    if (m.why) r.append(el("div", "hint", "Why: " + m.why));
+    return r;
+  }
+  if (m.hint) r.append(el("div", "hint", "💡 " + m.hint));
+  const fr = el("div", "row"), inp = el("input"); inp.type = "text"; inp.value = f.last || m.wrong; inp.id = "fixIn" + i; inp.setAttribute("aria-label", "Your correction for mistake " + (i + 1)); inp.autocomplete = "off"; inp.spellcheck = false; inp.setAttribute("autocapitalize", "off"); inp.setAttribute("autocorrect", "off");
+  const out = el("div", "fout");
+  const go2 = btn("Check", () => tryFix(p, d, i, inp.value, out, go2), "btn primary");
+  inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); go2.click(); } });
+  fr.append(inp, go2); r.append(fr, out);
+  r.append(tool("Show the answer", () => { d.fixes[i] = { ...f, shown: true }; saveMistake(p, d, i); putPiece(p); renderResult(p); document.getElementById("fix" + i)?.scrollIntoView({ block: "center" }); }));
+  return r;
+}
+const norm = (s, exact) => (exact ? String(s).replace(/\s+/g, " ").trim() : String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim());
+const same = (a, b, exact) => norm(a, exact) === norm(b, exact);
+function sentenceOf(text, at, len) {
+  if (at == null) return "";
+  let s = at, e = at + len;
+  while (s > 0 && !/[.!?\n]/.test(text[s - 1])) s--;
+  while (e < text.length && !/[.!?\n]/.test(text[e])) e++;
+  if (e < text.length && /[.!?]/.test(text[e])) e++;
+  return text.slice(s, e).trim().slice(0, 300);
+}
+async function judge(m, sentence, fix, whole) {
+  await aiReady; if (!sample) return null;
+  const c = new AbortController(), t = setTimeout(() => c.abort(), 45000);
+  try { const r = await askJson(judgePrompt(m, sentence || m.wrong, fix, whole), { modelTier: "quick", signal: c.signal }); return { ok: r?.ok === true, note: isEnglish(r?.note) ? String(r.note) : "" }; }
+  catch (e) { dbg("judge_error", { code: String(e?.code || "") }); return null; } finally { clearTimeout(t); }
+}
+async function tryFix(p, d, i, value, out, b) {
+  const m = d.check.mistakes[i], f = (d.fixes[i] = d.fixes[i] || { tries: 0 }), v = value.trim(), exact = EXACT.has(m.type);
+  out.className = "fout"; out.textContent = "";
+  if (same(v, m.wrong, true)) { out.textContent = "This is the same as before. Change the words to fix the mistake."; return; }
+  f.tries++; f.last = v;
+  let ok = same(v, m.right, exact), note = "";
+  if (!ok) { b.disabled = true; out.textContent = "Mam is checking…"; const r = await judge(m, sentenceOf(d.text, m.at, m.wrong.length), v); b.disabled = false; ok = !!r?.ok; note = r?.note || ""; if (!r) note = "Mam could not check it now."; }
+  if (ok) { f.ok = true; saveMistake(p, d, i); putPiece(p); renderResult(p); document.getElementById("fix" + i)?.scrollIntoView({ block: "center" }); toast(f.tries === 1 ? "✓ Well done!" : "✓ Fixed!"); return; }
+  putPiece(p);
+  out.textContent = "Not yet. " + (note ? note + " " : "") + "Try again, or tap Show the answer.";
+}
+// Every mistake goes to the review list: one fixed alone at the first try comes back later than one that needed the answer.
+function saveMistake(p, d, i) {
+  const m = d.check.mistakes[i], f = d.fixes[i];
+  if (!f || f.saved) return; f.saved = true;
+  const now = Date.now(), box = f.ok && f.tries === 1 ? 2 : 1;
+  const mk = { id: "m" + now.toString(36) + i, wrong: m.wrong, right: m.right, why: m.why, type: m.type, sentence: sentenceOf(d.text, m.at, m.wrong.length) || m.wrong, from: p.task.title, kind: p.kind, piece: p.id, self: !!f.ok, box, due: now + REVIEW_DAYS[box] * DAY, created: now, updated: now };
+  state.mistakes.unshift(mk); putMistake(mk);
+}
+// The corrected text keeps the learner's own fix where Mam accepted it.
+const fixedWords = (d, i) => (d.fixes[i]?.ok && d.fixes[i].last != null ? d.fixes[i].last : d.check.mistakes[i].right);
+function correctedText(d) {
+  let t = d.text;
+  d.check.mistakes.map((m, i) => [m, i]).filter(([m]) => m.at != null).sort((a, b) => b[0].at - a[0].at).forEach(([m, i]) => { t = t.slice(0, m.at) + fixedWords(d, i) + t.slice(m.at + m.wrong.length); });
+  return t.replace(/ {2,}/g, " ");
+}
+function afterCard(p, d) {
+  const c = el("div", "card"), ms = d.check.mistakes;
+  if (!ms.length) c.append(el("p", "flag ok", "✓ Mam found no mistakes. Well done!"));
+  if (ms.length && !allResolved(d)) {
+    c.append(el("div", "lbl", "Your corrected writing"), el("p", "lock", "🔒 Fix every mistake above (or open its answer) to see your corrected writing and Mam's better version."));
+    return c;
+  }
+  if (ms.length) {
+    c.append(el("div", "lbl", "Your corrected writing"));
+    const pEl = el("p", "corrected"); let pos = 0;
+    ms.forEach((m, i) => { if (m.at == null) return; pEl.append(d.text.slice(pos, m.at)); const w = fixedWords(d, i); if (w) pEl.append(el("ins", "", w)); pos = m.at + m.wrong.length; });
+    pEl.append(d.text.slice(pos)); c.append(pEl);
+  }
+  if (d.check.better) { c.append(el("div", "lbl", "✨ Mam's better version")); c.append(el("p", "better", d.check.better)); }
+  const t = el("div", "tools");
+  t.append(btn("✍️ Write it again", () => { p.text = ms.length ? correctedText(d) : d.text; putPiece(p, true); render(); const ta = $("draft"); if (ta) { ta.scrollIntoView({ block: "start", behavior: "smooth" }); ta.focus({ preventScroll: true }); } toast("Make it even better, then check again"); }, "btn primary"));
+  t.append(btn("New task", () => go({ tab: "write", page: "kind", kind: p.kind })));
+  c.append(el("p", "hint", "Write it again: start from your corrected writing, add Mam's ideas, and check it again to see your new marks."), t);
+  return c;
+}
+// Speaking instead of typing (the web version; inside Claude the keyboard's 🎤 does this).
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const canListen = !!SR && !inClaude;
+let dictRec = null;
+function dictate(ta, b) {
+  if (dictRec) { stopDictation(); return; }
+  try {
+    const r = new SR(); r.lang = "en-US"; r.interimResults = true; r.continuous = true;
+    const base = ta.value.trim() ? ta.value.trimEnd() + " " : "";
+    let quiet = 0;
+    const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 4000); };
+    r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; ta.value = base + s.trim(); ta.dispatchEvent(new Event("input")); arm(); };
+    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type."); };
+    r.onend = () => { if (dictRec === r) stopDictation(); };
+    r.start(); dictRec = r; b.textContent = "■ Stop"; b.classList.add("on"); arm();
+  } catch { dictRec = null; }
+}
+function stopDictation() { const r = dictRec; dictRec = null; if (r) { try { r.stop(); } catch {} } const b = $("dictBtn"); if (b) { b.textContent = "🎙️ Speak"; b.classList.remove("on"); } }
+
+// ---------- my mistakes: review them, and learn the rule behind each kind ----------
+const liveMistakes = () => state.mistakes.filter((m) => !m.removed);
+const dueMistakes = () => liveMistakes().filter((m) => (m.due || 0) <= Date.now()).sort((a, b) => (a.due || 0) - (b.due || 0));
+function typeCounts() { const c = {}; liveMistakes().forEach((m) => { c[m.type] = (c[m.type] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]); }
+function renderMistakes() {
+  setTitle("🔁 Mistakes");
+  const all = liveMistakes(), due = dueMistakes();
+  const rc = section("card", "Review");
+  rc.append(el("h2", "", due.length ? `${due.length} mistake${due.length === 1 ? "" : "s"} to fix again today` : all.length ? "Nothing to review now" : "No mistakes saved yet"));
+  if (due.length) { rc.append(el("p", "hint", "Fix each one again. The ones you know come back later; the hard ones come back sooner."), btn("▶ Review", startReview, "btn primary")); }
+  else if (all.length) { const next = Math.min(...all.map((m) => m.due || 0)); rc.append(el("p", "hint", "Next review: " + (next - Date.now() < DAY ? "tomorrow" : shortDate(next)) + ". Keep writing, and Mam adds the mistakes you fix.")); }
+  else { rc.append(el("p", "hint", "When Mam checks your writing, the mistakes you fix are saved here, so you can practise them again until you never make them."), btn("✍️ Start writing", () => go({ tab: "write", page: "home" }), "btn primary")); return; }
+  const tc = section("card", "Your most common mistakes"), counts = typeCounts(), top = counts[0][1];
+  counts.forEach(([t, n]) => {
+    const b = el("button", "trbar"); b.type = "button"; b.innerHTML = "<span></span><i><b></b></i><em></em>";
+    b.children[0].textContent = TYPES[t] || "Other"; b.querySelector("b").style.width = Math.max(6, n / top * 100) + "%"; b.children[2].textContent = n;
+    b.onclick = () => go({ tab: "mistakes", page: "type", type: t }); tc.append(b);
+  });
+  tc.append(el("p", "hint", "Tap a kind of mistake to learn the rule and practise it."));
+  const lc = section("card", "All your mistakes · " + all.length);
+  all.slice(0, mistakesShown).forEach((m) => lc.append(mistakeRow(m)));
+  if (all.length > mistakesShown) lc.append(tool("Show more", () => { mistakesShown += 30; render(true); }));
+}
+let mistakesShown = 30;
+function mistakeRow(m) {
+  const r = el("div", "mrow"), top = el("div", "mline"), line = el("div");
+  line.append(el("s", "", m.wrong), " → ", el("span", "right", m.right || "(take it out)"));
+  const rm = tool("🗑", () => { if (!rm.dataset.sure) { rm.dataset.sure = "1"; rm.textContent = "Remove?"; return; } m.removed = true; putMistake(m); render(true); });
+  rm.setAttribute("aria-label", "Remove this mistake");
+  top.append(line, rm);
+  r.append(top, el("small", "", [TYPES[m.type], m.why, m.from ? "from “" + m.from + "”" : ""].filter(Boolean).join(" · ")));
+  return r;
+}
+let rv = null;
+function startReview() { const q = dueMistakes().map((m) => m.id); rv = { queue: q, total: q.length, right: 0, again: new Set(), n: 0 }; go({ tab: "mistakes", page: "review" }); }
+function renderReview() {
+  setTitle("🔁 Review");
+  backBtn("← My mistakes", { tab: "mistakes", page: "home" });
+  const m = state.mistakes.find((x) => x.id === rv.queue[0]);
+  if (!m) {
+    const c = section("card", "Review finished");
+    c.append(el("h2", "", rv.right === rv.total ? "🎉 Perfect!" : "Well done!"), el("p", "", `You fixed ${rv.right} of ${rv.total} at the first try.`));
+    c.append(btn("Back to my mistakes", () => { rv = null; go({ tab: "mistakes", page: "home" }); }, "btn primary"));
+    return;
+  }
+  const c = section("card", `Review · ${rv.n + 1} of ${rv.total + rv.again.size}`);
+  const h = el("div", "tools"); h.append(el("span", "type", TYPES[m.type] || "Other")); c.append(h);
+  c.append(el("p", "", "Fix the mistake in this sentence:"));
+  const s = m.sentence || m.wrong, at = s.indexOf(m.wrong), pEl = el("p", "marked");
+  if (at >= 0) { pEl.append(s.slice(0, at)); pEl.append(el("mark", "mk", m.wrong)); pEl.append(s.slice(at + m.wrong.length)); } else pEl.append(s);
+  c.append(pEl);
+  const ta = el("textarea", "inbox"); ta.id = "rvIn"; ta.rows = 3; ta.value = s; ta.spellcheck = false; ta.setAttribute("autocapitalize", "off"); ta.setAttribute("autocorrect", "off"); ta.setAttribute("aria-label", "The sentence, corrected");
+  const out = el("div", "fout"); out.id = "rvOut";
+  const t = el("div", "tools");
+  const check = btn("Check", async () => {
+    const v = ta.value.trim(), want = at >= 0 ? s.slice(0, at) + m.right + s.slice(at + m.wrong.length) : m.right;
+    if (same(v, s, true)) { out.textContent = "Change the sentence to fix the mistake first."; return; }
+    let ok = same(v, want, EXACT.has(m.type));
+    if (!ok) { check.disabled = true; out.textContent = "Mam is checking…"; const r = await judge(m, s, v, true); check.disabled = false; ok = !!r?.ok; if (!ok) out.dataset.note = r?.note || ""; }
+    reviewDone(m, ok, want, out, t);
+  }, "btn primary");
+  t.append(check, tool("Show the answer", () => reviewDone(m, false, at >= 0 ? s.slice(0, at) + m.right + s.slice(at + m.wrong.length) : m.right, out, t)));
+  c.append(ta, t, out);
+}
+function reviewDone(m, ok, want, out, t) {
+  const first = !rv.again.has(m.id);
+  if (ok) { if (first) rv.right++; m.box = Math.min((m.box || 0) + 1, REVIEW_DAYS.length - 1); m.due = Date.now() + REVIEW_DAYS[m.box] * DAY; }
+  else { m.box = 0; m.due = Date.now(); if (first) { rv.again.add(m.id); rv.queue.push(m.id); } } // a missed one comes back once at the end
+  putMistake(m);
+  out.innerHTML = ""; out.append(el("div", "flag " + (ok ? "ok" : "bad"), ok ? "✓ Right!" : "Not quite." + (out.dataset.note ? " " + out.dataset.note : "")));
+  const a = el("div"); a.append("Correct: ", el("span", "right", want)); out.append(a); if (m.why) out.append(el("div", "hint", "Why: " + m.why));
+  t.innerHTML = ""; t.append(btn("Next →", () => { rv.queue.shift(); rv.n++; render(); }, "btn primary"));
+}
+async function renderType(type) {
+  const mine = liveMistakes().filter((m) => m.type === type);
+  setTitle(TYPES[type]);
+  backBtn("← My mistakes", { tab: "mistakes", page: "home" });
+  const head = section("card"); head.append(el("h2", "", TYPES[type]), el("p", "hint", `${mine.length} of your mistakes are this kind.`));
+  section("").id = "typeStatus";
+  const lc = section("card", "📖 Mam's lesson"); lc.id = "lesson";
+  const l = state.lessons[type];
+  if (l) drawLesson(lc, l, type);
+  else { lc.append(el("p", "hint", "Mam explains the rule with your own mistakes, and gives you sentences to practise.")); lc.append(btn("📖 Learn this rule", () => fetchLesson(type, mine), "btn primary")); if (mine.length) fetchLesson(type, mine); }
+  const list = section("card", "Your mistakes of this kind");
+  mine.slice(0, 30).forEach((m) => list.append(mistakeRow(m)));
+}
+async function fetchLesson(type, mine) {
+  const r = await aiJob("typeStatus", "Mam is writing a lesson for you…", (signal) => askJson(lessonPrompt(type, mine.slice(0, 6)), { modelTier: "default", signal }), () => fetchLesson(type, mine));
+  if (!r || !isEnglish(r.rule)) return;
+  state.lessons[type] = { type, at: Date.now(), rule: String(r.rule), urdu: isEnglish(r.urdu) ? String(r.urdu) : "", tips: cleanList(r.tips, 3),
+    examples: (Array.isArray(r.examples) ? r.examples : []).filter((x) => x?.wrong && x?.right).slice(0, 4).map((x) => ({ wrong: String(x.wrong), right: String(x.right) })),
+    practice: (Array.isArray(r.practice) ? r.practice : []).filter((x) => x?.wrong && x?.right && isEnglish(x.wrong + x.right)).slice(0, 5).map((x) => ({ wrong: String(x.wrong), right: String(x.right) })) };
+  saveLocal(); putLesson(type);
+  if (view.page === "type" && view.type === type && $("lesson")) { const lc = $("lesson"); lc.innerHTML = ""; lc.append(el("div", "lbl", "📖 Mam's lesson")); drawLesson(lc, state.lessons[type], type); }
+}
+function drawLesson(c, l, type) {
+  c.append(el("p", "", l.rule));
+  if (l.urdu) c.append(el("p", "hint", "🇵🇰 " + l.urdu));
+  if (l.examples.length) { c.append(el("div", "lbl", "Examples")); l.examples.forEach((x) => { const r = el("div", "mrow"); const line = el("div"); line.append(el("s", "", x.wrong), " → ", el("span", "right", x.right)); r.append(line); c.append(r); }); }
+  if (l.tips.length) { c.append(el("div", "lbl", "Tips")); const ul = el("ul"); l.tips.forEach((x) => ul.append(el("li", "", x))); c.append(ul); }
+  if (l.practice.length) {
+    c.append(el("div", "lbl", "Practise: fix each sentence"));
+    l.practice.forEach((x, i) => {
+      const r = el("div", "fix"); r.append(el("div", "", x.wrong));
+      const fr = el("div", "row"), inp = el("input"); inp.type = "text"; inp.value = x.wrong; inp.id = "lp" + i; inp.setAttribute("aria-label", "Corrected sentence " + (i + 1)); inp.spellcheck = false; inp.setAttribute("autocapitalize", "off"); inp.setAttribute("autocorrect", "off");
+      const out = el("div", "fout");
+      const show = (ok) => { out.innerHTML = ""; out.append(el("span", "flag " + (ok ? "ok" : "bad"), ok ? "✓ Right! " : "Answer: ")); if (!ok) out.append(el("span", "right", x.right)); };
+      const b = btn("Check", async () => {
+        if (same(inp.value, x.wrong, true)) { out.textContent = "Change the sentence to fix it first."; return; }
+        if (same(inp.value, x.right, EXACT.has(type))) { show(true); return; }
+        b.disabled = true; out.textContent = "Mam is checking…";
+        const r2 = await judge({ wrong: x.wrong, right: x.right, type }, x.wrong, inp.value.trim(), true); b.disabled = false;
+        if (r2?.ok) show(true); else { out.textContent = "Not yet. " + (r2?.note || "") + " "; out.append(tool("Show the answer", () => show(false))); }
+      }, "btn primary");
+      fr.append(inp, b); r.append(fr, out); c.append(r);
+    });
+  }
+  c.append(tool("↻ New lesson and sentences", () => { delete state.lessons[type]; render(true); }));
+}
+
+// ---------- progress: Mam's marks over time ----------
+// The writing score is the average mark of the newest first drafts: a first draft shows what the learner writes alone.
+function allChecks() {
+  const out = [];
+  live().forEach((p) => (p.drafts || []).forEach((d, i) => { if (d.check) out.push({ p, d, first: i === 0 || !p.drafts.slice(0, i).some((x) => x.check), at: d.at }); }));
+  return out.sort((a, b) => a.at - b.at);
+}
+function renderProgress() {
+  setTitle("📈 Progress");
+  const all = allChecks(), firsts = all.filter((x) => x.first);
+  if (!all.length) {
+    const c = section("card", "Your writing progress");
+    c.append(el("h2", "", "Nothing checked yet"), el("p", "hint", "When Mam checks your writing, your marks, your most common mistakes and your words each day show here."), btn("✍️ Start writing", () => go({ tab: "write", page: "home" }), "btn primary"));
+    return;
+  }
+  const recent = firsts.slice(-10), score = avg(recent.map((x) => x.d.check.score));
+  const hero = section("card", "Your writing score");
+  const big = el("div", "hero", score.toFixed(1)); big.append(el("small", "", " / 10")); hero.append(big);
+  const prev = firsts.slice(-20, -10);
+  if (prev.length >= 2) { const diff = score - avg(prev.map((x) => x.d.check.score)); hero.append(el("p", diff > 0.05 ? "up" : "hint", diff > 0.05 ? `↑ ${diff.toFixed(1)} better than your ${prev.length} drafts before` : diff < -0.05 ? `↓ ${Math.abs(diff).toFixed(1)} lower than before: harder tasks lower the marks too` : "The same as before")); }
+  hero.append(el("p", "hint", (recent.length === 1 ? "Mam's mark for your first draft." : `The average of Mam's marks for your last ${recent.length} first drafts.`) + " A first draft shows what you can write alone."));
+  if (firsts.length >= 2) { const cc = section("card", "Mam's marks for your first drafts"); lineChart(cc, firsts.slice(-20)); }
+  const week = all.filter((x) => Date.now() - x.at < 7 * DAY), wr = recent.reduce((a, x) => a + x.d.words, 0), wm = recent.reduce((a, x) => a + x.d.check.mistakes.length, 0);
+  const fixes = all.flatMap((x) => x.d.fixes || []).filter((f) => f && (f.ok || f.shown));
+  const mc = section("card", "This week"), grid = el("div", "metrics");
+  [[week.reduce((a, x) => a + x.d.words, 0), "words written"], [new Set(week.map((x) => x.p.id)).size, "pieces checked"], [wr ? (wm / wr * 100).toFixed(1) : "–", "mistakes per 100 words"], [fixes.length ? Math.round(fixes.filter((f) => f.ok).length / fixes.length * 100) + "%" : "–", "mistakes you fixed alone"]]
+    .forEach(([v, l]) => { const m = el("div", "metric"); m.append(el("b", "", String(v)), el("span", "", l)); grid.append(m); });
+  mc.append(grid, el("p", "hint", "Fewer mistakes per 100 words means more accurate writing. It uses your last first drafts."));
+  const ac = section("card", "Your marks by area"), labels = { task: "Task and ideas", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
+  const last = all.slice(-10), means = Object.keys(labels).map((k) => [k, avg(last.map((x) => x.d.check.areas[k] || 0))]);
+  const weakest = means.reduce((a, b) => (b[1] < a[1] ? b : a));
+  means.forEach(([k, v]) => { const pr = el("div", "part"), top = el("div", "parttop"); top.append(el("strong", "", labels[k]), el("span", "", v.toFixed(1) + " / 10")); const mt = el("div", "meter"), b = el("b"); b.style.width = v * 10 + "%"; mt.append(b); pr.append(top, mt); ac.append(pr); });
+  const TIPS = { task: "Read the task twice and answer every part of it. Plan two or three ideas before you write.", organisation: "Use a clear order: a topic sentence, your reasons, an example, a closing sentence. Join ideas with First, However, For example, In short.", grammar: "Look at your most common mistakes in the Mistakes tab and review them every day.", vocabulary: "Save useful words from Mam's better versions and use them in your next piece." };
+  ac.append(el("p", "hint", "To improve: " + labels[weakest[0]].toLowerCase() + ". " + TIPS[weakest[0]]));
+  const days = new Map(); all.forEach((x) => { const k = dayOf(x.at); days.set(k, (days.get(k) || 0) + x.d.words); });
+  const bars = []; for (let i = 13; i >= 0; i--) { const k = dayOf(Date.now() - i * DAY); bars.push({ k, v: days.get(k) || 0 }); }
+  const wc = section("card", "Words you wrote each day"); barChart(wc, bars);
+  const tc = el("details", "tbl"); tc.append(el("summary", "", "See the numbers"));
+  const tbl = el("table"); tbl.innerHTML = "<thead><tr><th>Date</th><th>Piece</th><th>Mark</th><th>Words</th><th>Mistakes</th></tr></thead>";
+  const tb = el("tbody"); all.slice(-15).reverse().forEach((x) => { const tr = el("tr"); [shortDate(x.at), x.p.task.title.slice(0, 26) + (x.first ? "" : " (again)"), x.d.check.score + "/10", x.d.words, x.d.check.mistakes.length].forEach((v) => tr.append(el("td", "", String(v)))); tb.append(tr); });
+  tbl.append(tb); tc.append(tbl); section("card").append(tc);
+}
+const shortDay = (k) => (k === today() ? "Today" : new Date(k + "T12:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short" }));
+// One series, so no legend: 2px line, dots with a surface ring, hairline grid, a tap shows the piece.
+function lineChart(box, pts) {
+  const W = 320, H = 170, L = 22, R = 12, T = 12, B = 24, n = pts.length;
+  const x = (i) => L + (n === 1 ? (W - L - R) / 2 : i * (W - L - R) / (n - 1)), y = (v) => T + (1 - v / 10) * (H - T - B);
+  let s = `<svg viewBox="0 0 ${W} ${H}" class="chart" id="scoreChart" role="img" aria-label="Mam's marks for your first drafts, from oldest to newest">`;
+  [0, 2, 4, 6, 8, 10].forEach((v) => { s += `<line class="grid" x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`; });
+  const P = pts.map((p, i) => [x(i), y(p.d.check.score)]);
+  if (n > 1) s += `<path class="area" d="M${P[0][0]},${y(0)} ${P.map(([a, b]) => `L${a},${b}`).join(" ")} L${P[n - 1][0]},${y(0)}Z"/><polyline class="line" points="${P.map(([a, b]) => `${a},${b}`).join(" ")}"/>`;
+  P.forEach(([a, b]) => { s += `<circle class="pt" cx="${a}" cy="${b}" r="4"/>`; });
+  s += `<text class="end" x="${Math.min(P[n - 1][0], W - R - 4)}" y="${P[n - 1][1] - 10}" text-anchor="middle">${pts[n - 1].d.check.score}</text>`;
+  s += `<text x="${L}" y="${H - 6}" text-anchor="start">${shortDay(dayOf(pts[0].at))}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${shortDay(dayOf(pts[n - 1].at))}</text>`;
+  s += `<line class="xh" x1="0" x2="0" y1="${T}" y2="${H - B}" visibility="hidden"/></svg>`;
+  const wrap = el("div", "chartbox"); wrap.innerHTML = s;
+  const tipEl = el("div", "tip"); tipEl.hidden = true; wrap.append(tipEl); box.append(wrap);
+  const svg = wrap.querySelector("svg"), xh = wrap.querySelector(".xh");
+  const show = (ev) => {
+    const r = svg.getBoundingClientRect(), vx = (ev.clientX - r.left) / r.width * W;
+    const i = P.reduce((a, b, j) => (Math.abs(b[0] - vx) < Math.abs(P[a][0] - vx) ? j : a), 0), pt = pts[i];
+    xh.setAttribute("x1", P[i][0]); xh.setAttribute("x2", P[i][0]); xh.setAttribute("visibility", "visible");
+    tipEl.innerHTML = ""; tipEl.append(el("b", "", pt.d.check.score + "/10 · " + KINDS[pt.p.kind].name), el("span", "", pt.p.task.title.slice(0, 30) + " · " + shortDay(dayOf(pt.at))));
+    tipEl.style.left = Math.min(80, Math.max(20, P[i][0] / W * 100)) + "%"; tipEl.style.top = (P[i][1] / H * r.height) + "px"; tipEl.hidden = false;
+  };
+  svg.addEventListener("pointermove", show); svg.addEventListener("pointerdown", show);
+  svg.addEventListener("pointerleave", () => { tipEl.hidden = true; xh.setAttribute("visibility", "hidden"); });
+}
+// Columns: at most 24px wide, rounded at the top, square on the baseline; the biggest day is labelled, a tap shows any day.
+function barChart(box, bars) {
+  const W = 320, H = 150, L = 6, R = 6, T = 18, B = 24, n = bars.length, slot = (W - L - R) / n, bw = Math.min(24, slot - 6);
+  const max = Math.max(...bars.map((b) => b.v), 1), y = (v) => T + (1 - v / max) * (H - T - B), base = H - B;
+  let s = `<svg viewBox="0 0 ${W} ${H}" class="chart" id="wordChart" role="img" aria-label="Words written each day for the last 14 days"><line class="grid" x1="${L}" x2="${W - R}" y1="${base}" y2="${base}"/>`;
+  const top = bars.reduce((a, b, i) => (b.v > bars[a].v ? i : a), 0);
+  bars.forEach((b, i) => {
+    const bx = L + i * slot + (slot - bw) / 2, by = y(b.v), h = base - by, r = Math.min(4, h, bw / 2);
+    if (b.v > 0) s += `<path class="bar" d="M${bx},${base} V${by + r} Q${bx},${by} ${bx + r},${by} H${bx + bw - r} Q${bx + bw},${by} ${bx + bw},${by + r} V${base} Z"/>`;
+    if (i === top && b.v > 0) s += `<text x="${bx + bw / 2}" y="${by - 5}" text-anchor="middle">${b.v}</text>`;
+  });
+  s += `<text x="${L}" y="${H - 6}" text-anchor="start">${shortDay(bars[0].k)}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${shortDay(bars[n - 1].k)}</text></svg>`;
+  const wrap = el("div", "chartbox"); wrap.innerHTML = s;
+  const tipEl = el("div", "tip"); tipEl.hidden = true; wrap.append(tipEl); box.append(wrap);
+  const svg = wrap.querySelector("svg");
+  const show = (ev) => {
+    const r = svg.getBoundingClientRect(), i = Math.max(0, Math.min(n - 1, Math.floor(((ev.clientX - r.left) / r.width * W - L) / slot)));
+    tipEl.innerHTML = ""; tipEl.append(el("b", "", bars[i].v + " words"), el("span", "", shortDay(bars[i].k)));
+    tipEl.style.left = Math.min(85, Math.max(15, (L + i * slot + slot / 2) / W * 100)) + "%"; tipEl.style.top = (y(bars[i].v) / H * r.height) + "px"; tipEl.hidden = false;
+  };
+  svg.addEventListener("pointermove", show); svg.addEventListener("pointerdown", show);
+  svg.addEventListener("pointerleave", () => { tipEl.hidden = true; });
+}
+
+// ---------- tabs, settings ----------
+function renderTabs() {
+  document.querySelectorAll("#tabbar button").forEach((b) => { if (b.dataset.tab === view.tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const due = dueMistakes().length, badge = $("mistBadge"); badge.hidden = !due; badge.textContent = due > 99 ? "99+" : String(due);
+}
+// A tab opens where it was left; tapping the tab you are on goes back to its first page.
+function goTab(tab) {
+  if (tab === view.tab) { if (view.page !== "home") go({ tab, page: "home" }); return; }
+  go(okView(tabView[tab] || { tab, page: "home" }));
+}
+document.querySelectorAll("#tabbar button").forEach((b) => { b.onclick = () => goTab(b.dataset.tab); });
+document.querySelectorAll(".sheet").forEach((s) => { s.addEventListener("click", (e) => { if (e.target === s || e.target.closest("[data-close]")) s.hidden = true; }); });
+$("setBtn").onclick = () => { $("lvSel").value = level(); $("setSheet").hidden = false; };
+$("lvSel").onchange = () => { state.settings.level = $("lvSel").value; putMeta(); toast("Level: " + LEVELS[level()] + " ✓"); if (view.tab !== "write" || view.page !== "piece") render(true); };
+$("boloLink").href = inClaude ? "https://claude.ai/artifact/3sSe2UPVMZVAvipKaBHikD" : "../";
+if (!inClaude) {
+  $("keyBox").hidden = false;
+  if (gget()?.key) $("keyStatus").textContent = "Key saved ✓";
+  const KEY_RE = /AIza[\w-]{30,}/;
+  let keyBusy = false;
+  // Checks the key with Google, then keeps it only in this browser.
+  const saveKey = async (rawKey) => {
+    const key = (String(rawKey || "").match(KEY_RE) || [])[0] || String(rawKey || "").trim();
+    if (!key || keyBusy) return;
+    keyBusy = true; $("keyStatus").textContent = "Checking your key…";
+    try { saveG({ key, ...chooseModels(await listModels(key)) }); sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done."; document.querySelectorAll("#homeStatus .banner").forEach((x) => x.remove()); }
+    catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
+    finally { keyBusy = false; }
+  };
+  $("keySave").onclick = () => saveKey($("keyIn").value);
+  $("keyIn").addEventListener("input", () => { if (KEY_RE.test($("keyIn").value)) saveKey($("keyIn").value); });
+  $("keyPaste").onclick = async () => {
+    let t = ""; try { t = await navigator.clipboard.readText(); } catch {}
+    if (KEY_RE.test(t)) { saveKey(t); return; }
+    $("keyIn").focus();
+    $("keyStatus").textContent = t ? "That is not a Gemini key (a key starts with AIza). Copy the key again." : "Long-press the box above and tap Paste.";
+  };
+  $("keyDel").onclick = () => { try { localStorage.removeItem(GKEY); } catch {} sample = null; $("keyStatus").textContent = "Key removed. Bolo English on this phone uses the same key, so it is removed there too."; };
+  // Keeping the app on the Home Screen: a real install button where the browser offers one, else the steps.
+  $("installBox").hidden = false;
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  let installEv = null;
+  const renderInstall = (done) => {
+    const steps = done || matchMedia("(display-mode: standalone)").matches || navigator.standalone === true ? ["✓ Likho is on your Home Screen. Open it from its icon."]
+      : isIOS ? ["Open this page in Safari.", "Tap the Share button (the square with an arrow).", "Tap Add to Home Screen.", "Tap Add. Now Likho has its own icon, next to Bolo."]
+      : ["Open this page in Chrome.", "Tap ⋮ at the top right.", "Tap Add to Home screen, then Install.", "Now Likho has its own icon, next to Bolo."];
+    const ol = $("installSteps"); ol.innerHTML = "";
+    steps.forEach((s) => ol.append(el("li", "", s)));
+  };
+  renderInstall();
+  window.addEventListener("beforeinstallprompt", (e) => { e.preventDefault(); installEv = e; $("installBtn").hidden = false; });
+  window.addEventListener("appinstalled", () => { installEv = null; $("installBtn").hidden = true; renderInstall(true); });
+  $("installBtn").onclick = async () => { const ev = installEv; if (!ev) return; installEv = null; $("installBtn").hidden = true; try { ev.prompt(); if ((await ev.userChoice)?.outcome === "accepted") renderInstall(true); } catch {} };
+}
+$("diagBtn").onclick = async () => {
+  const out = $("diagOut"), lines = [];
+  const put = (l) => { lines.push(l); out.textContent = lines.join("\n"); };
+  $("diagBtn").disabled = true;
+  put(inClaude ? "Running inside Claude" : "Web version (Gemini)");
+  await aiReady;
+  put("Teacher connection: " + (sample ? "available" : "not available") + (sample?.models ? " · checking: " + sample.models().model + " · quick jobs: " + sample.models().fast : ""));
+  put("Saved writing: " + live().length + " pieces, " + liveMistakes().length + " mistakes" + (col ? " (synced to your account)" : " (on this phone)"));
+  if (sample) {
+    const t0 = Date.now(), c = new AbortController(); setTimeout(() => c.abort(), 60000);
+    try { const r = await askJson('Reply with ONLY this JSON: {"right": "I live in Lahore"} after correcting: "I living in Lahore"', { modelTier: "quick", signal: c.signal }); put("Mam answers ✓ (" + ((Date.now() - t0) / 1000).toFixed(1) + " s) " + JSON.stringify(r).slice(0, 40)); }
+    catch (e) { put("Mam did not answer: " + (e?.code || "error")); }
+  }
+  $("diagBtn").disabled = false;
+};
+
+// ---------- pull down to refresh ----------
+// The Home Screen app has no reload button: pulling the page down from the top reloads it (and gets the newest version).
+// Inside Claude it brings in what was saved on other devices and redraws the page.
+function setupPullToRefresh() {
+  const m = $("main"), bar = $("ptr"); let y0 = null, x0 = 0, dist = 0;
+  const reset = () => { y0 = null; dist = 0; bar.classList.remove("pulling"); bar.style.height = "0px"; };
+  m.addEventListener("touchstart", (e) => { if (m.scrollTop > 0 || job || dictRec || editing() || !e.touches?.length) return; y0 = e.touches[0].clientY; x0 = e.touches[0].clientX; }, { passive: true });
+  m.addEventListener("touchmove", (e) => {
+    if (y0 == null || !e.touches?.length) return;
+    const t = e.touches[0], dy = t.clientY - y0;
+    if (m.scrollTop > 0 || dy < 0) { reset(); return; }
+    if (Math.abs(t.clientX - x0) > dy) return;
+    dist = Math.min(90, dy * 0.5);
+    bar.classList.add("pulling"); bar.style.height = dist + "px";
+    bar.textContent = dist >= 60 ? "↻ Let go to refresh" : "↓ Pull down to refresh";
+  }, { passive: true });
+  m.addEventListener("touchend", () => { if (y0 == null) return; const go2 = dist >= 60; reset(); if (go2) refreshApp(); });
+  m.addEventListener("touchcancel", reset);
+}
+async function refreshApp() {
+  const bar = $("ptr"); bar.textContent = "Refreshing…"; bar.style.height = "36px";
+  if (!inClaude) { flushSaves(); location.reload(); return; }
+  try { await connectDb(); } catch {}
+  render(true);
+  bar.style.height = "0px"; toast("Up to date ✓");
+}
+
+// ---------- start ----------
+loadLocal();
+view = okView(state.settings.view);
+tabView[view.tab] = view;
+// While the phone keyboard is open, the tabs step aside so the answer sheet has room.
+let fullH = window.innerHeight;
+const kbCheck = () => { fullH = Math.max(fullH, window.innerHeight); document.body.classList.toggle("kb", (window.visualViewport?.height || window.innerHeight) < fullH * 0.75); };
+window.visualViewport?.addEventListener("resize", kbCheck); window.addEventListener("resize", kbCheck);
+window.addEventListener("pagehide", flushSaves);
+document.addEventListener("visibilitychange", () => { if (document.hidden) { flushSaves(); stopDictation(); } });
+render();
+setupPullToRefresh();
+aiReady.then(() => { if (!sample && !inClaude && view.tab === "write" && view.page === "home") statusIn("homeStatus", "To let Mam check your writing, add your free Gemini key once. It takes one minute.", true, null, { label: "Open Settings", fn: () => $("setBtn").click() }); });
+connectDb();
+})();
+</script>

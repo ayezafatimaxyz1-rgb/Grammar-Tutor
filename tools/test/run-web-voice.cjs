@@ -73,6 +73,7 @@ const fakes = () => {
   check("asks for the free key on first use", (await p.textContent("#msgs")).includes("add your free Gemini key"));
   await p.click("text=Open Settings");
   check("settings show how to keep Bolo on the phone", (await p.textContent("#installSteps")).includes("Add to Home screen"));
+  check("settings link to Likho English, the writing app on the same site", (await p.getAttribute("#likhoLink", "href")) === "likho/");
   await p.evaluate(() => { window.__clip = " Your key: AIzaSyTEST_0123456789abcdefghijklmnopqr "; });
   await p.click("#keyPaste"); await p.waitForTimeout(400);
   const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));

@@ -397,6 +397,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.evaluate(() => document.getElementById("main").dispatchEvent(new Event("touchend"))); await wait(600);
   check("letting go refreshes the screen", (await p.textContent(".toast")).includes("Up to date") && (await msgs()).includes("I like biryani"));
   await p.click("#setBtn"); await wait(150);
+  check("Likho English, the writing app, is one tap away in Settings", (await p.getAttribute("#likhoLink", "href")) === "https://claude.ai/artifact/LWTMTBXKvkTq7p9xcwrPpu");
   check("Mam's speaking speed has six choices, up to Very fast", (await p.$$("#rateSel option")).length === 6 && (await p.textContent("#rateSel")).includes("Very fast"));
   await p.selectOption("#lvSel", "A2"); await p.click("#setSheet [data-close].btn.primary"); await wait(700);
   check("a new level shows at once: Mam says her last message again at that level", (await msgs()).includes("Mam's English: Simple (A2)") && (await msgs()).includes("Okay, in simple words") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Say it again for a learner at level A2") && c.prompt.includes("CEFR A2"))));

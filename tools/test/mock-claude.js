@@ -39,6 +39,29 @@
   const permissions = Object.freeze({ state: async () => "granted", request: async () => ({}), manage: async () => { window.__managed = (window.__managed || 0) + 1; } });
 
   const replyFor = (prompt) => {
+    // ---- Likho English (writing) ----
+    const FOREST = "Forests are very important for Pakistan. They give us clean air, wood and food. Trees also stop soil erosion and reduce the danger of floods.\n\nSadly, Pakistan has very few forests, and people cut many trees every year for wood and new houses. As a result, the land becomes dry and floods become more dangerous. The government has started tree planting campaigns, but these campaigns need the help of ordinary people. If every family plants and protects one tree, Pakistan can become greener and safer for the next generation.";
+    if (/checking writing by a learner/.test(prompt)) {
+      const learner = (prompt.match(/The learner wrote:\n"""\n([\s\S]*?)\n"""/) || [])[1] || "";
+      const pool = [{ wrong: "every morning i", right: "Every morning I", hint: "How does a sentence start? And how do we write the word I?", why: "Start a sentence, and the word I, with a capital letter.", type: "capital letter" },
+        { wrong: "I go to college by bus yesterday", right: "I went to college by bus yesterday", hint: "This happened yesterday. Which tense do you need?", why: "Use the past tense for yesterday.", type: "verb tense" },
+        { wrong: "My mother make", right: "My mother makes", hint: "My mother = she. What happens to the verb?", why: "With he, she or it, add s to the verb.", type: "subject verb agreement" },
+        { wrong: "it help us", right: "it helps us", hint: "it = one thing. Look at the verb.", why: "With it, add s to the verb.", type: "agreement" },
+        { wrong: "Forest is", right: "Forests are", hint: "One forest, or forests in general?", why: "Use the plural for forests in general.", type: "plural" }];
+      const fixedUp = /Every morning I/.test(learner);
+      const r = { score: fixedUp ? 8 : 6, areas: { task: 7, organisation: 6, grammar: fixedUp ? 8 : 5, vocabulary: 6 }, mistakes: pool.filter((x) => learner.includes(x.wrong)), good: ["You answered the task.", "Your sentences are short and clear."], next: ["Add one more detail.", "Use time words like Then and After that."], better: "Every morning, I wake up at seven. Yesterday, I went to college by bus. My mother makes breakfast for me, and I enjoy it very much." };
+      if (/Task \(Précis/.test(prompt)) Object.assign(r, { title_ok: false, copied: true, missed: ["The passage says trees also stop floods."] });
+      if (/Task \(Comprehension/.test(prompt)) r.answers = [{ q: 1, ok: true, note: "Correct.", model: "Forests give us clean air, wood and food." }, { q: 2, ok: false, note: "You did not say why.", model: "Because people cut trees for wood and new houses." }];
+      return JSON.stringify(r);
+    }
+    if (/is correcting one mistake in their writing/.test(prompt)) { const fix = (prompt.match(/The learner's (?:correction|corrected sentence): "([^"]*)"/) || [])[1] || ""; return JSON.stringify(/went|makes|cooks|helps|agree/.test(fix) ? { ok: true, note: "Good correction." } : { ok: false, note: "Use the past tense here." }); }
+    if (/Check their essay OUTLINE/.test(prompt)) return JSON.stringify({ score: 6, thesis: "Your thesis is clear: climate change is a big threat to Pakistan.", good: ["Your main points are in a good order."], next: ["Add a short point under each argument."], missing: ["Counter arguments"], better: "Thesis: Climate change is the biggest threat to Pakistan.\nI. Floods\nII. Water shortage\nIII. Food security\nCounter arguments: …\nConclusion: …" });
+    if (/These are photos of handwriting/.test(prompt)) return JSON.stringify({ text: "My name is Ali. i live in lahore.", unclear: ["lahore"], handwriting: "Your handwriting is clear, but some letters are joined." });
+    if (/This is a photo of a passage/.test(prompt)) return JSON.stringify({ title: "Forests", passage: FOREST, questions: [] });
+    if (/will use for comprehension practice/.test(prompt)) return JSON.stringify({ title: "Clean water", passage: (prompt.split("TEXT:\n")[1] || "").trim(), questions: ["What is the main problem?", "Why is clean water important?", "What can the government do?"] });
+    if (/Write an original passage/.test(prompt)) return JSON.stringify({ title: "Forests of Pakistan", passage: FOREST, ...(/Then write 4 questions/.test(prompt) ? { questions: ["What do forests give us?", "Why are floods more dangerous now?", "What has the government started?", "What can every family do?"] } : {}) });
+    if (/Give ONE new/.test(prompt)) return JSON.stringify({ title: "My weekend", prompt: "Write 5 sentences about your weekend.", hint: "Last weekend I …", words: ["relaxed", "visited", "cousins"] });
+    if (/Write a short lesson about this kind of mistake/.test(prompt)) return JSON.stringify({ rule: "Use the past tense for things that happened before now, like yesterday or last week.", examples: [{ wrong: "I go to college by bus yesterday", right: "I went to college by bus yesterday" }], tips: ["Look for time words like yesterday and last year."], urdu: "In Urdu the time word often shows the past, so learners forget to change the verb.", practice: [{ wrong: "Yesterday I eat rice.", right: "Yesterday I ate rice." }, { wrong: "Last week she go to Lahore.", right: "Last week she went to Lahore." }] });
     if (/exactly the word OK/.test(prompt)) return "OK";
     if (/preparing a practice interview/.test(prompt)) {
       if (/Zzzz/.test(prompt)) return JSON.stringify({ known: false });
