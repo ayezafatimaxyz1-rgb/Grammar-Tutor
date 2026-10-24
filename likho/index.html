@@ -189,6 +189,9 @@ ins { text-decoration: none; background: var(--goodbg); color: var(--good); font
 .fix.ok .n { background: var(--good); }
 .fix.shown .n { background: var(--muted); }
 .fout { font-size: 15px; }
+.problem { font-size: 15px; color: var(--pen); line-height: 1.45; }
+.problem b, .why b { font-weight: 700; }
+.why { font-size: 15px; line-height: 1.45; }
 .fout:empty { display: none; }
 .right { color: var(--good); font-weight: 700; }
 .lock { font-size: 15px; color: var(--muted); }
@@ -768,10 +771,10 @@ ${text}
 """
 
 Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
-For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "hint" helps the learner find the fix alone and must NOT contain the answer; "why" is the reason in at most 12 words; "type" is one of: ${Object.keys(TYPES).join(", ")}.
+For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one or two short sentences, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule fully, with the correct words and one more short example, in at most 35 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.
 Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".
 Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
-Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"], "better": "the whole text written well at level ${lv}, keeping the learner's ideas"${extra}}`;
+Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "problem": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"], "better": "the whole text written well at level ${lv}, keeping the learner's ideas"${extra}}`;
 }
 function outlinePrompt(p, text) {
   const L = lessonOf(p), css = !L || L.id === "css";
@@ -854,10 +857,10 @@ Part C, writing task: "${it.write.q}" (structures: ${it.write.s.join(", ")}). Th
 """
 ${a.write || ""}
 """
-Reply with ONLY JSON: {"items": [{"n": the question number, "ok": true or false, "right": "a correct answer", "note": "a very short reason, at most 12 words", "type": "if wrong, the kind of mistake: one of ${Object.keys(TYPES).join(", ")}"}] (${n} items, in order), "write": {"score": 0 to 10, "used": ["structures used correctly"], "missed": ["structures missing or used wrongly"], "mistakes": [{"wrong": "exact words from the learner's text", "right": "the correction", "why": "a short reason", "type": "..."}], "note": "one or two short sentences of feedback"}}`;
+Reply with ONLY JSON: {"items": [{"n": the question number, "ok": true or false, "right": "a correct answer", "note": "if wrong, EXACTLY why: name the wrong word and the grammar rule, in at most 30 words", "type": "if wrong, the kind of mistake: one of ${Object.keys(TYPES).join(", ")}"}] (${n} items, in order), "write": {"score": 0 to 10, "used": ["structures used correctly"], "missed": ["structures missing or used wrongly"], "mistakes": [{"wrong": "exact words from the learner's text", "right": "the correction", "why": "EXACTLY why: the wrong word and the grammar rule, in at most 30 words", "type": "..."}], "note": "one or two short sentences of feedback"}}`;
 }
 const judgePrompt = (m, sentence, fix, whole) => `A learner of English from Pakistan is correcting one mistake in their writing. Their sentence: "${sentence}". The mistake: "${m.wrong}" (${TYPES[m.type]}). The teacher's correction: "${m.right}" instead of "${m.wrong}". The learner's ${whole ? "corrected sentence" : "correction"}: "${fix}". Is the learner's correction right? Accept any correction that is correct English, fixes this mistake and keeps the meaning, even if it is different from the teacher's.
-Reply with ONLY JSON: {"ok": true or false, "note": "a very short reason in simple English, at most 12 words"}`;
+Reply with ONLY JSON: {"ok": true or false, "note": "if it is not right yet, say EXACTLY what is still wrong (which word, and which rule) in at most 30 words, without giving the answer; if it is right, a short word of praise"}`;
 const lessonPrompt = (type, mine) => `You are Mam, a kind English teacher. Write a short lesson about this kind of mistake: "${TYPES[type]}", for ${LEARNER()}. These are the learner's own mistakes of this kind: ${mine.map((m) => `"${m.wrong}" → "${m.right}"`).join("; ")}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
 Reply with ONLY JSON: {"rule": "the rule in 2 or 3 short sentences", "examples": [{"wrong": "...", "right": "..."}] (3, the learner's own mistakes first), "tips": ["2 short tips to avoid this mistake"], "urdu": "one short sentence (in English) on why Urdu speakers often make this mistake, or empty", "practice": [{"wrong": "a new sentence with this kind of mistake", "right": "the corrected sentence"}] (4)}`;
 // The title is the first line when it is short and has no full stop (or starts with Title:); the word count leaves it out.
@@ -1370,8 +1373,8 @@ function locate(text, list) {
 }
 function cleanCheck(r, text, p) {
   const areas = r.areas && typeof r.areas === "object" ? r.areas : {};
-  const ms = (Array.isArray(r.mistakes) ? r.mistakes : []).map((m) => ({ wrong: String(m?.wrong || "").trim(), right: String(m?.right ?? "").trim(), hint: String(m?.hint || ""), why: String(m?.why || ""), type: typeKey(m?.type) }))
-    .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.hint + m.why)).slice(0, 25);
+  const ms = (Array.isArray(r.mistakes) ? r.mistakes : []).map((m) => ({ wrong: String(m?.wrong || "").trim(), right: String(m?.right ?? "").trim(), problem: String(m?.problem || ""), hint: String(m?.hint || ""), why: String(m?.why || ""), type: typeKey(m?.type) }))
+    .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.problem + m.hint + m.why)).slice(0, 25);
   const c = { score: num(r.score, 1, 10), areas: Object.fromEntries(["task", "organisation", "grammar", "vocabulary"].map((k) => [k, num(areas[k], 1, 10)])), mistakes: locate(text, ms),
     good: cleanList(r.good, 3), next: cleanList(r.next, 3), better: isEnglish(r.better) ? String(r.better).trim() : "" };
   if (p.lesson && r.structure && typeof r.structure === "object") {
@@ -1496,10 +1499,11 @@ function fixRow(p, d, i) {
   if (resolved(d, i)) {
     const a = el("div", "fout"); a.append(f.ok ? "✓ You fixed it: " : "Answer: "); a.append(el("span", "right", f.ok && f.last ? f.last : m.right || "(take it out)")); r.append(a);
     if (f.ok && f.last && !same(f.last, m.right, EXACT.has(m.type))) r.append(el("div", "hint", "Mam's version: " + (m.right || "(take it out)")));
-    if (m.why) r.append(el("div", "hint", "Why: " + m.why));
+    if (m.why) { const w2 = el("div", "why"); w2.append(el("b", "", "Why: "), m.why); r.append(w2); }
     return r;
   }
-  if (m.hint) r.append(el("div", "hint", "💡 " + m.hint));
+  if (m.problem) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: "), m.problem); r.append(pr); }
+  if (m.hint) r.append(el("div", "hint", "💡 Hint: " + m.hint));
   const fr = el("div", "row"), inp = el("input"); inp.type = "text"; inp.value = f.last || m.wrong; inp.id = "fixIn" + i; inp.setAttribute("aria-label", "Your correction for mistake " + (i + 1)); inp.autocomplete = "off"; inp.spellcheck = false; inp.setAttribute("autocapitalize", "off"); inp.setAttribute("autocorrect", "off");
   const out = el("div", "fout");
   const go2 = btn("Check", () => tryFix(p, d, i, inp.value, out, go2), "btn primary");
@@ -1559,7 +1563,7 @@ function saveMistake(p, d, i) {
   const m = d.check.mistakes[i], f = d.fixes[i];
   if (!f || f.saved) return; f.saved = true;
   const now = Date.now(), box = f.ok && f.tries === 1 ? 2 : 1;
-  const mk = { id: "m" + now.toString(36) + i, wrong: m.wrong, right: m.right, why: m.why, type: m.type, sentence: sentenceOf(d.text, m.at, m.wrong.length) || m.wrong, from: p.task.title, kind: p.kind, piece: p.id, self: !!f.ok, box, due: now + REVIEW_DAYS[box] * DAY, created: now, updated: now };
+  const mk = { id: "m" + now.toString(36) + i, wrong: m.wrong, right: m.right, why: m.why, problem: m.problem || "", type: m.type, sentence: sentenceOf(d.text, m.at, m.wrong.length) || m.wrong, from: p.task.title, kind: p.kind, piece: p.id, self: !!f.ok, box, due: now + REVIEW_DAYS[box] * DAY, created: now, updated: now };
   state.mistakes.unshift(mk); putMistake(mk);
 }
 // The corrected text keeps the learner's own fix where Mam accepted it.
@@ -1659,6 +1663,7 @@ function renderReview() {
   const s = m.sentence || m.wrong, at = s.indexOf(m.wrong), pEl = el("p", "marked");
   if (at >= 0) { pEl.append(s.slice(0, at)); pEl.append(el("mark", "mk", m.wrong)); pEl.append(s.slice(at + m.wrong.length)); } else pEl.append(s);
   c.append(pEl);
+  if (m.problem) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: "), m.problem); c.append(pr); }
   const ta = el("textarea", "inbox"); ta.id = "rvIn"; ta.rows = 3; ta.value = s; ta.spellcheck = false; ta.setAttribute("autocapitalize", "off"); ta.setAttribute("autocorrect", "off"); ta.setAttribute("aria-label", "The sentence, corrected");
   const out = el("div", "fout"); out.id = "rvOut";
   const t = el("div", "tools");
@@ -1678,7 +1683,7 @@ function reviewDone(m, ok, want, out, t) {
   else { m.box = 0; m.due = Date.now(); if (first) { rv.again.add(m.id); rv.queue.push(m.id); } } // a missed one comes back once at the end
   putMistake(m);
   out.innerHTML = ""; out.append(el("div", "flag " + (ok ? "ok" : "bad"), ok ? "✓ Right!" : "Not quite." + (out.dataset.note ? " " + out.dataset.note : "")));
-  const a = el("div"); a.append("Correct: ", el("span", "right", want)); out.append(a); if (m.why) out.append(el("div", "hint", "Why: " + m.why));
+  const a = el("div"); a.append("Correct: ", el("span", "right", want)); out.append(a); if (m.why) { const w2 = el("div", "why"); w2.append(el("b", "", "Why: "), m.why); out.append(w2); }
   t.innerHTML = ""; t.append(btn("Next →", () => { rv.queue.shift(); rv.n++; render(); }, "btn primary"));
 }
 async function renderType(type) {
