@@ -362,6 +362,11 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
       <span class="hint" style="text-align:left">Claude blocks the microphone here. In the voice version Mam listens directly: you just talk. You can also keep the voice version on your phone's Home Screen, like an app.</span>
       <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/" target="_blank" rel="noopener">Open the voice version →</a>
     </div>
+    <div class="field">
+      <strong>✍️ Practise writing too</strong>
+      <span class="hint" style="text-align:left">Likho English is the writing app, with the same Mam. She checks your sentences, paragraphs, CSS essays and précis, and you fix your own mistakes first.</span>
+      <a id="likhoLink" target="_blank" rel="noopener">Open Likho English →</a>
+    </div>
     <div class="field" id="keyBox" hidden>
       <strong>Free AI key (Google Gemini)</strong>
       <span class="hint" style="text-align:left">Mam needs a free key from Google, once. Only you can make it, because it belongs to your Google account. Never send it to anyone: it stays only on this phone.</span>
@@ -2661,6 +2666,7 @@ Say it again for a learner at level ${lv}: "${last.content}"`, { modelTier: "qui
   finally { busy = false; }
 }
 $("lvSel").onchange = () => { state.settings.level = $("lvSel").value; putMeta(); };
+$("likhoLink").href = inClaude ? "https://claude.ai/artifact/LWTMTBXKvkTq7p9xcwrPpu" : "likho/"; // the writing app (in the web version, on the same site, so it has the same key)
 $("rateSel").onchange = () => { state.settings.rate = Number($("rateSel").value); putMeta(); primeTTS(); speak("This is my speaking speed.", state.settings.rate); };
 if (!inClaude) {
   $("keyBox").hidden = false;
