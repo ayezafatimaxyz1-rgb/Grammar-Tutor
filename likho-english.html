@@ -128,6 +128,10 @@ b.hl { color: var(--accent); }
 .model { margin: 0; background: var(--paper); border: 1px solid var(--rim); border-left: 4px solid var(--accent); border-radius: 12px; padding: 10px 12px; line-height: 1.6; }
 .model.pre { white-space: pre-wrap; font-size: 15px; }
 
+.locked h2 { font-size: 20px; }
+.soon p { color: var(--muted); }
+.now { border-color: var(--accent); }
+details.card > summary { margin: -2px 0; }
 .timer { font-size: 14px; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
 .timer.late { color: var(--sun); }
 .example { border-color: var(--accent); }
@@ -437,6 +441,16 @@ const ESSAY_TYPES = [
   { id: "problem", em: "🛠️", t: "Problem and solution essay", what: "Describes a serious problem, explains it, and argues for the best solutions.", steps: ["Introduction: the problem, and a thesis naming the best solution.", "Body: explain the problem, its causes and its effects.", "Body: give solutions, the strongest one with the most detail.", "Conclusion: restate the solution and call for action."], outline: "Thesis (the best solution): …\nI. The problem, and why it is serious: …\nII. Its causes: …\nIII. Solution 1: …\nIV. Solution 2: …\nConclusion: …", topics: ["The energy crisis in Pakistan", "Corruption in public offices", "The water crisis"] },
   { id: "css", em: "🏛️", t: "CSS essay", what: "The essay for the CSS English Essay paper: a long, well-argued essay on an issue of national or international importance, with an outline.", steps: ["Outline first: a thesis statement, then main arguments (I, II, III with short points), counter arguments and a way forward.", "Introduction: a hook, background and the thesis statement.", "Body: one argument in each paragraph, with a topic sentence, evidence and examples from Pakistan and the world.", "Counter arguments and your answers to them.", "Conclusion: sum up and give a way forward.", "In the exam you have 3 hours for the essay."], outline: "Thesis statement: …\nI. Introduction\nII. Argument 1: …\nIII. Argument 2: …\nIV. Argument 3: …\nV. Counter arguments and answers: …\nVI. Way forward: …\nVII. Conclusion", topics: ESSAY_TOPICS },
 ];
+// Every course is one ladder, from basic to advanced: a lesson opens when the one before it is done.
+const ORDER = {
+  sent: ["basic", "pres-simple", "neg", "questions", "pres-cont", "past-simple", "will", "going-to", "commands", "compound", "complex", "past-cont", "used-to", "pres-perf", "modals", "cond0", "cond1", "pres-future",
+    "pres-perf-cont", "past-perf", "relative", "passive", "pres-wish", "cond2", "regret", "should-have", "fut-cont", "fut-perf", "hopes", "cc", "past-perf-cont", "cond3"],
+  para: ["narrative", "descriptive", "process", "subjective", "objective", "expository", "definition", "compare", "cause", "problem", "persuasive", "argumentative"],
+  essay: ["narrative", "descriptive", "expository", "compare", "cause", "problem", "persuasive", "argumentative", "css"],
+};
+[[SENT_LESSONS, "sent"], [PARA_TYPES, "para"], [ESSAY_TYPES, "essay"]].forEach(([list, k]) => list.sort((a, b) => ORDER[k].indexOf(a.id) - ORDER[k].indexOf(b.id)));
+const NOUN = { free: "free writing", sent: "sentence", para: "paragraph", essay: "essay" };
+const STAGES = { A1: [1, "Basic"], A2: [2, "Elementary"], B1: [3, "Intermediate"], B2: [4, "Advanced"] };
 const LESSONS = { sent: SENT_LESSONS, para: PARA_TYPES, essay: ESSAY_TYPES };
 const lessonById = (kind, id) => (LESSONS[kind] || []).find((L) => L.id === id) || null;
 const lessonOf = (p) => lessonById(p.kind, p.lesson) || (p.kind === "essay" ? lessonById("essay", "css") : null);
@@ -489,6 +503,8 @@ const PRECIS_LESSONS = [
     ex: { passage: PASSAGE_TOLERANCE, q: "Write a précis of this passage in about 33 words, with a title on the first line.", a: "Title: The Strength of Tolerance. Précis: Societies flourish when different people live peacefully together. Tolerance means respecting others' right to differ, not agreeing with everyone. Without it, differences become violence; with it, variety brings progress, so all institutions must teach the young tolerance." } },
 ];
 const precisDone = (id) => !!state.settings.precis?.[id]?.ok;
+const precisCurrent = () => PRECIS_LESSONS.find((L) => !precisDone(L.id)) || null;
+const precisOpen = (id) => precisDone(id) || precisCurrent()?.id === id;
 // Kinds of mistakes, for the hints, the review and the progress page.
 const TYPES = { tense: "Verb tense", "verb form": "Verb form", agreement: "Subject and verb", article: "a / an / the", preposition: "Prepositions", plural: "Singular and plural", "word choice": "Word choice", spelling: "Spelling",
   "word order": "Word order", "missing word": "Missing word", "extra word": "Extra word", punctuation: "Punctuation", capital: "Capital letters", sentence: "Sentence structure" };
@@ -907,16 +923,26 @@ function lessonStatus(kind, id) {
   return { tried: true, best: Math.max(...ds.map((d) => d.check.score)), done: ds.some((d) => d.check.score >= 6 && d.check.structure?.ok !== false) };
 }
 const doneCount = (kind) => LESSONS[kind].filter((L) => lessonStatus(kind, L.id).done).length;
+const currentLesson = (kind) => LESSONS[kind].find((L) => !lessonStatus(kind, L.id).done) || null;
+const freeDone = () => live().some((p) => p.kind === "free" && lastDraft(p));
+// Sentences open after the first free writing; paragraphs after every sentence lesson; essays after every paragraph.
+function stageOpen(kind) {
+  if (kind === "sent") return freeDone();
+  const prev = PATH[PATH.indexOf(kind) - 1];
+  return !!LESSONS[kind] && stageOpen(prev) && !currentLesson(prev);
+}
+function lessonOpen(kind, id) {
+  if (lessonStatus(kind, id).done) return true;
+  const cur = currentLesson(kind);
+  return stageOpen(kind) && !!cur && cur.id === id;
+}
 const targetOf = (p) => (p.kind === "essay" ? (p.step === "outline" ? null : (([min, max]) => ({ min, max, unit: "words" }))(ESSAY_PARTS[p.part || "intro"].words[band(level())])) : p.task.target || null);
 const targetText = (tg) => (!tg ? "" : tg.about ? `about ${tg.about} words` : `${tg.min} to ${tg.max} ${tg.unit}`);
 const today = () => dayOf(Date.now());
-// The next step on the path: free writing first, then sentences, paragraphs and essays, the easier lessons for the level first.
+// The next step on the path: free writing first, then the current lesson of sentences, paragraphs and essays, in that order.
 function nextStep() {
-  if (!live().some((p) => p.kind === "free" && lastDraft(p))) return { kind: "free" };
-  for (const kind of ["sent", "para", "essay"]) {
-    const open = LESSONS[kind].filter((L) => !lessonStatus(kind, L.id).done);
-    if (open.length) return { kind, L: open.find((L) => (RANK[L.lv] ?? 0) <= RANK[level()] + 1) || open[0] };
-  }
+  if (!freeDone()) return { kind: "free" };
+  for (const kind of ["sent", "para", "essay"]) { const L = currentLesson(kind); if (L) return { kind, L }; }
   return { kind: "free" };
 }
 
@@ -973,7 +999,7 @@ function pieceDesc(p) {
 }
 const pieceRow = (p) => row(KINDS[p.kind].em, p.task.title, pieceDesc(p), (p.drafts || []).length > 1 ? "✎ " + p.drafts.length : "", () => go({ tab: "write", page: "piece", id: p.id }));
 const lessonView = (kind, id) => ({ tab: "write", page: "lesson", kind, id });
-const stageText = (k) => (k === "free" ? (live().filter((p) => p.kind === "free" && lastDraft(p)).length + " checked") : `${doneCount(k)} of ${LESSONS[k].length} done`);
+const stageText = (k) => (k === "free" ? (live().filter((p) => p.kind === "free" && lastDraft(p)).length + " checked") : !stageOpen(k) ? `🔒 opens after ${KINDS[PATH[PATH.indexOf(k) - 1]].name.toLowerCase()}` : `${doneCount(k)} of ${LESSONS[k].length} done`);
 
 function renderHome() {
   setTitle("✍️ Write");
@@ -1006,7 +1032,7 @@ function renderKind(k) {
   backBtn("← Write", { tab: "write", page: "home" });
   const head = section("card"), step = PATH.indexOf(k);
   head.append(el("h2", "", K.em + " " + K.name), el("p", "hint", (step >= 0 ? `Step ${step + 1} of 4. ` : "") + K.desc + "."));
-  const g = el("details"); g.open = !live().some((p) => p.kind === k);
+  const g = el("details"); g.open = k === "free" && !live().some((p) => p.kind === k); // closed on the courses, so the lesson for now is what you see
   g.append(el("summary", "", k === "free" ? "📖 How free writing works" : "📖 How " + K.name.toLowerCase() + " work" + (k === "precis" || k === "comp" ? "s" : "")));
   const ul = el("ul"); GUIDES[k].forEach((x) => ul.append(el("li", "", x))); g.append(ul); head.append(g);
   section("").id = "kindStatus";
@@ -1018,12 +1044,7 @@ function renderKind(k) {
   } else if (k === "precis") {
     renderPrecisHome();
   } else if (LESSONS[k]) {
-    if (k === "sent") Object.entries(UNITS).forEach(([u, [em, name]]) => {
-      const list = SENT_LESSONS.filter((L) => L.u === u), done = list.filter((L) => lessonStatus(k, L.id).done).length;
-      const box = section("list", `${em} ${name} · ${done} of ${list.length} done`);
-      list.forEach((L) => box.append(lessonRow(k, L)));
-    });
-    else { const box = section("list", `${K.name} · ${doneCount(k)} of ${LESSONS[k].length} done`); LESSONS[k].forEach((L) => box.append(lessonRow(k, L))); }
+    renderCourse(k); return;
   } else {
     const gen = section("card", "A passage from Mam");
     const f = el("form", "row"); f.innerHTML = '<input id="passTopic" type="text" maxlength="80" autocomplete="off" placeholder="Topic (you can leave it empty)" aria-label="Topic for the passage"><button class="btn primary" type="submit">✨ Write me a passage</button>';
@@ -1038,11 +1059,47 @@ function renderKind(k) {
   const mine = live().filter((p) => p.kind === k);
   if (mine.length) { const l = section("list", K.yours + " · " + mine.length); mine.slice(0, 20).forEach((p) => l.append(pieceRow(p))); }
 }
+function renderCourse(k) {
+  const K = KINDS[k], list = LESSONS[k], done = list.filter((L) => lessonStatus(k, L.id).done), cur = currentLesson(k);
+  const meter = el("div", "meter"), fill = el("b"); fill.style.width = (done.length / list.length) * 100 + "%"; meter.append(fill);
+  const head = $("page").querySelector(".card"); head.insertBefore(meter, head.querySelector("details"));
+  head.insertBefore(el("p", "hint", `${done.length} of ${list.length} done. One lesson at a time: the next one opens when you pass this one.`), head.querySelector("details"));
+  if (!stageOpen(k)) {
+    const prev = PATH[PATH.indexOf(k) - 1], c = section("card locked");
+    c.append(el("h2", "", "🔒 Not open yet"), el("p", "", prev === "free" ? "First write one free writing piece and let Mam check it. Then the sentence lessons open." : `${K.name} open after you finish all the ${NOUN[prev]} lessons. You have finished ${doneCount(prev)} of ${LESSONS[prev].length}.`));
+    const pc = prev === "free" ? null : currentLesson(prev);
+    c.append(btn(pc ? `Go to your lesson: ${pc.t}` : "✍️ Start free writing", () => (pc ? go(lessonView(prev, pc.id)) : startFree()), "btn primary"));
+    return;
+  }
+  if (cur) {
+    const i = list.indexOf(cur), c = section("card now", k === "sent" ? `Your lesson now · ${i + 1} of ${list.length} · stage ${STAGES[cur.lv][0]}, ${STAGES[cur.lv][1]}` : `Your lesson now · ${i + 1} of ${list.length}`);
+    const st = lessonStatus(k, cur.id);
+    c.append(el("h2", "", lessonEm(k, cur) + " " + cur.t), el("p", "", k === "sent" ? cur.use : cur.what));
+    c.append(el("p", "hint", st.tried ? `Your best mark so far: ${st.best}/10. Get 6 or more${k === "sent" ? ", using the structure correctly," : " and follow the plan"} to open the next lesson.` : `Get 6/10 or more${k === "sent" ? ", using the structure correctly," : " and follow the plan"} to open the next lesson.`));
+    c.append(btn("📖 Open the lesson", () => go(lessonView(k, cur.id)), "btn primary"));
+    const next = list[i + 1];
+    if (next) section("card soon").append(el("p", "", `🔒 Next: ${next.t}. It opens when you pass this lesson.` + (list.length - i - 2 > 0 ? ` After that, ${list.length - i - 2} more, one by one.` : "")));
+  } else {
+    const c = section("card now"), nk = PATH[PATH.indexOf(k) + 1];
+    c.append(el("h2", "", `🎉 You finished all the ${NOUN[k]} lessons!`));
+    if (nk && LESSONS[nk]) c.append(btn(`Go on to ${KINDS[nk].name.toLowerCase()} →`, () => go({ tab: "write", page: "kind", kind: nk }), "btn primary"));
+  }
+  if (done.length) {
+    const d = el("details", "card"); d.append(el("summary", "", `✅ Lessons you finished · ${done.length}`));
+    const l = el("div", "list"); done.forEach((L) => l.append(lessonRow(k, L))); d.append(l); $("page").append(d);
+  }
+}
 function renderPrecisHome() {
   const css = section("card", "In the CSS exam");
   css.append(el("p", "", "The précis question in the English (Précis and Composition) paper is worth 20 marks: 15 for the précis and 5 for the title. Mam marks your précis the same way, and checks the length, copied phrases and every key point."));
-  const done = PRECIS_LESSONS.filter((L) => precisDone(L.id)).length, ls = section("list", `Learn précis, step by step · ${done} of ${PRECIS_LESSONS.length} done`);
-  PRECIS_LESSONS.forEach((L, i) => ls.append(row(precisDone(L.id) ? "✅" : "🗜️", `${i + 1}. ${L.t}`, L.what, "", () => go({ tab: "write", page: "plesson", id: L.id }))));
+  const done = PRECIS_LESSONS.filter((L) => precisDone(L.id)), cur = precisCurrent(), ls = section("list", `Learn précis, one lesson at a time · ${done.length} of ${PRECIS_LESSONS.length} done`);
+  if (cur) {
+    const i = PRECIS_LESSONS.indexOf(cur);
+    ls.append(row("🗜️", `${i + 1}. ${cur.t}`, "Your lesson now · " + cur.what, "", () => go({ tab: "write", page: "plesson", id: cur.id })));
+    const next = PRECIS_LESSONS[i + 1];
+    if (next) ls.append(el("p", "hint", `🔒 Next: ${next.t}. It opens when you pass this lesson's exercise.`));
+  } else ls.append(el("p", "flag ok", "🎉 You finished all the précis lessons!"));
+  if (done.length) { const d = el("details", "card"); d.append(el("summary", "", `✅ Lessons you finished · ${done.length}`)); const l = el("div", "list"); done.forEach((L) => l.append(row("✅", `${PRECIS_LESSONS.indexOf(L) + 1}. ${L.t}`, L.what, "", () => go({ tab: "write", page: "plesson", id: L.id })))); d.append(l); $("page").append(d); }
   const g = section("card", "🧭 Guided précis");
   g.append(el("p", "", "Mam gives you a passage and helps you in 4 steps: the central idea, the key points, the title, and then the précis. She checks every step."));
   const f = el("form", "row"); f.innerHTML = '<input id="guideTopic" type="text" maxlength="80" autocomplete="off" placeholder="Topic (you can leave it empty)" aria-label="Topic for the guided précis"><button class="btn primary" type="submit">🧭 Start</button>';
@@ -1065,6 +1122,11 @@ function renderPrecisLesson(id) {
   const i = PRECIS_LESSONS.findIndex((L) => L.id === id), L = PRECIS_LESSONS[i], st = state.settings.precis?.[id];
   setTitle("🗜️ " + L.t);
   backBtn("← Précis", { tab: "write", page: "kind", kind: "precis" });
+  if (!precisOpen(id)) {
+    const cur = precisCurrent(), c = section("card locked");
+    c.append(el("h2", "", "🔒 " + L.t), el("p", "", `This lesson opens after you pass: ${cur.t}.`), btn(`Go to your lesson: ${cur.t}`, () => go({ tab: "write", page: "plesson", id: cur.id }), "btn primary"));
+    return;
+  }
   const c = section("card lesson");
   c.append(el("div", "lbl", `Précis lesson ${i + 1} of ${PRECIS_LESSONS.length}`), el("h2", "", L.t), el("p", "", L.what));
   if (precisDone(id)) c.append(el("div", "flag ok", "✓ Done"));
@@ -1078,7 +1140,13 @@ function renderPrecisLesson(id) {
   const out = el("div", "fout"); out.id = "exOut"; ex.append(out);
   section("").id = "exStatus";
   if (st?.r) showExercise(st.r);
-  const nx = section("tools");
+  const nx = section("tools"); nx.id = "exNext"; precisNext(i);
+}
+// "Next lesson" appears once this lesson's exercise is passed.
+function precisNext(i) {
+  const nx = $("exNext"); if (!nx) return;
+  nx.innerHTML = "";
+  if (!precisDone(PRECIS_LESSONS[i].id)) { nx.append(el("p", "hint", "Pass the exercise to open the next lesson.")); return; }
   if (i < PRECIS_LESSONS.length - 1) nx.append(btn("Next lesson →", () => go({ tab: "write", page: "plesson", id: PRECIS_LESSONS[i + 1].id }), "btn primary"));
   else nx.append(btn("🧭 Start a guided précis", () => genPassage("precis", "", "exStatus", { extra: { guided: { step: 1 } } }), "btn primary"));
 }
@@ -1096,7 +1164,7 @@ async function checkExercise(L) {
   if (!r) return;
   const res = { ok: r.ok === true, feedback: isEnglish(r.feedback) ? String(r.feedback) : "", better: isEnglish(r.better) ? String(r.better) : L.ex.a, at: Date.now() };
   state.settings.precis = { ...state.settings.precis, [L.id]: { ok: res.ok || precisDone(L.id), answer: ans, r: res } }; putMeta();
-  showExercise(res);
+  showExercise(res); precisNext(PRECIS_LESSONS.indexOf(L));
 }
 // The guided précis: the central idea, the key points and the title are checked one by one, then the précis itself.
 const GUIDE = [["idea", "Step 1 · The central idea", "Read the passage twice. What is the whole passage about? Write its central idea in one sentence, in your own words."], ["points", "Step 2 · The key points", "List the key points, one on each line, in the author's order. Leave out examples and details."], ["title", "Step 3 · The title", "Suggest a short title (2 to 6 words) about the central idea."]];
@@ -1155,6 +1223,12 @@ function renderLesson(k, id) {
   const L = lessonById(k, id), K = KINDS[k], st = lessonStatus(k, id);
   setTitle(lessonEm(k, L) + " " + L.t);
   backBtn("← " + K.name, { tab: "write", page: "kind", kind: k });
+  if (!lessonOpen(k, id)) {
+    const cur = stageOpen(k) ? currentLesson(k) : null, c = section("card locked");
+    c.append(el("h2", "", "🔒 " + L.t), el("p", "", cur ? `This lesson opens after you pass: ${cur.t}.` : `This lesson opens after you finish the ${NOUN[PATH[PATH.indexOf(k) - 1]] || ""} lessons before it.`));
+    c.append(btn(cur ? `Go to your lesson: ${cur.t}` : `Back to ${K.name.toLowerCase()}`, () => go(cur ? lessonView(k, cur.id) : { tab: "write", page: "kind", kind: k }), "btn primary"));
+    return;
+  }
   const c = section("card lesson");
   c.append(el("div", "lbl", k === "sent" ? `${UNITS[L.u][1]} · level ${L.lv}` : K.name), el("h2", "", L.t), el("p", "", k === "sent" ? L.use : L.what));
   if (st.done) c.append(el("div", "flag ok", "✓ Done. Your best mark: " + st.best + "/10"));
@@ -1412,6 +1486,11 @@ function marksCard(p, d) {
   const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : p.kind === "free" ? "Ideas" : p.kind === "sent" && p.lesson ? "Structure" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
   Object.entries(labels).forEach(([k, l]) => { const v = ch.areas[k], r = el("div", "area"); r.innerHTML = "<span></span><i><b></b></i><em></em>"; r.children[0].textContent = l; r.querySelector("b").style.width = v * 10 + "%"; r.children[2].textContent = v + "/10"; c.append(r); });
   const sx = ch.structure, L = lessonOf(p);
+  if (p.lesson && L && LESSONS[p.kind] && lessonStatus(p.kind, L.id).done && !p.test) {
+    const nxt = currentLesson(p.kind);
+    c.append(el("div", "flag ok", "🎉 Lesson passed!" + (nxt ? " The next lesson is open: " + nxt.t + "." : "")));
+    if (nxt) c.append(btn("Go to the next lesson →", () => go(lessonView(p.kind, nxt.id)), "btn primary"));
+  }
   if (sx && L) {
     c.append(el("div", "flag " + (sx.ok ? "ok" : "bad"), p.kind === "sent" ? `${sx.ok ? "✓" : "⚠"} ${L.t}: used correctly in ${sx.used} of ${sx.total} sentences.` : `${sx.ok ? "✓ It follows" : "⚠ It does not yet follow"} the plan of ${an(L.t.toLowerCase())}.`));
     if (sx.note) c.append(el("p", "hint", "🧩 " + sx.note));

@@ -55,9 +55,7 @@ const fakes = () => {
   });
   await p.goto(url); await p.waitForTimeout(500);
   check("the key saved in Bolo English works here too: no key needed", !(await p.textContent("#homeStatus")).includes("Gemini key"));
-  await p.click('.list .trow:has-text("2. Sentences")'); await p.waitForTimeout(200);
-  await p.click('.list .trow:has-text("Past simple")'); await p.waitForTimeout(200);
-  await p.click("text=✍️ Start writing"); await p.waitForTimeout(300);
+  await p.click(".next >> text=✍️ Start writing"); await p.waitForTimeout(300); // the first step: free writing
   await p.click("#dictBtn"); await p.waitForTimeout(500);
   check("🎙️ Speak writes what I say into the answer sheet", (await p.inputValue("#draft")) === "I went to the market with my brother");
   await p.click("#dictBtn"); await p.waitForTimeout(100);
@@ -73,7 +71,7 @@ const fakes = () => {
   await p.setInputFiles("#photoIn", { name: "page.png", mimeType: "image/png", buffer: png }); await p.waitForTimeout(800);
   const hw = gem.find((g) => /These are photos of handwriting/.test(g.prompt));
   check("a photo of handwriting goes to Gemini as a smaller JPEG", !!hw && hw.imgs.length === 1 && hw.imgs[0] === "image/jpeg" && (await p.inputValue("#draft")).endsWith("I like my city."));
-  check("everything is kept on this phone", await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).pieces.some((x) => x.task.title === "Past simple" && x.lesson === "past-simple" && x.drafts.length === 1)));
+  check("everything is kept on this phone", await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).pieces.some((x) => x.kind === "free" && x.drafts.length === 1)));
   check("no page errors", errs.length === 0, errs.join(" ; "));
   await b.close();
   const failed = results.filter((x) => !x).length;
