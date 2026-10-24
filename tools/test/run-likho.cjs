@@ -53,6 +53,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("marks out of 10 for ideas, organisation, grammar and vocabulary", (await p.textContent(".score")) === "6/10" && t.includes("Draft 1 · 25 words · 3 mistakes") && (await p.$$(".area")).length === 4 && t.includes("Ideas"));
   check("my own text with the examiner's red marks, numbered", (await p.$$("mark.mk")).length === 3 && (await p.textContent("mark.mk >> nth=1")).includes("I go to college by bus yesterday"));
   check("each mistake: its kind and a hint, but not the answer", t.includes("Fix your mistakes · 0 of 3 done") && t.includes("Capital letters") && t.includes("Verb tense") && t.includes("Subject and verb") && t.includes("Which tense do you need?") && !t.includes("I went to college"));
+  check("each mistake says exactly what is wrong (the word and the rule) before I fix it", (await p.textContent("#fix1")).includes("What is wrong: go is the present tense, but yesterday shows the action is finished in the past.") && (await p.textContent("#fix1")).includes("💡 Hint:") && !(await p.textContent("#fix1")).includes("Why:") && ck.prompt.includes('"problem" says EXACTLY what is wrong') && ck.prompt.includes("Never write a vague reason"));
   check("the corrected writing and Mam's version stay locked until I try", t.includes("Fix every mistake above") && !(await p.$(".corrected")) && !(await p.$("p.better")));
   await shot("check");
   await p.fill("#fixIn0", "Every morning I"); await p.click('#fix0 button:has-text("Check")'); await wait(300);
@@ -60,7 +61,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await p.fill("#fixIn1", "I gone to college by bus yesterday"); await p.click('#fix1 button:has-text("Check")'); await wait(400);
   check("a wrong fix: Mam says not yet, with a reason", (await p.textContent("#fix1 .fout")).includes("Not yet. Use the past tense here.") && (await calls(/is correcting one mistake/)).length === 1);
   await p.click('#fix1 button:has-text("Show the answer")'); await wait(200);
-  check("Show the answer: the correction and why", (await p.textContent("#fix1")).includes("Answer: I went to college by bus yesterday") && (await p.textContent("#fix1")).includes("Why: Use the past tense for yesterday."));
+  check("Show the answer: the correction and the full rule", (await p.textContent("#fix1")).includes("Answer: I went to college by bus yesterday") && (await p.textContent("#fix1")).includes("Why: Use the past tense for yesterday."));
   await p.fill("#fixIn2", "My mother cooks"); await p.click('#fix2 button:has-text("Check")'); await wait(400);
   check("another correct way is accepted too, and Mam's version is shown beside it", (await p.textContent("#fix2")).includes("✓ You fixed it: My mother cooks") && (await p.textContent("#fix2")).includes("Mam's version: My mother makes"));
   t = await txt();
