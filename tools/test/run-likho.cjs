@@ -34,7 +34,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   // ---- home: the path ----
   let t = await txt();
   check("opens on Write: the next step is free writing, then the 4-step path and exam practice", (await p.textContent("#pageTitle")).includes("Write") && t.includes("Next step · 1. Free writing") && t.includes("1. Free writing") && t.includes("2. Sentences") && t.includes("0 of 32 done") && t.includes("3. Paragraphs") && t.includes("0 of 12 done") && t.includes("4. Essays") && t.includes("0 of 9 done") && t.includes("Exam practice") && (await p.$$(".list .trow")).length === 6);
-  check("three tabs, Write is open, and 1 mistake waits for review", (await p.$$("#tabbar button")).length === 3 && (await p.getAttribute('#tabbar [data-tab="write"]', "aria-current")) === "page" && (await p.textContent("#mistBadge")) === "1");
+  check("four tabs (Write, Tests, Mistakes, Progress), Write is open, and 1 mistake waits for review", (await p.$$("#tabbar button")).length === 4 && (await p.getAttribute('#tabbar [data-tab="write"]', "aria-current")) === "page" && (await p.textContent("#mistBadge")) === "1");
 
   // ---- 1. free writing: grammar corrections first ----
   await p.click(".next >> text=✍️ Start writing"); await wait(300);
@@ -157,10 +157,17 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await p.click("text=✨ Write me a passage"); await wait(600);
   t = await txt();
   check("Précis: Mam writes a passage and sets one third as the goal", (await calls(/Write an original passage/)).length === 1 && t.includes("📜 The passage · 89 words") && t.includes("goal about 30 words") && t.includes("Forests are very important"), t.slice(0, 300));
-  await p.fill("#draft", "Forest is important for Pakistan because they give clean air and stop floods. But people cut trees, so the land is dry. Everyone must plant trees.");
+  await p.fill("#draft", "Forest is important for Pakistan because they give clean air and stop floods. People cut trees, so the land becomes dry and floods become more dangerous. Everyone must plant trees.");
+  check("the précis counter: words without the title, the goal and its range", (await p.textContent("#count")) === "30 words (title not counted) · goal about 30, 27 to 33 · no title yet");
   await p.click("#checkBtn"); await wait(600);
   t = await txt();
-  check("the précis check: length, title, copying and main ideas left out", t.includes("✓ Length: 26 words. Goal: about 30.") && t.includes("Add a short title") && t.includes("copied from the passage") && t.includes("trees also stop floods") && (await p.$$("mark.mk")).length === 1, t.slice(0, 600));
+  const pk = (await calls(/checking writing by a learner/)).pop();
+  check("Mam marks the précis carefully, like a CSS examiner", pk.prompt.includes("Task (Précis)") && pk.prompt.includes('The learner\'s title: "(no title)"') && pk.prompt.includes("15 marks for the précis, 5 for the title") && pk.prompt.includes('"key_points"'));
+  check("marks out of 20: the précis out of 15 and the title out of 5", (await p.textContent(".score")) === "10/20" && t.includes("Précis 10/15 · Title 0/5") && t.includes("Main ideas") && t.includes("5/7") && t.includes("Own words and style"));
+  check("the length is measured on the phone, without the title", t.includes("✓ Length: 30 words (the title is not counted). The passage has 89 words, so the goal is about 30 (27 to 33)."));
+  check("no title found: 0 of 5, and good titles suggested", t.includes("⚠ No title. Write a short title on the first line.") && t.includes("Saving Pakistan's Forests"));
+  check("every key point: kept or missed", t.includes("Key points · you kept 3 of 4") && t.includes("✗ Tree planting needs ordinary people's help"));
+  check("phrases copied from the passage are found", t.includes("Copied from the passage: 30% of your words") && t.includes("“the land becomes dry and floods become more dangerous”") && (await p.$$("mark.mk")).length === 1, t.slice(0, 900));
 
   // ---- comprehension from a pasted passage ----
   await kind("Comprehension");
@@ -198,7 +205,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   // ---- progress ----
   await p.click('#tabbar [data-tab="progress"]'); await wait(300);
   t = await txt();
-  check("Progress: my path, and my writing score from first drafts", (await p.textContent(".hero")).startsWith("6.0") && t.includes("first drafts") && t.includes("2. Sentences1 of 32") && t.includes("3. Paragraphs0 of 12"));
+  check("Progress: my path, and my writing score from first drafts", (await p.textContent(".hero")).startsWith("5.8") && t.includes("first drafts") && t.includes("2. Sentences1 of 32") && t.includes("3. Paragraphs0 of 12"));
   check("a chart of Mam's marks and of the words I wrote each day", (await p.$$("#scoreChart .pt")).length === 6 && (await p.$$("#wordChart .bar")).length >= 1);
   check("this week: words, pieces, mistakes per 100 words, mistakes fixed alone", t.includes("words written") && t.includes("pieces checked") && t.includes("mistakes per 100 words") && t.includes("67%") && t.includes("mistakes you fixed alone"));
   check("marks by area, with what to improve", (await p.$$(".part")).length === 8 && t.includes("Task and ideas") && t.includes("To improve:"));
@@ -214,6 +221,82 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("the level is saved, and the path still starts with the next lesson", t.includes("Next step · 2. Sentences") && await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).settings.level === "B1"));
   check("my writing list shows each piece with its last mark", t.includes("Free writing · last mark 8/10") && t.includes("Regrets (I wish I had …) · last mark 6/10"));
   check("Bolo English is one tap away in Settings", (await p.getAttribute("#boloLink", "href")).includes("claude.ai/artifact/"));
+
+
+  // ---- the précis course: lessons, a guided précis ----
+  await kind("Précis");
+  t = await txt();
+  check("Précis: the CSS marks, 12 lessons, a guided précis and practice", t.includes("worth 20 marks: 15 for the précis and 5 for the title") && t.includes("Learn précis, step by step · 0 of 12 done") && (await p.$$(".list .trow")).filter ? (await p.$$('.list .trow:has-text("1. What is a précis?")')).length === 1 && t.includes("12. The CSS précis question") && t.includes("Guided précis") : false);
+  await p.click('.list .trow:has-text("4. Find the central idea")'); await wait(300);
+  t = await txt();
+  check("a précis lesson: the idea, how to do it, and an exercise on a passage", t.includes("Précis lesson 4 of 12") && t.includes("Look at the first and the last sentences") && t.includes("In the age of mobile phones") && t.includes("Write the central idea of this passage in one sentence"));
+  await p.fill("#exIn", "Mobile phones"); await p.click("text=✓ Check my answer"); await wait(400);
+  check("a weak answer: Mam explains, and shows a good answer", (await p.textContent("#exOut")).includes("Not quite yet.") && (await p.textContent("#exOut")).includes("A good answer:"));
+  await p.fill("#exIn", "Reading books is being forgotten, but it makes us think deeply and helps our language."); await p.click("text=✓ Check my answer"); await wait(400);
+  const xc = (await calls(/précis writing\. Lesson:/)).pop();
+  check("a good answer passes the lesson", (await p.textContent("#exOut")).includes("✓ Right!") && xc.prompt.includes("Lesson: Find the central idea") && xc.prompt.includes("A good answer: Reading books, now neglected"));
+  await p.click("text=Next lesson →"); await wait(200);
+  check("lessons follow one another", (await txt()).includes("Précis lesson 5 of 12") && (await txt()).includes("Key points and details"));
+  await kind("Précis");
+  check("the done lesson is ticked", (await txt()).includes("1 of 12 done") && (await p.textContent('.list .trow:has-text("4. Find the central idea")')).includes("✅"));
+  await p.click("text=🧭 Start"); await wait(600);
+  t = await txt();
+  check("a guided précis starts with step 1, the central idea", t.includes("Step 1 · The central idea") && t.includes("Forests are very important") && !(await p.$("#draft")));
+  await p.fill("#gIn", "Forests are important for Pakistan, but we are losing them, so we must plant trees."); await p.click("text=✓ Check"); await wait(400);
+  check("step 1 is checked, with Mam's central idea", (await txt()).includes("✓ You found the central idea.") && (await txt()).includes("Mam's central idea: Forests are vital"));
+  await p.click("text=Next step →"); await wait(200);
+  await p.fill("#gIn", "1. Forests give clean air and wood\n2. Trees stop floods\n3. Every family can plant one tree\n4. People must help to plant trees"); await p.click("text=✓ Check"); await wait(400);
+  t = await txt();
+  check("step 2: the key points found and missed, and details that are not key points", t.includes("Key points · you found 3 of 4") && t.includes("✗ Pakistan has few forests and cuts many trees") && t.includes("These are details, not key points"));
+  await p.click("text=Next step →"); await wait(200);
+  await p.fill("#gIn", "Saving Our Forests"); await p.click("text=✓ Check"); await wait(400);
+  check("step 3: the title, with good titles", (await txt()).includes("✓ A good title.") && (await txt()).includes("Forests in Danger"));
+  await p.click("text=Next: write the précis →"); await wait(300);
+  check("step 4: the précis, with my plan beside it and my title already on the first line", (await p.inputValue("#draft")) === "Title: Saving Our Forests\n\n" && (await txt()).includes("Your plan") && (await txt()).includes("🏷️ Saving Our Forests") && (await p.textContent("#count")).includes("title ✓"));
+  await p.fill("#draft", "Title: Saving Our Forests\n\nForests give Pakistan clean air and wood and protect it from floods. However, they are few and people keep cutting them, which makes floods worse. Therefore, ordinary people must help to plant trees.");
+  await p.click("#checkBtn"); await wait(600);
+  t = await txt();
+  check("the guided précis is marked out of 20, with the title counted", (await p.textContent(".score")) === "14/20" && t.includes("Title 4/5") && t.includes("✓ Title: “Saving Our Forests”") && t.includes("✓ In your own words"));
+
+  // ---- examples, when I ask ----
+  await kind("2. Sentences");
+  await p.click('.list .trow:has-text("Regrets (I wish I had")'); await wait(300);
+  await p.click("text=👀 See an example answer"); await wait(500);
+  check("a lesson shows an example answer when I ask, with the structure highlighted", (await p.$$("#lessonEx b.hl")).length === 2 && (await p.textContent("#lessonEx")).includes("Why it is good") && (await calls(/Write a model answer to show/)).length === 1);
+  await p.click("text=✍️ Start writing"); await wait(300);
+  await p.click("text=👀 Show me an example"); await wait(500);
+  const exc = (await calls(/Write a model answer to show/)).pop();
+  check("so does a task, for exactly this task", (await p.textContent("#exampleBox")).includes("I wish I had studied") && exc.prompt.includes("Write 4 regrets about your past.") && exc.prompt.includes("[square brackets]"));
+  await p.click("text=Hide the example"); await wait(100);
+  check("the example can be hidden, to write my own", (await p.textContent("#exampleBox")) === "");
+
+  // ---- tests ----
+  await p.click('#tabbar [data-tab="tests"]'); await wait(300);
+  t = await txt();
+  check("Tests: five sentence tests and four writing tests", (await p.$$(".list .trow")).length === 9 && t.includes("Past test") && t.includes("All tenses test") && t.includes("Précis test") && t.includes("marked out of 20"));
+  await p.click('.list .trow:has-text("Past test")'); await wait(600);
+  const tg2 = (await calls(/making a short test for/)).pop();
+  t = await txt();
+  check("a past test: 5 mistakes to fix, 5 sentences to rewrite and a writing task", tg2.prompt.includes("Regrets (I wish I had …)") && (await p.$$('input[id^="t-fix-"]')).length === 5 && (await p.$$('input[id^="t-rewrite-"]')).length === 5 && !!(await p.$("#testWrite")) && t.includes("⏱ 0 min so far · suggested time 20 min"));
+  await p.fill("#t-fix-0", "Yesterday I went to the market."); await p.fill("#t-fix-1", "I was cooking when he came."); await p.fill("#t-fix-2", "I used to live in Multan."); await p.fill("#t-fix-3", "When I reached, the train had already left."); await p.fill("#t-fix-4", "I wish I studied harder.");
+  await p.fill("#t-rewrite-0", "I used to live in Multan."); await p.fill("#t-rewrite-1", "I wish I had studied hard."); await p.fill("#t-rewrite-2", "I should have called you."); await p.fill("#t-rewrite-3", "I cooked when the phone rang."); await p.fill("#t-rewrite-4", "The train had left when I arrived.");
+  await p.fill("#testWrite", "When I was a child, I use to play cricket. We lived in Multan. I wish I had studied more.");
+  await p.click("#testSubmit"); await wait(700);
+  t = await txt();
+  check("the test is marked: 8 of 10 answers right plus 7 for the writing, 75%", (await p.textContent(".score")) === "15/20" && t.includes("75% · ✓ Passed") && t.includes("✗ Check the tense here.") && t.includes("Answer: I wish I had studied harder last year.") && t.includes("Writing: 7/10") && t.includes("I used to"));
+  await wait(1000);
+  const tm = Object.values(await store()).filter((d) => d?.kind === "test" && d.wrong);
+  check("the wrong answers go to my mistakes for review", tm.length === 3 && tm.some((m) => m.wrong === "I wish I studied harder last year." && m.right === "I wish I had studied harder last year."));
+  await p.click('#tabbar [data-tab="tests"]'); await wait(200);
+  if (!(await p.$(".list .trow"))) { await p.click('#tabbar [data-tab="tests"]'); await wait(200); }
+  t = await txt();
+  check("the result is kept, with my best score", t.includes("Past test") && t.includes("best 75%") && t.includes("75% · passed"));
+  await p.click('.list .trow:has-text("Paragraph test")'); await wait(400);
+  t = await txt();
+  check("a paragraph test: Mam chooses the kind and topic, with a timer and no hints", (await p.textContent("#pageTitle")).startsWith("🎯") && t.includes("Test · ") && t.includes("⏱ 0 min so far · suggested time 20 min") && !t.includes("The plan of") && !t.includes("Show me an example"));
+  await p.fill("#draft", "This is my test paragraph. It has several sentences about the topic. I wrote it in a short time. It is the end of my paragraph.");
+  await p.click("#checkBtn"); await wait(700);
+  check("the first check gives the test result", (await txt()).includes("🎯 Test result: 60% · ✓ Passed"));
 
   // ---- layout and errors ----
   const body = await p.evaluate(() => document.body.innerText);
