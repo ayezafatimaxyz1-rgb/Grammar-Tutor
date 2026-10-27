@@ -16,7 +16,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
 <style>
-/* Layout: header on top, the page in the middle, three tabs at the bottom.
+/* Layout: header on top, the page in the middle, three tabs at the bottom (Today, Mistakes, Progress).
    Look: the frosted glass of Bolo English in ink blue, a ruled answer sheet to write on, and the examiner's red pen for mistakes. */
 :root {
   --bg: #e9eef8;
@@ -242,8 +242,29 @@ ins { text-decoration: none; background: var(--goodbg); color: var(--good); font
 .meter { height: 10px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
 .meter b { display: block; height: 100%; background: var(--chart); border-radius: 99px; }
 
+/* today's lesson: five steps, one question at a time */
+.stepper { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.stepper span { display: flex; flex-direction: column; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); text-align: center; overflow: hidden; text-overflow: ellipsis; }
+.stepper span::before { content: ""; height: 6px; border-radius: 99px; background: var(--sunk); }
+.stepper .done::before { background: var(--good); }
+.stepper .cur { color: var(--accent); }
+.stepper .cur::before { background: var(--accent); }
+.dsteps { margin: 0; padding-left: 22px; }
+.dsteps li.done { color: var(--muted); }
+.dsteps li.cur b { color: var(--accent); }
+.q1 { margin: 0; font-family: var(--display); font-weight: 600; font-size: 20px; line-height: 1.35; overflow-wrap: anywhere; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.btn.opt { text-align: left; border-radius: 14px; font-size: 16px; }
+.btn.opt.ok { border-color: var(--good); background: var(--goodbg); color: var(--good); font-weight: 700; }
+.btn.opt.bad { border-color: var(--pen); background: color-mix(in srgb, var(--pen) 12%, transparent); color: var(--pen); }
+.btn.opt.ok:disabled, .btn.opt.bad:disabled { opacity: 1; }
+.built { min-height: 56px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; border: 1px dashed var(--line); border-radius: 14px; padding: 8px; background: var(--paper); font-size: 17px; }
+.chip { border: 1px solid var(--rim); background: var(--surface); border-radius: 10px; padding: 8px 12px; min-height: 44px; font-size: 16px; }
+.built .chip { background: var(--sunk); }
+.chip:disabled { cursor: default; }
+
 /* tabs at the bottom */
-.tabbar { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
+.tabbar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; border-top: 1px solid var(--rim); background: var(--surface); padding: 4px max(8px, env(safe-area-inset-left, 0px)) calc(4px + env(safe-area-inset-bottom, 0px)); }
 .tabbar button { border: 0; background: none; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; min-height: 54px; font-size: 12px; white-space: nowrap; font-weight: 700; color: var(--muted); position: relative; border-radius: 16px; }
 .tabbar button span { font-size: 22px; line-height: 1.1; filter: grayscale(.7); opacity: .75; }
 .tabbar button[aria-current="page"] { color: var(--accent); background: var(--sunk); }
@@ -270,7 +291,7 @@ header, .tabbar, .card, .trow, .iconbtn, .btn:not(.primary) { -webkit-backdrop-f
 <div class="app">
   <header class="pad">
     <div class="brand">Likho <b>English</b></div>
-    <div class="ptitle" id="pageTitle">✍️ Write</div>
+    <div class="ptitle" id="pageTitle">📅 Today</div>
     <button class="iconbtn" type="button" id="setBtn" aria-label="Settings">⚙</button>
   </header>
   <div class="ptr" id="ptr" aria-live="polite"></div>
@@ -278,8 +299,7 @@ header, .tabbar, .card, .trow, .iconbtn, .btn:not(.primary) { -webkit-backdrop-f
     <div class="page pad" id="page" aria-live="polite"></div>
   </main>
   <nav class="tabbar" id="tabbar" aria-label="Parts of the app">
-    <button type="button" data-tab="write"><span>✍️</span>Write</button>
-    <button type="button" data-tab="tests"><span>🎯</span>Tests</button>
+    <button type="button" data-tab="write"><span>📅</span>Today</button>
     <button type="button" data-tab="mistakes"><span>🔁</span>Mistakes<i class="badge" id="mistBadge" hidden></i></button>
     <button type="button" data-tab="progress"><span>📈</span>Progress</button>
   </nav>
@@ -357,7 +377,9 @@ const KINDS = {
   essay: { em: "🏛️", name: "Essays", one: "Essay", desc: "9 kinds of essays, the CSS essay too, with an outline first", yours: "Your essay" },
   precis: { em: "🗜️", name: "Précis", one: "Précis", desc: "Shorten a passage to one third, in your own words", yours: "Your précis" },
   comp: { em: "❓", name: "Comprehension", one: "Comprehension", desc: "Read a passage, then answer questions about it", yours: "Your answers" },
+  skill: { em: "📅", name: "Today's lesson", one: "Today's lesson", desc: "One small skill a day", yours: "Your sentences" },
 };
+const sentLike = (k) => k === "sent" || k === "skill";
 const PATH = ["free", "sent", "para", "essay"], EXAM = ["precis", "comp"];
 const ESSAY_PARTS = {
   intro: { name: "Introduction", task: "only the introduction: a hook, some background and the thesis statement", words: [[80, 150], [120, 200], [150, 250]] },
@@ -467,7 +489,7 @@ const NOUN = { free: "free writing", sent: "sentence", para: "paragraph", essay:
 const STAGES = { A1: [1, "Basic"], A2: [2, "Elementary"], B1: [3, "Intermediate"], B2: [4, "Advanced"] };
 const LESSONS = { sent: SENT_LESSONS, para: PARA_TYPES, essay: ESSAY_TYPES };
 const lessonById = (kind, id) => (LESSONS[kind] || []).find((L) => L.id === id) || null;
-const lessonOf = (p) => lessonById(p.kind, p.lesson) || (p.kind === "essay" ? lessonById("essay", "css") : null);
+const lessonOf = (p) => (p.kind === "skill" ? SKILL[p.skill] || null : lessonById(p.kind, p.lesson) || (p.kind === "essay" ? lessonById("essay", "css") : null));
 const an = (w) => (/^[aeiou]/i.test(w) ? "an " : "a ") + w;
 const lessonEm = (kind, L) => (kind === "sent" ? UNITS[L.u][0] : L.em);
 const RANK = { A1: 0, A2: 1, B1: 2, B2: 3 };
@@ -519,6 +541,227 @@ const PRECIS_LESSONS = [
 const precisDone = (id) => !!state.settings.precis?.[id]?.ok;
 const precisCurrent = () => PRECIS_LESSONS.find((L) => !precisDone(L.id)) || null;
 const precisOpen = (id) => precisDone(id) || precisCurrent()?.id === id;
+// ---------- the course: Stage 1, correct sentences (one small skill a day) ----------
+// Exercises are checked on the phone at once: c = choose (options, the index of the answer), g = fill the gap, o = put the words in order,
+// f = correct the sentence, t = change it as asked. Answers are separated by |. A skill is learned when it is passed on two different days.
+const STAGE1 = [
+  { id: "caps", t: "Capital letters and full stops", ty: "capital", exact: true, use: "Every sentence needs a capital letter at the start and a full stop at the end.",
+    points: ["Start every sentence with a capital letter: My, The, We.", "Write I as a capital letter, always.", "Names of people, cities, countries, days, months and languages start with a capital: Ali, Lahore, Pakistan, Monday, June, English.", "End a sentence with a full stop (.), or a question mark (?) for a question."],
+    form: "Capital letter … full stop.  ·  I  ·  Ali, Karachi, Pakistan, Friday, March, Urdu", ex: ["[M]y name is [S]ara[.]", "[I] live in [L]ahore[.]", "[W]here do you live[?]"],
+    w: "my brother and i live in karachi", r: "My brother and I live in Karachi.", rule: "A capital letter at the start, for I and for names; a full stop or a question mark at the end.",
+    task: "Write 5 sentences about yourself: your name, your city, your family, a day you like and a month you like. Check every capital letter and full stop.", n: 5, hint: "My name is … I live in … I like Fridays because …",
+    x: [["c", "Which sentence is correct?", "my name is ali.|My name is Ali.|My name is ali.", 1], ["c", "Which sentence is correct?", "I live in Pakistan.|i live in pakistan.|I live in pakistan", 0], ["c", "Which word in the middle needs a capital letter? We go to school on monday.", "go|school|monday", 2], ["c", "Which question ends correctly?", "Where do you live.|Where do you live?|Where do you live", 1],
+      ["f", "my father is a teacher", "My father is a teacher."], ["f", "i like cricket", "I like cricket."], ["f", "we live in multan", "We live in Multan."], ["f", "her birthday is in june", "Her birthday is in June."], ["f", "is your sister in karachi", "Is your sister in Karachi?"], ["f", "my friend sana and i study english", "My friend Sana and I study English."], ["f", "on friday we visit our grandmother", "On Friday we visit our grandmother."], ["f", "ali speaks urdu and english", "Ali speaks Urdu and English."]] },
+  { id: "order", t: "Word order", ty: "word order", use: "An English sentence follows a fixed order: who, does, what, where, when.",
+    points: ["The order is: who (subject) + does (verb) + what (object) + where + when.", "The verb comes early, right after the subject, not at the end as in Urdu.", "Where comes before when: I go to school every day."],
+    form: "Subject + verb + object + place + time  ·  I + eat + rice + at home + every day.", ex: ["[I] [eat] [rice] at home every day.", "[My mother] [cooks] [dinner] in the evening.", "[We] [watched] [a film] at the cinema last night."],
+    w: "I every day tea drink.", r: "I drink tea every day.", rule: "Who + does + what + where + when. The verb comes right after the subject.",
+    task: "Write 5 sentences about what people in your family do every day. Keep the order: who + does + what + where + when.", n: 5, hint: "My father reads the newspaper in the morning.",
+    x: [["o", "I / tea / drink / every day", "I drink tea every day."], ["o", "my sister / English / studies / at college", "My sister studies English at college."], ["o", "we / cricket / play / in the park / on Sundays", "We play cricket in the park on Sundays."], ["o", "he / his car / washes / every Friday", "He washes his car every Friday."], ["o", "the children / books / read / at night", "The children read books at night."],
+      ["c", "Which sentence has the right order?", "I every morning walk.|I walk every morning.|Walk I every morning.", 1], ["c", "Which sentence has the right order?", "She in a bank works.|She works in a bank.|Works she in a bank.", 1], ["c", "Which sentence is better?", "I go every day to school.|I go to school every day.", 1],
+      ["f", "My father the newspaper reads.", "My father reads the newspaper."], ["f", "Ali Urdu speaks at home.", "Ali speaks Urdu at home."], ["f", "We every Sunday visit our uncle.", "We visit our uncle every Sunday."], ["o", "my mother / dinner / cooks / in the evening", "My mother cooks dinner in the evening."]] },
+  { id: "be", t: "am, is, are", ty: "agreement", use: "Use am, is and are to say who someone is, how they feel, where they are and what something is like.",
+    points: ["I → am. He, she, it, or one person or thing → is. You, we, they, or two or more → are.", "Short forms: I'm, he's, she's, it's, we're, they're.", "Negative: am not, is not (isn't), are not (aren't).", "Question: put am, is or are first: Are you ready? Is he at home?"],
+    form: "I am  ·  he / she / it is  ·  you / we / they are", ex: ["I [am] a student.", "My brother [is] tall.", "We [are] from Pakistan."],
+    w: "My parents is teachers.", r: "My parents are teachers.", rule: "I am; he, she, it is; you, we, they are.",
+    task: "Write 6 sentences about your family with am, is or are: who they are, what they are like and where they are.", n: 6, hint: "I am … My father is … My sisters are …",
+    x: [["c", "I ___ a student.", "am|is|are", 0], ["c", "My mother ___ a doctor.", "am|is|are", 1], ["c", "We ___ from Lahore.", "am|is|are", 2], ["c", "The books ___ on the table.", "is|are|am", 1], ["c", "It ___ very hot today.", "are|is|am", 1],
+      ["g", "They ___ my cousins.", "are"], ["g", "Ali ___ in Karachi now.", "is"], ["g", "You ___ my best friend.", "are"],
+      ["f", "My parents is at home.", "My parents are at home."], ["f", "I is happy today.", "I am happy today.|I'm happy today."], ["t", "Make it negative: She is late.", "She is not late.|She isn't late.|She's not late."], ["t", "Make it a question: They are ready.", "Are they ready?"]] },
+  { id: "have", t: "have and has", ty: "agreement", use: "Use have and has for things you own, your family, and illnesses.",
+    points: ["I, you, we, they → have. He, she, it, or one person → has.", "Negative: do not have, does not have (not: has not).", "Question: Do you have …? Does she have …?", "After does or doesn't, always use have: Does he have a car?"],
+    form: "I / you / we / they have  ·  he / she / it has  ·  doesn't have  ·  Does she have …?", ex: ["I [have] two brothers.", "My sister [has] long hair.", "She [does not have] a car."],
+    w: "She have a new phone.", r: "She has a new phone.", rule: "I, you, we, they have; he, she, it has; after do or does, use have.",
+    task: "Write 5 sentences about things you and your family have, and one thing you do not have.", n: 5, hint: "I have … My brother has … We do not have …",
+    x: [["c", "I ___ a new bag.", "have|has", 0], ["c", "My father ___ a small shop.", "have|has", 1], ["c", "They ___ three children.", "have|has", 0], ["c", "Does she ___ a car?", "have|has", 0],
+      ["g", "Our house ___ four rooms.", "has"], ["g", "We ___ an exam tomorrow.", "have"], ["g", "My friend ___ a cold.", "has"],
+      ["f", "He have two sisters.", "He has two sisters."], ["f", "She doesn't has a laptop.", "She doesn't have a laptop.|She does not have a laptop."], ["f", "Do your brother have a job?", "Does your brother have a job?"], ["t", "Make it negative: I have a bike.", "I do not have a bike.|I don't have a bike."], ["t", "Make it a question: Sara has a pen.", "Does Sara have a pen?"]] },
+  { id: "a-an", t: "a and an", ty: "article", use: "Use a or an before one thing, and before jobs.",
+    points: ["Use a or an before one thing: a book, an apple.", "a before a consonant sound: a car, a university (it starts with the sound you).", "an before a vowel sound: an egg, an hour (the h is silent).", "Use a or an for jobs: She is a teacher. Never with plurals or with words like water: not a books."],
+    form: "a + consonant sound (a pen, a uniform)  ·  an + vowel sound (an orange, an hour)", ex: ["I have [a] brother.", "She eats [an] apple every day.", "My father is [an] engineer."],
+    w: "My mother is teacher.", r: "My mother is a teacher.", rule: "a before a consonant sound, an before a vowel sound; use a or an for one thing and for jobs.",
+    task: "Write 5 sentences about things in your room and the jobs of people in your family, using a or an.", n: 5, hint: "There is a … My uncle is an …",
+    x: [["c", "I bought ___ umbrella.", "a|an", 1], ["c", "He is ___ doctor.", "a|an", 0], ["c", "We waited for ___ hour.", "a|an", 1], ["c", "She studies at ___ university.", "a|an", 0], ["c", "I need ___ new pen.", "a|an", 0], ["c", "It is ___ easy question.", "a|an", 1],
+      ["g", "My brother is ___ engineer.", "an"], ["g", "Do you have ___ car?", "a"],
+      ["f", "My sister is nurse.", "My sister is a nurse."], ["f", "I ate a orange.", "I ate an orange."], ["f", "She has an books.", "She has books.|She has a book.|She has some books."], ["f", "He is an honest man and a engineer.", "He is an honest man and an engineer."]] },
+  { id: "the", t: "the", ty: "article", use: "Use the when the reader knows which one, or when there is only one.",
+    points: ["Use the when the reader knows which one: I bought a pen. The pen is blue.", "Use the when there is only one: the sun, the moon, the world, the Prime Minister.", "Use the with the best, the first, the last.", "No the for things in general (I like tea), or before most names of people, cities and countries (Lahore, Pakistan)."],
+    form: "a / an the first time → the after that  ·  the + only one  ·  the best, the first", ex: ["I saw a cat. [The] cat was black.", "[The] sun is very hot today.", "She is [the] best student in the class."],
+    w: "Sun rises in the east.", r: "The sun rises in the east.", rule: "the = the one we both know, the only one, or the best or first; no the for things in general.",
+    task: "Write 5 sentences about your town or your home. Use a the first time you name something, and the after that.", n: 5, hint: "There is a park near my house. The park is …",
+    x: [["c", "___ moon is bright tonight.", "A|The|(no word)", 1], ["c", "I like ___ tea.", "the|a|(no word)", 2], ["c", "He is ___ tallest boy in our class.", "a|the|(no word)", 1], ["c", "I have a dog. ___ dog is very friendly.", "A|The", 1], ["c", "We live in ___ Pakistan.", "the|(no word)", 1], ["c", "___ Indus is a long river.", "The|(no word)", 0],
+      ["g", "She was ___ first person to arrive.", "the"], ["g", "Can you close ___ door, please?", "the"],
+      ["f", "Moon goes around the earth.", "The moon goes around the earth.|The moon goes around the Earth.|The Moon goes around the Earth."], ["f", "I love the cricket.", "I love cricket."], ["f", "My father is best cook in our family.", "My father is the best cook in our family."], ["f", "I bought a book. A book is about history.", "I bought a book. The book is about history."]] },
+  { id: "plurals", t: "Plurals", ty: "plural", use: "Use the plural for more than one thing, after numbers and words like many and some.",
+    points: ["Most words add s: book → books.", "Words ending in s, sh, ch or x add es: bus → buses, box → boxes.", "A consonant + y becomes ies: city → cities; but a vowel + y adds s: boy → boys.", "Some are different: man → men, woman → women, child → children, person → people, foot → feet, tooth → teeth."],
+    form: "book → books  ·  bus → buses  ·  city → cities  ·  child → children", ex: ["I have two [brothers].", "There are many [buses] in Karachi.", "Three [children] are playing outside."],
+    w: "I have two sister.", r: "I have two sisters.", rule: "After two, many and some, use the plural: s, es, ies, or a special form.",
+    task: "Write 5 sentences about things in your city or home, using numbers and plurals (two, three, many).", n: 5, hint: "There are many shops … I have three …",
+    x: [["g", "one city, two ___", "cities"], ["g", "one box, three ___", "boxes"], ["g", "one child, four ___", "children"], ["g", "one woman, two ___", "women"], ["g", "one boy, five ___", "boys"], ["g", "one person, many ___", "people"],
+      ["c", "I have two ___.", "brother|brothers|brotheres", 1], ["c", "There are many ___ in the market.", "shop|shops", 1],
+      ["f", "She has three child.", "She has three children."], ["f", "Many peoples came to the wedding.", "Many people came to the wedding."], ["f", "There are two bus at the stop.", "There are two buses at the stop."], ["f", "I bought five pen.", "I bought five pens."]] },
+  { id: "this-that", t: "this, that, these, those", ty: "word choice", use: "Use them to point at things near you or far from you.",
+    points: ["this = one thing near you; these = more than one near you.", "that = one thing far from you; those = more than one far from you.", "this and that + one thing (this book); these and those + more than one (these books)."],
+    form: "near: this (one), these (many)  ·  far: that (one), those (many)", ex: ["[This] is my bag.", "[These] shoes are new.", "Look at [those] mountains!"],
+    w: "These book is mine.", r: "This book is mine.", rule: "this and that for one, these and those for more than one; this and these are near, that and those are far.",
+    task: "Write 5 sentences about things around you now, using this, that, these and those.", n: 5, hint: "This is my phone. Those trees are …",
+    x: [["c", "___ book in my hand is new.", "This|These|Those", 0], ["c", "___ flowers here smell nice.", "This|These|That", 1], ["c", "Who is ___ man over there?", "this|that|those", 1], ["c", "___ birds in the sky are flying south.", "This|Those|That", 1], ["c", "Are ___ your keys? (here, near you)", "this|these|those", 1],
+      ["g", "___ is my house, right here. (near, one)", "This"],
+      ["f", "These pen is red.", "This pen is red.|These pens are red."], ["f", "That shoes are expensive.", "Those shoes are expensive.|That shoe is expensive."], ["f", "This apples are sweet.", "These apples are sweet.|This apple is sweet."],
+      ["t", "Make it plural: This chair is broken.", "These chairs are broken."], ["t", "Make it plural: That car is fast.", "Those cars are fast."], ["t", "Make it one thing: These pencils are short.", "This pencil is short."]] },
+  { id: "pres-s", t: "Present simple (he works)", ty: "agreement", use: "Use it for habits, routines and facts.",
+    points: ["I, you, we, they + verb: I work, they live.", "He, she, it + verb + s: she works, he plays.", "Add es after s, sh, ch, x and o: watches, goes. A consonant + y becomes ies: studies.", "have becomes has: she has."],
+    form: "I / you / we / they work  ·  he / she / it works (goes, watches, studies, has)", ex: ["I [wake up] at six.", "My father [goes] to work by bus.", "Water [boils] at 100 degrees."],
+    w: "My sister study at night.", r: "My sister studies at night.", rule: "With he, she or it, add s to the verb: works, goes, studies, has.",
+    task: "Write 6 sentences about the daily routine of one person in your family. Start each sentence with He or She.", n: 6, hint: "She wakes up at … She goes … She studies …",
+    x: [["c", "She ___ to school by bus.", "go|goes|going", 1], ["c", "They ___ in Islamabad.", "live|lives", 0], ["c", "My brother ___ TV every night.", "watch|watches", 1],
+      ["g", "Ali ___ (study) English every day.", "studies"], ["g", "The shop ___ (open) at nine.", "opens"], ["g", "My mother ___ (have) a garden.", "has"], ["g", "We ___ (play) cricket on Sundays.", "play"],
+      ["f", "He work in a bank.", "He works in a bank."], ["f", "My father read the newspaper every morning.", "My father reads the newspaper every morning."], ["f", "The sun rise in the east.", "The sun rises in the east."], ["f", "She watchs dramas at night.", "She watches dramas at night."], ["o", "my sister / wakes up / at six / every day", "My sister wakes up at six every day."]] },
+  { id: "do-does", t: "do and does (questions and negatives)", ty: "verb form", use: "Use do and does to make questions and negatives in the present.",
+    points: ["Negative: I, you, we, they do not (don't) + verb; he, she, it does not (doesn't) + verb.", "After does or doesn't, the verb has no s: She doesn't work (not: doesn't works).", "Question: Do or Does + subject + verb? Does he play cricket?", "With a question word: Where do you live? What does she do?"],
+    form: "I don't work · She doesn't work  ·  Do you work? · Does she work?", ex: ["I [don't like] spicy food.", "[Does] your brother [work] in Dubai?", "Where [do] you [study]?"],
+    w: "She don't like tea.", r: "She doesn't like tea.", rule: "do or don't with I, you, we, they; does or doesn't with he, she, it; then the verb without s.",
+    task: "Write 3 negative sentences about things you don't do, and 3 questions you would ask a new friend.", n: 6, hint: "I don't … Does your … ? Where do you … ?",
+    x: [["c", "She ___ like cold weather.", "don't|doesn't", 1], ["c", "___ you speak English?", "Do|Does", 0], ["c", "Does he ___ in a factory?", "work|works", 0], ["c", "We ___ have classes on Sunday.", "don't|doesn't", 0],
+      ["g", "Where ___ your father work?", "does"], ["g", "I ___ eat meat on Mondays. (not)", "don't|do not"],
+      ["f", "He doesn't plays football.", "He doesn't play football.|He does not play football."], ["f", "Do she live near you?", "Does she live near you?"], ["f", "Where you live?", "Where do you live?"],
+      ["t", "Make it negative: My brother drives a car.", "My brother doesn't drive a car.|My brother does not drive a car."], ["t", "Make it a question: They study at night.", "Do they study at night?"], ["t", "Make it a question: Sara works in a hospital.", "Does Sara work in a hospital?"]] },
+  { id: "pres-cont", t: "Present continuous", ty: "verb form", use: "Use it for actions happening now, or for a short time these days.",
+    points: ["am, is or are + verb + ing: I am writing. She is studying.", "Spelling: write → writing (drop the e), sit → sitting (double the last letter), study → studying.", "Use it for now (Look! It is raining.) and for these days (She is preparing for the CSS exam this year).", "Not with know, like, want, need, believe: I know (not: I am knowing)."],
+    form: "I am working  ·  he / she / it is working  ·  you / we / they are working", ex: ["I [am writing] this sentence now.", "My brother [is studying] for his exams these days.", "Look! It [is raining]."],
+    w: "She is cook dinner now.", r: "She is cooking dinner now.", rule: "am, is or are + verb + ing for now; not with know, like, want or need.",
+    task: "Write 5 sentences about what people around you are doing right now, or these days.", n: 5, hint: "My mother is … These days I am …",
+    x: [["c", "Be quiet! The baby ___.", "sleeps|is sleeping|sleeping", 1], ["c", "I ___ you are right.", "know|am knowing", 0],
+      ["g", "They ___ (play) cricket right now.", "are playing"], ["g", "Look! The bus ___ (come).", "is coming"], ["g", "I ___ (sit) in the library now.", "am sitting"], ["g", "She ___ (write) an essay at the moment.", "is writing"],
+      ["f", "We are study for the exam.", "We are studying for the exam."], ["f", "He is siting under the tree.", "He is sitting under the tree."], ["f", "I am wanting a cup of tea.", "I want a cup of tea."], ["f", "My parents is watching the news.", "My parents are watching the news."],
+      ["t", "Make it negative: It is raining now.", "It is not raining now.|It isn't raining now.|It's not raining now."], ["t", "Make it a question: You are listening.", "Are you listening?"]] },
+  { id: "past-reg", t: "Past simple: regular verbs", ty: "tense", use: "Use the past simple for finished actions at a time in the past: yesterday, last week, in 2020, two years ago.",
+    points: ["Regular verbs add ed: work → worked, play → played.", "Spelling: live → lived (just d), study → studied (y becomes ied), stop → stopped (double the last letter).", "The past form is the same for everyone: I worked, she worked, they worked."],
+    form: "verb + ed: worked, lived, studied, stopped", ex: ["Yesterday I [cleaned] my room.", "We [visited] our uncle last week.", "She [studied] English for two hours."],
+    w: "Last year we live in Multan.", r: "Last year we lived in Multan.", rule: "For a finished past time, add ed: worked, lived, studied, stopped.",
+    task: "Write 5 sentences about what you did yesterday, with regular verbs (cleaned, cooked, watched, helped, studied).", n: 5, hint: "Yesterday I cleaned … Then I watched …",
+    x: [["g", "Yesterday I ___ (walk) to college.", "walked"], ["g", "She ___ (study) late last night.", "studied"], ["g", "The bus ___ (stop) near my house.", "stopped"], ["g", "We ___ (live) in Quetta in 2019.", "lived"], ["g", "They ___ (play) cricket last Sunday.", "played"], ["g", "My mother ___ (cook) biryani yesterday.", "cooked"],
+      ["c", "Last week I ___ my grandmother.", "visit|visited|visits", 1], ["c", "He ___ for the bus for twenty minutes.", "waited|waitted|waits", 0],
+      ["f", "Yesterday I watch a film.", "Yesterday I watched a film."], ["f", "She studyed for her exam.", "She studied for her exam."], ["f", "We stoped at a shop.", "We stopped at a shop."], ["f", "Last year my brother start a new job.", "Last year my brother started a new job."]] },
+  { id: "past-irr", t: "Past simple: irregular verbs", ty: "tense", use: "Many common verbs do not take ed in the past. Learn their past forms by heart.",
+    points: ["go → went, come → came, see → saw, eat → ate, have → had, do → did, make → made, take → took, get → got, give → gave.", "buy → bought, think → thought, bring → brought, teach → taught, write → wrote, read → read, say → said, tell → told, know → knew, find → found.", "leave → left, meet → met, sleep → slept, speak → spoke, begin → began, sit → sat, stand → stood, lose → lost, win → won, pay → paid.", "be: I, he, she, it was; you, we, they were."],
+    form: "go → went · see → saw · buy → bought · write → wrote · was / were", ex: ["Yesterday I [went] to the market.", "We [ate] dinner at nine.", "She [was] tired, so she [slept] early."],
+    w: "Yesterday I goed to Lahore.", r: "Yesterday I went to Lahore.", rule: "Irregular verbs have their own past forms: went, saw, ate, bought, wrote; was and were.",
+    task: "Write 6 sentences about a trip, a wedding or a special day in the past. Use at least 4 irregular verbs.", n: 6, hint: "Last year we went to … We saw … I bought …",
+    x: [["g", "Yesterday we ___ (go) to the zoo.", "went"], ["g", "I ___ (buy) a new shirt last week.", "bought"], ["g", "She ___ (write) a letter to her friend.", "wrote"], ["g", "They ___ (see) a lion.", "saw"], ["g", "He ___ (take) the bus to work.", "took"], ["g", "We ___ (be) at home last night.", "were"], ["g", "I ___ (meet) my teacher in the market.", "met"],
+      ["c", "My father ___ me a watch for Eid.", "gived|gave|gaved", 1], ["c", "I ___ very tired yesterday.", "were|was", 1],
+      ["f", "Last night I eated pizza.", "Last night I ate pizza."], ["f", "We was late for the class.", "We were late for the class."], ["f", "She teached us English last year.", "She taught us English last year."]] },
+  { id: "did", t: "did (past questions and negatives)", ty: "verb form", use: "Use did to make questions and negatives in the past.",
+    points: ["Negative: did not (didn't) + the base verb: I didn't go (not: didn't went).", "Question: Did + subject + base verb? Did you see him?", "With a question word: Where did you go? What did she say?", "be is different: wasn't, weren't; Were you …? Was it …?"],
+    form: "I didn't go  ·  Did you go?  ·  Where did you go?", ex: ["I [didn't go] to college yesterday.", "[Did] you [watch] the match?", "What [did] she [buy]?"],
+    w: "I didn't went to the party.", r: "I didn't go to the party.", rule: "did or didn't + the base verb (go, see, buy), never the past form.",
+    task: "Write 3 things you didn't do last week, and 3 questions about a friend's weekend.", n: 6, hint: "I didn't … Did you … ? Where did you … ?",
+    x: [["c", "She didn't ___ her homework.", "do|did|does", 0], ["c", "___ you see the news last night?", "Do|Did|Were", 1], ["c", "Where did he ___ the book?", "bought|buy|buys", 1], ["c", "I ___ at home yesterday.", "didn't was|wasn't|didn't be", 1],
+      ["g", "What ___ you eat for breakfast?", "did"], ["g", "We ___ go out because of the rain. (not)", "didn't|did not"],
+      ["f", "He didn't came to class.", "He didn't come to class.|He did not come to class."], ["f", "Did you went to Murree?", "Did you go to Murree?"], ["f", "Where you went yesterday?", "Where did you go yesterday?"],
+      ["t", "Make it negative: She called me.", "She didn't call me.|She did not call me."], ["t", "Make it a question: They won the match.", "Did they win the match?"], ["t", "Make it a question: He bought a car.", "Did he buy a car?"]] },
+  { id: "time-prep", t: "in, on, at for time", ty: "preposition", use: "Use in, on and at to say when something happens.",
+    points: ["at + a clock time, and at night: at 7 o'clock, at night.", "on + days and dates: on Monday, on 14 August, on Eid.", "in + months, years, seasons and parts of the day: in June, in 2024, in winter, in the morning.", "No preposition before yesterday, tomorrow, next, last and every: I went there last week."],
+    form: "at 7 pm · at night  ·  on Monday · on 14 August  ·  in June · in 2024 · in the morning", ex: ["The class starts [at] nine.", "Pakistan's Independence Day is [on] 14 August.", "I was born [in] 2005."],
+    w: "I will see you in Monday.", r: "I will see you on Monday.", rule: "at for clock times, on for days and dates, in for months, years, seasons and the morning.",
+    task: "Write 5 sentences about your week and your year, using in, on and at with times, days and months.", n: 5, hint: "I wake up at … On Fridays … In summer …",
+    x: [["c", "The train leaves ___ 6:30.", "in|on|at", 2], ["c", "My birthday is ___ March.", "in|on|at", 0], ["c", "We have a test ___ Tuesday.", "in|on|at", 1], ["c", "I study ___ the evening.", "in|on|at", 0], ["c", "It is very cold ___ night.", "in|on|at", 2], ["c", "The Quaid was born ___ 25 December 1876.", "in|on|at", 1],
+      ["g", "It snows in Murree ___ winter.", "in"], ["g", "The shop closes ___ 10 pm.", "at"],
+      ["f", "I go to the gym at Saturdays.", "I go to the gym on Saturdays."], ["f", "She came on 2021.", "She came in 2021."], ["f", "We met in last Friday.", "We met last Friday."], ["f", "I wake up in 6 o'clock.", "I wake up at 6 o'clock."]] },
+  { id: "place-prep", t: "in, on, at for place", ty: "preposition", use: "Use in, on and at (and words like under and next to) to say where something is.",
+    points: ["in = inside a space: in the room, in Lahore, in Pakistan.", "on = on a surface or a line: on the table, on the wall, on the second floor, on Mall Road.", "at = a point, or a place for an activity: at the door, at school, at the bus stop, at home.", "Other words: under, next to, between, in front of, behind."],
+    form: "in the room · in Karachi  ·  on the table · on the wall  ·  at home · at the bus stop", ex: ["My keys are [on] the table.", "She lives [in] Peshawar.", "I will wait [at] the bus stop."],
+    w: "The book is in the table.", r: "The book is on the table.", rule: "in = inside, on = on a surface, at = a point or a place for an activity.",
+    task: "Write 5 sentences about where things are in your house and where people in your family are now.", n: 5, hint: "My bed is next to … The clock is on … My father is at …",
+    x: [["c", "The picture is ___ the wall.", "in|on|at", 1], ["c", "My uncle lives ___ Dubai.", "in|on|at", 0], ["c", "Wait for me ___ the gate.", "in|on|at", 2], ["c", "The milk is ___ the fridge.", "in|on|at", 0], ["c", "I left my phone ___ home.", "in|on|at", 2], ["c", "Our flat is ___ the third floor.", "in|on|at", 1],
+      ["g", "The children are playing ___ the garden.", "in"], ["g", "The cat is sleeping ___ the table. (below it)", "under"],
+      ["f", "She is in the bus stop.", "She is at the bus stop."], ["f", "I put the cup in the table.", "I put the cup on the table."], ["f", "My brother studies on Karachi University.", "My brother studies at Karachi University."], ["f", "The bank is next the post office.", "The bank is next to the post office."]] },
+  { id: "pronouns", t: "I, me, my, mine", ty: "word choice", use: "Use the right word for people: who does the action, who receives it, and who owns something.",
+    points: ["Who does the action: I, you, he, she, it, we, they.", "After a verb or a preposition: me, you, him, her, it, us, them: She called me.", "Before a noun: my, your, his, her, its, our, their: my book.", "Alone, without a noun: mine, yours, his, hers, ours, theirs: The book is mine."],
+    form: "I → me → my → mine  ·  he → him → his  ·  she → her → her → hers  ·  we → us → our → ours  ·  they → them → their → theirs", ex: ["[She] gave [me] [her] notes.", "This bag is not [mine]; it is [his].", "[We] invited [them] to [our] house."],
+    w: "Me and my brother went to the market.", r: "My brother and I went to the market.", rule: "I, he, she do the action; me, him, her come after the verb; my, his, her come before a noun; mine, hers stand alone.",
+    task: "Write 5 sentences about your friends and family, using I, me, my, mine, him, her, them and their.", n: 5, hint: "My friend helps me … I visit them …",
+    x: [["c", "Please give ___ the pen.", "I|me|my", 1], ["c", "This is ___ car. It is ours.", "we|us|our", 2], ["c", "___ is my sister.", "She|Her|Hers", 0], ["c", "The red bag is ___.", "my|mine|me", 1], ["c", "I called ___, but they didn't answer.", "they|them|their", 1],
+      ["g", "Ali lost ___ phone. (Ali's phone)", "his"], ["g", "Sara and I did ___ homework together.", "our"],
+      ["f", "Him is my best friend.", "He is my best friend."], ["f", "This book is my.", "This book is mine."], ["f", "She told I a story.", "She told me a story."], ["f", "Me and Sara are cousins.", "Sara and I are cousins."], ["f", "The dog is eating it's food.", "The dog is eating its food."]] },
+  { id: "there-is", t: "there is, there are", ty: "agreement", use: "Use there is and there are to say that something exists, or is in a place.",
+    points: ["there is + one thing, or words like water and traffic: There is a park near my house.", "there are + more than one: There are two banks in our town.", "Negative: there isn't, there aren't (or: there is no …).", "Question: Is there …? Are there …?"],
+    form: "There is + one  ·  There are + many  ·  Is there …? Are there …?", ex: ["[There is] a mosque near my house.", "[There are] thirty students in my class.", "[Is there] a hospital in your village?"],
+    w: "There is many shops in my street.", r: "There are many shops in my street.", rule: "There is + one (or water, traffic); there are + more than one.",
+    task: "Write 5 sentences about your town: what there is and what there isn't.", n: 5, hint: "There is a big market … There are many … There isn't a …",
+    x: [["c", "___ a bank near the school.", "There is|There are", 0], ["c", "___ three bedrooms in our house.", "There is|There are", 1], ["c", "___ any milk in the fridge?", "Is there|Are there", 0], ["c", "___ many people at the wedding last night.", "There was|There were", 1],
+      ["g", "___ a lot of traffic today. (one thing, now)", "There is|There's"], ["g", "___ two mistakes in your sentence.", "There are"],
+      ["f", "There are a problem with my phone.", "There is a problem with my phone."], ["f", "There is ten students in the room.", "There are ten students in the room."], ["f", "Have a shop near my house.", "There is a shop near my house."],
+      ["t", "Make it negative: There is a park here.", "There is not a park here.|There isn't a park here.|There is no park here."], ["t", "Make it a question: There are buses to Hunza.", "Are there buses to Hunza?|Are there any buses to Hunza?"], ["t", "Make it more than one: There is a tree in the garden.", "There are trees in the garden.|There are two trees in the garden.|There are some trees in the garden."]] },
+  { id: "can", t: "can and can't", ty: "verb form", use: "Use can for what you are able to do, and to ask for permission.",
+    points: ["can + the base verb: I can swim. Can I come in?", "No s and no to: She can drive (not: cans, or can to drive).", "Negative: cannot or can't. Question: Can you …?", "Past: could, couldn't: I couldn't sleep last night."],
+    form: "can + verb  ·  can't + verb  ·  Can you …?  ·  past: could, couldn't", ex: ["I [can speak] three languages.", "My grandmother [can't read] small letters.", "[Can I use] your phone?"],
+    w: "She can to cook very well.", r: "She can cook very well.", rule: "can or can't + the base verb, with no to and no s.",
+    task: "Write 5 sentences about things you can and can't do, and one thing you couldn't do as a child.", n: 5, hint: "I can … I can't … When I was a child, I couldn't …",
+    x: [["c", "My brother ___ fix computers.", "can|cans|can to", 0], ["c", "I'm sorry, I ___ come tomorrow.", "can't|don't can", 0], ["c", "___ you help me, please?", "Do|Can|Are", 1], ["c", "Last year I ___ swim, but now I can.", "can't|couldn't", 1],
+      ["g", "She ___ speak French. (not able)", "can't|cannot|can not"], ["g", "___ I open the window? (asking)", "Can|May|Could"],
+      ["f", "He cans run very fast.", "He can run very fast."], ["f", "I can to drive a car.", "I can drive a car."], ["f", "She can speaks English well.", "She can speak English well."], ["f", "Do you can swim?", "Can you swim?"],
+      ["t", "Make it negative: We can come.", "We cannot come.|We can't come.|We can not come."], ["t", "Make it a question: She can sing.", "Can she sing?"]] },
+  { id: "future", t: "will and going to", ty: "verb form", use: "Use going to for plans, and will for predictions and promises.",
+    points: ["going to + verb for plans you have already made: I am going to visit Hunza in June.", "will + verb for predictions, promises and quick decisions: It will rain. I will help you.", "will is the same for everyone and has no s: she will go.", "Negative: won't (will not); am, is or are not going to."],
+    form: "am / is / are going to + verb (plans)  ·  will + verb (predictions, promises)", ex: ["I [am going to apply] for the CSS exam next year.", "I think it [will rain] tomorrow.", "Don't worry, I [will call] you."],
+    w: "Tomorrow I will to go to Lahore.", r: "Tomorrow I will go to Lahore.", rule: "going to for plans, will for predictions and promises; then the base verb.",
+    task: "Write 3 sentences about your plans for next month with going to, and 3 predictions about your future with will.", n: 6, hint: "Next month I am going to … In ten years I will …",
+    x: [["c", "Look at those clouds. It ___ rain.", "is going to|goes to", 0], ["c", "I ___ help you with your homework.", "will|wills|am will", 0], ["c", "She ___ visit her aunt next week. (her plan)", "is going to|going to|will to", 0],
+      ["g", "We ___ (go) to Murree next summer. (our plan)", "are going to go|will go"], ["g", "I think Pakistan ___ (win) the match.", "will win|is going to win"], ["g", "He ___ (not / be) late, I promise.", "won't be|will not be"],
+      ["f", "She will goes to college tomorrow.", "She will go to college tomorrow."], ["f", "I going to study tonight.", "I am going to study tonight.|I'm going to study tonight."], ["f", "They are going to visiting us.", "They are going to visit us."], ["f", "Tomorrow I will to call you.", "Tomorrow I will call you."],
+      ["t", "Make it negative: I will tell him.", "I will not tell him.|I won't tell him."], ["t", "Make it a question: You are going to apply.", "Are you going to apply?"]] },
+  { id: "adj-adv", t: "Adjectives and adverbs", ty: "word choice", use: "Adjectives describe people and things; adverbs describe how we do something.",
+    points: ["An adjective comes before a noun: a big house, a kind teacher. It has no plural: two red cars (not: reds).", "After be, look, feel and seem: He is tired. She looks happy.", "An adverb says how: quickly, slowly, carefully. Usually adjective + ly.", "good → well: She speaks English well (not: good)."],
+    form: "adjective + noun: a careful driver  ·  verb + adverb: drives carefully  ·  good → well", ex: ["She is a [careful] driver. She drives [carefully].", "Lahore is a [beautiful] city.", "He speaks English [well]."],
+    w: "He writes very good.", r: "He writes very well.", rule: "An adjective goes before a noun or after be; an adverb (often with ly) goes after a verb; good becomes well.",
+    task: "Write 5 sentences about people you know: what they are like (adjectives) and how they do things (adverbs).", n: 5, hint: "My father is a kind man. He speaks slowly …",
+    x: [["c", "She sings ___.", "beautiful|beautifully", 1], ["c", "He is a ___ student.", "clever|cleverly", 0], ["c", "Please drive ___.", "slow|slowly", 1], ["c", "You did that ___.", "good|well", 1], ["c", "The soup tastes ___.", "delicious|deliciously", 0],
+      ["g", "She is a quick runner. She runs ___.", "quickly"], ["g", "He is a careful writer. He writes ___.", "carefully"],
+      ["f", "I bought two reds shirts.", "I bought two red shirts."], ["f", "He speaks English very good.", "He speaks English very well."], ["f", "She has a house big.", "She has a big house."], ["f", "Please listen careful.", "Please listen carefully."], ["o", "he / a / red / has / car", "He has a red car."]] },
+  { id: "compare", t: "bigger, the biggest", ty: "word choice", use: "Use these words to compare two or more people or things.",
+    points: ["Short words add er and est: tall → taller → the tallest; big → bigger → the biggest; easy → easier → the easiest.", "Long words use more and the most: beautiful → more beautiful → the most beautiful.", "Irregular: good → better → the best; bad → worse → the worst.", "Use than after the er word: Karachi is bigger than Lahore. Never more bigger."],
+    form: "taller than · the tallest  ·  more important than · the most important  ·  better · the best", ex: ["Karachi is [bigger than] Lahore.", "K2 is [the second highest] mountain in the world.", "Health is [more important than] money."],
+    w: "My brother is more taller than me.", r: "My brother is taller than me.", rule: "Short words: er than, the est; long words: more than, the most; good, better, the best.",
+    task: "Write 5 sentences comparing two cities, two people or two seasons, and one sentence with the best or the most.", n: 5, hint: "Summer is hotter than … The best season is …",
+    x: [["g", "An elephant is ___ (big) than a horse.", "bigger"], ["g", "This is the ___ (good) day of my life.", "best"], ["g", "English is ___ (easy) than French for me.", "easier"], ["g", "Health is ___ (important) than money.", "more important"], ["g", "That was the ___ (bad) film I have seen.", "worst"],
+      ["c", "My sister is ___ than me.", "older|more old|oldest", 0], ["c", "Lahore is one of ___ cities in Pakistan.", "the oldest|older|the most old", 0], ["c", "Today is ___ than yesterday.", "hotter|hoter|more hot", 0],
+      ["f", "Ali is more taller than Bilal.", "Ali is taller than Bilal."], ["f", "This is the most easy question.", "This is the easiest question."], ["f", "My marks are gooder than last year.", "My marks are better than last year.|My marks are better than last year's."], ["f", "Islamabad is cleaner then Karachi.", "Islamabad is cleaner than Karachi."]] },
+  { id: "quantity", t: "much, many, some, any", ty: "word choice", use: "Use these words to talk about amounts.",
+    points: ["Countable nouns can be counted: books, people, apples. Uncountable ones cannot: water, money, information, advice, traffic.", "many + countable (many books); much + uncountable (much water), mostly in questions and negatives. a lot of works for both.", "some in positive sentences: I have some friends. any in questions and negatives: Do you have any money? I don't have any time.", "Uncountable nouns have no plural: information (not informations), advice (not advices)."],
+    form: "many books · much water · a lot of (both)  ·  some in positive sentences · any in questions and negatives", ex: ["There are [many] cars on the road.", "I don't have [much] time.", "Do you have [any] questions?"],
+    w: "I need some informations.", r: "I need some information.", rule: "many + things you can count, much + things you cannot count; some in positive sentences, any in questions and negatives.",
+    task: "Write 5 sentences about your kitchen or your city with much, many, some, any and a lot of.", n: 5, hint: "There are many … We don't have much … Is there any …",
+    x: [["c", "How ___ brothers do you have?", "much|many", 1], ["c", "How ___ money do you need?", "much|many", 0], ["c", "There isn't ___ milk left.", "some|any", 1], ["c", "I bought ___ apples at the market.", "some|any", 0], ["c", "Are there ___ good shops here?", "some|any", 1], ["c", "She gave me good ___.", "advice|advices", 0],
+      ["g", "There are too ___ people on this bus.", "many"], ["g", "We don't have ___ time.", "much|a lot of|any"],
+      ["f", "I have many homework today.", "I have a lot of homework today.|I have much homework today."], ["f", "Can you give me some informations?", "Can you give me some information?"], ["f", "There aren't some chairs in the room.", "There aren't any chairs in the room.|There are no chairs in the room."], ["f", "How many sugar do you want?", "How much sugar do you want?"]] },
+  { id: "joiners", t: "and, but, so, because", ty: "sentence", use: "Use these words to join two ideas into one sentence.",
+    points: ["and adds an idea: I like tea and coffee.", "but shows a difference: I like tea, but my brother likes coffee.", "so shows a result: It was raining, so we stayed home.", "because gives a reason: We stayed home because it was raining.", "Put a comma before but and so when they join two sentences."],
+    form: "idea + and + idea  ·  idea, but + a different idea  ·  cause, so + result  ·  result + because + cause", ex: ["I was tired, [so] I went to bed early.", "She is young, [but] she is very wise.", "I study English [because] I want to pass the CSS exam."],
+    w: "I was hungry because I ate bread.", r: "I was hungry, so I ate bread.", rule: "and adds, but shows a difference, so gives a result, because gives a reason.",
+    task: "Write 5 sentences about your day. Join two ideas in each sentence with and, but, so or because.", n: 5, hint: "I woke up late, so … I like … but …",
+    x: [["c", "It was cold, ___ I wore a jacket.", "so|because|but", 0], ["c", "I wanted to go out, ___ it was raining.", "and|but|so", 1], ["c", "She is happy ___ she passed her exam.", "so|because|but", 1], ["c", "I bought bread ___ eggs.", "and|but|so", 0],
+      ["g", "He studied hard, ___ he passed. (result)", "so"], ["g", "I am learning English ___ I want a good job. (reason)", "because"],
+      ["t", "Join with because: I stayed home. I was ill.", "I stayed home because I was ill."], ["t", "Join with so: The shop was closed. We went home.", "The shop was closed, so we went home."], ["t", "Join with but: My house is small. It is comfortable.", "My house is small, but it is comfortable."], ["t", "Join with and: I like reading. I like writing.", "I like reading and writing.|I like reading, and I like writing."],
+      ["f", "I was hungry because I ate a sandwich.", "I was hungry, so I ate a sandwich.|I ate a sandwich because I was hungry."], ["f", "He was ill, so he went to school.", "He was ill, so he stayed at home.|He was ill, but he went to school.|He was ill, so he stayed home."]] },
+  { id: "wh", t: "Questions with what, where, why, how", ty: "word order", use: "Use question words to ask for information.",
+    points: ["Question word + do, does or did + subject + verb: Where do you live? What did she say?", "With be: question word + am, is, are, was or were + subject: Where is the station? Why were you late?", "When who is the doer, there is no do: Who called you? Who lives here?", "Useful words: what, where, when, why, who, which, how, how much, how many, how long, how often."],
+    form: "Where + do + you + live?  ·  Why + is + she + sad?  ·  Who + called? (no do)", ex: ["[Where do] you [live]?", "[Why were] you late yesterday?", "[How often does] your father [visit] Lahore?"],
+    w: "Why you are learning English?", r: "Why are you learning English?", rule: "Question word + do, does, did or be + subject + verb + question mark.",
+    task: "Write 6 questions you would ask a CSS officer about their job and life, using different question words.", n: 6, hint: "Why did you … ? Where do you … ? How many hours … ?",
+    x: [["c", "___ do you live? In Multan.", "What|Where|Who", 1], ["c", "___ is your birthday? In May.", "When|Where|Why", 0], ["c", "___ brothers do you have?", "How much|How many", 1], ["c", "___ wrote this book?", "Who|Whom|Which", 0],
+      ["o", "do / where / work / you", "Where do you work?"], ["o", "she / why / is / sad", "Why is she sad?"], ["o", "did / what / buy / you", "What did you buy?"],
+      ["f", "Where you are going?", "Where are you going?"], ["f", "What she said?", "What did she say?"], ["f", "How much students are in your class?", "How many students are in your class?"],
+      ["t", "Ask about the place: I live in Lahore. (Where …?)", "Where do you live?"], ["t", "Ask with why: She was late.", "Why was she late?"]] },
+];
+const SKILL = Object.fromEntries(STAGE1.map((S) => [S.id, S]));
+// The placement test asks the first "choose" question of every skill; mistakes in the writing sample show which skills are not known yet.
+const PLACE = STAGE1.map((S) => [S.id, S.x.findIndex((x) => x[0] === "c")]);
+const PLACE_MAP = { capital: ["caps"], "word order": ["order", "wh"], agreement: ["be", "have", "pres-s", "there-is"], article: ["a-an", "the"], plural: ["plurals"], tense: ["past-reg", "past-irr"], preposition: ["time-prep", "place-prep"], "verb form": ["do-does", "did", "can", "pres-cont", "future"] };
+const SAMPLE_TASK = "Write 6 to 10 sentences about yourself and your day: who you are, what you did today and what you will do tomorrow.";
+const ROAD = [["Correct sentences", "months 1 to 2", "25 small skills, one a day"], ["Joining ideas and paragraphs", "months 3 to 5", "linking words, topic sentences and paragraphs of 150 words"], ["Academic writing", "months 6 to 9", "formal style, arguments, essays of 500 words and the précis"], ["CSS practice", "month 10 onwards", "a full essay every week, précis and comprehension, past papers and timed tests"]];
+const MODEL_TOPICS = ["My morning", "My family", "My town", "A day I remember", "My best friend", "My favourite food", "My weekend", "A festival in Pakistan", "My college", "A person I admire", "The weather today", "My dream job"];
+const DAY_STEPS = ["Review", "Learn", "Practise", "Write", "Result"];
 // Kinds of mistakes, for the hints, the review and the progress page.
 const TYPES = { tense: "Verb tense", "verb form": "Verb form", agreement: "Subject and verb", article: "a / an / the", preposition: "Prepositions", plural: "Singular and plural", "word choice": "Word choice", spelling: "Spelling",
   "word order": "Word order", "missing word": "Missing word", "extra word": "Extra word", punctuation: "Punctuation", capital: "Capital letters", sentence: "Sentence structure" };
@@ -765,19 +1008,19 @@ const LEARNER = () => `a learner from Pakistan (first language Urdu, English lev
 function checkPrompt(p, text) {
   const lv = level(), k = p.kind, t = p.task, part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, L = lessonOf(p);
   const max = MAX_MISTAKES[lv] + (p.part === "whole" ? 8 : 0);
-  let task = `Task (${k === "sent" && L ? "Sentences practising " + L.t : L ? L.t : KINDS[k].one}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
+  let task = `Task (${sentLike(k) && L ? "Sentences practising " + L.t : L ? L.t : KINDS[k].one}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
   if (k === "free") task += " The learner chose what to write about. Focus on grammar, spelling, punctuation and word choice.";
-  if (k === "sent" && L) task += `\nThe structure: ${L.t}. ${L.use} Pattern: ${L.form}.`;
+  if (sentLike(k) && L) task += `\nThe structure: ${L.t}. ${L.use} Pattern: ${L.form}.`;
   if ((k === "para" || k === "essay") && L) task += `\nWhat ${an(L.t.toLowerCase())} needs: ${L.what} ${L.steps.join(" ")}`;
   if (k === "precis") { const m = precisMeasure(p, text); task += ` The précis should be about ${m.about} words (one third of the passage), one paragraph, in the learner's own words and the third person, with a short title. The learner's title: "${m.title || "(no title)"}". Their précis has ${m.words} words without the title. Mark it carefully, like a CSS examiner (15 marks for the précis, 5 for the title).`; }
   if (part) task += ` The learner is writing ${part.task}.` + (p.outline?.text?.trim() ? `\nTheir outline:\n${p.outline.text.trim()}` : "");
   const passage = t.passage ? `\n\nThe passage:\n"""\n${t.passage}\n"""` : "";
   const qs = t.questions?.length ? "\n\nQuestions:\n" + t.questions.map((q, i) => `${i + 1}. ${q}`).join("\n") : "";
-  const structure = k === "sent" && L ? `, "structure": {"used": how many sentences use the structure "${L.t}" correctly, "total": how many sentences there are, "note": "one short sentence on how they used the structure"}`
+  const structure = sentLike(k) && L ? `, "structure": {"used": how many sentences use the structure "${L.t}" correctly, "total": how many sentences there are, "note": "one short sentence on how they used the structure"}`
     : (k === "para" || k === "essay") && L ? `, "structure": {"ok": true or false (does it follow the plan and the style of ${an(L.t.toLowerCase())}${part && p.part !== "whole" ? ", for the part they wrote" : ""}?), "note": "one short sentence on the plan and the style"}` : "";
   const extra = structure + (k === "precis" ? `, "precis": {"ideas": 0 to 7 (are all the main ideas there, in the author's order?), "language": 0 to 4 (own words, clear and concise, third person, no opinion), "grammar": 0 to 2, "title": 0 to 5 (short, apt, about the central idea; 0 if there is no title), "central": true or false (does the précis keep the central idea?), "key_points": [{"point": "a key point of the passage, in a few words", "kept": true or false}] (every key point of the passage, 3 to 6, in order), "opinion": ["the learner's own opinions or new ideas, copied exactly, if any"], "details": ["examples or details that should have been left out, copied exactly, if any"], "voice": ["first person, direct speech or 'the author says' phrases, copied exactly, if any"], "title_note": "one short sentence about the title", "titles": ["2 good titles"], "model": "a model précis of about ${precisMeasure(p, text).about} words: a title on the first line, then one paragraph"}`
     : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "");
-  const taskArea = k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : k === "free" ? "clear, interesting ideas" : k === "sent" && L ? "using the structure well" : "answering the task with good ideas";
+  const taskArea = k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : k === "free" ? "clear, interesting ideas" : sentLike(k) && L ? "using the structure well" : "answering the task with good ideas";
   return `You are Mam, a kind English writing teacher and a fair CSS examiner, checking writing by ${LEARNER()}.
 ${task}${passage}${qs}
 
@@ -786,7 +1029,7 @@ The learner wrote:
 ${text}
 """
 
-Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
+Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${k === "skill" && L ? `Mark every mistake with ${L.t}, and only the 3 other mistakes that matter most` : lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
 For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one or two short sentences, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule fully, with the correct words and one more short example, in at most 35 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.
 Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".
 Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
@@ -823,7 +1066,7 @@ function exPrompt(p) {
     : part ? `Write only ${part.task}, in about ${part.words[band(lv)][0]} to ${part.words[band(lv)][1]} words.`
     : k === "precis" ? `Write a model précis of about ${precisMeasure(p, "").about} words: a short title on the first line, then one paragraph in your own words and the third person, then the number of words in brackets.`
     : k === "comp" ? "Answer every question in 2 or 3 sentences, numbered, in your own words."
-    : k === "sent" ? `Write ${t.target?.min || 4} sentences.${L ? ` Use the structure "${L.t}" (${L.form}) and put each use of it in [square brackets].` : ""}`
+    : sentLike(k) ? `Write ${t.target?.min || 4} sentences.${L ? ` Use the structure "${L.t}" (${L.form}) and put each use of it in [square brackets].` : ""}`
     : k === "para" ? `Write one paragraph of about ${t.target?.max || 100} words${L ? " that follows the plan of " + an(L.t.toLowerCase()) + ": " + L.steps.join(" ") : ""}.` : "Write a short model answer.";
   return `You are Mam, a kind English writing teacher. Write a model answer to show ${LEARNER()} what a good answer looks like. Use ${LEVEL_STYLE[lv]}, correct and natural.
 Task: ${t.prompt || t.title}${t.passage ? `\nThe passage:\n"""\n${t.passage}\n"""` : ""}${t.questions?.length ? "\nQuestions:\n" + t.questions.map((q, i) => `${i + 1}. ${q}`).join("\n") : ""}${part && p.outline?.text?.trim() ? "\nThe learner's outline:\n" + p.outline.text.trim() : ""}
@@ -850,10 +1093,11 @@ Reply with ONLY JSON: {"points": [{"point": "a key point of the passage, in a fe
 Reply with ONLY JSON: {"ok": true or false (is it short, apt and about the central idea?), "feedback": "one or two short sentences on why it is good or not", "better": ["3 good titles"]}`}
 Write in ${LEVEL_STYLE[level()]}, never Urdu.`;
 // Tests: Mam makes a new one each time, from the structures of a unit (the easier ones first for the level).
-const SENT_TESTS = [["kinds", "🧱", "Kinds of sentences test"], ["present", "🕒", "Present test"], ["past", "⏪", "Past test"], ["future", "⏩", "Future test"], ["all", "🎯", "All tenses test"]];
+const SENT_TESTS = [["s1", "📅", "Weekly test: Stage 1"], ["kinds", "🧱", "Kinds of sentences test"], ["present", "🕒", "Present test"], ["past", "⏪", "Past test"], ["future", "⏩", "Future test"], ["all", "🎯", "All tenses test"]];
 const WRITE_TESTS = [["para", "📄", "Paragraph test", "Mam chooses a kind of paragraph and a topic"], ["essay", "🏛️", "Essay test", "An outline, then the introduction"], ["precis", "🗜️", "Précis test", "A CSS-style passage, marked out of 20"], ["comp", "❓", "Comprehension test", "A passage and 5 questions"]];
 const TEST_MIN = { test: 20, para: 20, essay: 40, precis: 35, comp: 25 };
 function unitLessons(unit) {
+  if (unit === "s1") { const ls = recentSkills(12); return ls.length >= 3 ? ls : STAGE1.slice(0, 4); }
   const all = SENT_LESSONS.filter((L) => (unit === "all" ? L.u !== "kinds" : L.u === unit));
   const fit = all.filter((L) => RANK[L.lv] <= RANK[level()] + 1);
   return fit.length >= 3 ? fit : all.slice(0, 4);
@@ -915,7 +1159,8 @@ function makeTask(kind, t, L) {
   if (kind === "sent") { const n = t.n || Number((task.prompt.match(/\b([3-6])\b/) || [])[1]) || 4; task.target = { min: n, max: n + 1, unit: "sentences" }; task.prompt = task.prompt || `Write ${n} sentences about ${task.title}.`; }
   if (kind === "para") { const [min, max] = PARA_WORDS[level()]; task.target = { min, max, unit: "words" }; task.prompt = task.prompt || `Write ${an((L ? L.t : "paragraph").toLowerCase())} about "${task.title}".`; if (L) task.words = L.words.slice(0, 6); }
   if (kind === "essay") { const nm = L ? L.t : "CSS essay"; task.prompt = task.prompt || `Write ${an(nm.startsWith("CSS") ? nm : nm.toLowerCase())} on "${task.title}". Make an outline first, then write the essay.`; }
-  if (kind === "precis" || kind === "comp") { task.passage = String(t.passage || "").trim(); task.questions = arr(t.questions, 6); }
+  if (kind === "skill") { const n = t.n || 5; task.target = { min: n, max: n + 2, unit: "sentences" }; }
+  if (kind === "precis" || kind === "comp" || (kind === "free" && t.passage)) { task.passage = String(t.passage || "").trim(); task.questions = arr(t.questions, 6); }
   if (kind === "precis") { const pw = wordCount(task.passage), about = Math.max(20, Math.round(pw / 3)); task.target = { min: Math.round(about * 0.9), max: Math.round(about * 1.1), about, unit: "words" }; task.prompt = `Write a précis of the passage in about ${about} words (one third of ${pw}), in your own words, with a short title.`; }
   if (kind === "comp") task.prompt = "Read the passage, then answer the questions in your own words, in full sentences.";
   return task;
@@ -928,6 +1173,7 @@ function startTask(kind, t, lessonId, extra) {
   if (extra) Object.assign(p, extra);
   state.pieces.unshift(p); putPiece(p, true);
   go({ tab: p.test ? "tests" : "write", page: "piece", id: p.id });
+  return p;
 }
 const startFree = (title) => startTask("free", { title: title || "Free writing · " + shortDate(Date.now()) });
 // A lesson is done once Mam gives a piece for it 6 or more and the structure is right.
@@ -967,7 +1213,8 @@ function okView(v) {
   if (!v || !["write", "tests", "mistakes", "progress"].includes(v.tab)) return { tab: "write", page: "home" };
   if ((v.page === "piece" || v.page === "test") && !pieceById(v.id)) return { tab: v.tab, page: "home" };
   if (v.page === "plesson" && !PRECIS_LESSONS.some((L) => L.id === v.id)) return { tab: "write", page: "home" };
-  if (v.page === "kind" && !KINDS[v.kind]) return { tab: "write", page: "home" };
+  if (v.page === "kind" && !PATH.includes(v.kind) && !EXAM.includes(v.kind)) return { tab: "write", page: "home" };
+  if (v.page === "day" && !openDay()) return { tab: "write", page: "home" };
   if (v.page === "lesson" && !lessonById(v.kind, v.id)) return { tab: "write", page: "home" };
   if (v.page === "type" && !TYPES[v.type]) return { tab: "mistakes", page: "home" };
   if (v.page === "review") return { tab: "mistakes", page: "home" };
@@ -979,7 +1226,7 @@ function render(keepScroll) {
   clearInterval(timerT);
   const y = $("main").scrollTop;
   renderTabs(); $("page").innerHTML = "";
-  if (view.tab === "write") { const p = view.page === "piece" && pieceById(view.id); if (p) renderPiece(p); else if (view.page === "lesson" && lessonById(view.kind, view.id)) renderLesson(view.kind, view.id); else if (view.page === "plesson" && PRECIS_LESSONS.some((L) => L.id === view.id)) renderPrecisLesson(view.id); else if (view.page === "kind" && KINDS[view.kind]) renderKind(view.kind); else renderHome(); }
+  if (view.tab === "write") { const p = view.page === "piece" && pieceById(view.id); if (p) renderPiece(p); else if (view.page === "lesson" && lessonById(view.kind, view.id)) renderLesson(view.kind, view.id); else if (view.page === "plesson" && PRECIS_LESSONS.some((L) => L.id === view.id)) renderPrecisLesson(view.id); else if (view.page === "kind" && KINDS[view.kind]) renderKind(view.kind); else if (view.page === "day") renderDay(); else if (view.page === "place") renderPlace(); else renderHome(); }
   else if (view.tab === "tests") { const p = (view.page === "test" || view.page === "piece") && pieceById(view.id); if (p && p.kind === "test") renderSentTest(p); else if (p) renderPiece(p); else renderTests(); }
   else if (view.tab === "mistakes") { if (view.page === "review" && rv) renderReview(); else if (view.page === "type" && TYPES[view.type]) renderType(view.type); else renderMistakes(); }
   else renderProgress();
@@ -1009,41 +1256,16 @@ const shortDate = (t) => new Date(t).toLocaleDateString(undefined, { day: "numer
 function pieceDesc(p) {
   const d = lastDraft(p), words = wordCount(p.text || ""), L = lessonOf(p);
   const state0 = d ? "last mark " + d.check.score + "/10" : p.kind === "essay" && p.outline?.check ? "outline " + p.outline.check.score + "/10" : words && !(p.kind === "comp" && !/[A-Za-z]/.test(p.text)) ? words + " words, not checked yet" : "not started";
-  return [L && p.lesson ? L.t : KINDS[p.kind].one, state0, shortDate(p.updated)].join(" · ");
+  return [L && (p.lesson || p.skill) ? L.t : KINDS[p.kind].one, state0, shortDate(p.updated)].join(" · ");
 }
 const pieceRow = (p) => row(KINDS[p.kind].em, p.task.title, pieceDesc(p), (p.drafts || []).length > 1 ? "✎ " + p.drafts.length : "", () => go({ tab: "write", page: "piece", id: p.id }));
 const lessonView = (kind, id) => ({ tab: "write", page: "lesson", kind, id });
 const stageText = (k) => (k === "free" ? (live().filter((p) => p.kind === "free" && lastDraft(p)).length + " checked") : !stageOpen(k) ? `🔒 opens after ${KINDS[PATH[PATH.indexOf(k) - 1]].name.toLowerCase()}` : `${doneCount(k)} of ${LESSONS[k].length} done`);
 
-function renderHome() {
-  setTitle("✍️ Write");
-  section("").id = "homeStatus";
-  const open = live().find((p) => !lastDraft(p) && wordCount(p.text || p.outline?.text || "") > 3 && Date.now() - p.updated < 7 * DAY);
-  if (open) {
-    const c = section("card", "Continue writing");
-    c.append(el("h2", "", KINDS[open.kind].em + " " + open.task.title), el("p", "hint", pieceDesc(open)), btn("✍️ Continue", () => go({ tab: "write", page: "piece", id: open.id }), "btn primary"));
-  }
-  const nx = nextStep(), step = PATH.indexOf(nx.kind) + 1, c = section("card next", `Next step · ${step}. ${KINDS[nx.kind].name}`);
-  if (nx.L) {
-    c.append(el("h2", "", lessonEm(nx.kind, nx.L) + " " + nx.L.t), el("p", "", nx.kind === "sent" ? nx.L.use : nx.L.what));
-    c.append(btn("📖 Open the lesson", () => go(lessonView(nx.kind, nx.L.id)), "btn primary"));
-  } else {
-    c.append(el("h2", "", "📝 Write anything"), el("p", "", "Write a few sentences about your day or anything you like. Mam corrects your grammar, so you see your common mistakes before the lessons."));
-    c.append(btn("✍️ Start writing", () => startFree(), "btn primary"));
-  }
-  const path = section("list", "Your path");
-  PATH.forEach((k, i) => path.append(row(KINDS[k].em, `${i + 1}. ${KINDS[k].name}`, KINDS[k].desc + " · " + stageText(k), "", () => go({ tab: "write", page: "kind", kind: k }))));
-  const exam = section("list", "Exam practice");
-  EXAM.forEach((k) => { const n = live().filter((p) => p.kind === k).length; exam.append(row(KINDS[k].em, KINDS[k].name, KINDS[k].desc, n ? "✓ " + n : "", () => go({ tab: "write", page: "kind", kind: k }))); });
-  const mine = section("list", "Your writing");
-  const ps = live();
-  if (!ps.length) mine.append(el("p", "hint", "Everything you write is saved here, with Mam's marks, so you can see how you improve."));
-  ps.slice(0, 30).forEach((p) => mine.append(pieceRow(p)));
-}
 function renderKind(k) {
   const K = KINDS[k];
   setTitle(K.em + " " + K.name);
-  backBtn("← Write", { tab: "write", page: "home" });
+  backBtn("← Today", { tab: "write", page: "home" });
   const head = section("card"), step = PATH.indexOf(k);
   head.append(el("h2", "", K.em + " " + K.name), el("p", "hint", (step >= 0 ? `Step ${step + 1} of 4. ` : "") + K.desc + "."));
   const g = el("details"); g.open = k === "free" && !live().some((p) => p.kind === k); // closed on the courses, so the lesson for now is what you see
@@ -1312,20 +1534,21 @@ const textKey = (p) => (p.kind === "essay" && p.step === "outline" ? "outline" :
 const getText = (p) => (textKey(p) === "outline" ? p.outline.text : p.text) || "";
 const setText = (p, v) => { if (textKey(p) === "outline") p.outline.text = v; else p.text = v; };
 function renderPiece(p) {
-  const K = KINDS[p.kind], t = p.task, L = p.lesson ? lessonOf(p) : null, testing = !!p.test && !p.test.done;
+  const K = KINDS[p.kind], t = p.task, L = p.lesson || p.skill ? lessonOf(p) : null, testing = !!p.test && !p.test.done;
   setTitle((p.test ? "🎯 " : K.em + " ") + t.title);
-  if (p.test) backBtn("← Tests", { tab: "tests", page: "home" }); else if (L) backBtn("← " + L.t, lessonView(p.kind, L.id)); else backBtn("← " + K.name, { tab: "write", page: "kind", kind: p.kind });
+  if (p.test) backBtn("← Tests", { tab: "tests", page: "home" }); else if (p.skill) backBtn("← Today's lesson", openDay()?.piece === p.id ? { tab: "write", page: "day" } : { tab: "write", page: "home" }); else if (p.place) backBtn("← Placement test", { tab: "write", page: "place" });
+  else if (p.monthly || p.model || p.diary) backBtn("← Today", { tab: "write", page: "home" }); else if (L) backBtn("← " + L.t, lessonView(p.kind, L.id)); else backBtn("← " + K.name, { tab: "write", page: "kind", kind: p.kind });
   const card = section("card task");
-  card.append(el("div", "lbl", (p.test ? "Test · " : "") + (L && p.kind !== "sent" ? L.t : K.one) + (p.kind !== "essay" && p.task.target ? " · goal " + targetText(p.task.target) : "")), el("div", "q", t.title));
+  card.append(el("div", "lbl", (p.test ? "Test · " : "") + (L && !sentLike(p.kind) ? L.t : K.one) + (p.kind !== "essay" && p.task.target ? " · goal " + targetText(p.task.target) : "")), el("div", "q", t.title));
   if (p.test) card.append(testBanner(p));
   if (t.prompt && p.kind !== "essay") card.append(el("p", "", t.prompt));
   if (t.hint && !testing) card.append(el("p", "hint", "💡 " + t.hint));
-  if (L && p.kind === "sent" && !testing) card.append(el("div", "formula", L.form));
-  if (L && p.kind !== "sent" && !testing) { const d = el("details"); d.append(el("summary", "", "📖 The plan of " + an(L.t.toLowerCase()))); const ol = el("ol"); L.steps.forEach((x) => ol.append(el("li", "", x))); d.append(ol); card.append(d); }
+  if (L && sentLike(p.kind) && !testing) card.append(el("div", "formula", L.form));
+  if (L && !sentLike(p.kind) && !testing) { const d = el("details"); d.append(el("summary", "", "📖 The plan of " + an(L.t.toLowerCase()))); const ol = el("ol"); L.steps.forEach((x) => ol.append(el("li", "", x))); d.append(ol); card.append(d); }
   if (t.words?.length && !testing) { const w = el("div", "tools"); w.append(el("span", "hint", "Useful words:")); t.words.forEach((x) => w.append(el("span", "chip2", x))); card.append(w); }
   if (t.passage) {
     const d = el("details", "passage"); d.open = !lastDraft(p);
-    d.append(el("summary", "", "📜 The passage · " + wordCount(t.passage) + " words"));
+    d.append(el("summary", "", (p.kind === "free" ? "📜 Mam's text · " : "📜 The passage · ") + wordCount(t.passage) + " words"));
     t.passage.split(/\n\s*\n|\n/).filter((x) => x.trim()).forEach((x) => d.append(el("p", "", x.trim())));
     card.append(d);
   }
@@ -1371,7 +1594,7 @@ function renderPiece(p) {
   $("photoIn").onchange = () => { const files = [...$("photoIn").files]; $("photoIn").value = ""; if (files.length) readHandwriting(p, files); };
   updateCount(p);
   const del = btn("🗑 Delete this piece", () => {
-    if (del.dataset.sure) { p.deleted = true; const keep = { id: p.id, kind: p.kind, task: { title: p.task.title }, deleted: true, drafts: [] }; Object.keys(p).forEach((k2) => delete p[k2]); Object.assign(p, keep); putPiece(p, true); toast("Deleted"); go({ tab: "write", page: "kind", kind: keep.kind }); return; }
+    if (del.dataset.sure) { p.deleted = true; const keep = { id: p.id, kind: p.kind, task: { title: p.task.title }, deleted: true, drafts: [] }; Object.keys(p).forEach((k2) => delete p[k2]); Object.assign(p, keep); putPiece(p, true); toast("Deleted"); go(PATH.includes(keep.kind) || EXAM.includes(keep.kind) ? { tab: "write", page: "kind", kind: keep.kind } : { tab: "write", page: "home" }); return; }
     del.dataset.sure = "1"; del.textContent = "Tap again to delete it for good";
   }, "mini"); del.classList.add("back"); $("page").append(del);
 }
@@ -1407,7 +1630,7 @@ async function readHandwriting(p, files) {
 }
 async function checkPiece(p) {
   const outline = textKey(p) === "outline", text = getText(p).trim();
-  const enough = outline ? 8 : p.kind === "sent" ? 6 : p.kind === "comp" ? 6 : 15;
+  const enough = outline ? 8 : sentLike(p.kind) ? 6 : p.kind === "comp" ? 6 : 15;
   if (wordCount(text) < enough) { statusIn("pieceStatus", outline ? "Write your outline first: a thesis statement and your main points." : "Write a little more first.", true); return; }
   stopDictation();
   const b = $("checkBtn"); if (b) b.disabled = true;
@@ -1451,9 +1674,9 @@ function cleanCheck(r, text, p) {
     .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.problem + m.hint + m.why)).slice(0, 25);
   const c = { score: num(r.score, 1, 10), areas: Object.fromEntries(["task", "organisation", "grammar", "vocabulary"].map((k) => [k, num(areas[k], 1, 10)])), mistakes: locate(text, ms),
     good: cleanList(r.good, 3), next: cleanList(r.next, 3), better: isEnglish(r.better) ? String(r.better).trim() : "" };
-  if (p.lesson && r.structure && typeof r.structure === "object") {
+  if ((p.lesson || p.skill) && r.structure && typeof r.structure === "object") {
     const note = isEnglish(r.structure.note) ? String(r.structure.note) : "";
-    if (p.kind === "sent") { const total = num(r.structure.total, 1, 40), used = num(r.structure.used, 0, total); c.structure = { used, total, ok: used >= Math.max(1, Math.ceil(total * 0.6)), note }; }
+    if (sentLike(p.kind)) { const total = num(r.structure.total, 1, 40), used = num(r.structure.used, 0, total); c.structure = { used, total, ok: used >= Math.max(1, Math.ceil(total * 0.6)), note }; }
     else c.structure = { ok: r.structure.ok === true, note };
   }
   if (p.kind === "precis") {
@@ -1492,12 +1715,12 @@ function outlineCard(p) {
 }
 function marksCard(p, d) {
   if (p.kind === "precis" && d.check.precis) return precisCard(p, d);
-  const ch = d.check, c = el("div", "card"), n = p.drafts.filter((x) => x.check).length;
+  const ch = d.check, c = el("div", "card"), n = p.drafts.filter((x) => x.check).length, L0 = (p.lesson || p.skill) && lessonOf(p);
   const top = el("div", "scorerow"); top.append(el("span", "score", ch.score + "/10"));
   const tx = el("div"); tx.append(el("strong", "", "Mam's marks"), el("div", "when", `Draft ${n} · ${d.words} words · ${ch.mistakes.length} mistake${ch.mistakes.length === 1 ? "" : "s"}`)); top.append(tx); c.append(top);
   const ds = p.drafts.filter((x) => x.check);
   if (ds.length > 1) { const line = el("div", "drafts"); ds.forEach((x, i) => { if (i) line.append(el("span", "", "→")); line.append(el("span", "chip2", `Draft ${i + 1}: ${x.check.score}`)); }); const diff = ch.score - ds[ds.length - 2].check.score; if (diff > 0) line.append(el("span", "up", "↑ " + diff + " better")); c.append(line); }
-  const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : p.kind === "free" ? "Ideas" : p.kind === "sent" && p.lesson ? "Structure" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
+  const labels = { task: p.kind === "precis" ? "Main ideas" : p.kind === "comp" ? "Answers" : p.kind === "free" ? "Ideas" : sentLike(p.kind) && L0 ? "Structure" : "Task", organisation: "Organisation", grammar: "Grammar", vocabulary: "Vocabulary" };
   Object.entries(labels).forEach(([k, l]) => { const v = ch.areas[k], r = el("div", "area"); r.innerHTML = "<span></span><i><b></b></i><em></em>"; r.children[0].textContent = l; r.querySelector("b").style.width = v * 10 + "%"; r.children[2].textContent = v + "/10"; c.append(r); });
   const sx = ch.structure, L = lessonOf(p);
   if (p.lesson && L && LESSONS[p.kind] && lessonStatus(p.kind, L.id).done && !p.test) {
@@ -1506,7 +1729,7 @@ function marksCard(p, d) {
     if (nxt) c.append(btn("Go to the next lesson →", () => go(lessonView(p.kind, nxt.id)), "btn primary"));
   }
   if (sx && L) {
-    c.append(el("div", "flag " + (sx.ok ? "ok" : "bad"), p.kind === "sent" ? `${sx.ok ? "✓" : "⚠"} ${L.t}: used correctly in ${sx.used} of ${sx.total} sentences.` : `${sx.ok ? "✓ It follows" : "⚠ It does not yet follow"} the plan of ${an(L.t.toLowerCase())}.`));
+    c.append(el("div", "flag " + (sx.ok ? "ok" : "bad"), sentLike(p.kind) ? `${sx.ok ? "✓" : "⚠"} ${L.t}: used correctly in ${sx.used} of ${sx.total} sentences.` : `${sx.ok ? "✓ It follows" : "⚠ It does not yet follow"} the plan of ${an(L.t.toLowerCase())}.`));
     if (sx.note) c.append(el("p", "hint", "🧩 " + sx.note));
   }
   if (p.kind === "comp" && ch.answers?.length) {
@@ -1520,6 +1743,7 @@ function marksCard(p, d) {
   const list = (label, items) => { if (!items.length) return; c.append(el("div", "lbl", label)); const ul = el("ul"); items.forEach((x) => ul.append(el("li", "", x))); c.append(ul); };
   list("What you did well", ch.good); list("Next time", ch.next);
   if (d.photo?.note) c.append(el("p", "hint", "✍️ Handwriting: " + d.photo.note));
+  if (p.place && !course().placed) c.append(btn("See my placement result →", finishPlacement, "btn primary"));
   return c;
 }
 // The précis, marked like the CSS paper: 15 for the précis (main ideas 7, own words 4, grammar 2, length 2) and 5 for the title.
@@ -1666,9 +1890,12 @@ function afterCard(p, d) {
     pEl.append(d.text.slice(pos)); c.append(pEl);
   }
   if (d.check.better) { c.append(el("div", "lbl", p.kind === "precis" ? "✨ Mam's model précis" : "✨ Mam's better version")); c.append(el("p", "better", d.check.better)); }
-  const t = el("div", "tools");
-  t.append(btn("✍️ Write it again", () => { p.text = ms.length ? correctedText(d) : d.text; putPiece(p, true); render(); const ta = $("draft"); if (ta) { ta.scrollIntoView({ block: "start", behavior: "smooth" }); ta.focus({ preventScroll: true }); } toast("Make it even better, then check again"); }, "btn primary"));
-  t.append(p.test ? btn("Back to tests", () => go({ tab: "tests", page: "home" })) : btn("New task", () => go({ tab: "write", page: "kind", kind: p.kind })));
+  const t = el("div", "tools"), day = p.skill && openDay(), mine = day && day.piece === p.id && !day.done, used = p.drafts.some((x) => x.check?.structure?.ok);
+  if (mine && used) t.append(btn("Finish today's lesson →", () => { day.step = 4; putMeta(); go({ tab: "write", page: "day" }); }, "btn primary"));
+  t.append(btn("✍️ Write it again", () => { p.text = ms.length ? correctedText(d) : d.text; putPiece(p, true); render(); const ta = $("draft"); if (ta) { ta.scrollIntoView({ block: "start", behavior: "smooth" }); ta.focus({ preventScroll: true }); } toast("Make it even better, then check again"); }, mine && used ? "btn" : "btn primary"));
+  if (mine && !used) t.append(btn("Finish today's lesson", () => { day.step = 4; putMeta(); go({ tab: "write", page: "day" }); }));
+  if (p.place && !course().placed) t.append(btn("See my placement result", finishPlacement));
+  t.append(p.test ? btn("Back to tests", () => go({ tab: "tests", page: "home" })) : p.skill || p.place || p.monthly || p.model || p.diary ? btn("Back to Today", () => go({ tab: "write", page: "home" })) : btn("New task", () => go({ tab: "write", page: "kind", kind: p.kind })));
   c.append(el("p", "hint", "Write it again: start from your corrected writing, add Mam's ideas, and check it again to see your new marks."), t);
   return c;
 }
@@ -1702,7 +1929,7 @@ function renderMistakes() {
   rc.append(el("h2", "", due.length ? `${due.length} mistake${due.length === 1 ? "" : "s"} to fix again today` : all.length ? "Nothing to review now" : "No mistakes saved yet"));
   if (due.length) { rc.append(el("p", "hint", "Fix each one again. The ones you know come back later; the hard ones come back sooner."), btn("▶ Review", startReview, "btn primary")); }
   else if (all.length) { const next = Math.min(...all.map((m) => m.due || 0)); rc.append(el("p", "hint", "Next review: " + (next - Date.now() < DAY ? "tomorrow" : shortDate(next)) + ". Keep writing, and Mam adds the mistakes you fix.")); }
-  else { rc.append(el("p", "hint", "When Mam checks your writing, the mistakes you fix are saved here, so you can practise them again until you never make them."), btn("✍️ Start writing", () => go({ tab: "write", page: "home" }), "btn primary")); return; }
+  else { rc.append(el("p", "hint", "When Mam checks your writing, the mistakes you fix are saved here, so you can practise them again until you never make them."), btn("📅 Go to today's lesson", () => go({ tab: "write", page: "home" }), "btn primary")); return; }
   const tc = section("card", "Your most common mistakes"), counts = typeCounts(), top = counts[0][1];
   counts.forEach(([t, n]) => {
     const b = el("button", "trbar"); b.type = "button"; b.innerHTML = "<span></span><i><b></b></i><em></em>";
@@ -1756,11 +1983,15 @@ function renderReview() {
   t.append(check, tool("Show the answer", () => reviewDone(m, false, at >= 0 ? s.slice(0, at) + m.right + s.slice(at + m.wrong.length) : m.right, out, t)));
   c.append(ta, t, out);
 }
+// Right: it comes back later each time. Wrong: it is due again at once.
+function reviewMark(m, ok) {
+  if (ok) { m.box = Math.min((m.box || 0) + 1, REVIEW_DAYS.length - 1); m.due = Date.now() + REVIEW_DAYS[m.box] * DAY; } else { m.box = 0; m.due = Date.now(); }
+  putMistake(m);
+}
 function reviewDone(m, ok, want, out, t) {
   const first = !rv.again.has(m.id);
-  if (ok) { if (first) rv.right++; m.box = Math.min((m.box || 0) + 1, REVIEW_DAYS.length - 1); m.due = Date.now() + REVIEW_DAYS[m.box] * DAY; }
-  else { m.box = 0; m.due = Date.now(); if (first) { rv.again.add(m.id); rv.queue.push(m.id); } } // a missed one comes back once at the end
-  putMistake(m);
+  if (ok) { if (first) rv.right++; } else if (first) { rv.again.add(m.id); rv.queue.push(m.id); } // a missed one comes back once at the end
+  reviewMark(m, ok);
   out.innerHTML = ""; out.append(el("div", "flag " + (ok ? "ok" : "bad"), ok ? "✓ Right!" : "Not quite." + (out.dataset.note ? " " + out.dataset.note : "")));
   const a = el("div"); a.append("Correct: ", el("span", "right", want)); out.append(a); if (m.why) { const w2 = el("div", "why"); w2.append(el("b", "", "Why: "), m.why); out.append(w2); }
   t.innerHTML = ""; t.append(btn("Next →", () => { rv.queue.shift(); rv.n++; render(); }, "btn primary"));
@@ -1915,6 +2146,452 @@ async function submitSentTest(p) {
   if (view.id === p.id) { render(); $("main").scrollTop = 0; }
 }
 
+// ---------- the course: the placement test, today's lesson in five steps, extra practice ----------
+// Course state lives in the settings, so it follows the learner to every device:
+// course.placed (the placement result), course.skills[id].passes (the days a skill was passed), course.day (today's lesson), course.days (days practised).
+const course = () => (state.settings.course = state.settings.course || { skills: {} });
+const skillRec = (id) => (course().skills[id] = course().skills[id] || { passes: [] });
+const passKeys = (id) => [...new Set(course().skills[id]?.passes || [])];
+const learned = (id) => passKeys(id).length >= 2;
+const learnedCount = () => STAGE1.filter((S) => learned(S.id)).length;
+const nextSkill = () => STAGE1.find((S) => !passKeys(S.id).length) || null;
+// A skill passed on one day (or known in the placement test) is checked again on a later day.
+const dueCheckups = () => STAGE1.filter((S) => { const k = passKeys(S.id); return k.length === 1 && k[0] !== today() && !(k[0] === "placement" && dayOf(course().placed?.at || 0) === today()); });
+const passMark = (n) => Math.ceil(n * 0.8);
+// The skills passed most recently in lessons, then the ones known from the placement test.
+const lastPass = (S) => passKeys(S.id).filter((k) => k !== "placement").pop() || "";
+const recentSkills = (n) => STAGE1.filter((S) => passKeys(S.id).length).sort((a, b) => lastPass(b).localeCompare(lastPass(a))).slice(0, n);
+const shuffle = (a) => { const b = [...a]; for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+// A lesson started late in the evening can be finished after midnight.
+const openDay = () => { const d = course().day; return d && (d.key === today() || (!d.done && Date.now() - d.at < 12 * 3600000)) ? d : null; };
+const daysPractised = () => course().days || [];
+function streak() {
+  const set = new Set(daysPractised()); let n = 0, t = Date.now();
+  if (!set.has(dayOf(t))) t -= DAY;
+  while (set.has(dayOf(t))) { n++; t -= DAY; }
+  return n;
+}
+const dayNumber = () => daysPractised().length + (daysPractised().includes(today()) ? 0 : 1);
+function reviewRefs() {
+  const refs = [], pick = (S, n) => shuffle(S.x.map((_, i) => i)).slice(0, n);
+  dueCheckups().sort((a, b) => (passKeys(a.id)[0] === "placement") - (passKeys(b.id)[0] === "placement")).slice(0, 2)
+    .forEach((S) => pick(S, 2).forEach((x) => refs.push({ s: S.id, x, k: "check" })));
+  const old = STAGE1.filter((S) => learned(S.id)).sort((a, b) => (skillRec(a.id).seen || 0) - (skillRec(b.id).seen || 0))[0];
+  dueMistakes().slice(0, Math.max(0, 5 - refs.length - (old ? 1 : 0))).forEach((m) => refs.push({ m: m.id }));
+  if (old && refs.length < 5) { refs.push({ s: old.id, x: pick(old, 1)[0], k: "old" }); skillRec(old.id).seen = Date.now(); }
+  return refs;
+}
+const practiceSet = (S) => ({ refs: S ? shuffle(S.x.map((_, i) => i)).slice(0, 10).map((x) => ({ s: S.id, x })) : [], i: 0, res: [], best: 0, round: 1 });
+function newDay(more) {
+  const c = course(), S = nextSkill(), refs = more ? [] : reviewRefs();
+  c.day = { key: today(), at: Date.now(), n: more ? (c.day?.n || 1) + 1 : 1, skill: S?.id || null, step: refs.length ? 0 : S ? 1 : 4, rv: { refs, i: 0, res: [] }, pr: practiceSet(S), piece: null, done: 0 };
+  putMeta();
+}
+function finishDay(d) {
+  const S = SKILL[d.skill], p = d.piece && pieceById(d.piece), used = !!p && p.drafts.some((x) => x.check?.structure?.ok);
+  d.passed = !!S && d.pr.best >= passMark(d.pr.refs.length) && used;
+  if (d.passed) { const r = skillRec(S.id); r.passes = [...new Set([...r.passes, d.key])]; }
+  course().days = [...new Set([...daysPractised(), d.key])].slice(-500);
+  d.done = Date.now(); putMeta();
+}
+const stepTo = (d, n) => { d.step = n; putMeta(); render(); $("main").scrollTop = 0; };
+
+// One question at a time: "c" choose, "g" fill the gap, "o" put the words in order, "f" correct the sentence, "t" change it as asked, "m" one of the learner's own mistakes.
+function itemOf(ref) {
+  if (ref.m) {
+    const m = state.mistakes.find((x) => x.id === ref.m && !x.removed); if (!m) return null;
+    const s = m.sentence || m.wrong, at = s.indexOf(m.wrong);
+    return { ty: "m", m, s, at, want: at >= 0 ? s.slice(0, at) + m.right + s.slice(at + m.wrong.length) : m.right };
+  }
+  const S = SKILL[ref.s], x = S?.x[ref.x]; if (!x) return null;
+  const [ty, q, a, k] = x, list = a.split("|");
+  return ty === "c" ? { ty, S, q, opts: list, k, ans: [list[k]] } : { ty, S, q, ans: list };
+}
+const capFirst = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const fillGap = (q, w) => capFirst(q.replace(/\s*\([^)]*\)/g, "").replace("___", w === "(no word)" ? "" : w).replace(/\s+/g, " ").replace(/\s+(?=[.,?!])/g, "").trim());
+const answerText = (it) => (it.ty === "m" ? it.want : it.ty === "c" ? (it.q.includes("___") ? fillGap(it.q, it.ans[0]) : it.ans[0]) : it.ty === "g" ? fillGap(it.q, it.ans[0]) : it.ans[0]);
+const CONTRACT = [[/\bcan't\b/g, "cannot"], [/\bcan not\b/g, "cannot"], [/\bwon't\b/g, "will not"], [/\b(\w+)n't\b/g, "$1 not"], [/\bi'm\b/g, "i am"], [/\b(he|she|it|that|there|what|where|who)'s\b/g, "$1 is"], [/\b(you|we|they)'re\b/g, "$1 are"], [/\b(i|you|we|they)'ve\b/g, "$1 have"], [/\b(i|you|he|she|it|we|they)'ll\b/g, "$1 will"]];
+function normAns(s, exact) {
+  const t = String(s).replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
+  if (exact) return t.replace(/\s+(?=[.,?!])/g, "");
+  let x = t.toLowerCase(); CONTRACT.forEach(([re, to]) => { x = x.replace(re, to); });
+  return x.replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
+}
+const practicePrompt = (it, ans) => `A learner of English from Pakistan is practising one skill: "${it.S.t}" (${it.S.rule}). The exercise: ${it.ty === "o" ? "put these words in the right order: " + it.q : it.ty === "f" ? `correct this sentence: "${it.q}"` : it.q}. A correct answer: "${it.ans[0]}". The learner's answer: "${ans}". Is the learner's answer correct English that does exactly what the exercise asks, with the same meaning? Accept any correct answer, even if it is different from the one given.
+Reply with ONLY JSON: {"ok": true or false, "note": "if it is wrong, say EXACTLY what is wrong: which word, and which rule, in at most 25 words, without giving the answer; if it is right, empty"}`;
+// Checked on the phone first; only an answer that is different from every expected one goes to Mam. null means Mam could not be asked.
+async function checkAnswer(it, v) {
+  if (it.ty === "m") {
+    if (same(v, it.want, EXACT.has(it.m.type))) return { ok: true };
+    const r = await judge(it.m, it.s, v, true); return r && { ok: r.ok, note: r.ok ? "" : r.note };
+  }
+  const exact = !!it.S.exact;
+  if (it.ans.some((a) => normAns(a, exact) === normAns(v, exact) || (it.ty === "g" && normAns(fillGap(it.q, a), exact) === normAns(v, exact)))) return { ok: true };
+  if (exact || it.ty === "g") return { ok: false };
+  await aiReady; if (!sample) return null;
+  const c = new AbortController(), t = setTimeout(() => c.abort(), 45000);
+  try { const r = await askJson(practicePrompt(it, v), { modelTier: "quick", signal: c.signal }); return { ok: r?.ok === true, note: r?.ok === true || !isEnglish(r?.note) ? "" : String(r.note) }; }
+  catch (e) { dbg("practice_error", { code: String(e?.code || "") }); return null; } finally { clearTimeout(t); }
+}
+// What the learner's wrong answer says, as a sentence.
+const wrongText = (it, r) => (it.ty === "c" ? (it.q.includes("___") ? fillGap(it.q, it.opts[r.given]) : it.opts[r.given]) : it.ty === "g" ? fillGap(it.q, String(r.given)) : it.ty === "f" ? it.q : String(r.given || ""));
+// A wrong answer in practice goes to the review list, like a mistake in the learner's writing.
+function saveSkillMistake(it, res) {
+  if (it.ty === "m" || (it.ty === "c" && !it.q.includes("___") && wordCount(it.opts[res.given]) < 3)) return;
+  const wrong = wrongText(it, res), right = answerText(it);
+  if (!wrong || same(wrong, right, true) || liveMistakes().some((m) => m.wrong === wrong && m.right === right)) return;
+  const now = Date.now(), mk = { id: "m" + now.toString(36) + "s", wrong, right, why: it.S.rule, problem: res.note || (it.ty === "t" ? "The task was: " + it.q : ""), type: it.S.ty, sentence: wrong, from: "Lesson: " + it.S.t, kind: "lesson", self: false, box: 1, due: now + DAY, created: now, updated: now };
+  state.mistakes.unshift(mk); putMistake(mk);
+}
+const answerBox = (value, rows) => { const ta = el("textarea", "inbox"); ta.rows = rows || 2; ta.value = value; ta.spellcheck = false; ta.setAttribute("autocapitalize", "off"); ta.setAttribute("autocorrect", "off"); ta.setAttribute("aria-label", "Your answer"); return ta; };
+// Draws one question; record(result) keeps the answer, next() goes on.
+function drawItem(box, it, res, record, next) {
+  const out = el("div", "fout"), foot = el("div", "tools"), inputs = [];
+  const showRes = (r) => {
+    inputs.forEach((x, i) => { x.disabled = true; if (it.ty === "c") { x.classList.toggle("ok", i === it.k); x.classList.toggle("bad", i === r.given && !r.ok); } });
+    box.querySelectorAll(".chip").forEach((x) => { x.disabled = true; });
+    out.innerHTML = "";
+    out.append(el("div", "flag " + (r.ok ? "ok" : "bad"), r.ok ? "✓ Right!" : "✗ Not quite."));
+    if (!r.ok) {
+      if (r.note) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: "), r.note); out.append(pr); }
+      const a = el("div"); a.append("Answer: ", el("span", "right", answerText(it))); out.append(a);
+      const why = it.ty === "m" ? it.m.why : it.S.rule;
+      if (why) { const w = el("div", "why"); w.append(el("b", "", "Why: "), why); out.append(w); }
+    }
+    foot.innerHTML = ""; foot.append(btn("Next →", next, "btn primary"));
+  };
+  const finish = (r) => { record(r); showRes(r); };
+  // Mam could not be asked: the learner compares their answer with the right one and says.
+  const selfMark = (given) => {
+    out.innerHTML = ""; out.append(el("p", "hint", "Mam could not check this one now. Compare your answer with this one:"));
+    const a = el("div"); a.append(el("span", "right", answerText(it))); out.append(a);
+    foot.innerHTML = ""; foot.append(btn("✓ Mine is right", () => finish({ ok: true, given, self: true })), btn("✗ Mine is different", () => finish({ ok: false, given, self: true })));
+  };
+  const check = async (v, b) => {
+    if (b) b.disabled = true; out.className = "fout"; out.textContent = "Checking…";
+    const r = await checkAnswer(it, v);
+    if (b) b.disabled = false; out.textContent = "";
+    if (!box.isConnected) return;
+    if (r) finish({ ...r, given: v }); else selfMark(v);
+  };
+  if (it.ty === "m") {
+    box.append(el("p", "", "Fix the mistake in this sentence:"));
+    const pEl = el("p", "marked");
+    if (it.at >= 0) pEl.append(it.s.slice(0, it.at), el("mark", "mk", it.m.wrong), it.s.slice(it.at + it.m.wrong.length)); else pEl.append(it.s);
+    box.append(pEl);
+    if (it.m.problem) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: "), it.m.problem); box.append(pr); }
+  }
+  if (it.ty === "c") {
+    box.append(el("p", "hint", "Choose the right answer."), el("p", "q1", it.q.replace("___", "_____")));
+    const opts = el("div", "opts");
+    it.opts.forEach((o, i) => {
+      const b = btn(o, () => finish({ ok: i === it.k, given: i }), "btn opt");
+      inputs.push(b); opts.append(b);
+    });
+    box.append(opts);
+  } else if (it.ty === "o") {
+    const words = it.q.split(/\s*\/\s*/), idx = words.map((_, i) => i);
+    let order = shuffle(idx); if (order.every((x, i) => x === i) && idx.length > 1) order = [...idx.slice(1), idx[0]];
+    const picked = [], line = el("div", "built"), pool = el("div", "tools"), chk = btn("Check", () => check(picked.map((i) => words[i]).join(" "), chk), "btn primary");
+    const draw = () => {
+      line.innerHTML = ""; pool.innerHTML = "";
+      if (res) { line.append(el("span", "", capFirst(String(res.given)))); return; }
+      if (!picked.length) line.append(el("span", "hint", "Tap the words in the right order"));
+      picked.forEach((wi, j) => line.append(btn(words[wi], () => { picked.splice(j, 1); draw(); }, "chip")));
+      order.filter((wi) => !picked.includes(wi)).forEach((wi) => pool.append(btn(words[wi], () => { picked.push(wi); draw(); }, "chip")));
+      chk.disabled = picked.length !== words.length;
+    };
+    box.append(el("p", "hint", "Put the words in order to make a sentence. Tap a word to move it."), line, pool);
+    draw(); if (!res) foot.append(chk);
+  } else if (it.ty !== "c") {
+    let inp, from = "";
+    if (it.ty === "g") { box.append(el("p", "hint", "Write the missing word or words."), el("p", "q1", it.q.replace("___", "_____"))); inp = el("input", "inbox"); inp.type = "text"; inp.autocomplete = "off"; inp.spellcheck = false; inp.setAttribute("autocapitalize", "off"); inp.setAttribute("autocorrect", "off"); inp.setAttribute("aria-label", "The missing words"); }
+    else if (it.ty === "f") { box.append(el("p", "hint", "Correct the sentence. Change only what is wrong."), el("p", "q1", it.q)); inp = answerBox(from = it.q); }
+    else if (it.ty === "t") { const m = it.q.match(/^([^:]+):\s*(.+)$/) || [0, it.q, ""]; const h = el("p", "q1"); h.append(el("b", "hl", m[1] + ": "), m[2]); box.append(h); inp = answerBox(from = m[2].replace(/\s*\([^)]*\)\s*$/, "")); }
+    else inp = answerBox(from = it.s, 3);
+    if (res) inp.value = String(res.given ?? "");
+    const chk = btn("Check", () => {
+      const v = inp.value.trim();
+      if (!v) { out.textContent = "Write your answer first."; return; }
+      if (from && normAns(v, true) === normAns(from, true)) { out.textContent = "Change the sentence first."; return; }
+      check(v, chk);
+    }, "btn primary");
+    if (it.ty === "g") inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); chk.click(); } });
+    inputs.push(inp); box.append(inp); if (!res) foot.append(chk);
+  }
+  if (it.ty === "m" && !res) foot.append(tool("Show the answer", () => finish({ ok: false, given: "" })));
+  box.append(out, foot);
+  if (res) showRes(res);
+}
+
+// ---------- today ----------
+function renderHome() {
+  setTitle("📅 Today");
+  section("").id = "homeStatus";
+  const c = course();
+  if (!c.placed) {
+    const s = section("card now", "Start here");
+    s.append(el("h2", "", "🧭 Find your starting point"), el("p", "", "Likho takes you from your first sentences to the CSS essay, one small step a day. First, a short placement test: 25 quick questions, then a few sentences about yourself. Mam sees what you know already, so your lessons start at the right place."));
+    const ul = el("ul"); ["Every day: a lesson of about 30 minutes with one small skill.", "Then about 30 minutes of extra practice: reading, a diary or your own mistakes.", "A test every week, and the same writing task every month, so you see how you improve."].forEach((x) => ul.append(el("li", "", x))); s.append(ul);
+    s.append(btn("▶ Start the placement test", () => go({ tab: "write", page: "place" }), "btn primary"), tool("Skip it and start from the first lesson", () => { course().placed = { at: Date.now(), skipped: true, known: [] }; putMeta(); render(); }));
+    morePractice();
+    return;
+  }
+  const n = learnedCount(), st = section("card", "Stage 1 of 4 · Correct sentences");
+  st.append(el("h2", "", "Day " + dayNumber()), meter(n / STAGE1.length), el("p", "hint", `${n} of ${STAGE1.length} skills learned` + (streak() ? ` · ${streak()} day${streak() === 1 ? "" : "s"} in a row` : "") + ". A skill is learned when you use it correctly on two different days."));
+  st.append(roadDetails());
+  const d = openDay();
+  if (d?.done) doneCard(d); else lessonCard(d);
+  section("").id = "testStatus";
+  const open = testOf("s1").find((p) => !testDone(p));
+  if (open || weeklyDue()) { const w = section("card", "This week"); w.append(el("h2", "", "🎯 Weekly test"), el("p", "", "10 questions and a short writing task on the skills you learned. 60% or more is a pass."), btn(open ? "Continue the test" : "Start the test", () => startSentTest("s1"), "btn primary")); }
+  const om = openMonthly();
+  if (om || monthlyDue()) { const mc = section("card", "This month"); mc.append(el("h2", "", "🗓️ Monthly writing check"), el("p", "", "The same task every month: " + SAMPLE_TASK + " Then you can see how much better you write."), btn(om ? "Continue writing" : "Start", () => (om ? go({ tab: "write", page: "piece", id: om.id }) : startTask("free", { title: "Monthly check · " + new Date().toLocaleDateString(undefined, { month: "long", year: "numeric" }), prompt: SAMPLE_TASK }, null, { monthly: true })), "btn primary")); }
+  morePractice();
+}
+function meter(f) { const m = el("div", "meter"), b = el("b"); b.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; m.append(b); return m; }
+function roadDetails() {
+  const d = el("details"); d.append(el("summary", "", "🗺️ Your road to the CSS exam"));
+  const ol = el("ol"); ROAD.forEach(([t, when, what], i) => { const li = el("li"); li.append(el("strong", "", t), ` (${when}): ${what}.` + (i ? " Opens after stage " + i + "." : "")); ol.append(li); }); d.append(ol);
+  return d;
+}
+function lessonCard(d) {
+  const S = d ? SKILL[d.skill] : nextSkill(), ck = dueCheckups().length;
+  const c = section("card now", "Today's lesson · about 30 minutes");
+  if (!S && !d && !ck) {
+    c.append(el("h2", "", "🎉 Stage 1 is done!"), el("p", "", "You learned all 25 skills of correct sentences. Stage 2, joining ideas and paragraphs, comes next. Until then, use More practice below: the sentence and paragraph lessons."));
+    return;
+  }
+  c.append(el("h2", "", S ? `${STAGE1.indexOf(S) + 1}. ${S.t}` : "🔁 Check-ups"), el("p", "", S ? S.use : "Today is for check-ups on the skills you learned."));
+  const rvN = d ? d.rv.refs.length : Math.min(5, Math.min(ck, 2) * 2 + dueMistakes().length + (n0() ? 1 : 0));
+  const what = [rvN ? `${rvN} question${rvN === 1 ? "" : "s"} on what you learned before` : "nothing to review yet", "one new skill, with examples", "10 quick questions, checked at once", `${S?.n || 5} sentences with the new skill`, "what you did well, and your biggest mistakes"];
+  const ol = el("ol", "dsteps");
+  DAY_STEPS.forEach((x, i) => { const li = el("li", d && i < d.step ? "done" : d && i === d.step ? "cur" : ""); li.append(el("b", "", (d && i < d.step ? "✓ " : "") + x + ": "), what[i]); ol.append(li); });
+  c.append(ol, btn(d ? "▶ Continue" : "▶ Start today's lesson", () => { if (!openDay()) newDay(); go({ tab: "write", page: "day" }); }, "btn primary"));
+}
+const n0 = () => STAGE1.some((S) => learned(S.id));
+function doneCard(d) {
+  const S = SKILL[d.skill], nx = nextSkill(), c = section("card", "Today's lesson");
+  c.append(el("h2", "", d.passed ? "✓ Done for today" : "Done for today"));
+  c.append(el("p", "", !S ? "You did your check-ups." : d.passed ? (learned(S.id) ? `🎉 You learned ${S.t}.` : `You passed ${S.t} today. Tomorrow Mam checks it again; pass the check-up and you have learned it.`) : `${S.t} is not passed yet, so tomorrow you practise it again.`));
+  c.append(el("p", "hint", "Tomorrow: " + (nx ? nx.t : "check-ups") + "."));
+  const t = el("div", "tools"); t.append(btn("See today's result", () => go({ tab: "write", page: "day" })));
+  if (d.passed && nx) t.append(btn("I have time: learn the next skill now", () => { newDay(true); go({ tab: "write", page: "day" }); }));
+  c.append(t);
+  extraCard();
+}
+// Extra practice, about 30 minutes: one suggestion a day in turn, and the others below it.
+function extraCard() {
+  const ms = liveMistakes(), due = dueMistakes(), opts = [
+    ["📖", "Read and copy the style", "Mam writes a short text. Read it, learn 5 words and 2 patterns from it, then write your own.", () => genModel()],
+    ["📔", "Diary", "Write 6 to 10 sentences about your day. Mam corrects them.", () => startTask("free", { title: "Diary · " + shortDate(Date.now()), prompt: "Write 6 to 10 sentences about your day: what you did, how you felt and what you will do tomorrow." }, null, { diary: true })],
+  ];
+  if (ms.length) opts.push(["🔁", "Your mistakes", due.length ? `Fix ${due.length} of your mistakes again.` : "Learn the rule of your most common mistake, and practise it.", () => (due.length ? startReview() : go({ tab: "mistakes", page: "type", type: typeCounts()[0][0] }))]);
+  const k = dayNumber() % opts.length, [em, name, desc, fn] = opts[k], c = section("card", "Extra practice · about 30 minutes");
+  c.append(el("h2", "", em + " " + name), el("p", "", desc), btn("▶ Start", fn, "btn primary"));
+  const others = el("div", "tools"); others.append(el("span", "hint", "Or:")); opts.forEach((o, i) => { if (i !== k) others.append(tool(o[0] + " " + o[1], o[3])); }); c.append(others);
+  section("").id = "extraStatus";
+}
+const modelPrompt = (topic) => `You are Mam, a kind English writing teacher for ${LEARNER()}. Write a short model text of 70 to 100 words about "${topic}", in ${LEVEL_STYLE[level()]}, that the learner will read and then copy the style of. Use these structures where they fit: ${recentSkills(6).map((S) => S.t).join("; ") || "the present simple"}. Then choose 5 useful words or phrases from it, and 2 sentence patterns from it that the learner can use again.
+Reply with ONLY JSON: {"title": "a short title", "text": "the model text", "words": ["5 useful words or phrases"], "patterns": ["2 sentence patterns, like: I usually … because …"]}`;
+async function genModel() {
+  const topic = MODEL_TOPICS[dayNumber() % MODEL_TOPICS.length];
+  const r = await aiJob("extraStatus", "Mam is writing a text for you…", (signal) => askJson(modelPrompt(topic), { modelTier: "quick", signal }), () => genModel());
+  if (!r) return;
+  if (wordCount(r.text || "") < 30 || !isEnglish(r.text)) { statusIn("extraStatus", "Mam could not write a text this time. Try again.", true); return; }
+  const pats = cleanList(r.patterns, 2);
+  startTask("free", { title: "Copy the style: " + String(r.title || topic), prompt: "Read Mam's text twice. Then write your own text of the same kind about your own life, in 6 to 8 sentences. Use 3 of the useful words and both patterns. Do not copy Mam's sentences.", hint: pats.length ? "Patterns: " + pats.join(" · ") : "", words: cleanList(r.words, 6), passage: String(r.text).trim() }, null, { model: true });
+}
+const weeklyDue = () => STAGE1.filter((S) => passKeys(S.id).some((k) => k !== "placement")).length >= 3 && Date.now() - Math.max(course().placed?.at || 0, ...testOf("s1").filter(testDone).map((p) => p.result?.at || p.updated || 0)) > 6 * DAY;
+const samples = () => state.pieces.filter((p) => !p.deleted && (p.place || p.monthly) && (p.drafts || []).some((d) => d.check)).sort((a, b) => a.created - b.created);
+const openMonthly = () => state.pieces.find((p) => !p.deleted && p.monthly && !lastDraft(p) && Date.now() - p.created < 7 * DAY) || null;
+const monthlyDue = () => Date.now() - Math.max(course().placed?.at || 0, ...samples().map((p) => p.created)) > 28 * DAY;
+// Everything from before the course: the courses, the exam practice, the tests and all the saved writing.
+function morePractice() {
+  const d = el("details", "card"); d.append(el("summary", "", "📚 More practice"));
+  const open = live().find((p) => !lastDraft(p) && !p.skill && wordCount(p.text || p.outline?.text || "") > 3 && Date.now() - p.updated < 7 * DAY);
+  if (open) { d.append(el("div", "lbl", "Continue writing")); d.append(pieceRow(open)); }
+  d.append(el("div", "lbl", "Writing courses"));
+  const path = el("div", "list"); PATH.forEach((k, i) => path.append(row(KINDS[k].em, `${i + 1}. ${KINDS[k].name}`, KINDS[k].desc + " · " + stageText(k), "", () => go({ tab: "write", page: "kind", kind: k })))); d.append(path);
+  d.append(el("div", "lbl", "Exam practice"));
+  const exam = el("div", "list"); EXAM.forEach((k) => { const n = live().filter((p) => p.kind === k).length; exam.append(row(KINDS[k].em, KINDS[k].name, KINDS[k].desc, n ? "✓ " + n : "", () => go({ tab: "write", page: "kind", kind: k }))); });
+  exam.append(row("🎯", "Tests", "Sentence tests, and paragraph, essay, précis and comprehension tests", "", () => go({ tab: "tests", page: "home" }))); d.append(exam);
+  const ps = live();
+  d.append(el("div", "lbl", "Your writing" + (ps.length ? " · " + ps.length : "")));
+  const mine = el("div", "list");
+  if (!ps.length) mine.append(el("p", "hint", "Everything you write is saved here, with Mam's marks, so you can see how you improve."));
+  ps.slice(0, 30).forEach((p) => mine.append(pieceRow(p))); d.append(mine);
+  $("page").append(d);
+}
+
+// ---------- today's lesson, step by step ----------
+function renderDay() {
+  const d = openDay();
+  if (!d) { view = { tab: "write", page: "home" }; renderHome(); return; }
+  const S = SKILL[d.skill];
+  setTitle("📅 " + (S ? S.t : "Check-ups"));
+  backBtn("← Today", { tab: "write", page: "home" });
+  const bar = el("div", "stepper"); bar.setAttribute("aria-label", `Step ${d.step + 1} of 5: ${DAY_STEPS[d.step]}`);
+  DAY_STEPS.forEach((x, i) => bar.append(el("span", i < d.step ? "done" : i === d.step ? "cur" : "", x)));
+  $("page").append(bar);
+  section("").id = "dayStatus";
+  [dayReview, dayLearn, dayPractise, dayWrite, dayResult][d.step](d, S);
+}
+function dayReview(d, S) {
+  const rv = d.rv;
+  if (rv.i >= rv.refs.length) { reviewSummary(d, S); return; }
+  const ref = rv.refs[rv.i], it = itemOf(ref);
+  if (!it) { rv.i++; putMeta(); render(); return; }
+  const c = section("card", `Review · ${rv.i + 1} of ${rv.refs.length}`);
+  c.append(el("div", "tools"));
+  c.lastChild.append(el("span", "type", ref.m ? TYPES[it.m.type] || "Your mistake" : ref.k === "check" ? "Check-up · " + it.S.t : "Old skill · " + it.S.t));
+  drawItem(c, it, rv.res[rv.i], (r) => { rv.res[rv.i] = r; if (it.m) reviewMark(it.m, r.ok); putMeta(); }, () => { rv.i++; putMeta(); render(); $("main").scrollTop = 0; });
+}
+// After the review: a skill whose check-up is all right is learned; a skill missed in two check-ups is taught again.
+function reviewSummary(d, S) {
+  const rv = d.rv;
+  if (!rv.summary) {
+    const by = {}; rv.refs.forEach((r, i) => { if (r.k === "check") (by[r.s] = by[r.s] || []).push(!!rv.res[i]?.ok); });
+    rv.summary = Object.entries(by).map(([s, oks]) => {
+      const rec = skillRec(s), ok = oks.every(Boolean);
+      if (ok) { rec.passes = [...new Set([...rec.passes, d.key])]; rec.fails = 0; return { s, ok }; }
+      rec.fails = (rec.fails || 0) + 1;
+      if (rec.fails >= 2) { rec.passes = []; rec.fails = 0; return { s, ok, again: true }; }
+      return { s, ok };
+    });
+    putMeta();
+  }
+  const right = rv.res.filter((r) => r?.ok).length, c = section("card", "Review done");
+  c.append(el("h2", "", `${right} of ${rv.refs.length} right`));
+  rv.summary.forEach((x) => c.append(el("div", "flag " + (x.ok ? "ok" : "bad"), x.ok ? `🎉 Learned: ${SKILL[x.s].t}` : x.again ? `${SKILL[x.s].t}: missed twice, so Mam teaches it again soon.` : `${SKILL[x.s].t}: not yet. Its check-up comes again tomorrow.`)));
+  c.append(btn(S ? "Next: today's new skill →" : "Finish →", () => stepTo(d, S ? 1 : 4), "btn primary"));
+}
+function skillCard(S, parent) {
+  const c = section("card lesson", null, parent);
+  c.append(el("div", "lbl", `Skill ${STAGE1.indexOf(S) + 1} of ${STAGE1.length}`), el("h2", "", S.t), el("p", "", S.use));
+  const ul = el("ul"); S.points.forEach((x) => ul.append(el("li", "", x))); c.append(ul);
+  c.append(el("div", "lbl", "The pattern"), el("div", "formula", S.form), el("div", "lbl", "Examples"));
+  const ex = el("ul", "ex"); S.ex.forEach((x) => ex.append(marked(x, "li"))); c.append(ex);
+  c.append(el("div", "lbl", "A common mistake")); const wr = el("p"); wr.append(el("s", "", S.w), " → ", el("span", "right", S.r)); c.append(wr);
+  const why = el("p", "why"); why.append(el("b", "", "The rule: "), S.rule); c.append(why);
+  return c;
+}
+function dayLearn(d, S) {
+  skillCard(S);
+  section("card").append(el("p", "hint", "Read it twice. Say the examples aloud. Then practise: 10 quick questions, checked at once."), btn("Next: practise →", () => stepTo(d, 2), "btn primary"));
+}
+function dayPractise(d, S) {
+  const pr = d.pr;
+  if (pr.i >= pr.refs.length) { practiceScore(d, S); return; }
+  const it = itemOf(pr.refs[pr.i]), c = section("card", `Practise · ${pr.i + 1} of ${pr.refs.length}`);
+  c.append(meter(pr.i / pr.refs.length));
+  drawItem(c, it, pr.res[pr.i], (r) => { pr.res[pr.i] = r; if (!r.ok) saveSkillMistake(it, r); putMeta(); }, () => { pr.i++; putMeta(); render(); $("main").scrollTop = 0; });
+  const lk = el("details", "card"); lk.append(el("summary", "", "📖 See the lesson again"), el("div", "formula", S.form)); const w = el("p", "why"); w.append(el("b", "", "The rule: "), S.rule); lk.append(w); $("page").append(lk);
+}
+function practiceScore(d, S) {
+  const pr = d.pr, n = pr.res.filter((r) => r?.ok).length, tot = pr.refs.length, need = passMark(tot);
+  if (pr.scored !== pr.round) { pr.best = Math.max(pr.best || 0, n); pr.scored = pr.round; putMeta(); }
+  const c = section("card", "Practice result"), top = el("div", "scorerow");
+  top.append(el("span", "score", n + "/" + tot)); const tx = el("div"); tx.append(el("strong", "", n >= need ? "✓ Practice passed" : "Not passed yet"), el("div", "when", n >= need ? "Well done! Now use the skill in your own sentences." : `You need ${need} of ${tot}. Practise once more: the questions you missed come back.`)); top.append(tx); c.append(top);
+  const t = el("div", "tools");
+  const again = () => { const wrong = pr.refs.filter((_, i) => !pr.res[i]?.ok).map((r) => r.x), rest = shuffle(S.x.map((_, i) => i).filter((i) => !wrong.includes(i))); Object.assign(pr, { refs: shuffle([...wrong, ...rest].slice(0, 10)).map((x) => ({ s: S.id, x })), i: 0, res: [], round: pr.round + 1 }); stepTo(d, 2); };
+  if (n >= need) t.append(btn("Next: write →", () => stepTo(d, 3), "btn primary"), btn("↻ Practise again", again));
+  else t.append(btn("↻ Practise again", again, "btn primary"), tool("Go on to the writing", () => stepTo(d, 3)));
+  c.append(t);
+}
+function dayWrite(d, S) {
+  const p = d.piece && pieceById(d.piece), dr = p && lastDraft(p), c = section("card", "Write");
+  c.append(el("h2", "", "Use it in your own sentences"), el("p", "", S.task), el("p", "hint", "💡 " + S.hint), el("div", "formula", S.form));
+  if (!p) c.append(btn("✍️ Start writing", () => { const np = startTask("skill", { title: S.t, prompt: S.task, hint: S.hint, n: S.n }, null, { skill: S.id, day: d.key }); d.piece = np.id; putMeta(); }, "btn primary"));
+  else if (!dr) c.append(btn("✍️ Continue writing", () => go({ tab: "write", page: "piece", id: p.id }), "btn primary"));
+  else {
+    const sx = dr.check.structure, ok = p.drafts.some((x) => x.check?.structure?.ok);
+    c.append(el("div", "flag " + (ok ? "ok" : "bad"), `Mam's mark: ${dr.check.score}/10` + (sx ? ` · ${S.t} used correctly in ${sx.used} of ${sx.total} sentences` : "")));
+    const t = el("div", "tools");
+    if (allResolved(dr)) t.append(btn("Next: today's result →", () => stepTo(d, 4), "btn primary"), btn("✍️ Open your writing", () => go({ tab: "write", page: "piece", id: p.id })));
+    else { c.append(el("p", "hint", "Fix your mistakes first. Then you see today's result.")); t.append(btn("✍️ Fix my mistakes", () => go({ tab: "write", page: "piece", id: p.id }), "btn primary")); }
+    c.append(t);
+  }
+  if (!dr) c.append(tool("I can't write today: finish without writing", () => stepTo(d, 4)));
+}
+function dayResult(d, S) {
+  if (!d.done) finishDay(d);
+  const c = section("card", "Today's result");
+  if (!S) { c.append(el("h2", "", "✓ Check-ups done"), btn("Back to Today", () => go({ tab: "write", page: "home" }), "btn primary")); return; }
+  c.append(el("h2", "", d.passed ? (learned(S.id) ? "🎉 Learned: " + S.t : "✓ Day 1 of 2 passed") : "Not passed yet"));
+  c.append(el("p", "", d.passed ? (learned(S.id) ? "You used this skill correctly on two different days." : `Tomorrow Mam checks ${S.t} again in your review. Pass the check-up and you have learned it.`) : `Tomorrow you practise ${S.t} again. That is how everyone learns: one more day makes it stick.`));
+  const need = passMark(d.pr.refs.length), p = d.piece && pieceById(d.piece), drs = p ? p.drafts.filter((x) => x.check) : [], used = drs.some((x) => x.check.structure?.ok), last = drs[drs.length - 1];
+  c.append(el("div", "flag " + (d.pr.best >= need ? "ok" : "bad"), `${d.pr.best >= need ? "✓" : "✗"} Practice: ${d.pr.best} of ${d.pr.refs.length}` + (d.pr.best >= need ? "" : ` (you need ${need})`)));
+  c.append(el("div", "flag " + (used ? "ok" : "bad"), !last ? "✗ Writing: not done" : `${used ? "✓" : "✗"} Writing: ${last.check.score}/10` + (last.check.structure ? `, the skill used correctly in ${last.check.structure.used} of ${last.check.structure.total} sentences` : "")));
+  // the biggest mistakes: the first ones Mam marked in the writing, else the questions missed in practice
+  const big = (drs[0]?.check.mistakes || []).slice(0, 3).map((m) => [m.wrong, m.right, m.problem || m.why]);
+  if (!big.length) d.pr.res.forEach((r, i) => { if (r && !r.ok && big.length < 3) { const it = itemOf(d.pr.refs[i]); if (it) big.push([wrongText(it, r), answerText(it), r.note || S.rule]); } });
+  if (big.length) {
+    c.append(el("div", "lbl", "Your biggest mistakes today"));
+    big.forEach(([w, r, why]) => { const m = el("div", "mrow"), line = el("div"); line.append(el("s", "", w), " → ", el("span", "right", r || "(take it out)")); m.append(line); if (why) m.append(el("small", "", why)); c.append(m); });
+    c.append(el("p", "hint", "They are in your Mistakes list, so you practise them again."));
+  }
+  const nx = nextSkill();
+  c.append(el("p", "hint", "Tomorrow: " + (nx ? nx.t : "check-ups") + "."));
+  const t = el("div", "tools"); t.append(btn("Back to Today", () => go({ tab: "write", page: "home" }), "btn primary"));
+  if (d.passed && nx) t.append(btn("I have time: learn the next skill now", () => { newDay(true); go({ tab: "write", page: "day" }); }));
+  c.append(t);
+}
+
+// ---------- the placement test ----------
+function renderPlace() {
+  const c = course(), pl = c.place;
+  setTitle("🧭 Placement test");
+  backBtn("← Today", { tab: "write", page: "home" });
+  if (c.placed) { placeResult(c.placed); return; }
+  if (!pl) {
+    const s = section("card");
+    s.append(el("h2", "", "🧭 Placement test"), el("p", "", "Part 1: 25 quick questions, one for each skill of Stage 1. Part 2: write 6 to 10 sentences about yourself. Do not guess: if you don't know, choose the answer you think is best. Mam shows the answers at the end."));
+    s.append(btn("▶ Start part 1", () => { course().place = { i: 0, a: [] }; putMeta(); render(); }, "btn primary"));
+    return;
+  }
+  if (pl.i < PLACE.length) {
+    const [id, xi] = PLACE[pl.i], [, q, a] = SKILL[id].x[xi], s = section("card", `Part 1 · question ${pl.i + 1} of ${PLACE.length}`);
+    s.append(meter(pl.i / PLACE.length), el("p", "q1", q.replace("___", "_____")));
+    const opts = el("div", "opts"); a.split("|").forEach((o, i) => opts.append(btn(o, () => { pl.a[pl.i] = i; pl.i++; putMeta(); render(); }, "btn opt"))); s.append(opts);
+    if (pl.i) s.append(tool("← Back", () => { pl.i--; putMeta(); render(); }));
+    return;
+  }
+  const p = pl.piece && pieceById(pl.piece), s = section("card", "Part 2 · Write");
+  s.append(el("h2", "", "Write about yourself"), el("p", "", SAMPLE_TASK + " Do your best: Mam only wants to see what you can do now."));
+  section("").id = "placeStatus";
+  if (!p) s.append(btn("✍️ Start writing", () => { const np = startTask("free", { title: "Placement: about me", prompt: SAMPLE_TASK }, null, { place: true }); pl.piece = np.id; putMeta(); }, "btn primary"));
+  else if (!lastDraft(p)) s.append(btn("✍️ Continue writing", () => go({ tab: "write", page: "piece", id: p.id }), "btn primary"));
+  else s.append(btn("See my result →", finishPlacement, "btn primary"));
+  s.append(tool("Skip the writing and see my result", finishPlacement));
+}
+// Known: the question was right and the writing showed no mistakes of that kind. Known skills are checked again in the daily reviews.
+function finishPlacement() {
+  const c = course(), pl = c.place || { a: [] }, p = pl.piece && pieceById(pl.piece), d = p && (p.drafts || []).find((x) => x.check);
+  const types = {}; (d?.check.mistakes || []).forEach((m) => { types[m.type] = (types[m.type] || 0) + 1; });
+  const weak = new Set(Object.keys(types).flatMap((t) => PLACE_MAP[t] || []));
+  const right = PLACE.filter(([id, xi], i) => pl.a[i] === SKILL[id].x[xi][3]), known = right.filter(([id]) => !weak.has(id)).map(([id]) => id);
+  known.forEach((id) => { skillRec(id).passes = ["placement"]; });
+  const per100 = d ? (d.check.mistakes.length / Math.max(1, d.words)) * 100 : null;
+  const lv = right.length >= 23 && per100 != null && per100 < 4 ? "B1" : right.length >= 18 && (per100 == null || per100 < 8) ? "A2" : "A1";
+  c.placed = { at: Date.now(), right: right.length, total: PLACE.length, known, types: Object.entries(types).sort((a, b) => b[1] - a[1]).slice(0, 3), per100: per100 == null ? null : Math.round(per100 * 10) / 10, level: lv, piece: p?.id || null };
+  state.settings.level = lv; putMeta();
+  go({ tab: "write", page: "place" });
+}
+function placeResult(r) {
+  const c = section("card now", "Your result");
+  if (r.skipped) { c.append(el("h2", "", "You skipped the placement test"), el("p", "", "Your lessons start from the first skill.")); c.append(btn("Back to Today", () => go({ tab: "write", page: "home" }), "btn primary")); return; }
+  c.append(el("h2", "", `Your level: ${r.level} · ${LEVELS[r.level]}`), el("p", "", `Part 1: ${r.right} of ${r.total} right.` + (r.per100 != null ? ` Part 2: about ${r.per100} mistakes in every 100 words.` : "")));
+  if (r.types.length) { c.append(el("div", "lbl", "Your most common mistakes")); const ul = el("ul"); r.types.forEach(([t, n]) => ul.append(el("li", "", `${TYPES[t] || t}: ${n}`))); c.append(ul); }
+  if (r.known.length) { c.append(el("div", "lbl", `You know already · ${r.known.length} of ${STAGE1.length} skills`)); const w = el("div", "tools"); r.known.forEach((id) => w.append(el("span", "chip2", SKILL[id].t))); c.append(w, el("p", "hint", "Mam checks these again in your daily reviews, so you are sure of them.")); }
+  const nx = nextSkill();
+  c.append(el("p", "", nx ? `You start with: ${nx.t}.` : "You know every skill of Stage 1. Your daily reviews check them again."), el("p", "hint", "You can change your level in Settings (⚙) at any time."));
+  c.append(btn("▶ Go to today's lesson", () => go({ tab: "write", page: "home" }), "btn primary"));
+  const ans = el("details", "card"); ans.append(el("summary", "", "See the answers of part 1"));
+  PLACE.forEach(([id, xi], i) => { const [, q, a, k] = SKILL[id].x[xi], o = a.split("|"), mine = course().place?.a?.[i], m = el("div", "mrow"); m.append(el("div", "", q.replace("___", "_____"))); m.append(el("div", "flag " + (mine === k ? "ok" : "bad"), (mine === k ? "✓ " : "✗ ") + o[k] + (mine !== k && mine != null ? " (you chose: " + o[mine] + ")" : ""))); ans.append(m); });
+  $("page").append(ans);
+}
+
 // ---------- progress: Mam's marks over time ----------
 // The writing score is the average mark of the newest first drafts: a first draft shows what the learner writes alone.
 function allChecks() {
@@ -1925,12 +2602,19 @@ function allChecks() {
 function renderProgress() {
   setTitle("📈 Progress");
   const all = allChecks(), firsts = all.filter((x) => x.first);
+  if (course().placed) stageProgress();
   if (!all.length) {
     const c = section("card", "Your writing progress");
-    c.append(el("h2", "", "Nothing checked yet"), el("p", "hint", "When Mam checks your writing, your marks, your most common mistakes and your words each day show here."), btn("✍️ Start writing", () => go({ tab: "write", page: "home" }), "btn primary"));
+    c.append(el("h2", "", "Nothing checked yet"), el("p", "hint", "When Mam checks your writing, your marks, your most common mistakes and your words each day show here."), btn("📅 Go to today's lesson", () => go({ tab: "write", page: "home" }), "btn primary"));
     return;
   }
-  const pc = section("card", "Your path");
+  const sm = samples();
+  if (sm.length) {
+    const c = section("card", "Your monthly writing checks");
+    sm.forEach((p) => { const d = p.drafts.find((x) => x.check), r = el("div", "parttop"); r.append(el("strong", "", shortDate(p.created) + (p.place ? " · placement" : "")), el("span", "", `${d.check.score}/10 · ${(d.check.mistakes.length / Math.max(1, d.words) * 100).toFixed(1)} mistakes per 100 words`)); c.append(r); });
+    c.append(el("p", "hint", "The same task every month: fewer mistakes per 100 words means you write more correctly."));
+  }
+  const pc = section("card", "Writing courses (more practice)");
   PATH.forEach((k, i) => {
     const pr = el("div", "part"), top = el("div", "parttop"), total = k === "free" ? 0 : LESSONS[k].length, done = k === "free" ? 0 : doneCount(k);
     top.append(el("strong", "", `${i + 1}. ${KINDS[k].name}`), el("span", "", k === "free" ? stageText(k) : `${done} of ${total}`));
@@ -1964,6 +2648,15 @@ function renderProgress() {
   const tbl = el("table"); tbl.innerHTML = "<thead><tr><th>Date</th><th>Piece</th><th>Mark</th><th>Words</th><th>Mistakes</th></tr></thead>";
   const tb = el("tbody"); all.slice(-15).reverse().forEach((x) => { const tr = el("tr"); [shortDate(x.at), x.p.task.title.slice(0, 26) + (x.first ? "" : " (again)"), x.d.check.score + "/10", x.d.words, x.d.check.mistakes.length].forEach((v) => tr.append(el("td", "", String(v)))); tb.append(tr); });
   tbl.append(tb); tc.append(tbl); section("card").append(tc);
+}
+function stageProgress() {
+  const n = learnedCount(), c = section("card", "Stage 1 of 4 · Correct sentences"), big = el("div", "hero", String(n));
+  big.append(el("small", "", ` / ${STAGE1.length} skills learned`)); c.append(big, meter(n / STAGE1.length));
+  const grid = el("div", "metrics");
+  [[daysPractised().length, "days practised"], [streak(), "days in a row"], [STAGE1.filter((S) => passKeys(S.id).length === 1).length, "skills waiting for a check-up"], [testOf("s1").filter(testDone).length, "weekly tests done"]].forEach(([v, l]) => { const m = el("div", "metric"); m.append(el("b", "", String(v)), el("span", "", l)); grid.append(m); });
+  c.append(grid, roadDetails());
+  const d = el("details"); d.append(el("summary", "", "The 25 skills"));
+  const ol = el("ol"); STAGE1.forEach((S) => ol.append(el("li", learned(S.id) ? "" : "hint", (learned(S.id) ? "✓ " : passKeys(S.id).length ? "½ " : "") + S.t))); d.append(ol); c.append(d);
 }
 const shortDay = (k) => (k === today() ? "Today" : new Date(k + "T12:00:00").toLocaleDateString(undefined, { day: "numeric", month: "short" }));
 // One series, so no legend: 2px line, dots with a surface ring, hairline grid, a tap shows the piece.
@@ -2017,11 +2710,13 @@ function barChart(box, bars) {
 
 // ---------- tabs, settings ----------
 function renderTabs() {
-  document.querySelectorAll("#tabbar button").forEach((b) => { if (b.dataset.tab === view.tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const cur = view.tab === "tests" ? "write" : view.tab; // the tests open from Today
+  document.querySelectorAll("#tabbar button").forEach((b) => { if (b.dataset.tab === cur) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   const due = dueMistakes().length, badge = $("mistBadge"); badge.hidden = !due; badge.textContent = due > 99 ? "99+" : String(due);
 }
 // A tab opens where it was left; tapping the tab you are on goes back to its first page.
 function goTab(tab) {
+  if (tab === "write" && view.tab === "tests") { go({ tab, page: "home" }); return; }
   if (tab === view.tab) { if (view.page !== "home") go({ tab, page: "home" }); return; }
   go(okView(tabView[tab] || { tab, page: "home" }));
 }

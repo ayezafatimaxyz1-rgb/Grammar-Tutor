@@ -43,19 +43,21 @@ const fakes = () => {
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
   const gem = [];
-  await p.route("https://generativelanguage.googleapis.com/**", async (r) => {
+  const gemini = async (r) => {
     const u = r.request().url(), body = JSON.parse(r.request().postData());
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
     gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
     const text = /checking writing by a learner/.test(prompt) ? JSON.stringify({ score: 5, areas: { task: 6, organisation: 5, grammar: 4, vocabulary: 5 }, mistakes: [{ wrong: "I go to market", right: "I went to the market", hint: "When did it happen?", why: "Use the past tense.", type: "tense" }], good: ["Clear ideas."], next: ["Add an example."], better: "Yesterday I went to the market with my brother." })
       : /is correcting one mistake/.test(prompt) ? JSON.stringify({ ok: false, note: "Use the past tense." })
+      : /is practising one skill/.test(prompt) ? JSON.stringify({ ok: true, note: "" })
       : /These are photos of handwriting/.test(prompt) ? JSON.stringify({ text: "I like my city.", unclear: [], handwriting: "Your handwriting is easy to read." })
       : "{}";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
-  });
+  };
+  await p.route("https://generativelanguage.googleapis.com/**", gemini);
   await p.goto(url); await p.waitForTimeout(500);
   check("the key saved in Bolo English works here too: no key needed", !(await p.textContent("#homeStatus")).includes("Gemini key"));
-  await p.click(".next >> text=✍️ Start writing"); await p.waitForTimeout(300); // the first step: free writing
+  await p.click('summary:has-text("More practice")'); await p.click('.trow:has-text("1. Free writing")'); await p.waitForTimeout(200); await p.click("text=✍️ Start writing"); await p.waitForTimeout(300);
   await p.click("#dictBtn"); await p.waitForTimeout(500);
   check("🎙️ Speak writes what I say into the answer sheet", (await p.inputValue("#draft")) === "I went to the market with my brother");
   await p.click("#dictBtn"); await p.waitForTimeout(100);
@@ -72,6 +74,19 @@ const fakes = () => {
   const hw = gem.find((g) => /These are photos of handwriting/.test(g.prompt));
   check("a photo of handwriting goes to Gemini as a smaller JPEG", !!hw && hw.imgs.length === 1 && hw.imgs[0] === "image/jpeg" && (await p.inputValue("#draft")).endsWith("I like my city."));
   check("everything is kept on this phone", await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).pieces.some((x) => x.kind === "free" && x.drafts.length === 1)));
+  // today's lesson: an answer different from the expected one is judged by the fast model too
+  const today = new Date().toLocaleDateString("en-CA");
+  // a fresh page, so the old one's last save does not overwrite the course set here
+  await p.close();
+  const p3 = await ctx.newPage(); p3.on("pageerror", (e) => errs.push(e.message));
+  await p3.route("https://fonts.googleapis.com/**", (r) => r.abort()); await p3.route("https://generativelanguage.googleapis.com/**", gemini);
+  await p3.goto("file://" + path.join(root, "docs/likho/manifest.webmanifest"));
+  await p3.evaluate((d) => { const s = JSON.parse(localStorage.getItem("likho.v1")); s.settings.course = { placed: { at: Date.now(), skipped: true, known: [] }, skills: {}, day: { key: d, at: Date.now(), n: 1, skill: "order", step: 2, rv: { refs: [], i: 0, res: [] }, pr: { refs: [{ s: "order", x: 0 }], i: 0, res: [], best: 0, round: 1 }, piece: null, done: 0 } }; s.settings.view = { tab: "write", page: "day" }; localStorage.setItem("likho.v1", JSON.stringify(s)); }, today);
+  await p3.goto(url); await p3.waitForTimeout(600);
+  for (const w of ["every day", "I", "drink", "tea"]) await p3.click(`div.tools > .chip:text-is("${w}")`);
+  await p3.click('#page .card button:has-text("Check")'); await p3.waitForTimeout(500);
+  const pj = gem.find((g) => /is practising one skill/.test(g.prompt));
+  check("today's lesson: another word order goes to Flash-Lite, and is accepted", !!pj && pj.model === "gemini-2.5-flash-lite" && pj.think?.thinkingBudget === 0 && (await p3.textContent(".card .fout")).includes("✓ Right!"));
   check("no page errors", errs.length === 0, errs.join(" ; "));
   await b.close();
   const failed = results.filter((x) => !x).length;

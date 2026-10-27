@@ -28,21 +28,24 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   const txt = () => p.textContent("#page");
   const calls = (re) => p.evaluate((src) => window.__calls.filter((c) => new RegExp(src).test(c.prompt)), re.source);
   const store = () => p.evaluate(() => window.__store["data/users/u_test"]);
-  const kind = async (name) => { await p.click('#tabbar [data-tab="write"]'); await wait(150); if (!(await p.$('.trow:has-text("' + name + '")'))) { await p.click('#tabbar [data-tab="write"]'); await wait(150); } await p.click('.list .trow:has-text("' + name + '")'); await wait(250); };
+  // the courses are under More practice on the Today page
+  const more = async (q = p) => { await q.click('#tabbar [data-tab="write"]'); await q.waitForTimeout(150); if (!(await q.$('summary:has-text("More practice")'))) { await q.click('#tabbar [data-tab="write"]'); await q.waitForTimeout(150); } if (!(await q.$('details[open] > summary:has-text("More practice")'))) await q.click('summary:has-text("More practice")'); await q.waitForTimeout(100); };
+  const kind = async (name) => { await more(); await p.click('.list .trow:has-text("' + name + '")'); await wait(250); };
+  const tests = async () => { await more(); await p.click('.trow:has(strong:text-is("Tests"))'); await wait(300); };
   const shot = (n) => p.screenshot({ path: path.join(process.env.SHOTS || "/tmp", "likho-" + n + ".png") }).catch(() => {});
 
-  // ---- home: the path ----
+  // ---- Today, and More practice: the courses ----
+  check("three tabs (Today, Mistakes, Progress), Today is open, and 1 mistake waits for review", (await p.$$("#tabbar button")).length === 3 && (await p.textContent("#pageTitle")).includes("Today") && (await p.getAttribute('#tabbar [data-tab="write"]', "aria-current")) === "page" && (await p.textContent("#mistBadge")) === "1");
+  await more();
   let t = await txt();
-  check("opens on Write: the next step is free writing, then the 4-step path and exam practice", (await p.textContent("#pageTitle")).includes("Write") && t.includes("Next step · 1. Free writing") && t.includes("1. Free writing") && t.includes("2. Sentences") && t.includes("3. Paragraphs") && t.includes("4. Essays") && t.includes("Exam practice") && (await p.$$(".list .trow")).length === 6);
+  check("More practice: the 4-step path, exam practice and the tests", t.includes("1. Free writing") && t.includes("2. Sentences") && t.includes("3. Paragraphs") && t.includes("4. Essays") && t.includes("Exam practice") && (await p.$$(".list .trow")).length === 7);
   check("the later steps are locked until the one before is finished", t.includes("🔒 opens after free writing") && t.includes("🔒 opens after sentences") && t.includes("🔒 opens after paragraphs"));
-  check("four tabs (Write, Tests, Mistakes, Progress), Write is open, and 1 mistake waits for review", (await p.$$("#tabbar button")).length === 4 && (await p.getAttribute('#tabbar [data-tab="write"]', "aria-current")) === "page" && (await p.textContent("#mistBadge")) === "1");
 
   await kind("2. Sentences");
   check("Sentences open only after the first free writing", (await txt()).includes("🔒 Not open yet") && (await txt()).includes("First write one free writing piece") && (await p.$$(".list .trow")).length === 0);
-  await p.click('#tabbar [data-tab="write"]'); await wait(200);
 
   // ---- 1. free writing: grammar corrections first ----
-  await p.click(".next >> text=✍️ Start writing"); await wait(300);
+  await kind("1. Free writing"); await p.click("text=✍️ Start writing"); await wait(300);
   check("free writing opens a ruled answer sheet, with no goal", (await p.textContent("#pageTitle")).includes("Free writing") && !!(await p.$("textarea.ruled#draft")) && (await p.textContent("#count")) === "0 words · 0 sentences");
   const S1 = "every morning i wake up at 7. I go to college by bus yesterday. My mother make breakfast for me. I like it very much.";
   await p.fill("#draft", S1); await wait(100);
@@ -85,9 +88,9 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("the second draft gets new marks, shown beside the first", (await p.textContent(".score")) === "8/10" && t.includes("Draft 1: 6") && t.includes("Draft 2: 8") && t.includes("↑ 2 better") && t.includes("Mam found no mistakes"));
 
   // ---- 2. sentences: one lesson at a time, from basic to advanced ----
-  await p.click('#tabbar [data-tab="write"]'); await wait(200);
+  await more();
   t = await txt();
-  check("after free writing, the next step is the first sentence lesson", t.includes("Next step · 2. Sentences") && t.includes("A simple sentence") && t.includes("1 checked") && t.includes("0 of 32 done"));
+  check("after free writing, the sentence lessons open", t.includes("1 checked") && t.includes("0 of 32 done") && !t.includes("🔒 opens after free writing"));
   await kind("2. Sentences");
   t = await txt();
   check("Sentences shows only the lesson for now and the name of the next one", t.includes("Your lesson now · 1 of 32 · stage 1, Basic") && t.includes("A simple sentence") && t.includes("🔒 Next: Present simple. It opens when you pass this lesson.") && t.includes("After that, 30 more, one by one.") && !t.includes("Regrets") && (await p.$$(".list .trow")).length === 0);
@@ -200,8 +203,8 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await p.click('#tabbar [data-tab="write"]'); await wait(200);
   await p.click('#tabbar [data-tab="write"]'); await wait(200); // the tab first opens where I left it, a second tap goes to its first page
   await p.click("#setBtn"); await p.selectOption("#lvSel", "B1"); await p.click("#setSheet [data-close].btn.primary"); await wait(300);
-  t = await txt();
-  check("the level is saved, and the path still starts with the next lesson", t.includes("Next step · 2. Sentences") && await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).settings.level === "B1"));
+  await more(); t = await txt();
+  check("the level is saved, and the sentence course keeps its place", t.includes("1 of 32 done") && await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).settings.level === "B1"));
   check("my writing list shows each piece with its last mark", t.includes("Free writing · last mark 8/10") && t.includes("A simple sentence · last mark 6/10"));
   check("Bolo English is one tap away in Settings", (await p.getAttribute("#boloLink", "href")).includes("claude.ai/artifact/"));
 
@@ -254,9 +257,9 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("the example can be hidden, to write my own", (await p.textContent("#exampleBox")) === "");
 
   // ---- tests ----
-  await p.click('#tabbar [data-tab="tests"]'); await wait(300);
+  await tests();
   t = await txt();
-  check("Tests: five sentence tests and four writing tests", (await p.$$(".list .trow")).length === 9 && t.includes("Past test") && t.includes("All tenses test") && t.includes("Précis test") && t.includes("marked out of 20"));
+  check("Tests: six sentence tests (the weekly Stage 1 test too) and four writing tests", (await p.$$(".list .trow")).length === 10 && t.includes("Weekly test: Stage 1") && t.includes("Past test") && t.includes("All tenses test") && t.includes("Précis test") && t.includes("marked out of 20"));
   await p.click('.list .trow:has-text("Past test")'); await wait(600);
   const tg2 = (await calls(/making a short test for/)).pop();
   t = await txt();
@@ -270,8 +273,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await wait(1000);
   const tm = Object.values(await store()).filter((d) => d?.kind === "test" && d.wrong);
   check("the wrong answers go to my mistakes for review", tm.length === 3 && tm.some((m) => m.wrong === "I wish I studied harder last year." && m.right === "I wish I had studied harder last year."));
-  await p.click('#tabbar [data-tab="tests"]'); await wait(200);
-  if (!(await p.$(".list .trow"))) { await p.click('#tabbar [data-tab="tests"]'); await wait(200); }
+  await tests();
   t = await txt();
   check("the result is kept, with my best score", t.includes("Past test") && t.includes("best 75%") && t.includes("75% · passed"));
   await p.click('.list .trow:has-text("Paragraph test")'); await wait(400);
@@ -298,12 +300,12 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
     return q;
   };
   const qt = (q) => q.textContent("#page");
-  const qkind = async (q, name) => { await q.click('#tabbar [data-tab="write"]'); await q.waitForTimeout(150); if (!(await q.$('.trow:has-text("' + name + '")'))) { await q.click('#tabbar [data-tab="write"]'); await q.waitForTimeout(150); } await q.click('.list .trow:has-text("' + name + '")'); await q.waitForTimeout(250); };
+  const qkind = async (q, name) => { await more(q); await q.click('.list .trow:has-text("' + name + '")'); await q.waitForTimeout(250); };
   const qcalls = (q, re) => q.evaluate((src) => window.__calls.filter((c) => new RegExp(src).test(c.prompt)), re.source);
 
   let q = await openApp({ ...freeDone, ...finished("sent", SENT_IDS), ...finished("para", PARA_IDS.slice(0, 4)) });
-  t = await qt(q);
-  check("after every sentence lesson, the next step is the paragraph lesson for now", t.includes("Next step · 3. Paragraphs") && t.includes("Objective paragraph") && t.includes("32 of 32 done") && t.includes("4 of 12 done") && t.includes("🔒 opens after paragraphs"));
+  await more(q); t = await qt(q);
+  check("after every sentence lesson, the paragraph lessons open", t.includes("32 of 32 done") && t.includes("4 of 12 done") && t.includes("🔒 opens after paragraphs"));
   await qkind(q, "3. Paragraphs");
   t = await qt(q);
   check("Paragraphs: one kind at a time, from narrative to argumentative", t.includes("Your lesson now · 5 of 12") && t.includes("Objective paragraph") && t.includes("🔒 Next: Expository paragraph") && t.includes("✅ Lessons you finished · 4") && !t.includes("Argumentative paragraph"));
