@@ -883,9 +883,11 @@ function parseLoose(t) {
 }
 const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
-// "quick" jobs use the fast Flash-Lite model without thinking; checking writing uses Flash.
+// "quick" jobs use the fast Flash-Lite model without thinking; checking writing uses Flash with a little thinking, which is
+// careful enough for a learner's writing and much faster than Flash's default amount.
 const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
 const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
+const THINK_LOW = { level: { thinkingLevel: "low" }, budget: { thinkingBudget: 1024 }, none: null };
 const thinkMode = (cfg, model) => cfg.think?.[model] || (/gemini-2\./.test(model) ? "budget" : "level");
 function geminiAI() {
   const cfg = gget(); if (!cfg?.key) return null;
@@ -894,8 +896,8 @@ function geminiAI() {
     const contents = [{ role: "user", parts: [{ text: String(input) }] }];
     const imgs = opts.images ? [].concat(opts.images) : [];
     for (const b of imgs) contents[0].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
-    const tm = opts.modelTier === "quick" ? thinkMode(cfg, model) : "none";
-    const body = { contents, generationConfig: { temperature: 0.4, ...(json ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
+    const tm = thinkMode(cfg, model), think = (opts.modelTier === "quick" ? THINK_OFF : THINK_LOW)[tm];
+    const body = { contents, generationConfig: { temperature: 0.4, ...(json ? { responseMimeType: "application/json" } : {}), ...(think ? { thinkingConfig: think } : {}) } };
     let res;
     try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
     catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
@@ -936,7 +938,39 @@ const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
   const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
   return parseLoose(text);
 });
-const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); return sample; });
+// ---------- leaving the app for a moment ----------
+// The phone pauses a page in the background, and a call to Mam on its way can break. Then Mam asks again as soon as the
+// learner is back, and the time spent in another app does not count towards the time limits.
+let hiddenAt = 0, shownAt = Date.now();
+document.addEventListener("visibilitychange", () => { if (document.hidden) hiddenAt = Date.now(); else shownAt = Date.now(); });
+const whenVisible = () => new Promise((ok) => { if (!document.hidden) { ok(); return; } const f = () => { if (!document.hidden) { document.removeEventListener("visibilitychange", f); ok(); } }; document.addEventListener("visibilitychange", f); });
+const awayFrom = (t0) => document.hidden || hiddenAt >= t0;
+// A time limit that waits while the learner is away, with 30 more seconds after they come back. It returns a function that cancels it.
+function deadline(ms, fn) {
+  let t = setTimeout(function tick() { const back = Date.now() - shownAt; if (document.hidden || back < 30000) t = setTimeout(tick, document.hidden ? 5000 : 30000 - back); else fn(); }, ms);
+  return () => clearTimeout(t);
+}
+const NOT_AGAIN = new Set(["bad_key", "quota", "not_granted", "rate_limited", "queue_overflow", "session_expired", "no_images", "refused", "invalid_request", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function keepGoing(s) {
+  if (!s) return s;
+  const again = (fn) => async (input, opts) => {
+    for (let i = 0; ; i++) {
+      const t0 = Date.now();
+      try { return await fn(input, opts); }
+      catch (e) {
+        if (i >= 2 || opts?.signal?.aborted || NOT_AGAIN.has(e?.code) || !awayFrom(t0)) throw e;
+        dbg("again_after_away", { code: String(e?.code || "") });
+        await whenVisible();
+      }
+    }
+  };
+  const w = again((i, o) => s(i, o));
+  if (s.json) w.json = again((i, o) => s.json(i, o));
+  if (s.limits) w.limits = (...a) => s.limits(...a);
+  if (s.models) w.models = (...a) => s.models(...a);
+  return w;
+}
+const aiReady = use("sample").then((s) => { sample = keepGoing(s || (inClaude ? null : geminiAI())); return sample; });
 const noAI = () => (inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.");
 function errText(e) {
   switch (e?.code) {
@@ -976,16 +1010,17 @@ async function aiJob(statusId, msg, fn, retry) {
   if (job) { toast("Mam is still busy. Wait a moment."); return null; }
   await aiReady;
   if (!sample) { statusIn(statusId, noAI(), true); return null; }
-  const ctl = new AbortController(); job = ctl;
-  let timedOut = false; const t = setTimeout(() => { timedOut = true; ctl.abort(); }, 180000);
+  const ctl = new AbortController(), t0 = Date.now(); job = ctl;
+  let timedOut = false; const stop = deadline(180000, () => { timedOut = true; ctl.abort(); });
   statusIn(statusId, msg, false, () => ctl.abort());
-  try { const r = await fn(ctl.signal); statusIn(statusId, ""); return r; }
+  const clock = setInterval(() => { const sp = $(statusId)?.querySelector(".banner span"), n = Math.round((Date.now() - t0) / 1000); if (sp && n >= 3) sp.textContent = msg + " " + n + " s" + (awayFrom(t0) ? " · Mam goes on while you are away." : ""); }, 1000);
+  try { const r = await fn(ctl.signal); statusIn(statusId, ""); if (hiddenAt >= t0) whenVisible().then(() => toast("✓ Mam finished while you were away")); return r; }
   catch (e) {
     dbg("ai_error", { code: String(e?.code || "none"), msg: String(e?.message || "").slice(0, 160) });
     if (e?.code === "not_granted" && retry) statusIn(statusId, errText(e), true, null, allowAction(retry));
     else statusIn(statusId, timedOut ? errText({ code: "timeout" }) : e?.code === "cancelled" ? "Stopped." : errText(e), true);
     return null;
-  } finally { clearTimeout(t); if (job === ctl) job = null; }
+  } finally { stop(); clearInterval(clock); if (job === ctl) job = null; }
 }
 // Photos are made smaller first (sharp enough for handwriting); canvases are freed at once, as iOS runs out of canvas memory.
 const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
@@ -1644,8 +1679,10 @@ async function checkPiece(p) {
   stopDictation();
   const b = $("checkBtn"); if (b) b.disabled = true;
   const long = wordCount(text) > 300;
+  setPending({ kind: "check", id: p.id, text });
   const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : "Mam is checking your writing…" + (long ? " A long piece can take a minute or two." : ""), (signal) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: "default", signal }), () => checkPiece(p));
   if ($("checkBtn")) $("checkBtn").disabled = false;
+  setPending(null);
   if (!r) return;
   if (outline) p.outline.check = cleanOutline(r);
   else {
@@ -1863,9 +1900,9 @@ function sentenceOf(text, at, len) {
 }
 async function judge(m, sentence, fix, whole) {
   await aiReady; if (!sample) return null;
-  const c = new AbortController(), t = setTimeout(() => c.abort(), 45000);
+  const c = new AbortController(), stop = deadline(45000, () => c.abort());
   try { const r = await askJson(judgePrompt(m, sentence || m.wrong, fix, whole), { modelTier: "quick", signal: c.signal }); return { ok: r?.ok === true, note: isEnglish(r?.note) ? String(r.note) : "" }; }
-  catch (e) { dbg("judge_error", { code: String(e?.code || "") }); return null; } finally { clearTimeout(t); }
+  catch (e) { dbg("judge_error", { code: String(e?.code || "") }); return null; } finally { stop(); }
 }
 async function tryFix(p, d, i, value, out, b) {
   const m = d.check.mistakes[i], f = (d.fixes[i] = d.fixes[i] || { tries: 0 }), v = value.trim(), exact = EXACT.has(m.type);
@@ -2246,9 +2283,9 @@ async function checkAnswer(it, v) {
   if (it.ans.some((a) => normAns(a, exact) === normAns(v, exact) || (it.ty === "g" && normAns(fillGap(it.q, a), exact) === normAns(v, exact)))) return { ok: true };
   if (exact || it.ty === "g") return { ok: false };
   await aiReady; if (!sample) return null;
-  const c = new AbortController(), t = setTimeout(() => c.abort(), 45000);
+  const c = new AbortController(), stop = deadline(45000, () => c.abort());
   try { const r = await askJson(practicePrompt(it, v), { modelTier: "quick", signal: c.signal }); return { ok: r?.ok === true, note: r?.ok === true || !isEnglish(r?.note) ? "" : String(r.note) }; }
-  catch (e) { dbg("practice_error", { code: String(e?.code || "") }); return null; } finally { clearTimeout(t); }
+  catch (e) { dbg("practice_error", { code: String(e?.code || "") }); return null; } finally { stop(); }
 }
 // What the learner's wrong answer says, as a sentence.
 const wrongText = (it, r) => (it.ty === "c" ? (it.q.includes("___") ? fillGap(it.q, it.opts[r.given]) : it.opts[r.given]) : it.ty === "g" ? fillGap(it.q, String(r.given)) : it.ty === "f" ? it.q : String(r.given || ""));
@@ -2634,7 +2671,9 @@ const studyPrompt = (title) => `You are Mam, a kind English teacher, preparing s
 Reply with ONLY JSON: {"title": "a short title", "emoji": "one emoji", "read": "a clear text of about ${PASSAGE_WORDS[level()]} words about the topic, in 2 or 3 paragraphs, with a blank line between paragraphs", "facts": ["5 key facts or ideas, one short sentence each"], "words": [{"word": "a useful word or phrase for writing about this topic", "meaning": "its meaning in simple English", "example": "a short example sentence about the topic"}] (8), "sides": "the question people argue about, like: Is social media good or bad for young people?", "for": ["2 or 3 points for one side"], "against": ["2 or 3 points for the other side"], "css": "one sentence: where this topic helps in the CSS exam", "quiz": [{"q": "a question about the text", "options": ["3 short answers"], "answer": the number of the right answer, counted from 0}] (3)}`;
 async function studyTopic(title, em, week, statusId) {
   if (!title) return;
+  setPending({ kind: "study", title, em, week });
   const r = await aiJob(statusId, "Mam is writing your study notes… this can take up to a minute.", (signal) => askJson(studyPrompt(title), { modelTier: "default", signal }), () => studyTopic(title, em, week, statusId));
+  setPending(null);
   if (!r) return;
   const words = (Array.isArray(r.words) ? r.words : []).filter((w) => w?.word && w?.meaning && isEnglish(w.word + w.meaning + (w.example || ""))).slice(0, 10).map((w) => ({ word: String(w.word), meaning: String(w.meaning), example: String(w.example || "") }));
   const quiz = (Array.isArray(r.quiz) ? r.quiz : []).map((x) => ({ q: String(x?.q || ""), o: arr(x?.options, 4), a: Number(x?.answer) })).filter((x) => x.q && isEnglish(x.q + x.o.join("")) && x.o.length >= 2 && x.a >= 0 && x.a < x.o.length).slice(0, 3);
@@ -2868,7 +2907,7 @@ if (!inClaude) {
     const key = (String(rawKey || "").match(KEY_RE) || [])[0] || String(rawKey || "").trim();
     if (!key || keyBusy) return;
     keyBusy = true; $("keyStatus").textContent = "Checking your key…";
-    try { saveG({ key, ...chooseModels(await listModels(key)) }); sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done."; document.querySelectorAll("#homeStatus .banner").forEach((x) => x.remove()); }
+    try { saveG({ key, ...chooseModels(await listModels(key)) }); sample = keepGoing(geminiAI()); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done."; document.querySelectorAll("#homeStatus .banner").forEach((x) => x.remove()); }
     catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
     finally { keyBusy = false; }
   };
@@ -2913,6 +2952,21 @@ $("diagBtn").onclick = async () => {
   $("diagBtn").disabled = false;
 };
 
+// What Mam was doing is kept on the phone until she finishes; if the phone closed the page meanwhile, she goes on when it opens.
+const PEND = "likho.pending";
+function setPending(x) { try { if (x) localStorage.setItem(PEND, JSON.stringify({ ...x, at: Date.now() })); else localStorage.removeItem(PEND); } catch {} }
+function resumePending() {
+  let x = null; try { x = JSON.parse(localStorage.getItem(PEND) || "null"); } catch {}
+  setPending(null);
+  if (!x || Date.now() - x.at > 15 * 60000) return;
+  dbg("resume_pending", { kind: x.kind });
+  if (x.kind === "check") {
+    const p = pieceById(x.id);
+    if (!p || getText(p).trim() !== x.text || lastDraft(p)?.text.trim() === x.text) return;
+    go({ tab: p.test ? "tests" : "write", page: "piece", id: p.id }); checkPiece(p);
+  } else if (x.kind === "study") { go({ tab: "write", page: "home" }); studyTopic(x.title, x.em, x.week, "homeStatus"); }
+}
+
 // ---------- pull down to refresh ----------
 // The Home Screen app has no reload button: pulling the page down from the top reloads it (and gets the newest version).
 // Inside Claude it brings in what was saved on other devices and redraws the page.
@@ -2954,6 +3008,7 @@ render();
 setupPullToRefresh();
 aiReady.then(() => { if (!sample && !inClaude && view.tab === "write" && view.page === "home") statusIn("homeStatus", "To let Mam check your writing, add your free Gemini key once. It takes one minute.", true, null, { label: "Open Settings", fn: () => $("setBtn").click() }); });
 connectDb();
+resumePending();
 })();
 </script>
 
