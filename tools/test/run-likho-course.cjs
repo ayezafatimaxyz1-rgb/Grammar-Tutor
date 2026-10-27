@@ -244,6 +244,47 @@ const oldMistake = { id: "mseed", wrong: "I am agree", right: "I agree", why: "A
   check("Today goes back to Today from a test", (await txt()).includes("Continue the test"));
   await p.context().close();
 
+  // ---- topics: study, then write in different styles ----
+  p = await openApp({ meta: { settings: { level: "A1", course: { placed: { at: now - DAY, skipped: true, known: [] }, skills: {} } } } });
+  t = await txt();
+  check("Today: a topic of the week to study", t.includes("Topic of the week") && t.includes("🌍 Climate change in Pakistan") && !!(await p.$("text=📖 Study it")));
+  await p.click("text=📖 Study it"); await wait(600);
+  const sc = (await calls(/preparing study notes for/)).pop();
+  t = await txt();
+  check("Mam writes study notes: a text, key facts, useful words and the two sides", !!sc && sc.tier === "default" && sc.prompt.includes('The topic: "Climate change in Pakistan"') && sc.prompt.includes("do not invent numbers") && t.includes("1 · Study") && t.includes("glaciers in the north are melting") && t.includes("Key facts") && t.includes("glaciers · very large areas of ice") && t.includes("The two sides") && t.includes("Should poor countries"));
+  check("writing waits until I answer the questions", t.includes("🔒 Answer the questions above first (2 of 3 right)") && !(await p.$("text=✍️ Write it")));
+  await p.click(".mrow:has-text('1. Why') .opts .btn >> nth=1"); await wait(100);
+  await p.click(".mrow:has-text('2. What is happening') .opts .btn >> nth=0"); await wait(100);
+  await p.click(".mrow:has-text('3. What happened') .opts .btn >> nth=1"); await wait(150);
+  t = await txt();
+  check("1 of 3 right: read again, then try again", t.includes("1 of 3 right. Read the notes again") && !!(await p.$("text=↻ Try again")) && (await p.getAttribute(".mrow:has-text('1. Why') .opts .btn >> nth=0", "class")).includes("ok"));
+  await p.click("text=↻ Try again"); await wait(150);
+  for (const [q, i] of [["1. Why", 0], ["2. What is happening", 1], ["3. What happened", 1]]) { await p.click(`.mrow:has-text('${q}') .opts .btn >> nth=${i}`); await wait(100); }
+  t = await txt();
+  check("all right: now I write, one style at a time", t.includes("3 of 3 right. ✓ Now write about it.") && t.includes("Next · style 1 of 8") && t.includes("Descriptive paragraph") && t.includes('Describe "Climate change in Pakistan"'));
+  await shot("topic");
+  await p.click("text=✍️ Write it"); await wait(300);
+  t = await txt();
+  check("the answer sheet: the style, its plan, my study words and notes", (await p.textContent("#pageTitle")).includes("Climate change in Pakistan · Descriptive paragraph") && t.includes("Descriptive paragraph · goal 50 to 80 words") && t.includes("The plan of a descriptive paragraph") && t.includes("📚 Your study notes") && (await p.textContent(".task .tools")).includes("glaciers") && (await p.textContent(".back")).includes("Climate change in Pakistan"));
+  await p.fill("#draft", "In summer the sun is very strong in my city. The streets are hot and dusty, and people stay inside. In the north the glaciers are melting, and the rivers become very big. Pakistan has no rivers in the south. The floods take away houses and farms."); await p.click("#checkBtn"); await wait(700);
+  const tk = (await calls(/checking writing by a learner/)).pop();
+  check("Mam checks the style and how I used my notes", tk.prompt.includes("Task (Descriptive paragraph)") && tk.prompt.includes("What a descriptive paragraph needs") && tk.prompt.includes("The learner studied the topic") && tk.prompt.includes("Glaciers in the north of Pakistan are melting.") && tk.prompt.includes('"topic": {"facts_ok"') && tk.prompt.includes('"structure": {"ok"'));
+  t = await txt();
+  check("the marks: content, the style, wrong facts and the study words I used", t.includes("Content") && t.includes("✓ It follows the plan of a descriptive paragraph.") && t.includes("⚠ Some facts are not right:") && t.includes("in fact, Pakistan has many rivers") && t.includes("⚠ Words from your notes: you used 2 of 5 (floods, glaciers). Try to use 3 or more."));
+  await p.click("text=Back to the topic"); await wait(300);
+  t = await txt();
+  check("the topic keeps my writing, and the next style is a story", t.includes("Your writing on this topic") && t.includes("last mark 6/10") && t.includes("Next · style 2 of 8") && t.includes("Narrative paragraph"));
+  await p.click('#tabbar [data-tab="write"]'); await wait(300);
+  t = await txt();
+  check("Today shows the next style for the topic of the week", t.includes("1 of 8 styles written") && t.includes("Next: write a narrative paragraph about it."));
+  await p.click('summary:has-text("More practice")'); await p.click('.trow:has(strong:text-is("Topics"))'); await wait(300);
+  t = await txt();
+  check("Topics: my topics and new ones to choose, or my own", t.includes("Your topics") && t.includes("1 of 8 styles written") && t.includes("this week") && (await p.$$("#page .card .tools .mini")).length === 8 && !!(await p.$("#ownTopicT")));
+  await p.click('#tabbar [data-tab="progress"]'); await wait(300);
+  t = await txt();
+  check("Progress counts the topics studied and the paragraphs written", t.includes("1topics studied") && t.includes("1topic paragraphs written"));
+  await p.context().close();
+
   check("no page errors", pageErrors.length === 0, pageErrors.join(" ; "));
   await b.close();
   const failed = results.filter((x) => !x).length;

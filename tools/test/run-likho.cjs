@@ -38,7 +38,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("three tabs (Today, Mistakes, Progress), Today is open, and 1 mistake waits for review", (await p.$$("#tabbar button")).length === 3 && (await p.textContent("#pageTitle")).includes("Today") && (await p.getAttribute('#tabbar [data-tab="write"]', "aria-current")) === "page" && (await p.textContent("#mistBadge")) === "1");
   await more();
   let t = await txt();
-  check("More practice: the 4-step path, exam practice and the tests", t.includes("1. Free writing") && t.includes("2. Sentences") && t.includes("3. Paragraphs") && t.includes("4. Essays") && t.includes("Exam practice") && (await p.$$(".list .trow")).length === 7);
+  check("More practice: the 4-step path, exam practice and the tests", t.includes("1. Free writing") && t.includes("2. Sentences") && t.includes("3. Paragraphs") && t.includes("4. Essays") && t.includes("Exam practice") && t.includes("Topics") && (await p.$$(".list .trow")).length === 8);
   check("the later steps are locked until the one before is finished", t.includes("🔒 opens after free writing") && t.includes("🔒 opens after sentences") && t.includes("🔒 opens after paragraphs"));
 
   await kind("2. Sentences");
