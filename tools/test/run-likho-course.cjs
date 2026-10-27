@@ -285,6 +285,29 @@ const oldMistake = { id: "mseed", wrong: "I am agree", right: "I agree", why: "A
   check("Progress counts the topics studied and the paragraphs written", t.includes("1topics studied") && t.includes("1topic paragraphs written"));
   await p.context().close();
 
+  // ---- going to another app for a moment ----
+  const awayText = "every morning i wake up early. My mother make tea for us. Then I go to college by bus.";
+  const awayPiece = { id: "paway", kind: "free", task: { title: "My morning", prompt: "Write about your morning." }, text: awayText, drafts: [], created: now - 60000, updated: now - 60000 };
+  p = await openApp({ meta: { settings: { level: "A1", course: { placed: { at: now - DAY, skipped: true, known: [] }, skills: {} }, view: { tab: "write", page: "piece", id: "paway" } } }, p_paway: awayPiece });
+  await p.evaluate(() => {
+    Object.defineProperty(document, "hidden", { configurable: true, get: () => !!window.__hidden });
+    Object.defineProperty(document, "visibilityState", { configurable: true, get: () => (window.__hidden ? "hidden" : "visible") });
+    window.__setHidden = (h) => { window.__hidden = h; document.dispatchEvent(new Event("visibilitychange")); };
+  });
+  await p.evaluate(() => { window.__setHidden(true); window.__failNext = "upstream_error"; });
+  await p.click("#checkBtn"); await wait(600);
+  check("a check that breaks while I am in another app shows no error: Mam waits for me", (await calls(/checking writing by a learner/)).length === 1 && !(await txt()).includes("could not") && !(await p.$(".score")));
+  await p.evaluate(() => window.__setHidden(false)); await wait(700);
+  check("back in the app, Mam asks again and the marks arrive", (await calls(/checking writing by a learner/)).length === 2 && (await p.textContent(".score")) === "6/10" && (await p.textContent("body")).includes("Mam finished while you were away"));
+  await p.context().close();
+  const ctxR = await b.newContext({ viewport: { width: 390, height: 844 } }); p = await ctxR.newPage(); p.on("pageerror", (e) => pageErrors.push(e.message));
+  await p.route("**/*", (r) => (r.request().url().startsWith("http://likho.test/") ? r.fulfill({ contentType: "text/html", body: html }) : r.abort()));
+  await p.addInitScript((d) => { window.__seed = { "data/users/u_test": {}, library: {} }; if (!sessionStorage.getItem("once")) { sessionStorage.setItem("once", "1"); localStorage.setItem("likho.v1", JSON.stringify({ settings: { level: "A1", course: d.course }, pieces: [d.piece] })); localStorage.setItem("likho.pending", JSON.stringify({ kind: "check", id: d.piece.id, text: d.piece.text, at: Date.now() - 30000 })); } }, { piece: awayPiece, course: { placed: { at: now - DAY, skipped: true, known: [] }, skills: {} } });
+  await p.addInitScript(mock);
+  await p.goto("http://likho.test/"); await wait(1200);
+  check("if the phone closed the page during a check, Mam goes on with it when I open the app", (await p.textContent("#pageTitle")).includes("My morning") && (await calls(/checking writing by a learner/)).length === 1 && (await p.textContent(".score")) === "6/10" && (await p.evaluate(() => localStorage.getItem("likho.pending"))) === null);
+  await ctxR.close();
+
   check("no page errors", pageErrors.length === 0, pageErrors.join(" ; "));
   await b.close();
   const failed = results.filter((x) => !x).length;

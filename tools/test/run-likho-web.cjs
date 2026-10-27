@@ -64,7 +64,7 @@ const fakes = () => {
   await p.fill("#draft", "Yesterday I go to market. I buy some mangoes. Then I come back home. It was a nice day.");
   await p.click("#checkBtn"); await p.waitForTimeout(700);
   const ck = gem.find((g) => /checking writing by a learner/.test(g.prompt));
-  check("checking uses Flash with JSON answers", !!ck && ck.model === "gemini-flash-latest" && ck.mime === "application/json" && !ck.think);
+  check("checking uses Flash with JSON answers and a little thinking, to be quicker", !!ck && ck.model === "gemini-flash-latest" && ck.mime === "application/json" && ck.think?.thinkingLevel === "low");
   check("the marks and the mistake to fix arrive", (await p.textContent(".score")) === "5/10" && (await p.$$("mark.mk")).length === 1);
   await p.fill("#fixIn0", "I goed to market"); await p.click('#fix0 button:has-text("Check")'); await p.waitForTimeout(500);
   const jd = gem.find((g) => /is correcting one mistake/.test(g.prompt));

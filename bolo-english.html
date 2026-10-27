@@ -599,7 +599,39 @@ const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
   const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
   return parseLoose(text);
 });
-const aiReady = use("sample").then((s) => { sample = s || (inClaude ? null : geminiAI()); return sample; });
+// ---------- leaving the app for a moment ----------
+// The phone pauses a page in the background, and a call to Mam on its way can break. Then Mam asks again as soon as the
+// learner is back, and the time spent in another app does not count towards the time limits.
+let hiddenAt = 0, shownAt = Date.now();
+document.addEventListener("visibilitychange", () => { if (document.hidden) hiddenAt = Date.now(); else shownAt = Date.now(); });
+const whenVisible = () => new Promise((ok) => { if (!document.hidden) { ok(); return; } const f = () => { if (!document.hidden) { document.removeEventListener("visibilitychange", f); ok(); } }; document.addEventListener("visibilitychange", f); });
+const awayFrom = (t0) => document.hidden || hiddenAt >= t0;
+// A time limit that waits while the learner is away, with 30 more seconds after they come back. It returns a function that cancels it.
+function deadline(ms, fn) {
+  let t = setTimeout(function tick() { const back = Date.now() - shownAt; if (document.hidden || back < 30000) t = setTimeout(tick, document.hidden ? 5000 : 30000 - back); else fn(); }, ms);
+  return () => clearTimeout(t);
+}
+const NOT_AGAIN = new Set(["bad_key", "quota", "not_granted", "rate_limited", "queue_overflow", "session_expired", "no_images", "refused", "invalid_request", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function keepGoing(s) {
+  if (!s) return s;
+  const again = (fn) => async (input, opts) => {
+    for (let i = 0; ; i++) {
+      const t0 = Date.now();
+      try { return await fn(input, opts); }
+      catch (e) {
+        if (i >= 2 || opts?.signal?.aborted || NOT_AGAIN.has(e?.code) || !awayFrom(t0)) throw e;
+        dbg("again_after_away", { code: String(e?.code || "") });
+        await whenVisible();
+      }
+    }
+  };
+  const w = again((i, o) => s(i, o));
+  if (s.json) w.json = again((i, o) => s.json(i, o));
+  if (s.limits) w.limits = (...a) => s.limits(...a);
+  if (s.models) w.models = (...a) => s.models(...a);
+  return w;
+}
+const aiReady = use("sample").then((s) => { sample = keepGoing(s || (inClaude ? null : geminiAI())); return sample; });
 const PERMANENT = new Set(["sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
 function errText(e) {
   switch (e?.code) {
@@ -651,7 +683,9 @@ function splitSpeaker(s) {
   const who = (m[1] || m[2]).replace(/\s+/g, " ").replace(/one$/i, "1").replace(/two$/i, "2").replace(/^./, (x) => x.toUpperCase()).replace(/member\s*/i, "Member ");
   return { who, text: strip(str.slice(m[0].length)) };
 }
+let lastLine = "";
 function speakLine(line, onend, rate) {
+  lastLine = line;
   if (!state.settings.voice) { onend?.(); return; }
   const { who, text } = splitSpeaker(line); speak(text, rate, onend, PITCH[who.toLowerCase()] || 1);
 }
@@ -887,7 +921,7 @@ async function send(textIn, retryEl) {
     wait.firstChild.textContent = inClaude ? "Still waiting… If a box asks you to allow Claude, tap Allow." : "Still waiting…";
     wait.append(tool("■ Stop", () => { stopped = true; myCtl.abort(); }));
   }, 7000);
-  const watchdog = setTimeout(() => { timedOut = true; myCtl.abort(); }, 180000);
+  const watchdog = deadline(180000, () => { timedOut = true; myCtl.abort(); });
   try {
     dbg("reply_call_start", { turns: c.turns.length });
     const { text: reply, fb } = await askMam(t, c.turns.slice(0, idx + 1), {
@@ -902,6 +936,7 @@ async function send(textIn, retryEl) {
     if (c === chat) {
       addTutor(line);
       if (interviewOver(c)) { stopLoop(); boardDone(c); speakLine(line, () => setState("idle")); setState("speaking"); }
+      else if (document.hidden && away) { away.line = line; setState("idle"); } // she says it when the learner is back
       else { setState("speaking"); speakLine(line, afterMam); }
     }
   } catch (e) {
@@ -915,7 +950,7 @@ async function send(textIn, retryEl) {
       else { markNotSent(meEl); note(errText({ code })); }
     }
     setState("idle");
-  } finally { clearTimeout(watchdog); clearTimeout(slow); busy = false; }
+  } finally { watchdog(); clearTimeout(slow); busy = false; }
   if (replied && !turn.fb) checkAnswer(meEl, turn, c); // only after a real reply, so the two calls never compete
 }
 async function checkAnswer(meEl, turn, c) {
@@ -923,7 +958,7 @@ async function checkAnswer(meEl, turn, c) {
   const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
   setTag(meEl, "wait", "⏳ Checking your sentence…");
   await aiReady;
-  const cc = new AbortController(), ct = setTimeout(() => cc.abort(), 60000);
+  const cc = new AbortController(), ct = deadline(60000, () => cc.abort());
   try {
     if (!sample) throw { code: "no_ai" };
     const r = await askJson(`You are an English teacher checking one spoken answer from a learner from Pakistan (Urdu speaker) who is preparing for the CSS exam interview. ${CHECK_RULES()}
@@ -936,7 +971,7 @@ ${CHECK_JSON}`, { modelTier: "quick", cache: false, signal: cc.signal });
   } catch (e) {
     dbg("check_error", { code: String(e?.code || "none") });
     if (meEl.isConnected) setTag(meEl, "fix", "↻ Couldn't check · tap to try again", () => checkAnswer(meEl, turn, c));
-  } finally { clearTimeout(ct); }
+  } finally { ct(); }
 }
 function boardDone(c) {
   if (document.querySelector("#msgs .boarddone")) return;
@@ -1156,7 +1191,25 @@ $("orb").onclick = () => {
 };
 // Leaving the page saves the newest answers on the phone at once (the account copy follows a moment later).
 window.addEventListener("pagehide", saveLocal);
-document.addEventListener("visibilitychange", () => { if (document.hidden) { saveLocal(); stopLoop(); hush(); stopDictation(); if (mode === "minute") { if (minRunning) endMinute(); } else setState("idle"); } });
+// Going to another app for a moment pauses Mam; back within 10 minutes, she goes on where she was: she says her line again
+// (or the reply that came meanwhile), then listens again if the conversation was hands-free.
+let away = null;
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    saveLocal(); stopDictation();
+    if (mode === "minute") { stopLoop(); hush(); if (minRunning) endMinute(); return; }
+    away = { at: Date.now(), talk: listening, line: curU ? lastLine : "" };
+    stopLoop(); hush(); if (!busy) setState("idle");
+  } else if (away) {
+    const a = away; away = null;
+    if (Date.now() - a.at > 600000 || mode !== "chat" || !chat) return;
+    dbg("resume_talk", { talk: a.talk, line: !!a.line, busy });
+    listening = a.talk && canListen;
+    if (busy) setState("thinking"); // the reply is still coming: it is spoken when it arrives
+    else if (a.line && state.settings.voice) { setState("speaking"); speakLine(a.line, afterMam); }
+    else if (listening) startListening();
+  }
+});
 
 // ---------- 1-minute challenge: brainstorm, then speak for 60 seconds ----------
 const QUESTIONS = [
@@ -2666,7 +2719,7 @@ if (!inClaude) {
     keyBusy = true; $("keyStatus").textContent = "Checking your key…";
     try {
       saveG({ key, ...chooseModels(await listModels(key)) });
-      sample = geminiAI(); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done, then tap the big button to talk.";
+      sample = keepGoing(geminiAI()); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done, then tap the big button to talk.";
       document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
     } catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
     finally { keyBusy = false; }
@@ -2776,7 +2829,7 @@ openTopic(currentTopic(), true);
 setupPullToRefresh();
 renderProgBtn();
 // Keys saved before the fast talking model existed get it now.
-aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = geminiAI(); } catch {} } });
+aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = keepGoing(geminiAI()); } catch {} } });
 aiReady.then(() => { if (!sample && !inClaude && mode === "chat") note("To talk with Mam, add your free Gemini key once. It takes one minute.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });
 connectDb();
 })();

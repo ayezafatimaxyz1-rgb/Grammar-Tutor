@@ -22,6 +22,9 @@ const fakes = () => {
     cancel() { const u = this._u; this._u = null; if (u) u.onerror?.({ error: "interrupted" }); } };
   Object.defineProperty(window, "speechSynthesis", { value: synth, configurable: true });
   window.SpeechSynthesisUtterance = function (t) { this.text = t; };
+  Object.defineProperty(document, "hidden", { configurable: true, get: () => !!window.__hidden });
+  Object.defineProperty(document, "visibilityState", { configurable: true, get: () => (window.__hidden ? "hidden" : "visible") });
+  window.__setHidden = (h) => { window.__hidden = h; document.dispatchEvent(new Event("visibilitychange")); };
   Object.defineProperty(navigator, "clipboard", { value: { readText: async () => window.__clip || "" }, configurable: true });
 };
 
@@ -33,6 +36,7 @@ const fakes = () => {
   const gem = []; // what the page sent to Gemini
   let failSearch = 1; // the first search is refused, as when the newest model has no free search
   let rejectThinking = 1; // the first "thinking off" setting is refused, as some models do
+  let hold = null; // while set, Mam's reply waits (to test a reply that arrives while the learner is in another app)
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
   // what the news robot saves (news.json on the gh-pages branch)
@@ -64,6 +68,7 @@ const fakes = () => {
       : json
       ? JSON.stringify(check)
       : "That sounds nice! What did you buy at the market?";
+    if (hold && /Write Mam's next reply now/.test(prompt) && prompt.includes(hold.after)) await hold.promise;
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
   });
   await p.goto("file://" + path.join(root, "docs/index.html")); await p.waitForTimeout(500);
@@ -98,6 +103,20 @@ const fakes = () => {
   check("a model that refuses the thinking setting is asked again without it", talk[1].think === null && talk[talk.length - 1].think === null && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).think["gemini-2.5-flash-lite"])) === "none");
   await p.click(".msg.me .bubble"); await p.waitForTimeout(150);
   check("tapping my sentence: corrected sentence and other ways", (await p.textContent(".msg.me .fb")).includes("I went to the market yesterday.") && (await p.textContent(".msg.me .fb")).includes("Other ways to say it"));
+  // another app for a moment: Mam pauses, then goes on by herself
+  await p.evaluate(() => window.__setHidden(true)); await p.waitForTimeout(200);
+  check("in another app, Mam stops listening", (await p.textContent("#state")).includes("Tap the button"));
+  let ready; hold = { after: "We ate them at home", promise: new Promise((ok) => { ready = ok; }) };
+  await p.evaluate(() => { window.__toSay.push("I like mangoes very much", "We ate them at home"); window.__setHidden(false); }); await p.waitForTimeout(3200);
+  check("back in the app, she listens again by herself", (await p.textContent("#msgs")).includes("I like mangoes very much"));
+  for (let i = 0; i < 40 && !gem.some((g) => /Write Mam's next reply now/.test(g.prompt) && g.prompt.includes("We ate them at home")); i++) await p.waitForTimeout(200);
+  await p.evaluate(() => window.__setHidden(true));
+  const spokeBefore = await p.evaluate(() => window.__spoken.length);
+  ready(); hold = null; await p.waitForTimeout(500);
+  check("a reply that comes while I am away waits for me", (await p.evaluate(() => window.__spoken.length)) === spokeBefore && (await p.textContent("#msgs")).includes("We ate them at home"));
+  await p.evaluate(() => window.__setHidden(false)); await p.waitForTimeout(400);
+  check("back in the app, Mam says it", (await p.evaluate(() => window.__spoken.length)) === spokeBefore + 1);
+  await p.waitForTimeout(600);
   await p.click("#orb"); await p.waitForTimeout(300); // pause
   const st = await p.textContent("#state");
   check("tapping the button pauses", /Tap the button|Mam is/.test(st), st);
