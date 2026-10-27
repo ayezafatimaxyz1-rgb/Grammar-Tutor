@@ -2258,7 +2258,7 @@ function normAns(s, exact) {
   return x.replace(/[^a-z0-9' ]+/g, " ").replace(/\s+/g, " ").trim();
 }
 const practicePrompt = (it, ans) => `A learner of English from Pakistan is practising one skill: "${it.S.t}" (${it.S.rule}). The exercise: ${it.ty === "o" ? "put these words in the right order: " + it.q : it.ty === "f" ? `correct this sentence: "${it.q}"` : it.q}. A correct answer: "${it.ans[0]}". The learner's answer: "${ans}". Is the learner's answer correct English that does exactly what the exercise asks, with the same meaning? Accept any correct answer, even if it is different from the one given.
-Reply with ONLY JSON: {"ok": true or false, "note": "if it is wrong, say EXACTLY what is wrong: which word, and which rule, in at most 25 words, without giving the answer; if it is right, empty"}`;
+Reply with ONLY JSON: {"ok": true or false, "note": "if it is wrong, explain EXACTLY why the learner's answer is wrong in THIS sentence: name the wrong, missing or extra word, and say why this sentence needs the right one, in at most 30 words; if it is right, empty"}`;
 // Checked on the phone first; only an answer that is different from every expected one goes to Mam. null means Mam could not be asked.
 async function checkAnswer(it, v) {
   if (it.ty === "m") {
@@ -2275,13 +2275,82 @@ async function checkAnswer(it, v) {
 }
 // What the learner's wrong answer says, as a sentence.
 const wrongText = (it, r) => (it.ty === "c" ? (it.q.includes("___") ? fillGap(it.q, it.opts[r.given]) : it.opts[r.given]) : it.ty === "g" ? fillGap(it.q, String(r.given)) : it.ty === "f" ? it.q : String(r.given || ""));
+// ---------- what exactly is wrong in a practice answer ----------
+// The learner's answer is lined up word by word with the closest right answer, and each difference is named:
+// a word to change, add, take out or move, a capital letter, or the mark at the end.
+const DAYS = /^(monday|tuesday|wednesday|thursday|friday|saturday|sunday)$/i, MONTHS = /^(january|february|march|april|may|june|july|august|september|october|november|december)$/i;
+const LANGS = /^(english|urdu|punjabi|sindhi|pashto|balochi|arabic|french|chinese|persian|saraiki)$/i;
+const MARK = { ".": "a full stop (.)", "?": "a question mark (?)", "!": "an exclamation mark (!)", ",": "a comma (,)", ";": "a semicolon (;)", ":": "a colon (:)" };
+function capWhy(word, first) {
+  if (first) return "The first word of a sentence starts with a capital letter.";
+  if (/^i$/i.test(word)) return "I is always a capital letter.";
+  if (DAYS.test(word)) return "It is the name of a day.";
+  if (MONTHS.test(word)) return "It is the name of a month.";
+  if (LANGS.test(word)) return "It is the name of a language.";
+  return "It is a name (of a person or a place).";
+}
+function wordsOf(s, exact) {
+  let t = String(s).replace(/[’‘]/g, "'");
+  if (!exact) CONTRACT.forEach(([re, to]) => { t = t.replace(new RegExp(re.source, "gi"), to); });
+  return t.match(exact ? /[A-Za-z0-9']+|[.,!?;:]/g : /[A-Za-z0-9']+/g) || [];
+}
+function diffBits(given, right, exact) {
+  const a = wordsOf(given, exact), b = wordsOf(right, exact), n = a.length, m = b.length, k = (x) => x.toLowerCase();
+  const L = Array.from({ length: n + 1 }, () => new Array(m + 1).fill(0));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = k(a[i]) === k(b[j]) ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const gaps = [], caps = []; let i = 0, j = 0, g = { del: [], ins: [], prev: "" };
+  const close = (next) => { if (g.del.length || g.ins.length) gaps.push({ ...g, next }); g = { del: [], ins: [], prev: g.prev }; };
+  while (i < n || j < m) {
+    if (i < n && j < m && k(a[i]) === k(b[j])) { close(b[j]); if (exact && a[i] !== b[j]) caps.push([a[i], b[j], j === 0]); g.prev = b[j]; i++; j++; }
+    else if (j < m && (i >= n || L[i][j + 1] >= L[i + 1][j])) g.ins.push(b[j++]);
+    else g.del.push(a[i++]);
+  }
+  close("");
+  const out = [], isW = (x) => /[A-Za-z0-9]/.test(x), q = (xs) => "“" + xs.join(" ") + "”";
+  const where = (x) => (x.prev && isW(x.prev) ? `after “${x.prev}”` : x.next && isW(x.next) ? `before “${x.next}”` : "at the start");
+  // a word taken out in one place and added in another has only moved
+  gaps.forEach((x) => { const w = x.ins.filter(isW); if (!w.length || x.del.some(isW)) return; const from = gaps.find((y) => y !== x && !y.ins.some(isW) && y.del.filter(isW).map(k).join(" ") === w.map(k).join(" ")); if (from) { out.push(`${q(w)} is in the wrong place: put it ${where(x)}.`); x.ins = x.ins.filter((y) => !isW(y)); from.del = from.del.filter((y) => !isW(y)); } });
+  gaps.forEach((x) => {
+    const dw = x.del.filter(isW), iw = x.ins.filter(isW), dp = x.del.filter((y) => !isW(y)), ip = x.ins.filter((y) => !isW(y)), end = !x.next;
+    if (dw.length && iw.length) out.push(`${q(dw)} should be ${q(iw)}.`);
+    else if (iw.length) out.push(`${q(iw)} is missing: put it ${where(x)}.`);
+    else if (dw.length) out.push(`Take out ${q(dw)}.`);
+    if (ip.length && dp.length) out.push(end ? `End with ${MARK[ip[0]] || ip[0]}, not ${MARK[dp[0]] || dp[0]}.` + (ip[0] === "?" ? " It is a question." : "") : `Use ${MARK[ip[0]] || ip[0]} after “${x.prev}”, not ${MARK[dp[0]] || dp[0]}.`);
+    else if (ip.length) out.push(end ? `The sentence needs ${MARK[ip[0]] || ip[0]} at the end.` + (ip[0] === "?" ? " It is a question." : "") : `Put ${MARK[ip[0]] || ip[0]} after “${x.prev}”.`);
+    else if (dp.length) out.push(end ? `Take out ${MARK[dp[0]] || dp[0]} at the end.` : `Take out ${MARK[dp[0]] || dp[0]} after “${x.prev}”.`);
+  });
+  out.unshift(...caps.map(([w, r, first]) => (r[0] !== r[0].toLowerCase() ? `“${w}” needs a capital letter: ${r}. ${capWhy(r, first)}` : `“${w}” should not start with a capital letter: ${r}.`)));
+  // the same words in a different order, moved in too many places to name each one
+  if (out.length > 2 && n === m && a.map(k).join(" ") !== b.map(k).join(" ") && a.map(k).sort().join(" ") === b.map(k).sort().join(" ")) return ["The words are right, but they are in the wrong order."];
+  return out;
+}
+// The differences from the closest right answer, at most 3.
+function mistakeBits(it, r) {
+  if (it.ty === "c" && !it.q.includes("___") && wordCount(it.opts[r.given]) < 3) return [`You chose “${it.opts[r.given]}”, but the answer is “${it.ans[0]}”.`];
+  const exact = it.ty === "m" ? EXACT.has(it.m.type) : !!it.S.exact;
+  const given = it.ty === "m" || it.ty === "f" || it.ty === "t" || it.ty === "o" ? String(r.given || "") : wrongText(it, r);
+  if (!given.trim()) return [];
+  const rights = it.ty === "m" ? [it.want] : it.ty === "c" ? [answerText(it)] : it.ty === "g" ? it.ans.map((x) => fillGap(it.q, x)) : it.ans;
+  const best = rights.map((x) => diffBits(given, x, exact)).filter((x) => x.length).sort((x, y) => x.length - y.length)[0] || [];
+  return best.length > 3 ? [...best.slice(0, 3), "There are more differences: compare your answer with the answer below."] : best;
+}
+const explainPrompt = (it, wrong, right) => `A learner of English from Pakistan is practising "${it.S.t}". The exercise: ${it.ty === "o" ? "put these words in the right order: " + it.q : it.q}. The right answer: "${right}". The learner's answer: "${wrong}".
+Explain EXACTLY why the learner's answer is wrong in THIS sentence: name the wrong, missing or extra word, and say why this sentence needs the right one (for example: "My mother" is one person, so use "is", not "are"). At most 30 words, in very simple English, never Urdu. Do not just repeat a general rule.
+Reply with ONLY JSON: {"why": "..."}`;
+// Mam's reason for this one answer; the learner sees the rule of the lesson until it arrives.
+async function explainWrong(it, r) {
+  await aiReady; if (!sample) return "";
+  const c = new AbortController(), stop = deadline(30000, () => c.abort());
+  try { const x = await askJson(explainPrompt(it, it.ty === "c" && !it.q.includes("___") ? it.opts[r.given] : it.ty === "f" ? String(r.given || "") : wrongText(it, r), answerText(it)), { modelTier: "quick", signal: c.signal }); return isEnglish(x?.why) ? String(x.why).trim() : ""; }
+  catch (e) { dbg("explain_error", { code: String(e?.code || "") }); return ""; } finally { stop(); }
+}
 // A wrong answer in practice goes to the review list, like a mistake in the learner's writing.
 function saveSkillMistake(it, res) {
   if (it.ty === "m" || (it.ty === "c" && !it.q.includes("___") && wordCount(it.opts[res.given]) < 3)) return;
   const wrong = wrongText(it, res), right = answerText(it);
   if (!wrong || same(wrong, right, true) || liveMistakes().some((m) => m.wrong === wrong && m.right === right)) return;
-  const now = Date.now(), mk = { id: "m" + now.toString(36) + "s", wrong, right, why: it.S.rule, problem: res.note || (it.ty === "t" ? "The task was: " + it.q : ""), type: it.S.ty, sentence: wrong, from: "Lesson: " + it.S.t, kind: "lesson", self: false, box: 1, due: now + DAY, created: now, updated: now };
-  state.mistakes.unshift(mk); putMistake(mk);
+  const now = Date.now(), mk = { id: "m" + now.toString(36) + "s", wrong, right, why: res.why || res.note || it.S.rule, problem: (res.bits || mistakeBits(it, res)).join(" ") || (it.ty === "t" ? "The task was: " + it.q : ""), type: it.S.ty, sentence: wrong, from: "Lesson: " + it.S.t, kind: "lesson", self: false, box: 1, due: now + DAY, created: now, updated: now };
+  state.mistakes.unshift(mk); putMistake(mk); res.mk = mk.id;
 }
 const answerBox = (value, rows) => { const ta = el("textarea", "inbox"); ta.rows = rows || 2; ta.value = value; ta.spellcheck = false; ta.setAttribute("autocapitalize", "off"); ta.setAttribute("autocorrect", "off"); ta.setAttribute("aria-label", "Your answer"); return ta; };
 // Draws one question; record(result) keeps the answer, next() goes on.
@@ -2293,10 +2362,15 @@ function drawItem(box, it, res, record, next) {
     out.innerHTML = "";
     out.append(el("div", "flag " + (r.ok ? "ok" : "bad"), r.ok ? "✓ Right!" : "✗ Not quite."));
     if (!r.ok) {
-      if (r.note) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: "), r.note); out.append(pr); }
+      // what is wrong, word by word, at once; then why, for this sentence (Mam's reason, or the rule until it comes)
+      const bits = r.bits || (r.bits = mistakeBits(it, r));
+      if (bits.length) { const pr = el("div", "problem"); pr.append(el("b", "", "What is wrong: ")); if (bits.length === 1) pr.append(bits[0]); else { const ul = el("ul"); bits.forEach((x) => ul.append(el("li", "", x))); pr.append(ul); } out.append(pr); }
       const a = el("div"); a.append("Answer: ", el("span", "right", answerText(it))); out.append(a);
-      const why = it.ty === "m" ? it.m.why : it.S.rule;
-      if (why) { const w = el("div", "why"); w.append(el("b", "", "Why: "), why); out.append(w); }
+      const w = el("div", "why"); out.append(w);
+      const showWhy = (wait) => { w.innerHTML = ""; const why = it.ty === "m" ? r.note || it.m.why : r.why || r.note; if (why) w.append(el("b", "", "Why: "), why); else if (wait) w.append(el("span", "hint", "Mam is explaining your mistake…")); else w.append(el("b", "", "The rule: "), it.S.rule); };
+      const ask = !r.why && !r.note && !r.self && !r.asked && it.ty !== "m" && !it.S.exact && r.given !== "";
+      showWhy(ask);
+      if (ask) { r.asked = true; explainWrong(it, r).then((x) => { if (x) { r.why = x; const mk = state.mistakes.find((y) => y.id === r.mk); if (mk) { mk.why = x; putMistake(mk); } } putMeta(); if (w.isConnected) showWhy(false); }); }
     }
     foot.innerHTML = ""; foot.append(btn("Next →", next, "btn primary"));
   };
@@ -2567,7 +2641,7 @@ function dayResult(d, S) {
   c.append(el("div", "flag " + (used ? "ok" : "bad"), !last ? "✗ Writing: not done" : `${used ? "✓" : "✗"} Writing: ${last.check.score}/10` + (last.check.structure ? `, the skill used correctly in ${last.check.structure.used} of ${last.check.structure.total} sentences` : "")));
   // the biggest mistakes: the first ones Mam marked in the writing, else the questions missed in practice
   const big = (drs[0]?.check.mistakes || []).slice(0, 3).map((m) => [m.wrong, m.right, m.problem || m.why]);
-  if (!big.length) d.pr.res.forEach((r, i) => { if (r && !r.ok && big.length < 3) { const it = itemOf(d.pr.refs[i]); if (it) big.push([wrongText(it, r), answerText(it), r.note || S.rule]); } });
+  if (!big.length) d.pr.res.forEach((r, i) => { if (r && !r.ok && big.length < 3) { const it = itemOf(d.pr.refs[i]); if (it) big.push([wrongText(it, r), answerText(it), r.why || r.note || (r.bits || []).join(" ") || S.rule]); } });
   if (big.length) {
     c.append(el("div", "lbl", "Your biggest mistakes today"));
     big.forEach(([w, r, why]) => { const m = el("div", "mrow"), line = el("div"); line.append(el("s", "", w), " → ", el("span", "right", r || "(take it out)")); m.append(line); if (why) m.append(el("small", "", why)); c.append(m); });

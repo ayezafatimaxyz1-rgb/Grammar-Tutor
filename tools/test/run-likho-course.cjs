@@ -92,7 +92,7 @@ const oldMistake = { id: "mseed", wrong: "I am agree", right: "I agree", why: "A
     if (i === 0) check("step 3, practise: 10 questions, one at a time", (await txt()).includes("Practise · 1 of 10"));
     if (ty === "c") await p.click(`.opts .btn >> nth=${k}`);
     else { const bad = ty === "f" && !wrongDone; await p.fill("#page .card textarea", bad ? q.charAt(0).toUpperCase() + q.slice(1) : a.split("|")[0]); await p.click('#page .card button:has-text("Check")'); await wait(150);
-      if (bad) { wrongDone = true; const o = await p.textContent(".card .fout"); check("a wrong answer: the right answer and the rule, at once", o.includes("✗ Not quite.") && o.includes("Answer: " + a.split("|")[0]) && o.includes("Why: A capital letter at the start"), o); } }
+      if (bad) { wrongDone = true; const o = await p.textContent(".card .fout"); check("a wrong answer: exactly what is wrong in my sentence, the answer and the rule, at once", o.includes("✗ Not quite.") && o.includes("What is wrong:") && (o.includes("needs a capital letter:") || o.includes("at the end.")) && o.includes("Answer: " + a.split("|")[0]) && o.includes("The rule: A capital letter at the start") && !(await calls(/Explain EXACTLY why/)).length, o); } }
     await wait(120); await next();
   }
   t = await txt();
@@ -156,13 +156,15 @@ const oldMistake = { id: "mseed", wrong: "I am agree", right: "I agree", why: "A
   for (const w of ["she", "why", "is", "sad"]) await p.click(`div.tools > .chip:text-is("${w}")`);
   await p.click('#page .card button:has-text("Check")'); await wait(300);
   let o = await p.textContent(".card .fout"), pc = (await calls(/is practising one skill/)).pop();
-  check("a different answer goes to Mam, who says exactly what is wrong", !!pc && pc.tier === "quick" && pc.prompt.includes('The learner\'s answer: "she why is sad"') && o.includes("What is wrong: The verb comes right after the subject") && o.includes("Answer: Why is she sad?") && o.includes("Why: Question word + do, does, did or be"));
+  check("a different answer goes to Mam, who says exactly what is wrong", !!pc && pc.tier === "quick" && pc.prompt.includes('The learner\'s answer: "she why is sad"') && o.includes("What is wrong: “she” is in the wrong place: put it after “is”.") && o.includes("Answer: Why is she sad?") && o.includes("Why: The verb comes right after the subject"));
   await next();
   await p.click('.opts .btn:text-is("Where")'); await wait(100);
   check("choose: the right option turns green", (await p.getAttribute('.opts .btn:text-is("Where")', "class")).includes("ok") && (await p.textContent(".card .fout")).includes("✓ Right!"));
   await next();
   await p.click('.opts .btn:text-is("Where")'); await wait(100);
   check("a wrong choice: mine turns red and the right one green", (await p.getAttribute('.opts .btn:text-is("Where")', "class")).includes("bad") && (await p.getAttribute('.opts .btn:text-is("When")', "class")).includes("ok") && (await p.textContent(".card .fout")).includes("Answer: When is your birthday? In May."));
+  await wait(300); o = await p.textContent(".card .fout");
+  check("a wrong choice: the exact word, and Mam's reason for this sentence", o.includes("What is wrong: “Where” should be “When”.") && o.includes("Why: Your birthday is a time, so the question starts with When, not Where.") && !o.includes("The rule:") && (await calls(/Explain EXACTLY why/)).length === 1 && (await calls(/Explain EXACTLY why/))[0].tier === "quick");
   await next();
   check("correct the sentence: the box starts with the wrong sentence", (await p.inputValue("#page .card textarea")) === "Where you are going?");
   await p.click('#page .card button:has-text("Check")'); await wait(100);
@@ -197,7 +199,7 @@ const oldMistake = { id: "mseed", wrong: "I am agree", right: "I agree", why: "A
   check("a new round: the questions I missed come back", c.day.pr.round === 2 && c.day.pr.i === 0 && c.day.pr.refs.length === 10 && c.day.pr.best === 7 && missed);
   await wait(1000);
   const ms = Object.values(await store()).filter((d) => d?.kind === "lesson");
-  check("each wrong answer is saved as a mistake to review", ms.length === 3 && ms.some((m) => m.wrong === "she why is sad" && m.right === "Why is she sad?" && m.problem.startsWith("The verb comes")) && ms.some((m) => m.wrong === "Where is your birthday? In May." && m.right === "When is your birthday? In May.") && ms.some((m) => m.wrong === "What she said?"), JSON.stringify(ms.map((m) => [m.wrong, m.right])));
+  check("each wrong answer is saved as a mistake to review", ms.length === 3 && ms.some((m) => m.wrong === "she why is sad" && m.right === "Why is she sad?" && m.problem === "“she” is in the wrong place: put it after “is”." && m.why.startsWith("The verb comes")) && ms.some((m) => m.wrong === "Where is your birthday? In May." && m.right === "When is your birthday? In May." && m.why.startsWith("Your birthday is a time")) && ms.some((m) => m.wrong === "What she said?"), JSON.stringify(ms.map((m) => [m.wrong, m.right])));
   await p.context().close();
 
   // ---- the next day: check-ups ----
