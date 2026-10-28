@@ -130,8 +130,16 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   // ---- CSS interview ----
   await topic("CSS interview");
   check("interview opens with the Chairman", (await msgs()).includes("Chairman"));
+  check("my form (DAF) is at the top, open while it is empty", !!(await p.$(".daf[open]")) && (await p.textContent(".daf")).includes("My form (DAF)"));
+  await p.fill("#daf_name", "Ali Raza"); await p.fill("#daf_district", "Multan"); await p.fill("#daf_groups", "PAS, PSP, FSP"); await p.fill("#daf_hobbies", "reading history books");
+  await p.click(".daf >> text=Save my form"); await wait(200);
+  check("the form is saved", (await p.textContent(".daf")).includes("4 of 6 filled") && (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).settings.daf.district)) === "Multan");
   await say("My name is Ali and I am from Lahore");
   check("board member asks a follow-up", (await msgs()).includes("Member 1"));
+  const bp = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("Write the board's next turn now")).pop()?.prompt || "");
+  check("the board reads my form, like the real one", bp.includes("The board has read the candidate's form (DAF): Name: Ali Raza. Home district (domicile): Multan. Service groups, in order of choice: PAS, PSP, FSP. Hobbies and interests: reading history books."));
+  check("the board behaves like a real board: no praise, digs into each answer, specific questions", bp.includes("Never praise an answer") && bp.includes("Dig into each answer") && bp.includes("never general chat") && bp.includes("never invent recent events"));
+  check("after the introduction, the Chairman asks about it", bp.includes("has answered 1 of 10 questions") && bp.includes("Next, the Chairman asks, about the candidate's introduction and form"));
   await p.evaluate(() => { window.__forceOver = true; });
   await say("I want serve my country");
   await p.evaluate(() => { window.__forceOver = false; });
@@ -150,6 +158,12 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("the score is kept with the interview", (await chats()).some((c) => c.report?.marks === 90 && c.report.pass === false && c.report.score === 3 && c.report.questions.length === 2 && c.turns.filter((t) => t.iv).length === 2));
   await p.click("text=Start a new interview"); await wait(300);
   check("a new interview starts fresh", !(await msgs()).includes("I want serve my country"));
+  check("the board greets me by the name on my form, and the form is folded away", (await msgs()).includes("Good morning, Ali.") && !(await p.$(".daf[open]")));
+  for (const a of ["I am Ali from Multan and I studied English", "I want to serve the people of my district", "Because PAS officers can solve real problems"]) await say(a, 600);
+  await wait(1500); // the account copy is saved a moment later
+  const plan = (await chats()).filter((c) => c.kind === "interview" && c.topic.plan).sort((x, y) => y.updated - x.updated)[0]?.topic.plan;
+  const bp3 = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("Write the board's next turn now")).pop()?.prompt || "");
+  check("each interview gets its own plan (two Pakistan issues and an officer's case): after the Chairman's part, Member 1 takes Pakistan affairs, starting with its first issue", plan?.issues?.length === 2 && !!plan.case && bp3.includes("has answered 3 of 10 questions") && bp3.includes("Next, the Member 1 asks, about Pakistan affairs and current affairs. Start with " + plan.issues[0]), bp3.slice(bp3.indexOf("Where the interview"), bp3.indexOf("Where the interview") + 300));
 
   // ---- interview me on a topic: a book or anything I studied ----
   await topic("Interview me on a topic");
@@ -298,8 +312,9 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.evaluate(() => { window.__noStory = false; });
   check("no story found is explained", (await p.textContent("#newsStatus")).includes("could not find a news story"));
   await p.evaluate(() => { window.__noSections = true; });
-  await p.fill("#newsText", "ISLAMABAD: The government announced a plan to plant ten million trees across the country this year."); await p.click("#newsGo"); await wait(800);
+  await p.fill("#newsText", "ISLAMABAD: The government announced a plan to plant ten million trees across the country this year.\nThe plan will cost five billion rupees and will start in Punjab and Sindh.\nExperts said the trees would help fight floods and heat waves in the coming years."); await p.click("#newsGo"); await wait(800);
   check("pasted text becomes a story too", (await p.textContent("#topicName")).includes("Floods in Sindh") && await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("Below is a news story") && c.prompt.includes("ten million trees"))));
+  check("a pasted story keeps its own words: Mam only says where it starts, and never copies it back", await p.evaluate(() => { const c = window.__calls.filter((x) => x.prompt.includes("Below is a news story")).pop(); return c.prompt.includes('"start": "the first 8 words') && !c.prompt.includes('"paragraphs":'); }) && (await p.$$(".para")).length === 3 && (await p.textContent(".para >> nth=1")).includes("five billion rupees"));
   check("if Mam left out the headings, I can ask for them", !!(await p.$("text=📑 Make headings")) && !(await p.$(".sec")));
   await p.evaluate(() => { window.__noSections = false; });
   await p.click("text=📑 Make headings"); await wait(600);
@@ -310,18 +325,29 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
     const pp = await b.newPage(); await pp.setContent("<h1>Budget for next year</h1><p>" + "The federal budget gives more money to schools and hospitals in every province of Pakistan. ".repeat(6) + "</p>");
     pdfBuf = await pp.pdf(); await pp.close();
     await p.click("text=📰 All news"); await wait(300);
-    await p.setInputFiles("#newsFile", { name: "paper.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(2500);
-    check("a PDF opens and asks which pages", !(await p.isHidden("#newsPages")) && (await p.textContent("#pOf")).includes("of 1"), await p.textContent("#newsStatus"));
-    await p.click("#pdfGo"); await wait(1500);
-    check("the PDF's words go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals"))));
+    await p.setInputFiles("#newsFile", { name: "paper.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(3000);
+    check("a short PDF is read at once: its words go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals"))));
+    check("the PDF story opens, with its own text in the Original tab", (await p.textContent("#topicName")).includes("Floods in Sindh") && (await p.textContent(".orig")).includes("schools and hospitals"));
+    await p.click("text=📰 All news"); await wait(300);
+    check("the other stories on the PDF's pages are listed, one tap each", (await p.textContent("#pdfOthers")).includes("More stories on these pages") && (await p.textContent("#pdfOthers")).includes("Wheat prices fall in Punjab"));
+    await p.click('#pdfOthers .hl:has-text("Wheat prices")'); await wait(2500);
+    check("tapping one reads that story from the same PDF", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes('the story with this headline: "Wheat prices fall in Punjab"') && c.prompt.includes("[Page 1]"))) && (await p.textContent("#topicName")).includes("Floods in Sindh"));
+    await p.click("text=📰 All news"); await wait(300);
+    check("a story already read from the PDF is marked", (await p.textContent('#pdfOthers .hl:has-text("Wheat prices")')).includes("✓ read"));
+    const pp2 = await b.newPage(); await pp2.setContent([1, 2, 3, 4, 5, 6].map((n) => `<div style="page-break-after:always"><h1>Page ${n}</h1><p>${"Story text for this page of the newspaper. ".repeat(8)}</p></div>`).join(""));
+    const bigPdf = await pp2.pdf(); await pp2.close();
+    await p.setInputFiles("#newsFile", { name: "dawn-today.pdf", mimeType: "application/pdf", buffer: bigPdf }); await wait(2500);
+    check("a whole newspaper PDF asks which pages, right where the choice is", !(await p.isHidden("#newsPages")) && (await p.textContent("#pOf")).includes("of 6") && (await p.textContent("#pHint")).includes("Your PDF has 6 pages") && !(await p.textContent("#pdfOthers")));
+    await p.fill("#pFrom", "3"); await p.fill("#pTo", "4"); await p.click("#pdfGo"); await wait(2500);
+    check("the chosen pages go to Mam", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("[Page 3]") && c.prompt.includes("[Page 4]") && !c.prompt.includes("[Page 2]"))));
   } else console.log("SKIP PDF checks (set PDFJS_DIR to a pdfjs-dist 3.11.174 build folder)");
   await p.click("text=🎤 Interview me on this story"); await wait(300);
-  check("a story I read: Interview me on this story fills in its title and text", (await p.textContent("#topicName")).includes("Interview me on a topic") && (await p.inputValue("#ivTopic")) === "Floods in Sindh" && (await p.inputValue("#ivText")).includes("Torrential rains lashed Sindh") && !(await p.isHidden("#ivPaste")));
+  check("a story I read: Interview me on this story fills in its title and text", (await p.textContent("#topicName")).includes("Interview me on a topic") && (await p.inputValue("#ivTopic")) === "Floods in Sindh" && (await p.inputValue("#ivText")).includes(pdfBuf ? "Story text for this page" : "ten million trees") && !(await p.isHidden("#ivPaste")));
   if (pdfBuf) {
     await p.setInputFiles("#ivFile", { name: "chapter.pdf", mimeType: "application/pdf", buffer: pdfBuf }); await wait(2000);
     check("a PDF for the interview asks which pages", !(await p.isHidden("#ivPages")) && (await p.textContent("#ivOf")).includes("of 1"));
     await p.click("#ivGo"); await wait(1500);
-    check("the PDF's words go to Mam for the interview", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("preparing a practice interview") && c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals") && c.prompt.includes("Torrential rains"))));
+    check("the PDF's words go to Mam for the interview", await p.evaluate(() => window.__calls.some((c) => c.prompt.includes("preparing a practice interview") && c.prompt.includes("[Page 1]") && c.prompt.includes("schools and hospitals") && c.prompt.includes("Story text for this page"))));
   }
   // ---- My words ----
   check("the Words tab shows how many words to review", (await p.textContent("#wordsBadge")) === "2" && !(await p.isHidden("#wordsBadge")));

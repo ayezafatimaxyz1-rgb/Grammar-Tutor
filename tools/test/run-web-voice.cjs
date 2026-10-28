@@ -47,6 +47,8 @@ const fakes = () => {
   const gem = []; // what the page sent to Gemini
   let failSearch = 1; // the first search is refused, as when the newest model has no free search
   let rejectThinking = 1; // the first "thinking off" setting is refused, as some models do
+  const heardQueue = ["I like reading books about history", ""]; // what Mam's ears write down from each recording (then no words)
+  let reciteNext = 0; // Google refuses to copy the next story word for word ("recitation")
   let hold = null; // while set, Mam's reply waits (to test a reply that arrives while the learner is in another app)
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
@@ -68,12 +70,18 @@ const fakes = () => {
     if (body.generationConfig.thinkingConfig && rejectThinking > 0) { rejectThinking--; return r.fulfill({ status: 400, json: { error: { message: "Thinking budget is not supported for this model." } } }); }
     const check = { verdict: "fix", fixed: "I went to the market yesterday.", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] };
     if (/Use Google Search to find today/.test(prompt) && failSearch > 0) { failSearch--; return r.fulfill({ status: 429, json: { error: { message: "Quota exceeded, limit: 0, PerDay" } } }); }
-    const text = /is a recording of a learner of English/.test(prompt) ? JSON.stringify({ text: "I like reading books about history" })
+    if (/Below is a news story/.test(prompt) && /"paragraphs":/.test(prompt) && reciteNext > 0) { reciteNext--; return r.fulfill({ json: { candidates: [{ finishReason: "RECITATION", content: { parts: [{ text: '{"title": "A new dam' }] } }] } }); }
+    const lines = (prompt.split("\n\nTEXT:\n")[1] || "").split("\n").map((x) => x.trim()).filter(Boolean), first = (x, n) => x.split(/\s+/).slice(0, n).join(" "), story = lines.length > 1 ? lines.slice(1) : lines;
+    const anchors = { start: first(story[0] || "", 8), end: story.join(" ").split(/\s+/).slice(-8).join(" "), breaks: [], sections: [{ title: "The new dam", gist: "A dam opened.", start: first(story[0] || "", 5) }] };
+    const heardNow = /is in the attached recording/.test(prompt) ? heardQueue.shift() ?? "" : "";
+    const text = /is in the attached recording/.test(prompt) ? JSON.stringify({ heard: heardNow, reply: heardNow ? "That is interesting! Which history book do you like most?" : "" })
+      : /is a recording of a learner of English/.test(prompt) ? JSON.stringify({ text: "I like reading books about history" })
       : /preparing a practice interview/.test(prompt) ? JSON.stringify({ known: true, title: "The 18th Amendment", emoji: "📜", summary: "A 2010 change to the constitution.", points: ["It gave more powers to the provinces."], questions: ["What is the 18th Amendment?", "Which powers did it give to the provinces?", "Was it good for Pakistan?"] })
       : /practise this English structure/.test(prompt) ? JSON.stringify({ tasks: ["Why do you study English?", "Why do you like your city?"] })
       : /Check this answer to a structure practice task/.test(prompt) ? JSON.stringify({ used: true, correct: true, fixed: "", better: "I study English because I want to pass the CSS exam.", note: "Good!" })
       : /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
-      : /Below is a news story/.test(prompt) ? JSON.stringify({ title: "A new dam for Pakistan", emoji: "💧", source: "Dawn", story: "A new dam opened in KPK. It will store water for farmers and make electricity.", css: "Pakistan Affairs: water and energy.", questions: ["Why do we need dams?", "How can we save water?"], paragraphs: ["A new dam opened today. It will give water and electricity."], sections: [{ title: "The new dam", gist: "A dam opened.", from: 1, to: 1 }], vocab: [{ word: "electricity", type: "noun", meaning: "power for lights and machines" }] })
+      : /Below is a news story/.test(prompt) ? JSON.stringify({ title: "A new dam for Pakistan", emoji: "💧", source: "Dawn", story: "A new dam opened in KPK. It will store water for farmers and make electricity.", css: "Pakistan Affairs: water and energy.", questions: ["Why do we need dams?", "How can we save water?"], vocab: [{ word: "electricity", type: "noun", meaning: "power for lights and machines" }],
+        ...(/"paragraphs":/.test(prompt) ? { paragraphs: ["A new dam opened today. It will give water and electricity."], sections: [{ title: "The new dam", gist: "A dam opened.", from: 1, to: 1 }] } : /"start": "the first 8 words/.test(prompt) ? anchors : {}) })
       : /Help them brainstorm/.test(prompt) ? JSON.stringify({ ideas: [{ title: "Serving my country", points: ["Help people", "Fight corruption"] }, { title: "Family dream", points: ["Father's wish", "Respect"] }, { title: "Good career", points: ["Security", "Leadership"] }], words: ["public service"], plan: ["Start: …", "Reason: …", "Example: …", "End: …"] })
       : /spoke for/.test(prompt) ? JSON.stringify({ score: 6, comment: "Good start.", errors: [], better: "I want to join the civil service to serve my country.", tip: "Give an example." })
       : json && /"reply":/.test(prompt) ? JSON.stringify({ reply: "That sounds nice! What did you buy at the market?", check })
@@ -180,6 +188,12 @@ const fakes = () => {
   check("headlines are kept for the day (no new search)", (await p.$$("#headlines .hl")).length === 3 && (await p.textContent("#headlines")).includes("✓ read") && !gem.slice(before).some((g) => g.search));
   await p.setInputFiles("#newsFile", { name: "shot.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1200);
   check("a screenshot goes to Gemini as a smaller picture", gem.some((g) => /Below is a news story/.test(g.prompt) && g.imgs.length === 1 && g.imgs[0] === "image/jpeg"));
+  check("a headline's story is cut from its own words, not copied back by Mam", gem.some((g) => /Below is a news story/.test(g.prompt) && g.prompt.includes("A new dam opened today") && /"start": "the first 8 words/.test(g.prompt) && !/"paragraphs":/.test(g.prompt)));
+  await p.click('#tabbar [data-tab="news"]'); await p.waitForTimeout(300);
+  reciteNext = 1; const nBefore = gem.length;
+  await p.setInputFiles("#newsFile", { name: "shot2.png", mimeType: "image/png", buffer: await p.screenshot() }); await p.waitForTimeout(1500);
+  const tries = gem.slice(nBefore).filter((g) => /Below is a news story/.test(g.prompt));
+  check("when Google will not copy a story, Mam asks again for the simple story and still makes the session", tries.length === 2 && /"paragraphs":/.test(tries[0].prompt) && !/"paragraphs":/.test(tries[1].prompt) && (await p.textContent("#topicName")).includes("A new dam for Pakistan") && (await p.textContent("#msgs")).includes("Words · 1"));
   await p.click('#tabbar [data-tab="words"]'); await p.waitForTimeout(200);
   await p.fill("#wordIn", "resilience"); await p.click('form:has(#wordIn) button'); await p.waitForTimeout(600);
   check("My words works in the voice version too (kept on this phone)", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).words.map((w) => w.word).join())) === "resilience");
@@ -211,11 +225,16 @@ const fakes = () => {
   await p.click("#orb"); await p.waitForTimeout(1800);
   check("Mam listens: my answer is being recorded", (await p.evaluate(() => window.__gum)) === 1 && (await p.textContent("#msgs")).includes("Listening… pause when you finish"));
   await p.waitForTimeout(5000);
-  const hr = gem.filter((g) => /is a recording of a learner of English/.test(g.prompt)).pop();
-  check("after a pause, the recording goes to Flash-Lite as a WAV, to be written down exactly", !!hr && hr.model === "gemini-2.5-flash-lite" && hr.imgs[0] === "audio/wav" && hr.temp === 0 && hr.prompt.includes("never correct or improve anything"));
+  const hr = gem.find((g) => /is in the attached recording/.test(g.prompt));
+  check("after a pause, the recording goes to Flash-Lite as a WAV with the conversation: written down exactly and answered in ONE call", !!hr && hr.model === "gemini-2.5-flash-lite" && hr.imgs[0] === "audio/wav" && hr.prompt.includes("never correct or improve anything") && /Write Mam's next/.test(hr.prompt) && hr.prompt.includes("(the answer is in the attached recording)"));
+  check("no separate call to write the answer down first", !gem.some((g) => /is a recording of a learner of English/.test(g.prompt)));
   const w = hr?.wav, secs = w ? (w.length - 44) / 32000 : 0;
   check("the recording is a real 16 kHz WAV: the answer with a little silence around it", !!w && w.toString("ascii", 0, 4) === "RIFF" && w.toString("ascii", 8, 12) === "WAVE" && w.readUInt32LE(24) === 16000 && secs > 2.5 && secs < 6, w ? secs.toFixed(2) + " s" : "no audio");
-  check("what Mam heard is sent as my answer, and she answers it", (await p.textContent("#msgs")).includes("I like reading books about history") && gem.some((g) => /Write Mam's next/.test(g.prompt) && g.prompt.includes("I like reading books about history")));
+  check("what Mam heard shows as my answer, with her reply to it", (await p.textContent("#msgs")).includes("I like reading books about history") && (await p.textContent("#msgs")).includes("Which history book do you like most?"));
+  check("the corrections come afterwards, in the background", gem.some((g) => /checking one spoken answer/.test(g.prompt) && g.prompt.includes("I like reading books about history")) && !!(await p.$(".msg.me .verdict")));
+  check("the heard answer is saved in the conversation", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.v1")).chats.some((c) => c.turns.some((t) => t.role === "user" && t.content === "I like reading books about history")))));
+  await p.waitForTimeout(5000); // Mam spoke her reply and listened again: this time the recording has no words
+  check("a recording with no words: Mam says she could not hear, and nothing is added", (await p.textContent("#msgs")).includes("could not hear any words") && !(await p.$(".msg.me.voice")));
   await p.click("#orb"); await p.waitForTimeout(300);
   check("no page errors", errs.length === 0, errs.join(";"));
   await b.close();
