@@ -990,7 +990,8 @@ async function send(textIn, retryEl) {
     }
     setState("idle");
   } finally { watchdog(); clearTimeout(slow); busy = false; }
-  if (replied && !turn.fb) checkAnswer(meEl, turn, c); // only after a real reply, so the two calls never compete
+  // only after a real reply, so the calls never compete: the corrections, then (in an interview) the marks for this answer
+  if (replied) (turn.fb ? Promise.resolve() : checkAnswer(meEl, turn, c)).then(() => { if (c.kind === "interview") assessAnswer(c, turn); });
 }
 async function checkAnswer(meEl, turn, c) {
   const idx = c.turns.indexOf(turn);
@@ -1038,41 +1039,82 @@ function scoreBtn(c) {
   const n = Math.round((Date.now() - scoreAt) / 1000);
   b.disabled = scoring === c; b.textContent = scoring === c ? "Scoring…" + (n >= 3 ? " " + n + " s" : "") : "Get my score";
 }
+// Each answer is marked in the background, right after Mam's reply to it: a quick call for one question and one answer.
+// At the end the marks are added up here, and one short call writes the board's view, so the score is ready in seconds.
+const ivPending = new Map();
+const ivQuestion = (c, turn) => splitSpeaker(c.turns.slice(0, c.turns.indexOf(turn)).reverse().find((x) => x.role === "assistant")?.content || "").text;
+const ivAbout = (c) => (c.topic?.subject ? ` The interview is about something the candidate studied: "${c.topic.subject}". Notes on it: ${c.topic.extra} Judge "knowledge" by how well they know this topic.` : "");
+const answerPrompt = (c, q, a) => `You are a strict senior CSS (FPSC) interview examiner on a real viva voce board in Pakistan. Judge ONE answer from a practice interview, STRICTLY and REALISTICALLY, as a real board would: do not be kind, and judge only what the candidate actually said, never what they might know. The candidate's English level is ${level()}.${ivAbout(c)}
+The board asked: "${q}"
+The candidate answered: "${a}" (${toks(a).length} words)
+Give each area 1 to 10: 9 or 10 exceptional (rare); 7 or 8 strong, ready for the real board; 5 or 6 adequate, with clear gaps; 3 or 4 weak; 1 or 2 very weak or no real answer. One short sentence, an answer that does not answer the question, or only yes or no counts as weak at best. The areas: "communication" (clear, direct, well organised), "confidence" (composure and presence of mind, as the answer shows it), "knowledge" (correct facts and depth), "analysis" (reasons, examples, balanced views), "english" (grammar, vocabulary, sentence building).
+If the board's words were only a greeting or an instruction that needs no real answer (like "Please sit down" or "Are you ready?"), set "counts" to false. Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"counts": true or false, "areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "verdict": "strong or adequate or weak or no answer", "q": "the question, shortened", "note": "what was good or missing in the answer, in one short sentence", "better": "what a strong answer would say, in one or two short sentences", "study": "the right fact in one short sentence if they got a fact wrong or missed a key fact, else empty"}`;
+function assessAnswer(c, turn) {
+  if (turn.iv) return Promise.resolve();
+  if (ivPending.has(turn)) return ivPending.get(turn);
+  const p = (async () => {
+    await aiReady; if (!sample) return;
+    const ctl = new AbortController(), stop = deadline(60000, () => ctl.abort());
+    try {
+      const r = await askJson(answerPrompt(c, ivQuestion(c, turn), turn.content), { modelTier: "quick", cache: false, signal: ctl.signal });
+      const a = r?.areas && typeof r.areas === "object" ? r.areas : {}, txt = (x) => (isEnglish(x) ? String(x) : "");
+      turn.iv = { counts: r?.counts !== false, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.max(1, Math.min(10, Number(a[k]) || 1))])), verdict: String(r?.verdict || "").toLowerCase(), q: txt(r?.q), note: txt(r?.note), better: txt(r?.better), study: txt(r?.study) };
+      putChat(c);
+    } catch (e) { dbg("assess_error", { code: String(e?.code || "") }); }
+    finally { stop(); ivPending.delete(turn); }
+  })();
+  ivPending.set(turn, p); return p;
+}
+// The marks, added up from the answers. Very short answers cannot score high, whatever the marks say: a real board needs developed answers.
+function buildReport(c) {
+  const marked = c.turns.filter((x) => x.role === "user" && x.iv?.counts);
+  if (!marked.length) return null;
+  const n = marked.length, avg = Math.round(marked.reduce((a, x) => a + toks(x.content).length, 0) / n), cap = n < 3 ? 3 : avg < 8 ? 4 : avg < 15 ? 7 : 10;
+  const raw = Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.min(cap, marked.reduce((a, x) => a + x.iv.areas[k], 0) / n)]));
+  const mean = IV_AREAS.reduce((a, [k]) => a + raw[k], 0) / IV_AREAS.length, marks = Math.round(mean * 30);
+  return { score: Math.max(1, Math.round(mean)), marks, pass: marks >= VIVA.pass, capped: cap < 10, answers: n, avg, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.round(raw[k])])),
+    questions: marked.map((x) => ({ q: x.iv.q || ivQuestion(c, x), verdict: x.iv.verdict, note: x.iv.note, better: x.iv.better })),
+    work_on: marked.flatMap((x) => x.fb?.errors || []).filter((w) => w?.right).slice(0, 3).map((w) => ({ wrong: w.wrong, right: w.right })),
+    study: [...new Set(marked.map((x) => x.iv.study).filter(Boolean))].slice(0, 3), board_view: "", did_well: [], tip: "", date: Date.now() };
+}
+const summaryPrompt = (c, r) => `You are the Chairman of a real CSS (FPSC) viva voce board in Pakistan. A practice interview has been marked answer by answer, strictly. The marks: ${r.marks} out of ${VIVA.total} (${r.pass ? "a pass" : "not a pass"}; ${VIVA.pass} needed), from ${r.answers} answers of about ${r.avg} words each.${ivAbout(c)}
+The answers:
+${r.questions.map((q, i) => `${i + 1}. ${q.q} · ${q.verdict || "?"}: ${q.note}`).join("\n")}
+Write honestly and strictly, in simple English only, never Urdu.
+Reply with ONLY JSON: {"board_view": "2 honest sentences: how a real board would see this candidate", "did_well": ["up to 2 real strengths; empty if there are none"], "tip": "one practical tip for the next interview"}`;
 async function interviewReport(c) {
   if (scoring) return;
   await aiReady;
   if (!sample) { note(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first."); return; }
   scoring = c; scoreAt = Date.now(); scoreBtn(c);
   clearInterval(scoreClock); scoreClock = setInterval(() => scoreBtn(c), 1000);
-  const ctl = new AbortController(); let late = false;
-  const stop = deadline(90000, () => { late = true; ctl.abort(); });
-  const s = c.topic || {}, who = isBoard(c) ? "Board: " : "Mam: ";
-  const transcript = c.turns.map((x) => (x.role === "user" ? "Candidate: " : who) + x.content).join("\n");
-  const answers = c.turns.filter((x) => x.role === "user"), n = answers.length, avg = n ? Math.round(answers.reduce((a, x) => a + toks(x.content).length, 0) / n) : 0;
-  const about = s.subject ? ` The interview was about something the candidate studied: "${s.subject}". Notes on it: ${s.extra} Judge "knowledge" by how well they know this topic.` : "";
+  let stop = () => {};
+  const late = new Promise((_, no) => { stop = deadline(90000, () => no({ code: "timeout" })); });
   try {
-    const rep = await askJson(`You are a strict senior CSS (FPSC) interview examiner, the Chairman of a real viva voce board in Pakistan, writing the board's private assessment of a practice interview. The candidate is a learner from Pakistan whose English level is ${level()}.${about}
-Mark STRICTLY and REALISTICALLY, exactly as a real board would. Do not be kind and do not round up. Judge only what the candidate actually said below, never what they might know. In the real viva voce, out of ${VIVA.total} marks, a candidate needs at least ${VIVA.pass} to pass, and candidates who give short or general answers score low.
-Give each area 1 to 10: 9 or 10 exceptional (rare); 7 or 8 strong, ready for the real board; 5 or 6 adequate, with clear gaps; 3 or 4 weak; 1 or 2 very weak or no real answer. An answer that is one short sentence, does not answer the question, or only says yes or no counts as weak at best.
-The areas: "communication" (clear, direct and well organised answers), "confidence" (composure and presence of mind, as the answers show it), "knowledge" (correct facts and depth about Pakistan, current affairs and what was asked), "analysis" (reasons, examples and balanced views), "english" (grammar, vocabulary and sentence building).
-The candidate answered ${n} question${n === 1 ? "" : "s"}, with ${avg} words per answer on average. Write in simple English only, never Urdu.
-Reply with ONLY JSON: {"areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "questions": [{"q": "the board's question, shortened", "verdict": "strong or adequate or weak or no answer", "note": "what was good or missing in the answer, in one short sentence", "better": "what a strong answer would say, in one or two short sentences"}] (every question the candidate answered, in order), "board_view": "2 honest sentences: how a real board would see this candidate", "did_well": ["up to 2 real strengths; empty if there are none"], "work_on": [{"wrong": "the candidate's sentence", "right": "a better sentence"}] (up to 3), "study": ["up to 3 things to learn before the real interview: a point they missed or got wrong, with the right fact in one short sentence"], "tip": "one practical tip for the next interview"}
-
-TRANSCRIPT:
-${transcript.slice(-14000)}`, { modelTier: "default", signal: ctl.signal });
-    c.report = cleanReport(rep, n, avg); putChat(c, true); checkLevelUp();
-    if (c === chat) { document.querySelector("#msgs .boarddone .scorebtn")?.remove(); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
-  } catch (e) { dbg("report_error", { code: String(e?.code || ""), late }); if (c === chat) note(late ? "Scoring took too long this time. Tap Get my score to try again." : errText(e) || "The score could not be made. Try again."); }
-  finally { stop(); clearInterval(scoreClock); scoring = null; scoreBtn(c); }
+    // the answers not marked yet (an answer whose check broke, or an interview from before), three at a time
+    await Promise.race([late, (async () => {
+      const todo = c.turns.filter((x) => x.role === "user" && !x.iv);
+      for (let i = 0; i < todo.length; i += 3) await Promise.all(todo.slice(i, i + 3).map((t) => assessAnswer(c, t)));
+    })()]);
+    const r = buildReport(c);
+    if (!r) throw { code: c.turns.some((x) => x.role === "user") ? "upstream_error" : "no_answers" };
+    c.report = r; putChat(c, true); checkLevelUp(); showReport(c);
+    try {
+      const x = await Promise.race([late, askJson(summaryPrompt(c, r), { modelTier: "quick", cache: false })]);
+      Object.assign(r, { board_view: isEnglish(x?.board_view) ? String(x.board_view) : "", did_well: arr(x?.did_well, 2).filter(isEnglish), tip: isEnglish(x?.tip) ? String(x.tip) : "" });
+      putChat(c, true); showReport(c);
+    } catch (e) { dbg("summary_error", { code: String(e?.code || "") }); } // the marks stand without the board's view
+  } catch (e) {
+    dbg("report_error", { code: String(e?.code || "") });
+    if (c === chat) note(e?.code === "timeout" ? "Scoring took too long this time. Tap Get my score to try again." : e?.code === "no_answers" ? "Answer at least one question to get a score." : errText(e) || "The score could not be made. Try again.");
+  } finally { stop(); clearInterval(scoreClock); scoring = null; scoreBtn(c); }
 }
-// Very short answers cannot score high, whatever the marks say: a real board needs developed answers.
-function cleanReport(r, n, avg) {
-  const cap = n < 3 ? 3 : avg < 8 ? 4 : avg < 15 ? 7 : 10, a = r?.areas && typeof r.areas === "object" ? r.areas : {};
-  const areas = Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.min(cap, Math.max(1, Math.round(Number(a[k]) || 1)))]));
-  const mean = IV_AREAS.reduce((x, [k]) => x + areas[k], 0) / IV_AREAS.length, marks = Math.round(mean * 30);
-  const questions = (Array.isArray(r?.questions) ? r.questions : []).filter((q) => q?.q && isEnglish(q.q + (q.note || "") + (q.better || ""))).slice(0, 15).map((q) => ({ q: String(q.q), verdict: String(q.verdict || "").toLowerCase(), note: String(q.note || ""), better: String(q.better || "") }));
-  return { score: Math.max(1, Math.round(mean)), marks, pass: marks >= VIVA.pass, capped: cap < 10, answers: n, avg, areas, questions, board_view: isEnglish(r?.board_view) ? String(r.board_view) : "", did_well: arr(r?.did_well, 2).filter(isEnglish),
-    work_on: (Array.isArray(r?.work_on) ? r.work_on : []).filter((w) => w?.right && isEnglish(w.right)).slice(0, 3), study: arr(r?.study, 3).filter(isEnglish), tip: isEnglish(r?.tip) ? String(r.tip) : "", date: Date.now() };
+function showReport(c) {
+  if (c !== chat) return;
+  document.querySelector("#msgs .boarddone .scorebtn")?.remove();
+  const old = document.querySelector("#msgs .report"), card = reportCard(c);
+  if (old) old.replaceWith(card); else { $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
 }
 function reportCard(c) {
   const s = c.report || {};
