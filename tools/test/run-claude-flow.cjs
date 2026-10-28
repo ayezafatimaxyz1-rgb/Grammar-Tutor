@@ -137,15 +137,17 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.evaluate(() => { window.__forceOver = false; });
   await wait(500);
   let ivm = await msgs();
-  const rp = await p.evaluate(() => window.__calls.filter((c) => /interview examiner/.test(c.prompt)).pop());
+  const rp = await p.evaluate(() => window.__calls.filter((c) => /Judge ONE answer/.test(c.prompt)));
+  const sp = await p.evaluate(() => window.__calls.filter((c) => /has been marked answer by answer/.test(c.prompt)));
   check("when the interview ends, the score comes by itself, with a new interview to start", ivm.includes("Start a new interview") && ivm.includes("out of 300 · Interview score") && !ivm.includes("Get my score"));
-  check("the score is strict and real: marked like the FPSC viva voce, 100 of 300 to pass", !!rp && rp.prompt.includes("Mark STRICTLY and REALISTICALLY") && rp.prompt.includes("at least 100 to pass") && rp.prompt.includes("2 questions, with 7 words per answer"));
+  check("each answer is marked on its own, strictly, by the quick model as the interview goes on", rp.length === 2 && rp.every((c) => c.tier === "quick" && c.prompt.includes("STRICTLY and REALISTICALLY")) && rp[1].prompt.includes('The candidate answered: "I want serve my country" (5 words)'));
+  check("at the end the marks are added up, and one short call writes the board's view", sp.length === 1 && sp[0].tier === "quick" && sp[0].prompt.includes("90 out of 300 (not a pass; 100 needed)") && ivm.includes("The candidate is polite but needs longer answers.") && ivm.includes("Give one example in every answer."));
   check("two short answers cannot pass: 90 of 300, and it says why", ivm.includes("90out of 300") && ivm.includes("✗ A real board would not pass this: 100 needed") && ivm.includes("short answers cannot score high") && ivm.includes("Question by question") && ivm.includes("Reasoning"));
   const boardCalls = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("interview board")).length);
   await say("One more thing", 400);
   check("a finished interview does not continue", (await msgs()).includes("This interview is over") && (await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("interview board")).length)) === boardCalls);
   if (process.env.SHOTS) { await p.evaluate(() => { const d = document.querySelector(".report details"); if (d) d.open = true; document.querySelector(".report")?.scrollIntoView(); }); await p.screenshot({ path: path.join(process.env.SHOTS, "bolo-score.png") }); }
-  check("the score is kept with the interview", (await chats()).some((c) => c.report?.marks === 90 && c.report.pass === false && c.report.score === 3 && c.report.questions.length === 1));
+  check("the score is kept with the interview", (await chats()).some((c) => c.report?.marks === 90 && c.report.pass === false && c.report.score === 3 && c.report.questions.length === 2 && c.turns.filter((t) => t.iv).length === 2));
   await p.click("text=Start a new interview"); await wait(300);
   check("a new interview starts fresh", !(await msgs()).includes("I want serve my country"));
 
@@ -438,6 +440,26 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const dbgDocs = await p.evaluate(() => Object.keys(window.__store.debug || {}).length);
   check("debug log is one document per visit", dbgDocs <= 2, String(dbgDocs));
   const errs = [...pageErrors, ...(await p.evaluate(() => window.__errors))];
+  // an interview finished before the answers were marked one by one: its answers are marked at the end, three at a time
+  const ivTopic = { id: "interview", em: "🏛️", name: "CSS interview", desc: "", open: "", extra: "", kind: "interview" }, t0 = Date.now() - 3600000;
+  const oldIv = { id: "oldiv", kind: "interview", topic: ivTopic, started: t0, updated: t0 + 600000, words: 40, turns: [
+    { role: "assistant", content: "[Chairman] Good morning. Please tell us about yourself.", at: t0 }, { role: "user", content: "I am Fatima from Lahore and I studied English literature", at: t0 + 60000 },
+    { role: "assistant", content: "[Member 1] What is the biggest problem of Pakistan?", at: t0 + 120000 }, { role: "user", content: "I think the economy is the biggest problem because prices are very high", at: t0 + 180000 },
+    { role: "assistant", content: "[Member 2] Why do you want to join the civil service?", at: t0 + 240000 }, { role: "user", content: "I want to serve my country and help poor people", at: t0 + 300000 },
+    { role: "assistant", content: "[Member 1] What is CPEC?", at: t0 + 360000 }, { role: "user", content: "It is a road project with China", at: t0 + 420000 },
+    { role: "assistant", content: "[Chairman] Thank you, Miss Fatima. The interview is over.", at: t0 + 480000 }] };
+  const q2 = await b.newPage({ viewport: { width: 390, height: 844 } }); q2.on("pageerror", (e) => errs.push(e.message));
+  await q2.route("**/*", (r) => (r.request().url().startsWith("http://bolo.test/") ? r.fulfill({ contentType: "text/html", body: html }) : r.abort()));
+  await q2.addInitScript((d) => { window.__seed = { "data/users/u_test": { meta: { settings: { voice: false, lastTopic: "interview", lastTalk: "interview" } }, chat_oldiv: d }, library: {} }; }, oldIv);
+  await q2.addInitScript(mock);
+  await q2.goto("http://bolo.test/"); await q2.waitForTimeout(900);
+  const before = await q2.textContent("#msgs");
+  await q2.click("text=Get my score"); await q2.waitForTimeout(800);
+  const om = await q2.textContent("#msgs"), oc = await q2.evaluate(() => window.__calls.filter((c) => /Judge ONE answer/.test(c.prompt)).length);
+  check("an older interview: Get my score marks each of its answers, then adds them up", before.includes("Get my score") && oc === 4 && om.includes("out of 300 · Interview score") && om.includes("Question by question") && om.includes("The candidate is polite"));
+  check("four answers of about 10 words, marked weak to adequate: 144 of 300, a narrow pass", om.includes("144out of 300") && om.includes("✓ A real board would pass this (100 needed)") && om.includes("short answers cannot score high"));
+  await q2.close();
+
   check("no page errors", errs.length === 0, errs.join(" ; "));
   await b.close();
   const failed = results.filter((x) => !x).length;
