@@ -115,7 +115,10 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; p
 .rtop { display: flex; gap: 12px; align-items: center; }
 .rtop .verdict { padding: 2px 0; min-height: 0; }
 .qrev { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; font-size: 15px; }
-.qrev .verdict { padding: 0; min-height: 0; font-size: 14px; }
+.qrev .verdict { padding: 0; min-height: 0; font-size: 14px; text-align: left; }
+.qrev .qq { font-weight: 700; }
+.qrev .qa { font-size: 14px; color: var(--muted); font-style: italic; }
+.qrev ul { margin: 0; padding-left: 20px; font-size: 14px; }
 .report .hint { text-align: left; margin: 0; }
 
 /* Mam's talk button */
@@ -1048,8 +1051,9 @@ const answerPrompt = (c, q, a) => `You are a strict senior CSS (FPSC) interview 
 The board asked: "${q}"
 The candidate answered: "${a}" (${toks(a).length} words)
 Give each area 1 to 10: 9 or 10 exceptional (rare); 7 or 8 strong, ready for the real board; 5 or 6 adequate, with clear gaps; 3 or 4 weak; 1 or 2 very weak or no real answer. One short sentence, an answer that does not answer the question, or only yes or no counts as weak at best. The areas: "communication" (clear, direct, well organised), "confidence" (composure and presence of mind, as the answer shows it), "knowledge" (correct facts and depth), "analysis" (reasons, examples, balanced views), "english" (grammar, vocabulary, sentence building).
+Then say EXACTLY why this answer lost marks, the way a board member would explain it: for example, it is subjective (only a personal feeling, with no fact, figure or example), too general or vague, does not answer the question asked, has a wrong or missing fact, gives no example from Pakistan, has no clear order, is emotional instead of analytical, or has grammar mistakes that make it unclear. Name the exact part of their answer when you can.
 If the board's words were only a greeting or an instruction that needs no real answer (like "Please sit down" or "Are you ready?"), set "counts" to false. Write in simple English only, never Urdu.
-Reply with ONLY JSON: {"counts": true or false, "areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "verdict": "strong or adequate or weak or no answer", "q": "the question, shortened", "note": "what was good or missing in the answer, in one short sentence", "better": "what a strong answer would say, in one or two short sentences", "study": "the right fact in one short sentence if they got a fact wrong or missed a key fact, else empty"}`;
+Reply with ONLY JSON: {"counts": true or false, "areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "verdict": "strong or adequate or weak or no answer", "q": "the question, shortened", "note": "what was good or missing in the answer, in one short sentence", "lost": ["each reason this answer lost marks, one short specific sentence each (up to 3; empty if it lost none)"], "earned": "what earned marks in this answer, in one short sentence, or empty", "better": "what a strong answer would say, in one or two short sentences", "study": "the right fact in one short sentence if they got a fact wrong or missed a key fact, else empty"}`;
 function assessAnswer(c, turn) {
   if (turn.iv) return Promise.resolve();
   if (ivPending.has(turn)) return ivPending.get(turn);
@@ -1059,30 +1063,35 @@ function assessAnswer(c, turn) {
     try {
       const r = await askJson(answerPrompt(c, ivQuestion(c, turn), turn.content), { modelTier: "quick", cache: false, signal: ctl.signal });
       const a = r?.areas && typeof r.areas === "object" ? r.areas : {}, txt = (x) => (isEnglish(x) ? String(x) : "");
-      turn.iv = { counts: r?.counts !== false, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.max(1, Math.min(10, Number(a[k]) || 1))])), verdict: String(r?.verdict || "").toLowerCase(), q: txt(r?.q), note: txt(r?.note), better: txt(r?.better), study: txt(r?.study) };
+      turn.iv = { counts: r?.counts !== false, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.max(1, Math.min(10, Number(a[k]) || 1))])), verdict: String(r?.verdict || "").toLowerCase(), q: txt(r?.q), note: txt(r?.note), lost: arr(r?.lost, 3).filter(isEnglish), earned: txt(r?.earned), better: txt(r?.better), study: txt(r?.study) };
       putChat(c);
     } catch (e) { dbg("assess_error", { code: String(e?.code || "") }); }
     finally { stop(); ivPending.delete(turn); }
   })();
   ivPending.set(turn, p); return p;
 }
-// The marks, added up from the answers. Very short answers cannot score high, whatever the marks say: a real board needs developed answers.
+// The marks, added up from the answers. A very short answer cannot score high, whatever the marks say: a real board needs
+// developed answers. So each answer is capped by its own length (and an interview of fewer than 3 answers at 3).
+const wordCap = (w) => (w < 8 ? 4 : w < 15 ? 7 : 10);
 function buildReport(c) {
   const marked = c.turns.filter((x) => x.role === "user" && x.iv?.counts);
   if (!marked.length) return null;
-  const n = marked.length, avg = Math.round(marked.reduce((a, x) => a + toks(x.content).length, 0) / n), cap = n < 3 ? 3 : avg < 8 ? 4 : avg < 15 ? 7 : 10;
-  const raw = Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.min(cap, marked.reduce((a, x) => a + x.iv.areas[k], 0) / n)]));
+  const n = marked.length, avg = Math.round(marked.reduce((a, x) => a + toks(x.content).length, 0) / n), top = n < 3 ? 3 : 10;
+  const each = marked.map((x) => { const w = toks(x.content).length, cap = Math.min(top, wordCap(w)); return { x, w, cap, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.min(cap, x.iv.areas[k])])) }; });
+  const raw = Object.fromEntries(IV_AREAS.map(([k]) => [k, each.reduce((a, e) => a + e.areas[k], 0) / n]));
   const mean = IV_AREAS.reduce((a, [k]) => a + raw[k], 0) / IV_AREAS.length, marks = Math.round(mean * 30);
-  return { score: Math.max(1, Math.round(mean)), marks, pass: marks >= VIVA.pass, capped: cap < 10, answers: n, avg, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.round(raw[k])])),
-    questions: marked.map((x) => ({ q: x.iv.q || ivQuestion(c, x), verdict: x.iv.verdict, note: x.iv.note, better: x.iv.better })),
+  const short = (e) => (e.w < 8 ? [`Too short: only ${e.w} words. A real board expects a full answer with a reason and an example.`] : e.w < 15 ? [`Short: ${e.w} words. Add a reason and an example to score higher.`] : []);
+  return { score: Math.max(1, Math.round(mean)), marks, pass: marks >= VIVA.pass, capped: each.some((e) => e.cap < 10), answers: n, avg, areas: Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.round(raw[k])])),
+    questions: each.map((e) => ({ q: e.x.iv.q || ivQuestion(c, e.x), a: e.x.content, words: e.w, score: Math.round(IV_AREAS.reduce((a, [k]) => a + e.areas[k], 0) / IV_AREAS.length * 10) / 10, areas: e.areas,
+      verdict: e.x.iv.verdict, note: e.x.iv.note, lost: [...short(e), ...(e.x.iv.lost || [])].slice(0, 4), earned: e.x.iv.earned || "", better: e.x.iv.better, study: e.x.iv.study })),
     work_on: marked.flatMap((x) => x.fb?.errors || []).filter((w) => w?.right).slice(0, 3).map((w) => ({ wrong: w.wrong, right: w.right })),
     study: [...new Set(marked.map((x) => x.iv.study).filter(Boolean))].slice(0, 3), board_view: "", did_well: [], tip: "", date: Date.now() };
 }
 const summaryPrompt = (c, r) => `You are the Chairman of a real CSS (FPSC) viva voce board in Pakistan. A practice interview has been marked answer by answer, strictly. The marks: ${r.marks} out of ${VIVA.total} (${r.pass ? "a pass" : "not a pass"}; ${VIVA.pass} needed), from ${r.answers} answers of about ${r.avg} words each.${ivAbout(c)}
 The answers:
-${r.questions.map((q, i) => `${i + 1}. ${q.q} · ${q.verdict || "?"}: ${q.note}`).join("\n")}
+${r.questions.map((q, i) => `${i + 1}. ${q.q} · ${q.score}/10, ${q.verdict || "?"}: ${q.note}${q.lost?.length ? " Lost marks: " + q.lost.join(" ") : ""}`).join("\n")}
 Write honestly and strictly, in simple English only, never Urdu.
-Reply with ONLY JSON: {"board_view": "2 honest sentences: how a real board would see this candidate", "did_well": ["up to 2 real strengths; empty if there are none"], "tip": "one practical tip for the next interview"}`;
+Reply with ONLY JSON: {"board_view": "2 honest sentences: how a real board would see this candidate", "patterns": ["up to 3 reasons this candidate lost marks most often, across the answers, one short sentence each"], "did_well": ["up to 2 real strengths; empty if there are none"], "tip": "one practical tip for the next interview"}`;
 async function interviewReport(c) {
   if (scoring) return;
   await aiReady;
@@ -1102,7 +1111,7 @@ async function interviewReport(c) {
     c.report = r; putChat(c, true); checkLevelUp(); showReport(c);
     try {
       const x = await Promise.race([late, askJson(summaryPrompt(c, r), { modelTier: "quick", cache: false })]);
-      Object.assign(r, { board_view: isEnglish(x?.board_view) ? String(x.board_view) : "", did_well: arr(x?.did_well, 2).filter(isEnglish), tip: isEnglish(x?.tip) ? String(x.tip) : "" });
+      Object.assign(r, { board_view: isEnglish(x?.board_view) ? String(x.board_view) : "", patterns: arr(x?.patterns, 3).filter(isEnglish), did_well: arr(x?.did_well, 2).filter(isEnglish), tip: isEnglish(x?.tip) ? String(x.tip) : "" });
       putChat(c, true); showReport(c);
     } catch (e) { dbg("summary_error", { code: String(e?.code || "") }); } // the marks stand without the board's view
   } catch (e) {
@@ -1129,11 +1138,24 @@ function reportCard(c) {
     const v = Math.max(0, Math.min(10, Number(areas[k]) || 0)), row = el("div", "area"); row.innerHTML = "<span></span><i><b></b></i><em></em>";
     row.children[0].textContent = l; row.querySelector("b").style.width = v * 10 + "%"; row.children[2].textContent = v + "/10"; r.append(row);
   });
-  if (s.capped) r.append(el("p", "hint", `Your answers had about ${s.avg} words each. A real board wants full answers with a reason and an example, so short answers cannot score high.`));
+  if (s.capped) r.append(el("p", "hint", `Your answers had about ${s.avg} words each. A real board wants full answers with a reason and an example, so short answers cannot score high.`)); // each short answer says so below
   if (isEnglish(s.board_view)) r.append(el("p", "", s.board_view));
+  if (Array.isArray(s.patterns) && s.patterns.length) { r.append(el("div", "lbl", "Where you lost marks most")); const ul = el("ul"); s.patterns.forEach((x) => ul.append(el("li", "", x))); r.append(ul); }
   if (Array.isArray(s.questions) && s.questions.length) {
-    const d = el("details"); d.append(el("summary", "", `Question by question · ${s.questions.filter((q) => q.verdict === "strong").length} strong of ${s.questions.length}`));
-    s.questions.forEach((q) => { const m = el("div", "qrev"); m.append(el("div", "", q.q), el("div", "verdict " + (q.verdict === "strong" ? "great" : q.verdict === "adequate" ? "check" : "fix"), (q.verdict === "strong" ? "✓ Strong" : q.verdict === "adequate" ? "~ Adequate" : q.verdict === "no answer" ? "✗ No answer" : "✗ Weak") + (q.note ? " · " + q.note : ""))); if (q.better) m.append(el("div", "hint", "A strong answer: " + q.better)); d.append(m); });
+    const d = el("details"); d.open = true; d.append(el("summary", "", `Answer by answer · ${s.questions.filter((q) => q.verdict === "strong").length} strong of ${s.questions.length}`));
+    const V = { strong: ["great", "✓ Strong"], adequate: ["check", "~ Adequate"], "no answer": ["fix", "✗ No answer"] };
+    s.questions.forEach((q, i) => {
+      const m = el("div", "qrev"), [cls, word] = V[q.verdict] || ["fix", "✗ Weak"];
+      m.append(el("div", "qq", `${i + 1}. ${q.q}`));
+      if (q.a) m.append(el("div", "qa", `Your answer: “${q.a}”` + (q.words ? ` (${q.words} words)` : "")));
+      m.append(el("div", "verdict " + cls, (q.score != null ? q.score + "/10 · " : "") + word + (q.note && !q.lost?.length ? " · " + q.note : "")));
+      if (q.areas) m.append(el("div", "hint", IV_AREAS.map(([k, l]) => `${l} ${q.areas[k]}`).join(" · ")));
+      if (q.lost?.length) { m.append(el("div", "lbl", "Why it lost marks")); const ul = el("ul"); q.lost.forEach((x) => ul.append(el("li", "", x))); m.append(ul); }
+      if (q.earned) m.append(el("div", "", "👍 " + q.earned));
+      if (q.better) m.append(el("div", "hint", "A strong answer: " + q.better));
+      if (q.study) m.append(el("div", "hint", "📚 " + q.study));
+      d.append(m);
+    });
     r.append(d);
   }
   if (Array.isArray(s.did_well) && s.did_well.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.append(ul); }
