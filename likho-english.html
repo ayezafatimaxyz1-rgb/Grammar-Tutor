@@ -1953,7 +1953,7 @@ let dictRec = null;
 function dictate(ta, b) {
   if (dictRec) { stopDictation(); return; }
   try {
-    const r = new SR(); r.lang = "en-US"; r.interimResults = true; r.continuous = true;
+    const r = new SR(); r.lang = "en-IN"; r.interimResults = true; r.continuous = true; // South Asian English hears Pakistani speakers best
     const base = ta.value.trim() ? ta.value.trimEnd() + " " : "";
     let quiet = 0;
     const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 4000); };

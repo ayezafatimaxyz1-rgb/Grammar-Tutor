@@ -10,9 +10,9 @@ const root = path.resolve(__dirname, "../..");
 const fakes = () => {
   // Each recogniser "hears" the next phrase in window.__toSay, then goes quiet (the app sends after a pause).
   window.__toSay = ["I go to market yesterday", "I bought some mangoes"];
-  window.__heard = 0; window.__spoken = [];
+  window.__heard = 0; window.__spoken = []; window.__langs = [];
   class FakeSR {
-    start() { const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) { window.__heard++; this.onresult?.({ results: [[{ transcript: phrase }]] }); } }, 200); }
+    start() { window.__langs.push(this.lang); const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) { window.__heard++; this.onresult?.({ results: [[{ transcript: phrase }]] }); } }, 200); }
     stop() { clearTimeout(this._t); setTimeout(() => this.onend?.(), 10); }
     abort() { clearTimeout(this._t); setTimeout(() => this.onend?.(), 10); }
   }
@@ -25,12 +25,23 @@ const fakes = () => {
   Object.defineProperty(document, "hidden", { configurable: true, get: () => !!window.__hidden });
   Object.defineProperty(document, "visibilityState", { configurable: true, get: () => (window.__hidden ? "hidden" : "visible") });
   window.__setHidden = (h) => { window.__hidden = h; document.dispatchEvent(new Event("visibilitychange")); };
+  // a fake microphone: silence, then 1.2 seconds of "speech" (a tone), then silence
+  if (!navigator.mediaDevices) Object.defineProperty(navigator, "mediaDevices", { value: {}, configurable: true });
+  navigator.mediaDevices.getUserMedia = async () => {
+    if (!window.__mic) throw new DOMException("No microphone in this test", "NotAllowedError");
+    const ctx = new AudioContext(); await ctx.resume();
+    const osc = ctx.createOscillator(), g = ctx.createGain(), dst = ctx.createMediaStreamDestination(), t = ctx.currentTime;
+    osc.frequency.value = 220; osc.connect(g); g.connect(dst); osc.start();
+    g.gain.setValueAtTime(0, t); g.gain.setValueAtTime(0.4, t + 0.4); g.gain.setValueAtTime(0, t + 1.6);
+    window.__gum = (window.__gum || 0) + 1;
+    return dst.stream;
+  };
   Object.defineProperty(navigator, "clipboard", { value: { readText: async () => window.__clip || "" }, configurable: true });
 };
 
 (async () => {
   const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
-  const b = await pw.chromium.launch(exe ? { executablePath: exe } : {});
+  const b = await pw.chromium.launch({ ...(exe ? { executablePath: exe } : {}), args: ["--autoplay-policy=no-user-gesture-required"] });
   const p = await b.newPage({ viewport: { width: 390, height: 844 } });
   const errs = []; p.on("pageerror", (e) => errs.push(e.message));
   const gem = []; // what the page sent to Gemini
@@ -53,11 +64,12 @@ const fakes = () => {
     const body = JSON.parse(r.request().postData());
     const json = body.generationConfig.responseMimeType === "application/json";
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
-    gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], search: !!body.tools?.some((t) => t.google_search), mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], search: !!body.tools?.some((t) => t.google_search), mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, temp: body.generationConfig.temperature, wav: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data?.mime_type === "audio/wav").map((x) => Buffer.from(x.inline_data.data, "base64"))[0] || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
     if (body.generationConfig.thinkingConfig && rejectThinking > 0) { rejectThinking--; return r.fulfill({ status: 400, json: { error: { message: "Thinking budget is not supported for this model." } } }); }
     const check = { verdict: "fix", fixed: "I went to the market yesterday.", errors: [{ wrong: "I go to market yesterday", right: "I went to the market yesterday", why: "Use the past tense for yesterday." }], better: [{ label: "More natural", text: "Yesterday I went to the market." }, { label: "CSS interview", text: "Yesterday, I visited the local market." }] };
     if (/Use Google Search to find today/.test(prompt) && failSearch > 0) { failSearch--; return r.fulfill({ status: 429, json: { error: { message: "Quota exceeded, limit: 0, PerDay" } } }); }
-    const text = /preparing a practice interview/.test(prompt) ? JSON.stringify({ known: true, title: "The 18th Amendment", emoji: "📜", summary: "A 2010 change to the constitution.", points: ["It gave more powers to the provinces."], questions: ["What is the 18th Amendment?", "Which powers did it give to the provinces?", "Was it good for Pakistan?"] })
+    const text = /is a recording of a learner of English/.test(prompt) ? JSON.stringify({ text: "I like reading books about history" })
+      : /preparing a practice interview/.test(prompt) ? JSON.stringify({ known: true, title: "The 18th Amendment", emoji: "📜", summary: "A 2010 change to the constitution.", points: ["It gave more powers to the provinces."], questions: ["What is the 18th Amendment?", "Which powers did it give to the provinces?", "Was it good for Pakistan?"] })
       : /practise this English structure/.test(prompt) ? JSON.stringify({ tasks: ["Why do you study English?", "Why do you like your city?"] })
       : /Check this answer to a structure practice task/.test(prompt) ? JSON.stringify({ used: true, correct: true, fixed: "", better: "I study English because I want to pass the CSS exam.", note: "Good!" })
       : /Use Google Search to find today/.test(prompt) ? "Here is the news:\n```json\n" + JSON.stringify({ items: [{ title: "New dam opens in KPK", emoji: "💧", source: "Dawn", where: "Pakistan", story: "A new dam opened today. It will give water and electricity." }, { title: "Peace talks in Geneva", emoji: "🕊️", source: "BBC", where: "World", story: "Leaders met in Geneva to talk about peace." }, { title: "Cricket team wins", emoji: "🏏", source: "The News", where: "Pakistan", story: "Pakistan won the match by five wickets." }] }) + "\n```"
@@ -84,6 +96,8 @@ const fakes = () => {
   const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));
   check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && saved.key === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
   check("talking uses the fast stable Flash-Lite model; harder jobs use Flash", saved.fast === "gemini-2.5-flash-lite" && saved.model === "gemini-flash-latest", JSON.stringify(saved));
+  check("settings: Mam writes down what I say, and the phone listens for a South Asian accent", !(await p.isHidden("#earsBox")) && (await p.inputValue("#earsSel")) === "mam" && (await p.inputValue("#accentSel")) === "en-IN");
+  await p.selectOption("#earsSel", "phone"); // the talk loop below uses the phone's listening (the fake recogniser)
   await p.click("#setSheet [data-close].btn.primary");
   check("voice version: big talk button, no typing box", !(await p.isHidden("#orb")) && (await p.isHidden("#typeRow")));
 
@@ -96,6 +110,7 @@ const fakes = () => {
   await p.waitForTimeout(3000);
   const m2 = await p.textContent("#msgs");
   check("it listens again by itself (second answer sent)", m2.includes("I bought some mangoes"));
+  check("the phone listens for a South Asian accent", (await p.evaluate(() => window.__langs.length > 0 && window.__langs.every((l) => l === "en-IN"))));
   check("corrections folded under my sentence", (await p.textContent(".msg.me .verdict")).includes("mistake"));
   const talk = gem.filter((g) => /Write Mam's next reply now/.test(g.prompt));
   check("one request per answer brings the reply and the corrections together", talk.length >= 2 && talk.every((g) => /"reply":/.test(g.prompt) && g.mime === "application/json") && !gem.some((g) => /checking one spoken answer/.test(g.prompt)));
@@ -186,6 +201,18 @@ const fakes = () => {
   await p.evaluate(() => localStorage.setItem("bolo.gemini", JSON.stringify({ key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest" })));
   await p.reload(); await p.waitForTimeout(800);
   check("a key saved by the old version gets the fast model too", (await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")).fast)) === "gemini-2.5-flash-lite");
+  // Mam's ears: the answer is recorded, and Gemini writes down exactly what was said
+  await p.click("#setBtn"); await p.selectOption("#earsSel", "mam"); await p.click("#setSheet [data-close].btn.primary");
+  await p.evaluate(() => { window.__mic = true; });
+  await p.click("#orb"); await p.waitForTimeout(1800);
+  check("Mam listens: my answer is being recorded", (await p.evaluate(() => window.__gum)) === 1 && (await p.textContent("#msgs")).includes("Listening… pause when you finish"));
+  await p.waitForTimeout(5000);
+  const hr = gem.filter((g) => /is a recording of a learner of English/.test(g.prompt)).pop();
+  check("after a pause, the recording goes to Flash-Lite as a WAV, to be written down exactly", !!hr && hr.model === "gemini-2.5-flash-lite" && hr.imgs[0] === "audio/wav" && hr.temp === 0 && hr.prompt.includes("never correct or improve anything"));
+  const w = hr?.wav, secs = w ? (w.length - 44) / 32000 : 0;
+  check("the recording is a real 16 kHz WAV: the answer with a little silence around it", !!w && w.toString("ascii", 0, 4) === "RIFF" && w.toString("ascii", 8, 12) === "WAVE" && w.readUInt32LE(24) === 16000 && secs > 2.5 && secs < 6, w ? secs.toFixed(2) + " s" : "no audio");
+  check("what Mam heard is sent as my answer, and she answers it", (await p.textContent("#msgs")).includes("I like reading books about history") && gem.some((g) => /Write Mam's next/.test(g.prompt) && g.prompt.includes("I like reading books about history")));
+  await p.click("#orb"); await p.waitForTimeout(300);
   check("no page errors", errs.length === 0, errs.join(";"));
   await b.close();
   const failed = results.filter((x) => !x).length;

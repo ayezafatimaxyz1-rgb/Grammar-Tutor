@@ -362,6 +362,13 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
       <label for="rateSel"><strong>Mam's speaking speed</strong></label>
       <select id="rateSel"><option value="0.6">Very slow</option><option value="0.75">Slow</option><option value="0.88">Normal</option><option value="1">Fast</option><option value="1.15">Faster</option><option value="1.3">Very fast</option></select>
     </div>
+    <div class="field" id="earsBox" hidden>
+      <label for="earsSel"><strong>🎙️ Who writes down what you say</strong></label>
+      <select id="earsSel"><option value="mam">Mam: hears your accent and keeps your exact words</option><option value="phone">My phone: a little faster, but it changes some words</option></select>
+      <label for="accentSel"><strong>Your accent, for the phone's listening</strong></label>
+      <select id="accentSel"><option value="en-IN">South Asian (Pakistan, India)</option><option value="en-GB">British</option><option value="en-US">American</option></select>
+      <span class="hint" style="text-align:left">The phone's listening shows your words while you speak, in the 1-minute challenge and the practice boxes.</span>
+    </div>
     <div class="field" id="voiceLink" hidden>
       <strong>Speak without the keyboard</strong>
       <span class="hint" style="text-align:left">Claude blocks the microphone here. In the voice version Mam listens directly: you just talk. You can also keep the voice version on your phone's Home Screen, like an app.</span>
@@ -569,10 +576,11 @@ function geminiAI() {
     const contents = [];
     for (const t of turnsIn) { const role = t.role === "assistant" ? "model" : "user", last = contents[contents.length - 1]; if (last && last.role === role) last.parts[0].text += "\n\n" + t.content; else contents.push({ role, parts: [{ text: t.content }] }); }
     const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
+    if (opts.audio) contents[contents.length - 1].parts.push({ inline_data: { mime_type: opts.audio.type || "audio/wav", data: await b64(opts.audio) } });
     for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
     const tm = opts.modelTier === "quick" ? thinkMode(cfg, model) : "none";
     // JSON mode cannot be combined with search, so a searched answer is parsed from plain text
-    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
+    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: opts.temperature ?? 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
     let res;
     try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
     catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
@@ -1221,10 +1229,104 @@ function setState(st) {
   o.setAttribute("aria-label", st === "listening" ? "Pause" : st === "speaking" ? "Stop Mam and answer" : "Start talking");
   $("state").textContent = STATES[st] ? STATES[st]() : "";
 }
+// ---------- Mam's ears ----------
+// The phone's own speech recognition expects an American accent and often swaps a learner's words for words it expects.
+// In the web version Mam listens instead: the answer is recorded and Gemini writes down exactly what was said, mistakes
+// too. The phone's recognition stays for the live words in the challenge and the practice boxes, and as the fallback.
+const ACCENTS = { "en-IN": 1, "en-GB": 1, "en-US": 1 };
+const srLang = () => (ACCENTS[state.settings.accent] ? state.settings.accent : "en-IN"); // South Asian English hears Pakistani speakers best
+const AC = window.AudioContext || window.webkitAudioContext;
+const canRecord = !inClaude && !!AC && !!navigator.mediaDevices?.getUserMedia;
+const mamEars = () => canRecord && !!sample && state.settings.ears !== "phone";
+let audioCtx = null, ear = null, hearing = false;
+// iOS starts sound only inside a tap: the orb's tap wakes the audio up for the whole conversation.
+function wakeEars() { if (!mamEars()) return; try { if (!audioCtx) audioCtx = new AC(); if (audioCtx.state !== "running") audioCtx.resume().catch(() => {}); } catch {} }
+// Records until the learner has spoken and then paused for 2 seconds (or 60 seconds in all). done(blob) gets the recording, or null.
+async function startEar(done, onSpeech) {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true } });
+  const src = audioCtx.createMediaStreamSource(stream), node = audioCtx.createScriptProcessor(4096, 1, 1);
+  const e = { stream, src, node, chunks: [], pre: [], speech: false, quiet: 0, len: 0, floor: 0.01, done };
+  node.onaudioprocess = (ev) => {
+    const x = ev.inputBuffer.getChannelData(0), copy = new Float32Array(x); ev.outputBuffer.getChannelData(0).fill(0);
+    let sum = 0; for (let i = 0; i < x.length; i++) sum += x[i] * x[i];
+    const rms = Math.sqrt(sum / x.length), dt = x.length / audioCtx.sampleRate;
+    if (!e.speech) {
+      e.floor = rms < e.floor ? (rms + e.floor) / 2 : e.floor * 0.99 + rms * 0.01; // the room's own noise
+      e.pre.push(copy); if (e.pre.length > 6) e.pre.shift(); // half a second before the first word
+      if (rms > Math.max(0.02, e.floor * 3)) { e.speech = true; e.chunks.push(...e.pre); e.pre = []; onSpeech?.(); }
+      return;
+    }
+    e.chunks.push(copy); e.len += dt;
+    e.quiet = rms < Math.max(0.012, e.floor * 2.5) ? e.quiet + dt : 0;
+    if (e.quiet > 2 || e.len > 60) stopEar(true);
+  };
+  src.connect(node); node.connect(audioCtx.destination);
+  ear = e;
+}
+// keep: hand the recording on; quiet: stop without a word (when the conversation is closed).
+function stopEar(keep, quiet) {
+  const e = ear; if (!e) return; ear = null;
+  try { e.node.onaudioprocess = null; e.node.disconnect(); e.src.disconnect(); } catch {}
+  e.stream.getTracks().forEach((t) => t.stop());
+  if (!quiet) e.done(keep && e.speech && e.len > 0.3 ? wav16k(e.chunks, audioCtx.sampleRate) : null);
+}
+// 16 kHz mono WAV: small enough to send, and every model understands it.
+function wav16k(chunks, rate) {
+  const n = chunks.reduce((a, c) => a + c.length, 0), all = new Float32Array(n); let o = 0;
+  chunks.forEach((c) => { all.set(c, o); o += c.length; });
+  const ratio = rate / 16000, m = Math.floor(n / ratio), pcm = new Int16Array(m);
+  for (let i = 0; i < m; i++) { const a = Math.floor(i * ratio), b = Math.max(a + 1, Math.min(n, Math.floor((i + 1) * ratio))); let s = 0; for (let j = a; j < b; j++) s += all[j]; pcm[i] = Math.max(-1, Math.min(1, s / (b - a))) * 0x7fff; }
+  const buf = new ArrayBuffer(44 + m * 2), dv = new DataView(buf), put = (p, s) => [...s].forEach((ch, i) => dv.setUint8(p + i, ch.charCodeAt(0)));
+  put(0, "RIFF"); dv.setUint32(4, 36 + m * 2, true); put(8, "WAVE"); put(12, "fmt "); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+  dv.setUint32(24, 16000, true); dv.setUint32(28, 32000, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); put(36, "data"); dv.setUint32(40, m * 2, true);
+  new Int16Array(buf, 44).set(pcm);
+  return new Blob([buf], { type: "audio/wav" });
+}
+const hearPrompt = (q) => `This is a recording of a learner of English from Pakistan (first language Urdu) answering in a speaking lesson.${q ? ` They had just been asked: "${q}" (use this only to understand unclear words).` : ""}
+Write down EXACTLY what they say, word for word. Keep their grammar mistakes, wrong words, missing words and repeated words; never correct or improve anything. Leave out only sounds like "umm" and "uhh". If they say an Urdu word, write it in Roman Urdu. If there is no clear speech, give an empty text.
+Reply with ONLY JSON: {"text": "exactly what they said"}`;
+async function hear(blob, q) {
+  const c = new AbortController(), stop = deadline(45000, () => c.abort());
+  try { const r = await askJson(hearPrompt(q), { audio: blob, modelTier: "quick", temperature: 0, cache: false, signal: c.signal }); return String(r?.text ?? "").replace(/\b(u+m+|u+h+|a+h+)\b[,.]?\s*/gi, "").trim(); }
+  finally { stop(); }
+}
+// One answer by voice, written down by Mam, then sent like a typed one.
+function startEars() {
+  const c = chat, q = splitSpeaker(c.turns.slice().reverse().find((x) => x.role === "assistant")?.content || "").text;
+  const f = { stop: () => stopEar(true), abort: () => stopEar(false, true) };
+  rec = f; setState("listening");
+  liveEl = addMe("🎙️ …"); liveEl.classList.add("live"); scrollDown();
+  const bubble = (t) => { const b = liveEl?.querySelector(".bubble"); if (b) b.textContent = t; };
+  startEar(async (blob) => {
+    if (rec === f) rec = null;
+    if (!blob) { liveEl?.remove(); liveEl = null; if (listening && !busy && c === chat) startListening(); else setState("idle"); return; }
+    hearing = true; bubble("✍️ Mam is writing down what you said…"); setState("thinking");
+    let text = null, err = null;
+    try { text = await hear(blob, q); } catch (e) { err = e; dbg("hear_error", { code: String(e?.code || "") }); }
+    hearing = false; liveEl?.remove(); liveEl = null;
+    if (c !== chat || mode !== "chat") return;
+    if (text) { send(text); return; }
+    setState("idle");
+    if (text === "") { note("Mam could not hear any words. Speak a little louder and closer to the phone, then tap the button."); listening = false; }
+    else { listening = false; note((errText(err) || "Mam could not listen this time.") + " Tap the button to try again, or type your answer."); }
+  }, () => bubble("🎙️ Listening… pause when you finish")).catch(() => {
+    if (rec === f) rec = null; liveEl?.remove(); liveEl = null; listening = false; setState("idle");
+    note("Allow the microphone for this site in your phone settings (Settings, Safari, Microphone), then tap the button again.");
+  });
+}
 function startListening() {
-  if (!canListen || busy || !chat) return;
+  if (!canListen || busy || hearing || !chat || rec) return;
+  if (mamEars() && audioCtx) {
+    if (audioCtx.state === "running") { startEars(); return; }
+    // back from another app the sound may be asleep: wake it, or listen with the phone this time
+    audioCtx.resume().catch(() => {}).then(() => { if (!listening || rec || busy || hearing) return; if (audioCtx.state === "running") startEars(); else phoneListen(); });
+    return;
+  }
+  phoneListen();
+}
+function phoneListen() {
   try {
-    rec = new SR(); rec.lang = "en-US"; rec.interimResults = true; rec.continuous = true;
+    rec = new SR(); rec.lang = srLang(); rec.interimResults = true; rec.continuous = true;
     let heard = "";
     const arm = () => { clearTimeout(silenceT); silenceT = setTimeout(() => { try { rec?.stop(); } catch {} }, 2000); };
     rec.onresult = (e) => {
@@ -1244,11 +1346,11 @@ function stopLoop() { listening = false; clearTimeout(silenceT); const r = rec; 
 // After Mam speaks, the conversation goes on: listen again.
 function afterMam() { if (listening && !rec && !busy) startListening(); else setState("idle"); }
 $("orb").onclick = () => {
-  primeTTS();
+  primeTTS(); wakeEars();
   if (mode === "minute") { if (minRunning) endMinute(); else startMinute(); return; }
   if (!canListen) { $("typeRow").hidden = false; $("input").focus(); return; }
   if (rec) { listening = false; try { rec.stop(); } catch {} return; } // pause; what was already heard is still sent
-  if (busy) return;
+  if (busy || hearing) return;
   listening = true;
   if (curU) { hush(); startListening(); return; } // tapping while Mam talks: stop her and answer
   const last = chat.turns[chat.turns.length - 1];
@@ -1430,7 +1532,7 @@ function startMinute() {
   setMinState("running", 60);
   if (canListen) {
     try {
-      const r = new SR(); r.lang = "en-US"; r.continuous = true; r.interimResults = true;
+      const r = new SR(); r.lang = srLang(); r.continuous = true; r.interimResults = true;
       r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (minBase + " " + s).trim(); };
       r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; note("Allow the microphone for this site in your phone settings, or type your answer."); } };
       r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; try { r.start(); } catch {} } };
@@ -2496,7 +2598,7 @@ function dictate(ta, btn) {
   if (dictRec) { stopDictation(); return; }
   if (!canListen) return;
   try {
-    const r = new SR(); r.lang = "en-US"; r.interimResults = true; r.continuous = true;
+    const r = new SR(); r.lang = srLang(); r.interimResults = true; r.continuous = true;
     const base = ta.value.trim() ? ta.value.trim() + " " : "";
     let quiet = 0;
     const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 2500); };
@@ -2748,7 +2850,10 @@ $("ownForm").addEventListener("submit", (e) => {
 });
 let levelAtOpen = null;
 $("progBtn").onclick = () => { primeTTS(); goTab("progress"); };
-$("setBtn").onclick = () => { levelAtOpen = level(); $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("setSheet").hidden = false; };
+$("setBtn").onclick = () => { levelAtOpen = level(); $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("earsSel").value = state.settings.ears === "phone" ? "phone" : "mam"; $("accentSel").value = srLang(); $("setSheet").hidden = false; };
+$("earsBox").hidden = !canListen;
+$("earsSel").onchange = () => { state.settings.ears = $("earsSel").value; putMeta(); toast($("earsSel").value === "phone" ? "Your phone writes down what you say" : "Mam writes down what you say ✓"); };
+$("accentSel").onchange = () => { state.settings.accent = $("accentSel").value; putMeta(); };
 const LEVEL_NAME = { A1: "Very simple", A2: "Simple", B1: "Normal", B2: "Fluent" };
 function settingsClosed() { const was = levelAtOpen; levelAtOpen = null; if (was && was !== level()) levelChanged(); }
 function levelNote(lv) { $("msgs").append(el("div", "daysep", "Mam's English: " + (LEVEL_NAME[lv] || lv) + " (" + lv + ")")); }

@@ -63,7 +63,7 @@ const fakes = () => {
   check("🎙️ Speak writes what I say into the answer sheet", (await p.inputValue("#draft")) === "I went to the market with my brother");
   await p.click("#dictBtn"); await p.waitForTimeout(100);
   await p.fill("#draft", "Yesterday I go to market. I buy some mangoes. Then I come back home. It was a nice day.");
-  await p.click("#checkBtn"); await p.waitForTimeout(2600);
+  await p.click("#checkBtn"); await p.waitForTimeout(3500);
   const ck = gem.find((g) => /checking writing by a learner/.test(g.prompt));
   check("a busy Google server: Mam waits a moment and asks again, with no error", gem.filter((g) => /checking writing by a learner/.test(g.prompt)).length === 2 && (await p.textContent(".score")) === "5/10");
   check("checking uses Flash with JSON answers and a little thinking, to be quicker", !!ck && ck.model === "gemini-flash-latest" && ck.mime === "application/json" && ck.think?.thinkingLevel === "low");
