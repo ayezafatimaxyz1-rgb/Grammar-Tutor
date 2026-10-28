@@ -366,7 +366,8 @@ header, .dock, .tabbar, .report, .qcard, .brain, .trow, .chip, .iconbtn, .side {
       <label for="earsSel"><strong>🎙️ Who writes down what you say</strong></label>
       <select id="earsSel"><option value="mam">Mam: hears your accent and keeps your exact words</option><option value="phone">My phone: a little faster, but it changes some words</option></select>
       <label for="accentSel"><strong>Your accent, for the phone's listening</strong></label>
-      <select id="accentSel"><option value="en-IN">South Asian (Pakistan, India)</option><option value="en-GB">British</option><option value="en-US">American</option></select>
+      <select id="accentSel"><option value="en-PK">Pakistani English</option><option value="en-IN">Indian English</option><option value="en-GB">British English</option><option value="en-US">American English</option></select>
+      <span class="hint" id="pkNote" style="text-align:left" hidden>This phone does not offer Pakistani English yet, so it listens with Indian English, the closest accent.</span>
       <span class="hint" style="text-align:left">The phone's listening shows your words while you speak, in the 1-minute challenge and the practice boxes.</span>
     </div>
     <div class="field" id="voiceLink" hidden>
@@ -1233,8 +1234,11 @@ function setState(st) {
 // The phone's own speech recognition expects an American accent and often swaps a learner's words for words it expects.
 // In the web version Mam listens instead: the answer is recorded and Gemini writes down exactly what was said, mistakes
 // too. The phone's recognition stays for the live words in the challenge and the practice boxes, and as the fallback.
-const ACCENTS = { "en-IN": 1, "en-GB": 1, "en-US": 1 };
-const srLang = () => (ACCENTS[state.settings.accent] ? state.settings.accent : "en-IN"); // South Asian English hears Pakistani speakers best
+// Pakistani English first. A phone that does not offer it says "language-not-supported"; then it listens with Indian English,
+// the closest accent, and remembers that.
+const ACCENTS = { "en-PK": 1, "en-IN": 1, "en-GB": 1, "en-US": 1 };
+const srLang = () => { const a = ACCENTS[state.settings.accent] ? state.settings.accent : "en-PK"; return a === "en-PK" && state.settings.noPK ? "en-IN" : a; };
+function langFallback(e) { if (e?.error !== "language-not-supported" || srLang() !== "en-PK") return false; state.settings.noPK = true; putMeta(); dbg("no_en_pk"); return true; }
 const AC = window.AudioContext || window.webkitAudioContext;
 const canRecord = !inClaude && !!AC && !!navigator.mediaDevices?.getUserMedia;
 const mamEars = () => canRecord && !!sample && state.settings.ears !== "phone";
@@ -1334,7 +1338,7 @@ function phoneListen() {
       if (!liveEl) { liveEl = addMe(""); liveEl.classList.add("live"); }
       liveEl.querySelector(".bubble").textContent = s; scrollDown(); arm();
     };
-    rec.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { listening = false; note("Allow the microphone for this site in your phone settings (Settings, Safari, Microphone), then tap the button again."); } };
+    rec.onerror = (e) => { if (langFallback(e)) return; if (e.error === "not-allowed" || e.error === "service-not-allowed") { listening = false; note("Allow the microphone for this site in your phone settings (Settings, Safari, Microphone), then tap the button again."); } };
     rec.onend = () => {
       clearTimeout(silenceT); rec = null; liveEl?.remove(); liveEl = null;
       if (heard.trim()) send(heard); else if (listening && !busy) startListening(); else setState("idle");
@@ -1534,8 +1538,8 @@ function startMinute() {
     try {
       const r = new SR(); r.lang = srLang(); r.continuous = true; r.interimResults = true;
       r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; inp.value = (minBase + " " + s).trim(); };
-      r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; note("Allow the microphone for this site in your phone settings, or type your answer."); } };
-      r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; try { r.start(); } catch {} } };
+      r.onerror = (e) => { if (langFallback(e)) return; if (e.error === "not-allowed" || e.error === "service-not-allowed") { minSR = null; note("Allow the microphone for this site in your phone settings, or type your answer."); } };
+      r.onend = () => { if (minRunning && minSR === r) { minBase = inp.value; r.lang = srLang(); try { r.start(); } catch {} } };
       r.start(); minSR = r;
     } catch { minSR = null; }
   }
@@ -2603,8 +2607,9 @@ function dictate(ta, btn) {
     let quiet = 0;
     const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 2500); };
     r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; ta.value = (base + s).trim(); arm(); };
-    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type your answer."); };
-    r.onend = () => { if (dictRec === r) { dictRec = null; btn.textContent = "🎙️ Speak"; btn.classList.remove("on"); } };
+    let again = false;
+    r.onerror = (e) => { if (langFallback(e)) again = true; else if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type your answer."); };
+    r.onend = () => { if (dictRec === r) { dictRec = null; btn.textContent = "🎙️ Speak"; btn.classList.remove("on"); if (again) dictate(ta, btn); } };
     r.start(); dictRec = r; btn.textContent = "■ Stop"; btn.classList.add("on"); hush(); arm();
   } catch { dictRec = null; }
 }
@@ -2850,10 +2855,10 @@ $("ownForm").addEventListener("submit", (e) => {
 });
 let levelAtOpen = null;
 $("progBtn").onclick = () => { primeTTS(); goTab("progress"); };
-$("setBtn").onclick = () => { levelAtOpen = level(); $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("earsSel").value = state.settings.ears === "phone" ? "phone" : "mam"; $("accentSel").value = srLang(); $("setSheet").hidden = false; };
+$("setBtn").onclick = () => { levelAtOpen = level(); $("lvSel").value = level(); $("rateSel").value = String(state.settings.rate || 0.88); $("earsSel").value = state.settings.ears === "phone" ? "phone" : "mam"; $("accentSel").value = ACCENTS[state.settings.accent] ? state.settings.accent : "en-PK"; $("pkNote").hidden = !(state.settings.noPK && $("accentSel").value === "en-PK"); $("setSheet").hidden = false; };
 $("earsBox").hidden = !canListen;
 $("earsSel").onchange = () => { state.settings.ears = $("earsSel").value; putMeta(); toast($("earsSel").value === "phone" ? "Your phone writes down what you say" : "Mam writes down what you say ✓"); };
-$("accentSel").onchange = () => { state.settings.accent = $("accentSel").value; putMeta(); };
+$("accentSel").onchange = () => { state.settings.accent = $("accentSel").value; if (state.settings.accent === "en-PK") state.settings.noPK = false; $("pkNote").hidden = true; putMeta(); }; // choosing it again tries it again
 const LEVEL_NAME = { A1: "Very simple", A2: "Simple", B1: "Normal", B2: "Fluent" };
 function settingsClosed() { const was = levelAtOpen; levelAtOpen = null; if (was && was !== level()) levelChanged(); }
 function levelNote(lv) { $("msgs").append(el("div", "daysep", "Mam's English: " + (LEVEL_NAME[lv] || lv) + " (" + lv + ")")); }

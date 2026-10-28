@@ -11,7 +11,7 @@ const KEY = { key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-fla
 const fakes = () => {
   window.__toSay = ["I went to the market with my brother"];
   class FakeSR {
-    start() { const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) this.onresult?.({ results: [[{ transcript: phrase }]] }); }, 150); }
+    start() { window.__lang = this.lang; const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) this.onresult?.({ results: [[{ transcript: phrase }]] }); }, 150); }
     stop() { clearTimeout(this._t); setTimeout(() => this.onend?.(), 10); }
     abort() { this.stop(); }
   }
@@ -60,7 +60,7 @@ const fakes = () => {
   check("the key saved in Bolo English works here too: no key needed", !(await p.textContent("#homeStatus")).includes("Gemini key"));
   await p.click('summary:has-text("More practice")'); await p.click('.trow:has-text("1. Free writing")'); await p.waitForTimeout(200); await p.click("text=✍️ Start writing"); await p.waitForTimeout(300);
   await p.click("#dictBtn"); await p.waitForTimeout(500);
-  check("🎙️ Speak writes what I say into the answer sheet", (await p.inputValue("#draft")) === "I went to the market with my brother");
+  check("🎙️ Speak writes what I say into the answer sheet, listening for Pakistani English", (await p.inputValue("#draft")) === "I went to the market with my brother" && (await p.evaluate(() => window.__lang)) === "en-PK");
   await p.click("#dictBtn"); await p.waitForTimeout(100);
   await p.fill("#draft", "Yesterday I go to market. I buy some mangoes. Then I come back home. It was a nice day.");
   await p.click("#checkBtn"); await p.waitForTimeout(3500);

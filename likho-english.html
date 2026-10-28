@@ -1950,16 +1950,19 @@ function afterCard(p, d) {
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const canListen = !!SR && !inClaude;
 let dictRec = null;
+// Pakistani English first; a phone that does not offer it listens with Indian English, the closest accent, from then on.
+const srLang = () => (state.settings.noPK ? "en-IN" : "en-PK");
 function dictate(ta, b) {
   if (dictRec) { stopDictation(); return; }
   try {
-    const r = new SR(); r.lang = "en-IN"; r.interimResults = true; r.continuous = true; // South Asian English hears Pakistani speakers best
+    const r = new SR(); r.lang = srLang(); r.interimResults = true; r.continuous = true;
+    let again = false;
     const base = ta.value.trim() ? ta.value.trimEnd() + " " : "";
     let quiet = 0;
     const arm = () => { clearTimeout(quiet); quiet = setTimeout(stopDictation, 4000); };
     r.onresult = (e) => { let s = ""; for (const x of e.results) s += x[0].transcript; ta.value = base + s.trim(); ta.dispatchEvent(new Event("input")); arm(); };
-    r.onerror = (e) => { if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type."); };
-    r.onend = () => { if (dictRec === r) stopDictation(); };
+    r.onerror = (e) => { if (e.error === "language-not-supported" && r.lang === "en-PK") { state.settings.noPK = true; putMeta(); again = true; } else if (e.error === "not-allowed" || e.error === "service-not-allowed") toast("Allow the microphone for this site, or type."); };
+    r.onend = () => { if (dictRec === r) { stopDictation(); if (again) dictate(ta, b); } };
     r.start(); dictRec = r; b.textContent = "■ Stop"; b.classList.add("on"); arm();
   } catch { dictRec = null; }
 }

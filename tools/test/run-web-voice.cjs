@@ -12,7 +12,7 @@ const fakes = () => {
   window.__toSay = ["I go to market yesterday", "I bought some mangoes"];
   window.__heard = 0; window.__spoken = []; window.__langs = [];
   class FakeSR {
-    start() { window.__langs.push(this.lang); const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) { window.__heard++; this.onresult?.({ results: [[{ transcript: phrase }]] }); } }, 200); }
+    start() { window.__langs.push(this.lang); if (window.__noPK && this.lang === "en-PK") { setTimeout(() => { this.onerror?.({ error: "language-not-supported" }); this.onend?.(); }, 20); return; } const phrase = window.__toSay.shift(); this._t = setTimeout(() => { if (phrase) { window.__heard++; this.onresult?.({ results: [[{ transcript: phrase }]] }); } }, 200); }
     stop() { clearTimeout(this._t); setTimeout(() => this.onend?.(), 10); }
     abort() { clearTimeout(this._t); setTimeout(() => this.onend?.(), 10); }
   }
@@ -96,11 +96,12 @@ const fakes = () => {
   const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));
   check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && saved.key === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
   check("talking uses the fast stable Flash-Lite model; harder jobs use Flash", saved.fast === "gemini-2.5-flash-lite" && saved.model === "gemini-flash-latest", JSON.stringify(saved));
-  check("settings: Mam writes down what I say, and the phone listens for a South Asian accent", !(await p.isHidden("#earsBox")) && (await p.inputValue("#earsSel")) === "mam" && (await p.inputValue("#accentSel")) === "en-IN");
+  check("settings: Mam writes down what I say, and the phone listens for Pakistani English", !(await p.isHidden("#earsBox")) && (await p.inputValue("#earsSel")) === "mam" && (await p.inputValue("#accentSel")) === "en-PK");
   await p.selectOption("#earsSel", "phone"); // the talk loop below uses the phone's listening (the fake recogniser)
   await p.click("#setSheet [data-close].btn.primary");
   check("voice version: big talk button, no typing box", !(await p.isHidden("#orb")) && (await p.isHidden("#typeRow")));
 
+  await p.evaluate(() => { window.__noPK = true; }); // this phone does not offer Pakistani English
   await p.click("#orb"); await p.waitForTimeout(3600);
   const m1 = await p.textContent("#msgs");
   check("Mam asks her question out loud first", (await p.evaluate(() => window.__spoken[0] || "")).includes("What would you like to talk about"));
@@ -110,7 +111,10 @@ const fakes = () => {
   await p.waitForTimeout(3000);
   const m2 = await p.textContent("#msgs");
   check("it listens again by itself (second answer sent)", m2.includes("I bought some mangoes"));
-  check("the phone listens for a South Asian accent", (await p.evaluate(() => window.__langs.length > 0 && window.__langs.every((l) => l === "en-IN"))));
+  check("the phone tries Pakistani English first; where it is missing, it goes on with Indian English and remembers", (await p.evaluate(() => window.__langs[0] === "en-PK" && window.__langs.slice(1).every((l) => l === "en-IN") && window.__langs.length > 2)));
+  await p.click("#setBtn");
+  check("settings say why the phone uses Indian English", (await p.inputValue("#accentSel")) === "en-PK" && !(await p.isHidden("#pkNote")));
+  await p.click("#setSheet [data-close].btn.primary");
   check("corrections folded under my sentence", (await p.textContent(".msg.me .verdict")).includes("mistake"));
   const talk = gem.filter((g) => /Write Mam's next reply now/.test(g.prompt));
   check("one request per answer brings the reply and the corrections together", talk.length >= 2 && talk.every((g) => /"reply":/.test(g.prompt) && g.mime === "application/json") && !gem.some((g) => /checking one spoken answer/.test(g.prompt)));
