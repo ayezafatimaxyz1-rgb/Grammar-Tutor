@@ -219,6 +219,10 @@ a.mini { display: inline-flex; align-items: center; text-decoration: none; }
 .thumbs:empty { display: none; }
 .thumbs img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); }
 .pages { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 15px; }
+.msg.me.voice .bubble { opacity: 0.7; }
+.daf summary { cursor: pointer; list-style-position: inside; }
+.daf .field, .daf > .btn { margin-top: 10px; }
+.pages .hint { flex-basis: 100%; text-align: left; margin: 0; }
 .pages input { width: 64px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 10px; padding: 8px; font: inherit; min-height: 44px; }
 .hl { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 8px; text-align: left; border: 1px solid var(--line); background: var(--bg); border-radius: 14px; padding: 10px 12px; width: 100%; }
 .hl .em { font-size: 22px; }
@@ -608,9 +612,10 @@ function geminiAI() {
       dbg("gemini_error", { status: res.status, model, body: bodyText.slice(0, 200) });
       throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
     }
-    const data = await res.json();
-    const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
-    if (!text) throw { code: "empty_completion" };
+    const data = await res.json(), cand = data.candidates?.[0], why = String(cand?.finishReason || data.promptFeedback?.blockReason || "");
+    const text = (cand?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
+    // Google stops an answer that copies a published text word for word ("recitation"), or one its safety check blocks
+    if (!text || why === "RECITATION") { dbg("gemini_empty", { why, model }); throw { code: why === "RECITATION" ? "recitation" : /SAFETY|PROHIBITED|BLOCK/.test(why) ? "refused" : "empty_completion" }; }
     try { opts.onText?.({ text, delta: text }); } catch {}
     return text;
   };
@@ -651,7 +656,7 @@ function deadline(ms, fn) {
   let t = setTimeout(function tick() { const back = Date.now() - shownAt; if (document.hidden || back < 30000) t = setTimeout(tick, document.hidden ? 5000 : 30000 - back); else fn(); }, ms);
   return () => clearTimeout(t);
 }
-const NOT_AGAIN = new Set(["bad_key", "quota", "not_granted", "rate_limited", "queue_overflow", "session_expired", "no_images", "refused", "invalid_request", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+const NOT_AGAIN = new Set(["bad_key", "quota", "recitation", "not_granted", "rate_limited", "queue_overflow", "session_expired", "no_images", "refused", "invalid_request", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
 function keepGoing(s) {
   if (!s) return s;
   const again = (fn) => async (input, opts) => {
@@ -686,6 +691,7 @@ function errText(e) {
     case "cancelled": return "";
     case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai in Safari, or update the Claude app.";
     case "refused": case "empty_completion": return "Mam could not answer that. Try saying it in a different way.";
+    case "recitation": return "Google would not let Mam copy this text word for word.";
     default: return "Mam could not answer this time (" + (e?.code || "error") + ").";
   }
 }
@@ -739,10 +745,44 @@ Rules:
 - Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say it again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no emoji, no lists.`;
+// The real FPSC viva voce (the CSS interview): the Chairman opens with the candidate's form, then each member takes a part
+// and digs into the answers before moving on. The page says whose part it is now; each interview gets its own plan when it
+// starts (two Pakistan issues and one officer's case), so no two interviews are the same.
+const PAK_ISSUES = ["the economy, inflation and the IMF programme", "the 18th Amendment and the powers of the provinces", "CPEC and Pakistan's relations with China", "relations with Afghanistan and terrorism in Khyber Pakhtunkhwa and Balochistan", "the water crisis: dams, the Indus Waters Treaty and wasted water", "climate change and the 2022 floods", "population growth and its effect on development", "out-of-school children and the education system", "the energy crisis and circular debt", "why local government is weak in Pakistan", "police reform and delays in the courts", "relations with India and the Kashmir issue", "the small tax base and tax collection", "corruption and accountability", "women's part in Pakistan's economy", "food security and agriculture", "the brain drain of young Pakistanis", "relations with the United States"];
+const IV_CASES = ["You are the Assistant Commissioner, and a flood warning for your tehsil comes at night. What do you do first?", "A big protest has blocked the main highway in your district for two days. As Deputy Commissioner, how do you handle it?", "A powerful local politician asks you to transfer an honest officer. What do you do?", "Flour prices in your district double in a week because of hoarding. What steps do you take?", "Parents in some villages refuse polio drops for their children. As an officer, how do you change their minds?", "Your senior officer asks you to sign a file that you believe is illegal. What do you do?", "Dengue cases start rising fast in your city. What is your plan for the first week?", "A video of a police officer beating a citizen goes viral in your district. As the district police officer, what do you do?", "Land grabbers take over government land with the help of an influential person. How do you act?", "A close relative of yours has a case in your own office. What do you do?", "As Assistant Commissioner you find that the teachers of many government schools in your area never come to work. What do you do?", "A factory near a village is polluting the canal water. The owner is a friend of a minister. What do you do?"];
+const IV_TOTAL = 10;
+const pickN = (list, n) => list.map((x) => [Math.random(), x]).sort((x, y) => x[0] - y[0]).slice(0, n).map((x) => x[1]);
+const ivPlan = () => ({ issues: pickN(PAK_ISSUES, 2), case: pickN(IV_CASES, 1)[0] });
+// Whose part it is after n answers, and what it is about.
+function ivStage(n, plan) {
+  const p = plan?.issues?.length ? plan : { issues: PAK_ISSUES.slice(0, 2), case: IV_CASES[0] };
+  if (n <= 2) return ["Chairman", "the candidate's introduction and form. Pick up one real detail they gave (their name and what it means, their home district, their degree, or their first choice of service group) and ask why: for example, why the civil service and not their own field, or why that group first"];
+  if (n <= 5) return ["Member 1", `Pakistan affairs and current affairs. Start with ${p.issues[0]}; ask what the problem is, its causes, and what the government should do, and press for facts. Later, ${p.issues[1]}, or the same issue in the candidate's own district or province`];
+  if (n <= 7) return ["Member 2", "the candidate as a person: their studies or optional subjects, a hobby or interest they named (dig into it: if they read, which book and what they learned from it), and a real example of a strength or a weakness. Test honesty and self-awareness, not knowledge"];
+  if (n === 8) return ["Member 1", `a situation as an officer. Ask this case in simple words: "${p.case}" Judge whether their steps are practical, legal and in the right order`];
+  return ["Chairman", "one last question on integrity or judgement: press on the case they just answered, or ask what they would do if a senior asked them to break a rule"];
+}
+// How a real board behaves, for the board of three and for a topic interview with the board.
+const BOARD_WAYS = `How a real board behaves:
+- Formal and polite, but not friendly. Never praise an answer: never say "Good", "Very good", "Great", "Excellent" or "Well said". React with at most a few neutral words ("I see.", "All right.", "Hmm.") or a challenge, then ask ONE question.
+- Dig into each answer before moving on. If it was vague, only a personal opinion with no fact or example, too short, or off the point, the same member presses on it: "What do you mean by that?", "Give us one fact.", "Can you name one example from Pakistan?", "Many people say the opposite. Why are you sure?"
+- Build each question on the candidate's own words: pick up a place, a book, a claim or a word they used.
+- Ask specific, real questions, never general chat. Not "What is your biggest strength?" but "You said you stay calm under pressure. When were you last under pressure, and what exactly did you do?"
+- If the candidate states a wrong fact, say briefly that it is not correct ("No, that is not right."), without teaching, and ask them to think again or move on.
+- If they say "I don't know", accept it in a few words ("All right.") and ask something else: an honest "I don't know" is better than a guess.
+- Now and then, calmly challenge an opinion with the other side, to test composure.
+- Every question is for the candidate. The members never speak to each other or hand over aloud (never say "Member 2, do you have any questions?"): the next member simply asks the candidate.
+- Do not teach or correct English. If the candidate did not understand, repeat the question in simpler words.
+- English only. Never write Urdu or Roman Urdu.`;
+// The candidate's form (the DAF the real board reads before the interview), as far as the learner filled it in.
+const DAF_FIELDS = [["name", "Name", "Your full name"], ["district", "Home district (domicile)", "e.g. Multan"], ["education", "Education", "e.g. BS English, Bahauddin Zakariya University"], ["groups", "Service groups, in order of choice", "e.g. PAS, PSP, FSP"], ["optionals", "Optional subjects", "e.g. English Literature, Psychology"], ["hobbies", "Hobbies and interests", "e.g. reading novels, cricket"]];
+const dafOf = () => (state.settings.daf && typeof state.settings.daf === "object" ? state.settings.daf : {});
+const dafText = () => { const d = dafOf(), f = DAF_FIELDS.filter(([k]) => String(d[k] || "").trim()); return f.length ? f.map(([k, l]) => l + ": " + String(d[k]).trim()).join(". ") + "." : ""; };
 // The board (or Mam) for an interview; a topic interview (a book or lesson the learner studied) also has its notes and length.
 const BOARD_RULES = (answered, t = {}) => {
-  const total = t.total || 9, mam = t.panel === "mam";
-  const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (answered >= total ? `This is the last turn: ${mam ? "thank the student warmly in one sentence, then end with" : "the Chairman thanks the candidate in one short sentence, then ends with"} exactly "The interview is over."` : "Keep the interview going.");
+  const mam = t.panel === "mam", total = t.subject ? t.total || 9 : IV_TOTAL;
+  const last = answered >= total ? `This is the last turn: ${mam ? "thank the student warmly in one sentence, then end with" : "the Chairman thanks the candidate in one short sentence, then ends with"} exactly "The interview is over."` : "";
+  const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (last || "Keep the interview going.");
   const about = t.subject ? `\n- This interview is about one thing the ${mam ? "student" : "candidate"} studied: "${t.subject}". Ask only about it: what it is about, its main ideas and facts, what they understood, their opinion, and how it connects to Pakistan, society or the civil service. Go from easy questions to harder ones, and ask a follow-up when an answer is short or unclear.\n- Notes to guide your questions and to check the answers (never read them out or mention them): ${t.extra}` : "";
   if (mam) return `You are Mam, a warm and patient female English teacher (the student calls you "Mam"; never use any other name for yourself). You are giving your student from Pakistan (first language Urdu) a practice interview, to check what they understood and to help them speak about it.
 Rules:
@@ -752,15 +792,20 @@ Rules:
 - English only. Never write Urdu or Roman Urdu. No labels, no lists, no emoji.${about}
 - ${so}
 Reply with only the words you say.`;
-  return `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is practising for the real interview.
-Rules:
-- Ask ONE short, clear question per turn in ${BOARD_STYLE[level()]}. Take turns between the members.
-- Every question is for the candidate. The members never speak to each other or hand over aloud (never say "Member 2, do you have any questions?"): the next member simply asks the candidate.
-- Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
-- Do not teach or correct English during the interview. If the candidate did not understand, repeat the question in simpler words.
-- English only. Never write Urdu or Roman Urdu.
-- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your city?${about}
+  if (t.subject) return `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, formal), Member 1 and Member 2. The candidate is practising for the real interview.
+${BOARD_WAYS}
+- Ask in ${BOARD_STYLE[level()]}. Take turns between the members.
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the main idea of the book?${about}
 - ${so}
+Reply with only the board's words.`;
+  const form = dafText(), [who, what] = ivStage(answered, t.plan);
+  return `You are the interview board of the FPSC (Federal Public Service Commission) of Pakistan, holding the viva voce (the personality test) of a CSS candidate. This is a practice interview, but behave exactly like a real board. There are three members: the Chairman (a very senior, calm and formal officer), Member 1 (an expert on Pakistan affairs, current affairs and the economy) and Member 2 (a psychologist who studies the candidate's personality, honesty and judgement).
+${form ? "The board has read the candidate's form (DAF): " + form + " Ask about it the way a real board does." : "The board has no form for this candidate, so it learns about them from their introduction."}
+${BOARD_WAYS}
+- You have no live news: ask about well-known, long-running issues, and never invent recent events, dates or figures.
+- Ask in ${BOARD_STYLE[level()]}. The candidate's English level is ${level()}: keep the words simple even when the question is hard.
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your district?
+Where the interview is: the candidate has answered ${answered} of ${total} questions. ${last || `Next, the ${who} asks, about ${what}. If the last answer was vague, wrong or too short, the ${who} first presses on it instead.`}
 Reply with only the board's words.`;
 };
 // The three-member board speaks with labels; in a topic interview Mam can be the interviewer instead.
@@ -770,11 +815,29 @@ const CHECK_JSON = `{"verdict": "great or good or fix", "fixed": "the learner's 
 const CHECK_RULES = () => `Ignore capital letters and punctuation, because the learner speaks with voice dictation. Write everything in simple English only, never Urdu. ${CHECK_STYLE[level()]} "errors" has 0 to 3 items (empty when there is no real mistake; verdict "great" means no mistakes). "better" always has 2 items.`;
 const toFb = (r) => ({ verdict: String(r?.verdict || ""), fixed: String(r?.fixed || ""), errors: Array.isArray(r?.errors) ? r.errors.filter((e) => e?.right).slice(0, 3) : [], better: Array.isArray(r?.better) ? r.better.filter((x) => x?.text).slice(0, 2) : [] });
 // With `check` (Gemini), one call brings Mam's reply and the corrections together: half the free requests and no second wait.
+// With `check.audio` (an answer spoken to Mam's ears), one call writes down what was said and brings the reply: the
+// learner waits for one answer only, and the corrections and marks come afterwards.
+const HEARD = "(the answer is in the attached recording)";
+const hearReply = (q) => `\n\nThe learner's last answer${q ? ` (to "${q}")` : ""} is in the attached recording. They are from Pakistan and their first language is Urdu.
+First write down EXACTLY what they said, word for word: keep their grammar mistakes, wrong words, missing words and repeated words, and never correct or improve anything. Leave out only sounds like "umm" and "uhh". If they say an Urdu word, write it in Roman Urdu. Then write the reply to what they actually said.
+If there is no clear speech in the recording, give both as empty text.
+Reply with ONLY this JSON: {"heard": "exactly what they said", "reply": "exactly the words for the reply"}`;
+const noUmm = (x) => String(x ?? "").replace(/\b(u+m+|u+h+|a+h+)\b[,.]?\s*/gi, "").trim();
 async function askMam(t, history, opts, check) {
   const iv = t.kind === "interview", board = iv && t.panel !== "mam";
   const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   const answered = history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length;
   const base = (iv ? BOARD_RULES(answered, t) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : iv ? "Write Mam's next interview turn now." : "Write Mam's next reply now.");
+  if (check?.audio) {
+    try {
+      const r = await askJson(base + hearReply(check.lastQ), { audio: check.audio, modelTier: "quick", temperature: 0.4, cache: false, signal: opts?.signal });
+      return { heard: noUmm(r?.heard), text: noUmm(r?.heard) ? String(r?.reply ?? "") : "" };
+    } catch (e) { if (e?.code !== "invalid_json") throw e; }
+    const heard = await hear(check.audio, check.lastQ); // the answer came back broken: write it down first, then reply
+    if (!heard) return { heard: "", text: "" };
+    const h = history.map((x) => (x.content === HEARD ? { ...x, content: heard } : x));
+    return { heard, ...(await askMam(t, h, opts, null)) };
+  }
   if (check) {
     try {
       const r = await askJson(base + `\n\nAlso, as an English teacher, check the learner's last answer to the question "${check.lastQ}": "${check.text}". ${CHECK_RULES()}
@@ -801,8 +864,10 @@ function findThread(t) {
 }
 function newChat(t) {
   const now = Date.now();
-  const iv = t.subject ? { subject: t.subject, panel: t.panel || "board", total: t.total || 8 } : {};
-  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", kind: t.kind || "talk", ...iv }, started: now, updated: now, turns: [{ role: "assistant", content: t.open, at: now }], words: 0 };
+  const board = t.kind === "interview" && !t.subject, first = board ? String(dafOf().name || "").trim().split(/\s+/)[0] : "";
+  const iv = t.subject ? { subject: t.subject, panel: t.panel || "board", total: t.total || 8 } : board ? { plan: ivPlan() } : {};
+  const open = first ? t.open.replace("Good morning.", "Good morning, " + first + ".") : t.open; // the board knows the name from the form
+  return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", kind: t.kind || "talk", ...iv }, started: now, updated: now, turns: [{ role: "assistant", content: open, at: now }], words: 0 };
 }
 const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
 // Opens the topic's conversation (or starts it) and shows every earlier message.
@@ -839,6 +904,7 @@ function renderChat() {
   const reading = !!c.article && storyView(c) !== "talk";
   if (c.article) $("msgs").append(articleCard(c));
   if (reading) { applyDock(); $("main").scrollTop = 0; return; }
+  if (c.kind === "interview" && !c.topic?.subject) $("msgs").append(dafCard());
   let prevAt = c.started || 0;
   c.turns.forEach((tn, i) => {
     if (tn.at && tn.at - prevAt > 30 * 60000) daySep(tn.at);
@@ -855,6 +921,24 @@ function renderChat() {
   applyDock(); scrollDown();
 }
 function scrollDown() { const m = $("main"); m.scrollTop = m.scrollHeight; }
+// The form the real board reads before the interview: filled in once, used in every CSS interview.
+function dafCard() {
+  const d = dafOf(), count = () => DAF_FIELDS.filter(([k]) => String(dafOf()[k] || "").trim()).length;
+  const box = el("details", "report daf"); box.open = !count();
+  const sum = el("summary"), small = el("small", "");
+  const label = () => { small.textContent = count() ? ` · ${count()} of ${DAF_FIELDS.length} filled · the board reads it` : " · the board reads it first"; };
+  sum.append(el("strong", "", "📝 My form (DAF)"), small); label(); box.append(sum);
+  box.append(el("p", "hint", "In the real interview the board has your Detailed Application Form (DAF) in front of it and asks about it. Fill in what you can, and the board uses it in every interview."));
+  DAF_FIELDS.forEach(([k, name, ph]) => {
+    const f = el("div", "field"), l = el("label", "", name), i = el("input");
+    l.htmlFor = i.id = "daf_" + k; i.type = "text"; i.maxLength = 120; i.placeholder = ph; i.value = d[k] || ""; i.autocomplete = "off";
+    f.append(l, i); box.append(f);
+  });
+  const st = el("p", "status", ""), save = el("button", "btn primary", "Save my form"); save.type = "button";
+  save.onclick = () => { state.settings.daf = Object.fromEntries(DAF_FIELDS.map(([k]) => [k, $("daf_" + k).value.trim()])); putMeta(); label(); st.textContent = "✓ Saved. The board will ask about it."; };
+  box.append(save, st);
+  return box;
+}
 function tool(label, fn) { const b = document.createElement("button"); b.type = "button"; b.className = "mini"; b.textContent = label; b.onclick = fn; return b; }
 function addTutor(line) {
   const w = document.createElement("div"); w.className = "msg tutor";
@@ -931,11 +1015,12 @@ function allowAction(retry) {
 }
 
 // Sends one answer, shows Mam's reply as she writes it, then checks the answer for corrections.
-async function send(textIn, retryEl) {
-  const c = chat, t = c?.topic;
-  const text = retryEl ? retryEl.querySelector(".bubble").textContent : String(textIn || "").trim();
-  dbg("send_called", { len: text.length, busy, retry: !!retryEl });
-  if (!text || busy || !c) return;
+// `audio`: an answer recorded by Mam's ears; it becomes text with Mam's reply.
+async function send(textIn, retryEl, audioIn) {
+  const c = chat, t = c?.topic, audio = audioIn || retryEl?._audio || null;
+  const text = audio ? "" : retryEl ? retryEl.querySelector(".bubble").textContent : String(textIn || "").trim();
+  dbg("send_called", { len: text.length, audio: !!audio, busy, retry: !!retryEl });
+  if ((!text && !audio) || busy || !c) return;
   hush();
   if (interviewOver(c)) { note(`This interview is over. Tap "${c.topic?.subject ? "Interview me again" : "Start a new interview"}" above.`); return; }
   await aiReady;
@@ -943,16 +1028,18 @@ async function send(textIn, retryEl) {
   if (!sample) { stopLoop(); setState("idle"); note(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first."); return; }
   document.querySelectorAll("#msgs .retrybox").forEach((x) => x.remove());
   let meEl = retryEl, turn;
-  if (meEl) { meEl.querySelector(".notsent")?.remove(); turn = c.turns[+meEl.dataset.idx]; }
+  if (meEl) { meEl.querySelector(".notsent")?.remove(); turn = audio ? meEl._turn : c.turns[+meEl.dataset.idx]; }
   else {
     document.querySelectorAll("#msgs .notsent").forEach((x) => x.remove());
-    meEl = addMe(text);
-    turn = { role: "user", content: text, at: Date.now() }; c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1;
-    c.words = (c.words || 0) + toks(text).length; putChat(c);
+    document.querySelectorAll("#msgs .msg.me.voice").forEach((x) => x.remove()); // a recording that was never sent
+    meEl = addMe(audio ? "🎙️ Your answer" : text);
+    turn = { role: "user", content: text, at: Date.now() };
+    if (audio) { meEl.classList.add("voice"); meEl._audio = audio; meEl._turn = turn; } // it joins the chat when Mam has written it down
+    else { c.turns.push(turn); meEl.dataset.idx = c.turns.length - 1; c.words = (c.words || 0) + toks(text).length; putChat(c); }
   }
-  setTag(meEl, "wait", "⏳ Checking your sentence…");
-  const idx = c.turns.indexOf(turn);
-  const lastQ = splitSpeaker(c.turns.slice(0, idx).reverse().find((x) => x.role === "assistant")?.content || "").text;
+  if (!audio) setTag(meEl, "wait", "⏳ Checking your sentence…");
+  const history = audio ? [...c.turns, { role: "user", content: HEARD }] : c.turns.slice(0, c.turns.indexOf(turn) + 1);
+  const lastQ = splitSpeaker(history.slice(0, -1).reverse().find((x) => x.role === "assistant")?.content || "").text;
   busy = true; setState("thinking");
   const wait = document.createElement("div"); wait.className = "msg tutor";
   wait.innerHTML = '<div class="bubble typing">' + (isBoard(c) ? "The board is thinking…" : "Mam is thinking…") + "</div>"; $("msgs").append(wait); scrollDown();
@@ -966,11 +1053,16 @@ async function send(textIn, retryEl) {
   const watchdog = deadline(180000, () => { timedOut = true; myCtl.abort(); });
   try {
     dbg("reply_call_start", { turns: c.turns.length });
-    const { text: reply, fb } = await askMam(t, c.turns.slice(0, idx + 1), {
+    const { text: reply, fb, heard } = await askMam(t, history, {
       signal: myCtl.signal,
       onText: ({ text: s }) => { wait.dataset.got = "1"; wait.firstChild.classList.remove("typing"); wait.firstChild.textContent = splitSpeaker(s).text; scrollDown(); },
-    }, inClaude ? null : { text, lastQ });
-    dbg("reply_done", { len: reply.length, fb: !!fb });
+    }, inClaude ? null : { text, lastQ, audio });
+    dbg("reply_done", { len: reply.length, fb: !!fb, heard: audio ? (heard || "").length : -1 });
+    if (audio) {
+      if (!heard) throw { code: "no_words" };
+      turn.content = heard; c.turns.push(turn); c.words = (c.words || 0) + toks(heard).length;
+      meEl.classList.remove("voice"); meEl._audio = meEl._turn = null; meEl.dataset.idx = c.turns.length - 1; meEl.querySelector(".bubble").textContent = heard;
+    }
     if (fb) { turn.fb = fb; if (c === chat && meEl.isConnected) attachFeedback(meEl, fb); setTimeout(checkLevelUp, 0); }
     wait.remove();
     const line = reply.trim().replace(/^(Mam|Board):\s*/i, "").replace(/^"|"$/g, "") || "Can you say that again, please?";
@@ -985,7 +1077,8 @@ async function send(textIn, retryEl) {
     dbg("reply_error", { code: String(e?.code || "none"), message: String(e?.message || e || "").slice(0, 200), timedOut });
     wait.remove(); stopLoop(); setTag(meEl, null);
     const code = timedOut ? "timeout" : e?.code;
-    if (c === chat) {
+    if (code === "no_words") { meEl.remove(); if (c === chat) note("Mam could not hear any words. Speak a little louder and closer to the phone, then tap the button."); }
+    else if (c === chat) {
       if (code === "not_granted") { markNotSent(meEl); note(errText(e), allowAction(() => send(null, meEl))); }
       else if (PERMANENT.has(code)) note(errText(e));
       else if (code === "cancelled") { if (stopped) markNotSent(meEl); }
@@ -1314,7 +1407,7 @@ function langFallback(e) { if (e?.error !== "language-not-supported" || srLang()
 const AC = window.AudioContext || window.webkitAudioContext;
 const canRecord = !inClaude && !!AC && !!navigator.mediaDevices?.getUserMedia;
 const mamEars = () => canRecord && !!sample && state.settings.ears !== "phone";
-let audioCtx = null, ear = null, hearing = false;
+let audioCtx = null, ear = null;
 // iOS starts sound only inside a tap: the orb's tap wakes the audio up for the whole conversation.
 function wakeEars() { if (!mamEars()) return; try { if (!audioCtx) audioCtx = new AC(); if (audioCtx.state !== "running") audioCtx.resume().catch(() => {}); } catch {} }
 // Records until the learner has spoken and then paused for 2 seconds (or 60 seconds in all). done(blob) gets the recording, or null.
@@ -1363,39 +1456,32 @@ Write down EXACTLY what they say, word for word. Keep their grammar mistakes, wr
 Reply with ONLY JSON: {"text": "exactly what they said"}`;
 async function hear(blob, q) {
   const c = new AbortController(), stop = deadline(45000, () => c.abort());
-  try { const r = await askJson(hearPrompt(q), { audio: blob, modelTier: "quick", temperature: 0, cache: false, signal: c.signal }); return String(r?.text ?? "").replace(/\b(u+m+|u+h+|a+h+)\b[,.]?\s*/gi, "").trim(); }
+  try { return noUmm((await askJson(hearPrompt(q), { audio: blob, modelTier: "quick", temperature: 0, cache: false, signal: c.signal }))?.text); }
   finally { stop(); }
 }
-// One answer by voice, written down by Mam, then sent like a typed one.
+// One answer by voice: the recording goes with the conversation, and Mam writes it down and replies in the same call.
 function startEars() {
-  const c = chat, q = splitSpeaker(c.turns.slice().reverse().find((x) => x.role === "assistant")?.content || "").text;
+  const c = chat;
   const f = { stop: () => stopEar(true), abort: () => stopEar(false, true) };
   rec = f; setState("listening");
   liveEl = addMe("🎙️ …"); liveEl.classList.add("live"); scrollDown();
   const bubble = (t) => { const b = liveEl?.querySelector(".bubble"); if (b) b.textContent = t; };
-  startEar(async (blob) => {
+  startEar((blob) => {
     if (rec === f) rec = null;
-    if (!blob) { liveEl?.remove(); liveEl = null; if (listening && !busy && c === chat) startListening(); else setState("idle"); return; }
-    hearing = true; bubble("✍️ Mam is writing down what you said…"); setState("thinking");
-    let text = null, err = null;
-    try { text = await hear(blob, q); } catch (e) { err = e; dbg("hear_error", { code: String(e?.code || "") }); }
-    hearing = false; liveEl?.remove(); liveEl = null;
-    if (c !== chat || mode !== "chat") return;
-    if (text) { send(text); return; }
-    setState("idle");
-    if (text === "") { note("Mam could not hear any words. Speak a little louder and closer to the phone, then tap the button."); listening = false; }
-    else { listening = false; note((errText(err) || "Mam could not listen this time.") + " Tap the button to try again, or type your answer."); }
+    liveEl?.remove(); liveEl = null;
+    if (!blob) { if (listening && !busy && c === chat) startListening(); else setState("idle"); return; }
+    if (c === chat && mode === "chat") send(null, null, blob); // written down and answered in one go
   }, () => bubble("🎙️ Listening… pause when you finish")).catch(() => {
     if (rec === f) rec = null; liveEl?.remove(); liveEl = null; listening = false; setState("idle");
     note("Allow the microphone for this site in your phone settings (Settings, Safari, Microphone), then tap the button again.");
   });
 }
 function startListening() {
-  if (!canListen || busy || hearing || !chat || rec) return;
+  if (!canListen || busy || !chat || rec) return;
   if (mamEars() && audioCtx) {
     if (audioCtx.state === "running") { startEars(); return; }
     // back from another app the sound may be asleep: wake it, or listen with the phone this time
-    audioCtx.resume().catch(() => {}).then(() => { if (!listening || rec || busy || hearing) return; if (audioCtx.state === "running") startEars(); else phoneListen(); });
+    audioCtx.resume().catch(() => {}).then(() => { if (!listening || rec || busy) return; if (audioCtx.state === "running") startEars(); else phoneListen(); });
     return;
   }
   phoneListen();
@@ -1426,7 +1512,7 @@ $("orb").onclick = () => {
   if (mode === "minute") { if (minRunning) endMinute(); else startMinute(); return; }
   if (!canListen) { $("typeRow").hidden = false; $("input").focus(); return; }
   if (rec) { listening = false; try { rec.stop(); } catch {} return; } // pause; what was already heard is still sent
-  if (busy || hearing) return;
+  if (busy) return;
   listening = true;
   if (curU) { hush(); startListening(); return; } // tapping while Mam talks: stop her and answer
   const last = chat.turns[chat.turns.length - 1];
@@ -1706,7 +1792,7 @@ const PAPERS = [
 ];
 const HKEY = "bolo.headlines";
 const dayKey = () => new Date().toLocaleDateString("en-CA");
-let newsBusy = false, newsCtl = null, pdfDoc = null, pdfLib = null, headlines = null, hlBusy = false, hlErr = "";
+let newsBusy = false, newsCtl = null, pdfDoc = null, pdfLib = null, pdfPick = { from: 1, to: 1 }, pdfOthers = [], headlines = null, hlBusy = false, hlErr = "";
 const articles = () => state.chats.filter((c) => c.article && c.turns).sort((a, b) => (b.updated || 0) - (a.updated || 0));
 function openNews() {
   mode = "news"; state.settings.lastTopic = "news"; putMeta();
@@ -1731,10 +1817,12 @@ function renderNews() {
 <div class="tools"><label class="btn primary" for="newsFile">📷 Screenshot, photo or PDF</label><button class="btn" type="button" id="newsPasteBtn">📋 Paste text</button></div>
 <input class="vh" type="file" id="newsFile" multiple accept="image/*,application/pdf">
 <div class="thumbs" id="newsThumbs"></div>
-<div class="pages" id="newsPages" hidden><span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="2" aria-label="To page"><span id="pOf"></span><button class="btn primary" type="button" id="pdfGo">Read these pages</button></div>
-<div class="field" id="newsPaste" hidden><textarea class="answerbox" id="newsText" placeholder="Paste the story's words here…" aria-label="Story text"></textarea><button class="btn primary" type="button" id="newsGo">Make it simple</button></div>`);
+<div class="pages" id="newsPages" hidden><p class="hint" id="pHint"></p><span>Pages</span><input type="number" id="pFrom" min="1" value="1" aria-label="From page"><span>to</span><input type="number" id="pTo" min="1" value="2" aria-label="To page"><span id="pOf"></span><button class="btn primary" type="button" id="pdfGo">Read these pages</button></div>
+<div class="field" id="newsPaste" hidden><textarea class="answerbox" id="newsText" placeholder="Paste the story's words here…" aria-label="Story text"></textarea><button class="btn primary" type="button" id="newsGo">Make it simple</button></div>
+<div id="pdfOthers"></div>`);
   $("newsFile").onchange = pickNewsFiles;
-  $("pdfGo").onclick = () => { if (pdfDoc) readNews({ pdf: true }); };
+  $("pdfGo").onclick = () => { if (pdfDoc) { pdfPick = { from: $("pFrom").value, to: $("pTo").value }; readNews({ pdf: true }); } };
+  renderPdfOthers();
   $("newsPasteBtn").onclick = () => { $("newsPaste").hidden = !$("newsPaste").hidden; if (!$("newsPaste").hidden) $("newsText").focus(); };
   $("newsGo").onclick = () => {
     const t = $("newsText").value.trim();
@@ -1860,22 +1948,41 @@ async function getPdfLib() {
 }
 async function pickNewsFiles() {
   const inp = $("newsFile"), files = [...inp.files]; inp.value = "";
-  const th = $("newsThumbs"); th.innerHTML = ""; $("newsPages").hidden = true; pdfDoc = null;
+  const th = $("newsThumbs"); th.innerHTML = ""; $("newsPages").hidden = true; pdfDoc = null; pdfOthers = []; renderPdfOthers();
   const pdf = files.find((f) => f.type === "application/pdf" || /\.pdf$/i.test(f.name));
   if (pdf) {
     const d = document.createElement("span"); d.className = "mini"; d.textContent = "📄 " + pdf.name; th.append(d);
     newsStatus("Opening the PDF…");
     try { const lib = await getPdfLib(); pdfDoc = await lib.getDocument({ data: new Uint8Array(await pdf.arrayBuffer()) }).promise; }
     catch { newsStatus("This PDF could not be opened. Take screenshots of the story instead.", true); return; }
-    $("newsPages").hidden = false; $("pOf").textContent = "of " + pdfDoc.numPages;
-    $("pFrom").value = 1; $("pTo").value = Math.min(2, pdfDoc.numPages); $("pFrom").max = $("pTo").max = pdfDoc.numPages;
-    newsStatus("Choose the pages with your story (up to 5), then tap Read these pages.");
+    const n = pdfDoc.numPages;
+    if (n <= 3) { pdfPick = { from: 1, to: n }; readNews({ pdf: true }); return; } // a short PDF is read at once
+    // a whole newspaper: the learner chooses the pages, right where the choice is (the page may be long above it)
+    $("newsPages").hidden = false; $("pOf").textContent = "of " + n;
+    $("pFrom").value = 1; $("pTo").value = Math.min(2, n); $("pFrom").max = $("pTo").max = n;
+    $("pHint").textContent = `Your PDF has ${n} pages. Which pages have your story? Mam reads up to 5 pages at a time, and then shows the other stories on them too.`;
+    newsStatus(""); $("newsPages").scrollIntoView({ block: "center" });
     return;
   }
   const imgs = files.filter((f) => f.type.startsWith("image/")).slice(0, 8);
   if (!imgs.length) return;
   imgs.forEach((f) => { const im = document.createElement("img"); im.alt = ""; im.src = URL.createObjectURL(f); th.append(im); });
   readNews({ files: imgs });
+}
+// The other stories Mam saw on the PDF's pages: one tap reads the next one.
+function renderPdfOthers() {
+  const box = $("pdfOthers"); if (!box) return;
+  box.innerHTML = "";
+  if (!pdfDoc || !pdfOthers.length) return;
+  box.append(el("div", "lbl", "📄 More stories on these pages"));
+  pdfOthers.forEach((h) => {
+    const done = state.chats.find((c) => c.article?.pick === h);
+    const b = el("button", "hl"); b.type = "button";
+    b.append(el("span", "em", "📰"));
+    const tx = el("span"); tx.append(el("strong", "", h), el("small", "", "Pages " + pdfPick.from + (+pdfPick.to > +pdfPick.from ? " to " + pdfPick.to : "") + (done ? " · ✓ read" : ""))); b.append(tx);
+    b.onclick = () => (done ? openTopic(done.topic) : readNews({ pdf: true, pick: h }));
+    box.append(b);
+  });
 }
 // Canvases are released right after use: iOS kills the page when canvas memory runs out.
 const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
@@ -1895,25 +2002,63 @@ async function pdfPagesContent(doc, fromIn, toIn, most) {
   let text = ""; const imgs = [];
   for (let n = from; n <= to; n++) {
     const page = await doc.getPage(n);
-    const t = (await page.getTextContent()).items.map((i) => i.str).join(" ").replace(/\s+/g, " ").trim();
+    const t = (await page.getTextContent()).items.map((i) => i.str).join(" ").replace(/\s+/g, " ").replace(/([a-z])- ([a-z])/g, "$1$2").trim(); // "govern- ment" at a line end
     if (t.length > 200) { text += "\n\n[Page " + n + "]\n" + t; continue; }
-    const v1 = page.getViewport({ scale: 1 }); // a scanned page has no text, so send its picture
-    const vp = page.getViewport({ scale: Math.min(1.6, 1800 / Math.max(v1.width, v1.height)) });
+    // a scanned page has no text, so send its picture: big enough for a newspaper's small print (Claude shrinks pictures itself)
+    const v1 = page.getViewport({ scale: 1 }), big = inClaude ? 1800 : 2400;
+    const vp = page.getViewport({ scale: Math.min(3, big / Math.max(v1.width, v1.height)) });
     const c = document.createElement("canvas"); c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
     await page.render({ canvasContext: c.getContext("2d"), viewport: vp }).promise;
     imgs.push(await toJpeg(c)); page.cleanup();
   }
   return { text: text.trim(), imgs };
 }
+// The story's own words are never copied back by Mam when the page already has them (a pasted story, or a PDF with text):
+// she names the first and last words of the story and of its paragraphs and parts, and the page cuts them out here.
+// That is much faster, and Google refuses to copy a published story word for word.
+function normMap(s) {
+  let n = "", sp = true; const pos = [];
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i].toLowerCase();
+    if (/[\p{L}\p{N}]/u.test(ch)) { n += ch; pos.push(i); sp = false; } else if (!sp) { n += " "; pos.push(i); sp = true; }
+  }
+  return { n, pos };
+}
+const normQ = (q) => normMap(String(q || "")).n.trim();
+function cutStory(text, r) {
+  const M = normMap(text), at = (q, from = 0) => { const k = normQ(q); return k.split(" ").length < 3 ? -1 : M.n.indexOf(k, from); };
+  const s = at(r?.start); if (s < 0) return null;
+  let e = at(r?.end, s); e = e < 0 ? M.n.length : e + normQ(r.end).length;
+  const start = M.pos[s], end = e >= M.n.length ? text.length : M.pos[e - 1] + 1, body = text.slice(start, end);
+  let cuts = [];
+  if (/\n/.test(body.trim())) { const re = /\n+/g; let m; while ((m = re.exec(body))) cuts.push(m.index); } // pasted text keeps its own paragraphs
+  else arr(r?.breaks, 80).forEach((x) => { const i = at(x, s + 1); if (i > s && i < e) cuts.push(M.pos[i] - start); });
+  cuts = [...new Set(cuts)].filter((x) => x > 0 && x < body.length).sort((x, y) => x - y);
+  const bounds = [0, ...cuts, body.length], paras = [];
+  let words = 0;
+  for (let i = 0; i + 1 < bounds.length && words < 1500 && paras.length < 60; i++) {
+    const t = body.slice(bounds[i], bounds[i + 1]).replace(/\s+/g, " ").trim();
+    if (t) { paras.push({ text: t, at: bounds[i] }); words += t.split(" ").length; }
+  }
+  if (!paras.length) return null;
+  const secs = (Array.isArray(r?.sections) ? r.sections : []).map((x, j) => {
+    const i = j ? at(x?.start, s) : s; if (i < 0 || i >= e) return null;
+    const o = M.pos[i] - start; let k = 0; while (k + 1 < paras.length && paras[k + 1].at <= o) k++;
+    return { title: x?.title, gist: x?.gist, from: k + 1, to: k + 1 };
+  }).filter(Boolean);
+  return { paras: paras.map((x) => ({ text: x.text })), sections: cleanSections(secs, paras.length) };
+}
+// A pasted story without Mam's help: its own lines are the paragraphs.
+const pastedParas = (t) => (t && t.length < 20000 ? t.split(/\n+/).map((x) => x.replace(/\s+/g, " ").trim()).filter(Boolean).slice(0, 60).map((x) => ({ text: x })) : []);
 async function readNews(input) {
   if (newsBusy) return;
   await aiReady;
   if (!sample) { newsStatus(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.", true); return; }
   newsBusy = true; const myCtl = (newsCtl = new AbortController());
-  const mt = setTimeout(() => myCtl.abort(), 150000); // never leave the page stuck
+  const mt = deadline(150000, () => myCtl.abort()); // never leave the page stuck
   try {
     let text = input.text || "", imgs = [];
-    if (input.pdf) { newsStatus("Reading the PDF pages…", false, true); const r = await pdfPagesContent(pdfDoc, $("pFrom").value, $("pTo").value, 5); text = r.text; imgs = r.imgs; }
+    if (input.pdf) { newsStatus("Reading the PDF pages…", false, true); const r = await pdfPagesContent(pdfDoc, pdfPick.from, pdfPick.to, 5); text = r.text; imgs = r.imgs; }
     const lim = input.files || imgs.length ? await sample.limits?.().catch(() => null) : null;
     if (input.files) { // Claude takes the photo as it is; Gemini gets a smaller copy
       for (const f of input.files) imgs.push(inClaude && lim?.images?.mediaTypes.includes(f.type) && f.size <= lim.images.maxInputBytes ? f : await imageBlob(f));
@@ -1922,21 +2067,34 @@ async function readNews(input) {
     if (imgs.length) imgs = imgs.slice(0, lim.images.maxCount);
     if (myCtl.signal.aborted) throw { code: "cancelled" };
     newsStatus("Mam is reading the story and finding the hard words… this can take up to a minute.", false, true);
-    const r = await askJson(`You help a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam and practising English. Write your own words in simple English only, never Urdu. Below is a news story${input.source ? ` from "${input.source}"` : ""}${imgs.length ? ", given as images (screenshots or photos of a newspaper or magazine page)" : ""}${text ? (imgs.length ? " and text" : ", given as text") : ""}. If there are several stories, choose the one that matters most for CSS.
+    // "cut": the page has the words, so Mam only names where the story and its parts begin; "copy": she reads them from pictures
+    const how = imgs.length ? "copy" : "cut";
+    const ask = (shape) => askJson(`You help a learner from Pakistan (English level ${level()}) who is preparing for the CSS exam and practising English. Write your own words in simple English only, never Urdu. Below is a news story${input.source ? ` from "${input.source}"` : ""}${imgs.length ? ", given as images (screenshots or photos of a newspaper or magazine page, or pages of a PDF)" : ""}${text ? (imgs.length ? " and text" : ", given as text") : ""}. If there are several stories, choose ${input.pick ? `the story with this headline: "${input.pick}"` : "the one that matters most for CSS"}.
 Reply with ONLY JSON:
-{"title": "short headline in simple English", "emoji": "1 or 2 emoji that picture the story", "source": "the newspaper or magazine name if you can tell, else empty", "story": "the story retold in 5 to 8 simple English sentences for level ${level()}, using only facts from the material", "css": "one short sentence: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.)", "questions": ["3 simple questions to talk about the story and the learner's opinion"],
+{"title": "short headline in simple English", "emoji": "1 or 2 emoji that picture the story", "source": "the newspaper or magazine name if you can tell, else empty", "story": "the story retold in 5 to 8 simple English sentences for level ${level()}, using only facts from the material", "css": "one short sentence: which CSS paper or topic this connects to (Current Affairs, Pakistan Affairs, International Relations, Essay, etc.)", "questions": ["3 simple questions to talk about the story and the learner's opinion"],${shape === "copy" ? `
 "paragraphs": ["the ORIGINAL story copied exactly, word for word, one string per paragraph"],
-"sections": [{"title": "a short name for this part, at most 5 words", "gist": "one simple sentence: what this part says", "from": the number of its first paragraph (the first paragraph is 1), "to": the number of its last paragraph}],
-"vocab": [{"word": "an advanced word or phrase exactly as it is written in the original", "type": "noun, verb, adjective, adverb, phrase or idiom", "meaning": "very simple meaning in this story, at most 10 words"}]}
-Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions, bylines and other stories); if it is longer than 1,200 words, copy the first 1,200 words. "sections" divides the paragraphs, in order, into 2 to 6 parts that cover every paragraph (1 part if there are only 1 or 2 paragraphs). "vocab" lists EVERY advanced word and phrase in the original that a ${level()} learner may not know (B2 level and above, including idioms and phrasal verbs), in the order they appear, up to 40. If there is no news story in the material, reply {"title": ""}.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
+"sections": [{"title": "a short name for this part, at most 5 words", "gist": "one simple sentence: what this part says", "from": the number of its first paragraph (the first paragraph is 1), "to": the number of its last paragraph}],` : shape === "cut" ? `
+"start": "the first 8 words of the story itself (after its headline and any place name or byline), copied exactly from the text",
+"end": "the last 8 words of the story, copied exactly from the text",
+"breaks": ["the first 5 words of each new paragraph of the story after the first one, copied exactly, in order"],
+"sections": [{"title": "a short name for this part, at most 5 words", "gist": "one simple sentence: what this part says", "start": "the first 5 words of this part, copied exactly from the text"}],` : ""}
+"vocab": [{"word": "an advanced word or phrase exactly as it is written in the original", "type": "noun, verb, adjective, adverb, phrase or idiom", "meaning": "very simple meaning in this story, at most 10 words"}],
+"others": ["the headline of each other important news story in the material (not the one you chose), up to 6; empty if there is only one story"]}
+Rules: ${shape === "copy" ? `In "paragraphs" copy only the story itself (leave out ads, photo captions, bylines and other stories); if it is longer than 1,200 words, copy the first 1,200 words. "sections" divides the paragraphs, in order, into 2 to 6 parts that cover every paragraph (1 part if there are only 1 or 2 paragraphs). ` : shape === "cut" ? `Copy the words in "start", "end", "breaks" and each part's "start" exactly as they are in the text, so they can be found in it. "sections" divides the story, in order, into 2 to 6 parts (1 part if it is very short); the first part starts where the story starts. ` : ""}"vocab" lists EVERY advanced word and phrase in the original that a ${level()} learner may not know (B2 level and above, including idioms and phrasal verbs), in the order they appear, up to 40. If there is no news story in the material, reply {"title": ""}.${text ? "\n\nTEXT:\n" + text.slice(0, 60000) : ""}`, { images: imgs.length ? imgs : undefined, modelTier: "default", signal: myCtl.signal });
+    let r, plain = false;
+    // a story Google will not copy, or an answer cut short: ask again for the simple story and the words only
+    try { r = await ask(how); } catch (e) { if (!["recitation", "invalid_json", "empty_completion"].includes(e?.code)) throw e; dbg("news_retry", { code: e.code, how }); r = await ask("plain"); plain = true; }
     if (!r?.title || !r?.story) { newsStatus("Mam could not find a news story there. Try a clear screenshot of one story.", true); return; }
     const now = Date.now(), id = "n" + now.toString(36);
-    const paras = (Array.isArray(r.paragraphs) ? r.paragraphs : []).map((x) => String(x || "").trim()).filter(Boolean).slice(0, 60).map((x) => ({ text: x }));
+    let paras = [], sections = [];
+    if (how === "copy" && !plain) { paras = (Array.isArray(r.paragraphs) ? r.paragraphs : []).map((x) => String(x || "").trim()).filter(Boolean).slice(0, 60).map((x) => ({ text: x })); sections = cleanSections(r.sections, paras.length); }
+    else if (text) { const cut = plain ? null : cutStory(text, r); paras = cut?.paras || (input.pdf ? [] : pastedParas(text)); sections = cut?.sections || []; }
     const seen = new Set();
-    const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), link: input.link || "", story: String(r.story), css: String(r.css || ""), from: input.from || "",
-      questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), paras,
-      sections: cleanSections(r.sections, paras.length),
+    const art = { title: String(r.title), emoji: String(r.emoji || "📰").slice(0, 8), source: String(r.source || input.source || ""), link: input.link || "", story: String(r.story), css: String(r.css || ""), from: input.from || "", ...(input.pick ? { pick: input.pick } : {}),
+      questions: (Array.isArray(r.questions) ? r.questions : []).slice(0, 4).map(String), paras, sections,
       vocab: (Array.isArray(r.vocab) ? r.vocab : []).filter((w) => w?.word && !seen.has(String(w.word).toLowerCase()) && seen.add(String(w.word).toLowerCase())).slice(0, 40).map((w) => ({ word: String(w.word).trim(), type: String(w.type || ""), meaning: String(w.meaning || "") })) };
+    // a newspaper PDF has many stories: the others stay on the news page while the PDF is open, one tap for each
+    if (input.pdf && !input.pick) pdfOthers = arr(r.others, 6).filter((x) => isEnglish(x) && normQ(x) !== normQ(art.title));
     const t = { id: "news:" + id, em: "📰", name: art.title, desc: "a news story" + (art.source ? " from " + art.source : ""), open: "Let's talk about this story. " + (art.questions[0] || "What is this news about?"),
       extra: `You and the student are talking about this news story: "${art.title}". The story in simple English: ${art.story} Ask about the story and the student's opinion, one question at a time, for example: ${art.questions.join(" | ")}. The student is learning these words from the story; help them use some: ${art.vocab.slice(0, 15).map((w) => w.word).join(", ")}. If they ask what a word means, explain it simply. Use only the facts in the story; never invent new facts, dates or numbers.` };
     const c = newChat(t); c.id = id; c.article = art;
@@ -1946,8 +2104,8 @@ Rules: In "paragraphs" copy only the story itself (leave out ads, photo captions
   } catch (e) {
     dbg("news_error", { code: String(e?.code || "none") });
     if (e?.code === "not_granted") newsStatus(errText(e), true, false, allowAction(() => readNews(input)));
-    else newsStatus(e?.code === "cancelled" ? "Stopped. Add the story again when you are ready." : errText(e), true);
-  } finally { clearTimeout(mt); newsBusy = false; if (newsCtl === myCtl) newsCtl = null; }
+    else newsStatus(e?.code === "cancelled" ? "Stopped. Add the story again when you are ready." : (errText(e) + " Try again, or take a screenshot of just one story.").trim(), true);
+  } finally { mt(); newsBusy = false; if (newsCtl === myCtl) newsCtl = null; }
 }
 // The story sits on top of its conversation, in three tabs: the original text in parts (first), where the learner
 // taps any word they find hard and can analyse every paragraph; the word list; and the simple story. Then the talk with Mam.
