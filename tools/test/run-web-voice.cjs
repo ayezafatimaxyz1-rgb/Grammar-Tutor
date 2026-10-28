@@ -194,7 +194,7 @@ const fakes = () => {
   await p.click('#tabbar [data-tab="talk"]'); await p.waitForTimeout(300);
   await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("Interview me on a topic")'); await p.waitForTimeout(300);
   await p.fill("#ivTopic", "The 18th Amendment"); await p.click('#ivWho .tab:has-text("Mam")'); await p.click("#ivGo"); await p.waitForTimeout(800);
-  check("topic interview: Mam prepares the questions with Flash", gem.some((g) => /preparing a practice interview/.test(g.prompt) && g.model === "gemini-flash-latest" && g.mime === "application/json") && (await p.textContent("#topicName")).includes("Interview: The 18th Amendment"));
+  check("topic interview: Mam prepares the questions with Flash, thinking a little to be quicker", gem.some((g) => /preparing a practice interview/.test(g.prompt) && g.model === "gemini-flash-latest" && g.mime === "application/json" && g.think?.thinkingLevel === "low") && (await p.textContent("#topicName")).includes("Interview: The 18th Amendment"));
   await p.evaluate(() => { window.__toSay.push("It gave more power to the provinces"); });
   await p.click("#orb"); await p.waitForTimeout(3600);
   check("topic interview by voice: the first question is spoken and my answer goes with the check", (await p.evaluate(() => window.__spoken.join("|"))).includes("What is the 18th Amendment?") && gem.some((g) => /Write Mam's next interview turn now/.test(g.prompt) && /"reply":/.test(g.prompt) && g.model === "gemini-2.5-flash-lite" && g.prompt.includes("It gave more power to the provinces")));

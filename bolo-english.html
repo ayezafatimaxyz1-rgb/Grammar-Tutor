@@ -550,10 +550,13 @@ function parseLoose(t) {
 const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
 // Like Claude's tiers, "quick" jobs (talking, corrections) use the fast Flash-Lite model without thinking, which also
-// has the bigger free limit; the rest use Flash. Extras only the web version uses: opts.search (Google Search) and opts.model.
+// has the bigger free limit; the rest use Flash with a little thinking. Extras only the web version uses: opts.search (Google Search),
+// opts.model, opts.audio (a recording) and opts.temperature.
 const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
 // Thinking is switched off in whichever way the model accepts: Gemini 3 takes a level, 2.5 a budget, some neither.
 const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
+// The other jobs (scoring an interview, preparing questions) think a little: careful enough, and much faster than Flash's default.
+const THINK_LOW = { level: { thinkingLevel: "low" }, budget: { thinkingBudget: 1024 }, none: null };
 const thinkMode = (cfg, model) => cfg.think?.[model] || (/gemini-2\./.test(model) ? "budget" : "level");
 function geminiAI() {
   const cfg = gget(); if (!cfg?.key) return null;
@@ -565,9 +568,9 @@ function geminiAI() {
     const imgs = opts.images ? [].concat(opts.images instanceof FileList ? [...opts.images] : opts.images) : [];
     if (opts.audio) contents[contents.length - 1].parts.push({ inline_data: { mime_type: opts.audio.type || "audio/wav", data: await b64(opts.audio) } });
     for (const b of imgs) contents[contents.length - 1].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
-    const tm = opts.modelTier === "quick" ? thinkMode(cfg, model) : "none";
+    const tm = thinkMode(cfg, model), think = (opts.modelTier === "quick" ? THINK_OFF : THINK_LOW)[tm];
     // JSON mode cannot be combined with search, so a searched answer is parsed from plain text
-    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: opts.temperature ?? 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}), ...(THINK_OFF[tm] ? { thinkingConfig: THINK_OFF[tm] } : {}) } };
+    const body = { contents, ...(opts.search ? { tools: [{ google_search: {} }] } : {}), generationConfig: { temperature: opts.temperature ?? 0.7, ...(json && !opts.search ? { responseMimeType: "application/json" } : {}), ...(think ? { thinkingConfig: think } : {}) } };
     let res;
     try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
     catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
@@ -1015,15 +1018,20 @@ function boardDone(c, auto) {
 const IV_AREAS = [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["analysis", "Reasoning"], ["english", "English"]];
 const VIVA = { total: 300, pass: 100 };
 let scoring = null;
+let scoreAt = 0, scoreClock = 0;
 function scoreBtn(c) {
   const b = document.querySelector("#msgs .boarddone .scorebtn"); if (!b) return;
-  b.disabled = scoring === c; b.textContent = scoring === c ? "Scoring…" : "Get my score";
+  const n = Math.round((Date.now() - scoreAt) / 1000);
+  b.disabled = scoring === c; b.textContent = scoring === c ? "Scoring…" + (n >= 3 ? " " + n + " s" : "") : "Get my score";
 }
 async function interviewReport(c) {
   if (scoring) return;
   await aiReady;
   if (!sample) { note(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first."); return; }
-  scoring = c; scoreBtn(c);
+  scoring = c; scoreAt = Date.now(); scoreBtn(c);
+  clearInterval(scoreClock); scoreClock = setInterval(() => scoreBtn(c), 1000);
+  const ctl = new AbortController(); let late = false;
+  const stop = deadline(90000, () => { late = true; ctl.abort(); });
   const s = c.topic || {}, who = isBoard(c) ? "Board: " : "Mam: ";
   const transcript = c.turns.map((x) => (x.role === "user" ? "Candidate: " : who) + x.content).join("\n");
   const answers = c.turns.filter((x) => x.role === "user"), n = answers.length, avg = n ? Math.round(answers.reduce((a, x) => a + toks(x.content).length, 0) / n) : 0;
@@ -1037,11 +1045,11 @@ The candidate answered ${n} question${n === 1 ? "" : "s"}, with ${avg} words per
 Reply with ONLY JSON: {"areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "questions": [{"q": "the board's question, shortened", "verdict": "strong or adequate or weak or no answer", "note": "what was good or missing in the answer, in one short sentence", "better": "what a strong answer would say, in one or two short sentences"}] (every question the candidate answered, in order), "board_view": "2 honest sentences: how a real board would see this candidate", "did_well": ["up to 2 real strengths; empty if there are none"], "work_on": [{"wrong": "the candidate's sentence", "right": "a better sentence"}] (up to 3), "study": ["up to 3 things to learn before the real interview: a point they missed or got wrong, with the right fact in one short sentence"], "tip": "one practical tip for the next interview"}
 
 TRANSCRIPT:
-${transcript.slice(-14000)}`, { modelTier: "default" });
+${transcript.slice(-14000)}`, { modelTier: "default", signal: ctl.signal });
     c.report = cleanReport(rep, n, avg); putChat(c, true); checkLevelUp();
     if (c === chat) { document.querySelector("#msgs .boarddone .scorebtn")?.remove(); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
-  } catch (e) { dbg("report_error", { code: String(e?.code || "") }); if (c === chat) note(errText(e) || "The score could not be made. Try again."); }
-  finally { scoring = null; scoreBtn(c); }
+  } catch (e) { dbg("report_error", { code: String(e?.code || ""), late }); if (c === chat) note(late ? "Scoring took too long this time. Tap Get my score to try again." : errText(e) || "The score could not be made. Try again."); }
+  finally { stop(); clearInterval(scoreClock); scoring = null; scoreBtn(c); }
 }
 // Very short answers cannot score high, whatever the marks say: a real board needs developed answers.
 function cleanReport(r, n, avg) {
