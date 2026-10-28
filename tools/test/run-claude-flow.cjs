@@ -142,7 +142,7 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("when the interview ends, the score comes by itself, with a new interview to start", ivm.includes("Start a new interview") && ivm.includes("out of 300 · Interview score") && !ivm.includes("Get my score"));
   check("each answer is marked on its own, strictly, by the quick model as the interview goes on", rp.length === 2 && rp.every((c) => c.tier === "quick" && c.prompt.includes("STRICTLY and REALISTICALLY")) && rp[1].prompt.includes('The candidate answered: "I want serve my country" (5 words)'));
   check("at the end the marks are added up, and one short call writes the board's view", sp.length === 1 && sp[0].tier === "quick" && sp[0].prompt.includes("90 out of 300 (not a pass; 100 needed)") && ivm.includes("The candidate is polite but needs longer answers.") && ivm.includes("Give one example in every answer."));
-  check("two short answers cannot pass: 90 of 300, and it says why", ivm.includes("90out of 300") && ivm.includes("✗ A real board would not pass this: 100 needed") && ivm.includes("short answers cannot score high") && ivm.includes("Question by question") && ivm.includes("Reasoning"));
+  check("two short answers cannot pass: 90 of 300, and it says why", ivm.includes("90out of 300") && ivm.includes("✗ A real board would not pass this: 100 needed") && ivm.includes("short answers cannot score high") && ivm.includes("Answer by answer") && ivm.includes("Reasoning"));
   const boardCalls = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("interview board")).length);
   await say("One more thing", 400);
   check("a finished interview does not continue", (await msgs()).includes("This interview is over") && (await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("interview board")).length)) === boardCalls);
@@ -456,8 +456,12 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const before = await q2.textContent("#msgs");
   await q2.click("text=Get my score"); await q2.waitForTimeout(800);
   const om = await q2.textContent("#msgs"), oc = await q2.evaluate(() => window.__calls.filter((c) => /Judge ONE answer/.test(c.prompt)).length);
-  check("an older interview: Get my score marks each of its answers, then adds them up", before.includes("Get my score") && oc === 4 && om.includes("out of 300 · Interview score") && om.includes("Question by question") && om.includes("The candidate is polite"));
-  check("four answers of about 10 words, marked weak to adequate: 144 of 300, a narrow pass", om.includes("144out of 300") && om.includes("✓ A real board would pass this (100 needed)") && om.includes("short answers cannot score high"));
+  check("an older interview: Get my score marks each of its answers, then adds them up", before.includes("Get my score") && oc === 4 && om.includes("out of 300 · Interview score") && om.includes("Answer by answer") && om.includes("The candidate is polite"));
+  check("each short answer is capped by its own length: 138 of 300, a narrow pass", om.includes("138out of 300") && om.includes("✓ A real board would pass this (100 needed)") && om.includes("short answers cannot score high"));
+  const cp = await q2.textContent('.qrev:has-text("What is CPEC")');
+  check("answer by answer: my words, the mark, the areas and exactly why it lost marks", cp.includes("Your answer: “It is a road project with China” (7 words)") && cp.includes("4/10 · ✗ Weak") && cp.includes("Communication 4 · Confidence 4") && cp.includes("Why it lost marks") && cp.includes("Too short: only 7 words.") && cp.includes("It is subjective: only your own feeling") && cp.includes("A strong answer:"));
+  check("and where I lost marks most, across the interview", om.includes("Where you lost marks most") && om.includes("Your answers give feelings, not facts or examples.") && (await q2.evaluate(() => window.__calls.filter((c) => /has been marked answer by answer/.test(c.prompt)).pop().prompt.includes("Lost marks: Too short: only 7 words."))));
+  if (process.env.SHOTS) { await q2.evaluate(() => document.querySelector('.qrev:nth-of-type(2)')?.scrollIntoView()); await q2.screenshot({ path: path.join(process.env.SHOTS, "bolo-answers.png") }); }
   await q2.close();
 
   check("no page errors", errs.length === 0, errs.join(" ; "));
