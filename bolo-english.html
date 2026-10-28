@@ -98,6 +98,11 @@ main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; p
 .area i { height: 8px; background: var(--sunk); border-radius: 99px; overflow: hidden; }
 .area b { display: block; height: 100%; background: var(--accent); }
 .area em { font-style: normal; color: var(--muted); text-align: right; }
+.rtop { display: flex; gap: 12px; align-items: center; }
+.rtop .verdict { padding: 2px 0; min-height: 0; }
+.qrev { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; margin-top: 8px; font-size: 15px; }
+.qrev .verdict { padding: 0; min-height: 0; font-size: 14px; }
+.report .hint { text-align: left; margin: 0; }
 
 /* Mam's talk button */
 .dock { border-top: 1px solid var(--rim); background: var(--surface); padding-block: 10px; display: flex; flex-direction: column; gap: 8px; align-items: center; }
@@ -566,7 +571,13 @@ function geminiAI() {
       if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current ones and try once more
         try { const m = chooseModels(await listModels(cfg.key)); if (m.model !== cfg.model || m.fast !== cfg.fast) { Object.assign(cfg, m); saveG(cfg); return call(input, opts, json, true, tries); } } catch {}
       }
-      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : "upstream_error" };
+      if (res.status >= 500 && (opts.busyTries || 0) < 3 && !opts.signal?.aborted) { // Google's servers are busy: wait and ask again; the third time, the other model
+        const k = (opts.busyTries || 0) + 1, other = model === (cfg.fast || cfg.model) ? cfg.model : cfg.fast;
+        await pause(1500 * k);
+        return call(input, { ...opts, busyTries: k, ...(k === 3 && other && other !== model ? { model: other } : {}) }, json, retried, tries);
+      }
+      dbg("gemini_error", { status: res.status, model, body: bodyText.slice(0, 200) });
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
     }
     const data = await res.json();
     const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
@@ -641,6 +652,7 @@ function errText(e) {
     case "session_expired": return "Your Claude sign-in expired. Reload the page.";
     case "bad_key": return "Your Gemini key did not work. Check it in Settings.";
     case "offline": return "No internet connection. Check your connection and try again.";
+    case "busy": return "Google's servers are very busy right now. Wait a minute and try again.";
     case "timeout": return "Mam took too long to answer.";
     case "cancelled": return "";
     case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai in Safari, or update the Claude app.";
@@ -701,7 +713,7 @@ Reply with only the words you say: no labels, no quotes, no emoji, no lists.`;
 // The board (or Mam) for an interview; a topic interview (a book or lesson the learner studied) also has its notes and length.
 const BOARD_RULES = (answered, t = {}) => {
   const total = t.total || 9, mam = t.panel === "mam";
-  const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (answered >= total ? `This is the last turn: ${mam ? "thank the student warmly and say" : "the Chairman thanks the candidate and says"} exactly "The interview is over."` : "Keep the interview going.");
+  const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (answered >= total ? `This is the last turn: ${mam ? "thank the student warmly in one sentence, then end with" : "the Chairman thanks the candidate in one short sentence, then ends with"} exactly "The interview is over."` : "Keep the interview going.");
   const about = t.subject ? `\n- This interview is about one thing the ${mam ? "student" : "candidate"} studied: "${t.subject}". Ask only about it: what it is about, its main ideas and facts, what they understood, their opinion, and how it connects to Pakistan, society or the civil service. Go from easy questions to harder ones, and ask a follow-up when an answer is short or unclear.\n- Notes to guide your questions and to check the answers (never read them out or mention them): ${t.extra}` : "";
   if (mam) return `You are Mam, a warm and patient female English teacher (the student calls you "Mam"; never use any other name for yourself). You are giving your student from Pakistan (first language Urdu) a practice interview, to check what they understood and to help them speak about it.
 Rules:
@@ -714,6 +726,7 @@ Reply with only the words you say.`;
   return `You are a CSS (FPSC) interview board in Pakistan with three members: the Chairman (senior, calm, polite), Member 1 (asks about Pakistan affairs and current affairs) and Member 2 (asks about the candidate's personality, studies, hobbies and why they want the civil service). The candidate is practising for the real interview.
 Rules:
 - Ask ONE short, clear question per turn in ${BOARD_STYLE[level()]}. Take turns between the members.
+- Every question is for the candidate. The members never speak to each other or hand over aloud (never say "Member 2, do you have any questions?"): the next member simply asks the candidate.
 - Ask follow-up questions based on the candidate's answer ("Why?", "Can you give an example?", "What would you do as an officer?").
 - Do not teach or correct English during the interview. If the candidate did not understand, repeat the question in simpler words.
 - English only. Never write Urdu or Roman Urdu.
@@ -935,7 +948,7 @@ async function send(textIn, retryEl) {
     c.turns.push({ role: "assistant", content: line, at: Date.now() }); putChat(c); replied = true;
     if (c === chat) {
       addTutor(line);
-      if (interviewOver(c)) { stopLoop(); boardDone(c); speakLine(line, () => setState("idle")); setState("speaking"); }
+      if (interviewOver(c)) { stopLoop(); boardDone(c, true); speakLine(line, () => setState("idle")); setState("speaking"); }
       else if (document.hidden && away) { away.line = line; setState("idle"); } // she says it when the learner is back
       else { setState("speaking"); speakLine(line, afterMam); }
     }
@@ -973,50 +986,89 @@ ${CHECK_JSON}`, { modelTier: "quick", cache: false, signal: cc.signal });
     if (meEl.isConnected) setTag(meEl, "fix", "↻ Couldn't check · tap to try again", () => checkAnswer(meEl, turn, c));
   } finally { ct(); }
 }
-function boardDone(c) {
+function boardDone(c, auto) {
   if (document.querySelector("#msgs .boarddone")) return;
   const d = document.createElement("div"); d.className = "banner boarddone";
   d.append("The interview is finished. ");
-  if (!c.report) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary"; b.textContent = "Get my feedback"; b.onclick = () => interviewReport(c, b); d.append(b); }
+  if (!c.report) { const b = document.createElement("button"); b.type = "button"; b.className = "btn primary scorebtn"; b.onclick = () => interviewReport(c); d.append(b); }
   const iv = !!c.topic?.subject, t = iv ? c.topic : TOPICS.find((x) => x.id === "interview");
   const n = document.createElement("button"); n.type = "button"; n.className = "btn"; n.textContent = iv ? "Interview me again" : "Start a new interview";
   n.onclick = () => { stopLoop(); hush(); chat = newChat(t); state.settings.lastTopic = state.settings.lastTalk = t.id; putMeta(); renderChat(); setState("idle"); };
   d.append(n);
   if (iv) { const o = document.createElement("button"); o.type = "button"; o.className = "btn"; o.textContent = "🎤 Another topic"; o.onclick = () => openTopic(IVSETUP); d.append(o); }
-  $("msgs").append(d);
+  $("msgs").append(d); scoreBtn(c);
   if (c.report) $("msgs").append(reportCard(c));
+  else if (auto) interviewReport(c); // the score comes by itself when the interview ends
   scrollDown();
 }
-async function interviewReport(c, btn) {
-  await aiReady; if (!sample) return;
-  btn.disabled = true; btn.textContent = "Scoring…";
+// The board's assessment, strict and real like the FPSC viva voce: 300 marks, and at least 100 to pass.
+// Mam marks five areas from the transcript only; the marks out of 300 are worked out here from them, so they always agree.
+const IV_AREAS = [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["analysis", "Reasoning"], ["english", "English"]];
+const VIVA = { total: 300, pass: 100 };
+let scoring = null;
+function scoreBtn(c) {
+  const b = document.querySelector("#msgs .boarddone .scorebtn"); if (!b) return;
+  b.disabled = scoring === c; b.textContent = scoring === c ? "Scoring…" : "Get my score";
+}
+async function interviewReport(c) {
+  if (scoring) return;
+  await aiReady;
+  if (!sample) { note(inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first."); return; }
+  scoring = c; scoreBtn(c);
   const s = c.topic || {}, who = isBoard(c) ? "Board: " : "Mam: ";
   const transcript = c.turns.map((x) => (x.role === "user" ? "Candidate: " : who) + x.content).join("\n");
-  const about = s.subject ? ` The interview was about something the learner studied: "${s.subject}". Notes on it: ${s.extra} Judge "knowledge" by how well they know this topic.` : "";
+  const answers = c.turns.filter((x) => x.role === "user"), n = answers.length, avg = n ? Math.round(answers.reduce((a, x) => a + toks(x.content).length, 0) / n) : 0;
+  const about = s.subject ? ` The interview was about something the candidate studied: "${s.subject}". Notes on it: ${s.extra} Judge "knowledge" by how well they know this topic.` : "";
   try {
-    const rep = await askJson(`You are a senior CSS (FPSC) interview examiner and English coach. Below is a practice interview with a learner from Pakistan whose English level is ${level()}. Judge it kindly but honestly, as a real board would, and focus on spoken fluency.${about} Write in simple English only.
-Reply with ONLY JSON: {"score": number 1-10, "areas": {"communication": number 1-10, "confidence": number 1-10, "knowledge": number 1-10, "english": number 1-10}, "board_view": "2 short sentences: how a real board would see this candidate", "did_well": ["2 short points"], "work_on": [{"wrong": "candidate's sentence", "right": "better sentence"}] (up to 3), "study": ["up to 3 things to learn again before the next interview: a point they missed or got wrong, with the right fact in one short sentence"], "tip": "one practical tip for the next interview"}
+    const rep = await askJson(`You are a strict senior CSS (FPSC) interview examiner, the Chairman of a real viva voce board in Pakistan, writing the board's private assessment of a practice interview. The candidate is a learner from Pakistan whose English level is ${level()}.${about}
+Mark STRICTLY and REALISTICALLY, exactly as a real board would. Do not be kind and do not round up. Judge only what the candidate actually said below, never what they might know. In the real viva voce, out of ${VIVA.total} marks, a candidate needs at least ${VIVA.pass} to pass, and candidates who give short or general answers score low.
+Give each area 1 to 10: 9 or 10 exceptional (rare); 7 or 8 strong, ready for the real board; 5 or 6 adequate, with clear gaps; 3 or 4 weak; 1 or 2 very weak or no real answer. An answer that is one short sentence, does not answer the question, or only says yes or no counts as weak at best.
+The areas: "communication" (clear, direct and well organised answers), "confidence" (composure and presence of mind, as the answers show it), "knowledge" (correct facts and depth about Pakistan, current affairs and what was asked), "analysis" (reasons, examples and balanced views), "english" (grammar, vocabulary and sentence building).
+The candidate answered ${n} question${n === 1 ? "" : "s"}, with ${avg} words per answer on average. Write in simple English only, never Urdu.
+Reply with ONLY JSON: {"areas": {"communication": n, "confidence": n, "knowledge": n, "analysis": n, "english": n}, "questions": [{"q": "the board's question, shortened", "verdict": "strong or adequate or weak or no answer", "note": "what was good or missing in the answer, in one short sentence", "better": "what a strong answer would say, in one or two short sentences"}] (every question the candidate answered, in order), "board_view": "2 honest sentences: how a real board would see this candidate", "did_well": ["up to 2 real strengths; empty if there are none"], "work_on": [{"wrong": "the candidate's sentence", "right": "a better sentence"}] (up to 3), "study": ["up to 3 things to learn before the real interview: a point they missed or got wrong, with the right fact in one short sentence"], "tip": "one practical tip for the next interview"}
 
+TRANSCRIPT:
 ${transcript.slice(-14000)}`, { modelTier: "default" });
-    c.report = { ...rep, date: Date.now() }; putChat(c, true); checkLevelUp();
-    btn.remove(); if (c === chat) { const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
-  } catch (e) { btn.disabled = false; btn.textContent = "Get my feedback"; note(errText(e) || "The feedback could not be made. Try again."); }
+    c.report = cleanReport(rep, n, avg); putChat(c, true); checkLevelUp();
+    if (c === chat) { document.querySelector("#msgs .boarddone .scorebtn")?.remove(); const card = reportCard(c); $("msgs").append(card); card.scrollIntoView({ block: "start", behavior: "smooth" }); }
+  } catch (e) { dbg("report_error", { code: String(e?.code || "") }); if (c === chat) note(errText(e) || "The score could not be made. Try again."); }
+  finally { scoring = null; scoreBtn(c); }
+}
+// Very short answers cannot score high, whatever the marks say: a real board needs developed answers.
+function cleanReport(r, n, avg) {
+  const cap = n < 3 ? 3 : avg < 8 ? 4 : avg < 15 ? 7 : 10, a = r?.areas && typeof r.areas === "object" ? r.areas : {};
+  const areas = Object.fromEntries(IV_AREAS.map(([k]) => [k, Math.min(cap, Math.max(1, Math.round(Number(a[k]) || 1)))]));
+  const mean = IV_AREAS.reduce((x, [k]) => x + areas[k], 0) / IV_AREAS.length, marks = Math.round(mean * 30);
+  const questions = (Array.isArray(r?.questions) ? r.questions : []).filter((q) => q?.q && isEnglish(q.q + (q.note || "") + (q.better || ""))).slice(0, 15).map((q) => ({ q: String(q.q), verdict: String(q.verdict || "").toLowerCase(), note: String(q.note || ""), better: String(q.better || "") }));
+  return { score: Math.max(1, Math.round(mean)), marks, pass: marks >= VIVA.pass, capped: cap < 10, answers: n, avg, areas, questions, board_view: isEnglish(r?.board_view) ? String(r.board_view) : "", did_well: arr(r?.did_well, 2).filter(isEnglish),
+    work_on: (Array.isArray(r?.work_on) ? r.work_on : []).filter((w) => w?.right && isEnglish(w.right)).slice(0, 3), study: arr(r?.study, 3).filter(isEnglish), tip: isEnglish(r?.tip) ? String(r.tip) : "", date: Date.now() };
 }
 function reportCard(c) {
   const s = c.report || {};
   const r = document.createElement("div"); r.className = "report";
-  r.innerHTML = '<div style="display:flex;gap:12px;align-items:center"><span class="score"></span><strong>Interview feedback</strong></div><div class="areas"></div><p class="bv" style="margin:0"></p><div class="wd"></div><div class="wo"></div><div class="st"></div><div class="tip"></div>';
-  r.querySelector(".score").textContent = s.score ? s.score + "/10" : "🏛️";
-  if (s.areas && typeof s.areas === "object") [["communication", "Communication"], ["confidence", "Confidence"], ["knowledge", "Knowledge"], ["english", "English"]].forEach(([k, l]) => {
-    const v = Math.max(0, Math.min(10, Number(s.areas[k]) || 0)); const row = document.createElement("div"); row.className = "area"; row.innerHTML = "<span></span><i><b></b></i><em></em>";
-    row.children[0].textContent = l; row.querySelector("b").style.width = v * 10 + "%"; row.children[2].textContent = v + "/10"; r.querySelector(".areas").append(row);
+  const top = el("div", "rtop"); top.append(el("span", "score", s.marks != null ? String(s.marks) : s.score ? s.score + "/10" : "🏛️"));
+  const tx = el("div"); tx.append(el("strong", "", s.marks != null ? `out of ${VIVA.total} · Interview score` : "Interview feedback"));
+  if (s.marks != null) tx.append(el("div", "verdict " + (s.pass ? "great" : "fix"), s.pass ? `✓ A real board would pass this (${VIVA.pass} needed)` : `✗ A real board would not pass this: ${VIVA.pass} needed`));
+  top.append(tx); r.append(top);
+  const areas = s.areas && typeof s.areas === "object" ? s.areas : {};
+  IV_AREAS.forEach(([k, l]) => {
+    if (areas[k] == null) return;
+    const v = Math.max(0, Math.min(10, Number(areas[k]) || 0)), row = el("div", "area"); row.innerHTML = "<span></span><i><b></b></i><em></em>";
+    row.children[0].textContent = l; row.querySelector("b").style.width = v * 10 + "%"; row.children[2].textContent = v + "/10"; r.append(row);
   });
-  r.querySelector(".bv").textContent = isEnglish(s.board_view) ? s.board_view : "";
-  if (Array.isArray(s.did_well)) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.querySelector(".wd").append(ul); }
-  (Array.isArray(s.work_on) ? s.work_on : []).forEach((w) => { const f = document.createElement("div"); f.innerHTML = '<div class="w"></div><div class="r"></div>'; f.firstChild.textContent = w.wrong || ""; f.lastChild.textContent = "✓ " + (w.right || ""); r.querySelector(".wo").append(f); });
+  if (s.capped) r.append(el("p", "hint", `Your answers had about ${s.avg} words each. A real board wants full answers with a reason and an example, so short answers cannot score high.`));
+  if (isEnglish(s.board_view)) r.append(el("p", "", s.board_view));
+  if (Array.isArray(s.questions) && s.questions.length) {
+    const d = el("details"); d.append(el("summary", "", `Question by question · ${s.questions.filter((q) => q.verdict === "strong").length} strong of ${s.questions.length}`));
+    s.questions.forEach((q) => { const m = el("div", "qrev"); m.append(el("div", "", q.q), el("div", "verdict " + (q.verdict === "strong" ? "great" : q.verdict === "adequate" ? "check" : "fix"), (q.verdict === "strong" ? "✓ Strong" : q.verdict === "adequate" ? "~ Adequate" : q.verdict === "no answer" ? "✗ No answer" : "✗ Weak") + (q.note ? " · " + q.note : ""))); if (q.better) m.append(el("div", "hint", "A strong answer: " + q.better)); d.append(m); });
+    r.append(d);
+  }
+  if (Array.isArray(s.did_well) && s.did_well.length) { const ul = document.createElement("ul"); s.did_well.forEach((x) => { const li = document.createElement("li"); li.textContent = "👍 " + x; ul.append(li); }); r.append(ul); }
+  (Array.isArray(s.work_on) ? s.work_on : []).forEach((w) => { const f = document.createElement("div"); f.innerHTML = '<div class="w"></div><div class="r"></div>'; f.firstChild.textContent = w.wrong || ""; f.lastChild.textContent = "✓ " + (w.right || ""); r.append(f); });
   const study = arr(s.study, 3).filter(isEnglish);
-  if (study.length) { const st = r.querySelector(".st"), ul = el("ul"); st.append(el("div", "lbl", "📚 Study again")); study.forEach((x) => ul.append(el("li", "", x))); st.append(ul); }
-  r.querySelector(".tip").textContent = isEnglish(s.tip) ? "💡 " + s.tip : "";
+  if (study.length) { const ul = el("ul"); r.append(el("div", "lbl", "📚 Study again")); study.forEach((x) => ul.append(el("li", "", x))); r.append(ul); }
+  if (isEnglish(s.tip)) r.append(el("div", "tip", "💡 " + s.tip));
+  if (s.marks != null) r.append(el("p", "hint", "A practice estimate from your words only: a real board also sees your manner, your dress and how you speak in person."));
   return r;
 }
 

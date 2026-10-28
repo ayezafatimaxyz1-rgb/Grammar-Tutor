@@ -907,7 +907,13 @@ function geminiAI() {
       if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current ones and try once more
         try { const m = chooseModels(await listModels(cfg.key)); if (m.model !== cfg.model || m.fast !== cfg.fast) { Object.assign(cfg, m); saveG(cfg); return call(input, opts, json, true, tries); } } catch {}
       }
-      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : "upstream_error" };
+      if (res.status >= 500 && (opts.busyTries || 0) < 3 && !opts.signal?.aborted) { // Google's servers are busy: wait and ask again; the third time, the other model
+        const k = (opts.busyTries || 0) + 1, other = model === (cfg.fast || cfg.model) ? cfg.model : cfg.fast;
+        await pause(1500 * k);
+        return call(input, { ...opts, busyTries: k, ...(k === 3 && other && other !== model ? { model: other } : {}) }, json, retried, tries);
+      }
+      dbg("gemini_error", { status: res.status, model, body: bodyText.slice(0, 200) });
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
     }
     const data = await res.json();
     const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
@@ -980,6 +986,7 @@ function errText(e) {
     case "session_expired": return "Your Claude sign-in expired. Reload the page.";
     case "bad_key": return "Your Gemini key did not work. Check it in Settings.";
     case "offline": return "No internet connection. Check your connection and try again.";
+    case "busy": return "Google's servers are very busy right now. Wait a minute and try again.";
     case "timeout": return "Mam took too long to answer. Try again.";
     case "no_images": return "Photos can't be sent from this view. Type or paste the words instead.";
     case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai in Safari, or update the Claude app.";

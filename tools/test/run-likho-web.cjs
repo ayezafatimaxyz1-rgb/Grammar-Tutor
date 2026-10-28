@@ -42,11 +42,12 @@ const fakes = () => {
   await p.addInitScript((k) => { if (!localStorage.getItem("bolo.gemini")) localStorage.setItem("bolo.gemini", JSON.stringify(k)); }, KEY);
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
-  const gem = [];
+  const gem = []; let busyOnce = 1; // the first check meets a busy server
   const gemini = async (r) => {
     const u = r.request().url(), body = JSON.parse(r.request().postData());
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
     gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    if (busyOnce && /checking writing by a learner/.test(prompt)) { busyOnce = 0; return r.fulfill({ status: 503, json: { error: { code: 503, message: "The model is overloaded. Please try again later.", status: "UNAVAILABLE" } } }); }
     const text = /checking writing by a learner/.test(prompt) ? JSON.stringify({ score: 5, areas: { task: 6, organisation: 5, grammar: 4, vocabulary: 5 }, mistakes: [{ wrong: "I go to market", right: "I went to the market", hint: "When did it happen?", why: "Use the past tense.", type: "tense" }], good: ["Clear ideas."], next: ["Add an example."], better: "Yesterday I went to the market with my brother." })
       : /is correcting one mistake/.test(prompt) ? JSON.stringify({ ok: false, note: "Use the past tense." })
       : /is practising one skill/.test(prompt) ? JSON.stringify({ ok: true, note: "" })
@@ -62,8 +63,9 @@ const fakes = () => {
   check("🎙️ Speak writes what I say into the answer sheet", (await p.inputValue("#draft")) === "I went to the market with my brother");
   await p.click("#dictBtn"); await p.waitForTimeout(100);
   await p.fill("#draft", "Yesterday I go to market. I buy some mangoes. Then I come back home. It was a nice day.");
-  await p.click("#checkBtn"); await p.waitForTimeout(700);
+  await p.click("#checkBtn"); await p.waitForTimeout(2600);
   const ck = gem.find((g) => /checking writing by a learner/.test(g.prompt));
+  check("a busy Google server: Mam waits a moment and asks again, with no error", gem.filter((g) => /checking writing by a learner/.test(g.prompt)).length === 2 && (await p.textContent(".score")) === "5/10");
   check("checking uses Flash with JSON answers and a little thinking, to be quicker", !!ck && ck.model === "gemini-flash-latest" && ck.mime === "application/json" && ck.think?.thinkingLevel === "low");
   check("the marks and the mistake to fix arrive", (await p.textContent(".score")) === "5/10" && (await p.$$("mark.mk")).length === 1);
   await p.fill("#fixIn0", "I goed to market"); await p.click('#fix0 button:has-text("Check")'); await p.waitForTimeout(500);
@@ -81,7 +83,7 @@ const fakes = () => {
   const p3 = await ctx.newPage(); p3.on("pageerror", (e) => errs.push(e.message));
   await p3.route("https://fonts.googleapis.com/**", (r) => r.abort()); await p3.route("https://generativelanguage.googleapis.com/**", gemini);
   await p3.goto("file://" + path.join(root, "docs/likho/manifest.webmanifest"));
-  await p3.evaluate((d) => { const s = JSON.parse(localStorage.getItem("likho.v1")); s.settings.course = { placed: { at: Date.now(), skipped: true, known: [] }, skills: {}, day: { key: d, at: Date.now(), n: 1, skill: "order", step: 2, rv: { refs: [], i: 0, res: [] }, pr: { refs: [{ s: "order", x: 0 }], i: 0, res: [], best: 0, round: 1 }, piece: null, done: 0 } }; s.settings.view = { tab: "write", page: "day" }; localStorage.setItem("likho.v1", JSON.stringify(s)); }, today);
+  await p3.evaluate((d) => { const s = JSON.parse(localStorage.getItem("likho.v1") || "{}"); s.settings = s.settings || {}; s.settings.course = { placed: { at: Date.now(), skipped: true, known: [] }, skills: {}, day: { key: d, at: Date.now(), n: 1, skill: "order", step: 2, rv: { refs: [], i: 0, res: [] }, pr: { refs: [{ s: "order", x: 0 }], i: 0, res: [], best: 0, round: 1 }, piece: null, done: 0 } }; s.settings.view = { tab: "write", page: "day" }; localStorage.setItem("likho.v1", JSON.stringify(s)); }, today);
   await p3.goto(url); await p3.waitForTimeout(600);
   for (const w of ["every day", "I", "drink", "tea"]) await p3.click(`div.tools > .chip:text-is("${w}")`);
   await p3.click('#page .card button:has-text("Check")'); await p3.waitForTimeout(500);
