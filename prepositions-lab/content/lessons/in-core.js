@@ -185,7 +185,7 @@ PLAB.registerLesson({
           dur: 2200,
           points: [[560, 180], [640, 118], [760, 108], [860, 150], [890, 250], [850, 340], [740, 372], [620, 352], [548, 280]],
         },
-        { do: "write", id: "lahore-label", text: "LAHORE", x: 720, y: 165, size: 30, ink: "accent2", anchor: "middle", style: "caps" },
+        { do: "write", id: "lahore-label", text: "LAHORE", x: 720, y: 150, size: 30, ink: "accent2", anchor: "middle", style: "caps" },
         {
           do: "draw",
           id: "houses",

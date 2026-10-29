@@ -122,4 +122,32 @@ PLAB.misconceptions = {
     label: "A verb after a preposition takes -ing",
     explain: "Without saying, before leaving, by working: never without to say or before leave.",
   },
+  "over-vs-above": {
+    label: "Over (covering, crossing) or above (a higher level)",
+    explain: "Above: higher, no contact, and levels on a scale. Over: covering, crossing, moving across, more than, and periods.",
+  },
+  "under-vs-below": {
+    label: "Under (covered, directly beneath) or below (a lower level)",
+    explain: "Under: directly beneath, often covered or touching. Below: at a lower level, usually with a gap, and on a scale.",
+  },
+  "under-abstract": {
+    label: "Under for control, process and law",
+    explain: "Under pressure, under review, under consideration, under Article 25. Beneath consideration means unworthy of it.",
+  },
+  "register-informal": {
+    label: "Informal phrase in formal writing",
+    explain: "Some correct phrases are informal (on top of that). In essays, choose the formal equivalent (in addition to, moreover).",
+  },
+  "beside-vs-besides": {
+    label: "Beside (at the side) or besides (in addition)",
+    explain: "Beside is position. Besides adds: in addition to, apart from, or moreover at the start of a sentence.",
+  },
+  "near-vs-nearby": {
+    label: "Near (preposition) or nearby (adjective, adverb)",
+    explain: "Near the school, by the sea, next to the bank. Nearby does not take an object: a nearby shop, they live nearby.",
+  },
+  "closeness-scale": {
+    label: "How close: next to, by, near",
+    explain: "Next to: nothing between. By or beside: at the side. Near or close to: a short distance, maybe with things between.",
+  },
 };

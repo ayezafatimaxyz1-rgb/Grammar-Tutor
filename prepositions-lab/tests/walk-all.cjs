@@ -46,7 +46,7 @@ if (shots) fs.mkdirSync(shots, { recursive: true });
       const found = await page.evaluate(() => {
         const out = [];
         const boxes = [...document.querySelectorAll("#board-main .board-item")]
-          .filter((g) => g.style.visibility === "visible" && !(+g.style.opacity < 0.05) && g.querySelector("text"))
+          .filter((g) => g.style.visibility === "visible" && (g.style.opacity === "" || +g.style.opacity > 0.05) && g.querySelector("text"))
           .map((g) => {
             const t = g.querySelector("text");
             const b = t.getBBox();
