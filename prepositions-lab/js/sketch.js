@@ -135,7 +135,24 @@
     return fn(shape, r);
   }
 
+  // How many strokes each shape produces, so fills can be matched to their strokes.
+  const STROKES = { rect: 4, arrow: 3, person: 6, swipe: 1, line: 1, circle: 1, ellipse: 1, blob: 1 };
+  const CLOSED = { circle: 1, ellipse: 1, blob: 1 };
+
+  // Closed outlines to fill: a rectangle's exact box, or a closed shape's own stroke.
+  function fills(shape, strokes) {
+    const out = [];
+    let i = 0;
+    for (const part of shape.shape === "group" ? shape.parts : [shape]) {
+      if (part.shape === "rect") out.push(`M${part.x},${part.y}h${part.w}v${part.h}h${-part.w}Z`);
+      else if (CLOSED[part.shape]) out.push(strokes[i]);
+      i += STROKES[part.shape] || 0;
+    }
+    return out;
+  }
+
   P.sketch = {
+    fills,
     shapes: Object.keys(BUILDERS),
     strokes(shape, seedKey) {
       return build(shape, rng(hash(seedKey)));

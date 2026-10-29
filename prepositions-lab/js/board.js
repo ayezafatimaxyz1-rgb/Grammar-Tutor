@@ -109,7 +109,8 @@
       const strokes = P.sketch.strokes(a, `${this.key}:${a.id}`);
       let fill = null;
       if (a.fill) {
-        fill = make("path", { d: strokes[0], style: `fill:${ink(a.fillInk || a.ink)};stroke:none`, opacity: 0 }, g);
+        const d = P.sketch.fills(a, strokes).join(" ");
+        if (d) fill = make("path", { d, style: `fill:${ink(a.fillInk || a.ink)};stroke:none`, opacity: 0 }, g);
       }
       const parts = this.makeStrokes(g, strokes, a);
       return this.addItem(a.id, { kind: "draw", g, parts, fill, fillTo: FILL[a.fill] ?? 0, total: parts.reduce((n, p) => n + p.len, 0) });

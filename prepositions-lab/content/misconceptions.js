@@ -150,4 +150,28 @@ PLAB.misconceptions = {
     label: "How close: next to, by, near",
     explain: "Next to: nothing between. By or beside: at the side. Near or close to: a short distance, maybe with things between.",
   },
+  "front-vs-opposite": {
+    label: "In front of, opposite, ahead of or before",
+    explain: "In front of: same side, at the front. Opposite: facing across a space. Ahead of: further forward. Before: formal, facing an authority.",
+  },
+  "between-vs-among": {
+    label: "Separate individuals (between) or a group (among)",
+    explain: "Between relates separate individuals, even more than two. Among places something inside a group. Amid: in the middle of a situation.",
+  },
+  "object-pronoun": {
+    label: "Pronouns after a preposition",
+    explain: "A preposition takes the object form: between you and me, for him and her, with us. Between pairs with and.",
+  },
+  "around-vs-about": {
+    label: "Around, round or about",
+    explain: "Around or round: surrounding, a circle. Around or about: approximately. About or on: a topic; around for topics is informal.",
+  },
+  "against-uses": {
+    label: "Uses of against",
+    explain: "Against: pressing on, opposing, contrasting, protecting (vaccinated against). A score uses to: 120 votes to 80.",
+  },
+  "upon-limits": {
+    label: "Where upon works",
+    explain: "Upon is a formal on after verbs and in fixed phrases (upon receipt of). Not for days, vehicles or plain position.",
+  },
 };
