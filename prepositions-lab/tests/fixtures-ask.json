@@ -1,0 +1,58 @@
+{
+  "title": "BETWEEN or AMONG?",
+  "summary": "Between picks out separate individuals; among places something inside a group.",
+  "objectives": ["Choose between or among by picturing the relationship."],
+  "steps": [
+    {
+      "id": "two",
+      "title": "Between two things",
+      "alt": "A ball between two trees, with the sentence: The ball is between the trees.",
+      "say": [
+        {"text": "Here are two trees, drawn as separate things.", "cue": "trees"},
+        {"text": "The ball sits in the space that the two trees mark out. We say _The ball is between the trees._", "cue": "s1"},
+        {"text": "**Between** relates something to individual, separate points.", "cue": "nonexistent-cue"}
+      ],
+      "actions": [
+        {"do": "draw", "id": "trees", "shape": "group", "parts": [
+          {"shape": "line", "from": [300, 380], "to": [300, 200]},
+          {"shape": "circle", "cx": 300, "cy": 170, "r": 40},
+          {"shape": "line", "from": [660, 380], "to": [660, 200]},
+          {"shape": "circle", "cx": 660, "cy": 170, "r": 40},
+          {"shape": "star", "cx": 1, "cy": 1}
+        ]},
+        {"do": "draw", "id": "ball", "shape": "circle", "cx": 480, "cy": 355, "r": 24, "ink": "accent", "fill": "solid"},
+        {"do": "write", "id": "s1", "text": "The ball is between the trees, which is a really long sentence that would run off the board", "x": 480, "y": 480, "size": 44, "anchor": "middle"},
+        {"do": "highlight", "target": "s1", "word": "between"},
+        {"do": "highlight", "target": "s1", "word": "amongst"},
+        {"do": "teleport", "id": "x"}
+      ]
+    },
+    {
+      "id": "many",
+      "title": "Among a group",
+      "alt": "A ball inside a crowd of dots, with the sentence: The ball is among the leaves.",
+      "say": [{"text": "Now a crowd of leaves. The ball is somewhere inside the group: _among the leaves_.", "cue": "s2"}],
+      "actions": [
+        {"do": "erase", "targets": "all"},
+        {"do": "draw", "id": "crowd", "shape": "blob", "points": [[300,150],[650,140],[720,300],[600,400],[320,390],[250,280]], "ink": "accent2", "fill": "soft"},
+        {"do": "move", "target": "ball", "by": [0, -80]},
+        {"do": "write", "id": "s2", "text": "among the leaves", "x": 480, "y": 500, "size": 42, "anchor": "middle"},
+        {"do": "highlight", "target": "s2", "word": "among", "style": "ring"}
+      ]
+    },
+    {
+      "id": "check",
+      "title": "Check",
+      "alt": "The crowd remains.",
+      "say": ["Choose the word."],
+      "actions": [],
+      "check": {
+        "prompt": "The prize was shared ___ the three winners.",
+        "options": [
+          {"text": "among", "correct": true, "why": "The three winners are treated as one group."},
+          {"text": "between", "why": "Between is also used here by many writers when each winner is thought of separately, but among is the safer exam answer.", "mistake": "Group or separate individuals?", "mistakeExplain": "Among: inside a group. Between: related to separate individuals."}
+        ]
+      }
+    }
+  ]
+}

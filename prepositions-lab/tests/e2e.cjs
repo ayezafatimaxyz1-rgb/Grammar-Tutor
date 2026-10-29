@@ -144,6 +144,37 @@ function ok(cond, msg) {
   ok(overflow <= 0, `no sideways scroll at phone width (overflow ${overflow}px)`);
   if (shots) await phone.screenshot({ path: `${shots}/phone-dark.png`, fullPage: true });
 
+  // Ask the board, with a stand-in for Claude that returns a canned (partly broken) answer.
+  const answer = fs.readFileSync(path.join(__dirname, "fixtures-ask.json"), "utf8");
+  const ask = await newPage({ viewport: { width: 1280, height: 860 } });
+  await ask.addInitScript((json) => {
+    const fake = async () => ({ text: json, truncated: false });
+    fake.json = async (prompt, opts) => {
+      window.__askPrompt = prompt;
+      opts && opts.onText && opts.onText({ text: json, delta: json });
+      return JSON.parse(json);
+    };
+    window.claude = { use: async (name) => (name === "sample" ? fake : null) };
+  }, answer);
+  await ask.goto(url + "#ask");
+  await ask.fill("#ask-q", "between or among?");
+  await ask.click("#ask-go");
+  await ask.waitForFunction(() => location.hash.startsWith("#lesson-ask-"));
+  await ask.waitForSelector("#board .board-item", { state: "attached" });
+  ok((await ask.textContent("h1")).includes("BETWEEN"), "a drawn explanation opens in the player");
+  ok(await ask.evaluate(() => window.__askPrompt.includes("between or among?")), "the question is sent to Claude");
+  await ask.$eval("#scrub", (s) => { s.value = 1000; s.dispatchEvent(new Event("input")); });
+  const fits = await ask.$eval('[data-id="s1"] text', (t) => { const b = t.getBBox(); return b.x >= 0 && b.x + b.width <= 960; });
+  ok(fits, "a sentence that is too long is shrunk to fit the board");
+  ok((await ask.locator("#steps button").count()) === 3, "broken actions are dropped, steps are kept");
+  if (shots) await ask.screenshot({ path: `${shots}/ask.png` });
+  await ask.click("#next");
+  await ask.click("#next").catch(() => {});
+  await ask.$eval("#scrub", (s) => { s.value = 1000; s.dispatchEvent(new Event("input")); });
+  ok(await ask.isVisible("#check"), "the drawn explanation ends with a check");
+  await ask.goto(url + "#ask");
+  ok((await ask.locator(".asked-list li").count()) === 1, "asked explanations are kept for replay");
+
   ok(errors.length === 0, `no script errors${errors.length ? ": " + errors.join(" | ") : ""}`);
   await browser.close();
   console.log(failures ? `\n${failures} check(s) failed` : "\nAll browser checks passed");

@@ -145,7 +145,18 @@
       }
       if (pos < a.text.length) text.appendChild(document.createTextNode(a.text.slice(pos)));
 
-      const box = text.getBBox();
+      // Shrink a line that would run off the board, then keep it inside the edges.
+      let box = text.getBBox();
+      const room = 960 - 40;
+      if (box.width > room) {
+        text.style.fontSize = `${((a.size || 38) * room) / box.width}px`;
+        box = text.getBBox();
+      }
+      const shift = box.x < 20 ? 20 - box.x : box.x + box.width > 940 ? 940 - box.x - box.width : 0;
+      if (shift) {
+        text.setAttribute("x", a.x + shift);
+        box = text.getBBox();
+      }
       const clipId = `${this.key}-${a.id}-clip`.replace(/[^\w-]/g, "_");
       const clip = make("clipPath", { id: clipId, clipPathUnits: "userSpaceOnUse" }, this.defs);
       const rect = make("rect", { x: box.x - 6, y: box.y - 10, width: 0, height: box.height + 20 }, clip);

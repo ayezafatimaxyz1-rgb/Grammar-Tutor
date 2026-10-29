@@ -38,6 +38,7 @@
   /* ---------- routing ---------- */
 
   let teardown = null;
+  let askPrefill = {};
 
   function route() {
     if (teardown) teardown();
@@ -45,8 +46,13 @@
     const hash = location.hash.slice(1);
     document.querySelectorAll("[data-nav]").forEach((a) => a.removeAttribute("aria-current"));
     if (hash.startsWith("lesson-") && P.lessons[hash.slice(7)]) {
-      teardown = renderLesson(P.lessons[hash.slice(7)]);
-      $('[data-nav="lesson"]').setAttribute("aria-current", "page");
+      const lesson = P.lessons[hash.slice(7)];
+      teardown = renderLesson(lesson);
+      $(`[data-nav="${lesson.generated ? "ask" : "lesson"}"]`).setAttribute("aria-current", "page");
+    } else if (hash === "ask") {
+      P.ask.render(app, { esc, prefill: askPrefill.q, context: askPrefill.context });
+      askPrefill = {};
+      $('[data-nav="ask"]').setAttribute("aria-current", "page");
     } else if (hash === "notebook") {
       renderNotebook();
       $('[data-nav="notebook"]').setAttribute("aria-current", "page");
@@ -165,7 +171,7 @@
     app.innerHTML = `
       <section class="lesson-head">
         <div>
-          <p class="eyebrow">${esc(unit ? unit.title : "")} · ${esc(lesson.level)} · about ${lesson.minutes} min</p>
+          <p class="eyebrow">${lesson.generated ? "Drawn on request · not part of the reviewed course" : `${esc(unit ? unit.title : "")} · ${esc(lesson.level)}`} · about ${lesson.minutes} min</p>
           <h1>${esc(lesson.title)}</h1>
         </div>
         <button id="bookmark" class="button ghost" type="button" aria-pressed="false"></button>
@@ -221,6 +227,14 @@
           <span>My notes for this lesson</span>
           <textarea id="notes" rows="4" placeholder="Write the idea in your own words. Notes are saved in this browser."></textarea>
         </label>
+        <form class="ask-inline" id="ask-inline">
+          <label for="ask-inline-q">Ask the board to sketch something about this lesson</label>
+          <div class="ask-inline-row">
+            <input id="ask-inline-q" type="text" maxlength="300" placeholder="e.g. Why do we say in the car but on the bus?">
+            <button class="button" type="submit">Ask</button>
+          </div>
+        </form>
+        ${lesson.generated ? '<p><button id="forget" class="button ghost small" type="button">Delete this explanation</button></p>' : ""}
         <p class="muted keys">Keyboard: Space plays or pauses, ← and → move between steps, R replays the step.</p>
       </section>`;
 
@@ -254,6 +268,17 @@
       clearTimeout(noteTimer);
       noteTimer = setTimeout(() => store.setNote(lesson.id, notes.value), 400);
     });
+
+    $("#ask-inline").addEventListener("submit", (e) => {
+      e.preventDefault();
+      askPrefill = { q: $("#ask-inline-q").value.trim(), context: lesson.title };
+      location.hash = "ask";
+    });
+    if (lesson.generated)
+      $("#forget").addEventListener("click", () => {
+        P.ask.forget(lesson.id);
+        location.hash = "ask";
+      });
 
     const answered = (step) => !step.check || !!store.lesson(lesson.id).answered[step.check.id];
     const len = () => scene.length(state.step);
@@ -439,7 +464,7 @@
       ui.finish.innerHTML = `
         <h3>Lesson complete</h3>
         <p>You answered ${checks.length - missed} of ${checks.length} checks correctly on the first try.${missed ? " The others are in your mistake notebook, ready for review." : ""}</p>
-        <p>Next in the curriculum: <em>in</em> for time, then <em>on</em> and <em>at</em>. Those lessons will be built once this one is approved.</p>
+        ${lesson.generated ? '<p>Ask a follow-up below, or return to the course.</p>' : nextLessonHtml(lesson)}
         <div class="row-buttons">
           <a class="button primary" href="#notebook">Open the notebook</a>
           <a class="button ghost" href="#library">Back to the library</a>
@@ -498,7 +523,12 @@
     let alive = true;
     whenFontsReady().then(() => {
       if (!alive) return;
-      scene = new P.Scene(svg, $("#board-main"), lesson.steps, lesson.id);
+      try {
+        scene = new P.Scene(svg, $("#board-main"), lesson.steps, lesson.id);
+      } catch (err) {
+        ui.say.innerHTML = `<p class="is-said">This drawing could not be built (${esc(err.message)}). ${lesson.generated ? "Delete it and ask again." : ""}</p>`;
+        return;
+      }
       state.ready = true;
       // Continue where the learner stopped, but never past an unanswered check.
       let start = Math.min(progress.furthest, lesson.steps.length - 1);
@@ -514,6 +544,14 @@
       clearTimeout(noteTimer);
       if (notes.value !== store.note(lesson.id)) store.setNote(lesson.id, notes.value);
     };
+  }
+
+  // The next lesson in curriculum order that can be opened.
+  function nextLessonHtml(lesson) {
+    const list = allLessons();
+    const at = list.findIndex((l) => l.lessonId === lesson.id);
+    const next = list.slice(at + 1).find((l) => l.lessonId && P.lessons[l.lessonId]);
+    return next ? `<p>Next: <a href="#lesson-${next.lessonId}">${esc(next.title)}</a></p>` : "<p>That is the last lesson built so far.</p>";
   }
 
   function whenFontsReady() {
