@@ -1,12 +1,11 @@
 /* Layout: a study page. Header, then the lesson player: a large whiteboard with its controls,
    and beside it (below it on phones) the written explanation and the comprehension check.
-   Look: a clean whiteboard with marker inks on a cool paper ground; in dark mode the board
-   becomes a slate with chalk. */
+   Look: an all-white page and whiteboard with marker inks. Single theme by choice. */
 :root {
-  --bg: #eef1f4;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --sunk: #e4e9ef;
-  --line: #d3dae3;
+  --sunk: #f1f4f8;
+  --line: #dde3ea;
   --fg: #1b2330;
   --muted: #5a6577;
   --accent: #1d4f9c;
@@ -16,12 +15,12 @@
   --good-bg: #e7f4eb;
   --bad: #b23a3a;
   --bad-bg: #fbeaea;
-  --hi-soft: #fff4c2;
+  --hi-soft: #fff6cc;
   --focus: #e0a800;
 
-  --board: #fbfcfd;
-  --board-edge: #c9d1dc;
-  --tray: #d7dde5;
+  --board: #ffffff;
+  --board-edge: #cfd6df;
+  --tray: #e3e8ee;
   --ink-main: #1f2a3a;
   --ink-accent: #1d4f9c;
   --ink-accent2: #0d7366;
@@ -41,65 +40,7 @@
   --font-board: "Kalam", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive;
 
   --radius: 10px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #12171d;
-    --surface: #1a2129;
-    --sunk: #222b35;
-    --line: #2f3a46;
-    --fg: #e6ebf1;
-    --muted: #9aa6b4;
-    --accent: #8db4f5;
-    --accent-fg: #0f1a2c;
-    --accent-2: #63cdbb;
-    --good: #7fd69a;
-    --good-bg: #17301f;
-    --bad: #ff9a8f;
-    --bad-bg: #3a1d1d;
-    --hi-soft: #3b3520;
-    --board: #1d2a2b;
-    --board-edge: #33413f;
-    --tray: #2a3434;
-    --ink-main: #eef2ef;
-    --ink-accent: #9cc2ff;
-    --ink-accent2: #7fe0cd;
-    --ink-muted: #94a3a1;
-    --ink-trouble: #ff9d86;
-    --ink-hi: #e9c63a;
-    --swipe-opacity: 0.38;
-    --st-planned: #5d6774;
-    color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #12171d;
-  --surface: #1a2129;
-  --sunk: #222b35;
-  --line: #2f3a46;
-  --fg: #e6ebf1;
-  --muted: #9aa6b4;
-  --accent: #8db4f5;
-  --accent-fg: #0f1a2c;
-  --accent-2: #63cdbb;
-  --good: #7fd69a;
-  --good-bg: #17301f;
-  --bad: #ff9a8f;
-  --bad-bg: #3a1d1d;
-  --hi-soft: #3b3520;
-  --board: #1d2a2b;
-  --board-edge: #33413f;
-  --tray: #2a3434;
-  --ink-main: #eef2ef;
-  --ink-accent: #9cc2ff;
-  --ink-accent2: #7fe0cd;
-  --ink-muted: #94a3a1;
-  --ink-trouble: #ff9d86;
-  --ink-hi: #e9c63a;
-  --swipe-opacity: 0.38;
-  --st-planned: #5d6774;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * { box-sizing: border-box; }
@@ -288,7 +229,7 @@ main { padding-block: 24px 64px; display: flex; flex-direction: column; gap: 28p
 .check-prompt { font-weight: 700; font-size: 1.05rem; }
 .options { display: flex; flex-direction: column; gap: 8px; }
 .option {
-  text-align: left; font: inherit; color: var(--fg); background: var(--bg);
+  text-align: left; font: inherit; color: var(--fg); background: var(--surface);
   border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer; min-height: 44px;
 }
 .option:hover:not(:disabled) { border-color: var(--accent); }
