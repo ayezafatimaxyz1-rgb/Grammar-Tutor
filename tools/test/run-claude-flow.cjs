@@ -139,7 +139,15 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   const bp = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("Write the board's next turn now")).pop()?.prompt || "");
   check("the board reads my form, like the real one", bp.includes("The board has read the candidate's form (DAF): Name: Ali Raza. Home district (domicile): Multan. Service groups, in order of choice: PAS, PSP, FSP. Hobbies and interests: reading history books."));
   check("the board behaves like a real board: no praise, digs into each answer, specific questions", bp.includes("Never praise an answer") && bp.includes("Dig into each answer") && bp.includes("never general chat") && bp.includes("never invent recent events"));
-  check("after the introduction, the Chairman asks about it", bp.includes("has answered 1 of 10 questions") && bp.includes("Next, the Chairman asks, about the candidate's introduction and form"));
+  await wait(1500); // the account copy is saved a moment later
+  const ivPlans = async () => (await chats()).filter((c) => c.kind === "interview" && c.topic.plan?.parts).sort((x, y) => y.updated - x.updated);
+  const partAt = (plan, n) => { let q = Math.max(0, n - 1); for (const x of plan.parts) { if (q < x.n) return x; q -= x.n; } return plan.parts[plan.parts.length - 1]; };
+  const iv1 = (await ivPlans())[0], plan1 = iv1?.topic.plan;
+  check("each interview has its own plan: 8 to 12 questions, in parts, ending with the Chairman's last question", !!plan1 && plan1.total >= 8 && plan1.total <= 12 && plan1.parts.reduce((a, x) => a + x.n, 0) === plan1.total - 1 && plan1.parts.at(-1).k === "close" && plan1.parts.at(-1).who === "Chairman" && plan1.parts.some((x) => x.k === "person") && plan1.parts.some((x) => ["pakistan", "world", "economy"].includes(x.k)), JSON.stringify(plan1));
+  check("the interview opens with this plan's own opening line", iv1.turns[0].content.startsWith("[Chairman] Good ") && iv1.turns[0].content.endsWith(plan1.opening));
+  check("the board today: its own members and manner", bp.includes(`Member 1 (${plan1.members[0]}) and Member 2 (${plan1.members[1]})`) && bp.includes("The board's manner today: " + plan1.mood));
+  const part1 = partAt(plan1, 1);
+  check("after the opening, the plan's first part begins", bp.includes(`has answered 1 of ${plan1.total} questions`) && bp.includes(`Now a new part begins`) && bp.includes(`the ${part1.who} asks about ${part1.about}`), bp.slice(bp.indexOf("Where the interview")));
   await p.evaluate(() => { window.__forceOver = true; });
   await say("I want serve my country");
   await p.evaluate(() => { window.__forceOver = false; });
@@ -158,12 +166,16 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   check("the score is kept with the interview", (await chats()).some((c) => c.report?.marks === 90 && c.report.pass === false && c.report.score === 3 && c.report.questions.length === 2 && c.turns.filter((t) => t.iv).length === 2));
   await p.click("text=Start a new interview"); await wait(300);
   check("a new interview starts fresh", !(await msgs()).includes("I want serve my country"));
-  check("the board greets me by the name on my form, and the form is folded away", (await msgs()).includes("Good morning, Ali.") && !(await p.$(".daf[open]")));
+  check("the board greets me by the name on my form, and the form is folded away", /Good (morning|afternoon), Ali\./.test(await msgs()) && !(await p.$(".daf[open]")));
   for (const a of ["I am Ali from Multan and I studied English", "I want to serve the people of my district", "Because PAS officers can solve real problems"]) await say(a, 600);
-  await wait(1500); // the account copy is saved a moment later
-  const plan = (await chats()).filter((c) => c.kind === "interview" && c.topic.plan).sort((x, y) => y.updated - x.updated)[0]?.topic.plan;
+  await wait(1500);
+  const plan2 = (await ivPlans())[0]?.topic.plan;
   const bp3 = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("Write the board's next turn now")).pop()?.prompt || "");
-  check("each interview gets its own plan (two Pakistan issues and an officer's case): after the Chairman's part, Member 1 takes Pakistan affairs, starting with its first issue", plan?.issues?.length === 2 && !!plan.case && bp3.includes("has answered 3 of 10 questions") && bp3.includes("Next, the Member 1 asks, about Pakistan affairs and current affairs. Start with " + plan.issues[0]), bp3.slice(bp3.indexOf("Where the interview"), bp3.indexOf("Where the interview") + 300));
+  const angles = (pl) => pl.parts.filter((x) => !["subject", "quick"].includes(x.k)).map((x) => x.about);
+  check("the next interview is different: a new plan, and none of the last interview's issues, cases or angles again", !!plan2 && plan2.id !== plan1.id && JSON.stringify(plan2.parts) !== JSON.stringify(plan1.parts) && !angles(plan2).some((a) => angles(plan1).includes(a)), JSON.stringify([angles(plan1), angles(plan2)]));
+  const part3 = partAt(plan2, 3);
+  check("the board follows the new plan as the interview goes on", bp3.includes(`has answered 3 of ${plan2.total} questions`) && bp3.includes(`the ${part3.who} asks about ${part3.about}`), bp3.slice(bp3.indexOf("Where the interview")));
+  check("the board is told the questions of my last interview, so it asks new ones", bp3.includes("Ask new questions, never these ones again: Why do you want to join the civil service?"));
 
   // ---- interview me on a topic: a book or anything I studied ----
   await topic("Interview me on a topic");

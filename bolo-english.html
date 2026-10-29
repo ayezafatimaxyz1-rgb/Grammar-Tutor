@@ -425,7 +425,7 @@ const TOPICS = [
   { id: "pakistan", em: "🇵🇰", name: "Pakistan today", desc: "Easy current affairs", open: "Let's talk about Pakistan. In your opinion, what is one big problem in Pakistan today?" },
   { id: "world", em: "🌍", name: "World today", desc: "Climate, AI, peace, prices", open: "Let's talk about the world today. Which world problem worries you the most, and why?",
     extra: "Talk about world issues in general terms (climate change, AI, war and peace, prices, water). You have no live news, so never invent recent events, dates or numbers." },
-  { id: "interview", kind: "interview", em: "🏛️", name: "CSS interview", desc: "A board of 3 asks about 10 questions", open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." },
+  { id: "interview", kind: "interview", em: "🏛️", name: "CSS interview", desc: "A board of 3, different every time", open: "[Chairman] Good morning. Please have a seat. Let us begin. Please introduce yourself." },
   { id: "ivsetup", kind: "ivsetup", em: "🎤", name: "Interview me on a topic", desc: "A book, a lesson or anything you learned" },
 ];
 const NEWS = TOPICS.find((t) => t.kind === "news"), MYWORDS = TOPICS.find((t) => t.kind === "words"), IVSETUP = TOPICS.find((t) => t.kind === "ivsetup");
@@ -731,23 +731,76 @@ Rules:
 - Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say it again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no emoji, no lists.`;
-// The real FPSC viva voce (the CSS interview): the Chairman opens with the candidate's form, then each member takes a part
-// and digs into the answers before moving on. The page says whose part it is now; each interview gets its own plan when it
-// starts (two Pakistan issues and one officer's case), so no two interviews are the same.
-const PAK_ISSUES = ["the economy, inflation and the IMF programme", "the 18th Amendment and the powers of the provinces", "CPEC and Pakistan's relations with China", "relations with Afghanistan and terrorism in Khyber Pakhtunkhwa and Balochistan", "the water crisis: dams, the Indus Waters Treaty and wasted water", "climate change and the 2022 floods", "population growth and its effect on development", "out-of-school children and the education system", "the energy crisis and circular debt", "why local government is weak in Pakistan", "police reform and delays in the courts", "relations with India and the Kashmir issue", "the small tax base and tax collection", "corruption and accountability", "women's part in Pakistan's economy", "food security and agriculture", "the brain drain of young Pakistanis", "relations with the United States"];
-const IV_CASES = ["You are the Assistant Commissioner, and a flood warning for your tehsil comes at night. What do you do first?", "A big protest has blocked the main highway in your district for two days. As Deputy Commissioner, how do you handle it?", "A powerful local politician asks you to transfer an honest officer. What do you do?", "Flour prices in your district double in a week because of hoarding. What steps do you take?", "Parents in some villages refuse polio drops for their children. As an officer, how do you change their minds?", "Your senior officer asks you to sign a file that you believe is illegal. What do you do?", "Dengue cases start rising fast in your city. What is your plan for the first week?", "A video of a police officer beating a citizen goes viral in your district. As the district police officer, what do you do?", "Land grabbers take over government land with the help of an influential person. How do you act?", "A close relative of yours has a case in your own office. What do you do?", "As Assistant Commissioner you find that the teachers of many government schools in your area never come to work. What do you do?", "A factory near a village is polluting the canal water. The owner is a friend of a minister. What do you do?"];
+// The real FPSC viva voce (the CSS interview). No two real boards are alike, so each practice interview gets its own plan
+// when it starts: who sits on the board, its manner, how many questions, and which parts come in which order, each with
+// its own issue, case or angle. What recent interviews used is kept aside, and the board is told the questions it asked
+// before, so the next interview is different again.
+const PAK_ISSUES = ["the economy, inflation and the IMF programme", "the 18th Amendment and the powers of the provinces", "CPEC and Pakistan's relations with China", "terrorism in Khyber Pakhtunkhwa and Balochistan", "the water crisis: dams, the Indus Waters Treaty and wasted water", "climate change and the 2022 floods", "population growth and its effect on development", "out-of-school children and the education system", "the energy crisis and circular debt", "why local government is weak in Pakistan", "police reform and delays in the courts", "relations with India and the Kashmir issue", "the small tax base and tax collection", "corruption and accountability", "food security and agriculture", "the brain drain of young Pakistanis", "the problems of Balochistan and how to solve them", "the health system and government hospitals", "civil and military relations", "the NFC Award and how money is shared between the provinces", "urban problems: housing, traffic and smog in big cities", "the rights of religious minorities in Pakistan"];
+const IV_CASES = ["You are the Assistant Commissioner, and a flood warning for your tehsil comes at night. What do you do first?", "A big protest has blocked the main highway in your district for two days. As Deputy Commissioner, how do you handle it?", "A powerful local politician asks you to transfer an honest officer. What do you do?", "Flour prices in your district double in a week because of hoarding. What steps do you take?", "Parents in some villages refuse polio drops for their children. As an officer, how do you change their minds?", "Your senior officer asks you to sign a file that you believe is illegal. What do you do?", "Dengue cases start rising fast in your city. What is your plan for the first week?", "A video of a police officer beating a citizen goes viral in your district. As the district police officer, what do you do?", "Land grabbers take over government land with the help of an influential person. How do you act?", "A close relative of yours has a case in your own office. What do you do?", "As Assistant Commissioner you find that the teachers of many government schools in your area never come to work. What do you do?", "A factory near a village is polluting the canal water. The owner is a friend of a minister. What do you do?", "A rumour on social media says a minority family burnt a holy book, and a crowd is gathering. As Deputy Commissioner, what do you do in the next hour?", "As a Foreign Service officer abroad, you learn that Pakistani workers are being cheated by an agent and kept without pay. What do you do?", "As a customs officer, a businessman offers you a large bribe to clear his goods quickly. What do you do, and how do you stop it happening again?", "Your office has thousands of pending complaints and the staff say they are too few. As the new head, what do you change first?", "A heat wave hits your city and hospitals are full. As the administrator, what is your plan?", "A girls' school in your district has been closed by threats from a local group. What do you do?"];
+const IV_PARTS = {
+  form: { n: [1, 2], angles: ["what their name means and who chose it", "their home district: its history, famous people and biggest problem", "their degree, and why they left their own field for the civil service", "their first choice of service group, and what an officer of that group actually does", "their school and university, and one teacher who shaped them", "a detail in their form that looks surprising, asked about directly"] },
+  pakistan: { n: [2, 3], angles: PAK_ISSUES, frame: (x) => `Pakistan affairs: ${x}. Ask what the problem is, its causes and what should be done, and press for facts` },
+  world: { n: [2, 3], angles: ["the rivalry between the United States and China, and where Pakistan stands", "the Palestine issue and peace in the Middle East", "Afghanistan since 2021 and its effect on Pakistan", "whether the United Nations still works", "climate talks: who should pay for the damage in poor countries", "Pakistan's relations with Saudi Arabia and Iran", "the Russia and Ukraine war and its effect on oil and wheat prices", "regional groups like the SCO and SAARC", "India's relations with its neighbours", "the debt crisis of poor countries", "migration and refugees in the world"], frame: (x) => `international relations: ${x}. Ask for causes, Pakistan's interest and a balanced view` },
+  economy: { n: [1, 2], angles: ["why Pakistan keeps going to the IMF", "inflation and how it hurts the poor", "exports and the trade deficit", "the informal economy and why people do not pay tax", "remittances from overseas Pakistanis", "selling loss-making state companies like PIA and the steel mill", "unemployment among young graduates"], frame: (x) => `the economy: ${x}. Ask simple, practical questions and press for one figure or example` },
+  history: { n: [1, 2], angles: ["the Pakistan Movement and the Lahore Resolution of 1940", "the Quaid-e-Azam's vision for Pakistan in his 11 August 1947 speech", "Allama Iqbal's ideas and his Allahabad Address", "the separation of East Pakistan in 1971 and its lessons", "the making of the 1973 Constitution", "the first years after 1947 and the refugee crisis"], frame: (x) => `history: ${x}. Ask what happened and what it teaches Pakistan today` },
+  islam: { n: [1, 2], angles: ["justice and accountability in Islam, with an example from the time of the Caliphs", "the Charter of Madina and the rights of minorities", "the welfare state in Islam: zakat and the public treasury", "tolerance and how Islam treats people of other faiths", "honesty in public office in the teachings of Islam"], frame: (x) => `Islamic teachings and public life: ${x}. Ask for the idea and how it applies to an officer today` },
+  governance: { n: [1, 2], angles: ["what a civil servant's real job is, and the colonial legacy of the bureaucracy", "why government offices are slow, and how e-governance could help", "the relationship between elected politicians and civil servants", "how a common citizen gets a document made or a complaint solved", "why good officers become corrupt, and what can stop it", "the role of the district administration in a disaster"], frame: (x) => `governance and the civil service: ${x}. Ask for practical ideas, not slogans` },
+  society: { n: [1, 2], angles: ["social media and young people", "women's education and jobs", "extremism and intolerance", "child labour", "drug use among students", "the joint family system and how it is changing", "the gap between rich and poor", "fake news and how people believe it"], frame: (x) => `society: ${x}. Ask for causes, a real example and a solution` },
+  science: { n: [1, 2], angles: ["artificial intelligence: jobs and dangers for Pakistan", "cybercrime and online fraud", "solar and wind energy for Pakistan", "Pakistan's space programme and satellites", "vaccines and public health"], frame: (x) => `science and technology: ${x}. Ask how it affects ordinary people in Pakistan` },
+  subject: { n: [1, 2], angles: ["their degree subject or one of their optional subjects: real questions about the subject itself, as a professor of it would ask"] },
+  person: { n: [1, 2], angles: ["a hobby they named: dig deep (if reading, which book and what it taught them; if a sport, its rules and famous players)", "their biggest failure and what they learned from it", "a strength and a weakness, each with a real example", "their role model, and why", "how they handle stress and criticism", "a time they disagreed with someone in authority", "how they spend a normal day and manage their time"], frame: (x) => `the candidate as a person: ${x}. Test honesty and self-awareness, not knowledge` },
+  quick: { n: [2, 3], angles: ["a quick round of short general knowledge questions, one after another, about Pakistan and the world (capitals, rivers, mountains, articles of the Constitution, famous people, dates), each needing only a few words"] },
+  debate: { n: [1, 2], angles: ["Democracy has failed in Pakistan.", "Pakistan should spend more on education than on defence.", "Social media does more harm than good.", "The death penalty stops crime.", "Urdu should replace English in the CSS exam.", "Students should stay out of politics.", "Pakistan should ban the import of luxury cars.", "Every young person should do one year of national service."], frame: (x) => `a debate: give the candidate this statement, ask them to argue for or against it, then calmly argue the other side to test them: "${x}"` },
+  case: { n: [1, 2], angles: IV_CASES, frame: (x) => `a situation as an officer: ask this case in simple words: "${x}" Judge whether the steps are practical, legal and in the right order, and press on the weakest step` },
+  close: { n: [1, 1], angles: ["what they would do if a senior asked them to break a rule", "why the board should select them over the other candidates", "what they will do if they are not selected this time", "what integrity means to them, with an example from their own life", "the first thing they would change in their service group", "whether they have any question for the board"], frame: (x) => `the last question: ${x}` },
+};
+// The members change too, and each takes the parts that fit them.
+const IV_MEMBERS = [["a psychologist who studies the candidate's personality, honesty and judgement", "person debate"], ["a retired ambassador, an expert on foreign affairs", "world"], ["an economist", "economy"], ["a retired Inspector General of Police", "case"], ["a professor of political science", "pakistan governance"], ["a retired federal secretary", "governance case"], ["a professor of Islamic studies", "islam history"], ["a retired judge", "case debate"], ["a professor of history", "history pakistan"], ["a senior scientist", "science subject"], ["a retired army general", "pakistan world"]];
+const IV_MOODS = ["calm and polite: the board gives the candidate time to think, but still expects facts", "fast and strict: short questions, quick follow-ups, and little patience for long or empty answers", "a stress interview: the members often interrupt with a challenge or disagree, to test composure, while staying polite", "friendly on the surface, but every follow-up goes one step deeper"];
+const IV_OPENINGS = ["Please have a seat. Let us begin. Please introduce yourself.", "Have a seat, please. So, tell us who you are and where you come from.", "Please sit down. Before anything else, tell us what your name means.", "Please be seated. Tell us about yourself, but not what is already written in your form.", "Please sit down and relax. Why have you come here today?", "Have a seat. We have your form in front of us. Tell us one thing about you that it does not say."];
 const IV_TOTAL = 10;
 const pickN = (list, n) => list.map((x) => [Math.random(), x]).sort((x, y) => x[0] - y[0]).slice(0, n).map((x) => x[1]);
-const ivPlan = () => ({ issues: pickN(PAK_ISSUES, 2), case: pickN(IV_CASES, 1)[0] });
-// Whose part it is after n answers, and what it is about.
-function ivStage(n, plan) {
-  const p = plan?.issues?.length ? plan : { issues: PAK_ISSUES.slice(0, 2), case: IV_CASES[0] };
-  if (n <= 2) return ["Chairman", "the candidate's introduction and form. Pick up one real detail they gave (their name and what it means, their home district, their degree, or their first choice of service group) and ask why: for example, why the civil service and not their own field, or why that group first"];
-  if (n <= 5) return ["Member 1", `Pakistan affairs and current affairs. Start with ${p.issues[0]}; ask what the problem is, its causes, and what the government should do, and press for facts. Later, ${p.issues[1]}, or the same issue in the candidate's own district or province`];
-  if (n <= 7) return ["Member 2", "the candidate as a person: their studies or optional subjects, a hobby or interest they named (dig into it: if they read, which book and what they learned from it), and a real example of a strength or a weakness. Test honesty and self-awareness, not knowledge"];
-  if (n === 8) return ["Member 1", `a situation as an officer. Ask this case in simple words: "${p.case}" Judge whether their steps are practical, legal and in the right order`];
-  return ["Chairman", "one last question on integrity or judgement: press on the case they just answered, or ask what they would do if a senior asked them to break a rule"];
+const pick1 = (list) => list[Math.floor(Math.random() * list.length)];
+const between = ([lo, hi]) => lo + Math.floor(Math.random() * (hi - lo + 1));
+function ivPlan() {
+  const seen = new Set(state.settings.ivSeen || []), used = [];
+  const fresh = (list) => { const f = list.filter((x) => !seen.has(x)), x = pick1(f.length ? f : list); used.push(x); return x; };
+  const total = between([8, 12]), members = pickN(IV_MEMBERS, 2), mood = pick1(IV_MOODS);
+  // every interview tests knowledge and the person; the form, an officer's case and the rest come and go
+  const must = [pick1(["pakistan", "world", "economy"]), "person"];
+  if (Math.random() < 0.7) must.push("form");
+  if (Math.random() < 0.75) must.push("case");
+  const keys = [...must, ...pickN(Object.keys(IV_PARTS).filter((k) => k !== "close" && !must.includes(k)), 12)];
+  const chosen = []; let left = total - 2; // the opening is the first answer and the last question closes
+  for (const k of keys) { if (left <= 0) break; const n = Math.min(left, between(IV_PARTS[k].n)); chosen.push({ k, n }); left -= n; }
+  if (left > 0) chosen[chosen.length - 1].n += left;
+  // the order changes too: the form (when there is one) comes first, an officer's case in the second half
+  const form = chosen.filter((x) => x.k === "form"), cs = chosen.filter((x) => x.k === "case"), mid = pickN(chosen.filter((x) => x.k !== "form" && x.k !== "case"), 20);
+  if (cs.length) mid.splice(Math.ceil(mid.length / 2) + Math.floor(Math.random() * (Math.floor(mid.length / 2) + 1)), 0, cs[0]);
+  const who = (k) => { if (k === "form" || k === "close") return "Chairman"; const fit = [0, 1].filter((i) => members[i][1].split(" ").includes(k)); return fit.length ? "Member " + (pick1(fit) + 1) : pick1(["Chairman", "Member 1", "Member 2", "Member 1", "Member 2"]); };
+  const hasForm = !!dafText(), noForm = (list) => (hasForm ? list : list.filter((x) => !/form/.test(x))); // without a form, nothing that speaks of it
+  const parts = [...form, ...mid, { k: "close", n: 1 }].map(({ k, n }) => { const P = IV_PARTS[k], x = fresh(noForm(P.angles)); return { k, n, who: who(k), about: P.frame ? P.frame(x) : x }; });
+  state.settings.ivSeen = [...used, ...(state.settings.ivSeen || [])].slice(0, 80); putMeta();
+  return { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), total, members: members.map((m) => m[0]), mood, opening: pick1(noForm(IV_OPENINGS)), parts };
 }
+// Interviews started before plans had parts follow the old fixed order.
+function planOf(t) {
+  const p = t?.plan;
+  if (p?.parts?.length) return p;
+  const iss = p?.issues?.length ? p.issues : PAK_ISSUES.slice(0, 2);
+  return { total: IV_TOTAL, members: ["an expert on Pakistan affairs, current affairs and the economy", IV_MEMBERS[0][0]], mood: IV_MOODS[0], parts: [
+    { n: 2, who: "Chairman", about: IV_PARTS.form.angles[2] }, { n: 3, who: "Member 1", about: IV_PARTS.pakistan.frame(iss[0] + ", then " + iss[1]) },
+    { n: 2, who: "Member 2", about: IV_PARTS.person.frame(IV_PARTS.person.angles[2]) }, { n: 1, who: "Member 1", about: IV_PARTS.case.frame(p?.case || IV_CASES[0]) }, { n: 1, who: "Chairman", about: IV_PARTS.close.frame(IV_PARTS.close.angles[0]) }] };
+}
+// The part of the plan after n answers (the opening took the first answer).
+function ivStage(n, plan) {
+  let q = Math.max(0, n - 1);
+  for (const p of plan.parts) { if (q < p.n) return { ...p, first: q === 0 }; q -= p.n; }
+  return { ...plan.parts[plan.parts.length - 1], first: false };
+}
+// The questions the board asked in the candidate's recent interviews, so it asks new ones.
+const pastQs = (t) => state.chats.filter((c) => c.kind === "interview" && !c.topic?.subject && c.topic?.plan?.id !== t.plan?.id).sort((x, y) => y.updated - x.updated).slice(0, 3)
+  .flatMap((c) => c.turns.slice(1).filter((x) => x.role === "assistant").map((x) => lastQuestion(splitSpeaker(x.content).text))).filter(Boolean).slice(0, 24);
 // How a real board behaves, for the board of three and for a topic interview with the board.
 const BOARD_WAYS = `How a real board behaves:
 - Formal and polite, but not friendly. Never praise an answer: never say "Good", "Very good", "Great", "Excellent" or "Well said". React with at most a few neutral words ("I see.", "All right.", "Hmm.") or a challenge, then ask ONE question.
@@ -766,7 +819,7 @@ const dafOf = () => (state.settings.daf && typeof state.settings.daf === "object
 const dafText = () => { const d = dafOf(), f = DAF_FIELDS.filter(([k]) => String(d[k] || "").trim()); return f.length ? f.map(([k, l]) => l + ": " + String(d[k]).trim()).join(". ") + "." : ""; };
 // The board (or Mam) for an interview; a topic interview (a book or lesson the learner studied) also has its notes and length.
 const BOARD_RULES = (answered, t = {}) => {
-  const mam = t.panel === "mam", total = t.subject ? t.total || 9 : IV_TOTAL;
+  const mam = t.panel === "mam", plan = !t.subject && !mam ? planOf(t) : null, total = plan ? plan.total : t.total || 9;
   const last = answered >= total ? `This is the last turn: ${mam ? "thank the student warmly in one sentence, then end with" : "the Chairman thanks the candidate in one short sentence, then ends with"} exactly "The interview is over."` : "";
   const so = `The ${mam ? "student" : "candidate"} has answered ${answered} question${answered === 1 ? "" : "s"} so far${t.subject ? ` (the interview has ${total})` : ""}. ` + (last || "Keep the interview going.");
   const about = t.subject ? `\n- This interview is about one thing the ${mam ? "student" : "candidate"} studied: "${t.subject}". Ask only about it: what it is about, its main ideas and facts, what they understood, their opinion, and how it connects to Pakistan, society or the civil service. Go from easy questions to harder ones, and ask a follow-up when an answer is short or unclear.\n- Notes to guide your questions and to check the answers (never read them out or mention them): ${t.extra}` : "";
@@ -784,14 +837,16 @@ ${BOARD_WAYS}
 - Start every reply with the speaker in square brackets, for example: [Member 1] What is the main idea of the book?${about}
 - ${so}
 Reply with only the board's words.`;
-  const form = dafText(), [who, what] = ivStage(answered, t.plan);
-  return `You are the interview board of the FPSC (Federal Public Service Commission) of Pakistan, holding the viva voce (the personality test) of a CSS candidate. This is a practice interview, but behave exactly like a real board. There are three members: the Chairman (a very senior, calm and formal officer), Member 1 (an expert on Pakistan affairs, current affairs and the economy) and Member 2 (a psychologist who studies the candidate's personality, honesty and judgement).
+  const form = dafText(), part = ivStage(answered, plan), past = pastQs(t);
+  const now = part.first ? `Now a new part begins (a real board moves on without announcing it; a short "All right." is enough): the ${part.who} asks about ${part.about}.` : `This part goes on: the ${part.who} asks about ${part.about}, building on the last answer or going one step deeper.`;
+  return `You are the interview board of the FPSC (Federal Public Service Commission) of Pakistan, holding the viva voce (the personality test) of a CSS candidate. This is a practice interview, but behave exactly like a real board. There are three members: the Chairman (a very senior, calm and formal retired officer), Member 1 (${plan.members[0]}) and Member 2 (${plan.members[1]}). The board's manner today: ${plan.mood}.
 ${form ? "The board has read the candidate's form (DAF): " + form + " Ask about it the way a real board does." : "The board has no form for this candidate, so it learns about them from their introduction."}
 ${BOARD_WAYS}
 - You have no live news: ask about well-known, long-running issues, and never invent recent events, dates or figures.
 - Ask in ${BOARD_STYLE[level()]}. The candidate's English level is ${level()}: keep the words simple even when the question is hard.
-- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your district?
-Where the interview is: the candidate has answered ${answered} of ${total} questions. ${last || `Next, the ${who} asks, about ${what}. If the last answer was vague, wrong or too short, the ${who} first presses on it instead.`}
+- Start every reply with the speaker in square brackets, for example: [Member 1] What is the biggest problem in your district?${past.length ? `
+- The candidate has had practice interviews before. Ask new questions, never these ones again: ${past.join(" | ")}` : ""}
+Where the interview is: the candidate has answered ${answered} of ${total} questions. ${last || now + ` If the last answer was vague, wrong or too short, the ${part.who} first presses on it instead.`}
 Reply with only the board's words.`;
 };
 // The three-member board speaks with labels; in a topic interview Mam can be the interviewer instead.
@@ -852,7 +907,8 @@ function newChat(t) {
   const now = Date.now();
   const board = t.kind === "interview" && !t.subject, first = board ? String(dafOf().name || "").trim().split(/\s+/)[0] : "";
   const iv = t.subject ? { subject: t.subject, panel: t.panel || "board", total: t.total || 8 } : board ? { plan: ivPlan() } : {};
-  const open = first ? t.open.replace("Good morning.", "Good morning, " + first + ".") : t.open; // the board knows the name from the form
+  const greet = (new Date().getHours() < 12 ? "Good morning" : "Good afternoon") + (first ? ", " + first : "") + ". "; // the board knows the name from the form
+  const open = board ? "[Chairman] " + greet + iv.plan.opening : t.open;
   return { id: "c" + now.toString(36), kind: t.kind || "talk", topic: { id: t.id, em: t.em, name: t.name, desc: t.desc || "", open: t.open, extra: t.extra || "", kind: t.kind || "talk", ...iv }, started: now, updated: now, turns: [{ role: "assistant", content: open, at: now }], words: 0 };
 }
 const lastQuestion = (s) => { const q = String(s).match(/[^.!?]*\?/g); return q ? q[q.length - 1].trim() : ""; };
