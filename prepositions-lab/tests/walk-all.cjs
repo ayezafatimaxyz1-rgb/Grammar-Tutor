@@ -32,7 +32,11 @@ if (shots) fs.mkdirSync(shots, { recursive: true });
       localStorage.setItem("prepositions-lab:v1", JSON.stringify(s));
     }, { id, n });
     await page.reload();
-    await page.waitForSelector("#steps button", { state: "attached" });
+    const built = await page.waitForSelector("#steps button", { state: "attached", timeout: 8000 }).catch(() => null);
+    if (!built) {
+      problems.push(`${id}: the board could not be built (${(await page.textContent("#say")).trim()})`);
+      continue;
+    }
     for (let i = 0; i < n; i++) {
       await page.click(`#steps button[data-step="${i}"]`);
       await page.$eval("#scrub", (s) => {

@@ -78,4 +78,48 @@ PLAB.misconceptions = {
     label: "On a page, in a picture or document",
     explain: "A page or screen is a surface: on page 7. A picture, book or report contains things: in the photo, in the report.",
   },
+  "time-size": {
+    label: "How big is the piece of time?",
+    explain: "In a stretch (in June), on a day or date (on 14 August), at a point (at 5 o'clock).",
+  },
+  "festival-at-on": {
+    label: "A holiday period or the day itself",
+    explain: "British English: at Christmas, at Eid (the period). Everywhere: on Christmas Day, on Independence Day (the day).",
+  },
+  "no-prep-with-next-last": {
+    label: "No preposition before next, last, this, every",
+    explain: "Next week, last Friday, this morning, every day: these phrases place the time themselves.",
+  },
+  "into-vs-in-motion": {
+    label: "Entering (into) or moving about inside (in)",
+    explain: "Walked into the room = entered it. Walked in the room = walked around inside it.",
+  },
+  "into-change": {
+    label: "Into for a change of form",
+    explain: "Translate into, turn into, divide into, convert into: a change is pictured as moving into a new form.",
+  },
+  "off-vs-out-of-vehicle": {
+    label: "Leaving a vehicle: off or out of",
+    explain: "Get off a bus, train or plane; get out of a car or taxi. Avoid off of in formal writing.",
+  },
+  "out-of-fixed": {
+    label: "Fixed phrases with out of",
+    explain: "Out of order, out of stock, out of date, out of work: each means outside the normal state.",
+  },
+  "scope-outside": {
+    label: "Outside or beyond a limit",
+    explain: "Formal English: outside the scope, beyond the scope, outside my control. Not out or off.",
+  },
+  "adverb-vs-preposition": {
+    label: "Preposition or adverb?",
+    explain: "A preposition has an object after it (inside the drawer). The same word alone is an adverb (come inside).",
+  },
+  "within-vs-in-time": {
+    label: "Within (no later than) or in (at the end of)",
+    explain: "Within ten days = any time up to day ten. In ten days = when ten days have passed.",
+  },
+  "prep-plus-ing": {
+    label: "A verb after a preposition takes -ing",
+    explain: "Without saying, before leaving, by working: never without to say or before leave.",
+  },
 };

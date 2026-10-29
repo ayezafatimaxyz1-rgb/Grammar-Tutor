@@ -116,6 +116,8 @@
     }
 
     makeText(a, highlights) {
+      // SVG collapses runs of spaces, so do it first to keep character positions exact.
+      const value = a.text.replace(/\s+/g, " ");
       const g = make("g", { class: "board-item", "data-id": a.id }, this.main);
       const text = make(
         "text",
@@ -131,19 +133,19 @@
       // Split the sentence so each highlighted word sits in its own tspan.
       const marks = highlights
         .map((h) => {
-          const at = findWord(a.text, h.word, h.nth || 1);
-          if (at < 0) throw new Error(`"${h.word}" is not in "${a.text}"`);
+          const at = findWord(value, h.word, h.nth || 1);
+          if (at < 0) throw new Error(`"${h.word}" is not in "${value}"`);
           return { h, at, end: at + h.word.length };
         })
         .sort((m, n) => m.at - n.at);
       let pos = 0;
       for (const m of marks) {
-        if (m.at > pos) text.appendChild(document.createTextNode(a.text.slice(pos, m.at)));
+        if (m.at > pos) text.appendChild(document.createTextNode(value.slice(pos, m.at)));
         m.tspan = make("tspan", { class: "board-key" }, text);
-        m.tspan.textContent = a.text.slice(m.at, m.end);
+        m.tspan.textContent = value.slice(m.at, m.end);
         pos = m.end;
       }
-      if (pos < a.text.length) text.appendChild(document.createTextNode(a.text.slice(pos)));
+      if (pos < value.length) text.appendChild(document.createTextNode(value.slice(pos)));
 
       // Shrink a line that would run off the board, then keep it inside the edges.
       let box = text.getBBox();
