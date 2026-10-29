@@ -184,7 +184,8 @@
         this.main.appendChild(g);
         shape = { shape: "line", from: [x1 - 2, b.y + b.height * 0.98], to: [x2 + 2, b.y + b.height * 0.98], ink: a.ink || "accent", width: 3.4 };
       } else {
-        shape = { shape: "swipe", x1: x1 - 6, x2: x2 + 6, y: b.y + b.height * 0.6, ink: a.ink || "hi", width: b.height * 0.62 };
+        // The marker swipe is always highlighter yellow; a.ink only colours the word itself.
+        shape = { shape: "swipe", x1: x1 - 6, x2: x2 + 6, y: b.y + b.height * 0.6, ink: "hi", width: b.height * 0.62 };
       }
       const strokes = P.sketch.strokes(shape, `${this.key}:${a.id}`);
       const parts = this.makeStrokes(g, strokes, shape);

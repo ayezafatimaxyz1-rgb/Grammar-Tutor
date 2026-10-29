@@ -60,5 +60,6 @@ carry a verified `year` and `citation`, and the content check refuses it otherwi
 
 ```
 node tests/validate-content.mjs
-node tests/e2e.cjs [screenshot-dir]     # needs Playwright with Chromium
+node tests/e2e.cjs [screenshot-dir]       # needs Playwright with Chromium
+node tests/walk-all.cjs [screenshot-dir]  # plays every step of every lesson, checks text fits and does not overlap
 ```
