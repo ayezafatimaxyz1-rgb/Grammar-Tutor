@@ -108,7 +108,7 @@ async function renderLesson(page, unit, lesson) {
   const ff = spawn("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(FPS), "-c:v", "mjpeg", "-i", "-",
     "-f", "s16le", "-ar", String(SR), "-ac", "1", "-i", rawAudio,
     "-c:v", "libx264", "-preset", "veryfast", "-tune", "stillimage", "-crf", "24", "-pix_fmt", "yuv420p", "-r", String(FPS), "-g", String(FPS * 10),
-    "-c:a", "aac", "-b:a", "96k", "-ar", "48000", "-movflags", "+faststart", out + ".part.mp4"], { stdio: ["pipe", "inherit", "inherit"] });
+    "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-ac", "2", "-ar", "44100", "-c:a", "aac", "-b:a", "160k", "-movflags", "+faststart", out + ".part.mp4"], { stdio: ["pipe", "inherit", "inherit"] });
   const done = new Promise((ok, bad) => ff.on("close", (c) => (c ? bad(new Error("ffmpeg " + c)) : ok())));
   const write = (buf) => new Promise((ok) => (ff.stdin.write(buf) ? ok() : ff.stdin.once("drain", ok)));
 
