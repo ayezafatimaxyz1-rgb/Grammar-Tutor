@@ -61,15 +61,19 @@ PLAB.kit = {
   },
 
   // Rows of "picture + phrase", for four or five related phrases.
-  // Each row: [picSpec, text, { hl, hlStyle, hlInk, ink, size }].
-  rows(prefix, rows, { y = 95, gap = 112, size = 32, k = 1 } = {}) {
+  // Each row: [picSpec, text, { hl, hlStyle, hlInk, ink, size, sub }]; sub is a short meaning
+  // written under the phrase. Pictures grow with the space between rows (up to 1.35 x).
+  rows(prefix, rows, { y = 95, gap = 112, size = 32, k } = {}) {
+    const kk = k ?? Math.max(1, Math.min(1.35, (gap - 12) / 80));
+    const tx = Math.round(24 + 140 * kk + 22);
     const out = [];
     rows.forEach(([spec, text, o = {}], i) => {
       const id = `${prefix}${i + 1}`;
       const ry = y + i * gap;
-      if (spec) out.push(...PLAB.kit.pic(`${id}p`, spec, 24, ry - 44, k, { gap: i ? 350 : 400 }));
-      out.push({ do: "write", id, text, x: 196, y: ry + 10, size: o.size || size, ink: o.ink, gap: spec ? 150 : 350 });
+      if (spec) out.push(...PLAB.kit.pic(`${id}p`, spec, 24, ry - 4 - 40 * kk, kk, { gap: i ? 350 : 400 }));
+      out.push({ do: "write", id, text, x: tx, y: o.sub ? ry : ry + 10, size: o.size || size, ink: o.ink, gap: spec ? 150 : 350 });
       if (o.hl) out.push({ do: "highlight", id: `${id}-h`, target: id, word: o.hl, style: o.hlStyle, ink: o.hlInk });
+      if (o.sub) out.push({ do: "write", id: `${id}s`, text: o.sub, x: tx, y: ry + 36, size: 22, ink: "muted", gap: 100 });
     });
     return out;
   },
