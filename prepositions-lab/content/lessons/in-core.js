@@ -464,6 +464,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a city area with a person inside, labelled Sara lives in Lahore. Right: a route with Lahore as a dot, labelled Sara lives at Lahore, which shrinks the city to a point on a route.",
+      say: [
+        { text: "_Sara lives in Lahore._ Living happens inside an area, so **in**.", cue: "wn1" },
+        { text: "With **at**, Lahore shrinks to a dot on a route, like a bus stop. Nobody lives inside a dot, so _lives at Lahore_ sounds wrong.", cue: "wn2" },
+        { text: "**At** is right when the city is only a stop on a journey: _The bus stopped at Lahore._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["liveIn", "Sara lives in Lahore.", "an area she is inside", { hl: "in" }], ["roadPass", "\u2717 Sara lives at Lahore.", "at makes Lahore a dot on a route", { ink: "trouble" }], ["in + an area you are inside: live in Lahore", "at + a stop on a route: stopped at Lahore"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map",
       alt: "A meaning map. IN sits in the centre. Arrows lead to: containers (in the box, in the room), areas (in Lahore, in Pakistan), states (in trouble, in danger), and time (in June, in 2025), marked as a later lesson.",

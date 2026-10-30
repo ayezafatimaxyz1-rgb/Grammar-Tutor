@@ -45,6 +45,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a person at a desk, labelled She works as a teacher (she is one). Right: two similar people, labelled She talks like a teacher (she is not one).",
+        say: [
+          { text: "_She works as a teacher_: **as** gives her real role; she is a teacher.", cue: "wn1" },
+          { text: "_She talks like a teacher_: **like** means similar to. She is not a teacher; she only sounds like one.", cue: "wn2" },
+          { text: "Swapping them changes the facts: as = is one; like = resembles one.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["asRole", "She works as a teacher.", "she is one", { hl: "as" }], ["likeSim", "She talks like a teacher.", "different: she only resembles one", { ink: "trouble" }], ["as = a real role", "like = similar to"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: a real role",
         alt: "The as and like examples remain on the board.",

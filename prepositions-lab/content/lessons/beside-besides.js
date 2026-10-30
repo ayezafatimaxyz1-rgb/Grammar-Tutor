@@ -128,6 +128,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a person standing next to a tree, labelled She stood beside the tree. Right: a plus sign, labelled She stood besides the tree, which would mean in addition to the tree.",
+      say: [
+        { text: "_She stood beside the tree_: at its side.", cue: "wn1" },
+        { text: "**Besides** with an s means in addition to: _Besides English, she speaks Urdu._ _Stood besides the tree_ makes no sense.", cue: "wn2" },
+        { text: "One letter changes the meaning: beside is position, besides is adding.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["nearSchool", "She stood beside the tree.", "at its side", { hl: "beside" }], ["plus", "\u2717 She stood besides the tree.", "besides = in addition to", { ink: "trouble" }], ["beside = at the side of", "besides = in addition to, apart from"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Beside: at the side, beside the tree, beside the point, beside herself. Besides: in addition to, apart from, and Besides, meaning moreover.",

@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a circle round a topic, labelled a chat about cricket (everyday). Right: a block resting on a base, labelled a lecture on economics (formal, focused).",
+        say: [
+          { text: "_a chat about cricket_: **about** is the everyday word for a topic.", cue: "wn1" },
+          { text: "_a lecture on economics_: **on** is more formal and focused, for serious study.", cue: "wn2" },
+          { text: "Both are correct; choose by tone. But never _discuss about_: discuss already means talk about.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["aboutCircle", "a chat about cricket", "everyday", { hl: "about" }], ["onBase", "a lecture on economics", "more formal, focused", { ink: "trouble" }], ["about = everyday topic", "on = formal topic \u00b7 never discuss about"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The discuss examples remain on the board.",

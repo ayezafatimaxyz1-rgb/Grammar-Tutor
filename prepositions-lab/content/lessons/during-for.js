@@ -53,6 +53,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a dot inside a period, labelled I woke twice during the night (when). Right: a bracket of length, labelled I woke twice for the night, which confuses when with how long.",
+        say: [
+          { text: "_I woke twice during the night_: **during** tells when, somewhere inside the night.", cue: "wn1" },
+          { text: "**For** tells how long: _I slept for eight hours._ _Woke twice for the night_ mixes the two questions.", cue: "wn2" },
+          { text: "Ask: when (during) or how long (for)?", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["inPeriod", "I woke twice during the night.", "when: inside that time", { hl: "during" }], ["span", "\u2717 I woke twice for the night.", "for = how long", { ink: "trouble" }], ["during the night = when", "for eight hours = how long"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: when or how long?",
         alt: "The during and while lines remain on the board.",

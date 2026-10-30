@@ -71,6 +71,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a person with a book, labelled Ali's book (a person: 's). Right: a house roof, labelled the book of Ali, which uses of for a person.",
+        say: [
+          { text: "_Ali's book_: with people and animals, English uses **'s**.", cue: "wn1" },
+          { text: "**Of** is for things: _the roof of the house._ _The book of Ali_ sounds like the title of a book about Ali.", cue: "wn2" },
+          { text: "People take 's; things take of; places and organisations can take either.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["ownerBook", "Ali's book", "a person: 's", {  }], ["roofOf", "\u2717 the book of Ali", "of is for things: the roof of the house", { ink: "trouble" }], ["people: Ali's book", "things: the roof of the house"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: one of the ...",
         alt: "The naming examples remain on the board.",

@@ -123,6 +123,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a circle round a topic, labelled a book about Iqbal (the topic). Right: arrows around a document, labelled issues around the policy (informal).",
+      say: [
+        { text: "_a book about Iqbal_: **about** names the topic.", cue: "wn1" },
+        { text: "_issues around the policy_ is common in speech and journalism, but in a formal essay it sounds vague.", cue: "wn2" },
+        { text: "In essays, use **about**, **on** (formal) or **concerning** for a topic. Keep around for circles and approximate numbers.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["aboutCircle", "a book about Iqbal", "the topic", { hl: "about" }], ["circleDoc", "\u2717 issues around the policy", "informal for a topic", { ink: "trouble" }], ["about, on, concerning = a topic", "around = in a circle, or approximately"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Around (BrE round): a circle, surrounding, here and there. Around, about: approximately. About, on: a topic.",

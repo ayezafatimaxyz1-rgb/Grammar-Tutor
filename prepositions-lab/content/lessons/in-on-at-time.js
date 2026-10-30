@@ -155,6 +155,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a calendar page, labelled on Monday (one day). Right: a long bar of time, labelled in Monday, which treats a day as a long stretch.",
+      say: [
+        { text: "_on Monday_: a single day is a page on the calendar, so **on**.", cue: "wn1" },
+        { text: "**In** is for longer stretches you are inside: in June, in 2025. _In Monday_ treats one day like a month.", cue: "wn2" },
+        { text: "Use **in** for parts of a day without a name (in the morning), but once the day is named, it switches: _on Monday morning._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["calendar", "on Monday", "one day: on", { hl: "on" }], ["inPeriod", "\u2717 in Monday", "in is for longer stretches", { ink: "trouble" }], ["in June, in 2025 (a stretch) \u00b7 on Monday (a day)", "at 5 o'clock (a point)"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The three time pictures",
       alt: "Three columns. IN, a stretch: in June, in 2025, in the morning. ON, a day: on Monday, on 14 August, on Independence Day. AT, a point: at 5 o'clock, at noon, at night. Below: no preposition before next, last, this, every.",

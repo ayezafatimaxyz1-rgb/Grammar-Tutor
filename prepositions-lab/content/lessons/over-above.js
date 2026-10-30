@@ -152,6 +152,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arc over a rock, labelled a bridge over the river (crossing it). Right: a sun high in the sky, labelled a bridge above the river, which only says higher, not crossing.",
+      say: [
+        { text: "_a bridge over the river_: it crosses from one side to the other, so **over**.", cue: "wn1" },
+        { text: "**Above** only says higher, without crossing or covering. _A bridge above the river_ sounds like it floats in the air.", cue: "wn2" },
+        { text: "**Above** is right for levels: _The plane flew above the clouds. above average._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["overRock", "a bridge over the river", "crossing it", { hl: "over" }], ["floatAbove", "\u2717 a bridge above the river", "above = only higher", { ink: "trouble" }], ["over = covering or crossing", "above = higher, no contact; levels"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Two columns. Above: higher level, no contact; above average; above him in rank. Over: covering, crossing, moving across; over 100 people; control over; over the past decade; a dispute over water.",

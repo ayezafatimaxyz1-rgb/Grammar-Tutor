@@ -86,6 +86,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arrow up a hill, labelled He ran up the hill. Right: the same, labelled He ran the hill up, which moves a preposition like a particle.",
+      say: [
+        { text: "_He ran up the hill._ **Up the hill** is a phrase showing the path.", cue: "wn1" },
+        { text: "A preposition stays before its noun, so it cannot move to the end: _ran the hill up_ is wrong.", cue: "wn2" },
+        { text: "A particle can move: _He gave up smoking_, _He gave it up._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["hillUp", "He ran up the hill.", "up the hill = the path", { hl: "up" }], ["hillUp", "\u2717 He ran the hill up.", "a preposition cannot move", { ink: "trouble" }], ["preposition: up the hill (fixed)", "particle: gave it up (moves)"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Up and down with an object: up the hill, down the stairs, down the river. Informal: down the road. Phrasal verbs: give up, turn down; the particle can move after the object.",

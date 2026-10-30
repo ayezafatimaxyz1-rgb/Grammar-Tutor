@@ -125,6 +125,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a scale, labelled passed by 120 votes to 80 (a score). Right: arrows meeting, labelled 120 votes against 80, which would mean voting no.",
+      say: [
+        { text: "_passed by 120 votes to 80_: a score is read with **to**.", cue: "wn1" },
+        { text: "**Against** means opposing: _80 voted against the bill._ _120 votes against 80_ mixes the score with the act of voting no.", cue: "wn2" },
+        { text: "So: _120 votes to 80_, but _80 members voted against it._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["scale", "passed by 120 votes to 80", "a score: to", { hl: "to" }], ["versus", "\u2717 120 votes against 80", "against = voting no", { ink: "trouble" }], ["a score: 120 votes to 80", "against = opposing: voted against the bill"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map",
       alt: "AGAINST in the centre. Arrows to: pressing on (lean against the wall), opposition (vote against), contrast (against the dark sky), protection (vaccinated against).",

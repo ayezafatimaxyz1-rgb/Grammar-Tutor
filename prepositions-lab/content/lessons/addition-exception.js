@@ -62,6 +62,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a group with one outside, labelled Apart from Ali, everyone came (= except). Right: a plus sign, labelled Apart from Urdu, she speaks Pashto (= in addition). Apart from has two meanings.",
+        say: [
+          { text: "_Apart from Ali, everyone came_: here apart from means **except**; Ali did not come.", cue: "wn1" },
+          { text: "_Apart from Urdu, she speaks Pashto_: here it means **in addition to**; she speaks both.", cue: "wn2" },
+          { text: "Read the rest of the sentence to know which meaning is meant. To be clear, write except or in addition to.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["groupOut", "Apart from Ali, everyone came.", "= except", { hl: "Apart from" }], ["plus", "Apart from Urdu, she speaks Pashto.", "= in addition to", { ink: "trouble" }], ["apart from = except, or in addition to", "be clear: except \u00b7 in addition to"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: agreement",
         alt: "The apart from rows remain on the board.",

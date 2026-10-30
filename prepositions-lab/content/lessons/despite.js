@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an arrow over a rock, labelled Despite the rain, we played (+ noun). Right: the same, labelled Despite it rained, which puts a clause after a preposition.",
+        say: [
+          { text: "_Despite the rain, we played._ **Despite** is a preposition, so it takes a noun.", cue: "wn1" },
+          { text: "_It rained_ is a clause, with its own verb. A preposition cannot take a clause.", cue: "wn2" },
+          { text: "Before a clause, use **although**: _Although it rained, we played._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["overRock", "Despite the rain, we played.", "despite + noun", { hl: "Despite" }], ["rain", "\u2717 Despite it rained, we played.", "a clause needs although", { ink: "trouble" }], ["despite / in spite of + noun", "although + clause"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The grammar rows remain on the board.",

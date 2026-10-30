@@ -53,6 +53,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a group with one person outside, labelled Everyone came except Ali (Ali did not come). Right: a plus sign, labelled Everyone came besides Ali (Ali came too).",
+        say: [
+          { text: "_Everyone came except Ali_: Ali is taken out of the group. He did not come.", cue: "wn1" },
+          { text: "_Besides Ali_ means in addition to Ali: he came, and others came too. The fact flips.", cue: "wn2" },
+          { text: "Except subtracts; besides adds.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["groupOut", "Everyone came except Ali.", "Ali did not come", { hl: "except" }], ["plus", "Others came besides Ali.", "different: Ali came too", { ink: "trouble" }], ["except = not including", "besides = in addition to"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: removing one",
         alt: "The four rows remain on the board.",

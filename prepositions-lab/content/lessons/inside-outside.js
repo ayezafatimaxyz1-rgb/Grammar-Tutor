@@ -143,6 +143,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a person outside a building, labelled Wait outside the office. Right: the same, labelled Wait outside of the office, informal.",
+      say: [
+        { text: "_Wait outside the office._ **Outside** works on its own as a preposition.", cue: "wn1" },
+        { text: "_Outside of_ is common in American speech, but in formal British writing the **of** is extra.", cue: "wn2" },
+        { text: "With no object, outside is an adverb: _Let's wait outside._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["gatePerson", "Wait outside the office.", "formal and correct", { hl: "outside" }], ["gatePerson", "\u2717 Wait outside of the office.", "of is informal here", { ink: "trouble" }], ["outside the city (formal)", "outside of the city (informal, AmE)"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "A boundary circle. Inside, labelled the interior, in contrast with outside. Outside, labelled beyond the boundary, and for limits: outside the scope. Below: preposition takes an object; adverb stands alone.",

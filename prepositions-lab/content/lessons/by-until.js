@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a dot before a deadline line, labelled Submit it by Friday (no later than). Right: a long bar ending at Friday, labelled Submit it until Friday, which means keep submitting.",
+        say: [
+          { text: "_Submit it by Friday_: one action, done any time before the deadline.", cue: "wn1" },
+          { text: "**Until** describes something that continues up to that point: _The office is closed until Friday._ _Submit it until Friday_ sounds like submitting again and again.", cue: "wn2" },
+          { text: "Ask: one action before a deadline (by), or a state that lasts up to then (until)?", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["priorDot", "Submit it by Friday.", "a deadline: no later than", { hl: "by" }], ["notUntil", "\u2717 Submit it until Friday.", "until = keeps going up to then", { ink: "trouble" }], ["by Friday = a deadline", "until Friday = continuing up to then"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: a deadline",
         alt: "The not until line remains on the board.",

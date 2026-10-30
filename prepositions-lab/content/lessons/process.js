@@ -32,6 +32,20 @@
         ], { y: 90, gap: 118 }),
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a path with a discovery along it, labelled In the course of the inquiry, facts emerged (during). Right: a seesaw, labelled At the expense of the inquiry, which means harming it.",
+        say: [
+          { text: "_In the course of the inquiry, new facts emerged_: during the inquiry, somewhere along its path.", cue: "wn1" },
+          { text: "_At the expense of_ means one thing gains while another is harmed. The inquiry was not harmed, so it does not fit.", cue: "wn2" },
+          { text: "Use **at the expense of** for a cost: _growth at the expense of the environment._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["courseAlong", "In the course of the inquiry, ...", "= during", { hl: "In the course of" }], ["expense", "\u2717 At the expense of the inquiry, ...", "= harming it", { ink: "trouble" }], ["in the course of = during", "at the expense of = at the cost of"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: exam style",
         alt: "The four rows remain on the board.",

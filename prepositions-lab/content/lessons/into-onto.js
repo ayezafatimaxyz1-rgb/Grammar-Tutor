@@ -158,6 +158,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arrow entering a room, labelled She walked into the room (from outside to inside). Right: a loop inside a box, labelled She walked in the room (she moved about inside it).",
+      say: [
+        { text: "_She walked into the room_: she crossed the boundary, from outside to inside.", cue: "wn1" },
+        { text: "_She walked in the room_ means something else: she was already inside and walked about, round and round.", cue: "wn2" },
+        { text: "Use **into** for entering. Use **in** for where the action happens.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["enterRoom", "She walked into the room.", "from outside to inside", { hl: "into" }], ["loop", "She walked in the room.", "different: moved about inside it", { ink: "trouble" }], ["into = crossing in \u00b7 in = already inside", "jumped into the pool \u00b7 swam in the pool"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map",
       alt: "INTO and ONTO with arrows: into means movement ending in (walked into the room), onto means movement ending on (jumped onto the table), and into also means change (turned into ice). A note: the result is in or on.",

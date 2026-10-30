@@ -149,6 +149,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a book falling from a table, labelled The book fell off the table. Right: the same, labelled The book fell off of the table, with an extra of.",
+      say: [
+        { text: "_The book fell off the table._ **Off** already means away from the surface.", cue: "wn1" },
+        { text: "_Off of_ adds an extra **of**. It is heard in informal American speech, but it is wrong in formal writing.", cue: "wn2" },
+        { text: "**Out of** is for containers: _out of the box._ Off is for surfaces: _off the table._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["bookTable", "The book fell off the table.", "away from the surface", { hl: "off" }], ["bookTable", "\u2717 The book fell off of the table.", "of is extra", { ink: "trouble" }], ["off + a surface: off the table", "out of + a container: out of the box"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The four directions",
       alt: "A box and a table. Arrows: into and out of for the box, onto and off for the table. Below: out of order, out of curiosity, off duty.",

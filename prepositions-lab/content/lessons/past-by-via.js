@@ -110,6 +110,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arrow passing a bank, labelled She walked past the bank (past = preposition). Right: the same, labelled She walked passed the bank, which uses the verb passed.",
+      say: [
+        { text: "_She walked past the bank._ **Walked** is the verb; **past** is the preposition.", cue: "wn1" },
+        { text: "**Passed** is a verb: _She passed the bank._ _Walked passed_ puts two verbs together.", cue: "wn2" },
+        { text: "One verb at a time: _walked past_, or simply _passed._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["pastBank", "She walked past the bank.", "past = preposition", { hl: "past" }], ["pastBank", "\u2717 She walked passed the bank.", "passed is a verb", { ink: "trouble" }], ["walked past it (preposition)", "passed it (verb)"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Past: beside and beyond (walked past the bank), half past six; passed is the verb. By: passing (drove by). Via: by way of a place or channel.",

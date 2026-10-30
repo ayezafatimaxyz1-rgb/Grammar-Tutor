@@ -52,6 +52,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a person going to a shop, labelled She went to buy bread (to + verb). Right: the same, labelled She went for to buy bread, which adds for.",
+        say: [
+          { text: "_She went to buy bread_: purpose with a verb uses **to**.", cue: "wn1" },
+          { text: "**For** takes a noun: _She went for bread._ _For to buy_ puts both together.", cue: "wn2" },
+          { text: "So: _to + verb_ or _for + noun_, never both.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["toShop", "She went to buy bread.", "to + verb", { hl: "to" }], ["toShop", "\u2717 She went for to buy bread.", "for takes a noun: for bread", { ink: "trouble" }], ["to + verb: to buy bread", "for + noun: for bread"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: purpose",
         alt: "The purpose examples remain on the board.",

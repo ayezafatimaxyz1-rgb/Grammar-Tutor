@@ -67,6 +67,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a dot outside a circle, labelled beyond our control (past the limit). Right: a broken car shape, labelled out of control (nobody is controlling it).",
+      say: [
+        { text: "_The matter is beyond our control_: it lies past the limit of what we can do.", cue: "wn1" },
+        { text: "_out of control_ means something else: nobody is controlling it at all, like a car rushing downhill.", cue: "wn2" },
+        { text: "Use **beyond** for limits of ability: _beyond repair, beyond doubt._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["groupOut", "beyond our control", "past our limit", { hl: "beyond" }], ["car", "out of control", "different: nobody controls it", { ink: "trouble" }], ["beyond control = past what we can do", "out of control = no control at all"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Beyond: the far side (beyond the river), past a limit (beyond doubt, beyond repair, beyond control, beyond the scope), later than (beyond 2030).",

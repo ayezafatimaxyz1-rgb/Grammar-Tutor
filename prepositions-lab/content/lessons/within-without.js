@@ -159,6 +159,20 @@ PLAB.registerLesson({
       ],
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a stretch of time from today to day ten, labelled Reply within ten days (any time up to day ten). Right: a single dot at day ten, labelled Reply in ten days (when ten days have passed).",
+      say: [
+        { text: "_Reply within ten days_: any time inside the period, from today up to day ten.", cue: "wn1" },
+        { text: "_Reply in ten days_ points at the end: when ten days have passed. The meaning changes.", cue: "wn2" },
+        { text: "For a deadline, use **within**. For a moment in the future, use **in**.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["inPeriod", "Reply within ten days.", "any time up to day ten", { hl: "within" }], ["pointFuture", "Reply in ten days.", "different: after ten days pass", { ink: "trouble" }], ["within = any time inside the limit", "in = at the end of that time"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Two columns. Within: inside the limits (within the law, within budget, within ten days, meaning no later than). Without: not having (without sugar, without saying), and the archaic sense, outside.",

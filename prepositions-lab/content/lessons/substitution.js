@@ -34,6 +34,20 @@
         ], { y: 90, gap: 118 }),
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: two arrows swapping, labelled coffee instead of tea. Right: the same, labelled coffee instead tea, missing of.",
+        say: [
+          { text: "_coffee instead of tea_: before a noun, **instead** needs **of**.", cue: "wn1" },
+          { text: "_instead tea_ leaves out the of.", cue: "wn2" },
+          { text: "Alone, at the end, instead takes no of: _I had coffee instead._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["swap", "I had coffee instead of tea.", "instead of + noun", { hl: "instead of" }], ["swap", "\u2717 I had coffee instead tea.", "of is missing", { ink: "trouble" }], ["instead of + noun", "at the end: I had coffee instead."]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The four substitution rows remain on the board.",

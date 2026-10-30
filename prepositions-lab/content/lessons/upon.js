@@ -82,6 +82,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a calendar, labelled on Monday. Right: the same, labelled upon Monday, which is not used.",
+      say: [
+        { text: "_on Monday_: days take **on**.", cue: "wn1" },
+        { text: "**Upon** is a formal **on**, but only after some verbs and in fixed phrases (_depend upon, upon arrival_). It is never used for days or vehicles.", cue: "wn2" },
+        { text: "So: _upon arrival_ is fine; _upon Monday_ and _upon the bus_ are not.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["calendar", "on Monday", "days take on", { hl: "on" }], ["calendar", "\u2717 upon Monday", "upon is not used for days", { ink: "trouble" }], ["upon: depend upon, upon arrival", "never upon Monday, upon the bus"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Upon = formal on. Good: depend upon, call upon, upon arrival, upon receipt of, once upon a time. Avoid: upon Monday, upon the bus.",

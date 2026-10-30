@@ -71,6 +71,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a bracket of time, labelled for ten years (a length). Right: a dot on a time line, labelled since ten years, which needs a starting point.",
+        say: [
+          { text: "_I have lived here for ten years_: **for** gives the length.", cue: "wn1" },
+          { text: "**Since** needs a starting point on the time line: _since 2015, since Monday._ Ten years is a length, not a point.", cue: "wn2" },
+          { text: "Ask: how long (for), or from when (since)?", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["span", "for ten years", "a length", { hl: "for" }], ["sincePoint", "\u2717 since ten years", "since needs a starting point", { ink: "trouble" }], ["for + a length: for ten years", "since + a starting point: since 2015"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: length or point?",
         alt: "The correction remains on the board.",

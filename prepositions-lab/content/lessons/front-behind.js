@@ -129,6 +129,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a person at the front of a building on the same side, labelled in front of the hospital. Right: two buildings facing each other across a road, labelled opposite the hospital.",
+      say: [
+        { text: "_in front of the hospital_: on the same side, at its front door.", cue: "wn1" },
+        { text: "_opposite the hospital_ means across the road, facing it. If you swap them, your friend waits on the wrong side of the street.", cue: "wn2" },
+        { text: "Ask: same side (in front of) or the other side, facing it (opposite)?", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["nearSchool", "in front of the hospital", "same side, at its front", { hl: "in front of" }], ["acrossRoad", "opposite the hospital", "different: across the road", { ink: "trouble" }], ["in front of = same side", "opposite = across, facing it"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "In front of: same side, at the front. Behind: the back. Opposite: facing across a space. Ahead of: further forward, earlier. Before: formal, in front of an authority.",

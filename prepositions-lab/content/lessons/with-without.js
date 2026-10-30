@@ -69,6 +69,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a knife cutting bread, labelled cut it with a knife (a tool you hold). Right: an envelope, labelled cut it by a knife, which uses by for a tool.",
+        say: [
+          { text: "_cut it with a knife_: a tool you hold takes **with**.", cue: "wn1" },
+          { text: "**By** names a means without an article: _by hand, by email, by car._ _By a knife_ mixes the two.", cue: "wn2" },
+          { text: "Ask: a tool in your hand (with) or a method or channel (by)?", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["bread", "cut it with a knife", "a tool you hold", { hl: "with" }], ["emailBy", "\u2717 cut it by a knife", "by = a means: by hand, by email", { ink: "trouble" }], ["with + a tool: with a pen", "by + a means: by hand, by email"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: a tool",
         alt: "The with and by columns remain on the board.",

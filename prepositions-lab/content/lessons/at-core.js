@@ -238,6 +238,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a school building with a person at it, labelled She is at school (there to study). Right: a person inside a building, labelled She is in the school (inside the building, perhaps only visiting).",
+      say: [
+        { text: "_She is at school_: she is there for what the place is for, studying.", cue: "wn1" },
+        { text: "_She is in the school_ only says she is inside the building. She could be a visitor, a cleaner, or sheltering from rain.", cue: "wn2" },
+        { text: "Use **at** for the purpose of a place (at work, at school, at home). Use **in** when the building itself matters (in the school hall).", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["school", "She is at school.", "there to study", { hl: "at" }], ["insideBuilding", "She is in the school.", "different: inside the building", { ink: "trouble" }], ["at school, at work = there for its purpose", "in the school = inside the building"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map",
       alt: "A meaning map. AT in the centre, meaning a point. Arrows to: places (at the bus stop, at the station), activity places and events (at school, at a meeting), targets (look at, aim at), and scale and time points (at 120 km per hour, at 5 o'clock).",

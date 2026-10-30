@@ -281,6 +281,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a cup resting on a table top, labelled The cup is on the table. Right: a table with a dot inside its drawer, labelled The key is in the table, which means inside it.",
+      say: [
+        { text: "_The cup is on the table._ It touches the top surface, so **on**.", cue: "wn1" },
+        { text: "Swap to **in** and the picture changes: _The key is in the table_ would mean inside it, in a drawer.", cue: "wn2" },
+        { text: "Ask: is it resting on the surface (on), or enclosed inside (in)?", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["cupOnTable", "The cup is on the table.", "touching the top surface", { hl: "on" }], ["inDrawer", "The key is in the table.", "different: inside it, in a drawer", { ink: "trouble" }], ["on + a surface it touches", "in + inside something closed"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map",
       alt: "A meaning map. ON in the centre, meaning contact with a surface. Arrows to: surfaces (on the table, on the wall, on the ceiling), lines (on the coast, on the road), large vehicles (on the bus, on a plane), a base (based on evidence), and fixed phrases (on strike, on duty).",

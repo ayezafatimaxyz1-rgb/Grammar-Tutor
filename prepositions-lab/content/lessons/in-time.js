@@ -256,6 +256,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a time line from now to a dot ten minutes later, labelled The bus leaves in ten minutes (counted from now). Right: a time line counted from a past event, labelled after ten minutes, which counts from some other event.",
+      say: [
+        { text: "_The bus leaves in ten minutes_: count ten minutes forward from now.", cue: "wn1" },
+        { text: "_After ten minutes_ counts from another event, usually in a story: _He waited, and after ten minutes he left._ It does not count from now.", cue: "wn2" },
+        { text: "So for the future from now, use **in**. For a sequence in a story, use **after**.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["now", "The bus leaves in ten minutes.", "counted from now", { hl: "in" }], ["pointPast", "\u2717 The bus leaves after ten minutes.", "after counts from another event", { ink: "trouble" }], ["in ten minutes = from now", "after ten minutes = from some other event"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The meaning map for time",
       alt: "A meaning map. IN for time in the centre. Arrows to: periods (in June, in 2003, in the 1990s), parts of the day (in the morning), and from now (in ten minutes). A red box lists the exceptions: at night, on Monday morning.",

@@ -65,6 +65,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a fog with a delayed plane, labelled The delay was due to fog (after be). Right: the same, labelled Due to fog, the flight was delayed (disputed at the start).",
+        say: [
+          { text: "_The delay was due to fog._ After **be**, due to is accepted by everyone.", cue: "wn1" },
+          { text: "At the start of a sentence, _due to_ is disputed. Many examiners prefer **owing to** or **because of** there.", cue: "wn2" },
+          { text: "Safest: _Owing to fog, the flight was delayed._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["fogDelay", "The delay was due to fog.", "safe after be", { hl: "due to" }], ["fogDelay", "? Due to fog, the flight was delayed.", "disputed at the start", { ink: "trouble" }], ["was due to fog", "Owing to fog, ... \u00b7 Because of fog, ..."]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: the safest opener",
         alt: "The thanks to examples remain on the board.",

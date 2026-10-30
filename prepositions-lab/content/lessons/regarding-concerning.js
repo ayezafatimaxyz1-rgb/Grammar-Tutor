@@ -49,6 +49,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an arrow pointing at a document, labelled with regard to your letter. Right: a waving person, labelled with regards to your letter; regards means greetings.",
+        say: [
+          { text: "_with regard to your letter_ = about your letter.", cue: "wn1" },
+          { text: "**Regards** with an s means greetings: _Kind regards._ _With regards to_ mixes the two.", cue: "wn2" },
+          { text: "So: _with regard to, in regard to, as regards._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["pointDoc", "with regard to your letter", "= about it", { hl: "regard" }], ["wave", "\u2717 with regards to your letter", "regards = greetings", { ink: "trouble" }], ["with regard to \u00b7 as regards", "Kind regards (greetings)"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The regard rows remain on the board.",

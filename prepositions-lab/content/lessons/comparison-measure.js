@@ -75,6 +75,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a tank filled to a lid, labelled The hall holds up to 500 people (500 at most). Right: a tank filled over the line, labelled The hall holds in excess of 500 people (more than 500).",
+        say: [
+          { text: "_The hall holds up to 500 people_: 500 is the lid; it can hold fewer, never more.", cue: "wn1" },
+          { text: "_in excess of 500_ would mean more than 500, the water going over the line. For a hall's capacity, that changes the fact.", cue: "wn2" },
+          { text: "Use **in excess of** for amounts that go past a figure: _losses in excess of Rs 1 billion._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["tankLid", "holds up to 500 people", "500 at most", { hl: "up to" }], ["tankOver", "holds in excess of 500 people", "different: more than 500", { ink: "trouble" }], ["up to = the most, a ceiling", "in excess of = more than"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: far from",
         alt: "The measure rows remain on the board.",

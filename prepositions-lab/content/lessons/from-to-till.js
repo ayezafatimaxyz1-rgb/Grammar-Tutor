@@ -52,6 +52,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a bar from 9 to 5, labelled from 9 to 5. Right: the same, labelled from 9 and 5, which mixes two frames.",
+        say: [
+          { text: "_from 9 to 5_: **from** marks the start and **to** marks the end.", cue: "wn1" },
+          { text: "**And** belongs to the other frame: _between 9 and 5._ _From 9 and 5_ starts one frame and finishes the other.", cue: "wn2" },
+          { text: "Keep the pairs together: from ... to, between ... and.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["betweenTicks", "open from 9 to 5", "from ... to", { hl: "to" }], ["betweenTicks", "\u2717 open from 9 and 5", "and belongs to between", { ink: "trouble" }], ["from 9 to 5", "between 9 and 5"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The mixed frames remain on the board.",

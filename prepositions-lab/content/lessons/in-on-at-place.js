@@ -174,6 +174,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a dot on a road, labelled She lives at 12 Mall Road (an exact address is a point). Right: a long road, labelled She lives on 12 Mall Road, which mixes the line word on with an exact number.",
+      say: [
+        { text: "_She lives at 12 Mall Road._ With the house number, the address is one exact point, so **at**.", cue: "wn1" },
+        { text: "**On** pictures a street as a long line: _on Mall Road._ Put a number in front and you have named a point, so on no longer fits.", cue: "wn2" },
+        { text: "Without the number, **on** is right: _She lives on Mall Road._ The city takes **in**.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["reachDot", "She lives at 12 Mall Road.", "number = an exact point", { hl: "at" }], ["roadPass", "\u2717 She lives on 12 Mall Road.", "on is for the street line only", { ink: "trouble" }], ["in Lahore \u00b7 on Mall Road \u00b7 at 12 Mall Road", "area \u00b7 line \u00b7 exact point"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The three pictures",
       alt: "Three columns. IN with a closed area: in Lahore, in the room, in the photo. ON with a line and surface: on Mall Road, on the wall, on page 7. AT with a single point: at 12 Mall Road, at the bus stop, at the corner.",

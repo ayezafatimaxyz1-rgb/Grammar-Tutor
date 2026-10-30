@@ -128,6 +128,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a tree turning into paper, labelled Paper is made from wood (changed). Right: a table, labelled Paper is made of wood, which belongs to things where the material still shows.",
+      say: [
+        { text: "_Paper is made from wood_: the wood has changed completely; you cannot see it any more.", cue: "wn1" },
+        { text: "**Made of** is for material you can still see: _The table is made of wood._ Paper does not look like wood, so **from**.", cue: "wn2" },
+        { text: "Ask: can I still see the material (of), or has it changed (from)?", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", [[["tree", -40, 0, 0.8], ["arrowR", 0, 0, 0.5], ["doc", 40, 0, 0.8]], "Paper is made from wood.", "changed: from", { hl: "from" }], ["table", "\u2717 Paper is made of wood.", "of = the material still shows", { ink: "trouble" }], ["made from = changed (paper, cheese)", "made of = still visible (a wooden table)"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "From: starting point (from Karachi, from 9), origin (from Multan), material changed (made from), separation (protect from, prevent from), different from.",

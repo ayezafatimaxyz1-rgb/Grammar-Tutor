@@ -144,6 +144,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a table with a dot directly beneath it, labelled The cat is under the table. Right: a scale with a line, labelled The cat is below the table, which belongs to levels.",
+      say: [
+        { text: "_The cat is under the table_: directly beneath it, covered by it.", cue: "wn1" },
+        { text: "**Below** is for levels with a gap, and for scales: _below the line, below zero._ For a cat beneath a table, it sounds odd.", cue: "wn2" },
+        { text: "Ask: covered and directly beneath (under), or simply lower on a scale (below)?", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["underTable", "The cat is under the table.", "directly beneath, covered", { hl: "under" }], ["belowLine", "\u2717 The cat is below the table.", "below is for levels and scales", { ink: "trouble" }], ["under = directly beneath, covered", "below = lower on a level or scale"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Four words with notes. Below: lower level, below average. Under: directly beneath, covered, under five, under pressure, under review. Beneath: formal. Underneath: hidden.",

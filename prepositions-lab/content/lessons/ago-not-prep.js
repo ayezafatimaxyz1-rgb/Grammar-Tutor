@@ -70,6 +70,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a time line counting back from now, labelled two years ago. Right: counting back from a past point, labelled two years before, which counts from another past event.",
+        say: [
+          { text: "_I met him two years ago_: count back from now.", cue: "wn1" },
+          { text: "_two years before_ counts back from another past moment: _He had left two years before the war._", cue: "wn2" },
+          { text: "Use **ago** from now; use **before** from a past point.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["pointPast", "two years ago", "back from now", { hl: "ago" }], ["backFromPoint", "two years before", "different: back from a past point", { ink: "trouble" }], ["ago = from now", "before = from another past moment"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The list of words without prepositions remains on the board.",

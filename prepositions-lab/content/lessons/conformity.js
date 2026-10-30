@@ -49,6 +49,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a document with a speech bubble, labelled According to the report, ... (a source). Right: a person with a crossed bubble, labelled According to me, ..., using a source phrase for yourself.",
+        say: [
+          { text: "_According to the report, poverty fell._ **According to** reports what a source says.", cue: "wn1" },
+          { text: "You are not a source you quote. _According to me_ sounds odd in formal English.", cue: "wn2" },
+          { text: "For your own view: _In my opinion, In my view, I believe._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["docSays", "According to the report, ...", "a source", { hl: "According to" }], ["thinkSelf", "\u2717 According to me, ...", "use: In my opinion, ...", { ink: "trouble" }], ["according to + a source", "In my opinion + your own view"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The according to me correction remains on the board.",

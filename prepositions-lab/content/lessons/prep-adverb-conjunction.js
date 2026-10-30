@@ -105,6 +105,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a rain cloud, labelled because of the rain (+ noun). Right: rain, labelled because of it rained, which puts a clause after a preposition.",
+        say: [
+          { text: "_because of the rain_: **because of** is a preposition, so it takes a noun.", cue: "wn1" },
+          { text: "_It rained_ is a clause. **Because** alone is the conjunction that takes a clause: _because it rained._", cue: "wn2" },
+          { text: "So: because of + noun; because + clause.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["cloud", "because of the rain", "+ noun", { hl: "because of" }], ["rain", "\u2717 because of it rained", "a clause needs because alone", { ink: "trouble" }], ["because of + noun", "because + clause"]),
+        ],
+      },
+      {
         id: "summary",
         title: "The summary",
         alt: "Preposition + noun; conjunction + clause; adverb with nothing after it; particle inside a phrasal verb.",

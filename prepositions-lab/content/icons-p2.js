@@ -142,5 +142,19 @@
 
     // "why not the other one?" pictures
     wrongWay: [lay([R(8, 22, 38, 38)], "trouble", { fill: "soft" }), lay([A(52, 40, 92, 40)], "muted"), lay([C(114, 40, 15)], "accent", { fill: "solid" }), lay([L(64, 14, 68, 8, -6), L(68, 8, 78, 10, -4), L(78, 10, 74, 22), L(74, 22, 72, 26)], "trouble"), lay([C(72, 32, 1.8)], "trouble", { fill: "solid" })],
+
+    // clearer scenes for the Phase 1 "why not" boards
+    inDrawer: [lay([L(20, 30, 120, 30), L(28, 30, 28, 78), L(112, 30, 112, 78)]), lay([R(46, 34, 48, 22)], "muted", { fill: "soft" }), lay([C(70, 45, 5)], "accent", { fill: "solid" }), lay([L(66, 60, 74, 60)], "muted")],
+    underTable: [lay([L(20, 30, 120, 30), L(28, 30, 28, 78), L(112, 30, 112, 78)]), lay([C(70, 66, 11)], "accent", { fill: "solid" })],
+    belowLine: [lay([L(8, 30, 132, 30)], "trouble", { width: 3.4 }), lay([C(70, 62, 9)], "accent", { fill: "solid" }), lay([A(100, 36, 100, 70)], "muted")],
+    floatAbove: [lay([L(4, 64, 50, 64), L(90, 64, 136, 64)], "main"), lay([L(50, 64, 50, 78), L(90, 64, 90, 78)], "main"), lay([L(52, 74, 88, 74, 4)], "accent2", { width: 4 }), lay([R(40, 10, 60, 10)], "trouble", { fill: "soft" }), lay([L(44, 26, 48, 34), L(92, 26, 96, 34)], "muted")],
+    acrossRoad: [lay([R(10, 4, 44, 28)], "trouble"), lay([L(0, 40, 140, 40), L(0, 54, 140, 54)], "muted"), lay([R(86, 62, 44, 18)], "accent2"), lay([A(108, 60, 108, 36)], "accent")],
+    insideBuilding: [lay([R(36, 30, 68, 46), L(28, 31, 70, 6), L(70, 6, 112, 31)]), lay([P(70, 38, 0.36)], "accent")],
+    circleDoc: [lay([R(52, 18, 36, 46), L(58, 30, 82, 30), L(58, 40, 82, 40)], "muted"), lay([A(30, 70, 30, 14, -30), A(110, 12, 110, 66, -30)], "trouble")],
+    alongRiver: [lay([L(4, 30, 136, 30), L(4, 62, 136, 62)], "accent2"), lay([A(12, 46, 128, 46)], "accent")],
+    crossRiver: [lay([L(4, 26, 136, 26), L(4, 62, 136, 62)], "accent2"), lay([A(70, 14, 70, 74)], "trouble")],
+
+    tankLid: [lay([L(10, 22, 130, 22)], "trouble", { width: 3 }), lay([R(48, 6, 44, 70)], "muted"), lay([R(48, 22, 44, 54)], "accent2", { fill: "soft" }), lay([L(42, 21, 98, 21)], "main", { width: 6 })],
+    tankOver: [lay([L(10, 30, 130, 30)], "trouble", { width: 3 }), lay([R(48, 4, 44, 72)], "muted"), lay([R(48, 10, 44, 66)], "accent", { fill: "soft" }), lay([L(100, 10, 100, 30)], "accent", { width: 3 })],
   });
 })();

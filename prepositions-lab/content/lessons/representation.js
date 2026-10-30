@@ -49,6 +49,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a leader above a group, labelled The nurse is in charge of the ward (she is responsible). Right: an adult protecting children, labelled The ward is in the charge of the nurse (it is in her care).",
+        say: [
+          { text: "_The nurse is in charge of the ward_: she is the one responsible.", cue: "wn1" },
+          { text: "Add **the** and the direction flips: _The ward is in the charge of the nurse_: the ward is in her care.", cue: "wn2" },
+          { text: "One small word decides who is responsible for whom.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["leaderGroup", "The nurse is in charge of the ward.", "she is responsible", { hl: "in charge of" }], ["careFor", "The ward is in the charge of the nurse.", "different: the ward is in her care", { ink: "trouble" }], ["in charge of = responsible for", "in the charge of = in someone's care"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: who is responsible?",
         alt: "The charge sentences remain on the board.",

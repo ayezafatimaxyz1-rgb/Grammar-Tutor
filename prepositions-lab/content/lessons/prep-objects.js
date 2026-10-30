@@ -107,6 +107,20 @@
         },
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: two people sharing a secret, labelled between you and me. Right: the same, labelled between you and I.",
+        say: [
+          { text: "_between you and me_: after a preposition, pronouns take the object form: me, him, her, us, them.", cue: "wn1" },
+          { text: "_between you and I_ sounds polite to some, but I is a subject form. It is wrong after a preposition.", cue: "wn2" },
+          { text: "Test: drop _you and_: _between me_ works; _between I_ does not.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["secret", "between you and me", "object form after a preposition", { hl: "me" }], ["secret", "\u2717 between you and I", "I is a subject form", { ink: "trouble" }], ["for him \u00b7 with us \u00b7 between you and me", "never between you and I"]),
+        ],
+      },
+      {
         id: "summary",
         title: "The summary",
         alt: "After a preposition: noun, object pronoun, -ing, wh-clause. Not: to-infinitive, that-clause. To as a preposition takes -ing: look forward to meeting.",

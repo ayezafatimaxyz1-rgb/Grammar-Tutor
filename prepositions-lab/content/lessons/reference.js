@@ -33,6 +33,20 @@
         ], { y: 90, gap: 118 }),
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a person turning to another, labelled As for me, I agree (turning to a new person). Right: a question mark, labelled As to me, I agree; as to means about.",
+        say: [
+          { text: "_As for me, I agree._ **As for** turns to a new person or topic.", cue: "wn1" },
+          { text: "**As to** means about: _doubts as to whether he will come._ It does not introduce yourself.", cue: "wn2" },
+          { text: "So: as for = turning to; as to = about.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["turnTo", "As for me, I agree.", "turning to a new person", { hl: "As for" }], ["question", "\u2717 As to me, I agree.", "as to = about", { ink: "trouble" }], ["as for = turning to a new topic", "as to = about: doubts as to whether"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: as to or as for?",
         alt: "The four reference phrases remain on the board.",

@@ -82,6 +82,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a car, labelled by car (the means, no article). Right: a car with a person in it, labelled by my car, which adds my.",
+        say: [
+          { text: "_by car_: the means of travel, with no article.", cue: "wn1" },
+          { text: "Once you add **my** or **the**, it becomes a real vehicle, and English uses **in** or **on**: _in my car, on the 7 o'clock train._", cue: "wn2" },
+          { text: "Walking is special: _on foot_, never _by walk._", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["car", "We came by car.", "the means: no article", { hl: "by" }], ["carIn", "\u2717 We came by my car.", "my car = in my car", { ink: "trouble" }], ["by car, by train (no article)", "in my car, on the 7 o'clock train"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: data language",
         alt: "The bar chart remains on the board.",

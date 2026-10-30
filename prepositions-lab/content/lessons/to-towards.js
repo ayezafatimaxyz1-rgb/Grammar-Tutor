@@ -142,6 +142,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arrow ending at a dot, labelled We drove to Lahore (we got there). Right: an arrow pointing in a direction, labelled We drove towards Lahore (in its direction, maybe not arriving).",
+      say: [
+        { text: "_We drove to Lahore_: the journey ends there; we arrived.", cue: "wn1" },
+        { text: "_We drove towards Lahore_ only gives the direction. We may have stopped on the way.", cue: "wn2" },
+        { text: "Use **to** for the destination reached. Use **towards** for direction only.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["goHome", "We drove to Lahore.", "we got there", { hl: "to" }], ["arrowR", "We drove towards Lahore.", "different: only the direction", { ink: "trouble" }], ["to = the destination", "towards = the direction"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "To: destination reached; receiver; range; comparison. Towards: direction only; attitude; partial help; approximate time. Errors: reach Lahore, go home, return.",

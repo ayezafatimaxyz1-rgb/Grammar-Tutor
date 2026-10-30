@@ -50,6 +50,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an eye aiming at a target, labelled with a view to reducing costs (+ -ing). Right: the same, labelled with a view to reduce costs.",
+        say: [
+          { text: "_with a view to reducing costs_: **to** here is a preposition, so the verb takes -ing.", cue: "wn1" },
+          { text: "_with a view to reduce_ treats to as an infinitive. In careful writing it is wrong.", cue: "wn2" },
+          { text: "Compare: _in order to reduce_ (infinitive) and _with a view to reducing_ (preposition).", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["aimGoal", "with a view to reducing costs", "to + -ing", { hl: "reducing" }], ["aimGoal", "\u2717 with a view to reduce costs", "to is a preposition here", { ink: "trouble" }], ["with a view to reducing", "in order to reduce"]),
+        ],
+      },
+      {
         id: "check1",
         title: "Check: with a view to",
         alt: "The means rows remain on the board.",

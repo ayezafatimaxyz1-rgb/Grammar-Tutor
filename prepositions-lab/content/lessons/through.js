@@ -83,6 +83,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a road with an arrow across it, labelled She walked across the road. Right: an arrow passing inside something, labelled She walked through the road, which needs an inside.",
+      say: [
+        { text: "_She walked across the road_: from one side to the other over a flat surface.", cue: "wn1" },
+        { text: "**Through** needs something with an inside, like a tunnel or a forest. A road has no inside to pass through.", cue: "wn2" },
+        { text: "So: _across the road, across the field_; _through the tunnel, through the forest._", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["roadPass", "She walked across the road.", "over a surface", { hl: "across" }], ["passThrough", "\u2717 She walked through the road.", "a road has no inside", { ink: "trouble" }], ["across = over a surface, side to side", "through = in one side and out the other"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Through: in one side, out the other (tunnel, forest, window); means (through hard work); a whole period (through the night); AmE Monday through Friday.",

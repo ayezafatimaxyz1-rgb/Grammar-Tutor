@@ -110,6 +110,20 @@ PLAB.registerLesson({
       },
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: a person near a school, labelled near the school. Right: a shop and a person, labelled nearby the school, which uses an adjective as a preposition.",
+      say: [
+        { text: "_near the school_: **near** is a preposition and takes an object.", cue: "wn1" },
+        { text: "**Nearby** is an adjective or adverb: _a nearby shop, they live nearby._ It cannot take an object, so _nearby the school_ is wrong.", cue: "wn2" },
+        { text: "Use **near** before a noun. Use **nearby** alone or before a noun as an adjective.", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["nearSchool", "We live near the school.", "near + object", { hl: "near" }], ["nearbyShop", "\u2717 We live nearby the school.", "nearby takes no object", { ink: "trouble" }], ["near the school", "a nearby shop \u00b7 we live nearby"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Next to: nothing between. By, beside: at the side. Near, close to: a short way off. Nearby: adjective or adverb only. Alongside: side by side, working together.",

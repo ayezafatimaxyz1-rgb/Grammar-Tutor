@@ -88,6 +88,20 @@ PLAB.registerLesson({
       ],
     },
     {
+      id: "why-not",
+      title: "Why not the other one?",
+      alt: "Left: an arrow following a river, labelled We walked along the river. Right: an arrow crossing the river, labelled We swam across the river.",
+      say: [
+        { text: "_We walked along the river_: following its length, beside it.", cue: "wn1" },
+        { text: "_We swam across the river_: from one bank to the other. Swapping them changes the journey completely.", cue: "wn2" },
+        { text: "Ask: following the length (along) or crossing from side to side (across)?", cue: "wn-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.swap("wn", ["alongRiver", "We walked along the river.", "following its length", { hl: "along" }], ["crossRiver", "We swam across the river.", "different: bank to bank", { ink: "trouble" }], ["along = following the length", "across = from one side to the other"]),
+      ],
+    },
+    {
       id: "summary",
       title: "The summary",
       alt: "Across: side to side, over a surface, in every part. Along: following the length; along with means together with. Through: depth.",

@@ -32,6 +32,20 @@
         ], { y: 90, gap: 118 }),
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: people with a gate, labelled regardless of income. Right: the same, labelled irregardless of income, which is not standard.",
+        say: [
+          { text: "_open to all, regardless of income_: income makes no difference.", cue: "wn1" },
+          { text: "_Irregardless_ is a mix of irrespective and regardless. Dictionaries mark it non-standard.", cue: "wn2" },
+          { text: "Use **regardless of** or **irrespective of**.", cue: "wn-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.swap("wn", ["crowd", "regardless of income", "makes no difference", { hl: "regardless of" }], ["crowd", "\u2717 irregardless of income", "not standard English", { ink: "trouble" }], ["regardless of \u00b7 irrespective of", "never irregardless"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: a standard form",
         alt: "The rows remain on the board.",
