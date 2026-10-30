@@ -156,12 +156,12 @@
             id: "p2-adjective",
             title: "Adjective + preposition",
             lessons: [
-              L("feelings", "Feelings: interested in, afraid of, fond of, keen on, angry with/at/about", { flags: ["regional"] }),
-              L("ability", "Ability: good at, bad at, capable of, skilled in/at, proficient in"),
-              L("responsibility", "Responsibility: responsible for, accountable to/for, liable for/to"),
-              L("similarity", "Similarity and difference: similar to, identical to/with, different from/to/than", { flags: ["regional", "disputed"] }),
-              L("familiarity", "familiar with vs familiar to; aware of, conscious of, ignorant of"),
-              L("formal-adjectives", "Formal: impervious to, contingent on/upon, conducive to, averse to, tantamount to, commensurate with", { flags: ["formal"] }),
+              L("feelings", "Feelings: interested in, afraid of, fond of, keen on, angry with/at/about", { status: "tested", lessonId: "feelings", flags: ["regional"] }),
+              L("ability", "Ability: good at, bad at, capable of, skilled in/at, proficient in", { status: "tested", lessonId: "ability" }),
+              L("responsibility", "Responsibility: responsible for, accountable to/for, liable for/to", { status: "tested", lessonId: "responsibility" }),
+              L("similarity", "Similarity and difference: similar to, identical to/with, different from/to/than", { status: "tested", lessonId: "similarity", flags: ["regional", "disputed"] }),
+              L("familiarity", "familiar with vs familiar to; aware of, conscious of, ignorant of", { status: "tested", lessonId: "familiarity" }),
+              L("formal-adjectives", "Formal: impervious to, contingent on/upon, conducive to, averse to, tantamount to, commensurate with", { status: "tested", lessonId: "formal-adjectives", flags: ["formal"] }),
             ],
           },
           {

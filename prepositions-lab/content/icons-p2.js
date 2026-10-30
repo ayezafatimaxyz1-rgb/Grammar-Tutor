@@ -84,5 +84,21 @@
     sideBySide: [lay([R(14, 30, 34, 46)], "accent", { fill: "soft" }), lay([R(92, 12, 34, 64)], "accent2", { fill: "soft" }), lay([L(56, 38, 84, 38), L(56, 52, 84, 52)], "muted"), lay([E(70, 6, 12, 7), C(70, 6, 2.5)])],
     contrast: [lay([R(18, 16, 46, 50)], "main", { fill: "solid" }), lay([R(76, 16, 46, 50)], "main")],
     distinguish: [lay([C(34, 40, 16)], "accent", { fill: "soft" }), lay([C(106, 40, 16)], "accent2", { fill: "soft" }), lay([L(70, 4, 70, 76)], "trouble", { width: 4 })],
+
+    // adjectives: feelings, ability, responsibility, knowledge
+    absorbedIn: [lay([E(70, 44, 62, 32)], "muted", { fill: "soft" }), lay([R(76, 30, 34, 30), L(93, 30, 93, 60)], "accent2"), lay([P(46, 18, 0.45)], "accent"), lay([L(56, 34, 76, 40)], "accent")],
+    angryFace: [lay([C(70, 40, 26)], "trouble"), lay([L(56, 28, 66, 33), L(84, 28, 74, 33), L(58, 54, 82, 54, 6)], "trouble"), lay([C(61, 38, 2.5), C(79, 38, 2.5)], "trouble", { fill: "solid" })],
+    afraidOf: [lay([L(18, 26, 32, 36), L(14, 40, 30, 44), L(18, 56, 32, 50)], "muted"), lay([P(56, 8, 0.6)], "accent"), lay([A(118, 40, 82, 40)], "trouble"), lay([C(124, 40, 8)], "trouble", { fill: "solid" })],
+    fondOf: [lay([P(30, 8, 0.6)], "accent"), lay([heart(72, 22, 0.55)], "trouble", { fill: "soft" }), lay([R(98, 40, 32, 36)], "accent2", { fill: "soft" })],
+    lift: [lay([R(46, 0, 48, 20)], "main", { fill: "solid" }), lay([L(70, 34, 70, 58), C(70, 28, 6), L(70, 40, 52, 20), L(70, 40, 88, 20), L(70, 58, 58, 78), L(70, 58, 82, 78)], "accent")],
+    expertIn: [lay([E(70, 44, 62, 32)], "muted", { fill: "soft" }), lay([P(48, 18, 0.45)], "accent"), lay(star(98, 40, 14), "hi", { width: 3.4 })],
+    answerTo: [lay([L(60, 30, 132, 30), L(60, 30, 60, 78)], "muted"), lay([P(100, 0, 0.5)], "accent2"), lay([P(26, 28, 0.5)], "accent"), lay([A(36, 26, 84, 10, -10)], "trouble")],
+    identical: [lay([R(18, 22, 38, 38)], "accent", { fill: "soft" }), lay([L(62, 36, 78, 36), L(62, 46, 78, 46)], "accent2"), lay([R(84, 22, 38, 38)], "accent", { fill: "soft" })],
+    knowsWay: [lay([P(22, 10, 0.55)], "accent"), lay([L(46, 66, 76, 46), L(76, 46, 98, 62), L(98, 62, 130, 36)], "accent2", { width: 3.4 }), lay([C(130, 36, 5)], "trouble", { fill: "solid" }), lay(tick(48, 20, 0.7), "accent")],
+    awareOf: [lay([P(30, 18, 0.55)], "accent"), lay([C(30, 4, 8)], "hi", { fill: "solid" }), lay([A(52, 42, 96, 42)], "muted"), lay([R(100, 26, 30, 32)], "trouble", { fill: "soft" })],
+    bounceOff: [lay([B([[60, 6], [96, 16], [92, 54], [60, 76], [28, 54], [24, 16]])], "accent2", { fill: "soft" }), lay([A(130, 10, 104, 28), A(104, 34, 130, 50)], "trouble"), lay([A(4, 66, 22, 52), A(22, 46, 4, 32)], "trouble")],
+    growTo: [lay([L(6, 74, 134, 74)], "muted"), lay([R(14, 52, 30, 22)], "muted", { fill: "soft" }), lay([A(50, 60, 84, 46)], "accent"), lay([L(108, 74, 108, 34), B([[108, 46], [94, 34], [104, 22]]), B([[108, 40], [124, 26], [116, 16]])], "accent2")],
+    turnAway: [lay([P(36, 8, 0.6)], "accent"), lay([A(30, 74, 4, 74)], "accent2"), lay([B([[100, 30], [118, 22], [132, 40], [116, 58], [98, 50]])], "trouble", { fill: "soft" }), lay([L(64, 30, 90, 36)], "muted")],
+    levelScale: [lay([L(70, 16, 70, 72), L(56, 74, 84, 74), L(24, 22, 116, 22)]), lay([L(24, 22, 14, 44), L(24, 22, 34, 44), L(10, 44, 38, 44)], "accent"), lay([L(116, 22, 106, 44), L(116, 22, 126, 44), L(102, 44, 130, 44)], "accent2"), lay([C(24, 40, 5)], "accent", { fill: "solid" }), lay([R(110, 34, 12, 10)], "accent2", { fill: "solid" })],
   });
 })();

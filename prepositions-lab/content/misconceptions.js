@@ -402,4 +402,28 @@ PLAB.misconceptions = {
     label: "Compare to, compare with, distinguish",
     explain: "Traditionally compare to means liken and compare with means examine side by side. Distinguish between X and Y, or X from Y.",
   },
+  "feeling-adjectives": {
+    label: "Feelings and their prepositions",
+    explain: "Interested in (inside a subject), afraid of, fond of, proud of, tired of (of = source of the feeling), keen on, angry with a person but about a situation.",
+  },
+  "ability-adjectives": {
+    label: "Good at, capable of, proficient in",
+    explain: "Good at and bad at an activity (a target), capable of + -ing (never capable to), proficient in and experienced in a field.",
+  },
+  "responsibility-preps": {
+    label: "Responsible for, accountable to",
+    explain: "For points to the task or people in your care; to points up to the authority you answer to: accountable to Parliament for spending.",
+  },
+  "comparison-to": {
+    label: "Superior to, similar to, different from",
+    explain: "Similar to, identical to, superior to, senior to, preferable to (never than). In formal writing use different from.",
+  },
+  "familiar-with-to": {
+    label: "Familiar with or to; aware of",
+    explain: "Person first: familiar with the thing. Thing first: familiar to the person. Aware of, conscious of, ignorant of take of.",
+  },
+  "formal-adjectives": {
+    label: "Formal adjectives and their partners",
+    explain: "Conducive to, averse to, impervious to, tantamount to, contingent on (upon), commensurate with. Each has one partner preposition.",
+  },
 };
