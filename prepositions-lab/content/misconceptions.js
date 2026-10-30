@@ -346,4 +346,60 @@ PLAB.misconceptions = {
     label: "In the course of, at the expense of, by way of",
     explain: "During; at the cost of (harming); as a form of or via.",
   },
+  "on-verbs": {
+    label: "Depend, rely, insist, focus, comment take on",
+    explain: "These verbs picture weight resting on a support or pressure landing on a surface, so they take on: depend on, rely on, insist on + -ing. Never depend of or insist to.",
+  },
+  "believe-in": {
+    label: "Believe someone or believe in something",
+    explain: "Believe someone: accept their words. Believe in something: trust its existence, value or future, so your trust is placed in it.",
+  },
+  "succeed-in": {
+    label: "Succeed in + -ing",
+    explain: "The task is pictured as an area you work inside, so succeed in, followed by the -ing form. Never succeed to do.",
+  },
+  "apply-for-to": {
+    label: "Apply to a place, for a thing",
+    explain: "The application goes to a place (a university, a commission) and is sent for the thing you want (a job, a visa).",
+  },
+  "agree-preps": {
+    label: "Agree with, on, to",
+    explain: "With a person or opinion (together), on a shared decision (both land on one point), to a proposal or + verb (accept it).",
+  },
+  "arrive-to": {
+    label: "Arrive at or in, never to",
+    explain: "Arrive names the end of a journey: at a point (a building, a station), in an area (a city, a country). Arrive home takes no preposition.",
+  },
+  "look-family": {
+    label: "Look at, for, after, into",
+    explain: "At a point (look), for a target you want (search), after someone you guard (care), into a box (investigate).",
+  },
+  "to-plus-ing": {
+    label: "To as a preposition + -ing",
+    explain: "In look forward to, object to, be used to and with a view to, to is a preposition, so a verb after it takes -ing: look forward to meeting.",
+  },
+  "object-preps": {
+    label: "Verb + person + preposition",
+    explain: "prevent someone from, accuse someone of, charge someone with, blame someone for, congratulate someone on, thank someone for, provide someone with.",
+  },
+  "extra-prep": {
+    label: "Verbs that need no preposition",
+    explain: "Discuss, enter, reach, marry, resemble, approach, attend and lack already contain the preposition's meaning, so they take a direct object.",
+  },
+  "formal-verb-preps": {
+    label: "Formal verbs and their prepositions",
+    explain: "Refrain from and abstain from (hold back), adhere to and conform to (stick to a line), comply with (act together with a rule), dispense with (do without).",
+  },
+  "result-direction": {
+    label: "Result in or result from",
+    explain: "Result in looks forward from the cause to the effect; result from looks back from the effect to the cause.",
+  },
+  "die-of-from": {
+    label: "Die of, suffer from",
+    explain: "Die of is usual for illnesses and die from for injuries; suffer from and recover from use from for the source.",
+  },
+  "compare-to-with": {
+    label: "Compare to, compare with, distinguish",
+    explain: "Traditionally compare to means liken and compare with means examine side by side. Distinguish between X and Y, or X from Y.",
+  },
 };
