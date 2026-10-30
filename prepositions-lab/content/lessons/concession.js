@@ -36,16 +36,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: people with a gate, labelled regardless of income. Right: the same, labelled irregardless of income, which is not standard.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The school is open to all, with a gap income., then the candidates with pictures: regardless of (right: income makes no difference); irregardless of (wrong: not standard English); despite (wrong: despite = a real obstacle overcome). Rule: regardless of, irrespective of; despite + an obstacle.",
         say: [
-          { text: "_open to all, regardless of income_: income makes no difference.", cue: "wn1" },
-          { text: "_Irregardless_ is a mix of irrespective and regardless. Dictionaries mark it non-standard.", cue: "wn2" },
-          { text: "Use **regardless of** or **irrespective of**.", cue: "wn-r1" },
+          { text: "Fill the gap: The school is open to all, \u2026 income. The answer is **regardless of**: income makes no difference.", cue: "why1" },
+          { text: "Why not the others? **irregardless of**: not standard English. **despite**: despite = a real obstacle overcome.", cue: "why2" },
+          { text: "The rule: regardless of, irrespective of; despite + an obstacle.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["crowd", "regardless of income", "makes no difference", { hl: "regardless of" }], ["crowd", "\u2717 irregardless of income", "not standard English", { ink: "trouble" }], ["regardless of \u00b7 irrespective of", "never irregardless"]),
+          ...PLAB.kit.lineup("why", "The school is open to all, ____ income.", [[[["crowd", -30, 0, 0.8], ["gate", 40, 0, 0.9]], "regardless of", true, "income makes | no difference"], ["cross", "irregardless of", false, "not standard | English"], ["overRock", "despite", false, "despite = a real | obstacle overcome"]], ["regardless of, irrespective of", "despite + an obstacle"]),
         ],
       },
       {

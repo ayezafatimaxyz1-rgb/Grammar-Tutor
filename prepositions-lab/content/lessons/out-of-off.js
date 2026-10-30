@@ -149,16 +149,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a book falling from a table, labelled The book fell off the table. Right: the same, labelled The book fell off of the table, with an extra of.",
+      title: "Why this one and not the others?",
+      alt: "The sentence She got with a gap the bus., then the candidates with pictures: off (right: a bus is a platform you step off); out of (wrong: out of is for cars and taxis); from (wrong: from names a start, not stepping down); off of (wrong: of is extra (informal)). Rule: get off a bus, train, plane; get out of a car, taxi.",
       say: [
-        { text: "_The book fell off the table._ **Off** already means away from the surface.", cue: "wn1" },
-        { text: "_Off of_ adds an extra **of**. It is heard in informal American speech, but it is wrong in formal writing.", cue: "wn2" },
-        { text: "**Out of** is for containers: _out of the box._ Off is for surfaces: _off the table._", cue: "wn-r1" },
+        { text: "Fill the gap: She got \u2026 the bus. The answer is **off**: a bus is a platform you step off.", cue: "why1" },
+        { text: "Why not the others? **out of**: out of is for cars and taxis. **from**: from names a start, not stepping down. **off of**: of is extra (informal).", cue: "why2" },
+        { text: "The rule: get off a bus, train, plane; get out of a car, taxi.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["bookTable", "The book fell off the table.", "away from the surface", { hl: "off" }], ["bookTable", "\u2717 The book fell off of the table.", "of is extra", { ink: "trouble" }], ["off + a surface: off the table", "out of + a container: out of the box"]),
+        ...PLAB.kit.lineup("why", "She got ____ the bus.", [["busOn", "off", true, "a bus is a platform | you step off"], ["carIn", "out of", false, "out of is for cars | and taxis"], ["origin", "from", false, "from names a start, | not stepping down"], ["bookTable", "off of", false, "of is extra | (informal)"]], ["get off a bus, train, plane", "get out of a car, taxi"]),
       ],
     },
     {

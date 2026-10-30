@@ -68,16 +68,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a sun equals a heart, labelled The poet compares her smile to the sun (says it is like). Right: two bars and an eye, labelled compares her smile with the sun, which would mean measuring both like a scientist.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The poet compared her smile with a gap the sun., then the candidates with pictures: to (right: says one is like the other); with (wrong: examining both, like an analyst); from (wrong: from = apart: distinguish from). Rule: compare to = liken; compare with = examine side by side.",
         say: [
-          { text: "_The poet compares her smile to the sun_: the poet says her smile is like the sun, bright and warm.", cue: "comparew1" },
-          { text: "_Compares her smile with the sun_ would sound like a careful study of both, listing how they are alike and different. That is not what a poet does.", cue: "comparew2" },
-          { text: "**Compare with** is right for analysis: _Compare this year's exports with last year's._ In everyday English the two are often mixed; in an exam, keep the difference.", cue: "comparew-r1" },
+          { text: "Fill the gap: The poet compared her smile \u2026 the sun. The answer is **to**: says one is like the other.", cue: "why1" },
+          { text: "Why not the others? **with**: examining both, like an analyst. **from**: from = apart: distinguish from.", cue: "why2" },
+          { text: "The rule: compare to = liken; compare with = examine side by side.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("comparew", ["likenTo", "compares her smile to the sun", "says it is like", { hl: "to" }], ["sideBySide", "compares her smile with the sun", "would mean: studies both closely", { ink: "trouble", hl: "with" }], ["compare to: say one is like the other", "compare with: examine both side by side"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The poet compared her smile ____ the sun.", [["likenTo", "to", true, "says one is | like the other"], ["sideBySide", "with", false, "examining both, | like an analyst"], ["origin", "from", false, "from = apart: | distinguish from"]], ["compare to = liken", "compare with = examine side by side"]),
         ],
       },
       {

@@ -144,16 +144,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a person outside a building, labelled Wait outside the office. Right: the same, labelled Wait outside of the office, informal.",
+      title: "Why this one and not the others?",
+      alt: "The sentence Please wait with a gap the office., then the candidates with pictures: outside (right: beyond its walls); out (wrong: out needs of: out of the office); outside of (wrong: of is informal (mostly AmE)). Rule: outside the office (formal); out of the office \u00b7 outside of (informal).",
       say: [
-        { text: "_Wait outside the office._ **Outside** works on its own as a preposition.", cue: "wn1" },
-        { text: "_Outside of_ is common in American speech, but in formal British writing the **of** is extra.", cue: "wn2" },
-        { text: "With no object, outside is an adverb: _Let's wait outside._", cue: "wn-r1" },
+        { text: "Fill the gap: Please wait \u2026 the office. The answer is **outside**: beyond its walls.", cue: "why1" },
+        { text: "Why not the others? **out**: out needs of: out of the office. **outside of**: of is informal (mostly AmE).", cue: "why2" },
+        { text: "The rule: outside the office (formal); out of the office \u00b7 outside of (informal).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["gatePerson", "Wait outside the office.", "formal and correct", { hl: "outside" }], ["gatePerson", "\u2717 Wait outside of the office.", "of is informal here", { ink: "trouble" }], ["outside the city (formal)", "outside of the city (informal, AmE)"]),
+        ...PLAB.kit.lineup("why", "Please wait ____ the office.", [["gatePerson", "outside", true, "beyond its walls"], ["goOut", "out", false, "out needs of: | out of the office"], ["gatePerson", "outside of", false, "of is informal | (mostly AmE)"]], ["outside the office (formal)", "out of the office \u00b7 outside of (informal)"]),
       ],
     },
     {

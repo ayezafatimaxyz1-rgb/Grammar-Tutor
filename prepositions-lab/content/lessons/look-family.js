@@ -64,16 +64,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an adult protecting two children, labelled She looks after her mother (takes care of her). Right: a magnifier and a question mark, labelled She looks for her mother, which would mean her mother is lost.",
+        title: "Why this one and not the others?",
+        alt: "The sentence Please look with a gap the children while I am out., then the candidates with pictures: after (right: take care of them); for (wrong: search: they would be lost); at (wrong: only watch them); into (wrong: investigate them). Rule: look after = care \u00b7 look for = search; look at = watch \u00b7 look into = investigate.",
         say: [
-          { text: "_She looks after her mother_: she takes care of her, like a guardian standing behind her.", cue: "lookw1" },
-          { text: "Swap to _She looks for her mother_ and the meaning changes completely: now her mother is missing and she is searching.", cue: "lookw2" },
-          { text: "Both are correct English, but they say different things. Ask: am I caring (after), searching (for), looking at a point (at), or investigating (into)?", cue: "lookw-r1" },
+          { text: "Fill the gap: Please look \u2026 the children while I am out. The answer is **after**: take care of them.", cue: "why1" },
+          { text: "Why not the others? **for**: search: they would be lost. **at**: only watch them. **into**: investigate them.", cue: "why2" },
+          { text: "The rule: look after = care \u00b7 look for = search; look at = watch \u00b7 look into = investigate.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("lookw", ["careFor", "She looks after her mother.", "takes care of her", { hl: "after" }], ["searchQ", "She looks for her mother.", "would mean her mother is lost", { ink: "trouble", hl: "for" }], ["after = care · for = search", "at = eyes on a point · into = investigate"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Please look ____ the children while I am out.", [["careFor", "after", true, "take care | of them"], ["searchQ", "for", false, "search: they | would be lost"], ["eyeLook", "at", false, "only watch them"], ["lookInto", "into", false, "investigate | them"]], ["look after = care \u00b7 look for = search", "look at = watch \u00b7 look into = investigate"]),
         ],
       },
       {

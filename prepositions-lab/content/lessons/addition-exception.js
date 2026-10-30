@@ -66,16 +66,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a group with one outside, labelled Apart from Ali, everyone came (= except). Right: a plus sign, labelled Apart from Urdu, she speaks Pashto (= in addition). Apart from has two meanings.",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap teaching, she writes novels., then the candidates with pictures: In addition to (right: adds a second thing); Except (wrong: would take teaching away); Instead of (wrong: would replace teaching). Rule: in addition to, as well as = adding; except = taking away \u00b7 instead of = replacing.",
         say: [
-          { text: "_Apart from Ali, everyone came_: here apart from means **except**; Ali did not come.", cue: "wn1" },
-          { text: "_Apart from Urdu, she speaks Pashto_: here it means **in addition to**; she speaks both.", cue: "wn2" },
-          { text: "Read the rest of the sentence to know which meaning is meant. To be clear, write except or in addition to.", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 teaching, she writes novels. The answer is **In addition to**: adds a second thing.", cue: "why1" },
+          { text: "Why not the others? **Except**: would take teaching away. **Instead of**: would replace teaching.", cue: "why2" },
+          { text: "The rule: in addition to, as well as = adding; except = taking away \u00b7 instead of = replacing.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["groupOut", "Apart from Ali, everyone came.", "= except", { hl: "Apart from" }], ["plus", "Apart from Urdu, she speaks Pashto.", "= in addition to", { ink: "trouble" }], ["apart from = except, or in addition to", "be clear: except \u00b7 in addition to"]),
+          ...PLAB.kit.lineup("why", "____ teaching, she writes novels.", [["addMore", "In addition to", true, "adds a second | thing"], ["groupOut", "Except", false, "would take | teaching away"], ["swap", "Instead of", false, "would replace | teaching"]], ["in addition to, as well as = adding", "except = taking away \u00b7 instead of = replacing"]),
         ],
       },
       {

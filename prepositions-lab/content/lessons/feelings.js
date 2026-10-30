@@ -68,16 +68,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an angry face, labelled angry with him (the person). Right: arrows pressing on a surface, labelled angry on him; on is for surfaces and topics, not the target of a feeling.",
+        title: "Why this one and not the others?",
+        alt: "The sentence She is interested with a gap history., then the candidates with pictures: in (right: attention goes inside the subject); on (wrong: on = a surface or topic: a book on history); about (wrong: about goes with worried, angry). Rule: interested in \u00b7 afraid of \u00b7 keen on; angry with a person, about a situation.",
         say: [
-          { text: "_She was angry with him_: the feeling is aimed at a person, so **with** (or **at**).", cue: "angryw1" },
-          { text: "**On** pictures something resting on a surface or a topic. A feeling does not rest on a person, so _angry on him_ is a word-for-word translation, not English.", cue: "angryw2" },
-          { text: "For a situation, use **about** or **at**: _angry about the delay._ Ask: is it a person (with) or a situation (about)?", cue: "angryw-r1" },
+          { text: "Fill the gap: She is interested \u2026 history. The answer is **in**: attention goes inside the subject.", cue: "why1" },
+          { text: "Why not the others? **on**: on = a surface or topic: a book on history. **about**: about goes with worried, angry.", cue: "why2" },
+          { text: "The rule: interested in \u00b7 afraid of \u00b7 keen on; angry with a person, about a situation.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("angryw", ["angryFace", "She was angry with him.", "a person: with or at", { hl: "with" }], ["pressOn", "✗ She was angry on him.", "on is for surfaces, not feelings", { ink: "trouble" }], ["angry with a person · angry about a situation", "never angry on"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "She is interested ____ history.", [["absorbedIn", "in", true, "attention goes | inside the subject"], ["pressOn", "on", false, "on = a surface or topic: | a book on history"], ["aboutCircle", "about", false, "about goes with | worried, angry"]], ["interested in \u00b7 afraid of \u00b7 keen on", "angry with a person, about a situation"]),
         ],
       },
       {

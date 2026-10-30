@@ -460,16 +460,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a city area with a person inside, labelled Sara lives in Lahore. Right: a route with Lahore as a dot, labelled Sara lives at Lahore, which shrinks the city to a point on a route.",
+      title: "Why this one and not the others?",
+      alt: "The sentence Sara lives with a gap Lahore., then the candidates with pictures: in (right: an area she is inside); at (wrong: shrinks Lahore to a dot on a route); on (wrong: on top of the city, like a lid); to (wrong: to is movement; living is not). Rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.",
       say: [
-        { text: "_Sara lives in Lahore._ Living happens inside an area, so **in**.", cue: "wn1" },
-        { text: "With **at**, Lahore shrinks to a dot on a route, like a bus stop. Nobody lives inside a dot, so _lives at Lahore_ sounds wrong.", cue: "wn2" },
-        { text: "**At** is right when the city is only a stop on a journey: _The bus stopped at Lahore._", cue: "wn-r1" },
+        { text: "Fill the gap: Sara lives \u2026 Lahore. The answer is **in**: an area she is inside.", cue: "why1" },
+        { text: "Why not the others? **at**: shrinks Lahore to a dot on a route. **on**: on top of the city, like a lid. **to**: to is movement; living is not.", cue: "why2" },
+        { text: "The rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["liveIn", "Sara lives in Lahore.", "an area she is inside", { hl: "in" }], ["roadPass", "\u2717 Sara lives at Lahore.", "at makes Lahore a dot on a route", { ink: "trouble" }], ["in + an area you are inside: live in Lahore", "at + a stop on a route: stopped at Lahore"]),
+        ...PLAB.kit.lineup("why", "Sara lives ____ Lahore.", [["liveIn", "in", true, "an area she is | inside"], ["roadPass", "at", false, "shrinks Lahore to a | dot on a route"], ["onBase", "on", false, "on top of the city, | like a lid"], ["goHome", "to", false, "to is movement; | living is not"]], ["in = inside an area: live in Lahore", "at = a stop on a route: stopped at Lahore"]),
       ],
     },
     {

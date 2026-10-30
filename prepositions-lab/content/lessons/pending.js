@@ -52,6 +52,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The decision was postponed with a gap an inquiry., then the candidates with pictures: pending (right: while waiting for it); following (wrong: = after it is over); despite (wrong: = although there is an inquiry). Rule: pending = until something happens; following = after.",
+        say: [
+          { text: "Fill the gap: The decision was postponed \u2026 an inquiry. The answer is **pending**: while waiting for it.", cue: "why1" },
+          { text: "Why not the others? **following**: = after it is over. **despite**: = although there is an inquiry.", cue: "why2" },
+          { text: "The rule: pending = until something happens; following = after.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The decision was postponed ____ an inquiry.", [["notWait", "pending", true, "while waiting | for it"], ["followEvent", "following", false, "= after it | is over"], ["overRock", "despite", false, "= although there | is an inquiry"]], ["pending = until something happens", "following = after"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: exam style",
         alt: "The three formal examples remain on the board.",

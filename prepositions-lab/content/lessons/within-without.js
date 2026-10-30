@@ -160,16 +160,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a stretch of time from today to day ten, labelled Reply within ten days (any time up to day ten). Right: a single dot at day ten, labelled Reply in ten days (when ten days have passed).",
+      title: "Why this one and not the others?",
+      alt: "The sentence Reply with a gap ten days., then the candidates with pictures: within (right: any time up to day ten); in (wrong: when ten days have passed); after (wrong: only once the ten days are over); since (wrong: since needs a starting point). Rule: within = any time inside the limit; in = at the end of the time.",
       say: [
-        { text: "_Reply within ten days_: any time inside the period, from today up to day ten.", cue: "wn1" },
-        { text: "_Reply in ten days_ points at the end: when ten days have passed. The meaning changes.", cue: "wn2" },
-        { text: "For a deadline, use **within**. For a moment in the future, use **in**.", cue: "wn-r1" },
+        { text: "Fill the gap: Reply \u2026 ten days. The answer is **within**: any time up to day ten.", cue: "why1" },
+        { text: "Why not the others? **in**: when ten days have passed. **after**: only once the ten days are over. **since**: since needs a starting point.", cue: "why2" },
+        { text: "The rule: within = any time inside the limit; in = at the end of the time.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["inPeriod", "Reply within ten days.", "any time up to day ten", { hl: "within" }], ["pointFuture", "Reply in ten days.", "different: after ten days pass", { ink: "trouble" }], ["within = any time inside the limit", "in = at the end of that time"]),
+        ...PLAB.kit.lineup("why", "Reply ____ ten days.", [["inPeriod", "within", true, "any time up to | day ten"], ["pointFuture", "in", false, "when ten days | have passed"], ["afterDot", "after", false, "only once the ten | days are over"], ["sincePoint", "since", false, "since needs a | starting point"]], ["within = any time inside the limit", "in = at the end of the time"]),
       ],
     },
     {

@@ -257,16 +257,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a time line from now to a dot ten minutes later, labelled The bus leaves in ten minutes (counted from now). Right: a time line counted from a past event, labelled after ten minutes, which counts from some other event.",
+      title: "Why this one and not the others?",
+      alt: "The sentence My birthday is with a gap June., then the candidates with pictures: in (right: a month is a stretch you are inside); on (wrong: on is for one day: on 14 June); at (wrong: at is for a clock time: at 5 o'clock). Rule: in a month, year, season \u00b7 on a day; at a clock time.",
       say: [
-        { text: "_The bus leaves in ten minutes_: count ten minutes forward from now.", cue: "wn1" },
-        { text: "_After ten minutes_ counts from another event, usually in a story: _He waited, and after ten minutes he left._ It does not count from now.", cue: "wn2" },
-        { text: "So for the future from now, use **in**. For a sequence in a story, use **after**.", cue: "wn-r1" },
+        { text: "Fill the gap: My birthday is \u2026 June. The answer is **in**: a month is a stretch you are inside.", cue: "why1" },
+        { text: "Why not the others? **on**: on is for one day: on 14 June. **at**: at is for a clock time: at 5 o'clock.", cue: "why2" },
+        { text: "The rule: in a month, year, season \u00b7 on a day; at a clock time.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["now", "The bus leaves in ten minutes.", "counted from now", { hl: "in" }], ["pointPast", "\u2717 The bus leaves after ten minutes.", "after counts from another event", { ink: "trouble" }], ["in ten minutes = from now", "after ten minutes = from some other event"]),
+        ...PLAB.kit.lineup("why", "My birthday is ____ June.", [["inPeriod", "in", true, "a month is a stretch | you are inside"], ["calendar", "on", false, "on is for one day: | on 14 June"], ["clock", "at", false, "at is for a clock | time: at 5 o'clock"]], ["in a month, year, season \u00b7 on a day", "at a clock time"]),
       ],
     },
     {

@@ -87,16 +87,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: an arrow up a hill, labelled He ran up the hill. Right: the same, labelled He ran the hill up, which moves a preposition like a particle.",
+      title: "Why this one and not the others?",
+      alt: "The sentence He climbed with a gap the hill to the top., then the candidates with pictures: up (right: towards the top); down (wrong: towards the bottom); on (wrong: on = already there). Rule: up = towards the top \u00b7 down = towards the bottom; climb up the hill \u00b7 walk down the stairs.",
       say: [
-        { text: "_He ran up the hill._ **Up the hill** is a phrase showing the path.", cue: "wn1" },
-        { text: "A preposition stays before its noun, so it cannot move to the end: _ran the hill up_ is wrong.", cue: "wn2" },
-        { text: "A particle can move: _He gave up smoking_, _He gave it up._", cue: "wn-r1" },
+        { text: "Fill the gap: He climbed \u2026 the hill to the top. The answer is **up**: towards the top.", cue: "why1" },
+        { text: "Why not the others? **down**: towards the bottom. **on**: on = already there.", cue: "why2" },
+        { text: "The rule: up = towards the top \u00b7 down = towards the bottom; climb up the hill \u00b7 walk down the stairs.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["hillUp", "He ran up the hill.", "up the hill = the path", { hl: "up" }], ["hillUp", "\u2717 He ran the hill up.", "a preposition cannot move", { ink: "trouble" }], ["preposition: up the hill (fixed)", "particle: gave it up (moves)"]),
+        ...PLAB.kit.lineup("why", "He climbed ____ the hill to the top.", [["hillUp", "up", true, "towards the top"], ["arrowDown", "down", false, "towards the bottom"], ["cupOnTable", "on", false, "on = already | there"]], ["up = towards the top \u00b7 down = towards the bottom", "climb up the hill \u00b7 walk down the stairs"]),
       ],
     },
     {

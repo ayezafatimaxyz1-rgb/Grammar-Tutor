@@ -37,6 +37,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap fire, use the stairs., then the candidates with pictures: In the event of (right: if it happens); In view of (wrong: = because of something present); In the wake of (wrong: = after it has happened). Rule: in the event of = if it happens; in view of = considering \u00b7 in the wake of = after.",
+        say: [
+          { text: "Fill the gap: \u2026 fire, use the stairs. The answer is **In the event of**: if it happens.", cue: "why1" },
+          { text: "Why not the others? **In view of**: = because of something present. **In the wake of**: = after it has happened.", cue: "why2" },
+          { text: "The rule: in the event of = if it happens; in view of = considering \u00b7 in the wake of = after.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "____ fire, use the stairs.", [["fireStairs", "In the event of", true, "if it happens"], ["viewRisk", "In view of", false, "= because of | something present"], ["boat", "In the wake of", false, "= after it | has happened"]], ["in the event of = if it happens", "in view of = considering \u00b7 in the wake of = after"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: following an event",
         alt: "The five rows remain on the board.",

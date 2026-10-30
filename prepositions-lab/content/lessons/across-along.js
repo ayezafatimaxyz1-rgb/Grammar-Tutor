@@ -89,16 +89,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: an arrow following a river, labelled We walked along the river. Right: an arrow crossing the river, labelled We swam across the river.",
+      title: "Why this one and not the others?",
+      alt: "The sentence We swam with a gap the river to the other bank., then the candidates with pictures: across (right: from one bank to the other); along (wrong: following its length); above (wrong: above the water, not in it). Rule: across = side to side; along = following the length.",
       say: [
-        { text: "_We walked along the river_: following its length, beside it.", cue: "wn1" },
-        { text: "_We swam across the river_: from one bank to the other. Swapping them changes the journey completely.", cue: "wn2" },
-        { text: "Ask: following the length (along) or crossing from side to side (across)?", cue: "wn-r1" },
+        { text: "Fill the gap: We swam \u2026 the river to the other bank. The answer is **across**: from one bank to the other.", cue: "why1" },
+        { text: "Why not the others? **along**: following its length. **above**: above the water, not in it.", cue: "why2" },
+        { text: "The rule: across = side to side; along = following the length.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["alongRiver", "We walked along the river.", "following its length", { hl: "along" }], ["crossRiver", "We swam across the river.", "different: bank to bank", { ink: "trouble" }], ["along = following the length", "across = from one side to the other"]),
+        ...PLAB.kit.lineup("why", "We swam ____ the river to the other bank.", [["crossRiver", "across", true, "from one bank | to the other"], ["alongRiver", "along", false, "following its | length"], ["floatAbove", "above", false, "above the water, | not in it"]], ["across = side to side", "along = following the length"]),
       ],
     },
     {

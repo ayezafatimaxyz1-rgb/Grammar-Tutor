@@ -111,16 +111,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a person near a school, labelled near the school. Right: a shop and a person, labelled nearby the school, which uses an adjective as a preposition.",
+      title: "Why this one and not the others?",
+      alt: "The sentence We live with a gap the school., then the candidates with pictures: near (right: a short distance from it); nearby (wrong: nearby takes no object); next (wrong: next needs to: next to the school). Rule: near the school \u00b7 next to the school; a nearby shop \u00b7 we live nearby.",
       say: [
-        { text: "_near the school_: **near** is a preposition and takes an object.", cue: "wn1" },
-        { text: "**Nearby** is an adjective or adverb: _a nearby shop, they live nearby._ It cannot take an object, so _nearby the school_ is wrong.", cue: "wn2" },
-        { text: "Use **near** before a noun. Use **nearby** alone or before a noun as an adjective.", cue: "wn-r1" },
+        { text: "Fill the gap: We live \u2026 the school. The answer is **near**: a short distance from it.", cue: "why1" },
+        { text: "Why not the others? **nearby**: nearby takes no object. **next**: next needs to: next to the school.", cue: "why2" },
+        { text: "The rule: near the school \u00b7 next to the school; a nearby shop \u00b7 we live nearby.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["nearSchool", "We live near the school.", "near + object", { hl: "near" }], ["nearbyShop", "\u2717 We live nearby the school.", "nearby takes no object", { ink: "trouble" }], ["near the school", "a nearby shop \u00b7 we live nearby"]),
+        ...PLAB.kit.lineup("why", "We live ____ the school.", [["nearSchool", "near", true, "a short distance | from it"], ["nearbyShop", "nearby", false, "nearby takes | no object"], ["cross", "next", false, "next needs to: | next to the school"]], ["near the school \u00b7 next to the school", "a nearby shop \u00b7 we live nearby"]),
       ],
     },
     {

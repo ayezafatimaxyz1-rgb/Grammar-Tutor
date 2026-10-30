@@ -69,16 +69,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: cause dot, arrow, effect box, labelled The flood resulted in heavy losses (start at the cause). Right: an effect box with an arrow pointing to the cause dot and a question mark, labelled The flood resulted from heavy losses, which would mean the losses caused the flood.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The flood resulted with a gap heavy losses., then the candidates with pictures: in (right: cause first: looks to the effect); from (wrong: losses would have caused the flood); to (wrong: to = arriving; result points at the effect with in). Rule: subject = cause: result in; subject = effect: result from.",
         say: [
-          { text: "Start at the cause and look forward: **resulted in** names the effect. _The flood resulted in heavy losses_: flood first, losses after.", cue: "resultw1" },
-          { text: "Swap it to _The flood resulted from heavy losses_, and the arrow turns round: now the losses come first and cause the flood. That is nonsense.", cue: "resultw2" },
-          { text: "So **result from** is right only when the effect comes first in the sentence: _Heavy losses resulted from the flood._ Ask: is the subject the cause (in) or the effect (from)?", cue: "resultw-r1" },
+          { text: "Fill the gap: The flood resulted \u2026 heavy losses. The answer is **in**: cause first: looks to the effect.", cue: "why1" },
+          { text: "Why not the others? **from**: losses would have caused the flood. **to**: to = arriving; result points at the effect with in.", cue: "why2" },
+          { text: "The rule: subject = cause: result in; subject = effect: result from.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("resultw", ["causeEffect", "The flood resulted in losses.", "cause first, then the effect", { hl: "resulted in" }], ["wrongWay", "✗ The flood resulted from losses.", "would mean losses caused the flood", { ink: "trouble" }], ["subject = the cause: result in", "subject = the effect: result from"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The flood resulted ____ heavy losses.", [["causeEffect", "in", true, "cause first: | looks to the effect"], ["wrongWay", "from", false, "losses would have | caused the flood"], ["cross", "to", false, "to = arriving; | result points at the effect with in"]], ["subject = cause: result in", "subject = effect: result from"]),
         ],
       },
       {

@@ -143,16 +143,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: an arrow ending at a dot, labelled We drove to Lahore (we got there). Right: an arrow pointing in a direction, labelled We drove towards Lahore (in its direction, maybe not arriving).",
+      title: "Why this one and not the others?",
+      alt: "The sentence We drove with a gap Lahore and arrived at noon., then the candidates with pictures: to (right: the destination we reached); towards (wrong: only the direction; we might not arrive); into (wrong: into = inside a container); at (wrong: at needs arrive: arrived at). Rule: to = destination reached; towards = direction only.",
       say: [
-        { text: "_We drove to Lahore_: the journey ends there; we arrived.", cue: "wn1" },
-        { text: "_We drove towards Lahore_ only gives the direction. We may have stopped on the way.", cue: "wn2" },
-        { text: "Use **to** for the destination reached. Use **towards** for direction only.", cue: "wn-r1" },
+        { text: "Fill the gap: We drove \u2026 Lahore and arrived at noon. The answer is **to**: the destination we reached.", cue: "why1" },
+        { text: "Why not the others? **towards**: only the direction; we might not arrive. **into**: into = inside a container. **at**: at needs arrive: arrived at.", cue: "why2" },
+        { text: "The rule: to = destination reached; towards = direction only.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["goHome", "We drove to Lahore.", "we got there", { hl: "to" }], ["arrowR", "We drove towards Lahore.", "different: only the direction", { ink: "trouble" }], ["to = the destination", "towards = the direction"]),
+        ...PLAB.kit.lineup("why", "We drove ____ Lahore and arrived at noon.", [["goHome", "to", true, "the destination | we reached"], ["arrowR", "towards", false, "only the direction; | we might not arrive"], ["intoBag", "into", false, "into = inside a | container"], ["reachDot", "at", false, "at needs arrive: | arrived at"]], ["to = destination reached", "towards = direction only"]),
       ],
     },
     {

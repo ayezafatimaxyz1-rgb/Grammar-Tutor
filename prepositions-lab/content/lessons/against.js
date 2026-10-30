@@ -126,16 +126,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a scale, labelled passed by 120 votes to 80 (a score). Right: arrows meeting, labelled 120 votes against 80, which would mean voting no.",
+      title: "Why this one and not the others?",
+      alt: "The sentence 80 members voted with a gap the bill., then the candidates with pictures: against (right: opposing it); for (wrong: the opposite: supporting it); to (wrong: to is for scores: 120 votes to 80). Rule: against = opposing \u00b7 for = supporting; a score: 120 votes to 80.",
       say: [
-        { text: "_passed by 120 votes to 80_: a score is read with **to**.", cue: "wn1" },
-        { text: "**Against** means opposing: _80 voted against the bill._ _120 votes against 80_ mixes the score with the act of voting no.", cue: "wn2" },
-        { text: "So: _120 votes to 80_, but _80 members voted against it._", cue: "wn-r1" },
+        { text: "Fill the gap: 80 members voted \u2026 the bill. The answer is **against**: opposing it.", cue: "why1" },
+        { text: "Why not the others? **for**: the opposite: supporting it. **to**: to is for scores: 120 votes to 80.", cue: "why2" },
+        { text: "The rule: against = opposing \u00b7 for = supporting; a score: 120 votes to 80.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["scale", "passed by 120 votes to 80", "a score: to", { hl: "to" }], ["versus", "\u2717 120 votes against 80", "against = voting no", { ink: "trouble" }], ["a score: 120 votes to 80", "against = opposing: voted against the bill"]),
+        ...PLAB.kit.lineup("why", "80 members voted ____ the bill.", [["versus", "against", true, "opposing it"], ["voteFor", "for", false, "the opposite: | supporting it"], ["scale", "to", false, "to is for scores: | 120 votes to 80"]], ["against = opposing \u00b7 for = supporting", "a score: 120 votes to 80"]),
       ],
     },
     {

@@ -83,16 +83,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a calendar, labelled on Monday. Right: the same, labelled upon Monday, which is not used.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The film starts with a gap Monday., then the candidates with pictures: on (right: days take on); upon (wrong: upon is never used for days); at (wrong: at is for clock times). Rule: upon: depend upon, upon arrival (formal); days: on Monday.",
       say: [
-        { text: "_on Monday_: days take **on**.", cue: "wn1" },
-        { text: "**Upon** is a formal **on**, but only after some verbs and in fixed phrases (_depend upon, upon arrival_). It is never used for days or vehicles.", cue: "wn2" },
-        { text: "So: _upon arrival_ is fine; _upon Monday_ and _upon the bus_ are not.", cue: "wn-r1" },
+        { text: "Fill the gap: The film starts \u2026 Monday. The answer is **on**: days take on.", cue: "why1" },
+        { text: "Why not the others? **upon**: upon is never used for days. **at**: at is for clock times.", cue: "why2" },
+        { text: "The rule: upon: depend upon, upon arrival (formal); days: on Monday.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["calendar", "on Monday", "days take on", { hl: "on" }], ["calendar", "\u2717 upon Monday", "upon is not used for days", { ink: "trouble" }], ["upon: depend upon, upon arrival", "never upon Monday, upon the bus"]),
+        ...PLAB.kit.lineup("why", "The film starts ____ Monday.", [["calendar", "on", true, "days take on"], ["calendar", "upon", false, "upon is never used | for days"], ["clock", "at", false, "at is for | clock times"]], ["upon: depend upon, upon arrival (formal)", "days: on Monday"]),
       ],
     },
     {

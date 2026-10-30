@@ -63,16 +63,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a dot before the deadline with spare time, labelled The ambulance came just in time to save him (early enough). Right: a dot exactly on a planned mark, labelled on time to save him, which needs a timetable that did not exist.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The ambulance arrived just with a gap time to save him., then the candidates with pictures: in (right: early enough); on (wrong: on time = at the planned moment); at (wrong: at = one point; here time is a stretch). Rule: in time = early enough; on time = at the planned moment.",
         say: [
-          { text: "_The ambulance came just in time to save him_: early enough, before it was too late.", cue: "timew1" },
-          { text: "**On time** means exactly at a planned moment, like a train that keeps its timetable. Nobody had planned a time for this emergency, so on time does not fit.", cue: "timew2" },
-          { text: "**On time** is right for schedules: _The meeting started on time._ Ask: was there a planned time (on time), or a danger of being too late (in time)?", cue: "timew-r1" },
+          { text: "Fill the gap: The ambulance arrived just \u2026 time to save him. The answer is **in**: early enough.", cue: "why1" },
+          { text: "Why not the others? **on**: on time = at the planned moment. **at**: at = one point; here time is a stretch.", cue: "why2" },
+          { text: "The rule: in time = early enough; on time = at the planned moment.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("timew", ["inTimeBefore", "just in time to save him", "early enough", { hl: "in time" }], ["onTimeDot", "✗ just on time to save him", "on time needs a planned moment", { ink: "trouble" }], ["on time = at the planned moment", "in time = early enough, not too late"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The ambulance arrived just ____ time to save him.", [["inTimeBefore", "in", true, "early enough"], ["onTimeDot", "on", false, "on time = at the | planned moment"], ["cross", "at", false, "at = one point; here | time is a stretch"]], ["in time = early enough", "on time = at the planned moment"]),
         ],
       },
       {

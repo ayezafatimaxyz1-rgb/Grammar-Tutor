@@ -129,16 +129,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a tree turning into paper, labelled Paper is made from wood (changed). Right: a table, labelled Paper is made of wood, which belongs to things where the material still shows.",
+      title: "Why this one and not the others?",
+      alt: "The sentence Paper is made with a gap wood., then the candidates with pictures: from (right: the wood has changed); of (wrong: of = the material still shows); by (wrong: by names the maker). Rule: made from = changed \u00b7 made of = still visible; made by = the maker.",
       say: [
-        { text: "_Paper is made from wood_: the wood has changed completely; you cannot see it any more.", cue: "wn1" },
-        { text: "**Made of** is for material you can still see: _The table is made of wood._ Paper does not look like wood, so **from**.", cue: "wn2" },
-        { text: "Ask: can I still see the material (of), or has it changed (from)?", cue: "wn-r1" },
+        { text: "Fill the gap: Paper is made \u2026 wood. The answer is **from**: the wood has changed.", cue: "why1" },
+        { text: "Why not the others? **of**: of = the material still shows. **by**: by names the maker.", cue: "why2" },
+        { text: "The rule: made from = changed \u00b7 made of = still visible; made by = the maker.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", [[["tree", -40, 0, 0.8], ["arrowR", 0, 0, 0.5], ["doc", 40, 0, 0.8]], "Paper is made from wood.", "changed: from", { hl: "from" }], ["table", "\u2717 Paper is made of wood.", "of = the material still shows", { ink: "trouble" }], ["made from = changed (paper, cheese)", "made of = still visible (a wooden table)"]),
+        ...PLAB.kit.lineup("why", "Paper is made ____ wood.", [[[["tree", -40, 0, 0.8], ["arrowR", 0, 0, 0.5], ["doc", 40, 0, 0.8]], "from", true, "the wood has | changed"], ["table", "of", false, "of = the material | still shows"], ["writtenBy", "by", false, "by names the | maker"]], ["made from = changed \u00b7 made of = still visible", "made by = the maker"]),
       ],
     },
     {

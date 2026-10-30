@@ -64,6 +64,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The offer was poor, so she turned with a gap., then the candidates with pictures: it down (right: pronoun in the middle); down it (wrong: a pronoun cannot follow the particle); it off (wrong: turn off = switch off). Rule: turn it down = refuse it; pronoun in the middle of a phrasal verb.",
+        say: [
+          { text: "Fill the gap: The offer was poor, so she turned \u2026. The answer is **it down**: pronoun in the middle.", cue: "why1" },
+          { text: "Why not the others? **down it**: a pronoun cannot follow the particle. **it off**: turn off = switch off.", cue: "why2" },
+          { text: "The rule: turn it down = refuse it; pronoun in the middle of a phrasal verb.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The offer was poor, so she turned ____.", [["slotIn", "it down", true, "pronoun in | the middle"], ["cross", "down it", false, "a pronoun cannot | follow the particle"], ["switchOff", "it off", false, "turn off = | switch off"]], ["turn it down = refuse it", "pronoun in the middle of a phrasal verb"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: word order",
         alt: "The board remains.",

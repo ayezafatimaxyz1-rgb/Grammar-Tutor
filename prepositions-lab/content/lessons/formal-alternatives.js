@@ -68,6 +68,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The police will investigate with a gap the matter., then the candidates with pictures: (no word) (right: investigate takes no particle); into (wrong: into belongs to look into); about (wrong: investigate already holds the topic). Rule: investigate the matter (formal); look into the matter (spoken).",
+        say: [
+          { text: "Fill the gap: The police will investigate \u2026 the matter. The answer is **(no word)**: investigate takes no particle.", cue: "why1" },
+          { text: "Why not the others? **into**: into belongs to look into. **about**: investigate already holds the topic.", cue: "why2" },
+          { text: "The rule: investigate the matter (formal); look into the matter (spoken).", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The police will investigate ____ the matter.", [["magnifier", "(no word)", true, "investigate | takes no particle"], ["lookInto", "into", false, "into belongs to | look into"], ["aboutCircle", "about", false, "investigate already | holds the topic"]], ["investigate the matter (formal)", "look into the matter (spoken)"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: formal tone",
         alt: "The board remains.",

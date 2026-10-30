@@ -143,16 +143,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a ball between two trees, labelled between the two trees. Right: a dot inside a crowd, labelled among the two trees, which needs a group around it.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The ball is with a gap the two trees., then the candidates with pictures: between (right: two separate points); among (wrong: among needs a group around it); amid (wrong: amid = in the middle of a situation). Rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.",
       say: [
-        { text: "_a ball between the two trees_: two separate points, one on each side.", cue: "wn1" },
-        { text: "**Among** puts something inside a group or crowd. Two trees are not a crowd, so _among the two trees_ is wrong.", cue: "wn2" },
-        { text: "Use **among** for a mass: _a house among the trees_ (many trees around it).", cue: "wn-r1" },
+        { text: "Fill the gap: The ball is \u2026 the two trees. The answer is **between**: two separate points.", cue: "why1" },
+        { text: "Why not the others? **among**: among needs a group around it. **amid**: amid = in the middle of a situation.", cue: "why2" },
+        { text: "The rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", [[["tree", -45, 0], ["dot", 0, 22, 0.6], ["tree", 45, 0]], "a ball between the two trees", "separate points on each side", { hl: "between" }], ["crowdDot", "\u2717 a ball among the two trees", "among needs a group around it", { ink: "trouble" }], ["between = separate individuals", "among = inside a group"]),
+        ...PLAB.kit.lineup("why", "The ball is ____ the two trees.", [[[["tree", -45, 0], ["dot", 0, 22, 0.6], ["tree", 45, 0]], "between", true, "two separate | points"], ["crowdDot", "among", false, "among needs a | group around it"], ["amidRising", "amid", false, "amid = in the middle | of a situation"]], ["between = separate individuals", "among = inside a group \u00b7 amid = in a situation"]),
       ],
     },
     {

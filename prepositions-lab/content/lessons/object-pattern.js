@@ -69,16 +69,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an arrow pointing at a person, labelled They blamed the driver for the accident. Right: the same arrow, labelled They blamed the driver on the accident, which would put the driver onto the accident.",
+        title: "Why this one and not the others?",
+        alt: "The sentence They accused him with a gap theft., then the candidates with pictures: of (right: accuse someone of a wrong); for (wrong: for goes with blame); with (wrong: with goes with charge). Rule: accuse of \u00b7 blame for \u00b7 charge with; prevent from \u00b7 congratulate on.",
         say: [
-          { text: "_They blamed the driver for the accident._ Person first, then **for** + the reason.", cue: "blamew1" },
-          { text: "_Blamed the driver on the accident_ would place the driver on top of the accident. The blame lands on the person, so **on** must go before the person.", cue: "blamew2" },
-          { text: "**On** is right when the thing comes first: _They blamed the accident on the driver._ Same facts, the other order.", cue: "blamew-r1" },
+          { text: "Fill the gap: They accused him \u2026 theft. The answer is **of**: accuse someone of a wrong.", cue: "why1" },
+          { text: "Why not the others? **for**: for goes with blame. **with**: with goes with charge.", cue: "why2" },
+          { text: "The rule: accuse of \u00b7 blame for \u00b7 charge with; prevent from \u00b7 congratulate on.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("blamew", ["blame", "blamed the driver for the accident", "person first: for", { hl: "for" }], ["blame", "✗ blamed the driver on the accident", "the blame lands on a person", { ink: "trouble" }], ["blame + person + for + the thing", "blame + the thing + on + person"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "They accused him ____ theft.", [["accuseOf", "of", true, "accuse someone | of a wrong"], ["blame", "for", false, "for goes with | blame"], ["gavel", "with", false, "with goes with | charge"]], ["accuse of \u00b7 blame for \u00b7 charge with", "prevent from \u00b7 congratulate on"]),
         ],
       },
       {

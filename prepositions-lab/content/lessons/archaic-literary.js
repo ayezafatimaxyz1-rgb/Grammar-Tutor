@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence In modern English: Come with a gap me., then the candidates with pictures: to (right: modern English); unto (wrong: old, Bible English). Rule: read old words, but write modern ones; unto = to \u00b7 ere = before.",
+        say: [
+          { text: "Fill the gap: In modern English: Come \u2026 me. The answer is **to**: modern English.", cue: "why1" },
+          { text: "Why not the others? **unto**: old, Bible English.", cue: "why2" },
+          { text: "The rule: read old words, but write modern ones; unto = to \u00b7 ere = before.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "In modern English: Come ____ me.", [["arrowR", "to", true, "modern English"], ["scroll", "unto", false, "old, Bible | English"]], ["read old words, but write modern ones", "unto = to \u00b7 ere = before"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: meaning",
         alt: "The two useful words remain on the board.",

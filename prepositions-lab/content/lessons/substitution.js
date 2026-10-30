@@ -38,16 +38,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: two arrows swapping, labelled coffee instead of tea. Right: the same, labelled coffee instead tea, missing of.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I had coffee with a gap tea., then the candidates with pictures: instead of (right: one in place of the other); instead (wrong: alone it ends a sentence: I had coffee instead); except (wrong: except = not including). Rule: instead of + noun or -ing; rather than + bare verb.",
         say: [
-          { text: "_coffee instead of tea_: before a noun, **instead** needs **of**.", cue: "wn1" },
-          { text: "_instead tea_ leaves out the of.", cue: "wn2" },
-          { text: "Alone, at the end, instead takes no of: _I had coffee instead._", cue: "wn-r1" },
+          { text: "Fill the gap: I had coffee \u2026 tea. The answer is **instead of**: one in place of the other.", cue: "why1" },
+          { text: "Why not the others? **instead**: alone it ends a sentence: I had coffee instead. **except**: except = not including.", cue: "why2" },
+          { text: "The rule: instead of + noun or -ing; rather than + bare verb.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["swap", "I had coffee instead of tea.", "instead of + noun", { hl: "instead of" }], ["swap", "\u2717 I had coffee instead tea.", "of is missing", { ink: "trouble" }], ["instead of + noun", "at the end: I had coffee instead."]),
+          ...PLAB.kit.lineup("why", "I had coffee ____ tea.", [["swap", "instead of", true, "one in place | of the other"], ["cross", "instead", false, "alone it ends a sentence: | I had coffee instead"], ["groupOut", "except", false, "except = not | including"]], ["instead of + noun or -ing", "rather than + bare verb"]),
         ],
       },
       {

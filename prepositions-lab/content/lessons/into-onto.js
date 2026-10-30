@@ -159,16 +159,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: an arrow entering a room, labelled She walked into the room (from outside to inside). Right: a loop inside a box, labelled She walked in the room (she moved about inside it).",
+      title: "Why this one and not the others?",
+      alt: "The sentence The ball rolled with a gap the box., then the candidates with pictures: into (right: movement that ends inside); in (wrong: in = already inside, moving about); onto (wrong: ends on top, not inside); to (wrong: to stops at the box, not inside it). Rule: into = moving from outside to inside; in = already inside \u00b7 onto = ending on top.",
       say: [
-        { text: "_She walked into the room_: she crossed the boundary, from outside to inside.", cue: "wn1" },
-        { text: "_She walked in the room_ means something else: she was already inside and walked about, round and round.", cue: "wn2" },
-        { text: "Use **into** for entering. Use **in** for where the action happens.", cue: "wn-r1" },
+        { text: "Fill the gap: The ball rolled \u2026 the box. The answer is **into**: movement that ends inside.", cue: "why1" },
+        { text: "Why not the others? **in**: in = already inside, moving about. **onto**: ends on top, not inside. **to**: to stops at the box, not inside it.", cue: "why2" },
+        { text: "The rule: into = moving from outside to inside; in = already inside \u00b7 onto = ending on top.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["enterRoom", "She walked into the room.", "from outside to inside", { hl: "into" }], ["loop", "She walked in the room.", "different: moved about inside it", { ink: "trouble" }], ["into = crossing in \u00b7 in = already inside", "jumped into the pool \u00b7 swam in the pool"]),
+        ...PLAB.kit.lineup("why", "The ball rolled ____ the box.", [["intoBag", "into", true, "movement that ends | inside"], ["loop", "in", false, "in = already inside, | moving about"], ["cupOnTable", "onto", false, "ends on top, | not inside"], ["reachDot", "to", false, "to stops at the box, | not inside it"]], ["into = moving from outside to inside", "in = already inside \u00b7 onto = ending on top"]),
       ],
     },
     {

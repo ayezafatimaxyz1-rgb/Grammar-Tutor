@@ -83,16 +83,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a car, labelled by car (the means, no article). Right: a car with a person in it, labelled by my car, which adds my.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The poem was written with a gap Iqbal., then the candidates with pictures: by (right: the person who did it); from (wrong: from = sent by, origin); of (wrong: of = belonging to him). Rule: passive + by + the doer; a letter from Iqbal = he sent it.",
         say: [
-          { text: "_by car_: the means of travel, with no article.", cue: "wn1" },
-          { text: "Once you add **my** or **the**, it becomes a real vehicle, and English uses **in** or **on**: _in my car, on the 7 o'clock train._", cue: "wn2" },
-          { text: "Walking is special: _on foot_, never _by walk._", cue: "wn-r1" },
+          { text: "Fill the gap: The poem was written \u2026 Iqbal. The answer is **by**: the person who did it.", cue: "why1" },
+          { text: "Why not the others? **from**: from = sent by, origin. **of**: of = belonging to him.", cue: "why2" },
+          { text: "The rule: passive + by + the doer; a letter from Iqbal = he sent it.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["car", "We came by car.", "the means: no article", { hl: "by" }], ["carIn", "\u2717 We came by my car.", "my car = in my car", { ink: "trouble" }], ["by car, by train (no article)", "in my car, on the 7 o'clock train"]),
+          ...PLAB.kit.lineup("why", "The poem was written ____ Iqbal.", [["writtenBy", "by", true, "the person | who did it"], ["letterFrom", "from", false, "from = sent by, | origin"], ["ownerBook", "of", false, "of = belonging | to him"]], ["passive + by + the doer", "a letter from Iqbal = he sent it"]),
         ],
       },
       {

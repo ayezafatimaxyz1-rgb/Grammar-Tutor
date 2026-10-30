@@ -61,6 +61,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence This is the house I grew up with a gap., then the candidates with pictures: in (right: grow up in a place); at (wrong: at = a point, not a home); on (wrong: on = a surface). Rule: ending with a preposition is fine; formal: the house in which I grew up.",
+        say: [
+          { text: "Fill the gap: This is the house I grew up \u2026. The answer is **in**: grow up in a place.", cue: "why1" },
+          { text: "Why not the others? **at**: at = a point, not a home. **on**: on = a surface.", cue: "why2" },
+          { text: "The rule: ending with a preposition is fine; formal: the house in which I grew up.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "This is the house I grew up ____.", [["house", "in", true, "grow up in | a place"], ["reachDot", "at", false, "at = a point, | not a home"], ["onBase", "on", false, "on = a surface"]], ["ending with a preposition is fine", "formal: the house in which I grew up"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: formal register",
         alt: "The phrasal verb examples remain on the board.",

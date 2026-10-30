@@ -68,16 +68,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a dot outside a circle, labelled beyond our control (past the limit). Right: a broken car shape, labelled out of control (nobody is controlling it).",
+      title: "Why this one and not the others?",
+      alt: "The sentence The old car is with a gap repair., then the candidates with pictures: beyond (right: past the point of fixing); under (wrong: under repair = being fixed now); out of (wrong: out of repair is not used). Rule: beyond repair = cannot be fixed; under repair = being fixed.",
       say: [
-        { text: "_The matter is beyond our control_: it lies past the limit of what we can do.", cue: "wn1" },
-        { text: "_out of control_ means something else: nobody is controlling it at all, like a car rushing downhill.", cue: "wn2" },
-        { text: "Use **beyond** for limits of ability: _beyond repair, beyond doubt._", cue: "wn-r1" },
+        { text: "Fill the gap: The old car is \u2026 repair. The answer is **beyond**: past the point of fixing.", cue: "why1" },
+        { text: "Why not the others? **under**: under repair = being fixed now. **out of**: out of repair is not used.", cue: "why2" },
+        { text: "The rule: beyond repair = cannot be fixed; under repair = being fixed.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["groupOut", "beyond our control", "past our limit", { hl: "beyond" }], ["car", "out of control", "different: nobody controls it", { ink: "trouble" }], ["beyond control = past what we can do", "out of control = no control at all"]),
+        ...PLAB.kit.lineup("why", "The old car is ____ repair.", [["groupOut", "beyond", true, "past the point of | fixing"], ["review", "under", false, "under repair = | being fixed now"], ["cross", "out of", false, "out of repair | is not used"]], ["beyond repair = cannot be fixed", "under repair = being fixed"]),
       ],
     },
     {

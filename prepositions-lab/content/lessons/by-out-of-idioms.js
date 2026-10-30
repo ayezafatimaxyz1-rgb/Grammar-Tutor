@@ -67,6 +67,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence She learnt the poem with a gap heart., then the candidates with pictures: by (right: by heart = from memory); from (wrong: from = a source: learnt it from a book); with (wrong: with heart = with feeling (different)). Rule: by heart \u00b7 by chance \u00b7 by mistake; out of order \u00b7 under way.",
+        say: [
+          { text: "Fill the gap: She learnt the poem \u2026 heart. The answer is **by**: by heart = from memory.", cue: "why1" },
+          { text: "Why not the others? **from**: from = a source: learnt it from a book. **with**: with heart = with feeling (different).", cue: "why2" },
+          { text: "The rule: by heart \u00b7 by chance \u00b7 by mistake; out of order \u00b7 under way.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "She learnt the poem ____ heart.", [["learnHeart", "by", true, "by heart = | from memory"], ["origin", "from", false, "from = a source: | learnt it from a book"], ["heart", "with", false, "with heart = with | feeling (different)"]], ["by heart \u00b7 by chance \u00b7 by mistake", "out of order \u00b7 under way"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: meaning",
         alt: "The board remains.",

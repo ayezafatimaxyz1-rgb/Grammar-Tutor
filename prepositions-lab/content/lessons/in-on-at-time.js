@@ -152,16 +152,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a calendar page, labelled on Monday (one day). Right: a long bar of time, labelled in Monday, which treats a day as a long stretch.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The meeting is with a gap Monday., then the candidates with pictures: on (right: one named day); in (wrong: in is for longer stretches: in June); at (wrong: at is for clock times: at 9 a.m.). Rule: in June \u00b7 on Monday \u00b7 at 9 a.m.; stretch \u00b7 day \u00b7 point.",
       say: [
-        { text: "_on Monday_: a single day is a page on the calendar, so **on**.", cue: "wn1" },
-        { text: "**In** is for longer stretches you are inside: in June, in 2025. _In Monday_ treats one day like a month.", cue: "wn2" },
-        { text: "Use **in** for parts of a day without a name (in the morning), but once the day is named, it switches: _on Monday morning._", cue: "wn-r1" },
+        { text: "Fill the gap: The meeting is \u2026 Monday. The answer is **on**: one named day.", cue: "why1" },
+        { text: "Why not the others? **in**: in is for longer stretches: in June. **at**: at is for clock times: at 9 a.m..", cue: "why2" },
+        { text: "The rule: in June \u00b7 on Monday \u00b7 at 9 a.m.; stretch \u00b7 day \u00b7 point.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["calendar", "on Monday", "one day: on", { hl: "on" }], ["inPeriod", "\u2717 in Monday", "in is for longer stretches", { ink: "trouble" }], ["in June, in 2025 (a stretch) \u00b7 on Monday (a day)", "at 5 o'clock (a point)"]),
+        ...PLAB.kit.lineup("why", "The meeting is ____ Monday.", [["calendar", "on", true, "one named day"], ["inPeriod", "in", false, "in is for longer | stretches: in June"], ["clock", "at", false, "at is for clock | times: at 9 a.m."]], ["in June \u00b7 on Monday \u00b7 at 9 a.m.", "stretch \u00b7 day \u00b7 point"]),
       ],
     },
     {

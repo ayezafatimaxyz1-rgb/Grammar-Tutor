@@ -52,16 +52,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an arrow over a rock, labelled Despite the rain, we played (+ noun). Right: the same, labelled Despite it rained, which puts a clause after a preposition.",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap the rain, we played the match., then the candidates with pictures: Despite (right: + a noun); Although (wrong: + a clause: although it rained); Despite of (wrong: never despite of). Rule: despite / in spite of + noun; although + clause.",
         say: [
-          { text: "_Despite the rain, we played._ **Despite** is a preposition, so it takes a noun.", cue: "wn1" },
-          { text: "_It rained_ is a clause, with its own verb. A preposition cannot take a clause.", cue: "wn2" },
-          { text: "Before a clause, use **although**: _Although it rained, we played._", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 the rain, we played the match. The answer is **Despite**: + a noun.", cue: "why1" },
+          { text: "Why not the others? **Although**: + a clause: although it rained. **Despite of**: never despite of.", cue: "why2" },
+          { text: "The rule: despite / in spite of + noun; although + clause.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["overRock", "Despite the rain, we played.", "despite + noun", { hl: "Despite" }], ["rain", "\u2717 Despite it rained, we played.", "a clause needs although", { ink: "trouble" }], ["despite / in spite of + noun", "although + clause"]),
+          ...PLAB.kit.lineup("why", "____ the rain, we played the match.", [["overRock", "Despite", true, "+ a noun"], ["rain", "Although", false, "+ a clause: | although it rained"], ["cross", "Despite of", false, "never despite of"]], ["despite / in spite of + noun", "although + clause"]),
         ],
       },
       {

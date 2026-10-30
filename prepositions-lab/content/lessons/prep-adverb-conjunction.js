@@ -106,16 +106,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a rain cloud, labelled because of the rain (+ noun). Right: rain, labelled because of it rained, which puts a clause after a preposition.",
+        title: "Why this one and not the others?",
+        alt: "The sentence We stayed at home with a gap the rain., then the candidates with pictures: because of (right: + a noun); because (wrong: + a clause: because it rained); although (wrong: shows contrast, not cause). Rule: because of + noun; because + clause.",
         say: [
-          { text: "_because of the rain_: **because of** is a preposition, so it takes a noun.", cue: "wn1" },
-          { text: "_It rained_ is a clause. **Because** alone is the conjunction that takes a clause: _because it rained._", cue: "wn2" },
-          { text: "So: because of + noun; because + clause.", cue: "wn-r1" },
+          { text: "Fill the gap: We stayed at home \u2026 the rain. The answer is **because of**: + a noun.", cue: "why1" },
+          { text: "Why not the others? **because**: + a clause: because it rained. **although**: shows contrast, not cause.", cue: "why2" },
+          { text: "The rule: because of + noun; because + clause.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["cloud", "because of the rain", "+ noun", { hl: "because of" }], ["rain", "\u2717 because of it rained", "a clause needs because alone", { ink: "trouble" }], ["because of + noun", "because + clause"]),
+          ...PLAB.kit.lineup("why", "We stayed at home ____ the rain.", [["cloud", "because of", true, "+ a noun"], ["rain", "because", false, "+ a clause: | because it rained"], ["different", "although", false, "shows contrast, | not cause"]], ["because of + noun", "because + clause"]),
         ],
       },
       {

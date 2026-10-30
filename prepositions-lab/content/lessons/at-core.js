@@ -236,16 +236,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a school building with a person at it, labelled She is at school (there to study). Right: a person inside a building, labelled She is in the school (inside the building, perhaps only visiting).",
+      title: "Why this one and not the others?",
+      alt: "The sentence She is waiting with a gap the bus stop., then the candidates with pictures: at (right: a bus stop is a point); in (wrong: a bus stop has no inside); on (wrong: not standing on top of it); to (wrong: waiting is not moving). Rule: at = a place pictured as a point; in = inside \u00b7 to = movement towards.",
       say: [
-        { text: "_She is at school_: she is there for what the place is for, studying.", cue: "wn1" },
-        { text: "_She is in the school_ only says she is inside the building. She could be a visitor, a cleaner, or sheltering from rain.", cue: "wn2" },
-        { text: "Use **at** for the purpose of a place (at work, at school, at home). Use **in** when the building itself matters (in the school hall).", cue: "wn-r1" },
+        { text: "Fill the gap: She is waiting \u2026 the bus stop. The answer is **at**: a bus stop is a point.", cue: "why1" },
+        { text: "Why not the others? **in**: a bus stop has no inside. **on**: not standing on top of it. **to**: waiting is not moving.", cue: "why2" },
+        { text: "The rule: at = a place pictured as a point; in = inside \u00b7 to = movement towards.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["school", "She is at school.", "there to study", { hl: "at" }], ["insideBuilding", "She is in the school.", "different: inside the building", { ink: "trouble" }], ["at school, at work = there for its purpose", "in the school = inside the building"]),
+        ...PLAB.kit.lineup("why", "She is waiting ____ the bus stop.", [["reachDot", "at", true, "a bus stop is | a point"], ["insideBuilding", "in", false, "a bus stop has | no inside"], ["onBase", "on", false, "not standing on | top of it"], ["goHome", "to", false, "waiting is not | moving"]], ["at = a place pictured as a point", "in = inside \u00b7 to = movement towards"]),
       ],
     },
     {

@@ -282,16 +282,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a cup resting on a table top, labelled The cup is on the table. Right: a table with a dot inside its drawer, labelled The key is in the table, which means inside it.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The picture is with a gap the wall., then the candidates with pictures: on (right: touching the wall's surface); in (wrong: would be inside the wall); at (wrong: at = a point near it, not touching); above (wrong: higher, with a gap, not touching). Rule: on = touching a surface, even a wall or a ceiling; in = inside \u00b7 above = higher, no contact.",
       say: [
-        { text: "_The cup is on the table._ It touches the top surface, so **on**.", cue: "wn1" },
-        { text: "Swap to **in** and the picture changes: _The key is in the table_ would mean inside it, in a drawer.", cue: "wn2" },
-        { text: "Ask: is it resting on the surface (on), or enclosed inside (in)?", cue: "wn-r1" },
+        { text: "Fill the gap: The picture is \u2026 the wall. The answer is **on**: touching the wall's surface.", cue: "why1" },
+        { text: "Why not the others? **in**: would be inside the wall. **at**: at = a point near it, not touching. **above**: higher, with a gap, not touching.", cue: "why2" },
+        { text: "The rule: on = touching a surface, even a wall or a ceiling; in = inside \u00b7 above = higher, no contact.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["cupOnTable", "The cup is on the table.", "touching the top surface", { hl: "on" }], ["inDrawer", "The key is in the table.", "different: inside it, in a drawer", { ink: "trouble" }], ["on + a surface it touches", "in + inside something closed"]),
+        ...PLAB.kit.lineup("why", "The picture is ____ the wall.", [[[["wall", -30, 0], ["doc", 20, 0, 0.6]], "on", true, "touching the wall's | surface"], ["inDrawer", "in", false, "would be inside | the wall"], ["reachDot", "at", false, "at = a point near it, | not touching"], ["floatAbove", "above", false, "higher, with a gap, | not touching"]], ["on = touching a surface, even a wall or a ceiling", "in = inside \u00b7 above = higher, no contact"]),
       ],
     },
     {

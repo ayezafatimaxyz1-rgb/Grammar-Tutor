@@ -111,16 +111,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: two people sharing a secret, labelled between you and me. Right: the same, labelled between you and I.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I look forward to with a gap you., then the candidates with pictures: meeting (right: to is a preposition: -ing); meet (wrong: to meet is the infinitive); met (wrong: a past form). Rule: look forward to, committed to, used to + -ing; test: a noun fits (to the meeting).",
         say: [
-          { text: "_between you and me_: after a preposition, pronouns take the object form: me, him, her, us, them.", cue: "wn1" },
-          { text: "_between you and I_ sounds polite to some, but I is a subject form. It is wrong after a preposition.", cue: "wn2" },
-          { text: "Test: drop _you and_: _between me_ works; _between I_ does not.", cue: "wn-r1" },
+          { text: "Fill the gap: I look forward to \u2026 you. The answer is **meeting**: to is a preposition: -ing.", cue: "why1" },
+          { text: "Why not the others? **meet**: to meet is the infinitive. **met**: a past form.", cue: "why2" },
+          { text: "The rule: look forward to, committed to, used to + -ing; test: a noun fits (to the meeting).", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["secret", "between you and me", "object form after a preposition", { hl: "me" }], ["secret", "\u2717 between you and I", "I is a subject form", { ink: "trouble" }], ["for him \u00b7 with us \u00b7 between you and me", "never between you and I"]),
+          ...PLAB.kit.lineup("why", "I look forward to ____ you.", [["lookAhead", "meeting", true, "to is a | preposition: -ing"], ["arrowR", "meet", false, "to meet is the | infinitive"], ["pointPast", "met", false, "a past form"]], ["look forward to, committed to, used to + -ing", "test: a noun fits (to the meeting)"]),
         ],
       },
       {

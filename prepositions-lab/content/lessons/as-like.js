@@ -46,16 +46,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a person at a desk, labelled She works as a teacher (she is one). Right: two similar people, labelled She talks like a teacher (she is not one).",
+        title: "Why this one and not the others?",
+        alt: "The sentence She works with a gap a teacher at a college., then the candidates with pictures: as (right: her real job: she is one); like (wrong: only similar: she is not one); for (wrong: for + the employer: works for a college). Rule: as = a real role; like = similar to.",
         say: [
-          { text: "_She works as a teacher_: **as** gives her real role; she is a teacher.", cue: "wn1" },
-          { text: "_She talks like a teacher_: **like** means similar to. She is not a teacher; she only sounds like one.", cue: "wn2" },
-          { text: "Swapping them changes the facts: as = is one; like = resembles one.", cue: "wn-r1" },
+          { text: "Fill the gap: She works \u2026 a teacher at a college. The answer is **as**: her real job: she is one.", cue: "why1" },
+          { text: "Why not the others? **like**: only similar: she is not one. **for**: for + the employer: works for a college.", cue: "why2" },
+          { text: "The rule: as = a real role; like = similar to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["asRole", "She works as a teacher.", "she is one", { hl: "as" }], ["likeSim", "She talks like a teacher.", "different: she only resembles one", { ink: "trouble" }], ["as = a real role", "like = similar to"]),
+          ...PLAB.kit.lineup("why", "She works ____ a teacher at a college.", [["asRole", "as", true, "her real job: | she is one"], ["likeSim", "like", false, "only similar: | she is not one"], ["giveTo", "for", false, "for + the employer: | works for a college"]], ["as = a real role", "like = similar to"]),
         ],
       },
       {

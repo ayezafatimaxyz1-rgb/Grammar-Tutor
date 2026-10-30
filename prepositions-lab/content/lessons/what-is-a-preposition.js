@@ -112,6 +112,20 @@
         },
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The cup is with a gap the table., then the candidates with pictures: on (right: resting on its surface); in (wrong: inside the table); under (wrong: beneath it). Rule: the preposition shows how the thing sits; against the reference point.",
+        say: [
+          { text: "Fill the gap: The cup is \u2026 the table. The answer is **on**: resting on its surface.", cue: "why1" },
+          { text: "Why not the others? **in**: inside the table. **under**: beneath it.", cue: "why2" },
+          { text: "The rule: the preposition shows how the thing sits; against the reference point.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The cup is ____ the table.", [["cupOnTable", "on", true, "resting on its | surface"], ["inDrawer", "in", false, "inside the table"], ["underTable", "under", false, "beneath it"]], ["the preposition shows how the thing sits", "against the reference point"]),
+        ],
+      },
+      {
         id: "summary",
         title: "The summary",
         alt: "The thing, the preposition, the reference point. A prepositional phrase is the preposition plus its object, and can describe a noun or an action.",

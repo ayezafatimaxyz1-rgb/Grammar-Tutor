@@ -53,16 +53,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an arrow pointing at a document, labelled with regard to your letter. Right: a waving person, labelled with regards to your letter; regards means greetings.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I am writing with a gap the delay., then the candidates with pictures: regarding (right: = about it); regards (wrong: regards = greetings); regard (wrong: needs with ... to: with regard to). Rule: regarding, concerning, with regard to; never with regards to.",
         say: [
-          { text: "_with regard to your letter_ = about your letter.", cue: "wn1" },
-          { text: "**Regards** with an s means greetings: _Kind regards._ _With regards to_ mixes the two.", cue: "wn2" },
-          { text: "So: _with regard to, in regard to, as regards._", cue: "wn-r1" },
+          { text: "Fill the gap: I am writing \u2026 the delay. The answer is **regarding**: = about it.", cue: "why1" },
+          { text: "Why not the others? **regards**: regards = greetings. **regard**: needs with ... to: with regard to.", cue: "why2" },
+          { text: "The rule: regarding, concerning, with regard to; never with regards to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["pointDoc", "with regard to your letter", "= about it", { hl: "regard" }], ["wave", "\u2717 with regards to your letter", "regards = greetings", { ink: "trouble" }], ["with regard to \u00b7 as regards", "Kind regards (greetings)"]),
+          ...PLAB.kit.lineup("why", "I am writing ____ the delay.", [["pointDoc", "regarding", true, "= about it"], ["wave", "regards", false, "regards = | greetings"], ["cross", "regard", false, "needs with ... to: | with regard to"]], ["regarding, concerning, with regard to", "never with regards to"]),
         ],
       },
       {

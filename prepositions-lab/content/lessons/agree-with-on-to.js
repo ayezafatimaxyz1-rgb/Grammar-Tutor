@@ -68,16 +68,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: two people sharing one view, labelled I agree with you. Right: a person moving to a document to accept it, labelled I agree to you, which treats a person as a proposal.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I agree with a gap you completely., then the candidates with pictures: with (right: the same view as a person); to (wrong: to = accepting a proposal); on (wrong: on = a point decided together). Rule: agree with a person \u00b7 agree to a proposal; agree on a date.",
         say: [
-          { text: "_I agree with you._ You and I stand together and share the same view, so **with**.", cue: "agreew1" },
-          { text: "_I agree to you_ would mean I accept you, as if you were a proposal on the table. People are not proposals.", cue: "agreew2" },
-          { text: "**To** is right for something offered that you accept: _I agree to your proposal._ **On** is right for a point you both decide: _We agreed on a date._", cue: "agreew-r1" },
+          { text: "Fill the gap: I agree \u2026 you completely. The answer is **with**: the same view as a person.", cue: "why1" },
+          { text: "Why not the others? **to**: to = accepting a proposal. **on**: on = a point decided together.", cue: "why2" },
+          { text: "The rule: agree with a person \u00b7 agree to a proposal; agree on a date.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("agreew", ["agreeWith", "I agree with you.", "same view, together", { hl: "with" }], ["agreeTo", "✗ I agree to you.", "a person is not a proposal", { ink: "trouble" }], ["with + a person or opinion · to + a proposal", "on + a point you decide together"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "I agree ____ you completely.", [["agreeWith", "with", true, "the same view | as a person"], ["agreeTo", "to", false, "to = accepting | a proposal"], ["agreeOn", "on", false, "on = a point | decided together"]], ["agree with a person \u00b7 agree to a proposal", "agree on a date"]),
         ],
       },
       {

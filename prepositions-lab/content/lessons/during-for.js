@@ -54,16 +54,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a dot inside a period, labelled I woke twice during the night (when). Right: a bracket of length, labelled I woke twice for the night, which confuses when with how long.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I woke up twice with a gap the night., then the candidates with pictures: during (right: when: inside that time); for (wrong: for = how long); while (wrong: while + a clause: while I slept). Rule: during + noun = when; for = how long \u00b7 while + clause.",
         say: [
-          { text: "_I woke twice during the night_: **during** tells when, somewhere inside the night.", cue: "wn1" },
-          { text: "**For** tells how long: _I slept for eight hours._ _Woke twice for the night_ mixes the two questions.", cue: "wn2" },
-          { text: "Ask: when (during) or how long (for)?", cue: "wn-r1" },
+          { text: "Fill the gap: I woke up twice \u2026 the night. The answer is **during**: when: inside that time.", cue: "why1" },
+          { text: "Why not the others? **for**: for = how long. **while**: while + a clause: while I slept.", cue: "why2" },
+          { text: "The rule: during + noun = when; for = how long \u00b7 while + clause.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["inPeriod", "I woke twice during the night.", "when: inside that time", { hl: "during" }], ["span", "\u2717 I woke twice for the night.", "for = how long", { ink: "trouble" }], ["during the night = when", "for eight hours = how long"]),
+          ...PLAB.kit.lineup("why", "I woke up twice ____ the night.", [["inPeriod", "during", true, "when: inside | that time"], ["span", "for", false, "for = how long"], ["speak", "while", false, "while + a clause: | while I slept"]], ["during + noun = when", "for = how long \u00b7 while + clause"]),
         ],
       },
       {

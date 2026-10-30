@@ -67,6 +67,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence Please listen with a gap me carefully., then the candidates with pictures: to (right: listen needs to before its object); (no word) (wrong: listen cannot reach its object alone); at (wrong: at goes with look). Rule: listen to, wait for, reply to, belong to; explain it to me.",
+        say: [
+          { text: "Fill the gap: Please listen \u2026 me carefully. The answer is **to**: listen needs to before its object.", cue: "why1" },
+          { text: "Why not the others? **(no word)**: listen cannot reach its object alone. **at**: at goes with look.", cue: "why2" },
+          { text: "The rule: listen to, wait for, reply to, belong to; explain it to me.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Please listen ____ me carefully.", [["speak", "to", true, "listen needs to | before its object"], ["cross", "(no word)", false, "listen cannot reach | its object alone"], ["eyeLook", "at", false, "at goes with look"]], ["listen to, wait for, reply to, belong to", "explain it to me"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The board remains.",

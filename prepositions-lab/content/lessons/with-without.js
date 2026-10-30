@@ -70,16 +70,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a knife cutting bread, labelled cut it with a knife (a tool you hold). Right: an envelope, labelled cut it by a knife, which uses by for a tool.",
+        title: "Why this one and not the others?",
+        alt: "The sentence She cut the bread with a gap a knife., then the candidates with pictures: with (right: a tool you hold); by (wrong: by + a means: by hand, by email); from (wrong: from = origin). Rule: with + a tool; by + a means (no article).",
         say: [
-          { text: "_cut it with a knife_: a tool you hold takes **with**.", cue: "wn1" },
-          { text: "**By** names a means without an article: _by hand, by email, by car._ _By a knife_ mixes the two.", cue: "wn2" },
-          { text: "Ask: a tool in your hand (with) or a method or channel (by)?", cue: "wn-r1" },
+          { text: "Fill the gap: She cut the bread \u2026 a knife. The answer is **with**: a tool you hold.", cue: "why1" },
+          { text: "Why not the others? **by**: by + a means: by hand, by email. **from**: from = origin.", cue: "why2" },
+          { text: "The rule: with + a tool; by + a means (no article).", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["bread", "cut it with a knife", "a tool you hold", { hl: "with" }], ["emailBy", "\u2717 cut it by a knife", "by = a means: by hand, by email", { ink: "trouble" }], ["with + a tool: with a pen", "by + a means: by hand, by email"]),
+          ...PLAB.kit.lineup("why", "She cut the bread ____ a knife.", [["bread", "with", true, "a tool you hold"], ["emailBy", "by", false, "by + a means: | by hand, by email"], ["origin", "from", false, "from = origin"]], ["with + a tool", "by + a means (no article)"]),
         ],
       },
       {

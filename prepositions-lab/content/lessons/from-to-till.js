@@ -53,16 +53,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a bar from 9 to 5, labelled from 9 to 5. Right: the same, labelled from 9 and 5, which mixes two frames.",
+        title: "Why this one and not the others?",
+        alt: "The sentence The shop is open from 9 with a gap 5., then the candidates with pictures: to (right: from ... to); and (wrong: and belongs to between); at (wrong: at = one point, not an end). Rule: from 9 to 5 (or until 5); between 9 and 5.",
         say: [
-          { text: "_from 9 to 5_: **from** marks the start and **to** marks the end.", cue: "wn1" },
-          { text: "**And** belongs to the other frame: _between 9 and 5._ _From 9 and 5_ starts one frame and finishes the other.", cue: "wn2" },
-          { text: "Keep the pairs together: from ... to, between ... and.", cue: "wn-r1" },
+          { text: "Fill the gap: The shop is open from 9 \u2026 5. The answer is **to**: from ... to.", cue: "why1" },
+          { text: "Why not the others? **and**: and belongs to between. **at**: at = one point, not an end.", cue: "why2" },
+          { text: "The rule: from 9 to 5 (or until 5); between 9 and 5.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["betweenTicks", "open from 9 to 5", "from ... to", { hl: "to" }], ["betweenTicks", "\u2717 open from 9 and 5", "and belongs to between", { ink: "trouble" }], ["from 9 to 5", "between 9 and 5"]),
+          ...PLAB.kit.lineup("why", "The shop is open from 9 ____ 5.", [["span", "to", true, "from ... to"], ["betweenTicks", "and", false, "and belongs to | between"], ["clock", "at", false, "at = one point, | not an end"]], ["from 9 to 5 (or until 5)", "between 9 and 5"]),
         ],
       },
       {

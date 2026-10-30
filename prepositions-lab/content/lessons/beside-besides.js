@@ -129,16 +129,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a person standing next to a tree, labelled She stood beside the tree. Right: a plus sign, labelled She stood besides the tree, which would mean in addition to the tree.",
+      title: "Why this one and not the others?",
+      alt: "The sentence She stood with a gap the tree., then the candidates with pictures: beside (right: at its side); besides (wrong: = in addition to); next (wrong: next needs to: next to the tree). Rule: beside = at the side of; besides = in addition to, apart from.",
       say: [
-        { text: "_She stood beside the tree_: at its side.", cue: "wn1" },
-        { text: "**Besides** with an s means in addition to: _Besides English, she speaks Urdu._ _Stood besides the tree_ makes no sense.", cue: "wn2" },
-        { text: "One letter changes the meaning: beside is position, besides is adding.", cue: "wn-r1" },
+        { text: "Fill the gap: She stood \u2026 the tree. The answer is **beside**: at its side.", cue: "why1" },
+        { text: "Why not the others? **besides**: = in addition to. **next**: next needs to: next to the tree.", cue: "why2" },
+        { text: "The rule: beside = at the side of; besides = in addition to, apart from.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["nearSchool", "She stood beside the tree.", "at its side", { hl: "beside" }], ["plus", "\u2717 She stood besides the tree.", "besides = in addition to", { ink: "trouble" }], ["beside = at the side of", "besides = in addition to, apart from"]),
+        ...PLAB.kit.lineup("why", "She stood ____ the tree.", [["nearSchool", "beside", true, "at its side"], ["plus", "besides", false, "= in addition to"], ["cross", "next", false, "next needs to: | next to the tree"]], ["beside = at the side of", "besides = in addition to, apart from"]),
       ],
     },
     {

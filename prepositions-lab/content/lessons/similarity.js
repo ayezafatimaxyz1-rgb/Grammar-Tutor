@@ -63,16 +63,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: two bars of different heights, labelled superior to the others. Right: the same bars, labelled superior than the others; than belongs with -er words such as better.",
+        title: "Why this one and not the others?",
+        alt: "The sentence This plan is superior with a gap that one., then the candidates with pictures: to (right: superior already means more); than (wrong: than goes with better, more); from (wrong: from = moving apart: different from). Rule: superior to, inferior to, senior to; better than, more than.",
         say: [
-          { text: "_This method is superior to the others._ Superior already contains the idea of more, so it takes **to**.", cue: "superiorw1" },
-          { text: "**Than** follows English -er words and more: _better than, more useful than._ _Superior than_ mixes the two patterns.", cue: "superiorw2" },
-          { text: "If you want than, change the word: _better than the others._ Superior, inferior, senior, junior and prior always take to.", cue: "superiorw-r1" },
+          { text: "Fill the gap: This plan is superior \u2026 that one. The answer is **to**: superior already means more.", cue: "why1" },
+          { text: "Why not the others? **than**: than goes with better, more. **from**: from = moving apart: different from.", cue: "why2" },
+          { text: "The rule: superior to, inferior to, senior to; better than, more than.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("superiorw", ["taller", "superior to the others", "superior already means more", { hl: "to" }], ["compareBars", "✗ superior than the others", "than goes with better, more", { ink: "trouble" }], ["superior to · better than", "never superior than"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "This plan is superior ____ that one.", [["taller", "to", true, "superior already | means more"], ["compareBars", "than", false, "than goes with | better, more"], ["origin", "from", false, "from = moving apart: | different from"]], ["superior to, inferior to, senior to", "better than, more than"]),
         ],
       },
       {

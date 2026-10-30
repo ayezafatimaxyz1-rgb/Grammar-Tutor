@@ -64,16 +64,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an arrow already ended at a building with a dot, labelled We arrived at the airport. Right: an arrow still moving towards a house, labelled We arrived to the airport, mixing the moving word to with the arriving word arrive.",
+        title: "Why this one and not the others?",
+        alt: "The sentence We arrived with a gap the airport at noon., then the candidates with pictures: at (right: a building is a point); in (wrong: in is for cities, countries); to (wrong: to = still moving). Rule: arrive at a point \u00b7 arrive in an area; never arrive to.",
         say: [
-          { text: "_We arrived at the airport._ Arrive describes the end of the trip, when you are already at the point.", cue: "arrivew1" },
-          { text: "**To** draws the journey still moving towards the goal. Put it after arrive and you describe the end and the movement at once, which English does not do.", cue: "arrivew2" },
-          { text: "**To** is right with verbs of movement: _We went to the airport. We flew to Lahore._ After arrive, use at for a point and in for an area.", cue: "arrivew-r1" },
+          { text: "Fill the gap: We arrived \u2026 the airport at noon. The answer is **at**: a building is a point.", cue: "why1" },
+          { text: "Why not the others? **in**: in is for cities, countries. **to**: to = still moving.", cue: "why2" },
+          { text: "The rule: arrive at a point \u00b7 arrive in an area; never arrive to.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("arrivew", ["airportDot", "We arrived at the airport.", "already there: a point", { hl: "at" }], ["goHome", "✗ We arrived to the airport.", "to = still moving towards it", { ink: "trouble" }], ["go to, fly to, travel to (moving towards)", "arrive at a point · arrive in an area"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "We arrived ____ the airport at noon.", [["airportDot", "at", true, "a building is | a point"], ["inCity", "in", false, "in is for cities, | countries"], ["goHome", "to", false, "to = still | moving"]], ["arrive at a point \u00b7 arrive in an area", "never arrive to"]),
         ],
       },
       {

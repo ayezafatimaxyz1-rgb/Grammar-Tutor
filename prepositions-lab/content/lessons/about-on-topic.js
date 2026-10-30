@@ -52,16 +52,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a circle round a topic, labelled a chat about cricket (everyday). Right: a block resting on a base, labelled a lecture on economics (formal, focused).",
+        title: "Why this one and not the others?",
+        alt: "The sentence We talked with a gap cricket for hours., then the candidates with pictures: about (right: everyday topic word); on (wrong: formal: a lecture on economics); around (wrong: informal for a topic). Rule: about = everyday topic; on = formal topic (a lecture on).",
         say: [
-          { text: "_a chat about cricket_: **about** is the everyday word for a topic.", cue: "wn1" },
-          { text: "_a lecture on economics_: **on** is more formal and focused, for serious study.", cue: "wn2" },
-          { text: "Both are correct; choose by tone. But never _discuss about_: discuss already means talk about.", cue: "wn-r1" },
+          { text: "Fill the gap: We talked \u2026 cricket for hours. The answer is **about**: everyday topic word.", cue: "why1" },
+          { text: "Why not the others? **on**: formal: a lecture on economics. **around**: informal for a topic.", cue: "why2" },
+          { text: "The rule: about = everyday topic; on = formal topic (a lecture on).", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["aboutCircle", "a chat about cricket", "everyday", { hl: "about" }], ["onBase", "a lecture on economics", "more formal, focused", { ink: "trouble" }], ["about = everyday topic", "on = formal topic \u00b7 never discuss about"]),
+          ...PLAB.kit.lineup("why", "We talked ____ cricket for hours.", [["aboutCircle", "about", true, "everyday | topic word"], ["onBase", "on", false, "formal: a lecture | on economics"], ["circleDoc", "around", false, "informal for | a topic"]], ["about = everyday topic", "on = formal topic (a lecture on)"]),
         ],
       },
       {

@@ -37,16 +37,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a person turning to another, labelled As for me, I agree (turning to a new person). Right: a question mark, labelled As to me, I agree; as to means about.",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap me, I agree with the plan., then the candidates with pictures: As for (right: turning to a new person); As to (wrong: as to = about: doubts as to whether); About (wrong: about me = a topic about me). Rule: as for = turning to someone new; as to = about.",
         say: [
-          { text: "_As for me, I agree._ **As for** turns to a new person or topic.", cue: "wn1" },
-          { text: "**As to** means about: _doubts as to whether he will come._ It does not introduce yourself.", cue: "wn2" },
-          { text: "So: as for = turning to; as to = about.", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 me, I agree with the plan. The answer is **As for**: turning to a new person.", cue: "why1" },
+          { text: "Why not the others? **As to**: as to = about: doubts as to whether. **About**: about me = a topic about me.", cue: "why2" },
+          { text: "The rule: as for = turning to someone new; as to = about.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["turnTo", "As for me, I agree.", "turning to a new person", { hl: "As for" }], ["question", "\u2717 As to me, I agree.", "as to = about", { ink: "trouble" }], ["as for = turning to a new topic", "as to = about: doubts as to whether"]),
+          ...PLAB.kit.lineup("why", "____ me, I agree with the plan.", [["turnTo", "As for", true, "turning to | a new person"], ["question", "As to", false, "as to = about: | doubts as to whether"], ["aboutCircle", "About", false, "about me = | a topic about me"]], ["as for = turning to someone new", "as to = about"]),
         ],
       },
       {

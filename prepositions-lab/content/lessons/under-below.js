@@ -145,16 +145,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a table with a dot directly beneath it, labelled The cat is under the table. Right: a scale with a line, labelled The cat is below the table, which belongs to levels.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The cat is sleeping with a gap the table., then the candidates with pictures: under (right: directly beneath, covered by it); below (wrong: for levels and scales: below zero); on (wrong: on top of it); in (wrong: inside it, in a drawer). Rule: under = directly beneath, covered; below = lower on a level or scale.",
       say: [
-        { text: "_The cat is under the table_: directly beneath it, covered by it.", cue: "wn1" },
-        { text: "**Below** is for levels with a gap, and for scales: _below the line, below zero._ For a cat beneath a table, it sounds odd.", cue: "wn2" },
-        { text: "Ask: covered and directly beneath (under), or simply lower on a scale (below)?", cue: "wn-r1" },
+        { text: "Fill the gap: The cat is sleeping \u2026 the table. The answer is **under**: directly beneath, covered by it.", cue: "why1" },
+        { text: "Why not the others? **below**: for levels and scales: below zero. **on**: on top of it. **in**: inside it, in a drawer.", cue: "why2" },
+        { text: "The rule: under = directly beneath, covered; below = lower on a level or scale.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["underTable", "The cat is under the table.", "directly beneath, covered", { hl: "under" }], ["belowLine", "\u2717 The cat is below the table.", "below is for levels and scales", { ink: "trouble" }], ["under = directly beneath, covered", "below = lower on a level or scale"]),
+        ...PLAB.kit.lineup("why", "The cat is sleeping ____ the table.", [["underTable", "under", true, "directly beneath, | covered by it"], ["belowLine", "below", false, "for levels and | scales: below zero"], ["cupOnTable", "on", false, "on top of it"], ["inDrawer", "in", false, "inside it, | in a drawer"]], ["under = directly beneath, covered", "below = lower on a level or scale"]),
       ],
     },
     {

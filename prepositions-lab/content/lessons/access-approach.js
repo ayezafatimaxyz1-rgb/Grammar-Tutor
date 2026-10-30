@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence Millions lack access with a gap clean water., then the candidates with pictures: to (right: a way in, reaching it); of (wrong: of = a part of; access is a way in); for (wrong: for = who benefits). Rule: access to, approach to, response to; commitment to + -ing.",
+        say: [
+          { text: "Fill the gap: Millions lack access \u2026 clean water. The answer is **to**: a way in, reaching it.", cue: "why1" },
+          { text: "Why not the others? **of**: of = a part of; access is a way in. **for**: for = who benefits.", cue: "why2" },
+          { text: "The rule: access to, approach to, response to; commitment to + -ing.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Millions lack access ____ clean water.", [["accessTo", "to", true, "a way in, | reaching it"], ["cross", "of", false, "of = a part of; access | is a way in"], ["giveTo", "for", false, "for = who | benefits"]], ["access to, approach to, response to", "commitment to + -ing"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the preposition",
         alt: "The board remains.",

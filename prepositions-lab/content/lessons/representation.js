@@ -53,16 +53,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a leader above a group, labelled The nurse is in charge of the ward (she is responsible). Right: an adult protecting children, labelled The ward is in the charge of the nurse (it is in her care).",
+        title: "Why this one and not the others?",
+        alt: "The sentence She spoke with a gap the government at the UN., then the candidates with pictures: on behalf of (right: as its representative); on the part of (wrong: = by: a mistake on the part of); in favour of (wrong: = supporting). Rule: on behalf of = representing; on the part of = by.",
         say: [
-          { text: "_The nurse is in charge of the ward_: she is the one responsible.", cue: "wn1" },
-          { text: "Add **the** and the direction flips: _The ward is in the charge of the nurse_: the ward is in her care.", cue: "wn2" },
-          { text: "One small word decides who is responsible for whom.", cue: "wn-r1" },
+          { text: "Fill the gap: She spoke \u2026 the government at the UN. The answer is **on behalf of**: as its representative.", cue: "why1" },
+          { text: "Why not the others? **on the part of**: = by: a mistake on the part of. **in favour of**: = supporting.", cue: "why2" },
+          { text: "The rule: on behalf of = representing; on the part of = by.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["leaderGroup", "The nurse is in charge of the ward.", "she is responsible", { hl: "in charge of" }], ["careFor", "The ward is in the charge of the nurse.", "different: the ward is in her care", { ink: "trouble" }], ["in charge of = responsible for", "in the charge of = in someone's care"]),
+          ...PLAB.kit.lineup("why", "She spoke ____ the government at the UN.", [["speakFor", "on behalf of", true, "as its | representative"], ["blame", "on the part of", false, "= by: a mistake | on the part of"], ["scaleTip", "in favour of", false, "= supporting"]], ["on behalf of = representing", "on the part of = by"]),
         ],
       },
       {

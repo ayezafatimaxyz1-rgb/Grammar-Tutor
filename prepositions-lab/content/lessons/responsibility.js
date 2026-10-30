@@ -67,16 +67,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a person with an arrow up to a person above, labelled Ministers are accountable to Parliament (answer to it). Right: an adult caring for children, labelled accountable for Parliament, which would mean ministers look after Parliament.",
+        title: "Why this one and not the others?",
+        alt: "The sentence Ministers are accountable with a gap Parliament., then the candidates with pictures: to (right: the authority above them); for (wrong: for = the task: for spending); of (wrong: of = belonging; Parliament does not own them). Rule: accountable to + authority; accountable for + task.",
         say: [
-          { text: "_Ministers are accountable to Parliament_: Parliament is above them, and they must answer to it.", cue: "accountw1" },
-          { text: "_Accountable for Parliament_ would make Parliament the task in their care, as if ministers ran Parliament. The authority and the task have swapped places.", cue: "accountw2" },
-          { text: "**For** is right for the task: _accountable for public spending._ Ask: is it the authority I answer to (to), or the job in my care (for)?", cue: "accountw-r1" },
+          { text: "Fill the gap: Ministers are accountable \u2026 Parliament. The answer is **to**: the authority above them.", cue: "why1" },
+          { text: "Why not the others? **for**: for = the task: for spending. **of**: of = belonging; Parliament does not own them.", cue: "why2" },
+          { text: "The rule: accountable to + authority; accountable for + task.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("accountw", ["answerTo", "accountable to Parliament", "the authority above", { hl: "to" }], ["careFor", "✗ accountable for Parliament", "would mean they run Parliament", { ink: "trouble" }], ["to + the authority you answer to", "for + the task in your care"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Ministers are accountable ____ Parliament.", [["answerTo", "to", true, "the authority | above them"], ["careFor", "for", false, "for = the task: | for spending"], ["cross", "of", false, "of = belonging; Parliament | does not own them"]], ["accountable to + authority", "accountable for + task"]),
         ],
       },
       {

@@ -51,16 +51,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: dots everywhere in an area, labelled throughout the country. Right: the same, labelled throughout the whole country, which says whole twice.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The floods caused damage with a gap Sindh., then the candidates with pictures: throughout (right: in every part of it); through (wrong: passing through, not everywhere); along (wrong: only along one line). Rule: throughout = in every part; through = passing in and out.",
       say: [
-        { text: "_throughout the country_: in every part of it.", cue: "wn1" },
-        { text: "**Throughout** already means the whole. _Throughout the whole country_ repeats it.", cue: "wn2" },
-        { text: "Also never _throughout of._", cue: "wn-r1" },
+        { text: "Fill the gap: The floods caused damage \u2026 Sindh. The answer is **throughout**: in every part of it.", cue: "why1" },
+        { text: "Why not the others? **through**: passing through, not everywhere. **along**: only along one line.", cue: "why2" },
+        { text: "The rule: throughout = in every part; through = passing in and out.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["everywhere", "throughout the country", "already = every part", { hl: "throughout" }], ["everywhere", "\u2717 throughout the whole country", "whole is repeated", { ink: "trouble" }], ["throughout the year", "never throughout the whole, throughout of"]),
+        ...PLAB.kit.lineup("why", "The floods caused damage ____ Sindh.", [["everywhere", "throughout", true, "in every part | of it"], ["passThrough", "through", false, "passing through, | not everywhere"], ["alongRiver", "along", false, "only along | one line"]], ["throughout = in every part", "through = passing in and out"]),
       ],
     },
     {

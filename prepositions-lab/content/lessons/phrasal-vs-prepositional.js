@@ -65,6 +65,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence I did not know the word, so I looked it with a gap., then the candidates with pictures: up (right: particle: search in a book); for (wrong: looked for it = searched for it); into (wrong: = investigated it). Rule: look it up = find it in a book; look for = search \u00b7 look into = investigate.",
+        say: [
+          { text: "Fill the gap: I did not know the word, so I looked it \u2026. The answer is **up**: particle: search in a book.", cue: "why1" },
+          { text: "Why not the others? **for**: looked for it = searched for it. **into**: = investigated it.", cue: "why2" },
+          { text: "The rule: look it up = find it in a book; look for = search \u00b7 look into = investigate.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "I did not know the word, so I looked it ____.", [["dictionary", "up", true, "particle: search | in a book"], ["searchQ", "for", false, "looked for it = | searched for it"], ["lookInto", "into", false, "= investigated it"]], ["look it up = find it in a book", "look for = search \u00b7 look into = investigate"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: which is phrasal?",
         alt: "The pairs remain on the board.",

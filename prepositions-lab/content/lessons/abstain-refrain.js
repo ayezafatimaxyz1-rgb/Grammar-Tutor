@@ -68,6 +68,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence Please refrain with a gap smoking., then the candidates with pictures: from (right: holding back from it); to (wrong: to = moving towards; refrain is moving away); of (wrong: of = belonging; nothing belongs here). Rule: refrain from, abstain from + -ing; comply with \u00b7 adhere to.",
+        say: [
+          { text: "Fill the gap: Please refrain \u2026 smoking. The answer is **from**: holding back from it.", cue: "why1" },
+          { text: "Why not the others? **to**: to = moving towards; refrain is moving away. **of**: of = belonging; nothing belongs here.", cue: "why2" },
+          { text: "The rule: refrain from, abstain from + -ing; comply with \u00b7 adhere to.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Please refrain ____ smoking.", [["holdBack", "from", true, "holding back | from it"], ["arrowR", "to", false, "to = moving towards; | refrain is moving away"], ["cross", "of", false, "of = belonging; nothing | belongs here"]], ["refrain from, abstain from + -ing", "comply with \u00b7 adhere to"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: formal writing",
         alt: "The board remains.",

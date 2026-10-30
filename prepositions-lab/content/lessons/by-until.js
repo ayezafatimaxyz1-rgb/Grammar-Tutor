@@ -52,16 +52,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a dot before a deadline line, labelled Submit it by Friday (no later than). Right: a long bar ending at Friday, labelled Submit it until Friday, which means keep submitting.",
+        title: "Why this one and not the others?",
+        alt: "The sentence Submit the form with a gap Friday., then the candidates with pictures: by (right: a deadline: no later than); until (wrong: until = keep doing it up to Friday); since (wrong: since looks back from now). Rule: by = a deadline for one action; until = a state that lasts up to then.",
         say: [
-          { text: "_Submit it by Friday_: one action, done any time before the deadline.", cue: "wn1" },
-          { text: "**Until** describes something that continues up to that point: _The office is closed until Friday._ _Submit it until Friday_ sounds like submitting again and again.", cue: "wn2" },
-          { text: "Ask: one action before a deadline (by), or a state that lasts up to then (until)?", cue: "wn-r1" },
+          { text: "Fill the gap: Submit the form \u2026 Friday. The answer is **by**: a deadline: no later than.", cue: "why1" },
+          { text: "Why not the others? **until**: until = keep doing it up to Friday. **since**: since looks back from now.", cue: "why2" },
+          { text: "The rule: by = a deadline for one action; until = a state that lasts up to then.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["priorDot", "Submit it by Friday.", "a deadline: no later than", { hl: "by" }], ["notUntil", "\u2717 Submit it until Friday.", "until = keeps going up to then", { ink: "trouble" }], ["by Friday = a deadline", "until Friday = continuing up to then"]),
+          ...PLAB.kit.lineup("why", "Submit the form ____ Friday.", [["priorDot", "by", true, "a deadline: | no later than"], ["notUntil", "until", false, "until = keep doing | it up to Friday"], ["sincePoint", "since", false, "since looks back | from now"]], ["by = a deadline for one action", "until = a state that lasts up to then"]),
         ],
       },
       {

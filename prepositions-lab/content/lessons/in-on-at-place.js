@@ -175,16 +175,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a dot on a road, labelled She lives at 12 Mall Road (an exact address is a point). Right: a long road, labelled She lives on 12 Mall Road, which mixes the line word on with an exact number.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The photo is with a gap page 12., then the candidates with pictures: on (right: a page is a surface); in (wrong: in is for what the picture contains); at (wrong: at is a point, not a page). Rule: on a page, on a screen (a surface); in the photo, in the report (contents).",
       say: [
-        { text: "_She lives at 12 Mall Road._ With the house number, the address is one exact point, so **at**.", cue: "wn1" },
-        { text: "**On** pictures a street as a long line: _on Mall Road._ Put a number in front and you have named a point, so on no longer fits.", cue: "wn2" },
-        { text: "Without the number, **on** is right: _She lives on Mall Road._ The city takes **in**.", cue: "wn-r1" },
+        { text: "Fill the gap: The photo is \u2026 page 12. The answer is **on**: a page is a surface.", cue: "why1" },
+        { text: "Why not the others? **in**: in is for what the picture contains. **at**: at is a point, not a page.", cue: "why2" },
+        { text: "The rule: on a page, on a screen (a surface); in the photo, in the report (contents).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["reachDot", "She lives at 12 Mall Road.", "number = an exact point", { hl: "at" }], ["roadPass", "\u2717 She lives on 12 Mall Road.", "on is for the street line only", { ink: "trouble" }], ["in Lahore \u00b7 on Mall Road \u00b7 at 12 Mall Road", "area \u00b7 line \u00b7 exact point"]),
+        ...PLAB.kit.lineup("why", "The photo is ____ page 12.", [["storyBook", "on", true, "a page is a | surface"], ["dotIn", "in", false, "in is for what the | picture contains"], ["reachDot", "at", false, "at is a point, | not a page"]], ["on a page, on a screen (a surface)", "in the photo, in the report (contents)"]),
       ],
     },
     {

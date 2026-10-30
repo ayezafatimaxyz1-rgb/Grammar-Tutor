@@ -36,16 +36,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a path with a discovery along it, labelled In the course of the inquiry, facts emerged (during). Right: a seesaw, labelled At the expense of the inquiry, which means harming it.",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap the inquiry, new facts emerged., then the candidates with pictures: In the course of (right: = during); At the expense of (wrong: = harming it); By way of (wrong: = as a form of). Rule: in the course of = during; at the expense of = at the cost of.",
         say: [
-          { text: "_In the course of the inquiry, new facts emerged_: during the inquiry, somewhere along its path.", cue: "wn1" },
-          { text: "_At the expense of_ means one thing gains while another is harmed. The inquiry was not harmed, so it does not fit.", cue: "wn2" },
-          { text: "Use **at the expense of** for a cost: _growth at the expense of the environment._", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 the inquiry, new facts emerged. The answer is **In the course of**: = during.", cue: "why1" },
+          { text: "Why not the others? **At the expense of**: = harming it. **By way of**: = as a form of.", cue: "why2" },
+          { text: "The rule: in the course of = during; at the expense of = at the cost of.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["courseAlong", "In the course of the inquiry, ...", "= during", { hl: "In the course of" }], ["expense", "\u2717 At the expense of the inquiry, ...", "= harming it", { ink: "trouble" }], ["in the course of = during", "at the expense of = at the cost of"]),
+          ...PLAB.kit.lineup("why", "____ the inquiry, new facts emerged.", [["courseAlong", "In the course of", true, "= during"], ["expense", "At the expense of", false, "= harming it"], ["flowersApology", "By way of", false, "= as a form of"]], ["in the course of = during", "at the expense of = at the cost of"]),
         ],
       },
       {

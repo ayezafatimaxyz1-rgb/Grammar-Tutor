@@ -50,16 +50,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: two bars with a bracket for the gap, labelled an increase of 10 per cent (the size of the change). Right: rising bars, labelled an increase in 10 per cent, which treats the number as the thing that grows.",
+        title: "Why this one and not the others?",
+        alt: "The sentence There was a sharp increase with a gap prices., then the candidates with pictures: in (right: the thing that changes); of (wrong: of = the amount: of 10 per cent); by (wrong: by follows the verb: rose by 10 per cent). Rule: an increase in prices \u00b7 an increase of 10%; prices rose by 10%.",
         say: [
-          { text: "_an increase of 10 per cent_: **of** gives the size of the change, the gap between the bars.", cue: "increasew1" },
-          { text: "_an increase in 10 per cent_ would treat the number as the thing that is growing. A percentage is a size, not a thing like prices.", cue: "increasew2" },
-          { text: "**In** is right for the thing that changes: _an increase in prices._ Together: _an increase of 10 per cent in prices._", cue: "increasew-r1" },
+          { text: "Fill the gap: There was a sharp increase \u2026 prices. The answer is **in**: the thing that changes.", cue: "why1" },
+          { text: "Why not the others? **of**: of = the amount: of 10 per cent. **by**: by follows the verb: rose by 10 per cent.", cue: "why2" },
+          { text: "The rule: an increase in prices \u00b7 an increase of 10%; prices rose by 10%.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("increasew", ["riseBy", "an increase of 10 per cent", "the size of the change", { hl: "of" }], ["riseIn", "✗ an increase in 10 per cent", "10 per cent is not a thing", { ink: "trouble" }], ["in + what changes (prices) · of + how much", "an increase of 10 per cent in prices"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "There was a sharp increase ____ prices.", [["riseIn", "in", true, "the thing that | changes"], ["riseBy", "of", false, "of = the amount: | of 10 per cent"], ["arrowUp", "by", false, "by follows the verb: | rose by 10 per cent"]], ["an increase in prices \u00b7 an increase of 10%", "prices rose by 10%"]),
         ],
       },
       {

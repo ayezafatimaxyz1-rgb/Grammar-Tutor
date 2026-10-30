@@ -48,16 +48,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a person who knows the route, labelled I am familiar with the city. Right: a house with an arrow to a person, labelled I am familiar to the city, which would mean the city knows me.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I am familiar with a gap the rules., then the candidates with pictures: with (right: the person knows them); to (wrong: the rules would know me); of (wrong: of goes with aware). Rule: person first: familiar with; thing first: familiar to.",
         say: [
-          { text: "_I am familiar with the city_: I know the city well. The person comes first, so **with**.", cue: "familiarw1" },
-          { text: "_I am familiar to the city_ turns the picture round: now the city knows me, as if I were a famous face in its streets.", cue: "familiarw2" },
-          { text: "**To** is right when the thing comes first: _The city is familiar to me._ Ask who knows whom: person first, with; thing first, to.", cue: "familiarw-r1" },
+          { text: "Fill the gap: I am familiar \u2026 the rules. The answer is **with**: the person knows them.", cue: "why1" },
+          { text: "Why not the others? **to**: the rules would know me. **of**: of goes with aware.", cue: "why2" },
+          { text: "The rule: person first: familiar with; thing first: familiar to.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("familiarw", ["knowsWay", "I am familiar with the city.", "I know the city", { hl: "with" }], [[["house", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "✗ I am familiar to the city.", "would mean the city knows me", { ink: "trouble" }], ["person first: familiar with the thing", "thing first: familiar to the person"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "I am familiar ____ the rules.", [["knowsWay", "with", true, "the person | knows them"], [[["doc", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "to", false, "the rules | would know me"], ["awareOf", "of", false, "of goes with | aware"]], ["person first: familiar with", "thing first: familiar to"]),
         ],
       },
       {

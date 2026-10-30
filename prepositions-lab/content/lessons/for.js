@@ -56,16 +56,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a person going to a shop, labelled She went to buy bread (to + verb). Right: the same, labelled She went for to buy bread, which adds for.",
+        title: "Why this one and not the others?",
+        alt: "The sentence This knife is with a gap cutting bread., then the candidates with pictures: for (right: purpose + -ing); to (wrong: to + verb: to cut bread); with (wrong: with names the tool, not the aim). Rule: for + -ing or noun = purpose; to + verb = purpose: went to buy.",
         say: [
-          { text: "_She went to buy bread_: purpose with a verb uses **to**.", cue: "wn1" },
-          { text: "**For** takes a noun: _She went for bread._ _For to buy_ puts both together.", cue: "wn2" },
-          { text: "So: _to + verb_ or _for + noun_, never both.", cue: "wn-r1" },
+          { text: "Fill the gap: This knife is \u2026 cutting bread. The answer is **for**: purpose + -ing.", cue: "why1" },
+          { text: "Why not the others? **to**: to + verb: to cut bread. **with**: with names the tool, not the aim.", cue: "why2" },
+          { text: "The rule: for + -ing or noun = purpose; to + verb = purpose: went to buy.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["toShop", "She went to buy bread.", "to + verb", { hl: "to" }], ["toShop", "\u2717 She went for to buy bread.", "for takes a noun: for bread", { ink: "trouble" }], ["to + verb: to buy bread", "for + noun: for bread"]),
+          ...PLAB.kit.lineup("why", "This knife is ____ cutting bread.", [["bread", "for", true, "purpose + -ing"], ["arrowR", "to", false, "to + verb: | to cut bread"], ["bread", "with", false, "with names the | tool, not the aim"]], ["for + -ing or noun = purpose", "to + verb = purpose: went to buy"]),
         ],
       },
       {

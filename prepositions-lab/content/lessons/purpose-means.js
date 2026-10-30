@@ -51,16 +51,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an eye aiming at a target, labelled with a view to reducing costs (+ -ing). Right: the same, labelled with a view to reduce costs.",
+        title: "Why this one and not the others?",
+        alt: "The sentence They cut staff with a view to with a gap costs., then the candidates with pictures: reducing (right: to is a preposition: -ing); reduce (wrong: to + verb is the infinitive); reduced (wrong: a past form). Rule: with a view to + -ing; in order to + verb.",
         say: [
-          { text: "_with a view to reducing costs_: **to** here is a preposition, so the verb takes -ing.", cue: "wn1" },
-          { text: "_with a view to reduce_ treats to as an infinitive. In careful writing it is wrong.", cue: "wn2" },
-          { text: "Compare: _in order to reduce_ (infinitive) and _with a view to reducing_ (preposition).", cue: "wn-r1" },
+          { text: "Fill the gap: They cut staff with a view to \u2026 costs. The answer is **reducing**: to is a preposition: -ing.", cue: "why1" },
+          { text: "Why not the others? **reduce**: to + verb is the infinitive. **reduced**: a past form.", cue: "why2" },
+          { text: "The rule: with a view to + -ing; in order to + verb.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["aimGoal", "with a view to reducing costs", "to + -ing", { hl: "reducing" }], ["aimGoal", "\u2717 with a view to reduce costs", "to is a preposition here", { ink: "trouble" }], ["with a view to reducing", "in order to reduce"]),
+          ...PLAB.kit.lineup("why", "They cut staff with a view to ____ costs.", [["aimGoal", "reducing", true, "to is a | preposition: -ing"], ["aimGoal", "reduce", false, "to + verb is | the infinitive"], ["pointPast", "reduced", false, "a past form"]], ["with a view to + -ing", "in order to + verb"]),
         ],
       },
       {

@@ -74,6 +74,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence It all depends with a gap the weather., then the candidates with pictures: on (right: rests on it like a support); of (wrong: of = belonging; depend means resting on); from (wrong: from = a starting point, not a support). Rule: depend on, rely on, count on, insist on; formal: depend upon.",
+        say: [
+          { text: "Fill the gap: It all depends \u2026 the weather. The answer is **on**: rests on it like a support.", cue: "why1" },
+          { text: "Why not the others? **of**: of = belonging; depend means resting on. **from**: from = a starting point, not a support.", cue: "why2" },
+          { text: "The rule: depend on, rely on, count on, insist on; formal: depend upon.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "It all depends ____ the weather.", [["support", "on", true, "rests on it like | a support"], ["cross", "of", false, "of = belonging; depend | means resting on"], ["origin", "from", false, "from = a starting | point, not a support"]], ["depend on, rely on, count on, insist on", "formal: depend upon"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the preposition",
         alt: "The rows remain on the board.",

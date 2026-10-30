@@ -38,6 +38,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The work will be finished with a gap two weeks, maybe sooner., then the candidates with pictures: within (right: any time inside the two weeks); in (wrong: in = at the end of two weeks); after (wrong: only once they are over). Rule: within = no later than; in = when the time has passed.",
+        say: [
+          { text: "Fill the gap: The work will be finished \u2026 two weeks, maybe sooner. The answer is **within**: any time inside the two weeks.", cue: "why1" },
+          { text: "Why not the others? **in**: in = at the end of two weeks. **after**: only once they are over.", cue: "why2" },
+          { text: "The rule: within = no later than; in = when the time has passed.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The work will be finished ____ two weeks, maybe sooner.", [["inPeriod", "within", true, "any time inside | the two weeks"], ["pointFuture", "in", false, "in = at the end of | two weeks"], ["afterDot", "after", false, "only once they | are over"]], ["within = no later than", "in = when the time has passed"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: a story in the past",
         alt: "The time line and the story remain on the board.",

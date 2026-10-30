@@ -54,16 +54,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a group with one person outside, labelled Everyone came except Ali (Ali did not come). Right: a plus sign, labelled Everyone came besides Ali (Ali came too).",
+        title: "Why this one and not the others?",
+        alt: "The sentence Everyone came with a gap Ali., then the candidates with pictures: except (right: Ali is left out); besides (wrong: adds Ali: he came too); without (wrong: = not with Ali, he stayed behind). Rule: except = not including; besides = in addition to.",
         say: [
-          { text: "_Everyone came except Ali_: Ali is taken out of the group. He did not come.", cue: "wn1" },
-          { text: "_Besides Ali_ means in addition to Ali: he came, and others came too. The fact flips.", cue: "wn2" },
-          { text: "Except subtracts; besides adds.", cue: "wn-r1" },
+          { text: "Fill the gap: Everyone came \u2026 Ali. The answer is **except**: Ali is left out.", cue: "why1" },
+          { text: "Why not the others? **besides**: adds Ali: he came too. **without**: = not with Ali, he stayed behind.", cue: "why2" },
+          { text: "The rule: except = not including; besides = in addition to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["groupOut", "Everyone came except Ali.", "Ali did not come", { hl: "except" }], ["plus", "Others came besides Ali.", "different: Ali came too", { ink: "trouble" }], ["except = not including", "besides = in addition to"]),
+          ...PLAB.kit.lineup("why", "Everyone came ____ Ali.", [["groupOut", "except", true, "Ali is left out"], ["plus", "besides", false, "adds Ali: | he came too"], ["personLeft", "without", false, "= not with Ali, | he stayed behind"]], ["except = not including", "besides = in addition to"]),
         ],
       },
       {

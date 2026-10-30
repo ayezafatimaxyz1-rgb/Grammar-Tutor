@@ -66,6 +66,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence I cannot put up with a gap this noise any longer., then the candidates with pictures: with (right: put up with = tolerate); to (wrong: to = a goal; you are not moving to the noise); for (wrong: for = what you want; you do not want noise). Rule: put up with, do away with, come up with; look down on, look up to, run out of.",
+        say: [
+          { text: "Fill the gap: I cannot put up \u2026 this noise any longer. The answer is **with**: put up with = tolerate.", cue: "why1" },
+          { text: "Why not the others? **to**: to = a goal; you are not moving to the noise. **for**: for = what you want; you do not want noise.", cue: "why2" },
+          { text: "The rule: put up with, do away with, come up with; look down on, look up to, run out of.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "I cannot put up ____ this noise any longer.", [["pressed", "with", true, "put up with | = tolerate"], ["arrowR", "to", false, "to = a goal; you are | not moving to the noise"], ["target", "for", false, "for = what you want; | you do not want noise"]], ["put up with, do away with, come up with", "look down on, look up to, run out of"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: meaning",
         alt: "The board remains.",

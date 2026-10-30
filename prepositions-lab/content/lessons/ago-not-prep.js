@@ -71,16 +71,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a time line counting back from now, labelled two years ago. Right: counting back from a past point, labelled two years before, which counts from another past event.",
+        title: "Why this one and not the others?",
+        alt: "The sentence I met him two years with a gap., then the candidates with pictures: ago (right: counted back from now); before (wrong: counts back from another past moment); since (wrong: since needs a point: since 2023). Rule: ago = back from now (past simple); before = back from a past point.",
         say: [
-          { text: "_I met him two years ago_: count back from now.", cue: "wn1" },
-          { text: "_two years before_ counts back from another past moment: _He had left two years before the war._", cue: "wn2" },
-          { text: "Use **ago** from now; use **before** from a past point.", cue: "wn-r1" },
+          { text: "Fill the gap: I met him two years \u2026. The answer is **ago**: counted back from now.", cue: "why1" },
+          { text: "Why not the others? **before**: counts back from another past moment. **since**: since needs a point: since 2023.", cue: "why2" },
+          { text: "The rule: ago = back from now (past simple); before = back from a past point.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["pointPast", "two years ago", "back from now", { hl: "ago" }], ["backFromPoint", "two years before", "different: back from a past point", { ink: "trouble" }], ["ago = from now", "before = from another past moment"]),
+          ...PLAB.kit.lineup("why", "I met him two years ____.", [["pointPast", "ago", true, "counted back | from now"], ["backFromPoint", "before", false, "counts back from | another past moment"], ["sincePoint", "since", false, "since needs a | point: since 2023"]], ["ago = back from now (past simple)", "before = back from a past point"]),
         ],
       },
       {

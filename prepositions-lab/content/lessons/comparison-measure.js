@@ -76,16 +76,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a tank filled to a lid, labelled The hall holds up to 500 people (500 at most). Right: a tank filled over the line, labelled The hall holds in excess of 500 people (more than 500).",
+        title: "Why this one and not the others?",
+        alt: "The sentence The hall holds with a gap 500 people., then the candidates with pictures: up to (right: 500 at most); in excess of (wrong: more than 500); far from (wrong: far from = not at all). Rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.",
         say: [
-          { text: "_The hall holds up to 500 people_: 500 is the lid; it can hold fewer, never more.", cue: "wn1" },
-          { text: "_in excess of 500_ would mean more than 500, the water going over the line. For a hall's capacity, that changes the fact.", cue: "wn2" },
-          { text: "Use **in excess of** for amounts that go past a figure: _losses in excess of Rs 1 billion._", cue: "wn-r1" },
+          { text: "Fill the gap: The hall holds \u2026 500 people. The answer is **up to**: 500 at most.", cue: "why1" },
+          { text: "Why not the others? **in excess of**: more than 500. **far from**: far from = not at all.", cue: "why2" },
+          { text: "The rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["tankLid", "holds up to 500 people", "500 at most", { hl: "up to" }], ["tankOver", "holds in excess of 500 people", "different: more than 500", { ink: "trouble" }], ["up to = the most, a ceiling", "in excess of = more than"]),
+          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", false, "more than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"]),
         ],
       },
       {

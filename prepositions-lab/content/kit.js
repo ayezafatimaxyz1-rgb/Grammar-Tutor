@@ -118,6 +118,29 @@ PLAB.kit = {
     return out;
   },
 
+  // "Why this one and not the others?": a sentence with a gap, then every likely candidate with
+  // a picture of what it would mean, a tick or a cross, and a short reason ("|" breaks the line).
+  // Each option: [picSpec, word, ok, reason].
+  lineup(prefix, sentence, options, rules = []) {
+    const n = options.length;
+    const centres = n === 2 ? [250, 710] : n === 3 ? [165, 480, 795] : [120, 360, 600, 840];
+    const fit = n === 4 ? 225 : 290;
+    const out = [{ do: "write", id: `${prefix}-s`, text: sentence, x: 480, y: 58, size: 36, anchor: "middle" }];
+    options.forEach(([spec, word, ok, reason], i) => {
+      const id = `${prefix}${i + 1}`;
+      const cx = centres[i];
+      out.push(...PLAB.kit.pic(`${id}p`, spec, cx - 63, 96, 0.9, { gap: i ? 450 : 500 }));
+      out.push({ do: "write", id, text: `${ok ? "✓" : "✗"} ${word}`, x: cx, y: 222, size: 34, anchor: "middle", ink: ok ? "accent2" : "trouble", fit, gap: 150 });
+      String(reason).split("|").forEach((line, j) => {
+        out.push({ do: "write", id: `${id}s${j || ""}`, text: line.trim(), x: cx, y: 262 + j * 30, size: 22, ink: "muted", anchor: "middle", fit, gap: j ? 0 : 120 });
+      });
+    });
+    rules.forEach((r, i) => {
+      out.push({ do: "write", id: `${prefix}-r${i + 1}`, text: r, x: 480, y: 400 + i * 56, size: 28, ink: "accent", anchor: "middle", gap: i ? 300 : 500 });
+    });
+    return out;
+  },
+
   // "Why not the other one?": the right sentence with its picture, beside the swapped sentence
   // with a picture of what the swap would really mean, then a rule line for each choice.
   // right and wrong are panel items: [picSpec, text, sub, { hl, ink }].

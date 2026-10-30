@@ -130,16 +130,16 @@ PLAB.registerLesson({
     },
     {
       id: "why-not",
-      title: "Why not the other one?",
-      alt: "Left: a person at the front of a building on the same side, labelled in front of the hospital. Right: two buildings facing each other across a road, labelled opposite the hospital.",
+      title: "Why this one and not the others?",
+      alt: "The sentence The car is parked with a gap the house., then the candidates with pictures: in front of (right: same side, at its front); opposite (wrong: across the road, facing it); before (wrong: before is for time, or formal: before a court); ahead of (wrong: further along a road or a race). Rule: in front of = same side; opposite = across \u00b7 before = time (or formal).",
       say: [
-        { text: "_in front of the hospital_: on the same side, at its front door.", cue: "wn1" },
-        { text: "_opposite the hospital_ means across the road, facing it. If you swap them, your friend waits on the wrong side of the street.", cue: "wn2" },
-        { text: "Ask: same side (in front of) or the other side, facing it (opposite)?", cue: "wn-r1" },
+        { text: "Fill the gap: The car is parked \u2026 the house. The answer is **in front of**: same side, at its front.", cue: "why1" },
+        { text: "Why not the others? **opposite**: across the road, facing it. **before**: before is for time, or formal: before a court. **ahead of**: further along a road or a race.", cue: "why2" },
+        { text: "The rule: in front of = same side; opposite = across \u00b7 before = time (or formal).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.swap("wn", ["nearSchool", "in front of the hospital", "same side, at its front", { hl: "in front of" }], ["acrossRoad", "opposite the hospital", "different: across the road", { ink: "trouble" }], ["in front of = same side", "opposite = across, facing it"]),
+        ...PLAB.kit.lineup("why", "The car is parked ____ the house.", [["nearSchool", "in front of", true, "same side, at | its front"], ["acrossRoad", "opposite", false, "across the road, | facing it"], ["priorDot", "before", false, "before is for time, | or formal: before a court"], ["wordsMove", "ahead of", false, "further along a | road or a race"]], ["in front of = same side", "opposite = across \u00b7 before = time (or formal)"]),
       ],
     },
     {

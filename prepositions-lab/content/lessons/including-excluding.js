@@ -48,6 +48,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The fee is Rs 50,000, with a gap hostel charges. (They are not in it.), then the candidates with pictures: excluding (right: left out of the total); including (wrong: would put them inside the total); besides (wrong: = in addition to). Rule: including = part of the total; excluding = left out.",
+        say: [
+          { text: "Fill the gap: The fee is Rs 50,000, \u2026 hostel charges. (They are not in it.) The answer is **excluding**: left out of the total.", cue: "why1" },
+          { text: "Why not the others? **including**: would put them inside the total. **besides**: = in addition to.", cue: "why2" },
+          { text: "The rule: including = part of the total; excluding = left out.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The fee is Rs 50,000, ____ hostel charges. (They are not in it.)", [["groupOut", "excluding", true, "left out of | the total"], ["plus", "including", false, "would put them | inside the total"], ["addMore", "besides", false, "= in addition to"]], ["including = part of the total", "excluding = left out"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: formal register",
         alt: "The notwithstanding rows remain on the board.",

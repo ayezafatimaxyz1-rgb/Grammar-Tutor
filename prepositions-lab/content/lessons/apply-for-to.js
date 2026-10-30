@@ -71,16 +71,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: an envelope going towards a star, labelled She applied for the post (the post is the prize). Right: an envelope going into a building, labelled She applied to the post, which would treat the post as the office that receives the letter.",
+        title: "Why this one and not the others?",
+        alt: "The sentence She applied with a gap the job., then the candidates with pictures: for (right: the prize she wants); to (wrong: to = the office that receives it); (no word) (wrong: apply a job = spread it like paint). Rule: apply for + what you want; apply to + the place that receives it.",
         say: [
-          { text: "_She applied for the post._ The post is the prize she hopes to win, so **for**.", cue: "applyw1" },
-          { text: "_She applied to the post_ would send the letter to the post, as if the post were an office that opens letters. A post cannot receive an application.", cue: "applyw2" },
-          { text: "**To** is right for the place that receives the letter: _She applied to the Commission._ Ask: does it receive the letter (to), or is it what I want (for)?", cue: "applyw-r1" },
+          { text: "Fill the gap: She applied \u2026 the job. The answer is **for**: the prize she wants.", cue: "why1" },
+          { text: "Why not the others? **to**: to = the office that receives it. **(no word)**: apply a job = spread it like paint.", cue: "why2" },
+          { text: "The rule: apply for + what you want; apply to + the place that receives it.", cue: "why-r1" },
         ],
         actions: [
-          K.clear("clear-why"),
-          ...K.swap("applyw", ["wantStar", "She applied for the post.", "the post is the prize", { hl: "for" }], ["applyTo", "✗ She applied to the post.", "a post cannot receive letters", { ink: "trouble" }], ["to + the place that receives it: to the Commission", "for + the thing you hope to get: for the post"]),
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "She applied ____ the job.", [["wantStar", "for", true, "the prize she | wants"], ["applyTo", "to", false, "to = the office | that receives it"], ["cross", "(no word)", false, "apply a job = | spread it like paint"]], ["apply for + what you want", "apply to + the place that receives it"]),
         ],
       },
       {

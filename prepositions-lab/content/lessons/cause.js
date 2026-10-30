@@ -66,16 +66,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a fog with a delayed plane, labelled The delay was due to fog (after be). Right: the same, labelled Due to fog, the flight was delayed (disputed at the start).",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap fog, the flight was delayed., then the candidates with pictures: Owing to (right: safe at the start); Due to (wrong: disputed at the start; fine after be); Because (wrong: + a clause: because it was foggy). Rule: Owing to fog, ... \u00b7 Because of fog, ...; The delay was due to fog..",
         say: [
-          { text: "_The delay was due to fog._ After **be**, due to is accepted by everyone.", cue: "wn1" },
-          { text: "At the start of a sentence, _due to_ is disputed. Many examiners prefer **owing to** or **because of** there.", cue: "wn2" },
-          { text: "Safest: _Owing to fog, the flight was delayed._", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 fog, the flight was delayed. The answer is **Owing to**: safe at the start.", cue: "why1" },
+          { text: "Why not the others? **Due to**: disputed at the start; fine after be. **Because**: + a clause: because it was foggy.", cue: "why2" },
+          { text: "The rule: Owing to fog, ... \u00b7 Because of fog, ...; The delay was due to fog..", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["fogDelay", "The delay was due to fog.", "safe after be", { hl: "due to" }], ["fogDelay", "? Due to fog, the flight was delayed.", "disputed at the start", { ink: "trouble" }], ["was due to fog", "Owing to fog, ... \u00b7 Because of fog, ..."]),
+          ...PLAB.kit.lineup("why", "____ fog, the flight was delayed.", [["fogDelay", "Owing to", true, "safe at the | start"], ["fogDelay", "Due to", false, "disputed at the | start; fine after be"], ["rain", "Because", false, "+ a clause: | because it was foggy"]], ["Owing to fog, ... \u00b7 Because of fog, ...", "The delay was due to fog."]),
         ],
       },
       {

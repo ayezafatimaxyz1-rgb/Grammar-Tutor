@@ -71,16 +71,16 @@
       },
       {
         id: "why-not",
-        title: "Why not the other one?",
-        alt: "Left: a dot before an event, labelled prior to the meeting. Right: the same, labelled prior than the meeting, mixing it with comparatives.",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap to the meeting, the minister met reporters., then the candidates with pictures: Prior (right: prior always takes to); Before (wrong: before takes no to: before the meeting); Subsequent (wrong: = after, the opposite). Rule: prior to = before (formal); subsequent to = after (formal).",
         say: [
-          { text: "_prior to the meeting_ = before the meeting. **Prior** always takes **to**.", cue: "wn1" },
-          { text: "**Than** follows comparatives like earlier: _earlier than the meeting._ _Prior than_ mixes the two.", cue: "wn2" },
-          { text: "So: _prior to_ or _earlier than_, never _prior than._", cue: "wn-r1" },
+          { text: "Fill the gap: \u2026 to the meeting, the minister met reporters. The answer is **Prior**: prior always takes to.", cue: "why1" },
+          { text: "Why not the others? **Before**: before takes no to: before the meeting. **Subsequent**: = after, the opposite.", cue: "why2" },
+          { text: "The rule: prior to = before (formal); subsequent to = after (formal).", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.swap("wn", ["priorDot", "prior to the meeting", "= before it", { hl: "prior to" }], ["priorDot", "\u2717 prior than the meeting", "than goes with earlier", { ink: "trouble" }], ["prior to \u00b7 subsequent to", "earlier than \u00b7 later than"]),
+          ...PLAB.kit.lineup("why", "____ to the meeting, the minister met reporters.", [["priorDot", "Prior", true, "prior always | takes to"], ["priorDot", "Before", false, "before takes no to: | before the meeting"], ["afterDot", "Subsequent", false, "= after, the | opposite"]], ["prior to = before (formal)", "subsequent to = after (formal)"]),
         ],
       },
       {
