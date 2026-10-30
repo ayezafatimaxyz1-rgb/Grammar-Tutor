@@ -454,4 +454,20 @@ PLAB.misconceptions = {
     label: "Formal one-word verbs take no particle",
     explain: "investigate (not investigate into), postpone, cancel, abolish, devise, discover, establish, reduce. The single verb replaces the whole phrasal verb.",
   },
+  "idiom-pairs": {
+    label: "Fixed phrases that look alike",
+    explain: "on time (at the planned moment) vs in time (early enough); in the end (finally) vs at the end of; on purpose vs by accident; at large; out of the question; under way.",
+  },
+  "redundant-prep": {
+    label: "A preposition the verb does not need",
+    explain: "discuss, reach, emphasise, stress, mention, order, enter, return and comprise take no preposition. Their nouns often do: an emphasis on, a discussion about.",
+  },
+  "missing-prep": {
+    label: "A preposition the verb needs",
+    explain: "listen to, wait for, reply to, belong to, object to, happen to, apologise to someone for something, explain something to someone (never explain me).",
+  },
+  "l1-transfer": {
+    label: "Word-for-word translation",
+    explain: "married to (not with), angry with (not on), afraid of (not from), consist of (not from), for two years (not since), prefer X to Y (not than).",
+  },
 };

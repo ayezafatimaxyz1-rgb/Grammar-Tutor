@@ -3,7 +3,7 @@
 An interactive course in English prepositions for the CSS English Precis and Composition paper.
 Lessons are taught on a teaching board that draws each explanation stroke by stroke.
 
-This is the first prototype: the curriculum structure, the board engine, and lesson 1 (the core sense of *in*).
+Phase 1 (individual prepositions, 65 lessons) and Phase 2 (fixed combinations, 32 lessons) are complete; Phase 3 (the CSS examination lab) is next.
 
 ## Open it
 

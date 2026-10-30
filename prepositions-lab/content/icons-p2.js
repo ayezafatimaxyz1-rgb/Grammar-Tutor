@@ -123,5 +123,21 @@
     lookDown: [lay([L(6, 34, 66, 34), L(66, 34, 66, 78)], "muted"), lay([P(36, 0, 0.48)], "accent"), lay([A(52, 18, 104, 46, -10)], "trouble"), lay([P(112, 40, 0.36)], "muted")],
     emptyJar: [lay([R(46, 10, 48, 64), L(52, 10, 52, 4), L(88, 10, 88, 4)]), lay([L(50, 68, 90, 68)], "accent2", { width: 4 }), lay([A(110, 20, 110, 60)], "trouble")],
     casualToFormal: [lay([E(32, 40, 26, 18)], "muted", { fill: "soft" }), lay([A(62, 40, 92, 40)], "accent2"), lay([R(96, 22, 38, 36)], "accent", { fill: "soft" }), lay([L(104, 32, 126, 32), L(104, 42, 126, 42), L(104, 52, 120, 52)], "accent")],
+
+    // idioms
+    onTimeDot: [lay([A(4, 50, 136, 50)], "muted"), lay([L(96, 30, 96, 70)], "trouble", { width: 3.4 }), lay([C(96, 50, 7)], "accent", { fill: "solid" }), lay(tick(84, 14, 0.8), "accent2", { width: 3.6 })],
+    inTimeBefore: [lay([A(4, 50, 136, 50)], "muted"), lay([L(108, 30, 108, 70)], "trouble", { width: 3.4 }), lay([C(76, 50, 7)], "accent", { fill: "solid" }), lay([L(78, 34, 106, 34)], "accent2"), lay([L(78, 28, 78, 40), L(106, 28, 106, 40)], "accent2")],
+    endOfPath: [lay([A(4, 56, 120, 56, -20)], "muted"), lay([C(120, 56, 7)], "trouble", { fill: "solid" }), lay([L(16, 70, 30, 70), L(40, 70, 54, 70), L(64, 70, 78, 70)], "muted")],
+    finally: [lay([L(8, 60, 30, 30), L(30, 30, 52, 62), L(52, 62, 74, 26), L(74, 26, 96, 58)], "muted"), lay([A(96, 58, 128, 34)], "accent2"), lay(star(128, 22, 10), "hi", { width: 3.2 })],
+    dice: [lay([R(20, 18, 44, 44), R(76, 22, 44, 44)], "main"), lay([C(32, 30, 3.5), C(52, 50, 3.5), C(42, 40, 3.5), C(88, 34, 3.5), C(108, 54, 3.5), C(88, 54, 3.5), C(108, 34, 3.5)], "trouble", { fill: "solid" })],
+    escaped: [lay([R(10, 14, 44, 60), L(22, 14, 22, 74), L(34, 14, 34, 74), L(46, 14, 46, 42)], "muted"), lay([P(96, 10, 0.55)], "trouble"), lay([L(64, 30, 76, 30), L(60, 42, 74, 42), L(64, 54, 76, 54)], "muted")],
+    brokenBox: [lay([R(30, 16, 80, 54)], "main"), lay([L(46, 30, 94, 30), L(46, 42, 80, 42)], "muted"), lay(poly([[70, 16], [64, 34], [76, 46], [66, 70]]), "trouble", { width: 3.4 })],
+    oldCalendar: [lay([R(40, 12, 60, 62), L(40, 26, 100, 26), L(52, 6, 52, 18), L(88, 6, 88, 18)], "muted"), lay([L(48, 34, 92, 68), L(92, 34, 48, 68)], "trouble", { width: 3.6 })],
+    learnHeart: [lay([R(10, 14, 50, 58)], "accent2", { fill: "soft" }), lay([L(18, 28, 52, 28), L(18, 40, 52, 40), L(18, 52, 46, 52)], "accent2"), lay([A(64, 42, 88, 42)], "muted"), lay([heart(112, 38, 0.95)], "trouble", { fill: "soft" })],
+
+    // errors
+    extraWord: [lay([R(8, 26, 50, 28)], "accent", { fill: "soft" }), lay([R(76, 26, 50, 28)], "muted", { fill: "soft" }), lay([L(70, 16, 132, 64), L(132, 16, 70, 64)], "trouble", { width: 4 })],
+    gapSlot: [lay([R(4, 28, 40, 26)], "accent", { fill: "soft" }), lay([L(54, 54, 86, 54)], "trouble", { width: 3.4 }), lay([R(96, 28, 40, 26)], "accent", { fill: "soft" }), lay([L(64, 22, 68, 16, -6), L(68, 16, 78, 18, -4), L(78, 18, 74, 30), L(74, 30, 70, 36)], "trouble"), lay([C(70, 44, 2)], "trouble", { fill: "solid" })],
+    translate: [lay([B([[10, 20], [56, 14], [62, 52], [18, 60]])], "muted", { fill: "soft" }), lay([A(66, 36, 92, 36)], "trouble"), lay([B([[96, 18], [134, 22], [130, 58], [98, 54]])], "accent", { fill: "soft" }), lay([L(104, 30, 124, 30), L(104, 42, 120, 42)], "accent")],
   });
 })();
