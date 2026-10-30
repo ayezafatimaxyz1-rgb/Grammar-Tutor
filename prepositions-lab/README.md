@@ -65,3 +65,13 @@ node tests/validate-content.mjs
 node tests/e2e.cjs [screenshot-dir]       # needs Playwright with Chromium
 node tests/walk-all.cjs [screenshot-dir]  # plays every step of every lesson, checks text fits and does not overlap
 ```
+
+## Phase 1 video
+
+The narrated board video is rendered offline with a free voice (Kokoro, run locally):
+
+```
+node tools/video/script.mjs script.json [lessonId ...]             # narration script from the lessons
+python tools/video/narrate.py script.json audio --model kokoro-q8.onnx --voices voices.npz
+node tools/video/render.cjs script.json audio out [lessonId ...]   # one 1080p mp4 per lesson
+```
