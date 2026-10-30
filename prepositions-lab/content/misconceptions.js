@@ -426,4 +426,20 @@ PLAB.misconceptions = {
     label: "Formal adjectives and their partners",
     explain: "Conducive to, averse to, impervious to, tantamount to, contingent on (upon), commensurate with. Each has one partner preposition.",
   },
+  "noun-preps": {
+    label: "Nouns and their prepositions",
+    explain: "The reason for, the cause of, the solution to, the key to, access to, an approach to, a demand for. Learn the noun with its partner.",
+  },
+  "noun-verb-prep": {
+    label: "Noun takes a preposition, verb does not",
+    explain: "a demand for an apology, but demand an apology; a request for help, but request help; a discussion about, but discuss.",
+  },
+  "change-in-of": {
+    label: "An increase in, an increase of, rose by",
+    explain: "In names the thing that changes, of gives the amount after a noun, by gives the amount after a verb: a rise of 5 per cent in prices; prices rose by 5 per cent.",
+  },
+  "between-and": {
+    label: "Between pairs with and",
+    explain: "Name both sides with between X and Y. From one side, use with: relationship with China; relationship between Pakistan and China.",
+  },
 };

@@ -100,5 +100,19 @@
     growTo: [lay([L(6, 74, 134, 74)], "muted"), lay([R(14, 52, 30, 22)], "muted", { fill: "soft" }), lay([A(50, 60, 84, 46)], "accent"), lay([L(108, 74, 108, 34), B([[108, 46], [94, 34], [104, 22]]), B([[108, 40], [124, 26], [116, 16]])], "accent2")],
     turnAway: [lay([P(36, 8, 0.6)], "accent"), lay([A(30, 74, 4, 74)], "accent2"), lay([B([[100, 30], [118, 22], [132, 40], [116, 58], [98, 50]])], "trouble", { fill: "soft" }), lay([L(64, 30, 90, 36)], "muted")],
     levelScale: [lay([L(70, 16, 70, 72), L(56, 74, 84, 74), L(24, 22, 116, 22)]), lay([L(24, 22, 14, 44), L(24, 22, 34, 44), L(10, 44, 38, 44)], "accent"), lay([L(116, 22, 106, 44), L(116, 22, 126, 44), L(102, 44, 130, 44)], "accent2"), lay([C(24, 40, 5)], "accent", { fill: "solid" }), lay([R(110, 34, 12, 10)], "accent2", { fill: "solid" })],
+
+    // nouns: reason, solution, demand, access, change, links
+    reasonFor: [lay([R(92, 18, 40, 44)], "trouble", { fill: "soft" }), lay([C(24, 40, 14)], "accent", { fill: "solid" }), lay([A(44, 40, 86, 40)], "accent2"), lay([L(108, 28, 112, 30), L(112, 30, 112, 42), C(112, 52, 1.5)], "trouble")],
+    keyLock: [lay([C(26, 40, 13), L(39, 40, 84, 40), L(70, 40, 70, 52), L(80, 40, 80, 50)], "hi", { width: 4 }), lay([R(94, 30, 38, 40), L(104, 30, 104, 16, -10), L(104, 16, 122, 16, 0), L(122, 16, 122, 30)], "main"), lay([C(113, 46, 4), L(113, 50, 113, 60)], "main")],
+    qToA: [lay([L(14, 24, 20, 16, -6), L(20, 16, 34, 20, -4), L(34, 20, 30, 36), L(30, 36, 24, 44), L(24, 44, 24, 52)], "trouble", { width: 4 }), lay([C(24, 64, 2.5)], "trouble", { fill: "solid" }), lay([A(46, 40, 90, 40)], "accent2"), lay(tick(98, 40, 1.2), "accent", { width: 4.5 })],
+    demandFor: [lay([P(12, 18, 0.42), P(36, 24, 0.42)], "accent"), lay([A(50, 28, 90, 34), A(50, 54, 90, 46)], "accent2"), lay([R(96, 22, 38, 38)], "muted", { fill: "soft" })],
+    respectFor: [lay([P(30, 14, 0.55)], "accent"), lay([A(52, 30, 92, 30)], "accent2"), lay([P(112, 14, 0.55)], "accent2"), lay(poly([[98, 6], [104, 0], [112, 6], [120, 0], [126, 6]]), "hi", { width: 3.2 })],
+    accessTo: [lay([L(56, 76, 56, 6), L(84, 76, 84, 6), L(56, 10, 84, 10)], "muted"), lay([A(10, 50, 108, 50)], "accent"), lay([R(108, 34, 28, 32)], "accent2", { fill: "soft" })],
+    approachTo: [lay([A(8, 66, 92, 34, -14)], "accent", { width: 3.6 }), lay([B([[96, 14], [128, 12], [134, 44], [104, 54]])], "trouble", { fill: "soft" }), lay([P(14, 30, 0.38)], "accent")],
+    riseIn: [lay([L(6, 74, 134, 74)], "muted"), lay([R(14, 54, 22, 20), R(46, 44, 22, 30), R(78, 32, 22, 42), R(110, 16, 22, 58)], "accent2", { fill: "soft" }), lay([A(18, 40, 112, 4)], "trouble")],
+    riseBy: [lay([L(6, 74, 134, 74)], "muted"), lay([R(24, 44, 30, 30), R(86, 18, 30, 56)], "accent2", { fill: "soft" }), lay([L(64, 44, 128, 44)], "muted"), lay([L(124, 18, 124, 44), L(118, 18, 130, 18), L(118, 44, 130, 44)], "trouble", { width: 3.4 })],
+    fallIn: [lay([L(6, 74, 134, 74)], "muted"), lay([R(14, 16, 22, 58), R(46, 30, 22, 44), R(78, 42, 22, 32), R(110, 54, 22, 20)], "accent2", { fill: "soft" }), lay([A(18, 4, 112, 40)], "trouble")],
+    linkBetween: [lay([C(26, 40, 18)], "accent", { fill: "soft" }), lay([C(114, 40, 18)], "accent2", { fill: "soft" }), lay([R(52, 34, 18, 12), R(70, 34, 18, 12)], "main")],
+    linkWith: [lay([P(30, 10, 0.55)], "accent"), lay([L(48, 34, 92, 34)], "trouble", { width: 3.4 }), lay([heart(70, 22, 0.4)], "trouble", { fill: "soft" }), lay([P(110, 10, 0.55)], "accent2")],
   });
 })();

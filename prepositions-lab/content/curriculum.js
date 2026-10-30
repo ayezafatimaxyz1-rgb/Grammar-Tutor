@@ -168,11 +168,11 @@
             id: "p2-noun",
             title: "Noun + preposition",
             lessons: [
-              L("reason-cause", "reason for, cause of, solution to, answer to, key to"),
-              L("demand-need", "demand for, need for, respect for, desire for"),
-              L("access-approach", "access to, approach to, attitude to/towards, reaction to"),
-              L("increase-decrease", "an increase in vs an increase of; a rise in, a fall in"),
-              L("relationship", "relationship with/between, connection with/between, link to/with/between"),
+              L("reason-cause", "reason for, cause of, solution to, answer to, key to", { status: "tested", lessonId: "reason-cause" }),
+              L("demand-need", "demand for, need for, respect for, desire for", { status: "tested", lessonId: "demand-need" }),
+              L("access-approach", "access to, approach to, attitude to/towards, reaction to", { status: "tested", lessonId: "access-approach" }),
+              L("increase-decrease", "an increase in vs an increase of; a rise in, a fall in", { status: "tested", lessonId: "increase-decrease" }),
+              L("relationship", "relationship with/between, connection with/between, link to/with/between", { status: "tested", lessonId: "relationship" }),
             ],
           },
           {
