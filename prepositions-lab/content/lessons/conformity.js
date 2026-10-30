@@ -1,0 +1,60 @@
+/* Lesson 1.56: conformity and basis: according to, in accordance with, in line with, on the basis of, pursuant to. */
+(function () {
+  const K = PLAB.kit;
+  PLAB.registerLesson({
+    id: "conformity",
+    title: "According to, in accordance with",
+    phase: 1,
+    unit: "p1-complex",
+    level: "Advanced",
+    minutes: 8,
+    summary:
+      "According to reports what a source says; in accordance with and in line with mean following a rule; on the basis of names the grounds; pursuant to is legal. And the classic error according to me: for your own opinion, write in my opinion.",
+    objectives: [
+      "Use according to for what a source says, and never according to me.",
+      "Use in accordance with and in line with for following rules or policy.",
+      "Use on the basis of for grounds, and recognise pursuant to in legal texts.",
+    ],
+    steps: [
+      {
+        id: "forms",
+        title: "Source, rule, grounds",
+        alt: "Rows: according to the report (what a source says); in accordance with Article 10 (following a rule); in line with policy; on the basis of evidence; pursuant to the order (legal).",
+        say: [
+          { text: "**According to** reports what a source says: _According to the report, poverty has fallen._", cue: "f1" },
+          { text: "**In accordance with** and **in line with** mean following a rule or plan: _in accordance with Article 10, in line with government policy._", cue: "f2" },
+          { text: "**On the basis of** names the grounds: _He was selected on the basis of merit._ **Pursuant to** is legal: _pursuant to the court's order._", cue: "f3" },
+        ],
+        actions: K.lines("f", [["According to the report, poverty fell.", { hl: "According to" }], ["in accordance with Article 10 · in line with policy", { hl: "in accordance with", size: 32 }], ["on the basis of merit · pursuant to the order", { hl: "on the basis of", size: 32 }]], { y: 170, gap: 115, size: 36 }),
+      },
+      {
+        id: "me",
+        title: "Not according to me",
+        alt: "Crossed out: According to me, the policy failed. Correct: In my opinion, the policy failed. I believe the policy failed.",
+        say: [
+          { text: "_According to_ reports **someone else's** words or a source. Using it for your own view, _according to me_, is a well-known error in South Asian English.", cue: "m1" },
+          { text: "Write _In my opinion_, _In my view_ or _I believe_ instead.", cue: "m2" },
+        ],
+        actions: [K.clear("clear-1"), ...K.lines("m", [["✗ According to me, the policy failed.", { ink: "trouble" }], ["✓ In my opinion, the policy failed.", { ink: "accent" }]], { y: 200, gap: 130, size: 38 })],
+      },
+      {
+        id: "check",
+        title: "Check: sentence correction",
+        alt: "The according to me correction remains on the board.",
+        say: [{ text: "An original practice item in CSS sentence-correction style." }],
+        actions: [],
+        check: {
+          id: "conform-q1",
+          source: "original",
+          skill: "according to vs in my opinion",
+          prompt: "Choose the most appropriate opening for your own argument in an essay.",
+          options: [
+            { text: "In my view, the reforms were introduced too late.", correct: true, why: "Correct. Your own opinion: _in my view_ or _in my opinion._" },
+            { text: "According to me, the reforms were introduced too late.", misconception: "according-to-me", why: "_According to_ reports a source, not your own view. Use _in my view._" },
+            { text: "As per me, the reforms were introduced too late.", misconception: "according-to-me", why: "_As per_ is jargon and _as per me_ is not standard. Use _in my view._" },
+          ],
+        },
+      },
+    ],
+  });
+})();

@@ -246,4 +246,104 @@ PLAB.misconceptions = {
     label: "Ago with the past simple",
     explain: "Two years ago (from now), with the past simple. Not before two years, not has done ... ago.",
   },
+  "of-quantity": {
+    label: "One of the + plural",
+    explain: "One of the best students, some of the members: of picks from a plural group.",
+  },
+  "of-vs-possessive": {
+    label: "Of or 's",
+    explain: "'s for people and animals (Ali's book); of for things (the legs of the table); either for places and organisations.",
+  },
+  "for-purpose": {
+    label: "Purpose: to + verb, not for to",
+    explain: "Went to buy, went for vegetables, a machine for making ice. Never for to buy.",
+  },
+  "for-uses": {
+    label: "Uses of for",
+    explain: "Purpose, benefit, exchange, support, and leave for (the destination of a departure).",
+  },
+  "with-vs-by": {
+    label: "With a tool, by a means",
+    explain: "With a key, with a knife. By hand, by email, by car, by force.",
+  },
+  "by-vs-to-change": {
+    label: "Rose by (the change) or to (the new level)",
+    explain: "Rose by 10 per cent; rose to 110 rupees.",
+  },
+  "by-means": {
+    label: "By + bare noun, but on foot",
+    explain: "By train, by car, by email. In my car, on the 7 o'clock train. On foot, not by walk.",
+  },
+  "as-vs-like": {
+    label: "As (a real role) or like (similar to)",
+    explain: "Works as a teacher (is one). Talks like a teacher (is not). As before a clause in formal writing.",
+  },
+  "faulty-comparison": {
+    label: "Compare like with like",
+    explain: "Unlike Karachi, Lahore ... (city with city). Not unlike Karachi's weather, Lahore ...",
+  },
+  "except-family": {
+    label: "Except, but, save, barring",
+    explain: "Except: not including. But: after all, no, every. Save: formal. Barring: unless something happens.",
+  },
+  "despite-of": {
+    label: "Despite without of",
+    explain: "Despite the rain, in spite of the rain. Never despite of. Although before a clause.",
+  },
+  "than-pronoun": {
+    label: "Than me or than I am",
+    explain: "Than me is everyday English; than I am is safest in formal writing. Never than myself.",
+  },
+  "regards-error": {
+    label: "With regard to, not with regards to",
+    explain: "With regard to, in regard to, as regards. Regards means greetings.",
+  },
+  "including-family": {
+    label: "Including, excluding, notwithstanding",
+    explain: "Including: part of the total. Excluding: left out. Notwithstanding: despite (formal, legal).",
+  },
+  "literary-preps": {
+    label: "Old and literary prepositions",
+    explain: "Vis-\u00e0-vis: in relation to. Qua: in the capacity of. Unto, betwixt, ere: recognise only.",
+  },
+  "due-to-debate": {
+    label: "Due to at the start of a sentence",
+    explain: "Due to is always fine after be (was due to). To open a sentence, owing to or because of is safest.",
+  },
+  "means-phrases": {
+    label: "By means of, by virtue of, by dint of",
+    explain: "By means of: using. By virtue of: because of a quality or right. By dint of: through great effort.",
+  },
+  "reference-phrases": {
+    label: "As to, as for, in terms of",
+    explain: "As to: about (doubts as to whether). As for: turning to a new topic. In terms of: from that point of view.",
+  },
+  "agreement-addition": {
+    label: "As well as does not change the subject",
+    explain: "The President, as well as the ministers, was present. The verb agrees with the first noun.",
+  },
+  "according-to-me": {
+    label: "Not according to me",
+    explain: "According to reports a source. For your own view: in my opinion, in my view, I believe.",
+  },
+  "concession-phrases": {
+    label: "Regardless of, irrespective of, in contrast to",
+    explain: "Regardless of / irrespective of: unaffected by. In contrast to: comparing. Irregardless is non-standard.",
+  },
+  "charge-direction": {
+    label: "In charge of or in the charge of",
+    explain: "In charge of: responsible for. In the charge of: under someone's care.",
+  },
+  "circumstance-phrases": {
+    label: "In view of, in the event of, in the face of, in the wake of",
+    explain: "Considering; if it happens; confronted by; following as a result.",
+  },
+  "measure-phrases": {
+    label: "In excess of, up to, close to, far from",
+    explain: "More than; as many as; nearly; not at all.",
+  },
+  "process-phrases": {
+    label: "In the course of, at the expense of, by way of",
+    explain: "During; at the cost of (harming); as a form of or via.",
+  },
 };
