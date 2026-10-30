@@ -206,4 +206,44 @@ PLAB.misconceptions = {
     label: "Throughout without of or whole",
     explain: "Throughout the country, throughout the year. Not throughout of, and whole is redundant.",
   },
+  "word-class": {
+    label: "Which word is doing which job?",
+    explain: "The preposition is the word that links a thing to a reference point. Adjectives describe; verbs act.",
+  },
+  "prep-vs-conj": {
+    label: "Preposition (+ noun) or conjunction (+ clause)",
+    explain: "After lunch, because of the rain, during the meeting: + noun. After he left, because it rained, while we met: + clause.",
+  },
+  "to-preposition": {
+    label: "When to is a preposition, use -ing",
+    explain: "Look forward to meeting, committed to improving, be used to living, object to paying, with a view to reducing.",
+  },
+  "for-vs-since": {
+    label: "For (a length) or since (a starting point)",
+    explain: "For ten years, since 2015. A situation continuing to now takes the present perfect. Never since ten years.",
+  },
+  "during-vs-for": {
+    label: "During (when) or for (how long)",
+    explain: "During the night = when. For eight hours = how long. During + noun, while + clause.",
+  },
+  "by-vs-until": {
+    label: "By (a deadline) or until (a continuing state)",
+    explain: "Submit by Friday: one action, no later than. Closed until Friday: continues, then stops.",
+  },
+  "prior-to": {
+    label: "Prior to, never prior than",
+    explain: "Prior to and subsequent to always take to. After a preposition, a verb takes -ing.",
+  },
+  "frame-mix": {
+    label: "Between ... and, from ... to",
+    explain: "Between 9 and 5, or from 9 to 5. Never between 9 to 5 or from 9 and 5.",
+  },
+  "participle-preps": {
+    label: "Pending, following, given",
+    explain: "Pending = while waiting for. Following = after. Given, considering = taking into account.",
+  },
+  "ago-errors": {
+    label: "Ago with the past simple",
+    explain: "Two years ago (from now), with the past simple. Not before two years, not has done ... ago.",
+  },
 };
