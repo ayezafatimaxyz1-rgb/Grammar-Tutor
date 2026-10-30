@@ -51,24 +51,19 @@
       {
         id: "noun-trap",
         title: "Why it happens, and two more",
-        alt: "Two columns. Noun with a preposition: an emphasis on, a discussion about, a mention of, an order for. Verb without: emphasise, discuss, mention, order. Also: return (not return back), comprise (not comprise of).",
+        alt: "Four pictures: arrows pressing on a point (an emphasis on, but emphasise), two people talking (a discussion about, but discuss), an arrow going back (return, not return back), a box of parts (comprise, not comprise of).",
         say: [
           { text: "The mistake comes from the noun. The noun takes a preposition: _an emphasis on, a discussion about, an order for._ The verb does not.", cue: "n1" },
-          { text: "Two more: _return_ already means go back, so not _return back._ And _comprise_ means consist of: _The board comprises five members_, not _comprises of._ (_is composed of_ and _consists of_ are fine.)", cue: "n2" },
+          { text: "Two more: _return_ already means go back, so not _return back._ And _comprise_ means consist of: _The board comprises five members_, not _comprises of._ (_is composed of_ and _consists of_ are fine.)", cue: "n3" },
         ],
         actions: [
-          K.clear("clear-2"),
-          { do: "write", id: "h1", text: "noun + preposition", x: 250, y: 80, size: 28, ink: "muted", anchor: "middle" },
-          { do: "write", id: "h2", text: "verb, no preposition", x: 710, y: 80, size: 28, ink: "muted", anchor: "middle" },
-          { do: "draw", id: "rule", shape: "line", from: [480, 55], to: [480, 330], ink: "muted", width: 2 },
-          { do: "write", id: "n1", text: "an emphasis on · a discussion about", x: 250, y: 160, size: 28, anchor: "middle", fit: 420, gap: 300 },
-          { do: "highlight", id: "n1-h", target: "n1", word: "on" },
-          { do: "write", id: "n1b", text: "emphasise · discuss", x: 710, y: 160, size: 30, anchor: "middle", fit: 420 },
-          { do: "write", id: "n1c", text: "a mention of · an order for", x: 250, y: 250, size: 28, anchor: "middle", fit: 420, gap: 300 },
-          { do: "highlight", id: "n1c-h", target: "n1c", word: "for" },
-          { do: "write", id: "n1d", text: "mention · order", x: 710, y: 250, size: 30, anchor: "middle", fit: 420 },
-          ...K.pic("rp", "returnArc", 40, 360, 0.8, { gap: 400 }),
-          { do: "write", id: "n2", text: "return (✗ return back) · comprise (✗ comprise of)", x: 190, y: 410, size: 30, ink: "accent2" },
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.grid("n", [
+            ["pressOn", "an emphasis on \u00b7 emphasise it", "the noun takes on, the verb does not", { hl: "on" }],
+            ["discuss", "a discussion about \u00b7 discuss it", "the noun takes about, the verb does not", { hl: "about" }],
+            ["returnArc", "return (\u2717 return back)", "return already means go back", { hl: "return" }],
+            ["stackAdd", "comprises five members (\u2717 of)", "or: consists of \u00b7 is composed of", { hl: "comprises" }],
+          ]),
         ],
       },
       {

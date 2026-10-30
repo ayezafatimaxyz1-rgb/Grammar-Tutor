@@ -50,17 +50,19 @@
       {
         id: "traps",
         title: "Traps",
-        alt: "Crossed out: conducive for, averse from (old-fashioned), tantamount with, commensurate to (rare), contingent to. Correct forms underneath.",
+        alt: "Four pictures with the right partner: an arrow to a growing plant (conducive to, not for), a block on a pillar (contingent on, not to), an equals sign (tantamount to, not with), a level balance (commensurate with).",
         say: [
           { text: "The common errors come from guessing: _conducive for, contingent to, tantamount with._ Each of these words has one partner.", cue: "w1" },
           { text: "Remember the pictures: towards the result, turned away, bouncing off, equal to, resting on, matching with.", cue: "w2" },
         ],
         actions: [
-          K.clear("clear-2"),
-          ...K.rows("w", [
-            ["cross", "✗ conducive for · ✗ contingent to · ✗ tantamount with", { ink: "trouble", size: 30 }],
-            ["check", "conducive to · contingent on · tantamount to · commensurate with", { ink: "accent2", size: 28 }],
-          ], { y: 160, gap: 150 }),
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.grid("w", [
+            ["growTo", "conducive to (\u2717 for)", "leading towards a result", { hl: "conducive to" }],
+            ["support", "contingent on (\u2717 to)", "resting on a condition", { hl: "contingent on" }],
+            ["likenTo", "tantamount to (\u2717 with)", "equal in effect to", { hl: "tantamount to" }],
+            ["levelScale", "commensurate with", "matching in size", { hl: "commensurate with" }],
+          ]),
         ],
       },
       {

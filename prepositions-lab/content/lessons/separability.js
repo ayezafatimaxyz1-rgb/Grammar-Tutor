@@ -49,18 +49,18 @@
       {
         id: "long",
         title: "Long objects go to the end",
-        alt: "Rows: They called off the meeting (short: either side). They called off the meeting that had been planned for Friday (long: after the particle). Separable list: call off, put off, give up, set up, bring up, turn down.",
+        alt: "Three pictures: a calendar with a short object (They called the meeting off), a calendar with a long object after the particle (called off the meeting that had been planned for Friday), a list of separable verbs.",
         say: [
           { text: "When the object is long, put it after the particle so the particle is not lost: _They called off the meeting that had been planned for Friday._", cue: "l2" },
           { text: "Common separable verbs for writing: _call off, put off, give up, set up, bring up, turn down, carry out, point out._", cue: "l3" },
         ],
         actions: [
-          K.clear("clear-2"),
-          ...K.rows("l", [
-            ["calendar", "They called the meeting off.", { hl: "off" }],
-            ["calendar", "They called off the meeting that had been planned for Friday.", { hl: "called off", size: 28 }],
-            ["doc", "call off · put off · give up · set up · carry out · point out", { ink: "accent2", size: 28 }],
-          ], { y: 110, gap: 140 }),
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.grid("l", [
+            ["calendar", "They called the meeting off.", "short object: either side", { hl: "off" }],
+            ["calendar", "called off the meeting planned for Friday", "long object: after the particle", { hl: "called off" }],
+            ["doc", "call off \u00b7 put off \u00b7 give up \u00b7 carry out", "common separable verbs", { ink: "accent2" }],
+          ]),
         ],
       },
       {
