@@ -63,6 +63,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an arrow already ended at a building with a dot, labelled We arrived at the airport. Right: an arrow still moving towards a house, labelled We arrived to the airport, mixing the moving word to with the arriving word arrive.",
+        say: [
+          { text: "_We arrived at the airport._ Arrive describes the end of the trip, when you are already at the point.", cue: "arrivew1" },
+          { text: "**To** draws the journey still moving towards the goal. Put it after arrive and you describe the end and the movement at once, which English does not do.", cue: "arrivew2" },
+          { text: "**To** is right with verbs of movement: _We went to the airport. We flew to Lahore._ After arrive, use at for a point and in for an area.", cue: "arrivew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("arrivew", ["airportDot", "We arrived at the airport.", "already there: a point", { hl: "at" }], ["goHome", "✗ We arrived to the airport.", "to = still moving towards it", { ink: "trouble" }], ["go to, fly to, travel to (moving towards)", "arrive at a point · arrive in an area"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The board remains.",

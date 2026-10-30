@@ -92,6 +92,21 @@ PLAB.kit = {
     return out;
   },
 
+  // "Why not the other one?": the right sentence with its picture, beside the swapped sentence
+  // with a picture of what the swap would really mean, then a rule line for each choice.
+  // right and wrong are panel items: [picSpec, text, sub, { hl, ink }].
+  swap(prefix, right, wrong, rules = []) {
+    const out = [
+      { do: "write", id: `${prefix}-q`, text: "Why not the other one?", x: 480, y: 48, size: 28, ink: "muted", anchor: "middle" },
+      { do: "draw", id: `${prefix}-bar`, shape: "line", from: [480, 80], to: [480, 320], ink: "muted", width: 2, dur: 500 },
+      ...PLAB.kit.panels(prefix, [right, wrong], { y: 78, k: 1.5 }),
+    ];
+    rules.forEach((r, i) => {
+      out.push({ do: "write", id: `${prefix}-r${i + 1}`, text: r, x: 480, y: 400 + i * 58, size: 28, ink: "accent2", anchor: "middle", gap: i ? 300 : 500 });
+    });
+    return out;
+  },
+
   clear(id) {
     return { do: "erase", id, targets: "all" };
   },

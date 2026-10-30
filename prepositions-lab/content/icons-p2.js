@@ -139,5 +139,8 @@
     extraWord: [lay([R(8, 26, 50, 28)], "accent", { fill: "soft" }), lay([R(76, 26, 50, 28)], "muted", { fill: "soft" }), lay([L(70, 16, 132, 64), L(132, 16, 70, 64)], "trouble", { width: 4 })],
     gapSlot: [lay([R(4, 28, 40, 26)], "accent", { fill: "soft" }), lay([L(54, 54, 86, 54)], "trouble", { width: 3.4 }), lay([R(96, 28, 40, 26)], "accent", { fill: "soft" }), lay([L(64, 22, 68, 16, -6), L(68, 16, 78, 18, -4), L(78, 18, 74, 30), L(74, 30, 70, 36)], "trouble"), lay([C(70, 44, 2)], "trouble", { fill: "solid" })],
     translate: [lay([B([[10, 20], [56, 14], [62, 52], [18, 60]])], "muted", { fill: "soft" }), lay([A(66, 36, 92, 36)], "trouble"), lay([B([[96, 18], [134, 22], [130, 58], [98, 54]])], "accent", { fill: "soft" }), lay([L(104, 30, 124, 30), L(104, 42, 120, 42)], "accent")],
+
+    // "why not the other one?" pictures
+    wrongWay: [lay([R(8, 22, 38, 38)], "trouble", { fill: "soft" }), lay([A(52, 40, 92, 40)], "muted"), lay([C(114, 40, 15)], "accent", { fill: "solid" }), lay([L(64, 14, 68, 8, -6), L(68, 8, 78, 10, -4), L(78, 10, 74, 22), L(74, 22, 72, 26)], "trouble"), lay([C(72, 32, 1.8)], "trouble", { fill: "solid" })],
   });
 })();

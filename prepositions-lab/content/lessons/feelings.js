@@ -67,6 +67,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an angry face, labelled angry with him (the person). Right: arrows pressing on a surface, labelled angry on him; on is for surfaces and topics, not the target of a feeling.",
+        say: [
+          { text: "_She was angry with him_: the feeling is aimed at a person, so **with** (or **at**).", cue: "angryw1" },
+          { text: "**On** pictures something resting on a surface or a topic. A feeling does not rest on a person, so _angry on him_ is a word-for-word translation, not English.", cue: "angryw2" },
+          { text: "For a situation, use **about** or **at**: _angry about the delay._ Ask: is it a person (with) or a situation (about)?", cue: "angryw-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("angryw", ["angryFace", "She was angry with him.", "a person: with or at", { hl: "with" }], ["pressOn", "✗ She was angry on him.", "on is for surfaces, not feelings", { ink: "trouble" }], ["angry with a person · angry about a situation", "never angry on"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the preposition",
         alt: "The board remains.",

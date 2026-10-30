@@ -51,6 +51,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a cause dot with an arrow to an event, labelled the cause of the fire (what produced it). Right: a question mark with an arrow, labelled the cause for the fire, crossed out, because for points to a reaction we have.",
+        say: [
+          { text: "_the cause of the fire_: the thing that produced the fire. The fire has a cause, so **of**.", cue: "causew1" },
+          { text: "_the cause for the fire_ is wrong, because nothing produced the fire for a purpose. **For** points to a reaction we have.", cue: "causew2" },
+          { text: "So **cause for** is right in one fixed use, a reason to feel something: _There is no cause for concern._ Ask: did it produce the event (of), or give us a reason to react (for)?", cue: "causew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("causew", ["reasonFor", "the cause of the fire", "what produced it", { hl: "of" }], ["qToA", "✗ the cause for the fire", "for points to a reaction we have", { ink: "trouble" }], ["cause of + what it produced", "cause for + a feeling: cause for concern"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: essay sentence",
         alt: "The board remains.",

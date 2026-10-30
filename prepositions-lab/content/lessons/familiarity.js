@@ -47,6 +47,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a person who knows the route, labelled I am familiar with the city. Right: a house with an arrow to a person, labelled I am familiar to the city, which would mean the city knows me.",
+        say: [
+          { text: "_I am familiar with the city_: I know the city well. The person comes first, so **with**.", cue: "familiarw1" },
+          { text: "_I am familiar to the city_ turns the picture round: now the city knows me, as if I were a famous face in its streets.", cue: "familiarw2" },
+          { text: "**To** is right when the thing comes first: _The city is familiar to me._ Ask who knows whom: person first, with; thing first, to.", cue: "familiarw-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("familiarw", ["knowsWay", "I am familiar with the city.", "I know the city", { hl: "with" }], [[["house", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "✗ I am familiar to the city.", "would mean the city knows me", { ink: "trouble" }], ["person first: familiar with the thing", "thing first: familiar to the person"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the preposition",
         alt: "The board remains.",

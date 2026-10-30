@@ -68,6 +68,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an arrow pointing at a person, labelled They blamed the driver for the accident. Right: the same arrow, labelled They blamed the driver on the accident, which would put the driver onto the accident.",
+        say: [
+          { text: "_They blamed the driver for the accident._ Person first, then **for** + the reason.", cue: "blamew1" },
+          { text: "_Blamed the driver on the accident_ would place the driver on top of the accident. The blame lands on the person, so **on** must go before the person.", cue: "blamew2" },
+          { text: "**On** is right when the thing comes first: _They blamed the accident on the driver._ Same facts, the other order.", cue: "blamew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("blamew", ["blame", "blamed the driver for the accident", "person first: for", { hl: "for" }], ["blame", "✗ blamed the driver on the accident", "the blame lands on a person", { ink: "trouble" }], ["blame + person + for + the thing", "blame + the thing + on + person"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: sentence correction",
         alt: "The board remains.",

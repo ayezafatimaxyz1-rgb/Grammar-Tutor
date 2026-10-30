@@ -70,6 +70,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a heart inside a box, labelled I believe in you (I trust you will succeed). Right: a speech bubble with a tick, labelled I believe you (I accept that your words are true).",
+        say: [
+          { text: "_I believe in you_: I put my trust in you; I am sure you will do well.", cue: "believew1" },
+          { text: "Without **in**, _I believe you_ is about one statement: I accept that what you just said is true. It says nothing about your future.", cue: "believew2" },
+          { text: "Use believe + a person when you accept their words. Use believe in when you trust a person, an idea or its value: _believe in democracy._", cue: "believew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("believew", ["beliefIn", "I believe in you.", "I trust you will succeed", { hl: "in" }], ["believeWords", "I believe you.", "different: your words are true", { ink: "trouble" }], ["believe + person: accept their words", "believe in: trust a person, idea or value"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: meaning",
         alt: "The panels remain on the board.",

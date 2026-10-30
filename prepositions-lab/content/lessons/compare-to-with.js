@@ -67,6 +67,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a sun equals a heart, labelled The poet compares her smile to the sun (says it is like). Right: two bars and an eye, labelled compares her smile with the sun, which would mean measuring both like a scientist.",
+        say: [
+          { text: "_The poet compares her smile to the sun_: the poet says her smile is like the sun, bright and warm.", cue: "comparew1" },
+          { text: "_Compares her smile with the sun_ would sound like a careful study of both, listing how they are alike and different. That is not what a poet does.", cue: "comparew2" },
+          { text: "**Compare with** is right for analysis: _Compare this year's exports with last year's._ In everyday English the two are often mixed; in an exam, keep the difference.", cue: "comparew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("comparew", ["likenTo", "compares her smile to the sun", "says it is like", { hl: "to" }], ["sideBySide", "compares her smile with the sun", "would mean: studies both closely", { ink: "trouble", hl: "with" }], ["compare to: say one is like the other", "compare with: examine both side by side"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: precise usage",
         alt: "The board remains.",

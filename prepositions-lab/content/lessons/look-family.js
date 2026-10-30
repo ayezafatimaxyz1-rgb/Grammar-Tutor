@@ -63,6 +63,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: an adult protecting two children, labelled She looks after her mother (takes care of her). Right: a magnifier and a question mark, labelled She looks for her mother, which would mean her mother is lost.",
+        say: [
+          { text: "_She looks after her mother_: she takes care of her, like a guardian standing behind her.", cue: "lookw1" },
+          { text: "Swap to _She looks for her mother_ and the meaning changes completely: now her mother is missing and she is searching.", cue: "lookw2" },
+          { text: "Both are correct English, but they say different things. Ask: am I caring (after), searching (for), looking at a point (at), or investigating (into)?", cue: "lookw-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("lookw", ["careFor", "She looks after her mother.", "takes care of her", { hl: "after" }], ["searchQ", "She looks for her mother.", "would mean her mother is lost", { ink: "trouble", hl: "for" }], ["after = care · for = search", "at = eyes on a point · into = investigate"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the verb",
         alt: "The board remains.",

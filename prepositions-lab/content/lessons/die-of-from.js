@@ -68,6 +68,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: cause dot, arrow, effect box, labelled The flood resulted in heavy losses (start at the cause). Right: an effect box with an arrow pointing to the cause dot and a question mark, labelled The flood resulted from heavy losses, which would mean the losses caused the flood.",
+        say: [
+          { text: "Start at the cause and look forward: **resulted in** names the effect. _The flood resulted in heavy losses_: flood first, losses after.", cue: "resultw1" },
+          { text: "Swap it to _The flood resulted from heavy losses_, and the arrow turns round: now the losses come first and cause the flood. That is nonsense.", cue: "resultw2" },
+          { text: "So **result from** is right only when the effect comes first in the sentence: _Heavy losses resulted from the flood._ Ask: is the subject the cause (in) or the effect (from)?", cue: "resultw-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("resultw", ["causeEffect", "The flood resulted in losses.", "cause first, then the effect", { hl: "resulted in" }], ["wrongWay", "✗ The flood resulted from losses.", "would mean losses caused the flood", { ink: "trouble" }], ["subject = the cause: result in", "subject = the effect: result from"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: direction",
         alt: "The cause and effect chain remains.",

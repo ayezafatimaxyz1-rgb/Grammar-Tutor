@@ -67,6 +67,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: two people sharing one view, labelled I agree with you. Right: a person moving to a document to accept it, labelled I agree to you, which treats a person as a proposal.",
+        say: [
+          { text: "_I agree with you._ You and I stand together and share the same view, so **with**.", cue: "agreew1" },
+          { text: "_I agree to you_ would mean I accept you, as if you were a proposal on the table. People are not proposals.", cue: "agreew2" },
+          { text: "**To** is right for something offered that you accept: _I agree to your proposal._ **On** is right for a point you both decide: _We agreed on a date._", cue: "agreew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("agreew", ["agreeWith", "I agree with you.", "same view, together", { hl: "with" }], ["agreeTo", "✗ I agree to you.", "a person is not a proposal", { ink: "trouble" }], ["with + a person or opinion · to + a proposal", "on + a point you decide together"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: choose the preposition",
         alt: "The traps remain on the board.",

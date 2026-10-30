@@ -62,6 +62,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: a dot before the deadline with spare time, labelled The ambulance came just in time to save him (early enough). Right: a dot exactly on a planned mark, labelled on time to save him, which needs a timetable that did not exist.",
+        say: [
+          { text: "_The ambulance came just in time to save him_: early enough, before it was too late.", cue: "timew1" },
+          { text: "**On time** means exactly at a planned moment, like a train that keeps its timetable. Nobody had planned a time for this emergency, so on time does not fit.", cue: "timew2" },
+          { text: "**On time** is right for schedules: _The meeting started on time._ Ask: was there a planned time (on time), or a danger of being too late (in time)?", cue: "timew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("timew", ["inTimeBefore", "just in time to save him", "early enough", { hl: "in time" }], ["onTimeDot", "✗ just on time to save him", "on time needs a planned moment", { ink: "trouble" }], ["on time = at the planned moment", "in time = early enough, not too late"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: on time or in time?",
         alt: "The board remains.",

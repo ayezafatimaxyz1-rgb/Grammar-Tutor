@@ -49,6 +49,20 @@
         ],
       },
       {
+        id: "why-not",
+        title: "Why not the other one?",
+        alt: "Left: two bars with a bracket for the gap, labelled an increase of 10 per cent (the size of the change). Right: rising bars, labelled an increase in 10 per cent, which treats the number as the thing that grows.",
+        say: [
+          { text: "_an increase of 10 per cent_: **of** gives the size of the change, the gap between the bars.", cue: "increasew1" },
+          { text: "_an increase in 10 per cent_ would treat the number as the thing that is growing. A percentage is a size, not a thing like prices.", cue: "increasew2" },
+          { text: "**In** is right for the thing that changes: _an increase in prices._ Together: _an increase of 10 per cent in prices._", cue: "increasew-r1" },
+        ],
+        actions: [
+          K.clear("clear-why"),
+          ...K.swap("increasew", ["riseBy", "an increase of 10 per cent", "the size of the change", { hl: "of" }], ["riseIn", "✗ an increase in 10 per cent", "10 per cent is not a thing", { ink: "trouble" }], ["in + what changes (prices) · of + how much", "an increase of 10 per cent in prices"]),
+        ],
+      },
+      {
         id: "check",
         title: "Check: describing data",
         alt: "The board remains.",
