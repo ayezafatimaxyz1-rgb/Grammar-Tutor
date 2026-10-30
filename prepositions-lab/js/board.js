@@ -165,7 +165,7 @@
       }
       const clipId = `${this.key}-${a.id}-clip`.replace(/[^\w-]/g, "_");
       const clip = make("clipPath", { id: clipId, clipPathUnits: "userSpaceOnUse" }, this.defs);
-      const rect = make("rect", { x: box.x - 6, y: box.y - 10, width: 0, height: box.height + 20 }, clip);
+      const rect = make("rect", { x: box.x - 14, y: box.y - 10, width: 0, height: box.height + 20 }, clip);
       text.setAttribute("clip-path", `url(#${clipId})`);
       g.style.visibility = "hidden";
       return this.addItem(a.id, { kind: "write", g, text, rect, box, marks });
