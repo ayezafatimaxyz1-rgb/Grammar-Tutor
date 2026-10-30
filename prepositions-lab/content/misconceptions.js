@@ -174,4 +174,36 @@ PLAB.misconceptions = {
     label: "Where upon works",
     explain: "Upon is a formal on after verbs and in fixed phrases (upon receipt of). Not for days, vehicles or plain position.",
   },
+  "no-prep-verbs": {
+    label: "Verbs that take no preposition",
+    explain: "Reach, enter, discuss, marry, resemble take a direct object: reached Lahore, discussed the issue. Go home needs no to.",
+  },
+  "towards-uses": {
+    label: "Towards for attitudes and direction",
+    explain: "Attitude towards, sympathy towards, contribute towards: something is pointed at a person or goal.",
+  },
+  "made-from-of": {
+    label: "Made from (changed) or made of (still visible)",
+    explain: "Paper is made from wood; cheese from milk. A table is made of wood. Made by names the maker.",
+  },
+  "prevent-from": {
+    label: "Prevent someone from doing",
+    explain: "Prevent, stop, prohibit and discourage take object + from + -ing: prevent them from leaving.",
+  },
+  "through-across-along": {
+    label: "Through, across or along",
+    explain: "Through: in one side and out the other, with depth, or a means. Across: side to side over a surface. Along: following the length.",
+  },
+  "past-passed": {
+    label: "Past (preposition) or passed (verb)",
+    explain: "Walked past the bank: walked is the verb. Passed the bank: passed is the verb. Via names a stop on a route.",
+  },
+  "beyond-limits": {
+    label: "Beyond a limit",
+    explain: "Beyond doubt, beyond repair, beyond control, beyond the scope: past the limit of what is possible.",
+  },
+  "throughout-errors": {
+    label: "Throughout without of or whole",
+    explain: "Throughout the country, throughout the year. Not throughout of, and whole is redundant.",
+  },
 };
