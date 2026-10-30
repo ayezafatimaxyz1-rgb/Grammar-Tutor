@@ -869,8 +869,8 @@ function parseLoose(t) {
 }
 const b64 = (blob) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(",")[1] || ""); r.onerror = no; r.readAsDataURL(blob); });
 // Outside Claude, Mam runs on the learner's own free Gemini key, with the same call shape as Claude's sample().
-// "quick" jobs use the fast Flash-Lite model without thinking; checking writing uses Flash with a little thinking, which is
-// careful enough for a learner's writing and much faster than Flash's default amount.
+// "quick" jobs (and marking short writing) use the fast Flash-Lite model without thinking; marking a longer piece uses Flash
+// with a little thinking, which is careful enough for a learner's writing and much faster than Flash's default amount.
 const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
 const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
 const THINK_LOW = { level: { thinkingLevel: "low" }, budget: { thinkingBudget: 1024 }, none: null };
@@ -920,9 +920,10 @@ async function listModels(key) {
 function chooseModels(names) {
   const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
   const newest = (re) => names.filter((n) => re.test(n)).sort((a, b) => ver(b) - ver(a))[0];
-  const model = names.includes("gemini-flash-latest") ? "gemini-flash-latest" : newest(/^gemini-[\d.]+-flash$/) || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+  // the newest stable Flash first: a "latest" name can point to a preview, which is slower, more often busy and has smaller free limits
+  const model = newest(/^gemini-[\d.]+-flash$/) || (names.includes("gemini-flash-latest") ? "gemini-flash-latest" : names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n))) || "gemini-2.5-flash";
   const fast = newest(/^gemini-[\d.]+-flash-lite$/) || (names.includes("gemini-flash-lite-latest") ? "gemini-flash-lite-latest" : model);
-  return { model, fast };
+  return { model, fast, v: 2 };
 }
 // Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
 const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
@@ -963,6 +964,8 @@ function keepGoing(s) {
   return w;
 }
 const aiReady = use("sample").then((s) => { sample = keepGoing(s || (inClaude ? null : geminiAI())); return sample; });
+// A key saved before the stable models were chosen gets them now (Bolo English does the same with the shared key).
+aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && (!g.fast || g.v !== 2)) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = keepGoing(geminiAI()); } catch {} } });
 const noAI = () => (inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.");
 function errText(e) {
   switch (e?.code) {
@@ -1015,6 +1018,24 @@ async function aiJob(statusId, msg, fn, retry) {
     return null;
   } finally { stop(); clearInterval(clock); if (job === ctl) job = null; }
 }
+// If the model is slow (a busy Google server), the same job also goes to the other model, and the first answer wins.
+// ms is how long to wait first: longer for a long piece, which takes longer to mark.
+function hedged(job, tier, ms, signal) {
+  if (inClaude) return job(tier, signal);
+  return new Promise((ok, no) => {
+    if (signal.aborted) { no({ code: "cancelled" }); return; }
+    const runs = []; let done = false, stopTimer = () => {};
+    const finish = () => { done = true; stopTimer(); runs.forEach((r) => r.ctl.abort()); signal.removeEventListener("abort", onAbort); };
+    const onAbort = () => { if (!done) { finish(); no({ code: "cancelled" }); } };
+    const run = (t) => {
+      const r = { ctl: new AbortController(), live: true }; runs.push(r);
+      job(t, r.ctl.signal).then((x) => { if (!done) { finish(); ok(x); } }, (e) => { r.live = false; if (!done && !runs.some((y) => y.live)) { finish(); no(e); } });
+    };
+    signal.addEventListener("abort", onAbort);
+    stopTimer = deadline(ms, () => { if (!done) { dbg("hedge", { tier }); run(tier === "quick" ? "default" : "quick"); } });
+    run(tier);
+  });
+}
 // Photos are made smaller first (sharp enough for handwriting); canvases are freed at once, as iOS runs out of canvas memory.
 const toJpeg = (c) => new Promise((ok) => c.toBlob((b) => { c.width = c.height = 0; ok(b); }, "image/jpeg", 0.85));
 async function imageBlob(file) {
@@ -1052,7 +1073,7 @@ function checkPrompt(p, text) {
   const qs = t.questions?.length ? "\n\nQuestions:\n" + t.questions.map((q, i) => `${i + 1}. ${q}`).join("\n") : "";
   const structure = sentLike(k) && L ? `, "structure": {"used": how many sentences use the structure "${L.t}" correctly, "total": how many sentences there are, "note": "one short sentence on how they used the structure"}`
     : (k === "para" || k === "essay" || k === "topic") && L ? `, "structure": {"ok": true or false (does it follow the plan and the style of ${an(L.t.toLowerCase())}${part && p.part !== "whole" ? ", for the part they wrote" : ""}?), "note": "one short sentence on the plan and the style"}` : "";
-  const extra = structure + (T ? `, "topic": {"facts_ok": true or false (are the facts in their writing true?), "wrong_facts": ["each wrong fact, copied exactly from their writing, then: what is true"], "used_words": ["the words from the notes that they used correctly"], "note": "one or two short sentences: how well they used what they studied"}` : "") + (k === "precis" ? `, "precis": {"ideas": 0 to 7 (are all the main ideas there, in the author's order?), "language": 0 to 4 (own words, clear and concise, third person, no opinion), "grammar": 0 to 2, "title": 0 to 5 (short, apt, about the central idea; 0 if there is no title), "central": true or false (does the précis keep the central idea?), "key_points": [{"point": "a key point of the passage, in a few words", "kept": true or false}] (every key point of the passage, 3 to 6, in order), "opinion": ["the learner's own opinions or new ideas, copied exactly, if any"], "details": ["examples or details that should have been left out, copied exactly, if any"], "voice": ["first person, direct speech or 'the author says' phrases, copied exactly, if any"], "title_note": "one short sentence about the title", "titles": ["2 good titles"], "model": "a model précis of about ${precisMeasure(p, text).about} words: a title on the first line, then one paragraph"}`
+  const extra = structure + (T ? `, "topic": {"facts_ok": true or false (are the facts in their writing true?), "wrong_facts": ["each wrong fact, copied exactly from their writing, then: what is true"], "used_words": ["the words from the notes that they used correctly"], "note": "one or two short sentences: how well they used what they studied"}` : "") + (k === "precis" ? `, "precis": {"ideas": 0 to 7 (are all the main ideas there, in the author's order?), "language": 0 to 4 (own words, clear and concise, third person, no opinion), "grammar": 0 to 2, "title": 0 to 5 (short, apt, about the central idea; 0 if there is no title), "central": true or false (does the précis keep the central idea?), "key_points": [{"point": "a key point of the passage, in a few words", "kept": true or false}] (every key point of the passage, 3 to 6, in order), "opinion": ["the learner's own opinions or new ideas, copied exactly, if any"], "details": ["examples or details that should have been left out, copied exactly, if any"], "voice": ["first person, direct speech or 'the author says' phrases, copied exactly, if any"], "title_note": "one short sentence about the title", "titles": ["2 good titles"]}`
     : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "");
   const taskArea = k === "topic" ? "content: correct facts and good ideas from what they studied, in the right style" : k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : k === "free" ? "clear, interesting ideas" : sentLike(k) && L ? "using the structure well" : "answering the task with good ideas";
   return `You are Mam, a kind English writing teacher and a fair CSS examiner, checking writing by ${LEARNER()}.
@@ -1064,10 +1085,23 @@ ${text}
 """
 
 Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${k === "skill" && L ? `Mark every mistake with ${L.t}, and only the 3 other mistakes that matter most` : lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
-For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one or two short sentences, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule fully, with the correct words and one more short example, in at most 35 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.
+For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one short sentence, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule, with the correct words and one more short example, in at most 25 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.
 Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".
 Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
-Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "problem": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"], "better": "the whole text written well at level ${lv}, keeping the learner's ideas"${extra}}`;
+Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "problem": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"]${extra}}`;
+}
+// Mam's better version (or model précis) is written in a second call, after the marks: the learner sees the mistakes sooner,
+// and the version is needed only once every mistake is fixed.
+function betterPrompt(p, text) {
+  const t = p.task, L = lessonOf(p), pre = p.kind === "precis";
+  return `You are Mam, a kind English writing teacher, writing a better version of a learner's text to show ${LEARNER()} how it can be written.
+Task: ${t.prompt || t.title}${pre && t.passage ? `\nThe passage:\n"""\n${t.passage}\n"""` : ""}
+The learner wrote:
+"""
+${text}
+"""
+${pre ? `Write a model précis of about ${precisMeasure(p, text).about} words: a short title on the first line, then one paragraph in your own words and the third person.` : `Write the whole text again, well, in ${LEVEL_STYLE[level()]}: correct, natural and clear, keeping the learner's own ideas and order, and about the same length.${sentLike(p.kind) && L ? ` Keep using the structure "${L.t}".` : ""}`}
+Reply with ONLY JSON: {"better": "the text"}`;
 }
 function outlinePrompt(p, text) {
   const L = lessonOf(p), css = !L || L.id === "css";
@@ -1671,9 +1705,11 @@ async function checkPiece(p) {
   if (wordCount(text) < enough) { statusIn("pieceStatus", outline ? "Write your outline first: a thesis statement and your main points." : "Write a little more first.", true); return; }
   stopDictation();
   const b = $("checkBtn"); if (b) b.disabled = true;
-  const long = wordCount(text) > 300;
+  // short writing (sentences, a short paragraph) is marked by the fast model; a longer piece or a précis by Flash, thinking a little
+  const words = wordCount(text), long = words > 300, tier = outline || p.kind === "precis" || words > 150 ? "default" : "quick";
   setPending({ kind: "check", id: p.id, text });
-  const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : "Mam is checking your writing…" + (long ? " A long piece can take a minute or two." : ""), (signal) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: "default", signal }), () => checkPiece(p));
+  const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : "Mam is checking your writing…" + (long ? " A long piece can take a minute." : ""),
+    (signal) => hedged((t, sg) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: t, signal: sg }), tier, 25000 + words * 50, signal), () => checkPiece(p));
   if ($("checkBtn")) $("checkBtn").disabled = false;
   setPending(null);
   if (!r) return;
@@ -1685,7 +1721,8 @@ async function checkPiece(p) {
     if (p.test && !p.test.done) { p.test.done = Date.now(); p.test.score = p.kind === "precis" && d.check.precis ? Math.round(d.check.precis.total / 20 * 100) : d.check.score * 10; }
   }
   putPiece(p, true); renderTabs();
-  dbg("checked", { kind: p.kind, outline, words: wordCount(text) });
+  dbg("checked", { kind: p.kind, outline, words, tier });
+  if (!outline) polish(p, lastDraft(p)); // the better version comes while the learner fixes the mistakes
   if (view.page === "piece" && view.id === p.id) {
     if (p.test?.done === p.drafts[p.drafts.length - 1]?.at || (p.test && !outline && p.drafts.length === 1)) render(true); else { renderResult(p); updateCount(p); } // a test's first check also changes its banner
     $("result")?.scrollIntoView({ block: "start", behavior: "smooth" });
@@ -1923,6 +1960,29 @@ function correctedText(d) {
   d.check.mistakes.map((m, i) => [m, i]).filter(([m]) => m.at != null).sort((a, b) => b[0].at - a[0].at).forEach(([m, i]) => { t = t.slice(0, m.at) + fixedWords(d, i) + t.slice(m.at + m.wrong.length); });
   return t.replace(/ {2,}/g, " ");
 }
+const polishing = new Set();
+async function polish(p, d) {
+  if (!d || d.check.better || polishing.has(d.at)) return;
+  polishing.add(d.at); showBetter(p, d);
+  await aiReady;
+  const ctl = new AbortController(), stop = deadline(120000, () => ctl.abort());
+  try {
+    if (!sample) throw { code: "no_ai" };
+    const r = await hedged((t, sg) => askJson(betterPrompt(p, d.text), { modelTier: t, signal: sg }), p.kind === "precis" || d.words > 150 ? "default" : "quick", 30000 + d.words * 50, ctl.signal);
+    if (isEnglish(r?.better) && String(r.better).trim()) { d.check.better = String(r.better).trim(); putPiece(p); }
+  } catch (e) { dbg("polish_error", { code: String(e?.code || "none") }); }
+  finally { stop(); polishing.delete(d.at); showBetter(p, d); }
+}
+// The better version's place under the corrected writing: the text, Mam still writing it, or a button to ask again.
+function fillBetter(b, p, d) {
+  b.innerHTML = "";
+  b.append(el("div", "lbl", p.kind === "precis" ? "✨ Mam's model précis" : "✨ Mam's better version"));
+  if (d.check.better) b.append(el("p", "better", d.check.better));
+  else if (polishing.has(d.at)) b.append(el("p", "hint", "Mam is writing it…"));
+  else b.append(btn("✨ Show Mam's version", () => polish(p, d)));
+}
+function betterBox(p, d) { const b = el("div"); b.id = "betterBox"; fillBetter(b, p, d); return b; }
+function showBetter(p, d) { const b = $("betterBox"); if (b && view.page === "piece" && view.id === p.id && lastDraft(p) === d) fillBetter(b, p, d); }
 function afterCard(p, d) {
   const c = el("div", "card"), ms = d.check.mistakes;
   if (!ms.length) c.append(el("p", "flag ok", "✓ Mam found no mistakes. Well done!"));
@@ -1936,7 +1996,7 @@ function afterCard(p, d) {
     ms.forEach((m, i) => { if (m.at == null) return; pEl.append(d.text.slice(pos, m.at)); const w = fixedWords(d, i); if (w) pEl.append(el("ins", "", w)); pos = m.at + m.wrong.length; });
     pEl.append(d.text.slice(pos)); c.append(pEl);
   }
-  if (d.check.better) { c.append(el("div", "lbl", p.kind === "precis" ? "✨ Mam's model précis" : "✨ Mam's better version")); c.append(el("p", "better", d.check.better)); }
+  c.append(betterBox(p, d));
   const t = el("div", "tools"), day = p.skill && openDay(), mine = day && day.piece === p.id && !day.done, used = p.drafts.some((x) => x.check?.structure?.ok);
   if (mine && used) t.append(btn("Finish today's lesson →", () => { day.step = 4; putMeta(); go({ tab: "write", page: "day" }); }, "btn primary"));
   t.append(btn("✍️ Write it again", () => { p.text = ms.length ? correctedText(d) : d.text; putPiece(p, true); render(); const ta = $("draft"); if (ta) { ta.scrollIntoView({ block: "start", behavior: "smooth" }); ta.focus({ preventScroll: true }); } toast("Make it even better, then check again"); }, mine && used ? "btn" : "btn primary"));

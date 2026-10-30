@@ -6,7 +6,7 @@ const fs = require("fs");
 let pw;
 try { pw = require("playwright"); } catch { pw = require(require("child_process").execSync("npm root -g").toString().trim() + "/playwright"); }
 const root = path.resolve(__dirname, "../..");
-const KEY = { key: "AIzaSyTEST_0123456789abcdefghijklmnopqr", model: "gemini-flash-latest", fast: "gemini-2.5-flash-lite" };
+const KEY_TEXT = "AIzaSyTEST_0123456789abcdefghijklmnopqr", KEY = { key: KEY_TEXT, model: "gemini-flash-latest", fast: "gemini-2.5-flash-lite" };
 
 const fakes = () => {
   window.__toSay = ["I went to the market with my brother"];
@@ -43,12 +43,17 @@ const fakes = () => {
   await p.addInitScript(fakes);
   await p.route("https://fonts.googleapis.com/**", (r) => r.abort());
   const gem = []; let busyOnce = 1; // the first check meets a busy server
+  let holdLite = null; // while set, a check sent to Flash-Lite gets no answer (a slow, busy server)
   const gemini = async (r) => {
-    const u = r.request().url(), body = JSON.parse(r.request().postData());
+    const u = r.request().url();
+    if (u.includes("/models?")) return r.fulfill({ json: { models: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3-flash-preview", "gemini-flash-lite-latest"].map((n) => ({ name: "models/" + n, supportedGenerationMethods: ["generateContent"] })) } });
+    const body = JSON.parse(r.request().postData());
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
     gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, imgs: body.contents.flatMap((c) => c.parts).filter((x) => x.inline_data).map((x) => x.inline_data.mime_type) });
+    if (holdLite && /checking writing by a learner/.test(prompt) && /flash-lite/.test(u)) { await holdLite; return r.fulfill({ status: 503, json: {} }).catch(() => {}); }
     if (busyOnce && /checking writing by a learner/.test(prompt)) { busyOnce = 0; return r.fulfill({ status: 503, json: { error: { code: 503, message: "The model is overloaded. Please try again later.", status: "UNAVAILABLE" } } }); }
-    const text = /checking writing by a learner/.test(prompt) ? JSON.stringify({ score: 5, areas: { task: 6, organisation: 5, grammar: 4, vocabulary: 5 }, mistakes: [{ wrong: "I go to market", right: "I went to the market", hint: "When did it happen?", why: "Use the past tense.", type: "tense" }], good: ["Clear ideas."], next: ["Add an example."], better: "Yesterday I went to the market with my brother." })
+    const text = /checking writing by a learner/.test(prompt) ? JSON.stringify({ score: 5, areas: { task: 6, organisation: 5, grammar: 4, vocabulary: 5 }, mistakes: [{ wrong: "I go to market", right: "I went to the market", hint: "When did it happen?", why: "Use the past tense.", type: "tense" }], good: ["Clear ideas."], next: ["Add an example."] })
+      : /writing a better version of a learner's text/.test(prompt) ? JSON.stringify({ better: "Yesterday I went to the market with my brother." })
       : /is correcting one mistake/.test(prompt) ? JSON.stringify({ ok: false, note: "Use the past tense." })
       : /is practising one skill/.test(prompt) ? JSON.stringify({ ok: true, note: "" })
       : /These are photos of handwriting/.test(prompt) ? JSON.stringify({ text: "I like my city.", unclear: [], handwriting: "Your handwriting is easy to read." })
@@ -58,6 +63,8 @@ const fakes = () => {
   await p.route("https://generativelanguage.googleapis.com/**", gemini);
   await p.goto(url); await p.waitForTimeout(500);
   check("the key saved in Bolo English works here too: no key needed", !(await p.textContent("#homeStatus")).includes("Gemini key"));
+  const kept = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));
+  check("a key saved with the old choice gets the newest stable Flash, not a 'latest' preview", kept.model === "gemini-2.5-flash" && kept.fast === "gemini-2.5-flash-lite" && kept.v === 2 && kept.key === KEY_TEXT, JSON.stringify({ ...kept, key: "…" }));
   await p.click('summary:has-text("More practice")'); await p.click('.trow:has-text("1. Free writing")'); await p.waitForTimeout(200); await p.click("text=✍️ Start writing"); await p.waitForTimeout(300);
   await p.click("#dictBtn"); await p.waitForTimeout(500);
   check("🎙️ Speak writes what I say into the answer sheet, listening for Pakistani English", (await p.inputValue("#draft")) === "I went to the market with my brother" && (await p.evaluate(() => window.__lang)) === "en-PK");
@@ -66,7 +73,8 @@ const fakes = () => {
   await p.click("#checkBtn"); await p.waitForTimeout(3500);
   const ck = gem.find((g) => /checking writing by a learner/.test(g.prompt));
   check("a busy Google server: Mam waits a moment and asks again, with no error", gem.filter((g) => /checking writing by a learner/.test(g.prompt)).length === 2 && (await p.textContent(".score")) === "5/10");
-  check("checking uses Flash with JSON answers and a little thinking, to be quicker", !!ck && ck.model === "gemini-flash-latest" && ck.mime === "application/json" && ck.think?.thinkingLevel === "low");
+  check("short writing is marked by the fast Flash-Lite model, thinking off, with JSON answers", !!ck && ck.model === "gemini-2.5-flash-lite" && ck.mime === "application/json" && ck.think?.thinkingBudget === 0);
+  check("the marking call does not rewrite the text: Mam's better version comes in its own call afterwards", !/"better":/.test(ck.prompt) && gem.some((g) => /writing a better version of a learner's text/.test(g.prompt) && g.prompt.includes("Yesterday I go to market")));
   check("the marks and the mistake to fix arrive", (await p.textContent(".score")) === "5/10" && (await p.$$("mark.mk")).length === 1);
   await p.fill("#fixIn0", "I goed to market"); await p.click('#fix0 button:has-text("Check")'); await p.waitForTimeout(500);
   const jd = gem.find((g) => /is correcting one mistake/.test(g.prompt));
@@ -76,6 +84,17 @@ const fakes = () => {
   const hw = gem.find((g) => /These are photos of handwriting/.test(g.prompt));
   check("a photo of handwriting goes to Gemini as a smaller JPEG", !!hw && hw.imgs.length === 1 && hw.imgs[0] === "image/jpeg" && (await p.inputValue("#draft")).endsWith("I like my city."));
   check("everything is kept on this phone", await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).pieces.some((x) => x.kind === "free" && x.drafts.length === 1)));
+  // a longer piece is marked by Flash, thinking a little
+  await p.fill("#draft", "Yesterday I go to market with my brother and we buy many things. ".repeat(12)); await p.click("#checkBtn"); await p.waitForTimeout(1200);
+  const lk = gem.filter((g) => /checking writing by a learner/.test(g.prompt)).pop();
+  check("a longer piece (over 150 words) is marked by Flash, thinking a little", lk.model === "gemini-2.5-flash" && lk.think?.thinkingBudget === 1024 && (await p.textContent(".score")) === "5/10");
+  // a slow server: after a while the same check also goes to the other model, and the first answer wins
+  let release; holdLite = new Promise((r) => { release = r; }); const before = gem.length;
+  await p.fill("#draft", "Yesterday I go to market with my brother. We buy mangoes and bananas. Then we come back home happy."); await p.click("#checkBtn");
+  await p.waitForTimeout(27500);
+  const hedge = gem.slice(before).filter((g) => /checking writing by a learner/.test(g.prompt)).map((g) => g.model);
+  check("if Google is slow, Mam asks the other model too and the first answer is used", hedge.join() === "gemini-2.5-flash-lite,gemini-2.5-flash" && (await p.textContent(".score")) === "5/10" && await p.evaluate(() => JSON.parse(localStorage.getItem("likho.v1")).pieces.find((x) => x.kind === "free").drafts.length === 3), hedge.join());
+  holdLite = null; release();
   // today's lesson: an answer different from the expected one is judged by the fast model too
   const today = new Date().toLocaleDateString("en-CA");
   // a fresh page, so the old one's last save does not overwrite the course set here

@@ -103,7 +103,7 @@ const fakes = () => {
   await p.click("#keyPaste"); await p.waitForTimeout(400);
   const saved = await p.evaluate(() => JSON.parse(localStorage.getItem("bolo.gemini")));
   check("one tap pastes and saves the key", (await p.textContent("#keyStatus")).includes("Mam is ready") && saved.key === "AIzaSyTEST_0123456789abcdefghijklmnopqr");
-  check("talking uses the fast stable Flash-Lite model; harder jobs use Flash", saved.fast === "gemini-2.5-flash-lite" && saved.model === "gemini-flash-latest", JSON.stringify(saved));
+  check("talking uses the fast stable Flash-Lite model; harder jobs use Flash", saved.fast === "gemini-2.5-flash-lite" && saved.model === "gemini-2.5-flash", JSON.stringify(saved));
   check("settings: Mam writes down what I say, and the phone listens for Pakistani English", !(await p.isHidden("#earsBox")) && (await p.inputValue("#earsSel")) === "mam" && (await p.inputValue("#accentSel")) === "en-PK");
   await p.selectOption("#earsSel", "phone"); // the talk loop below uses the phone's listening (the fake recogniser)
   await p.click("#setSheet [data-close].btn.primary");
@@ -170,7 +170,7 @@ const fakes = () => {
   check("today's headlines arrive", (await p.$$("#headlines .hl")).length === 3 && (await p.textContent("#headlines")).includes("New dam opens in KPK"));
   const hs = gem.find((g) => /Use Google Search/.test(g.prompt));
   check("headlines use Google Search (without JSON mode)", !!hs && hs.search && !hs.mime);
-  check("if search is refused, it tries the older free model", gem.filter((g) => g.search).map((g) => g.model).join() === "gemini-flash-latest,gemini-2.5-flash");
+  check("if search is refused, it asks once more with Gemini 2.5 Flash", gem.filter((g) => g.search).map((g) => g.model).join() === "gemini-2.5-flash,gemini-2.5-flash");
   await p.click("#headlines .hl >> nth=0"); await p.waitForTimeout(700);
   check("a headline becomes a story to talk about", (await p.textContent("#topicName")).includes("A new dam for Pakistan") && (await p.textContent("#msgs")).includes("Words · 1"));
   await p.click('.tab[data-k="orig"]'); await p.waitForTimeout(100);
@@ -208,7 +208,7 @@ const fakes = () => {
   await p.click('#tabbar [data-tab="talk"]'); await p.waitForTimeout(300);
   await p.click("#topicBtn"); await p.click('#topicList .trow:has-text("Interview me on a topic")'); await p.waitForTimeout(300);
   await p.fill("#ivTopic", "The 18th Amendment"); await p.click('#ivWho .tab:has-text("Mam")'); await p.click("#ivGo"); await p.waitForTimeout(800);
-  check("topic interview: Mam prepares the questions with Flash, thinking a little to be quicker", gem.some((g) => /preparing a practice interview/.test(g.prompt) && g.model === "gemini-flash-latest" && g.mime === "application/json" && g.think?.thinkingLevel === "low") && (await p.textContent("#topicName")).includes("Interview: The 18th Amendment"));
+  check("topic interview: Mam prepares the questions with Flash, thinking a little to be quicker", gem.some((g) => /preparing a practice interview/.test(g.prompt) && g.model === "gemini-2.5-flash" && g.mime === "application/json" && g.think?.thinkingBudget === 1024) && (await p.textContent("#topicName")).includes("Interview: The 18th Amendment"));
   await p.evaluate(() => { window.__toSay.push("It gave more power to the provinces"); });
   await p.click("#orb"); await p.waitForTimeout(3600);
   check("topic interview by voice: the first question is spoken and my answer goes with the check", (await p.evaluate(() => window.__spoken.join("|"))).includes("What is the 18th Amendment?") && gem.some((g) => /Write Mam's next interview turn now/.test(g.prompt) && /"reply":/.test(g.prompt) && g.model === "gemini-2.5-flash-lite" && g.prompt.includes("It gave more power to the provinces")));

@@ -56,7 +56,7 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   // ---- Mam checks: marks, the marked text, fix it yourself first ----
   await p.click("#checkBtn"); await wait(700);
   const ck = (await calls(/checking writing by a learner/))[0];
-  check("Mam checks free writing for grammar, with my exact words", !!ck && ck.prompt.includes("Task (Free writing)") && ck.prompt.includes("Focus on grammar, spelling, punctuation") && ck.prompt.includes(S1) && ck.prompt.includes("English level A1") && ck.tier === "default");
+  check("Mam checks free writing for grammar, with my exact words", !!ck && ck.prompt.includes("Task (Free writing)") && ck.prompt.includes("Focus on grammar, spelling, punctuation") && ck.prompt.includes(S1) && ck.prompt.includes("English level A1") && ck.tier === "quick");
   t = await txt();
   check("marks out of 10 for ideas, organisation, grammar and vocabulary", (await p.textContent(".score")) === "6/10" && t.includes("Draft 1 · 25 words · 3 mistakes") && (await p.$$(".area")).length === 4 && t.includes("Ideas"));
   check("my own text with the examiner's red marks, numbered", (await p.$$("mark.mk")).length === 3 && (await p.textContent("mark.mk >> nth=1")).includes("I go to college by bus yesterday"));

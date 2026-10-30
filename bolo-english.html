@@ -616,13 +616,14 @@ async function listModels(key) {
   if (!r.ok) throw { code: "bad_key" };
   return ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
 }
-// Flash for harder jobs; for talking, the newest stable Flash-Lite (a preview has smaller free limits).
+// Flash for harder jobs; for talking, the newest stable Flash-Lite (a preview has smaller free limits). v: which version of this choice a saved key has.
 function chooseModels(names) {
   const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
   const newest = (re) => names.filter((n) => re.test(n)).sort((a, b) => ver(b) - ver(a))[0];
-  const model = names.includes("gemini-flash-latest") ? "gemini-flash-latest" : newest(/^gemini-[\d.]+-flash$/) || names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n)) || "gemini-2.5-flash";
+  // the newest stable Flash first: a "latest" name can point to a preview, which is slower, more often busy and has smaller free limits
+  const model = newest(/^gemini-[\d.]+-flash$/) || (names.includes("gemini-flash-latest") ? "gemini-flash-latest" : names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n))) || "gemini-2.5-flash";
   const fast = newest(/^gemini-[\d.]+-flash-lite$/) || (names.includes("gemini-flash-lite-latest") ? "gemini-flash-lite-latest" : model);
-  return { model, fast };
+  return { model, fast, v: 2 };
 }
 // Older Claude apps may not have sample.json; fall back to a plain answer and parse it here.
 const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
@@ -3277,7 +3278,7 @@ openTopic(currentTopic(), true);
 setupPullToRefresh();
 renderProgBtn();
 // Keys saved before the fast talking model existed get it now.
-aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && !g.fast) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = keepGoing(geminiAI()); } catch {} } });
+aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && (!g.fast || g.v !== 2)) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = keepGoing(geminiAI()); } catch {} } });
 aiReady.then(() => { if (!sample && !inClaude && mode === "chat") note("To talk with Mam, add your free Gemini key once. It takes one minute.", { label: "Open Settings", fn: (box) => { box.remove(); $("setBtn").click(); } }); });
 connectDb();
 })();
