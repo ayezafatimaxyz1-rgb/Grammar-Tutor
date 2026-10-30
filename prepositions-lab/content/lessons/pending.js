@@ -38,11 +38,18 @@
         title: "Following, given, considering",
         alt: "Three formal examples: Following the verdict, protests broke out. Given the cost, the plan was dropped. Considering his age, he did well.",
         say: [
-          { text: "**Following** = after (formal): _Following the verdict, protests broke out._", cue: "o1" },
-          { text: "**Given** = taking into account: _Given the cost, the plan was dropped._", cue: "o2" },
+          { text: "**Following** = after. The verdict comes first, then the crowd reacts: _Following the verdict, protests broke out._", cue: "o1" },
+          { text: "**Given** = taking into account. The cost is put on the scales and decides the result: _Given the cost, the plan was dropped._", cue: "o2" },
           { text: "**Considering** = taking into account, often with surprise: _Considering his age, he played very well._", cue: "o3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("o", [["Following the verdict, protests broke out.", { hl: "Following" }], ["Given the cost, the plan was dropped.", { hl: "Given" }], ["Considering his age, he played well.", { hl: "Considering" }]], { y: 160, gap: 120, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("o", [
+            ["followEvent", "Following the verdict, ...", "= after", { hl: "Following", size: 26 }],
+            ["weighCost", "Given the cost, ...", "= taking into account", { hl: "Given", size: 26 }],
+            ["scaleTip", "Considering his age, ...", "= taking into account", { hl: "Considering", size: 26 }],
+          ]),
+        ],
       },
       {
         id: "check",

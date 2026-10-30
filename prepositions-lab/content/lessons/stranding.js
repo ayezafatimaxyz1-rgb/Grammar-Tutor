@@ -21,30 +21,44 @@
         title: "A rule that is not a rule",
         alt: "Natural sentences ending in a preposition: What are you looking at? This is the house I grew up in. Marked: correct English.",
         say: [
-          { text: "Some teachers say you must never end a sentence with a preposition. Grammarians and usage guides agree this is a **myth**, borrowed from Latin and never true of English.", cue: "m1" },
-          { text: "_What are you looking at? This is the house I grew up in._ Both are correct, natural English. When a preposition is left at the end like this, grammarians say it is **stranded**.", cue: "m2" },
+          { text: "Some teachers say you must never end a sentence with a preposition. Grammarians agree this is a **myth**, borrowed from Latin.", cue: "m1" },
+          { text: "_What are you looking at?_ The eye looks at something, and _at_ simply stays at the end. _This is the house I grew up in._ Both are natural, correct English. A preposition left at the end is called **stranded**.", cue: "m2" },
         ],
-        actions: K.lines("m", [["What are you looking at?", { hl: "at" }], ["This is the house I grew up in.", { hl: "in" }], ["correct, natural English", { ink: "accent2", size: 30 }]], { y: 160, gap: 110, size: 40 }),
+        actions: PLAB.kit.panels("m", [
+          ["eyeLook", "What are you looking at?", "correct", { hl: "at" }],
+          ["house", "the house I grew up in", "correct", { hl: "in" }],
+        ]),
       },
       {
         id: "formal",
         title: "The formal alternative",
         alt: "Two versions. Everyday: the committee the report was sent to. Formal: the committee to which the report was sent. Note: with whom, in which.",
         say: [
-          { text: "In very formal writing, such as a CSS essay or an official letter, you can move the preposition to the front with _which_ or _whom_: _the committee to which the report was sent._", cue: "f2" },
-          { text: "Use it when it reads naturally. Forcing it can sound stiff: _What are you looking at?_ should never become _At what are you looking?_", cue: "f3" },
+          { text: "In very formal writing you can move the preposition to the front, next to _which_ or _whom_. The picture shows the last word jumping forward.", cue: "f1" },
+          { text: "_the committee the report was sent to_ → _the committee to which the report was sent._ Use it when it reads naturally; _At what are you looking?_ is too stiff.", cue: "f2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("f", [["everyday: the committee the report was sent to", { size: 32, ink: "muted" }], ["formal: the committee to which the report was sent", { size: 32, hl: "to which" }], ["✗ At what are you looking? (too stiff)", { size: 32, ink: "trouble" }]], { y: 160, gap: 110 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("move", "wordsMove", 330, 40, 2.1),
+          ...PLAB.kit.lines("f", [["the committee the report was sent to", { size: 30, ink: "muted" }], ["the committee to which the report was sent", { size: 30, hl: "to which" }], ["✗ At what are you looking? (too stiff)", { size: 30, ink: "trouble" }]], { y: 290, gap: 80 }),
+        ],
       },
       {
         id: "phrasal",
         title: "Never split a phrasal verb",
         alt: "Correct: the noise she put up with. Wrong: the noise up with which she put. Phrasal verbs move as a unit.",
         say: [
-          { text: "With phrasal verbs the preposition belongs to the verb, so it must stay at the end: _the noise she put up with._", cue: "x1" },
-          { text: "_The noise up with which she put_ is impossible. (Churchill is often said to have mocked the false rule this way, though the story is probably invented.)", cue: "x2" },
+          { text: "With phrasal verbs, the words are chained together and move as one unit: _put up with._ So the preposition must stay at the end: _the noise she put up with._", cue: "x1" },
+          { text: "_The noise up with which she put_ breaks the chain and is impossible.", cue: "x2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("x", [["the noise she put up with ✓", { hl: "put up with", hlStyle: "underline", hlInk: "accent2" }], ["✗ the noise up with which she put", { ink: "trouble" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.pic("chainpic", "chain", 330, 50, 2.1),
+          { do: "write", id: "c1", text: "put", x: 393, y: 145, size: 26, anchor: "middle" },
+          { do: "write", id: "c2", text: "up", x: 485, y: 145, size: 26, anchor: "middle", sync: true },
+          { do: "write", id: "c3", text: "with", x: 577, y: 145, size: 26, anchor: "middle", sync: true },
+          ...PLAB.kit.lines("x", [["the noise she put up with ✓", { hl: "put up with", hlStyle: "underline", hlInk: "accent2" }], ["✗ the noise up with which she put", { ink: "trouble" }]], { y: 330, gap: 100, size: 36 }),
+        ],
       },
       {
         id: "check",

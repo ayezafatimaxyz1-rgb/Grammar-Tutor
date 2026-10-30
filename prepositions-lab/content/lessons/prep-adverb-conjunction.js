@@ -21,16 +21,14 @@
         title: "A noun or a clause after it?",
         alt: "Two rows. After lunch: after plus a noun, labelled preposition. After he left: after plus a clause with its own verb, labelled conjunction.",
         say: [
-          { text: "Look at what comes after the word. A **noun** (or pronoun, or -ing form) means it is a **preposition**: _after lunch, before the meeting, since 2015._", cue: "r1" },
-          { text: "A **clause** (a subject and its own verb) means it is a **conjunction**, joining two clauses: _after he left, before the meeting started, since we moved here._", cue: "r2" },
+          { text: "Look at what comes after the word. **After lunch**: after is followed by a thing, a noun. Then it is a **preposition**. Same for _before the meeting, since 2015._", cue: "r1" },
+          { text: "**After he left**: after is followed by a whole event with its own subject and verb (_he left_). Then it is a **conjunction**, joining two clauses.", cue: "r2" },
         ],
         actions: [
-          { do: "write", id: "r1", text: "after lunch → preposition", x: 480, y: 160, size: 40, anchor: "middle", gap: 400 },
-          { do: "highlight", id: "r1-h", target: "r1", word: "lunch", style: "underline", ink: "accent2" },
-          { do: "write", id: "r1l", text: "+ noun", x: 480, y: 215, size: 28, ink: "accent2", anchor: "middle" },
-          { do: "write", id: "r2", text: "after he left → conjunction", x: 480, y: 330, size: 40, anchor: "middle", gap: 600 },
-          { do: "highlight", id: "r2-h", target: "r2", word: "he left", style: "underline", ink: "trouble" },
-          { do: "write", id: "r2l", text: "+ clause (subject + verb)", x: 480, y: 385, size: 28, ink: "trouble", anchor: "middle" },
+          ...PLAB.kit.panels("r", [
+            ["afterLunch", "after lunch", "+ noun → preposition", { hl: "after" }],
+            ["personLeft", "after he left", "+ clause → conjunction", { hl: "after" }],
+          ]),
         ],
       },
       {
@@ -56,16 +54,18 @@
         title: "Because of and because",
         alt: "Two correct sentences: The match was cancelled because of the rain; The match was cancelled because it rained. Crossed out: because of it rained.",
         say: [
-          { text: "**Because of** is a preposition: it needs a noun. _The match was cancelled because of the rain._", cue: "b1" },
-          { text: "**Because** is a conjunction: it needs a clause. _The match was cancelled because it rained._", cue: "b2" },
-          { text: "Mixing them, _because of it rained_, is a very common error. The same goes for _despite_ (+ noun) and _although_ (+ clause).", cue: "b3" },
+          { text: "**Because of** is a preposition: it needs a thing. The cloud is the thing that caused the cancellation: _cancelled because of the rain._", cue: "b1" },
+          { text: "**Because** is a conjunction: it needs an event, a clause with its own verb. The cloud raining is the event: _cancelled because it rained._", cue: "b2" },
+          { text: "Mixing them, _because of it rained_, is a very common error. The same pair: _despite_ + noun, _although_ + clause.", cue: "b3" },
         ],
         actions: [
-          K.clear("clear-1"),
-          { do: "write", id: "b1", text: "because of the rain ✓ (+ noun)", x: 480, y: 150, size: 38, anchor: "middle", gap: 400 },
-          { do: "write", id: "b2", text: "because it rained ✓ (+ clause)", x: 480, y: 250, size: 38, anchor: "middle", gap: 400 },
-          { do: "write", id: "b3", text: "✗ because of it rained", x: 480, y: 370, size: 38, ink: "trouble", anchor: "middle", gap: 500 },
-          { do: "write", id: "b4", text: "despite + noun · although + clause", x: 480, y: 470, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("b", [
+            ["cloud", "because of the rain", "+ noun", { hl: "because of" }],
+            ["rain", "because it rained", "+ clause", { hl: "because" }],
+          ]),
+          { do: "write", id: "b3", text: "✗ because of it rained", x: 480, y: 440, size: 36, ink: "trouble", anchor: "middle", gap: 500 },
+          { do: "write", id: "b4", text: "despite + noun · although + clause", x: 480, y: 510, size: 30, ink: "accent2", anchor: "middle", gap: 400 },
         ],
       },
       {
@@ -91,11 +91,18 @@
         title: "Adverb and particle jobs",
         alt: "Three sentences: Come in (adverb, no object); in the room (preposition); give in, meaning surrender (particle of a phrasal verb).",
         say: [
-          { text: "From earlier lessons: a word with no object is working as an **adverb**: _Come in. Let's go outside._", cue: "j1" },
-          { text: "With an object it is a **preposition**: _in the room._", cue: "j2" },
-          { text: "As part of a phrasal verb with its own meaning it is a **particle**: _give in_ means surrender.", cue: "j3" },
+          { text: "The same little word can do three jobs. _Come in_: the arrow goes through the door, but no object is named. Adverb.", cue: "j1" },
+          { text: "_In the room_: the dot is inside a named thing, the room. Preposition.", cue: "j2" },
+          { text: "_Give in_: no direction at all. Raising a white flag means surrender, and _in_ is part of the phrasal verb. Particle.", cue: "j3" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("j", [["Come in. → adverb", { hl: "in" }], ["in the room → preposition", { hl: "in" }], ["give in (surrender) → particle", { hl: "give in", hlStyle: "underline", hlInk: "accent2" }]], { y: 160, gap: 110, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("j", [
+            ["enterRoom", "Come in.", "adverb: no object", { hl: "in" }],
+            ["dotIn", "in the room", "preposition + object", { hl: "in" }],
+            ["flag", "give in (surrender)", "particle", { hl: "give in" }],
+          ]),
+        ],
       },
       {
         id: "summary",

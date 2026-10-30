@@ -21,24 +21,35 @@
         title: "Pointing at a goal or a receiver",
         alt: "Five rows: purpose, a knife for cutting bread; benefit, a gift for you; exchange, I paid Rs 500 for it; support, vote for the bill; destination, the train leaves for Karachi.",
         say: [
-          { text: "**For** points at what something is aimed at. Its **purpose**: _a knife for cutting bread, a room for meetings._", cue: "u1" },
-          { text: "Who **benefits**: _a gift for you, a school for girls._", cue: "u2" },
-          { text: "What you get in **exchange**: _I paid Rs 500 for this book._", cue: "u3" },
-          { text: "What you **support**: _Forty members voted for the bill._ (The opposite is _against_.)", cue: "u4" },
-          { text: "Where a departure is heading: _The train leaves for Karachi at six._ Compare _leaves Lahore_ (the starting point, no preposition).", cue: "u5" },
+          { text: "**For** points at what something is aimed at. **Purpose**: a knife is aimed at cutting: _a knife for cutting bread._", cue: "u1" },
+          { text: "**Benefit**: the gift is aimed at you: _a gift for you._ **Exchange**: money goes one way, the book the other: _paid Rs 500 for it._", cue: "u3" },
+          { text: "**Support**: a hand raised for the bill: _voted for the bill._ **Destination** of a departure: the train sets off aimed at Karachi: _leaves for Karachi._", cue: "u5" },
         ],
-        actions: K.lines("u", [["purpose: a knife for cutting bread", { hl: "for" }], ["benefit: a gift for you", { hl: "for" }], ["exchange: paid Rs 500 for it", { hl: "for" }], ["support: voted for the bill", { hl: "for" }], ["destination: leaves for Karachi", { hl: "for" }]], { y: 110, gap: 85, size: 34 }),
+        actions: PLAB.kit.rows("u", [
+          ["bread", "purpose: a knife for cutting bread", { hl: "for" }],
+          ["gift", "benefit: a gift for you", { hl: "for" }],
+          ["exchange", "exchange: paid Rs 500 for it", { hl: "for" }],
+          ["voteFor", "support: voted for the bill", { hl: "for" }],
+          ["leaveFor", "destination: leaves for Karachi", { hl: "for" }],
+        ], { y: 70, gap: 102 }),
       },
       {
         id: "purpose",
         title: "Purpose: to + verb, for + noun",
         alt: "Correct: She went to the market to buy vegetables; She went to the market for vegetables. Crossed out: for to buy, for buy.",
         say: [
-          { text: "To give the purpose of an action, use **to + verb**: _She went to the market to buy vegetables._", cue: "p1" },
+          { text: "To give the purpose of an action, use **to + verb**: she walks to the shop in order to buy. _She went to the market to buy vegetables._", cue: "p1" },
           { text: "Or **for + noun**: _She went to the market for vegetables._ (_For + -ing_ usually describes what a thing is used for: _a machine for making ice._)", cue: "p2" },
           { text: "_For to buy_ and _for buy_ are both wrong.", cue: "p3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("p", [["went to the market to buy vegetables ✓", { size: 34 }], ["went to the market for vegetables ✓", { size: 34 }], ["✗ for to buy · ✗ for buy", { ink: "trouble" }]], { y: 170, gap: 110, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("p", [
+            ["toShop", "went to the market to buy vegetables", "to + verb", { hl: "to buy", size: 24 }],
+            ["toShop", "went to the market for vegetables", "for + noun", { hl: "for", size: 24 }],
+          ]),
+          { do: "write", id: "p3", text: "✗ for to buy · ✗ for buy", x: 480, y: 470, size: 36, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "check1",

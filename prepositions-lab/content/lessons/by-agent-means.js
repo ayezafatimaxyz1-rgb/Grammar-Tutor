@@ -21,28 +21,45 @@
         title: "The doer",
         alt: "Sentence: The poem was written by Iqbal, with by Iqbal labelled the agent, the doer of the action.",
         say: [
-          { text: "In a passive sentence, **by** names the doer, the **agent**: _The poem was written by Iqbal. The bridge was opened by the President._", cue: "a1" },
+          { text: "In a passive sentence, **by** names the doer, the **agent**: the poet produces the page. _The poem was written by Iqbal._", cue: "a1" },
           { text: "It also names the creator of a work: _a novel by Bano Qudsia, a painting by Sadequain._", cue: "a2" },
         ],
-        actions: K.lines("a", [["The poem was written by Iqbal.", { hl: "by" }], ["a novel by Bano Qudsia · a painting by Sadequain", { size: 32, ink: "muted" }]], { y: 200, gap: 120, size: 40 }),
+        actions: [
+          ...PLAB.kit.pic("ag", "writtenBy", 300, 40, 2.6),
+          ...PLAB.kit.lines("a", [["The poem was written by Iqbal.", { hl: "by" }], ["a novel by Bano Qudsia · a painting by Sadequain", { size: 30, ink: "muted" }]], { y: 330, gap: 100, size: 40 }),
+        ],
       },
       {
         id: "means",
         title: "Means: by + bare noun",
         alt: "Rows: by train, by bus, by car, by air; by email, by post, by phone; by hand, by cheque. Note: on foot; in my car; on the 7 o'clock train.",
         say: [
-          { text: "**By** + a bare noun (no _the_, no _my_) names the means: _by train, by car, by air, by email, by post, by hand, by cheque._", cue: "m1" },
-          { text: "As soon as you add a word like _the_ or _my_, use the place prepositions: _in my car, on the 7 o'clock train._", cue: "m2" },
-          { text: "And walking is _on foot_, not _by foot_ or _by walk_.", cue: "m3" },
+          { text: "**By** + a bare noun (no _the_, no _my_) names the means: _by train, by car, by air, by email, by hand._", cue: "m1" },
+          { text: "As soon as you add _the_ or _my_, the vehicle becomes a real place again, so use the place prepositions: _in my car, on the 7 o'clock train._", cue: "m2" },
+          { text: "Walking is _on foot_: the feet are the surface you travel on. Not _by foot_ or _by walk._", cue: "m3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", ["by train · by air · by email · by hand", ["in my car · on the 7 o'clock train", { ink: "accent2" }], ["on foot (✗ by walk)", { ink: "trouble" }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.rows("m", [
+            ["train", "by train · by air · by email · by hand", { hl: "by" }],
+            ["car", "in my car · on the 7 o'clock train", { ink: "accent2" }],
+            ["feet", "on foot (✗ by walk)", { hl: "on foot" }],
+          ], { y: 120, gap: 130, size: 34 }),
+        ],
       },
       {
         id: "method",
         title: "Method: by + -ing",
         alt: "Sentence: She passed by working hard every day. Note: by + -ing answers how.",
-        say: [{ text: "**By + -ing** gives the method, answering _how?_: _She passed by working hard every day. You can save energy by switching off lights._", cue: "h1" }],
-        actions: [K.clear("clear-2"), ...K.lines("h", [["She passed by working hard.", { hl: "by" }], ["by + -ing = how?", { ink: "accent2", size: 30 }]], { y: 220, gap: 110, size: 40 })],
+        say: [
+          { text: "**By + -ing** gives the method, answering _how?_: hard work is the road that leads to success. _She passed by working hard every day._", cue: "h1" },
+          { text: "_You can save energy by switching off lights._", cue: "h2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.pic("ws", "workSuccess", 300, 40, 2.6),
+          ...PLAB.kit.lines("h", [["She passed by working hard.", { hl: "by" }], ["by + -ing = how?", { ink: "accent2", size: 30 }]], { y: 330, gap: 100, size: 40 }),
+        ],
       },
       {
         id: "change",

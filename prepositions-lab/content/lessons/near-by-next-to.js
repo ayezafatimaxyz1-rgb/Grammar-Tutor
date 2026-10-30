@@ -42,17 +42,18 @@ PLAB.registerLesson({
       title: "Near or nearby?",
       alt: "Two rows. Near the school: preposition, takes an object. A nearby shop, they live nearby: adjective and adverb. Crossed out: nearby the school.",
       say: [
-        { text: "**Near** is a preposition: it takes an object. _We live near the school._ (_Near to_ is also possible, a little less common.)", cue: "r1" },
-        { text: "**Nearby** is an adjective or adverb: _a nearby shop, They live nearby._ It does not take an object in standard English, so _nearby the school_ is best avoided.", cue: "r2" },
-      ],
+          { text: "**Near** is a preposition: the arrow points from the person to the school, the thing named after near. _We live near the school._", cue: "r1" },
+          { text: "**Nearby** is an adjective or adverb: the shop is close, but nothing is named after the word. _A nearby shop. They live nearby._", cue: "r2" },
+          { text: "So _nearby the school_ is best avoided. Use _near the school._", cue: "r3" },
+        ],
       actions: [
-        { do: "erase", id: "clear-distance", targets: "all" },
-        { do: "write", id: "r1", text: "near the school ✓", x: 480, y: 150, size: 40, anchor: "middle", gap: 400 },
-        { do: "write", id: "r1l", text: "preposition + object", x: 480, y: 205, size: 28, ink: "accent2", anchor: "middle" },
-        { do: "write", id: "r2", text: "a nearby shop · they live nearby ✓", x: 480, y: 310, size: 36, anchor: "middle", gap: 500, dur: 2000 },
-        { do: "write", id: "r2l", text: "adjective / adverb", x: 480, y: 365, size: 28, ink: "accent2", anchor: "middle" },
-        { do: "write", id: "r3", text: "✗ nearby the school", x: 480, y: 470, size: 38, ink: "trouble", anchor: "middle", gap: 500 },
-      ],
+          PLAB.kit.clear("clear-distance"),
+          ...PLAB.kit.panels("r", [
+            ["nearSchool", "near the school ✓", "preposition + object", { hl: "near" }],
+            ["nearbyShop", "a nearby shop ✓", "adjective / adverb", { hl: "nearby" }],
+          ]),
+          { do: "write", id: "r3", text: "✗ nearby the school", x: 480, y: 470, size: 36, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
     },
     {
       id: "check-sea",

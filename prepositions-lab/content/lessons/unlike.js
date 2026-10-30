@@ -38,10 +38,14 @@
         title: "A faulty comparison",
         alt: "Crossed out: Unlike Karachi's weather, Lahore has cold winters, which compares weather with a city. Correct: Unlike Karachi's weather, Lahore's is cold in winter.",
         say: [
-          { text: "_Unlike Karachi's weather, Lahore has cold winters_ compares **weather** with **a city**. That is a faulty comparison.", cue: "f1" },
+          { text: "_Unlike Karachi's weather, Lahore has cold winters_ puts **weather** (a cloud) against **a city** (a box). They are different kinds of thing, so the comparison is faulty.", cue: "f1" },
           { text: "Fix it by matching the two: _Unlike Karachi's weather, Lahore's is cold in winter_, or _Unlike Karachi, Lahore has cold winters._", cue: "f2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("f", [["✗ Unlike Karachi's weather, Lahore has cold winters.", { ink: "trouble", size: 32 }], ["✓ Unlike Karachi's weather, Lahore's is cold in winter.", { ink: "accent", size: 32 }]], { y: 200, gap: 130 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("mm", "mismatch", 330, 30, 2.1),
+          ...PLAB.kit.lines("f", [["✗ Unlike Karachi's weather, Lahore has cold winters.", { ink: "trouble", size: 30 }], ["✓ Unlike Karachi's weather, Lahore's is cold in winter.", { ink: "accent", size: 30 }]], { y: 300, gap: 100 }),
+        ],
       },
       {
         id: "check",

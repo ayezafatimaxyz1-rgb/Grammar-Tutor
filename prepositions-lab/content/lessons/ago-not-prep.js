@@ -40,19 +40,34 @@
         title: "Ago or before?",
         alt: "Two sentences: I met him two years ago (counted from now). When I met him in 2020, he had left the army two years before (counted from 2020).",
         say: [
-          { text: "**Ago** counts back from **now**. **Before** (or _earlier_) counts back from **a past point** in a story: _When I met him in 2020, he had left the army two years before._", cue: "b2" },
+          { text: "**Ago** counts back from **now**: the arrow starts at the now dot. _I met him two years ago._", cue: "b1" },
+          { text: "**Before** (or _earlier_) counts back from **a past point** in a story: the arrow starts at 2020. _When I met him in 2020, he had left the army two years before._", cue: "b2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("b", [["two years ago = from now", { hl: "ago" }], ["two years before = from a past point", { hl: "before" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("b", [
+            ["pointPast", "two years ago", "from now", { hl: "ago" }],
+            ["backFromPoint", "two years before", "from a past point", { hl: "before" }],
+          ]),
+        ],
       },
       {
         id: "none",
         title: "Words that take no preposition",
         alt: "List: go home, live abroad, go upstairs, go downtown, yesterday, tomorrow. Crossed out: go to home, live in abroad.",
         say: [
-          { text: "Some words already contain the idea of place or time, so no preposition is used: _go home, live abroad, go upstairs, go downtown, yesterday, tomorrow, tonight._", cue: "n1" },
-          { text: "So _go to home_ and _live in abroad_ are wrong. (But _at home_ for position, and _from abroad_ for origin, are correct.)", cue: "n2" },
+          { text: "Some words already contain the place or time, so the arrow goes straight to them with no preposition: _go home, live abroad, go upstairs, go downtown, yesterday, tomorrow._", cue: "n1" },
+          { text: "So _go to home_ and _live in abroad_ are wrong. (But _at home_ for position, and _from abroad_ for origin, are correct.)", cue: "n4" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("n", ["go home · live abroad · go upstairs · yesterday", ["✗ go to home · ✗ live in abroad", { ink: "trouble" }], ["✓ at home · ✓ from abroad", { ink: "accent2", size: 32 }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.rows("n", [
+            ["goHome", "go home (✗ go to home)", { hl: "home" }],
+            ["plane", "live abroad (✗ live in abroad)", { hl: "abroad" }],
+            ["stairs", "go upstairs · go downtown", { hl: "upstairs" }],
+            ["check", "✓ at home · ✓ from abroad", { ink: "accent2" }],
+          ], { y: 100, gap: 118 }),
+        ],
       },
       {
         id: "check",

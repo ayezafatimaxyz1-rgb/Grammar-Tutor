@@ -275,7 +275,7 @@ Each step: {"id","title","alt" (one sentence describing the finished board for s
 In "say" text, **word** marks a key term and _text_ marks an example. Each say line is 1-3 short sentences.
 A check: {"prompt","skill","options":[{"text","correct":true,"why"} or {"text","why","mistake":<short name of the misunderstanding>,"mistakeExplain":<one sentence>}]}
 
-Plan the layout before writing coordinates: every picture should show the real relationship (inside, on a surface, a point, a path, between two, among many, before/after on a time line, cause to effect, and so on). Use pictures only where they help; for a convention, write contrasting example sentences instead.
+Plan the layout before writing coordinates. Every step except a check must draw at least one picture that shows the logic of the meaning: inside, on a surface, a point, a path, between two, among many, before/after on a time line, cause to effect, control from above, a limit, a swap, and so on. Even abstract and fixed uses get a picture of the idea behind them (for example control over = a hand above holding strings; under review = a document under a magnifying glass). Never leave a board with only text, and explain in the say lines how the picture shows the meaning.
 
 Reply with only one JSON object: {"title","summary","objectives":[..],"steps":[..]}. Here is a short example of the format:
 ${JSON.stringify(EXAMPLE)}`;

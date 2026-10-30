@@ -20,20 +20,33 @@
         title: "Recognise, do not use",
         alt: "A table of old words and modern meanings: unto, to; betwixt, between; ere, before; athwart, across; amidst, amid.",
         say: [
-          { text: "These appear in older texts and poetry. Read them, but do not use them in your own writing.", cue: "o1" },
+          { text: "These come from old texts and poetry, like words on a scroll. Read them, but do not use them in your own writing.", cue: "o1" },
           { text: "_unto_ = to, _betwixt_ = between, _ere_ = before, _athwart_ = across, _amidst_ = amid.", cue: "o5" },
         ],
-        actions: K.lines("o", ["unto = to", "betwixt = between", "ere = before", "athwart = across", "amidst = amid"], { y: 110, gap: 85, size: 36 }),
+        actions: [
+          ...PLAB.kit.pic("sc", "scroll", 600, 120, 2.2),
+          { do: "write", id: "o1", text: "unto = to", x: 80, y: 120, size: 36, gap: 300 },
+          { do: "write", id: "o2", text: "betwixt = between", x: 80, y: 200, size: 36 },
+          { do: "write", id: "o3", text: "ere = before", x: 80, y: 280, size: 36 },
+          { do: "write", id: "o4", text: "athwart = across", x: 80, y: 360, size: 36 },
+          { do: "write", id: "o5", text: "amidst = amid", x: 80, y: 440, size: 36 },
+        ],
       },
       {
         id: "useful",
         title: "Two that are still useful",
         alt: "Two rows: Pakistan's position vis-à-vis India, meaning in relation to. The state qua employer, meaning in its capacity as employer.",
         say: [
-          { text: "**Vis-à-vis** (French, face to face) means _in relation to_ or _compared with_: _Pakistan's position vis-à-vis India._", cue: "u1" },
-          { text: "**Qua** (Latin) means _in the capacity of_: _the state qua employer_, meaning the state in its role as an employer. It is academic; use it only when precise.", cue: "u2" },
+          { text: "**Vis-à-vis** is French for _face to face_: two things set facing each other to compare them. It means _in relation to_: _Pakistan's position vis-à-vis India._", cue: "u1" },
+          { text: "**Qua** (Latin) means _in the capacity of_: the same person wearing a particular badge. _the state qua employer_ = the state in its role as employer.", cue: "u2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("u", [["Pakistan's position vis-à-vis India", { hl: "vis-à-vis" }], ["the state qua employer", { hl: "qua" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("u", [
+            ["faces", "position vis-à-vis India", "= in relation to", { hl: "vis-à-vis" }],
+            ["badge", "the state qua employer", "= in its role as", { hl: "qua" }],
+          ]),
+        ],
       },
       {
         id: "check",

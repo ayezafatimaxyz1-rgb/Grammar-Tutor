@@ -21,21 +21,34 @@
         title: "General or specialised",
         alt: "Two rows: a book about dogs, a chat about cricket (general). A treatise on constitutional law, a lecture on economics (formal, specialised).",
         say: [
-          { text: "**About** is the everyday choice for any topic: _a book about dogs, a chat about cricket._", cue: "t1" },
-          { text: "**On** sounds more formal and suits serious or specialised subjects: _a treatise on constitutional law, a lecture on economics, a report on poverty._", cue: "t2" },
-          { text: "Some words have a fixed partner: _comment on, speak on_ (formal) but _worry about, talk about, think about._", cue: "t3" },
+          { text: "**About** pictures talk moving around a topic, touching many sides of it: the everyday choice. _a book about dogs, a chat about cricket._", cue: "t1" },
+          { text: "**On** pictures a work resting on its subject as a foundation: more formal and specialised. _a lecture on economics, a report on poverty._", cue: "t2" },
+          { text: "Some words have fixed partners: _comment on, speak on_ (formal), but _worry about, talk about, think about._", cue: "t3" },
         ],
-        actions: K.lines("t", [["about: a book about dogs · a chat about cricket", { hl: "about", size: 32 }], ["on: a lecture on economics · a report on poverty", { hl: "on", size: 32 }], ["comment on · worry about · talk about", { ink: "accent2", size: 32 }]], { y: 170, gap: 115 }),
+        actions: [
+          ...PLAB.kit.panels("t", [
+            ["aboutCircle", "a book about dogs", "around the topic: everyday", { hl: "about" }],
+            ["onBase", "a lecture on economics", "resting on it: formal", { hl: "on" }],
+          ]),
+          { do: "write", id: "t3", text: "comment on · worry about · talk about", x: 480, y: 470, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "discuss",
         title: "Discuss takes no preposition",
         alt: "Crossed out: discussed about the budget. Correct: discussed the budget; had a discussion about the budget.",
         say: [
-          { text: "The verb **discuss** takes its object directly. _The committee discussed the budget._", cue: "d2" },
-          { text: "_Discussed about the budget_ is a very common error. The noun _discussion_, however, does take _about_ or _on_: _a discussion about the budget._", cue: "d3" },
+          { text: "The verb **discuss** goes straight to its object, like an arrow hitting the box. _The committee discussed the budget._", cue: "d2" },
+          { text: "_Discussed about the budget_ adds a word that is not needed and is a very common error. The noun **discussion**, though, does take _about_ or _on_: _a discussion about the budget._", cue: "d3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("d", [["✗ discussed about the budget", { ink: "trouble" }], ["✓ discussed the budget", { ink: "accent" }], ["✓ a discussion about / on the budget", { ink: "accent2", size: 32 }]], { y: 170, gap: 110, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("d", [
+            ["directHit", "discussed the budget ✓", "no preposition", {}],
+            [[["directHit", 0, 0], ["cross", 0, 0]], "✗ discussed about the budget", "", { ink: "trouble", size: 26 }],
+          ]),
+          { do: "write", id: "d3", text: "✓ a discussion about / on the budget", x: 480, y: 470, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "check",

@@ -20,21 +20,28 @@
         title: "Two views",
         alt: "Three rows: She is taller than me (everyday, widely accepted). She is taller than I (formal, can sound stiff). She is taller than I am (safest, natural and formal).",
         say: [
-          { text: "If than is a **preposition**, it takes the object form: _She is taller than me._ This is standard in everyday English.", cue: "v1" },
-          { text: "If than is a **conjunction**, a clause follows, perhaps shortened: _She is taller than I (am)._ Traditional grammars prefer this.", cue: "v2" },
-          { text: "The safest formal choice adds the verb: _She is taller than I am._ It is correct for everyone and never sounds stiff.", cue: "v3" },
+          { text: "She is taller than he is. If **than** is a preposition, it takes the object form: _She is taller than me._ Standard in everyday English.", cue: "v1" },
+          { text: "If than is a conjunction, a clause follows, perhaps shortened: _She is taller than I._ Traditional grammars prefer this, but it can sound stiff.", cue: "v2" },
+          { text: "The safest formal choice adds the verb: _She is taller than I am._", cue: "v3" },
         ],
-        actions: K.lines("v", [["She is taller than me. (everyday)", { hl: "me" }], ["She is taller than I. (formal, stiff)", { hl: "I" }], ["She is taller than I am. (safest)", { hl: "I am" }]], { y: 160, gap: 115, size: 38 }),
+        actions: [
+          ...PLAB.kit.pic("tl", "taller", 360, 20, 1.7),
+          ...PLAB.kit.lines("v", [["She is taller than me. (everyday)", { hl: "me" }], ["She is taller than I. (formal, stiff)", { hl: "I" }], ["She is taller than I am. (safest)", { hl: "I am" }]], { y: 250, gap: 90, size: 36 }),
+        ],
       },
       {
         id: "meaning",
         title: "When the pronoun changes the meaning",
         alt: "Two sentences: She likes him more than me, meaning more than she likes me. She likes him more than I do, meaning more than I like him.",
         say: [
-          { text: "With some verbs, the choice changes the meaning. _She likes him more than me_ = more than she likes me.", cue: "m1" },
-          { text: "_She likes him more than I do_ = more than I like him. Adding the verb removes the doubt.", cue: "m2" },
+          { text: "With some verbs, the pronoun changes the meaning. She loves him a lot and me a little: the thick arrow goes to him. _She likes him more than me_ = more than she likes me.", cue: "m1" },
+          { text: "_She likes him more than I do_ = she and I both like him, and she likes him more. Adding the verb removes the doubt.", cue: "m2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", ["She likes him more than me. = than she likes me", "She likes him more than I do. = than I like him"], { y: 200, gap: 130, size: 34 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("lm", "likesMore", 330, 20, 2.1),
+          ...PLAB.kit.lines("m", ["She likes him more than me. = than she likes me", "She likes him more than I do. = than I like him"], { y: 290, gap: 100, size: 32 }),
+        ],
       },
       {
         id: "check",

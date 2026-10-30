@@ -21,22 +21,32 @@
         title: "Four phrases",
         alt: "Rows: She spoke on behalf of the government; a mistake on the part of the officer; the court ruled in favour of the tenant; he is in charge of the project.",
         say: [
-          { text: "**On behalf of** = as the representative of: _She spoke on behalf of the government._ (American English also has _in behalf of_, meaning in the interest of; it is rare.)", cue: "f1" },
-          { text: "**On the part of** = by: _a serious mistake on the part of the officer._", cue: "f2" },
-          { text: "**In favour of** (American _favor_) = supporting, or to the benefit of: _The court ruled in favour of the tenant._", cue: "f3" },
-          { text: "**In charge of** = responsible for: _He is in charge of the project._", cue: "f4" },
+          { text: "**On behalf of** = as the representative of: one person speaks for the group behind her. _She spoke on behalf of the government._", cue: "f1" },
+          { text: "**On the part of** = by: the finger points at who did it. _a serious mistake on the part of the officer._", cue: "f2" },
+          { text: "**In favour of** = supporting: the scale tips one way. _The court ruled in favour of the tenant._ **In charge of** = responsible for: one person directs the group. _in charge of the project._", cue: "f4" },
         ],
-        actions: K.lines("f", [["spoke on behalf of the government", { hl: "on behalf of" }], ["a mistake on the part of the officer", { hl: "on the part of" }], ["ruled in favour of the tenant", { hl: "in favour of" }], ["in charge of the project", { hl: "in charge of" }]], { y: 130, gap: 100, size: 36 }),
+        actions: PLAB.kit.rows("f", [
+          ["spokes", "spoke on behalf of the government", { hl: "on behalf of" }],
+          ["blame", "a mistake on the part of the officer", { hl: "on the part of" }],
+          ["scaleTip", "ruled in favour of the tenant", { hl: "in favour of" }],
+          ["leadGroup", "in charge of the project", { hl: "in charge of" }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "charge",
         title: "In charge of vs in the charge of",
         alt: "Two sentences: The nurse is in charge of the ward (she is responsible). The ward is in the charge of the nurse (it is under her care). Arrows show who is responsible.",
         say: [
-          { text: "_The nurse is **in charge of** the ward_: the nurse is responsible.", cue: "c1" },
-          { text: "_The ward is **in the charge of** the nurse_: the ward is under her care. Adding _the_ reverses the direction.", cue: "c2" },
+          { text: "_The nurse is **in charge of** the ward_: the nurse directs it, responsibility goes down from her.", cue: "c1" },
+          { text: "_The ward is **in the charge of** the nurse_: the ward is held in her care. Adding _the_ reverses the direction.", cue: "c2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("c", [["The nurse is in charge of the ward.", { hl: "in charge of" }], ["The ward is in the charge of the nurse.", { hl: "in the charge of" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("c", [
+            ["leadGroup", "The nurse is in charge of the ward.", "she is responsible", { hl: "in charge of", size: 24 }],
+            ["careFor", "The ward is in the charge of the nurse.", "it is in her care", { hl: "in the charge of", size: 24 }],
+          ]),
+        ],
       },
       {
         id: "check",

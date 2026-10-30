@@ -21,22 +21,34 @@
         title: "Comparing",
         alt: "Rows: Compared with last year, exports rose; In comparison with India, our tax base is narrow; costs in relation to income.",
         say: [
-          { text: "**Compared with** and **in comparison with** set two things side by side: _Compared with last year, exports rose._ (_Compared to_ is also common; some style guides keep _to_ for likening different things.)", cue: "c1" },
-          { text: "**In relation to** = considered against: _costs in relation to income._", cue: "c3" },
+          { text: "**Compared with** and **in comparison with** stand two things side by side to measure them: _Compared with last year, exports rose._ (_Compared to_ is also common.)", cue: "c1" },
+          { text: "**In relation to** = one measured against the other, like a fraction: _costs in relation to income._", cue: "c3" },
         ],
-        actions: K.lines("c", [["Compared with last year, exports rose.", { hl: "Compared with" }], ["in comparison with India", { hl: "in comparison with" }], ["costs in relation to income", { hl: "in relation to" }]], { y: 170, gap: 115, size: 36 }),
+        actions: PLAB.kit.panels("c", [
+          ["compareBars", "compared with last year", "side by side", { hl: "compared with" }],
+          ["compareBars", "in comparison with India", "side by side", { hl: "in comparison with", size: 26 }],
+          ["ratio", "costs in relation to income", "one against the other", { hl: "in relation to", size: 26 }],
+        ]),
       },
       {
         id: "measure",
         title: "Measuring amounts",
         alt: "A scale with marks: close to 3 million (just under), up to 50 people (maximum), in excess of Rs 1 billion (more than). Note: far from perfect = not at all perfect.",
         say: [
-          { text: "**In excess of** = more than (formal): _losses in excess of Rs 1 billion._", cue: "m1" },
-          { text: "**Up to** = as many as, a maximum: _The hall holds up to 500 people._", cue: "m2" },
-          { text: "**Close to** = nearly: _close to 3 million refugees._", cue: "m3" },
-          { text: "**Far from** + adjective = not at all: _The situation is far from perfect._", cue: "m4" },
+          { text: "**In excess of** = the bar goes past the line: more than (formal). _losses in excess of Rs 1 billion._", cue: "m1" },
+          { text: "**Up to** = the line is a ceiling, a maximum: _The hall holds up to 500 people._", cue: "m2" },
+          { text: "**Close to** = just short of the mark: nearly. _close to 3 million refugees._", cue: "m3" },
+          { text: "**Far from** = a long way from the mark: not at all. _The situation is far from perfect._", cue: "m4" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", [["losses in excess of Rs 1 billion", { hl: "in excess of" }], ["holds up to 500 people", { hl: "up to" }], ["close to 3 million refugees", { hl: "close to" }], ["far from perfect = not at all perfect", { hl: "far from" }]], { y: 130, gap: 100, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.rows("m", [
+            ["excess", "losses in excess of Rs 1 billion", { hl: "in excess of" }],
+            ["upTo", "holds up to 500 people", { hl: "up to" }],
+            ["closeTo", "close to 3 million refugees", { hl: "close to" }],
+            ["farFrom", "far from perfect = not at all perfect", { hl: "far from" }],
+          ], { y: 90, gap: 118 }),
+        ],
       },
       {
         id: "check",

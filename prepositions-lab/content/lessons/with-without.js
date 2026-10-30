@@ -39,21 +39,34 @@
         title: "Feature, manner and cause",
         alt: "Three rows: a feature, a girl with long hair; a manner, handle with care; a cause, shaking with fear.",
         say: [
-          { text: "A **feature** someone or something has: _a girl with long hair, a house with a garden._", cue: "m1" },
-          { text: "A **manner** of doing something: _Handle with care. She spoke with confidence._", cue: "m2" },
-          { text: "The **cause** of a physical reaction: _shaking with fear, red with anger._", cue: "m3" },
+          { text: "**With** puts two things together. A **feature** goes together with a person: the long hair is part of her. _a girl with long hair._", cue: "m1" },
+          { text: "A **manner** goes together with an action: the hands carry the box carefully. _Handle with care._", cue: "m2" },
+          { text: "A **cause** of a physical reaction goes together with it: the fear and the shaking come together. _shaking with fear, red with anger._", cue: "m3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", [["feature: a girl with long hair", { hl: "with" }], ["manner: handle with care", { hl: "with" }], ["cause: shaking with fear", { hl: "with" }]], { y: 160, gap: 115, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("m", [
+            ["longHair", "a girl with long hair", "a feature", { hl: "with" }],
+            ["careBox", "handle with care", "a manner", { hl: "with" }],
+            ["shaking", "shaking with fear", "a cause", { hl: "with" }],
+          ]),
+        ],
       },
       {
         id: "with-by",
         title: "With a tool, by a means",
         alt: "Two columns: with a pen, with a key (a tool you hold). By hand, by email, by car (a means or method, no article).",
         say: [
-          { text: "Both _with_ and _by_ can answer _how?_ **With** names a physical tool you hold: _opened with a key._", cue: "w1" },
-          { text: "**By** names a means or method, usually with no article: _sent by email, made by hand, travelled by car._ The next lesson covers by in full.", cue: "w2" },
+          { text: "Both _with_ and _by_ answer _how?_ **With** names a physical tool you hold in your hand: _written with a pen, opened with a key._", cue: "w1" },
+          { text: "**By** names a means or method, usually with no article: the letter travels by email. _sent by email, made by hand, by car._", cue: "w2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("w", [["with a tool: with a pen · with a key", { hl: "with" }], ["by a means: by hand · by email · by car", { hl: "by" }]], { y: 200, gap: 130, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("w", [
+            ["pen", "with a pen", "a tool you hold", { hl: "with" }],
+            ["emailBy", "by email · by hand · by car", "a means (no article)", { hl: "by", size: 26 }],
+          ]),
+        ],
       },
       {
         id: "check",

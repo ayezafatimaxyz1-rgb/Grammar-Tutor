@@ -38,10 +38,14 @@
         title: "Notwithstanding",
         alt: "Two positions: Notwithstanding these objections, the bill was passed. These objections notwithstanding, the bill was passed. Meaning: despite.",
         say: [
-          { text: "**Notwithstanding** means _despite_, in formal and legal English: _Notwithstanding these objections, the bill was passed._", cue: "n1" },
+          { text: "**Notwithstanding** means _despite_, in formal and legal English: the objections stood in the way, but the bill went over them. _Notwithstanding these objections, the bill was passed._", cue: "n1" },
           { text: "Unusually, it can also come **after** its noun: _These objections notwithstanding, the bill was passed._", cue: "n2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("n", [["Notwithstanding these objections, ...", { hl: "Notwithstanding" }], ["These objections notwithstanding, ...", { hl: "notwithstanding" }], ["= despite (formal, legal)", { ink: "accent2", size: 30 }]], { y: 170, gap: 115, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("or", "overRock", 330, 20, 2.1),
+          ...PLAB.kit.lines("n", [["Notwithstanding these objections, ...", { hl: "Notwithstanding" }], ["These objections notwithstanding, ...", { hl: "notwithstanding" }], ["= despite (formal, legal)", { ink: "accent2", size: 30 }]], { y: 270, gap: 85, size: 36 }),
+        ],
       },
       {
         id: "check",

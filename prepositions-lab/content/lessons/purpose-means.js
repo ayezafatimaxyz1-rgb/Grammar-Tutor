@@ -20,21 +20,34 @@
         title: "Purpose",
         alt: "Rows: for the sake of the children (for their benefit); with a view to reducing costs (with that aim); note: with a view to + -ing.",
         say: [
-          { text: "**For the sake of** = for the benefit of, or in order to keep: _He stayed for the sake of the children. For the sake of peace._", cue: "p1" },
-          { text: "**With a view to** = with the aim of. Here _to_ is a preposition, so -ing follows: _with a view to reducing costs_, not _to reduce._", cue: "p2" },
+          { text: "**For the sake of** = for the benefit of: the parent shelters the children. _He stayed for the sake of the children._", cue: "p1" },
+          { text: "**With a view to** = with the aim of: the eye is fixed on a target. Here _to_ is a preposition, so -ing follows: _with a view to reducing costs_, not _to reduce._", cue: "p2" },
         ],
-        actions: K.lines("p", [["for the sake of the children", { hl: "for the sake of" }], ["with a view to reducing costs", { hl: "reducing" }], ["✗ with a view to reduce", { ink: "trouble" }]], { y: 170, gap: 115, size: 38 }),
+        actions: [
+          ...PLAB.kit.panels("p", [
+            ["protectKids", "for the sake of the children", "for their benefit", { hl: "for the sake of", size: 26 }],
+            ["aimGoal", "with a view to reducing costs", "with that aim (+ -ing)", { hl: "reducing", size: 26 }],
+          ]),
+          { do: "write", id: "p3", text: "✗ with a view to reduce", x: 480, y: 470, size: 34, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "means",
         title: "Means and grounds",
         alt: "Rows: by means of a pulley (using); by virtue of his office (because of a quality or right); by dint of hard work (through great effort).",
         say: [
-          { text: "**By means of** = using: _The stone was lifted by means of a pulley._", cue: "m1" },
-          { text: "**By virtue of** = because of a quality or right: _By virtue of his office, the Speaker chairs the session._", cue: "m2" },
-          { text: "**By dint of** = through great effort, a little literary: _She succeeded by dint of hard work._", cue: "m3" },
+          { text: "**By means of** = using: the rope and wheel lift the load. _The stone was lifted by means of a pulley._", cue: "m1" },
+          { text: "**By virtue of** = because of a quality or right: the crown of office gives the power. _By virtue of his office, the Speaker chairs the session._", cue: "m2" },
+          { text: "**By dint of** = through great effort, a little literary: pushing a heavy rock. _She succeeded by dint of hard work._", cue: "m3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", [["by means of a pulley = using", { hl: "by means of" }], ["by virtue of his office = because of", { hl: "by virtue of" }], ["by dint of hard work = through effort", { hl: "by dint of" }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("m", [
+            ["pulley", "by means of a pulley", "= using", { hl: "by means of", size: 26 }],
+            ["crown", "by virtue of his office", "= because of a right", { hl: "by virtue of", size: 26 }],
+            ["pushRock", "by dint of hard work", "= through effort", { hl: "by dint of", size: 26 }],
+          ]),
+        ],
       },
       {
         id: "check1",

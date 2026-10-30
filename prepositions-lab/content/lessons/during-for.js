@@ -39,10 +39,18 @@
         title: "During + noun, while + clause",
         alt: "Correct: during the meeting; while we were meeting. Crossed out: during we were meeting.",
         say: [
-          { text: "**During** is a preposition, so it takes a noun: _during the meeting, during the war._", cue: "w1" },
-          { text: "**While** is a conjunction, so it takes a clause: _while we were meeting._ _During we were meeting_ is wrong.", cue: "w2" },
+          { text: "**During** is a preposition: it takes a noun, a named period, and the event sits inside it. _during the meeting, during the war._", cue: "w1" },
+          { text: "**While** is a conjunction: it joins two events happening at the same time, each with its own verb. _while we were meeting._", cue: "w2" },
+          { text: "_During we were meeting_ mixes them and is wrong.", cue: "w3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("w", [["during the meeting ✓ (+ noun)", { hl: "during" }], ["while we were meeting ✓ (+ clause)", { hl: "while" }], ["✗ during we were meeting", { ink: "trouble" }]], { y: 160, gap: 110, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("w", [
+            ["inPeriod", "during the meeting", "+ noun", { hl: "during" }],
+            ["parallel", "while we were meeting", "+ clause", { hl: "while" }],
+          ]),
+          { do: "write", id: "w3", text: "✗ during we were meeting", x: 480, y: 470, size: 36, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "check1",

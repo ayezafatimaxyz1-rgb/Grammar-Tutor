@@ -38,12 +38,19 @@
         title: "Except for, but, save, barring",
         alt: "Four rows. Except for one mistake, the essay is excellent. Nobody but me knew. Save one, all were rescued (formal). Barring accidents, we will arrive by six.",
         say: [
-          { text: "**Except for** often starts a sentence or qualifies a whole statement: _Except for one mistake, the essay is excellent._", cue: "e1" },
-          { text: "**But** means except after _all, every, no, nothing, nobody_: _Nobody but me knew. All but one survived._", cue: "e2" },
-          { text: "**Save** means except in formal or literary English: _All were rescued save one._", cue: "e3" },
-          { text: "**Barring** means _unless something happens_: _Barring accidents, we will arrive by six._", cue: "e4" },
+          { text: "**Except for** qualifies a whole statement: the page is all ticks except one cross. _Except for one mistake, the essay is excellent._", cue: "e1" },
+          { text: "**But** means except after _no, nobody, all, every_: the circle is empty but for one person. _Nobody but me knew._", cue: "e2" },
+          { text: "**Save** is formal or literary: all are inside save one. **Barring** = unless something happens: if nothing blocks the road. _Barring accidents, we arrive by six._", cue: "e3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("e", [["Except for one mistake, the essay is excellent.", { hl: "Except for", size: 32 }], ["Nobody but me knew.", { hl: "but" }], ["All were rescued save one. (formal)", { hl: "save" }], ["Barring accidents, we arrive by six.", { hl: "Barring" }]], { y: 130, gap: 100, size: 34 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.rows("e", [
+            ["exceptOne", "Except for one mistake, it is excellent.", { hl: "Except for" }],
+            ["onlyOne", "Nobody but me knew.", { hl: "but" }],
+            ["groupOut", "All were rescued save one. (formal)", { hl: "save" }],
+            ["roadBarrier", "Barring accidents, we arrive by six.", { hl: "Barring" }],
+          ], { y: 90, gap: 118 }),
+        ],
       },
       {
         id: "check",

@@ -85,27 +85,20 @@ PLAB.registerLesson({
       title: "When in and on are fine, and on to",
       alt: "Three pairs. Put the book in the bag, also natural. She walked into the room, versus she walked in the room, meaning around inside it. We drove on to Lahore, meaning continued, versus onto the road.",
       say: [
-        {
-          text: "After verbs of placing, in and on are completely normal: _Put the book in the bag. Put the plate on the table._ The verb already shows the movement.",
-          cue: "p1",
-        },
-        {
-          text: "But sometimes the choice changes the meaning. _She walked into the room_ means she entered it. _She walked in the room_ means she walked around inside it.",
-          cue: "p2",
-        },
-        {
-          text: "Watch **onto** versus **on to**. _We drove on to Lahore_: on means continuing, and to marks the destination. _The car turned onto the main road_: movement ending on a surface.",
-          cue: "p3",
-        },
-      ],
+          { text: "After verbs of placing, in and on are normal: the hand puts the book down and it ends up inside. _Put the book in the bag._", cue: "p1" },
+          { text: "_Walked into the room_: the arrow crosses the doorway from outside to inside. That is entering.", cue: "p2" },
+          { text: "_Walked in the room_: the path loops around inside the walls without crossing them. That is moving about inside.", cue: "p3" },
+          { text: "_Drove on to Lahore_: the car passes a town and **continues** (on) **to** its destination. _Turned onto the main road_: movement that ends on the road's surface.", cue: "p4" },
+        ],
       actions: [
-        { do: "erase", id: "clear-onto", targets: "all" },
-        { do: "write", id: "p1", text: "Put the book in the bag. ✓", x: 480, y: 120, size: 38, anchor: "middle", gap: 400, dur: 1800 },
-        { do: "write", id: "p2", text: "walked into the room = entered", x: 480, y: 230, size: 36, anchor: "middle", ink: "accent", gap: 500, dur: 1800 },
-        { do: "write", id: "p2b", text: "walked in the room = walked around inside", x: 480, y: 290, size: 32, anchor: "middle", ink: "muted", dur: 2000 },
-        { do: "write", id: "p3", text: "drove on to Lahore = continued", x: 480, y: 410, size: 36, anchor: "middle", ink: "accent2", gap: 500, dur: 1800 },
-        { do: "write", id: "p3b", text: "turned onto the main road", x: 480, y: 470, size: 32, anchor: "middle", ink: "muted", dur: 1600 },
-      ],
+          PLAB.kit.clear("clear-onto"),
+          ...PLAB.kit.rows("p", [
+            ["intoBag", "Put the book in the bag. ✓", { hl: "in" }],
+            ["enterRoom", "walked into the room = entered", { hl: "into" }],
+            ["loop", "walked in the room = moved about inside", { hl: "in" }],
+            ["driveOn", "drove on to Lahore · turned onto the road", { hl: "on to", size: 30 }],
+          ], { y: 100, gap: 118, size: 32 }),
+        ],
     },
     {
       id: "check-enter",

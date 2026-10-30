@@ -21,30 +21,45 @@
         title: "Adding",
         alt: "Rows: In addition to teaching, she writes novels. As well as teaching, she writes novels. Along with / together with.",
         say: [
-          { text: "**In addition to** and **as well as** add something. Both take a noun or -ing: _In addition to teaching, she writes novels. As well as teaching, she writes._", cue: "a2" },
-          { text: "**Along with** and **together with** add a companion: _The minister, along with his aides, visited the site._", cue: "a3" },
+          { text: "**In addition to** and **as well as** add something, like a plus sign: _In addition to teaching, she writes novels. As well as teaching, she writes._", cue: "a1" },
+          { text: "**Along with** and **together with** add a companion beside the main person: _The minister, along with his aides, visited the site._", cue: "a3" },
         ],
-        actions: K.lines("a", [["In addition to teaching, she writes.", { hl: "In addition to" }], ["As well as teaching, she writes.", { hl: "As well as" }], ["along with · together with", { ink: "accent2" }]], { y: 170, gap: 115, size: 38 }),
+        actions: PLAB.kit.panels("a", [
+          ["plus", "In addition to teaching, ...", "+ noun or -ing", { hl: "In addition to", size: 26 }],
+          ["plus", "As well as teaching, ...", "+ noun or -ing", { hl: "As well as", size: 26 }],
+          ["people", "along with · together with", "a companion", { size: 26 }],
+        ]),
       },
       {
         id: "agree",
         title: "The verb agrees with the first subject",
         alt: "The President, as well as the ministers, was present. An arrow joins President to was. The added phrase is bracketed off.",
         say: [
-          { text: "A phrase added with _as well as, along with, together with, in addition to_ does not change the subject.", cue: "g1" },
+          { text: "The President is the subject; the ministers are only added alongside, inside brackets. A phrase added with _as well as, along with, together with_ does not change the subject.", cue: "g1" },
           { text: "So the verb agrees with the first noun: _The President, as well as the ministers, **was** present._ Not _were._", cue: "g2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("g", [["The President, as well as the ministers, was present.", { hl: "was", size: 32 }], ["subject = The President (singular)", { ink: "accent2", size: 30 }]], { y: 220, gap: 110 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("lg", "leaderGroup", 330, 20, 2.1),
+          ...PLAB.kit.lines("g", [["The President, as well as the ministers, was present.", { hl: "was", size: 30 }], ["subject = The President (singular)", { ink: "accent2", size: 30 }]], { y: 300, gap: 100 }),
+        ],
       },
       {
         id: "except",
         title: "Apart from: either way",
         alt: "Two meanings of apart from: Apart from Ali, everyone came (except). Apart from Urdu, she speaks Pashto (in addition). With the exception of always means except.",
         say: [
-          { text: "**Apart from** (American also _aside from_) can mean _except_: _Apart from Ali, everyone came._", cue: "e1" },
-          { text: "Or _in addition to_: _Apart from Urdu, she speaks Pashto._ The context decides. **With the exception of** always means except.", cue: "e2" },
+          { text: "**Apart from** can take one out of a group: _Apart from Ali, everyone came_ (= except).", cue: "e1" },
+          { text: "Or add one more: _Apart from Urdu, she speaks Pashto_ (= in addition). The context decides. **With the exception of** always means except.", cue: "e2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("e", [["Apart from Ali, everyone came. = except", { hl: "Apart from", size: 34 }], ["Apart from Urdu, she speaks Pashto. = in addition", { hl: "Apart from", size: 34 }], ["with the exception of = except", { ink: "accent2" }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("e", [
+            ["groupOut", "Apart from Ali, everyone came.", "= except", { hl: "Apart from", size: 26 }],
+            ["plus", "Apart from Urdu, she speaks Pashto.", "= in addition", { hl: "Apart from", size: 26 }],
+          ]),
+          { do: "write", id: "e3", text: "with the exception of = except", x: 480, y: 470, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "check",

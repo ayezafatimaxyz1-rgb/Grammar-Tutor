@@ -122,23 +122,19 @@ PLAB.registerLesson({
       title: "When there is no preposition",
       alt: "A list of time words that take no preposition: next week, last year, this morning, every day, tomorrow, yesterday. Below, crossed out in red: on last Friday, in next week. Correct: last Friday, next week.",
       say: [
-        {
-          text: "Some time phrases already point to a time by themselves, so they take **no preposition**: _next week, last year, this morning, every day, tomorrow, yesterday._",
-          cue: "n1",
-        },
-        {
-          text: "A very common mistake, and a favourite in sentence-correction questions, is adding one anyway: _on last Friday_ and _in next week_ are wrong. Say _last Friday_ and _next week._",
-          cue: "bad",
-        },
-        { text: "Compare: _on Friday_ (a day, so on) but _last Friday_ (no preposition).", cue: "good" },
-      ],
+          { text: "Some time words already **point** to their place on the time line by themselves: _next_ points forward from now, _last_ points back.", cue: "n1" },
+          { text: "Because they do the pointing, they take **no preposition**: _next week, last year, this morning, every day, tomorrow, yesterday._", cue: "n2" },
+          { text: "Adding one anyway, _on last Friday_ or _in next week_, is a favourite sentence-correction error. Say _last Friday, next week._ Compare _on Friday_: there, on does the placing.", cue: "n3" },
+        ],
       actions: [
-        { do: "erase", id: "clear-holidays", targets: "all" },
-        { do: "write", id: "n1", text: "next week · last year · this morning", x: 480, y: 120, size: 36, anchor: "middle", gap: 400, dur: 2000 },
-        { do: "write", id: "n2", text: "every day · tomorrow · yesterday", x: 480, y: 190, size: 36, anchor: "middle", dur: 1800 },
-        { do: "write", id: "bad", text: "✗ on last Friday   ✗ in next week", x: 480, y: 320, size: 38, ink: "trouble", anchor: "middle", gap: 700, dur: 1700 },
-        { do: "write", id: "good", text: "last Friday · next week", x: 480, y: 420, size: 40, ink: "accent", anchor: "middle", gap: 500, dur: 1500 },
-      ],
+          PLAB.kit.clear("clear-holidays"),
+          ...PLAB.kit.rows("n", [
+            ["pointFuture", "next week · this evening · tomorrow"],
+            ["pointPast", "last year · yesterday · this morning"],
+            ["cross", "✗ on last Friday · ✗ in next week", { ink: "trouble" }],
+            ["check", "✓ last Friday · next week · on Friday", { ink: "accent" }],
+          ], { y: 100, gap: 120, size: 34 }),
+        ],
     },
     {
       id: "check-correct",

@@ -21,12 +21,17 @@
         title: "One in place of another",
         alt: "Two boxes: tea crossed out, coffee taking its place, with a curved arrow. Rows: instead of tea; in place of the old law; in lieu of notice (formal); rather than wait.",
         say: [
-          { text: "**Instead of** + noun or -ing: _She drank coffee instead of tea. He walked instead of taking the bus._", cue: "s1" },
-          { text: "**In place of**: _The new law was passed in place of the old one._", cue: "s2" },
-          { text: "**In lieu of** (formal, legal): _a month's pay in lieu of notice._", cue: "s3" },
-          { text: "**Rather than** can take a bare verb: _Rather than wait, we left._ _Instead of to wait_ is wrong.", cue: "s4" },
+          { text: "All four put one thing in the place of another. **Instead of** + noun or -ing: one is swapped out, the other in. _She drank coffee instead of tea. He walked instead of taking the bus._", cue: "s1" },
+          { text: "**In place of**: the old document is crossed out, the new one takes its place. _The new law was passed in place of the old one._", cue: "s2" },
+          { text: "**In lieu of** (formal, legal): money given in place of something: _a month's pay in lieu of notice._", cue: "s3" },
+          { text: "**Rather than** can take a bare verb: no waiting, we walk away. _Rather than wait, we left._ _Instead of to wait_ is wrong.", cue: "s4" },
         ],
-        actions: K.lines("s", [["coffee instead of tea · instead of taking the bus", { hl: "instead of", size: 32 }], ["in place of the old law", { hl: "in place of" }], ["a month's pay in lieu of notice", { hl: "in lieu of" }], ["Rather than wait, we left. (✗ instead of to wait)", { hl: "Rather than", size: 32 }]], { y: 130, gap: 105, size: 36 }),
+        actions: PLAB.kit.rows("s", [
+          ["swap", "coffee instead of tea · instead of taking", { hl: "instead of", size: 30 }],
+          ["replaceDoc", "in place of the old law", { hl: "in place of" }],
+          ["inLieu", "a month's pay in lieu of notice", { hl: "in lieu of" }],
+          ["notWait", "Rather than wait, we left.", { hl: "Rather than" }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "check",

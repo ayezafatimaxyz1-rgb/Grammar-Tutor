@@ -36,16 +36,18 @@ PLAB.registerLesson({
       title: "Through or throughout?",
       alt: "Three lines: travelled through Sindh means passing; throughout Sindh means everywhere in it; crossed out, throughout of and throughout the whole.",
       say: [
-        { text: "**Through** = passing in one side and out the other: _We travelled through Sindh on our way to Karachi._", cue: "t1" },
-        { text: "**Throughout** = everywhere in it, or all the time: _The festival is celebrated throughout Sindh._", cue: "t2" },
-        { text: "Two errors to avoid: _throughout of the country_ (no _of_), and _throughout the whole year_ (_throughout_ already means the whole).", cue: "t3" },
-      ],
+          { text: "**Through** = passing in one side and out the other: the arrow crosses the province. _We travelled through Sindh on our way to Karachi._", cue: "t1" },
+          { text: "**Throughout** = everywhere in it: marks fill every part. _The festival is celebrated throughout Sindh._ With time: all the time.", cue: "t2" },
+          { text: "Two errors: _throughout of the country_ (no _of_) and _throughout the whole year_ (_throughout_ already means the whole).", cue: "t3" },
+        ],
       actions: [
-        { do: "erase", id: "clear-every", targets: "all" },
-        { do: "write", id: "t1", text: "travelled through Sindh = passing", x: 480, y: 150, size: 36, anchor: "middle", gap: 400, dur: 1900 },
-        { do: "write", id: "t2", text: "throughout Sindh = everywhere in it", x: 480, y: 250, size: 36, anchor: "middle", gap: 400, dur: 1900 },
-        { do: "write", id: "t3", text: "✗ throughout of · ✗ throughout the whole", x: 480, y: 380, size: 34, ink: "trouble", anchor: "middle", gap: 500, dur: 2000 },
-      ],
+          PLAB.kit.clear("clear-every"),
+          ...PLAB.kit.panels("t", [
+            ["passThrough", "travelled through Sindh", "passing", { hl: "through" }],
+            ["everywhere", "throughout Sindh", "everywhere in it", { hl: "throughout" }],
+          ]),
+          { do: "write", id: "t3", text: "✗ throughout of · ✗ throughout the whole", x: 480, y: 470, size: 32, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
     },
     {
       id: "check",

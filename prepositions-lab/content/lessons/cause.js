@@ -40,21 +40,29 @@
         title: "The due to debate",
         alt: "Always fine: The delay was due to fog. Disputed by traditional critics: Due to fog, the flight was delayed. Safest: Owing to fog, the flight was delayed.",
         say: [
-          { text: "**Due to** is always correct after _be_: _The delay was due to fog._", cue: "d1" },
-          { text: "At the start of a sentence (_Due to fog, the flight was delayed_), traditional critics objected. Today most dictionaries accept it, but some examiners still mark it down.", cue: "d2" },
-          { text: "So the **safest** choice to open a sentence is _Owing to fog_ or _Because of fog._", cue: "d3" },
+          { text: "Fog causes the delay: the plane cannot fly through it. **Due to** is always correct after _be_: _The delay was due to fog._", cue: "d1" },
+          { text: "At the start of a sentence (_Due to fog, the flight was delayed_), traditional critics objected. Most dictionaries accept it today, but some examiners still mark it down.", cue: "d2" },
+          { text: "So the **safest** opener is _Owing to fog_ or _Because of fog._", cue: "d3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("d", [["✓ The delay was due to fog.", { hl: "due to" }], ["? Due to fog, the flight was delayed. (disputed)", { ink: "muted", size: 32 }], ["✓ Owing to fog, the flight was delayed.", { hl: "Owing to" }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("fd", "fogDelay", 330, 20, 2.1),
+          ...PLAB.kit.lines("d", [["✓ The delay was due to fog.", { hl: "due to" }], ["? Due to fog, the flight was delayed. (disputed)", { ink: "muted", size: 30 }], ["✓ Owing to fog, the flight was delayed.", { hl: "Owing to" }]], { y: 270, gap: 85, size: 34 }),
+        ],
       },
       {
         id: "thanks",
         title: "Thanks to",
         alt: "Sentence: Thanks to the new canal, crops have doubled. Note: usually a good result; ironic with a bad one.",
         say: [
-          { text: "**Thanks to** gives a cause, usually with a good result: _Thanks to the new canal, crop yields have doubled._", cue: "t1" },
+          { text: "**Thanks to** gives a cause, usually with a good result: the new canal brings water and the crops grow. _Thanks to the new canal, crop yields have doubled._", cue: "t1" },
           { text: "With a bad result it sounds ironic: _Thanks to the strike, we missed the flight._", cue: "t2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("t", [["Thanks to the canal, yields doubled.", { hl: "Thanks to" }], ["Thanks to the strike, we missed it. (ironic)", { ink: "muted", size: 32 }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.pic("cn", "canal", 330, 20, 2.1),
+          ...PLAB.kit.lines("t", [["Thanks to the canal, yields doubled.", { hl: "Thanks to" }], ["Thanks to the strike, we missed it. (ironic)", { ink: "muted", size: 30 }]], { y: 300, gap: 100, size: 36 }),
+        ],
       },
       {
         id: "check",

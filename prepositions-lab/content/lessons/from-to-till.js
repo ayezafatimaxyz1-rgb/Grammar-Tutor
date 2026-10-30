@@ -38,10 +38,18 @@
         title: "Do not mix the frames",
         alt: "Crossed out: between 9 to 5, from 9 and 5. Note: Monday to Friday inclusive (BrE), Monday through Friday (AmE).",
         say: [
-          { text: "Each frame has its own partner. _Between_ pairs with _and_; _from_ pairs with _to_ or _until._ So _between 9 to 5_ and _from 9 and 5_ are both wrong.", cue: "m1" },
-          { text: "To include the last day clearly: _Monday to Friday inclusive_ (British) or _Monday through Friday_ (American).", cue: "m3" },
+          { text: "Each frame has its own partner. **Between** marks two ends joined by **and**; **from** starts a stretch that runs **to** or **until** an end.", cue: "m1" },
+          { text: "So _between 9 to 5_ and _from 9 and 5_ are both wrong.", cue: "m2" },
+          { text: "To include the last day clearly: all five days are shaded. _Monday to Friday inclusive_ (British) or _Monday through Friday_ (American).", cue: "m3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", [["✗ between 9 to 5", { ink: "trouble" }], ["✗ from 9 and 5", { ink: "trouble" }], ["Monday to Friday inclusive · (AmE) Monday through Friday", { size: 30, ink: "accent2" }]], { y: 160, gap: 110, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.rows("m", [
+            ["betweenTicks", "between 9 and 5 · ✗ between 9 to 5", { hl: "and" }],
+            ["span", "from 9 to 5 · ✗ from 9 and 5", { hl: "to" }],
+            ["weekRow", "Monday to Friday inclusive · (AmE) through", { size: 30 }],
+          ], { y: 120, gap: 130, size: 32 }),
+        ],
       },
       {
         id: "check",

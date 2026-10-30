@@ -20,11 +20,16 @@
         title: "Unaffected, and contrasted",
         alt: "Rows: open to all, regardless of income; irrespective of caste or creed; in contrast to the cities, villages lack clinics; urban as opposed to rural areas. Crossed out: irregardless.",
         say: [
-          { text: "**Regardless of** and **irrespective of** = without being affected by: _Admission is open to all, regardless of income. Equal rights irrespective of caste or creed._", cue: "f2" },
-          { text: "**In contrast to** (or _with_) and **as opposed to** set two things against each other: _In contrast to the cities, villages lack clinics. Urban, as opposed to rural, areas._", cue: "f4" },
-          { text: "_Irregardless_ is non-standard. Never use it in writing.", cue: "f5" },
+          { text: "**Regardless of** and **irrespective of** = without being affected by: very different people all pass through the same gate. _open to all, regardless of income; equal rights irrespective of caste or creed._", cue: "f1" },
+          { text: "**In contrast to** (or _with_) sets two different things side by side: _In contrast to the cities, villages lack clinics._", cue: "f3" },
+          { text: "**As opposed to** points the two in opposite directions: _urban, as opposed to rural, areas._ And never write _irregardless._", cue: "f4" },
         ],
-        actions: K.lines("f", [["open to all, regardless of income", { hl: "regardless of" }], ["irrespective of caste or creed", { hl: "irrespective of" }], ["In contrast to the cities, villages lack clinics.", { hl: "In contrast to", size: 32 }], ["urban as opposed to rural areas", { hl: "as opposed to" }], ["✗ irregardless", { ink: "trouble" }]], { y: 110, gap: 90, size: 34 }),
+        actions: PLAB.kit.rows("f", [
+          ["allThrough", "open to all, regardless of income", { hl: "regardless of" }],
+          ["allThrough", "irrespective of caste or creed", { hl: "irrespective of" }],
+          ["different", "In contrast to the cities, villages ...", { hl: "In contrast to", size: 30 }],
+          ["opposite", "urban as opposed to rural · ✗ irregardless", { hl: "as opposed to", size: 30 }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "check",

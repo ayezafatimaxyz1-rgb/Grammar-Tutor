@@ -41,21 +41,34 @@
         title: "Of or 's?",
         alt: "Three rows: people and animals take 's (Ali's book, the dog's tail); things take of (the roof of the house, the end of the film); organisations and places take either (Pakistan's economy, the economy of Pakistan).",
         say: [
-          { text: "People and animals usually take **'s**: _Ali's book, the minister's speech, the dog's tail._", cue: "p1" },
-          { text: "Things usually take **of**: _the roof of the house, the end of the film_ (not _the film's end_ in neutral style, though it is possible).", cue: "p2" },
-          { text: "Organisations, countries and time phrases can take either: _Pakistan's economy / the economy of Pakistan; today's paper._", cue: "p3" },
+          { text: "People and animals usually take **'s**: the person holds the book, it belongs to them. _Ali's book, the minister's speech._", cue: "p1" },
+          { text: "Things usually take **of**: the roof is a part of the house. _the roof of the house, the end of the film._", cue: "p2" },
+          { text: "Countries and organisations can take either: _Pakistan's economy = the economy of Pakistan._", cue: "p3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("p", ["people, animals: Ali's book · the dog's tail", "things: the roof of the house · the end of the film", ["places, groups: Pakistan's economy = the economy of Pakistan", { size: 30 }]], { y: 160, gap: 115, size: 34 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("p", [
+            ["ownerBook", "Ali's book", "people, animals: 's", {}],
+            ["roofOf", "the roof of the house", "things: of", { hl: "of", size: 26 }],
+            ["countryEcon", "Pakistan's economy", "= the economy of Pakistan", { size: 26 }],
+          ]),
+        ],
       },
       {
         id: "naming",
         title: "Naming and the double genitive",
         alt: "Two rows: the city of Lahore, the month of June, the name of the place. A friend of mine, a colleague of my father's.",
         say: [
-          { text: "Of can name a member of a category: _the city of Lahore, the month of June, the University of the Punjab._", cue: "n1" },
-          { text: "_A friend of mine_ means one of my friends. It combines of with a possessive (_mine, my father's_), and it is correct English.", cue: "n2" },
+          { text: "Of can name one member of a category: inside the big circle of cities, one is picked out. _the city of Lahore, the month of June._", cue: "n1" },
+          { text: "_A friend of mine_: one of my friends, picked out of the group. It combines of with a possessive (_mine, my father's_), and it is correct English.", cue: "n2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("n", [["the city of Lahore · the month of June", { hl: "of" }], ["a friend of mine · a colleague of my father's", { hl: "of" }]], { y: 200, gap: 130, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("n", [
+            ["categoryMember", "the city of Lahore", "one of a kind", { hl: "of" }],
+            ["crowdDot", "a friend of mine", "one of my friends", { hl: "of" }],
+          ]),
+        ],
       },
       {
         id: "check1",

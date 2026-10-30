@@ -38,16 +38,18 @@ PLAB.registerLesson({
       title: "Past or passed?",
       alt: "Two sentences. She walked past the bank: past is a preposition. She passed the bank: passed is a verb. Also half past six.",
       say: [
-        { text: "A very common spelling trap. **Past** is a preposition (or noun, or adjective). **Passed** is the past tense of the verb _pass._", cue: "p1" },
-        { text: "_She walked past the bank_ (walked is the verb). _She passed the bank_ (passed is the verb).", cue: "p2" },
-        { text: "With clock times, past is a preposition too: _half past six, ten past nine._ (American English also says _after._)", cue: "p3" },
-      ],
+          { text: "**Past** is the preposition: the arrow goes beside the bank and on beyond it. _She walked past the bank_: _walked_ is the verb.", cue: "p1" },
+          { text: "**Passed** is the past tense of the verb _pass_: _She passed the bank._ If the sentence already has a verb, you need _past._", cue: "p2" },
+          { text: "On a clock, the minute hand has gone past the hour: _half past six, ten past nine._", cue: "p3" },
+        ],
       actions: [
-        { do: "erase", id: "clear-past", targets: "all" },
-        { do: "write", id: "p1", text: "walked past the bank (preposition)", x: 480, y: 160, size: 36, anchor: "middle", gap: 400, dur: 2000 },
-        { do: "write", id: "p2", text: "passed the bank (verb)", x: 480, y: 260, size: 36, anchor: "middle", gap: 500 },
-        { do: "write", id: "p3", text: "half past six · ten past nine", x: 480, y: 380, size: 36, ink: "accent2", anchor: "middle", gap: 500 },
-      ],
+          PLAB.kit.clear("clear-past"),
+          ...PLAB.kit.panels("p", [
+            ["pastBank", "walked past the bank", "past = preposition", { hl: "past" }],
+            ["pastBank", "She passed the bank.", "passed = verb", { hl: "passed" }],
+            ["halfPast", "half past six", "the hand has gone past", { hl: "past" }],
+          ]),
+        ],
     },
     {
       id: "check-passed",

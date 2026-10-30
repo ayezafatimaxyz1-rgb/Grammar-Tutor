@@ -20,12 +20,17 @@
         title: "Four reference phrases",
         alt: "Rows: In terms of population, Punjab is the largest province. With respect to salaries, no change. There is doubt as to whether he will come. As for me, I agree.",
         say: [
-          { text: "**In terms of** = measured or seen from this point of view: _In terms of population, Punjab is the largest province._", cue: "f1" },
+          { text: "**In terms of** = seen through one measure, like a lens over a chart: _In terms of population, Punjab is the largest province._", cue: "f1" },
           { text: "**With respect to** = about, formal: _With respect to salaries, there is no change._", cue: "f2" },
-          { text: "**As to** = about, often before _whether_ or _how_: _There is doubt as to whether he will come._", cue: "f3" },
-          { text: "**As for** = turning to a new person or topic: _As for me, I agree._", cue: "f4" },
+          { text: "**As to** = about, often before _whether_: a question hangs over it. _There is doubt as to whether he will come._", cue: "f3" },
+          { text: "**As for** = turning to a new person or topic: the arrow swings round to someone new. _As for me, I agree._", cue: "f4" },
         ],
-        actions: K.lines("f", [["In terms of population, Punjab is largest.", { hl: "In terms of", size: 34 }], ["With respect to salaries, no change.", { hl: "With respect to", size: 34 }], ["doubt as to whether he will come", { hl: "as to", size: 34 }], ["As for me, I agree.", { hl: "As for", size: 34 }]], { y: 130, gap: 105 }),
+        actions: PLAB.kit.rows("f", [
+          ["lensBars", "In terms of population, Punjab is largest.", { hl: "In terms of", size: 30 }],
+          ["pointDoc", "With respect to salaries, no change.", { hl: "With respect to", size: 30 }],
+          ["question", "doubt as to whether he will come", { hl: "as to", size: 30 }],
+          ["turnTo", "As for me, I agree.", { hl: "As for", size: 30 }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "check",

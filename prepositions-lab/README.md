@@ -23,7 +23,8 @@ js/store.js                 saved progress, mistakes with spaced review, bookmar
 js/app.js                   library, lesson player, mistake notebook
 content/curriculum.js       master curriculum and coverage tracker (status per lesson)
 content/misconceptions.js   the misunderstandings that wrong answers are grouped by
-content/kit.js              small builders for common board layouts (lines of text, time lines)
+content/icons.js            a vocabulary of board sketches (about 220 concept pictures)
+content/kit.js              builders for board layouts: picture rows, picture panels, lines, time lines
 content/lessons/*.js        one file per lesson
 tests/validate-content.mjs  checks lesson data without a browser
 tests/e2e.cjs               walks through lesson 1 in Chromium

@@ -71,21 +71,18 @@ PLAB.registerLesson({
       title: "Getting out and getting off",
       alt: "A table of vehicles. Car and taxi: get in, get out of. Bus, train, plane: get on, get off. A red note: off of is informal American English; write off.",
       say: [
-        { text: "Vehicles follow the same pairs as in and on. Cars and taxis: _get in_ and _get out of._", cue: "r1" },
-        { text: "Buses, trains and planes: _get on_ and _get off._", cue: "r2" },
-        {
-          text: "In informal American speech you will hear _off of_: _He jumped off of the wall._ It is not standard in formal writing, so in the exam write _off_: _He jumped off the wall._",
-          cue: "note",
-        },
-      ],
+          { text: "Vehicles follow the in and on pictures. A car is a small container you climb into and out of: _get in, get out of the car._", cue: "r1" },
+          { text: "A bus is a platform you step onto and off: _get on, get off the bus, train or plane._", cue: "r2" },
+          { text: "In informal American speech you hear _off of the wall_. Formal English, and the exam, want _off_ alone.", cue: "note" },
+        ],
       actions: [
-        { do: "erase", id: "clear-off", targets: "all" },
-        { do: "write", id: "r1", text: "car, taxi:  get in  ·  get out of", x: 480, y: 160, size: 38, anchor: "middle", gap: 400, dur: 2000 },
-        { do: "write", id: "r2", text: "bus, train, plane:  get on  ·  get off", x: 480, y: 260, size: 38, anchor: "middle", gap: 500, dur: 2100 },
-        { do: "highlight", id: "r1-h", target: "r1", word: "out of" },
-        { do: "highlight", id: "r2-h", target: "r2", word: "off" },
-        { do: "write", id: "note", text: "✗ off of the wall   ✓ off the wall", x: 480, y: 410, size: 36, ink: "trouble", anchor: "middle", gap: 700, dur: 1900 },
-      ],
+          PLAB.kit.clear("clear-off"),
+          ...PLAB.kit.rows("r", [
+            ["carIn", "car, taxi: get in · get out of", { hl: "out of" }],
+            ["busOn", "bus, train, plane: get on · get off", { hl: "off" }],
+          ], { y: 120, gap: 140, size: 34 }),
+          { do: "write", id: "note", text: "✗ off of the wall   ✓ off the wall", x: 480, y: 460, size: 34, ink: "trouble", anchor: "middle", gap: 600 },
+        ],
     },
     {
       id: "check-bus",

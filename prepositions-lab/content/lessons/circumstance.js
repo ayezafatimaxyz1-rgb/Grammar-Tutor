@@ -21,12 +21,17 @@
         title: "Setting the circumstances",
         alt: "Rows: in view of the risks (considering); in the light of new evidence; in the event of fire (if there is a fire); in the face of opposition (confronted by); in the wake of the floods (following).",
         say: [
-          { text: "**In view of** and **in (the) light of** = considering: _In view of the risks, the trip was cancelled. In the light of new evidence, the case was reopened._ (American English usually drops _the_.)", cue: "f2" },
-          { text: "**In the event of** and **in case of** = if it happens, common in notices: _In the event of fire, use the stairs._", cue: "f3" },
-          { text: "**In the face of** = confronted by, often despite: _She stood firm in the face of opposition._", cue: "f4" },
-          { text: "**In the wake of** = following, usually as a result of: _Prices rose in the wake of the floods._", cue: "f5" },
+          { text: "**In view of** = with this in sight, considering it: the eye sees the warning sign. **In (the) light of**: new evidence is lit up. _In view of the risks, the trip was cancelled._", cue: "f2" },
+          { text: "**In the event of** = if it happens: if fire breaks out, take the stairs. _In the event of fire, use the stairs._", cue: "f3" },
+          { text: "**In the face of** = facing a force, often despite it: _She stood firm in the face of opposition._ **In the wake of** = following, like the waves a boat leaves behind it: _Prices rose in the wake of the floods._", cue: "f5" },
         ],
-        actions: K.lines("f", [["In view of the risks, ...", { hl: "In view of" }], ["in the light of new evidence", { hl: "in the light of" }], ["In the event of fire, use the stairs.", { hl: "In the event of" }], ["in the face of opposition", { hl: "in the face of" }], ["in the wake of the floods", { hl: "in the wake of" }]], { y: 110, gap: 90, size: 34 }),
+        actions: PLAB.kit.rows("f", [
+          ["viewRisk", "In view of the risks, ...", { hl: "In view of" }],
+          ["lightDoc", "in the light of new evidence", { hl: "in the light of" }],
+          ["fireStairs", "In the event of fire, use the stairs.", { hl: "In the event of" }],
+          ["faceWind", "in the face of opposition", { hl: "in the face of" }],
+          ["boat", "in the wake of the floods", { hl: "in the wake of" }],
+        ], { y: 70, gap: 102 }),
       },
       {
         id: "check",

@@ -20,12 +20,16 @@
         title: "Four phrases",
         alt: "Rows: in the course of the investigation (during); growth at the expense of the environment (harming it); for the purpose of verifying records (in order to); by way of apology (as an apology).",
         say: [
-          { text: "**In the course of** = during: _In the course of the investigation, new facts emerged._", cue: "f1" },
-          { text: "**At the expense of** = at the cost of, harming: _growth at the expense of the environment._ It can also mean paid for by: _at the government's expense._", cue: "f2" },
-          { text: "**For the purpose of** + -ing = in order to (formal): _for the purpose of verifying records._", cue: "f3" },
-          { text: "**By way of** = as a form of, or via: _He sent flowers by way of apology. We travelled by way of Quetta._", cue: "f4" },
+          { text: "**In the course of** = during, somewhere along the path of a process: _In the course of the investigation, new facts emerged._", cue: "f1" },
+          { text: "**At the expense of** = one side rises while the other is paid away: _growth at the expense of the environment._", cue: "f2" },
+          { text: "**For the purpose of** + -ing = aimed at a target: _for the purpose of verifying records._ **By way of** = as a form of: flowers given as an apology. _by way of apology._", cue: "f4" },
         ],
-        actions: K.lines("f", [["in the course of the investigation", { hl: "in the course of" }], ["growth at the expense of the environment", { hl: "at the expense of" }], ["for the purpose of verifying records", { hl: "for the purpose of" }], ["flowers by way of apology", { hl: "by way of" }]], { y: 130, gap: 100, size: 36 }),
+        actions: PLAB.kit.rows("f", [
+          ["courseAlong", "in the course of the investigation", { hl: "in the course of" }],
+          ["expense", "growth at the expense of the environment", { hl: "at the expense of", size: 30 }],
+          ["target", "for the purpose of verifying records", { hl: "for the purpose of" }],
+          ["flowersApology", "flowers by way of apology", { hl: "by way of" }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "check",

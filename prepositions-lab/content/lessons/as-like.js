@@ -20,10 +20,13 @@
         title: "A role or a resemblance",
         alt: "Two rows. She works as a teacher: she really is a teacher. He talks like a teacher: he is not one, but sounds similar.",
         say: [
-          { text: "**As** + noun = in the **role** of, really being it: _She works as a teacher. He spoke as the Chief Justice_ (in his official role).", cue: "r1" },
-          { text: "**Like** + noun = **similar to**, without being it: _He talks like a teacher_ (he isn't one). _She sings like a professional._", cue: "r2" },
+          { text: "**As** + noun = in the **role**, really being it: she stands at the board because she is the teacher. _She works as a teacher._", cue: "r1" },
+          { text: "**Like** + noun = **similar to**, without being it: he only resembles a teacher. _He talks like a teacher_ (he isn't one).", cue: "r2" },
         ],
-        actions: K.lines("r", [["She works as a teacher. (she is one)", { hl: "as" }], ["He talks like a teacher. (he isn't)", { hl: "like" }]], { y: 200, gap: 130, size: 38 }),
+        actions: PLAB.kit.panels("r", [
+          ["asRole", "She works as a teacher.", "she is one", { hl: "as" }],
+          ["likeSim", "He talks like a teacher.", "he only resembles one", { hl: "like" }],
+        ]),
       },
       {
         id: "clause",
@@ -33,7 +36,13 @@
           { text: "Before a clause (subject + verb), formal English uses **as**: _As I said, the plan failed. Do as I say._", cue: "c1" },
           { text: "_Like I said_ is common in speech, especially American English, but avoid it in an exam essay.", cue: "c2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("c", [["formal: As I said, the plan failed.", { hl: "As" }], ["informal: Like I said, ...", { ink: "muted" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("c", [
+            ["bubble", "As I said, ...", "formal + clause", { hl: "As" }],
+            ["bubble", "Like I said, ...", "informal", { ink: "muted" }],
+          ]),
+        ],
       },
       {
         id: "check1",

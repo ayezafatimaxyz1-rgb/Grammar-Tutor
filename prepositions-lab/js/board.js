@@ -150,7 +150,10 @@
 
       // Shrink a line that would run off the board, then keep it inside the edges.
       let box = text.getBBox();
-      const room = 960 - 40;
+      // The width available depends on where the line is anchored.
+      const anchor = a.anchor || "start";
+      let room = anchor === "start" ? 940 - a.x : anchor === "end" ? a.x - 20 : 2 * Math.min(a.x - 20, 940 - a.x);
+      if (a.fit) room = Math.min(room, a.fit);
       if (box.width > room) {
         text.style.fontSize = `${((a.size || 38) * room) / box.width}px`;
         box = text.getBBox();
@@ -244,7 +247,8 @@
     item.g.style.opacity = item.opacity < 1 ? item.opacity.toFixed(3) : "";
     item.g.setAttribute("transform", item.dx || item.dy ? `translate(${item.dx.toFixed(1)} ${item.dy.toFixed(1)})` : "");
     if (item.kind === "write") {
-      item.rect.setAttribute("width", ((item.box.width + 12) * item.p).toFixed(1));
+      // Leave room for highlighted words, which turn bold and widen the line.
+      item.rect.setAttribute("width", ((item.box.width * 1.15 + 30) * item.p).toFixed(1));
       return;
     }
     let left = ease(item.p) * item.total;

@@ -21,21 +21,32 @@
         title: "Source, rule, grounds",
         alt: "Rows: according to the report (what a source says); in accordance with Article 10 (following a rule); in line with policy; on the basis of evidence; pursuant to the order (legal).",
         say: [
-          { text: "**According to** reports what a source says: _According to the report, poverty has fallen._", cue: "f1" },
-          { text: "**In accordance with** and **in line with** mean following a rule or plan: _in accordance with Article 10, in line with government policy._", cue: "f2" },
-          { text: "**On the basis of** names the grounds: _He was selected on the basis of merit._ **Pursuant to** is legal: _pursuant to the court's order._", cue: "f3" },
+          { text: "**According to** reports what a source says: the report speaks. _According to the report, poverty has fallen._", cue: "f1" },
+          { text: "**In accordance with** and **in line with** mean following a rule: the arrow runs along the ruler. _in accordance with Article 10, in line with government policy._", cue: "f2" },
+          { text: "**On the basis of** names the grounds a decision rests on: _selected on the basis of merit._ **Pursuant to** is legal: _pursuant to the court's order._", cue: "f3" },
         ],
-        actions: K.lines("f", [["According to the report, poverty fell.", { hl: "According to" }], ["in accordance with Article 10 · in line with policy", { hl: "in accordance with", size: 32 }], ["on the basis of merit · pursuant to the order", { hl: "on the basis of", size: 32 }]], { y: 170, gap: 115, size: 36 }),
+        actions: PLAB.kit.rows("f", [
+          ["docSays", "According to the report, poverty fell.", { hl: "According to" }],
+          ["followRule", "in accordance with Article 10", { hl: "in accordance with" }],
+          ["parallel", "in line with government policy", { hl: "in line with" }],
+          ["onBase", "on the basis of merit · pursuant to", { hl: "on the basis of", size: 30 }],
+        ], { y: 90, gap: 118 }),
       },
       {
         id: "me",
         title: "Not according to me",
         alt: "Crossed out: According to me, the policy failed. Correct: In my opinion, the policy failed. I believe the policy failed.",
         say: [
-          { text: "_According to_ reports **someone else's** words or a source. Using it for your own view, _according to me_, is a well-known error in South Asian English.", cue: "m1" },
-          { text: "Write _In my opinion_, _In my view_ or _I believe_ instead.", cue: "m2" },
+          { text: "_According to_ points at **someone else** who speaks. Using it for your own view, _according to me_, is a well-known error in South Asian English.", cue: "m1" },
+          { text: "For a thought in your own head, write _In my opinion_, _In my view_ or _I believe._", cue: "m2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("m", [["✗ According to me, the policy failed.", { ink: "trouble" }], ["✓ In my opinion, the policy failed.", { ink: "accent" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("m", [
+            [[["thinkSelf", 0, 0], ["cross", 0, 0]], "✗ According to me, ...", "", { ink: "trouble" }],
+            ["thinkSelf", "✓ In my opinion, ...", "your own view", { hl: "In my opinion" }],
+          ]),
+        ],
       },
       {
         id: "check",

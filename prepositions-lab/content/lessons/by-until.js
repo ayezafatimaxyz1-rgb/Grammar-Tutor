@@ -40,10 +40,15 @@
         title: "Not ... until",
         alt: "Sentence: He did not arrive until 10 p.m., meaning he arrived at 10, no earlier. Note: till equals until, a little informal.",
         say: [
-          { text: "**Not ... until** says something happened only at that time, not earlier: _He did not arrive until 10 p.m._ (He arrived at 10, later than expected.)", cue: "n1" },
-          { text: "**Till** means the same as until and is correct, but a little informal. Avoid _'til_ and _upto_ in formal writing.", cue: "n2" },
+          { text: "**Not ... until** says nothing happened before the time, and then it happened. The early dot is crossed out; the arrival is at 10. _He did not arrive until 10 p.m._", cue: "n1" },
+          { text: "**Till** means the same as until and is correct, a little informal. Avoid _'til_ and _upto_ in formal writing.", cue: "n2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("n", [["He did not arrive until 10 p.m.", { hl: "until" }], ["till = until (a little informal)", { ink: "muted", size: 32 }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("nu", "notUntil", 270, 40, 3),
+          { do: "write", id: "ten", text: "10 p.m.", x: 570, y: 112, size: 28, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.lines("n", [["He did not arrive until 10 p.m.", { hl: "until" }], ["till = until (a little informal)", { ink: "muted", size: 30 }]], { y: 360, gap: 90, size: 38 }),
+        ],
       },
       {
         id: "check1",

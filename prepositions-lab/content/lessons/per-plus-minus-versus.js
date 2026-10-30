@@ -21,21 +21,32 @@
         title: "Per: for each",
         alt: "Three rows: Rs 200 per kilo; 120 km per hour; income per capita, meaning per person. Also per annum, per cent.",
         say: [
-          { text: "**Per** means _for each_: _Rs 200 per kilo, 120 km per hour, one per person._", cue: "p1" },
-          { text: "Latin phrases with per: _per capita_ (per person), _per annum_ (per year), _per cent._ _Income per capita has risen._", cue: "p3" },
+          { text: "**Per** means _for each_: for each kilo you pay this coin. _Rs 200 per kilo, 120 km per hour._", cue: "p1" },
+          { text: "_Per capita_ = for each person: every person gets a share. Also _per annum_ (per year), _per cent._ _Income per capita has risen._", cue: "p2" },
         ],
-        actions: K.lines("p", [["Rs 200 per kilo · 120 km per hour", { hl: "per" }], ["per capita · per annum · per cent", { ink: "accent2" }], ["Income per capita has risen.", { hl: "per capita", size: 34 }]], { y: 170, gap: 115, size: 36 }),
+        actions: PLAB.kit.panels("p", [
+          ["perKilo", "Rs 200 per kilo", "for each kilo", { hl: "per" }],
+          ["perCapita", "income per capita", "for each person", { hl: "per capita" }],
+          ["clock", "120 km per hour", "for each hour", { hl: "per" }],
+        ]),
       },
       {
         id: "others",
         title: "Plus, minus, versus, re",
         alt: "Rows: two plus two; ten minus three; Pakistan versus India (vs.); re: your letter of 5 May.",
         say: [
-          { text: "**Plus** and **minus** add and subtract: _two plus two; the price minus tax._", cue: "o1" },
-          { text: "**Versus** (written _v._ or _vs._) sets two sides against each other in a match or a court case: _Pakistan versus India._", cue: "o2" },
-          { text: "**Re** means _about_ in business correspondence: _Re: your letter of 5 May._", cue: "o3" },
+          { text: "**Plus** and **minus** add and subtract: _the price plus tax, minus discount._", cue: "o1" },
+          { text: "**Versus** (_v._ or _vs._) sets two sides against each other in a contest or a court case: _Pakistan versus India._", cue: "o2" },
+          { text: "**Re** means _about_ in business letters: the envelope points at its subject. _Re: your letter of 5 May._", cue: "o3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("o", ["the price plus tax · minus discount", ["Pakistan versus India (vs.)", { hl: "versus" }], ["Re: your letter of 5 May", { hl: "Re" }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("o", [
+            [[["plus", -30, 0, 0.8], ["minus", 40, 0, 0.8]], "plus tax · minus 10%", "add · take away", {}],
+            ["versus", "Pakistan versus India", "two sides against", { hl: "versus" }],
+            ["envelope", "Re: your letter", "= about (business)", { hl: "Re" }],
+          ]),
+        ],
       },
       {
         id: "asper",
@@ -43,9 +54,15 @@
         alt: "As per your instructions: commercial jargon. Better: as you instructed; according to your instructions.",
         say: [
           { text: "_As per_ is common in office English in Pakistan: _as per your instructions, as per rules._ Style guides treat it as jargon.", cue: "a1" },
-          { text: "In essays and précis, write _according to your instructions, as you instructed, under the rules._", cue: "a2" },
+          { text: "In essays and précis, point straight at the source: _according to your instructions, as you instructed, under the rules._", cue: "a2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("a", [["as per your instructions (jargon)", { ink: "muted" }], ["according to your instructions · as you instructed", { ink: "accent", size: 32 }]], { y: 200, gap: 130, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("a", [
+            [[["doc", 0, 0], ["cross", 0, 0]], "as per your instructions", "office jargon", { ink: "muted" }],
+            ["docSays", "according to your instructions", "formal and clear", { hl: "according to", size: 26 }],
+          ]),
+        ],
       },
       {
         id: "check",

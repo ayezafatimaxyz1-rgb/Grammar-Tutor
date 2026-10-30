@@ -21,20 +21,32 @@
         title: "Formal ways to say about",
         alt: "Rows: regarding your letter; concerning the delay; with regard to the budget; as regards salaries.",
         say: [
-          { text: "These all mean _about_ in formal writing: _regarding your letter, concerning the delay, with regard to the budget, as regards salaries._", cue: "f4" },
-          { text: "Use them sparingly. Often plain _about_ or _on_ reads better. In legal texts you may also meet _respecting_ (about), and in old texts _touching_ (about).", cue: "f4" },
+          { text: "All these phrases point at a topic, like an arrow pointing at a document: _regarding your letter, concerning the delay, with regard to the budget, as regards salaries._", cue: "f1" },
+          { text: "Use them sparingly; plain _about_ or _on_ often reads better. Legal texts also use _respecting_ (about), and old texts _touching_ (about).", cue: "f4" },
         ],
-        actions: K.lines("f", [["regarding your letter", { hl: "regarding" }], ["concerning the delay", { hl: "concerning" }], ["with regard to the budget", { hl: "with regard to" }], ["as regards salaries", { hl: "as regards" }]], { y: 130, gap: 100, size: 38 }),
+        actions: PLAB.kit.rows("f", [
+          ["pointDoc", "regarding your letter", { hl: "regarding" }],
+          ["pointDoc", "concerning the delay", { hl: "concerning" }],
+          ["pointDoc", "with regard to the budget", { hl: "with regard to" }],
+          ["pointDoc", "as regards salaries", { hl: "as regards" }],
+        ], { y: 90, gap: 118, size: 34 }),
       },
       {
         id: "regards",
         title: "Regard, not regards",
         alt: "Crossed out: with regards to; in regards to. Correct: with regard to; in regard to; as regards. Note: regards means greetings, as in Kind regards.",
         say: [
-          { text: "In _with regard to_ and _in regard to_, **regard** is singular. _With regards to_ is a very common error.", cue: "r1" },
-          { text: "_Regards_ with an s means greetings: _Kind regards; give my regards to your family._ The only correct s-form is _as regards._", cue: "r3" },
+          { text: "**Regard** without s points at a topic: _with regard to, in regard to._ _With regards to_ is a very common error.", cue: "r1" },
+          { text: "**Regards** with an s means greetings, a wave to someone: _Kind regards; give my regards to your family._ The only correct s-form for a topic is _as regards._", cue: "r2" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("r", [["✗ with regards to · ✗ in regards to", { ink: "trouble" }], ["✓ with regard to · in regard to · as regards", { ink: "accent" }], ["regards = greetings: Kind regards", { ink: "muted", size: 32 }]], { y: 170, gap: 115, size: 36 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("r", [
+            ["pointDoc", "with regard to", "pointing at a topic", { hl: "regard" }],
+            ["wave", "Kind regards", "greetings", { hl: "regards" }],
+          ]),
+          { do: "write", id: "r3", text: "✗ with regards to · ✗ in regards to", x: 480, y: 470, size: 32, ink: "trouble", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "check",

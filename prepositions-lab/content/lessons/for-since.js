@@ -41,21 +41,34 @@
         title: "What goes with each",
         alt: "Two columns. For: ten years, three days, a long time, ages. Since: 2015, Monday, last March, I was a child, the war ended.",
         say: [
-          { text: "**For** + a length: _for ten years, for three days, for a long time._", cue: "c1" },
-          { text: "**Since** + a point: _since 2015, since Monday, since last March_, or a clause: _since I was a child._", cue: "c2" },
-          { text: "For can be used with any tense (_I lived there for two years, then left_). Since, meaning from that point, normally goes with the present perfect.", cue: "c3" },
+          { text: "**For** measures the length of the stretch, the bracket: _for ten years, for three days, for a long time._", cue: "c1" },
+          { text: "**Since** names the point where it started, and the arrow runs from there to now: _since 2015, since Monday, since I was a child._", cue: "c2" },
+          { text: "For can go with any tense (_I lived there for two years, then left_). Since, meaning from that point, normally takes the present perfect.", cue: "c3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("c", ["for ten years · for three days · for ages", "since 2015 · since Monday · since I was a child", ["for: any tense · since: usually present perfect", { size: 30, ink: "accent2" }]], { y: 170, gap: 120, size: 34 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.rows("c", [
+            ["span", "for ten years · for three days · for ages", { hl: "for" }],
+            ["sincePoint", "since 2015 · since Monday · since I was a child", { hl: "since", size: 30 }],
+            [null, "for: any tense · since: usually present perfect", { size: 28, ink: "accent2" }],
+          ], { y: 120, gap: 130 }),
+        ],
       },
       {
         id: "error",
         title: "Since ten years",
         alt: "Crossed out: I am living here since ten years. Correct: I have lived here for ten years.",
         say: [
-          { text: "A very common error in Pakistani English combines two mistakes: _I am living here since ten years._", cue: "e1" },
-          { text: "Fix both: _ten years_ is a length, so **for**; the situation runs up to now, so the **present perfect**: _I have lived (or have been living) here for ten years._", cue: "e2" },
+          { text: "_I am living here since ten years_ mixes two pictures. _Ten years_ is a length (a bracket), but _since_ needs a starting point (a dot).", cue: "e1" },
+          { text: "Fix both errors: use **for** with a length, and the **present perfect** for a situation that runs up to now: _I have lived here for ten years._", cue: "e2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("e", [["✗ I am living here since ten years.", { ink: "trouble" }], ["✓ I have lived here for ten years.", { ink: "accent", hl: "for" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.panels("e", [
+            [[["span", 0, 0], ["cross", 0, 0]], "✗ I am living here since ten years.", "since needs a point", { ink: "trouble", size: 24 }],
+            ["span", "✓ I have lived here for ten years.", "a length takes for", { hl: "for", size: 24 }],
+          ]),
+        ],
       },
       {
         id: "check1",

@@ -39,10 +39,18 @@
         title: "Formal equivalents",
         alt: "Two columns. Before: prior to. After: subsequent to, following. Example: Prior to the elections, the cabinet resigned. Following the verdict, protests broke out.",
         say: [
-          { text: "Formal and official writing often uses **prior to** for before, and **subsequent to** or **following** for after.", cue: "f1" },
-          { text: "_Prior to the elections, the cabinet resigned. Following the verdict, protests broke out._ Don't overuse them; plain _before_ and _after_ are often clearer.", cue: "f3" },
+          { text: "Formal writing has longer words for the same two pictures. A dot earlier than the event: **prior to** = before.", cue: "f1" },
+          { text: "A dot later than the event: **subsequent to** or **following** = after.", cue: "f2" },
+          { text: "_Prior to the elections, the cabinet resigned. Following the verdict, protests broke out._ Plain _before_ and _after_ are often clearer, so don't overuse them.", cue: "f3" },
         ],
-        actions: [K.clear("clear-1"), ...K.lines("f", [["before → prior to", { hl: "prior to" }], ["after → subsequent to · following", { hl: "following" }], ["Prior to the elections, the cabinet resigned.", { size: 32, ink: "muted" }]], { y: 160, gap: 110, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.panels("f", [
+            ["priorDot", "before → prior to", "earlier than the event", { hl: "prior to" }],
+            ["afterDot", "after → following", "later than the event", { hl: "following" }],
+          ]),
+          { do: "write", id: "f3", text: "Prior to the elections, the cabinet resigned.", x: 480, y: 470, size: 32, ink: "muted", anchor: "middle", gap: 500 },
+        ],
       },
       {
         id: "errors",
@@ -50,9 +58,16 @@
         alt: "Crossed out: prior than the meeting; after to sign. Correct: prior to the meeting; after signing.",
         say: [
           { text: "_Prior_ and _subsequent_ always take **to**: never _prior than_ or _subsequent of._", cue: "e1" },
-          { text: "And like every preposition, before and after take -ing, never a to-infinitive: _after signing_, not _after to sign._", cue: "e2" },
+          { text: "And like every preposition, before and after need something to hang on them: a noun or -ing, never a to-infinitive. _after signing_, not _after to sign._", cue: "e2" },
         ],
-        actions: [K.clear("clear-2"), ...K.lines("e", [["✗ prior than → ✓ prior to", { ink: "trouble" }], ["✗ after to sign → ✓ after signing", { ink: "trouble" }]], { y: 200, gap: 130, size: 38 })],
+        actions: [
+          PLAB.kit.clear("clear-2"),
+          ...PLAB.kit.rows("e", [
+            ["cross", "✗ prior than → ✓ prior to", { ink: "trouble" }],
+            ["hookNo", "✗ after to sign", { ink: "trouble" }],
+            ["hookRun", "✓ after signing", { hl: "signing" }],
+          ], { y: 130, gap: 130, size: 36 }),
+        ],
       },
       {
         id: "check",
