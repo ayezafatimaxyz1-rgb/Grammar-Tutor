@@ -179,10 +179,10 @@
             id: "p2-phrasal",
             title: "Phrasal verbs and prepositional verbs",
             lessons: [
-              L("phrasal-vs-prepositional", "Phrasal verb or prepositional verb? (look up a word vs look up the chimney)"),
-              L("separability", "Where the object goes: turn it off, look after it"),
-              L("three-part", "Three-part verbs: put up with, look down on, do away with, come up with"),
-              L("formal-alternatives", "Formal one-word alternatives for CSS writing (investigate for look into)", { flags: ["formal"] }),
+              L("phrasal-vs-prepositional", "Phrasal verb or prepositional verb? (look up a word vs look up the chimney)", { status: "tested", lessonId: "phrasal-vs-prepositional" }),
+              L("separability", "Where the object goes: turn it off, look after it", { status: "tested", lessonId: "separability" }),
+              L("three-part", "Three-part verbs: put up with, look down on, do away with, come up with", { status: "tested", lessonId: "three-part" }),
+              L("formal-alternatives", "Formal one-word alternatives for CSS writing (investigate for look into)", { status: "tested", lessonId: "formal-alternatives", flags: ["formal"] }),
             ],
           },
           {

@@ -114,5 +114,14 @@
     fallIn: [lay([L(6, 74, 134, 74)], "muted"), lay([R(14, 16, 22, 58), R(46, 30, 22, 44), R(78, 42, 22, 32), R(110, 54, 22, 20)], "accent2", { fill: "soft" }), lay([A(18, 4, 112, 40)], "trouble")],
     linkBetween: [lay([C(26, 40, 18)], "accent", { fill: "soft" }), lay([C(114, 40, 18)], "accent2", { fill: "soft" }), lay([R(52, 34, 18, 12), R(70, 34, 18, 12)], "main")],
     linkWith: [lay([P(30, 10, 0.55)], "accent"), lay([L(48, 34, 92, 34)], "trouble", { width: 3.4 }), lay([heart(70, 22, 0.4)], "trouble", { fill: "soft" }), lay([P(110, 10, 0.55)], "accent2")],
+
+    // phrasal verbs
+    upChimney: [lay([R(80, 0, 26, 30), L(30, 30, 130, 30), L(30, 30, 30, 78), L(130, 30, 130, 78)], "main"), lay([E(56, 64, 12, 7), C(56, 64, 3)]), lay([A(70, 56, 92, 6, -8)], "accent2")],
+    dictionary: [lay([R(14, 10, 56, 62)], "accent2", { fill: "soft" }), lay([L(22, 24, 60, 24), L(22, 36, 60, 36), L(22, 48, 52, 48)], "accent2"), lay([C(94, 38, 18), L(107, 51, 128, 72)], "accent", { width: 4 })],
+    slotIn: [lay([R(4, 30, 40, 26)], "accent", { fill: "soft" }), lay([R(96, 30, 40, 26)], "accent", { fill: "soft" }), lay([R(56, -4, 28, 20)], "trouble", { fill: "soft" }), lay([A(70, 18, 70, 40)], "trouble")],
+    switchOff: [lay([R(42, 8, 56, 66)], "main"), lay([R(58, 22, 24, 38)], "muted", { fill: "soft" }), lay([L(70, 42, 70, 58)], "trouble", { width: 6 }), lay([A(104, 26, 104, 58)], "accent2")],
+    lookDown: [lay([L(6, 34, 66, 34), L(66, 34, 66, 78)], "muted"), lay([P(36, 0, 0.48)], "accent"), lay([A(52, 18, 104, 46, -10)], "trouble"), lay([P(112, 40, 0.36)], "muted")],
+    emptyJar: [lay([R(46, 10, 48, 64), L(52, 10, 52, 4), L(88, 10, 88, 4)]), lay([L(50, 68, 90, 68)], "accent2", { width: 4 }), lay([A(110, 20, 110, 60)], "trouble")],
+    casualToFormal: [lay([E(32, 40, 26, 18)], "muted", { fill: "soft" }), lay([A(62, 40, 92, 40)], "accent2"), lay([R(96, 22, 38, 36)], "accent", { fill: "soft" }), lay([L(104, 32, 126, 32), L(104, 42, 126, 42), L(104, 52, 120, 52)], "accent")],
   });
 })();

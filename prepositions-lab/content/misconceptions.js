@@ -442,4 +442,16 @@ PLAB.misconceptions = {
     label: "Between pairs with and",
     explain: "Name both sides with between X and Y. From one side, use with: relationship with China; relationship between Pakistan and China.",
   },
+  "particle-preposition": {
+    label: "Particle or preposition?",
+    explain: "A particle belongs to the verb and can move (look the word up, turn it off). A preposition stays before its object (look after it, get over it). A pronoun goes in the middle only with a particle.",
+  },
+  "three-part-verbs": {
+    label: "Three-part verbs",
+    explain: "put up with (tolerate), look down on (feel superior), look up to (admire), do away with (abolish), come up with (think of), run out of (have none left). The object comes last.",
+  },
+  "formal-swap": {
+    label: "Formal one-word verbs take no particle",
+    explain: "investigate (not investigate into), postpone, cancel, abolish, devise, discover, establish, reduce. The single verb replaces the whole phrasal verb.",
+  },
 };
