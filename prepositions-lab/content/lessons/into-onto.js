@@ -83,7 +83,7 @@ PLAB.registerLesson({
     {
       id: "flexible",
       title: "When in and on are fine, and on to",
-      alt: "Three pairs. Put the book in the bag, also natural. She walked into the room, versus she walked in the room, meaning around inside it. We drove on to Lahore, meaning continued, versus onto the road.",
+      alt: "Four pictures: a book going into a bag (put it in the bag), an arrow entering a room (walked into the room), a loop inside a room (walked in the room), a car passing a town and going on (drove on to Lahore).",
       say: [
           { text: "After verbs of placing, in and on are normal: the hand puts the book down and it ends up inside. _Put the book in the bag._", cue: "p1" },
           { text: "_Walked into the room_: the arrow crosses the doorway from outside to inside. That is entering.", cue: "p2" },
@@ -91,14 +91,14 @@ PLAB.registerLesson({
           { text: "_Drove on to Lahore_: the car passes a town and **continues** (on) **to** its destination. _Turned onto the main road_: movement that ends on the road's surface.", cue: "p4" },
         ],
       actions: [
-          PLAB.kit.clear("clear-onto"),
-          ...PLAB.kit.rows("p", [
-            ["intoBag", "Put the book in the bag. ✓", { hl: "in" }],
-            ["enterRoom", "walked into the room = entered", { hl: "into" }],
-            ["loop", "walked in the room = moved about inside", { hl: "in" }],
-            ["driveOn", "drove on to Lahore · turned onto the road", { hl: "on to", size: 30 }],
-          ], { y: 100, gap: 118, size: 32 }),
-        ],
+        PLAB.kit.clear("clear-onto"),
+        ...PLAB.kit.grid("p", [
+          ["intoBag", "Put the book in the bag. \u2713", "after put, in is fine", { hl: "in" }],
+          ["enterRoom", "walked into the room", "= entered it", { hl: "into" }],
+          ["loop", "walked in the room", "= moved about inside", { hl: "in" }],
+          ["driveOn", "drove on to Lahore", "kept going (on) to Lahore", { hl: "on to" }],
+        ]),
+      ],
     },
     {
       id: "check-enter",

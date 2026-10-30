@@ -54,19 +54,19 @@
       {
         id: "none",
         title: "Words that take no preposition",
-        alt: "List: go home, live abroad, go upstairs, go downtown, yesterday, tomorrow. Crossed out: go to home, live in abroad.",
+        alt: "Four pictures: an arrow into a house (go home), a plane (live abroad), stairs (go upstairs), a house (at home, from abroad).",
         say: [
           { text: "Some words already contain the place or time, so the arrow goes straight to them with no preposition: _go home, live abroad, go upstairs, go downtown, yesterday, tomorrow._", cue: "n1" },
           { text: "So _go to home_ and _live in abroad_ are wrong. (But _at home_ for position, and _from abroad_ for origin, are correct.)", cue: "n4" },
         ],
         actions: [
           PLAB.kit.clear("clear-2"),
-          ...PLAB.kit.rows("n", [
-            ["goHome", "go home (✗ go to home)", { hl: "home" }],
-            ["plane", "live abroad (✗ live in abroad)", { hl: "abroad" }],
-            ["stairs", "go upstairs · go downtown", { hl: "upstairs" }],
-            ["check", "✓ at home · ✓ from abroad", { ink: "accent2" }],
-          ], { y: 100, gap: 118 }),
+          ...PLAB.kit.grid("n", [
+            ["goHome", "go home (\u2717 go to home)", "home already means to that place", { hl: "home" }],
+            ["plane", "live abroad (\u2717 live in abroad)", "abroad already holds the place", { hl: "abroad" }],
+            ["stairs", "go upstairs \u00b7 go downtown", "no preposition", {  }],
+            ["house", "\u2713 at home \u00b7 \u2713 from abroad", "position or origin: fine", { hl: "at home" }],
+          ]),
         ],
       },
       {

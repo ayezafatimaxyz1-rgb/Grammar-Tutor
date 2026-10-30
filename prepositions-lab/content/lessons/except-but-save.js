@@ -36,7 +36,7 @@
       {
         id: "family",
         title: "Except for, but, save, barring",
-        alt: "Four rows. Except for one mistake, the essay is excellent. Nobody but me knew. Save one, all were rescued (formal). Barring accidents, we will arrive by six.",
+        alt: "Four pictures: a page of ticks with one cross (except for one mistake), a circle with one person (nobody but me), a group with one outside (all save one), a road barrier (barring accidents).",
         say: [
           { text: "**Except for** qualifies a whole statement: the page is all ticks except one cross. _Except for one mistake, the essay is excellent._", cue: "e1" },
           { text: "**But** means except after _no, nobody, all, every_: the circle is empty but for one person. _Nobody but me knew._", cue: "e2" },
@@ -44,12 +44,12 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("e", [
-            ["exceptOne", "Except for one mistake, it is excellent.", { hl: "Except for" }],
-            ["onlyOne", "Nobody but me knew.", { hl: "but" }],
-            ["groupOut", "All were rescued save one. (formal)", { hl: "save" }],
-            ["roadBarrier", "Barring accidents, we arrive by six.", { hl: "Barring" }],
-          ], { y: 90, gap: 118 }),
+          ...PLAB.kit.grid("e", [
+            ["exceptOne", "Except for one mistake, it is excellent.", "all good, but one part", { hl: "Except for" }],
+            ["onlyOne", "Nobody but me knew.", "but = except, after nobody, all", { hl: "but" }],
+            ["groupOut", "All were rescued save one.", "save = except (formal)", { hl: "save" }],
+            ["roadBarrier", "Barring accidents, we arrive by six.", "= unless something blocks us", { hl: "Barring" }],
+          ]),
         ],
       },
       {

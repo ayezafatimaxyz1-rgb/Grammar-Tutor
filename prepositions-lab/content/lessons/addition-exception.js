@@ -19,16 +19,19 @@
       {
         id: "add",
         title: "Adding",
-        alt: "Rows: In addition to teaching, she writes novels. As well as teaching, she writes novels. Along with / together with.",
+        alt: "Three pictures: a book plus a pen (in addition to teaching, she writes; as well as), and a leader with companions (along with, together with).",
         say: [
           { text: "**In addition to** and **as well as** add something, like a plus sign: _In addition to teaching, she writes novels. As well as teaching, she writes._", cue: "a1" },
           { text: "**Along with** and **together with** add a companion beside the main person: _The minister, along with his aides, visited the site._", cue: "a3" },
         ],
-        actions: PLAB.kit.panels("a", [
-          ["plus", "In addition to teaching, ...", "+ noun or -ing", { hl: "In addition to", size: 26 }],
-          ["plus", "As well as teaching, ...", "+ noun or -ing", { hl: "As well as", size: 26 }],
-          ["people", "along with · together with", "a companion", { size: 26 }],
-        ]),
+        actions: [
+          PLAB.kit.clear("clear-rd-add"),
+          ...PLAB.kit.grid("a", [
+            ["addMore", "In addition to teaching, ...", "adds a second thing: + noun or -ing", { hl: "In addition to" }],
+            ["addMore", "As well as teaching, ...", "the same, a little less formal", { hl: "As well as" }],
+            ["leaderGroup", "along with his aides", "a companion beside the main person", { hl: "along with" }],
+          ]),
+        ],
       },
       {
         id: "agree",

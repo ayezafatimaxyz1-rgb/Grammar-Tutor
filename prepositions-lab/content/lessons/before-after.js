@@ -55,18 +55,18 @@
       {
         id: "errors",
         title: "Errors to avoid",
-        alt: "Crossed out: prior than the meeting; after to sign. Correct: prior to the meeting; after signing.",
+        alt: "Three pictures: a dot before an event (prior to, not prior than), a cross (after to sign), a dot after an event with a tick (after signing).",
         say: [
           { text: "_Prior_ and _subsequent_ always take **to**: never _prior than_ or _subsequent of._", cue: "e1" },
           { text: "And like every preposition, before and after need something to hang on them: a noun or -ing, never a to-infinitive. _after signing_, not _after to sign._", cue: "e2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2"),
-          ...PLAB.kit.rows("e", [
-            ["cross", "✗ prior than → ✓ prior to", { ink: "trouble" }],
-            ["hookNo", "✗ after to sign", { ink: "trouble" }],
-            ["hookRun", "✓ after signing", { hl: "signing" }],
-          ], { y: 130, gap: 130, size: 36 }),
+          ...PLAB.kit.grid("e", [
+            ["priorDot", "prior to (\u2717 prior than)", "prior and subsequent take to", { hl: "prior to" }],
+            ["cross", "\u2717 after to sign", "no to + verb after a preposition", { ink: "trouble" }],
+            ["afterDot", "\u2713 after signing", "a noun or -ing", { hl: "signing" }],
+          ]),
         ],
       },
       {

@@ -18,18 +18,21 @@
       {
         id: "forms",
         title: "Four phrases",
-        alt: "Rows: in the course of the investigation (during); growth at the expense of the environment (harming it); for the purpose of verifying records (in order to); by way of apology (as an apology).",
+        alt: "Four pictures: a path with a point along it (in the course of the investigation), a seesaw with one side up and one down (at the expense of), a target (for the purpose of), flowers given to a heart (by way of apology).",
         say: [
           { text: "**In the course of** = during, somewhere along the path of a process: _In the course of the investigation, new facts emerged._", cue: "f1" },
           { text: "**At the expense of** = one side rises while the other is paid away: _growth at the expense of the environment._", cue: "f2" },
           { text: "**For the purpose of** + -ing = aimed at a target: _for the purpose of verifying records._ **By way of** = as a form of: flowers given as an apology. _by way of apology._", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["courseAlong", "in the course of the investigation", { hl: "in the course of" }],
-          ["expense", "growth at the expense of the environment", { hl: "at the expense of", size: 30 }],
-          ["target", "for the purpose of verifying records", { hl: "for the purpose of" }],
-          ["flowersApology", "flowers by way of apology", { hl: "by way of" }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["courseAlong", "in the course of the investigation", "= during", { hl: "in the course of" }],
+            ["expense", "growth at the expense of the environment", "one gains, the other pays", { hl: "at the expense of" }],
+            ["target", "for the purpose of verifying records", "aimed at a goal", { hl: "for the purpose of" }],
+            ["flowersApology", "flowers by way of apology", "as a form of", { hl: "by way of" }],
+          ]),
+        ],
       },
       {
         id: "why-not",

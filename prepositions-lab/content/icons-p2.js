@@ -156,5 +156,12 @@
 
     tankLid: [lay([L(10, 22, 130, 22)], "trouble", { width: 3 }), lay([R(48, 6, 44, 70)], "muted"), lay([R(48, 22, 44, 54)], "accent2", { fill: "soft" }), lay([L(42, 21, 98, 21)], "main", { width: 6 })],
     tankOver: [lay([L(10, 30, 130, 30)], "trouble", { width: 3 }), lay([R(48, 4, 44, 72)], "muted"), lay([R(48, 10, 44, 66)], "accent", { fill: "soft" }), lay([L(100, 10, 100, 30)], "accent", { width: 3 })],
+
+    // Phase 1 redraws
+    surrounded: [lay([B([[18, 40], [30, 10], [70, 2], [112, 12], [124, 44], [100, 74], [44, 76]])], "trouble", { fill: "soft" }), lay([P(70, 16, 0.5)], "accent")],
+    onStrike: [lay([P(30, 18, 0.5), P(62, 18, 0.5)], "accent"), lay([L(96, 76, 96, 8)]), lay([R(96, 8, 34, 22)], "trouble", { fill: "soft" }), lay([L(102, 14, 124, 24), L(124, 14, 102, 24)], "trouble")],
+    offDuty: [lay([P(50, 10, 0.6)], "accent"), lay([R(58, 36, 12, 10)], "trouble", { fill: "solid" }), lay([A(80, 40, 130, 40)], "muted")],
+    addMore: [lay([R(10, 16, 40, 50)], "accent2", { fill: "soft" }), lay([L(70, 26, 70, 56), L(55, 41, 85, 41)], "accent", { width: 4 }), lay([L(98, 70, 128, 14)], "main", { width: 4 })],
+    speakFor: [lay([P(28, 10, 0.55)], "accent"), lay([E(54, 0, 20, 10), L(42, 8, 36, 14)], "accent2"), lay([P(76, 30, 0.38), P(100, 30, 0.38), P(124, 30, 0.38)], "muted")],
   });
 })();

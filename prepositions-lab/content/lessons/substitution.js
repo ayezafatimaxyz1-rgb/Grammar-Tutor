@@ -19,19 +19,22 @@
       {
         id: "swap",
         title: "One in place of another",
-        alt: "Two boxes: tea crossed out, coffee taking its place, with a curved arrow. Rows: instead of tea; in place of the old law; in lieu of notice (formal); rather than wait.",
+        alt: "Four pictures: two arrows swapping (coffee instead of tea), a crossed document replaced by a new one (in place of the old law), a crossed notice and coins (pay in lieu of notice), a crossed clock and an arrow away (rather than wait).",
         say: [
           { text: "All four put one thing in the place of another. **Instead of** + noun or -ing: one is swapped out, the other in. _She drank coffee instead of tea. He walked instead of taking the bus._", cue: "s1" },
           { text: "**In place of**: the old document is crossed out, the new one takes its place. _The new law was passed in place of the old one._", cue: "s2" },
           { text: "**In lieu of** (formal, legal): money given in place of something: _a month's pay in lieu of notice._", cue: "s3" },
           { text: "**Rather than** can take a bare verb: no waiting, we walk away. _Rather than wait, we left._ _Instead of to wait_ is wrong.", cue: "s4" },
         ],
-        actions: PLAB.kit.rows("s", [
-          ["swap", "coffee instead of tea · instead of taking", { hl: "instead of", size: 30 }],
-          ["replaceDoc", "in place of the old law", { hl: "in place of" }],
-          ["inLieu", "a month's pay in lieu of notice", { hl: "in lieu of" }],
-          ["notWait", "Rather than wait, we left.", { hl: "Rather than" }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-swap"),
+          ...PLAB.kit.grid("s", [
+            ["swap", "coffee instead of tea", "one swapped for the other", { hl: "instead of" }],
+            ["replaceDoc", "in place of the old law", "the new takes the old one's place", { hl: "in place of" }],
+            ["inLieu", "pay in lieu of notice", "money instead of notice (formal)", { hl: "in lieu of" }],
+            ["notWait", "Rather than wait, we left.", "+ a bare verb", { hl: "Rather than" }],
+          ]),
+        ],
       },
       {
         id: "why-not",

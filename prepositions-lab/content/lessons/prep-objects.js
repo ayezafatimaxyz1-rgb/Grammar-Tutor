@@ -19,42 +19,45 @@
       {
         id: "forms",
         title: "Four things that can follow",
-        alt: "Four rows: a noun (in the room), an object pronoun (for him), an -ing form (before leaving), a wh-clause (it depends on what you mean).",
+        alt: "Four pictures: a dot in a box (a noun: in the room), two people (a pronoun: between you and me), feet walking (an -ing form: before leaving), a question mark (a wh-clause: on what you mean).",
         say: [
           { text: "Picture a preposition as a **hook**: something must hang on it, its object.", cue: "f1" },
           { text: "A **noun**: _in the room._ An **object pronoun**: _for him, between you and me._", cue: "f2" },
           { text: "An **-ing form**, an action used as a noun: _before leaving, without saying._", cue: "f3" },
           { text: "A **wh-clause**, a question-shaped object: _It depends on what you mean._", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["hookBox", "noun: in the room", { hl: "the room", hlStyle: "underline", hlInk: "accent2" }],
-          ["hookPerson", "pronoun: for him · between you and me", { hl: "him", hlStyle: "underline", hlInk: "accent2" }],
-          ["hookRun", "-ing: before leaving", { hl: "leaving", hlStyle: "underline", hlInk: "accent2" }],
-          ["hookQ", "wh-clause: depends on what you mean", { hl: "what you mean", hlStyle: "underline", hlInk: "accent2" }],
-        ], { y: 100, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["dotIn", "a noun: in the room", "a thing", { hl: "in" }],
+            ["people", "a pronoun: between you and me", "object form: me, him, us", { hl: "me" }],
+            ["feet", "-ing: before leaving", "an action used as a noun", { hl: "leaving" }],
+            ["question", "a wh-clause: on what you mean", "a question-shaped object", { hl: "what you mean" }],
+          ]),
+        ],
       },
       {
         id: "not",
         title: "Two things that cannot",
-        alt: "Crossed out: without to say, insist on that he resigns. Correct: without saying; insist that he resign, or insist on his resigning.",
+        alt: "Four pictures: a hook with a cross (without to say), a tick (without saying), a cross (insisted on that he resign), a tick (insisted that he resign; insisted on his resignation).",
         say: [
           { text: "Two things cannot hang on the hook. A **to-infinitive**: _without to say_ is wrong; _without saying_ is right.", cue: "n1" },
-          { text: "A **that-clause**: _They insisted on that he resign_ is wrong. Drop the preposition (_insisted that he resign_) or give it a noun (_insisted on his resignation_).", cue: "n2" },
+          { text: "A **that-clause**: _They insisted on that he resign_ is wrong. Drop the preposition (_insisted that he resign_) or give it a noun (_insisted on his resignation_).", cue: "n3" },
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("n", [
-            ["hookNo", "✗ without to say → without saying", { ink: "trouble" }],
-            ["hookNo", "✗ insisted on that he resign", { ink: "trouble" }],
-            ["check", "✓ insisted that he resign", { ink: "accent" }],
-            ["hookBox", "✓ insisted on his resignation", { ink: "accent" }],
-          ], { y: 100, gap: 118 }),
+          ...PLAB.kit.grid("n", [
+            ["hookNo", "\u2717 without to say", "no to + verb after a preposition", { ink: "trouble" }],
+            ["check", "\u2713 without saying", "-ing instead", { hl: "saying" }],
+            ["cross", "\u2717 insisted on that he resign", "no that-clause after a preposition", { ink: "trouble" }],
+            ["check", "\u2713 insisted that he resign", "or: insisted on his resignation", {  }],
+          ]),
         ],
       },
       {
         id: "to",
         title: "The great trap: to as a preposition",
-        alt: "Two kinds of to. To meet: to before a verb, infinitive marker. Look forward to meeting: to is a preposition, so -ing. List: look forward to, committed to, used to, object to, with a view to.",
+        alt: "Four pictures: an arrow (I want to meet you: infinitive), an eye looking ahead to a star (I look forward to meeting you), a calendar (test: look forward to the meeting), a person on a line (committed to, used to, object to).",
         say: [
           { text: "Usually _to_ before a verb is just the infinitive marker, an arrow towards an action: _I want to meet you._", cue: "t1" },
           { text: "But in some expressions _to_ is a **preposition**, a hook, so it needs -ing: _I look forward to meeting you._", cue: "t2" },
@@ -62,12 +65,12 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2"),
-          ...PLAB.kit.rows("t", [
-            ["arrowR", "I want to meet you. (infinitive)", { ink: "muted" }],
-            ["hookRun", "I look forward to meeting you.", { hl: "meeting" }],
-            ["hookBox", "test: look forward to the meeting ✓", {}],
-            [null, "committed to · used to · object to · with a view to", { ink: "accent2", size: 28 }],
-          ], { y: 100, gap: 115 }),
+          ...PLAB.kit.grid("t", [
+            ["arrowR", "I want to meet you.", "to + verb: infinitive", {  }],
+            ["lookAhead", "I look forward to meeting you.", "to is a preposition: -ing", { hl: "meeting" }],
+            ["calendar", "test: look forward to the meeting \u2713", "a noun fits, so use -ing", { hl: "the meeting" }],
+            ["stickTo", "committed to \u00b7 used to \u00b7 object to", "the same trap", { ink: "accent2" }],
+          ]),
         ],
       },
       {

@@ -32,7 +32,7 @@
       {
         id: "means",
         title: "Means: by + bare noun",
-        alt: "Rows: by train, by bus, by car, by air; by email, by post, by phone; by hand, by cheque. Note: on foot; in my car; on the 7 o'clock train.",
+        alt: "Three pictures: a train (by train, by air, by email: the means), a car with a person in it (in my car, on the 7 o'clock train), feet (on foot, never by walk).",
         say: [
           { text: "**By** + a bare noun (no _the_, no _my_) names the means: _by train, by car, by air, by email, by hand._", cue: "m1" },
           { text: "As soon as you add _the_ or _my_, the vehicle becomes a real place again, so use the place prepositions: _in my car, on the 7 o'clock train._", cue: "m2" },
@@ -40,11 +40,11 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("m", [
-            ["train", "by train · by air · by email · by hand", { hl: "by" }],
-            ["car", "in my car · on the 7 o'clock train", { ink: "accent2" }],
-            ["feet", "on foot (✗ by walk)", { hl: "on foot" }],
-          ], { y: 120, gap: 130, size: 34 }),
+          ...PLAB.kit.grid("m", [
+            ["train", "by train \u00b7 by air \u00b7 by email", "the means: no article", { hl: "by" }],
+            ["carIn", "in my car \u00b7 on the 7 o'clock train", "a real vehicle: in, on", { hl: "in" }],
+            ["feet", "on foot (\u2717 by walk)", "the feet are what you travel on", { hl: "on foot" }],
+          ]),
         ],
       },
       {

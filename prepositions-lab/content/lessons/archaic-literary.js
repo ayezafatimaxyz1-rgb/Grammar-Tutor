@@ -18,18 +18,20 @@
       {
         id: "old",
         title: "Recognise, do not use",
-        alt: "A table of old words and modern meanings: unto, to; betwixt, between; ere, before; athwart, across; amidst, amid.",
+        alt: "Five pictures, each showing the modern meaning: an arrow (unto = to), a dot between two marks (betwixt = between), a dot before an event (ere = before), an arrow across a road (athwart = across), a dot in a crowd (amidst = amid).",
         say: [
           { text: "These come from old texts and poetry, like words on a scroll. Read them, but do not use them in your own writing.", cue: "o1" },
           { text: "_unto_ = to, _betwixt_ = between, _ere_ = before, _athwart_ = across, _amidst_ = amid.", cue: "o5" },
         ],
         actions: [
-          ...PLAB.kit.pic("sc", "scroll", 600, 120, 2.2),
-          { do: "write", id: "o1", text: "unto = to", x: 80, y: 120, size: 36, gap: 300 },
-          { do: "write", id: "o2", text: "betwixt = between", x: 80, y: 200, size: 36 },
-          { do: "write", id: "o3", text: "ere = before", x: 80, y: 280, size: 36 },
-          { do: "write", id: "o4", text: "athwart = across", x: 80, y: 360, size: 36 },
-          { do: "write", id: "o5", text: "amidst = amid", x: 80, y: 440, size: 36 },
+          PLAB.kit.clear("clear-rd-old"),
+          ...PLAB.kit.grid("o", [
+            ["arrowR", "unto = to", "old word: recognise only", { hl: "unto" }],
+            ["betweenTicks", "betwixt = between", "old word: recognise only", { hl: "betwixt" }],
+            ["priorDot", "ere = before", "old word: recognise only", { hl: "ere" }],
+            ["roadPass", "athwart = across", "old word: recognise only", { hl: "athwart" }],
+            ["crowdDot", "amidst = amid", "old in AmE, formal in BrE", { hl: "amidst" }],
+          ]),
         ],
       },
       {

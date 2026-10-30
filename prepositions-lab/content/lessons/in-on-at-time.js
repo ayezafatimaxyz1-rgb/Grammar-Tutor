@@ -74,7 +74,7 @@ PLAB.registerLesson({
     {
       id: "holidays",
       title: "Weekends and holidays",
-      alt: "Two columns. Left, British English: at the weekend, at Christmas. Right, American English and both: on the weekend, on Christmas Day, on Independence Day.",
+      alt: "Four pictures: a week row with the weekend marked (at the weekend, British; on the weekend, American), a holiday period and a single calendar day (at Christmas, at Eid; on Christmas Day).",
       say: [
         {
           text: "Weekends differ by variety. British English says _at the weekend_; American English says _on the weekend._ Both are standard in their own variety. Pick one and use it consistently.",
@@ -86,17 +86,13 @@ PLAB.registerLesson({
         },
       ],
       actions: [
-        { do: "erase", id: "clear-three", targets: "all" },
-        { do: "write", id: "head-br", text: "British", x: 250, y: 110, size: 34, ink: "accent2", anchor: "middle", gap: 400 },
-        { do: "highlight", id: "head-br-u", target: "head-br", word: "British", style: "underline", ink: "accent2" },
-        { do: "write", id: "w1", text: "at the weekend", x: 250, y: 200, size: 38, anchor: "middle" },
-        { do: "write", id: "w2", text: "at Christmas, at Eid", x: 250, y: 280, size: 38, anchor: "middle" },
-        { do: "draw", id: "div", shape: "line", from: [480, 90], to: [480, 330], ink: "muted", width: 2.2, dur: 600 },
-        { do: "write", id: "head-am", text: "American", x: 710, y: 110, size: 34, ink: "accent2", anchor: "middle" },
-        { do: "highlight", id: "head-am-u", target: "head-am", word: "American", style: "underline", ink: "accent2" },
-        { do: "write", id: "w1b", text: "on the weekend", x: 710, y: 200, size: 38, anchor: "middle" },
-        { do: "write", id: "w3", text: "the day itself, in both: on", x: 480, y: 420, size: 34, ink: "accent", anchor: "middle", gap: 600 },
-        { do: "write", id: "w4", text: "on Christmas Day · on Independence Day", x: 480, y: 490, size: 34, anchor: "middle", dur: 2000 },
+        PLAB.kit.clear("clear-rd-holidays"),
+        ...PLAB.kit.grid("w", [
+          ["weekRow", "at the weekend", "British English", { hl: "at" }],
+          ["weekRow", "on the weekend", "American English", { hl: "on" }],
+          ["inPeriod", "at Christmas \u00b7 at Eid", "the holiday period (BrE)", { hl: "at" }],
+          ["calendar", "on Christmas Day \u00b7 on Eid day", "the day itself: on, everywhere", { hl: "on" }],
+        ]),
       ],
     },
     {
@@ -120,21 +116,21 @@ PLAB.registerLesson({
     {
       id: "none",
       title: "When there is no preposition",
-      alt: "A list of time words that take no preposition: next week, last year, this morning, every day, tomorrow, yesterday. Below, crossed out in red: on last Friday, in next week. Correct: last Friday, next week.",
+      alt: "Four pictures: an arrow pointing forward from now (next week, tomorrow), an arrow pointing back (last year, yesterday), a cross (on last Friday, in next week), a calendar (on Friday).",
       say: [
           { text: "Some time words already **point** to their place on the time line by themselves: _next_ points forward from now, _last_ points back.", cue: "n1" },
           { text: "Because they do the pointing, they take **no preposition**: _next week, last year, this morning, every day, tomorrow, yesterday._", cue: "n2" },
           { text: "Adding one anyway, _on last Friday_ or _in next week_, is a favourite sentence-correction error. Say _last Friday, next week._ Compare _on Friday_: there, on does the placing.", cue: "n3" },
         ],
       actions: [
-          PLAB.kit.clear("clear-holidays"),
-          ...PLAB.kit.rows("n", [
-            ["pointFuture", "next week · this evening · tomorrow"],
-            ["pointPast", "last year · yesterday · this morning"],
-            ["cross", "✗ on last Friday · ✗ in next week", { ink: "trouble" }],
-            ["check", "✓ last Friday · next week · on Friday", { ink: "accent" }],
-          ], { y: 100, gap: 120, size: 34 }),
-        ],
+        PLAB.kit.clear("clear-holidays"),
+        ...PLAB.kit.grid("n", [
+          ["pointFuture", "next week \u00b7 tomorrow", "the word already points forward", {  }],
+          ["pointPast", "last year \u00b7 yesterday", "the word already points back", {  }],
+          ["cross", "\u2717 on last Friday \u00b7 \u2717 in next week", "one pointer is enough", { ink: "trouble" }],
+          ["calendar", "\u2713 on Friday \u00b7 last Friday", "on only with a plain day", { hl: "on" }],
+        ]),
+      ],
     },
     {
       id: "check-correct",

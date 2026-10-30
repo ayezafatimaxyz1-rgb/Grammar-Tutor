@@ -19,19 +19,22 @@
       {
         id: "uses",
         title: "Pointing at a goal or a receiver",
-        alt: "Five rows: purpose, a knife for cutting bread; benefit, a gift for you; exchange, I paid Rs 500 for it; support, vote for the bill; destination, the train leaves for Karachi.",
+        alt: "Five pictures: a knife cutting bread (purpose), a gift (benefit), money and goods exchanged (exchange), a raised hand and a tick (support), a train leaving (destination).",
         say: [
           { text: "**For** points at what something is aimed at. **Purpose**: a knife is aimed at cutting: _a knife for cutting bread._", cue: "u1" },
-          { text: "**Benefit**: the gift is aimed at you: _a gift for you._ **Exchange**: money goes one way, the book the other: _paid Rs 500 for it._", cue: "u3" },
-          { text: "**Support**: a hand raised for the bill: _voted for the bill._ **Destination** of a departure: the train sets off aimed at Karachi: _leaves for Karachi._", cue: "u5" },
+          { text: "**Benefit**: the gift is aimed at you: _a gift for you._ **Exchange**: money goes one way, the book the other: _paid Rs 500 for it._", cue: "u2" },
+          { text: "**Support**: a hand raised for the bill: _voted for the bill._ **Destination** of a departure: the train sets off aimed at Karachi: _leaves for Karachi._", cue: "u4" },
         ],
-        actions: PLAB.kit.rows("u", [
-          ["bread", "purpose: a knife for cutting bread", { hl: "for" }],
-          ["gift", "benefit: a gift for you", { hl: "for" }],
-          ["exchange", "exchange: paid Rs 500 for it", { hl: "for" }],
-          ["voteFor", "support: voted for the bill", { hl: "for" }],
-          ["leaveFor", "destination: leaves for Karachi", { hl: "for" }],
-        ], { y: 70, gap: 102 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-uses"),
+          ...PLAB.kit.grid("u", [
+            ["bread", "a knife for cutting bread", "purpose", { hl: "for" }],
+            ["gift", "a gift for you", "benefit", { hl: "for" }],
+            ["exchange", "paid Rs 500 for it", "exchange", { hl: "for" }],
+            ["voteFor", "voted for the bill", "support", { hl: "for" }],
+            ["leaveFor", "leaves for Karachi", "destination of a departure", { hl: "for" }],
+          ]),
+        ],
       },
       {
         id: "purpose",

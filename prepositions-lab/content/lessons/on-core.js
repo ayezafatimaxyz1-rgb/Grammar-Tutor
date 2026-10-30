@@ -235,7 +235,7 @@ PLAB.registerLesson({
     {
       id: "fixed",
       title: "Fixed expressions with on",
-      alt: "A list of fixed phrases: on fire, on duty, on strike, on holiday or on vacation, on sale. Below: a lecture on economics.",
+      alt: "Six pictures: a flame (on fire), a person with a badge (on duty), people with a crossed flag (on strike), the sun (on holiday), coins (on sale, for sale), a block resting on a base (a lecture on economics).",
       say: [
         {
           text: "Some phrases with on describe a state or an activity: _on fire, on duty, on strike, on holiday_ (British) or _on vacation_ (American). These are fixed by usage. Learn them as whole phrases.",
@@ -251,15 +251,15 @@ PLAB.registerLesson({
         },
       ],
       actions: [
-        { do: "erase", id: "clear-base", targets: "all" },
-        { do: "write", id: "l1", text: "on fire", x: 250, y: 120, size: 38, anchor: "middle", gap: 400 },
-        { do: "write", id: "l2", text: "on duty", x: 250, y: 200, size: 38, anchor: "middle" },
-        { do: "write", id: "l3", text: "on strike", x: 250, y: 280, size: 38, anchor: "middle" },
-        { do: "write", id: "l4", text: "on holiday / on vacation", x: 650, y: 120, size: 36, anchor: "middle" },
-        { do: "write", id: "l5", text: "on sale  ≠  for sale", x: 650, y: 200, size: 36, anchor: "middle", gap: 500 },
-        { do: "draw", id: "rule", shape: "line", from: [120, 350], to: [840, 350], ink: "muted", width: 2.2, gap: 500, dur: 700 },
-        { do: "write", id: "l6", text: "a lecture on economics", x: 480, y: 440, size: 40, anchor: "middle", ink: "accent", dur: 1600 },
-        { do: "write", id: "l6b", text: "(topic, formal)", x: 480, y: 495, size: 28, anchor: "middle", ink: "muted" },
+        PLAB.kit.clear("clear-rd-fixed"),
+        ...PLAB.kit.grid("l", [
+          ["flame", "on fire", "flames on it", { hl: "on" }],
+          ["badge", "on duty", "working, active", { hl: "on" }],
+          ["onStrike", "on strike", "refusing to work", { hl: "on" }],
+          ["sun", "on holiday (AmE vacation)", "away from work", { hl: "on" }],
+          ["coin", "on sale \u2260 for sale", "in shops / offered to buy", { hl: "on sale" }],
+          ["onBase", "a lecture on economics", "a topic (formal)", { hl: "on" }],
+        ]),
       ],
     },
     {

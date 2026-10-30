@@ -19,17 +19,20 @@
       {
         id: "forms",
         title: "Formal ways to say about",
-        alt: "Rows: regarding your letter; concerning the delay; with regard to the budget; as regards salaries.",
+        alt: "Four pictures each pointing at a topic: an envelope (regarding your letter), fog and a plane (concerning the delay), coins (with regard to the budget), a coin and a person (as regards salaries).",
         say: [
           { text: "All these phrases point at a topic, like an arrow pointing at a document: _regarding your letter, concerning the delay, with regard to the budget, as regards salaries._", cue: "f1" },
           { text: "Use them sparingly; plain _about_ or _on_ often reads better. Legal texts also use _respecting_ (about), and old texts _touching_ (about).", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["pointDoc", "regarding your letter", { hl: "regarding" }],
-          ["pointDoc", "concerning the delay", { hl: "concerning" }],
-          ["pointDoc", "with regard to the budget", { hl: "with regard to" }],
-          ["pointDoc", "as regards salaries", { hl: "as regards" }],
-        ], { y: 90, gap: 118, size: 34 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["envelope", "regarding your letter", "= about your letter", { hl: "regarding" }],
+            ["fogDelay", "concerning the delay", "= about the delay", { hl: "concerning" }],
+            ["coin", "with regard to the budget", "= about the budget", { hl: "with regard to" }],
+            [[["coin", -30, 0, 0.8], ["person", 35, 0, 0.8]], "as regards salaries", "= about salaries", { hl: "as regards" }],
+          ]),
+        ],
       },
       {
         id: "regards",

@@ -81,7 +81,7 @@ PLAB.registerLesson({
     {
       id: "purpose",
       title: "At school, at work, at home",
-      alt: "Two columns. Left, at plus a place of activity: at school, at work, at home, at university. Right: in the school, meaning inside the building.",
+      alt: "Four pictures: a school (at school, there as a pupil), a person inside a building (in the school, inside it), a house (at home, at work), a book (AmE in school, in college).",
       say: [
         {
           text: "Some places are mostly about what people do there. With these, English uses at, often with no _the_: _at school, at work, at home, at university._",
@@ -93,20 +93,17 @@ PLAB.registerLesson({
         },
         {
           text: "One regional note: Americans often say _in school_ to mean enrolled as a student, and _in college_ where British speakers say _at university._",
-          cue: "note",
+          cue: "c4",
         },
       ],
       actions: [
-        { do: "erase", id: "clear-station", targets: "all" },
-        { do: "write", id: "c1", text: "at school", x: 250, y: 130, size: 40, anchor: "middle", gap: 400 },
-        { do: "write", id: "c1b", text: "at work", x: 250, y: 210, size: 40, anchor: "middle" },
-        { do: "write", id: "c1c", text: "at home", x: 250, y: 290, size: 40, anchor: "middle" },
-        { do: "write", id: "c1d", text: "at university", x: 250, y: 370, size: 40, anchor: "middle" },
-        { do: "write", id: "c1-cap", text: "doing what the place is for", x: 250, y: 440, size: 26, ink: "accent2", anchor: "middle" },
-        { do: "draw", id: "div", shape: "line", from: [480, 90], to: [480, 460], ink: "muted", width: 2.2, dur: 600 },
-        { do: "write", id: "c2", text: "in the school", x: 710, y: 210, size: 40, anchor: "middle", gap: 500 },
-        { do: "write", id: "c2-cap", text: "inside the building", x: 710, y: 270, size: 26, ink: "accent2", anchor: "middle" },
-        { do: "write", id: "note", text: "AmE: in school, in college", x: 480, y: 540, size: 30, ink: "muted", anchor: "middle", gap: 700 },
+        PLAB.kit.clear("clear-rd-purpose"),
+        ...PLAB.kit.grid("c", [
+          ["school", "at school \u00b7 at university", "there to do what it is for", { hl: "at" }],
+          ["insideBuilding", "in the school", "inside the building", { hl: "in" }],
+          ["house", "at home \u00b7 at work", "the place of the activity", { hl: "at" }],
+          ["book", "AmE: in school, in college", "= enrolled as a student", { ink: "muted" }],
+        ]),
       ],
     },
     {

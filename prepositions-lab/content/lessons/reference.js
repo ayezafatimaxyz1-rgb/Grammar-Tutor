@@ -18,19 +18,22 @@
       {
         id: "forms",
         title: "Four reference phrases",
-        alt: "Rows: In terms of population, Punjab is the largest province. With respect to salaries, no change. There is doubt as to whether he will come. As for me, I agree.",
+        alt: "Four pictures: a magnifier over a bar chart (in terms of population), a document (with respect to salaries), a question mark (doubt as to whether), a person turning to another (as for me).",
         say: [
           { text: "**In terms of** = seen through one measure, like a lens over a chart: _In terms of population, Punjab is the largest province._", cue: "f1" },
           { text: "**With respect to** = about, formal: _With respect to salaries, there is no change._", cue: "f2" },
           { text: "**As to** = about, often before _whether_: a question hangs over it. _There is doubt as to whether he will come._", cue: "f3" },
           { text: "**As for** = turning to a new person or topic: the arrow swings round to someone new. _As for me, I agree._", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["lensBars", "In terms of population, Punjab is largest.", { hl: "In terms of", size: 30 }],
-          ["pointDoc", "With respect to salaries, no change.", { hl: "With respect to", size: 30 }],
-          ["question", "doubt as to whether he will come", { hl: "as to", size: 30 }],
-          ["turnTo", "As for me, I agree.", { hl: "As for", size: 30 }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["lensBars", "In terms of population, ...", "seen through one measure", { hl: "In terms of" }],
+            ["doc", "With respect to salaries, ...", "= about (formal)", { hl: "With respect to" }],
+            ["question", "doubt as to whether he will come", "= about, before whether", { hl: "as to" }],
+            ["turnTo", "As for me, I agree.", "turning to someone new", { hl: "As for" }],
+          ]),
+        ],
       },
       {
         id: "why-not",

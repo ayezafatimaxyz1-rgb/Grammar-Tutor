@@ -215,7 +215,7 @@ PLAB.registerLesson({
     {
       id: "formal",
       title: "In formal writing",
-      alt: "Four formal time phrases written on the board: in the nineteenth century, in the 1990s, in recent years, in the long run.",
+      alt: "Four large time pictures: a dot inside a long bar (in the nineteenth century), a dot inside a decade (in the 1990s), a shaded stretch reaching now (in recent years), a long stretch with the result far along it (in the long run).",
       say: [
           { text: "Formal English uses in with long periods all the time, and the container picture still works. Each period is a stretch with boundaries, and the event sits inside it.", cue: "f1" },
           { text: "_In the nineteenth century, in the 1990s_: the dot is inside the bar, so the event falls inside that stretch.", cue: "f2" },
@@ -223,14 +223,14 @@ PLAB.registerLesson({
           { text: "_In the long run_: a very long stretch, and the result comes far along it.", cue: "f4" },
         ],
       actions: [
-          PLAB.kit.clear("clear-line"),
-          ...PLAB.kit.rows("f", [
-            ["inPeriod", "in the nineteenth century", { hl: "in" }],
-            ["inPeriod", "in the 1990s", { hl: "in" }],
-            ["recentYears", "in recent years (up to now)", { hl: "in" }],
-            ["longRun", "in the long run (far along)", { hl: "in" }],
-          ], { y: 110, gap: 115, size: 34 }),
-        ],
+        PLAB.kit.clear("clear-line"),
+        ...PLAB.kit.grid("f", [
+          ["inPeriod", "in the nineteenth century", "the event sits inside the stretch", { hl: "in" }],
+          ["decade", "in the 1990s", "inside those ten years", { hl: "in" }],
+          ["recentYears", "in recent years", "a stretch that reaches now", { hl: "in" }],
+          ["longRun", "in the long run", "far along a long stretch", { hl: "in" }],
+        ]),
+      ],
     },
     {
       id: "check-css",

@@ -35,7 +35,7 @@
       {
         id: "grammar",
         title: "Noun, not clause; never despite of",
-        alt: "Correct: despite the rain; in spite of the rain; despite feeling ill. Crossed out: despite of the rain; despite it rained. Correct alternatives: although it rained; despite the fact that it rained.",
+        alt: "Three pictures: an arrow over an obstacle (despite the rain, in spite of the rain), a cross (despite of, despite it rained), rain (although it rained).",
         say: [
           { text: "Both _despite_ and _in spite of_ need a thing, the obstacle the arrow passes over: _despite the rain, in spite of the rain, despite feeling ill._", cue: "g1" },
           { text: "_Despite of_ is always wrong; the _of_ belongs only to _in spite of._", cue: "g2" },
@@ -43,11 +43,11 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("g", [
-            ["overRock", "despite the rain · in spite of the rain", { hl: "despite" }],
-            ["cross", "✗ despite of the rain · ✗ despite it rained", { ink: "trouble" }],
-            ["rain", "although it rained · despite the fact that ...", { ink: "accent2", size: 30 }],
-          ], { y: 120, gap: 130 }),
+          ...PLAB.kit.grid("g", [
+            ["overRock", "despite the rain \u00b7 in spite of", "+ noun or -ing", { hl: "despite" }],
+            ["cross", "\u2717 despite of \u00b7 \u2717 despite it rained", "no of, no clause", { ink: "trouble" }],
+            ["rain", "although it rained", "+ a clause", { hl: "although" }],
+          ]),
         ],
       },
       {

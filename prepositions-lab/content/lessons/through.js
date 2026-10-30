@@ -34,17 +34,18 @@ PLAB.registerLesson({
     {
       id: "means",
       title: "Through as a channel or means",
-      alt: "A pipe-like channel from a dot labelled effort to a dot labelled success. Phrases: through hard work, through the media, through official channels.",
+      alt: "Three pictures: a person working towards a star (through hard work), speech travelling between people (through social media), an arrow passing through a gate (through official channels).",
       say: [
-        { text: "If you get somewhere by passing through something, that thing becomes the **means** or channel.", cue: "pipe" },
-        { text: "_She succeeded through hard work. The news spread through social media. Apply through official channels._", cue: "m1" },
+        { text: "If you get somewhere by passing through something, that thing becomes the **means** or channel.", cue: "m1" },
+        { text: "_She succeeded through hard work. The news spread through social media. Apply through official channels._", cue: "m2" },
       ],
       actions: [
-        { do: "erase", id: "clear-tunnel", targets: "all" },
-        { do: "draw", id: "pipe", shape: "group", ink: "accent2", dur: 1100, gap: 400, parts: [{ shape: "line", from: [300, 160], to: [660, 160] }, { shape: "line", from: [300, 220], to: [660, 220] }] },
-        { do: "draw", id: "flow", shape: "arrow", from: [180, 190], to: [780, 190], ink: "accent", dur: 1000 },
-        { do: "write", id: "m1", text: "through hard work", x: 480, y: 320, size: 40, anchor: "middle", gap: 400 },
-        { do: "write", id: "m2", text: "through social media · through official channels", x: 480, y: 410, size: 32, anchor: "middle", gap: 400, dur: 2200 },
+        PLAB.kit.clear("clear-rd-means"),
+        ...PLAB.kit.grid("m", [
+          ["workSuccess", "through hard work", "the road that led to success", { hl: "through" }],
+          ["wordsMove", "through social media", "the channel the news passed along", { hl: "through" }],
+          ["accessTo", "through official channels", "the route an application takes", { hl: "through" }],
+        ]),
       ],
     },
     {

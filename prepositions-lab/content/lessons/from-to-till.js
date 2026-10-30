@@ -36,7 +36,7 @@
       {
         id: "mixed",
         title: "Do not mix the frames",
-        alt: "Crossed out: between 9 to 5, from 9 and 5. Note: Monday to Friday inclusive (BrE), Monday through Friday (AmE).",
+        alt: "Three pictures: two ends joined (between 9 and 5), a stretch with a start and an end (from 9 to 5), a row of five shaded days (Monday to Friday inclusive).",
         say: [
           { text: "Each frame has its own partner. **Between** marks two ends joined by **and**; **from** starts a stretch that runs **to** or **until** an end.", cue: "m1" },
           { text: "So _between 9 to 5_ and _from 9 and 5_ are both wrong.", cue: "m2" },
@@ -44,11 +44,11 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("m", [
-            ["betweenTicks", "between 9 and 5 · ✗ between 9 to 5", { hl: "and" }],
-            ["span", "from 9 to 5 · ✗ from 9 and 5", { hl: "to" }],
-            ["weekRow", "Monday to Friday inclusive · (AmE) through", { size: 30 }],
-          ], { y: 120, gap: 130, size: 32 }),
+          ...PLAB.kit.grid("m", [
+            ["betweenTicks", "between 9 and 5", "\u2717 between 9 to 5", { hl: "and" }],
+            ["span", "from 9 to 5", "\u2717 from 9 and 5", { hl: "to" }],
+            ["weekRow", "Monday to Friday inclusive", "AmE: Monday through Friday", { hl: "inclusive" }],
+          ]),
         ],
       },
       {

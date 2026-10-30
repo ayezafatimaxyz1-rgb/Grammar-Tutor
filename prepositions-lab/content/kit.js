@@ -96,6 +96,28 @@ PLAB.kit = {
     return out;
   },
 
+  // A grid of large pictures, each with a phrase and a short meaning under it: 2 columns for
+  // up to 4 items, 3 columns for 5 or 6. Item ids match rows(), so say cues keep working.
+  // Each item: [picSpec, text, sub, { hl, ink, size }].
+  grid(prefix, items, { y = 34, size = 28 } = {}) {
+    const cols = items.length > 4 ? 3 : 2;
+    const centres = cols === 3 ? [165, 480, 795] : [250, 710];
+    const k = cols === 3 ? 1.1 : 1.3;
+    const fit = cols === 3 ? 290 : 430;
+    const rowH = items.length > (cols === 3 ? 3 : 2) ? 278 : 0;
+    const out = [];
+    items.forEach(([spec, text, sub, o = {}], i) => {
+      const id = `${prefix}${i + 1}`;
+      const cx = centres[i % cols];
+      const top = y + Math.floor(i / cols) * rowH;
+      if (spec) out.push(...PLAB.kit.pic(`${id}p`, spec, cx - 70 * k, top, k, { gap: i ? 450 : 400 }));
+      out.push({ do: "write", id, text, x: cx, y: top + 80 * k + 42, size: o.size || size, anchor: "middle", ink: o.ink, fit, gap: 200 });
+      if (o.hl) out.push({ do: "highlight", id: `${id}-h`, target: id, word: o.hl, style: o.hlStyle, ink: o.hlInk });
+      if (sub) out.push({ do: "write", id: `${id}s`, text: sub, x: cx, y: top + 80 * k + 80, size: 22, ink: "muted", anchor: "middle", fit });
+    });
+    return out;
+  },
+
   // "Why not the other one?": the right sentence with its picture, beside the swapped sentence
   // with a picture of what the swap would really mean, then a rule line for each choice.
   // right and wrong are panel items: [picSpec, text, sub, { hl, ink }].

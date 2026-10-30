@@ -19,19 +19,22 @@
       {
         id: "forms",
         title: "Setting the circumstances",
-        alt: "Rows: in view of the risks (considering); in the light of new evidence; in the event of fire (if there is a fire); in the face of opposition (confronted by); in the wake of the floods (following).",
+        alt: "Five pictures: an eye seeing a warning sign (in view of the risks), light on a document (in the light of new evidence), a flame and stairs (in the event of fire), a person facing strong wind (in the face of opposition), a boat with waves behind it (in the wake of the floods).",
         say: [
           { text: "**In view of** = with this in sight, considering it: the eye sees the warning sign. **In (the) light of**: new evidence is lit up. _In view of the risks, the trip was cancelled._", cue: "f2" },
           { text: "**In the event of** = if it happens: if fire breaks out, take the stairs. _In the event of fire, use the stairs._", cue: "f3" },
           { text: "**In the face of** = facing a force, often despite it: _She stood firm in the face of opposition._ **In the wake of** = following, like the waves a boat leaves behind it: _Prices rose in the wake of the floods._", cue: "f5" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["viewRisk", "In view of the risks, ...", { hl: "In view of" }],
-          ["lightDoc", "in the light of new evidence", { hl: "in the light of" }],
-          ["fireStairs", "In the event of fire, use the stairs.", { hl: "In the event of" }],
-          ["faceWind", "in the face of opposition", { hl: "in the face of" }],
-          ["boat", "in the wake of the floods", { hl: "in the wake of" }],
-        ], { y: 70, gap: 102 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["viewRisk", "In view of the risks, ...", "considering them", { hl: "In view of" }],
+            ["lightDoc", "in the light of new evidence", "seen in new light", { hl: "in the light of" }],
+            ["fireStairs", "In the event of fire, ...", "if it happens", { hl: "In the event of" }],
+            ["faceWind", "in the face of opposition", "facing a force", { hl: "in the face of" }],
+            ["boat", "in the wake of the floods", "following after it", { hl: "in the wake of" }],
+          ]),
+        ],
       },
       {
         id: "check",

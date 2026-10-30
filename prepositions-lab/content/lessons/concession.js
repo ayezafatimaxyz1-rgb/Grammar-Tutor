@@ -18,18 +18,21 @@
       {
         id: "forms",
         title: "Unaffected, and contrasted",
-        alt: "Rows: open to all, regardless of income; irrespective of caste or creed; in contrast to the cities, villages lack clinics; urban as opposed to rural areas. Crossed out: irregardless.",
+        alt: "Four pictures: different people passing one gate (regardless of income; irrespective of caste or creed), two different shapes side by side (in contrast to), arrows in opposite directions (as opposed to).",
         say: [
           { text: "**Regardless of** and **irrespective of** = without being affected by: very different people all pass through the same gate. _open to all, regardless of income; equal rights irrespective of caste or creed._", cue: "f1" },
           { text: "**In contrast to** (or _with_) sets two different things side by side: _In contrast to the cities, villages lack clinics._", cue: "f3" },
           { text: "**As opposed to** points the two in opposite directions: _urban, as opposed to rural, areas._ And never write _irregardless._", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["allThrough", "open to all, regardless of income", { hl: "regardless of" }],
-          ["allThrough", "irrespective of caste or creed", { hl: "irrespective of" }],
-          ["different", "In contrast to the cities, villages ...", { hl: "In contrast to", size: 30 }],
-          ["opposite", "urban as opposed to rural · ✗ irregardless", { hl: "as opposed to", size: 30 }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            [[["crowd", -30, 0, 0.8], ["gate", 40, 0, 0.9]], "open to all, regardless of income", "income makes no difference", { hl: "regardless of" }],
+            [[["crowd", -30, 0, 0.8], ["gate", 40, 0, 0.9]], "irrespective of caste or creed", "= regardless of", { hl: "irrespective of" }],
+            ["different", "In contrast to the cities, ...", "two set side by side", { hl: "In contrast to" }],
+            ["opposite", "urban as opposed to rural", "pointing opposite ways \u00b7 \u2717 irregardless", { hl: "as opposed to" }],
+          ]),
+        ],
       },
       {
         id: "why-not",

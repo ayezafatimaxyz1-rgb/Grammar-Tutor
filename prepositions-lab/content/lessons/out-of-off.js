@@ -69,20 +69,20 @@ PLAB.registerLesson({
     {
       id: "vehicles",
       title: "Getting out and getting off",
-      alt: "A table of vehicles. Car and taxi: get in, get out of. Bus, train, plane: get on, get off. A red note: off of is informal American English; write off.",
+      alt: "Three pictures: a person climbing into a car (get in, get out of: a small container), a person stepping on a bus (get on, get off: a platform), a book falling off a table (off, never off of).",
       say: [
           { text: "Vehicles follow the in and on pictures. A car is a small container you climb into and out of: _get in, get out of the car._", cue: "r1" },
           { text: "A bus is a platform you step onto and off: _get on, get off the bus, train or plane._", cue: "r2" },
-          { text: "In informal American speech you hear _off of the wall_. Formal English, and the exam, want _off_ alone.", cue: "note" },
+          { text: "In informal American speech you hear _off of the wall_. Formal English, and the exam, want _off_ alone.", cue: "r3" },
         ],
       actions: [
-          PLAB.kit.clear("clear-off"),
-          ...PLAB.kit.rows("r", [
-            ["carIn", "car, taxi: get in · get out of", { hl: "out of" }],
-            ["busOn", "bus, train, plane: get on · get off", { hl: "off" }],
-          ], { y: 120, gap: 140, size: 34 }),
-          { do: "write", id: "note", text: "✗ off of the wall   ✓ off the wall", x: 480, y: 460, size: 34, ink: "trouble", anchor: "middle", gap: 600 },
-        ],
+        PLAB.kit.clear("clear-off"),
+        ...PLAB.kit.grid("r", [
+          ["carIn", "car, taxi: get in \u00b7 get out of", "a small container", { hl: "get out of" }],
+          ["busOn", "bus, train: get on \u00b7 get off", "a platform you step on", { hl: "get off" }],
+          ["bookTable", "off the wall (\u2717 off of)", "no of after off", { hl: "off" }],
+        ]),
+      ],
     },
     {
       id: "check-bus",
@@ -105,7 +105,7 @@ PLAB.registerLesson({
     {
       id: "fixed",
       title: "Fixed phrases",
-      alt: "Two lists. Out of: out of order, out of stock, out of date, out of work, out of danger, and for a motive, out of curiosity, out of fear. Off: off duty, off the record, 10% off.",
+      alt: "Six pictures: a broken machine (out of order), an empty jar (out of stock), a crossed calendar (out of date), a magnifier and question mark (out of curiosity, a motive), a person walking away from work (off duty), coins (10 per cent off).",
       say: [
         {
           text: "Out of often means no longer in a normal state: _out of order_ (not working), _out of stock, out of date, out of work, out of danger._ Each is the opposite of being in that state.",
@@ -113,21 +113,20 @@ PLAB.registerLesson({
         },
         {
           text: "Out of can also give a **motive**, the feeling an action comes from: _She asked out of curiosity. He lied out of fear._",
-          cue: "o2",
+          cue: "o4",
         },
-        { text: "Off can mean away from a normal activity: _off duty, off work._ Also _off the record_ (not official) and _10% off_ (a reduction).", cue: "f1" },
+        { text: "Off can mean away from a normal activity: _off duty, off work._ Also _off the record_ (not official) and _10% off_ (a reduction).", cue: "o5" },
       ],
       actions: [
-        { do: "erase", id: "clear-vehicles", targets: "all" },
-        { do: "write", id: "head-o", text: "out of", x: 260, y: 100, size: 36, ink: "accent", anchor: "middle", gap: 400 },
-        { do: "write", id: "o1", text: "order · stock · date", x: 260, y: 180, size: 34, anchor: "middle" },
-        { do: "write", id: "o1b", text: "work · danger", x: 260, y: 240, size: 34, anchor: "middle" },
-        { do: "write", id: "o2", text: "curiosity · fear (a motive)", x: 260, y: 330, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
-        { do: "draw", id: "div", shape: "line", from: [540, 80], to: [540, 380], ink: "muted", width: 2.2, dur: 600 },
-        { do: "write", id: "head-f", text: "off", x: 750, y: 100, size: 36, ink: "accent", anchor: "middle" },
-        { do: "write", id: "f1", text: "off duty · off work", x: 750, y: 180, size: 34, anchor: "middle" },
-        { do: "write", id: "f2", text: "off the record", x: 750, y: 240, size: 34, anchor: "middle" },
-        { do: "write", id: "f3", text: "10% off", x: 750, y: 300, size: 34, anchor: "middle" },
+        PLAB.kit.clear("clear-rd-fixed"),
+        ...PLAB.kit.grid("o", [
+          ["brokenBox", "out of order", "not working", { hl: "out of" }],
+          ["emptyJar", "out of stock", "none left", { hl: "out of" }],
+          ["oldCalendar", "out of date", "no longer current", { hl: "out of" }],
+          ["searchQ", "out of curiosity", "the motive: why she did it", { hl: "out of" }],
+          ["offDuty", "off duty \u00b7 off the record", "away from the normal activity", { hl: "off" }],
+          ["coin", "10% off", "a reduction", { hl: "off" }],
+        ]),
       ],
     },
     {

@@ -19,18 +19,21 @@
       {
         id: "forms",
         title: "Source, rule, grounds",
-        alt: "Rows: according to the report (what a source says); in accordance with Article 10 (following a rule); in line with policy; on the basis of evidence; pursuant to the order (legal).",
+        alt: "Four pictures: a document speaking (according to the report), an arrow along a ruler (in accordance with Article 10), an arrow staying on a line (in line with policy), a block resting on a base (on the basis of merit).",
         say: [
           { text: "**According to** reports what a source says: the report speaks. _According to the report, poverty has fallen._", cue: "f1" },
           { text: "**In accordance with** and **in line with** mean following a rule: the arrow runs along the ruler. _in accordance with Article 10, in line with government policy._", cue: "f2" },
-          { text: "**On the basis of** names the grounds a decision rests on: _selected on the basis of merit._ **Pursuant to** is legal: _pursuant to the court's order._", cue: "f3" },
+          { text: "**On the basis of** names the grounds a decision rests on: _selected on the basis of merit._ **Pursuant to** is legal: _pursuant to the court's order._", cue: "f4" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["docSays", "According to the report, poverty fell.", { hl: "According to" }],
-          ["followRule", "in accordance with Article 10", { hl: "in accordance with" }],
-          ["parallel", "in line with government policy", { hl: "in line with" }],
-          ["onBase", "on the basis of merit · pursuant to", { hl: "on the basis of", size: 30 }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["docSays", "According to the report, ...", "what a source says", { hl: "According to" }],
+            ["followRule", "in accordance with Article 10", "following a rule", { hl: "in accordance with" }],
+            ["stickTo", "in line with government policy", "staying on the same line", { hl: "in line with" }],
+            ["onBase", "on the basis of merit", "the grounds it rests on", { hl: "on the basis of" }],
+          ]),
+        ],
       },
       {
         id: "me",

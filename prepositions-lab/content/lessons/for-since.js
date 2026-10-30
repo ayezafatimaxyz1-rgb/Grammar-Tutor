@@ -39,7 +39,7 @@
       {
         id: "lists",
         title: "What goes with each",
-        alt: "Two columns. For: ten years, three days, a long time, ages. Since: 2015, Monday, last March, I was a child, the war ended.",
+        alt: "Three pictures: a bracket of time (for ten years), an arrow from a starting point to now (since 2015), a time line (for with any tense, since with the present perfect).",
         say: [
           { text: "**For** measures the length of the stretch, the bracket: _for ten years, for three days, for a long time._", cue: "c1" },
           { text: "**Since** names the point where it started, and the arrow runs from there to now: _since 2015, since Monday, since I was a child._", cue: "c2" },
@@ -47,11 +47,11 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1"),
-          ...PLAB.kit.rows("c", [
-            ["span", "for ten years · for three days · for ages", { hl: "for" }],
-            ["sincePoint", "since 2015 · since Monday · since I was a child", { hl: "since", size: 30 }],
-            [null, "for: any tense · since: usually present perfect", { size: 28, ink: "accent2" }],
-          ], { y: 120, gap: 130 }),
+          ...PLAB.kit.grid("c", [
+            ["span", "for ten years \u00b7 for ages", "the length of the stretch", { hl: "for" }],
+            ["sincePoint", "since 2015 \u00b7 since Monday", "the point where it started", { hl: "since" }],
+            ["now", "for: any tense", "since: usually present perfect", { ink: "accent2" }],
+          ]),
         ],
       },
       {

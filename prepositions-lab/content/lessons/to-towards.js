@@ -108,20 +108,20 @@ PLAB.registerLesson({
     {
       id: "abstract-towards",
       title: "Towards in abstract uses",
-      alt: "Three phrases: his attitude towards his colleagues; contribute towards the cost; towards the end of the year.",
+      alt: "Three pictures: a person with an arrow towards others (attitude towards others), a box partly filled from above (a grant towards the cost), a bar with a dot near its end (towards the end of the year).",
       say: [
           { text: "Towards points at someone or something without necessarily arriving. A feeling pointed at people: _his attitude towards his colleagues, sympathy towards the victims._", cue: "t1" },
           { text: "Help pointed at a cost fills part of it: _a grant towards the cost of books._", cue: "t2" },
           { text: "A time close to a point: _towards the end of the year._", cue: "t3" },
         ],
       actions: [
-          PLAB.kit.clear("clear-errors"),
-          ...PLAB.kit.panels("t", [
-            ["attitude", "attitude towards others", "a feeling pointed at them", { hl: "towards", size: 26 }],
-            ["grantPart", "a grant towards the cost", "pays part of it", { hl: "towards", size: 26 }],
-            ["nearEnd", "towards the year end", "near the end", { hl: "towards", size: 26 }],
-          ]),
-        ],
+        PLAB.kit.clear("clear-errors"),
+        ...PLAB.kit.grid("t", [
+          ["attitude", "his attitude towards others", "a feeling pointed at them", { hl: "towards" }],
+          ["grantPart", "a grant towards the cost", "pays part of it", { hl: "towards" }],
+          ["nearEnd", "towards the end of the year", "close to the end", { hl: "towards" }],
+        ]),
+      ],
     },
     {
       id: "check-attitude",

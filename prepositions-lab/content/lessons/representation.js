@@ -19,18 +19,21 @@
       {
         id: "forms",
         title: "Four phrases",
-        alt: "Rows: She spoke on behalf of the government; a mistake on the part of the officer; the court ruled in favour of the tenant; he is in charge of the project.",
+        alt: "Four pictures: one person speaking for a group (on behalf of), an arrow pointing at a person (on the part of), a scale tipping (in favour of), a leader above a group (in charge of).",
         say: [
           { text: "**On behalf of** = as the representative of: one person speaks for the group behind her. _She spoke on behalf of the government._", cue: "f1" },
           { text: "**On the part of** = by: the finger points at who did it. _a serious mistake on the part of the officer._", cue: "f2" },
-          { text: "**In favour of** = supporting: the scale tips one way. _The court ruled in favour of the tenant._ **In charge of** = responsible for: one person directs the group. _in charge of the project._", cue: "f4" },
+          { text: "**In favour of** = supporting: the scale tips one way. _The court ruled in favour of the tenant._ **In charge of** = responsible for: one person directs the group. _in charge of the project._", cue: "f3" },
         ],
-        actions: PLAB.kit.rows("f", [
-          ["spokes", "spoke on behalf of the government", { hl: "on behalf of" }],
-          ["blame", "a mistake on the part of the officer", { hl: "on the part of" }],
-          ["scaleTip", "ruled in favour of the tenant", { hl: "in favour of" }],
-          ["leadGroup", "in charge of the project", { hl: "in charge of" }],
-        ], { y: 90, gap: 118 }),
+        actions: [
+          PLAB.kit.clear("clear-rd-forms"),
+          ...PLAB.kit.grid("f", [
+            ["speakFor", "spoke on behalf of the government", "as its representative", { hl: "on behalf of" }],
+            ["blame", "a mistake on the part of the officer", "= by the officer", { hl: "on the part of" }],
+            ["scaleTip", "ruled in favour of the tenant", "the scale tips to one side", { hl: "in favour of" }],
+            ["leaderGroup", "in charge of the project", "responsible for it", { hl: "in charge of" }],
+          ]),
+        ],
       },
       {
         id: "charge",
