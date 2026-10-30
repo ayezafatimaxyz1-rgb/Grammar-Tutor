@@ -137,7 +137,7 @@ async function renderLesson(page, unit, lesson) {
   const page = await browser.newPage({ viewport: { width: 1920, height: 1080 } });
   await page.goto("file://" + path.join(__dirname, "frame.html"));
   for (const s of scripts) await page.addScriptTag({ path: path.join(root, s) });
-  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => Promise.all([document.fonts.load('400 38px "Kalam"'), document.fonts.load('700 38px "Kalam"')]));
   await page.waitForTimeout(500);
   for (const unit of script.units)
     for (const lesson of unit.lessons) if (!only.length || only.includes(lesson.id)) await renderLesson(page, unit, lesson);
