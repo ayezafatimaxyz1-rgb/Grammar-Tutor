@@ -31,6 +31,38 @@ FALLBACK = {"out": '"goOut"', "away": '"personLeft"', "back": '"returnArc"', "ac
             "about": '"aboutCircle"', "through": '"passThrough"', "into": '"intoBag"', "off": '"bounceOff"'}
 UNITS = phase5.UNITS
 exec(open(os.path.join(os.path.dirname(__file__), "p6_logic.py")).read())
+exec(open(os.path.join(os.path.dirname(__file__), "p6_three.py")).read())
+
+def pieces(example):
+    """'The noise {kept} me {up}.' -> sentence without braces, and the highlighted pieces."""
+    parts = re.findall(r"\{([^}]*)\}", example)
+    return re.sub(r"[{}]", "", example), parts
+
+def three_step(e, n, sum_text):
+    """One verb, three sentences: the same parts fitted to three situations."""
+    ph = e["phrase"]
+    rows = [(e["example"], e["meaning"], e["logic"].split("|")[1])] + EXTRA[ph]
+    acts = [f'PLAB.kit.clear("clear-{n}c")',
+            f'{{ do: "write", id: "g{n}h", text: {T(ph + ": one verb, three sentences")}, x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 }}',
+            f'{{ do: "write", id: "g{n}hl", text: {T("same parts: " + sum_text)}, x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 }}']
+    says = [(f"Our logic never changes: {sum_text}. Only the situation changes. Watch the same parts fit three sentences.", f"g{n}hl")]
+    split = False
+    for i, (ex, mean, fit) in enumerate(rows):
+        sent, hls = pieces(ex)
+        y = 180 + i * 130
+        t = f"g{n}s{i + 1}"
+        acts.append(f'{{ do: "write", id: "{t}", text: {T(f"{i + 1}. " + sent)}, x: 50, y: {y}, size: 30, fit: 860, gap: {450 if i else 400} }}')
+        for j, h in enumerate(hls):
+            acts.append(f'{{ do: "highlight", id: "{t}h{j}", target: "{t}", word: {T(h)} }}')
+        acts.append(f'{{ do: "write", id: "{t}f", text: {T(fit + "  →  " + mean)}, x: 82, y: {y + 40}, size: 23, ink: "accent2", fit: 830, gap: 250 }}')
+        split = split or len(hls) > 1
+        says.append((f"{i + 1}. _{sent}_ {fit[0].upper() + fit[1:]}, so here **{ph}** means {mean}.", t))
+    acts.append(f'{{ do: "write", id: "g{n}end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 }}')
+    if split:
+        says.append(("Notice: the object can sit between the verb and its particle (kept me up). The parts and the logic do not change.", None))
+    return dict(id=f"{re.sub(r'[^a-z]+', '-', ph.lower()).strip('-')}-context", title=f"{ph}: three sentences",
+                alt=f"{ph} in three sentences. " + " ".join(f"{i + 1}. {pieces(r[0])[0]} ({r[2]}: {r[1]})" for i, r in enumerate(rows)),
+                says=says, actions=acts)
 
 def U(slug, title, prep, intro):
     phase5.U(slug, title, prep, intro)
@@ -93,19 +125,8 @@ def entry_steps(e, n, lid):
         (f"Why **{key}**? Take it apart: {sum_text}. In this sentence, {pic_line}, so {ph} means {e['meaning']}.", f"f{n}f1"),
         (f"Sense: **{key}** = {e['sense']}.", f"f{n}f2"),
     ]
-    # 2. The same verb in another common context, built the same way.
-    if ph in ALSO:
-        ex2, mean2, fit2 = ALSO[ph]
-        acts2, sentence2, sum2 = equation(e, n, f"g{n}", mean2, ex2, fit2)
-        steps.insert(1, dict(
-            id=steps[0]["id"].replace("-meaning", "-context"), title=f"{ph}: another context",
-            alt=f"{ph} in another context: {sum2} = {mean2}. Sentence: {sentence2} In this sentence, {fit2}.",
-            says=[(f"The same parts, another context: _{sentence2}_", f"g{n}r1"),
-                  (f"{sum2}. Here {fit2}, so **{ph}** means {mean2}. The parts keep their meaning; the context decides how they fit.", f"g{n}f1")],
-            actions=[f'PLAB.kit.clear("clear-{n}c")',
-                     f'{{ do: "write", id: "g{n}h", text: {T(ph + ": another context")}, x: 480, y: 70, size: 40, ink: "accent", anchor: "middle" }}',
-                     f'{{ do: "write", id: "g{n}hl", text: {T("same parts, different situation")}, x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 }}'] + acts2))
-    ph, key = e["phrase"], e["key"]
+    # 2. The same verb in three sentences, built the same way each time.
+    steps.insert(1, three_step(e, n, sum_text))
     # Wrong practice options: a real verb says what it means instead; anything else simply does not mean this.
     others = {p: (v, r) for p, v, r in e["others"]}
     form = phase5.surface(e)[0]
