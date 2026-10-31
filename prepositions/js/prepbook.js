@@ -16,7 +16,9 @@
     try {
       sessionStorage.setItem("prepositions-lab:jump", JSON.stringify({ lesson: lessonId, step: stepId }));
     } catch (e) {}
-    location.hash = `lesson-${lessonId}`;
+    // Already on that lesson: open it again so the chosen step shows.
+    if (location.hash === `#lesson-${lessonId}`) window.dispatchEvent(new HashChangeEvent("hashchange"));
+    else location.hash = `lesson-${lessonId}`;
   };
 
   function build() {
@@ -133,6 +135,13 @@
     for (const c of compared) for (const st of c.steps) add(c.lesson.id, st.id, `Compared: ${c.lesson.title}`);
     return items;
   }
+  // Only the boards of one sense (k = its number from 0, or "other" for Other uses).
+  function senseItems(e, k) {
+    const { senses } = sensesOf(e);
+    const prefix = k === "other" ? "Other uses" : senses[k] ? `Sense ${Number(k) + 1} of ${senses.length}:` : null;
+    return prefix ? tourItems(e).filter((x) => x.label.startsWith(prefix)) : [];
+  }
+
   P.tour = {
     read() {
       try {
@@ -147,13 +156,21 @@
         else localStorage.removeItem(TOUR);
       } catch (e) {}
     },
-    start(prep, i = 0) {
+    start(prep, i = 0, sense = null) {
       if (!book) build();
       const e = book[prep];
       if (!e) return;
-      const items = tourItems(e);
+      const items = sense === null ? tourItems(e) : senseItems(e, sense);
       if (!items.length) return;
       const t = { prep, slug: slug(prep), items, i: Math.max(0, Math.min(items.length - 1, i)) };
+      if (sense !== null) {
+        // A one-sense lesson ends by offering the next sense.
+        const { senses, rest } = sensesOf(e);
+        const k = sense === "other" ? senses.length : Number(sense);
+        t.sense = sense === "other" ? "Other uses" : `Sense ${k + 1}: ${senses[k].name}`;
+        if (k + 1 < senses.length) t.next = { sense: k + 1, name: `Sense ${k + 2}: ${senses[k + 1].name}` };
+        else if (k + 1 === senses.length && rest.length) t.next = { sense: "other", name: "Other uses" };
+      }
       P.tour.save(t);
       P.jump(items[t.i].l, items[t.i].s);
     },
@@ -167,7 +184,7 @@
       if (!book) build();
       const e = book[prep];
       if (!e) return null;
-      return { ...sensesOf(e), items: tourItems(e) };
+      return { ...sensesOf(e), items: tourItems(e), senseItems: (k) => senseItems(e, k) };
     },
 
     // "depend on" -> "on", "in time" -> "in", "against" -> "against"; null when no preposition is named.
@@ -229,18 +246,25 @@
                   <p class="row-buttons"><button type="button" class="button small" data-jump="${esc(w.lesson.id)}|${esc(w.step)}">See its meanings</button>${
                     w.why ? `<button type="button" class="button small ghost" data-jump="${esc(w.lesson.id)}|${esc(w.why)}">Why this one?</button>` : ""
                   }</p></li>`;
+        const senseButtons = (k, name) => {
+          const n = senseItems(current, k).length;
+          return n
+            ? `<p class="sense-actions"><button type="button" class="button small primary" data-tour="${esc(p)}" data-tour-sense="${k}">\u25B6 Learn this sense (${n} boards)</button><button type="button" class="button small ghost" data-pdf="prep:${esc(p)}:${k}" title="${esc(name)}">PDF</button></p>`
+            : "";
+        };
         const map = senses.length
           ? `<section class="prep-section"><h2>What ${esc(p)} can mean <span class="muted">(${senses.length} senses)</span></h2>
+            <p class="row-buttons"><button type="button" class="button small primary" data-tour="${esc(p)}">\u25B6 Learn all ${senses.length} senses board by board</button><button type="button" class="button small ghost" data-pdf="prep:${esc(p)}">PDF of all senses</button></p>
             <ol class="sense-map">${senses
               .map(
                 (s, i) => `<li class="sense-card"><details${i === 0 ? " open" : ""}><summary><span class="sense-n">${i + 1}</span><span><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.note)}</span></span><span class="sense-count">${s.words.length ? `${s.words.length} word${s.words.length > 1 ? "s" : ""}` : "board"}</span></summary>
                   ${s.boards.length ? `<p class="prep-steps">${s.boards.map((b) => `<button type="button" class="button small ghost" data-jump="${esc(b.lesson.id)}|${esc(b.step)}">Board: ${esc(b.title)}</button>`).join("")}</p>` : ""}
                   ${s.words.length ? `<ul class="prep-words">${s.words.map(wordItem).join("")}</ul>` : ""}
-                </details></li>`
+                </details>${senseButtons(i, s.name)}</li>`
               )
               .join("")}${
               rest.length
-                ? `<li class="sense-card"><details><summary><span class="sense-n">+</span><span><strong>Other uses</strong><br><span class="muted">words whose sense is their own</span></span><span class="sense-count">${rest.length}</span></summary><ul class="prep-words">${rest.map(wordItem).join("")}</ul></details></li>`
+                ? `<li class="sense-card"><details><summary><span class="sense-n">+</span><span><strong>Other uses</strong><br><span class="muted">words whose sense is their own</span></span><span class="sense-count">${rest.length}</span></summary><ul class="prep-words">${rest.map(wordItem).join("")}</ul></details>${senseButtons("other", "Other uses")}</li>`
                 : ""
             }</ol></section>`
           : "";
@@ -276,7 +300,7 @@
 
       app.querySelector(".prep-page").addEventListener("click", (e) => {
         const t = e.target.closest("[data-tour]");
-        if (t) return P.tour.start(t.dataset.tour, Number(t.dataset.tourAt || 0));
+        if (t) return P.tour.start(t.dataset.tour, Number(t.dataset.tourAt || 0), t.dataset.tourSense ?? null);
         const b = e.target.closest("[data-jump]");
         if (!b) return;
         const [lid, step] = b.dataset.jump.split("|");
