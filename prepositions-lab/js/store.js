@@ -51,6 +51,14 @@
       }
     },
 
+    // The lesson the learner opened last, for the Continue card on the home screen.
+    setLast(id) {
+      if (data.last === id) return;
+      data.last = id;
+      save();
+    },
+    last: () => data.last || null,
+
     finishLesson(id) {
       lesson(id).done = true;
       save();

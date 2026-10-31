@@ -252,7 +252,7 @@
         .sort((a, b) => a.prep.localeCompare(b.prep));
       const current = prep ? list.find((e) => slug(e.prep) === prep) : null;
       const chip = (e) =>
-        `<a class="prep-chip${current === e ? " is-current" : ""}" href="#prep-${slug(e.prep)}">${esc(e.prep)}<span>${count(e)}</span></a>`;
+        `<a class="prep-chip" href="#prep-${slug(e.prep)}" data-name="${esc(e.prep)}"><b>${esc(e.prep)}</b><span>${count(e)} ${count(e) === 1 ? "use" : "uses"}</span></a>`;
 
       let body = "";
       if (current) {
@@ -299,8 +299,8 @@
             : "";
         };
         const map = senses.length
-          ? `<section class="prep-section"><h2>What ${esc(p)} can mean <span class="muted">(${senses.length} senses)</span></h2>
-            <p class="row-buttons"><button type="button" class="button small primary" data-tour="${esc(p)}">\u25B6 Learn all ${senses.length} senses board by board</button><button type="button" class="button small ghost" data-pdf="prep:${esc(p)}">PDF of all senses</button></p>
+          ? `<section class="prep-section"><h2>What <span class="hand">${esc(p)}</span> can mean <span class="muted">· ${senses.length} senses</span></h2>
+            <p class="muted small">Tap a sense to see its boards and words, or learn it board by board.</p>
             <ol class="sense-map">${senses
               .map(
                 (s, i) => `<li class="sense-card"><details${i === 0 ? " open" : ""}><summary><span class="sense-n">${i + 1}</span><span><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.note)}</span></span><span class="sense-count">${s.phrases ? `${s.phrases.length} phrase${s.phrases.length > 1 ? "s" : ""}` : s.words.length ? `${s.words.length} word${s.words.length > 1 ? "s" : ""}` : "board"}</span></summary>
@@ -317,11 +317,21 @@
         const tourN = tourItems(current).length;
         const saved = P.tour.read();
         const resume = saved && saved.prep === p && saved.i > 0 && saved.i < tourN ? saved.i : 0;
-        const tour = tourN
-          ? `<section class="prep-tour"><p><strong>Learn all about ${esc(p)}, step by step.</strong> The board opens one item after another: its picture, then each sense with its words and why this one, then how it compares with its neighbours. Tap Next board to keep going.</p>
-             <p class="row-buttons">${resume ? `<button type="button" class="button primary" data-tour="${esc(p)}" data-tour-at="${resume}">Continue (board ${resume + 1} of ${tourN})</button><button type="button" class="button ghost" data-tour="${esc(p)}">Start again</button>` : `<button type="button" class="button primary" data-tour="${esc(p)}">Start the lesson (${tourN} boards)</button>`}
-             <button type="button" class="button ghost" data-pdf="prep:${esc(p)}">Notes PDF of all ${tourN} boards</button></p></section>`
-          : "";
+        const nWords = current.words.length + current.phrases.length + current.verbs.length;
+        const tour = `<section class="prep-hero">
+            <a class="back-link" href="#prepositions">${"\u2039"} All prepositions</a>
+            <h1 class="prep-word">${esc(p)}</h1>
+            <p class="prep-facts">${senses.length} senses · ${nWords} words and phrases · ${tourN} boards</p>
+            ${
+              tourN
+                ? `<div class="row-buttons">${
+                    resume
+                      ? `<button type="button" class="button primary" data-tour="${esc(p)}" data-tour-at="${resume}">\u25B6 Continue · board ${resume + 1} of ${tourN}</button><button type="button" class="button" data-tour="${esc(p)}">Start again</button>`
+                      : `<button type="button" class="button primary" data-tour="${esc(p)}">\u25B6 Learn it all, board by board</button>`
+                  }<button type="button" class="button" data-pdf="prep:${esc(p)}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M12.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/></svg> Notes PDF</button></div>`
+                : ""
+            }
+          </section>`;
         body = `${tour}${map}
           <section class="prep-section"><h2>${esc(p)}: its picture and its uses</h2>${core}</section>
           <section class="prep-section prep-all"><h2>Words that take ${esc(p)}, A to Z <span class="muted">(${current.words.length})</span></h2>
@@ -330,19 +340,23 @@
             ${words}</section>
           <section class="prep-section"><h2>Other boards that use ${esc(p)} <span class="muted">(${current.other.length})</span></h2>${other}</section>`;
       } else {
-        body = '<p class="muted">Choose a preposition above to see its core picture, every word that takes it, and every other board that uses it.</p>';
+        body = "";
       }
 
-      app.innerHTML = `<div class="prep-page">
+      app.innerHTML = current
+        ? `<div class="prep-page">${body}</div>`
+        : `<div class="prep-page">
         <section class="intro compact">
-          <p class="eyebrow">Prepositions</p>
-          <h1>${current ? `Everything about <em>${esc(current.prep)}</em>` : "One preposition, every use"}</h1>
-          <p class="lede">Pick a preposition. You see every sense it can convey, the words that take it in each sense, and every board in the app that uses it. Tap any item to open it on the board, or take the whole thing as one lesson. Anywhere in the app, tap a dotted preposition to come here.</p>
+          <h1>Prepositions</h1>
+          <p class="lede">Pick one to see every sense it can convey, with its words, phrases and boards. Anywhere in the app, a dotted preposition brings you here.</p>
         </section>
-        ${current
-          ? `<details class="prep-pick"><summary>Choose another preposition</summary><nav class="prep-chips" aria-label="Prepositions">${list.map(chip).join("")}</nav></details>`
-          : `<nav class="prep-chips" aria-label="Prepositions">${list.map(chip).join("")}</nav>`}
-        ${body}</div>`;
+        <label class="search">
+          <span class="sr-only">Find a preposition</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
+          <input id="prep-search" type="search" placeholder="Find a preposition" autocomplete="off">
+        </label>
+        <nav class="prep-chips" aria-label="Prepositions">${list.map(chip).join("")}</nav>
+      </div>`;
 
       app.querySelector(".prep-page").addEventListener("click", (e) => {
         const t = e.target.closest("[data-tour]");
@@ -353,6 +367,12 @@
         P.tour.save(null);
         P.jump(lid, step);
       });
+      const find = app.querySelector("#prep-search");
+      if (find)
+        find.addEventListener("input", () => {
+          const q = find.value.trim().toLowerCase();
+          app.querySelectorAll(".prep-chip").forEach((c) => (c.hidden = q && !c.dataset.name.toLowerCase().includes(q)));
+        });
       const filter = app.querySelector("#prep-filter");
       if (filter)
         filter.addEventListener("input", () => {
