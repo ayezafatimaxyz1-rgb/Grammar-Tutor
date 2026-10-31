@@ -377,3 +377,4 @@ strong.key.is-prep:hover, strong.key.is-prep:focus-visible { color: var(--accent
 .pdf-box { background: var(--surface); color: var(--fg); border-radius: 14px; padding: 20px; width: min(440px, 100%); box-shadow: 0 10px 40px rgb(0 0 0 / 25%); }
 .pdf-box h2 { margin: 4px 0 10px; font-size: 1.3rem; }
 .pdf-box .tour-meter { margin: 8px 0 14px; }
+.sense-actions { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 0 0 4px; margin: 0; }

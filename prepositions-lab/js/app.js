@@ -378,13 +378,19 @@
       tourBar.hidden = false;
       tourBar.innerHTML = `
         <div class="tour-info">
-          <p class="eyebrow">Learning <a href="#prep-${esc(t.slug)}">${esc(t.prep)}</a> · board ${t.i + 1} of ${n}</p>
+          <p class="eyebrow">Learning <a href="#prep-${esc(t.slug)}">${esc(t.prep)}</a>${t.sense ? ` · ${esc(t.sense)}` : ""} · board ${t.i + 1} of ${n}</p>
           <p class="tour-label">${esc(item.label)}</p>
           <div class="tour-meter" aria-hidden="true"><span style="width:${(((t.i + 1) / n) * 100).toFixed(1)}%"></span></div>
         </div>
         <div class="tour-buttons">
           <button type="button" class="button small ghost" data-tour-go="-1"${t.i === 0 ? " disabled" : ""}>Previous</button>
-          ${t.i + 1 < n ? '<button type="button" class="button small primary" data-tour-go="1">Next board</button>' : `<a class="button small primary" href="#prep-${esc(t.slug)}" data-tour-end>Finished: back to ${esc(t.prep)}</a>`}
+          ${
+            t.i + 1 < n
+              ? '<button type="button" class="button small primary" data-tour-go="1">Next board</button>'
+              : t.next
+              ? `<button type="button" class="button small primary" data-tour-next>Next: ${esc(t.next.name)}</button>`
+              : `<a class="button small primary" href="#prep-${esc(t.slug)}" data-tour-end>Finished: back to ${esc(t.prep)}</a>`
+          }
           <button type="button" class="button small ghost" data-tour-end>End</button>
         </div>`;
     }
@@ -405,6 +411,10 @@
     tourBar.addEventListener("click", (e) => {
       const go = e.target.closest("[data-tour-go]");
       if (go) return tourGo(Number(go.dataset.tourGo));
+      if (e.target.closest("[data-tour-next]")) {
+        const t = P.tour.read();
+        return t && t.next && P.tour.start(t.prep, 0, t.next.sense);
+      }
       if (e.target.closest("[data-tour-end]")) {
         P.tour.save(null);
         paintTour();

@@ -290,9 +290,30 @@
         },
       };
     },
-    prep(prep) {
+    prep(arg) {
+      const m = /^(.+?)(?::(\d+|other))?$/.exec(arg);
+      const prep = m[1];
       const plan = P.prepbook && P.prepbook.plan(prep);
       if (!plan) return null;
+      if (m[2] !== undefined) {
+        // One sense: its picture, its boards, each word with its meanings and why.
+        const k = m[2];
+        const s = k === "other" ? { name: "Other uses", note: "words whose sense is their own", words: plan.rest } : plan.senses[Number(k)];
+        if (!s) return null;
+        const title = `${prep}: ${s.name}`;
+        return {
+          title,
+          subtitle: k === "other" ? `Other uses of ${prep}` : `Sense ${Number(k) + 1} of ${plan.senses.length} that ${prep} can convey`,
+          file: fileName(`notes-${prep}-${s.name}`),
+          showLesson: true,
+          items: plan.senseItems(k).map((x) => ({ ...x, label: null })),
+          intro(n) {
+            n.text(s.note, { color: C.muted, gap: 2 });
+            s.words.forEach((w) => n.text(`${w.word} ${prep}: ${w.meaning}.  ${w.example}`, { size: 9.5, indent: 3, gap: 0.3 }));
+            n.y += 3;
+          },
+        };
+      }
       return {
         title: `Everything about ${prep}`,
         subtitle: "Every sense it can convey, the words that take it, why this one and not the others",
