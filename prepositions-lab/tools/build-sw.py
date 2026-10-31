@@ -4,6 +4,7 @@ import hashlib, re
 html = open("index.html").read()
 files = ["./", "index.html", "manifest.webmanifest", "css/app.css", "icons/icon-192.png", "icons/icon-512.png"]
 files += re.findall(r'<script src="([^"]+)"', html)
+files += ["js/vendor/jspdf.umd.min.js", "js/vendor/kalam-font.js"]  # loaded only when a notes PDF is made
 h = hashlib.sha1()
 for f in files[1:]:
     h.update(open(f, "rb").read())

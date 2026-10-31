@@ -162,6 +162,14 @@
   P.prepbook = {
     slug,
 
+    // Everything the notes PDF needs for one preposition.
+    plan(prep) {
+      if (!book) build();
+      const e = book[prep];
+      if (!e) return null;
+      return { ...sensesOf(e), items: tourItems(e) };
+    },
+
     // "depend on" -> "on", "in time" -> "in", "against" -> "against"; null when no preposition is named.
     find(text) {
       if (!book) build();
@@ -241,7 +249,8 @@
         const resume = saved && saved.prep === p && saved.i > 0 && saved.i < tourN ? saved.i : 0;
         const tour = tourN
           ? `<section class="prep-tour"><p><strong>Learn all about ${esc(p)}, step by step.</strong> The board opens one item after another: its picture, then each sense with its words and why this one, then how it compares with its neighbours. Tap Next board to keep going.</p>
-             <p class="row-buttons">${resume ? `<button type="button" class="button primary" data-tour="${esc(p)}" data-tour-at="${resume}">Continue (board ${resume + 1} of ${tourN})</button><button type="button" class="button ghost" data-tour="${esc(p)}">Start again</button>` : `<button type="button" class="button primary" data-tour="${esc(p)}">Start the lesson (${tourN} boards)</button>`}</p></section>`
+             <p class="row-buttons">${resume ? `<button type="button" class="button primary" data-tour="${esc(p)}" data-tour-at="${resume}">Continue (board ${resume + 1} of ${tourN})</button><button type="button" class="button ghost" data-tour="${esc(p)}">Start again</button>` : `<button type="button" class="button primary" data-tour="${esc(p)}">Start the lesson (${tourN} boards)</button>`}
+             <button type="button" class="button ghost" data-pdf="prep:${esc(p)}">Notes PDF of all ${tourN} boards</button></p></section>`
           : "";
         body = `${tour}${map}
           <section class="prep-section"><h2>${esc(p)}: its picture and its uses</h2>${core}</section>
