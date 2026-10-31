@@ -126,5 +126,55 @@
    "p4-h2",
    "H 2: hostile \u2026 hungry"
   ]
+ ],
+ "I": [
+  [
+   "p4-i1",
+   "I 1: identical \u2026 incapable"
+  ],
+  [
+   "p4-i2",
+   "I 2: inconsistent \u2026 inferior"
+  ],
+  [
+   "p4-i3",
+   "I 3: inform \u2026 interfere"
+  ],
+  [
+   "p4-i4",
+   "I 4: intrude \u2026 irrelevant"
+  ]
+ ],
+ "J": [
+  [
+   "p4-j1",
+   "J 1: jealous \u2026 judge"
+  ]
+ ],
+ "K": [
+  [
+   "p4-k1",
+   "K 1: keen \u2026 knowledge"
+  ]
+ ],
+ "L": [
+  [
+   "p4-l1",
+   "L 1: lack \u2026 live"
+  ],
+  [
+   "p4-l2",
+   "L 2: lose \u2026 loyal"
+  ]
+ ],
+ "M": [
+  [
+   "p4-m1",
+   "M 1: mad \u2026 modelled"
+  ],
+  [
+   "p4-m2",
+   "M 2: mourn \u2026 moved"
+  ]
  ]
 }
