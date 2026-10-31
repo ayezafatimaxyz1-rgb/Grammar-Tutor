@@ -281,6 +281,39 @@ Reply with only one JSON object: {"title","summary","objectives":[..],"steps":[.
 ${JSON.stringify(EXAMPLE)}`;
   }
 
+  /* ---------- every question the learner asks, saved in this browser ---------- */
+
+  const QUESTIONS_KEY = "prepositions-lab:questions";
+  function readQuestions() {
+    try {
+      const list = JSON.parse(localStorage.getItem(QUESTIONS_KEY) || "[]");
+      return Array.isArray(list) ? list : [];
+    } catch (e) {
+      return [];
+    }
+  }
+  function saveQuestion(q, found) {
+    const item = {
+      q,
+      at: Date.now(),
+      found: found.slice(0, 4).map((r) => ({ lesson: r.lesson.id, step: r.step, label: r.kind === "word" ? r.word : r.stepTitle })),
+    };
+    const list = [item, ...readQuestions().filter((x) => x.q.toLowerCase() !== q.toLowerCase())].slice(0, 200);
+    try {
+      localStorage.setItem(QUESTIONS_KEY, JSON.stringify(list));
+    } catch (e) {}
+  }
+  function questionsHtml(esc) {
+    const list = readQuestions();
+    if (!list.length) return '<p class="muted">Nothing yet. Every question you ask is kept here, in this browser, with what it found.</p>';
+    return `<ul class="asked-q">${list
+      .map((x, i) => `<li><strong>${esc(x.q)}</strong> <span class="muted small">· ${esc(new Date(x.at).toLocaleDateString())}</span>
+        <div class="row-buttons">${x.found
+          .map((f) => `<button type="button" class="button small ghost" data-jump="${esc(f.lesson)}|${esc(f.step)}">${esc(f.label)}</button>`)
+          .join("")}<button type="button" class="button small" data-again="${i}">Ask again</button></div></li>`)
+      .join("")}</ul><p><button type="button" class="linkish" id="ask-clear">Clear my questions</button></p>`;
+  }
+
   /* ---------- free lookup in the course itself ---------- */
 
   // The claude.ai copy of the app, where Ask can use Claude through the learner's own subscription.
@@ -419,8 +452,12 @@ ${JSON.stringify(EXAMPLE)}`;
           </div>
           <p class="muted small">Explanations drawn here are written by Claude on request. They are not part of the reviewed course, so compare them with the lessons and a good dictionary when it matters.</p>
         </section>
+        <section aria-labelledby="myq-h">
+          <h2 id="myq-h">Your questions</h2>
+          <div id="ask-history">${questionsHtml(esc)}</div>
+        </section>
         <section aria-labelledby="asked-h">
-          <h2 id="asked-h">Explanations you asked for</h2>
+          <h2 id="asked-h">Explanations Claude drew for you</h2>
           ${
             saved.length
               ? `<ul class="asked-list">${saved
@@ -465,6 +502,25 @@ ${JSON.stringify(EXAMPLE)}`;
         try { sessionStorage.setItem("prepositions-lab:jump", JSON.stringify({ lesson: lid, step })); } catch (err) {}
         location.hash = `lesson-${lid}`;
       });
+      const history = app.querySelector("#ask-history");
+      history.addEventListener("click", (e) => {
+        const j = e.target.closest("[data-jump]");
+        if (j) {
+          const [lid, step] = j.dataset.jump.split("|");
+          return P.jump ? P.jump(lid, step) : (location.hash = `lesson-${lid}`);
+        }
+        const again = e.target.closest("[data-again]");
+        if (again) {
+          q.value = readQuestions()[+again.dataset.again].q;
+          showFound();
+          q.focus();
+          window.scrollTo(0, 0);
+        }
+        if (e.target.id === "ask-clear") {
+          try { localStorage.removeItem(QUESTIONS_KEY); } catch (err) {}
+          history.innerHTML = questionsHtml(esc);
+        }
+      });
       app.querySelector("#ask-claude").addEventListener("click", () => {
         try { navigator.clipboard.writeText(q.value.trim()).catch(() => {}); } catch (err) {}
       });
@@ -482,6 +538,8 @@ ${JSON.stringify(EXAMPLE)}`;
         const question = q.value.trim();
         if (!question) return q.focus();
         const list = showFound();
+        saveQuestion(question, list);
+        history.innerHTML = questionsHtml(esc);
         const sample = await getSample();
         if (!sample) {
           handoff.hidden = false;

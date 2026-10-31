@@ -54,6 +54,9 @@
       P.ask.render(app, { esc, prefill: askPrefill.q, context: askPrefill.context });
       askPrefill = {};
       $('[data-nav="ask"]').setAttribute("aria-current", "page");
+    } else if (hash === "prepositions" || hash.startsWith("prep-")) {
+      P.prepbook.render(app, { esc, rich, prep: hash.startsWith("prep-") ? hash.slice(5) : null });
+      $('[data-nav="prepositions"]').setAttribute("aria-current", "page");
     } else if (hash === "notebook") {
       renderNotebook();
       $('[data-nav="notebook"]').setAttribute("aria-current", "page");
