@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from phase4 import T, D, N, LEVEL, pic, lines, js  # same board kit and output format as Phase 4
 
 UNITS = []
+PREFIX = "p5"  # lesson and unit ids; Phase 6 reuses this builder with "p6"
 WRONG = {
     "in": ["on", "at", "by"], "on": ["in", "at", "by"], "at": ["in", "on", "by"], "by": ["with", "in", "through"],
     "with": ["to", "of", "by"], "without": ["with", "in", "by"], "for": ["to", "in", "by"], "of": ["for", "to", "about"],
@@ -51,6 +52,9 @@ def blank_key(form, key):
     m = re.search(rf"(?i)(?<![A-Za-z]){re.escape(key)}(?![A-Za-z])", form)
     return form[:m.start()] + "___" + form[m.end():]
 
+def other_pic(p):
+    return pic(p.split()[0])
+
 def spec(e):
     return T(e["icon"]) if e["icon"] else pic(e["key"])
 
@@ -76,7 +80,7 @@ def entry_steps(e, n, lid):
     # 2. Why this phrase and not the others.
     opts = [(spec(e), ph, True, lines(e["meaning"]))]
     for p, v, r in e["others"]:
-        opts.append(('"cross"' if v == N else pic(p.split()[0]), p, "diff" if v == D else False, lines(r)))
+        opts.append(('"cross"' if v == N else other_pic(p), p, "diff" if v == D else False, lines(r)))
     clean = lambda r: " ".join(x.strip() for x in r.split("|"))
     why = [f"**{p}** is correct English, but it means {clean(r)}. That is not what this sentence says." if v == D else f"**{p}**: {clean(r)}." for p, v, r in e["others"]]
     opt_js = ", ".join(f"[{o[0]}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
@@ -116,7 +120,7 @@ def build(u, chunk=6):
     for c in range(0, len(es), chunk):
         part = es[c:c + chunk]
         n = c // chunk + 1
-        lid = f"p5-{u['slug']}{n}"
+        lid = f"{PREFIX}-{u['slug']}{n}"
         steps = [intro_step(u)] if n == 1 else []
         checks = []
         for i, e in enumerate(part):
@@ -133,8 +137,8 @@ def build(u, chunk=6):
   PLAB.registerLesson({{
     id: {T(lid)},
     title: {T(title)},
-    phase: 5,
-    unit: {T("p5-" + u["slug"])},
+    phase: {PREFIX[1:]},
+    unit: {T(PREFIX + "-" + u["slug"])},
     level: {T(" to ".join([levels[0], levels[-1]]) if len(levels) > 1 else levels[0])},
     minutes: {4 * len(part)},
     summary: {T("Fixed prepositional phrases, each drawn with what it means and why its preposition fits: " + ", ".join(e["phrase"] for e in part) + ".")},
