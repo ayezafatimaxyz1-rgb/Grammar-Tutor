@@ -127,7 +127,11 @@
               .map(
                 (u) => `
               <div class="unit" data-unit>
-                <h4>${esc(u.title)}</h4>
+                <div class="unit-head"><h4>${esc(u.title)}</h4>${
+                  u.lessons.some((l) => l.lessonId && P.lessons[l.lessonId])
+                    ? `<button type="button" class="linkish small" data-pdf="unit:${esc(u.id)}" title="All boards and tests of this part in one PDF">${icon("pdf")} PDF</button>`
+                    : ""
+                }</div>
                 <ol class="rows">
                   ${u.lessons
                     .map((l) => {
@@ -178,7 +182,10 @@
           <p class="eyebrow">${lesson.generated ? "Drawn on request · not part of the reviewed course" : `${esc(unit ? unit.title : "")} · ${esc(lesson.level)}`} · about ${lesson.minutes} min</p>
           <h1>${esc(lesson.title)}</h1>
         </div>
-        <button id="bookmark" class="button ghost" type="button" aria-pressed="false"></button>
+        <div class="head-actions">
+          <button class="button ghost" type="button" data-pdf="lesson:${esc(lesson.id)}" title="Every board, explanation and test of this lesson in one PDF">${icon("pdf")} Notes PDF</button>
+          <button id="bookmark" class="button ghost" type="button" aria-pressed="false"></button>
+        </div>
       </section>
 
       <div id="tour-bar" class="tour-bar" hidden></div>
@@ -647,7 +654,7 @@
       <section class="review-box" aria-labelledby="rev-h">
         <h2 id="rev-h">Review</h2>
         <p>${due.length ? `${due.length} ${due.length === 1 ? "question is" : "questions are"} due now.` : mistakes.length ? "Nothing is due right now. Come back later, or practise early." : "No mistakes yet. Questions you answer wrongly in a lesson will appear here."}</p>
-        <div class="row-buttons">
+        <div class="row-buttons">${mistakes.length ? `<button type="button" class="button ghost" data-pdf="notebook">${icon("pdf")} My mistakes as a test PDF</button>` : ""}
           ${due.length ? '<button id="review-due" class="button primary" type="button">Start review</button>' : ""}
           ${mistakes.length ? '<button id="review-all" class="button ghost" type="button">Practise all mistakes now</button>' : ""}
         </div>
@@ -759,6 +766,7 @@
       prev: '<path d="M15 5.5 8.5 12l6.5 6.5"/>',
       check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
       cross: '<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',
+      pdf: '<path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M12.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/>',
       bookmark: '<path d="M7 4.5h10v15l-5-3.5-5 3.5z"/>',
       bookmarked: '<path d="M7 4.5h10v15l-5-3.5-5 3.5z" fill="currentColor"/>',
     };
