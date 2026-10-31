@@ -355,35 +355,39 @@
             id: "p4-n",
             title: "Letter N",
             lessons: [
-              L("p4-n-planned", "Words beginning with N"),
+              L("p4-n1", "N 1: necessary \u2026 notorious", { status: "tested", lessonId: "p4-n1" }),
             ],
           },
           {
             id: "p4-o",
             title: "Letter O",
             lessons: [
-              L("p4-o-planned", "Words beginning with O"),
+              L("p4-o1", "O 1: object \u2026 originate", { status: "tested", lessonId: "p4-o1" }),
             ],
           },
           {
             id: "p4-p",
             title: "Letter P",
             lessons: [
-              L("p4-p-planned", "Words beginning with P"),
+              L("p4-p1", "P 1: part \u2026 popular", { status: "tested", lessonId: "p4-p1" }),
+              L("p4-p2", "P 2: prefer \u2026 proficient", { status: "tested", lessonId: "p4-p2" }),
+              L("p4-p3", "P 3: prohibit \u2026 punish", { status: "tested", lessonId: "p4-p3" }),
             ],
           },
           {
             id: "p4-q",
             title: "Letter Q",
             lessons: [
-              L("p4-q-planned", "Words beginning with Q"),
+              L("p4-q1", "Q 1: qualified \u2026 quarrel", { status: "tested", lessonId: "p4-q1" }),
             ],
           },
           {
             id: "p4-r",
             title: "Letter R",
             lessons: [
-              L("p4-r-planned", "Words beginning with R"),
+              L("p4-r1", "R 1: react \u2026 relevant", { status: "tested", lessonId: "p4-r1" }),
+              L("p4-r2", "R 2: reliant \u2026 rich", { status: "tested", lessonId: "p4-r2" }),
+              L("p4-r3", "R 3: rid \u2026 rude", { status: "tested", lessonId: "p4-r3" }),
             ],
           },
           {
