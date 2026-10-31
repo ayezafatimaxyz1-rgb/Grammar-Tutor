@@ -162,6 +162,28 @@
         ],
       },
       {
+        id: "indulge-build",
+        title: "indulge: how the meaning is built",
+        alt: "How indulge gets its meanings: indulge (give way to a wish) + in (inside an activity: taking part) = allow yourself to enjoy",
+        say: [
+          { text: "Take **indulge** apart. On its own, indulge means give way to a wish. Add what each preposition conveys, and the meaning follows." },
+          { text: "**indulge** (give way to a wish) + **in** (inside an activity: taking part) = allow yourself to enjoy: _Do not indulge in gossip._", cue: "e6b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6c"),
+          { do: "write", id: "e6bh", text: "indulge: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e6b1v", text: "indulge", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e6b1vm", text: "give way to a wish", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e6b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e6b1p", text: "in", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e6b1pm", text: "inside an activity: taking part", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e6b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e6b1m", text: "allow yourself to enjoy", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e6b1x", text: "Do not indulge in gossip.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "indulge-why",
         title: "indulge: why this one?",
         alt: "The sentence Do not indulge with a gap gossip., then the candidates: in (fits: allow yourself to enjoy); with (not used: with = together; indulging goes inside); on (not used: on is resting; not used)",

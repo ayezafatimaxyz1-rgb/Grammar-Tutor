@@ -191,6 +191,28 @@
         ],
       },
       {
+        id: "impose-build",
+        title: "impose: how the meaning is built",
+        alt: "How impose gets its meanings: impose (lay on by force) + on (pressure or attention landing on one point) = force something on someone",
+        say: [
+          { text: "Take **impose** apart. On its own, impose means lay on by force. Add what each preposition conveys, and the meaning follows." },
+          { text: "**impose** (lay on by force) + **on** (pressure or attention landing on one point) = force something on someone: _The government imposed a tax on imports._", cue: "e7b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7c"),
+          { do: "write", id: "e7bh", text: "impose: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e7b1v", text: "impose", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e7b1vm", text: "lay on by force", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e7b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e7b1p", text: "on", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e7b1pm", text: "pressure or attention landing on one point", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e7b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e7b1m", text: "force something on someone", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e7b1x", text: "The government imposed a tax on imports.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "impose-why",
         title: "impose: why this one?",
         alt: "The sentence The government imposed a tax with a gap imports., then the candidates: on (fits: force something on someone); to (not used: to points; a burden presses on); over (not used: over covers; a tax lands on)",

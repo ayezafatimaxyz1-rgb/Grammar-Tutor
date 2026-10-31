@@ -30,6 +30,7 @@ phase5.WRONG.update({
 FALLBACK = {"out": '"goOut"', "away": '"personLeft"', "back": '"returnArc"', "across": '"acrossRoad"', "round": '"loop"',
             "about": '"aboutCircle"', "through": '"passThrough"', "into": '"intoBag"', "off": '"bounceOff"'}
 UNITS = phase5.UNITS
+exec(open(os.path.join(os.path.dirname(__file__), "p6_logic.py")).read())
 
 def U(slug, title, prep, intro):
     phase5.U(slug, title, prep, intro)
@@ -44,11 +45,67 @@ def ppic(word):
 
 _phrase_steps = phase5.entry_steps
 
+def equation(e, n, tag, meaning, example, fit):
+    """A board that builds the meaning: verb (its own meaning) + particle (what it conveys) = the phrasal verb,
+    then the sentence, then how the parts fit in that sentence."""
+    ph, key = e["phrase"], e["key"]
+    words = ph.split()
+    verb = words[0]
+    parts = [(verb, BASE.get(verb, ""), "main")]
+    if len(words) == 3:
+        parts.append((words[1], MID.get(ph, ""), "accent2"))
+    parts.append((key, e["sense"], "accent2"))
+    xs = [150, 480] if len(parts) == 2 else [110, 325, 540]
+    res_x = 800 if len(parts) == 2 else 795
+    acts, k = [], 0
+    for i, (w, m, ink) in enumerate(parts):
+        acts.append(f'{{ do: "write", id: "{tag}q{i}", text: {T(w)}, x: {xs[i]}, y: 190, size: 42, ink: {T(ink)}, anchor: "middle", gap: {350 if i else 450} }}')
+        acts.append(f'{{ do: "write", id: "{tag}q{i}m", text: {T(m)}, x: {xs[i]}, y: 228, size: 21, ink: "muted", anchor: "middle", fit: {250 if len(parts) == 2 else 190} }}')
+        sign_x = (xs[i] + (xs[i + 1] if i + 1 < len(parts) else res_x)) // 2 + (0 if i + 1 < len(parts) else -45)
+        acts.append(f'{{ do: "write", id: "{tag}q{i}s", text: {T("+" if i + 1 < len(parts) else "=")}, x: {sign_x}, y: 190, size: 40, ink: "muted", anchor: "middle" }}')
+    acts.append(f'{{ do: "write", id: "{tag}qr", text: {T(ph)}, x: {res_x + 15}, y: 190, size: 38, ink: "accent", anchor: "middle", fit: 300, gap: 300 }}')
+    acts.append(f'{{ do: "write", id: "{tag}qrm", text: {T(meaning)}, x: {res_x + 15}, y: 228, size: 21, ink: "muted", anchor: "middle", fit: 300 }}')
+    m = re.search(r"\{([^}]*)\}", example)
+    form = m.group(1)
+    sentence = example[:m.start()] + form + example[m.end():]
+    acts.append(f'...PLAB.kit.rows("{tag}r", [[{spec(e)}, {T(sentence)}, {{ hl: {T(form)}, size: 30 }}]], {{ y: 330, gap: 130 }})')
+    acts.append(f'{{ do: "write", id: "{tag}f1", text: {T("In this sentence: " + fit)}, x: 480, y: 455, size: 28, ink: "accent2", anchor: "middle", fit: 910, gap: 500 }}')
+    acts.append(f'{{ do: "write", id: "{tag}f2", text: {T("so " + ph + " = " + meaning)}, x: 480, y: 505, size: 30, ink: "accent", anchor: "middle", fit: 910, gap: 300 }}')
+    sum_text = " + ".join(f"{w} ({mm})" for w, mm, _ in parts)
+    return acts, sentence, sum_text
+
+def spec(e):
+    return T(e["icon"]) if e["icon"] else ppic(e["key"])
+
 def entry_steps(e, n, lid):
     steps, check = _phrase_steps(e, n, lid)
     ph, key = e["phrase"], e["key"]
-    # Name the particle's sense, so the preposition pages can group verbs by it.
-    steps[0]["says"].append((f"Sense: **{key}** = {e['sense']}.", None))
+    lv = LEVEL[e["level"]]
+    pic_line = e["logic"].split("|")[1]
+    # 1. Build the meaning: base verb + particle = phrasal verb, then fit it to the sentence.
+    acts, sentence, sum_text = equation(e, n, f"f{n}", e["meaning"], e["example"], pic_line)
+    steps[0]["actions"] = [f'PLAB.kit.clear("clear-{n}a")',
+                           f'{{ do: "write", id: "f{n}h", text: {T(ph)}, x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" }}',
+                           f'{{ do: "write", id: "f{n}hl", text: {T(lv + " · " + e["meaning"])}, x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 }}'] + acts
+    steps[0]["alt"] = f"{ph} ({lv}): {sum_text} = {ph}, {e['meaning']}. Sentence: {sentence} In this sentence, {pic_line}."
+    steps[0]["says"] = [
+        (f"**{ph}** means {e['meaning']}: _{sentence}_", f"f{n}r1"),
+        (f"Why **{key}**? Take it apart: {sum_text}. In this sentence, {pic_line}, so {ph} means {e['meaning']}.", f"f{n}f1"),
+        (f"Sense: **{key}** = {e['sense']}.", f"f{n}f2"),
+    ]
+    # 2. The same verb in another common context, built the same way.
+    if ph in ALSO:
+        ex2, mean2, fit2 = ALSO[ph]
+        acts2, sentence2, sum2 = equation(e, n, f"g{n}", mean2, ex2, fit2)
+        steps.insert(1, dict(
+            id=steps[0]["id"].replace("-meaning", "-context"), title=f"{ph}: another context",
+            alt=f"{ph} in another context: {sum2} = {mean2}. Sentence: {sentence2} In this sentence, {fit2}.",
+            says=[(f"The same parts, another context: _{sentence2}_", f"g{n}r1"),
+                  (f"{sum2}. Here {fit2}, so **{ph}** means {mean2}. The parts keep their meaning; the context decides how they fit.", f"g{n}f1")],
+            actions=[f'PLAB.kit.clear("clear-{n}c")',
+                     f'{{ do: "write", id: "g{n}h", text: {T(ph + ": another context")}, x: 480, y: 70, size: 40, ink: "accent", anchor: "middle" }}',
+                     f'{{ do: "write", id: "g{n}hl", text: {T("same parts, different situation")}, x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 }}'] + acts2))
+    ph, key = e["phrase"], e["key"]
     # Wrong practice options: a real verb says what it means instead; anything else simply does not mean this.
     others = {p: (v, r) for p, v, r in e["others"]}
     form = phase5.surface(e)[0]
@@ -69,8 +126,7 @@ phase5.entry_steps = entry_steps
 phase5.pic = ppic  # unit boards for out, away, through ... get their own pictures
 # In a lineup, picture each other verb by its particle (give in: the IN picture).
 phase5.other_pic = lambda p: ppic(p.split()[-1]) if len(p.split()) > 1 else ppic(p)
-_spec = phase5.spec
-phase5.spec = lambda e: T(e["icon"]) if e["icon"] else ppic(e["key"])
+phase5.spec = spec
 
 phase5.PREFIX = "p6"
 

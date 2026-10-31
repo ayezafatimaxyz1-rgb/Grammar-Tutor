@@ -27,6 +27,28 @@
         ],
       },
       {
+        id: "attend-build",
+        title: "attend: how the meaning is built",
+        alt: "How attend gets its meanings: attend (be present, give care) + to (towards, reaching) = deal with, take care of",
+        say: [
+          { text: "Take **attend** apart. On its own, attend means be present, give care. Add what each preposition conveys, and the meaning follows." },
+          { text: "**attend** (be present, give care) + **to** (towards, reaching) = deal with, take care of: _The manager will attend to your complaint._", cue: "e1b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1c"),
+          { do: "write", id: "e1bh", text: "attend: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e1b1v", text: "attend", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e1b1vm", text: "be present, give care", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e1b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e1b1p", text: "to", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e1b1pm", text: "towards, reaching", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e1b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e1b1m", text: "deal with, take care of", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e1b1x", text: "The manager will attend to your complaint.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "attend-why",
         title: "attend: why this one?",
         alt: "The sentence The manager will attend with a gap your complaint., then the candidates: to (fits: deal with, take care of); (no word) (correct English, different meaning: be present at your complaint); on (not used: on is resting, not dealing with)",

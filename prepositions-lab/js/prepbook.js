@@ -36,7 +36,8 @@
           const m = /^\*\*(.+?)\*\* means (.+?): _(.+)_$/.exec(line.text);
           if (!m) continue;
           const prep = m[1] === word ? "(no word)" : m[1].slice(word.length).trim();
-          at(prep).words.push({ word, meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id });
+          const built = l.steps.find((x) => x.id === st.id.replace(/-senses$/, "-build"));
+          at(prep).words.push({ word, meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id, build: built && built.id });
         }
       });
     }
@@ -49,7 +50,8 @@
         const k = /^Why \*\*(.+?)\*\*\?/.exec((st.say[1] || {}).text || "");
         if (!m || !k) return;
         const why = l.steps.find((x) => x.id === st.id.replace(/-meaning$/, "-why"));
-        const item = { phrase: m[1], meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id };
+        const ctx = l.steps.find((x) => x.id === st.id.replace(/-meaning$/, "-context"));
+        const item = { phrase: m[1], meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id, ctx: ctx && ctx.id };
         // Phase 6 phrasal verbs also name the sense of their particle: "Sense: **up** = completely."
         const sense = /^Sense: \*\*.+?\*\* = (.+?)\.$/.exec((st.say[2] || {}).text || "");
         if (l.phase === 6) at(k[1]).verbs.push({ ...item, sense: sense ? sense[1] : "other uses" });
@@ -116,6 +118,7 @@
         note: e.phrases.slice(0, 3).map((x) => x.phrase).join(", ") + (e.phrases.length > 3 ? " …" : ""),
         boards: e.phrases.flatMap((x) => [
           { lesson: x.lesson, step: x.step, title: x.phrase },
+          ...(x.ctx ? [{ lesson: x.lesson, step: x.ctx, title: `${x.phrase}: another context` }] : []),
           ...(x.why ? [{ lesson: x.lesson, step: x.why, title: `why ${x.phrase}` }] : []),
         ]),
         words: [],
@@ -130,6 +133,7 @@
         note: vs.slice(0, 3).map((x) => x.phrase).join(", ") + (vs.length > 3 ? " …" : ""),
         boards: vs.flatMap((x) => [
           { lesson: x.lesson, step: x.step, title: x.phrase },
+          ...(x.ctx ? [{ lesson: x.lesson, step: x.ctx, title: `${x.phrase}: another context` }] : []),
           ...(x.why ? [{ lesson: x.lesson, step: x.why, title: `why ${x.phrase}` }] : []),
         ]),
         words: [],
@@ -164,6 +168,7 @@
     const words = (list, label) =>
       list.forEach((w) => {
         add(w.lesson.id, w.step, `${label} · ${w.word} ${e.prep}`);
+        if (w.build) add(w.lesson.id, w.build, `${label} · how ${w.word} ${e.prep} is built`);
         if (w.why) add(w.lesson.id, w.why, `${label} · why ${w.word} ${e.prep}`);
       });
     senses.forEach((s, i) => {

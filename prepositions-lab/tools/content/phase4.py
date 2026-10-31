@@ -14,7 +14,7 @@ Data lives in tools/content/p4_*.py (one file per batch of letters). Each entry:
 Every entry becomes: a board of its senses (one picture per sense), a "why this one and not
 the others" lineup, and a practice question at the end of its lesson.
 """
-import json, glob, os, re
+import json, glob, os, re, subprocess
 
 T = json.dumps
 D, N = "D", "N"
@@ -52,6 +52,49 @@ def lines(text):
     cut = min((i for i, c in enumerate(text) if c == " "), key=lambda i: abs(i - mid), default=-1)
     return text if cut < 0 else text[:cut] + " | " + text[cut + 1:]
 
+BASE4, CORE, SENSE_OF = {}, {}, {}
+
+def load_logic():
+    """Verb meanings (p4_base.py) and, from content/senses.js, which sense of each preposition a word uses."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    exec(open(os.path.join(here, "p4_base.py")).read(), globals())
+    out = subprocess.run(["node", "-e", "global.PLAB={};eval(require('fs').readFileSync('content/senses.js','utf8'));console.log(JSON.stringify(PLAB.senses))"],
+                         capture_output=True, text=True, check=True).stdout
+    for prep, ss in json.loads(out).items():
+        for x in ss:
+            if x["name"] in ("Phrasal verbs", "Other uses"):
+                continue
+            for w in x["words"]:
+                SENSE_OF.setdefault((w, prep), x["name"][0].lower() + x["name"][1:])
+
+def build_step(e, n):
+    """verb (its own meaning) + preposition (what it conveys) = the meaning, for each sense."""
+    w = e["word"]
+    senses = [x for x in e["senses"] if x[0] != "(no word)"][:3]
+    if w not in BASE4 or not senses:
+        return None
+    k = len(senses)
+    acts = [f'PLAB.kit.clear("clear-{n}c")',
+            f'{{ do: "write", id: "e{n}bh", text: {T(w + ": how the meaning is built")}, x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 }}',
+            f'{{ do: "write", id: "e{n}bhl", text: {T("the verb + what the preposition conveys = the meaning")}, x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 }}']
+    says = [(f"Take **{w}** apart. On its own, {w} means {BASE4[w]}. Add what each preposition conveys, and the meaning follows.", None)]
+    for i, (prep, meaning, ex, *_) in enumerate(senses):
+        sense = SENSE_OF.get((w, prep)) or CORE.get(prep, prep)
+        y0 = 180 + (3 - k) * 70 + i * 145
+        t = f"e{n}b{i + 1}"
+        acts += [f'{{ do: "write", id: "{t}v", text: {T(w)}, x: 150, y: {y0}, size: 34, anchor: "middle", fit: 250, gap: {450 if i else 400} }}',
+                 f'{{ do: "write", id: "{t}vm", text: {T(BASE4[w])}, x: 150, y: {y0 + 30}, size: 19, ink: "muted", anchor: "middle", fit: 230 }}',
+                 f'{{ do: "write", id: "{t}p1", text: "+", x: 285, y: {y0}, size: 34, ink: "muted", anchor: "middle" }}',
+                 f'{{ do: "write", id: "{t}p", text: {T(prep)}, x: 400, y: {y0}, size: 34, ink: "accent2", anchor: "middle", fit: 210 }}',
+                 f'{{ do: "write", id: "{t}pm", text: {T(sense)}, x: 400, y: {y0 + 30}, size: 19, ink: "muted", anchor: "middle", fit: 250 }}',
+                 f'{{ do: "write", id: "{t}p2", text: "=", x: 520, y: {y0}, size: 34, ink: "muted", anchor: "middle" }}',
+                 f'{{ do: "write", id: "{t}m", text: {T(meaning)}, x: 555, y: {y0}, size: 30, ink: "accent", fit: 390 }}',
+                 f'{{ do: "write", id: "{t}x", text: {T(plain(ex))}, x: 480, y: {y0 + 72}, size: 25, ink: "muted", anchor: "middle", fit: 900 }}']
+        says.append((f"**{w}** ({BASE4[w]}) + **{prep}** ({sense}) = {meaning}: _{plain(ex)}_", f"{t}v"))
+    alt = f"How {w} gets its meanings: " + "; ".join(
+        f"{w} ({BASE4[w]}) + {x[0]} ({SENSE_OF.get((w, x[0])) or CORE.get(x[0], x[0])}) = {x[1]}" for x in senses)
+    return dict(id=f"{w}-build".replace(" ", "-"), title=f"{w}: how the meaning is built", alt=alt, says=says, actions=acts)
+
 def entry_steps(e, n, lid):
     w, senses = e["word"], e["senses"]
     lv = LEVEL[e["level"]]
@@ -75,6 +118,9 @@ def entry_steps(e, n, lid):
                                f'{{ do: "write", id: "e{n}h", text: {T(w)}, x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" }}',
                                f'{{ do: "write", id: "e{n}hl", text: {T(lv + " · " + ", ".join(phrase(w, s_[0]) for s_ in senses))}, x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 }}',
                                board]))
+    b = build_step(e, n)
+    if b:
+        steps.append(b)
     # 2. Why this one and not the others.
     prep, meaning, ex = senses[e["ask"]][:3]
     sentence = blank(ex)
@@ -162,6 +208,7 @@ def build(letter, entries, chunk=8):
     return made
 
 if __name__ == "__main__":
+    load_logic()
     here = os.path.dirname(__file__)
     for f in sorted(glob.glob(os.path.join(here, "p4_*.py"))):
         exec(open(f).read())
