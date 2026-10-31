@@ -52,7 +52,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap Karachi, Lahore has cold winters., then the candidates with pictures: Unlike (right: contrasts two cities); Dislike (wrong: a verb: to not like); Different (wrong: needs from: different from). Rule: unlike X, Y ... (compare like with like); different from.",
         say: [
-          { text: "Fill the gap: \u2026 Karachi, Lahore has cold winters. The answer is **Unlike**: contrasts two cities.", cue: "why1" },
+          { text: "Fill the gap: \u2026 Karachi, Lahore has cold winters. What does the sentence want to say? The answer is **Unlike**: contrasts two cities.", cue: "why1" },
           { text: "Why not the others? **Dislike**: a verb: to not like. **Different**: needs from: different from.", cue: "why2" },
           { text: "The rule: unlike X, Y ... (compare like with like); different from.", cue: "why-r1" },
         ],

@@ -56,7 +56,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I am writing with a gap the delay., then the candidates with pictures: regarding (right: = about it); regards (wrong: regards = greetings); regard (wrong: needs with ... to: with regard to). Rule: regarding, concerning, with regard to; never with regards to.",
         say: [
-          { text: "Fill the gap: I am writing \u2026 the delay. The answer is **regarding**: = about it.", cue: "why1" },
+          { text: "Fill the gap: I am writing \u2026 the delay. What does the sentence want to say? The answer is **regarding**: = about it.", cue: "why1" },
           { text: "Why not the others? **regards**: regards = greetings. **regard**: needs with ... to: with regard to.", cue: "why2" },
           { text: "The rule: regarding, concerning, with regard to; never with regards to.", cue: "why-r1" },
         ],

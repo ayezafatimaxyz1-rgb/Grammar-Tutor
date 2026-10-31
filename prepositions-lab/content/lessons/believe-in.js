@@ -74,7 +74,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I believe with a gap democracy., then the candidates with pictures: in (right: trust placed in an idea); on (wrong: on = resting on a surface; belief goes inside); (no word) (wrong: believe + a person = accept their words). Rule: believe in = trust its value or existence; believe someone = accept their words.",
         say: [
-          { text: "Fill the gap: I believe \u2026 democracy. The answer is **in**: trust placed in an idea.", cue: "why1" },
+          { text: "Fill the gap: I believe \u2026 democracy. What does the sentence want to say? The answer is **in**: trust placed in an idea.", cue: "why1" },
           { text: "Why not the others? **on**: on = resting on a surface; belief goes inside. **(no word)**: believe + a person = accept their words.", cue: "why2" },
           { text: "The rule: believe in = trust its value or existence; believe someone = accept their words.", cue: "why-r1" },
         ],

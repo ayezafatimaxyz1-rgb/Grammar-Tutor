@@ -74,7 +74,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She applied with a gap the job., then the candidates with pictures: for (right: the prize she wants); to (wrong: to = the office that receives it); (no word) (wrong: apply a job = spread it like paint). Rule: apply for + what you want; apply to + the place that receives it.",
         say: [
-          { text: "Fill the gap: She applied \u2026 the job. The answer is **for**: the prize she wants.", cue: "why1" },
+          { text: "Fill the gap: She applied \u2026 the job. What does the sentence want to say? The answer is **for**: the prize she wants.", cue: "why1" },
           { text: "Why not the others? **to**: to = the office that receives it. **(no word)**: apply a job = spread it like paint.", cue: "why2" },
           { text: "The rule: apply for + what you want; apply to + the place that receives it.", cue: "why-r1" },
         ],

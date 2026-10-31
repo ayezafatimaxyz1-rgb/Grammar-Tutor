@@ -39,7 +39,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence The school is open to all, with a gap income., then the candidates with pictures: regardless of (right: income makes no difference); irregardless of (wrong: not standard English); despite (wrong: despite = a real obstacle overcome). Rule: regardless of, irrespective of; despite + an obstacle.",
         say: [
-          { text: "Fill the gap: The school is open to all, \u2026 income. The answer is **regardless of**: income makes no difference.", cue: "why1" },
+          { text: "Fill the gap: The school is open to all, \u2026 income. What does the sentence want to say? The answer is **regardless of**: income makes no difference.", cue: "why1" },
           { text: "Why not the others? **irregardless of**: not standard English. **despite**: despite = a real obstacle overcome.", cue: "why2" },
           { text: "The rule: regardless of, irrespective of; despite + an obstacle.", cue: "why-r1" },
         ],

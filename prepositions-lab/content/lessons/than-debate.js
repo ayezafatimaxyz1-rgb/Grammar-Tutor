@@ -48,7 +48,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She is taller with a gap me., then the candidates with pictures: than (right: comparison after -er); then (wrong: then = next, at that time); from (wrong: taller from is wrong). Rule: taller than, better than; then = time.",
         say: [
-          { text: "Fill the gap: She is taller \u2026 me. The answer is **than**: comparison after -er.", cue: "why1" },
+          { text: "Fill the gap: She is taller \u2026 me. What does the sentence want to say? The answer is **than**: comparison after -er.", cue: "why1" },
           { text: "Why not the others? **then**: then = next, at that time. **from**: taller from is wrong.", cue: "why2" },
           { text: "The rule: taller than, better than; then = time.", cue: "why-r1" },
         ],

@@ -90,15 +90,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence We swam with a gap the river to the other bank., then the candidates with pictures: across (right: from one bank to the other); along (wrong: following its length); above (wrong: above the water, not in it). Rule: across = side to side; along = following the length.",
+      alt: "The sentence We swam with a gap the river to the other bank., then the candidates with pictures: across (right: from one bank to the other); along (correct English but a different meaning: swam lengthwise, not to the other bank); above (wrong: above the water, not in it). Rule: across = side to side; along = following the length.",
       say: [
-        { text: "Fill the gap: We swam \u2026 the river to the other bank. The answer is **across**: from one bank to the other.", cue: "why1" },
-        { text: "Why not the others? **along**: following its length. **above**: above the water, not in it.", cue: "why2" },
+        { text: "Fill the gap: We swam \u2026 the river to the other bank. What does the sentence want to say? The answer is **across**: from one bank to the other.", cue: "why1" },
+        { text: "Why not the others? **along** is correct English, but it would mean swam lengthwise, not to the other bank. That is not what this sentence says. **above**: above the water, not in it.", cue: "why2" },
         { text: "The rule: across = side to side; along = following the length.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "We swam ____ the river to the other bank.", [["crossRiver", "across", true, "from one bank | to the other"], ["alongRiver", "along", false, "following its | length"], ["floatAbove", "above", false, "above the water, | not in it"]], ["across = side to side", "along = following the length"]),
+        ...PLAB.kit.lineup("why", "We swam ____ the river to the other bank.", [["crossRiver", "across", true, "from one bank | to the other"], ["alongRiver", "along", "diff", "swam lengthwise, | not to the other bank"], ["floatAbove", "above", false, "above the water, | not in it"]], ["across = side to side", "along = following the length"]),
       ],
     },
     {

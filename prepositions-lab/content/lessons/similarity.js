@@ -66,7 +66,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence This plan is superior with a gap that one., then the candidates with pictures: to (right: superior already means more); than (wrong: than goes with better, more); from (wrong: from = moving apart: different from). Rule: superior to, inferior to, senior to; better than, more than.",
         say: [
-          { text: "Fill the gap: This plan is superior \u2026 that one. The answer is **to**: superior already means more.", cue: "why1" },
+          { text: "Fill the gap: This plan is superior \u2026 that one. What does the sentence want to say? The answer is **to**: superior already means more.", cue: "why1" },
           { text: "Why not the others? **than**: than goes with better, more. **from**: from = moving apart: different from.", cue: "why2" },
           { text: "The rule: superior to, inferior to, senior to; better than, more than.", cue: "why-r1" },
         ],

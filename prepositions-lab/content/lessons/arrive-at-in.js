@@ -67,7 +67,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence We arrived with a gap the airport at noon., then the candidates with pictures: at (right: a building is a point); in (wrong: in is for cities, countries); to (wrong: to = still moving). Rule: arrive at a point \u00b7 arrive in an area; never arrive to.",
         say: [
-          { text: "Fill the gap: We arrived \u2026 the airport at noon. The answer is **at**: a building is a point.", cue: "why1" },
+          { text: "Fill the gap: We arrived \u2026 the airport at noon. What does the sentence want to say? The answer is **at**: a building is a point.", cue: "why1" },
           { text: "Why not the others? **in**: in is for cities, countries. **to**: to = still moving.", cue: "why2" },
           { text: "The rule: arrive at a point \u00b7 arrive in an area; never arrive to.", cue: "why-r1" },
         ],

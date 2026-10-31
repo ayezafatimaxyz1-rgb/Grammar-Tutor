@@ -132,7 +132,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence Paper is made with a gap wood., then the candidates with pictures: from (right: the wood has changed); of (wrong: of = the material still shows); by (wrong: by names the maker). Rule: made from = changed \u00b7 made of = still visible; made by = the maker.",
       say: [
-        { text: "Fill the gap: Paper is made \u2026 wood. The answer is **from**: the wood has changed.", cue: "why1" },
+        { text: "Fill the gap: Paper is made \u2026 wood. What does the sentence want to say? The answer is **from**: the wood has changed.", cue: "why1" },
         { text: "Why not the others? **of**: of = the material still shows. **by**: by names the maker.", cue: "why2" },
         { text: "The rule: made from = changed \u00b7 made of = still visible; made by = the maker.", cue: "why-r1" },
       ],

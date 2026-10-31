@@ -114,7 +114,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I look forward to with a gap you., then the candidates with pictures: meeting (right: to is a preposition: -ing); meet (wrong: to meet is the infinitive); met (wrong: a past form). Rule: look forward to, committed to, used to + -ing; test: a noun fits (to the meeting).",
         say: [
-          { text: "Fill the gap: I look forward to \u2026 you. The answer is **meeting**: to is a preposition: -ing.", cue: "why1" },
+          { text: "Fill the gap: I look forward to \u2026 you. What does the sentence want to say? The answer is **meeting**: to is a preposition: -ing.", cue: "why1" },
           { text: "Why not the others? **meet**: to meet is the infinitive. **met**: a past form.", cue: "why2" },
           { text: "The rule: look forward to, committed to, used to + -ing; test: a noun fits (to the meeting).", cue: "why-r1" },
         ],

@@ -55,7 +55,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap the rain, we played the match., then the candidates with pictures: Despite (right: + a noun); Although (wrong: + a clause: although it rained); Despite of (wrong: never despite of). Rule: despite / in spite of + noun; although + clause.",
         say: [
-          { text: "Fill the gap: \u2026 the rain, we played the match. The answer is **Despite**: + a noun.", cue: "why1" },
+          { text: "Fill the gap: \u2026 the rain, we played the match. What does the sentence want to say? The answer is **Despite**: + a noun.", cue: "why1" },
           { text: "Why not the others? **Although**: + a clause: although it rained. **Despite of**: never despite of.", cue: "why2" },
           { text: "The rule: despite / in spite of + noun; although + clause.", cue: "why-r1" },
         ],

@@ -54,15 +54,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence The decision was postponed with a gap an inquiry., then the candidates with pictures: pending (right: while waiting for it); following (wrong: = after it is over); despite (wrong: = although there is an inquiry). Rule: pending = until something happens; following = after.",
+        alt: "The sentence The decision was postponed with a gap an inquiry., then the candidates with pictures: pending (right: while waiting for it); following (correct English but a different meaning: after the inquiry has ended); despite (correct English but a different meaning: although there is an inquiry). Rule: pending = until something happens; following = after.",
         say: [
-          { text: "Fill the gap: The decision was postponed \u2026 an inquiry. The answer is **pending**: while waiting for it.", cue: "why1" },
-          { text: "Why not the others? **following**: = after it is over. **despite**: = although there is an inquiry.", cue: "why2" },
+          { text: "Fill the gap: The decision was postponed \u2026 an inquiry. What does the sentence want to say? The answer is **pending**: while waiting for it.", cue: "why1" },
+          { text: "Why not the others? **following** is correct English, but it would mean after the inquiry has ended. That is not what this sentence says. **despite** is correct English, but it would mean although there is an inquiry. That is not what this sentence says.", cue: "why2" },
           { text: "The rule: pending = until something happens; following = after.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The decision was postponed ____ an inquiry.", [["notWait", "pending", true, "while waiting | for it"], ["followEvent", "following", false, "= after it | is over"], ["overRock", "despite", false, "= although there | is an inquiry"]], ["pending = until something happens", "following = after"]),
+          ...PLAB.kit.lineup("why", "The decision was postponed ____ an inquiry.", [["notWait", "pending", true, "while waiting | for it"], ["followEvent", "following", "diff", "after the inquiry | has ended"], ["overRock", "despite", "diff", "although there | is an inquiry"]], ["pending = until something happens", "following = after"]),
         ],
       },
       {

@@ -57,7 +57,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I woke up twice with a gap the night., then the candidates with pictures: during (right: when: inside that time); for (wrong: for = how long); while (wrong: while + a clause: while I slept). Rule: during + noun = when; for = how long \u00b7 while + clause.",
         say: [
-          { text: "Fill the gap: I woke up twice \u2026 the night. The answer is **during**: when: inside that time.", cue: "why1" },
+          { text: "Fill the gap: I woke up twice \u2026 the night. What does the sentence want to say? The answer is **during**: when: inside that time.", cue: "why1" },
           { text: "Why not the others? **for**: for = how long. **while**: while + a clause: while I slept.", cue: "why2" },
           { text: "The rule: during + noun = when; for = how long \u00b7 while + clause.", cue: "why-r1" },
         ],

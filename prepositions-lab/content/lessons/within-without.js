@@ -161,15 +161,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence Reply with a gap ten days., then the candidates with pictures: within (right: any time up to day ten); in (wrong: when ten days have passed); after (wrong: only once the ten days are over); since (wrong: since needs a starting point). Rule: within = any time inside the limit; in = at the end of the time.",
+      alt: "The sentence Reply with a gap ten days., then the candidates with pictures: within (right: any time up to day ten); in (correct English but a different meaning: on day ten, not before); after (correct English but a different meaning: only once the ten days are over); since (wrong: since needs a starting point). Rule: within = any time inside the limit; in = at the end of the time.",
       say: [
-        { text: "Fill the gap: Reply \u2026 ten days. The answer is **within**: any time up to day ten.", cue: "why1" },
-        { text: "Why not the others? **in**: when ten days have passed. **after**: only once the ten days are over. **since**: since needs a starting point.", cue: "why2" },
+        { text: "Fill the gap: Reply \u2026 ten days. What does the sentence want to say? The answer is **within**: any time up to day ten.", cue: "why1" },
+        { text: "Why not the others? **in** is correct English, but it would mean on day ten, not before. That is not what this sentence says. **after** is correct English, but it would mean only once the ten days are over. That is not what this sentence says. **since**: since needs a starting point.", cue: "why2" },
         { text: "The rule: within = any time inside the limit; in = at the end of the time.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "Reply ____ ten days.", [["inPeriod", "within", true, "any time up to | day ten"], ["pointFuture", "in", false, "when ten days | have passed"], ["afterDot", "after", false, "only once the ten | days are over"], ["sincePoint", "since", false, "since needs a | starting point"]], ["within = any time inside the limit", "in = at the end of the time"]),
+        ...PLAB.kit.lineup("why", "Reply ____ ten days.", [["inPeriod", "within", true, "any time up to | day ten"], ["pointFuture", "in", "diff", "on day ten, | not before"], ["afterDot", "after", "diff", "only once the | ten days are over"], ["sincePoint", "since", false, "since needs a | starting point"]], ["within = any time inside the limit", "in = at the end of the time"]),
       ],
     },
     {

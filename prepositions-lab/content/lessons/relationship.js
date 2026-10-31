@@ -55,7 +55,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence Doctors found a link with a gap smoking and cancer., then the candidates with pictures: between (right: both sides named); with (wrong: with = from one side: its link with); of (wrong: of names one side; a link needs both). Rule: between X and Y; X's link with Y.",
         say: [
-          { text: "Fill the gap: Doctors found a link \u2026 smoking and cancer. The answer is **between**: both sides named.", cue: "why1" },
+          { text: "Fill the gap: Doctors found a link \u2026 smoking and cancer. What does the sentence want to say? The answer is **between**: both sides named.", cue: "why1" },
           { text: "Why not the others? **with**: with = from one side: its link with. **of**: of names one side; a link needs both.", cue: "why2" },
           { text: "The rule: between X and Y; X's link with Y.", cue: "why-r1" },
         ],

@@ -71,7 +71,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She is interested with a gap history., then the candidates with pictures: in (right: attention goes inside the subject); on (wrong: on = a surface or topic: a book on history); about (wrong: about goes with worried, angry). Rule: interested in \u00b7 afraid of \u00b7 keen on; angry with a person, about a situation.",
         say: [
-          { text: "Fill the gap: She is interested \u2026 history. The answer is **in**: attention goes inside the subject.", cue: "why1" },
+          { text: "Fill the gap: She is interested \u2026 history. What does the sentence want to say? The answer is **in**: attention goes inside the subject.", cue: "why1" },
           { text: "Why not the others? **on**: on = a surface or topic: a book on history. **about**: about goes with worried, angry.", cue: "why2" },
           { text: "The rule: interested in \u00b7 afraid of \u00b7 keen on; angry with a person, about a situation.", cue: "why-r1" },
         ],

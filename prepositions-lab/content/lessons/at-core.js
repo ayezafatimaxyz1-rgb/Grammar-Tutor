@@ -239,7 +239,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence She is waiting with a gap the bus stop., then the candidates with pictures: at (right: a bus stop is a point); in (wrong: a bus stop has no inside); on (wrong: not standing on top of it); to (wrong: waiting is not moving). Rule: at = a place pictured as a point; in = inside \u00b7 to = movement towards.",
       say: [
-        { text: "Fill the gap: She is waiting \u2026 the bus stop. The answer is **at**: a bus stop is a point.", cue: "why1" },
+        { text: "Fill the gap: She is waiting \u2026 the bus stop. What does the sentence want to say? The answer is **at**: a bus stop is a point.", cue: "why1" },
         { text: "Why not the others? **in**: a bus stop has no inside. **on**: not standing on top of it. **to**: waiting is not moving.", cue: "why2" },
         { text: "The rule: at = a place pictured as a point; in = inside \u00b7 to = movement towards.", cue: "why-r1" },
       ],

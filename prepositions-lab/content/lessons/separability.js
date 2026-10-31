@@ -66,15 +66,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence The offer was poor, so she turned with a gap., then the candidates with pictures: it down (right: pronoun in the middle); down it (wrong: a pronoun cannot follow the particle); it off (wrong: turn off = switch off). Rule: turn it down = refuse it; pronoun in the middle of a phrasal verb.",
+        alt: "The sentence The offer was poor, so she turned with a gap., then the candidates with pictures: it down (right: pronoun in the middle); down it (wrong: a pronoun cannot follow the particle); it off (correct English but a different meaning: switched it off, like a light). Rule: turn it down = refuse it; pronoun in the middle of a phrasal verb.",
         say: [
-          { text: "Fill the gap: The offer was poor, so she turned \u2026. The answer is **it down**: pronoun in the middle.", cue: "why1" },
-          { text: "Why not the others? **down it**: a pronoun cannot follow the particle. **it off**: turn off = switch off.", cue: "why2" },
+          { text: "Fill the gap: The offer was poor, so she turned \u2026. What does the sentence want to say? The answer is **it down**: pronoun in the middle.", cue: "why1" },
+          { text: "Why not the others? **it off** is correct English, but it would mean switched it off, like a light. That is not what this sentence says. **down it**: a pronoun cannot follow the particle.", cue: "why2" },
           { text: "The rule: turn it down = refuse it; pronoun in the middle of a phrasal verb.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The offer was poor, so she turned ____.", [["slotIn", "it down", true, "pronoun in | the middle"], ["cross", "down it", false, "a pronoun cannot | follow the particle"], ["switchOff", "it off", false, "turn off = | switch off"]], ["turn it down = refuse it", "pronoun in the middle of a phrasal verb"]),
+          ...PLAB.kit.lineup("why", "The offer was poor, so she turned ____.", [["slotIn", "it down", true, "pronoun in | the middle"], ["cross", "down it", false, "a pronoun cannot | follow the particle"], ["switchOff", "it off", "diff", "switched it off, | like a light"]], ["turn it down = refuse it", "pronoun in the middle of a phrasal verb"]),
         ],
       },
       {

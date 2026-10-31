@@ -54,7 +54,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence They cut staff with a view to with a gap costs., then the candidates with pictures: reducing (right: to is a preposition: -ing); reduce (wrong: to + verb is the infinitive); reduced (wrong: a past form). Rule: with a view to + -ing; in order to + verb.",
         say: [
-          { text: "Fill the gap: They cut staff with a view to \u2026 costs. The answer is **reducing**: to is a preposition: -ing.", cue: "why1" },
+          { text: "Fill the gap: They cut staff with a view to \u2026 costs. What does the sentence want to say? The answer is **reducing**: to is a preposition: -ing.", cue: "why1" },
           { text: "Why not the others? **reduce**: to + verb is the infinitive. **reduced**: a past form.", cue: "why2" },
           { text: "The rule: with a view to + -ing; in order to + verb.", cue: "why-r1" },
         ],

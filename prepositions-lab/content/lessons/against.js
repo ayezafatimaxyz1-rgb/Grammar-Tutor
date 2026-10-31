@@ -127,15 +127,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence 80 members voted with a gap the bill., then the candidates with pictures: against (right: opposing it); for (wrong: the opposite: supporting it); to (wrong: to is for scores: 120 votes to 80). Rule: against = opposing \u00b7 for = supporting; a score: 120 votes to 80.",
+      alt: "The sentence 80 members voted with a gap the bill., then the candidates with pictures: against (right: opposing it); for (correct English but a different meaning: supporting the bill); to (wrong: to is for scores: 120 votes to 80). Rule: against = opposing \u00b7 for = supporting; a score: 120 votes to 80.",
       say: [
-        { text: "Fill the gap: 80 members voted \u2026 the bill. The answer is **against**: opposing it.", cue: "why1" },
-        { text: "Why not the others? **for**: the opposite: supporting it. **to**: to is for scores: 120 votes to 80.", cue: "why2" },
+        { text: "Fill the gap: 80 members voted \u2026 the bill. What does the sentence want to say? The answer is **against**: opposing it.", cue: "why1" },
+        { text: "Why not the others? **for** is correct English, but it would mean supporting the bill. That is not what this sentence says. **to**: to is for scores: 120 votes to 80.", cue: "why2" },
         { text: "The rule: against = opposing \u00b7 for = supporting; a score: 120 votes to 80.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "80 members voted ____ the bill.", [["versus", "against", true, "opposing it"], ["voteFor", "for", false, "the opposite: | supporting it"], ["scale", "to", false, "to is for scores: | 120 votes to 80"]], ["against = opposing \u00b7 for = supporting", "a score: 120 votes to 80"]),
+        ...PLAB.kit.lineup("why", "80 members voted ____ the bill.", [["versus", "against", true, "opposing it"], ["voteFor", "for", "diff", "supporting | the bill"], ["scale", "to", false, "to is for scores: | 120 votes to 80"]], ["against = opposing \u00b7 for = supporting", "a score: 120 votes to 80"]),
       ],
     },
     {

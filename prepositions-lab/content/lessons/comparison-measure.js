@@ -77,15 +77,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence The hall holds with a gap 500 people., then the candidates with pictures: up to (right: 500 at most); in excess of (wrong: more than 500); far from (wrong: far from = not at all). Rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.",
+        alt: "The sentence The hall holds with a gap 500 people., then the candidates with pictures: up to (right: 500 at most); in excess of (correct English but a different meaning: more than 500); far from (wrong: far from = not at all). Rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.",
         say: [
-          { text: "Fill the gap: The hall holds \u2026 500 people. The answer is **up to**: 500 at most.", cue: "why1" },
-          { text: "Why not the others? **in excess of**: more than 500. **far from**: far from = not at all.", cue: "why2" },
+          { text: "Fill the gap: The hall holds \u2026 500 people. What does the sentence want to say? The answer is **up to**: 500 at most.", cue: "why1" },
+          { text: "Why not the others? **in excess of** is correct English, but it would mean more than 500. That is not what this sentence says. **far from**: far from = not at all.", cue: "why2" },
           { text: "The rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", false, "more than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"]),
+          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", "diff", "more | than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"]),
         ],
       },
       {

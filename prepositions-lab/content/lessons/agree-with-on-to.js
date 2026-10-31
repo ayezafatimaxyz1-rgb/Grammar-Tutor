@@ -71,7 +71,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I agree with a gap you completely., then the candidates with pictures: with (right: the same view as a person); to (wrong: to = accepting a proposal); on (wrong: on = a point decided together). Rule: agree with a person \u00b7 agree to a proposal; agree on a date.",
         say: [
-          { text: "Fill the gap: I agree \u2026 you completely. The answer is **with**: the same view as a person.", cue: "why1" },
+          { text: "Fill the gap: I agree \u2026 you completely. What does the sentence want to say? The answer is **with**: the same view as a person.", cue: "why1" },
           { text: "Why not the others? **to**: to = accepting a proposal. **on**: on = a point decided together.", cue: "why2" },
           { text: "The rule: agree with a person \u00b7 agree to a proposal; agree on a date.", cue: "why-r1" },
         ],

@@ -69,7 +69,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap fog, the flight was delayed., then the candidates with pictures: Owing to (right: safe at the start); Due to (wrong: disputed at the start; fine after be); Because (wrong: + a clause: because it was foggy). Rule: Owing to fog, ... \u00b7 Because of fog, ...; The delay was due to fog..",
         say: [
-          { text: "Fill the gap: \u2026 fog, the flight was delayed. The answer is **Owing to**: safe at the start.", cue: "why1" },
+          { text: "Fill the gap: \u2026 fog, the flight was delayed. What does the sentence want to say? The answer is **Owing to**: safe at the start.", cue: "why1" },
           { text: "Why not the others? **Due to**: disputed at the start; fine after be. **Because**: + a clause: because it was foggy.", cue: "why2" },
           { text: "The rule: Owing to fog, ... \u00b7 Because of fog, ...; The delay was due to fog..", cue: "why-r1" },
         ],

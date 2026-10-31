@@ -56,7 +56,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence The shop is open from 9 with a gap 5., then the candidates with pictures: to (right: from ... to); and (wrong: and belongs to between); at (wrong: at = one point, not an end). Rule: from 9 to 5 (or until 5); between 9 and 5.",
         say: [
-          { text: "Fill the gap: The shop is open from 9 \u2026 5. The answer is **to**: from ... to.", cue: "why1" },
+          { text: "Fill the gap: The shop is open from 9 \u2026 5. What does the sentence want to say? The answer is **to**: from ... to.", cue: "why1" },
           { text: "Why not the others? **and**: and belongs to between. **at**: at = one point, not an end.", cue: "why2" },
           { text: "The rule: from 9 to 5 (or until 5); between 9 and 5.", cue: "why-r1" },
         ],

@@ -49,15 +49,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence I am familiar with a gap the rules., then the candidates with pictures: with (right: the person knows them); to (wrong: the rules would know me); of (wrong: of goes with aware). Rule: person first: familiar with; thing first: familiar to.",
+        alt: "The sentence I am familiar with a gap the rules., then the candidates with pictures: with (right: the person knows them); to (correct English but a different meaning: the rules would know me); of (wrong: of goes with aware). Rule: person first: familiar with; thing first: familiar to.",
         say: [
-          { text: "Fill the gap: I am familiar \u2026 the rules. The answer is **with**: the person knows them.", cue: "why1" },
-          { text: "Why not the others? **to**: the rules would know me. **of**: of goes with aware.", cue: "why2" },
+          { text: "Fill the gap: I am familiar \u2026 the rules. What does the sentence want to say? The answer is **with**: the person knows them.", cue: "why1" },
+          { text: "Why not the others? **to** is correct English, but it would mean the rules would know me. That is not what this sentence says. **of**: of goes with aware.", cue: "why2" },
           { text: "The rule: person first: familiar with; thing first: familiar to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I am familiar ____ the rules.", [["knowsWay", "with", true, "the person | knows them"], [[["doc", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "to", false, "the rules | would know me"], ["awareOf", "of", false, "of goes with | aware"]], ["person first: familiar with", "thing first: familiar to"]),
+          ...PLAB.kit.lineup("why", "I am familiar ____ the rules.", [["knowsWay", "with", true, "the person | knows them"], [[["doc", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "to", "diff", "the rules | would know me"], ["awareOf", "of", false, "of goes with | aware"]], ["person first: familiar with", "thing first: familiar to"]),
         ],
       },
       {

@@ -109,7 +109,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence We stayed at home with a gap the rain., then the candidates with pictures: because of (right: + a noun); because (wrong: + a clause: because it rained); although (wrong: shows contrast, not cause). Rule: because of + noun; because + clause.",
         say: [
-          { text: "Fill the gap: We stayed at home \u2026 the rain. The answer is **because of**: + a noun.", cue: "why1" },
+          { text: "Fill the gap: We stayed at home \u2026 the rain. What does the sentence want to say? The answer is **because of**: + a noun.", cue: "why1" },
           { text: "Why not the others? **because**: + a clause: because it rained. **although**: shows contrast, not cause.", cue: "why2" },
           { text: "The rule: because of + noun; because + clause.", cue: "why-r1" },
         ],

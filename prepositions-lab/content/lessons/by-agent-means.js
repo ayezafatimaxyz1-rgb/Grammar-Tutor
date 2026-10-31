@@ -86,7 +86,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence The poem was written with a gap Iqbal., then the candidates with pictures: by (right: the person who did it); from (wrong: from = sent by, origin); of (wrong: of = belonging to him). Rule: passive + by + the doer; a letter from Iqbal = he sent it.",
         say: [
-          { text: "Fill the gap: The poem was written \u2026 Iqbal. The answer is **by**: the person who did it.", cue: "why1" },
+          { text: "Fill the gap: The poem was written \u2026 Iqbal. What does the sentence want to say? The answer is **by**: the person who did it.", cue: "why1" },
           { text: "Why not the others? **from**: from = sent by, origin. **of**: of = belonging to him.", cue: "why2" },
           { text: "The rule: passive + by + the doer; a letter from Iqbal = he sent it.", cue: "why-r1" },
         ],

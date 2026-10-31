@@ -53,7 +53,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence There was a sharp increase with a gap prices., then the candidates with pictures: in (right: the thing that changes); of (wrong: of = the amount: of 10 per cent); by (wrong: by follows the verb: rose by 10 per cent). Rule: an increase in prices \u00b7 an increase of 10%; prices rose by 10%.",
         say: [
-          { text: "Fill the gap: There was a sharp increase \u2026 prices. The answer is **in**: the thing that changes.", cue: "why1" },
+          { text: "Fill the gap: There was a sharp increase \u2026 prices. What does the sentence want to say? The answer is **in**: the thing that changes.", cue: "why1" },
           { text: "Why not the others? **of**: of = the amount: of 10 per cent. **by**: by follows the verb: rose by 10 per cent.", cue: "why2" },
           { text: "The rule: an increase in prices \u00b7 an increase of 10%; prices rose by 10%.", cue: "why-r1" },
         ],

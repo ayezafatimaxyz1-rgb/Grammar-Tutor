@@ -74,7 +74,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I met him two years with a gap., then the candidates with pictures: ago (right: counted back from now); before (wrong: counts back from another past moment); since (wrong: since needs a point: since 2023). Rule: ago = back from now (past simple); before = back from a past point.",
         say: [
-          { text: "Fill the gap: I met him two years \u2026. The answer is **ago**: counted back from now.", cue: "why1" },
+          { text: "Fill the gap: I met him two years \u2026. What does the sentence want to say? The answer is **ago**: counted back from now.", cue: "why1" },
           { text: "Why not the others? **before**: counts back from another past moment. **since**: since needs a point: since 2023.", cue: "why2" },
           { text: "The rule: ago = back from now (past simple); before = back from a past point.", cue: "why-r1" },
         ],

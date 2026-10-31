@@ -41,7 +41,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I had coffee with a gap tea., then the candidates with pictures: instead of (right: one in place of the other); instead (wrong: alone it ends a sentence: I had coffee instead); except (wrong: except = not including). Rule: instead of + noun or -ing; rather than + bare verb.",
         say: [
-          { text: "Fill the gap: I had coffee \u2026 tea. The answer is **instead of**: one in place of the other.", cue: "why1" },
+          { text: "Fill the gap: I had coffee \u2026 tea. What does the sentence want to say? The answer is **instead of**: one in place of the other.", cue: "why1" },
           { text: "Why not the others? **instead**: alone it ends a sentence: I had coffee instead. **except**: except = not including.", cue: "why2" },
           { text: "The rule: instead of + noun or -ing; rather than + bare verb.", cue: "why-r1" },
         ],

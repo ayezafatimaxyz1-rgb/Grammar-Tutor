@@ -86,7 +86,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence The film starts with a gap Monday., then the candidates with pictures: on (right: days take on); upon (wrong: upon is never used for days); at (wrong: at is for clock times). Rule: upon: depend upon, upon arrival (formal); days: on Monday.",
       say: [
-        { text: "Fill the gap: The film starts \u2026 Monday. The answer is **on**: days take on.", cue: "why1" },
+        { text: "Fill the gap: The film starts \u2026 Monday. What does the sentence want to say? The answer is **on**: days take on.", cue: "why1" },
         { text: "Why not the others? **upon**: upon is never used for days. **at**: at is for clock times.", cue: "why2" },
         { text: "The rule: upon: depend upon, upon arrival (formal); days: on Monday.", cue: "why-r1" },
       ],

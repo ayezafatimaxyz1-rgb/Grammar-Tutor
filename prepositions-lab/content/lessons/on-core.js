@@ -283,15 +283,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence The picture is with a gap the wall., then the candidates with pictures: on (right: touching the wall's surface); in (wrong: would be inside the wall); at (wrong: at = a point near it, not touching); above (wrong: higher, with a gap, not touching). Rule: on = touching a surface, even a wall or a ceiling; in = inside \u00b7 above = higher, no contact.",
+      alt: "The sentence The picture is with a gap the wall., then the candidates with pictures: on (right: touching the wall's surface); in (correct English but a different meaning: built into the wall, like a safe); at (wrong: at = a point near it, not touching); above (correct English but a different meaning: higher than the wall, not hanging on it). Rule: on = touching a surface, even a wall or a ceiling; in = inside \u00b7 above = higher, no contact.",
       say: [
-        { text: "Fill the gap: The picture is \u2026 the wall. The answer is **on**: touching the wall's surface.", cue: "why1" },
-        { text: "Why not the others? **in**: would be inside the wall. **at**: at = a point near it, not touching. **above**: higher, with a gap, not touching.", cue: "why2" },
+        { text: "Fill the gap: The picture is \u2026 the wall. What does the sentence want to say? The answer is **on**: touching the wall's surface.", cue: "why1" },
+        { text: "Why not the others? **in** is correct English, but it would mean built into the wall, like a safe. That is not what this sentence says. **above** is correct English, but it would mean higher than the wall, not hanging on it. That is not what this sentence says. **at**: at = a point near it, not touching.", cue: "why2" },
         { text: "The rule: on = touching a surface, even a wall or a ceiling; in = inside \u00b7 above = higher, no contact.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The picture is ____ the wall.", [[[["wall", -30, 0], ["doc", 20, 0, 0.6]], "on", true, "touching the wall's | surface"], ["inDrawer", "in", false, "would be inside | the wall"], ["reachDot", "at", false, "at = a point near it, | not touching"], ["floatAbove", "above", false, "higher, with a gap, | not touching"]], ["on = touching a surface, even a wall or a ceiling", "in = inside \u00b7 above = higher, no contact"]),
+        ...PLAB.kit.lineup("why", "The picture is ____ the wall.", [[[["wall", -30, 0], ["doc", 20, 0, 0.6]], "on", true, "touching the wall's | surface"], ["inDrawer", "in", "diff", "built into the wall, | like a safe"], ["reachDot", "at", false, "at = a point near it, | not touching"], ["floatAbove", "above", "diff", "higher than the wall, | not hanging on it"]], ["on = touching a surface, even a wall or a ceiling", "in = inside \u00b7 above = higher, no contact"]),
       ],
     },
     {

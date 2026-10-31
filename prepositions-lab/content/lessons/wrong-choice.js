@@ -72,7 +72,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She is married with a gap a doctor., then the candidates with pictures: to (right: be married to someone); with (wrong: with = together, not the bond of marriage); by (wrong: by = who performed it). Rule: married to \u00b7 angry with \u00b7 afraid of; consist of \u00b7 for two years.",
         say: [
-          { text: "Fill the gap: She is married \u2026 a doctor. The answer is **to**: be married to someone.", cue: "why1" },
+          { text: "Fill the gap: She is married \u2026 a doctor. What does the sentence want to say? The answer is **to**: be married to someone.", cue: "why1" },
           { text: "Why not the others? **with**: with = together, not the bond of marriage. **by**: by = who performed it.", cue: "why2" },
           { text: "The rule: married to \u00b7 angry with \u00b7 afraid of; consist of \u00b7 for two years.", cue: "why-r1" },
         ],

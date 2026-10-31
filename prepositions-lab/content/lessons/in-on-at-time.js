@@ -155,7 +155,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence The meeting is with a gap Monday., then the candidates with pictures: on (right: one named day); in (wrong: in is for longer stretches: in June); at (wrong: at is for clock times: at 9 a.m.). Rule: in June \u00b7 on Monday \u00b7 at 9 a.m.; stretch \u00b7 day \u00b7 point.",
       say: [
-        { text: "Fill the gap: The meeting is \u2026 Monday. The answer is **on**: one named day.", cue: "why1" },
+        { text: "Fill the gap: The meeting is \u2026 Monday. What does the sentence want to say? The answer is **on**: one named day.", cue: "why1" },
         { text: "Why not the others? **in**: in is for longer stretches: in June. **at**: at is for clock times: at 9 a.m..", cue: "why2" },
         { text: "The rule: in June \u00b7 on Monday \u00b7 at 9 a.m.; stretch \u00b7 day \u00b7 point.", cue: "why-r1" },
       ],

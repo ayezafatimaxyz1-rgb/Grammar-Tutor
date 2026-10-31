@@ -69,7 +69,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence There is a growing demand with a gap electricity., then the candidates with pictures: for (right: reaching for a target); of (wrong: of = belonging; demand is not part of electricity); to (wrong: to = arriving; demand is reaching for it). Rule: a demand for, a need for, respect for; the verbs take none: demand it.",
         say: [
-          { text: "Fill the gap: There is a growing demand \u2026 electricity. The answer is **for**: reaching for a target.", cue: "why1" },
+          { text: "Fill the gap: There is a growing demand \u2026 electricity. What does the sentence want to say? The answer is **for**: reaching for a target.", cue: "why1" },
           { text: "Why not the others? **of**: of = belonging; demand is not part of electricity. **to**: to = arriving; demand is reaching for it.", cue: "why2" },
           { text: "The rule: a demand for, a need for, respect for; the verbs take none: demand it.", cue: "why-r1" },
         ],

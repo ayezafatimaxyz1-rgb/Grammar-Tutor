@@ -178,7 +178,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence The photo is with a gap page 12., then the candidates with pictures: on (right: a page is a surface); in (wrong: in is for what the picture contains); at (wrong: at is a point, not a page). Rule: on a page, on a screen (a surface); in the photo, in the report (contents).",
       say: [
-        { text: "Fill the gap: The photo is \u2026 page 12. The answer is **on**: a page is a surface.", cue: "why1" },
+        { text: "Fill the gap: The photo is \u2026 page 12. What does the sentence want to say? The answer is **on**: a page is a surface.", cue: "why1" },
         { text: "Why not the others? **in**: in is for what the picture contains. **at**: at is a point, not a page.", cue: "why2" },
         { text: "The rule: on a page, on a screen (a surface); in the photo, in the report (contents).", cue: "why-r1" },
       ],

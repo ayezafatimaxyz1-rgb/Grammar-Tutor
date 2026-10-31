@@ -55,15 +55,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence Everyone came with a gap Ali., then the candidates with pictures: except (right: Ali is left out); besides (wrong: adds Ali: he came too); without (wrong: = not with Ali, he stayed behind). Rule: except = not including; besides = in addition to.",
+        alt: "The sentence Everyone came with a gap Ali., then the candidates with pictures: except (right: Ali is left out); besides (correct English but a different meaning: Ali came too); without (correct English but a different meaning: they came, leaving Ali behind). Rule: except = not including; besides = in addition to.",
         say: [
-          { text: "Fill the gap: Everyone came \u2026 Ali. The answer is **except**: Ali is left out.", cue: "why1" },
-          { text: "Why not the others? **besides**: adds Ali: he came too. **without**: = not with Ali, he stayed behind.", cue: "why2" },
+          { text: "Fill the gap: Everyone came \u2026 Ali. What does the sentence want to say? The answer is **except**: Ali is left out.", cue: "why1" },
+          { text: "Why not the others? **besides** is correct English, but it would mean Ali came too. That is not what this sentence says. **without** is correct English, but it would mean they came, leaving Ali behind. That is not what this sentence says.", cue: "why2" },
           { text: "The rule: except = not including; besides = in addition to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Everyone came ____ Ali.", [["groupOut", "except", true, "Ali is left out"], ["plus", "besides", false, "adds Ali: | he came too"], ["personLeft", "without", false, "= not with Ali, | he stayed behind"]], ["except = not including", "besides = in addition to"]),
+          ...PLAB.kit.lineup("why", "Everyone came ____ Ali.", [["groupOut", "except", true, "Ali is left out"], ["plus", "besides", "diff", "Ali came too"], ["personLeft", "without", "diff", "they came, leaving | Ali behind"]], ["except = not including", "besides = in addition to"]),
         ],
       },
       {

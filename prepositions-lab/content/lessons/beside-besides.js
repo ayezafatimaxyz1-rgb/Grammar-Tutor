@@ -132,7 +132,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence She stood with a gap the tree., then the candidates with pictures: beside (right: at its side); besides (wrong: = in addition to); next (wrong: next needs to: next to the tree). Rule: beside = at the side of; besides = in addition to, apart from.",
       say: [
-        { text: "Fill the gap: She stood \u2026 the tree. The answer is **beside**: at its side.", cue: "why1" },
+        { text: "Fill the gap: She stood \u2026 the tree. What does the sentence want to say? The answer is **beside**: at its side.", cue: "why1" },
         { text: "Why not the others? **besides**: = in addition to. **next**: next needs to: next to the tree.", cue: "why2" },
         { text: "The rule: beside = at the side of; besides = in addition to, apart from.", cue: "why-r1" },
       ],

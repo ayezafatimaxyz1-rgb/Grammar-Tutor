@@ -144,15 +144,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence We drove with a gap Lahore and arrived at noon., then the candidates with pictures: to (right: the destination we reached); towards (wrong: only the direction; we might not arrive); into (wrong: into = inside a container); at (wrong: at needs arrive: arrived at). Rule: to = destination reached; towards = direction only.",
+      alt: "The sentence We drove with a gap Lahore and arrived at noon., then the candidates with pictures: to (right: the destination we reached); towards (correct English but a different meaning: only the direction; clashes with arrived); into (correct English but a different meaning: entered the city: a different focus); at (wrong: at needs arrive: arrived at). Rule: to = destination reached; towards = direction only.",
       say: [
-        { text: "Fill the gap: We drove \u2026 Lahore and arrived at noon. The answer is **to**: the destination we reached.", cue: "why1" },
-        { text: "Why not the others? **towards**: only the direction; we might not arrive. **into**: into = inside a container. **at**: at needs arrive: arrived at.", cue: "why2" },
+        { text: "Fill the gap: We drove \u2026 Lahore and arrived at noon. What does the sentence want to say? The answer is **to**: the destination we reached.", cue: "why1" },
+        { text: "Why not the others? **towards** is correct English, but it would mean only the direction; clashes with arrived. That is not what this sentence says. **into** is correct English, but it would mean entered the city: a different focus. That is not what this sentence says. **at**: at needs arrive: arrived at.", cue: "why2" },
         { text: "The rule: to = destination reached; towards = direction only.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "We drove ____ Lahore and arrived at noon.", [["goHome", "to", true, "the destination | we reached"], ["arrowR", "towards", false, "only the direction; | we might not arrive"], ["intoBag", "into", false, "into = inside a | container"], ["reachDot", "at", false, "at needs arrive: | arrived at"]], ["to = destination reached", "towards = direction only"]),
+        ...PLAB.kit.lineup("why", "We drove ____ Lahore and arrived at noon.", [["goHome", "to", true, "the destination | we reached"], ["arrowR", "towards", "diff", "only the direction; | clashes with arrived"], ["intoBag", "into", "diff", "entered the city: | a different focus"], ["reachDot", "at", false, "at needs arrive: | arrived at"]], ["to = destination reached", "towards = direction only"]),
       ],
     },
     {

@@ -75,7 +75,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence I have lived here with a gap ten years., then the candidates with pictures: for (right: the length of the stretch); since (wrong: since needs a starting point); from (wrong: from needs an end: from 2015 to 2025); during (wrong: during = when, not how long). Rule: for + a length \u00b7 since + a starting point; during + a period (when).",
         say: [
-          { text: "Fill the gap: I have lived here \u2026 ten years. The answer is **for**: the length of the stretch.", cue: "why1" },
+          { text: "Fill the gap: I have lived here \u2026 ten years. What does the sentence want to say? The answer is **for**: the length of the stretch.", cue: "why1" },
           { text: "Why not the others? **since**: since needs a starting point. **from**: from needs an end: from 2015 to 2025. **during**: during = when, not how long.", cue: "why2" },
           { text: "The rule: for + a length \u00b7 since + a starting point; during + a period (when).", cue: "why-r1" },
         ],

@@ -52,15 +52,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence The cup is with a gap the pile of books., then the candidates with pictures: on top of (right: on the highest surface); above (wrong: higher, not touching); over (wrong: covering or crossing it). Rule: on top of = on the highest surface; on top of that = in addition (informal).",
+      alt: "The sentence The cup is with a gap the pile of books., then the candidates with pictures: on top of (right: on the highest surface); above (correct English but a different meaning: higher, not touching); over (correct English but a different meaning: covering the pile). Rule: on top of = on the highest surface; on top of that = in addition (informal).",
       say: [
-        { text: "Fill the gap: The cup is \u2026 the pile of books. The answer is **on top of**: on the highest surface.", cue: "why1" },
-        { text: "Why not the others? **above**: higher, not touching. **over**: covering or crossing it.", cue: "why2" },
+        { text: "Fill the gap: The cup is \u2026 the pile of books. What does the sentence want to say? The answer is **on top of**: on the highest surface.", cue: "why1" },
+        { text: "Why not the others? **above** is correct English, but it would mean higher, not touching. That is not what this sentence says. **over** is correct English, but it would mean covering the pile. That is not what this sentence says.", cue: "why2" },
         { text: "The rule: on top of = on the highest surface; on top of that = in addition (informal).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The cup is ____ the pile of books.", [["onTopPile", "on top of", true, "on the highest | surface"], ["floatAbove", "above", false, "higher, | not touching"], ["overRock", "over", false, "covering or | crossing it"]], ["on top of = on the highest surface", "on top of that = in addition (informal)"]),
+        ...PLAB.kit.lineup("why", "The cup is ____ the pile of books.", [["onTopPile", "on top of", true, "on the highest | surface"], ["floatAbove", "above", "diff", "higher, | not touching"], ["overRock", "over", "diff", "covering | the pile"]], ["on top of = on the highest surface", "on top of that = in addition (informal)"]),
       ],
     },
     {

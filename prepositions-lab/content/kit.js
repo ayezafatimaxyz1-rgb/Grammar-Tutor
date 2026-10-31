@@ -119,8 +119,8 @@ PLAB.kit = {
   },
 
   // "Why this one and not the others?": a sentence with a gap, then every likely candidate with
-  // a picture of what it would mean, a tick or a cross, and a short reason ("|" breaks the line).
-  // Each option: [picSpec, word, ok, reason].
+  // a picture of what it would mean, a mark and a short reason ("|" breaks the line).
+  // Each option: [picSpec, word, ok, reason]; for ok "diff" the reason is the other meaning.
   lineup(prefix, sentence, options, rules = [], source) {
     const n = options.length;
     const centres = n === 2 ? [250, 710] : n === 3 ? [165, 480, 795] : [120, 360, 600, 840];
@@ -140,11 +140,16 @@ PLAB.kit = {
       const id = `${prefix}${i + 1}`;
       const cx = centres[i];
       out.push(...PLAB.kit.pic(`${id}p`, spec, cx - 63, 96, 0.9, { gap: i ? 450 : 500 }));
-      out.push({ do: "write", id, text: `${ok ? "✓" : "✗"} ${word}`, x: cx, y: 222, size: 34, anchor: "middle", ink: ok ? "accent2" : "trouble", fit, gap: 150 });
+      // ok: true (fits), false (not used), or "diff" (correct English, but a different meaning).
+      const mark = ok === "diff" ? "≈" : ok ? "✓" : "✗";
+      const inkOf = ok === "diff" ? "accent" : ok ? "accent2" : "trouble";
+      out.push({ do: "write", id, text: `${mark} ${word}`, x: cx, y: 222, size: 34, anchor: "middle", ink: inkOf, fit, gap: 150 });
       String(reason).split("|").forEach((line, j) => {
         out.push({ do: "write", id: `${id}s${j || ""}`, text: line.trim(), x: cx, y: 262 + j * 30, size: 22, ink: "muted", anchor: "middle", fit, gap: j ? 0 : 120 });
       });
     });
+    if (options.some((o) => o[2] === "diff"))
+      out.push({ do: "write", id: `${prefix}-key`, text: "✓ fits this sentence · ≈ correct English, different meaning · ✗ not used", x: 480, y: 345, size: 20, ink: "muted", anchor: "middle", gap: 300 });
     rules.forEach((r, i) => {
       out.push({ do: "write", id: `${prefix}-r${i + 1}`, text: r, x: 480, y: 400 + i * 56, size: 28, ink: "accent", anchor: "middle", gap: i ? 300 : 500 });
     });

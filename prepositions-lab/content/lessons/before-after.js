@@ -74,7 +74,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap to the meeting, the minister met reporters., then the candidates with pictures: Prior (right: prior always takes to); Before (wrong: before takes no to: before the meeting); Subsequent (wrong: = after, the opposite). Rule: prior to = before (formal); subsequent to = after (formal).",
         say: [
-          { text: "Fill the gap: \u2026 to the meeting, the minister met reporters. The answer is **Prior**: prior always takes to.", cue: "why1" },
+          { text: "Fill the gap: \u2026 to the meeting, the minister met reporters. What does the sentence want to say? The answer is **Prior**: prior always takes to.", cue: "why1" },
           { text: "Why not the others? **Before**: before takes no to: before the meeting. **Subsequent**: = after, the opposite.", cue: "why2" },
           { text: "The rule: prior to = before (formal); subsequent to = after (formal).", cue: "why-r1" },
         ],

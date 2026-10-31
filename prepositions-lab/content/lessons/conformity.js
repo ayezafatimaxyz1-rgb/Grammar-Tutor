@@ -56,7 +56,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap the report, poverty has fallen., then the candidates with pictures: According to (right: what a source says); In accordance with (wrong: = following a rule); According (wrong: needs to: it points to the source). Rule: according to + a source; in accordance with + a rule.",
         say: [
-          { text: "Fill the gap: \u2026 the report, poverty has fallen. The answer is **According to**: what a source says.", cue: "why1" },
+          { text: "Fill the gap: \u2026 the report, poverty has fallen. What does the sentence want to say? The answer is **According to**: what a source says.", cue: "why1" },
           { text: "Why not the others? **In accordance with**: = following a rule. **According**: needs to: it points to the source.", cue: "why2" },
           { text: "The rule: according to + a source; in accordance with + a rule.", cue: "why-r1" },
         ],

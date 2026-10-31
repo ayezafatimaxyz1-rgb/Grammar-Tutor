@@ -69,15 +69,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence The poet compared her smile with a gap the sun., then the candidates with pictures: to (right: says one is like the other); with (wrong: examining both, like an analyst); from (wrong: from = apart: distinguish from). Rule: compare to = liken; compare with = examine side by side.",
+        alt: "The sentence The poet compared her smile with a gap the sun., then the candidates with pictures: to (right: says one is like the other); with (correct English but a different meaning: examining both, like an analyst); from (wrong: from = apart: distinguish from). Rule: compare to = liken; compare with = examine side by side.",
         say: [
-          { text: "Fill the gap: The poet compared her smile \u2026 the sun. The answer is **to**: says one is like the other.", cue: "why1" },
-          { text: "Why not the others? **with**: examining both, like an analyst. **from**: from = apart: distinguish from.", cue: "why2" },
+          { text: "Fill the gap: The poet compared her smile \u2026 the sun. What does the sentence want to say? The answer is **to**: says one is like the other.", cue: "why1" },
+          { text: "Why not the others? **with** is correct English, but it would mean examining both, like an analyst. That is not what this sentence says. **from**: from = apart: distinguish from.", cue: "why2" },
           { text: "The rule: compare to = liken; compare with = examine side by side.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The poet compared her smile ____ the sun.", [["likenTo", "to", true, "says one is | like the other"], ["sideBySide", "with", false, "examining both, | like an analyst"], ["origin", "from", false, "from = apart: | distinguish from"]], ["compare to = liken", "compare with = examine side by side"]),
+          ...PLAB.kit.lineup("why", "The poet compared her smile ____ the sun.", [["likenTo", "to", true, "says one is | like the other"], ["sideBySide", "with", "diff", "examining both, | like an analyst"], ["origin", "from", false, "from = apart: | distinguish from"]], ["compare to = liken", "compare with = examine side by side"]),
         ],
       },
       {

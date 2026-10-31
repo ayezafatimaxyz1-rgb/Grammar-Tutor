@@ -55,7 +55,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence What was the reason with a gap the delay?, then the candidates with pictures: for (right: the reason given for it); of (wrong: of goes with cause: cause of); to (wrong: to + a verb only: no reason to worry). Rule: the reason for \u00b7 the cause of; the solution to \u00b7 the key to.",
         say: [
-          { text: "Fill the gap: What was the reason \u2026 the delay? The answer is **for**: the reason given for it.", cue: "why1" },
+          { text: "Fill the gap: What was the reason \u2026 the delay? What does the sentence want to say? The answer is **for**: the reason given for it.", cue: "why1" },
           { text: "Why not the others? **of**: of goes with cause: cause of. **to**: to + a verb only: no reason to worry.", cue: "why2" },
           { text: "The rule: the reason for \u00b7 the cause of; the solution to \u00b7 the key to.", cue: "why-r1" },
         ],

@@ -114,7 +114,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence She walked with a gap the bank., then the candidates with pictures: past (right: beside it and beyond it); passed (wrong: a verb; walked is already the verb); through (wrong: into it and out again). Rule: walked past (preposition); passed it (verb).",
       say: [
-        { text: "Fill the gap: She walked \u2026 the bank. The answer is **past**: beside it and beyond it.", cue: "why1" },
+        { text: "Fill the gap: She walked \u2026 the bank. What does the sentence want to say? The answer is **past**: beside it and beyond it.", cue: "why1" },
         { text: "Why not the others? **passed**: a verb; walked is already the verb. **through**: into it and out again.", cue: "why2" },
         { text: "The rule: walked past (preposition); passed it (verb).", cue: "why-r1" },
       ],

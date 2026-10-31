@@ -160,15 +160,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence The ball rolled with a gap the box., then the candidates with pictures: into (right: movement that ends inside); in (wrong: in = already inside, moving about); onto (wrong: ends on top, not inside); to (wrong: to stops at the box, not inside it). Rule: into = moving from outside to inside; in = already inside \u00b7 onto = ending on top.",
+      alt: "The sentence The ball rolled with a gap the box., then the candidates with pictures: into (right: movement that ends inside); in (correct English but a different meaning: already inside, rolling about); onto (correct English but a different meaning: ended on top of the box); to (correct English but a different meaning: stopped beside it, not inside). Rule: into = moving from outside to inside; in = already inside \u00b7 onto = ending on top.",
       say: [
-        { text: "Fill the gap: The ball rolled \u2026 the box. The answer is **into**: movement that ends inside.", cue: "why1" },
-        { text: "Why not the others? **in**: in = already inside, moving about. **onto**: ends on top, not inside. **to**: to stops at the box, not inside it.", cue: "why2" },
+        { text: "Fill the gap: The ball rolled \u2026 the box. What does the sentence want to say? The answer is **into**: movement that ends inside.", cue: "why1" },
+        { text: "Why not the others? **in** is correct English, but it would mean already inside, rolling about. That is not what this sentence says. **onto** is correct English, but it would mean ended on top of the box. That is not what this sentence says. **to** is correct English, but it would mean stopped beside it, not inside. That is not what this sentence says.", cue: "why2" },
         { text: "The rule: into = moving from outside to inside; in = already inside \u00b7 onto = ending on top.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The ball rolled ____ the box.", [["intoBag", "into", true, "movement that ends | inside"], ["loop", "in", false, "in = already inside, | moving about"], ["cupOnTable", "onto", false, "ends on top, | not inside"], ["reachDot", "to", false, "to stops at the box, | not inside it"]], ["into = moving from outside to inside", "in = already inside \u00b7 onto = ending on top"]),
+        ...PLAB.kit.lineup("why", "The ball rolled ____ the box.", [["intoBag", "into", true, "movement that ends | inside"], ["loop", "in", "diff", "already inside, | rolling about"], ["cupOnTable", "onto", "diff", "ended on top | of the box"], ["reachDot", "to", "diff", "stopped beside it, | not inside"]], ["into = moving from outside to inside", "in = already inside \u00b7 onto = ending on top"]),
       ],
     },
     {

@@ -59,7 +59,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence This knife is with a gap cutting bread., then the candidates with pictures: for (right: purpose + -ing); to (wrong: to + verb: to cut bread); with (wrong: with names the tool, not the aim). Rule: for + -ing or noun = purpose; to + verb = purpose: went to buy.",
         say: [
-          { text: "Fill the gap: This knife is \u2026 cutting bread. The answer is **for**: purpose + -ing.", cue: "why1" },
+          { text: "Fill the gap: This knife is \u2026 cutting bread. What does the sentence want to say? The answer is **for**: purpose + -ing.", cue: "why1" },
           { text: "Why not the others? **to**: to + verb: to cut bread. **with**: with names the tool, not the aim.", cue: "why2" },
           { text: "The rule: for + -ing or noun = purpose; to + verb = purpose: went to buy.", cue: "why-r1" },
         ],

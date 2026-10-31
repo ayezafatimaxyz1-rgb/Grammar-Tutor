@@ -152,7 +152,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence She got with a gap the bus., then the candidates with pictures: off (right: a bus is a platform you step off); out of (wrong: out of is for cars and taxis); from (wrong: from names a start, not stepping down); off of (wrong: of is extra (informal)). Rule: get off a bus, train, plane; get out of a car, taxi.",
       say: [
-        { text: "Fill the gap: She got \u2026 the bus. The answer is **off**: a bus is a platform you step off.", cue: "why1" },
+        { text: "Fill the gap: She got \u2026 the bus. What does the sentence want to say? The answer is **off**: a bus is a platform you step off.", cue: "why1" },
         { text: "Why not the others? **out of**: out of is for cars and taxis. **from**: from names a start, not stepping down. **off of**: of is extra (informal).", cue: "why2" },
         { text: "The rule: get off a bus, train, plane; get out of a car, taxi.", cue: "why-r1" },
       ],

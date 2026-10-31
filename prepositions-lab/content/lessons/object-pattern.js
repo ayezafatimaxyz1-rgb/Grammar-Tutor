@@ -72,7 +72,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence They accused him with a gap theft., then the candidates with pictures: of (right: accuse someone of a wrong); for (wrong: for goes with blame); with (wrong: with goes with charge). Rule: accuse of \u00b7 blame for \u00b7 charge with; prevent from \u00b7 congratulate on.",
         say: [
-          { text: "Fill the gap: They accused him \u2026 theft. The answer is **of**: accuse someone of a wrong.", cue: "why1" },
+          { text: "Fill the gap: They accused him \u2026 theft. What does the sentence want to say? The answer is **of**: accuse someone of a wrong.", cue: "why1" },
           { text: "Why not the others? **for**: for goes with blame. **with**: with goes with charge.", cue: "why2" },
           { text: "The rule: accuse of \u00b7 blame for \u00b7 charge with; prevent from \u00b7 congratulate on.", cue: "why-r1" },
         ],

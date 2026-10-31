@@ -69,15 +69,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence The old car is with a gap repair., then the candidates with pictures: beyond (right: past the point of fixing); under (wrong: under repair = being fixed now); out of (wrong: out of repair is not used). Rule: beyond repair = cannot be fixed; under repair = being fixed.",
+      alt: "The sentence The old car is with a gap repair., then the candidates with pictures: beyond (right: past the point of fixing); under (correct English but a different meaning: being fixed now); out of (wrong: out of repair is not used). Rule: beyond repair = cannot be fixed; under repair = being fixed.",
       say: [
-        { text: "Fill the gap: The old car is \u2026 repair. The answer is **beyond**: past the point of fixing.", cue: "why1" },
-        { text: "Why not the others? **under**: under repair = being fixed now. **out of**: out of repair is not used.", cue: "why2" },
+        { text: "Fill the gap: The old car is \u2026 repair. What does the sentence want to say? The answer is **beyond**: past the point of fixing.", cue: "why1" },
+        { text: "Why not the others? **under** is correct English, but it would mean being fixed now. That is not what this sentence says. **out of**: out of repair is not used.", cue: "why2" },
         { text: "The rule: beyond repair = cannot be fixed; under repair = being fixed.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The old car is ____ repair.", [["groupOut", "beyond", true, "past the point of | fixing"], ["review", "under", false, "under repair = | being fixed now"], ["cross", "out of", false, "out of repair | is not used"]], ["beyond repair = cannot be fixed", "under repair = being fixed"]),
+        ...PLAB.kit.lineup("why", "The old car is ____ repair.", [["groupOut", "beyond", true, "past the point of | fixing"], ["review", "under", "diff", "being fixed | now"], ["cross", "out of", false, "out of repair | is not used"]], ["beyond repair = cannot be fixed", "under repair = being fixed"]),
       ],
     },
     {

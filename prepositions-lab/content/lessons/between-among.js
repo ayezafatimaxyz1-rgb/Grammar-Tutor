@@ -146,7 +146,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence The ball is with a gap the two trees., then the candidates with pictures: between (right: two separate points); among (wrong: among needs a group around it); amid (wrong: amid = in the middle of a situation). Rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.",
       say: [
-        { text: "Fill the gap: The ball is \u2026 the two trees. The answer is **between**: two separate points.", cue: "why1" },
+        { text: "Fill the gap: The ball is \u2026 the two trees. What does the sentence want to say? The answer is **between**: two separate points.", cue: "why1" },
         { text: "Why not the others? **among**: among needs a group around it. **amid**: amid = in the middle of a situation.", cue: "why2" },
         { text: "The rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.", cue: "why-r1" },
       ],

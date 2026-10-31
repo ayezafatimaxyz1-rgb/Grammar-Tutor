@@ -131,15 +131,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence The car is parked with a gap the house., then the candidates with pictures: in front of (right: same side, at its front); opposite (wrong: across the road, facing it); before (wrong: before is for time, or formal: before a court); ahead of (wrong: further along a road or a race). Rule: in front of = same side; opposite = across \u00b7 before = time (or formal).",
+      alt: "The sentence The car is parked with a gap the house., then the candidates with pictures: in front of (right: same side, at its front); opposite (correct English but a different meaning: across the road, facing it); before (wrong: before is for time, or formal: before a court); ahead of (correct English but a different meaning: further along the road). Rule: in front of = same side; opposite = across \u00b7 before = time (or formal).",
       say: [
-        { text: "Fill the gap: The car is parked \u2026 the house. The answer is **in front of**: same side, at its front.", cue: "why1" },
-        { text: "Why not the others? **opposite**: across the road, facing it. **before**: before is for time, or formal: before a court. **ahead of**: further along a road or a race.", cue: "why2" },
+        { text: "Fill the gap: The car is parked \u2026 the house. What does the sentence want to say? The answer is **in front of**: same side, at its front.", cue: "why1" },
+        { text: "Why not the others? **opposite** is correct English, but it would mean across the road, facing it. That is not what this sentence says. **ahead of** is correct English, but it would mean further along the road. That is not what this sentence says. **before**: before is for time, or formal: before a court.", cue: "why2" },
         { text: "The rule: in front of = same side; opposite = across \u00b7 before = time (or formal).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The car is parked ____ the house.", [["nearSchool", "in front of", true, "same side, at | its front"], ["acrossRoad", "opposite", false, "across the road, | facing it"], ["priorDot", "before", false, "before is for time, | or formal: before a court"], ["wordsMove", "ahead of", false, "further along a | road or a race"]], ["in front of = same side", "opposite = across \u00b7 before = time (or formal)"]),
+        ...PLAB.kit.lineup("why", "The car is parked ____ the house.", [["nearSchool", "in front of", true, "same side, at | its front"], ["acrossRoad", "opposite", "diff", "across the road, | facing it"], ["priorDot", "before", false, "before is for time, | or formal: before a court"], ["wordsMove", "ahead of", "diff", "further along | the road"]], ["in front of = same side", "opposite = across \u00b7 before = time (or formal)"]),
       ],
     },
     {

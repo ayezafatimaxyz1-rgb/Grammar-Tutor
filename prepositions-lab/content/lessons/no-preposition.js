@@ -74,7 +74,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence We discussed with a gap the issue., then the candidates with pictures: (no word) (right: discuss already means talk about); about (wrong: says about twice); on (wrong: discuss takes no preposition). Rule: discuss, reach, enter, marry: no preposition; the nouns keep it: a discussion about.",
         say: [
-          { text: "Fill the gap: We discussed \u2026 the issue. The answer is **(no word)**: discuss already means talk about.", cue: "why1" },
+          { text: "Fill the gap: We discussed \u2026 the issue. What does the sentence want to say? The answer is **(no word)**: discuss already means talk about.", cue: "why1" },
           { text: "Why not the others? **about**: says about twice. **on**: discuss takes no preposition.", cue: "why2" },
           { text: "The rule: discuss, reach, enter, marry: no preposition; the nouns keep it: a discussion about.", cue: "why-r1" },
         ],

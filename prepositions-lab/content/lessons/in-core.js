@@ -463,7 +463,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence Sara lives with a gap Lahore., then the candidates with pictures: in (right: an area she is inside); at (wrong: shrinks Lahore to a dot on a route); on (wrong: on top of the city, like a lid); to (wrong: to is movement; living is not). Rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.",
       say: [
-        { text: "Fill the gap: Sara lives \u2026 Lahore. The answer is **in**: an area she is inside.", cue: "why1" },
+        { text: "Fill the gap: Sara lives \u2026 Lahore. What does the sentence want to say? The answer is **in**: an area she is inside.", cue: "why1" },
         { text: "Why not the others? **at**: shrinks Lahore to a dot on a route. **on**: on top of the city, like a lid. **to**: to is movement; living is not.", cue: "why2" },
         { text: "The rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.", cue: "why-r1" },
       ],

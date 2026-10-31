@@ -114,7 +114,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence We live with a gap the school., then the candidates with pictures: near (right: a short distance from it); nearby (wrong: nearby takes no object); next (wrong: next needs to: next to the school). Rule: near the school \u00b7 next to the school; a nearby shop \u00b7 we live nearby.",
       say: [
-        { text: "Fill the gap: We live \u2026 the school. The answer is **near**: a short distance from it.", cue: "why1" },
+        { text: "Fill the gap: We live \u2026 the school. What does the sentence want to say? The answer is **near**: a short distance from it.", cue: "why1" },
         { text: "Why not the others? **nearby**: nearby takes no object. **next**: next needs to: next to the school.", cue: "why2" },
         { text: "The rule: near the school \u00b7 next to the school; a nearby shop \u00b7 we live nearby.", cue: "why-r1" },
       ],

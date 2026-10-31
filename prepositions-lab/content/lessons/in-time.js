@@ -260,7 +260,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence My birthday is with a gap June., then the candidates with pictures: in (right: a month is a stretch you are inside); on (wrong: on is for one day: on 14 June); at (wrong: at is for a clock time: at 5 o'clock). Rule: in a month, year, season \u00b7 on a day; at a clock time.",
       say: [
-        { text: "Fill the gap: My birthday is \u2026 June. The answer is **in**: a month is a stretch you are inside.", cue: "why1" },
+        { text: "Fill the gap: My birthday is \u2026 June. What does the sentence want to say? The answer is **in**: a month is a stretch you are inside.", cue: "why1" },
         { text: "Why not the others? **on**: on is for one day: on 14 June. **at**: at is for a clock time: at 5 o'clock.", cue: "why2" },
         { text: "The rule: in a month, year, season \u00b7 on a day; at a clock time.", cue: "why-r1" },
       ],

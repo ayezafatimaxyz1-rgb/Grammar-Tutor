@@ -69,7 +69,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence The car was going 120 km with a gap hour., then the candidates with pictures: per (right: for each hour); in (wrong: in an hour = within one hour); by (wrong: by = a means or a change: rose by 10). Rule: per = for each; Rs 200 per kilo \u00b7 120 km per hour.",
         say: [
-          { text: "Fill the gap: The car was going 120 km \u2026 hour. The answer is **per**: for each hour.", cue: "why1" },
+          { text: "Fill the gap: The car was going 120 km \u2026 hour. What does the sentence want to say? The answer is **per**: for each hour.", cue: "why1" },
           { text: "Why not the others? **in**: in an hour = within one hour. **by**: by = a means or a change: rose by 10.", cue: "why2" },
           { text: "The rule: per = for each; Rs 200 per kilo \u00b7 120 km per hour.", cue: "why-r1" },
         ],

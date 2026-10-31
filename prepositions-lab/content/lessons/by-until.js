@@ -55,7 +55,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence Submit the form with a gap Friday., then the candidates with pictures: by (right: a deadline: no later than); until (wrong: until = keep doing it up to Friday); since (wrong: since looks back from now). Rule: by = a deadline for one action; until = a state that lasts up to then.",
         say: [
-          { text: "Fill the gap: Submit the form \u2026 Friday. The answer is **by**: a deadline: no later than.", cue: "why1" },
+          { text: "Fill the gap: Submit the form \u2026 Friday. What does the sentence want to say? The answer is **by**: a deadline: no later than.", cue: "why1" },
           { text: "Why not the others? **until**: until = keep doing it up to Friday. **since**: since looks back from now.", cue: "why2" },
           { text: "The rule: by = a deadline for one action; until = a state that lasts up to then.", cue: "why-r1" },
         ],

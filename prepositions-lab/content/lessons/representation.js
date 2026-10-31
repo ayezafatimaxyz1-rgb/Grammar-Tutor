@@ -54,15 +54,15 @@
       {
         id: "why-not",
         title: "Why this one and not the others?",
-        alt: "The sentence She spoke with a gap the government at the UN., then the candidates with pictures: on behalf of (right: as its representative); on the part of (wrong: = by: a mistake on the part of); in favour of (wrong: = supporting). Rule: on behalf of = representing; on the part of = by.",
+        alt: "The sentence She spoke with a gap the government at the UN., then the candidates with pictures: on behalf of (right: as its representative); on the part of (wrong: = by: a mistake on the part of); in favour of (correct English but a different meaning: speaking in support of it). Rule: on behalf of = representing; on the part of = by.",
         say: [
-          { text: "Fill the gap: She spoke \u2026 the government at the UN. The answer is **on behalf of**: as its representative.", cue: "why1" },
-          { text: "Why not the others? **on the part of**: = by: a mistake on the part of. **in favour of**: = supporting.", cue: "why2" },
+          { text: "Fill the gap: She spoke \u2026 the government at the UN. What does the sentence want to say? The answer is **on behalf of**: as its representative.", cue: "why1" },
+          { text: "Why not the others? **in favour of** is correct English, but it would mean speaking in support of it. That is not what this sentence says. **on the part of**: = by: a mistake on the part of.", cue: "why2" },
           { text: "The rule: on behalf of = representing; on the part of = by.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She spoke ____ the government at the UN.", [["speakFor", "on behalf of", true, "as its | representative"], ["blame", "on the part of", false, "= by: a mistake | on the part of"], ["scaleTip", "in favour of", false, "= supporting"]], ["on behalf of = representing", "on the part of = by"]),
+          ...PLAB.kit.lineup("why", "She spoke ____ the government at the UN.", [["speakFor", "on behalf of", true, "as its | representative"], ["blame", "on the part of", false, "= by: a mistake | on the part of"], ["scaleTip", "in favour of", "diff", "speaking in | support of it"]], ["on behalf of = representing", "on the part of = by"]),
         ],
       },
       {

@@ -70,7 +70,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence Peace is conducive with a gap economic growth., then the candidates with pictures: to (right: leading towards a result); for (wrong: for = a purpose; peace is not aimed at growth); with (wrong: with goes with commensurate). Rule: conducive to, averse to, tantamount to; contingent on \u00b7 commensurate with.",
         say: [
-          { text: "Fill the gap: Peace is conducive \u2026 economic growth. The answer is **to**: leading towards a result.", cue: "why1" },
+          { text: "Fill the gap: Peace is conducive \u2026 economic growth. What does the sentence want to say? The answer is **to**: leading towards a result.", cue: "why1" },
           { text: "Why not the others? **for**: for = a purpose; peace is not aimed at growth. **with**: with goes with commensurate.", cue: "why2" },
           { text: "The rule: conducive to, averse to, tantamount to; contingent on \u00b7 commensurate with.", cue: "why-r1" },
         ],

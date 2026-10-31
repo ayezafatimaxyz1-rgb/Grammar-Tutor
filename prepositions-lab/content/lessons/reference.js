@@ -40,7 +40,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence with a gap me, I agree with the plan., then the candidates with pictures: As for (right: turning to a new person); As to (wrong: as to = about: doubts as to whether); About (wrong: about me = a topic about me). Rule: as for = turning to someone new; as to = about.",
         say: [
-          { text: "Fill the gap: \u2026 me, I agree with the plan. The answer is **As for**: turning to a new person.", cue: "why1" },
+          { text: "Fill the gap: \u2026 me, I agree with the plan. What does the sentence want to say? The answer is **As for**: turning to a new person.", cue: "why1" },
           { text: "Why not the others? **As to**: as to = about: doubts as to whether. **About**: about me = a topic about me.", cue: "why2" },
           { text: "The rule: as for = turning to someone new; as to = about.", cue: "why-r1" },
         ],

@@ -73,7 +73,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She cut the bread with a gap a knife., then the candidates with pictures: with (right: a tool you hold); by (wrong: by + a means: by hand, by email); from (wrong: from = origin). Rule: with + a tool; by + a means (no article).",
         say: [
-          { text: "Fill the gap: She cut the bread \u2026 a knife. The answer is **with**: a tool you hold.", cue: "why1" },
+          { text: "Fill the gap: She cut the bread \u2026 a knife. What does the sentence want to say? The answer is **with**: a tool you hold.", cue: "why1" },
           { text: "Why not the others? **by**: by + a means: by hand, by email. **from**: from = origin.", cue: "why2" },
           { text: "The rule: with + a tool; by + a means (no article).", cue: "why-r1" },
         ],

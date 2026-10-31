@@ -73,7 +73,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence He broke the window with a gap purpose., then the candidates with pictures: on (right: on purpose = deliberately); by (wrong: by goes with accident, chance); with (wrong: with = a tool or company; purpose is neither). Rule: on purpose \u00b7 by accident \u00b7 by chance; at random \u00b7 at large \u00b7 on the whole.",
         say: [
-          { text: "Fill the gap: He broke the window \u2026 purpose. The answer is **on**: on purpose = deliberately.", cue: "why1" },
+          { text: "Fill the gap: He broke the window \u2026 purpose. What does the sentence want to say? The answer is **on**: on purpose = deliberately.", cue: "why1" },
           { text: "Why not the others? **by**: by goes with accident, chance. **with**: with = a tool or company; purpose is neither.", cue: "why2" },
           { text: "The rule: on purpose \u00b7 by accident \u00b7 by chance; at random \u00b7 at large \u00b7 on the whole.", cue: "why-r1" },
         ],

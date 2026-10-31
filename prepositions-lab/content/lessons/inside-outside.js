@@ -147,7 +147,7 @@ PLAB.registerLesson({
       title: "Why this one and not the others?",
       alt: "The sentence Please wait with a gap the office., then the candidates with pictures: outside (right: beyond its walls); out (wrong: out needs of: out of the office); outside of (wrong: of is informal (mostly AmE)). Rule: outside the office (formal); out of the office \u00b7 outside of (informal).",
       say: [
-        { text: "Fill the gap: Please wait \u2026 the office. The answer is **outside**: beyond its walls.", cue: "why1" },
+        { text: "Fill the gap: Please wait \u2026 the office. What does the sentence want to say? The answer is **outside**: beyond its walls.", cue: "why1" },
         { text: "Why not the others? **out**: out needs of: out of the office. **outside of**: of is informal (mostly AmE).", cue: "why2" },
         { text: "The rule: outside the office (formal); out of the office \u00b7 outside of (informal).", cue: "why-r1" },
       ],

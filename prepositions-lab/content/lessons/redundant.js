@@ -71,7 +71,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence We reached with a gap the station at six., then the candidates with pictures: (no word) (right: reach already means arrive at); at (wrong: says at twice); to (wrong: reach takes no preposition). Rule: reach, discuss, emphasise: no preposition; arrive at \u00b7 get to.",
         say: [
-          { text: "Fill the gap: We reached \u2026 the station at six. The answer is **(no word)**: reach already means arrive at.", cue: "why1" },
+          { text: "Fill the gap: We reached \u2026 the station at six. What does the sentence want to say? The answer is **(no word)**: reach already means arrive at.", cue: "why1" },
           { text: "Why not the others? **at**: says at twice. **to**: reach takes no preposition.", cue: "why2" },
           { text: "The rule: reach, discuss, emphasise: no preposition; arrive at \u00b7 get to.", cue: "why-r1" },
         ],

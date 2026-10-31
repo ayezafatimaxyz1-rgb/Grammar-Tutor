@@ -70,7 +70,7 @@
         title: "Why this one and not the others?",
         alt: "The sentence She is good with a gap mathematics., then the candidates with pictures: at (right: hitting the target); in (wrong: informal; in is for fields: proficient in); on (wrong: on = a topic: a book on maths). Rule: good at, bad at \u00b7 capable of; proficient in, experienced in.",
         say: [
-          { text: "Fill the gap: She is good \u2026 mathematics. The answer is **at**: hitting the target.", cue: "why1" },
+          { text: "Fill the gap: She is good \u2026 mathematics. What does the sentence want to say? The answer is **at**: hitting the target.", cue: "why1" },
           { text: "Why not the others? **in**: informal; in is for fields: proficient in. **on**: on = a topic: a book on maths.", cue: "why2" },
           { text: "The rule: good at, bad at \u00b7 capable of; proficient in, experienced in.", cue: "why-r1" },
         ],
