@@ -135,6 +135,28 @@
         ],
       },
       {
+        id: "suspect-build",
+        title: "suspect: how the meaning is built",
+        alt: "How suspect gets its meanings: suspect (think guilty) + of (a wrong someone is accused of) = think someone did a wrong",
+        say: [
+          { text: "Take **suspect** apart. On its own, suspect means think guilty. Add what each preposition conveys, and the meaning follows." },
+          { text: "**suspect** (think guilty) + **of** (a wrong someone is accused of) = think someone did a wrong: _He is suspected of theft._", cue: "e5b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5c"),
+          { do: "write", id: "e5bh", text: "suspect: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e5b1v", text: "suspect", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e5b1vm", text: "think guilty", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e5b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e5b1p", text: "of", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e5b1pm", text: "a wrong someone is accused of", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e5b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e5b1m", text: "think someone did a wrong", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e5b1x", text: "He is suspected of theft.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "suspect-why",
         title: "suspect: why this one?",
         alt: "The sentence He is suspected with a gap theft., then the candidates: of (fits: think someone did a wrong); for (not used: for goes with blame; suspect takes of); in (not used: in is inside; not used)",

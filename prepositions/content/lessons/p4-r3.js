@@ -52,6 +52,28 @@
         ],
       },
       {
+        id: "rob-build",
+        title: "rob: how the meaning is built",
+        alt: "How rob gets its meanings: rob (take by force) + of (something taken away) = take something from someone illegally",
+        say: [
+          { text: "Take **rob** apart. On its own, rob means take by force. Add what each preposition conveys, and the meaning follows." },
+          { text: "**rob** (take by force) + **of** (something taken away) = take something from someone illegally: _They robbed him of his wallet._", cue: "e2b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2c"),
+          { do: "write", id: "e2bh", text: "rob: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e2b1v", text: "rob", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e2b1vm", text: "take by force", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e2b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e2b1p", text: "of", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e2b1pm", text: "something taken away", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e2b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e2b1m", text: "take something from someone illegally", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e2b1x", text: "They robbed him of his wallet.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "rob-why",
         title: "rob: why this one?",
         alt: "The sentence They robbed him with a gap his wallet., then the candidates: of (fits: take something from someone illegally); from (not used: steal from, but rob someone of); with (not used: with = together; not used)",

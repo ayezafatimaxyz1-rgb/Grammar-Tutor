@@ -83,6 +83,28 @@
         ],
       },
       {
+        id: "search-build",
+        title: "search: how the meaning is built",
+        alt: "How search gets its meanings: search (look carefully) + for (aimed at something you want) = look for something lost or wanted",
+        say: [
+          { text: "Take **search** apart. On its own, search means look carefully. Add what each preposition conveys, and the meaning follows." },
+          { text: "**search** (look carefully) + **for** (aimed at something you want) = look for something lost or wanted: _The police searched for the missing boy._", cue: "e3b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3c"),
+          { do: "write", id: "e3bh", text: "search: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e3b1v", text: "search", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e3b1vm", text: "look carefully", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e3b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e3b1p", text: "for", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e3b1pm", text: "aimed at something you want", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e3b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e3b1m", text: "look for something lost or wanted", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e3b1x", text: "The police searched for the missing boy.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "search-why",
         title: "search: why this one?",
         alt: "The sentence The police searched with a gap the missing boy., then the candidates: for (fits: look for something lost or wanted); (no word) (correct English, different meaning: examined the boy's body and clothes); of (not used: of goes with in search of)",

@@ -25,6 +25,28 @@
         ],
       },
       {
+        id: "mourn-build",
+        title: "mourn: how the meaning is built",
+        alt: "How mourn gets its meanings: mourn (feel grief) + for (for someone's sake) = feel sorrow for someone who died",
+        say: [
+          { text: "Take **mourn** apart. On its own, mourn means feel grief. Add what each preposition conveys, and the meaning follows." },
+          { text: "**mourn** (feel grief) + **for** (for someone's sake) = feel sorrow for someone who died: _The nation mourned for its heroes._", cue: "e1b1v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1c"),
+          { do: "write", id: "e1bh", text: "mourn: how the meaning is built", x: 480, y: 66, size: 40, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1bhl", text: "the verb + what the preposition conveys = the meaning", x: 480, y: 106, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          { do: "write", id: "e1b1v", text: "mourn", x: 150, y: 320, size: 34, anchor: "middle", fit: 250, gap: 400 },
+          { do: "write", id: "e1b1vm", text: "feel grief", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
+          { do: "write", id: "e1b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e1b1p", text: "for", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
+          { do: "write", id: "e1b1pm", text: "for someone's sake", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e1b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
+          { do: "write", id: "e1b1m", text: "feel sorrow for someone who died", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
+          { do: "write", id: "e1b1x", text: "The nation mourned for its heroes.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
         id: "mourn-why",
         title: "mourn: why this one?",
         alt: "The sentence The nation mourned with a gap its heroes., then the candidates: for (fits: feel sorrow for someone who died); on (not used: on is resting; not used); about (not used: about is a topic; grief reaches for)",
