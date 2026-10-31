@@ -315,35 +315,40 @@
             id: "p4-i",
             title: "Letter I",
             lessons: [
-              L("p4-i-planned", "Words beginning with I"),
+              L("p4-i1", "I 1: identical \u2026 incapable", { status: "tested", lessonId: "p4-i1" }),
+              L("p4-i2", "I 2: inconsistent \u2026 inferior", { status: "tested", lessonId: "p4-i2" }),
+              L("p4-i3", "I 3: inform \u2026 interfere", { status: "tested", lessonId: "p4-i3" }),
+              L("p4-i4", "I 4: intrude \u2026 irrelevant", { status: "tested", lessonId: "p4-i4" }),
             ],
           },
           {
             id: "p4-j",
             title: "Letter J",
             lessons: [
-              L("p4-j-planned", "Words beginning with J"),
+              L("p4-j1", "J 1: jealous \u2026 judge", { status: "tested", lessonId: "p4-j1" }),
             ],
           },
           {
             id: "p4-k",
             title: "Letter K",
             lessons: [
-              L("p4-k-planned", "Words beginning with K"),
+              L("p4-k1", "K 1: keen \u2026 knowledge", { status: "tested", lessonId: "p4-k1" }),
             ],
           },
           {
             id: "p4-l",
             title: "Letter L",
             lessons: [
-              L("p4-l-planned", "Words beginning with L"),
+              L("p4-l1", "L 1: lack \u2026 live", { status: "tested", lessonId: "p4-l1" }),
+              L("p4-l2", "L 2: lose \u2026 loyal", { status: "tested", lessonId: "p4-l2" }),
             ],
           },
           {
             id: "p4-m",
             title: "Letter M",
             lessons: [
-              L("p4-m-planned", "Words beginning with M"),
+              L("p4-m1", "M 1: mad \u2026 modelled", { status: "tested", lessonId: "p4-m1" }),
+              L("p4-m2", "M 2: mourn \u2026 moved", { status: "tested", lessonId: "p4-m2" }),
             ],
           },
           {
