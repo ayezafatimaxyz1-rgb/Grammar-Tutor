@@ -100,6 +100,14 @@ lesson(id="p3-partners", n=3, title="Partner words: responsible for, impervious 
       ("with", Y, "Correct. Commensurate with = matching in size or level.", None),
       ("to", N, "To is heard, but the standard pair is commensurate with.", "p3-partner"),
       ("on", N, "On is for resting on a condition (contingent on).", "p3-partner")]),
+    ("2024", "Q.5(b)(v)", "The methodology is impervious ___ external influences.", [
+      ("to", Y, "Correct. Impervious to: nothing from outside gets through to it.", None),
+      ("from", N, "From is separation; the fixed pair is impervious to.", "p3-partner"),
+      ("against", N, "Close in meaning, but the fixed pair is impervious to.", "p3-partner")]),
+    ("2024", "Q.5(b)(viii)", "The model is contingent ___ accurate data inputs.", [
+      ("on", Y, "Correct. Contingent on (upon): the model rests on accurate data.", None),
+      ("to", N, "Contingent to is a common error. Use contingent on.", "p3-partner"),
+      ("with", N, "With belongs to commensurate with, not contingent.", "p3-partner")]),
     ("2024", "Q.5(b)(vi)", "The discussion oscillated ___ two main points.", [
       ("between", Y, "Correct. Swinging from one point to another and back: between two points.", None),
       ("among", N, "Among needs a group; two points take between.", "between-vs-among"),

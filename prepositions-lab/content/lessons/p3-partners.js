@@ -303,6 +303,78 @@
       },
       {
         id: "try6",
+        title: "Try it: CSS 2024 \u00b7 Q.5(b)(v)",
+        alt: "The board stays as it is.",
+        say: [
+          { text: "A real item from CSS 2024, Q.5(b)(v). Solve it with the same method." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p3-partners-q6",
+          "skill": "Partner words: responsible for, impervious to",
+          "prompt": "The methodology is impervious ___ external influences.",
+          "options": [
+            {
+              "text": "to",
+              "why": "Correct. Impervious to: nothing from outside gets through to it.",
+              "correct": true
+            },
+            {
+              "text": "from",
+              "why": "From is separation; the fixed pair is impervious to.",
+              "misconception": "p3-partner"
+            },
+            {
+              "text": "against",
+              "why": "Close in meaning, but the fixed pair is impervious to.",
+              "misconception": "p3-partner"
+            }
+          ],
+          "source": "past-paper",
+          "question": "Q.5(b)(v)",
+          "citation": "CSS English (Precis & Composition), Q.5(b)(v). Copy supplied by the learner (cssaspirants.pk); FPSC 2024 paper (digital divide passage).",
+          "year": 2024
+        },
+      },
+      {
+        id: "try7",
+        title: "Try it: CSS 2024 \u00b7 Q.5(b)(viii)",
+        alt: "The board stays as it is.",
+        say: [
+          { text: "A real item from CSS 2024, Q.5(b)(viii). Solve it with the same method." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p3-partners-q7",
+          "skill": "Partner words: responsible for, impervious to",
+          "prompt": "The model is contingent ___ accurate data inputs.",
+          "options": [
+            {
+              "text": "on",
+              "why": "Correct. Contingent on (upon): the model rests on accurate data.",
+              "correct": true
+            },
+            {
+              "text": "to",
+              "why": "Contingent to is a common error. Use contingent on.",
+              "misconception": "p3-partner"
+            },
+            {
+              "text": "with",
+              "why": "With belongs to commensurate with, not contingent.",
+              "misconception": "p3-partner"
+            }
+          ],
+          "source": "past-paper",
+          "question": "Q.5(b)(viii)",
+          "citation": "CSS English (Precis & Composition), Q.5(b)(viii). Copy supplied by the learner (cssaspirants.pk); FPSC 2024 paper (digital divide passage).",
+          "year": 2024
+        },
+      },
+      {
+        id: "try8",
         title: "Try it: CSS 2024 \u00b7 Q.5(b)(vi)",
         alt: "The board stays as it is.",
         say: [
@@ -311,7 +383,7 @@
         actions: [
         ],
         check: {
-          "id": "p3-partners-q6",
+          "id": "p3-partners-q8",
           "skill": "Partner words: responsible for, impervious to",
           "prompt": "The discussion oscillated ___ two main points.",
           "options": [
@@ -338,7 +410,7 @@
         },
       },
       {
-        id: "try7",
+        id: "try9",
         title: "Try it: CSS 2024 \u00b7 Q.5(b)(vii)",
         alt: "The board stays as it is.",
         say: [
@@ -347,7 +419,7 @@
         actions: [
         ],
         check: {
-          "id": "p3-partners-q7",
+          "id": "p3-partners-q9",
           "skill": "Partner words: responsible for, impervious to",
           "prompt": "His proposal hinges ___ securing adequate funding.",
           "options": [
@@ -374,7 +446,7 @@
         },
       },
       {
-        id: "try8",
+        id: "try10",
         title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(ii)",
         alt: "The board stays as it is.",
         say: [
@@ -383,7 +455,7 @@
         actions: [
         ],
         check: {
-          "id": "p3-partners-q8",
+          "id": "p3-partners-q10",
           "skill": "Partner words: responsible for, impervious to",
           "prompt": "This train is bound ___ Gujrat.",
           "options": [
@@ -410,7 +482,7 @@
         },
       },
       {
-        id: "try9",
+        id: "try11",
         title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(vi)",
         alt: "The board stays as it is.",
         say: [
@@ -419,7 +491,7 @@
         actions: [
         ],
         check: {
-          "id": "p3-partners-q9",
+          "id": "p3-partners-q11",
           "skill": "Partner words: responsible for, impervious to",
           "prompt": "Do not meddle ___ my affairs.",
           "options": [
@@ -446,7 +518,7 @@
         },
       },
       {
-        id: "try10",
+        id: "try12",
         title: "Try it: CSS 2023 \u00b7 Q.5(b)(vi)",
         alt: "The board stays as it is.",
         say: [
@@ -455,7 +527,7 @@
         actions: [
         ],
         check: {
-          "id": "p3-partners-q10",
+          "id": "p3-partners-q12",
           "skill": "Partner words: responsible for, impervious to",
           "prompt": "I have been working hard ___ arithmetic.",
           "options": [
