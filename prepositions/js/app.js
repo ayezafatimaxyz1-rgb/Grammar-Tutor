@@ -46,6 +46,10 @@
     teardown = null;
     const hash = location.hash.slice(1);
     document.querySelectorAll("[data-nav]").forEach((a) => a.removeAttribute("aria-current"));
+    // The Board tab opens the lesson the learner was last on.
+    const lastId = store.last();
+    $('[data-nav="lesson"]').setAttribute("href", `#lesson-${lastId && P.lessons[lastId] ? lastId : "in-core"}`);
+    window.scrollTo(0, 0);
     if (hash.startsWith("lesson-") && P.lessons[hash.slice(7)]) {
       const lesson = P.lessons[hash.slice(7)];
       teardown = renderLesson(lesson);
@@ -77,84 +81,115 @@
 
   /* ---------- library ---------- */
 
+  const PHASE_COLOURS = ["#2457c5", "#0d8a7a", "#c2410c", "#7c3aed", "#15803d", "#be185d"];
+
   function renderLibrary() {
     const lessons = allLessons();
     const counts = Object.fromEntries(STATUS.map((s) => [s, 0]));
     lessons.forEach((l) => counts[l.status]++);
+    const open = lessons.filter((l) => l.lessonId && P.lessons[l.lessonId]);
     const done = (id) => store.lesson(id).done;
+    const started = (id) => !done(id) && store.lesson(id).furthest > 0;
+    const finished = open.filter((l) => done(l.lessonId)).length;
+    const due = store.mistakes().filter(store.isDue).length;
+    const lastId = store.last();
+    const last = lastId && P.lessons[lastId] && !P.lessons[lastId].generated ? P.lessons[lastId] : null;
+    const pct = (a, b) => (b ? Math.round((a / b) * 100) : 0);
+
+    let hero;
+    if (last) {
+      const pr = store.lesson(last.id);
+      const at = Math.min(pr.furthest + 1, last.steps.length);
+      const p = pct(at, last.steps.length);
+      hero = `<a class="continue-card" href="#lesson-${esc(last.id)}">
+          <span class="ring" style="--p:${p}"><span>${p}%</span></span>
+          <span class="cc-text"><span class="eyebrow">Continue where you stopped</span><span class="cc-title">${esc(last.title)}</span><span class="muted">Board ${at} of ${last.steps.length}</span></span>
+          <span class="cc-go" aria-hidden="true">${icon("next")}</span>
+        </a>`;
+    } else {
+      hero = `<a class="button primary big" href="#lesson-in-core">${icon("play")} Start lesson 1: IN</a>`;
+    }
 
     app.innerHTML = `
-      <section class="intro">
+      <section class="home-hero">
         <p class="eyebrow">CSS English Precis and Composition</p>
-        <h1>Prepositions Lab</h1>
-        <p class="lede">Learn how English prepositions work, one idea at a time, on a board that draws each explanation as you watch. Start with the core sense of <em>in</em>.</p>
-        <a class="button primary" href="#lesson-in-core">Start lesson 1: IN</a>
-      </section>
-
-      <section class="tracker" aria-labelledby="tracker-h">
-        <div class="section-head">
-          <h2 id="tracker-h">Coverage tracker</h2>
-          <p class="muted">${lessons.length} lessons in the curriculum. Only lessons marked Built or later can be opened.</p>
+        <h1>Learn every preposition by its <span class="hand">picture</span></h1>
+        <p class="lede">Each idea is drawn on a board as you watch, then tested.</p>
+        ${hero}
+        <div class="stats">
+          <div class="stat"><strong>${finished}<small>/${open.length}</small></strong><span>lessons finished</span></div>
+          <a class="stat" href="#notebook"><strong>${due}</strong><span>to review now</span></a>
+          <a class="stat" href="#prepositions"><strong>${Object.values(P.lessons).filter((l) => !l.generated).reduce((n, l) => n + l.steps.length, 0).toLocaleString("en")}</strong><span>boards drawn</span></a>
         </div>
-        <div class="bar" role="img" aria-label="${STATUS.map((s) => `${counts[s]} ${STATUS_LABEL[s]}`).join(", ")}">
-          ${STATUS.map((s) => (counts[s] ? `<span class="bar-seg st-${s}" style="flex-grow:${counts[s]}"></span>` : "")).join("")}
-        </div>
-        <dl class="counts">
-          ${STATUS.map((s) => `<div><dt><span class="dot st-${s}"></span>${STATUS_LABEL[s]}</dt><dd>${counts[s]}</dd></div>`).join("")}
-        </dl>
-        <details class="gaps">
-          <summary>Known gaps (${P.curriculum.gaps.length})</summary>
-          <ul>${P.curriculum.gaps.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
-        </details>
       </section>
 
       <section class="curriculum" aria-labelledby="curr-h">
-        <div class="section-head">
-          <h2 id="curr-h">Curriculum</h2>
-          <label class="search">
-            <span class="sr-only">Search the curriculum</span>
-            <input id="search" type="search" placeholder="Search a word or phrase, e.g. between, apply for" autocomplete="off">
-          </label>
-        </div>
+        <h2 id="curr-h" class="sr-only">Curriculum</h2>
+        <label class="search">
+          <span class="sr-only">Search the lessons</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
+          <input id="search" type="search" placeholder="Search: between, apply for, in lieu of…" autocomplete="off">
+        </label>
         <p id="search-count" class="muted" aria-live="polite"></p>
+        <div class="phases">
         ${P.curriculum.phases
-          .map(
-            (ph) => `
-          <div class="phase" data-phase>
-            <h3>${esc(ph.title)}</h3>
-            <p class="muted">${esc(ph.intro)}</p>
+          .map((ph, pi) => {
+            const ls = ph.units.flatMap((u) => u.lessons).filter((l) => l.lessonId && P.lessons[l.lessonId]);
+            const fin = ls.filter((l) => done(l.lessonId)).length;
+            const [num, name] = ph.title.includes(":") ? [ph.title.split(":")[0].replace(/\D+/g, ""), ph.title.split(":").slice(1).join(":").trim()] : [pi + 1, ph.title];
+            const hasLast = last && ph.units.some((u) => u.lessons.some((l) => l.lessonId === last.id));
+            return `
+          <details class="phase-card" data-phase style="--ph:${PHASE_COLOURS[pi % PHASE_COLOURS.length]}"${hasLast ? " open" : ""}>
+            <summary>
+              <span class="ph-num">${esc(num)}</span>
+              <span class="ph-text">
+                <span class="ph-kicker">Phase ${esc(num)}</span>
+                <span class="ph-title">${esc(name)}</span>
+                <span class="ph-intro">${esc(ph.intro)}</span>
+                <span class="ph-bar"><span style="width:${pct(fin, ls.length)}%"></span></span>
+                <span class="ph-meta">${fin} of ${ls.length} finished · ${ph.units.length} ${ph.units.length === 1 ? "part" : "parts"}</span>
+              </span>
+              <span class="chev" aria-hidden="true">${icon("next")}</span>
+            </summary>
+            <div class="ph-body">
             ${ph.units
               .map(
                 (u) => `
               <div class="unit" data-unit>
-                <div class="unit-head"><h4>${esc(u.title)}</h4>${
+                <div class="unit-head"><h3>${esc(u.title)}</h3>${
                   u.lessons.some((l) => l.lessonId && P.lessons[l.lessonId])
-                    ? `<button type="button" class="linkish small" data-pdf="unit:${esc(u.id)}" title="All boards and tests of this part in one PDF">${icon("pdf")} PDF</button>`
+                    ? `<button type="button" class="pdf-mini" data-pdf="unit:${esc(u.id)}" title="All boards and tests of this part in one PDF">${icon("pdf")}<span>PDF</span></button>`
                     : ""
                 }</div>
                 <ol class="rows">
                   ${u.lessons
                     .map((l) => {
-                      const open = l.lessonId && P.lessons[l.lessonId];
-                      const title = open ? `<a href="#lesson-${l.lessonId}">${esc(l.title)}</a>` : esc(l.title);
-                      return `<li class="row${open ? " is-open" : ""}" data-search="${esc((l.title + " " + l.flags.join(" ") + " " + u.title).toLowerCase())}">
-                        <span class="row-title">${title}${open && store.bookmarked(l.lessonId) ? ' <span class="tag">bookmarked</span>' : ""}</span>
-                        <span class="row-meta">
-                          ${l.flags.map((f) => `<span class="flag">${FLAG_LABEL[f]}</span>`).join("")}
-                          ${open && done(l.lessonId) ? '<span class="chip st-complete">Finished</span>' : ""}
-                          <span class="chip st-${l.status}">${STATUS_LABEL[l.status]}</span>
-                        </span>
-                      </li>`;
+                      const isOpen = l.lessonId && P.lessons[l.lessonId];
+                      const st = isOpen ? (done(l.lessonId) ? "done" : started(l.lessonId) ? "started" : "new") : "planned";
+                      const meta = `${l.flags.map((f) => `<span class="flag">${FLAG_LABEL[f]}</span>`).join("")}${isOpen && store.bookmarked(l.lessonId) ? '<span class="flag">bookmarked</span>' : ""}${isOpen ? "" : '<span class="flag">coming</span>'}`;
+                      const inner = `<span class="row-status st-${st}" aria-label="${{ done: "Finished", started: "Started", new: "Not started", planned: "Not built yet" }[st]}">${st === "done" ? icon("check") : ""}</span>
+                          <span class="row-title">${esc(l.title)}</span>${meta ? `<span class="row-meta">${meta}</span>` : ""}`;
+                      return `<li class="row${isOpen ? " is-open" : ""}" data-search="${esc((l.title + " " + l.flags.join(" ") + " " + u.title).toLowerCase())}">${
+                        isOpen ? `<a class="row-link" href="#lesson-${l.lessonId}">${inner}</a>` : `<span class="row-link">${inner}</span>`
+                      }</li>`;
                     })
                     .join("")}
                 </ol>
               </div>`
               )
               .join("")}
-          </div>`
-          )
+            </div>
+          </details>`;
+          })
           .join("")}
-      </section>`;
+        </div>
+      </section>
+
+      <details class="about-course">
+        <summary>About this course</summary>
+        <p class="muted">${lessons.length} lessons in the curriculum, ${counts.tested + counts.complete} built and tested.</p>
+        <ul>${P.curriculum.gaps.map((g) => `<li>${esc(g)}</li>`).join("")}</ul>
+      </details>`;
 
     const input = $("#search");
     input.addEventListener("input", () => {
@@ -166,7 +201,10 @@
         if (hit) shown++;
       });
       app.querySelectorAll("[data-unit]").forEach((u) => (u.hidden = !u.querySelector(".row:not([hidden])")));
-      app.querySelectorAll("[data-phase]").forEach((p) => (p.hidden = !p.querySelector("[data-unit]:not([hidden])")));
+      app.querySelectorAll("[data-phase]").forEach((p) => {
+        p.hidden = !p.querySelector("[data-unit]:not([hidden])");
+        if (q) p.open = !p.hidden;
+      });
       $("#search-count").textContent = q ? `${shown} matching ${shown === 1 ? "lesson" : "lessons"}` : "";
     });
   }
@@ -176,6 +214,7 @@
   function renderLesson(lesson) {
     const unit = unitOf(lesson);
     const progress = store.lesson(lesson.id);
+    if (!lesson.generated) store.setLast(lesson.id);
     app.innerHTML = `
       <section class="lesson-head">
         <div>
@@ -774,6 +813,7 @@
       pause: '<path d="M8 5.5v13M16 5.5v13" stroke-width="3"/>',
       replay: '<path d="M4.5 12a7.5 7.5 0 1 0 2.2-5.3"/><path d="M4.5 4.5v4h4"/>',
       prev: '<path d="M15 5.5 8.5 12l6.5 6.5"/>',
+      next: '<path d="M9 5.5 15.5 12 9 18.5"/>',
       check: '<path d="m5 12.5 4.5 4.5L19 7.5"/>',
       cross: '<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',
       pdf: '<path d="M7 3.5h7l4 4v13H7z"/><path d="M14 3.5v4h4M12.5 11v6m-2.5-2.5 2.5 2.5 2.5-2.5"/>',

@@ -8,7 +8,7 @@
 <meta name="description" content="Learn English prepositions step by step on a hand-drawn teaching board, for the CSS English Precis and Composition paper.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&display=swap">
 <link rel="stylesheet" href="css/app.css">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1d4f9c">
@@ -21,16 +21,17 @@
 <a class="skip" href="#app">Skip to content</a>
 <header class="top">
   <div class="top-inner">
-    <a class="brand" href="#library"><span class="brand-mark" aria-hidden="true">in</span>Prepositions Lab</a>
-    <nav aria-label="Main">
-      <a data-nav="library" href="#library">Library</a>
-      <a data-nav="lesson" href="#lesson-in-core">Lesson</a>
-      <a data-nav="prepositions" href="#prepositions">Prepositions</a>
-      <a data-nav="ask" href="#ask">Ask</a>
-      <a data-nav="notebook" href="#notebook">Notebook <span id="due-badge" class="badge" hidden>0</span></a>
-    </nav>
+    <a class="brand" href="#library"><span class="brand-mark" aria-hidden="true">in</span><span>Prepositions Lab</span></a>
+    <span class="top-sub">CSS English</span>
   </div>
 </header>
+<nav class="tabbar" aria-label="Main">
+  <a data-nav="library" href="#library"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"/></svg><span>Home</span></a>
+  <a data-nav="lesson" href="#lesson-in-core"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11.5" rx="1.5"/><path d="M8 20h8M12 16.5V20M7.5 12.5l3-3.5 2.5 2.5 3-3.5"/></svg><span>Board</span></a>
+  <a data-nav="prepositions" href="#prepositions"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18.5 8.5 6l4.5 12.5M5.7 14h5.6M15 11.5c.6-1 1.6-1.5 2.8-1.5 1.8 0 2.7 1 2.7 2.8v5.7M20.5 14.5c-3.7 0-5.5.8-5.5 2.3 0 1 .8 1.7 2 1.7 2 0 3.5-1.4 3.5-3.4"/></svg><span>Prepositions</span></a>
+  <a data-nav="ask" href="#ask"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H11l-4.5 3.5V16.5h0a2 2 0 0 1-2-2z"/><path d="M10 9.2a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.3M12 14h0"/></svg><span>Ask</span></a>
+  <a data-nav="notebook" href="#notebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-11a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2zM8.5 3.5v17M11.5 8h4M11.5 11.5h4"/></svg><span>Notebook</span><span id="due-badge" class="badge" hidden>0</span></a>
+</nav>
 <main id="app" tabindex="-1"></main>
 <noscript><p class="noscript">The Prepositions Lab needs JavaScript to draw on the teaching board.</p></noscript>
 
