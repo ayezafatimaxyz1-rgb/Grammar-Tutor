@@ -7,6 +7,8 @@ L = lambda s: json.dumps(s)
 
 units = []
 for letter in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+    if letter not in built:
+        continue  # all batches are built; a letter with no fixed-preposition words (X) gets no unit
     if letter in built:
         ls = "".join(f'              L({L(i)}, {L(t)}, {{ status: "tested", lessonId: {L(i)} }}),\n' for i, t in built[letter])
     else:

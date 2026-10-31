@@ -394,56 +394,51 @@
             id: "p4-s",
             title: "Letter S",
             lessons: [
-              L("p4-s-planned", "Words beginning with S"),
+              L("p4-s1", "S 1: safe \u2026 similar", { status: "tested", lessonId: "p4-s1" }),
+              L("p4-s2", "S 2: sorry \u2026 suffer", { status: "tested", lessonId: "p4-s2" }),
+              L("p4-s3", "S 3: superior \u2026 sympathy", { status: "tested", lessonId: "p4-s3" }),
             ],
           },
           {
             id: "p4-t",
             title: "Letter T",
             lessons: [
-              L("p4-t-planned", "Words beginning with T"),
+              L("p4-t1", "T 1: take \u2026 trust", { status: "tested", lessonId: "p4-t1" }),
             ],
           },
           {
             id: "p4-u",
             title: "Letter U",
             lessons: [
-              L("p4-u-planned", "Words beginning with U"),
+              L("p4-u1", "U 1: unaware \u2026 useful", { status: "tested", lessonId: "p4-u1" }),
             ],
           },
           {
             id: "p4-v",
             title: "Letter V",
             lessons: [
-              L("p4-v-planned", "Words beginning with V"),
+              L("p4-v1", "V 1: vain \u2026 vote", { status: "tested", lessonId: "p4-v1" }),
             ],
           },
           {
             id: "p4-w",
             title: "Letter W",
             lessons: [
-              L("p4-w-planned", "Words beginning with W"),
-            ],
-          },
-          {
-            id: "p4-x",
-            title: "Letter X",
-            lessons: [
-              L("p4-x-planned", "Words beginning with X"),
+              L("p4-w1", "W 1: wait \u2026 write", { status: "tested", lessonId: "p4-w1" }),
             ],
           },
           {
             id: "p4-y",
             title: "Letter Y",
             lessons: [
-              L("p4-y-planned", "Words beginning with Y"),
+              L("p4-y1", "Y 1: yearn \u2026 yearn", { status: "tested", lessonId: "p4-y1" }),
             ],
           },
           {
             id: "p4-z",
             title: "Letter Z",
             lessons: [
-              L("p4-z-planned", "Words beginning with Z"),
+              L("p4-z1", "Z 1: zeal \u2026 zeal", { status: "tested", lessonId: "p4-z1" }),
             ],
           },
         ],
