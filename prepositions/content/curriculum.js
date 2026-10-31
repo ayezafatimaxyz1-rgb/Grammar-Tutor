@@ -519,6 +519,96 @@
           },
         ],
       },
+      {
+        id: "p6",
+        title: "Phase 6: Phrasal verbs",
+        intro: "Phrasal verbs such as call off, bring about and put up with, grouped by what the particle conveys: up = completely, off = away, out = into the open. Each verb is drawn and set against the same verb with other particles, which mean something else.",
+        units: [
+          {
+            id: "p6-up",
+            title: "Phrasal verbs with UP",
+            lessons: [
+              L("p6-up1", "Phrasal verbs with UP 1: give up \u2026 speed up", { status: "tested", lessonId: "p6-up1" }),
+              L("p6-up2", "Phrasal verbs with UP 2: step up \u2026 wind up", { status: "tested", lessonId: "p6-up2" }),
+              L("p6-up3", "Phrasal verbs with UP 3: blow up \u2026 keep up", { status: "tested", lessonId: "p6-up3" }),
+            ],
+          },
+          {
+            id: "p6-down",
+            title: "Phrasal verbs with DOWN",
+            lessons: [
+              L("p6-down1", "Phrasal verbs with DOWN 1: turn down \u2026 step down", { status: "tested", lessonId: "p6-down1" }),
+              L("p6-down2", "Phrasal verbs with DOWN 2: write down \u2026 hand down", { status: "tested", lessonId: "p6-down2" }),
+            ],
+          },
+          {
+            id: "p6-out",
+            title: "Phrasal verbs with OUT",
+            lessons: [
+              L("p6-out1", "Phrasal verbs with OUT 1: carry out \u2026 set out", { status: "tested", lessonId: "p6-out1" }),
+              L("p6-out2", "Phrasal verbs with OUT 2: put out \u2026 wipe out", { status: "tested", lessonId: "p6-out2" }),
+              L("p6-out3", "Phrasal verbs with OUT 3: single out \u2026 weed out", { status: "tested", lessonId: "p6-out3" }),
+            ],
+          },
+          {
+            id: "p6-off",
+            title: "Phrasal verbs with OFF",
+            lessons: [
+              L("p6-off1", "Phrasal verbs with OFF 1: call off \u2026 lay off", { status: "tested", lessonId: "p6-off1" }),
+              L("p6-off2", "Phrasal verbs with OFF 2: cut off \u2026 ward off", { status: "tested", lessonId: "p6-off2" }),
+            ],
+          },
+          {
+            id: "p6-on",
+            title: "Phrasal verbs with ON",
+            lessons: [
+              L("p6-on1", "Phrasal verbs with ON 1: carry on \u2026 hold on", { status: "tested", lessonId: "p6-on1" }),
+              L("p6-on2", "Phrasal verbs with ON 2: look on \u2026 call on", { status: "tested", lessonId: "p6-on2" }),
+            ],
+          },
+          {
+            id: "p6-in",
+            title: "Phrasal verbs with IN and INTO",
+            lessons: [
+              L("p6-in1", "Phrasal verbs with IN and INTO 1: give in \u2026 step in", { status: "tested", lessonId: "p6-in1" }),
+              L("p6-in2", "Phrasal verbs with IN and INTO 2: drop in \u2026 take in", { status: "tested", lessonId: "p6-in2" }),
+            ],
+          },
+          {
+            id: "p6-over",
+            title: "Phrasal verbs with OVER",
+            lessons: [
+              L("p6-over1", "Phrasal verbs with OVER 1: take over \u2026 run over", { status: "tested", lessonId: "p6-over1" }),
+              L("p6-over2", "Phrasal verbs with OVER 2: blow over \u2026 look over", { status: "tested", lessonId: "p6-over2" }),
+            ],
+          },
+          {
+            id: "p6-away",
+            title: "Phrasal verbs with AWAY and BACK",
+            lessons: [
+              L("p6-away1", "Phrasal verbs with AWAY and BACK 1: pass away \u2026 hold back", { status: "tested", lessonId: "p6-away1" }),
+              L("p6-away2", "Phrasal verbs with AWAY and BACK 2: pay back \u2026 look back", { status: "tested", lessonId: "p6-away2" }),
+            ],
+          },
+          {
+            id: "p6-more",
+            title: "Phrasal verbs with ABOUT, ACROSS, THROUGH, AFTER, FOR, ROUND",
+            lessons: [
+              L("p6-more1", "Phrasal verbs with ABOUT, ACROSS, THROUGH, AFTER, FOR, ROUND 1: bring about \u2026 go through", { status: "tested", lessonId: "p6-more1" }),
+              L("p6-more2", "Phrasal verbs with ABOUT, ACROSS, THROUGH, AFTER, FOR, ROUND 2: look after \u2026 come round", { status: "tested", lessonId: "p6-more2" }),
+            ],
+          },
+          {
+            id: "p6-three",
+            title: "Three-word verbs",
+            lessons: [
+              L("p6-three1", "Three-word verbs 1: put up with \u2026 cut down on", { status: "tested", lessonId: "p6-three1" }),
+              L("p6-three2", "Three-word verbs 2: face up to \u2026 keep up with", { status: "tested", lessonId: "p6-three2" }),
+              L("p6-three3", "Three-word verbs 3: make up for \u2026 get on with", { status: "tested", lessonId: "p6-three3" }),
+            ],
+          },
+        ],
+      },
     ],
     gaps: [
       "The inventory has not yet been checked item by item against dictionaries or grammar references.",

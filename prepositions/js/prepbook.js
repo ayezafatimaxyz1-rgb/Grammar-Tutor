@@ -23,7 +23,7 @@
 
   function build() {
     const entries = {}; // prep -> { core: [], words: [], other: [] }
-    const at = (prep) => (entries[prep] = entries[prep] || { prep, core: [], words: [], other: [], phrases: [] });
+    const at = (prep) => (entries[prep] = entries[prep] || { prep, core: [], words: [], other: [], phrases: [], verbs: [] });
     const lessons = Object.values(P.lessons).filter((l) => !l.generated);
 
     // Phase 4: every word's senses, read from its senses board.
@@ -42,14 +42,18 @@
     }
 
     // Phase 5: fixed phrases, filed under the preposition each one tests (in lieu of under in).
-    for (const l of lessons.filter((x) => x.phase === 5)) {
+    for (const l of lessons.filter((x) => x.phase === 5 || x.phase === 6)) {
       l.steps.forEach((st) => {
         if (!/-meaning$/.test(st.id)) return;
         const m = /^\*\*(.+?)\*\* means (.+?): _(.+)_$/.exec((st.say[0] || {}).text || "");
         const k = /^Why \*\*(.+?)\*\*\?/.exec((st.say[1] || {}).text || "");
         if (!m || !k) return;
         const why = l.steps.find((x) => x.id === st.id.replace(/-meaning$/, "-why"));
-        at(k[1]).phrases.push({ phrase: m[1], meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id });
+        const item = { phrase: m[1], meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id };
+        // Phase 6 phrasal verbs also name the sense of their particle: "Sense: **up** = completely."
+        const sense = /^Sense: \*\*.+?\*\* = (.+?)\.$/.exec((st.say[2] || {}).text || "");
+        if (l.phase === 6) at(k[1]).verbs.push({ ...item, sense: sense ? sense[1] : "other uses" });
+        else at(k[1]).phrases.push(item);
       });
     }
 
@@ -83,7 +87,7 @@
   }
 
   function count(e) {
-    return e.core.length + e.words.length + e.other.length + e.phrases.length;
+    return e.core.length + e.words.length + e.other.length + e.phrases.length + e.verbs.length;
   }
 
   // The senses map for one preposition: each sense with the boards that teach it and the words
@@ -116,6 +120,20 @@
         ]),
         words: [],
         phrases: e.phrases,
+      });
+    // Phrasal verbs, one sense of the particle at a time (up = completely: give up, wind up ...).
+    const bySense = new Map();
+    for (const v of e.verbs) bySense.set(v.sense, [...(bySense.get(v.sense) || []), v]);
+    for (const [sense, vs] of bySense)
+      senses.push({
+        name: `Phrasal verbs: ${e.prep} = ${sense}`,
+        note: vs.slice(0, 3).map((x) => x.phrase).join(", ") + (vs.length > 3 ? " …" : ""),
+        boards: vs.flatMap((x) => [
+          { lesson: x.lesson, step: x.step, title: x.phrase },
+          ...(x.why ? [{ lesson: x.lesson, step: x.why, title: `why ${x.phrase}` }] : []),
+        ]),
+        words: [],
+        phrases: vs,
       });
     const rest = e.words.filter((w) => !placed.has(w));
     return { senses, rest };
