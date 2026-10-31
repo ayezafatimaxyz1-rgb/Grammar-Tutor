@@ -230,6 +230,207 @@
           },
         ],
       },
+      {
+        id: "p4",
+        title: "Phase 4: Fixed prepositions A to Z",
+        intro: "Every common and CSS-level word with the prepositions it takes, in alphabetical order. Each sense is drawn, and each choice is tested against the meaning the sentence wants.",
+        units: [
+          {
+            id: "p4-a",
+            title: "Letter A",
+            lessons: [
+              L("p4-a1", "A 1: abide \u2026 accompanied", { status: "tested", lessonId: "p4-a1" }),
+              L("p4-a2", "A 2: accord \u2026 acquit", { status: "tested", lessonId: "p4-a2" }),
+              L("p4-a3", "A 3: adapt \u2026 admit", { status: "tested", lessonId: "p4-a3" }),
+              L("p4-a4", "A 4: advantage \u2026 alternative", { status: "tested", lessonId: "p4-a4" }),
+              L("p4-a5", "A 5: amazed \u2026 apply", { status: "tested", lessonId: "p4-a5" }),
+              L("p4-a6", "A 6: approve \u2026 attach", { status: "tested", lessonId: "p4-a6" }),
+              L("p4-a7", "A 7: attend \u2026 aware", { status: "tested", lessonId: "p4-a7" }),
+            ],
+          },
+          {
+            id: "p4-b",
+            title: "Letter B",
+            lessons: [
+              L("p4-b1", "B 1: based \u2026 blessed", { status: "tested", lessonId: "p4-b1" }),
+              L("p4-b2", "B 2: blind \u2026 busy", { status: "tested", lessonId: "p4-b2" }),
+            ],
+          },
+          {
+            id: "p4-c",
+            title: "Letter C",
+            lessons: [
+              L("p4-c1", "C 1: call \u2026 charge", { status: "tested", lessonId: "p4-c1" }),
+              L("p4-c2", "C 2: close \u2026 complain", { status: "tested", lessonId: "p4-c2" }),
+              L("p4-c3", "C 3: comply \u2026 confident", { status: "tested", lessonId: "p4-c3" }),
+              L("p4-c4", "C 4: conform \u2026 content", { status: "tested", lessonId: "p4-c4" }),
+              L("p4-c5", "C 5: contingent \u2026 correspond", { status: "tested", lessonId: "p4-c5" }),
+              L("p4-c6", "C 6: count \u2026 cure", { status: "tested", lessonId: "p4-c6" }),
+            ],
+          },
+          {
+            id: "p4-d",
+            title: "Letter D",
+            lessons: [
+              L("p4-d-planned", "Words beginning with D"),
+            ],
+          },
+          {
+            id: "p4-e",
+            title: "Letter E",
+            lessons: [
+              L("p4-e-planned", "Words beginning with E"),
+            ],
+          },
+          {
+            id: "p4-f",
+            title: "Letter F",
+            lessons: [
+              L("p4-f-planned", "Words beginning with F"),
+            ],
+          },
+          {
+            id: "p4-g",
+            title: "Letter G",
+            lessons: [
+              L("p4-g-planned", "Words beginning with G"),
+            ],
+          },
+          {
+            id: "p4-h",
+            title: "Letter H",
+            lessons: [
+              L("p4-h-planned", "Words beginning with H"),
+            ],
+          },
+          {
+            id: "p4-i",
+            title: "Letter I",
+            lessons: [
+              L("p4-i-planned", "Words beginning with I"),
+            ],
+          },
+          {
+            id: "p4-j",
+            title: "Letter J",
+            lessons: [
+              L("p4-j-planned", "Words beginning with J"),
+            ],
+          },
+          {
+            id: "p4-k",
+            title: "Letter K",
+            lessons: [
+              L("p4-k-planned", "Words beginning with K"),
+            ],
+          },
+          {
+            id: "p4-l",
+            title: "Letter L",
+            lessons: [
+              L("p4-l-planned", "Words beginning with L"),
+            ],
+          },
+          {
+            id: "p4-m",
+            title: "Letter M",
+            lessons: [
+              L("p4-m-planned", "Words beginning with M"),
+            ],
+          },
+          {
+            id: "p4-n",
+            title: "Letter N",
+            lessons: [
+              L("p4-n-planned", "Words beginning with N"),
+            ],
+          },
+          {
+            id: "p4-o",
+            title: "Letter O",
+            lessons: [
+              L("p4-o-planned", "Words beginning with O"),
+            ],
+          },
+          {
+            id: "p4-p",
+            title: "Letter P",
+            lessons: [
+              L("p4-p-planned", "Words beginning with P"),
+            ],
+          },
+          {
+            id: "p4-q",
+            title: "Letter Q",
+            lessons: [
+              L("p4-q-planned", "Words beginning with Q"),
+            ],
+          },
+          {
+            id: "p4-r",
+            title: "Letter R",
+            lessons: [
+              L("p4-r-planned", "Words beginning with R"),
+            ],
+          },
+          {
+            id: "p4-s",
+            title: "Letter S",
+            lessons: [
+              L("p4-s-planned", "Words beginning with S"),
+            ],
+          },
+          {
+            id: "p4-t",
+            title: "Letter T",
+            lessons: [
+              L("p4-t-planned", "Words beginning with T"),
+            ],
+          },
+          {
+            id: "p4-u",
+            title: "Letter U",
+            lessons: [
+              L("p4-u-planned", "Words beginning with U"),
+            ],
+          },
+          {
+            id: "p4-v",
+            title: "Letter V",
+            lessons: [
+              L("p4-v-planned", "Words beginning with V"),
+            ],
+          },
+          {
+            id: "p4-w",
+            title: "Letter W",
+            lessons: [
+              L("p4-w-planned", "Words beginning with W"),
+            ],
+          },
+          {
+            id: "p4-x",
+            title: "Letter X",
+            lessons: [
+              L("p4-x-planned", "Words beginning with X"),
+            ],
+          },
+          {
+            id: "p4-y",
+            title: "Letter Y",
+            lessons: [
+              L("p4-y-planned", "Words beginning with Y"),
+            ],
+          },
+          {
+            id: "p4-z",
+            title: "Letter Z",
+            lessons: [
+              L("p4-z-planned", "Words beginning with Z"),
+            ],
+          },
+        ],
+      },
     ],
     gaps: [
       "The inventory has not yet been checked item by item against dictionaries or grammar references.",

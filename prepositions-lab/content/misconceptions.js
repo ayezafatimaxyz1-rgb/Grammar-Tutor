@@ -498,4 +498,8 @@ PLAB.misconceptions = {
     label: "Two blanks in one sentence",
     explain: "Solve each blank alone with its own partner word: familiar with ... knowledgeable about; withdrawal from ... obstacle to.",
   },
+  "p4-sense": {
+    label: "Choose by the meaning the sentence wants",
+    explain: "Many words take more than one preposition, each saying something different: certain of (sure it will happen), certain about (sure of the details). Read what comes after, and ask what the sentence means to say.",
+  },
 };

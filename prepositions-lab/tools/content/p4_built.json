@@ -1,0 +1,68 @@
+{
+ "A": [
+  [
+   "p4-a1",
+   "A 1: abide \u2026 accompanied"
+  ],
+  [
+   "p4-a2",
+   "A 2: accord \u2026 acquit"
+  ],
+  [
+   "p4-a3",
+   "A 3: adapt \u2026 admit"
+  ],
+  [
+   "p4-a4",
+   "A 4: advantage \u2026 alternative"
+  ],
+  [
+   "p4-a5",
+   "A 5: amazed \u2026 apply"
+  ],
+  [
+   "p4-a6",
+   "A 6: approve \u2026 attach"
+  ],
+  [
+   "p4-a7",
+   "A 7: attend \u2026 aware"
+  ]
+ ],
+ "B": [
+  [
+   "p4-b1",
+   "B 1: based \u2026 blessed"
+  ],
+  [
+   "p4-b2",
+   "B 2: blind \u2026 busy"
+  ]
+ ],
+ "C": [
+  [
+   "p4-c1",
+   "C 1: call \u2026 charge"
+  ],
+  [
+   "p4-c2",
+   "C 2: close \u2026 complain"
+  ],
+  [
+   "p4-c3",
+   "C 3: comply \u2026 confident"
+  ],
+  [
+   "p4-c4",
+   "C 4: conform \u2026 content"
+  ],
+  [
+   "p4-c5",
+   "C 5: contingent \u2026 correspond"
+  ],
+  [
+   "p4-c6",
+   "C 6: count \u2026 cure"
+  ]
+ ]
+}
