@@ -281,6 +281,86 @@ Reply with only one JSON object: {"title","summary","objectives":[..],"steps":[.
 ${JSON.stringify(EXAMPLE)}`;
   }
 
+  /* ---------- free lookup in the course itself ---------- */
+
+  // The claude.ai copy of the app, where Ask can use Claude through the learner's own subscription.
+  const CLAUDE_COPY = "https://claude.ai/artifact/PYRbToXAwNXUihTyz4EAkb";
+  const PREPS = new Set("about above across after against along among around as at before behind below beneath beside besides between beyond by despite down during except for from in inside into like near of off on onto out outside over past per since than through throughout till to towards under until up upon via with within without".split(" "));
+  const STOP = new Set("a an the is are was were be do does did i you we it this that what which why how when or and vs versus not no to say use used say difference between meaning mean means word words sentence correct right wrong".split(" "));
+
+  let index = null;
+  function buildIndex() {
+    index = [];
+    for (const l of Object.values(P.lessons)) {
+      if (l.generated) continue;
+      l.steps.forEach((st) => {
+        if (/-senses$/.test(st.id)) {
+          const word = st.id.replace(/-senses$/, "").replace(/-/g, " ");
+          const why = l.steps.find((x) => x.id === st.id.replace(/-senses$/, "-why"));
+          index.push({ kind: "word", word, lesson: l, step: st.id, why: why && why.id, text: (st.alt || "").toLowerCase() });
+        }
+      });
+      // Every teaching step is searchable, so a question can land on the exact board.
+      l.steps.forEach((st) => {
+        if (st.check || /-senses$|-why$/.test(st.id)) return;
+        const text = [st.title, st.alt, ...(st.say || []).map((x) => x.text)].join(" ").toLowerCase().replace(/[*_]/g, "");
+        index.push({ kind: "step", lesson: l, step: st.id, stepTitle: st.title, title: l.title.toLowerCase(), text });
+      });
+    }
+  }
+
+  function lookup(question) {
+    if (!index) buildIndex();
+    const tokens = (question.toLowerCase().match(/[a-z]+/g) || []).filter((t) => t.length > 1);
+    const preps = tokens.filter((t) => PREPS.has(t));
+    const content = tokens.filter((t) => !PREPS.has(t) && !STOP.has(t));
+    const stem = (t) => t.replace(/(ing|ed|es|s)$/, "");
+    const results = [];
+    for (const e of index) {
+      let score = 0;
+      if (e.kind === "word") {
+        const w = e.word;
+        if (content.some((t) => t === w || stem(t) === stem(w) || (t.length > 4 && (w.startsWith(stem(t)) || t.startsWith(stem(w)))))) {
+          score = 10 + preps.filter((p) => e.text.includes(`${w} ${p} `) || e.text.includes(`${w} ${p} =`)).length * 2;
+        }
+      } else {
+        const has = (t) => new RegExp(`\\b${t}`).test(e.text);
+        const hits = content.filter((t) => t.length > 2 && has(stem(t)));
+        score = hits.length * 2 + hits.filter((t) => new RegExp(`\\b${stem(t)}`).test(e.title)).length;
+        const st = (e.stepTitle || "").toLowerCase();
+        score += hits.filter((t) => new RegExp(`\\b${stem(t)}`).test(st)).length * 2;
+        if (content.length && hits.length === content.length) score += 3;
+        const word = (p) => new RegExp(`\\b${p}\\b`, "i");
+        const pText = preps.filter((p) => word(p).test(e.text)).length;
+        const pTitle = preps.filter((p) => word(p).test(e.title)).length;
+        const pStep = preps.filter((p) => word(p).test(st)).length;
+        if (!content.length) score = pTitle * 3 + pStep * 2 + (pText === preps.length ? 1 : 0);
+        else if (hits.length) score += pText;
+        else score = 0;
+        if (/why this one/i.test(st)) score -= 1;
+        if (score < 3) score = 0;
+      }
+      if (score) results.push({ ...e, score });
+    }
+    // Keep the best match per lesson, so a lesson is not listed twice.
+    const seen = new Set();
+    return results.sort((a, b) => b.score - a.score).filter((r) => (seen.has(r.lesson.id) ? false : seen.add(r.lesson.id))).slice(0, 6);
+  }
+
+  function resultsHtml(found, esc) {
+    if (!found.length) return "";
+    return `<p class="eyebrow">Already in the course</p><ul class="found-list">${found
+      .map((r) =>
+        r.kind === "word"
+          ? `<li><strong>${esc(r.word)}</strong> <span class="muted">· ${esc(r.lesson.title)}</span>
+               <span class="row-buttons"><button type="button" class="button small" data-jump="${esc(r.lesson.id)}|${esc(r.step)}">See its meanings</button>${
+                 r.why ? `<button type="button" class="button small ghost" data-jump="${esc(r.lesson.id)}|${esc(r.why)}">Why this one?</button>` : ""}</span></li>`
+          : `<li><strong>${esc(r.stepTitle)}</strong> <span class="muted">· ${esc(r.lesson.title)}</span>
+               <span class="row-buttons"><button type="button" class="button small" data-jump="${esc(r.lesson.id)}|${esc(r.step)}">Show on the board</button></span></li>`
+      )
+      .join("")}</ul>`;
+  }
+
   /* ---------- the view ---------- */
 
   let sampleFn; // undefined: not asked yet; null: unavailable
@@ -332,6 +412,11 @@ ${JSON.stringify(EXAMPLE)}`;
               .join("")}
           </div>
           <p id="ask-status" class="ask-status" aria-live="polite"></p>
+          <div id="ask-found" class="ask-found" aria-live="polite"></div>
+          <div id="ask-handoff" class="ask-handoff" hidden>
+            <p>Not in the course yet? Ask Claude in the claude.ai version of this app. It is covered by your Claude subscription, with no extra cost. Your question is copied, so you only paste it there.</p>
+            <a id="ask-claude" class="button primary" href="${CLAUDE_COPY}#ask" target="_blank" rel="noopener">Ask Claude on claude.ai</a>
+          </div>
           <p class="muted small">Explanations drawn here are written by Claude on request. They are not part of the reviewed course, so compare them with the lessons and a good dictionary when it matters.</p>
         </section>
         <section aria-labelledby="asked-h">
@@ -360,10 +445,35 @@ ${JSON.stringify(EXAMPLE)}`;
       );
       stop.addEventListener("click", () => ctl && ctl.abort());
 
+      const found = app.querySelector("#ask-found");
+      const handoff = app.querySelector("#ask-handoff");
+      let offline = false;
+      const showFound = () => {
+        const list = q.value.trim().length > 2 ? lookup(q.value) : [];
+        found.innerHTML = resultsHtml(list, esc);
+        return list;
+      };
+      let timer = null;
+      q.addEventListener("input", () => {
+        clearTimeout(timer);
+        timer = setTimeout(showFound, 250);
+      });
+      found.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-jump]");
+        if (!b) return;
+        const [lid, step] = b.dataset.jump.split("|");
+        try { sessionStorage.setItem("prepositions-lab:jump", JSON.stringify({ lesson: lid, step })); } catch (err) {}
+        location.hash = `lesson-${lid}`;
+      });
+      app.querySelector("#ask-claude").addEventListener("click", () => {
+        try { navigator.clipboard.writeText(q.value.trim()).catch(() => {}); } catch (err) {}
+      });
+
       getSample().then((s) => {
         if (!s) {
-          go.disabled = true;
-          status.textContent = "Drawing new explanations needs Claude, which is only available when this page is opened on claude.ai. The course lessons work everywhere.";
+          offline = true;
+          go.textContent = "Find it in the course";
+          status.textContent = "This copy of the app finds answers in its own lessons, free. For anything else, Ask Claude opens the claude.ai version, covered by your subscription.";
         }
       });
 
@@ -371,8 +481,13 @@ ${JSON.stringify(EXAMPLE)}`;
         e.preventDefault();
         const question = q.value.trim();
         if (!question) return q.focus();
+        const list = showFound();
         const sample = await getSample();
-        if (!sample) return;
+        if (!sample) {
+          handoff.hidden = false;
+          status.textContent = list.length ? "Here is what the course already teaches about this. Tap one to see it on the board." : "This is not in the course yet.";
+          return;
+        }
         ctl = new AbortController();
         go.disabled = true;
         stop.hidden = false;
@@ -399,7 +514,8 @@ ${JSON.stringify(EXAMPLE)}`;
           ctl = null;
         }
       });
-      if (!prefill) q.focus();
+      if (prefill) showFound();
+      else q.focus();
     },
 
     forget(id) {

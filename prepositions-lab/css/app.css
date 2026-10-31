@@ -305,3 +305,12 @@ main { padding-block: 24px 64px; display: flex; flex-direction: column; gap: 28p
 .ask-inline { display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
 .ask-inline-row { display: flex; gap: 8px; }
 .ask-inline-row input { flex: 1; min-width: 0; }
+
+/* Ask: matches found in the course, and the hand-off to claude.ai */
+.ask-found { margin-top: 12px; }
+.found-list { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 8px; }
+.found-list li { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--surface, #fff); }
+.found-list .row-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.button.small { padding: 6px 12px; font-size: 0.9rem; }
+.ask-handoff { margin-top: 14px; border: 1px dashed var(--accent); border-radius: 10px; padding: 12px; }
+.ask-handoff p { margin: 0 0 10px; }
