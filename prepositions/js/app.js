@@ -533,6 +533,16 @@
       state.ready = true;
       // Continue where the learner stopped, but never past an unanswered check.
       let start = Math.min(progress.furthest, lesson.steps.length - 1);
+      // Ask's free lookup can send the learner straight to one step of a lesson.
+      try {
+        const jump = JSON.parse(sessionStorage.getItem("prepositions-lab:jump") || "null");
+        sessionStorage.removeItem("prepositions-lab:jump");
+        const at = jump && jump.lesson === lesson.id ? lesson.steps.findIndex((x) => x.id === jump.step) : -1;
+        if (at >= 0) {
+          start = at;
+          if (progress.furthest < at) progress.furthest = at;
+        }
+      } catch (e) {}
       while (start > 0 && !answered(lesson.steps[start - 1])) start--;
       goTo(start, { animate: start === 0 });
     });
