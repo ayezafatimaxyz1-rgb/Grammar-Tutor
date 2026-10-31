@@ -181,6 +181,8 @@
         <button id="bookmark" class="button ghost" type="button" aria-pressed="false"></button>
       </section>
 
+      <div id="tour-bar" class="tour-bar" hidden></div>
+
       <div class="player">
         <div class="board-col">
           <div class="board" id="board-wrap">
@@ -354,6 +356,53 @@
       state.playing = false;
       paintControls();
     }
+
+    /* the step-by-step tour of one preposition (started on its Prepositions page) */
+
+    const tourBar = $("#tour-bar");
+    function paintTour() {
+      const t = P.tour && P.tour.read();
+      const item = t && t.items[t.i];
+      if (!item || item.l !== lesson.id) {
+        tourBar.hidden = true;
+        return;
+      }
+      const n = t.items.length;
+      tourBar.hidden = false;
+      tourBar.innerHTML = `
+        <div class="tour-info">
+          <p class="eyebrow">Learning <a href="#prep-${esc(t.slug)}">${esc(t.prep)}</a> · board ${t.i + 1} of ${n}</p>
+          <p class="tour-label">${esc(item.label)}</p>
+          <div class="tour-meter" aria-hidden="true"><span style="width:${(((t.i + 1) / n) * 100).toFixed(1)}%"></span></div>
+        </div>
+        <div class="tour-buttons">
+          <button type="button" class="button small ghost" data-tour-go="-1"${t.i === 0 ? " disabled" : ""}>Previous</button>
+          ${t.i + 1 < n ? '<button type="button" class="button small primary" data-tour-go="1">Next board</button>' : `<a class="button small primary" href="#prep-${esc(t.slug)}" data-tour-end>Finished: back to ${esc(t.prep)}</a>`}
+          <button type="button" class="button small ghost" data-tour-end>End</button>
+        </div>`;
+    }
+    function tourGo(d) {
+      const t = P.tour.read();
+      if (!t) return;
+      t.i = Math.max(0, Math.min(t.items.length - 1, t.i + d));
+      P.tour.save(t);
+      const item = t.items[t.i];
+      if (item.l === lesson.id) {
+        const at = lesson.steps.findIndex((x) => x.id === item.s);
+        if (store.lesson(lesson.id).furthest < at) store.reachStep(lesson.id, at);
+        goTo(at);
+        paintTour();
+        window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+      } else P.jump(item.l, item.s);
+    }
+    tourBar.addEventListener("click", (e) => {
+      const go = e.target.closest("[data-tour-go]");
+      if (go) return tourGo(Number(go.dataset.tourGo));
+      if (e.target.closest("[data-tour-end]")) {
+        P.tour.save(null);
+        paintTour();
+      }
+    });
 
     function goTo(i, { animate = true } = {}) {
       closeOverlay();
@@ -536,18 +585,22 @@
       state.ready = true;
       // Continue where the learner stopped, but never past an unanswered check.
       let start = Math.min(progress.furthest, lesson.steps.length - 1);
-      // Ask's free lookup can send the learner straight to one step of a lesson.
+      let jumped = false;
+      // Ask's free lookup, the Prepositions page and its tour can send the learner straight to one step.
       try {
         const jump = JSON.parse(sessionStorage.getItem("prepositions-lab:jump") || "null");
         sessionStorage.removeItem("prepositions-lab:jump");
         const at = jump && jump.lesson === lesson.id ? lesson.steps.findIndex((x) => x.id === jump.step) : -1;
         if (at >= 0) {
           start = at;
+          jumped = true;
           if (progress.furthest < at) progress.furthest = at;
         }
       } catch (e) {}
-      while (start > 0 && !answered(lesson.steps[start - 1])) start--;
-      goTo(start, { animate: start === 0 });
+      // A step chosen on purpose opens as asked; otherwise never skip past an unanswered check.
+      if (!jumped) while (start > 0 && !answered(lesson.steps[start - 1])) start--;
+      goTo(start, { animate: start === 0 || jumped });
+      paintTour();
     });
 
     return () => {
@@ -711,6 +764,41 @@
     };
     return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${paths[name]}</svg>`;
   }
+
+  /* ---------- tap a preposition anywhere ---------- */
+
+  // A bold key word that names a preposition ("on", "depend on", "in time") opens that
+  // preposition's page, with its senses map and step-by-step lesson.
+  function markPreps() {
+    app.querySelectorAll("strong.key:not([data-prep-seen])").forEach((el) => {
+      el.dataset.prepSeen = "";
+      if (el.closest(".prep-page")) return;
+      const prep = P.prepbook && P.prepbook.find(el.textContent);
+      if (!prep) return;
+      el.classList.add("is-prep");
+      el.dataset.prep = prep;
+      el.setAttribute("role", "link");
+      el.setAttribute("tabindex", "0");
+      el.title = `Everything about ${prep}`;
+    });
+  }
+  let markQueued = false;
+  new MutationObserver(() => {
+    if (markQueued) return;
+    markQueued = true;
+    requestAnimationFrame(() => {
+      markQueued = false;
+      markPreps();
+    });
+  }).observe(app, { childList: true, subtree: true });
+  const openPrep = (e) => {
+    const el = e.target.closest && e.target.closest("strong.is-prep");
+    if (!el || (e.type === "keydown" && e.key !== "Enter")) return;
+    e.preventDefault();
+    location.hash = `prep-${P.prepbook.slug(el.dataset.prep)}`;
+  };
+  app.addEventListener("click", openPrep);
+  app.addEventListener("keydown", openPrep);
 
   /* ---------- start ---------- */
 

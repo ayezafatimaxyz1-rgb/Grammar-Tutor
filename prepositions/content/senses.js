@@ -1,0 +1,98 @@
+/* The senses a preposition can convey, for the Prepositions section and its step-by-step tour.
+   Each sense: name, what it pictures, the boards that teach it ("lesson/step"), and the A to Z
+   words (Phase 4) whose preposition carries that sense. Words not listed under a sense still
+   appear on the preposition's page, under "Other uses". */
+PLAB.senses = {
+  on: [
+    { name: "Touching a surface", note: "resting on top, or pressed against a side", boards: ["on-core/table", "on-core/wall"], words: ["encroach", "intrude", "lean"] },
+    { name: "Along a line", note: "on a coast, a river, a road", boards: ["on-core/line"], words: [] },
+    { name: "On a vehicle or platform", note: "a bus, a train, a ship you step onto", boards: ["on-core/vehicles"], words: ["embark"] },
+    { name: "Resting on a support", note: "it depends on what holds it up", boards: ["on-core/base"], words: ["based", "contingent", "count", "depend", "reliant", "live", "modelled"] },
+    { name: "Pressure or attention landing on one point", note: "insisting, focusing, blaming", boards: [], words: ["concentrate", "emphasis", "insist", "impose", "effect", "blame", "bent", "intent", "keen", "dwell", "congratulate"] },
+    { name: "A point decided on", note: "both sides land on one choice", boards: [], words: ["agree", "decide", "vote"] },
+    { name: "A topic", note: "a book on Iqbal, an expert on law", boards: ["about-on-topic/two"], words: ["comment", "expert"] },
+    { name: "A day or date", note: "on Monday, on 14 August", boards: ["in-on-at-time/three"], words: [] },
+    { name: "A state or activity", note: "on fire, on duty, on strike", boards: ["on-core/fixed"], words: [] },
+    { name: "Phrasal verbs", note: "the meaning changes with the verb", boards: [], words: ["call", "wait"] },
+  ],
+  in: [
+    { name: "Inside a boundary or container", note: "surrounded on all sides", boards: ["in-core/boundary", "in-core/room"], words: ["absorbed", "abundant", "rich", "deficient", "inherent", "present", "belong", "invest", "consist"] },
+    { name: "Inside an area", note: "a city, a country", boards: ["in-core/city"], words: ["arrive", "based", "dwell", "originate"] },
+    { name: "Inside a field or subject", note: "skilled in law, weak in maths", boards: [], words: ["excel", "expert", "proficient", "qualified", "specialise", "weak", "interested", "negligent", "write"] },
+    { name: "Inside an activity: taking part", note: "you are in it, involved", boards: [], words: ["participate", "involved", "engaged", "join", "compete", "indulge", "implicated", "interfere", "meddle", "persist", "succeed", "deal"] },
+    { name: "Trust or feeling placed inside", note: "faith in God, pride in your work", boards: [], words: ["faith", "trust", "confide", "confident", "disappointed", "pride"] },
+    { name: "A state you are in", note: "in danger, in debt, in love", boards: ["in-core/trouble", "in-core/states"], words: [] },
+    { name: "Inside a stretch of time", note: "in June, in 2025, in ten minutes", boards: ["in-time/year", "in-time/duration"], words: [] },
+    { name: "Phrasal verbs", note: "the meaning changes with the verb", boards: [], words: ["give", "hand"] },
+  ],
+  at: [
+    { name: "A point in place", note: "a bus stop, a building, an event", boards: ["at-core/stop", "at-core/station"], words: ["arrive", "present"] },
+    { name: "A place of activity", note: "at school, at work", boards: ["at-core/purpose"], words: [] },
+    { name: "A target you aim at", note: "looking, laughing, pointing at", boards: ["at-core/target"], words: ["aim", "stare", "laugh", "hint", "mad"] },
+    { name: "A skill that hits its mark", note: "good at, adept at", boards: [], words: ["adept", "good"] },
+    { name: "A reaction to a point", note: "surprised at, shocked at", boards: [], words: ["alarmed", "amazed", "astonished", "shocked", "surprised", "marvel", "wonder", "indignant"] },
+    { name: "A point on a scale or clock", note: "at 5 o'clock, at 100 km/h", boards: ["at-core/scale", "in-on-at-time/three"], words: [] },
+  ],
+  to: [
+    { name: "Movement to a destination", note: "going, sending, moving to", boards: ["to-towards/dest"], words: ["moved", "retire", "apply", "refer", "attach"] },
+    { name: "A person who receives", note: "speak, listen, answer, apologise to", boards: [], words: ["apologise", "complain", "confide", "talk", "listen", "respond", "react", "appeal", "account", "accountable", "submit", "grateful", "thankful", "indebted", "obliged", "write"] },
+    { name: "Behaviour aimed at someone", note: "kind to, rude to, loyal to", boards: ["to-towards/abstract-towards"], words: ["cruel", "kind", "nice", "polite", "rude", "generous", "faithful", "loyal", "true", "good", "hostile", "opposed", "object", "averse", "partial", "indifferent", "alien", "blind", "oblivious"] },
+    { name: "Matching or compared to", note: "similar to, superior to", boards: [], words: ["similar", "identical", "equal", "superior", "inferior", "preferable", "prefer", "compare", "correspond", "conform", "contrary", "related", "relevant", "irrelevant", "applicable", "connected"] },
+    { name: "Attached or devoted to", note: "belong to, married to, used to", boards: [], words: ["belong", "adhere", "married", "engaged", "heir", "entitled", "devote", "dedicated", "committed", "accustomed", "used", "habituated", "adapt"] },
+    { name: "An effect on someone", note: "harmful to, essential to", boards: [], words: ["conducive", "detrimental", "harmful", "fatal", "essential", "critical", "threat", "benefit"] },
+    { name: "Open or exposed to", note: "liable to, immune to", boards: [], words: ["exposed", "susceptible", "liable", "subject", "immune", "impervious", "sensitive", "allergic"] },
+    { name: "Agreeing to a proposal", note: "consent to, accede to", boards: [], words: ["accede", "agree", "consent", "admit"] },
+    { name: "A limit or level reached", note: "reduced to ashes, sentenced to death", boards: [], words: ["limited", "reduced", "sentenced", "condemn", "amount", "resign", "add", "contribute"] },
+    { name: "Near or next to", note: "close to, adjacent to", boards: [], words: ["adjacent", "close"] },
+    { name: "Other uses", note: "according to, an alternative to", boards: [], words: ["according", "access", "alternative", "exception", "addicted", "lose", "succeed", "bound"] },
+  ],
+  for: [
+    { name: "Aimed at something you want", note: "ask for, wait for, hope for", boards: ["for/uses"], words: ["apply", "ask", "call", "search", "wait", "hope", "desire", "eager", "hungry", "greedy", "yearn", "zeal", "anxious", "impatient", "compete", "appeal", "need"] },
+    { name: "Purpose or suitability", note: "fit for, ready for, useful for", boards: ["for/purpose"], words: ["adequate", "fit", "unfit", "ready", "prepared", "qualified", "eligible", "necessary", "useful", "good", "cater", "cure", "substitute", "valid", "free", "late"] },
+    { name: "For someone's sake", note: "sorry for, proud for, care for", boards: [], words: ["afraid", "sorry", "sympathy", "happy", "proud", "ashamed", "grieve", "mourn", "care", "provide", "vote", "argue", "live"] },
+    { name: "Exchange or price", note: "paid for, exchanged for", boards: [], words: ["charge", "exchange", "compensate", "count", "insured", "mistake"] },
+    { name: "Reason or cause", note: "blamed for, famous for, thankful for", boards: [], words: ["blame", "punish", "sentenced", "condemn", "famous", "notorious", "account", "accountable", "apologise", "grateful", "thankful", "indebted", "obliged", "liable", "respect"] },
+    { name: "Destination of a departure", note: "bound for Karachi", boards: [], words: ["bound", "destined"] },
+  ],
+  of: [
+    { name: "What a feeling or knowledge is about", note: "aware of, afraid of, sure of", boards: [], words: ["aware", "conscious", "ignorant", "unaware", "knowledge", "certain", "sure", "convinced", "confident", "assure", "inform", "remind", "hear", "beware", "wary", "suspicious", "afraid", "fond", "jealous", "envious", "proud", "ashamed", "tired", "approve", "dream", "nice", "capable", "incapable", "critical", "independent"] },
+    { name: "A wrong someone is accused of", note: "accused of, guilty of", boards: [], words: ["accuse", "convicted", "guilty", "suspect", "acquit"] },
+    { name: "What something is made of or holds", note: "made of wood, full of water", boards: ["of/part"], words: ["composed", "consist", "full", "made", "empty", "devoid", "short", "lack"] },
+    { name: "Something taken away", note: "robbed of, rid of", boards: [], words: ["deprive", "rob", "rid", "dispose", "cure"] },
+    { name: "A cause", note: "died of, on account of", boards: [], words: ["die", "complain", "account", "victim", "threat"] },
+    { name: "Belonging or part of", note: "the roof of the house", boards: ["of/possessive", "of/naming"], words: ["advantage", "pride", "subject", "deserving", "worthy", "accord"] },
+  ],
+  with: [
+    { name: "Together, side by side", note: "agree with, cooperate with", boards: ["with-without/together"], words: ["agree", "cooperate", "compatible", "accord", "mix", "connected", "contact", "correspond", "exchange", "involved", "laugh", "sympathy", "compare", "accompanied", "safe"] },
+    { name: "Against a partner", note: "argue with, compete with", boards: [], words: ["argue", "quarrel", "compete", "differ", "disagree", "angry", "furious", "upset", "impatient", "patient", "inconsistent", "interfere", "disgusted"] },
+    { name: "Having or filled with", note: "blessed with, covered with", boards: ["with-without/more"], words: ["blessed", "endowed", "filled", "fraught", "covered", "infected", "inspired", "provide", "charge"] },
+    { name: "Feelings about what you have", note: "satisfied with, bored with", boards: [], words: ["content", "satisfied", "pleased", "happy", "disappointed", "bored", "fed up", "obsessed", "popular"] },
+    { name: "Dealing with or handling", note: "cope with, deal with", boards: ["with-without/with-by"], words: ["deal", "cope", "busy", "occupied", "concerned", "careful", "economical", "generous", "comply", "acquainted", "adept", "dispense", "part", "replace"] },
+  ],
+  from: [
+    { name: "A starting point or source", note: "derived from, borrowed from", boards: ["from/start", "from/origin"], words: ["derive", "descended", "benefit", "borrow", "hear", "made", "adapt", "emerge", "suffer", "die", "tired"] },
+    { name: "Moving away, separation", note: "absent from, different from", boards: ["from/separation"], words: ["absent", "abstain", "deviate", "differ", "different", "distinct", "part", "resign", "retire", "recover"] },
+    { name: "Kept away: protection and prevention", note: "safe from, prevented from", boards: [], words: ["debar", "exempt", "free", "immune", "prevent", "prohibit", "protect", "safe"] },
+  ],
+  by: [
+    { name: "The doer (passive)", note: "written by, moved by", boards: ["by-agent-means/agent"], words: ["accompanied", "blessed", "inspired", "infected", "moved", "offended", "characterised", "made", "occupied", "limited"] },
+    { name: "A means or method", note: "by train, by hand", boards: ["by-agent-means/means", "by-agent-means/method"], words: [] },
+    { name: "A rule or guide you follow", note: "abide by, live by", boards: [], words: ["abide", "live", "judge", "bound"] },
+    { name: "An amount or margin", note: "reduced by 10 per cent, lost by two runs", boards: ["by-agent-means/change"], words: ["reduced", "lose"] },
+  ],
+  about: [
+    { name: "A feeling around a topic", note: "worried about, angry about", boards: [], words: ["anxious", "concerned", "nervous", "worried", "upset", "angry", "sensitive", "pleased", "sorry", "mad", "vain", "boast", "care"] },
+    { name: "Information around a topic", note: "ask about, talk about", boards: ["about-on-topic/two"], words: ["ask", "enquire", "hear", "talk", "write", "complain", "remind", "warn", "wonder", "certain", "sure", "laugh"] },
+  ],
+  against: [
+    { name: "Opposing", note: "vote against, biased against", boards: ["against/oppose"], words: ["argue", "vote", "react", "biased", "prejudiced", "discriminate", "appeal", "decide"] },
+    { name: "Protecting from a danger", note: "guard against, insured against", boards: [], words: ["guard", "insured", "warn"] },
+    { name: "Pressing against", note: "lean against the wall", boards: ["against/lean"], words: ["lean"] },
+  ],
+  over: [
+    { name: "Above and covering or crossing", note: "a bridge over the river", boards: ["over-above/over", "over-above/movement"], words: [] },
+    { name: "Control over", note: "take over, an advantage over", boards: [], words: ["take", "hand", "advantage"] },
+    { name: "Thinking or fighting over", note: "brood over, quarrel over", boards: [], words: ["brood", "quarrel"] },
+    { name: "Getting past", note: "get over an illness", boards: [], words: ["get"] },
+  ],
+};
