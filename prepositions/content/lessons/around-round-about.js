@@ -1,0 +1,152 @@
+/* Lesson 1.18: AROUND, ROUND, ABOUT. */
+PLAB.registerLesson({
+  id: "around-round-about",
+  title: "AROUND, ROUND, ABOUT",
+  phase: 1,
+  unit: "p1-position",
+  level: "Intermediate",
+  minutes: 9,
+  summary:
+    "Around for a circle, surrounding or moving in a circle (round in British English), around and about for approximately, around and about for here and there, and about for a topic.",
+  objectives: [
+    "Use around (BrE also round) for surrounding and circular movement.",
+    "Use around or about for approximate numbers and times.",
+    "Use about (or the more formal on) for a topic, and know that around for topics is informal.",
+  ],
+  steps: [
+    {
+      id: "circle",
+      title: "Around: a circle",
+      alt: "The sun in the centre with a circular path, and the earth on the path. Sentence: The earth moves around the sun. Below: We sat around the table.",
+      say: [
+        { text: "Here is the sun, and a circular path around it.", cue: "orbit" },
+        { text: "**Around** describes a circle: moving in one, or surrounding something. _The earth moves around the sun._", cue: "s-earth" },
+        { text: "_We sat around the table._ British English also uses **round**: _We sat round the table._", cue: "s-table" },
+      ],
+      actions: [
+        { do: "draw", id: "sun", shape: "circle", cx: 480, cy: 210, r: 40, ink: "trouble", fill: "soft", dur: 700 },
+        { do: "draw", id: "orbit", shape: "ellipse", cx: 480, cy: 210, rx: 230, ry: 120, ink: "accent2", dur: 1500, gap: 300 },
+        { do: "draw", id: "earth", shape: "circle", cx: 710, cy: 210, r: 16, ink: "accent", fill: "solid", dur: 500 },
+        { do: "move", id: "spin", target: "earth", by: [-230, 120], arc: 0, dur: 1200, gap: 300 },
+        { do: "write", id: "s-earth", text: "The earth moves around the sun.", x: 480, y: 440, size: 40, anchor: "middle", gap: 400, dur: 1900 },
+        { do: "highlight", id: "h-earth", target: "s-earth", word: "around" },
+        { do: "write", id: "s-table", text: "We sat around (BrE: round) the table.", x: 480, y: 520, size: 32, ink: "muted", anchor: "middle", gap: 500, dur: 2000 },
+      ],
+    },
+    {
+      id: "approx",
+      title: "Around and about: roughly",
+      alt: "A number line with a fuzzy shaded area around 500. Sentences: around 500 people, about 500 people, at about 10 o'clock.",
+      say: [
+        { text: "Picture a number with a fuzzy area round it. **Around** and **about** both mean _approximately_.", cue: "fuzz" },
+        { text: "_Around 500 people came. About 500 people came._ Both are standard; about is slightly more common in British English.", cue: "s1" },
+        { text: "With times: _at about 10 o'clock_ or _at around 10 o'clock._", cue: "s2" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-circle", targets: "all" },
+        { do: "draw", id: "line", shape: "arrow", from: [100, 200], to: [860, 200], dur: 1000, gap: 400 },
+        { do: "draw", id: "fuzz", shape: "ellipse", cx: 480, cy: 200, rx: 110, ry: 34, ink: "accent2", fill: "soft", dur: 800 },
+        { do: "write", id: "n", text: "500", x: 480, y: 260, size: 32, ink: "accent", anchor: "middle" },
+        { do: "write", id: "s1", text: "around 500 people · about 500 people", x: 480, y: 370, size: 36, anchor: "middle", gap: 500, dur: 2100 },
+        { do: "write", id: "s2", text: "at about 10 o'clock", x: 480, y: 460, size: 36, anchor: "middle", gap: 500, dur: 1400 },
+      ],
+    },
+    {
+      id: "here-there",
+      title: "Here and there",
+      alt: "A wandering path through a small map of a city. Sentence: We walked around the old city.",
+      say: [
+        { text: "Around also means in various places, without a fixed path: _We walked around the old city._", cue: "path" },
+        { text: "British English can use _round_ or _about_ here too: _walk round the town, books lying about the room._", cue: "s-walk" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-approx", targets: "all" },
+        { do: "draw", id: "city", shape: "rect", x: 220, y: 90, w: 520, h: 260, ink: "muted", dur: 900, gap: 400 },
+        { do: "draw", id: "path", shape: "group", ink: "accent", dur: 1600, parts: [{ shape: "line", from: [260, 300], to: [380, 140], bow: 30 }, { shape: "line", from: [380, 140], to: [520, 290], bow: -40 }, { shape: "line", from: [520, 290], to: [690, 140], bow: 30 }] },
+        { do: "write", id: "s-walk", text: "We walked around the old city.", x: 480, y: 450, size: 40, anchor: "middle", gap: 400, dur: 1900 },
+        { do: "highlight", id: "h-walk", target: "s-walk", word: "around" },
+      ],
+    },
+    {
+      id: "topic",
+      title: "About for a topic",
+      alt: "A book labelled Iqbal. Sentence: a book about Iqbal. Below: formal, a lecture on economics; informal, issues around the policy.",
+      say: [
+        { text: "**About** also gives the topic: _a book about Iqbal, a talk about climate change._", cue: "s-book" },
+        { text: "In formal writing, **on** is common for serious topics: _a lecture on economics._", cue: "s-on" },
+        { text: "_Around_ for a topic (_questions around the policy_) is a recent, informal trend. In essays, prefer about, on or _concerning._", cue: "s-around" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-here", targets: "all" },
+        { do: "draw", id: "book", shape: "group", ink: "accent2", dur: 900, gap: 400, parts: [{ shape: "rect", x: 400, y: 80, w: 160, h: 120 }, { shape: "line", from: [420, 80], to: [420, 200], wobble: 0.3 }] },
+        { do: "write", id: "book-l", text: "Iqbal", x: 490, y: 150, size: 30, ink: "accent2", anchor: "middle" },
+        { do: "write", id: "s-book", text: "a book about Iqbal", x: 480, y: 290, size: 42, anchor: "middle", gap: 400, dur: 1500 },
+        { do: "highlight", id: "h-book", target: "s-book", word: "about" },
+        { do: "write", id: "s-on", text: "formal: a lecture on economics", x: 480, y: 380, size: 32, ink: "accent2", anchor: "middle", gap: 500 },
+        { do: "write", id: "s-around", text: "informal: issues around the policy", x: 480, y: 450, size: 32, ink: "trouble", anchor: "middle", gap: 500 },
+      ],
+    },
+    {
+      id: "check-fire",
+      title: "Check: surrounding",
+      alt: "The book and the three topic phrases remain on the board.",
+      say: [{ text: "Picture where the children are." }],
+      actions: [],
+      check: {
+        id: "around-q1",
+        source: "original",
+        skill: "around for surrounding",
+        prompt: "The children sat ___ the fire to keep warm.",
+        options: [
+          { text: "around", correct: true, why: "Correct. They form a circle surrounding the fire: _around_ (British English also _round_) the fire." },
+          { text: "about", misconception: "around-vs-about", why: "About can mean here and there, but for sitting in a circle round something, use around or round." },
+          { text: "among", misconception: "between-vs-among", why: "Among would place them inside a group of fires. They surround one fire: around." },
+        ],
+      },
+    },
+    {
+      id: "check-topic",
+      title: "Check: formal topic",
+      alt: "The topic phrases remain on the board.",
+      say: [{ text: "An original practice question in formal style." }],
+      actions: [],
+      check: {
+        id: "around-q2",
+        source: "original",
+        skill: "about or on for a topic",
+        prompt: "The committee published a detailed report ___ the causes of inflation.",
+        options: [
+          { text: "on", correct: true, why: "Correct. Formal English uses _a report on_ a subject. (_About_ is also correct, slightly less formal.)" },
+          { text: "around", misconception: "around-vs-about", why: "_Around_ for a topic is an informal trend. In a formal report, use _on_ or _about_." },
+          { text: "among", misconception: "between-vs-among", why: "Among places something inside a group. A topic takes on or about." },
+        ],
+      },
+    },
+    {
+      id: "why-not",
+      title: "Why this one and not the others?",
+      alt: "The sentence She wrote a book with a gap Iqbal., then the candidates with pictures: about (right: the topic); around (wrong: informal for a topic); of (correct English but a different meaning: written by Iqbal, not about him). Rule: about, on = a topic; around = in a circle, or approximately.",
+      say: [
+        { text: "Fill the gap: She wrote a book \u2026 Iqbal. What does the sentence want to say? The answer is **about**: the topic.", cue: "why1" },
+        { text: "Why not the others? **of** is correct English, but it would mean written by Iqbal, not about him. That is not what this sentence says. **around**: informal for a topic.", cue: "why2" },
+        { text: "The rule: about, on = a topic; around = in a circle, or approximately.", cue: "why-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.lineup("why", "She wrote a book ____ Iqbal.", [["aboutCircle", "about", true, "the topic"], ["circleDoc", "around", false, "informal for | a topic"], ["ownerBook", "of", "diff", "written by Iqbal, | not about him"]], ["about, on = a topic", "around = in a circle, or approximately"]),
+      ],
+    },
+    {
+      id: "summary",
+      title: "The summary",
+      alt: "Around (BrE round): a circle, surrounding, here and there. Around, about: approximately. About, on: a topic.",
+      say: [{ text: "**Around** (BrE **round**): a circle, surrounding, here and there. **Around / about**: roughly. **About / on**: a topic.", cue: "c3" }],
+      actions: [
+        { do: "erase", id: "clear-topic", targets: "all" },
+        { do: "write", id: "c1", text: "around / round: a circle, surrounding", x: 480, y: 140, size: 36, anchor: "middle", gap: 400 },
+        { do: "write", id: "c2", text: "around / about: roughly, about 500", x: 480, y: 230, size: 36, anchor: "middle" },
+        { do: "write", id: "c3", text: "about / on: a topic", x: 480, y: 320, size: 36, anchor: "middle" },
+      ],
+    },
+  ],
+});

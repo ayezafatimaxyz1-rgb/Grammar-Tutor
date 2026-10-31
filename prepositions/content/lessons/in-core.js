@@ -1,0 +1,515 @@
+/* Lesson 1.1: the core sense of IN.
+   Board coordinates use a 960 x 600 canvas. Inks: main, accent, accent2, muted, trouble, hi.
+   In "say" lines, **word** marks a key word and _text_ marks an example. */
+PLAB.registerLesson({
+  id: "in-core",
+  title: "IN: inside a boundary",
+  phase: 1,
+  unit: "p1-space-containers",
+  level: "Beginner",
+  minutes: 12,
+  summary:
+    "What in really means, why it works for boxes, rooms and cities, how it stretches to situations like in trouble, and where that picture stops working.",
+  objectives: [
+    "Explain the core sense of in in your own words: located within the boundaries of something.",
+    "Use in for containers and areas, and see why at is chosen when a place is pictured as a point.",
+    "Recognise metaphorical uses such as in trouble and in danger, and know that not every state takes in.",
+  ],
+  steps: [
+    {
+      id: "boundary",
+      title: "A box has an inside",
+      alt: "A hand-drawn box. An arrow labelled boundary points at its edge.",
+      say: [
+        { text: "Let's begin with something you can picture. I'm drawing a box.", cue: "box" },
+        {
+          text: "The four lines are the edges of the box. Together they make a **boundary**: a line that separates the inside from the outside.",
+          cue: "b-arrow",
+        },
+        { text: "Hold on to that one idea. Some things have an inside, and the boundary tells us where the inside ends.", cue: "b-note" },
+      ],
+      actions: [
+        { do: "draw", id: "box", shape: "rect", x: 330, y: 170, w: 300, h: 220, dur: 2000, width: 4 },
+        { do: "draw", id: "b-arrow", shape: "arrow", from: [770, 120], to: [640, 182], bow: -14, ink: "accent2", gap: 500 },
+        { do: "write", id: "b-label", text: "boundary", x: 780, y: 112, size: 34, ink: "accent2", sync: true, offset: 300 },
+        { do: "write", id: "b-note", text: "inside", x: 480, y: 290, size: 30, ink: "muted", anchor: "middle", gap: 700 },
+      ],
+    },
+    {
+      id: "outside",
+      title: "Where is the ball?",
+      alt: "A filled ball to the left of the box. The sentence reads: The ball is outside the box.",
+      say: [
+        { text: "Now I add a small ball. Where is it? It is to the left of the box, outside its edges.", cue: "ball" },
+        {
+          text: "Whenever we say where something is, we describe it in relation to something else. Here the ball is the thing we are talking about, and the box is our **reference point**.",
+          cue: "ball-label",
+        },
+        {
+          text: "A **preposition** is the small word that shows this relationship: in, on, at, under, outside. The name means _placed before_, because it usually comes before a noun, as in _outside the box_.",
+          cue: "s-out",
+        },
+      ],
+      actions: [
+        { do: "draw", id: "ball", shape: "circle", cx: 180, cy: 330, r: 26, ink: "accent", fill: "solid", dur: 900 },
+        { do: "write", id: "ball-label", text: "ball", x: 180, y: 400, size: 30, ink: "accent", anchor: "middle", gap: 500 },
+        { do: "write", id: "s-out", text: "The ball is outside the box.", x: 480, y: 525, size: 42, anchor: "middle", gap: 900, dur: 2200 },
+        { do: "highlight", id: "h-out", target: "s-out", word: "outside", style: "underline", ink: "accent2" },
+      ],
+    },
+    {
+      id: "inside",
+      title: "The ball moves in",
+      alt: "The ball hops across the left edge and lands inside the box. The sentence reads: The ball is in the box, with in highlighted.",
+      say: [
+        { text: "Watch the ball. It crosses the boundary.", cue: "move-ball" },
+        { text: "Now the edges of the box are all around it. In English we say: _The ball is in the box._", cue: "s-in" },
+        {
+          text: "**In** tells us that the ball is within the boundaries of the box. The box surrounds it.",
+          cue: "h-in",
+        },
+        {
+          text: "One small note. While the ball was moving across the edge, we could say it _rolled into the box_. **Into** describes the movement; **in** describes where it ends up. After verbs of placing, in is also normal: _Put the ball in the box._ Into gets its own lesson later.",
+          cue: "h-in",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-out", targets: ["s-out", "ball-label", "b-note"] },
+        { do: "move", id: "move-ball", target: "ball", by: [300, 0], arc: 90, dur: 1500, gap: 400 },
+        { do: "write", id: "s-in", text: "The ball is in the box.", x: 480, y: 525, size: 46, anchor: "middle", gap: 500, dur: 2000 },
+        { do: "highlight", id: "h-in", target: "s-in", word: "in", gap: 400 },
+      ],
+    },
+    {
+      id: "check-change",
+      title: "Check: what changed?",
+      alt: "The ball inside the box, with a question mark beside it.",
+      say: [{ text: "Before we go further, tell me in your own words what changed when the ball moved.", cue: "qmark" }],
+      actions: [{ do: "write", id: "qmark", text: "?", x: 760, y: 330, size: 110, ink: "accent2", dur: 700 }],
+      check: {
+        id: "in-core-q1",
+        source: "original",
+        skill: "Core sense of in",
+        prompt: "When the ball moved, what changed about its relationship with the box?",
+        options: [
+          {
+            text: "It crossed the boundary, so now the box surrounds it.",
+            correct: true,
+            why: "Exactly. Before, the ball was outside the box's edges. Now those edges are all around it. Being surrounded by a boundary is what in expresses.",
+          },
+          {
+            text: "It is now touching the top of the box.",
+            misconception: "in-vs-on",
+            why: "That would be a different relationship. If the ball rested on the top surface, we would say _The ball is on the box._ On is about contact with a surface. In is about being inside boundaries.",
+            show: [
+              { do: "draw", id: "o-box", shape: "rect", x: 330, y: 170, w: 300, h: 220, ink: "muted", dur: 700 },
+              { do: "draw", id: "o-ball", shape: "circle", cx: 480, cy: 143, r: 26, ink: "accent", fill: "solid", dur: 600 },
+              { do: "write", id: "o-s", text: "The ball is on the box.", x: 480, y: 525, size: 42, anchor: "middle", dur: 1300 },
+              { do: "highlight", id: "o-h", target: "o-s", word: "on" },
+            ],
+          },
+          {
+            text: "It is now close to the side of the box.",
+            misconception: "in-vs-beside",
+            why: "Close to the side means outside but near, which English expresses with next to or beside: _The ball is next to the box._ Our ball has gone past the edge and is inside it.",
+            show: [
+              { do: "draw", id: "o-box", shape: "rect", x: 330, y: 170, w: 300, h: 220, ink: "muted", dur: 700 },
+              { do: "draw", id: "o-ball", shape: "circle", cx: 668, cy: 364, r: 26, ink: "accent", fill: "solid", dur: 600 },
+              { do: "write", id: "o-s", text: "The ball is next to the box.", x: 480, y: 525, size: 42, anchor: "middle", dur: 1300 },
+              { do: "highlight", id: "o-h", target: "o-s", word: "next to" },
+            ],
+          },
+          {
+            text: "The box became bigger.",
+            misconception: "reading-the-picture",
+            why: "Look again: the box did not change at all. Only the ball moved. A preposition like in compares the position of one thing (the ball) with another (the box).",
+          },
+        ],
+      },
+    },
+    {
+      id: "room",
+      title: "A person in a room",
+      alt: "A room with a window and a door. A stick figure named Ali stands inside. The sentence reads: Ali is in the room.",
+      say: [
+        { text: "Let's try the same idea somewhere else. Here is a room, with a window and a door.", cue: "room" },
+        { text: "The walls are the boundaries. Ali is standing inside them.", cue: "ali" },
+        {
+          text: "So we say: _Ali is in the room._ It is the same relationship as the ball and the box. The thing we talk about is surrounded by the boundaries of the reference point.",
+          cue: "s-room",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-box", targets: "all" },
+        {
+          do: "draw",
+          id: "room",
+          shape: "group",
+          dur: 2600,
+          gap: 400,
+          parts: [
+            { shape: "rect", x: 90, y: 110, w: 340, h: 270 },
+            { shape: "rect", x: 125, y: 150, w: 80, h: 64, wobble: 1 },
+            { shape: "line", from: [165, 150], to: [165, 214], wobble: 0.6 },
+            { shape: "rect", x: 350, y: 255, w: 52, h: 125, wobble: 1 },
+          ],
+        },
+        { do: "draw", id: "ali", shape: "person", x: 270, y: 218, scale: 0.95, ink: "accent", dur: 1300 },
+        { do: "write", id: "ali-label", text: "Ali", x: 270, y: 204, size: 28, ink: "accent", anchor: "middle", gap: 200 },
+        { do: "write", id: "s-room", text: "Ali is in the room.", x: 260, y: 450, size: 40, anchor: "middle", gap: 500, dur: 1700 },
+        { do: "highlight", id: "h-room", target: "s-room", word: "in" },
+      ],
+    },
+    {
+      id: "city",
+      title: "A city has a boundary too",
+      alt: "Beside the room, an irregular outline of a city labelled LAHORE, with small houses and Sara inside. The sentence reads: Sara lives in Lahore.",
+      say: [
+        { text: "Now something much bigger. You cannot see a city's border the way you see walls, but on a map a city has one.", cue: "lahore" },
+        { text: "Sara's home is inside that border.", cue: "sara" },
+        {
+          text: "So: _Sara lives in Lahore._ English treats rooms, buildings, cities, countries and regions as areas with boundaries: _in the kitchen, in Lahore, in Pakistan, in South Asia._",
+          cue: "s-city",
+        },
+        {
+          text: "What the room and the city share is the idea of being inside an area. Notice that a city's boundary is something we imagine, not something we can touch. In is about how we picture the place.",
+          cue: "h-city",
+        },
+      ],
+      actions: [
+        {
+          do: "draw",
+          id: "lahore",
+          shape: "blob",
+          ink: "accent2",
+          dur: 2200,
+          points: [[560, 180], [640, 118], [760, 108], [860, 150], [890, 250], [850, 340], [740, 372], [620, 352], [548, 280]],
+        },
+        { do: "write", id: "lahore-label", text: "LAHORE", x: 720, y: 150, size: 30, ink: "accent2", anchor: "middle", style: "caps" },
+        {
+          do: "draw",
+          id: "houses",
+          shape: "group",
+          dur: 1400,
+          width: 2.6,
+          ink: "muted",
+          parts: [
+            { shape: "rect", x: 610, y: 270, w: 34, h: 30, wobble: 0.8 },
+            { shape: "line", from: [606, 272], to: [627, 252], wobble: 0.4 },
+            { shape: "line", from: [627, 252], to: [648, 272], wobble: 0.4 },
+            { shape: "rect", x: 800, y: 280, w: 34, h: 30, wobble: 0.8 },
+            { shape: "line", from: [796, 282], to: [817, 262], wobble: 0.4 },
+            { shape: "line", from: [817, 262], to: [838, 282], wobble: 0.4 },
+          ],
+        },
+        { do: "draw", id: "sara", shape: "person", x: 722, y: 205, scale: 0.7, ink: "accent", dur: 1100 },
+        { do: "write", id: "sara-label", text: "Sara", x: 722, y: 194, size: 28, ink: "accent", anchor: "middle", gap: 150 },
+        { do: "write", id: "s-city", text: "Sara lives in Lahore.", x: 720, y: 450, size: 40, anchor: "middle", gap: 500, dur: 1800 },
+        { do: "highlight", id: "h-city", target: "s-city", word: "in" },
+      ],
+    },
+    {
+      id: "limit",
+      title: "Where the picture stops: at",
+      alt: "A road drawn as a line with three stops: Multan, Sahiwal and Lahore. A bus arrow passes Sahiwal. The sentence reads: The bus stopped at Sahiwal.",
+      say: [
+        {
+          text: "Here is an important limit. A place name does not always take in. It depends on how the speaker pictures the place.",
+          cue: "road",
+        },
+        {
+          text: "Imagine a bus going from Multan to Lahore. On this road, Sahiwal is just a stop, a point on the route. We are not thinking about being inside the town.",
+          cue: "stops",
+        },
+        { text: "So English uses **at**: _The bus stopped at Sahiwal on its way to Lahore._", cue: "s-at" },
+        {
+          text: "Both are correct English: _She lives in Sahiwal_ (an area she is inside) and _The bus stopped at Sahiwal_ (a point on a journey). The place is the same; the picture is different. You will study at in its own lesson.",
+          cue: "h-at",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-city", targets: "all" },
+        { do: "draw", id: "road", shape: "line", from: [110, 270], to: [860, 270], dur: 1600, width: 4, gap: 400 },
+        {
+          do: "draw",
+          id: "stops",
+          shape: "group",
+          ink: "accent2",
+          fill: "solid",
+          dur: 1100,
+          parts: [
+            { shape: "circle", cx: 160, cy: 270, r: 11 },
+            { shape: "circle", cx: 480, cy: 270, r: 11 },
+            { shape: "circle", cx: 810, cy: 270, r: 11 },
+          ],
+        },
+        { do: "write", id: "multan", text: "Multan", x: 160, y: 325, size: 30, ink: "muted", anchor: "middle" },
+        { do: "write", id: "sahiwal", text: "Sahiwal", x: 480, y: 325, size: 30, ink: "accent2", anchor: "middle", sync: true, offset: 300 },
+        { do: "write", id: "lahore2", text: "Lahore", x: 810, y: 325, size: 30, ink: "muted", anchor: "middle", sync: true, offset: 300 },
+        { do: "draw", id: "bus", shape: "arrow", from: [200, 215], to: [460, 215], bow: -6, ink: "accent", dur: 1300, gap: 500 },
+        { do: "write", id: "bus-label", text: "bus", x: 300, y: 195, size: 30, ink: "accent", anchor: "middle", sync: true, offset: 400 },
+        { do: "write", id: "s-at", text: "The bus stopped at Sahiwal.", x: 480, y: 450, size: 42, anchor: "middle", gap: 500, dur: 1900 },
+        { do: "highlight", id: "h-at", target: "s-at", word: "at", ink: "hi" },
+      ],
+    },
+    {
+      id: "check-place",
+      title: "Check: area or point?",
+      alt: "The road with stops remains on the board.",
+      say: [{ text: "Both sentences in this question are correct English. Your job is to notice the picture behind each one." }],
+      actions: [],
+      check: {
+        id: "in-core-q2",
+        source: "original",
+        skill: "in vs at for places",
+        prompt: "Both sentences are correct. In which one is Karachi pictured as an area that someone is inside?",
+        options: [
+          {
+            text: "My cousins live in Karachi.",
+            correct: true,
+            why: "Yes. Living somewhere means your home is inside the city's area, so English uses in.",
+          },
+          {
+            text: "Our flight to Dubai stopped at Karachi.",
+            misconception: "in-vs-at-place",
+            why: "This sentence is correct too, but it pictures Karachi as a stop on a journey, a point on the route. That is why it uses at, not in.",
+          },
+          {
+            text: "Both of them.",
+            misconception: "in-vs-at-place",
+            why: "Both sentences are correct, but they picture Karachi differently. Only the first treats it as an area someone is inside; the second treats it as a point on a route.",
+          },
+        ],
+      },
+    },
+    {
+      id: "trouble",
+      title: "Beyond space: in trouble",
+      alt: "A large shaded cloud labelled trouble surrounds a person. The sentence reads: He is in trouble. Below: get into trouble, get out of trouble.",
+      say: [
+        { text: "Now a big step. Trouble is not a box. It has no walls you can touch.", cue: "cloud" },
+        {
+          text: "But English often talks about a difficult situation as if it were a space around you. So we say _He is in trouble_, as if the trouble surrounds him and he cannot simply step out.",
+          cue: "s-trouble",
+        },
+        {
+          text: "The same picture explains related phrases: you _get into trouble_ (you cross into that space) and you _get out of trouble_ (you leave it).",
+          cue: "related",
+        },
+        {
+          text: "This is called a **metaphorical** use: an idea is described as if it were a physical thing. The literal meaning of in is about space. Here the meaning is about a situation or a state of being.",
+          cue: "related",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-road", targets: "all" },
+        {
+          do: "draw",
+          id: "cloud",
+          shape: "blob",
+          ink: "trouble",
+          fill: "soft",
+          dur: 2300,
+          gap: 400,
+          wobble: 6,
+          points: [[300, 200], [360, 120], [470, 96], [590, 112], [680, 170], [690, 260], [620, 340], [480, 360], [340, 330], [280, 270]],
+        },
+        { do: "write", id: "cloud-label", text: "trouble", x: 400, y: 168, size: 32, ink: "trouble", anchor: "middle" },
+        { do: "draw", id: "him", shape: "person", x: 490, y: 175, scale: 0.95, ink: "main", dur: 1200 },
+        { do: "write", id: "s-trouble", text: "He is in trouble.", x: 480, y: 450, size: 44, anchor: "middle", gap: 500, dur: 1700 },
+        { do: "highlight", id: "h-trouble", target: "s-trouble", word: "in" },
+        { do: "write", id: "related", text: "get into trouble  ·  get out of trouble", x: 480, y: 530, size: 30, ink: "muted", anchor: "middle", gap: 700, dur: 2200 },
+      ],
+    },
+    {
+      id: "states",
+      title: "Other states, and the limits",
+      alt: "A grid of six pictures: a person surrounded by a red cloud (in danger), coins (in debt), a heart (in love), a target (at risk), a flame (on fire), a weight pressing on a person (under pressure).",
+      say: [
+        {
+          text: "Many states and situations take in: _in danger, in debt, in love, in a hurry, in silence._ Each can be pictured as a condition that surrounds you.",
+          cue: "s1",
+        },
+        {
+          text: "But be careful. The container picture is a memory aid, not a rule that predicts every expression. English also says _at risk_, _on fire_ and _under pressure_.",
+          cue: "s4",
+        },
+        {
+          text: "Those choices are set by usage. We learn them as fixed expressions, and later lessons on at, on and under will show the pictures that make them easier to remember.",
+          cue: "s6",
+        },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-rd-states"),
+        ...PLAB.kit.grid("s", [
+          ["surrounded", "in danger", "a threat all around you", { hl: "in" }],
+          ["coin", "in debt", "inside a state of owing", { hl: "in" }],
+          ["heart", "in love", "wrapped in a feeling", { hl: "in" }],
+          ["target", "at risk", "a point that may be hit", { hl: "at", ink: "trouble" }],
+          ["flame", "on fire", "flames on its surface", { hl: "on", ink: "trouble" }],
+          ["pressed", "under pressure", "a weight from above", { hl: "under", ink: "trouble" }],
+        ]),
+      ],
+    },
+    {
+      id: "check-danger",
+      title: "Check: in danger",
+      alt: "The two lists remain on the board.",
+      say: [{ text: "Here is a mix-up that many learners make. Choose carefully." }],
+      actions: [],
+      check: {
+        id: "in-core-q3",
+        source: "original",
+        skill: "in with states",
+        prompt: "Complete the sentence: The child's life is ___ danger.",
+        options: [
+          { text: "in", correct: true, why: "Right. English treats danger as a condition that surrounds you: _in danger_, just like _in trouble_." },
+          {
+            text: "at",
+            misconception: "at-risk-transfer",
+            why: "English says _at risk_ but _in danger_. The two mean nearly the same thing, which is exactly why they get mixed up. _At danger_ is not used.",
+          },
+          {
+            text: "on",
+            misconception: "state-preposition-guess",
+            why: "_On danger_ is not English. Danger is pictured as a condition you are inside: _in danger_.",
+          },
+        ],
+      },
+    },
+    {
+      id: "formal",
+      title: "In formal writing",
+      alt: "Two formal sentences: The country is in the midst of an economic crisis. The reform programme is in its early stages. A bracket shows a period of time as a stretch you are inside.",
+      say: [
+        {
+          text: "Formal and academic English, the kind you write in CSS essays and précis, uses the same picture. _The country is in the midst of an economic crisis._ In the midst of means surrounded by it, right in the middle.",
+          cue: "f1",
+        },
+        {
+          text: "A period of time can be pictured as a stretch you are inside: _The reform programme is in its early stages._",
+          cue: "f2",
+        },
+        {
+          text: "Compare _at an early stage_. One stage, pictured as a single point, takes at. The stretch of early stages takes in. Both are standard; the picture decides.",
+          cue: "span",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-lists", targets: "all" },
+        { do: "write", id: "f1", text: "The country is in the midst of a crisis.", x: 480, y: 140, size: 38, anchor: "middle", gap: 400, dur: 2400 },
+        { do: "highlight", id: "f1-h", target: "f1", word: "in the midst of" },
+        { do: "write", id: "f2", text: "The reform is in its early stages.", x: 480, y: 260, size: 38, anchor: "middle", gap: 700, dur: 2200 },
+        { do: "highlight", id: "f2-h", target: "f2", word: "in" },
+        {
+          do: "draw",
+          id: "span",
+          shape: "group",
+          ink: "accent2",
+          dur: 1600,
+          gap: 600,
+          parts: [
+            { shape: "line", from: [150, 400], to: [810, 400], wobble: 1 },
+            { shape: "line", from: [250, 375], to: [250, 425], wobble: 0.5 },
+            { shape: "line", from: [520, 375], to: [520, 425], wobble: 0.5 },
+          ],
+        },
+        { do: "write", id: "span-label", text: "early stages (in)", x: 385, y: 470, size: 30, ink: "accent2", anchor: "middle" },
+        { do: "draw", id: "point", shape: "circle", cx: 680, cy: 400, r: 10, ink: "accent", fill: "solid", dur: 500, gap: 400 },
+        { do: "write", id: "point-label", text: "a stage (at)", x: 680, y: 470, size: 28, ink: "accent", anchor: "middle" },
+      ],
+    },
+    {
+      id: "check-css",
+      title: "Check: exam style",
+      alt: "The formal sentences and the time line remain on the board.",
+      say: [
+        {
+          text: "This is an original practice question written in the style of a CSS fill-in-the-blank item. It is not taken from a past paper.",
+        },
+      ],
+      actions: [],
+      check: {
+        id: "in-core-q4",
+        source: "original",
+        skill: "in with periods and stages",
+        prompt: "Choose the correct preposition: The government's reform programme is still ___ its early stages.",
+        options: [
+          {
+            text: "in",
+            correct: true,
+            why: "Correct. _Its early stages_ is a stretch of time the programme is inside, so the standard choice is in.",
+          },
+          {
+            text: "at",
+            misconception: "in-vs-at-stage",
+            why: "A real trap. English says _at an early stage_ (one stage, pictured as a point) but _in its early stages_ (a period you are within). With the plural stages, in is the standard choice.",
+          },
+          {
+            text: "on",
+            misconception: "state-preposition-guess",
+            why: "_On its early stages_ is not used. On would suggest a surface or a basis (_on the agenda, on the basis of_), which does not fit a period of time.",
+          },
+          {
+            text: "under",
+            misconception: "state-preposition-guess",
+            why: "Under is used when something is being acted on or controlled: _under review, under construction_. Early stages is a period, not a process acting on the programme, so under does not fit.",
+          },
+        ],
+      },
+    },
+    {
+      id: "why-not",
+      title: "Why this one and not the others?",
+      alt: "The sentence Sara lives with a gap Lahore., then the candidates with pictures: in (right: an area she is inside); at (wrong: shrinks Lahore to a dot on a route); on (wrong: on top of the city, like a lid); to (wrong: to is movement; living is not). Rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.",
+      say: [
+        { text: "Fill the gap: Sara lives \u2026 Lahore. What does the sentence want to say? The answer is **in**: an area she is inside.", cue: "why1" },
+        { text: "Why not the others? **at**: shrinks Lahore to a dot on a route. **on**: on top of the city, like a lid. **to**: to is movement; living is not.", cue: "why2" },
+        { text: "The rule: in = inside an area: live in Lahore; at = a stop on a route: stopped at Lahore.", cue: "why-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.lineup("why", "Sara lives ____ Lahore.", [["liveIn", "in", true, "an area she is | inside"], ["roadPass", "at", false, "shrinks Lahore to a | dot on a route"], ["onBase", "on", false, "on top of the city, | like a lid"], ["goHome", "to", false, "to is movement; | living is not"]], ["in = inside an area: live in Lahore", "at = a stop on a route: stopped at Lahore"]),
+      ],
+    },
+    {
+      id: "summary",
+      title: "The meaning map",
+      alt: "A meaning map. IN sits in the centre. Arrows lead to: containers (in the box, in the room), areas (in Lahore, in Pakistan), states (in trouble, in danger), and time (in June, in 2025), marked as a later lesson.",
+      say: [
+        { text: "Here is the whole lesson on one board.", cue: "core" },
+        { text: "**Core sense:** in means located within the boundaries of something.", cue: "core-label" },
+        {
+          text: "It extends from physical containers (_in the box_) to areas whose borders we imagine (_in Lahore_), and then to situations and states pictured as spaces (_in trouble, in danger_).",
+          cue: "n3",
+        },
+        {
+          text: "Remember the limits: at is often used when a place is pictured as a point, and some states take other prepositions (_at risk, under pressure_).",
+          cue: "n3",
+        },
+        {
+          text: "In also has uses for time, such as _in June_ and _in the morning_. That gets its own lesson, because time needs its own picture.",
+          cue: "n4",
+        },
+      ],
+      actions: [
+        { do: "erase", id: "clear-formal", targets: "all" },
+        { do: "draw", id: "core", shape: "ellipse", cx: 480, cy: 300, rx: 92, ry: 58, ink: "accent", width: 4, gap: 400, dur: 1000 },
+        { do: "write", id: "core-label", text: "IN", x: 480, y: 318, size: 54, ink: "accent", anchor: "middle", dur: 700 },
+        { do: "write", id: "core-sub", text: "within boundaries", x: 480, y: 395, size: 28, ink: "accent", anchor: "middle", dur: 1000 },
+        { do: "draw", id: "a1", shape: "arrow", from: [400, 262], to: [270, 175], bow: 8, dur: 600 },
+        { do: "write", id: "n1", text: "containers", x: 190, y: 110, size: 32, ink: "accent2", anchor: "middle" },
+        { do: "write", id: "n1b", text: "in the box, in the room", x: 190, y: 150, size: 28, anchor: "middle" },
+        { do: "draw", id: "a2", shape: "arrow", from: [560, 262], to: [690, 175], bow: -8, dur: 600 },
+        { do: "write", id: "n2", text: "areas", x: 770, y: 110, size: 32, ink: "accent2", anchor: "middle" },
+        { do: "write", id: "n2b", text: "in Lahore, in Pakistan", x: 770, y: 150, size: 28, anchor: "middle" },
+        { do: "draw", id: "a3", shape: "arrow", from: [400, 340], to: [270, 440], bow: -8, dur: 600 },
+        { do: "write", id: "n3", text: "states", x: 190, y: 490, size: 32, ink: "trouble", anchor: "middle" },
+        { do: "write", id: "n3b", text: "in trouble, in danger", x: 190, y: 530, size: 28, anchor: "middle" },
+        { do: "draw", id: "a4", shape: "arrow", from: [560, 340], to: [690, 440], bow: 8, ink: "muted", dur: 600 },
+        { do: "write", id: "n4", text: "time (next)", x: 770, y: 490, size: 32, ink: "muted", anchor: "middle" },
+        { do: "write", id: "n4b", text: "in June, in 2025", x: 770, y: 530, size: 28, ink: "muted", anchor: "middle" },
+      ],
+    },
+  ],
+});

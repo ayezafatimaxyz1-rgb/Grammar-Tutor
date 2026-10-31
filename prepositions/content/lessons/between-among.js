@@ -1,0 +1,172 @@
+/* Lesson 1.17: BETWEEN, AMONG, AMONGST, AMID, AMIDST. */
+PLAB.registerLesson({
+  id: "between-among",
+  title: "BETWEEN, AMONG, AMID",
+  phase: 1,
+  unit: "p1-position",
+  level: "Intermediate",
+  minutes: 11,
+  summary:
+    "Between relates something to separate, individual points; among places it inside a group. Why the rule only two for between is a myth, amongst and amid(st), and the exam favourites between you and me and between X and Y.",
+  objectives: [
+    "Choose between for separate individuals and among for a group or mass.",
+    "Know that between can be used with more than two when each is considered separately.",
+    "Use between you and me, and between ... and (not or, not to).",
+  ],
+  steps: [
+    {
+      id: "between",
+      title: "Between: separate points",
+      alt: "Two trees with a ball in the space between them. Sentence: The ball is between the trees.",
+      say: [
+        { text: "Here are two trees, drawn as two separate things.", cue: "trees" },
+        { text: "The ball is in the space they mark out: _The ball is between the trees._", cue: "s-between" },
+        { text: "**Between** relates something to **individual**, separate points. You can see and name each one.", cue: "h-between" },
+      ],
+      actions: [
+        { do: "draw", id: "trees", shape: "group", ink: "accent2", dur: 1600, parts: [{ shape: "line", from: [280, 380], to: [280, 220] }, { shape: "circle", cx: 280, cy: 180, r: 45 }, { shape: "line", from: [680, 380], to: [680, 220] }, { shape: "circle", cx: 680, cy: 180, r: 45 }] },
+        { do: "draw", id: "ground", shape: "line", from: [150, 380], to: [810, 380], ink: "muted", width: 2.4, dur: 500 },
+        { do: "draw", id: "ball", shape: "circle", cx: 480, cy: 356, r: 24, ink: "accent", fill: "solid", dur: 600, gap: 300 },
+        { do: "write", id: "s-between", text: "The ball is between the trees.", x: 480, y: 480, size: 42, anchor: "middle", gap: 400, dur: 1900 },
+        { do: "highlight", id: "h-between", target: "s-between", word: "between" },
+      ],
+    },
+    {
+      id: "among",
+      title: "Among: inside a group",
+      alt: "A crowd of many small trees forming a wood, with a house in the middle of them. Sentence: a house among the trees.",
+      say: [
+        { text: "Now many trees together, a wood. We no longer think of each tree separately; they form a **group**.", cue: "wood" },
+        { text: "A house is somewhere inside that group: _a house among the trees._ **Among** places something inside a group or mass.", cue: "s-among" },
+        { text: "It works for people too: _The policy is popular among students. There was panic among the crowd._", cue: "h-among" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-between", targets: "all" },
+        { do: "draw", id: "wood", shape: "group", ink: "accent2", width: 2.6, dur: 2000, gap: 400, parts: [[200, 150], [290, 120], [380, 140], [580, 130], [670, 150], [760, 125], [230, 260], [330, 290], [630, 280], [730, 255], [430, 330], [540, 340]].map(([cx, cy]) => ({ shape: "circle", cx, cy, r: 26 })) },
+        { do: "draw", id: "house", shape: "group", ink: "accent", dur: 900, parts: [{ shape: "rect", x: 440, y: 200, w: 80, h: 70 }, { shape: "line", from: [430, 202], to: [480, 165] }, { shape: "line", from: [480, 165], to: [530, 202] }] },
+        { do: "write", id: "s-among", text: "a house among the trees", x: 480, y: 470, size: 42, anchor: "middle", gap: 400, dur: 1700 },
+        { do: "highlight", id: "h-among", target: "s-among", word: "among" },
+      ],
+    },
+    {
+      id: "myth",
+      title: "The “only two” myth",
+      alt: "Three dots labelled Pakistan, China and Iran, with lines joining each pair. Sentence: a treaty between Pakistan, China and Iran.",
+      say: [
+        { text: "You may have been taught: between for two, among for more than two. That is a simplification, and good dictionaries reject it.", cue: "p1" },
+        {
+          text: "Use **between** whenever the things are separate individuals with their own relationship, however many there are: _a treaty between Pakistan, China and Iran. The differences between the four provinces._",
+          cue: "s-treaty",
+        },
+        { text: "Use **among** when they are a group seen as a whole: _The prize was shared among the members._", cue: "h-treaty" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-among", targets: "all" },
+        { do: "draw", id: "p1", shape: "circle", cx: 230, cy: 280, r: 14, ink: "accent", fill: "solid", dur: 400, gap: 400 },
+        { do: "draw", id: "p2", shape: "circle", cx: 480, cy: 110, r: 14, ink: "accent", fill: "solid", dur: 400 },
+        { do: "draw", id: "p3", shape: "circle", cx: 730, cy: 280, r: 14, ink: "accent", fill: "solid", dur: 400 },
+        { do: "draw", id: "links", shape: "group", ink: "accent2", width: 2.6, dur: 1200, parts: [{ shape: "line", from: [245, 270], to: [465, 120] }, { shape: "line", from: [495, 120], to: [715, 270] }, { shape: "line", from: [250, 285], to: [710, 285] }] },
+        { do: "write", id: "l1", text: "Pakistan", x: 230, y: 330, size: 28, anchor: "middle" },
+        { do: "write", id: "l2", text: "China", x: 560, y: 100, size: 28 },
+        { do: "write", id: "l3", text: "Iran", x: 730, y: 330, size: 28, anchor: "middle" },
+        { do: "write", id: "s-treaty", text: "a treaty between Pakistan, China and Iran", x: 480, y: 450, size: 36, anchor: "middle", gap: 500, dur: 2300 },
+        { do: "highlight", id: "h-treaty", target: "s-treaty", word: "between" },
+      ],
+    },
+    {
+      id: "check-group",
+      title: "Check: a group",
+      alt: "The three countries and their links remain on the board.",
+      say: [{ text: "Are these separate individuals, or a group seen as a whole?" }],
+      actions: [],
+      check: {
+        id: "between-q1",
+        source: "original",
+        skill: "among for a group",
+        prompt: "The new scholarship scheme is very popular ___ university students.",
+        options: [
+          { text: "among", correct: true, why: "Correct. Students are a group seen as a whole, so among." },
+          { text: "between", misconception: "between-vs-among", why: "Between needs separate individuals with their own relationship. A whole group of students takes among." },
+          { text: "amid", misconception: "between-vs-among", why: "Amid means in the middle of something happening, usually a situation (_amid the protests_), not popularity in a group." },
+        ],
+      },
+    },
+    {
+      id: "amid",
+      title: "Amongst, amid, amidst",
+      alt: "Three words with notes. Amongst: British variant of among, slightly formal. Amid or amidst: in the middle of, often a situation: amid rising prices.",
+      say: [
+          { text: "**Amongst** means the same as among: one dot inside a crowd. It is more British and slightly formal; _among_ is always safe.", cue: "a1" },
+          { text: "**Amid** (literary **amidst**) means in the middle of something happening, usually a situation: the person stands in the middle of rising prices. _The budget was announced amid rising prices._", cue: "a2" },
+        ],
+      actions: [
+          PLAB.kit.clear("clear-myth"),
+          ...PLAB.kit.panels("a", [
+            ["crowdDot", "amongst the crowd", "= among (BrE, formal)", { hl: "amongst" }],
+            ["amidRising", "amid rising prices", "in the middle of a situation", { hl: "amid" }],
+          ]),
+        ],
+    },
+    {
+      id: "pronoun",
+      title: "Between you and me",
+      alt: "Two lines. Crossed out: between you and I. Correct: between you and me. Also: between 5 and 6 p.m., not between 5 to 6, and choose between A and B, not between A or B.",
+      say: [
+          { text: "A secret shared by two people stays between them. After a preposition, pronouns take the object form: _me, him, her, us, them._ So it is _between you and me_, not _between you and I._", cue: "r1" },
+          { text: "Between marks off a stretch with two ends, joined by **and**: _between 5 and 6 p.m._ (not _5 to 6_), _choose between A and B_ (not _A or B_).", cue: "r2" },
+        ],
+      actions: [
+          PLAB.kit.clear("clear-amid"),
+          ...PLAB.kit.panels("r", [
+            ["secret", "between you and me", "✗ between you and I", { hl: "me" }],
+            ["betweenTicks", "between 5 and 6 p.m.", "✗ between 5 to 6", { hl: "and" }],
+          ]),
+        ],
+    },
+    {
+      id: "check-pronoun",
+      title: "Check: sentence correction",
+      alt: "The between you and me lines remain on the board.",
+      say: [{ text: "An original practice item in CSS sentence-correction style." }],
+      actions: [],
+      check: {
+        id: "between-q2",
+        source: "original",
+        skill: "object pronouns after prepositions",
+        prompt: "Choose the correct sentence.",
+        options: [
+          { text: "The matter should remain between you and me.", correct: true, why: "Correct. After a preposition, pronouns take the object form: _me_." },
+          { text: "The matter should remain between you and I.", misconception: "object-pronoun", why: "_I_ is a subject form. After between, use the object form: _between you and me._" },
+          { text: "The matter should remain between you or me.", misconception: "object-pronoun", why: "Between pairs with and, not or: _between you and me._" },
+        ],
+      },
+    },
+    {
+      id: "why-not",
+      title: "Why this one and not the others?",
+      alt: "The sentence The ball is with a gap the two trees., then the candidates with pictures: between (right: two separate points); among (wrong: among needs a group around it); amid (wrong: amid = in the middle of a situation). Rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.",
+      say: [
+        { text: "Fill the gap: The ball is \u2026 the two trees. What does the sentence want to say? The answer is **between**: two separate points.", cue: "why1" },
+        { text: "Why not the others? **among**: among needs a group around it. **amid**: amid = in the middle of a situation.", cue: "why2" },
+        { text: "The rule: between = separate individuals; among = inside a group \u00b7 amid = in a situation.", cue: "why-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.lineup("why", "The ball is ____ the two trees.", [[[["tree", -45, 0], ["dot", 0, 22, 0.6], ["tree", 45, 0]], "between", true, "two separate | points"], ["crowdDot", "among", false, "among needs a | group around it"], ["amidRising", "amid", false, "amid = in the middle | of a situation"]], ["between = separate individuals", "among = inside a group \u00b7 amid = in a situation"]),
+      ],
+    },
+    {
+      id: "summary",
+      title: "The summary",
+      alt: "Between: separate individuals, even more than two. Among: inside a group. Amongst: British variant. Amid: in the middle of a situation. Between you and me; between A and B.",
+      say: [{ text: "**Between**: separate individuals, any number. **Among**: inside a group. **Amid**: in the middle of a situation. And always _between you and me, between A and B._", cue: "c4" }],
+      actions: [
+        { do: "erase", id: "clear-pronoun", targets: "all" },
+        { do: "write", id: "c1", text: "between: separate individuals", x: 480, y: 120, size: 36, anchor: "middle", gap: 400 },
+        { do: "write", id: "c2", text: "among: inside a group", x: 480, y: 200, size: 36, anchor: "middle" },
+        { do: "write", id: "c3", text: "amid: in the middle of a situation", x: 480, y: 280, size: 36, anchor: "middle" },
+        { do: "write", id: "c4", text: "between you and me · between A and B", x: 480, y: 390, size: 34, ink: "accent2", anchor: "middle", gap: 500 },
+      ],
+    },
+  ],
+});

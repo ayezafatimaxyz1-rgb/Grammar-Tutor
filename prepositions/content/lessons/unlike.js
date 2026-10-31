@@ -1,0 +1,84 @@
+/* Lesson 1.43: UNLIKE, and comparing like with like. */
+(function () {
+  const K = PLAB.kit;
+  PLAB.registerLesson({
+    id: "unlike",
+    title: "UNLIKE: comparing like with like",
+    phase: 1,
+    unit: "p1-relations",
+    level: "Advanced",
+    minutes: 7,
+    summary:
+      "Unlike introduces a contrast. The thing after unlike must be the same kind of thing as the subject it is compared with. Unlike Karachi, Lahore has cold winters is right; unlike Karachi's weather, Lahore has cold winters is a faulty comparison.",
+    objectives: [
+      "Use unlike to contrast two things of the same kind.",
+      "Spot and correct faulty comparisons in sentence-correction questions.",
+    ],
+    steps: [
+      {
+        id: "contrast",
+        title: "A contrast",
+        alt: "Two boxes: Karachi and Lahore, joined by a not-equal sign. Sentence: Unlike Karachi, Lahore has cold winters.",
+        say: [
+          { text: "**Unlike** means _different from_, and introduces a contrast: _Unlike Karachi, Lahore has cold winters._", cue: "s1" },
+          { text: "The two things compared must be the same kind: a city with a city. _Karachi_ is compared with the subject _Lahore._", cue: "ne" },
+        ],
+        actions: [
+          { do: "draw", id: "k", shape: "rect", x: 160, y: 120, w: 220, h: 90, ink: "accent2", fill: "soft", dur: 700 },
+          { do: "write", id: "k-l", text: "Karachi", x: 270, y: 175, size: 30, ink: "accent2", anchor: "middle" },
+          { do: "write", id: "ne", text: "≠", x: 480, y: 185, size: 60, ink: "trouble", anchor: "middle" },
+          { do: "draw", id: "l", shape: "rect", x: 580, y: 120, w: 220, h: 90, ink: "accent", fill: "soft", dur: 700 },
+          { do: "write", id: "l-l", text: "Lahore", x: 690, y: 175, size: 30, ink: "accent", anchor: "middle" },
+          { do: "write", id: "s1", text: "Unlike Karachi, Lahore has cold winters.", x: 480, y: 340, size: 38, anchor: "middle", gap: 500, dur: 2100 },
+          { do: "highlight", id: "s1-h", target: "s1", word: "Unlike" },
+        ],
+      },
+      {
+        id: "faulty",
+        title: "A faulty comparison",
+        alt: "Crossed out: Unlike Karachi's weather, Lahore has cold winters, which compares weather with a city. Correct: Unlike Karachi's weather, Lahore's is cold in winter.",
+        say: [
+          { text: "_Unlike Karachi's weather, Lahore has cold winters_ puts **weather** (a cloud) against **a city** (a box). They are different kinds of thing, so the comparison is faulty.", cue: "f1" },
+          { text: "Fix it by matching the two: _Unlike Karachi's weather, Lahore's is cold in winter_, or _Unlike Karachi, Lahore has cold winters._", cue: "f2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.pic("mm", "mismatch", 330, 30, 2.1),
+          ...PLAB.kit.lines("f", [["✗ Unlike Karachi's weather, Lahore has cold winters.", { ink: "trouble", size: 30 }], ["✓ Unlike Karachi's weather, Lahore's is cold in winter.", { ink: "accent", size: 30 }]], { y: 300, gap: 100 }),
+        ],
+      },
+      {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence with a gap Karachi, Lahore has cold winters., then the candidates with pictures: Unlike (right: contrasts two cities); Dislike (wrong: a verb: to not like); Different (wrong: needs from: different from). Rule: unlike X, Y ... (compare like with like); different from.",
+        say: [
+          { text: "Fill the gap: \u2026 Karachi, Lahore has cold winters. What does the sentence want to say? The answer is **Unlike**: contrasts two cities.", cue: "why1" },
+          { text: "Why not the others? **Dislike**: a verb: to not like. **Different**: needs from: different from.", cue: "why2" },
+          { text: "The rule: unlike X, Y ... (compare like with like); different from.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "____ Karachi, Lahore has cold winters.", [["different", "Unlike", true, "contrasts two | cities"], ["cross", "Dislike", false, "a verb: | to not like"], ["different", "Different", false, "needs from: | different from"]], ["unlike X, Y ... (compare like with like)", "different from"]),
+        ],
+      },
+      {
+        id: "check",
+        title: "Check: like with like",
+        alt: "The faulty and correct comparisons remain on the board.",
+        say: [{ text: "An original practice item in CSS sentence-correction style. Check what is compared with what." }],
+        actions: [],
+        check: {
+          id: "unlike-q1",
+          source: "original",
+          skill: "parallel comparison with unlike",
+          prompt: "Choose the correct sentence.",
+          options: [
+            { text: "Unlike his predecessor, the new governor favours tight monetary policy.", correct: true, why: "Correct. A person (the predecessor) is compared with a person (the new governor)." },
+            { text: "Unlike his predecessor's policy, the new governor favours tight money.", misconception: "faulty-comparison", why: "This compares a policy with a governor. Compare like with like." },
+            { text: "Unlike with his predecessor, the new governor favours tight money.", misconception: "faulty-comparison", why: "_Unlike_ takes its object directly, never _unlike with._" },
+          ],
+        },
+      },
+    ],
+  });
+})();

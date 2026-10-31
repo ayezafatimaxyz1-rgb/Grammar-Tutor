@@ -1,0 +1,186 @@
+/* Lesson 1.8: OUT OF and OFF: leaving a container or a surface, and their fixed phrases. */
+PLAB.registerLesson({
+  id: "out-of-off",
+  title: "OUT OF and OFF: leaving",
+  phase: 1,
+  unit: "p1-space-containers",
+  level: "Beginner to intermediate",
+  minutes: 10,
+  summary:
+    "Out of is the opposite of into (leaving a container); off is the opposite of onto (leaving a surface). Vehicles, the informal off of, and the many fixed phrases: out of order, out of stock, out of curiosity, off duty, 10% off.",
+  objectives: [
+    "Use out of for leaving a container and off for leaving a surface.",
+    "Get out of a car, get off a bus; avoid off of in formal writing.",
+    "Recognise fixed phrases with out of and off, including out of for a motive.",
+  ],
+  steps: [
+    {
+      id: "out",
+      title: "Out of the box",
+      alt: "A ball inside a box moves out across the edge. Sentence: The ball rolled out of the box. Below: into, the opposite direction.",
+      say: [
+        { text: "Here is our box again, with the ball inside.", cue: "ball" },
+        { text: "Now it crosses the boundary the other way, from inside to outside. That is **out of**: _The ball rolled out of the box._", cue: "s-out" },
+        { text: "Out of is the mirror image of into. _Into the room_ = entering; _out of the room_ = leaving.", cue: "pair" },
+      ],
+      actions: [
+        { do: "draw", id: "box", shape: "rect", x: 220, y: 130, w: 300, h: 200, dur: 1400 },
+        { do: "draw", id: "ball", shape: "circle", cx: 370, cy: 280, r: 24, ink: "accent", fill: "solid", dur: 700 },
+        { do: "move", id: "leave", target: "ball", by: [400, 0], arc: 80, dur: 1500, gap: 600 },
+        { do: "draw", id: "path", shape: "arrow", from: [400, 250], to: [740, 250], bow: -40, ink: "accent2", dur: 1100, sync: true },
+        { do: "write", id: "s-out", text: "The ball rolled out of the box.", x: 480, y: 430, size: 42, anchor: "middle", gap: 400, dur: 1900 },
+        { do: "highlight", id: "h-out", target: "s-out", word: "out of" },
+        { do: "write", id: "pair", text: "into ⟷ out of", x: 480, y: 515, size: 36, ink: "muted", anchor: "middle", gap: 500 },
+      ],
+    },
+    {
+      id: "off",
+      title: "Off the table",
+      alt: "A book slides off the edge of a table and falls. Sentence: The book fell off the table. Below: onto, the opposite direction.",
+      say: [
+        { text: "Now a surface. A book is on the table, near the edge.", cue: "book" },
+        { text: "It slides over the edge and falls. Leaving a surface is **off**: _The book fell off the table._", cue: "s-off" },
+        { text: "Off is the mirror image of onto. _Jump onto the wall_ / _jump off the wall._", cue: "pair2" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-out", targets: "all" },
+        {
+          do: "draw",
+          id: "table",
+          shape: "group",
+          width: 4,
+          dur: 1300,
+          gap: 400,
+          parts: [
+            { shape: "line", from: [200, 220], to: [560, 220] },
+            { shape: "line", from: [230, 220], to: [230, 360] },
+            { shape: "line", from: [530, 220], to: [530, 360] },
+          ],
+        },
+        { do: "draw", id: "floor", shape: "line", from: [100, 360], to: [860, 360], ink: "muted", width: 2.4, dur: 600 },
+        { do: "draw", id: "book", shape: "rect", x: 440, y: 186, w: 110, h: 32, ink: "accent", fill: "soft", dur: 700 },
+        { do: "move", id: "fall", target: "book", by: [230, 142], arc: 30, dur: 1200, gap: 600 },
+        { do: "draw", id: "path2", shape: "arrow", from: [560, 200], to: [700, 320], bow: -40, ink: "accent2", dur: 900, sync: true },
+        { do: "write", id: "s-off", text: "The book fell off the table.", x: 480, y: 450, size: 42, anchor: "middle", gap: 400, dur: 1800 },
+        { do: "highlight", id: "h-off", target: "s-off", word: "off" },
+        { do: "write", id: "pair2", text: "onto ⟷ off", x: 480, y: 530, size: 36, ink: "muted", anchor: "middle", gap: 500 },
+      ],
+    },
+    {
+      id: "vehicles",
+      title: "Getting out and getting off",
+      alt: "Three pictures: a person climbing into a car (get in, get out of: a small container), a person stepping on a bus (get on, get off: a platform), a book falling off a table (off, never off of).",
+      say: [
+          { text: "Vehicles follow the in and on pictures. A car is a small container you climb into and out of: _get in, get out of the car._", cue: "r1" },
+          { text: "A bus is a platform you step onto and off: _get on, get off the bus, train or plane._", cue: "r2" },
+          { text: "In informal American speech you hear _off of the wall_. Formal English, and the exam, want _off_ alone.", cue: "r3" },
+        ],
+      actions: [
+        PLAB.kit.clear("clear-off"),
+        ...PLAB.kit.grid("r", [
+          ["carIn", "car, taxi: get in \u00b7 get out of", "a small container", { hl: "get out of" }],
+          ["busOn", "bus, train: get on \u00b7 get off", "a platform you step on", { hl: "get off" }],
+          ["bookTable", "off the wall (\u2717 off of)", "no of after off", { hl: "off" }],
+        ]),
+      ],
+    },
+    {
+      id: "check-bus",
+      title: "Check: leaving a vehicle",
+      alt: "The vehicle table remains on the board.",
+      say: [{ text: "Which pair does this vehicle belong to?" }],
+      actions: [],
+      check: {
+        id: "outoff-q1",
+        source: "original",
+        skill: "off vs out of for vehicles",
+        prompt: "We got ___ the bus at the last stop and walked home.",
+        options: [
+          { text: "off", correct: true, why: "Correct. A bus takes on and off: _get on the bus, get off the bus._" },
+          { text: "out of", misconception: "off-vs-out-of-vehicle", why: "Out of goes with cars and taxis (_get out of the car_). For a bus, use off." },
+          { text: "off of", misconception: "off-vs-out-of-vehicle", why: "_Off of_ is informal American English. Formal and exam English uses _off_ alone." },
+        ],
+      },
+    },
+    {
+      id: "fixed",
+      title: "Fixed phrases",
+      alt: "Six pictures: a broken machine (out of order), an empty jar (out of stock), a crossed calendar (out of date), a magnifier and question mark (out of curiosity, a motive), a person walking away from work (off duty), coins (10 per cent off).",
+      say: [
+        {
+          text: "Out of often means no longer in a normal state: _out of order_ (not working), _out of stock, out of date, out of work, out of danger._ Each is the opposite of being in that state.",
+          cue: "o1",
+        },
+        {
+          text: "Out of can also give a **motive**, the feeling an action comes from: _She asked out of curiosity. He lied out of fear._",
+          cue: "o4",
+        },
+        { text: "Off can mean away from a normal activity: _off duty, off work._ Also _off the record_ (not official) and _10% off_ (a reduction).", cue: "o5" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-rd-fixed"),
+        ...PLAB.kit.grid("o", [
+          ["brokenBox", "out of order", "not working", { hl: "out of" }],
+          ["emptyJar", "out of stock", "none left", { hl: "out of" }],
+          ["oldCalendar", "out of date", "no longer current", { hl: "out of" }],
+          ["searchQ", "out of curiosity", "the motive: why she did it", { hl: "out of" }],
+          ["offDuty", "off duty \u00b7 off the record", "away from the normal activity", { hl: "off" }],
+          ["coin", "10% off", "a reduction", { hl: "off" }],
+        ]),
+      ],
+    },
+    {
+      id: "check-order",
+      title: "Check: a fixed phrase",
+      alt: "The two lists remain on the board.",
+      say: [{ text: "Recall the fixed phrase." }],
+      actions: [],
+      check: {
+        id: "outoff-q2",
+        source: "original",
+        skill: "fixed phrases with out of",
+        prompt: "The lift is ___ order, so please use the stairs.",
+        options: [
+          { text: "out of", correct: true, why: "Correct. _Out of order_ means not working. It is the opposite of _in working order._" },
+          { text: "off", misconception: "out-of-fixed", why: "Off is used for _off duty_ or _switched off_, but the fixed phrase for a broken machine is _out of order._" },
+          { text: "without", misconception: "out-of-fixed", why: "_Without order_ would mean disorganised. A machine that does not work is _out of order._" },
+        ],
+      },
+    },
+    {
+      id: "why-not",
+      title: "Why this one and not the others?",
+      alt: "The sentence She got with a gap the bus., then the candidates with pictures: off (right: a bus is a platform you step off); out of (wrong: out of is for cars and taxis); from (wrong: from names a start, not stepping down); off of (wrong: of is extra (informal)). Rule: get off a bus, train, plane; get out of a car, taxi.",
+      say: [
+        { text: "Fill the gap: She got \u2026 the bus. What does the sentence want to say? The answer is **off**: a bus is a platform you step off.", cue: "why1" },
+        { text: "Why not the others? **out of**: out of is for cars and taxis. **from**: from names a start, not stepping down. **off of**: of is extra (informal).", cue: "why2" },
+        { text: "The rule: get off a bus, train, plane; get out of a car, taxi.", cue: "why-r1" },
+      ],
+      actions: [
+        PLAB.kit.clear("clear-why"),
+        ...PLAB.kit.lineup("why", "She got ____ the bus.", [["busOn", "off", true, "a bus is a platform | you step off"], ["carIn", "out of", false, "out of is for cars | and taxis"], ["origin", "from", false, "from names a start, | not stepping down"], ["bookTable", "off of", false, "of is extra | (informal)"]], ["get off a bus, train, plane", "get out of a car, taxi"]),
+      ],
+    },
+    {
+      id: "summary",
+      title: "The four directions",
+      alt: "A box and a table. Arrows: into and out of for the box, onto and off for the table. Below: out of order, out of curiosity, off duty.",
+      say: [
+        { text: "Four movement words, two pairs. A container: **into** and **out of**. A surface: **onto** and **off**.", cue: "lab2" },
+        { text: "And the fixed phrases: _out of order, out of curiosity, off duty._", cue: "fx" },
+      ],
+      actions: [
+        { do: "erase", id: "clear-fixed", targets: "all" },
+        { do: "draw", id: "sbox", shape: "rect", x: 120, y: 140, w: 220, h: 160, dur: 900, gap: 400 },
+        { do: "draw", id: "in-a", shape: "arrow", from: [40, 190], to: [200, 190], ink: "accent", dur: 600 },
+        { do: "draw", id: "out-a", shape: "arrow", from: [260, 250], to: [420, 250], ink: "trouble", dur: 600 },
+        { do: "write", id: "lab1", text: "into · out of", x: 230, y: 360, size: 32, anchor: "middle" },
+        { do: "draw", id: "stable", shape: "line", from: [560, 260], to: [840, 260], width: 4, dur: 600 },
+        { do: "draw", id: "onto-a", shape: "arrow", from: [540, 140], to: [640, 250], bow: -30, ink: "accent", dur: 600 },
+        { do: "draw", id: "off-a", shape: "arrow", from: [760, 250], to: [880, 160], bow: -30, ink: "trouble", dur: 600 },
+        { do: "write", id: "lab2", text: "onto · off", x: 700, y: 360, size: 32, anchor: "middle" },
+        { do: "write", id: "fx", text: "out of order · out of curiosity · off duty", x: 480, y: 480, size: 32, ink: "muted", anchor: "middle", gap: 500, dur: 2100 },
+      ],
+    },
+  ],
+});

@@ -1,0 +1,111 @@
+/* Lesson 1.60: comparison and measure: compared with, in relation to, in excess of, up to, close to, far from. */
+(function () {
+  const K = PLAB.kit;
+  PLAB.registerLesson({
+    id: "comparison-measure",
+    title: "Compared with, in excess of, far from",
+    phase: 1,
+    unit: "p1-complex",
+    level: "Advanced",
+    minutes: 8,
+    summary:
+      "Comparing and measuring: in comparison with/to and compared with/to, in relation to, in excess of (more than), up to (as many as), close to (nearly) and far from (not at all).",
+    objectives: [
+      "Use compared with and in comparison with for comparisons.",
+      "Use in excess of, up to and close to with amounts.",
+      "Understand far from + adjective: far from perfect means not at all perfect.",
+    ],
+    steps: [
+      {
+        id: "compare",
+        title: "Comparing",
+        alt: "Rows: Compared with last year, exports rose; In comparison with India, our tax base is narrow; costs in relation to income.",
+        say: [
+          { text: "**Compared with** and **in comparison with** stand two things side by side to measure them: _Compared with last year, exports rose._ (_Compared to_ is also common.)", cue: "c1" },
+          { text: "**In relation to** = one measured against the other, like a fraction: _costs in relation to income._", cue: "c3" },
+        ],
+        actions: PLAB.kit.panels("c", [
+          ["compareBars", "compared with last year", "side by side", { hl: "compared with" }],
+          ["compareBars", "in comparison with India", "side by side", { hl: "in comparison with", size: 26 }],
+          ["ratio", "costs in relation to income", "one against the other", { hl: "in relation to", size: 26 }],
+        ]),
+      },
+      {
+        id: "measure",
+        title: "Measuring against a mark",
+        alt: "Four tanks side by side with the same red mark line across them. Tank 1 is filled above the line, with a bracket for the extra: in excess of (more than). Tank 2 is filled exactly to the line, which is a lid: up to (the most, never more). Tank 3 is filled just below the line, with a tiny gap: close to (nearly). Tank 4 has a little at the bottom, with a long arrow to the line: far from (not at all).",
+        say: [
+          { text: "Draw a red line: this is the mark, the number we measure against. Now four tanks. In the first, the amount goes **over** the mark. That is **in excess of**, a formal way to say more than: _losses in excess of Rs 1 billion_ means more than one billion.", cue: "m1" },
+          { text: "In the second, the mark is a lid. The amount can reach it but never pass it. That is **up to**, the maximum: _The hall holds up to 500 people_, so 500 is the most, often fewer.", cue: "m2" },
+          { text: "In the third, the amount stops just short of the mark. That is **close to**, nearly: _close to 3 million refugees_ means a little under 3 million.", cue: "m3" },
+          { text: "In the fourth, the amount is a long way below the mark. **Far from** + a quality means not at all: _far from perfect_ means a long way from perfect, so not perfect at all.", cue: "m4" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          { do: "draw", id: "mark", shape: "line", from: [20, 150], to: [920, 150], ink: "trouble", width: 3, dur: 900 },
+          { do: "write", id: "mark-l", text: "mark", x: 20, y: 140, size: 22, ink: "trouble" },
+          { do: "draw", id: "t1", shape: "rect", x: 80, y: 70, w: 90, h: 260, ink: "muted", dur: 600 },
+          { do: "draw", id: "m1", shape: "rect", x: 80, y: 90, w: 90, h: 240, ink: "accent", fill: "soft", dur: 900 },
+          { do: "draw", id: "m1-b", shape: "line", from: [186, 90], to: [186, 150], ink: "accent", width: 3, dur: 400 },
+          { do: "write", id: "m1-e", text: "more", x: 196, y: 128, size: 22, ink: "accent" },
+          { do: "write", id: "m1-l", text: "in excess of", x: 125, y: 380, size: 28, anchor: "middle", fit: 210 },
+          { do: "highlight", id: "m1-h", target: "m1-l", word: "in excess of" },
+          { do: "write", id: "m1-s", text: "more than", x: 125, y: 418, size: 22, ink: "muted", anchor: "middle" },
+          { do: "draw", id: "t2", shape: "rect", x: 320, y: 70, w: 90, h: 260, ink: "muted", dur: 600, gap: 500 },
+          { do: "draw", id: "m2", shape: "rect", x: 320, y: 150, w: 90, h: 180, ink: "accent2", fill: "soft", dur: 900 },
+          { do: "draw", id: "m2-lid", shape: "line", from: [310, 148], to: [420, 148], ink: "main", width: 6, dur: 400 },
+          { do: "write", id: "m2-x", text: "lid", x: 430, y: 128, size: 22, ink: "main" },
+          { do: "write", id: "m2-l", text: "up to", x: 365, y: 380, size: 28, anchor: "middle", fit: 210 },
+          { do: "highlight", id: "m2-h", target: "m2-l", word: "up to" },
+          { do: "write", id: "m2-s", text: "the most, not more", x: 365, y: 418, size: 22, ink: "muted", anchor: "middle" },
+          { do: "draw", id: "t3", shape: "rect", x: 560, y: 70, w: 90, h: 260, ink: "muted", dur: 600, gap: 500 },
+          { do: "draw", id: "m3", shape: "rect", x: 560, y: 166, w: 90, h: 164, ink: "accent", fill: "soft", dur: 900 },
+          { do: "write", id: "m3-g", text: "a little short", x: 660, y: 176, size: 22, ink: "accent" },
+          { do: "write", id: "m3-l", text: "close to", x: 605, y: 380, size: 28, anchor: "middle", fit: 210 },
+          { do: "highlight", id: "m3-h", target: "m3-l", word: "close to" },
+          { do: "write", id: "m3-s", text: "nearly", x: 605, y: 418, size: 22, ink: "muted", anchor: "middle" },
+          { do: "draw", id: "t4", shape: "rect", x: 800, y: 70, w: 90, h: 260, ink: "muted", dur: 600, gap: 500 },
+          { do: "draw", id: "m4", shape: "rect", x: 800, y: 296, w: 90, h: 34, ink: "accent", fill: "soft", dur: 600 },
+          { do: "draw", id: "m4-a", shape: "arrow", from: [845, 290], to: [845, 158], ink: "trouble", width: 3, dur: 700 },
+          { do: "write", id: "m4-l", text: "far from", x: 845, y: 380, size: 28, anchor: "middle", fit: 210 },
+          { do: "highlight", id: "m4-h", target: "m4-l", word: "far from" },
+          { do: "write", id: "m4-s", text: "not at all", x: 845, y: 418, size: 22, ink: "muted", anchor: "middle" },
+          { do: "write", id: "ex1", text: "losses in excess of Rs 1 billion · holds up to 500 people", x: 480, y: 495, size: 26, anchor: "middle", gap: 500 },
+          { do: "write", id: "ex2", text: "close to 3 million refugees · far from perfect = not perfect at all", x: 480, y: 545, size: 26, anchor: "middle" },
+        ],
+      },
+      {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence The hall holds with a gap 500 people., then the candidates with pictures: up to (right: 500 at most); in excess of (correct English but a different meaning: more than 500); far from (wrong: far from = not at all). Rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.",
+        say: [
+          { text: "Fill the gap: The hall holds \u2026 500 people. What does the sentence want to say? The answer is **up to**: 500 at most.", cue: "why1" },
+          { text: "Why not the others? **in excess of** is correct English, but it would mean more than 500. That is not what this sentence says. **far from**: far from = not at all.", cue: "why2" },
+          { text: "The rule: up to = the most \u00b7 in excess of = more than; close to = nearly \u00b7 far from = not at all.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", "diff", "more | than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"]),
+        ],
+      },
+      {
+        id: "check",
+        title: "Check: far from",
+        alt: "The measure rows remain on the board.",
+        say: [{ text: "What does far from mean here?" }],
+        actions: [],
+        check: {
+          id: "compare-q1",
+          source: "original",
+          skill: "far from",
+          prompt: "“The new policy is far from satisfactory.” What does the writer mean?",
+          options: [
+            { text: "The policy is not at all satisfactory.", correct: true, why: "Correct. _Far from_ + adjective means the opposite: not at all." },
+            { text: "The policy is satisfactory in the long term.", misconception: "measure-phrases", why: "Far from is not about time or distance here; it means not at all." },
+            { text: "The policy is nearly satisfactory.", misconception: "measure-phrases", why: "That would be _close to satisfactory._ Far from means not at all." },
+          ],
+        },
+      },
+    ],
+  });
+})();

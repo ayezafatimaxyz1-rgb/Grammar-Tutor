@@ -1,0 +1,89 @@
+/* Lesson 1.44: EXCEPT, EXCEPT FOR, BUT, SAVE, BARRING. */
+(function () {
+  const K = PLAB.kit;
+  PLAB.registerLesson({
+    id: "except-but-save",
+    title: "EXCEPT, BUT, SAVE, BARRING",
+    phase: 1,
+    unit: "p1-relations",
+    level: "Intermediate",
+    minutes: 8,
+    summary:
+      "Except removes something from a group. Except for often begins a sentence or qualifies a whole statement. But means except after all, every, no and nothing. Save is formal or literary. Barring means unless something happens. Pronouns take the object form: except me.",
+    objectives: [
+      "Use except and except for to remove an item from a group.",
+      "Use but after all, every, no, nothing, and recognise save and barring.",
+      "Use object pronouns: everyone except me.",
+    ],
+    steps: [
+      {
+        id: "remove",
+        title: "One taken out of the group",
+        alt: "Six stick figures in a group; one is outside the group circle. Sentence: Everyone attended except Ali.",
+        say: [
+          { text: "Here is a group, with one person taken out of it.", cue: "out" },
+          { text: "**Except** = not including: _Everyone attended except Ali._ After except, pronouns take the object form: _everyone except me._", cue: "s1" },
+        ],
+        actions: [
+          { do: "draw", id: "ring", shape: "ellipse", cx: 360, cy: 200, rx: 220, ry: 110, ink: "accent2", dur: 900 },
+          { do: "draw", id: "group", shape: "group", ink: "accent", dur: 1200, parts: [{ shape: "person", x: 230, y: 140, scale: 0.6 }, { shape: "person", x: 310, y: 140, scale: 0.6 }, { shape: "person", x: 390, y: 140, scale: 0.6 }, { shape: "person", x: 470, y: 140, scale: 0.6 }] },
+          { do: "draw", id: "out", shape: "person", x: 720, y: 140, scale: 0.6, ink: "trouble", dur: 500, gap: 400 },
+          { do: "write", id: "out-l", text: "Ali", x: 720, y: 130, size: 28, ink: "trouble", anchor: "middle" },
+          { do: "write", id: "s1", text: "Everyone attended except Ali.", x: 480, y: 410, size: 40, anchor: "middle", gap: 400, dur: 1700 },
+          { do: "highlight", id: "s1-h", target: "s1", word: "except" },
+        ],
+      },
+      {
+        id: "family",
+        title: "Except for, but, save, barring",
+        alt: "Four pictures: a page of ticks with one cross (except for one mistake), a circle with one person (nobody but me), a group with one outside (all save one), a road barrier (barring accidents).",
+        say: [
+          { text: "**Except for** qualifies a whole statement: the page is all ticks except one cross. _Except for one mistake, the essay is excellent._", cue: "e1" },
+          { text: "**But** means except after _no, nobody, all, every_: the circle is empty but for one person. _Nobody but me knew._", cue: "e2" },
+          { text: "**Save** is formal or literary: all are inside save one. **Barring** = unless something happens: if nothing blocks the road. _Barring accidents, we arrive by six._", cue: "e3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1"),
+          ...PLAB.kit.grid("e", [
+            ["exceptOne", "Except for one mistake, it is excellent.", "all good, but one part", { hl: "Except for" }],
+            ["onlyOne", "Nobody but me knew.", "but = except, after nobody, all", { hl: "but" }],
+            ["groupOut", "All were rescued save one.", "save = except (formal)", { hl: "save" }],
+            ["roadBarrier", "Barring accidents, we arrive by six.", "= unless something blocks us", { hl: "Barring" }],
+          ]),
+        ],
+      },
+      {
+        id: "why-not",
+        title: "Why this one and not the others?",
+        alt: "The sentence Everyone came with a gap Ali., then the candidates with pictures: except (right: Ali is left out); besides (correct English but a different meaning: Ali came too); without (correct English but a different meaning: they came, leaving Ali behind). Rule: except = not including; besides = in addition to.",
+        say: [
+          { text: "Fill the gap: Everyone came \u2026 Ali. What does the sentence want to say? The answer is **except**: Ali is left out.", cue: "why1" },
+          { text: "Why not the others? **besides** is correct English, but it would mean Ali came too. That is not what this sentence says. **without** is correct English, but it would mean they came, leaving Ali behind. That is not what this sentence says.", cue: "why2" },
+          { text: "The rule: except = not including; besides = in addition to.", cue: "why-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-why"),
+          ...PLAB.kit.lineup("why", "Everyone came ____ Ali.", [["groupOut", "except", true, "Ali is left out"], ["plus", "besides", "diff", "Ali came too"], ["personLeft", "without", "diff", "they came, leaving | Ali behind"]], ["except = not including", "besides = in addition to"]),
+        ],
+      },
+      {
+        id: "check",
+        title: "Check: removing one",
+        alt: "The four rows remain on the board.",
+        say: [{ text: "Which word removes Ali from the group?" }],
+        actions: [],
+        check: {
+          id: "except-q1",
+          source: "original",
+          skill: "except vs besides",
+          prompt: "All the members signed the resolution ___ Ali, who was abroad.",
+          options: [
+            { text: "except", correct: true, why: "Correct. Ali is removed from the group of signers: except." },
+            { text: "besides", misconception: "beside-vs-besides", why: "In a positive sentence besides means in addition to, which would make Ali an extra signer. The meaning is except." },
+            { text: "barring", misconception: "except-family", why: "Barring means unless something happens (_barring accidents_), not excluding a person from a group." },
+          ],
+        },
+      },
+    ],
+  });
+})();
