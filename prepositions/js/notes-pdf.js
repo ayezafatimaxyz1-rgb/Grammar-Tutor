@@ -310,6 +310,7 @@
           intro(n) {
             n.text(s.note, { color: C.muted, gap: 2 });
             s.words.forEach((w) => n.text(`${w.word} ${prep}: ${w.meaning}.  ${w.example}`, { size: 9.5, indent: 3, gap: 0.3 }));
+            (s.phrases || []).forEach((x) => n.text(`${x.phrase}: ${x.meaning}.  ${x.example}`, { size: 9.5, indent: 3, gap: 0.3 }));
             n.y += 3;
           },
         };
@@ -327,6 +328,7 @@
             n.text(`${i + 1}.  ${s.name}`, { bold: true, gap: 0.3 });
             n.text(s.note, { size: 9.5, color: C.muted, indent: 6, gap: 0.5 });
             s.words.forEach((w) => n.text(`${w.word} ${prep}: ${w.meaning}.  ${w.example}`, { size: 9.5, indent: 6, gap: 0.3 }));
+            (s.phrases || []).forEach((x) => n.text(`${x.phrase}: ${x.meaning}.  ${x.example}`, { size: 9.5, indent: 6, gap: 0.3 }));
             n.y += 1.5;
           });
           if (plan.rest.length) {

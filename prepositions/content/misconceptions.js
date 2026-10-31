@@ -502,4 +502,8 @@ PLAB.misconceptions = {
     label: "Choose by the meaning the sentence wants",
     explain: "Many words take more than one preposition, each saying something different: certain of (sure it will happen), certain about (sure of the details). Read what comes after, and ask what the sentence means to say.",
   },
+  "p5-phrase": {
+    label: "A fixed phrase keeps its own preposition",
+    explain: "Phrases like in lieu of, by dint of and at the behest of always take the same preposition, and it matches a picture: in a place, by a means, at a point. A different preposition gives a phrase that is not English, or a different phrase with another meaning.",
+  },
 };

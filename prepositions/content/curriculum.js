@@ -443,6 +443,82 @@
           },
         ],
       },
+      {
+        id: "p5",
+        title: "Phase 5: Prepositional phrases",
+        intro: "Fixed phrases such as in lieu of, by dint of and at the behest of, grouped by the preposition that carries their sense. Each phrase is drawn with what it means, why it takes its preposition, and the near misses that mean something else.",
+        units: [
+          {
+            id: "p5-in",
+            title: "Phrases with IN",
+            lessons: [
+              L("p5-in1", "Phrases with IN 1: in lieu of \u2026 in accordance with", { status: "tested", lessonId: "p5-in1" }),
+              L("p5-in2", "Phrases with IN 2: in addition to \u2026 in the face of", { status: "tested", lessonId: "p5-in2" }),
+              L("p5-in3", "Phrases with IN 3: in the event of \u2026 in the absence of", { status: "tested", lessonId: "p5-in3" }),
+              L("p5-in4", "Phrases with IN 4: in keeping with \u2026 in defiance of", { status: "tested", lessonId: "p5-in4" }),
+              L("p5-in5", "Phrases with IN 5: in response to \u2026 in contrast to", { status: "tested", lessonId: "p5-in5" }),
+              L("p5-in6", "Phrases with IN 6: in the hope of \u2026 in proportion to", { status: "tested", lessonId: "p5-in6" }),
+            ],
+          },
+          {
+            id: "p5-on",
+            title: "Phrases with ON",
+            lessons: [
+              L("p5-on1", "Phrases with ON 1: on behalf of \u2026 on the part of", { status: "tested", lessonId: "p5-on1" }),
+              L("p5-on2", "Phrases with ON 2: on the grounds of \u2026 on the brink of", { status: "tested", lessonId: "p5-on2" }),
+              L("p5-on3", "Phrases with ON 3: on the spot \u2026 on no account", { status: "tested", lessonId: "p5-on3" }),
+            ],
+          },
+          {
+            id: "p5-at",
+            title: "Phrases with AT",
+            lessons: [
+              L("p5-at1", "Phrases with AT 1: at the behest of \u2026 at odds with", { status: "tested", lessonId: "p5-at1" }),
+              L("p5-at2", "Phrases with AT 2: at the helm of \u2026 at the instance of", { status: "tested", lessonId: "p5-at2" }),
+              L("p5-at3", "Phrases with AT 3: at stake \u2026 at the rate of", { status: "tested", lessonId: "p5-at3" }),
+            ],
+          },
+          {
+            id: "p5-by",
+            title: "Phrases with BY",
+            lessons: [
+              L("p5-by1", "Phrases with BY 1: by dint of \u2026 by heart", { status: "tested", lessonId: "p5-by1" }),
+              L("p5-by2", "Phrases with BY 2: by chance \u2026 by force of", { status: "tested", lessonId: "p5-by2" }),
+            ],
+          },
+          {
+            id: "p5-with",
+            title: "Phrases with WITH and WITHOUT",
+            lessons: [
+              L("p5-with1", "Phrases with WITH and WITHOUT 1: with regard to \u2026 without fail", { status: "tested", lessonId: "p5-with1" }),
+              L("p5-with2", "Phrases with WITH and WITHOUT 2: without regard to \u2026 with effect from", { status: "tested", lessonId: "p5-with2" }),
+            ],
+          },
+          {
+            id: "p5-for",
+            title: "Phrases with FOR",
+            lessons: [
+              L("p5-for1", "Phrases with FOR 1: for the sake of \u2026 for instance", { status: "tested", lessonId: "p5-for1" }),
+            ],
+          },
+          {
+            id: "p5-under",
+            title: "Phrases with UNDER",
+            lessons: [
+              L("p5-under1", "Phrases with UNDER 1: under the auspices of \u2026 under no circumstances", { status: "tested", lessonId: "p5-under1" }),
+            ],
+          },
+          {
+            id: "p5-more",
+            title: "More phrases: out of, beyond, within, from, to, of, against",
+            lessons: [
+              L("p5-more1", "More phrases 1: out of order \u2026 within reach", { status: "tested", lessonId: "p5-more1" }),
+              L("p5-more2", "More phrases 2: from scratch \u2026 owing to", { status: "tested", lessonId: "p5-more2" }),
+              L("p5-more3", "More phrases 3: prior to \u2026 apart from", { status: "tested", lessonId: "p5-more3" }),
+            ],
+          },
+        ],
+      },
     ],
     gaps: [
       "The inventory has not yet been checked item by item against dictionaries or grammar references.",

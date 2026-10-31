@@ -23,7 +23,7 @@
 
   function build() {
     const entries = {}; // prep -> { core: [], words: [], other: [] }
-    const at = (prep) => (entries[prep] = entries[prep] || { prep, core: [], words: [], other: [] });
+    const at = (prep) => (entries[prep] = entries[prep] || { prep, core: [], words: [], other: [], phrases: [] });
     const lessons = Object.values(P.lessons).filter((l) => !l.generated);
 
     // Phase 4: every word's senses, read from its senses board.
@@ -38,6 +38,18 @@
           const prep = m[1] === word ? "(no word)" : m[1].slice(word.length).trim();
           at(prep).words.push({ word, meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id });
         }
+      });
+    }
+
+    // Phase 5: fixed phrases, filed under the preposition each one tests (in lieu of under in).
+    for (const l of lessons.filter((x) => x.phase === 5)) {
+      l.steps.forEach((st) => {
+        if (!/-meaning$/.test(st.id)) return;
+        const m = /^\*\*(.+?)\*\* means (.+?): _(.+)_$/.exec((st.say[0] || {}).text || "");
+        const k = /^Why \*\*(.+?)\*\*\?/.exec((st.say[1] || {}).text || "");
+        if (!m || !k) return;
+        const why = l.steps.find((x) => x.id === st.id.replace(/-meaning$/, "-why"));
+        at(k[1]).phrases.push({ phrase: m[1], meaning: m[2], example: m[3], lesson: l, step: st.id, why: why && why.id });
       });
     }
 
@@ -71,7 +83,7 @@
   }
 
   function count(e) {
-    return e.core.length + e.words.length + e.other.length;
+    return e.core.length + e.words.length + e.other.length + e.phrases.length;
   }
 
   // The senses map for one preposition: each sense with the boards that teach it and the words
@@ -94,6 +106,17 @@
       words.forEach((w) => placed.add(w));
       return { name: d.name, note: d.note, boards, words };
     }).filter((x) => x.boards.length || x.words.length);
+    if (e.phrases.length)
+      senses.push({
+        name: "Fixed phrases",
+        note: e.phrases.slice(0, 3).map((x) => x.phrase).join(", ") + (e.phrases.length > 3 ? " …" : ""),
+        boards: e.phrases.flatMap((x) => [
+          { lesson: x.lesson, step: x.step, title: x.phrase },
+          ...(x.why ? [{ lesson: x.lesson, step: x.why, title: `why ${x.phrase}` }] : []),
+        ]),
+        words: [],
+        phrases: e.phrases,
+      });
     const rest = e.words.filter((w) => !placed.has(w));
     return { senses, rest };
   }
@@ -246,6 +269,11 @@
                   <p class="row-buttons"><button type="button" class="button small" data-jump="${esc(w.lesson.id)}|${esc(w.step)}">See its meanings</button>${
                     w.why ? `<button type="button" class="button small ghost" data-jump="${esc(w.lesson.id)}|${esc(w.why)}">Why this one?</button>` : ""
                   }</p></li>`;
+        const phraseItem = (x) => `<li><p><strong>${esc(x.phrase)}</strong> <span class="muted">= ${esc(x.meaning)}</span></p>
+                  <p class="ex">${rich("_" + x.example + "_")}</p>
+                  <p class="row-buttons"><button type="button" class="button small" data-jump="${esc(x.lesson.id)}|${esc(x.step)}">See it drawn</button>${
+                    x.why ? `<button type="button" class="button small ghost" data-jump="${esc(x.lesson.id)}|${esc(x.why)}">Why this one?</button>` : ""
+                  }</p></li>`;
         const senseButtons = (k, name) => {
           const n = senseItems(current, k).length;
           return n
@@ -257,8 +285,8 @@
             <p class="row-buttons"><button type="button" class="button small primary" data-tour="${esc(p)}">\u25B6 Learn all ${senses.length} senses board by board</button><button type="button" class="button small ghost" data-pdf="prep:${esc(p)}">PDF of all senses</button></p>
             <ol class="sense-map">${senses
               .map(
-                (s, i) => `<li class="sense-card"><details${i === 0 ? " open" : ""}><summary><span class="sense-n">${i + 1}</span><span><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.note)}</span></span><span class="sense-count">${s.words.length ? `${s.words.length} word${s.words.length > 1 ? "s" : ""}` : "board"}</span></summary>
-                  ${s.boards.length ? `<p class="prep-steps">${s.boards.map((b) => `<button type="button" class="button small ghost" data-jump="${esc(b.lesson.id)}|${esc(b.step)}">Board: ${esc(b.title)}</button>`).join("")}</p>` : ""}
+                (s, i) => `<li class="sense-card"><details${i === 0 ? " open" : ""}><summary><span class="sense-n">${i + 1}</span><span><strong>${esc(s.name)}</strong><br><span class="muted">${esc(s.note)}</span></span><span class="sense-count">${s.phrases ? `${s.phrases.length} phrase${s.phrases.length > 1 ? "s" : ""}` : s.words.length ? `${s.words.length} word${s.words.length > 1 ? "s" : ""}` : "board"}</span></summary>
+                  ${s.phrases ? `<ul class="prep-words">${s.phrases.map(phraseItem).join("")}</ul>` : s.boards.length ? `<p class="prep-steps">${s.boards.map((b) => `<button type="button" class="button small ghost" data-jump="${esc(b.lesson.id)}|${esc(b.step)}">Board: ${esc(b.title)}</button>`).join("")}</p>` : ""}
                   ${s.words.length ? `<ul class="prep-words">${s.words.map(wordItem).join("")}</ul>` : ""}
                 </details>${senseButtons(i, s.name)}</li>`
               )
