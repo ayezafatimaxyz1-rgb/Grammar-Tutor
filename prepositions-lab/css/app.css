@@ -112,6 +112,8 @@ main { padding-block: 24px 64px; display: flex; flex-direction: column; gap: 28p
 .button:disabled { opacity: 0.45; cursor: not-allowed; filter: none; }
 .icon { width: 20px; height: 20px; flex: none; }
 .row-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+.blank { display: inline-block; border-bottom: 2px solid currentColor; margin: 0 0.15em; }
+.tag--paper { color: var(--accent-2); border-color: var(--accent-2); }
 .tag { font: 700 0.72rem/1 var(--font-body); letter-spacing: 0.03em; color: var(--muted); border: 1px solid var(--line); padding: 3px 6px; border-radius: 5px; white-space: nowrap; vertical-align: 2px; }
 
 /* Library */

@@ -12,7 +12,8 @@
 
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
   // **key word** and _example_ in lesson text.
-  const rich = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, '<strong class="key">$1</strong>').replace(/(^|[\s(])_(.+?)_(?=[\s.,;:)!?]|$)/g, '$1<em class="ex">$2</em>');
+  // A run of three or more underscores is a blank to fill, not an italic marker.
+  const rich = (s) => esc(s).replace(/_{3,}/g, '<span class="blank" aria-label="blank">\u2003\u2003\u2003</span>').replace(/\*\*(.+?)\*\*/g, '<strong class="key">$1</strong>').replace(/(^|[\s(])_(.+?)_(?=[\s.,;:)!?]|$)/g, '$1<em class="ex">$2</em>');
 
   /* ---------- content registry ---------- */
 
@@ -376,7 +377,7 @@
       const done = answered(step);
       ui.check.hidden = false;
       ui.check.innerHTML = `
-        <p class="check-label">Your turn${c.source === "original" ? ' <span class="tag">original practice question</span>' : ""}</p>
+        <p class="check-label">Your turn${c.source === "original" ? ' <span class="tag">original practice question</span>' : ""}${c.source === "past-paper" ? ` <span class="tag tag--paper" title="${esc(c.citation)}">CSS past paper · ${c.year ? c.year : "year not confirmed"}${c.question ? " · " + esc(c.question) : ""}</span>` : ""}</p>
         <p class="check-prompt" id="q-${c.id}">${rich(c.prompt)}</p>
         <div class="options" role="group" aria-labelledby="q-${c.id}">
           ${c.options.map((o, i) => `<button type="button" class="option" data-i="${i}">${rich(o.text)}</button>`).join("")}

@@ -470,4 +470,32 @@ PLAB.misconceptions = {
     label: "Word-for-word translation",
     explain: "married to (not with), angry with (not on), afraid of (not from), consist of (not from), for two years (not since), prefer X to Y (not than).",
   },
+  "p3-format": {
+    label: "The exam instructions and the method",
+    explain: "Attempt exactly five of the eight; choose the ones you are surest of. Look left for a partner word, look right, picture it, test every candidate.",
+  },
+  "p3-partner": {
+    label: "Partner words in the exam",
+    explain: "The word just before the blank chooses the preposition: responsible for, impervious to, contingent on, commensurate with, hinge on, bound for.",
+  },
+  "p3-phrasal": {
+    label: "Phrasal verbs in the exam",
+    explain: "Ask what the sentence means, then choose the particle that makes that meaning: put off (postpone), go off (fire), keep on (continue), knock down, round off.",
+  },
+  "p3-space": {
+    label: "Place and movement in the exam",
+    explain: "Draw the scene: over a wall (crossing above), into a room (entering), at a destination (a point), in the shade (inside an area).",
+  },
+  "p3-figurative": {
+    label: "Literary sentences in the exam",
+    explain: "Ideas move like objects: through the verses, within the elite, beneath the surface, towards perfection. Keep the space picture.",
+  },
+  "p3-small": {
+    label: "Time, means and small words in the exam",
+    explain: "by noon (deadline), at dawn (point), for a long time (length), with a hatchet (tool), by its own light (means), win at a game.",
+  },
+  "p3-double": {
+    label: "Two blanks in one sentence",
+    explain: "Solve each blank alone with its own partner word: familiar with ... knowledgeable about; withdrawal from ... obstacle to.",
+  },
 };

@@ -121,11 +121,21 @@ PLAB.kit = {
   // "Why this one and not the others?": a sentence with a gap, then every likely candidate with
   // a picture of what it would mean, a tick or a cross, and a short reason ("|" breaks the line).
   // Each option: [picSpec, word, ok, reason].
-  lineup(prefix, sentence, options, rules = []) {
+  lineup(prefix, sentence, options, rules = [], source) {
     const n = options.length;
     const centres = n === 2 ? [250, 710] : n === 3 ? [165, 480, 795] : [120, 360, 600, 840];
     const fit = n === 4 ? 225 : 290;
-    const out = [{ do: "write", id: `${prefix}-s`, text: sentence, x: 480, y: 58, size: 36, anchor: "middle" }];
+    // A long sentence goes on two lines, broken at the space nearest the middle.
+    const out = [];
+    if (sentence.length > 50) {
+      let cut = sentence.lastIndexOf(" ", Math.floor(sentence.length / 2));
+      const after = sentence.indexOf(" ", Math.floor(sentence.length / 2));
+      if (after > 0 && (cut < 0 || after - sentence.length / 2 < sentence.length / 2 - cut)) cut = after;
+      out.push({ do: "write", id: `${prefix}-s`, text: sentence.slice(0, cut), x: 480, y: 40, size: 31, anchor: "middle" });
+      out.push({ do: "write", id: `${prefix}-s2`, text: sentence.slice(cut + 1), x: 480, y: 80, size: 31, anchor: "middle", gap: 0 });
+    } else {
+      out.push({ do: "write", id: `${prefix}-s`, text: sentence, x: 480, y: 58, size: 36, anchor: "middle" });
+    }
     options.forEach(([spec, word, ok, reason], i) => {
       const id = `${prefix}${i + 1}`;
       const cx = centres[i];
@@ -138,6 +148,7 @@ PLAB.kit = {
     rules.forEach((r, i) => {
       out.push({ do: "write", id: `${prefix}-r${i + 1}`, text: r, x: 480, y: 400 + i * 56, size: 28, ink: "accent", anchor: "middle", gap: i ? 300 : 500 });
     });
+    if (source) out.push({ do: "write", id: `${prefix}-src`, text: source, x: 480, y: 560, size: 22, ink: "accent2", anchor: "middle", gap: 200 });
     return out;
   },
 

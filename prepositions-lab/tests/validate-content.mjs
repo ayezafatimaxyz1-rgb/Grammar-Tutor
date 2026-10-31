@@ -86,7 +86,7 @@ function checkQuestion(w, q) {
   if (qids.has(q.id)) fail(w, `question id ${q.id} used twice`);
   qids.add(q.id);
   if (!["original", "past-paper"].includes(q.source)) fail(w, `question ${q.id} needs source "original" or "past-paper"`);
-  if (q.source === "past-paper" && !(q.year && q.citation)) fail(w, `past-paper question ${q.id} needs a verified year and citation`);
+  if (q.source === "past-paper" && !(q.citation && (q.year || q.yearNote))) fail(w, `past-paper question ${q.id} needs a citation and a verified year (or a yearNote saying it is not confirmed)`);
   const right = q.options.filter((o) => o.correct);
   if (right.length !== 1) fail(w, `question ${q.id} must have exactly one correct option (has ${right.length})`);
   for (const o of q.options) {
