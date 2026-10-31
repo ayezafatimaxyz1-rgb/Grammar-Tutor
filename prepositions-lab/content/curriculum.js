@@ -272,35 +272,43 @@
             id: "p4-d",
             title: "Letter D",
             lessons: [
-              L("p4-d-planned", "Words beginning with D"),
+              L("p4-d1", "D 1: deal \u2026 derive", { status: "tested", lessonId: "p4-d1" }),
+              L("p4-d2", "D 2: descended \u2026 devote", { status: "tested", lessonId: "p4-d2" }),
+              L("p4-d3", "D 3: die \u2026 dispense", { status: "tested", lessonId: "p4-d3" }),
+              L("p4-d4", "D 4: dispose \u2026 dwell", { status: "tested", lessonId: "p4-d4" }),
             ],
           },
           {
             id: "p4-e",
             title: "Letter E",
             lessons: [
-              L("p4-e-planned", "Words beginning with E"),
+              L("p4-e1", "E 1: eager \u2026 empty", { status: "tested", lessonId: "p4-e1" }),
+              L("p4-e2", "E 2: encroach \u2026 essential", { status: "tested", lessonId: "p4-e2" }),
+              L("p4-e3", "E 3: excel \u2026 exposed", { status: "tested", lessonId: "p4-e3" }),
             ],
           },
           {
             id: "p4-f",
             title: "Letter F",
             lessons: [
-              L("p4-f-planned", "Words beginning with F"),
+              L("p4-f1", "F 1: faith \u2026 fond", { status: "tested", lessonId: "p4-f1" }),
+              L("p4-f2", "F 2: fraught \u2026 furious", { status: "tested", lessonId: "p4-f2" }),
             ],
           },
           {
             id: "p4-g",
             title: "Letter G",
             lessons: [
-              L("p4-g-planned", "Words beginning with G"),
+              L("p4-g1", "G 1: generous \u2026 guard", { status: "tested", lessonId: "p4-g1" }),
+              L("p4-g2", "G 2: guilty \u2026 guilty", { status: "tested", lessonId: "p4-g2" }),
             ],
           },
           {
             id: "p4-h",
             title: "Letter H",
             lessons: [
-              L("p4-h-planned", "Words beginning with H"),
+              L("p4-h1", "H 1: habituated \u2026 hope", { status: "tested", lessonId: "p4-h1" }),
+              L("p4-h2", "H 2: hostile \u2026 hungry", { status: "tested", lessonId: "p4-h2" }),
             ],
           },
           {

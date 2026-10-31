@@ -64,5 +64,67 @@
    "p4-c6",
    "C 6: count \u2026 cure"
   ]
+ ],
+ "D": [
+  [
+   "p4-d1",
+   "D 1: deal \u2026 derive"
+  ],
+  [
+   "p4-d2",
+   "D 2: descended \u2026 devote"
+  ],
+  [
+   "p4-d3",
+   "D 3: die \u2026 dispense"
+  ],
+  [
+   "p4-d4",
+   "D 4: dispose \u2026 dwell"
+  ]
+ ],
+ "E": [
+  [
+   "p4-e1",
+   "E 1: eager \u2026 empty"
+  ],
+  [
+   "p4-e2",
+   "E 2: encroach \u2026 essential"
+  ],
+  [
+   "p4-e3",
+   "E 3: excel \u2026 exposed"
+  ]
+ ],
+ "F": [
+  [
+   "p4-f1",
+   "F 1: faith \u2026 fond"
+  ],
+  [
+   "p4-f2",
+   "F 2: fraught \u2026 furious"
+  ]
+ ],
+ "G": [
+  [
+   "p4-g1",
+   "G 1: generous \u2026 guard"
+  ],
+  [
+   "p4-g2",
+   "G 2: guilty \u2026 guilty"
+  ]
+ ],
+ "H": [
+  [
+   "p4-h1",
+   "H 1: habituated \u2026 hope"
+  ],
+  [
+   "p4-h2",
+   "H 2: hostile \u2026 hungry"
+  ]
  ]
 }
