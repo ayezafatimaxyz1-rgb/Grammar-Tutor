@@ -127,13 +127,15 @@
     height: var(--open-h); padding: 34px 28px 30px; text-align: center; color: var(--ink);
     display: flex; flex-direction: column; align-items: center; gap: 6px;
     overflow-y: auto; scrollbar-width: none;
-    opacity: 0; transform: translateY(14px);
-    transition: opacity 1.2s ease 1.8s, transform 1.2s ease 1.8s;
   }
   .content::-webkit-scrollbar { display: none; }
   .content > :first-child { margin-top: auto; }
   .content > :last-child { margin-bottom: auto; }
-  .opened .content { opacity: 1; transform: none; }
+  /* words appear one by one */
+  .w, .reveal { opacity: 0; transition: opacity .7s ease, transform .7s ease, filter .7s ease; }
+  .w { display: inline-block; transform: translateY(8px); filter: blur(4px); }
+  .reveal { transform: scale(.94); }
+  .opened .w, .opened .reveal { opacity: 1; transform: none; filter: none; transition-delay: var(--d); }
 
   .frame {
     position: absolute; inset: 20px 16px; border: 1.5px solid var(--gold);
@@ -407,6 +409,26 @@
   }));
   setTheme(location.hash.slice(1));
   window.addEventListener('hashchange', () => setTheme(location.hash.slice(1)));
+
+  // split the card text into words that appear one after another
+  (() => {
+    const START = 2.0, STEP = 0.16, PAUSE = 0.28;
+    let t = START;
+    const esc = w => w.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+    const blocks = '.arch > svg, .amp, .event, .event .icon, .event h3';
+    document.querySelectorAll('.content ' + [blocks, '.bismillah', '.small', '.script', '.field'].join(', .content ')).forEach(el => {
+      if (el.matches(blocks)) {
+        el.classList.add('reveal'); el.style.setProperty('--d', t.toFixed(2) + 's');
+        t += el.matches('.event') ? 0 : STEP * 1.5;
+        return;
+      }
+      const words = el.textContent.trim().split(/\s+/).filter(Boolean);
+      if (!words.length) return;
+      el.innerHTML = words.map(w => { const d = t; t += STEP; return `<span class="w" style="--d:${d.toFixed(2)}s">${esc(w)}</span>`; }).join(' ');
+      t += PAUSE;
+    });
+    window.__revealEnd = t;
+  })();
 
   // background mandala
   (() => {
