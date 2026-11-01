@@ -211,14 +211,14 @@
   }
 </style>
 </head>
-<body data-theme="classic">
+<body data-theme="blush">
 
 <div class="samples" aria-label="Choose a sample design">
   <span>Samples</span>
-  <button class="swatch active" data-t="classic" title="Sample 1: Maroon &amp; Gold"></button>
+  <button class="swatch" data-t="classic" title="Sample 1: Maroon &amp; Gold"></button>
   <button class="swatch" data-t="mehndi" title="Sample 2: Mehndi Green &amp; Marigold"></button>
   <button class="swatch" data-t="royal" title="Sample 3: Royal Blue"></button>
-  <button class="swatch" data-t="blush" title="Sample 4: Blush Rose"></button>
+  <button class="swatch active" data-t="blush" title="Sample 4: Blush Rose"></button>
 </div>
 
 <div class="stage" id="stage">
@@ -291,7 +291,7 @@
   // sample designs: #classic, #mehndi, #royal, #blush
   const themes = ['classic', 'mehndi', 'royal', 'blush'];
   function setTheme(t) {
-    if (!themes.includes(t)) t = 'classic';
+    if (!themes.includes(t)) t = 'blush';
     document.body.dataset.theme = t;
     document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.t === t));
   }
