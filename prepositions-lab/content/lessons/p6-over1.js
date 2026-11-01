@@ -87,11 +87,11 @@
         alt: "The sentence The army with a gap the government., then the candidates: take over (fits: take control); take on (correct English, different meaning: hire, or accept a task); take off (correct English, different meaning: leave the ground)",
         say: [
           { text: "Fill the gap: The army \u2026 the government. The sentence wants **take over**: take control.", cue: "f1w1" },
-          { text: "Why not the others? **take on** is correct English, but it means hire, or accept a task. That is not what this sentence says. **take off** is correct English, but it means leave the ground. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **take on** is correct English, but it means hire, or accept a task. That is not what this sentence says. Where take on fits: _The firm took on new staff._ **take off** is correct English, but it means leave the ground. That is not what this sentence says. Where take off fits: _The plane took off on time._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The army ____ the government.", [["crown", "take over", true, "take control"], ["support", "take on", "diff", "hire, or | accept a task"], ["bounceOff", "take off", "diff", "leave the ground"]], ["take over = take control", "Why over? over = across"]),
+          ...PLAB.kit.lineup("f1w", "The army ____ the government.", [["crown", "take over", true, "take control"], ["support", "take on", "diff", "hire, or | accept a task"], ["bounceOff", "take off", "diff", "leave the ground"]], ["take over = take control", "Why over? over = across"], null, ["\u2248 take on: The firm took on new staff.", "\u2248 take off: The plane took off on time."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence He with a gap the keys to the new owner., then the candidates: hand over (fits: give control to); hand in (correct English, different meaning: submit); hand down (correct English, different meaning: pass to the next generation)",
         say: [
           { text: "Fill the gap: He \u2026 the keys to the new owner. The sentence wants **hand over**: give control to.", cue: "f2w1" },
-          { text: "Why not the others? **hand in** is correct English, but it means submit. That is not what this sentence says. **hand down** is correct English, but it means pass to the next generation. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **hand in** is correct English, but it means submit. That is not what this sentence says. Where hand in fits: _Hand in your papers now._ **hand down** is correct English, but it means pass to the next generation. That is not what this sentence says. Where hand down fits: _These customs were handed down from father to son._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He ____ the keys to the new owner.", [["giveTo", "hand over", true, "give control to"], ["absorbedIn", "hand in", "diff", "submit"], ["arrowDown", "hand down", "diff", "pass to the | next generation"]], ["hand over = give control to", "Why over? over = across"]),
+          ...PLAB.kit.lineup("f2w", "He ____ the keys to the new owner.", [["giveTo", "hand over", true, "give control to"], ["absorbedIn", "hand in", "diff", "submit"], ["arrowDown", "hand down", "diff", "pass to the | next generation"]], ["hand over = give control to", "Why over? over = across"], null, ["\u2248 hand in: Hand in your papers now.", "\u2248 hand down: These customs were handed down from father to son."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence Let us with a gap the plan once more., then the candidates: go over (fits: review); go off (correct English, different meaning: explode); go on (correct English, different meaning: continue)",
         say: [
           { text: "Fill the gap: Let us \u2026 the plan once more. The sentence wants **go over**: review.", cue: "f3w1" },
-          { text: "Why not the others? **go off** is correct English, but it means explode. That is not what this sentence says. **go on** is correct English, but it means continue. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **go off** is correct English, but it means explode. That is not what this sentence says. Where go off fits: _The bomb went off at noon._ **go on** is correct English, but it means continue. That is not what this sentence says. Where go on fits: _The meeting went on for hours._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Let us ____ the plan once more.", [["review", "go over", true, "review"], ["bounceOff", "go off", "diff", "explode"], ["support", "go on", "diff", "continue"]], ["go over = review", "Why over? over = across the whole"]),
+          ...PLAB.kit.lineup("f3w", "Let us ____ the plan once more.", [["review", "go over", true, "review"], ["bounceOff", "go off", "diff", "explode"], ["support", "go on", "diff", "continue"]], ["go over = review", "Why over? over = across the whole"], null, ["\u2248 go off: The bomb went off at noon.", "\u2248 go on: The meeting went on for hours."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence She soon with a gap the shock., then the candidates: get over (fits: recover from); get through (correct English, different meaning: pass, or finish); get on (correct English, different meaning: have a good relationship)",
         say: [
           { text: "Fill the gap: She soon \u2026 the shock. The sentence wants **get over**: recover from.", cue: "f4w1" },
-          { text: "Why not the others? **get through** is correct English, but it means pass, or finish. That is not what this sentence says. **get on** is correct English, but it means have a good relationship. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **get through** is correct English, but it means pass, or finish. That is not what this sentence says. Where get through fits: _We got through the exam week._ **get on** is correct English, but it means have a good relationship. That is not what this sentence says. Where get on fits: _How are you getting on with your new boss?_", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "She soon ____ the shock.", [["recover", "get over", true, "recover from"], ["passThrough", "get through", "diff", "pass, or finish"], ["support", "get on", "diff", "have a good | relationship"]], ["get over = recover from", "Why over? over = past"]),
+          ...PLAB.kit.lineup("f4w", "She soon ____ the shock.", [["recover", "get over", true, "recover from"], ["passThrough", "get through", "diff", "pass, or finish"], ["support", "get on", "diff", "have a good | relationship"]], ["get over = recover from", "Why over? over = past"], null, ["\u2248 get through: We got through the exam week.", "\u2248 get on: How are you getting on with your new boss?"]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence with a gap the offer before you reply., then the candidates: think over (fits: consider carefully); think up (correct English, different meaning: invent); think on (not used: not used in standard English)",
         say: [
           { text: "Fill the gap: \u2026 the offer before you reply. The sentence wants **think over**: consider carefully.", cue: "f5w1" },
-          { text: "Why not the others? **think up** is correct English, but it means invent. That is not what this sentence says. **think on**: not used in standard English.", cue: "f5w2" },
+          { text: "Why not the others? **think up** is correct English, but it means invent. That is not what this sentence says. Where think up fits: _She thought up a clever plan._ **think on**: not used in standard English.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____ the offer before you reply.", [["thinkSelf", "think over", true, "consider carefully"], ["arrowUp", "think up", "diff", "invent"], ["cross", "think on", false, "not used in | standard English"]], ["think over = consider carefully", "Why over? over = across the whole"]),
+          ...PLAB.kit.lineup("f5w", "____ the offer before you reply.", [["thinkSelf", "think over", true, "consider carefully"], ["arrowUp", "think up", "diff", "invent"], ["cross", "think on", false, "not used in | standard English"]], ["think over = consider carefully", "Why over? over = across the whole"], null, ["\u2248 think up: She thought up a clever plan."]),
         ],
       },
       {
@@ -414,11 +414,11 @@
         alt: "The sentence A car with a gap the dog., then the candidates: run over (fits: hit with a vehicle); run into (correct English, different meaning: meet by chance); run out (correct English, different meaning: be used up)",
         say: [
           { text: "Fill the gap: A car \u2026 the dog. The sentence wants **run over**: hit with a vehicle.", cue: "f6w1" },
-          { text: "Why not the others? **run into** is correct English, but it means meet by chance. That is not what this sentence says. **run out** is correct English, but it means be used up. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **run into** is correct English, but it means meet by chance. That is not what this sentence says. Where run into fits: _I ran into an old friend at the station._ **run out** is correct English, but it means be used up. That is not what this sentence says. Where run out fits: _Our time has run out._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "A car ____ the dog.", [["car", "run over", true, "hit with a vehicle"], ["intoBag", "run into", "diff", "meet by chance"], ["goOut", "run out", "diff", "be used up"]], ["run over = hit with a vehicle", "Why over? over = across the top"]),
+          ...PLAB.kit.lineup("f6w", "A car ____ the dog.", [["car", "run over", true, "hit with a vehicle"], ["intoBag", "run into", "diff", "meet by chance"], ["goOut", "run out", "diff", "be used up"]], ["run over = hit with a vehicle", "Why over? over = across the top"], null, ["\u2248 run into: I ran into an old friend at the station.", "\u2248 run out: Our time has run out."]),
         ],
       },
       {

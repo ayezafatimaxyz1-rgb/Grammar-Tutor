@@ -75,7 +75,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "There is a growing demand ____ electricity.", [["demandFor", "for", true, "reaching for | a target"], ["cross", "of", false, "of = belonging; demand | is not part of electricity"], ["arrowR", "to", false, "to = arriving; demand | is reaching for it"]], ["a demand for, a need for, respect for", "the verbs take none: demand it"]),
+          ...PLAB.kit.lineup("why", "There is a growing demand ____ electricity.", [["demandFor", "for", true, "reaching for | a target"], ["cross", "of", false, "of = belonging; demand | is not part of electricity"], ["arrowR", "to", false, "to = arriving; demand | is reaching for it"]], ["a demand for, a need for, respect for", "the verbs take none: demand it"], null, []),
         ],
       },
       {

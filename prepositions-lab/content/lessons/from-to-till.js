@@ -62,7 +62,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The shop is open from 9 ____ 5.", [["span", "to", true, "from ... to"], ["betweenTicks", "and", false, "and belongs to | between"], ["clock", "at", false, "at = one point, | not an end"]], ["from 9 to 5 (or until 5)", "between 9 and 5"]),
+          ...PLAB.kit.lineup("why", "The shop is open from 9 ____ 5.", [["span", "to", true, "from ... to"], ["betweenTicks", "and", false, "and belongs to | between"], ["clock", "at", false, "at = one point, | not an end"]], ["from 9 to 5 (or until 5)", "between 9 and 5"], null, []),
         ],
       },
       {

@@ -79,7 +79,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She cut the bread ____ a knife.", [["bread", "with", true, "a tool you hold"], ["emailBy", "by", false, "by + a means: | by hand, by email"], ["origin", "from", false, "from = origin"]], ["with + a tool", "by + a means (no article)"]),
+          ...PLAB.kit.lineup("why", "She cut the bread ____ a knife.", [["bread", "with", true, "a tool you hold"], ["emailBy", "by", false, "by + a means: | by hand, by email"], ["origin", "from", false, "from = origin"]], ["with + a tool", "by + a means (no article)"], null, []),
         ],
       },
       {

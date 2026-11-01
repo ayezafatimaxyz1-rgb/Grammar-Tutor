@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Many people objected ____ the plan.", [["reachDot", "to", true, "disapprove of"], ["cross", "on", false, "on is resting; | objection points to"], ["cross", "against", false, "object already means | oppose; it takes to"]], ["object to = disapprove of"]),
+          ...PLAB.kit.lineup("e1w", "Many people objected ____ the plan.", [["reachDot", "to", true, "disapprove of"], ["cross", "on", false, "on is resting; | objection points to"], ["cross", "against", false, "object already means | oppose; it takes to"]], ["object to = disapprove of"], null, []),
         ],
       },
       {
@@ -81,11 +81,11 @@
         alt: "The sentence I am much obliged with a gap you., then the candidates: to (fits: thankful to a person); for (correct English, different meaning: thankful for you, as if you were the favour); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: I am much obliged \u2026 you. What does the sentence want to say? It wants **obliged to**: thankful to a person.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean thankful for you, as if you were the favour. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean thankful for you, as if you were the favour. That is not what this sentence says. Where for fits: _I am obliged to you for your help._ **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "I am much obliged ____ you.", [["reachDot", "to", true, "thankful to | a person"], ["wantStar", "for", "diff", "thankful for you, as | if you were the favour"], ["cross", "of", false, "of = belonging; | not used"]], ["obliged to = thankful to a person", "obliged for = thankful for something"]),
+          ...PLAB.kit.lineup("e2w", "I am much obliged ____ you.", [["reachDot", "to", true, "thankful to | a person"], ["wantStar", "for", "diff", "thankful for you, as | if you were the favour"], ["cross", "of", false, "of = belonging; | not used"]], ["obliged to = thankful to a person", "obliged for = thankful for something"], null, ["\u2248 for: I am obliged to you for your help."]),
         ],
       },
       {
@@ -112,7 +112,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He was oblivious ____ the danger.", [["reachDot", "to", true, "not noticing"], ["cross", "from", false, "from is a | source; not used"], ["cross", "about", false, "about is a | topic; not used"]], ["oblivious to = not noticing"]),
+          ...PLAB.kit.lineup("e3w", "He was oblivious ____ the danger.", [["reachDot", "to", true, "not noticing"], ["cross", "from", false, "from is a | source; not used"], ["cross", "about", false, "about is a | topic; not used"]], ["oblivious to = not noticing"], null, []),
         ],
       },
       {
@@ -139,7 +139,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is obsessed ____ money.", [["agreeWith", "with", true, "thinking about | it all the time"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "about", false, "heard in speech, but formal | English says obsessed with"]], ["obsessed with = thinking about it all the time"]),
+          ...PLAB.kit.lineup("e4w", "He is obsessed ____ money.", [["agreeWith", "with", true, "thinking about | it all the time"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "about", false, "heard in speech, but formal | English says obsessed with"]], ["obsessed with = thinking about it all the time"], null, []),
         ],
       },
       {
@@ -164,11 +164,11 @@
         alt: "The sentence She was occupied with a gap her work., then the candidates: with (fits: busy with); by (correct English, different meaning: taken over by her work, as a seat is taken by a person); in (not used: in is inside; not used)",
         say: [
           { text: "Fill the gap: She was occupied \u2026 her work. What does the sentence want to say? It wants **occupied with**: busy with.", cue: "e5w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean taken over by her work, as a seat is taken by a person. That is not what this sentence says. **in**: in is inside; not used.", cue: "e5w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean taken over by her work, as a seat is taken by a person. That is not what this sentence says. Where by fits: _The seat is occupied by a guest._ **in**: in is inside; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "She was occupied ____ her work.", [["agreeWith", "with", true, "busy with"], ["followRule", "by", "diff", "taken over by her work, as | a seat is taken by a person"], ["cross", "in", false, "in is inside; | not used"]], ["occupied with = busy with", "occupied by = taken or used by"]),
+          ...PLAB.kit.lineup("e5w", "She was occupied ____ her work.", [["agreeWith", "with", true, "busy with"], ["followRule", "by", "diff", "taken over by her work, as | a seat is taken by a person"], ["cross", "in", false, "in is inside; | not used"]], ["occupied with = busy with", "occupied by = taken or used by"], null, ["\u2248 by: The seat is occupied by a guest."]),
         ],
       },
       {
@@ -195,7 +195,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "She was offended ____ his remarks.", [["followRule", "by", true, "hurt or upset by"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "on", false, "on is resting; | not used"]], ["offended by = hurt or upset by"]),
+          ...PLAB.kit.lineup("e6w", "She was offended ____ his remarks.", [["followRule", "by", true, "hurt or upset by"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "on", false, "on is resting; | not used"]], ["offended by = hurt or upset by"], null, []),
         ],
       },
       {
@@ -222,7 +222,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The party is opposed ____ the plan.", [["reachDot", "to", true, "against"], ["cross", "against", false, "opposed already means | against; it takes to"], ["cross", "with", false, "with = together; | the opposite"]], ["opposed to = against"]),
+          ...PLAB.kit.lineup("e7w", "The party is opposed ____ the plan.", [["reachDot", "to", true, "against"], ["cross", "against", false, "opposed already means | against; it takes to"], ["cross", "with", false, "with = together; | the opposite"]], ["opposed to = against"], null, []),
         ],
       },
       {
@@ -271,7 +271,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The game originated ____ China.", [["absorbedIn", "in", true, "begin in a | place or time"], ["cross", "at", false, "at is a point; a | country is an area"], ["cross", "to", false, "to points; not used"]], ["originate in = begin in a place or time"]),
+          ...PLAB.kit.lineup("e8w", "The game originated ____ China.", [["absorbedIn", "in", true, "begin in a | place or time"], ["cross", "at", false, "at is a point; a | country is an area"], ["cross", "to", false, "to points; not used"]], ["originate in = begin in a place or time"], null, []),
         ],
       },
       {

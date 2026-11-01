@@ -25,7 +25,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "I will meet you ____ Monday.", [["calendar", "on", true, "Monday is one day: | a box on the calendar"], ["clock", "at", false, "at is for a clock | time: at 5 o'clock"], ["arrowR", "to", false, "to is movement; | Monday is not a place"], ["scroll", "upon", false, "never upon Monday; | upon is formal ON"]], ["ON a day: on Monday, on 14 August.", "AT a moment · TO an arrow · UPON = formal ON"]),
+          ...PLAB.kit.lineup("ys", "I will meet you ____ Monday.", [["calendar", "on", true, "Monday is one day: | a box on the calendar"], ["clock", "at", false, "at is for a clock | time: at 5 o'clock"], ["arrowR", "to", false, "to is movement; | Monday is not a place"], ["scroll", "upon", false, "never upon Monday; | upon is formal ON"]], ["ON a day: on Monday, on 14 August.", "AT a moment · TO an arrow · UPON = formal ON"], null, []),
         ],
       },
       {

@@ -158,7 +158,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She got ____ the bus.", [["busOn", "off", true, "a bus is a platform | you step off"], ["carIn", "out of", false, "out of is for cars | and taxis"], ["origin", "from", false, "from names a start, | not stepping down"], ["bookTable", "off of", false, "of is extra | (informal)"]], ["get off a bus, train, plane", "get out of a car, taxi"]),
+        ...PLAB.kit.lineup("why", "She got ____ the bus.", [["busOn", "off", true, "a bus is a platform | you step off"], ["carIn", "out of", false, "out of is for cars | and taxis"], ["origin", "from", false, "from names a start, | not stepping down"], ["bookTable", "off of", false, "of is extra | (informal)"]], ["get off a bus, train, plane", "get out of a car, taxi"], null, []),
       ],
     },
     {

@@ -77,7 +77,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "We reached ____ the station at six.", [["reachDot", "(no word)", true, "reach already | means arrive at"], ["airportDot", "at", false, "says at twice"], ["goHome", "to", false, "reach takes | no preposition"]], ["reach, discuss, emphasise: no preposition", "arrive at \u00b7 get to"]),
+          ...PLAB.kit.lineup("why", "We reached ____ the station at six.", [["reachDot", "(no word)", true, "reach already | means arrive at"], ["airportDot", "at", false, "says at twice"], ["goHome", "to", false, "reach takes | no preposition"]], ["reach, discuss, emphasise: no preposition", "arrive at \u00b7 get to"], null, []),
         ],
       },
       {

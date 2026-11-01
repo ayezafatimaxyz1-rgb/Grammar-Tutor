@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "How do we dispose ____ the waste?", [["awareOf", "of", true, "get rid of"], ["cross", "with", false, "with goes with | dispense: dispense with"], ["cross", "from", false, "from is a | source; not used"]], ["dispose of = get rid of"]),
+          ...PLAB.kit.lineup("e1w", "How do we dispose ____ the waste?", [["awareOf", "of", true, "get rid of"], ["cross", "with", false, "with goes with | dispense: dispense with"], ["cross", "from", false, "from is a | source; not used"]], ["dispose of = get rid of"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "The two problems are distinct ____ each other.", [["holdBack", "from", true, "clearly | separate from"], ["cross", "with", false, "with = together; | distinct means apart"], ["cross", "of", false, "of = belonging; | not used"]], ["distinct from = clearly separate from"]),
+          ...PLAB.kit.lineup("e2w", "The two problems are distinct ____ each other.", [["holdBack", "from", true, "clearly | separate from"], ["cross", "with", false, "with = together; | distinct means apart"], ["cross", "of", false, "of = belonging; | not used"]], ["distinct from = clearly separate from"], null, []),
         ],
       },
       {
@@ -143,7 +143,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "The land was divided ____ four parts.", [["intoBag", "into", true, "split into parts"], ["cross", "among", false, "among is for people who | share, not for the parts"], ["cross", "to", false, "to points; | splitting goes into"]], ["divide into = split into parts", "divide among = share out to a group"]),
+          ...PLAB.kit.lineup("e3w", "The land was divided ____ four parts.", [["intoBag", "into", true, "split into parts"], ["cross", "among", false, "among is for people who | share, not for the parts"], ["cross", "to", false, "to points; | splitting goes into"]], ["divide into = split into parts", "divide among = share out to a group"], null, []),
         ],
       },
       {
@@ -192,7 +192,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She dreams ____ becoming a doctor.", [["awareOf", "of", true, "hope for"], ["cross", "for", false, "for is a purpose; | dreams take of or about"], ["cross", "on", false, "on is resting; | not used"]], ["dream of = hope for"]),
+          ...PLAB.kit.lineup("e4w", "She dreams ____ becoming a doctor.", [["awareOf", "of", true, "hope for"], ["cross", "for", false, "for is a purpose; | dreams take of or about"], ["cross", "on", false, "on is resting; | not used"]], ["dream of = hope for"], null, []),
         ],
       },
       {
@@ -248,11 +248,11 @@
         alt: "The sentence Do not dwell with a gap the past., then the candidates: on (fits: think or talk too long about); in (correct English, different meaning: live inside the past); at (not used: at is a point; not used)",
         say: [
           { text: "Fill the gap: Do not dwell \u2026 the past. What does the sentence want to say? It wants **dwell on**: think or talk too long about.", cue: "e5w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean live inside the past. That is not what this sentence says. **at**: at is a point; not used.", cue: "e5w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean live inside the past. That is not what this sentence says. Where in fits: _They dwell in the mountains._ **at**: at is a point; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Do not dwell ____ the past.", [["support", "on", true, "think or talk | too long about"], ["absorbedIn", "in", "diff", "live inside | the past"], ["cross", "at", false, "at is a point; | not used"]], ["dwell on = think or talk too long about", "dwell in = live in"]),
+          ...PLAB.kit.lineup("e5w", "Do not dwell ____ the past.", [["support", "on", true, "think or talk | too long about"], ["absorbedIn", "in", "diff", "live inside | the past"], ["cross", "at", false, "at is a point; | not used"]], ["dwell on = think or talk too long about", "dwell in = live in"], null, ["\u2248 in: They dwell in the mountains."]),
         ],
       },
       {

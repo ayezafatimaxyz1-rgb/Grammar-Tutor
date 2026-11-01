@@ -50,11 +50,11 @@
         alt: "Apples are sold with a gap 250 rupees a kilo. Answer: at, because a rate for each kilo. Not for: for 250 = the total for all of them. Not per: per needs a unit straight after.",
         say: [
           { text: "Fill the gap: Apples are sold … 250 rupees a kilo. Picture it: a rate for each kilo. So **at**.", cue: "atx01" },
-          { text: "Why not **for**? for 250 = the total for all of them That is correct English, but it says something else. Why not **per**? per needs a unit straight after.", cue: "atx0-r2" },
+          { text: "Why not **for**? for 250 = the total for all of them That is correct English, but it says something else. Where for fits: _I bought two kilos of apples for 500 rupees._ Why not **per**? per needs a unit straight after.", cue: "atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "Apples are sold ____ 250 rupees a kilo.", [["scale", "at", true, "a rate for each kilo"], ["exchange", "for", "diff", "for 250 = the total | for all of them"], ["arrowR", "per", false, "per needs a unit | straight after"]], ["Why at? a rate for each kilo", "Ask: Is it a rate or level (a kilo, a month, a percent)?"]),
+          ...PLAB.kit.lineup("atx0", "Apples are sold ____ 250 rupees a kilo.", [["scale", "at", true, "a rate for each kilo"], ["exchange", "for", "diff", "for 250 = the total | for all of them"], ["arrowR", "per", false, "per needs a unit | straight after"]], ["Why at? a rate for each kilo", "Ask: Is it a rate or level (a kilo, a month, a percent)?"], null, ["≈ for: I bought two kilos of apples for 500 rupees."]),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "The bank lends ____ 12 percent interest.", [["scale", "at", true, "a rate"], ["exchange", "for", false, "not a total paid"], ["arrowR", "per", false, "not used"]], ["Why at? a rate", "Ask: Is it a rate or level (a kilo, a month, a percent)?"]),
+          ...PLAB.kit.lineup("atx1", "The bank lends ____ 12 percent interest.", [["scale", "at", true, "a rate"], ["exchange", "for", false, "not a total paid"], ["arrowR", "per", false, "not used"]], ["Why at? a rate", "Ask: Is it a rate or level (a kilo, a month, a percent)?"], null, []),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "I bought the phone with a gap 30,000 rupees. Answer: for, because the total paid. Not at: at = a rate for each unit. Not per: no unit.",
         say: [
           { text: "Fill the gap: I bought the phone … 30,000 rupees. Picture it: the total paid. So **for**.", cue: "forx02" },
-          { text: "Why not **at**? at = a rate for each unit That is correct English, but it says something else. Why not **per**? no unit.", cue: "forx0-r2" },
+          { text: "Why not **at**? at = a rate for each unit That is correct English, but it says something else. Where at fits: _Phones are on sale at 30,000 rupees each._ Why not **per**? no unit.", cue: "forx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-forx0"),
-          ...PLAB.kit.lineup("forx0", "I bought the phone ____ 30,000 rupees.", [["scale", "at", "diff", "at = a rate | for each unit"], ["exchange", "for", true, "the total paid"], ["arrowR", "per", false, "no unit"]], ["Why for? the total paid", "Ask: Is it the whole amount paid for the thing?"]),
+          ...PLAB.kit.lineup("forx0", "I bought the phone ____ 30,000 rupees.", [["scale", "at", "diff", "at = a rate | for each unit"], ["exchange", "for", true, "the total paid"], ["arrowR", "per", false, "no unit"]], ["Why for? the total paid", "Ask: Is it the whole amount paid for the thing?"], null, ["≈ at: Phones are on sale at 30,000 rupees each."]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "She sold her gold with a gap a good price. Answer: for, because the price received. Not at: at a good price is also used. Not per: not used.",
         say: [
           { text: "Fill the gap: She sold her gold … a good price. Picture it: the price received. So **for**.", cue: "forx12" },
-          { text: "Why not **at**? at a good price is also used That is correct English, but it says something else. Why not **per**? not used.", cue: "forx1-r2" },
+          { text: "Why not **at**? at a good price is also used That is correct English, but it says something else. Where at fits: _Gold is selling at a good price now._ Why not **per**? not used.", cue: "forx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-forx1"),
-          ...PLAB.kit.lineup("forx1", "She sold her gold ____ a good price.", [["scale", "at", "diff", "at a good price | is also used"], ["exchange", "for", true, "the price received"], ["arrowR", "per", false, "not used"]], ["Why for? the price received", "Ask: Is it the whole amount paid for the thing?"]),
+          ...PLAB.kit.lineup("forx1", "She sold her gold ____ a good price.", [["scale", "at", "diff", "at a good price | is also used"], ["exchange", "for", true, "the price received"], ["arrowR", "per", false, "not used"]], ["Why for? the price received", "Ask: Is it the whole amount paid for the thing?"], null, ["≈ at: Gold is selling at a good price now."]),
         ],
       },
       {
@@ -134,11 +134,11 @@
         alt: "The fee is 2,000 rupees with a gap student. Answer: per, because for each student. Not at: at needs a price level. Not for: for a student = for one student.",
         say: [
           { text: "Fill the gap: The fee is 2,000 rupees … student. Picture it: for each student. So **per**.", cue: "perx03" },
-          { text: "Why not **at**? at needs a price level. Why not **for**? for a student = for one student That is correct English, but it says something else.", cue: "perx0-r2" },
+          { text: "Why not **at**? at needs a price level. Why not **for**? for a student = for one student That is correct English, but it says something else. Where for fits: _I paid 2,000 rupees for one student._", cue: "perx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-perx0"),
-          ...PLAB.kit.lineup("perx0", "The fee is 2,000 rupees ____ student.", [["scale", "at", false, "at needs a price level"], ["exchange", "for", "diff", "for a student = | for one student"], ["arrowR", "per", true, "for each student"]], ["Why per? for each student", "Ask: Is a unit straight after it (kilo, person, hour)?"]),
+          ...PLAB.kit.lineup("perx0", "The fee is 2,000 rupees ____ student.", [["scale", "at", false, "at needs a price level"], ["exchange", "for", "diff", "for a student = | for one student"], ["arrowR", "per", true, "for each student"]], ["Why per? for each student", "Ask: Is a unit straight after it (kilo, person, hour)?"], null, ["≈ for: I paid 2,000 rupees for one student."]),
         ],
       },
       {
@@ -147,11 +147,11 @@
         alt: "He earns 1,500 with a gap day. Answer: per, because for each day. Not at: not used. Not for: for a day = one day's pay.",
         say: [
           { text: "Fill the gap: He earns 1,500 … day. Picture it: for each day. So **per**.", cue: "perx13" },
-          { text: "Why not **at**? not used. Why not **for**? for a day = one day's pay That is correct English, but it says something else.", cue: "perx1-r2" },
+          { text: "Why not **at**? not used. Why not **for**? for a day = one day's pay That is correct English, but it says something else. Where for fits: _He was paid 1,500 for a day's work._", cue: "perx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-perx1"),
-          ...PLAB.kit.lineup("perx1", "He earns 1,500 ____ day.", [["scale", "at", false, "not used"], ["exchange", "for", "diff", "for a day = | one day's pay"], ["arrowR", "per", true, "for each day"]], ["Why per? for each day", "Ask: Is a unit straight after it (kilo, person, hour)?"]),
+          ...PLAB.kit.lineup("perx1", "He earns 1,500 ____ day.", [["scale", "at", false, "not used"], ["exchange", "for", "diff", "for a day = | one day's pay"], ["arrowR", "per", true, "for each day"]], ["Why per? for each day", "Ask: Is a unit straight after it (kilo, person, hour)?"], null, ["≈ for: He was paid 1,500 for a day's work."]),
         ],
       },
       {

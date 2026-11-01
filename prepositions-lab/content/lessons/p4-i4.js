@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Reporters intruded ____ their privacy.", [["support", "on", true, "come in where | not wanted"], ["cross", "at", false, "at is a point; | intruding presses on"], ["cross", "to", false, "to points; not used"]], ["intrude on = come in where not wanted"]),
+          ...PLAB.kit.lineup("e1w", "Reporters intruded ____ their privacy.", [["support", "on", true, "come in where | not wanted"], ["cross", "at", false, "at is a point; | intruding presses on"], ["cross", "to", false, "to points; not used"]], ["intrude on = come in where not wanted"], null, []),
         ],
       },
       {
@@ -105,7 +105,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He invested ____ land.", [["absorbedIn", "in", true, "put money into"], ["cross", "on", false, "on is resting; | money goes in"], ["cross", "at", false, "at is a point; | not used"]], ["invest in = put money into"]),
+          ...PLAB.kit.lineup("e2w", "He invested ____ land.", [["absorbedIn", "in", true, "put money into"], ["cross", "on", false, "on is resting; | money goes in"], ["cross", "at", false, "at is a point; | not used"]], ["invest in = put money into"], null, []),
         ],
       },
       {
@@ -130,11 +130,11 @@
         alt: "The sentence Many students were involved with a gap the project., then the candidates: in (fits: taking part in); with (correct English, different meaning: in a close relationship with the project); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: Many students were involved \u2026 the project. What does the sentence want to say? It wants **involved in**: taking part in.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean in a close relationship with the project. That is not what this sentence says. **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean in a close relationship with the project. That is not what this sentence says. Where with fits: _He is involved with a rival company._ **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Many students were involved ____ the project.", [["absorbedIn", "in", true, "taking part in"], ["agreeWith", "with", "diff", "in a close relationship | with the project"], ["cross", "on", false, "on is resting; | not used"]], ["involved in = taking part in", "involved with = in a close relationship with"]),
+          ...PLAB.kit.lineup("e3w", "Many students were involved ____ the project.", [["absorbedIn", "in", true, "taking part in"], ["agreeWith", "with", "diff", "in a close relationship | with the project"], ["cross", "on", false, "on is resting; | not used"]], ["involved in = taking part in", "involved with = in a close relationship with"], null, ["\u2248 with: He is involved with a rival company."]),
         ],
       },
       {
@@ -161,7 +161,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "That point is irrelevant ____ the case.", [["reachDot", "to", true, "not connected with"], ["cross", "with", false, "with = together; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["irrelevant to = not connected with"]),
+          ...PLAB.kit.lineup("e4w", "That point is irrelevant ____ the case.", [["reachDot", "to", true, "not connected with"], ["cross", "with", false, "with = together; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["irrelevant to = not connected with"], null, []),
         ],
       },
       {

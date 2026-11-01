@@ -87,11 +87,11 @@
         alt: "The sentence He with a gap smoking last year., then the candidates: give up (fits: stop doing); give in (correct English, different meaning: surrender, stop resisting); give out (correct English, different meaning: hand out, or stop working)",
         say: [
           { text: "Fill the gap: He \u2026 smoking last year. The sentence wants **give up**: stop doing.", cue: "f1w1" },
-          { text: "Why not the others? **give in** is correct English, but it means surrender, stop resisting. That is not what this sentence says. **give out** is correct English, but it means hand out, or stop working. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **give in** is correct English, but it means surrender, stop resisting. That is not what this sentence says. Where give in fits: _The rebels finally gave in._ **give out** is correct English, but it means hand out, or stop working. That is not what this sentence says. Where give out fits: _The teacher gave out the papers._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He ____ smoking last year.", [["cigarette", "give up", true, "stop doing"], ["absorbedIn", "give in", "diff", "surrender, | stop resisting"], ["goOut", "give out", "diff", "hand out, or | stop working"]], ["give up = stop doing", "Why up? up = completely"]),
+          ...PLAB.kit.lineup("f1w", "He ____ smoking last year.", [["cigarette", "give up", true, "stop doing"], ["absorbedIn", "give in", "diff", "surrender, | stop resisting"], ["goOut", "give out", "diff", "hand out, or | stop working"]], ["give up = stop doing", "Why up? up = completely"], null, ["\u2248 give in: The rebels finally gave in.", "\u2248 give out: The teacher gave out the papers."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence She with a gap three children alone., then the candidates: bring up (fits: raise a child); bring about (correct English, different meaning: cause to happen); bring out (correct English, different meaning: publish, or reveal)",
         say: [
           { text: "Fill the gap: She \u2026 three children alone. The sentence wants **bring up**: raise a child.", cue: "f2w1" },
-          { text: "Why not the others? **bring about** is correct English, but it means cause to happen. That is not what this sentence says. **bring out** is correct English, but it means publish, or reveal. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **bring about** is correct English, but it means cause to happen. That is not what this sentence says. Where bring about fits: _The war brought about great changes._ **bring out** is correct English, but it means publish, or reveal. That is not what this sentence says. Where bring out fits: _The company brought out a new phone._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "She ____ three children alone.", [["growTo", "bring up", true, "raise a child"], ["aboutCircle", "bring about", "diff", "cause to happen"], ["goOut", "bring out", "diff", "publish, or reveal"]], ["bring up = raise a child", "Why up? up = upward"]),
+          ...PLAB.kit.lineup("f2w", "She ____ three children alone.", [["growTo", "bring up", true, "raise a child"], ["aboutCircle", "bring about", "diff", "cause to happen"], ["goOut", "bring out", "diff", "publish, or reveal"]], ["bring up = raise a child", "Why up? up = upward"], null, ["\u2248 bring about: The war brought about great changes.", "\u2248 bring out: The company brought out a new phone."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence The government with a gap a commission., then the candidates: set up (fits: establish); set off (correct English, different meaning: start a journey); set in (correct English, different meaning: begin and continue (bad weather))",
         say: [
           { text: "Fill the gap: The government \u2026 a commission. The sentence wants **set up**: establish.", cue: "f3w1" },
-          { text: "Why not the others? **set off** is correct English, but it means start a journey. That is not what this sentence says. **set in** is correct English, but it means begin and continue (bad weather). That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **set off** is correct English, but it means start a journey. That is not what this sentence says. Where set off fits: _We set off at dawn._ **set in** is correct English, but it means begin and continue (bad weather). That is not what this sentence says. Where set in fits: _The rainy season has set in._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The government ____ a commission.", [["house", "set up", true, "establish"], ["bounceOff", "set off", "diff", "start a journey"], ["absorbedIn", "set in", "diff", "begin and continue | (bad weather)"]], ["set up = establish", "Why up? up = into being"]),
+          ...PLAB.kit.lineup("f3w", "The government ____ a commission.", [["house", "set up", true, "establish"], ["bounceOff", "set off", "diff", "start a journey"], ["absorbedIn", "set in", "diff", "begin and continue | (bad weather)"]], ["set up = establish", "Why up? up = into being"], null, ["\u2248 set off: We set off at dawn.", "\u2248 set in: The rainy season has set in."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence The lawyer with a gap the contract., then the candidates: draw up (fits: prepare a document); draw out (correct English, different meaning: make longer); draw back (correct English, different meaning: move away, withdraw)",
         say: [
           { text: "Fill the gap: The lawyer \u2026 the contract. The sentence wants **draw up**: prepare a document.", cue: "f4w1" },
-          { text: "Why not the others? **draw out** is correct English, but it means make longer. That is not what this sentence says. **draw back** is correct English, but it means move away, withdraw. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **draw out** is correct English, but it means make longer. That is not what this sentence says. Where draw out fits: _Don't draw out the meeting._ **draw back** is correct English, but it means move away, withdraw. That is not what this sentence says. Where draw back fits: _The crowd drew back from the fire._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The lawyer ____ the contract.", [["doc", "draw up", true, "prepare a document"], ["goOut", "draw out", "diff", "make longer"], ["returnArc", "draw back", "diff", "move away, withdraw"]], ["draw up = prepare a document", "Why up? up = into being"]),
+          ...PLAB.kit.lineup("f4w", "The lawyer ____ the contract.", [["doc", "draw up", true, "prepare a document"], ["goOut", "draw out", "diff", "make longer"], ["returnArc", "draw back", "diff", "move away, withdraw"]], ["draw up = prepare a document", "Why up? up = into being"], null, ["\u2248 draw out: Don't draw out the meeting.", "\u2248 draw back: The crowd drew back from the fire."]),
         ],
       },
       {
@@ -347,11 +347,11 @@
         alt: "The sentence Only ten people with a gap for the meeting., then the candidates: turn up (fits: arrive, appear); turn down (correct English, different meaning: refuse); turn in (correct English, different meaning: go to bed, or hand over)",
         say: [
           { text: "Fill the gap: Only ten people \u2026 for the meeting. The sentence wants **turn up**: arrive, appear.", cue: "f5w1" },
-          { text: "Why not the others? **turn down** is correct English, but it means refuse. That is not what this sentence says. **turn in** is correct English, but it means go to bed, or hand over. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **turn down** is correct English, but it means refuse. That is not what this sentence says. Where turn down fits: _She turned down the offer._ **turn in** is correct English, but it means go to bed, or hand over. That is not what this sentence says. Where turn in fits: _I am tired; I will turn in early._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Only ten people ____ for the meeting.", [["arriveDoor", "turn up", true, "arrive, appear"], ["arrowDown", "turn down", "diff", "refuse"], ["absorbedIn", "turn in", "diff", "go to bed, | or hand over"]], ["turn up = arrive, appear", "Why up? up = into view"]),
+          ...PLAB.kit.lineup("f5w", "Only ten people ____ for the meeting.", [["arriveDoor", "turn up", true, "arrive, appear"], ["arrowDown", "turn down", "diff", "refuse"], ["absorbedIn", "turn in", "diff", "go to bed, | or hand over"]], ["turn up = arrive, appear", "Why up? up = into view"], null, ["\u2248 turn down: She turned down the offer.", "\u2248 turn in: I am tired; I will turn in early."]),
         ],
       },
       {
@@ -412,11 +412,11 @@
         alt: "The sentence We must with a gap the work., then the candidates: speed up (fits: go faster); slow down (correct English, different meaning: go slower); speed off (correct English, different meaning: leave very fast)",
         say: [
           { text: "Fill the gap: We must \u2026 the work. The sentence wants **speed up**: go faster.", cue: "f6w1" },
-          { text: "Why not the others? **slow down** is correct English, but it means go slower. That is not what this sentence says. **speed off** is correct English, but it means leave very fast. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **slow down** is correct English, but it means go slower. That is not what this sentence says. Where slow down fits: _Drivers must slow down near schools._ **speed off** is correct English, but it means leave very fast. That is not what this sentence says. Where speed off fits: _The thief jumped into a car and sped off._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "We must ____ the work.", [["car", "speed up", true, "go faster"], ["arrowDown", "slow down", "diff", "go slower"], ["bounceOff", "speed off", "diff", "leave very fast"]], ["speed up = go faster", "Why up? up = more"]),
+          ...PLAB.kit.lineup("f6w", "We must ____ the work.", [["car", "speed up", true, "go faster"], ["arrowDown", "slow down", "diff", "go slower"], ["bounceOff", "speed off", "diff", "leave very fast"]], ["speed up = go faster", "Why up? up = more"], null, ["\u2248 slow down: Drivers must slow down near schools.", "\u2248 speed off: The thief jumped into a car and sped off."]),
         ],
       },
       {

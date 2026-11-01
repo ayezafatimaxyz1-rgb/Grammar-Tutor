@@ -115,7 +115,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "We stayed at home ____ the rain.", [["cloud", "because of", true, "+ a noun"], ["rain", "because", false, "+ a clause: | because it rained"], ["different", "although", false, "shows contrast, | not cause"]], ["because of + noun", "because + clause"]),
+          ...PLAB.kit.lineup("why", "We stayed at home ____ the rain.", [["cloud", "because of", true, "+ a noun"], ["rain", "because", false, "+ a clause: | because it rained"], ["different", "although", false, "shows contrast, | not cause"]], ["because of + noun", "because + clause"], null, []),
         ],
       },
       {

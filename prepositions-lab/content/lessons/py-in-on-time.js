@@ -17,14 +17,14 @@
         say: [
           { text: "Your sentence: _Please come … time._ Here is every choice, side by side.", cue: "ys-s" },
           { text: "**on** is right: exactly at the planned time: punctual.", cue: "ys1" },
-          { text: "**in** is correct English, but a different meaning: early enough, before it is too late.", cue: "ys2" },
+          { text: "**in** is correct English, but a different meaning: early enough, before it is too late. Where in fits: _Come in time for dinner._", cue: "ys2" },
           { text: "**at** is wrong: at time is never used alone.", cue: "ys3" },
           { text: "Please come ON time = at the planned time.", cue: "ys-r1" },
           { text: "IN time = early enough · never AT time.", cue: "ys-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "Please come ____ time.", [["onTimeDot", "on", true, "exactly at the planned | time: punctual"], ["inTimeBefore", "in", "diff", "early enough, before | it is too late"], ["cross", "at", false, "at time is never | used alone"]], ["Please come ON time = at the planned time.", "IN time = early enough · never AT time"]),
+          ...PLAB.kit.lineup("ys", "Please come ____ time.", [["onTimeDot", "on", true, "exactly at the planned | time: punctual"], ["inTimeBefore", "in", "diff", "early enough, before | it is too late"], ["cross", "at", false, "at time is never | used alone"]], ["Please come ON time = at the planned time.", "IN time = early enough · never AT time"], null, ["≈ in: Come in time for dinner."]),
         ],
       },
       {

@@ -71,12 +71,12 @@
         alt: "The sentence Ministers are accountable with a gap Parliament., then the candidates with pictures: to (right: the authority above them); for (correct English but a different meaning: Parliament would be their task); of (wrong: of = belonging; Parliament does not own them). Rule: accountable to + authority; accountable for + task.",
         say: [
           { text: "Fill the gap: Ministers are accountable \u2026 Parliament. What does the sentence want to say? The answer is **to**: the authority above them.", cue: "why1" },
-          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be their task. That is not what this sentence says. **of**: of = belonging; Parliament does not own them.", cue: "why2" },
+          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be their task. That is not what this sentence says. Where for fits: _Ministers are accountable for their decisions._ **of**: of = belonging; Parliament does not own them.", cue: "why2" },
           { text: "The rule: accountable to + authority; accountable for + task.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Ministers are accountable ____ Parliament.", [["answerTo", "to", true, "the authority | above them"], ["careFor", "for", "diff", "Parliament would be | their task"], ["cross", "of", false, "of = belonging; Parliament | does not own them"]], ["accountable to + authority", "accountable for + task"]),
+          ...PLAB.kit.lineup("why", "Ministers are accountable ____ Parliament.", [["answerTo", "to", true, "the authority | above them"], ["careFor", "for", "diff", "Parliament would be | their task"], ["cross", "of", false, "of = belonging; Parliament | does not own them"]], ["accountable to + authority", "accountable for + task"], null, ["\u2248 for: Ministers are accountable for their decisions."]),
         ],
       },
       {

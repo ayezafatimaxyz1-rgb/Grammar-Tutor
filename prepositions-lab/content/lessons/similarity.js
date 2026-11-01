@@ -72,7 +72,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "This plan is superior ____ that one.", [["taller", "to", true, "superior already | means more"], ["compareBars", "than", false, "than goes with | better, more"], ["origin", "from", false, "from = moving apart: | different from"]], ["superior to, inferior to, senior to", "better than, more than"]),
+          ...PLAB.kit.lineup("why", "This plan is superior ____ that one.", [["taller", "to", true, "superior already | means more"], ["compareBars", "than", false, "than goes with | better, more"], ["origin", "from", false, "from = moving apart: | different from"]], ["superior to, inferior to, senior to", "better than, more than"], null, []),
         ],
       },
       {

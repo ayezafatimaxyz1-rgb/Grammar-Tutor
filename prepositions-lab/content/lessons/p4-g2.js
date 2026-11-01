@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He was found guilty ____ fraud.", [["awareOf", "of", true, "having done a wrong"], ["cross", "for", false, "for goes with blame; | guilty takes of"], ["cross", "in", false, "in is inside; | not used"]], ["guilty of = having done a wrong"]),
+          ...PLAB.kit.lineup("e1w", "He was found guilty ____ fraud.", [["awareOf", "of", true, "having done a wrong"], ["cross", "for", false, "for goes with blame; | guilty takes of"], ["cross", "in", false, "in is inside; | not used"]], ["guilty of = having done a wrong"], null, []),
         ],
       },
       {

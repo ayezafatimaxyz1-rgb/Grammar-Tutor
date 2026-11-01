@@ -50,11 +50,11 @@
         alt: "We arrived with a gap the station. Answer: at, because a station is a point. Not in: in = already inside the building. Not to: never arrive to.",
         say: [
           { text: "Fill the gap: We arrived … the station. Picture it: a station is a point. So **at**.", cue: "atx01" },
-          { text: "Why not **in**? in = already inside the building That is correct English, but it says something else. Why not **to**? never arrive to.", cue: "atx0-r2" },
+          { text: "Why not **in**? in = already inside the building That is correct English, but it says something else. Where in fits: _We waited in the station building._ Why not **to**? never arrive to.", cue: "atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "We arrived ____ the station.", [["airportDot", "at", true, "a station is a point"], ["inCity", "in", "diff", "in = already inside | the building"], ["arrowR", "to", false, "never arrive to"]], ["Why at? a station is a point", "Ask: Is it one point or building?"]),
+          ...PLAB.kit.lineup("atx0", "We arrived ____ the station.", [["airportDot", "at", true, "a station is a point"], ["inCity", "in", "diff", "in = already inside | the building"], ["arrowR", "to", false, "never arrive to"]], ["Why at? a station is a point", "Ask: Is it one point or building?"], null, ["≈ in: We waited in the station building."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "They arrived with a gap the hotel late. Answer: at, because a building: a point. Not in: inside it. Not to: never arrive to.",
         say: [
           { text: "Fill the gap: They arrived … the hotel late. Picture it: a building: a point. So **at**.", cue: "atx11" },
-          { text: "Why not **in**? inside it That is correct English, but it says something else. Why not **to**? never arrive to.", cue: "atx1-r2" },
+          { text: "Why not **in**? inside it That is correct English, but it says something else. Where in fits: _They stayed in the hotel._ Why not **to**? never arrive to.", cue: "atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "They arrived ____ the hotel late.", [["airportDot", "at", true, "a building: a point"], ["inCity", "in", "diff", "inside it"], ["arrowR", "to", false, "never arrive to"]], ["Why at? a building: a point", "Ask: Is it one point or building?"]),
+          ...PLAB.kit.lineup("atx1", "They arrived ____ the hotel late.", [["airportDot", "at", true, "a building: a point"], ["inCity", "in", "diff", "inside it"], ["arrowR", "to", false, "never arrive to"]], ["Why at? a building: a point", "Ask: Is it one point or building?"], null, ["≈ in: They stayed in the hotel."]),
         ],
       },
       {
@@ -96,7 +96,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "We arrived ____ Lahore at dawn.", [["airportDot", "at", false, "Lahore is an area, | not a point"], ["inCity", "in", true, "a city is an area"], ["arrowR", "to", false, "never arrive to"]], ["Why in? a city is an area", "Ask: Is it a city or a country?"]),
+          ...PLAB.kit.lineup("inx0", "We arrived ____ Lahore at dawn.", [["airportDot", "at", false, "Lahore is an area, | not a point"], ["inCity", "in", true, "a city is an area"], ["arrowR", "to", false, "never arrive to"]], ["Why in? a city is an area", "Ask: Is it a city or a country?"], null, []),
         ],
       },
       {
@@ -109,7 +109,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "Spring has arrived ____ the valley.", [["airportDot", "at", false, "not a point"], ["inCity", "in", true, "an area"], ["arrowR", "to", false, "never arrive to"]], ["Why in? an area", "Ask: Is it a city or a country?"]),
+          ...PLAB.kit.lineup("inx1", "Spring has arrived ____ the valley.", [["airportDot", "at", false, "not a point"], ["inCity", "in", true, "an area"], ["arrowR", "to", false, "never arrive to"]], ["Why in? an area", "Ask: Is it a city or a country?"], null, []),
         ],
       },
       {

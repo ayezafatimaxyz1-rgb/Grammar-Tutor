@@ -87,11 +87,11 @@
         alt: "The sentence The war with a gap great changes., then the candidates: bring about (fits: cause to happen); bring up (correct English, different meaning: raise a child, or mention); bring down (correct English, different meaning: cause to fall)",
         say: [
           { text: "Fill the gap: The war \u2026 great changes. The sentence wants **bring about**: cause to happen.", cue: "f1w1" },
-          { text: "Why not the others? **bring up** is correct English, but it means raise a child, or mention. That is not what this sentence says. **bring down** is correct English, but it means cause to fall. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **bring up** is correct English, but it means raise a child, or mention. That is not what this sentence says. Where bring up fits: _She brought up three children alone._ **bring down** is correct English, but it means cause to fall. That is not what this sentence says. Where bring down fits: _The scandal brought down the government._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The war ____ great changes.", [["causeEffect", "bring about", true, "cause to happen"], ["arrowUp", "bring up", "diff", "raise a child, | or mention"], ["arrowDown", "bring down", "diff", "cause to fall"]], ["bring about = cause to happen", "Why about? about = all around"]),
+          ...PLAB.kit.lineup("f1w", "The war ____ great changes.", [["causeEffect", "bring about", true, "cause to happen"], ["arrowUp", "bring up", "diff", "raise a child, | or mention"], ["arrowDown", "bring down", "diff", "cause to fall"]], ["bring about = cause to happen", "Why about? about = all around"], null, ["\u2248 bring up: She brought up three children alone.", "\u2248 bring down: The scandal brought down the government."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence How did the accident with a gap?, then the candidates: come about (fits: happen); come across (correct English, different meaning: find by chance); come up (correct English, different meaning: arise, be mentioned)",
         say: [
           { text: "Fill the gap: How did the accident \u2026? The sentence wants **come about**: happen.", cue: "f2w1" },
-          { text: "Why not the others? **come across** is correct English, but it means find by chance. That is not what this sentence says. **come up** is correct English, but it means arise, be mentioned. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **come across** is correct English, but it means find by chance. That is not what this sentence says. Where come across fits: _I came across an old letter._ **come up** is correct English, but it means arise, be mentioned. That is not what this sentence says. Where come up fits: _The question of fees came up in the meeting._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "How did the accident ____?", [["question", "come about", true, "happen"], ["acrossRoad", "come across", "diff", "find by chance"], ["arrowUp", "come up", "diff", "arise, be mentioned"]], ["come about = happen", "Why about? about = all around"]),
+          ...PLAB.kit.lineup("f2w", "How did the accident ____?", [["question", "come about", true, "happen"], ["acrossRoad", "come across", "diff", "find by chance"], ["arrowUp", "come up", "diff", "arise, be mentioned"]], ["come about = happen", "Why about? about = all around"], null, ["\u2248 come across: I came across an old letter.", "\u2248 come up: The question of fees came up in the meeting."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence I with a gap an old letter., then the candidates: come across (fits: find by chance); come about (correct English, different meaning: happen); come up (correct English, different meaning: arise, be mentioned)",
         say: [
           { text: "Fill the gap: I \u2026 an old letter. The sentence wants **come across**: find by chance.", cue: "f3w1" },
-          { text: "Why not the others? **come about** is correct English, but it means happen. That is not what this sentence says. **come up** is correct English, but it means arise, be mentioned. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **come about** is correct English, but it means happen. That is not what this sentence says. Where come about fits: _How did the accident come about?_ **come up** is correct English, but it means arise, be mentioned. That is not what this sentence says. Where come up fits: _The question of fees came up in the meeting._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "I ____ an old letter.", [["magnifier", "come across", true, "find by chance"], ["aboutCircle", "come about", "diff", "happen"], ["arrowUp", "come up", "diff", "arise, be mentioned"]], ["come across = find by chance", "Why across? across = crossing"]),
+          ...PLAB.kit.lineup("f3w", "I ____ an old letter.", [["magnifier", "come across", true, "find by chance"], ["aboutCircle", "come about", "diff", "happen"], ["arrowUp", "come up", "diff", "arise, be mentioned"]], ["come across = find by chance", "Why across? across = crossing"], null, ["\u2248 come about: How did the accident come about?", "\u2248 come up: The question of fees came up in the meeting."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence She with a gap the exam., then the candidates: get through (fits: pass, or finish); get over (correct English, different meaning: recover from); get on (correct English, different meaning: have a good relationship)",
         say: [
           { text: "Fill the gap: She \u2026 the exam. The sentence wants **get through**: pass, or finish.", cue: "f4w1" },
-          { text: "Why not the others? **get over** is correct English, but it means recover from. That is not what this sentence says. **get on** is correct English, but it means have a good relationship. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **get over** is correct English, but it means recover from. That is not what this sentence says. Where get over fits: _She soon got over the illness._ **get on** is correct English, but it means have a good relationship. That is not what this sentence says. Where get on fits: _How are you getting on with your new boss?_", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "She ____ the exam.", [["passThrough", "get through", true, "pass, or finish"], ["overRock", "get over", "diff", "recover from"], ["support", "get on", "diff", "have a good | relationship"]], ["get through = pass, or finish", "Why through? through = end to end"]),
+          ...PLAB.kit.lineup("f4w", "She ____ the exam.", [["passThrough", "get through", true, "pass, or finish"], ["overRock", "get over", "diff", "recover from"], ["support", "get on", "diff", "have a good | relationship"]], ["get through = pass, or finish", "Why through? through = end to end"], null, ["\u2248 get over: She soon got over the illness.", "\u2248 get on: How are you getting on with your new boss?"]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence She with a gap his lies., then the candidates: see through (fits: not be fooled by); see off (correct English, different meaning: say goodbye); see to (correct English, different meaning: deal with)",
         say: [
           { text: "Fill the gap: She \u2026 his lies. The sentence wants **see through**: not be fooled by.", cue: "f5w1" },
-          { text: "Why not the others? **see off** is correct English, but it means say goodbye. That is not what this sentence says. **see to** is correct English, but it means deal with. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **see off** is correct English, but it means say goodbye. That is not what this sentence says. Where see off fits: _We went to the airport to see off our friend._ **see to** is correct English, but it means deal with. That is not what this sentence says. Where see to fits: _I will see to the guests._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "She ____ his lies.", [["lensBars", "see through", true, "not be fooled by"], ["bounceOff", "see off", "diff", "say goodbye"], ["reachDot", "see to", "diff", "deal with"]], ["see through = not be fooled by", "Why through? through = end to end"]),
+          ...PLAB.kit.lineup("f5w", "She ____ his lies.", [["lensBars", "see through", true, "not be fooled by"], ["bounceOff", "see off", "diff", "say goodbye"], ["reachDot", "see to", "diff", "deal with"]], ["see through = not be fooled by", "Why through? through = end to end"], null, ["\u2248 see off: We went to the airport to see off our friend.", "\u2248 see to: I will see to the guests."]),
         ],
       },
       {
@@ -414,11 +414,11 @@
         alt: "The sentence The country with a gap hard times., then the candidates: go through (fits: experience (hardship)); go over (correct English, different meaning: review); go off (correct English, different meaning: explode)",
         say: [
           { text: "Fill the gap: The country \u2026 hard times. The sentence wants **go through**: experience (hardship).", cue: "f6w1" },
-          { text: "Why not the others? **go over** is correct English, but it means review. That is not what this sentence says. **go off** is correct English, but it means explode. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **go over** is correct English, but it means review. That is not what this sentence says. Where go over fits: _Let us go over the plan once more._ **go off** is correct English, but it means explode. That is not what this sentence says. Where go off fits: _The bomb went off at noon._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The country ____ hard times.", [["roadPass", "go through", true, "experience | (hardship)"], ["overRock", "go over", "diff", "review"], ["bounceOff", "go off", "diff", "explode"]], ["go through = experience (hardship)", "Why through? through = end to end"]),
+          ...PLAB.kit.lineup("f6w", "The country ____ hard times.", [["roadPass", "go through", true, "experience | (hardship)"], ["overRock", "go over", "diff", "review"], ["bounceOff", "go off", "diff", "explode"]], ["go through = experience (hardship)", "Why through? through = end to end"], null, ["\u2248 go over: Let us go over the plan once more.", "\u2248 go off: The bomb went off at noon."]),
         ],
       },
       {

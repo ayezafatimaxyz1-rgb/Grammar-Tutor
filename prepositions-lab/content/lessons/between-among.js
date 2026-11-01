@@ -152,7 +152,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The ball is ____ the two trees.", [[[["tree", -45, 0], ["dot", 0, 22, 0.6], ["tree", 45, 0]], "between", true, "two separate | points"], ["crowdDot", "among", false, "among needs a | group around it"], ["amidRising", "amid", false, "amid = in the middle | of a situation"]], ["between = separate individuals", "among = inside a group \u00b7 amid = in a situation"]),
+        ...PLAB.kit.lineup("why", "The ball is ____ the two trees.", [[[["tree", -45, 0], ["dot", 0, 22, 0.6], ["tree", 45, 0]], "between", true, "two separate | points"], ["crowdDot", "among", false, "among needs a | group around it"], ["amidRising", "amid", false, "amid = in the middle | of a situation"]], ["between = separate individuals", "among = inside a group \u00b7 amid = in a situation"], null, []),
       ],
     },
     {

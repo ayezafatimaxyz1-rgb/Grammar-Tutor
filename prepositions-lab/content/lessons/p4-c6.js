@@ -63,11 +63,11 @@
         alt: "The sentence You can count with a gap me., then the candidates: on (fits: rely on); for (correct English, different meaning: I would be worth something); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: You can count \u2026 me. What does the sentence want to say? It wants **count on**: rely on.", cue: "e1w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean I would be worth something. That is not what this sentence says. **with**: with = together; not used.", cue: "e1w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean I would be worth something. That is not what this sentence says. Where for fits: _Experience counts for a lot._ **with**: with = together; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "You can count ____ me.", [["support", "on", true, "rely on"], ["wantStar", "for", "diff", "I would be | worth something"], ["cross", "with", false, "with = together; | not used"]], ["count on = rely on", "count for = be worth"]),
+          ...PLAB.kit.lineup("e1w", "You can count ____ me.", [["support", "on", true, "rely on"], ["wantStar", "for", "diff", "I would be | worth something"], ["cross", "with", false, "with = together; | not used"]], ["count on = rely on", "count for = be worth"], null, ["\u2248 for: Experience counts for a lot."]),
         ],
       },
       {
@@ -94,7 +94,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "The hills were covered ____ snow.", [["agreeWith", "with", true, "with a layer on top"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "from", false, "from is a | source; not used"]], ["covered with = with a layer on top"]),
+          ...PLAB.kit.lineup("e2w", "The hills were covered ____ snow.", [["agreeWith", "with", true, "with a layer on top"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "from", false, "from is a | source; not used"]], ["covered with = with a layer on top"], null, []),
         ],
       },
       {
@@ -119,11 +119,11 @@
         alt: "The sentence Water is critical with a gap survival., then the candidates: to (fits: vital to); of (correct English, different meaning: criticising survival); in (not used: in is inside; not used)",
         say: [
           { text: "Fill the gap: Water is critical \u2026 survival. What does the sentence want to say? It wants **critical to**: vital to.", cue: "e3w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean criticising survival. That is not what this sentence says. **in**: in is inside; not used.", cue: "e3w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean criticising survival. That is not what this sentence says. Where of fits: _He is critical of the plan._ **in**: in is inside; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Water is critical ____ survival.", [["reachDot", "to", true, "vital to"], ["awareOf", "of", "diff", "criticising | survival"], ["cross", "in", false, "in is inside; | not used"]], ["critical of = criticising", "critical to = vital to"]),
+          ...PLAB.kit.lineup("e3w", "Water is critical ____ survival.", [["reachDot", "to", true, "vital to"], ["awareOf", "of", "diff", "criticising | survival"], ["cross", "in", false, "in is inside; | not used"]], ["critical of = criticising", "critical to = vital to"], null, ["\u2248 of: He is critical of the plan."]),
         ],
       },
       {
@@ -150,7 +150,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Do not be cruel ____ animals.", [["reachDot", "to", true, "unkind to"], ["cross", "with", false, "with = together; | cruelty points to"], ["cross", "on", false, "a word-for-word | translation"]], ["cruel to = unkind to"]),
+          ...PLAB.kit.lineup("e4w", "Do not be cruel ____ animals.", [["reachDot", "to", true, "unkind to"], ["cross", "with", false, "with = together; | cruelty points to"], ["cross", "on", false, "a word-for-word | translation"]], ["cruel to = unkind to"], null, []),
         ],
       },
       {
@@ -175,11 +175,11 @@
         alt: "The sentence There is no cure with a gap cancer., then the candidates: for (fits: a treatment for (noun)); of (correct English, different meaning: the verb pattern: cured of, freed from it); to (not used: to points; not used)",
         say: [
           { text: "Fill the gap: There is no cure \u2026 cancer. What does the sentence want to say? It wants **cure for**: a treatment for (noun).", cue: "e5w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean the verb pattern: cured of, freed from it. That is not what this sentence says. **to**: to points; not used.", cue: "e5w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean the verb pattern: cured of, freed from it. That is not what this sentence says. Where of fits: _She was cured of malaria._ **to**: to points; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "There is no cure ____ cancer.", [["wantStar", "for", true, "a treatment | for (noun)"], ["awareOf", "of", "diff", "the verb pattern: | cured of, freed from it"], ["cross", "to", false, "to points; not used"]], ["cure for = a treatment for (noun)", "cure of = freed from an illness (verb)"]),
+          ...PLAB.kit.lineup("e5w", "There is no cure ____ cancer.", [["wantStar", "for", true, "a treatment | for (noun)"], ["awareOf", "of", "diff", "the verb pattern: | cured of, freed from it"], ["cross", "to", false, "to points; not used"]], ["cure for = a treatment for (noun)", "cure of = freed from an illness (verb)"], null, ["\u2248 of: She was cured of malaria."]),
         ],
       },
       {

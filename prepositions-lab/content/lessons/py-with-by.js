@@ -24,7 +24,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "I saw him felling the tree ____ a hatchet.", [["keyLock", "with", true, "a hatchet is a tool | he holds"], ["writtenBy", "by", false, "by + a way with no 'a' | (by hand), or a doer"], ["passThrough", "through", false, "through = in one side | and out the other"]], ["WITH + a tool you hold: with a hatchet.", "felling = cutting a tree down (not falling)"]),
+          ...PLAB.kit.lineup("ys", "I saw him felling the tree ____ a hatchet.", [["keyLock", "with", true, "a hatchet is a tool | he holds"], ["writtenBy", "by", false, "by + a way with no 'a' | (by hand), or a doer"], ["passThrough", "through", false, "through = in one side | and out the other"]], ["WITH + a tool you hold: with a hatchet.", "felling = cutting a tree down (not falling)"], null, []),
         ],
       },
       {

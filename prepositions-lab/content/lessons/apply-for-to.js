@@ -80,7 +80,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She applied ____ the job.", [["wantStar", "for", true, "the prize she | wants"], ["applyTo", "to", false, "to = the office | that receives it"], ["cross", "(no word)", false, "apply a job = | spread it like paint"]], ["apply for + what you want", "apply to + the place that receives it"]),
+          ...PLAB.kit.lineup("why", "She applied ____ the job.", [["wantStar", "for", true, "the prize she | wants"], ["applyTo", "to", false, "to = the office | that receives it"], ["cross", "(no word)", false, "apply a job = | spread it like paint"]], ["apply for + what you want", "apply to + the place that receives it"], null, []),
         ],
       },
       {

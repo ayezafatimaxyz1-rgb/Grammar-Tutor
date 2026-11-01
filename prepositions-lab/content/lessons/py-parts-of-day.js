@@ -25,7 +25,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "I wake up ____ the morning, but I sleep ____ night.", [["inPeriod", "in / at", true, "morning = a stretch: IN | night = a fixed phrase: AT"], ["clock", "at / in", false, "at the morning and | in night are wrong"], ["inPeriod", "in / in", false, "in night needs 'the': | in the night = one night"], ["calendar", "on / at", false, "on is for named days | and dates"]], ["IN = a stretch you are inside: in the morning.", "AT = a moment, a point: at noon, at night."]),
+          ...PLAB.kit.lineup("ys", "I wake up ____ the morning, but I sleep ____ night.", [["inPeriod", "in / at", true, "morning = a stretch: IN | night = a fixed phrase: AT"], ["clock", "at / in", false, "at the morning and | in night are wrong"], ["inPeriod", "in / in", false, "in night needs 'the': | in the night = one night"], ["calendar", "on / at", false, "on is for named days | and dates"]], ["IN = a stretch you are inside: in the morning.", "AT = a moment, a point: at noon, at night."], null, []),
         ],
       },
       {

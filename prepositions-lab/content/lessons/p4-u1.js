@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He was unaware ____ the danger.", [["awareOf", "of", true, "not knowing about"], ["cross", "about", false, "heard in speech, but formal | English says unaware of"], ["cross", "from", false, "from is a | source; not used"]], ["unaware of = not knowing about"]),
+          ...PLAB.kit.lineup("e1w", "He was unaware ____ the danger.", [["awareOf", "of", true, "not knowing about"], ["cross", "about", false, "heard in speech, but formal | English says unaware of"], ["cross", "from", false, "from is a | source; not used"]], ["unaware of = not knowing about"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He is unfit ____ duty.", [["wantStar", "for", true, "not suitable for"], ["cross", "to", false, "to needs a verb: | unfit to drive"], ["cross", "of", false, "of = belonging; | not used"]], ["unfit for = not suitable for"]),
+          ...PLAB.kit.lineup("e2w", "He is unfit ____ duty.", [["wantStar", "for", true, "not suitable for"], ["cross", "to", false, "to needs a verb: | unfit to drive"], ["cross", "of", false, "of = belonging; | not used"]], ["unfit for = not suitable for"], null, []),
         ],
       },
       {
@@ -86,11 +86,11 @@
         alt: "The sentence She was upset with a gap the result., then the candidates: about (fits: unhappy about a situation); with (correct English, different meaning: angry at the result as if it were a person); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She was upset \u2026 the result. What does the sentence want to say? It wants **upset about**: unhappy about a situation.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean angry at the result as if it were a person. That is not what this sentence says. **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean angry at the result as if it were a person. That is not what this sentence says. Where with fits: _He was upset with his friend._ **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She was upset ____ the result.", [["aboutCircle", "about", true, "unhappy about | a situation"], ["agreeWith", "with", "diff", "angry at the result as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["upset about = unhappy about a situation", "upset with = unhappy with a person"]),
+          ...PLAB.kit.lineup("e3w", "She was upset ____ the result.", [["aboutCircle", "about", true, "unhappy about | a situation"], ["agreeWith", "with", "diff", "angry at the result as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["upset about = unhappy about a situation", "upset with = unhappy with a person"], null, ["\u2248 with: He was upset with his friend."]),
         ],
       },
       {
@@ -117,7 +117,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is used ____ living alone.", [["reachDot", "to", true, "familiar with, | so it is normal"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | not used"]], ["used to = familiar with, so it is normal"]),
+          ...PLAB.kit.lineup("e4w", "She is used ____ living alone.", [["reachDot", "to", true, "familiar with, | so it is normal"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | not used"]], ["used to = familiar with, so it is normal"], null, []),
         ],
       },
       {
@@ -144,7 +144,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "A knife is useful ____ cutting.", [["wantStar", "for", true, "helpful for | a purpose"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "in", false, "in is inside; | not used"]], ["useful for = helpful for a purpose"]),
+          ...PLAB.kit.lineup("e5w", "A knife is useful ____ cutting.", [["wantStar", "for", true, "helpful for | a purpose"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "in", false, "in is inside; | not used"]], ["useful for = helpful for a purpose"], null, []),
         ],
       },
       {

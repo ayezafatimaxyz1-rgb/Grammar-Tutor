@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He showed great zeal ____ reform.", [["wantStar", "for", true, "great energy for"], ["cross", "of", false, "of = belonging; | zeal reaches for"], ["cross", "in", false, "in is inside; | not used"]], ["zeal for = great energy for"]),
+          ...PLAB.kit.lineup("e1w", "He showed great zeal ____ reform.", [["wantStar", "for", true, "great energy for"], ["cross", "of", false, "of = belonging; | zeal reaches for"], ["cross", "in", false, "in is inside; | not used"]], ["zeal for = great energy for"], null, []),
         ],
       },
       {

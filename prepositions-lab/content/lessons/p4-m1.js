@@ -32,11 +32,11 @@
         alt: "The sentence He is mad with a gap cricket., then the candidates: about (fits: very keen on); at (correct English, different meaning: angry with cricket); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: He is mad \u2026 cricket. What does the sentence want to say? It wants **mad about**: very keen on.", cue: "e1w1" },
-          { text: "Why not the others? **at** is correct English, but it would mean angry with cricket. That is not what this sentence says. **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **at** is correct English, but it would mean angry with cricket. That is not what this sentence says. Where at fits: _She is mad at her brother._ **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He is mad ____ cricket.", [["aboutCircle", "about", true, "very keen on"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "angry with cricket"], ["cross", "on", false, "on is resting; | not used"]], ["mad about = very keen on", "mad at = angry with"]),
+          ...PLAB.kit.lineup("e1w", "He is mad ____ cricket.", [["aboutCircle", "about", true, "very keen on"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "angry with cricket"], ["cross", "on", false, "on is resting; | not used"]], ["mad about = very keen on", "mad at = angry with"], null, ["\u2248 at: She is mad at her brother."]),
         ],
       },
       {
@@ -62,11 +62,11 @@
         alt: "The sentence The table is made with a gap wood., then the candidates: of (fits: built from a material you can still see); from (correct English, different meaning: the wood would have changed beyond seeing); by (correct English, different meaning: wood would be the maker)",
         say: [
           { text: "Fill the gap: The table is made \u2026 wood. What does the sentence want to say? It wants **made of**: built from a material you can still see.", cue: "e2w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean the wood would have changed beyond seeing. That is not what this sentence says. **by** is correct English, but it would mean wood would be the maker. That is not what this sentence says.", cue: "e2w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean the wood would have changed beyond seeing. That is not what this sentence says. Where from fits: _Paper is made from wood._ **by** is correct English, but it would mean wood would be the maker. That is not what this sentence says. Where by fits: _The chair was made by my grandfather._", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "The table is made ____ wood.", [["awareOf", "of", true, "built from a material | you can still see"], ["holdBack", "from", "diff", "the wood would have | changed beyond seeing"], ["followRule", "by", "diff", "wood would | be the maker"]], ["made of = built from a material you can still see", "made from = made from a material that has changed"]),
+          ...PLAB.kit.lineup("e2w", "The table is made ____ wood.", [["awareOf", "of", true, "built from a material | you can still see"], ["holdBack", "from", "diff", "the wood would have | changed beyond seeing"], ["followRule", "by", "diff", "wood would | be the maker"]], ["made of = built from a material you can still see", "made from = made from a material that has changed"], null, ["\u2248 from: Paper is made from wood.", "\u2248 by: The chair was made by my grandfather."]),
         ],
       },
       {
@@ -93,7 +93,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is married ____ a doctor.", [["reachDot", "to", true, "in marriage with"], ["cross", "with", false, "a word-for-word | translation"], ["cross", "by", false, "by is who | performed it"]], ["married to = in marriage with"]),
+          ...PLAB.kit.lineup("e3w", "She is married ____ a doctor.", [["reachDot", "to", true, "in marriage with"], ["cross", "with", false, "a word-for-word | translation"], ["cross", "by", false, "by is who | performed it"]], ["married to = in marriage with"], null, []),
         ],
       },
       {
@@ -142,7 +142,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "We marvelled ____ the view.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "be amazed by"], ["cross", "on", false, "on is resting; | not used"], ["cross", "about", false, "about is a topic; | wonder hits at"]], ["marvel at = be amazed by"]),
+          ...PLAB.kit.lineup("e4w", "We marvelled ____ the view.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "be amazed by"], ["cross", "on", false, "on is resting; | not used"], ["cross", "about", false, "about is a topic; | wonder hits at"]], ["marvel at = be amazed by"], null, []),
         ],
       },
       {
@@ -191,7 +191,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Do not meddle ____ my affairs.", [["absorbedIn", "in", true, "interfere in"], ["cross", "on", false, "on is resting; | meddling gets inside"], ["cross", "at", false, "at is a point; | not used"]], ["meddle in = interfere in"]),
+          ...PLAB.kit.lineup("e5w", "Do not meddle ____ my affairs.", [["absorbedIn", "in", true, "interfere in"], ["cross", "on", false, "on is resting; | meddling gets inside"], ["cross", "at", false, "at is a point; | not used"]], ["meddle in = interfere in"], null, []),
         ],
       },
       {
@@ -240,7 +240,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "I mistook him ____ his brother.", [["wantStar", "for", true, "wrongly think | one is another"], ["cross", "as", false, "not standard: | mistake him for"], ["cross", "with", false, "with = together; | not used"]], ["mistake for = wrongly think one is another"]),
+          ...PLAB.kit.lineup("e6w", "I mistook him ____ his brother.", [["wantStar", "for", true, "wrongly think | one is another"], ["cross", "as", false, "not standard: | mistake him for"], ["cross", "with", false, "with = together; | not used"]], ["mistake for = wrongly think one is another"], null, []),
         ],
       },
       {
@@ -296,11 +296,11 @@
         alt: "The sentence Oil does not mix with a gap water., then the candidates: with (fits: combine with); in (correct English, different meaning: stir something into the water); to (not used: to points; not used)",
         say: [
           { text: "Fill the gap: Oil does not mix \u2026 water. What does the sentence want to say? It wants **mix with**: combine with.", cue: "e7w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean stir something into the water. That is not what this sentence says. **to**: to points; not used.", cue: "e7w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean stir something into the water. That is not what this sentence says. Where in fits: _Mix in the sugar slowly._ **to**: to points; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Oil does not mix ____ water.", [["agreeWith", "with", true, "combine with"], ["absorbedIn", "in", "diff", "stir something | into the water"], ["cross", "to", false, "to points; not used"]], ["mix with = combine with", "mix up = confuse two things"]),
+          ...PLAB.kit.lineup("e7w", "Oil does not mix ____ water.", [["agreeWith", "with", true, "combine with"], ["absorbedIn", "in", "diff", "stir something | into the water"], ["cross", "to", false, "to points; not used"]], ["mix with = combine with", "mix up = confuse two things"], null, ["\u2248 in: Mix in the sugar slowly."]),
         ],
       },
       {
@@ -327,7 +327,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The law is modelled ____ the British system.", [["support", "on", true, "built using something | as a pattern"], ["cross", "from", false, "from is a source; | a pattern takes on"], ["cross", "with", false, "with = together; | not used"]], ["modelled on = built using something as a pattern"]),
+          ...PLAB.kit.lineup("e8w", "The law is modelled ____ the British system.", [["support", "on", true, "built using something | as a pattern"], ["cross", "from", false, "from is a source; | a pattern takes on"], ["cross", "with", false, "with = together; | not used"]], ["modelled on = built using something as a pattern"], null, []),
         ],
       },
       {

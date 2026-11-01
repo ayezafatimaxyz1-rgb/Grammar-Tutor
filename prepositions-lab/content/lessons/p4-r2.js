@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The country is reliant ____ imports.", [["support", "on", true, "depending on"], ["cross", "of", false, "of = belonging; | reliance rests on"], ["cross", "to", false, "to points; not used"]], ["reliant on = depending on"]),
+          ...PLAB.kit.lineup("e1w", "The country is reliant ____ imports.", [["support", "on", true, "depending on"], ["cross", "of", false, "of = belonging; | reliance rests on"], ["cross", "to", false, "to points; not used"]], ["reliant on = depending on"], null, []),
         ],
       },
       {
@@ -90,11 +90,11 @@
         alt: "The sentence This photo reminds me with a gap my childhood., then the candidates: of (fits: bring to mind); about (correct English, different meaning: tell me not to forget my childhood); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: This photo reminds me \u2026 my childhood. What does the sentence want to say? It wants **remind of**: bring to mind.", cue: "e2w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean tell me not to forget my childhood. That is not what this sentence says. **from**: a word-for-word translation.", cue: "e2w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean tell me not to forget my childhood. That is not what this sentence says. Where about fits: _Remind me about the meeting._ **from**: a word-for-word translation.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "This photo reminds me ____ my childhood.", [["awareOf", "of", true, "bring to mind"], ["aboutCircle", "about", "diff", "tell me not to | forget my childhood"], ["cross", "from", false, "a word-for-word | translation"]], ["remind of = bring to mind", "remind about = tell someone not to forget"]),
+          ...PLAB.kit.lineup("e2w", "This photo reminds me ____ my childhood.", [["awareOf", "of", true, "bring to mind"], ["aboutCircle", "about", "diff", "tell me not to | forget my childhood"], ["cross", "from", false, "a word-for-word | translation"]], ["remind of = bring to mind", "remind about = tell someone not to forget"], null, ["\u2248 about: Remind me about the meeting."]),
         ],
       },
       {
@@ -143,7 +143,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "They replaced the old law ____ a new one.", [["agreeWith", "with", true, "put something new | in the place of"], ["cross", "from", false, "from is a | source; not used"], ["cross", "to", false, "to points; not used"]], ["replace with = put something new in the place of"]),
+          ...PLAB.kit.lineup("e3w", "They replaced the old law ____ a new one.", [["agreeWith", "with", true, "put something new | in the place of"], ["cross", "from", false, "from is a | source; not used"], ["cross", "to", false, "to points; not used"]], ["replace with = put something new in the place of"], null, []),
         ],
       },
       {
@@ -199,11 +199,11 @@
         alt: "The sentence The minister resigned with a gap the cabinet., then the candidates: from (fits: leave a job officially); to (correct English, different meaning: accepted the cabinet calmly as her fate); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The minister resigned \u2026 the cabinet. What does the sentence want to say? It wants **resign from**: leave a job officially.", cue: "e4w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean accepted the cabinet calmly as her fate. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean accepted the cabinet calmly as her fate. That is not what this sentence says. Where to fits: _She was resigned to her fate._ **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The minister resigned ____ the cabinet.", [["holdBack", "from", true, "leave a job | officially"], ["reachDot", "to", "diff", "accepted the cabinet | calmly as her fate"], ["cross", "of", false, "of = belonging; | not used"]], ["resign from = leave a job officially", "resign to = resigned to: accept calmly"]),
+          ...PLAB.kit.lineup("e4w", "The minister resigned ____ the cabinet.", [["holdBack", "from", true, "leave a job | officially"], ["reachDot", "to", "diff", "accepted the cabinet | calmly as her fate"], ["cross", "of", false, "of = belonging; | not used"]], ["resign from = leave a job officially", "resign to = resigned to: accept calmly"], null, ["\u2248 to: She was resigned to her fate."]),
         ],
       },
       {
@@ -230,7 +230,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "We should show respect ____ elders.", [["wantStar", "for", true, "admiration | for (noun)"], ["cross", "of", false, "of = belonging; | respect reaches for"], ["cross", "to", false, "to points; not used"]], ["respect for = admiration for (noun)"]),
+          ...PLAB.kit.lineup("e5w", "We should show respect ____ elders.", [["wantStar", "for", true, "admiration | for (noun)"], ["cross", "of", false, "of = belonging; | respect reaches for"], ["cross", "to", false, "to points; not used"]], ["respect for = admiration for (noun)"], null, []),
         ],
       },
       {
@@ -279,7 +279,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Please respond ____ my letter.", [["reachDot", "to", true, "answer or react to"], ["cross", "(no word)", false, "respond cannot reach | its object alone"], ["cross", "on", false, "on is resting; | not used"]], ["respond to = answer or react to"]),
+          ...PLAB.kit.lineup("e6w", "Please respond ____ my letter.", [["reachDot", "to", true, "answer or react to"], ["cross", "(no word)", false, "respond cannot reach | its object alone"], ["cross", "on", false, "on is resting; | not used"]], ["respond to = answer or react to"], null, []),
         ],
       },
       {
@@ -335,11 +335,11 @@
         alt: "The sentence He retired with a gap the army., then the candidates: from (fits: stop working at); to (correct English, different meaning: went to live in the army after retiring); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He retired \u2026 the army. What does the sentence want to say? It wants **retire from**: stop working at.", cue: "e7w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean went to live in the army after retiring. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e7w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean went to live in the army after retiring. That is not what this sentence says. Where to fits: _They retired to the village._ **of**: of = belonging; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "He retired ____ the army.", [["holdBack", "from", true, "stop working at"], ["reachDot", "to", "diff", "went to live in the | army after retiring"], ["cross", "of", false, "of = belonging; | not used"]], ["retire from = stop working at", "retire to = move to a quiet place"]),
+          ...PLAB.kit.lineup("e7w", "He retired ____ the army.", [["holdBack", "from", true, "stop working at"], ["reachDot", "to", "diff", "went to live in the | army after retiring"], ["cross", "of", false, "of = belonging; | not used"]], ["retire from = stop working at", "retire to = move to a quiet place"], null, ["\u2248 to: They retired to the village."]),
         ],
       },
       {
@@ -366,7 +366,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The soil is rich ____ minerals.", [["absorbedIn", "in", true, "having a lot of"], ["cross", "of", false, "of = belonging; | richness is inside"], ["cross", "by", false, "by is a means; | not used"]], ["rich in = having a lot of"]),
+          ...PLAB.kit.lineup("e8w", "The soil is rich ____ minerals.", [["absorbedIn", "in", true, "having a lot of"], ["cross", "of", false, "of = belonging; | richness is inside"], ["cross", "by", false, "by is a means; | not used"]], ["rich in = having a lot of"], null, []),
         ],
       },
       {

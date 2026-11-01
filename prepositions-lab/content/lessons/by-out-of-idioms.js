@@ -77,7 +77,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She learnt the poem ____ heart.", [["learnHeart", "by", true, "by heart = | from memory"], ["origin", "from", false, "from = a source: | learnt it from a book"], ["heart", "with", false, "with heart = with | feeling (different)"]], ["by heart \u00b7 by chance \u00b7 by mistake", "out of order \u00b7 under way"]),
+          ...PLAB.kit.lineup("why", "She learnt the poem ____ heart.", [["learnHeart", "by", true, "by heart = | from memory"], ["origin", "from", false, "from = a source: | learnt it from a book"], ["heart", "with", false, "with heart = with | feeling (different)"]], ["by heart \u00b7 by chance \u00b7 by mistake", "out of order \u00b7 under way"], null, []),
         ],
       },
       {

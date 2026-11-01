@@ -32,11 +32,11 @@
         alt: "The sentence The film is based with a gap a true story., then the candidates: on (fits: resting on a foundation); in (correct English, different meaning: located inside the story); at (not used: at is a point; a foundation takes on)",
         say: [
           { text: "Fill the gap: The film is based \u2026 a true story. What does the sentence want to say? It wants **based on**: resting on a foundation.", cue: "e1w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean located inside the story. That is not what this sentence says. **at**: at is a point; a foundation takes on.", cue: "e1w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean located inside the story. That is not what this sentence says. Where in fits: _The company is based in Karachi._ **at**: at is a point; a foundation takes on.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The film is based ____ a true story.", [["support", "on", true, "resting on | a foundation"], ["absorbedIn", "in", "diff", "located inside | the story"], ["cross", "at", false, "at is a point; a | foundation takes on"]], ["based on = resting on a foundation", "based in = located in a place"]),
+          ...PLAB.kit.lineup("e1w", "The film is based ____ a true story.", [["support", "on", true, "resting on | a foundation"], ["absorbedIn", "in", "diff", "located inside | the story"], ["cross", "at", false, "at is a point; a | foundation takes on"]], ["based on = resting on a foundation", "based in = located in a place"], null, ["\u2248 in: The company is based in Karachi."]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "The sentence This land belongs with a gap the state., then the candidates: to (fits: be owned by, or be a member of); in (correct English, different meaning: its proper place is inside the state); with (not used: with = together; ownership points to)",
         say: [
           { text: "Fill the gap: This land belongs \u2026 the state. What does the sentence want to say? It wants **belong to**: be owned by, or be a member of.", cue: "e2w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean its proper place is inside the state. That is not what this sentence says. **with**: with = together; ownership points to.", cue: "e2w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean its proper place is inside the state. That is not what this sentence says. Where in fits: _This book belongs in the library._ **with**: with = together; ownership points to.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "This land belongs ____ the state.", [["reachDot", "to", true, "be owned by, or | be a member of"], ["absorbedIn", "in", "diff", "its proper place is | inside the state"], ["cross", "with", false, "with = together; | ownership points to"]], ["belong to = be owned by, or be a member of", "belong in = have its proper place in"]),
+          ...PLAB.kit.lineup("e2w", "This land belongs ____ the state.", [["reachDot", "to", true, "be owned by, or | be a member of"], ["absorbedIn", "in", "diff", "its proper place is | inside the state"], ["cross", "with", false, "with = together; | ownership points to"]], ["belong to = be owned by, or be a member of", "belong in = have its proper place in"], null, ["\u2248 in: This book belongs in the library."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence Poor families benefit with a gap the scheme., then the candidates: from (fits: gain something good from); to (correct English, different meaning: the families would be the gain to the scheme); of (not used: of goes with the noun: the benefit of)",
         say: [
           { text: "Fill the gap: Poor families benefit \u2026 the scheme. What does the sentence want to say? It wants **benefit from**: gain something good from.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean the families would be the gain to the scheme. That is not what this sentence says. **of**: of goes with the noun: the benefit of.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean the families would be the gain to the scheme. That is not what this sentence says. Where to fits: _The scheme is of benefit to the poor._ **of**: of goes with the noun: the benefit of.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Poor families benefit ____ the scheme.", [["holdBack", "from", true, "gain something | good from"], ["reachDot", "to", "diff", "the families would be | the gain to the scheme"], ["cross", "of", false, "of goes with the | noun: the benefit of"]], ["benefit from = gain something good from", "benefit to = a good thing for someone (noun)"]),
+          ...PLAB.kit.lineup("e3w", "Poor families benefit ____ the scheme.", [["holdBack", "from", true, "gain something | good from"], ["reachDot", "to", "diff", "the families would be | the gain to the scheme"], ["cross", "of", false, "of goes with the | noun: the benefit of"]], ["benefit from = gain something good from", "benefit to = a good thing for someone (noun)"], null, ["\u2248 to: The scheme is of benefit to the poor."]),
         ],
       },
       {
@@ -183,7 +183,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is bent ____ revenge.", [["support", "on", true, "determined to do"], ["cross", "to", false, "to points; bent on | presses on one aim"], ["cross", "for", false, "for is a purpose, | not determination"]], ["bent on = determined to do"]),
+          ...PLAB.kit.lineup("e4w", "He is bent ____ revenge.", [["support", "on", true, "determined to do"], ["cross", "to", false, "to points; bent on | presses on one aim"], ["cross", "for", false, "for is a purpose, | not determination"]], ["bent on = determined to do"], null, []),
         ],
       },
       {
@@ -232,7 +232,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Beware ____ pickpockets.", [["awareOf", "of", true, "be careful | of a danger"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "against", false, "against goes | with warn, guard"]], ["beware of = be careful of a danger"]),
+          ...PLAB.kit.lineup("e5w", "Beware ____ pickpockets.", [["awareOf", "of", true, "be careful | of a danger"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "against", false, "against goes | with warn, guard"]], ["beware of = be careful of a danger"], null, []),
         ],
       },
       {
@@ -257,11 +257,11 @@
         alt: "The sentence The judge was biased with a gap the poor., then the candidates: against (fits: unfairly opposed to); towards (correct English, different meaning: favouring the poor); on (not used: on is resting, not leaning)",
         say: [
           { text: "Fill the gap: The judge was biased \u2026 the poor. What does the sentence want to say? It wants **biased against**: unfairly opposed to.", cue: "e6w1" },
-          { text: "Why not the others? **towards** is correct English, but it would mean favouring the poor. That is not what this sentence says. **on**: on is resting, not leaning.", cue: "e6w2" },
+          { text: "Why not the others? **towards** is correct English, but it would mean favouring the poor. That is not what this sentence says. Where towards fits: _The report is biased towards the rich._ **on**: on is resting, not leaning.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The judge was biased ____ the poor.", [["shield", "against", true, "unfairly opposed to"], ["lookAhead", "towards", "diff", "favouring the poor"], ["cross", "on", false, "on is resting, | not leaning"]], ["biased against = unfairly opposed to", "biased towards = unfairly favouring"]),
+          ...PLAB.kit.lineup("e6w", "The judge was biased ____ the poor.", [["shield", "against", true, "unfairly opposed to"], ["lookAhead", "towards", "diff", "favouring the poor"], ["cross", "on", false, "on is resting, | not leaning"]], ["biased against = unfairly opposed to", "biased towards = unfairly favouring"], null, ["\u2248 towards: The report is biased towards the rich."]),
         ],
       },
       {
@@ -321,7 +321,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "They blamed the accident ____ the driver.", [["support", "on", true, "put the fault | on a person"], ["cross", "for", false, "for names the fault; here the | fault comes first, so on the person"], ["cross", "to", false, "to points; | blame lands on"]], ["blame for = say someone caused a fault", "blame on = put the fault on a person"]),
+          ...PLAB.kit.lineup("e7w", "They blamed the accident ____ the driver.", [["support", "on", true, "put the fault | on a person"], ["cross", "for", false, "for names the fault; here the | fault comes first, so on the person"], ["cross", "to", false, "to points; | blame lands on"]], ["blame for = say someone caused a fault", "blame on = put the fault on a person"], null, []),
         ],
       },
       {
@@ -346,11 +346,11 @@
         alt: "The sentence She is blessed with a gap talent., then the candidates: with (fits: having a gift or quality); by (correct English, different meaning: talent would be the person who blessed her); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: She is blessed \u2026 talent. What does the sentence want to say? It wants **blessed with**: having a gift or quality.", cue: "e8w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean talent would be the person who blessed her. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e8w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean talent would be the person who blessed her. That is not what this sentence says. Where by fits: _The couple were blessed by the elders._ **of**: of = belonging; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "She is blessed ____ talent.", [["agreeWith", "with", true, "having a gift | or quality"], ["followRule", "by", "diff", "talent would be the | person who blessed her"], ["cross", "of", false, "of = belonging; | not used"]], ["blessed with = having a gift or quality", "blessed by = given a blessing by someone"]),
+          ...PLAB.kit.lineup("e8w", "She is blessed ____ talent.", [["agreeWith", "with", true, "having a gift | or quality"], ["followRule", "by", "diff", "talent would be the | person who blessed her"], ["cross", "of", false, "of = belonging; | not used"]], ["blessed with = having a gift or quality", "blessed by = given a blessing by someone"], null, ["\u2248 by: The couple were blessed by the elders."]),
         ],
       },
       {

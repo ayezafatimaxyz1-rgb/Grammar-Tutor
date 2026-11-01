@@ -121,7 +121,8 @@ PLAB.kit = {
   // "Why this one and not the others?": a sentence with a gap, then every likely candidate with
   // a picture of what it would mean, a mark and a short reason ("|" breaks the line).
   // Each option: [picSpec, word, ok, reason]; for ok "diff" the reason is the other meaning.
-  lineup(prefix, sentence, options, rules = [], source) {
+  // uses: for each "diff" option, a sentence where that word is the right choice, drawn at the foot.
+  lineup(prefix, sentence, options, rules = [], source, uses = []) {
     const n = options.length;
     const centres = n === 2 ? [250, 710] : n === 3 ? [165, 480, 795] : [120, 360, 600, 840];
     const fit = n === 4 ? 225 : 290;
@@ -154,6 +155,13 @@ PLAB.kit = {
       out.push({ do: "write", id: `${prefix}-r${i + 1}`, text: r, x: 480, y: 400 + i * 56, size: 28, ink: "accent", anchor: "middle", gap: i ? 300 : 500 });
     });
     if (source) out.push({ do: "write", id: `${prefix}-src`, text: source, x: 480, y: 560, size: 22, ink: "accent2", anchor: "middle", gap: 200 });
+    if (uses.length) {
+      const top = rules.length > 1 ? 504 : 470;
+      out.push({ do: "write", id: `${prefix}-uh`, text: "Where the \u2248 one fits better:", x: 480, y: top, size: 20, ink: "muted", anchor: "middle", gap: 400 });
+      uses.slice(0, 3).forEach((u, i) => {
+        out.push({ do: "write", id: `${prefix}-u${i + 1}`, text: u, x: 480, y: top + 28 + i * 28, size: 21, ink: "accent", anchor: "middle", fit: 900, gap: 150 });
+      });
+    }
     return out;
   },
 

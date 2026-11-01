@@ -36,7 +36,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She resigned ____ her own accord.", [["awareOf", "of", true, "of one's own accord: | by one's own choice"], ["cross", "on", false, "on her own means alone; | with accord it is of"], ["cross", "by", false, "by is a means, | not a choice"]], ["accord of = of one's own accord: by one's own choice", "accord with = in accord with: in agreement with"]),
+          ...PLAB.kit.lineup("e1w", "She resigned ____ her own accord.", [["awareOf", "of", true, "of one's own accord: | by one's own choice"], ["cross", "on", false, "on her own means alone; | with accord it is of"], ["cross", "by", false, "by is a means, | not a choice"]], ["accord of = of one's own accord: by one's own choice", "accord with = in accord with: in agreement with"], null, []),
         ],
       },
       {
@@ -63,7 +63,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "According ____ the report, poverty has fallen.", [["reachDot", "to", true, "as stated | by a source"], ["cross", "with", false, "with is for in | accordance with a rule"], ["cross", "by", false, "by names a doer, | not a source"]], ["according to = as stated by a source"]),
+          ...PLAB.kit.lineup("e2w", "According ____ the report, poverty has fallen.", [["reachDot", "to", true, "as stated | by a source"], ["cross", "with", false, "with is for in | accordance with a rule"], ["cross", "by", false, "by names a doer, | not a source"]], ["according to = as stated by a source"], null, []),
         ],
       },
       {
@@ -129,11 +129,11 @@
         alt: "The sentence How do you account with a gap the loss?, then the candidates: for (fits: explain the reason, or make up a part); to (correct English, different meaning: answering to the loss, as if it were a boss); of (not used: of needs on account: on account of)",
         say: [
           { text: "Fill the gap: How do you account \u2026 the loss? What does the sentence want to say? It wants **account for**: explain the reason, or make up a part.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean answering to the loss, as if it were a boss. That is not what this sentence says. **of**: of needs on account: on account of.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean answering to the loss, as if it were a boss. That is not what this sentence says. Where to fits: _Ministers must account to Parliament._ **of**: of needs on account: on account of.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "How do you account ____ the loss?", [["wantStar", "for", true, "explain the reason, | or make up a part"], ["reachDot", "to", "diff", "answering to the loss, | as if it were a boss"], ["cross", "of", false, "of needs on account: | on account of"]], ["account for = explain the reason, or make up a part", "account to = answer to a person in authority"]),
+          ...PLAB.kit.lineup("e3w", "How do you account ____ the loss?", [["wantStar", "for", true, "explain the reason, | or make up a part"], ["reachDot", "to", "diff", "answering to the loss, | as if it were a boss"], ["cross", "of", false, "of needs on account: | on account of"]], ["account for = explain the reason, or make up a part", "account to = answer to a person in authority"], null, ["\u2248 to: Ministers must account to Parliament."]),
         ],
       },
       {
@@ -158,11 +158,11 @@
         alt: "The sentence Ministers are accountable with a gap Parliament., then the candidates: to (fits: answering to an authority); for (correct English, different meaning: Parliament would be the task they run); of (not used: of = belonging; nothing belongs here)",
         say: [
           { text: "Fill the gap: Ministers are accountable \u2026 Parliament. What does the sentence want to say? It wants **accountable to**: answering to an authority.", cue: "e4w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be the task they run. That is not what this sentence says. **of**: of = belonging; nothing belongs here.", cue: "e4w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be the task they run. That is not what this sentence says. Where for fits: _They are accountable for public money._ **of**: of = belonging; nothing belongs here.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Ministers are accountable ____ Parliament.", [["reachDot", "to", true, "answering to | an authority"], ["wantStar", "for", "diff", "Parliament would be | the task they run"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["accountable to = answering to an authority", "accountable for = answering for a task"]),
+          ...PLAB.kit.lineup("e4w", "Ministers are accountable ____ Parliament.", [["reachDot", "to", true, "answering to | an authority"], ["wantStar", "for", "diff", "Parliament would be | the task they run"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["accountable to = answering to an authority", "accountable for = answering for a task"], null, ["\u2248 for: They are accountable for public money."]),
         ],
       },
       {
@@ -211,7 +211,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "They accused him ____ theft.", [["awareOf", "of", true, "say someone | did a wrong"], ["cross", "for", false, "for goes with blame: | blame him for"], ["cross", "with", false, "with goes with | charge: charged with"]], ["accuse of = say someone did a wrong"]),
+          ...PLAB.kit.lineup("e5w", "They accused him ____ theft.", [["awareOf", "of", true, "say someone | did a wrong"], ["cross", "for", false, "for goes with blame: | blame him for"], ["cross", "with", false, "with goes with | charge: charged with"]], ["accuse of = say someone did a wrong"], null, []),
         ],
       },
       {
@@ -238,7 +238,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "She is accustomed ____ working late.", [["reachDot", "to", true, "used to something, | so it feels normal"], ["cross", "with", false, "with = together; | you are used to it"], ["cross", "of", false, "of = belonging; accustomed | takes to + -ing"]], ["accustomed to = used to something, so it feels normal"]),
+          ...PLAB.kit.lineup("e6w", "She is accustomed ____ working late.", [["reachDot", "to", true, "used to something, | so it feels normal"], ["cross", "with", false, "with = together; | you are used to it"], ["cross", "of", false, "of = belonging; accustomed | takes to + -ing"]], ["accustomed to = used to something, so it feels normal"], null, []),
         ],
       },
       {
@@ -265,7 +265,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Are you acquainted ____ the new rules?", [["agreeWith", "with", true, "knowing someone | or something"], ["cross", "to", false, "to points away; | knowing is being with"], ["cross", "of", false, "of goes with aware"]], ["acquainted with = knowing someone or something"]),
+          ...PLAB.kit.lineup("e7w", "Are you acquainted ____ the new rules?", [["agreeWith", "with", true, "knowing someone | or something"], ["cross", "to", false, "to points away; | knowing is being with"], ["cross", "of", false, "of goes with aware"]], ["acquainted with = knowing someone or something"], null, []),
         ],
       },
       {
@@ -314,7 +314,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The court acquitted him ____ murder.", [["awareOf", "of", true, "declare someone not | guilty of a charge"], ["cross", "from", false, "from is separation; | the charge takes of"], ["cross", "for", false, "for names a reason, | not the charge"]], ["acquit of = declare someone not guilty of a charge"]),
+          ...PLAB.kit.lineup("e8w", "The court acquitted him ____ murder.", [["awareOf", "of", true, "declare someone not | guilty of a charge"], ["cross", "from", false, "from is separation; | the charge takes of"], ["cross", "for", false, "for names a reason, | not the charge"]], ["acquit of = declare someone not guilty of a charge"], null, []),
         ],
       },
       {

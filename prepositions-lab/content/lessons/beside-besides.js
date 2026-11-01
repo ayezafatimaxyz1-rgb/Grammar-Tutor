@@ -138,7 +138,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She stood ____ the tree.", [["nearSchool", "beside", true, "at its side"], ["plus", "besides", false, "= in addition to"], ["cross", "next", false, "next needs to: | next to the tree"]], ["beside = at the side of", "besides = in addition to, apart from"]),
+        ...PLAB.kit.lineup("why", "She stood ____ the tree.", [["nearSchool", "beside", true, "at its side"], ["plus", "besides", false, "= in addition to"], ["cross", "next", false, "next needs to: | next to the tree"]], ["beside = at the side of", "besides = in addition to, apart from"], null, []),
       ],
     },
     {

@@ -63,11 +63,11 @@
         alt: "The sentence We must adapt with a gap the new climate., then the candidates: to (fits: change to fit new conditions); from (correct English, different meaning: the climate would be the source it came from); with (not used: with = together; adapting fits to)",
         say: [
           { text: "Fill the gap: We must adapt \u2026 the new climate. What does the sentence want to say? It wants **adapt to**: change to fit new conditions.", cue: "e1w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean the climate would be the source it came from. That is not what this sentence says. **with**: with = together; adapting fits to.", cue: "e1w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean the climate would be the source it came from. That is not what this sentence says. Where from fits: _The film was adapted from a novel._ **with**: with = together; adapting fits to.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "We must adapt ____ the new climate.", [["reachDot", "to", true, "change to fit | new conditions"], ["holdBack", "from", "diff", "the climate would be | the source it came from"], ["cross", "with", false, "with = together; | adapting fits to"]], ["adapt to = change to fit new conditions", "adapt from = make from a source"]),
+          ...PLAB.kit.lineup("e1w", "We must adapt ____ the new climate.", [["reachDot", "to", true, "change to fit | new conditions"], ["holdBack", "from", "diff", "the climate would be | the source it came from"], ["cross", "with", false, "with = together; | adapting fits to"]], ["adapt to = change to fit new conditions", "adapt from = make from a source"], null, ["\u2248 from: The film was adapted from a novel."]),
         ],
       },
       {
@@ -116,7 +116,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "The rain added ____ our problems.", [["reachDot", "to", true, "increase or | make bigger"], ["cross", "in", false, "a word-for-word | translation; add to"], ["cross", "on", false, "on is a surface; | adding increases to"]], ["add to = increase or make bigger"]),
+          ...PLAB.kit.lineup("e2w", "The rain added ____ our problems.", [["reachDot", "to", true, "increase or | make bigger"], ["cross", "in", false, "a word-for-word | translation; add to"], ["cross", "on", false, "on is a surface; | adding increases to"]], ["add to = increase or make bigger"], null, []),
         ],
       },
       {
@@ -143,7 +143,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He is addicted ____ his phone.", [["reachDot", "to", true, "unable to stop | using something"], ["cross", "of", false, "of = belonging; | addiction pulls to"], ["cross", "with", false, "with = together; | not used"]], ["addicted to = unable to stop using something"]),
+          ...PLAB.kit.lineup("e3w", "He is addicted ____ his phone.", [["reachDot", "to", true, "unable to stop | using something"], ["cross", "of", false, "of = belonging; | addiction pulls to"], ["cross", "with", false, "with = together; | not used"]], ["addicted to = unable to stop using something"], null, []),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence She is adept with a gap negotiating., then the candidates: at (fits: skilled at an activity); with (correct English, different meaning: skilled with negotiating as a tool); on (not used: on is a topic or surface)",
         say: [
           { text: "Fill the gap: She is adept \u2026 negotiating. What does the sentence want to say? It wants **adept at**: skilled at an activity.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean skilled with negotiating as a tool. That is not what this sentence says. **on**: on is a topic or surface.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean skilled with negotiating as a tool. That is not what this sentence says. Where with fits: _He is adept with a sword._ **on**: on is a topic or surface.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is adept ____ negotiating.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "skilled at | an activity"], ["agreeWith", "with", "diff", "skilled with | negotiating as a tool"], ["cross", "on", false, "on is a topic | or surface"]], ["adept at = skilled at an activity", "adept with = skilled with a tool"]),
+          ...PLAB.kit.lineup("e4w", "She is adept ____ negotiating.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "skilled at | an activity"], ["agreeWith", "with", "diff", "skilled with | negotiating as a tool"], ["cross", "on", false, "on is a topic | or surface"]], ["adept at = skilled at an activity", "adept with = skilled with a tool"], null, ["\u2248 with: He is adept with a sword."]),
         ],
       },
       {
@@ -199,7 +199,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The supply is adequate ____ our needs.", [["wantStar", "for", true, "enough for a need"], ["cross", "of", false, "of = belonging; | enough is for a need"], ["cross", "on", false, "on is a surface, | not a need"]], ["adequate for = enough for a need"]),
+          ...PLAB.kit.lineup("e5w", "The supply is adequate ____ our needs.", [["wantStar", "for", true, "enough for a need"], ["cross", "of", false, "of = belonging; | enough is for a need"], ["cross", "on", false, "on is a surface, | not a need"]], ["adequate for = enough for a need"], null, []),
         ],
       },
       {
@@ -248,7 +248,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "We adhere ____ the principles of the Constitution.", [["reachDot", "to", true, "stick to a | rule or a line"], ["cross", "with", false, "with goes | with comply"], ["cross", "on", false, "on is resting, | not sticking to"]], ["adhere to = stick to a rule or a line"]),
+          ...PLAB.kit.lineup("e6w", "We adhere ____ the principles of the Constitution.", [["reachDot", "to", true, "stick to a | rule or a line"], ["cross", "with", false, "with goes | with comply"], ["cross", "on", false, "on is resting, | not sticking to"]], ["adhere to = stick to a rule or a line"], null, []),
         ],
       },
       {
@@ -275,7 +275,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The school is adjacent ____ the park.", [["reachDot", "to", true, "next to, touching"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | adjacent takes to"]], ["adjacent to = next to, touching"]),
+          ...PLAB.kit.lineup("e7w", "The school is adjacent ____ the park.", [["reachDot", "to", true, "next to, touching"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | adjacent takes to"]], ["adjacent to = next to, touching"], null, []),
         ],
       },
       {
@@ -324,7 +324,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He admitted ____ cheating.", [["reachDot", "to", true, "confess, or | allow in"], ["cross", "of", false, "of = belonging; confessing | points to the act"], ["cross", "for", false, "for names a | reason, not the act"]], ["admit to = confess, or allow in"]),
+          ...PLAB.kit.lineup("e8w", "He admitted ____ cheating.", [["reachDot", "to", true, "confess, or | allow in"], ["cross", "of", false, "of = belonging; confessing | points to the act"], ["cross", "for", false, "for names a | reason, not the act"]], ["admit to = confess, or allow in"], null, []),
         ],
       },
       {

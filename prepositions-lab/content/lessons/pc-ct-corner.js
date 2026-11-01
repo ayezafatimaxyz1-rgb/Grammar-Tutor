@@ -50,11 +50,11 @@
         alt: "Turn left with a gap the corner. Answer: at, because the turning point. Not on: on the corner = a building standing there. Not in: a street corner has no inside.",
         say: [
           { text: "Fill the gap: Turn left … the corner. Picture it: the turning point. So **at**.", cue: "atx01" },
-          { text: "Why not **on**? on the corner = a building standing there That is correct English, but it says something else. Why not **in**? a street corner has no inside.", cue: "atx0-r2" },
+          { text: "Why not **on**? on the corner = a building standing there That is correct English, but it says something else. Where on fits: _There is a bakery on the corner._ Why not **in**? a street corner has no inside.", cue: "atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "Turn left ____ the corner.", [["airportDot", "at", true, "the turning point"], ["faces", "on", "diff", "on the corner = a building | standing there"], ["dotIn", "in", false, "a street corner | has no inside"]], ["Why at? the turning point", "Ask: Is it the point where you turn, stop or meet?"]),
+          ...PLAB.kit.lineup("atx0", "Turn left ____ the corner.", [["airportDot", "at", true, "the turning point"], ["faces", "on", "diff", "on the corner = a building | standing there"], ["dotIn", "in", false, "a street corner | has no inside"]], ["Why at? the turning point", "Ask: Is it the point where you turn, stop or meet?"], null, ["≈ on: There is a bakery on the corner."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "Wait for me with a gap the corner. Answer: at, because a meeting point. Not on: standing on the corner is also heard. Not in: not a room.",
         say: [
           { text: "Fill the gap: Wait for me … the corner. Picture it: a meeting point. So **at**.", cue: "atx11" },
-          { text: "Why not **on**? standing on the corner is also heard That is correct English, but it says something else. Why not **in**? not a room.", cue: "atx1-r2" },
+          { text: "Why not **on**? standing on the corner is also heard That is correct English, but it says something else. Where on fits: _The bank on the corner is closed._ Why not **in**? not a room.", cue: "atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "Wait for me ____ the corner.", [["airportDot", "at", true, "a meeting point"], ["faces", "on", "diff", "standing on the corner | is also heard"], ["dotIn", "in", false, "not a room"]], ["Why at? a meeting point", "Ask: Is it the point where you turn, stop or meet?"]),
+          ...PLAB.kit.lineup("atx1", "Wait for me ____ the corner.", [["airportDot", "at", true, "a meeting point"], ["faces", "on", "diff", "standing on the corner | is also heard"], ["dotIn", "in", false, "not a room"]], ["Why at? a meeting point", "Ask: Is it the point where you turn, stop or meet?"], null, ["≈ on: The bank on the corner is closed."]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "There is a bakery with a gap the corner. Answer: on, because a building on the corner of two roads. Not at: at the corner = near that point. Not in: not a room.",
         say: [
           { text: "Fill the gap: There is a bakery … the corner. Picture it: a building on the corner of two roads. So **on**.", cue: "onx02" },
-          { text: "Why not **at**? at the corner = near that point That is correct English, but it says something else. Why not **in**? not a room.", cue: "onx0-r2" },
+          { text: "Why not **at**? at the corner = near that point That is correct English, but it says something else. Where at fits: _Turn left at the corner._ Why not **in**? not a room.", cue: "onx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "There is a bakery ____ the corner.", [["airportDot", "at", "diff", "at the corner = | near that point"], ["faces", "on", true, "a building on the | corner of two roads"], ["dotIn", "in", false, "not a room"]], ["Why on? a building on the corner of two roads", "Ask: Is it a building standing where two roads meet?"]),
+          ...PLAB.kit.lineup("onx0", "There is a bakery ____ the corner.", [["airportDot", "at", "diff", "at the corner = | near that point"], ["faces", "on", true, "a building on the | corner of two roads"], ["dotIn", "in", false, "not a room"]], ["Why on? a building on the corner of two roads", "Ask: Is it a building standing where two roads meet?"], null, ["≈ at: Turn left at the corner."]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "The bank with a gap the corner is closed. Answer: on, because the building standing there. Not at: near that point. Not in: not a room.",
         say: [
           { text: "Fill the gap: The bank … the corner is closed. Picture it: the building standing there. So **on**.", cue: "onx12" },
-          { text: "Why not **at**? near that point That is correct English, but it says something else. Why not **in**? not a room.", cue: "onx1-r2" },
+          { text: "Why not **at**? near that point That is correct English, but it says something else. Where at fits: _Wait for me at the corner._ Why not **in**? not a room.", cue: "onx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "The bank ____ the corner is closed.", [["airportDot", "at", "diff", "near that point"], ["faces", "on", true, "the building standing there"], ["dotIn", "in", false, "not a room"]], ["Why on? the building standing there", "Ask: Is it a building standing where two roads meet?"]),
+          ...PLAB.kit.lineup("onx1", "The bank ____ the corner is closed.", [["airportDot", "at", "diff", "near that point"], ["faces", "on", true, "the building standing there"], ["dotIn", "in", false, "not a room"]], ["Why on? the building standing there", "Ask: Is it a building standing where two roads meet?"], null, ["≈ at: Wait for me at the corner."]),
         ],
       },
       {
@@ -138,7 +138,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "The TV is ____ the corner of the room.", [["airportDot", "at", false, "not a street point"], ["faces", "on", false, "on a room corner | is not used"], ["dotIn", "in", true, "two walls around it"]], ["Why in? two walls around it", "Ask: Is it inside a room?"]),
+          ...PLAB.kit.lineup("inx0", "The TV is ____ the corner of the room.", [["airportDot", "at", false, "not a street point"], ["faces", "on", false, "on a room corner | is not used"], ["dotIn", "in", true, "two walls around it"]], ["Why in? two walls around it", "Ask: Is it inside a room?"], null, []),
         ],
       },
       {
@@ -147,11 +147,11 @@
         alt: "He sat with a gap the corner, alone. Answer: in, because inside the room's corner. Not at: at the corner = by the street corner. Not on: not used.",
         say: [
           { text: "Fill the gap: He sat … the corner, alone. Picture it: inside the room's corner. So **in**.", cue: "inx13" },
-          { text: "Why not **at**? at the corner = by the street corner That is correct English, but it says something else. Why not **on**? not used.", cue: "inx1-r2" },
+          { text: "Why not **at**? at the corner = by the street corner That is correct English, but it says something else. Where at fits: _Wait for me at the corner of Mall Road._ Why not **on**? not used.", cue: "inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "He sat ____ the corner, alone.", [["airportDot", "at", "diff", "at the corner = | by the street corner"], ["faces", "on", false, "not used"], ["dotIn", "in", true, "inside the room's corner"]], ["Why in? inside the room's corner", "Ask: Is it inside a room?"]),
+          ...PLAB.kit.lineup("inx1", "He sat ____ the corner, alone.", [["airportDot", "at", "diff", "at the corner = | by the street corner"], ["faces", "on", false, "not used"], ["dotIn", "in", true, "inside the room's corner"]], ["Why in? inside the room's corner", "Ask: Is it inside a room?"], null, ["≈ at: Wait for me at the corner of Mall Road."]),
         ],
       },
       {

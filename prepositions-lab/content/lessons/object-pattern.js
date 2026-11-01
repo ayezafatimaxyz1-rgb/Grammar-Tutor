@@ -78,7 +78,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "They accused him ____ theft.", [["accuseOf", "of", true, "accuse someone | of a wrong"], ["blame", "for", false, "for goes with | blame"], ["gavel", "with", false, "with goes with | charge"]], ["accuse of \u00b7 blame for \u00b7 charge with", "prevent from \u00b7 congratulate on"]),
+          ...PLAB.kit.lineup("why", "They accused him ____ theft.", [["accuseOf", "of", true, "accuse someone | of a wrong"], ["blame", "for", false, "for goes with | blame"], ["gavel", "with", false, "with goes with | charge"]], ["accuse of \u00b7 blame for \u00b7 charge with", "prevent from \u00b7 congratulate on"], null, []),
         ],
       },
       {

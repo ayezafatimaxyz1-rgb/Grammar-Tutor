@@ -62,7 +62,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ the report, poverty has fallen.", [["docSays", "According to", true, "what a source | says"], ["followRule", "In accordance with", false, "= following | a rule"], ["cross", "According", false, "needs to: it points | to the source"]], ["according to + a source", "in accordance with + a rule"]),
+          ...PLAB.kit.lineup("why", "____ the report, poverty has fallen.", [["docSays", "According to", true, "what a source | says"], ["followRule", "In accordance with", false, "= following | a rule"], ["cross", "According", false, "needs to: it points | to the source"]], ["according to + a source", "in accordance with + a rule"], null, []),
         ],
       },
       {

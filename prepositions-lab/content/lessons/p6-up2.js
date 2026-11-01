@@ -68,11 +68,11 @@
         alt: "The sentence Police have with a gap patrols in the city., then the candidates: step up (fits: increase); step down (correct English, different meaning: resign); step in (correct English, different meaning: intervene)",
         say: [
           { text: "Fill the gap: Police have \u2026 patrols in the city. The sentence wants **step up**: increase.", cue: "f1w1" },
-          { text: "Why not the others? **step down** is correct English, but it means resign. That is not what this sentence says. **step in** is correct English, but it means intervene. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **step down** is correct English, but it means resign. That is not what this sentence says. Where step down fits: _The minister stepped down after the scandal._ **step in** is correct English, but it means intervene. That is not what this sentence says. Where step in fits: _The army stepped in to restore order._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Police have ____ patrols in the city.", [["stairs", "step up", true, "increase"], ["arrowDown", "step down", "diff", "resign"], ["absorbedIn", "step in", "diff", "intervene"]], ["step up = increase", "Why up? up = more"]),
+          ...PLAB.kit.lineup("f1w", "Police have ____ patrols in the city.", [["stairs", "step up", true, "increase"], ["arrowDown", "step down", "diff", "resign"], ["absorbedIn", "step in", "diff", "intervene"]], ["step up = increase", "Why up? up = more"], null, ["\u2248 step down: The minister stepped down after the scandal.", "\u2248 step in: The army stepped in to restore order."]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Women with a gap half the population., then the candidates: make up (fits: form, together make); make out (correct English, different meaning: see or understand with difficulty); make off (correct English, different meaning: run away)",
         say: [
           { text: "Fill the gap: Women \u2026 half the population. The sentence wants **make up**: form, together make.", cue: "f2w1" },
-          { text: "Why not the others? **make out** is correct English, but it means see or understand with difficulty. That is not what this sentence says. **make off** is correct English, but it means run away. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **make out** is correct English, but it means see or understand with difficulty. That is not what this sentence says. Where make out fits: _I could not make out his words._ **make off** is correct English, but it means run away. That is not what this sentence says. Where make off fits: _The thieves made off with the money._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Women ____ half the population.", [["stackAdd", "make up", true, "form, together make"], ["goOut", "make out", "diff", "see or understand | with difficulty"], ["bounceOff", "make off", "diff", "run away"]], ["make up = form, together make", "Why up? up = completely"]),
+          ...PLAB.kit.lineup("f2w", "Women ____ half the population.", [["stackAdd", "make up", true, "form, together make"], ["goOut", "make out", "diff", "see or understand | with difficulty"], ["bounceOff", "make off", "diff", "run away"]], ["make up = form, together make", "Why up? up = completely"], null, ["\u2248 make out: I could not make out his words.", "\u2248 make off: The thieves made off with the money."]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence with a gap the word in a dictionary., then the candidates: look up (fits: search for information); look into (correct English, different meaning: investigate); look over (correct English, different meaning: examine quickly)",
         say: [
           { text: "Fill the gap: \u2026 the word in a dictionary. The sentence wants **look up**: search for information.", cue: "f3w1" },
-          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. **look over** is correct English, but it means examine quickly. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._ **look over** is correct English, but it means examine quickly. That is not what this sentence says. Where look over fits: _Please look over my essay._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____ the word in a dictionary.", [["dictionary", "look up", true, "search for | information"], ["intoBag", "look into", "diff", "investigate"], ["overRock", "look over", "diff", "examine quickly"]], ["look up = search for information", "Why up? up = into view"]),
+          ...PLAB.kit.lineup("f3w", "____ the word in a dictionary.", [["dictionary", "look up", true, "search for | information"], ["intoBag", "look into", "diff", "investigate"], ["overRock", "look over", "diff", "examine quickly"]], ["look up = search for information", "Why up? up = into view"], null, ["\u2248 look into: The police are looking into the case.", "\u2248 look over: Please look over my essay."]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence She with a gap painting after she retired., then the candidates: take up (fits: start (a hobby or job)); take on (correct English, different meaning: accept work or hire); take over (correct English, different meaning: take control)",
         say: [
           { text: "Fill the gap: She \u2026 painting after she retired. The sentence wants **take up**: start (a hobby or job).", cue: "f4w1" },
-          { text: "Why not the others? **take on** is correct English, but it means accept work or hire. That is not what this sentence says. **take over** is correct English, but it means take control. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **take on** is correct English, but it means accept work or hire. That is not what this sentence says. Where take on fits: _The firm took on new staff._ **take over** is correct English, but it means take control. That is not what this sentence says. Where take over fits: _The army took over the government._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "She ____ painting after she retired.", [["pen", "take up", true, "start (a | hobby or job)"], ["support", "take on", "diff", "accept work or hire"], ["overRock", "take over", "diff", "take control"]], ["take up = start (a hobby or job)", "Why up? up = into being"]),
+          ...PLAB.kit.lineup("f4w", "She ____ painting after she retired.", [["pen", "take up", true, "start (a | hobby or job)"], ["support", "take on", "diff", "accept work or hire"], ["overRock", "take over", "diff", "take control"]], ["take up = start (a hobby or job)", "Why up? up = into being"], null, ["\u2248 take on: The firm took on new staff.", "\u2248 take over: The army took over the government."]),
         ],
       },
       {
@@ -328,11 +328,11 @@
         alt: "The sentence The meeting with a gap at noon., then the candidates: break up (fits: end, scatter); break down (correct English, different meaning: stop working, or collapse); break out (correct English, different meaning: start suddenly (war, fire))",
         say: [
           { text: "Fill the gap: The meeting \u2026 at noon. The sentence wants **break up**: end, scatter.", cue: "f5w1" },
-          { text: "Why not the others? **break down** is correct English, but it means stop working, or collapse. That is not what this sentence says. **break out** is correct English, but it means start suddenly (war, fire). That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **break down** is correct English, but it means stop working, or collapse. That is not what this sentence says. Where break down fits: _The talks broke down after a week._ **break out** is correct English, but it means start suddenly (war, fire). That is not what this sentence says. Where break out fits: _War broke out in 1939._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The meeting ____ at noon.", [["brokenBox", "break up", true, "end, scatter"], ["arrowDown", "break down", "diff", "stop working, | or collapse"], ["goOut", "break out", "diff", "start suddenly | (war, fire)"]], ["break up = end, scatter", "Why up? up = completely"]),
+          ...PLAB.kit.lineup("f5w", "The meeting ____ at noon.", [["brokenBox", "break up", true, "end, scatter"], ["arrowDown", "break down", "diff", "stop working, | or collapse"], ["goOut", "break out", "diff", "start suddenly | (war, fire)"]], ["break up = end, scatter", "Why up? up = completely"], null, ["\u2248 break down: The talks broke down after a week.", "\u2248 break out: War broke out in 1939."]),
         ],
       },
       {
@@ -393,11 +393,11 @@
         alt: "The sentence The company was with a gap last year., then the candidates: wind up (fits: close down, end); wind down (correct English, different meaning: slow down gradually); wind off (not used: not used)",
         say: [
           { text: "Fill the gap: The company was \u2026 last year. The sentence wants **wind up**: close down, end.", cue: "f6w1" },
-          { text: "Why not the others? **wind down** is correct English, but it means slow down gradually. That is not what this sentence says. **wind off**: not used.", cue: "f6w2" },
+          { text: "Why not the others? **wind down** is correct English, but it means slow down gradually. That is not what this sentence says. Where wind down fits: _The factory is winding down its work._ **wind off**: not used.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The company was ____ last year.", [["endOfPath", "wind up", true, "close down, end"], ["arrowDown", "wind down", "diff", "slow down gradually"], ["cross", "wind off", false, "not used"]], ["wind up = close down, end", "Why up? up = completely"]),
+          ...PLAB.kit.lineup("f6w", "The company was ____ last year.", [["endOfPath", "wind up", true, "close down, end"], ["arrowDown", "wind down", "diff", "slow down gradually"], ["cross", "wind off", false, "not used"]], ["wind up = close down, end", "Why up? up = completely"], null, ["\u2248 wind down: The factory is winding down its work."]),
         ],
       },
       {

@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx0"),
-          ...PLAB.kit.lineup("byx0", "The poem was written ____ Faiz.", [["writtenBy", "by", true, "Faiz is the doer"], ["pen", "with", false, "Faiz is a person, | not a tool"]], ["Why by? Faiz is the doer", "Ask: Who did it, or by what method?"]),
+          ...PLAB.kit.lineup("byx0", "The poem was written ____ Faiz.", [["writtenBy", "by", true, "Faiz is the doer"], ["pen", "with", false, "Faiz is a person, | not a tool"]], ["Why by? Faiz is the doer", "Ask: Who did it, or by what method?"], null, []),
         ],
       },
       {
@@ -68,7 +68,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx1"),
-          ...PLAB.kit.lineup("byx1", "We travelled ____ train.", [["writtenBy", "by", true, "the method of travel"], ["pen", "with", false, "with a train = taking | a train along with you"]], ["Why by? the method of travel", "Ask: Who did it, or by what method?"]),
+          ...PLAB.kit.lineup("byx1", "We travelled ____ train.", [["writtenBy", "by", true, "the method of travel"], ["pen", "with", false, "with a train = taking | a train along with you"]], ["Why by? the method of travel", "Ask: Who did it, or by what method?"], null, []),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-withx0"),
-          ...PLAB.kit.lineup("withx0", "He cut the rope ____ a knife.", [["writtenBy", "by", false, "by a knife makes the | knife the doer"], ["pen", "with", true, "the knife is the tool | in his hand"]], ["Why with? the knife is the tool in his hand", "Ask: Is it a tool someone used?"]),
+          ...PLAB.kit.lineup("withx0", "He cut the rope ____ a knife.", [["writtenBy", "by", false, "by a knife makes the | knife the doer"], ["pen", "with", true, "the knife is the tool | in his hand"]], ["Why with? the knife is the tool in his hand", "Ask: Is it a tool someone used?"], null, []),
         ],
       },
       {
@@ -111,7 +111,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-withx1"),
-          ...PLAB.kit.lineup("withx1", "She wrote it ____ a pen.", [["writtenBy", "by", false, "by hand is a method; | by a pen is not used"], ["pen", "with", true, "the pen is the tool"]], ["Why with? the pen is the tool", "Ask: Is it a tool someone used?"]),
+          ...PLAB.kit.lineup("withx1", "She wrote it ____ a pen.", [["writtenBy", "by", false, "by hand is a method; | by a pen is not used"], ["pen", "with", true, "the pen is the tool"]], ["Why with? the pen is the tool", "Ask: Is it a tool someone used?"], null, []),
         ],
       },
       {
@@ -206,7 +206,7 @@
             {
               "text": "by",
               "misconception": "p0-sense",
-              "why": "By stones sounds like the stones did it. It is correct English, but it says something else."
+              "why": "By stones sounds like the stones did it. It is correct English, but it says something else. Where by fits: The road was blocked by the protesters."
             },
             {
               "text": "with",

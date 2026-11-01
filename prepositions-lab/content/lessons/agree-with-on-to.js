@@ -77,7 +77,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I agree ____ you completely.", [["agreeWith", "with", true, "the same view | as a person"], ["agreeTo", "to", false, "to = accepting | a proposal"], ["agreeOn", "on", false, "on = a point | decided together"]], ["agree with a person \u00b7 agree to a proposal", "agree on a date"]),
+          ...PLAB.kit.lineup("why", "I agree ____ you completely.", [["agreeWith", "with", true, "the same view | as a person"], ["agreeTo", "to", false, "to = accepting | a proposal"], ["agreeOn", "on", false, "on = a point | decided together"]], ["agree with a person \u00b7 agree to a proposal", "agree on a date"], null, []),
         ],
       },
       {

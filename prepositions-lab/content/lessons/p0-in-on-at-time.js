@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "Pakistan was founded ____ 1947.", [["inPeriod", "in", true, "a year is a long | stretch of time"], ["calendar", "on", false, "on is for one day"], ["clock", "at", false, "at is for a moment"]], ["Why in? a year is a long stretch of time", "Ask: Is it a month, year, season or part of the day?"]),
+          ...PLAB.kit.lineup("inx0", "Pakistan was founded ____ 1947.", [["inPeriod", "in", true, "a year is a long | stretch of time"], ["calendar", "on", false, "on is for one day"], ["clock", "at", false, "at is for a moment"]], ["Why in? a year is a long stretch of time", "Ask: Is it a month, year, season or part of the day?"], null, []),
         ],
       },
       {
@@ -68,7 +68,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "It is very cold ____ January.", [["inPeriod", "in", true, "a month is a | stretch of days"], ["calendar", "on", false, "no single day | is named"], ["clock", "at", false, "a month is not a moment"]], ["Why in? a month is a stretch of days", "Ask: Is it a month, year, season or part of the day?"]),
+          ...PLAB.kit.lineup("inx1", "It is very cold ____ January.", [["inPeriod", "in", true, "a month is a | stretch of days"], ["calendar", "on", false, "no single day | is named"], ["clock", "at", false, "a month is not a moment"]], ["Why in? a month is a stretch of days", "Ask: Is it a month, year, season or part of the day?"], null, []),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "The exam is ____ Monday.", [["inPeriod", "in", false, "in is for longer | stretches"], ["calendar", "on", true, "Monday is one day, | one box on the calendar"], ["clock", "at", false, "a day is not a | clock moment"]], ["Why on? Monday is one day, one box on the calendar", "Ask: Is there one day or date?"]),
+          ...PLAB.kit.lineup("onx0", "The exam is ____ Monday.", [["inPeriod", "in", false, "in is for longer | stretches"], ["calendar", "on", true, "Monday is one day, | one box on the calendar"], ["clock", "at", false, "a day is not a | clock moment"]], ["Why on? Monday is one day, one box on the calendar", "Ask: Is there one day or date?"], null, []),
         ],
       },
       {
@@ -111,7 +111,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "She was born ____ 5 May.", [["inPeriod", "in", false, "in May without | the date"], ["calendar", "on", true, "a date is one day"], ["clock", "at", false, "at is for a time | on the clock"]], ["Why on? a date is one day", "Ask: Is there one day or date?"]),
+          ...PLAB.kit.lineup("onx1", "She was born ____ 5 May.", [["inPeriod", "in", false, "in May without | the date"], ["calendar", "on", true, "a date is one day"], ["clock", "at", false, "at is for a time | on the clock"]], ["Why on? a date is one day", "Ask: Is there one day or date?"], null, []),
         ],
       },
       {
@@ -137,11 +137,11 @@
         alt: "The train leaves with a gap 6:30. Answer: at, because 6:30 is one point on the clock. Not in: in 6:30 is not English; in 30 minutes. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The train leaves … 6:30. Picture it: 6:30 is one point on the clock. So **at**.", cue: "atx03" },
-          { text: "Why not **in**? in 6:30 is not English; in 30 minutes That is correct English, but it says something else. Why not **on**? on is for days.", cue: "atx0-r2" },
+          { text: "Why not **in**? in 6:30 is not English; in 30 minutes That is correct English, but it says something else. Where in fits: _The train leaves in thirty minutes._ Why not **on**? on is for days.", cue: "atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"]),
+          ...PLAB.kit.lineup("atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"], null, ["≈ in: The train leaves in thirty minutes."]),
         ],
       },
       {
@@ -150,11 +150,11 @@
         alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "atx13" },
-          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Why not **on**? on is for days.", cue: "atx1-r2" },
+          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Where in fits: _I woke up twice in the night._ Why not **on**? on is for days.", cue: "atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
+          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"], null, ["≈ in: I woke up twice in the night."]),
         ],
       },
       {

@@ -52,11 +52,11 @@
         alt: "The sentence with a gap your letter, the post has been filled., then the candidates: with regard to (fits: concerning); with a view to (correct English, different meaning: with the aim of); with regard of (not used: regard to: pointing at the topic)",
         say: [
           { text: "Fill the gap: \u2026 your letter, the post has been filled. The sentence wants **with regard to**: concerning.", cue: "f1w1" },
-          { text: "Why not the others? **with a view to** is correct English, but it means with the aim of. That is not what this sentence says. **with regard of**: regard to: pointing at the topic.", cue: "f1w2" },
+          { text: "Why not the others? **with a view to** is correct English, but it means with the aim of. That is not what this sentence says. Where with a view to fits: _He saved money with a view to buying a house._ **with regard of**: regard to: pointing at the topic.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ your letter, the post has been filled.", [["pointDoc", "with regard to", true, "concerning"], ["agreeWith", "with a view to", "diff", "with the aim of"], ["cross", "with regard of", false, "regard to: pointing | at the topic"]], ["with regard to = concerning", "Why to? regard = a look"]),
+          ...PLAB.kit.lineup("f1w", "____ your letter, the post has been filled.", [["pointDoc", "with regard to", true, "concerning"], ["agreeWith", "with a view to", "diff", "with the aim of"], ["cross", "with regard of", false, "regard to: pointing | at the topic"]], ["with regard to = concerning", "Why to? regard = a look"], null, ["\u2248 with a view to: He saved money with a view to buying a house."]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence with a gap your letter of 5 May, I am pleased to reply., then the candidates: with reference to (fits: about, concerning); in response to (correct English, different meaning: as an answer to your letter); with reference of (not used: reference points to something)",
         say: [
           { text: "Fill the gap: \u2026 your letter of 5 May, I am pleased to reply. The sentence wants **with reference to**: about, concerning.", cue: "f2w1" },
-          { text: "Why not the others? **in response to** is correct English, but it means as an answer to your letter. That is not what this sentence says. **with reference of**: reference points to something.", cue: "f2w2" },
+          { text: "Why not the others? **in response to** is correct English, but it means as an answer to your letter. That is not what this sentence says. Where in response to fits: _The law was passed in response to public demand._ **with reference of**: reference points to something.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ your letter of 5 May, I am pleased to reply.", [["docSays", "with reference to", true, "about, concerning"], ["absorbedIn", "in response to", "diff", "as an answer | to your letter"], ["cross", "with reference of", false, "reference points | to something"]], ["with reference to = about, concerning", "Why to? refer to"]),
+          ...PLAB.kit.lineup("f2w", "____ your letter of 5 May, I am pleased to reply.", [["docSays", "with reference to", true, "about, concerning"], ["absorbedIn", "in response to", "diff", "as an answer | to your letter"], ["cross", "with reference of", false, "reference points | to something"]], ["with reference to = about, concerning", "Why to? refer to"], null, ["\u2248 in response to: The law was passed in response to public demand."]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence He saved money with a gap buying a house., then the candidates: with a view to (fits: with the aim of (+ -ing)); in view of (correct English, different meaning: considering); with a view of (not used: a view of = a sight of (a view of the sea))",
         say: [
           { text: "Fill the gap: He saved money \u2026 buying a house. The sentence wants **with a view to**: with the aim of (+ -ing).", cue: "f3w1" },
-          { text: "Why not the others? **in view of** is correct English, but it means considering. That is not what this sentence says. **with a view of**: a view of = a sight of (a view of the sea).", cue: "f3w2" },
+          { text: "Why not the others? **in view of** is correct English, but it means considering. That is not what this sentence says. Where in view of fits: _In view of the strike, the exam was postponed._ **with a view of**: a view of = a sight of (a view of the sea).", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "He saved money ____ buying a house.", [["lookAhead", "with a view to", true, "with the aim | of (+ -ing)"], ["absorbedIn", "in view of", "diff", "considering"], ["cross", "with a view of", false, "a view of = a sight of | (a view of the sea)"]], ["with a view to = with the aim of (+ -ing)", "Why to? a view to a goal"]),
+          ...PLAB.kit.lineup("f3w", "He saved money ____ buying a house.", [["lookAhead", "with a view to", true, "with the aim | of (+ -ing)"], ["absorbedIn", "in view of", "diff", "considering"], ["cross", "with a view of", false, "a view of = a sight of | (a view of the sea)"]], ["with a view to = with the aim of (+ -ing)", "Why to? a view to a goal"], null, ["\u2248 in view of: In view of the strike, the exam was postponed."]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence with a gap fees, nothing has changed., then the candidates: with respect to (fits: concerning); with respect for (correct English, different meaning: showing respect for); with respect of (not used: with respect to, or in respect of)",
         say: [
           { text: "Fill the gap: \u2026 fees, nothing has changed. The sentence wants **with respect to**: concerning.", cue: "f4w1" },
-          { text: "Why not the others? **with respect for** is correct English, but it means showing respect for. That is not what this sentence says. **with respect of**: with respect to, or in respect of.", cue: "f4w2" },
+          { text: "Why not the others? **with respect for** is correct English, but it means showing respect for. That is not what this sentence says. Where with respect for fits: _Treat your elders with respect for their age._ **with respect of**: with respect to, or in respect of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "____ fees, nothing has changed.", [["circleDoc", "with respect to", true, "concerning"], ["agreeWith", "with respect for", "diff", "showing respect for"], ["cross", "with respect of", false, "with respect to, | or in respect of"]], ["with respect to = concerning", "Why to? respect = looking back at"]),
+          ...PLAB.kit.lineup("f4w", "____ fees, nothing has changed.", [["circleDoc", "with respect to", true, "concerning"], ["agreeWith", "with respect for", "diff", "showing respect for"], ["cross", "with respect of", false, "with respect to, | or in respect of"]], ["with respect to = concerning", "Why to? respect = looking back at"], null, ["\u2248 with respect for: Treat your elders with respect for their age."]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence Everyone attended with a gap Ali., then the candidates: with the exception of (fits: except); with the help of (correct English, different meaning: helped by Ali); without the exception of (not used: the exception is the one left out)",
         say: [
           { text: "Fill the gap: Everyone attended \u2026 Ali. The sentence wants **with the exception of**: except.", cue: "f5w1" },
-          { text: "Why not the others? **with the help of** is correct English, but it means helped by Ali. That is not what this sentence says. **without the exception of**: the exception is the one left out.", cue: "f5w2" },
+          { text: "Why not the others? **with the help of** is correct English, but it means helped by Ali. That is not what this sentence says. Where with the help of fits: _He climbed the wall with the help of a rope._ **without the exception of**: the exception is the one left out.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Everyone attended ____ Ali.", [["exceptOne", "with the exception of", true, "except"], ["agreeWith", "with the help of", "diff", "helped by Ali"], ["cross", "without the exception of", false, "the exception is | the one left out"]], ["with the exception of = except", "Why with? with marks what goes along"]),
+          ...PLAB.kit.lineup("f5w", "Everyone attended ____ Ali.", [["exceptOne", "with the exception of", true, "except"], ["agreeWith", "with the help of", "diff", "helped by Ali"], ["cross", "without the exception of", false, "the exception is | the one left out"]], ["with the exception of = except", "Why with? with marks what goes along"], null, ["\u2248 with the help of: He climbed the wall with the help of a rope."]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence He writes to his mother every week with a gap., then the candidates: without fail (fits: always, every time); without doubt (correct English, different meaning: certainly); with no fail (not used: the fixed phrase is without fail)",
         say: [
           { text: "Fill the gap: He writes to his mother every week \u2026. The sentence wants **without fail**: always, every time.", cue: "f6w1" },
-          { text: "Why not the others? **without doubt** is correct English, but it means certainly. That is not what this sentence says. **with no fail**: the fixed phrase is without fail.", cue: "f6w2" },
+          { text: "Why not the others? **without doubt** is correct English, but it means certainly. That is not what this sentence says. Where without doubt fits: _He is without doubt the best player._ **with no fail**: the fixed phrase is without fail.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "He writes to his mother every week ____.", [["check", "without fail", true, "always, every time"], ["arrowR", "without doubt", "diff", "certainly"], ["cross", "with no fail", false, "the fixed phrase | is without fail"]], ["without fail = always, every time", "Why without? with no failure at all"]),
+          ...PLAB.kit.lineup("f6w", "He writes to his mother every week ____.", [["check", "without fail", true, "always, every time"], ["arrowR", "without doubt", "diff", "certainly"], ["cross", "with no fail", false, "the fixed phrase | is without fail"]], ["without fail = always, every time", "Why without? with no failure at all"], null, ["\u2248 without doubt: He is without doubt the best player."]),
         ],
       },
       {

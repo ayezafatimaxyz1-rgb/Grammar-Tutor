@@ -52,11 +52,11 @@
         alt: "The sentence The summit was held with a gap UNESCO., then the candidates: under the auspices of (fits: supported by); at the behest of (correct English, different meaning: on UNESCO's order); in the auspices of (not used: protection covers you: under)",
         say: [
           { text: "Fill the gap: The summit was held \u2026 UNESCO. The sentence wants **under the auspices of**: supported by.", cue: "f1w1" },
-          { text: "Why not the others? **at the behest of** is correct English, but it means on UNESCO's order. That is not what this sentence says. **in the auspices of**: protection covers you: under.", cue: "f1w2" },
+          { text: "Why not the others? **at the behest of** is correct English, but it means on UNESCO's order. That is not what this sentence says. Where at the behest of fits: _The raid was carried out at the behest of the minister._ **in the auspices of**: protection covers you: under.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The summit was held ____ UNESCO.", [["umbrella", "under the auspices of", true, "supported by"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the behest of", "diff", "on UNESCO's order"], ["cross", "in the auspices of", false, "protection covers | you: under"]], ["under the auspices of = supported by", "Why under? auspices = protection"]),
+          ...PLAB.kit.lineup("f1w", "The summit was held ____ UNESCO.", [["umbrella", "under the auspices of", true, "supported by"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the behest of", "diff", "on UNESCO's order"], ["cross", "in the auspices of", false, "protection covers | you: under"]], ["under the auspices of = supported by", "Why under? auspices = protection"], null, ["\u2248 at the behest of: The raid was carried out at the behest of the minister."]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence He entered the house with a gap a doctor., then the candidates: under the guise of (fits: pretending to be); in the name of (correct English, different meaning: using a doctor's authority); on the guise of (not used: a disguise covers you: under)",
         say: [
           { text: "Fill the gap: He entered the house \u2026 a doctor. The sentence wants **under the guise of**: pretending to be.", cue: "f2w1" },
-          { text: "Why not the others? **in the name of** is correct English, but it means using a doctor's authority. That is not what this sentence says. **on the guise of**: a disguise covers you: under.", cue: "f2w2" },
+          { text: "Why not the others? **in the name of** is correct English, but it means using a doctor's authority. That is not what this sentence says. Where in the name of fits: _Crimes are committed in the name of religion._ **on the guise of**: a disguise covers you: under.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He entered the house ____ a doctor.", [["secret", "under the guise of", true, "pretending to be"], ["absorbedIn", "in the name of", "diff", "using a doctor's | authority"], ["cross", "on the guise of", false, "a disguise covers | you: under"]], ["under the guise of = pretending to be", "Why under? a disguise covers you"]),
+          ...PLAB.kit.lineup("f2w", "He entered the house ____ a doctor.", [["secret", "under the guise of", true, "pretending to be"], ["absorbedIn", "in the name of", "diff", "using a doctor's | authority"], ["cross", "on the guise of", false, "a disguise covers | you: under"]], ["under the guise of = pretending to be", "Why under? a disguise covers you"], null, ["\u2248 in the name of: Crimes are committed in the name of religion."]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence The proposal is with a gap., then the candidates: under consideration (fits: being thought about); under construction (correct English, different meaning: being built); in consideration of (correct English, different meaning: in return for)",
         say: [
           { text: "Fill the gap: The proposal is \u2026. The sentence wants **under consideration**: being thought about.", cue: "f3w1" },
-          { text: "Why not the others? **under construction** is correct English, but it means being built. That is not what this sentence says. **in consideration of** is correct English, but it means in return for. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **under construction** is correct English, but it means being built. That is not what this sentence says. Where under construction fits: _The new bridge is under construction._ **in consideration of** is correct English, but it means in return for. That is not what this sentence says. Where in consideration of fits: _He was paid in consideration of his services._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The proposal is ____.", [["review", "under consideration", true, "being thought about"], ["underTable", "under construction", "diff", "being built"], ["absorbedIn", "in consideration of", "diff", "in return for"]], ["under consideration = being thought about", "Why under? a process covers it"]),
+          ...PLAB.kit.lineup("f3w", "The proposal is ____.", [["review", "under consideration", true, "being thought about"], ["underTable", "under construction", "diff", "being built"], ["absorbedIn", "in consideration of", "diff", "in return for"]], ["under consideration = being thought about", "Why under? a process covers it"], null, ["\u2248 under construction: The new bridge is under construction.", "\u2248 in consideration of: He was paid in consideration of his services."]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence He was driving with a gap drugs., then the candidates: under the influence of (fits: affected by); in the hands of (correct English, different meaning: in the control of); on the influence of (not used: influence presses down: under)",
         say: [
           { text: "Fill the gap: He was driving \u2026 drugs. The sentence wants **under the influence of**: affected by.", cue: "f4w1" },
-          { text: "Why not the others? **in the hands of** is correct English, but it means in the control of. That is not what this sentence says. **on the influence of**: influence presses down: under.", cue: "f4w2" },
+          { text: "Why not the others? **in the hands of** is correct English, but it means in the control of. That is not what this sentence says. Where in the hands of fits: _The decision is now in the hands of the court._ **on the influence of**: influence presses down: under.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He was driving ____ drugs.", [["shaking", "under the influence of", true, "affected by"], ["absorbedIn", "in the hands of", "diff", "in the control of"], ["cross", "on the influence of", false, "influence presses | down: under"]], ["under the influence of = affected by", "Why under? the influence presses down"]),
+          ...PLAB.kit.lineup("f4w", "He was driving ____ drugs.", [["shaking", "under the influence of", true, "affected by"], ["absorbedIn", "in the hands of", "diff", "in the control of"], ["cross", "on the influence of", false, "influence presses | down: under"]], ["under the influence of = affected by", "Why under? the influence presses down"], null, ["\u2248 in the hands of: The decision is now in the hands of the court."]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence Work on the dam is with a gap., then the candidates: under way (fits: in progress); on the way (correct English, different meaning: travelling, not yet there); in way (not used: the fixed phrase is under way)",
         say: [
           { text: "Fill the gap: Work on the dam is \u2026. The sentence wants **under way**: in progress.", cue: "f5w1" },
-          { text: "Why not the others? **on the way** is correct English, but it means travelling, not yet there. That is not what this sentence says. **in way**: the fixed phrase is under way.", cue: "f5w2" },
+          { text: "Why not the others? **on the way** is correct English, but it means travelling, not yet there. That is not what this sentence says. Where on the way fits: _The doctor is on the way._ **in way**: the fixed phrase is under way.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Work on the dam is ____.", [["driveOn", "under way", true, "in progress"], ["support", "on the way", "diff", "travelling, | not yet there"], ["cross", "in way", false, "the fixed phrase | is under way"]], ["under way = in progress", "Why under? an old sailing phrase"]),
+          ...PLAB.kit.lineup("f5w", "Work on the dam is ____.", [["driveOn", "under way", true, "in progress"], ["support", "on the way", "diff", "travelling, | not yet there"], ["cross", "in way", false, "the fixed phrase | is under way"]], ["under way = in progress", "Why under? an old sailing phrase"], null, ["\u2248 on the way: The doctor is on the way."]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence with a gap should you sign it., then the candidates: under no circumstances (fits: never); under the circumstances (correct English, different meaning: considering the situation); in any case (correct English, different meaning: whatever happens)",
         say: [
           { text: "Fill the gap: \u2026 should you sign it. The sentence wants **under no circumstances**: never.", cue: "f6w1" },
-          { text: "Why not the others? **under the circumstances** is correct English, but it means considering the situation. That is not what this sentence says. **in any case** is correct English, but it means whatever happens. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **under the circumstances** is correct English, but it means considering the situation. That is not what this sentence says. Where under the circumstances fits: _Under the circumstances, you did your best._ **in any case** is correct English, but it means whatever happens. That is not what this sentence says. Where in any case fits: _It may rain, but we will go in any case._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "____ should you sign it.", [["shield", "under no circumstances", true, "never"], ["underTable", "under the circumstances", "diff", "considering | the situation"], ["absorbedIn", "in any case", "diff", "whatever happens"]], ["under no circumstances = never", "Why under? no situation can cover it"]),
+          ...PLAB.kit.lineup("f6w", "____ should you sign it.", [["shield", "under no circumstances", true, "never"], ["underTable", "under the circumstances", "diff", "considering | the situation"], ["absorbedIn", "in any case", "diff", "whatever happens"]], ["under no circumstances = never", "Why under? no situation can cover it"], null, ["\u2248 under the circumstances: Under the circumstances, you did your best.", "\u2248 in any case: It may rain, but we will go in any case."]),
         ],
       },
       {

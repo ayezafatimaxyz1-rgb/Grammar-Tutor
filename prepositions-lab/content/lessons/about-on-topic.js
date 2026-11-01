@@ -56,12 +56,12 @@
         alt: "The sentence We talked with a gap cricket for hours., then the candidates with pictures: about (right: everyday topic word); on (correct English but a different meaning: gave a formal talk on it); around (wrong: informal for a topic). Rule: about = everyday topic; on = formal topic (a lecture on).",
         say: [
           { text: "Fill the gap: We talked \u2026 cricket for hours. What does the sentence want to say? The answer is **about**: everyday topic word.", cue: "why1" },
-          { text: "Why not the others? **on** is correct English, but it would mean gave a formal talk on it. That is not what this sentence says. **around**: informal for a topic.", cue: "why2" },
+          { text: "Why not the others? **on** is correct English, but it would mean gave a formal talk on it. That is not what this sentence says. Where on fits: _The professor gave a lecture on cricket history._ **around**: informal for a topic.", cue: "why2" },
           { text: "The rule: about = everyday topic; on = formal topic (a lecture on).", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "We talked ____ cricket for hours.", [["aboutCircle", "about", true, "everyday | topic word"], ["onBase", "on", "diff", "gave a formal | talk on it"], ["circleDoc", "around", false, "informal for | a topic"]], ["about = everyday topic", "on = formal topic (a lecture on)"]),
+          ...PLAB.kit.lineup("why", "We talked ____ cricket for hours.", [["aboutCircle", "about", true, "everyday | topic word"], ["onBase", "on", "diff", "gave a formal | talk on it"], ["circleDoc", "around", false, "informal for | a topic"]], ["about = everyday topic", "on = formal topic (a lecture on)"], null, ["\u2248 on: The professor gave a lecture on cricket history."]),
         ],
       },
       {

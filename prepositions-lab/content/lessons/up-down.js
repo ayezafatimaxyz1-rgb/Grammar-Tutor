@@ -91,12 +91,12 @@ PLAB.registerLesson({
       alt: "The sentence He climbed with a gap the hill to the top., then the candidates with pictures: up (right: towards the top); down (correct English but a different meaning: towards the bottom; clashes with the top); on (wrong: on = already there). Rule: up = towards the top \u00b7 down = towards the bottom; climb up the hill \u00b7 walk down the stairs.",
       say: [
         { text: "Fill the gap: He climbed \u2026 the hill to the top. What does the sentence want to say? The answer is **up**: towards the top.", cue: "why1" },
-        { text: "Why not the others? **down** is correct English, but it would mean towards the bottom; clashes with the top. That is not what this sentence says. **on**: on = already there.", cue: "why2" },
+        { text: "Why not the others? **down** is correct English, but it would mean towards the bottom; clashes with the top. That is not what this sentence says. Where down fits: _He climbed down the hill to the village._ **on**: on = already there.", cue: "why2" },
         { text: "The rule: up = towards the top \u00b7 down = towards the bottom; climb up the hill \u00b7 walk down the stairs.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "He climbed ____ the hill to the top.", [["hillUp", "up", true, "towards the top"], ["arrowDown", "down", "diff", "towards the bottom; | clashes with the top"], ["cupOnTable", "on", false, "on = already | there"]], ["up = towards the top \u00b7 down = towards the bottom", "climb up the hill \u00b7 walk down the stairs"]),
+        ...PLAB.kit.lineup("why", "He climbed ____ the hill to the top.", [["hillUp", "up", true, "towards the top"], ["arrowDown", "down", "diff", "towards the bottom; | clashes with the top"], ["cupOnTable", "on", false, "on = already | there"]], ["up = towards the top \u00b7 down = towards the bottom", "climb up the hill \u00b7 walk down the stairs"], null, ["\u2248 down: He climbed down the hill to the village."]),
       ],
     },
     {

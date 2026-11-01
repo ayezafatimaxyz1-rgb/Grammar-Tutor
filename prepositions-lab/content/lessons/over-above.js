@@ -157,12 +157,12 @@ PLAB.registerLesson({
       alt: "The sentence There is a bridge with a gap the river., then the candidates with pictures: over (right: crossing from one side to the other); above (correct English but a different meaning: higher up, but not crossing it); on (wrong: it would lie on the water). Rule: over = covering or crossing; above = higher, no contact.",
       say: [
         { text: "Fill the gap: There is a bridge \u2026 the river. What does the sentence want to say? The answer is **over**: crossing from one side to the other.", cue: "why1" },
-        { text: "Why not the others? **above** is correct English, but it would mean higher up, but not crossing it. That is not what this sentence says. **on**: it would lie on the water.", cue: "why2" },
+        { text: "Why not the others? **above** is correct English, but it would mean higher up, but not crossing it. That is not what this sentence says. Where above fits: _The kite flew high above the river._ **on**: it would lie on the water.", cue: "why2" },
         { text: "The rule: over = covering or crossing; above = higher, no contact.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "There is a bridge ____ the river.", [["overRock", "over", true, "crossing from one | side to the other"], ["floatAbove", "above", "diff", "higher up, but | not crossing it"], ["cupOnTable", "on", false, "it would lie on | the water"]], ["over = covering or crossing", "above = higher, no contact"]),
+        ...PLAB.kit.lineup("why", "There is a bridge ____ the river.", [["overRock", "over", true, "crossing from one | side to the other"], ["floatAbove", "above", "diff", "higher up, but | not crossing it"], ["cupOnTable", "on", false, "it would lie on | the water"]], ["over = covering or crossing", "above = higher, no contact"], null, ["\u2248 above: The kite flew high above the river."]),
       ],
     },
     {

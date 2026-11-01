@@ -266,7 +266,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "My birthday is ____ June.", [["inPeriod", "in", true, "a month is a stretch | you are inside"], ["calendar", "on", false, "on is for one day: | on 14 June"], ["clock", "at", false, "at is for a clock | time: at 5 o'clock"]], ["in a month, year, season \u00b7 on a day", "at a clock time"]),
+        ...PLAB.kit.lineup("why", "My birthday is ____ June.", [["inPeriod", "in", true, "a month is a stretch | you are inside"], ["calendar", "on", false, "on is for one day: | on 14 June"], ["clock", "at", false, "at is for a clock | time: at 5 o'clock"]], ["in a month, year, season \u00b7 on a day", "at a clock time"], null, []),
       ],
     },
     {

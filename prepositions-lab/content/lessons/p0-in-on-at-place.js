@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "She lives ____ Karachi.", [["inCity", "in", true, "a city is an area | with borders all round"], ["roadPass", "on", false, "a city is not | a surface or line"], ["airportDot", "at", false, "we are not marking | one point"]], ["Why in? a city is an area with borders all round", "Ask: Is there an area or walls all around?"]),
+          ...PLAB.kit.lineup("inx0", "She lives ____ Karachi.", [["inCity", "in", true, "a city is an area | with borders all round"], ["roadPass", "on", false, "a city is not | a surface or line"], ["airportDot", "at", false, "we are not marking | one point"]], ["Why in? a city is an area with borders all round", "Ask: Is there an area or walls all around?"], null, []),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "The students are with a gap the hall. Answer: in, because walls are all around the students. Not on: they are not on its roof. Not at: at the hall = at the place, maybe outside.",
         say: [
           { text: "Fill the gap: The students are … the hall. Picture it: walls are all around the students. So **in**.", cue: "inx11" },
-          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside That is correct English, but it says something else.", cue: "inx1-r2" },
+          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside That is correct English, but it says something else. Where at fits: _Meet me at the hall gate at nine._", cue: "inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"]),
+          ...PLAB.kit.lineup("inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"], null, ["≈ at: Meet me at the hall gate at nine."]),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "The shop is ____ Mall Road.", [["inCity", "in", false, "a road is not an area | with walls"], ["roadPass", "on", true, "a road is a line; | the shop stands along it"], ["airportDot", "at", false, "at needs a point: | at 15 Mall Road"]], ["Why on? a road is a line; the shop stands along it", "Ask: Is it a surface, or a line like a road or coast?"]),
+          ...PLAB.kit.lineup("onx0", "The shop is ____ Mall Road.", [["inCity", "in", false, "a road is not an area | with walls"], ["roadPass", "on", true, "a road is a line; | the shop stands along it"], ["airportDot", "at", false, "at needs a point: | at 15 Mall Road"]], ["Why on? a road is a line; the shop stands along it", "Ask: Is it a surface, or a line like a road or coast?"], null, []),
         ],
       },
       {
@@ -111,7 +111,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "Gwadar is ____ the coast.", [["inCity", "in", false, "the coast is a line, | not an area"], ["roadPass", "on", true, "a coast is a line | where land meets sea"], ["airportDot", "at", false, "the coast is long, | not one point"]], ["Why on? a coast is a line where land meets sea", "Ask: Is it a surface, or a line like a road or coast?"]),
+          ...PLAB.kit.lineup("onx1", "Gwadar is ____ the coast.", [["inCity", "in", false, "the coast is a line, | not an area"], ["roadPass", "on", true, "a coast is a line | where land meets sea"], ["airportDot", "at", false, "the coast is long, | not one point"]], ["Why on? a coast is a line where land meets sea", "Ask: Is it a surface, or a line like a road or coast?"], null, []),
         ],
       },
       {
@@ -141,7 +141,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "Meet me ____ the bus stop.", [["inCity", "in", false, "a bus stop has | no inside"], ["roadPass", "on", false, "it is not a | surface or line"], ["airportDot", "at", true, "the bus stop is one | point where we meet"]], ["Why at? the bus stop is one point where we meet", "Ask: Is it one exact point, a meeting place or an address?"]),
+          ...PLAB.kit.lineup("atx0", "Meet me ____ the bus stop.", [["inCity", "in", false, "a bus stop has | no inside"], ["roadPass", "on", false, "it is not a | surface or line"], ["airportDot", "at", true, "the bus stop is one | point where we meet"]], ["Why at? the bus stop is one point where we meet", "Ask: Is it one exact point, a meeting place or an address?"], null, []),
         ],
       },
       {
@@ -154,7 +154,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "He lives ____ 15 Mall Road.", [["inCity", "in", false, "an address is a point, | not an area"], ["roadPass", "on", false, "on Mall Road is fine, | but not with a number"], ["airportDot", "at", true, "a house number is | one exact point"]], ["Why at? a house number is one exact point", "Ask: Is it one exact point, a meeting place or an address?"]),
+          ...PLAB.kit.lineup("atx1", "He lives ____ 15 Mall Road.", [["inCity", "in", false, "an address is a point, | not an area"], ["roadPass", "on", false, "on Mall Road is fine, | but not with a number"], ["airportDot", "at", true, "a house number is | one exact point"]], ["Why at? a house number is one exact point", "Ask: Is it one exact point, a meeting place or an address?"], null, []),
         ],
       },
       {
@@ -254,7 +254,7 @@
             {
               "text": "at",
               "misconception": "p0-sense",
-              "why": "At the wall = standing beside it. It is correct English, but it says something else."
+              "why": "At the wall = standing beside it. It is correct English, but it says something else. Where at fits: He stood at the wall and waited."
             },
             {
               "text": "in",
@@ -292,7 +292,7 @@
             {
               "text": "in",
               "misconception": "p0-sense",
-              "why": "In it = inside the building itself. It is correct English, but it says something else."
+              "why": "In it = inside the building itself. It is correct English, but it says something else. Where in fits: We waited in the petrol station's shop."
             },
             {
               "text": "on",

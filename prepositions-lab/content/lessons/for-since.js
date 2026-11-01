@@ -81,7 +81,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I have lived here ____ ten years.", [["span", "for", true, "the length of | the stretch"], ["sincePoint", "since", false, "since needs a | starting point"], ["betweenTicks", "from", false, "from needs an end: | from 2015 to 2025"], ["inPeriod", "during", false, "during = when, | not how long"]], ["for + a length \u00b7 since + a starting point", "during + a period (when)"]),
+          ...PLAB.kit.lineup("why", "I have lived here ____ ten years.", [["span", "for", true, "the length of | the stretch"], ["sincePoint", "since", false, "since needs a | starting point"], ["betweenTicks", "from", false, "from needs an end: | from 2015 to 2025"], ["inPeriod", "during", false, "during = when, | not how long"]], ["for + a length \u00b7 since + a starting point", "during + a period (when)"], null, []),
         ],
       },
       {

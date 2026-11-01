@@ -120,7 +120,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I look forward to ____ you.", [["lookAhead", "meeting", true, "to is a | preposition: -ing"], ["arrowR", "meet", false, "to meet is the | infinitive"], ["pointPast", "met", false, "a past form"]], ["look forward to, committed to, used to + -ing", "test: a noun fits (to the meeting)"]),
+          ...PLAB.kit.lineup("why", "I look forward to ____ you.", [["lookAhead", "meeting", true, "to is a | preposition: -ing"], ["arrowR", "meet", false, "to meet is the | infinitive"], ["pointPast", "met", false, "a past form"]], ["look forward to, committed to, used to + -ing", "test: a noun fits (to the meeting)"], null, []),
         ],
       },
       {

@@ -76,7 +76,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I cannot put up ____ this noise any longer.", [["pressed", "with", true, "put up with | = tolerate"], ["arrowR", "to", false, "to = a goal; you are | not moving to the noise"], ["target", "for", false, "for = what you want; | you do not want noise"]], ["put up with, do away with, come up with", "look down on, look up to, run out of"]),
+          ...PLAB.kit.lineup("why", "I cannot put up ____ this noise any longer.", [["pressed", "with", true, "put up with | = tolerate"], ["arrowR", "to", false, "to = a goal; you are | not moving to the noise"], ["target", "for", false, "for = what you want; | you do not want noise"]], ["put up with, do away with, come up with", "look down on, look up to, run out of"], null, []),
         ],
       },
       {

@@ -161,7 +161,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The meeting is ____ Monday.", [["calendar", "on", true, "one named day"], ["inPeriod", "in", false, "in is for longer | stretches: in June"], ["clock", "at", false, "at is for clock | times: at 9 a.m."]], ["in June \u00b7 on Monday \u00b7 at 9 a.m.", "stretch \u00b7 day \u00b7 point"]),
+        ...PLAB.kit.lineup("why", "The meeting is ____ Monday.", [["calendar", "on", true, "one named day"], ["inPeriod", "in", false, "in is for longer | stretches: in June"], ["clock", "at", false, "at is for clock | times: at 9 a.m."]], ["in June \u00b7 on Monday \u00b7 at 9 a.m.", "stretch \u00b7 day \u00b7 point"], null, []),
       ],
     },
     {

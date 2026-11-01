@@ -24,7 +24,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "I can't buy this car ____ this price.", [["exchange", "for", true, "a swap: money | for the car"], ["onTimeDot", "at", true, "a point on the | price line (best here)"], ["cross", "in", false, "in this price is | never English"]], ["Both FOR and AT are right here.", "AT fits 'this price' best: it is a point on the price line."]),
+          ...PLAB.kit.lineup("ys", "I can't buy this car ____ this price.", [["exchange", "for", true, "a swap: money | for the car"], ["onTimeDot", "at", true, "a point on the | price line (best here)"], ["cross", "in", false, "in this price is | never English"]], ["Both FOR and AT are right here.", "AT fits 'this price' best: it is a point on the price line."], null, []),
         ],
       },
       {

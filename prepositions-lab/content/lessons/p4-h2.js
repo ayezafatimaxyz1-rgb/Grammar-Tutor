@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The party is hostile ____ change.", [["reachDot", "to", true, "strongly against"], ["cross", "with", false, "with = together; | the opposite"], ["cross", "against", false, "hostile already means | against; it takes to"]], ["hostile to = strongly against"]),
+          ...PLAB.kit.lineup("e1w", "The party is hostile ____ change.", [["reachDot", "to", true, "strongly against"], ["cross", "with", false, "with = together; | the opposite"], ["cross", "against", false, "hostile already means | against; it takes to"]], ["hostile to = strongly against"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He is hungry ____ power.", [["wantStar", "for", true, "strongly wanting"], ["cross", "of", false, "of = belonging; | hunger reaches for"], ["cross", "about", false, "about is a | topic; not used"]], ["hungry for = strongly wanting"]),
+          ...PLAB.kit.lineup("e2w", "He is hungry ____ power.", [["wantStar", "for", true, "strongly wanting"], ["cross", "of", false, "of = belonging; | hunger reaches for"], ["cross", "about", false, "about is a | topic; not used"]], ["hungry for = strongly wanting"], null, []),
         ],
       },
       {

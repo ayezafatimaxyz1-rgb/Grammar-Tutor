@@ -47,7 +47,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I had coffee ____ tea.", [["swap", "instead of", true, "one in place | of the other"], ["cross", "instead", false, "alone it ends a sentence: | I had coffee instead"], ["groupOut", "except", false, "except = not | including"]], ["instead of + noun or -ing", "rather than + bare verb"]),
+          ...PLAB.kit.lineup("why", "I had coffee ____ tea.", [["swap", "instead of", true, "one in place | of the other"], ["cross", "instead", false, "alone it ends a sentence: | I had coffee instead"], ["groupOut", "except", false, "except = not | including"]], ["instead of + noun or -ing", "rather than + bare verb"], null, []),
         ],
       },
       {

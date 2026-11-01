@@ -17,6 +17,8 @@ Every phrase becomes: a board of its meaning with why this preposition, a "why t
 not the others" lineup, and a practice question that blanks the tested preposition.
 """
 import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from uses import use_for
 
 sys.path.insert(0, os.path.dirname(__file__))
 from phase4 import T, D, N, LEVEL, pic, lines, js  # same board kit and output format as Phase 4
@@ -82,7 +84,8 @@ def entry_steps(e, n, lid):
     for p, v, r in e["others"]:
         opts.append(('"cross"' if v == N else other_pic(p), p, "diff" if v == D else False, lines(r)))
     clean = lambda r: " ".join(x.strip() for x in r.split("|"))
-    why = [f"**{p}** is correct English, but it means {clean(r)}. That is not what this sentence says." if v == D else f"**{p}**: {clean(r)}." for p, v, r in e["others"]]
+    why = [(f"**{p}** is correct English, but it means {clean(r)}. That is not what this sentence says." + (f" Where {p} fits: _{use_for(p)}_" if use_for(p) else "")) if v == D else f"**{p}**: {clean(r)}." for p, v, r in e["others"]]
+    uses_ = [f"\u2248 {p}: {use_for(p)}" for p, v, r in e["others"] if v == D and use_for(p)]
     opt_js = ", ".join(f"[{o[0]}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
     steps.append(dict(
         id=f"{sid}-why", title=f"{ph}: why this one?",
@@ -90,7 +93,7 @@ def entry_steps(e, n, lid):
             f"{o[1]} ({'fits' if o[2] is True else 'correct English, different meaning' if o[2] == 'diff' else 'not used'}: {clean(o[3])})" for o in opts),
         says=[(f"Fill the gap: {gapped.replace('____', '…')} The sentence wants **{ph}**: {e['meaning']}.", f"f{n}w1"),
               ("Why not the others? " + " ".join(why), f"f{n}w2")],
-        actions=[f'PLAB.kit.clear("clear-{n}b")', f'...PLAB.kit.lineup("f{n}w", {T(gapped)}, [{opt_js}], {T([ph + " = " + e["meaning"], "Why " + key + "? " + l1])})']))
+        actions=[f'PLAB.kit.clear("clear-{n}b")', f'...PLAB.kit.lineup("f{n}w", {T(gapped)}, [{opt_js}], {T([ph + " = " + e["meaning"], "Why " + key + "? " + l1])}, null, {T(uses_)})']))
     # 3. Practice: the tested preposition is blanked inside the phrase.
     prompt = sentence.replace(form, blank_key(form, key), 1)
     logic = f"{l1}: {l2}"

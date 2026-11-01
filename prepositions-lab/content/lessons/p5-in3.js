@@ -33,11 +33,11 @@
         alt: "The sentence with a gap rain, the match will be postponed., then the candidates: in the event of (fits: if it happens); in the course of (correct English, different meaning: during the rain); at the event of (not used: an event is a situation, so in)",
         say: [
           { text: "Fill the gap: \u2026 rain, the match will be postponed. The sentence wants **in the event of**: if it happens.", cue: "f1w1" },
-          { text: "Why not the others? **in the course of** is correct English, but it means during the rain. That is not what this sentence says. **at the event of**: an event is a situation, so in.", cue: "f1w2" },
+          { text: "Why not the others? **in the course of** is correct English, but it means during the rain. That is not what this sentence says. Where in the course of fits: _In the course of the inquiry, new facts emerged._ **at the event of**: an event is a situation, so in.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ rain, the match will be postponed.", [["rain", "in the event of", true, "if it happens"], ["absorbedIn", "in the course of", "diff", "during the rain"], ["cross", "at the event of", false, "an event is a | situation, so in"]], ["in the event of = if it happens", "Why in? an event is a situation"]),
+          ...PLAB.kit.lineup("f1w", "____ rain, the match will be postponed.", [["rain", "in the event of", true, "if it happens"], ["absorbedIn", "in the course of", "diff", "during the rain"], ["cross", "at the event of", false, "an event is a | situation, so in"]], ["in the event of = if it happens", "Why in? an event is a situation"], null, ["\u2248 in the course of: In the course of the inquiry, new facts emerged."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence with a gap the inquiry, new facts emerged., then the candidates: in the course of (fits: during); in the case of (correct English, different meaning: concerning the inquiry); during of (not used: during takes no of)",
         say: [
           { text: "Fill the gap: \u2026 the inquiry, new facts emerged. The sentence wants **in the course of**: during.", cue: "f2w1" },
-          { text: "Why not the others? **in the case of** is correct English, but it means concerning the inquiry. That is not what this sentence says. **during of**: during takes no of.", cue: "f2w2" },
+          { text: "Why not the others? **in the case of** is correct English, but it means concerning the inquiry. That is not what this sentence says. Where in the case of fits: _In the case of children, the fee is half._ **during of**: during takes no of.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ the inquiry, new facts emerged.", [["courseAlong", "in the course of", true, "during"], ["absorbedIn", "in the case of", "diff", "concerning | the inquiry"], ["cross", "during of", false, "during takes no of"]], ["in the course of = during", "Why in? course = path"]),
+          ...PLAB.kit.lineup("f2w", "____ the inquiry, new facts emerged.", [["courseAlong", "in the course of", true, "during"], ["absorbedIn", "in the case of", "diff", "concerning | the inquiry"], ["cross", "during of", false, "during takes no of"]], ["in the course of = during", "Why in? course = path"], null, ["\u2248 in the case of: In the case of children, the fee is half."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence Schools were closed with a gap public safety., then the candidates: in the interest of (fits: for the benefit of); in the face of (correct English, different meaning: while facing public safety); for the interest of (not used: the fixed phrase is in the interest of)",
         say: [
           { text: "Fill the gap: Schools were closed \u2026 public safety. The sentence wants **in the interest of**: for the benefit of.", cue: "f3w1" },
-          { text: "Why not the others? **in the face of** is correct English, but it means while facing public safety. That is not what this sentence says. **for the interest of**: the fixed phrase is in the interest of.", cue: "f3w2" },
+          { text: "Why not the others? **in the face of** is correct English, but it means while facing public safety. That is not what this sentence says. Where in the face of fits: _They stayed calm in the face of danger._ **for the interest of**: the fixed phrase is in the interest of.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Schools were closed ____ public safety.", [["protectKids", "in the interest of", true, "for the benefit of"], ["absorbedIn", "in the face of", "diff", "while facing | public safety"], ["cross", "for the interest of", false, "the fixed phrase is | in the interest of"]], ["in the interest of = for the benefit of", "Why in? the benefit is a cause"]),
+          ...PLAB.kit.lineup("f3w", "Schools were closed ____ public safety.", [["protectKids", "in the interest of", true, "for the benefit of"], ["absorbedIn", "in the face of", "diff", "while facing | public safety"], ["cross", "for the interest of", false, "the fixed phrase is | in the interest of"]], ["in the interest of = for the benefit of", "Why in? the benefit is a cause"], null, ["\u2248 in the face of: They stayed calm in the face of danger."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence Crimes are committed with a gap religion., then the candidates: in the name of (fits: using as the reason or authority); by the name of (correct English, different meaning: called (a man by the name of Ali)); on behalf of (correct English, different meaning: speaking for someone as their agent)",
         say: [
           { text: "Fill the gap: Crimes are committed \u2026 religion. The sentence wants **in the name of**: using as the reason or authority.", cue: "f4w1" },
-          { text: "Why not the others? **by the name of** is correct English, but it means called (a man by the name of Ali). That is not what this sentence says. **on behalf of** is correct English, but it means speaking for someone as their agent. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **by the name of** is correct English, but it means called (a man by the name of Ali). That is not what this sentence says. Where by the name of fits: _A man by the name of Aslam called you._ **on behalf of** is correct English, but it means speaking for someone as their agent. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Crimes are committed ____ religion.", [["badge", "in the name of", true, "using as the reason | or authority"], ["followRule", "by the name of", "diff", "called (a man by | the name of Ali)"], ["support", "on behalf of", "diff", "speaking for someone | as their agent"]], ["in the name of = using as the reason or authority", "Why in? a name is a frame"]),
+          ...PLAB.kit.lineup("f4w", "Crimes are committed ____ religion.", [["badge", "in the name of", true, "using as the reason | or authority"], ["followRule", "by the name of", "diff", "called (a man by | the name of Ali)"], ["support", "on behalf of", "diff", "speaking for someone | as their agent"]], ["in the name of = using as the reason or authority", "Why in? a name is a frame"], null, ["\u2248 by the name of: A man by the name of Aslam called you.", "\u2248 on behalf of: I am writing on behalf of my father."]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence The will was signed with a gap two witnesses., then the candidates: in the presence of (fits: with someone there); in the absence of (correct English, different meaning: with the witnesses missing); at the presence of (not used: presence surrounds you, so in)",
         say: [
           { text: "Fill the gap: The will was signed \u2026 two witnesses. The sentence wants **in the presence of**: with someone there.", cue: "f5w1" },
-          { text: "Why not the others? **in the absence of** is correct English, but it means with the witnesses missing. That is not what this sentence says. **at the presence of**: presence surrounds you, so in.", cue: "f5w2" },
+          { text: "Why not the others? **in the absence of** is correct English, but it means with the witnesses missing. That is not what this sentence says. Where in the absence of fits: _In the absence of proof, he was released._ **at the presence of**: presence surrounds you, so in.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The will was signed ____ two witnesses.", [["people", "in the presence of", true, "with someone there"], ["absorbedIn", "in the absence of", "diff", "with the | witnesses missing"], ["cross", "at the presence of", false, "presence surrounds | you, so in"]], ["in the presence of = with someone there", "Why in? presence surrounds you"]),
+          ...PLAB.kit.lineup("f5w", "The will was signed ____ two witnesses.", [["people", "in the presence of", true, "with someone there"], ["absorbedIn", "in the absence of", "diff", "with the | witnesses missing"], ["cross", "at the presence of", false, "presence surrounds | you, so in"]], ["in the presence of = with someone there", "Why in? presence surrounds you"], null, ["\u2248 in the absence of: In the absence of proof, he was released."]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence with a gap proof, he was released., then the candidates: in the absence of (fits: without); in the presence of (correct English, different meaning: with proof there); on the absence of (not used: absence is a state, so in)",
         say: [
           { text: "Fill the gap: \u2026 proof, he was released. The sentence wants **in the absence of**: without.", cue: "f6w1" },
-          { text: "Why not the others? **in the presence of** is correct English, but it means with proof there. That is not what this sentence says. **on the absence of**: absence is a state, so in.", cue: "f6w2" },
+          { text: "Why not the others? **in the presence of** is correct English, but it means with proof there. That is not what this sentence says. Where in the presence of fits: _The will was signed in the presence of two witnesses._ **on the absence of**: absence is a state, so in.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "____ proof, he was released.", [["personLeft", "in the absence of", true, "without"], ["absorbedIn", "in the presence of", "diff", "with proof there"], ["cross", "on the absence of", false, "absence is a | state, so in"]], ["in the absence of = without", "Why in? absence is a state"]),
+          ...PLAB.kit.lineup("f6w", "____ proof, he was released.", [["personLeft", "in the absence of", true, "without"], ["absorbedIn", "in the presence of", "diff", "with proof there"], ["cross", "on the absence of", false, "absence is a | state, so in"]], ["in the absence of = without", "Why in? absence is a state"], null, ["\u2248 in the presence of: The will was signed in the presence of two witnesses."]),
         ],
       },
       {

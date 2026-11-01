@@ -92,7 +92,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The poem was written ____ Iqbal.", [["writtenBy", "by", true, "the person | who did it"], ["letterFrom", "from", false, "from = sent by, | origin"], ["ownerBook", "of", false, "of = belonging | to him"]], ["passive + by + the doer", "a letter from Iqbal = he sent it"]),
+          ...PLAB.kit.lineup("why", "The poem was written ____ Iqbal.", [["writtenBy", "by", true, "the person | who did it"], ["letterFrom", "from", false, "from = sent by, | origin"], ["ownerBook", "of", false, "of = belonging | to him"]], ["passive + by + the doer", "a letter from Iqbal = he sent it"], null, []),
         ],
       },
       {

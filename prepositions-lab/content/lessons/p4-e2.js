@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The factory encroached ____ public land.", [["support", "on", true, "intrude onto someone's | rights or land"], ["cross", "in", false, "in is inside; encroach | takes on (upon)"], ["cross", "to", false, "to points; not used"]], ["encroach on = intrude onto someone's rights or land"]),
+          ...PLAB.kit.lineup("e1w", "The factory encroached ____ public land.", [["support", "on", true, "intrude onto someone's | rights or land"], ["cross", "in", false, "in is inside; encroach | takes on (upon)"], ["cross", "to", false, "to points; not used"]], ["encroach on = intrude onto someone's rights or land"], null, []),
         ],
       },
       {
@@ -79,11 +79,11 @@
         alt: "The sentence She is endowed with a gap great talent., then the candidates: with (fits: naturally having a quality); by (correct English, different meaning: the founder who gave it: a college endowed by a donor); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: She is endowed \u2026 great talent. What does the sentence want to say? It wants **endowed with**: naturally having a quality.", cue: "e2w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean the founder who gave it: a college endowed by a donor. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean the founder who gave it: a college endowed by a donor. That is not what this sentence says. Where by fits: _The college was endowed by a rich donor._ **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She is endowed ____ great talent.", [["agreeWith", "with", true, "naturally having | a quality"], ["followRule", "by", "diff", "the founder who gave it: a | college endowed by a donor"], ["cross", "of", false, "of = belonging; | not used"]], ["endowed with = naturally having a quality"]),
+          ...PLAB.kit.lineup("e2w", "She is endowed ____ great talent.", [["agreeWith", "with", true, "naturally having | a quality"], ["followRule", "by", "diff", "the founder who gave it: a | college endowed by a donor"], ["cross", "of", false, "of = belonging; | not used"]], ["endowed with = naturally having a quality"], null, ["\u2248 by: The college was endowed by a rich donor."]),
         ],
       },
       {
@@ -108,11 +108,11 @@
         alt: "The sentence She is engaged with a gap research., then the candidates: in (fits: busy doing); to (correct English, different meaning: promised to marry research); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She is engaged \u2026 research. What does the sentence want to say? It wants **engaged in**: busy doing.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean promised to marry research. That is not what this sentence says. **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean promised to marry research. That is not what this sentence says. Where to fits: _He is engaged to her cousin._ **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is engaged ____ research.", [["absorbedIn", "in", true, "busy doing"], ["reachDot", "to", "diff", "promised to | marry research"], ["cross", "on", false, "on is resting; | not used"]], ["engaged in = busy doing", "engaged to = promised to marry"]),
+          ...PLAB.kit.lineup("e3w", "She is engaged ____ research.", [["absorbedIn", "in", true, "busy doing"], ["reachDot", "to", "diff", "promised to | marry research"], ["cross", "on", false, "on is resting; | not used"]], ["engaged in = busy doing", "engaged to = promised to marry"], null, ["\u2248 to: He is engaged to her cousin."]),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence The committee will enquire with a gap the matter., then the candidates: into (fits: investigate); about (correct English, different meaning: only ask a few questions about it); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: The committee will enquire \u2026 the matter. What does the sentence want to say? It wants **enquire into**: investigate.", cue: "e4w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean only ask a few questions about it. That is not what this sentence says. **on**: on is resting; not used.", cue: "e4w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean only ask a few questions about it. That is not what this sentence says. Where about fits: _She enquired about the fees._ **on**: on is resting; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The committee will enquire ____ the matter.", [["intoBag", "into", true, "investigate"], ["aboutCircle", "about", "diff", "only ask a few | questions about it"], ["cross", "on", false, "on is resting; | not used"]], ["enquire into = investigate", "enquire about = ask for information about"]),
+          ...PLAB.kit.lineup("e4w", "The committee will enquire ____ the matter.", [["intoBag", "into", true, "investigate"], ["aboutCircle", "about", "diff", "only ask a few | questions about it"], ["cross", "on", false, "on is resting; | not used"]], ["enquire into = investigate", "enquire about = ask for information about"], null, ["\u2248 about: She enquired about the fees."]),
         ],
       },
       {
@@ -199,7 +199,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Every worker is entitled ____ a pension.", [["reachDot", "to", true, "having the right to"], ["cross", "for", false, "for is a purpose; | a right points to"], ["cross", "of", false, "of = belonging; | not used"]], ["entitled to = having the right to"]),
+          ...PLAB.kit.lineup("e5w", "Every worker is entitled ____ a pension.", [["reachDot", "to", true, "having the right to"], ["cross", "for", false, "for is a purpose; | a right points to"], ["cross", "of", false, "of = belonging; | not used"]], ["entitled to = having the right to"], null, []),
         ],
       },
       {
@@ -226,7 +226,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "He is envious ____ her success.", [["awareOf", "of", true, "wanting what | someone else has"], ["cross", "for", false, "for is a purpose; | envy takes of"], ["cross", "from", false, "a word-for-word | translation"]], ["envious of = wanting what someone else has"]),
+          ...PLAB.kit.lineup("e6w", "He is envious ____ her success.", [["awareOf", "of", true, "wanting what | someone else has"], ["cross", "for", false, "for is a purpose; | envy takes of"], ["cross", "from", false, "a word-for-word | translation"]], ["envious of = wanting what someone else has"], null, []),
         ],
       },
       {
@@ -253,7 +253,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She proved equal ____ the task.", [["reachDot", "to", true, "the same as, | or able to do"], ["cross", "for", false, "for is a purpose; | equal points to"], ["cross", "of", false, "of = belonging; | not used"]], ["equal to = the same as, or able to do"]),
+          ...PLAB.kit.lineup("e7w", "She proved equal ____ the task.", [["reachDot", "to", true, "the same as, | or able to do"], ["cross", "for", false, "for is a purpose; | equal points to"], ["cross", "of", false, "of = belonging; | not used"]], ["equal to = the same as, or able to do"], null, []),
         ],
       },
       {
@@ -280,7 +280,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "Water is essential ____ life.", [["reachDot", "to", true, "absolutely | necessary to"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "in", false, "in is inside; | not used"]], ["essential to = absolutely necessary to"]),
+          ...PLAB.kit.lineup("e8w", "Water is essential ____ life.", [["reachDot", "to", true, "absolutely | necessary to"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "in", false, "in is inside; | not used"]], ["essential to = absolutely necessary to"], null, []),
         ],
       },
       {

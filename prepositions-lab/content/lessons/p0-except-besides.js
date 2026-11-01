@@ -50,11 +50,11 @@
         alt: "All passed with a gap Hamid. Answer: except, because Hamid did not pass: he is taken out. Not besides: besides Hamid = Hamid also passed. Not instead of: no one replaced him.",
         say: [
           { text: "Fill the gap: All passed … Hamid. Picture it: Hamid did not pass: he is taken out. So **except**.", cue: "exceptx01" },
-          { text: "Why not **besides**? besides Hamid = Hamid also passed That is correct English, but it says something else. Why not **instead of**? no one replaced him.", cue: "exceptx0-r2" },
+          { text: "Why not **besides**? besides Hamid = Hamid also passed That is correct English, but it says something else. Where besides fits: _Besides Hamid, all the others passed too._ Why not **instead of**? no one replaced him.", cue: "exceptx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-exceptx0"),
-          ...PLAB.kit.lineup("exceptx0", "All passed ____ Hamid.", [["exceptOne", "except", true, "Hamid did not pass: | he is taken out"], ["stackAdd", "besides", "diff", "besides Hamid = Hamid | also passed"], ["replaceDoc", "instead of", false, "no one replaced him"]], ["Why except? Hamid did not pass: he is taken out", "Ask: Is one left out?"]),
+          ...PLAB.kit.lineup("exceptx0", "All passed ____ Hamid.", [["exceptOne", "except", true, "Hamid did not pass: | he is taken out"], ["stackAdd", "besides", "diff", "besides Hamid = Hamid | also passed"], ["replaceDoc", "instead of", false, "no one replaced him"]], ["Why except? Hamid did not pass: he is taken out", "Ask: Is one left out?"], null, ["≈ besides: Besides Hamid, all the others passed too."]),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-exceptx1"),
-          ...PLAB.kit.lineup("exceptx1", "The office opens daily ____ Sunday.", [["exceptOne", "except", true, "Sunday is left out"], ["stackAdd", "besides", false, "not adding Sunday"], ["replaceDoc", "instead of", false, "no swap"]], ["Why except? Sunday is left out", "Ask: Is one left out?"]),
+          ...PLAB.kit.lineup("exceptx1", "The office opens daily ____ Sunday.", [["exceptOne", "except", true, "Sunday is left out"], ["stackAdd", "besides", false, "not adding Sunday"], ["replaceDoc", "instead of", false, "no swap"]], ["Why except? Sunday is left out", "Ask: Is one left out?"], null, []),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "with a gap Hamid, five others passed. Answer: besides, because Hamid passed, and five more too. Not except: except Hamid = Hamid failed. Not instead of: no swap.",
         say: [
           { text: "Fill the gap: … Hamid, five others passed. Picture it: Hamid passed, and five more too. So **besides**.", cue: "besidesx02" },
-          { text: "Why not **except**? except Hamid = Hamid failed That is correct English, but it says something else. Why not **instead of**? no swap.", cue: "besidesx0-r2" },
+          { text: "Why not **except**? except Hamid = Hamid failed That is correct English, but it says something else. Where except fits: _All passed except Hamid._ Why not **instead of**? no swap.", cue: "besidesx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-besidesx0"),
-          ...PLAB.kit.lineup("besidesx0", "____ Hamid, five others passed.", [["exceptOne", "except", "diff", "except Hamid = Hamid | failed"], ["stackAdd", "besides", true, "Hamid passed, and | five more too"], ["replaceDoc", "instead of", false, "no swap"]], ["Why besides? Hamid passed, and five more too", "Ask: Is one more added?"]),
+          ...PLAB.kit.lineup("besidesx0", "____ Hamid, five others passed.", [["exceptOne", "except", "diff", "except Hamid = Hamid | failed"], ["stackAdd", "besides", true, "Hamid passed, and | five more too"], ["replaceDoc", "instead of", false, "no swap"]], ["Why besides? Hamid passed, and five more too", "Ask: Is one more added?"], null, ["≈ except: All passed except Hamid."]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "with a gap a car, he owns a bike. Answer: besides, because the bike is added. Not except: not leaving out. Not instead of: instead of = he has a bike, no car.",
         say: [
           { text: "Fill the gap: … a car, he owns a bike. Picture it: the bike is added. So **besides**.", cue: "besidesx12" },
-          { text: "Why not **except**? not leaving out. Why not **instead of**? instead of = he has a bike, no car That is correct English, but it says something else.", cue: "besidesx1-r2" },
+          { text: "Why not **except**? not leaving out. Why not **instead of**? instead of = he has a bike, no car That is correct English, but it says something else. Where instead of fits: _He bought a bike instead of a car._", cue: "besidesx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-besidesx1"),
-          ...PLAB.kit.lineup("besidesx1", "____ a car, he owns a bike.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", true, "the bike is added"], ["replaceDoc", "instead of", "diff", "instead of = he has | a bike, no car"]], ["Why besides? the bike is added", "Ask: Is one more added?"]),
+          ...PLAB.kit.lineup("besidesx1", "____ a car, he owns a bike.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", true, "the bike is added"], ["replaceDoc", "instead of", "diff", "instead of = he has | a bike, no car"]], ["Why besides? the bike is added", "Ask: Is one more added?"], null, ["≈ instead of: He bought a bike instead of a car."]),
         ],
       },
       {
@@ -134,11 +134,11 @@
         alt: "Drink water with a gap cola. Answer: instead of, because water takes the place of cola. Not except: nothing is left out of a group. Not besides: besides = drink both.",
         say: [
           { text: "Fill the gap: Drink water … cola. Picture it: water takes the place of cola. So **instead of**.", cue: "instead-ofx03" },
-          { text: "Why not **except**? nothing is left out of a group. Why not **besides**? besides = drink both That is correct English, but it says something else.", cue: "instead-ofx0-r2" },
+          { text: "Why not **except**? nothing is left out of a group. Why not **besides**? besides = drink both That is correct English, but it says something else. Where besides fits: _Besides water, you may drink juice._", cue: "instead-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-instead-ofx0"),
-          ...PLAB.kit.lineup("instead-ofx0", "Drink water ____ cola.", [["exceptOne", "except", false, "nothing is left out | of a group"], ["stackAdd", "besides", "diff", "besides = drink both"], ["replaceDoc", "instead of", true, "water takes the | place of cola"]], ["Why instead of? water takes the place of cola", "Ask: Does one take the place of the other?"]),
+          ...PLAB.kit.lineup("instead-ofx0", "Drink water ____ cola.", [["exceptOne", "except", false, "nothing is left out | of a group"], ["stackAdd", "besides", "diff", "besides = drink both"], ["replaceDoc", "instead of", true, "water takes the | place of cola"]], ["Why instead of? water takes the place of cola", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides water, you may drink juice."]),
         ],
       },
       {
@@ -147,11 +147,11 @@
         alt: "He sent his son with a gap going himself. Answer: instead of, because the son replaced him. Not except: not leaving out. Not besides: besides = both went.",
         say: [
           { text: "Fill the gap: He sent his son … going himself. Picture it: the son replaced him. So **instead of**.", cue: "instead-ofx13" },
-          { text: "Why not **except**? not leaving out. Why not **besides**? besides = both went That is correct English, but it says something else.", cue: "instead-ofx1-r2" },
+          { text: "Why not **except**? not leaving out. Why not **besides**? besides = both went That is correct English, but it says something else. Where besides fits: _Besides his son, he went himself too._", cue: "instead-ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-instead-ofx1"),
-          ...PLAB.kit.lineup("instead-ofx1", "He sent his son ____ going himself.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", "diff", "besides = both went"], ["replaceDoc", "instead of", true, "the son replaced him"]], ["Why instead of? the son replaced him", "Ask: Does one take the place of the other?"]),
+          ...PLAB.kit.lineup("instead-ofx1", "He sent his son ____ going himself.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", "diff", "besides = both went"], ["replaceDoc", "instead of", true, "the son replaced him"]], ["Why instead of? the son replaced him", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides his son, he went himself too."]),
         ],
       },
       {

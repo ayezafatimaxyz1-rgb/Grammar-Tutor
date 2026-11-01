@@ -50,11 +50,11 @@
         alt: "Prices rose with a gap 5 percent. Answer: by, because 5 percent is the change. Not to: to 5 percent = the new level. Not from: the starting level.",
         say: [
           { text: "Fill the gap: Prices rose … 5 percent. Picture it: 5 percent is the change. So **by**.", cue: "byx01" },
-          { text: "Why not **to**? to 5 percent = the new level That is correct English, but it says something else. Why not **from**? the starting level That is correct English, but it says something else.", cue: "byx0-r2" },
+          { text: "Why not **to**? to 5 percent = the new level That is correct English, but it says something else. Where to fits: _Inflation rose to 12 percent._ Why not **from**? the starting level That is correct English, but it says something else. Where from fits: _Inflation rose from 5 percent to 8 percent._", cue: "byx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-byx0"),
-          ...PLAB.kit.lineup("byx0", "Prices rose ____ 5 percent.", [["riseBy", "by", true, "5 percent is the change"], ["upTo", "to", "diff", "to 5 percent = the | new level"], ["arrowR", "from", "diff", "the starting level"]], ["Why by? 5 percent is the change", "Ask: Is it how much it changed?"]),
+          ...PLAB.kit.lineup("byx0", "Prices rose ____ 5 percent.", [["riseBy", "by", true, "5 percent is the change"], ["upTo", "to", "diff", "to 5 percent = the | new level"], ["arrowR", "from", "diff", "the starting level"]], ["Why by? 5 percent is the change", "Ask: Is it how much it changed?"], null, ["≈ to: Inflation rose to 12 percent.", "≈ from: Inflation rose from 5 percent to 8 percent."]),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx1"),
-          ...PLAB.kit.lineup("byx1", "He won ____ 300 votes.", [["riseBy", "by", true, "the margin"], ["upTo", "to", false, "not a level"], ["arrowR", "from", false, "not a start"]], ["Why by? the margin", "Ask: Is it how much it changed?"]),
+          ...PLAB.kit.lineup("byx1", "He won ____ 300 votes.", [["riseBy", "by", true, "the margin"], ["upTo", "to", false, "not a level"], ["arrowR", "from", false, "not a start"]], ["Why by? the margin", "Ask: Is it how much it changed?"], null, []),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "Petrol rose with a gap 290 rupees. Answer: to, because the new price. Not by: by 290 = it went up 290. Not from: the old price.",
         say: [
           { text: "Fill the gap: Petrol rose … 290 rupees. Picture it: the new price. So **to**.", cue: "tox02" },
-          { text: "Why not **by**? by 290 = it went up 290 That is correct English, but it says something else. Why not **from**? the old price That is correct English, but it says something else.", cue: "tox0-r2" },
+          { text: "Why not **by**? by 290 = it went up 290 That is correct English, but it says something else. Where by fits: _Petrol rose by 10 rupees._ Why not **from**? the old price That is correct English, but it says something else. Where from fits: _Petrol rose from 280 to 290 rupees._", cue: "tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-tox0"),
-          ...PLAB.kit.lineup("tox0", "Petrol rose ____ 290 rupees.", [["riseBy", "by", "diff", "by 290 = it went up 290"], ["upTo", "to", true, "the new price"], ["arrowR", "from", "diff", "the old price"]], ["Why to? the new price", "Ask: Is it the new level?"]),
+          ...PLAB.kit.lineup("tox0", "Petrol rose ____ 290 rupees.", [["riseBy", "by", "diff", "by 290 = it went up 290"], ["upTo", "to", true, "the new price"], ["arrowR", "from", "diff", "the old price"]], ["Why to? the new price", "Ask: Is it the new level?"], null, ["≈ by: Petrol rose by 10 rupees.", "≈ from: Petrol rose from 280 to 290 rupees."]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "The score fell with a gap zero. Answer: to, because where it ended. Not by: the size of the fall. Not from: where it started.",
         say: [
           { text: "Fill the gap: The score fell … zero. Picture it: where it ended. So **to**.", cue: "tox12" },
-          { text: "Why not **by**? the size of the fall That is correct English, but it says something else. Why not **from**? where it started That is correct English, but it says something else.", cue: "tox1-r2" },
+          { text: "Why not **by**? the size of the fall That is correct English, but it says something else. Where by fits: _The score fell by ten points._ Why not **from**? where it started That is correct English, but it says something else. Where from fits: _The score fell from fifty to zero._", cue: "tox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-tox1"),
-          ...PLAB.kit.lineup("tox1", "The score fell ____ zero.", [["riseBy", "by", "diff", "the size of the fall"], ["upTo", "to", true, "where it ended"], ["arrowR", "from", "diff", "where it started"]], ["Why to? where it ended", "Ask: Is it the new level?"]),
+          ...PLAB.kit.lineup("tox1", "The score fell ____ zero.", [["riseBy", "by", "diff", "the size of the fall"], ["upTo", "to", true, "where it ended"], ["arrowR", "from", "diff", "where it started"]], ["Why to? where it ended", "Ask: Is it the new level?"], null, ["≈ by: The score fell by ten points.", "≈ from: The score fell from fifty to zero."]),
         ],
       },
       {
@@ -138,7 +138,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-fromx0"),
-          ...PLAB.kit.lineup("fromx0", "It rose ____ 100 to 120.", [["riseBy", "by", false, "by 100 to 120 | is not used"], ["upTo", "to", false, "to comes later"], ["arrowR", "from", true, "100 is the start"]], ["Why from? 100 is the start", "Ask: Is it the starting level?"]),
+          ...PLAB.kit.lineup("fromx0", "It rose ____ 100 to 120.", [["riseBy", "by", false, "by 100 to 120 | is not used"], ["upTo", "to", false, "to comes later"], ["arrowR", "from", true, "100 is the start"]], ["Why from? 100 is the start", "Ask: Is it the starting level?"], null, []),
         ],
       },
       {

@@ -79,7 +79,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "He broke the window ____ purpose.", [["aimGoal", "on", true, "on purpose = | deliberately"], ["dice", "by", false, "by goes with | accident, chance"], ["cross", "with", false, "with = a tool or company; | purpose is neither"]], ["on purpose \u00b7 by accident \u00b7 by chance", "at random \u00b7 at large \u00b7 on the whole"]),
+          ...PLAB.kit.lineup("why", "He broke the window ____ purpose.", [["aimGoal", "on", true, "on purpose = | deliberately"], ["dice", "by", false, "by goes with | accident, chance"], ["cross", "with", false, "with = a tool or company; | purpose is neither"]], ["on purpose \u00b7 by accident \u00b7 by chance", "at random \u00b7 at large \u00b7 on the whole"], null, []),
         ],
       },
       {

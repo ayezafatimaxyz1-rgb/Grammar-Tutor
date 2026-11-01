@@ -67,12 +67,12 @@
         alt: "The sentence The ambulance arrived just with a gap time to save him., then the candidates with pictures: in (right: early enough); on (correct English but a different meaning: at the planned moment); at (wrong: at = one point; here time is a stretch). Rule: in time = early enough; on time = at the planned moment.",
         say: [
           { text: "Fill the gap: The ambulance arrived just \u2026 time to save him. What does the sentence want to say? The answer is **in**: early enough.", cue: "why1" },
-          { text: "Why not the others? **on** is correct English, but it would mean at the planned moment. That is not what this sentence says. **at**: at = one point; here time is a stretch.", cue: "why2" },
+          { text: "Why not the others? **on** is correct English, but it would mean at the planned moment. That is not what this sentence says. Where on fits: _The train left on time._ **at**: at = one point; here time is a stretch.", cue: "why2" },
           { text: "The rule: in time = early enough; on time = at the planned moment.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The ambulance arrived just ____ time to save him.", [["inTimeBefore", "in", true, "early enough"], ["onTimeDot", "on", "diff", "at the planned | moment"], ["cross", "at", false, "at = one point; here | time is a stretch"]], ["in time = early enough", "on time = at the planned moment"]),
+          ...PLAB.kit.lineup("why", "The ambulance arrived just ____ time to save him.", [["inTimeBefore", "in", true, "early enough"], ["onTimeDot", "on", "diff", "at the planned | moment"], ["cross", "at", false, "at = one point; here | time is a stretch"]], ["in time = early enough", "on time = at the planned moment"], null, ["\u2248 on: The train left on time."]),
         ],
       },
       {

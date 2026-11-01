@@ -68,11 +68,11 @@
         alt: "The sentence The village was with a gap by floods., then the candidates: cut off (fits: isolate, disconnect); cut down (correct English, different meaning: fell, or reduce); cut out (correct English, different meaning: remove, or stop)",
         say: [
           { text: "Fill the gap: The village was \u2026 by floods. The sentence wants **cut off**: isolate, disconnect.", cue: "f1w1" },
-          { text: "Why not the others? **cut down** is correct English, but it means fell, or reduce. That is not what this sentence says. **cut out** is correct English, but it means remove, or stop. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **cut down** is correct English, but it means fell, or reduce. That is not what this sentence says. Where cut down fits: _They cut down the old trees._ **cut out** is correct English, but it means remove, or stop. That is not what this sentence says. Where cut out fits: _Cut out sugar from your diet._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The village was ____ by floods.", [["roadBarrier", "cut off", true, "isolate, disconnect"], ["arrowDown", "cut down", "diff", "fell, or reduce"], ["goOut", "cut out", "diff", "remove, or stop"]], ["cut off = isolate, disconnect", "Why off? off = separated"]),
+          ...PLAB.kit.lineup("f1w", "The village was ____ by floods.", [["roadBarrier", "cut off", true, "isolate, disconnect"], ["arrowDown", "cut down", "diff", "fell, or reduce"], ["goOut", "cut out", "diff", "remove, or stop"]], ["cut off = isolate, disconnect", "Why off? off = separated"], null, ["\u2248 cut down: They cut down the old trees.", "\u2248 cut out: Cut out sugar from your diet."]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence The bomb with a gap at noon., then the candidates: go off (fits: explode, or ring); go on (correct English, different meaning: continue); go out (correct English, different meaning: stop burning)",
         say: [
           { text: "Fill the gap: The bomb \u2026 at noon. The sentence wants **go off**: explode, or ring.", cue: "f2w1" },
-          { text: "Why not the others? **go on** is correct English, but it means continue. That is not what this sentence says. **go out** is correct English, but it means stop burning. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **go on** is correct English, but it means continue. That is not what this sentence says. Where go on fits: _The meeting went on for hours._ **go out** is correct English, but it means stop burning. That is not what this sentence says. Where go out fits: _The lights went out._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The bomb ____ at noon.", [["flame", "go off", true, "explode, or ring"], ["support", "go on", "diff", "continue"], ["goOut", "go out", "diff", "stop burning"]], ["go off = explode, or ring", "Why off? off = set going"]),
+          ...PLAB.kit.lineup("f2w", "The bomb ____ at noon.", [["flame", "go off", true, "explode, or ring"], ["support", "go on", "diff", "continue"], ["goOut", "go out", "diff", "stop burning"]], ["go off = explode, or ring", "Why off? off = set going"], null, ["\u2248 go on: The meeting went on for hours.", "\u2248 go out: The lights went out."]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence His hard work with a gap., then the candidates: pay off (fits: bring success); pay back (correct English, different meaning: return money); pay up (correct English, different meaning: pay what you owe)",
         say: [
           { text: "Fill the gap: His hard work \u2026. The sentence wants **pay off**: bring success.", cue: "f3w1" },
-          { text: "Why not the others? **pay back** is correct English, but it means return money. That is not what this sentence says. **pay up** is correct English, but it means pay what you owe. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **pay back** is correct English, but it means return money. That is not what this sentence says. Where pay back fits: _He paid back the loan._ **pay up** is correct English, but it means pay what you owe. That is not what this sentence says. Where pay up fits: _Pay up, or we will take you to court._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "His hard work ____.", [["workSuccess", "pay off", true, "bring success"], ["returnArc", "pay back", "diff", "return money"], ["arrowUp", "pay up", "diff", "pay what you owe"]], ["pay off = bring success", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f3w", "His hard work ____.", [["workSuccess", "pay off", true, "bring success"], ["returnArc", "pay back", "diff", "return money"], ["arrowUp", "pay up", "diff", "pay what you owe"]], ["pay off = bring success", "Why off? off = away"], null, ["\u2248 pay back: He paid back the loan.", "\u2248 pay up: Pay up, or we will take you to court."]),
         ],
       },
       {
@@ -265,11 +265,11 @@
         alt: "The sentence The bank with a gap the loan., then the candidates: write off (fits: cancel (a debt)); write down (correct English, different meaning: record on paper); write up (correct English, different meaning: write a full report)",
         say: [
           { text: "Fill the gap: The bank \u2026 the loan. The sentence wants **write off**: cancel (a debt).", cue: "f4w1" },
-          { text: "Why not the others? **write down** is correct English, but it means record on paper. That is not what this sentence says. **write up** is correct English, but it means write a full report. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **write down** is correct English, but it means record on paper. That is not what this sentence says. Where write down fits: _Please write down the address._ **write up** is correct English, but it means write a full report. That is not what this sentence says. Where write up fits: _Write up your notes after the class._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The bank ____ the loan.", [["coin", "write off", true, "cancel (a debt)"], ["arrowDown", "write down", "diff", "record on paper"], ["arrowUp", "write up", "diff", "write a full report"]], ["write off = cancel (a debt)", "Why off? off = removed"]),
+          ...PLAB.kit.lineup("f4w", "The bank ____ the loan.", [["coin", "write off", true, "cancel (a debt)"], ["arrowDown", "write down", "diff", "record on paper"], ["arrowUp", "write up", "diff", "write a full report"]], ["write off = cancel (a debt)", "Why off? off = removed"], null, ["\u2248 write down: Please write down the address.", "\u2248 write up: Write up your notes after the class."]),
         ],
       },
       {
@@ -330,11 +330,11 @@
         alt: "The sentence He likes to with a gap his new car., then the candidates: show off (fits: display proudly); show up (correct English, different meaning: arrive); show in (correct English, different meaning: lead a guest in)",
         say: [
           { text: "Fill the gap: He likes to \u2026 his new car. The sentence wants **show off**: display proudly.", cue: "f5w1" },
-          { text: "Why not the others? **show up** is correct English, but it means arrive. That is not what this sentence says. **show in** is correct English, but it means lead a guest in. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **show up** is correct English, but it means arrive. That is not what this sentence says. Where show up fits: _He showed up late for the meeting._ **show in** is correct English, but it means lead a guest in. That is not what this sentence says. Where show in fits: _Please show in the next visitor._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "He likes to ____ his new car.", [["crown", "show off", true, "display proudly"], ["arrowUp", "show up", "diff", "arrive"], ["absorbedIn", "show in", "diff", "lead a guest in"]], ["show off = display proudly", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f5w", "He likes to ____ his new car.", [["crown", "show off", true, "display proudly"], ["arrowUp", "show up", "diff", "arrive"], ["absorbedIn", "show in", "diff", "lead a guest in"]], ["show off = display proudly", "Why off? off = away"], null, ["\u2248 show up: He showed up late for the meeting.", "\u2248 show in: Please show in the next visitor."]),
         ],
       },
       {
@@ -395,11 +395,11 @@
         alt: "The sentence Vaccines with a gap disease., then the candidates: ward off (fits: keep away (danger)); keep off (correct English, different meaning: stay away from); ward over (not used: not used)",
         say: [
           { text: "Fill the gap: Vaccines \u2026 disease. The sentence wants **ward off**: keep away (danger).", cue: "f6w1" },
-          { text: "Why not the others? **keep off** is correct English, but it means stay away from. That is not what this sentence says. **ward over**: not used.", cue: "f6w2" },
+          { text: "Why not the others? **keep off** is correct English, but it means stay away from. That is not what this sentence says. Where keep off fits: _Keep off the grass._ **ward over**: not used.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "Vaccines ____ disease.", [["shield", "ward off", true, "keep away (danger)"], ["bounceOff", "keep off", "diff", "stay away from"], ["cross", "ward over", false, "not used"]], ["ward off = keep away (danger)", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f6w", "Vaccines ____ disease.", [["shield", "ward off", true, "keep away (danger)"], ["bounceOff", "keep off", "diff", "stay away from"], ["cross", "ward over", false, "not used"]], ["ward off = keep away (danger)", "Why off? off = away"], null, ["\u2248 keep off: Keep off the grass."]),
         ],
       },
       {

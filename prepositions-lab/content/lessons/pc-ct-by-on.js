@@ -54,7 +54,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx0"),
-          ...PLAB.kit.lineup("byx0", "I go to work ____ bus.", [["emailBy", "by", true, "no the: it is the method"], ["busOn", "on", false, "on needs the: on the bus"], ["dotIn", "in", false, "in needs a or the"]], ["Why by? no the: it is the method", "Ask: Is there no a, the or my before the transport?"]),
+          ...PLAB.kit.lineup("byx0", "I go to work ____ bus.", [["emailBy", "by", true, "no the: it is the method"], ["busOn", "on", false, "on needs the: on the bus"], ["dotIn", "in", false, "in needs a or the"]], ["Why by? no the: it is the method", "Ask: Is there no a, the or my before the transport?"], null, []),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx1"),
-          ...PLAB.kit.lineup("byx1", "They came ____ air.", [["emailBy", "by", true, "the method of travel"], ["busOn", "on", false, "not used"], ["dotIn", "in", false, "not used"]], ["Why by? the method of travel", "Ask: Is there no a, the or my before the transport?"]),
+          ...PLAB.kit.lineup("byx1", "They came ____ air.", [["emailBy", "by", true, "the method of travel"], ["busOn", "on", false, "not used"], ["dotIn", "in", false, "not used"]], ["Why by? the method of travel", "Ask: Is there no a, the or my before the transport?"], null, []),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "I met him with a gap the bus. Answer: on, because the bus: where we were. Not by: by takes no the. Not in: heard, but on is standard for buses.",
         say: [
           { text: "Fill the gap: I met him … the bus. Picture it: the bus: where we were. So **on**.", cue: "onx02" },
-          { text: "Why not **by**? by takes no the. Why not **in**? heard, but on is standard for buses That is correct English, but it says something else.", cue: "onx0-r2" },
+          { text: "Why not **by**? by takes no the. Why not **in**? heard, but on is standard for buses That is correct English, but it says something else. Where in fits: _I met him in the car._", cue: "onx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "I met him ____ the bus.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "the bus: where | we were"], ["dotIn", "in", "diff", "heard, but on | is standard for buses"]], ["Why on? the bus: where we were", "Ask: Is there a, the or my, and is it transport with a floor?"]),
+          ...PLAB.kit.lineup("onx0", "I met him ____ the bus.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "the bus: where | we were"], ["dotIn", "in", "diff", "heard, but on | is standard for buses"]], ["Why on? the bus: where we were", "Ask: Is there a, the or my, and is it transport with a floor?"], null, ["≈ in: I met him in the car."]),
         ],
       },
       {
@@ -109,7 +109,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "She left her bag ____ the train.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "on its floor"], ["dotIn", "in", false, "not for trains"]], ["Why on? on its floor", "Ask: Is there a, the or my, and is it transport with a floor?"]),
+          ...PLAB.kit.lineup("onx1", "She left her bag ____ the train.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "on its floor"], ["dotIn", "in", false, "not for trains"]], ["Why on? on its floor", "Ask: Is there a, the or my, and is it transport with a floor?"], null, []),
         ],
       },
       {
@@ -138,7 +138,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "He came ____ his car.", [["emailBy", "by", false, "by takes no his"], ["busOn", "on", false, "you cannot | stand in a car"], ["dotIn", "in", true, "his car: boxed inside"]], ["Why in? his car: boxed inside", "Ask: Is it a car or taxi, with a, the or my?"]),
+          ...PLAB.kit.lineup("inx0", "He came ____ his car.", [["emailBy", "by", false, "by takes no his"], ["busOn", "on", false, "you cannot | stand in a car"], ["dotIn", "in", true, "his car: boxed inside"]], ["Why in? his car: boxed inside", "Ask: Is it a car or taxi, with a, the or my?"], null, []),
         ],
       },
       {
@@ -151,7 +151,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "We waited ____ the taxi.", [["emailBy", "by", false, "not with the"], ["busOn", "on", false, "not for taxis"], ["dotIn", "in", true, "inside the taxi"]], ["Why in? inside the taxi", "Ask: Is it a car or taxi, with a, the or my?"]),
+          ...PLAB.kit.lineup("inx1", "We waited ____ the taxi.", [["emailBy", "by", false, "not with the"], ["busOn", "on", false, "not for taxis"], ["dotIn", "in", true, "inside the taxi"]], ["Why in? inside the taxi", "Ask: Is it a car or taxi, with a, the or my?"], null, []),
         ],
       },
       {
@@ -256,7 +256,7 @@
             {
               "text": "in",
               "misconception": "p0-sense",
-              "why": "Heard; on is standard. It is correct English, but it says something else."
+              "why": "Heard; on is standard. It is correct English, but it says something else. Where in fits: We sat in a small car for six hours."
             },
             {
               "text": "on",

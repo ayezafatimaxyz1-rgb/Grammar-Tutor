@@ -68,11 +68,11 @@
         alt: "The sentence She with a gap her old parents., then the candidates: look after (fits: take care of); look into (correct English, different meaning: investigate); look for (correct English, different meaning: search for)",
         say: [
           { text: "Fill the gap: She \u2026 her old parents. The sentence wants **look after**: take care of.", cue: "f1w1" },
-          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. **look for** is correct English, but it means search for. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._ **look for** is correct English, but it means search for. That is not what this sentence says. Where look for fits: _I am looking for my keys._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "She ____ her old parents.", [["careFor", "look after", true, "take care of"], ["intoBag", "look into", "diff", "investigate"], ["wantStar", "look for", "diff", "search for"]], ["look after = take care of", "Why after? after = following"]),
+          ...PLAB.kit.lineup("f1w", "She ____ her old parents.", [["careFor", "look after", true, "take care of"], ["intoBag", "look into", "diff", "investigate"], ["wantStar", "look for", "diff", "search for"]], ["look after = take care of", "Why after? after = following"], null, ["\u2248 look into: The police are looking into the case.", "\u2248 look for: I am looking for my keys."]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence He with a gap his father., then the candidates: take after (fits: resemble (a parent)); take over (correct English, different meaning: take control); take up (correct English, different meaning: start a hobby)",
         say: [
           { text: "Fill the gap: He \u2026 his father. The sentence wants **take after**: resemble (a parent).", cue: "f2w1" },
-          { text: "Why not the others? **take over** is correct English, but it means take control. That is not what this sentence says. **take up** is correct English, but it means start a hobby. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **take over** is correct English, but it means take control. That is not what this sentence says. Where take over fits: _The army took over the government._ **take up** is correct English, but it means start a hobby. That is not what this sentence says. Where take up fits: _She took up painting after she retired._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He ____ his father.", [["likeSim", "take after", true, "resemble (a parent)"], ["overRock", "take over", "diff", "take control"], ["arrowUp", "take up", "diff", "start a hobby"]], ["take after = resemble (a parent)", "Why after? after = following"]),
+          ...PLAB.kit.lineup("f2w", "He ____ his father.", [["likeSim", "take after", true, "resemble (a parent)"], ["overRock", "take over", "diff", "take control"], ["arrowUp", "take up", "diff", "start a hobby"]], ["take after = resemble (a parent)", "Why after? after = following"], null, ["\u2248 take over: The army took over the government.", "\u2248 take up: She took up painting after she retired."]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence I am with a gap my keys., then the candidates: look for (fits: search for); look after (correct English, different meaning: take care of); look into (correct English, different meaning: investigate)",
         say: [
           { text: "Fill the gap: I am \u2026 my keys. The sentence wants **look for**: search for.", cue: "f3w1" },
-          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. **look into** is correct English, but it means investigate. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. Where look after fits: _She looks after her old parents._ **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "I am ____ my keys.", [["searchQ", "look for", true, "search for"], ["careFor", "look after", "diff", "take care of"], ["intoBag", "look into", "diff", "investigate"]], ["look for = search for", "Why for? for = aiming at"]),
+          ...PLAB.kit.lineup("f3w", "I am ____ my keys.", [["searchQ", "look for", true, "search for"], ["careFor", "look after", "diff", "take care of"], ["intoBag", "look into", "diff", "investigate"]], ["look for = search for", "Why for? for = aiming at"], null, ["\u2248 look after: She looks after her old parents.", "\u2248 look into: The police are looking into the case."]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence UN with a gap United Nations., then the candidates: stand for (fits: represent); stand by (correct English, different meaning: support, stay loyal); stand out (correct English, different meaning: be easy to notice)",
         say: [
           { text: "Fill the gap: UN \u2026 United Nations. The sentence wants **stand for**: represent.", cue: "f4w1" },
-          { text: "Why not the others? **stand by** is correct English, but it means support, stay loyal. That is not what this sentence says. **stand out** is correct English, but it means be easy to notice. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **stand by** is correct English, but it means support, stay loyal. That is not what this sentence says. Where stand by fits: _I will stand by you._ **stand out** is correct English, but it means be easy to notice. That is not what this sentence says. Where stand out fits: _Her red dress stood out in the crowd._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "UN ____ United Nations.", [["badge", "stand for", true, "represent"], ["followRule", "stand by", "diff", "support, stay loyal"], ["goOut", "stand out", "diff", "be easy to notice"]], ["stand for = represent", "Why for? for = in place of"]),
+          ...PLAB.kit.lineup("f4w", "UN ____ United Nations.", [["badge", "stand for", true, "represent"], ["followRule", "stand by", "diff", "support, stay loyal"], ["goOut", "stand out", "diff", "be easy to notice"]], ["stand for = represent", "Why for? for = in place of"], null, ["\u2248 stand by: I will stand by you.", "\u2248 stand out: Her red dress stood out in the crowd."]),
         ],
       },
       {
@@ -328,11 +328,11 @@
         alt: "The sentence The situation with a gap quick action., then the candidates: call for (fits: require); call off (correct English, different meaning: cancel); call on (correct English, different meaning: formally ask, urge)",
         say: [
           { text: "Fill the gap: The situation \u2026 quick action. The sentence wants **call for**: require.", cue: "f5w1" },
-          { text: "Why not the others? **call off** is correct English, but it means cancel. That is not what this sentence says. **call on** is correct English, but it means formally ask, urge. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **call off** is correct English, but it means cancel. That is not what this sentence says. Where call off fits: _They called off the match._ **call on** is correct English, but it means formally ask, urge. That is not what this sentence says. Where call on fits: _The minister called on the families._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The situation ____ quick action.", [["demandFor", "call for", true, "require"], ["bounceOff", "call off", "diff", "cancel"], ["support", "call on", "diff", "formally ask, urge"]], ["call for = require", "Why for? for = aiming at"]),
+          ...PLAB.kit.lineup("f5w", "The situation ____ quick action.", [["demandFor", "call for", true, "require"], ["bounceOff", "call off", "diff", "cancel"], ["support", "call on", "diff", "formally ask, urge"]], ["call for = require", "Why for? for = aiming at"], null, ["\u2248 call off: They called off the match.", "\u2248 call on: The minister called on the families."]),
         ],
       },
       {
@@ -393,11 +393,11 @@
         alt: "The sentence He will with a gap to our view., then the candidates: come round (fits: change your opinion); come across (correct English, different meaning: find by chance); come about (correct English, different meaning: happen)",
         say: [
           { text: "Fill the gap: He will \u2026 to our view. The sentence wants **come round**: change your opinion.", cue: "f6w1" },
-          { text: "Why not the others? **come across** is correct English, but it means find by chance. That is not what this sentence says. **come about** is correct English, but it means happen. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **come across** is correct English, but it means find by chance. That is not what this sentence says. Where come across fits: _I came across an old letter._ **come about** is correct English, but it means happen. That is not what this sentence says. Where come about fits: _How did the accident come about?_", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "He will ____ to our view.", [["turnTo", "come round", true, "change your opinion"], ["acrossRoad", "come across", "diff", "find by chance"], ["aboutCircle", "come about", "diff", "happen"]], ["come round = change your opinion", "Why round? round = turning"]),
+          ...PLAB.kit.lineup("f6w", "He will ____ to our view.", [["turnTo", "come round", true, "change your opinion"], ["acrossRoad", "come across", "diff", "find by chance"], ["aboutCircle", "come about", "diff", "happen"]], ["come round = change your opinion", "Why round? round = turning"], null, ["\u2248 come across: I came across an old letter.", "\u2248 come about: How did the accident come about?"]),
         ],
       },
       {

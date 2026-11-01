@@ -33,11 +33,11 @@
         alt: "The sentence Aid was given with a gap religion., then the candidates: without regard to (fits: ignoring); with regard to (correct English, different meaning: concerning religion); without regard of (not used: regard to (or for))",
         say: [
           { text: "Fill the gap: Aid was given \u2026 religion. The sentence wants **without regard to**: ignoring.", cue: "f1w1" },
-          { text: "Why not the others? **with regard to** is correct English, but it means concerning religion. That is not what this sentence says. **without regard of**: regard to (or for).", cue: "f1w2" },
+          { text: "Why not the others? **with regard to** is correct English, but it means concerning religion. That is not what this sentence says. Where with regard to fits: _With regard to your letter, the post has been filled._ **without regard of**: regard to (or for).", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Aid was given ____ religion.", [["lensBars", "without regard to", true, "ignoring"], ["agreeWith", "with regard to", "diff", "concerning religion"], ["cross", "without regard of", false, "regard to (or for)"]], ["without regard to = ignoring", "Why to? regard to = paying attention to"]),
+          ...PLAB.kit.lineup("f1w", "Aid was given ____ religion.", [["lensBars", "without regard to", true, "ignoring"], ["agreeWith", "with regard to", "diff", "concerning religion"], ["cross", "without regard of", false, "regard to (or for)"]], ["without regard to = ignoring", "Why to? regard to = paying attention to"], null, ["\u2248 with regard to: With regard to your letter, the post has been filled."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence He climbed the wall with a gap a rope., then the candidates: with the help of (fits: helped by, using); by dint of (correct English, different meaning: by his own effort); by the help of (not used: help comes along with you: with)",
         say: [
           { text: "Fill the gap: He climbed the wall \u2026 a rope. The sentence wants **with the help of**: helped by, using.", cue: "f2w1" },
-          { text: "Why not the others? **by dint of** is correct English, but it means by his own effort. That is not what this sentence says. **by the help of**: help comes along with you: with.", cue: "f2w2" },
+          { text: "Why not the others? **by dint of** is correct English, but it means by his own effort. That is not what this sentence says. Where by dint of fits: _He rose by dint of hard work._ **by the help of**: help comes along with you: with.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He climbed the wall ____ a rope.", [["lift", "with the help of", true, "helped by, using"], ["followRule", "by dint of", "diff", "by his own effort"], ["cross", "by the help of", false, "help comes along | with you: with"]], ["with the help of = helped by, using", "Why with? the help comes along with you"]),
+          ...PLAB.kit.lineup("f2w", "He climbed the wall ____ a rope.", [["lift", "with the help of", true, "helped by, using"], ["followRule", "by dint of", "diff", "by his own effort"], ["cross", "by the help of", false, "help comes along | with you: with"]], ["with the help of = helped by, using", "Why with? the help comes along with you"], null, ["\u2248 by dint of: He rose by dint of hard work."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence The new rule applies with a gap 1 July., then the candidates: with effect from (fits: starting from (a date)); in effect (correct English, different meaning: in practice, really); with effect of (not used: effect from: a starting date)",
         say: [
           { text: "Fill the gap: The new rule applies \u2026 1 July. The sentence wants **with effect from**: starting from (a date).", cue: "f3w1" },
-          { text: "Why not the others? **in effect** is correct English, but it means in practice, really. That is not what this sentence says. **with effect of**: effect from: a starting date.", cue: "f3w2" },
+          { text: "Why not the others? **in effect** is correct English, but it means in practice, really. That is not what this sentence says. Where in effect fits: _The new law is now in effect._ **with effect of**: effect from: a starting date.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The new rule applies ____ 1 July.", [["sincePoint", "with effect from", true, "starting from | (a date)"], ["absorbedIn", "in effect", "diff", "in practice, really"], ["cross", "with effect of", false, "effect from: a | starting date"]], ["with effect from = starting from (a date)", "Why from? the effect starts from that date"]),
+          ...PLAB.kit.lineup("f3w", "The new rule applies ____ 1 July.", [["sincePoint", "with effect from", true, "starting from | (a date)"], ["absorbedIn", "in effect", "diff", "in practice, really"], ["cross", "with effect of", false, "effect from: a | starting date"]], ["with effect from = starting from (a date)", "Why from? the effect starts from that date"], null, ["\u2248 in effect: The new law is now in effect."]),
         ],
       },
       {

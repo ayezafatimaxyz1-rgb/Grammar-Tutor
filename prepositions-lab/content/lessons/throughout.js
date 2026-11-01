@@ -55,12 +55,12 @@ PLAB.registerLesson({
       alt: "The sentence The floods caused damage with a gap Sindh., then the candidates with pictures: throughout (right: in every part of it); through (correct English but a different meaning: passed through, not every part); along (correct English but a different meaning: only along one line). Rule: throughout = in every part; through = passing in and out.",
       say: [
         { text: "Fill the gap: The floods caused damage \u2026 Sindh. What does the sentence want to say? The answer is **throughout**: in every part of it.", cue: "why1" },
-        { text: "Why not the others? **through** is correct English, but it would mean passed through, not every part. That is not what this sentence says. **along** is correct English, but it would mean only along one line. That is not what this sentence says.", cue: "why2" },
+        { text: "Why not the others? **through** is correct English, but it would mean passed through, not every part. That is not what this sentence says. Where through fits: _The river passes through Sindh._ **along** is correct English, but it would mean only along one line. That is not what this sentence says. Where along fits: _Trees were planted along the motorway._", cue: "why2" },
         { text: "The rule: throughout = in every part; through = passing in and out.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The floods caused damage ____ Sindh.", [["everywhere", "throughout", true, "in every part | of it"], ["passThrough", "through", "diff", "passed through, | not every part"], ["alongRiver", "along", "diff", "only along | one line"]], ["throughout = in every part", "through = passing in and out"]),
+        ...PLAB.kit.lineup("why", "The floods caused damage ____ Sindh.", [["everywhere", "throughout", true, "in every part | of it"], ["passThrough", "through", "diff", "passed through, | not every part"], ["alongRiver", "along", "diff", "only along | one line"]], ["throughout = in every part", "through = passing in and out"], null, ["\u2248 through: The river passes through Sindh.", "\u2248 along: Trees were planted along the motorway."]),
       ],
     },
     {

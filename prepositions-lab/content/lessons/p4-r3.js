@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "We must get rid ____ the waste.", [["awareOf", "of", true, "get rid of: remove"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "off", false, "off is a spelling | mix-up: rid of"]], ["rid of = get rid of: remove"]),
+          ...PLAB.kit.lineup("e1w", "We must get rid ____ the waste.", [["awareOf", "of", true, "get rid of: remove"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "off", false, "off is a spelling | mix-up: rid of"]], ["rid of = get rid of: remove"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "They robbed him ____ his wallet.", [["awareOf", "of", true, "take something from | someone illegally"], ["cross", "from", false, "steal from, but | rob someone of"], ["cross", "with", false, "with = together; | not used"]], ["rob of = take something from someone illegally"]),
+          ...PLAB.kit.lineup("e2w", "They robbed him ____ his wallet.", [["awareOf", "of", true, "take something from | someone illegally"], ["cross", "from", false, "steal from, but | rob someone of"], ["cross", "with", false, "with = together; | not used"]], ["rob of = take something from someone illegally"], null, []),
         ],
       },
       {
@@ -110,7 +110,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Do not be rude ____ guests.", [["reachDot", "to", true, "impolite to"], ["cross", "with", false, "with = together; | rudeness points to"], ["cross", "on", false, "a word-for-word | translation"]], ["rude to = impolite to"]),
+          ...PLAB.kit.lineup("e3w", "Do not be rude ____ guests.", [["reachDot", "to", true, "impolite to"], ["cross", "with", false, "with = together; | rudeness points to"], ["cross", "on", false, "a word-for-word | translation"]], ["rude to = impolite to"], null, []),
         ],
       },
       {

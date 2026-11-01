@@ -14,7 +14,9 @@ Data lives in tools/content/p4_*.py (one file per batch of letters). Each entry:
 Every entry becomes: a board of its senses (one picture per sense), a "why this one and not
 the others" lineup, and a practice question at the end of its lesson.
 """
-import json, glob, os, re, subprocess
+import json, glob, os, re, subprocess, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from uses import use_for
 
 T = json.dumps
 D, N = "D", "N"
@@ -130,15 +132,17 @@ def entry_steps(e, n, lid):
     clean = lambda r: " ".join(x.strip() for x in r.split("|"))
     why = []
     for p, v, r in e["others"]:
-        why.append(f"**{p}** is correct English, but it would mean {clean(r)}. That is not what this sentence says." if v == D else f"**{p}**: {clean(r)}.")
+        ex_ = use_for(w if p == "(no word)" else f"{w} {p}") if v == D else None
+        why.append((f"**{p}** is correct English, but it would mean {clean(r)}. That is not what this sentence says." + (f" Where {p} fits: _{ex_}_" if ex_ else "")) if v == D else f"**{p}**: {clean(r)}.")
     says2 = [(f"Fill the gap: {sentence.replace('____', '…')} What does the sentence want to say? It wants **{phrase(w, prep)}**: {meaning}.", f"e{n}w1"),
              ("Why not the others? " + " ".join(why), f"e{n}w2")]
+    uses_ = [f"\u2248 {p}: {use_for(w if p == '(no word)' else f'{w} {p}')}" for p, v, r in e["others"] if v == D and use_for(w if p == '(no word)' else f'{w} {p}')]
     rules = [f"{phrase(w, s_[0])} = {s_[1]}" for s_ in senses][:2]
     opt_js = ", ".join(f"[{o[0]}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
     alt2 = f"The sentence {sentence.replace('____', 'with a gap')}, then the candidates: " + "; ".join(
         f"{o[1]} ({'fits' if o[2] is True else 'correct English, different meaning' if o[2] == 'diff' else 'not used'}: {clean(o[3])})" for o in opts)
     steps.append(dict(id=f"{w}-why".replace(" ", "-"), title=f"{w}: why this one?", alt=alt2, says=says2,
-                      actions=[f'PLAB.kit.clear("clear-{n}b")', f'...PLAB.kit.lineup("e{n}w", {T(sentence)}, [{opt_js}], {T(rules)})']))
+                      actions=[f'PLAB.kit.clear("clear-{n}b")', f'...PLAB.kit.lineup("e{n}w", {T(sentence)}, [{opt_js}], {T(rules)}, null, {T(uses_)})']))
     # 3. A practice question: another sense's example if there is one, else the same sentence.
     k = next((i for i in range(len(senses)) if i != e["ask"]), e["ask"])
     p3, m3, x3 = senses[k][:3]

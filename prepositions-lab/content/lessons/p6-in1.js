@@ -87,11 +87,11 @@
         alt: "The sentence The rebels finally with a gap., then the candidates: give in (fits: surrender); give up (correct English, different meaning: stop doing); give out (correct English, different meaning: distribute)",
         say: [
           { text: "Fill the gap: The rebels finally \u2026. The sentence wants **give in**: surrender.", cue: "f1w1" },
-          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. **give out** is correct English, but it means distribute. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. Where give up fits: _He gave up smoking._ **give out** is correct English, but it means distribute. That is not what this sentence says. Where give out fits: _The teacher gave out the papers._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The rebels finally ____.", [["flag", "give in", true, "surrender"], ["arrowUp", "give up", "diff", "stop doing"], ["goOut", "give out", "diff", "distribute"]], ["give in = surrender", "Why in? in = giving way"]),
+          ...PLAB.kit.lineup("f1w", "The rebels finally ____.", [["flag", "give in", true, "surrender"], ["arrowUp", "give up", "diff", "stop doing"], ["goOut", "give out", "diff", "distribute"]], ["give in = surrender", "Why in? in = giving way"], null, ["\u2248 give up: He gave up smoking.", "\u2248 give out: The teacher gave out the papers."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence with a gap your papers now., then the candidates: hand in (fits: submit); hand down (correct English, different meaning: pass to the next generation); hand over (correct English, different meaning: give control)",
         say: [
           { text: "Fill the gap: \u2026 your papers now. The sentence wants **hand in**: submit.", cue: "f2w1" },
-          { text: "Why not the others? **hand down** is correct English, but it means pass to the next generation. That is not what this sentence says. **hand over** is correct English, but it means give control. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **hand down** is correct English, but it means pass to the next generation. That is not what this sentence says. Where hand down fits: _These customs were handed down from father to son._ **hand over** is correct English, but it means give control. That is not what this sentence says. Where hand over fits: _He handed over the keys._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ your papers now.", [["doc", "hand in", true, "submit"], ["arrowDown", "hand down", "diff", "pass to the | next generation"], ["overRock", "hand over", "diff", "give control"]], ["hand in = submit", "Why in? in = inward"]),
+          ...PLAB.kit.lineup("f2w", "____ your papers now.", [["doc", "hand in", true, "submit"], ["arrowDown", "hand down", "diff", "pass to the | next generation"], ["overRock", "hand over", "diff", "give control"]], ["hand in = submit", "Why in? in = inward"], null, ["\u2248 hand down: These customs were handed down from father to son.", "\u2248 hand over: He handed over the keys."]),
         ],
       },
       {
@@ -219,11 +219,11 @@
         alt: "The sentence Please with a gap this form., then the candidates: fill in (fits: complete (a form)); fill up (correct English, different meaning: fill completely (a tank)); fill on (not used: not used)",
         say: [
           { text: "Fill the gap: Please \u2026 this form. The sentence wants **fill in**: complete (a form).", cue: "f3w1" },
-          { text: "Why not the others? **fill up** is correct English, but it means fill completely (a tank). That is not what this sentence says. **fill on**: not used.", cue: "f3w2" },
+          { text: "Why not the others? **fill up** is correct English, but it means fill completely (a tank). That is not what this sentence says. Where fill up fits: _Fill up the tank, please._ **fill on**: not used.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Please ____ this form.", [["pen", "fill in", true, "complete (a form)"], ["arrowUp", "fill up", "diff", "fill completely | (a tank)"], ["cross", "fill on", false, "not used"]], ["fill in = complete (a form)", "Why in? in = inward"]),
+          ...PLAB.kit.lineup("f3w", "Please ____ this form.", [["pen", "fill in", true, "complete (a form)"], ["arrowUp", "fill up", "diff", "fill completely | (a tank)"], ["cross", "fill on", false, "not used"]], ["fill in = complete (a form)", "Why in? in = inward"], null, ["\u2248 fill up: Fill up the tank, please."]),
         ],
       },
       {
@@ -284,11 +284,11 @@
         alt: "The sentence Thieves with a gap the shop., then the candidates: break into (fits: enter by force); break out (correct English, different meaning: start suddenly); break down (correct English, different meaning: collapse)",
         say: [
           { text: "Fill the gap: Thieves \u2026 the shop. The sentence wants **break into**: enter by force.", cue: "f4w1" },
-          { text: "Why not the others? **break out** is correct English, but it means start suddenly. That is not what this sentence says. **break down** is correct English, but it means collapse. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **break out** is correct English, but it means start suddenly. That is not what this sentence says. Where break out fits: _War broke out in 1939._ **break down** is correct English, but it means collapse. That is not what this sentence says. Where break down fits: _The talks broke down after a week._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Thieves ____ the shop.", [["door", "break into", true, "enter by force"], ["goOut", "break out", "diff", "start suddenly"], ["arrowDown", "break down", "diff", "collapse"]], ["break into = enter by force", "Why into? into = entering"]),
+          ...PLAB.kit.lineup("f4w", "Thieves ____ the shop.", [["door", "break into", true, "enter by force"], ["goOut", "break out", "diff", "start suddenly"], ["arrowDown", "break down", "diff", "collapse"]], ["break into = enter by force", "Why into? into = entering"], null, ["\u2248 break out: War broke out in 1939.", "\u2248 break down: The talks broke down after a week."]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence The police are with a gap the case., then the candidates: look into (fits: investigate); look after (correct English, different meaning: take care of); look over (correct English, different meaning: examine quickly)",
         say: [
           { text: "Fill the gap: The police are \u2026 the case. The sentence wants **look into**: investigate.", cue: "f5w1" },
-          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. **look over** is correct English, but it means examine quickly. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. Where look after fits: _She looks after her old parents._ **look over** is correct English, but it means examine quickly. That is not what this sentence says. Where look over fits: _Please look over my essay._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The police are ____ the case.", [["magnifier", "look into", true, "investigate"], ["careFor", "look after", "diff", "take care of"], ["overRock", "look over", "diff", "examine quickly"]], ["look into = investigate", "Why into? into = entering"]),
+          ...PLAB.kit.lineup("f5w", "The police are ____ the case.", [["magnifier", "look into", true, "investigate"], ["careFor", "look after", "diff", "take care of"], ["overRock", "look over", "diff", "examine quickly"]], ["look into = investigate", "Why into? into = entering"], null, ["\u2248 look after: She looks after her old parents.", "\u2248 look over: Please look over my essay."]),
         ],
       },
       {
@@ -414,11 +414,11 @@
         alt: "The sentence The army with a gap to restore order., then the candidates: step in (fits: intervene); step down (correct English, different meaning: resign); step up (correct English, different meaning: increase)",
         say: [
           { text: "Fill the gap: The army \u2026 to restore order. The sentence wants **step in**: intervene.", cue: "f6w1" },
-          { text: "Why not the others? **step down** is correct English, but it means resign. That is not what this sentence says. **step up** is correct English, but it means increase. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **step down** is correct English, but it means resign. That is not what this sentence says. Where step down fits: _The minister stepped down after the scandal._ **step up** is correct English, but it means increase. That is not what this sentence says. Where step up fits: _Police have stepped up patrols in the city._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The army ____ to restore order.", [["shield", "step in", true, "intervene"], ["arrowDown", "step down", "diff", "resign"], ["arrowUp", "step up", "diff", "increase"]], ["step in = intervene", "Why in? in = entering"]),
+          ...PLAB.kit.lineup("f6w", "The army ____ to restore order.", [["shield", "step in", true, "intervene"], ["arrowDown", "step down", "diff", "resign"], ["arrowUp", "step up", "diff", "increase"]], ["step in = intervene", "Why in? in = entering"], null, ["\u2248 step down: The minister stepped down after the scandal.", "\u2248 step up: Police have stepped up patrols in the city."]),
         ],
       },
       {

@@ -153,7 +153,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "Please wait ____ the office.", [["gatePerson", "outside", true, "beyond its walls"], ["goOut", "out", false, "out needs of: | out of the office"], ["gatePerson", "outside of", false, "of is informal | (mostly AmE)"]], ["outside the office (formal)", "out of the office \u00b7 outside of (informal)"]),
+        ...PLAB.kit.lineup("why", "Please wait ____ the office.", [["gatePerson", "outside", true, "beyond its walls"], ["goOut", "out", false, "out needs of: | out of the office"], ["gatePerson", "outside of", false, "of is informal | (mostly AmE)"]], ["outside the office (formal)", "out of the office \u00b7 outside of (informal)"], null, []),
       ],
     },
     {

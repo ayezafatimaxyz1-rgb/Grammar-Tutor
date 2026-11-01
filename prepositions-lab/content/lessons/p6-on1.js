@@ -87,11 +87,11 @@
         alt: "The sentence with a gap with your work., then the candidates: carry on (fits: continue); carry out (correct English, different meaning: perform); carry off (correct English, different meaning: win, or do well)",
         say: [
           { text: "Fill the gap: \u2026 with your work. The sentence wants **carry on**: continue.", cue: "f1w1" },
-          { text: "Why not the others? **carry out** is correct English, but it means perform. That is not what this sentence says. **carry off** is correct English, but it means win, or do well. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **carry out** is correct English, but it means perform. That is not what this sentence says. Where carry out fits: _The police carried out a raid._ **carry off** is correct English, but it means win, or do well. That is not what this sentence says. Where carry off fits: _She carried off the first prize._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ with your work.", [["arrowR", "carry on", true, "continue"], ["goOut", "carry out", "diff", "perform"], ["bounceOff", "carry off", "diff", "win, or do well"]], ["carry on = continue", "Why on? on = continuing"]),
+          ...PLAB.kit.lineup("f1w", "____ with your work.", [["arrowR", "carry on", true, "continue"], ["goOut", "carry out", "diff", "perform"], ["bounceOff", "carry off", "diff", "win, or do well"]], ["carry on = continue", "Why on? on = continuing"], null, ["\u2248 carry out: The police carried out a raid.", "\u2248 carry off: She carried off the first prize."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence The meeting with a gap for hours., then the candidates: go on (fits: continue, happen); go off (correct English, different meaning: explode, or go bad); go over (correct English, different meaning: review)",
         say: [
           { text: "Fill the gap: The meeting \u2026 for hours. The sentence wants **go on**: continue, happen.", cue: "f2w1" },
-          { text: "Why not the others? **go off** is correct English, but it means explode, or go bad. That is not what this sentence says. **go over** is correct English, but it means review. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **go off** is correct English, but it means explode, or go bad. That is not what this sentence says. Where go off fits: _The bomb went off at noon._ **go over** is correct English, but it means review. That is not what this sentence says. Where go over fits: _Let us go over the plan once more._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The meeting ____ for hours.", [["clock", "go on", true, "continue, happen"], ["bounceOff", "go off", "diff", "explode, or go bad"], ["overRock", "go over", "diff", "review"]], ["go on = continue, happen", "Why on? on = continuing"]),
+          ...PLAB.kit.lineup("f2w", "The meeting ____ for hours.", [["clock", "go on", true, "continue, happen"], ["bounceOff", "go off", "diff", "explode, or go bad"], ["overRock", "go over", "diff", "review"]], ["go on = continue, happen", "Why on? on = continuing"], null, ["\u2248 go off: The bomb went off at noon.", "\u2248 go over: Let us go over the plan once more."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence The firm with a gap new staff., then the candidates: take on (fits: hire, or accept a task); take off (correct English, different meaning: leave the ground); take over (correct English, different meaning: take control)",
         say: [
           { text: "Fill the gap: The firm \u2026 new staff. The sentence wants **take on**: hire, or accept a task.", cue: "f3w1" },
-          { text: "Why not the others? **take off** is correct English, but it means leave the ground. That is not what this sentence says. **take over** is correct English, but it means take control. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **take off** is correct English, but it means leave the ground. That is not what this sentence says. Where take off fits: _The plane took off on time._ **take over** is correct English, but it means take control. That is not what this sentence says. Where take over fits: _The army took over the government._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The firm ____ new staff.", [["people", "take on", true, "hire, or | accept a task"], ["bounceOff", "take off", "diff", "leave the ground"], ["overRock", "take over", "diff", "take control"]], ["take on = hire, or accept a task", "Why on? on = onto you"]),
+          ...PLAB.kit.lineup("f3w", "The firm ____ new staff.", [["people", "take on", true, "hire, or | accept a task"], ["bounceOff", "take off", "diff", "leave the ground"], ["overRock", "take over", "diff", "take control"]], ["take on = hire, or accept a task", "Why on? on = onto you"], null, ["\u2248 take off: The plane took off on time.", "\u2248 take over: The army took over the government."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence She with a gap her coat., then the candidates: put on (fits: wear); put off (correct English, different meaning: postpone); put out (correct English, different meaning: extinguish)",
         say: [
           { text: "Fill the gap: She \u2026 her coat. The sentence wants **put on**: wear.", cue: "f4w1" },
-          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. **put out** is correct English, but it means extinguish. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. Where put off fits: _They put off the meeting till Monday._ **put out** is correct English, but it means extinguish. That is not what this sentence says. Where put out fits: _Firemen put out the fire._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "She ____ her coat.", [["person", "put on", true, "wear"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put on = wear", "Why on? on = attached"]),
+          ...PLAB.kit.lineup("f4w", "She ____ her coat.", [["person", "put on", true, "wear"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put on = wear", "Why on? on = attached"], null, ["\u2248 put off: They put off the meeting till Monday.", "\u2248 put out: Firemen put out the fire."]),
         ],
       },
       {
@@ -347,11 +347,11 @@
         alt: "The sentence The idea soon with a gap., then the candidates: catch on (fits: become popular); catch up (correct English, different meaning: reach someone ahead); catch out (correct English, different meaning: trap someone in an error)",
         say: [
           { text: "Fill the gap: The idea soon \u2026. The sentence wants **catch on**: become popular.", cue: "f5w1" },
-          { text: "Why not the others? **catch up** is correct English, but it means reach someone ahead. That is not what this sentence says. **catch out** is correct English, but it means trap someone in an error. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **catch up** is correct English, but it means reach someone ahead. That is not what this sentence says. Where catch up fits: _Walk fast to catch up._ **catch out** is correct English, but it means trap someone in an error. That is not what this sentence says. Where catch out fits: _The teacher caught him out with a hard question._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The idea soon ____.", [["rising", "catch on", true, "become popular"], ["arrowUp", "catch up", "diff", "reach someone ahead"], ["goOut", "catch out", "diff", "trap someone | in an error"]], ["catch on = become popular", "Why on? on = attached"]),
+          ...PLAB.kit.lineup("f5w", "The idea soon ____.", [["rising", "catch on", true, "become popular"], ["arrowUp", "catch up", "diff", "reach someone ahead"], ["goOut", "catch out", "diff", "trap someone | in an error"]], ["catch on = become popular", "Why on? on = attached"], null, ["\u2248 catch up: Walk fast to catch up.", "\u2248 catch out: The teacher caught him out with a hard question."]),
         ],
       },
       {
@@ -412,11 +412,11 @@
         alt: "The sentence with a gap a minute, please., then the candidates: hold on (fits: wait); hold up (correct English, different meaning: delay); hold back (correct English, different meaning: restrain)",
         say: [
           { text: "Fill the gap: \u2026 a minute, please. The sentence wants **hold on**: wait.", cue: "f6w1" },
-          { text: "Why not the others? **hold up** is correct English, but it means delay. That is not what this sentence says. **hold back** is correct English, but it means restrain. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **hold up** is correct English, but it means delay. That is not what this sentence says. Where hold up fits: _Heavy traffic held up the ambulance._ **hold back** is correct English, but it means restrain. That is not what this sentence says. Where hold back fits: _She held back her tears._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "____ a minute, please.", [["clock", "hold on", true, "wait"], ["arrowUp", "hold up", "diff", "delay"], ["returnArc", "hold back", "diff", "restrain"]], ["hold on = wait", "Why on? on = continuing"]),
+          ...PLAB.kit.lineup("f6w", "____ a minute, please.", [["clock", "hold on", true, "wait"], ["arrowUp", "hold up", "diff", "delay"], ["returnArc", "hold back", "diff", "restrain"]], ["hold on = wait", "Why on? on = continuing"], null, ["\u2248 hold up: Heavy traffic held up the ambulance.", "\u2248 hold back: She held back her tears."]),
         ],
       },
       {

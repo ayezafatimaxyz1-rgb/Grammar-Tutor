@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Every member must abide ____ the rules.", [["followRule", "by", true, "accept and obey a | rule or decision"], ["cross", "with", false, "with = together; a rule is | obeyed, not accompanied"], ["cross", "to", false, "to points to a | goal; abide takes by"]], ["abide by = accept and obey a rule or decision"]),
+          ...PLAB.kit.lineup("e1w", "Every member must abide ____ the rules.", [["followRule", "by", true, "accept and obey a | rule or decision"], ["cross", "with", false, "with = together; a rule is | obeyed, not accompanied"], ["cross", "to", false, "to points to a | goal; abide takes by"]], ["abide by = accept and obey a rule or decision"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He was absent ____ the meeting.", [["holdBack", "from", true, "not present at | a place or event"], ["cross", "at", false, "at says where you are, not | where you are missing from"], ["cross", "in", false, "in a place means | you are there"]], ["absent from = not present at a place or event"]),
+          ...PLAB.kit.lineup("e2w", "He was absent ____ the meeting.", [["holdBack", "from", true, "not present at | a place or event"], ["cross", "at", false, "at says where you are, not | where you are missing from"], ["cross", "in", false, "in a place means | you are there"]], ["absent from = not present at a place or event"], null, []),
         ],
       },
       {
@@ -108,11 +108,11 @@
         alt: "The sentence She was absorbed with a gap her book., then the candidates: in (fits: with attention deep inside something); into (correct English, different meaning: made part of the book, swallowed up); with (not used: with = together; attention goes inside)",
         say: [
           { text: "Fill the gap: She was absorbed \u2026 her book. What does the sentence want to say? It wants **absorbed in**: with attention deep inside something.", cue: "e3w1" },
-          { text: "Why not the others? **into** is correct English, but it would mean made part of the book, swallowed up. That is not what this sentence says. **with**: with = together; attention goes inside.", cue: "e3w2" },
+          { text: "Why not the others? **into** is correct English, but it would mean made part of the book, swallowed up. That is not what this sentence says. Where into fits: _The village was absorbed into the city._ **with**: with = together; attention goes inside.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She was absorbed ____ her book.", [["absorbedIn", "in", true, "with attention deep | inside something"], ["intoBag", "into", "diff", "made part of the | book, swallowed up"], ["cross", "with", false, "with = together; | attention goes inside"]], ["absorbed in = with attention deep inside something", "absorbed into = taken in and made part of something"]),
+          ...PLAB.kit.lineup("e3w", "She was absorbed ____ her book.", [["absorbedIn", "in", true, "with attention deep | inside something"], ["intoBag", "into", "diff", "made part of the | book, swallowed up"], ["cross", "with", false, "with = together; | attention goes inside"]], ["absorbed in = with attention deep inside something", "absorbed into = taken in and made part of something"], null, ["\u2248 into: The village was absorbed into the city."]),
         ],
       },
       {
@@ -161,7 +161,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Three members abstained ____ voting.", [["holdBack", "from", true, "keep away from | doing something"], ["cross", "to", false, "to moves towards; | abstain moves away"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["abstain from = keep away from doing something"]),
+          ...PLAB.kit.lineup("e4w", "Three members abstained ____ voting.", [["holdBack", "from", true, "keep away from | doing something"], ["cross", "to", false, "to moves towards; | abstain moves away"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["abstain from = keep away from doing something"], null, []),
         ],
       },
       {
@@ -188,7 +188,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The region is abundant ____ minerals.", [["absorbedIn", "in", true, "having a great deal of | something inside it"], ["cross", "of", false, "of names a part; | abundant takes in"], ["cross", "on", false, "on is a surface, not | what a place contains"]], ["abundant in = having a great deal of something inside it"]),
+          ...PLAB.kit.lineup("e5w", "The region is abundant ____ minerals.", [["absorbedIn", "in", true, "having a great deal of | something inside it"], ["cross", "of", false, "of names a part; | abundant takes in"], ["cross", "on", false, "on is a surface, not | what a place contains"]], ["abundant in = having a great deal of something inside it"], null, []),
         ],
       },
       {
@@ -237,7 +237,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The government acceded ____ their demands.", [["reachDot", "to", true, "agree to a demand, | or take up an office"], ["cross", "with", false, "with = together; acceding | moves towards a demand"], ["cross", "on", false, "on is resting | on, not agreeing"]], ["accede to = agree to a demand, or take up an office"]),
+          ...PLAB.kit.lineup("e6w", "The government acceded ____ their demands.", [["reachDot", "to", true, "agree to a demand, | or take up an office"], ["cross", "with", false, "with = together; acceding | moves towards a demand"], ["cross", "on", false, "on is resting | on, not agreeing"]], ["accede to = agree to a demand, or take up an office"], null, []),
         ],
       },
       {
@@ -260,11 +260,11 @@
         alt: "The sentence Millions lack access with a gap clean water., then the candidates: to (fits: a way in to something); of (not used: of = a part of; access is a way in); for (correct English, different meaning: who it is meant for: access for disabled people)",
         say: [
           { text: "Fill the gap: Millions lack access \u2026 clean water. What does the sentence want to say? It wants **access to**: a way in to something.", cue: "e7w1" },
-          { text: "Why not the others? **of**: of = a part of; access is a way in. **for** is correct English, but it would mean who it is meant for: access for disabled people. That is not what this sentence says.", cue: "e7w2" },
+          { text: "Why not the others? **of**: of = a part of; access is a way in. **for** is correct English, but it would mean who it is meant for: access for disabled people. That is not what this sentence says. Where for fits: _The building has easy access for disabled people._", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Millions lack access ____ clean water.", [["reachDot", "to", true, "a way in to | something"], ["cross", "of", false, "of = a part of; | access is a way in"], ["wantStar", "for", "diff", "who it is meant for: | access for disabled people"]], ["access to = a way in to something"]),
+          ...PLAB.kit.lineup("e7w", "Millions lack access ____ clean water.", [["reachDot", "to", true, "a way in to | something"], ["cross", "of", false, "of = a part of; | access is a way in"], ["wantStar", "for", "diff", "who it is meant for: | access for disabled people"]], ["access to = a way in to something"], null, ["\u2248 for: The building has easy access for disabled people."]),
         ],
       },
       {
@@ -289,11 +289,11 @@
         alt: "The sentence The minister was accompanied with a gap his aides., then the candidates: by (fits: a person or thing that goes along); with (correct English, different meaning: added on to the minister, like a side dish); from (not used: from is a source, not a companion)",
         say: [
           { text: "Fill the gap: The minister was accompanied \u2026 his aides. What does the sentence want to say? It wants **accompanied by**: a person or thing that goes along.", cue: "e8w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean added on to the minister, like a side dish. That is not what this sentence says. **from**: from is a source, not a companion.", cue: "e8w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean added on to the minister, like a side dish. That is not what this sentence says. Where with fits: _The meal was accompanied with salad._ **from**: from is a source, not a companion.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The minister was accompanied ____ his aides.", [["followRule", "by", true, "a person or thing | that goes along"], ["agreeWith", "with", "diff", "added on to the minister, | like a side dish"], ["cross", "from", false, "from is a source, | not a companion"]], ["accompanied by = a person or thing that goes along", "accompanied with = something added to it"]),
+          ...PLAB.kit.lineup("e8w", "The minister was accompanied ____ his aides.", [["followRule", "by", true, "a person or thing | that goes along"], ["agreeWith", "with", "diff", "added on to the minister, | like a side dish"], ["cross", "from", false, "from is a source, | not a companion"]], ["accompanied by = a person or thing that goes along", "accompanied with = something added to it"], null, ["\u2248 with: The meal was accompanied with salad."]),
         ],
       },
       {

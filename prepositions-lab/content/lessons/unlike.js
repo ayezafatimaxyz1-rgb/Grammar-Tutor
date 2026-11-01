@@ -58,7 +58,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ Karachi, Lahore has cold winters.", [["different", "Unlike", true, "contrasts two | cities"], ["cross", "Dislike", false, "a verb: | to not like"], ["different", "Different", false, "needs from: | different from"]], ["unlike X, Y ... (compare like with like)", "different from"]),
+          ...PLAB.kit.lineup("why", "____ Karachi, Lahore has cold winters.", [["different", "Unlike", true, "contrasts two | cities"], ["cross", "Dislike", false, "a verb: | to not like"], ["different", "Different", false, "needs from: | different from"]], ["unlike X, Y ... (compare like with like)", "different from"], null, []),
         ],
       },
       {

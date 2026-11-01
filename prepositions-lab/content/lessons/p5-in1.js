@@ -52,11 +52,11 @@
         alt: "The sentence Employees were paid cash with a gap unused leave., then the candidates: in lieu of (fits: instead of); in light of (correct English, different meaning: because of new facts); on lieu of (not used: lieu is a place, and you stand in it)",
         say: [
           { text: "Fill the gap: Employees were paid cash \u2026 unused leave. The sentence wants **in lieu of**: instead of.", cue: "f1w1" },
-          { text: "Why not the others? **in light of** is correct English, but it means because of new facts. That is not what this sentence says. **on lieu of**: lieu is a place, and you stand in it.", cue: "f1w2" },
+          { text: "Why not the others? **in light of** is correct English, but it means because of new facts. That is not what this sentence says. Where in light of fits: _In light of the new report, the plan was changed._ **on lieu of**: lieu is a place, and you stand in it.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Employees were paid cash ____ unused leave.", [["inLieu", "in lieu of", true, "instead of"], ["absorbedIn", "in light of", "diff", "because of | new facts"], ["cross", "on lieu of", false, "lieu is a place, | and you stand in it"]], ["in lieu of = instead of", "Why in? lieu = place (French)"]),
+          ...PLAB.kit.lineup("f1w", "Employees were paid cash ____ unused leave.", [["inLieu", "in lieu of", true, "instead of"], ["absorbedIn", "in light of", "diff", "because of | new facts"], ["cross", "on lieu of", false, "lieu is a place, | and you stand in it"]], ["in lieu of = instead of", "Why in? lieu = place (French)"], null, ["\u2248 in light of: In light of the new report, the plan was changed."]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence The match went on with a gap the rain., then the candidates: in spite of (fits: despite); despite of (not used: despite takes no of: despite the rain); in place of (correct English, different meaning: instead of the rain)",
         say: [
           { text: "Fill the gap: The match went on \u2026 the rain. The sentence wants **in spite of**: despite.", cue: "f2w1" },
-          { text: "Why not the others? **despite of**: despite takes no of: despite the rain. **in place of** is correct English, but it means instead of the rain. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **despite of**: despite takes no of: despite the rain. **in place of** is correct English, but it means instead of the rain. That is not what this sentence says. Where in place of fits: _Use honey in place of sugar._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The match went on ____ the rain.", [["umbrellaRain", "in spite of", true, "despite"], ["cross", "despite of", false, "despite takes no | of: despite the rain"], ["absorbedIn", "in place of", "diff", "instead of the rain"]], ["in spite of = despite", "Why in? spite = opposition"]),
+          ...PLAB.kit.lineup("f2w", "The match went on ____ the rain.", [["umbrellaRain", "in spite of", true, "despite"], ["cross", "despite of", false, "despite takes no | of: despite the rain"], ["absorbedIn", "in place of", "diff", "instead of the rain"]], ["in spite of = despite", "Why in? spite = opposition"], null, ["\u2248 in place of: Use honey in place of sugar."]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence with a gap the strike, the exam was postponed., then the candidates: in view of (fits: considering); with a view to (correct English, different meaning: with the aim of); in favour of (correct English, different meaning: supporting the strike)",
         say: [
           { text: "Fill the gap: \u2026 the strike, the exam was postponed. The sentence wants **in view of**: considering.", cue: "f3w1" },
-          { text: "Why not the others? **with a view to** is correct English, but it means with the aim of. That is not what this sentence says. **in favour of** is correct English, but it means supporting the strike. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **with a view to** is correct English, but it means with the aim of. That is not what this sentence says. Where with a view to fits: _He saved money with a view to buying a house._ **in favour of** is correct English, but it means supporting the strike. That is not what this sentence says. Where in favour of fits: _Most members voted in favour of the bill._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____ the strike, the exam was postponed.", [["viewRisk", "in view of", true, "considering"], ["agreeWith", "with a view to", "diff", "with the aim of"], ["absorbedIn", "in favour of", "diff", "supporting | the strike"]], ["in view of = considering", "Why in? the fact is in your view"]),
+          ...PLAB.kit.lineup("f3w", "____ the strike, the exam was postponed.", [["viewRisk", "in view of", true, "considering"], ["agreeWith", "with a view to", "diff", "with the aim of"], ["absorbedIn", "in favour of", "diff", "supporting | the strike"]], ["in view of = considering", "Why in? the fact is in your view"], null, ["\u2248 with a view to: He saved money with a view to buying a house.", "\u2248 in favour of: Most members voted in favour of the bill."]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence with a gap new evidence, the case was reopened., then the candidates: in the light of (fits: considering new information); in spite of (correct English, different meaning: although there was new evidence); on the light of (not used: light surrounds you, so in)",
         say: [
           { text: "Fill the gap: \u2026 new evidence, the case was reopened. The sentence wants **in the light of**: considering new information.", cue: "f4w1" },
-          { text: "Why not the others? **in spite of** is correct English, but it means although there was new evidence. That is not what this sentence says. **on the light of**: light surrounds you, so in.", cue: "f4w2" },
+          { text: "Why not the others? **in spite of** is correct English, but it means although there was new evidence. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ **on the light of**: light surrounds you, so in.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "____ new evidence, the case was reopened.", [["lightDoc", "in the light of", true, "considering | new information"], ["absorbedIn", "in spite of", "diff", "although there | was new evidence"], ["cross", "on the light of", false, "light surrounds | you, so in"]], ["in the light of = considering new information", "Why in? light shows things clearly"]),
+          ...PLAB.kit.lineup("f4w", "____ new evidence, the case was reopened.", [["lightDoc", "in the light of", true, "considering | new information"], ["absorbedIn", "in spite of", "diff", "although there | was new evidence"], ["cross", "on the light of", false, "light surrounds | you, so in"]], ["in the light of = considering new information", "Why in? light shows things clearly"], null, ["\u2248 in spite of: The match went on in spite of the rain."]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence Most members voted with a gap the bill., then the candidates: in favour of (fits: supporting); in favour with (correct English, different meaning: liked by (in favour with the king)); against (correct English, different meaning: opposing the bill)",
         say: [
           { text: "Fill the gap: Most members voted \u2026 the bill. The sentence wants **in favour of**: supporting.", cue: "f5w1" },
-          { text: "Why not the others? **in favour with** is correct English, but it means liked by (in favour with the king). That is not what this sentence says. **against** is correct English, but it means opposing the bill. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **in favour with** is correct English, but it means liked by (in favour with the king). That is not what this sentence says. Where in favour with fits: _The minister is no longer in favour with the prime minister._ **against** is correct English, but it means opposing the bill. That is not what this sentence says. Where against fits: _Ten members voted against the bill._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Most members voted ____ the bill.", [["voteFor", "in favour of", true, "supporting"], ["absorbedIn", "in favour with", "diff", "liked by (in favour | with the king)"], ["shield", "against", "diff", "opposing the bill"]], ["in favour of = supporting", "Why in? favour is a side"]),
+          ...PLAB.kit.lineup("f5w", "Most members voted ____ the bill.", [["voteFor", "in favour of", true, "supporting"], ["absorbedIn", "in favour with", "diff", "liked by (in favour | with the king)"], ["shield", "against", "diff", "opposing the bill"]], ["in favour of = supporting", "Why in? favour is a side"], null, ["\u2248 in favour with: The minister is no longer in favour with the prime minister.", "\u2248 against: Ten members voted against the bill."]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence The land was divided with a gap the law., then the candidates: in accordance with (fits: following a rule or law); in accordance to (not used: a common error: accordance takes with); in addition to (correct English, different meaning: as well as the law)",
         say: [
           { text: "Fill the gap: The land was divided \u2026 the law. The sentence wants **in accordance with**: following a rule or law.", cue: "f6w1" },
-          { text: "Why not the others? **in accordance to**: a common error: accordance takes with. **in addition to** is correct English, but it means as well as the law. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **in accordance to**: a common error: accordance takes with. **in addition to** is correct English, but it means as well as the law. That is not what this sentence says. Where in addition to fits: _In addition to his salary, he gets a car._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The land was divided ____ the law.", [["followRule", "in accordance with", true, "following a | rule or law"], ["cross", "in accordance to", false, "a common error: | accordance takes with"], ["absorbedIn", "in addition to", "diff", "as well as the law"]], ["in accordance with = following a rule or law", "Why with? accord = agreement"]),
+          ...PLAB.kit.lineup("f6w", "The land was divided ____ the law.", [["followRule", "in accordance with", true, "following a | rule or law"], ["cross", "in accordance to", false, "a common error: | accordance takes with"], ["absorbedIn", "in addition to", "diff", "as well as the law"]], ["in accordance with = following a rule or law", "Why with? accord = agreement"], null, ["\u2248 in addition to: In addition to his salary, he gets a car."]),
         ],
       },
       {

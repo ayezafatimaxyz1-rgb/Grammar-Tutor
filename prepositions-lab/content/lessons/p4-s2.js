@@ -32,11 +32,11 @@
         alt: "The sentence I feel sorry with a gap the poor., then the candidates: for (fits: feeling pity for); about (correct English, different meaning: regretting something about the poor); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: I feel sorry \u2026 the poor. What does the sentence want to say? It wants **sorry for**: feeling pity for.", cue: "e1w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean regretting something about the poor. That is not what this sentence says. **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean regretting something about the poor. That is not what this sentence says. Where about fits: _I am sorry about the noise._ **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "I feel sorry ____ the poor.", [["wantStar", "for", true, "feeling pity for"], ["aboutCircle", "about", "diff", "regretting something | about the poor"], ["cross", "on", false, "on is resting; | not used"]], ["sorry for = feeling pity for", "sorry about = regretting something"]),
+          ...PLAB.kit.lineup("e1w", "I feel sorry ____ the poor.", [["wantStar", "for", true, "feeling pity for"], ["aboutCircle", "about", "diff", "regretting something | about the poor"], ["cross", "on", false, "on is resting; | not used"]], ["sorry for = feeling pity for", "sorry about = regretting something"], null, ["\u2248 about: I am sorry about the noise."]),
         ],
       },
       {
@@ -85,7 +85,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She specialises ____ criminal law.", [["absorbedIn", "in", true, "focus on one field"], ["cross", "on", false, "on is resting; a field is | something you work inside"], ["cross", "at", false, "at is a point; | not used"]], ["specialise in = focus on one field"]),
+          ...PLAB.kit.lineup("e2w", "She specialises ____ criminal law.", [["absorbedIn", "in", true, "focus on one field"], ["cross", "on", false, "on is resting; a field is | something you work inside"], ["cross", "at", false, "at is a point; | not used"]], ["specialise in = focus on one field"], null, []),
         ],
       },
       {
@@ -134,7 +134,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Do not stare ____ people.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "look long | and hard at"], ["cross", "on", false, "on is resting; | eyes aim at"], ["cross", "to", false, "to points; not used"]], ["stare at = look long and hard at"]),
+          ...PLAB.kit.lineup("e3w", "Do not stare ____ people.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "look long | and hard at"], ["cross", "on", false, "on is resting; | eyes aim at"], ["cross", "to", false, "to points; not used"]], ["stare at = look long and hard at"], null, []),
         ],
       },
       {
@@ -159,11 +159,11 @@
         alt: "The sentence The plan is subject with a gap approval., then the candidates: to (fits: depending on, or open to); of (correct English, different meaning: approval would be the topic of the plan); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: The plan is subject \u2026 approval. What does the sentence want to say? It wants **subject to**: depending on, or open to.", cue: "e4w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean approval would be the topic of the plan. That is not what this sentence says. **on**: on is resting; not used.", cue: "e4w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean approval would be the topic of the plan. That is not what this sentence says. Where of fits: _Poverty is the subject of his essay._ **on**: on is resting; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The plan is subject ____ approval.", [["reachDot", "to", true, "depending on, | or open to"], ["awareOf", "of", "diff", "approval would be | the topic of the plan"], ["cross", "on", false, "on is resting; | not used"]], ["subject to = depending on, or open to", "subject of = the subject of: the topic of (noun)"]),
+          ...PLAB.kit.lineup("e4w", "The plan is subject ____ approval.", [["reachDot", "to", true, "depending on, | or open to"], ["awareOf", "of", "diff", "approval would be | the topic of the plan"], ["cross", "on", false, "on is resting; | not used"]], ["subject to = depending on, or open to", "subject of = the subject of: the topic of (noun)"], null, ["\u2248 of: Poverty is the subject of his essay."]),
         ],
       },
       {
@@ -212,7 +212,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The rebels submitted ____ the government.", [["reachDot", "to", true, "accept the | authority of"], ["cross", "on", false, "on is resting; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["submit to = accept the authority of"]),
+          ...PLAB.kit.lineup("e5w", "The rebels submitted ____ the government.", [["reachDot", "to", true, "accept the | authority of"], ["cross", "on", false, "on is resting; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["submit to = accept the authority of"], null, []),
         ],
       },
       {
@@ -239,7 +239,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Honey is a good substitute ____ sugar.", [["wantStar", "for", true, "something used | in place of"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "to", false, "to points; not used"]], ["substitute for = something used in place of"]),
+          ...PLAB.kit.lineup("e6w", "Honey is a good substitute ____ sugar.", [["wantStar", "for", true, "something used | in place of"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "to", false, "to points; not used"]], ["substitute for = something used in place of"], null, []),
         ],
       },
       {
@@ -295,11 +295,11 @@
         alt: "The sentence She succeeded with a gap passing the exam., then the candidates: in (fits: achieve); to (correct English, different meaning: inherited passing the exam as if it were a throne); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She succeeded \u2026 passing the exam. What does the sentence want to say? It wants **succeed in**: achieve.", cue: "e7w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean inherited passing the exam as if it were a throne. That is not what this sentence says. **on**: on is resting; not used.", cue: "e7w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean inherited passing the exam as if it were a throne. That is not what this sentence says. Where to fits: _The prince succeeded to the throne._ **on**: on is resting; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She succeeded ____ passing the exam.", [["absorbedIn", "in", true, "achieve"], ["reachDot", "to", "diff", "inherited passing the exam | as if it were a throne"], ["cross", "on", false, "on is resting; | not used"]], ["succeed in = achieve", "succeed to = inherit a title or post"]),
+          ...PLAB.kit.lineup("e7w", "She succeeded ____ passing the exam.", [["absorbedIn", "in", true, "achieve"], ["reachDot", "to", "diff", "inherited passing the exam | as if it were a throne"], ["cross", "on", false, "on is resting; | not used"]], ["succeed in = achieve", "succeed to = inherit a title or post"], null, ["\u2248 to: The prince succeeded to the throne."]),
         ],
       },
       {
@@ -348,7 +348,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "She suffers ____ asthma.", [["holdBack", "from", true, "be troubled by an | illness or problem"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "with", false, "heard in speech, but formal | English says suffer from"]], ["suffer from = be troubled by an illness or problem"]),
+          ...PLAB.kit.lineup("e8w", "She suffers ____ asthma.", [["holdBack", "from", true, "be troubled by an | illness or problem"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "with", false, "heard in speech, but formal | English says suffer from"]], ["suffer from = be troubled by an illness or problem"], null, []),
         ],
       },
       {

@@ -75,7 +75,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I did not know the word, so I looked it ____.", [["dictionary", "up", true, "particle: search | in a book"], ["searchQ", "for", false, "looked for it = | searched for it"], ["lookInto", "into", false, "= investigated it"]], ["look it up = find it in a book", "look for = search \u00b7 look into = investigate"]),
+          ...PLAB.kit.lineup("why", "I did not know the word, so I looked it ____.", [["dictionary", "up", true, "particle: search | in a book"], ["searchQ", "for", false, "looked for it = | searched for it"], ["lookInto", "into", false, "= investigated it"]], ["look it up = find it in a book", "look for = search \u00b7 look into = investigate"], null, []),
         ],
       },
       {

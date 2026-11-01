@@ -78,7 +78,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The police will investigate ____ the matter.", [["magnifier", "(no word)", true, "investigate | takes no particle"], ["lookInto", "into", false, "into belongs to | look into"], ["aboutCircle", "about", false, "investigate already | holds the topic"]], ["investigate the matter (formal)", "look into the matter (spoken)"]),
+          ...PLAB.kit.lineup("why", "The police will investigate ____ the matter.", [["magnifier", "(no word)", true, "investigate | takes no particle"], ["lookInto", "into", false, "into belongs to | look into"], ["aboutCircle", "about", false, "investigate already | holds the topic"]], ["investigate the matter (formal)", "look into the matter (spoken)"], null, []),
         ],
       },
       {

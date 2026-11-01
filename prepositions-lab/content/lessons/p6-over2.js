@@ -68,11 +68,11 @@
         alt: "The sentence The storm soon with a gap., then the candidates: blow over (fits: pass without harm); blow up (correct English, different meaning: explode); blow out (correct English, different meaning: put out a flame)",
         say: [
           { text: "Fill the gap: The storm soon \u2026. The sentence wants **blow over**: pass without harm.", cue: "f1w1" },
-          { text: "Why not the others? **blow up** is correct English, but it means explode. That is not what this sentence says. **blow out** is correct English, but it means put out a flame. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **blow up** is correct English, but it means explode. That is not what this sentence says. Where blow up fits: _Terrorists blew up the bridge._ **blow out** is correct English, but it means put out a flame. That is not what this sentence says. Where blow out fits: _Blow out the candles._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The storm soon ____.", [["cloud", "blow over", true, "pass without harm"], ["arrowUp", "blow up", "diff", "explode"], ["goOut", "blow out", "diff", "put out a flame"]], ["blow over = pass without harm", "Why over? over = past"]),
+          ...PLAB.kit.lineup("f1w", "The storm soon ____.", [["cloud", "blow over", true, "pass without harm"], ["arrowUp", "blow up", "diff", "explode"], ["goOut", "blow out", "diff", "put out a flame"]], ["blow over = pass without harm", "Why over? over = past"], null, ["\u2248 blow up: Terrorists blew up the bridge.", "\u2248 blow out: Blow out the candles."]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Please with a gap my essay., then the candidates: look over (fits: examine quickly); look into (correct English, different meaning: investigate); look up (correct English, different meaning: search for information)",
         say: [
           { text: "Fill the gap: Please \u2026 my essay. The sentence wants **look over**: examine quickly.", cue: "f2w1" },
-          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. **look up** is correct English, but it means search for information. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._ **look up** is correct English, but it means search for information. That is not what this sentence says. Where look up fits: _Look up the word in a dictionary._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Please ____ my essay.", [["circleDoc", "look over", true, "examine quickly"], ["intoBag", "look into", "diff", "investigate"], ["arrowUp", "look up", "diff", "search for | information"]], ["look over = examine quickly", "Why over? over = across the whole"]),
+          ...PLAB.kit.lineup("f2w", "Please ____ my essay.", [["circleDoc", "look over", true, "examine quickly"], ["intoBag", "look into", "diff", "investigate"], ["arrowUp", "look up", "diff", "search for | information"]], ["look over = examine quickly", "Why over? over = across the whole"], null, ["\u2248 look into: The police are looking into the case.", "\u2248 look up: Look up the word in a dictionary."]),
         ],
       },
       {

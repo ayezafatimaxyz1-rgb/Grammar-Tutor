@@ -50,11 +50,11 @@
         alt: "We went with a gap Murree. Answer: to, because we reached Murree. Not towards: towards Murree = in that direction, maybe not there.",
         say: [
           { text: "Fill the gap: We went … Murree. Picture it: we reached Murree. So **to**.", cue: "tox01" },
-          { text: "Why not **towards**? towards Murree = in that direction, maybe not there That is correct English, but it says something else.", cue: "tox0-r2" },
+          { text: "Why not **towards**? towards Murree = in that direction, maybe not there That is correct English, but it says something else. Where towards fits: _We drove towards Murree but turned back._", cue: "tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-tox0"),
-          ...PLAB.kit.lineup("tox0", "We went ____ Murree.", [["reachDot", "to", true, "we reached Murree"], ["lookAhead", "towards", "diff", "towards Murree = in that | direction, maybe not there"]], ["Why to? we reached Murree", "Ask: Does it reach the end?"]),
+          ...PLAB.kit.lineup("tox0", "We went ____ Murree.", [["reachDot", "to", true, "we reached Murree"], ["lookAhead", "towards", "diff", "towards Murree = in that | direction, maybe not there"]], ["Why to? we reached Murree", "Ask: Does it reach the end?"], null, ["≈ towards: We drove towards Murree but turned back."]),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-tox1"),
-          ...PLAB.kit.lineup("tox1", "Send the file ____ me.", [["reachDot", "to", true, "the file must | reach me"], ["lookAhead", "towards", false, "a file cannot only | head my way"]], ["Why to? the file must reach me", "Ask: Does it reach the end?"]),
+          ...PLAB.kit.lineup("tox1", "Send the file ____ me.", [["reachDot", "to", true, "the file must | reach me"], ["lookAhead", "towards", false, "a file cannot only | head my way"]], ["Why to? the file must reach me", "Ask: Does it reach the end?"], null, []),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The dog ran with a gap me. Answer: towards, because the direction of running. Not to: to me = it reached me.",
         say: [
           { text: "Fill the gap: The dog ran … me. Picture it: the direction of running. So **towards**.", cue: "towardsx02" },
-          { text: "Why not **to**? to me = it reached me That is correct English, but it says something else.", cue: "towardsx0-r2" },
+          { text: "Why not **to**? to me = it reached me That is correct English, but it says something else. Where to fits: _The dog ran to me and licked my hand._", cue: "towardsx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-towardsx0"),
-          ...PLAB.kit.lineup("towardsx0", "The dog ran ____ me.", [["reachDot", "to", "diff", "to me = it reached me"], ["lookAhead", "towards", true, "the direction of running"]], ["Why towards? the direction of running", "Ask: Is it only the direction, or an attitude aimed at someone?"]),
+          ...PLAB.kit.lineup("towardsx0", "The dog ran ____ me.", [["reachDot", "to", "diff", "to me = it reached me"], ["lookAhead", "towards", true, "the direction of running"]], ["Why towards? the direction of running", "Ask: Is it only the direction, or an attitude aimed at someone?"], null, ["≈ to: The dog ran to me and licked my hand."]),
         ],
       },
       {
@@ -110,7 +110,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-towardsx1"),
-          ...PLAB.kit.lineup("towardsx1", "His attitude ____ the poor is kind.", [["reachDot", "to", false, "attitude takes towards"], ["lookAhead", "towards", true, "a feeling aimed | in a direction"]], ["Why towards? a feeling aimed in a direction", "Ask: Is it only the direction, or an attitude aimed at someone?"]),
+          ...PLAB.kit.lineup("towardsx1", "His attitude ____ the poor is kind.", [["reachDot", "to", false, "attitude takes towards"], ["lookAhead", "towards", true, "a feeling aimed | in a direction"]], ["Why towards? a feeling aimed in a direction", "Ask: Is it only the direction, or an attitude aimed at someone?"], null, []),
         ],
       },
       {
@@ -182,7 +182,7 @@
             {
               "text": "towards",
               "misconception": "p0-sense",
-              "why": "Towards = in that direction only. It is correct English, but it says something else."
+              "why": "Towards = in that direction only. It is correct English, but it says something else. Where towards fits: He walked towards school, then stopped at a shop."
             }
           ]
         },

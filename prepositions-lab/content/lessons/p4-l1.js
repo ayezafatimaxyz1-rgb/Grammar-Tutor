@@ -58,7 +58,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "They lack ____ experience.", [["check", "(no word)", true, "not have | enough (verb)"], ["cross", "of", false, "of goes with the | noun: a lack of"], ["cross", "in", false, "in goes with lacking: | lacking in courage"]], ["lack = not have enough (verb)", "lack of = not having enough (noun)"]),
+          ...PLAB.kit.lineup("e1w", "They lack ____ experience.", [["check", "(no word)", true, "not have | enough (verb)"], ["cross", "of", false, "of goes with the | noun: a lack of"], ["cross", "in", false, "in goes with lacking: | lacking in courage"]], ["lack = not have enough (verb)", "lack of = not having enough (noun)"], null, []),
         ],
       },
       {
@@ -85,7 +85,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He was late ____ school.", [["wantStar", "for", true, "not on time for"], ["cross", "to", false, "a word-for-word | translation"], ["cross", "in", false, "in is inside; | not used"]], ["late for = not on time for"]),
+          ...PLAB.kit.lineup("e2w", "He was late ____ school.", [["wantStar", "for", true, "not on time for"], ["cross", "to", false, "a word-for-word | translation"], ["cross", "in", false, "in is inside; | not used"]], ["late for = not on time for"], null, []),
         ],
       },
       {
@@ -151,11 +151,11 @@
         alt: "The sentence Do not laugh with a gap him., then the candidates: at (fits: mock, or find funny); with (correct English, different meaning: laugh together with him, in friendship); about (correct English, different meaning: joke about him as a topic)",
         say: [
           { text: "Fill the gap: Do not laugh \u2026 him. What does the sentence want to say? It wants **laugh at**: mock, or find funny.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean laugh together with him, in friendship. That is not what this sentence says. **about** is correct English, but it would mean joke about him as a topic. That is not what this sentence says.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean laugh together with him, in friendship. That is not what this sentence says. Where with fits: _They laughed with him._ **about** is correct English, but it would mean joke about him as a topic. That is not what this sentence says. Where about fits: _Later we laughed about the mistake._", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Do not laugh ____ him.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "mock, or find funny"], ["agreeWith", "with", "diff", "laugh together with | him, in friendship"], ["aboutCircle", "about", "diff", "joke about | him as a topic"]], ["laugh at = mock, or find funny", "laugh with = laugh together with"]),
+          ...PLAB.kit.lineup("e3w", "Do not laugh ____ him.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "mock, or find funny"], ["agreeWith", "with", "diff", "laugh together with | him, in friendship"], ["aboutCircle", "about", "diff", "joke about | him as a topic"]], ["laugh at = mock, or find funny", "laugh with = laugh together with"], null, ["\u2248 with: They laughed with him.", "\u2248 about: Later we laughed about the mistake."]),
         ],
       },
       {
@@ -211,11 +211,11 @@
         alt: "The sentence She leaned with a gap the wall., then the candidates: against (fits: rest your weight on something upright); on (correct English, different meaning: lean on = put your weight on it; against = pressed on its side); to (not used: to points; leaning rests against)",
         say: [
           { text: "Fill the gap: She leaned \u2026 the wall. What does the sentence want to say? It wants **lean against**: rest your weight on something upright.", cue: "e4w1" },
-          { text: "Why not the others? **on** is correct English, but it would mean lean on = put your weight on it; against = pressed on its side. That is not what this sentence says. **to**: to points; leaning rests against.", cue: "e4w2" },
+          { text: "Why not the others? **on** is correct English, but it would mean lean on = put your weight on it; against = pressed on its side. That is not what this sentence says. Where on fits: _He leans on his friends._ **to**: to points; leaning rests against.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She leaned ____ the wall.", [["shield", "against", true, "rest your weight on | something upright"], ["support", "on", "diff", "lean on = put your weight on it; | against = pressed on its side"], ["cross", "to", false, "to points; leaning | rests against"]], ["lean against = rest your weight on something upright", "lean on = rest on, or depend on"]),
+          ...PLAB.kit.lineup("e4w", "She leaned ____ the wall.", [["shield", "against", true, "rest your weight on | something upright"], ["support", "on", "diff", "lean on = put your weight on it; | against = pressed on its side"], ["cross", "to", false, "to points; leaning | rests against"]], ["lean against = rest your weight on something upright", "lean on = rest on, or depend on"], null, ["\u2248 on: He leans on his friends."]),
         ],
       },
       {
@@ -240,11 +240,11 @@
         alt: "The sentence The company is liable with a gap the damage., then the candidates: for (fits: legally responsible for); to (correct English, different meaning: likely to suffer the damage itself); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The company is liable \u2026 the damage. What does the sentence want to say? It wants **liable for**: legally responsible for.", cue: "e5w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean likely to suffer the damage itself. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e5w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean likely to suffer the damage itself. That is not what this sentence says. Where to fits: _This road is liable to flooding._ **of**: of = belonging; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The company is liable ____ the damage.", [["wantStar", "for", true, "legally | responsible for"], ["reachDot", "to", "diff", "likely to suffer | the damage itself"], ["cross", "of", false, "of = belonging; | not used"]], ["liable for = legally responsible for", "liable to = likely to suffer, or open to"]),
+          ...PLAB.kit.lineup("e5w", "The company is liable ____ the damage.", [["wantStar", "for", true, "legally | responsible for"], ["reachDot", "to", "diff", "likely to suffer | the damage itself"], ["cross", "of", false, "of = belonging; | not used"]], ["liable for = legally responsible for", "liable to = likely to suffer, or open to"], null, ["\u2248 to: This road is liable to flooding."]),
         ],
       },
       {
@@ -269,11 +269,11 @@
         alt: "The sentence Entry is limited with a gap ten people., then the candidates: to (fits: kept within); by (correct English, different meaning: held back by ten people); in (not used: in is inside; not used)",
         say: [
           { text: "Fill the gap: Entry is limited \u2026 ten people. What does the sentence want to say? It wants **limited to**: kept within.", cue: "e6w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean held back by ten people. That is not what this sentence says. **in**: in is inside; not used.", cue: "e6w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean held back by ten people. That is not what this sentence says. Where by fits: _The project was limited by money._ **in**: in is inside; not used.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Entry is limited ____ ten people.", [["reachDot", "to", true, "kept within"], ["followRule", "by", "diff", "held back by | ten people"], ["cross", "in", false, "in is inside; | not used"]], ["limited to = kept within", "limited by = held back by"]),
+          ...PLAB.kit.lineup("e6w", "Entry is limited ____ ten people.", [["reachDot", "to", true, "kept within"], ["followRule", "by", "diff", "held back by | ten people"], ["cross", "in", false, "in is inside; | not used"]], ["limited to = kept within", "limited by = held back by"], null, ["\u2248 by: The project was limited by money."]),
         ],
       },
       {
@@ -322,7 +322,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Please listen ____ me.", [["reachDot", "to", true, "pay attention | to sound"], ["cross", "(no word)", false, "listen cannot reach | its object alone"], ["cross", "at", false, "at goes with look"]], ["listen to = pay attention to sound"]),
+          ...PLAB.kit.lineup("e7w", "Please listen ____ me.", [["reachDot", "to", true, "pay attention | to sound"], ["cross", "(no word)", false, "listen cannot reach | its object alone"], ["cross", "at", false, "at goes with look"]], ["listen to = pay attention to sound"], null, []),
         ],
       },
       {
@@ -388,11 +388,11 @@
         alt: "The sentence He lives with a gap rice., then the candidates: on (fits: survive by eating or using); by (correct English, different meaning: rice would be his rule of life); for (correct English, different meaning: rice would be his whole purpose)",
         say: [
           { text: "Fill the gap: He lives \u2026 rice. What does the sentence want to say? It wants **live on**: survive by eating or using.", cue: "e8w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean rice would be his rule of life. That is not what this sentence says. **for** is correct English, but it would mean rice would be his whole purpose. That is not what this sentence says.", cue: "e8w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean rice would be his rule of life. That is not what this sentence says. Where by fits: _She lives by her principles._ **for** is correct English, but it would mean rice would be his whole purpose. That is not what this sentence says. Where for fits: _She lives for her children._", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He lives ____ rice.", [["support", "on", true, "survive by | eating or using"], ["followRule", "by", "diff", "rice would be | his rule of life"], ["wantStar", "for", "diff", "rice would be | his whole purpose"]], ["live on = survive by eating or using", "live by = follow as a rule"]),
+          ...PLAB.kit.lineup("e8w", "He lives ____ rice.", [["support", "on", true, "survive by | eating or using"], ["followRule", "by", "diff", "rice would be | his rule of life"], ["wantStar", "for", "diff", "rice would be | his whole purpose"]], ["live on = survive by eating or using", "live by = follow as a rule"], null, ["\u2248 by: She lives by her principles.", "\u2248 for: She lives for her children."]),
         ],
       },
       {

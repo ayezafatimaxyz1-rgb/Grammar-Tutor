@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The journey was fraught ____ danger.", [["agreeWith", "with", true, "full of | something bad"], ["cross", "of", false, "of goes with full; | fraught takes with"], ["cross", "by", false, "by is a means; | not used"]], ["fraught with = full of something bad"]),
+          ...PLAB.kit.lineup("e1w", "The journey was fraught ____ danger.", [["agreeWith", "with", true, "full of | something bad"], ["cross", "of", false, "of goes with full; | fraught takes with"], ["cross", "by", false, "by is a means; | not used"]], ["fraught with = full of something bad"], null, []),
         ],
       },
       {
@@ -59,11 +59,11 @@
         alt: "The sentence At last she was free with a gap pain., then the candidates: from (fits: without something bad); for (correct English, different meaning: pain would cost her nothing); at (not used: at is a point; not used)",
         say: [
           { text: "Fill the gap: At last she was free \u2026 pain. What does the sentence want to say? It wants **free from**: without something bad.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean pain would cost her nothing. That is not what this sentence says. **at**: at is a point; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean pain would cost her nothing. That is not what this sentence says. Where for fits: _Entry is free for children._ **at**: at is a point; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "At last she was free ____ pain.", [["holdBack", "from", true, "without | something bad"], ["wantStar", "for", "diff", "pain would cost | her nothing"], ["cross", "at", false, "at is a point; | not used"]], ["free from = without something bad", "free for = costing nothing for"]),
+          ...PLAB.kit.lineup("e2w", "At last she was free ____ pain.", [["holdBack", "from", true, "without | something bad"], ["wantStar", "for", "diff", "pain would cost | her nothing"], ["cross", "at", false, "at is a point; | not used"]], ["free from = without something bad", "free for = costing nothing for"], null, ["\u2248 for: Entry is free for children."]),
         ],
       },
       {
@@ -90,7 +90,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "The hall was full ____ students.", [["awareOf", "of", true, "containing as | much as possible"], ["cross", "with", false, "filled with, | but full of"], ["cross", "from", false, "from is a | source; not used"]], ["full of = containing as much as possible"]),
+          ...PLAB.kit.lineup("e3w", "The hall was full ____ students.", [["awareOf", "of", true, "containing as | much as possible"], ["cross", "with", false, "filled with, | but full of"], ["cross", "from", false, "from is a | source; not used"]], ["full of = containing as much as possible"], null, []),
         ],
       },
       {
@@ -117,7 +117,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He was furious ____ his son.", [["agreeWith", "with", true, "very angry | with a person"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "from", false, "from is a | source; not used"]], ["furious with = very angry with a person"]),
+          ...PLAB.kit.lineup("e4w", "He was furious ____ his son.", [["agreeWith", "with", true, "very angry | with a person"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "from", false, "from is a | source; not used"]], ["furious with = very angry with a person"], null, []),
         ],
       },
       {

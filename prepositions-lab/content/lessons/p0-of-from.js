@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ofx0"),
-          ...PLAB.kit.lineup("ofx0", "the roof ____ the house", [["roofOf", "of", true, "the roof is a piece | of the house"], ["origin", "from", false, "the roof has not | come out of it"]], ["Why of? the roof is a piece of the house", "Ask: Is it still part of the whole, or still that material?"]),
+          ...PLAB.kit.lineup("ofx0", "the roof ____ the house", [["roofOf", "of", true, "the roof is a piece | of the house"], ["origin", "from", false, "the roof has not | come out of it"]], ["Why of? the roof is a piece of the house", "Ask: Is it still part of the whole, or still that material?"], null, []),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "a table made with a gap wood Answer: of, because you can still see the wood. Not from: made from = changed into something new.",
         say: [
           { text: "Fill the gap: a table made … wood Picture it: you can still see the wood. So **of**.", cue: "ofx11" },
-          { text: "Why not **from**? made from = changed into something new That is correct English, but it says something else.", cue: "ofx1-r2" },
+          { text: "Why not **from**? made from = changed into something new That is correct English, but it says something else. Where from fits: _Paper is made from wood._", cue: "ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ofx1"),
-          ...PLAB.kit.lineup("ofx1", "a table made ____ wood", [["roofOf", "of", true, "you can still see | the wood"], ["origin", "from", "diff", "made from = changed | into something new"]], ["Why of? you can still see the wood", "Ask: Is it still part of the whole, or still that material?"]),
+          ...PLAB.kit.lineup("ofx1", "a table made ____ wood", [["roofOf", "of", true, "you can still see | the wood"], ["origin", "from", "diff", "made from = changed | into something new"]], ["Why of? you can still see the wood", "Ask: Is it still part of the whole, or still that material?"], null, ["≈ from: Paper is made from wood."]),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-fromx0"),
-          ...PLAB.kit.lineup("fromx0", "a letter ____ my father", [["roofOf", "of", false, "a letter of my father | = his letters, old use"], ["origin", "from", true, "the letter started | with him and travelled"]], ["Why from? the letter started with him and travelled", "Ask: Did something start there, come out of it, or change from it?"]),
+          ...PLAB.kit.lineup("fromx0", "a letter ____ my father", [["roofOf", "of", false, "a letter of my father | = his letters, old use"], ["origin", "from", true, "the letter started | with him and travelled"]], ["Why from? the letter started with him and travelled", "Ask: Did something start there, come out of it, or change from it?"], null, []),
         ],
       },
       {
@@ -111,7 +111,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-fromx1"),
-          ...PLAB.kit.lineup("fromx1", "Cheese is made ____ milk.", [["roofOf", "of", false, "made of keeps the | material as it is"], ["origin", "from", true, "milk changed; | you cannot see it now"]], ["Why from? milk changed; you cannot see it now", "Ask: Did something start there, come out of it, or change from it?"]),
+          ...PLAB.kit.lineup("fromx1", "Cheese is made ____ milk.", [["roofOf", "of", false, "made of keeps the | material as it is"], ["origin", "from", true, "milk changed; | you cannot see it now"]], ["Why from? milk changed; you cannot see it now", "Ask: Did something start there, come out of it, or change from it?"], null, []),
         ],
       },
       {

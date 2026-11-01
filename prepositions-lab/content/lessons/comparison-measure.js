@@ -85,7 +85,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", "diff", "more | than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"]),
+          ...PLAB.kit.lineup("why", "The hall holds ____ 500 people.", [["tankLid", "up to", true, "500 at most"], ["tankOver", "in excess of", "diff", "more | than 500"], ["farFrom", "far from", false, "far from = | not at all"]], ["up to = the most \u00b7 in excess of = more than", "close to = nearly \u00b7 far from = not at all"], null, []),
         ],
       },
       {

@@ -46,7 +46,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ me, I agree with the plan.", [["turnTo", "As for", true, "turning to | a new person"], ["question", "As to", false, "as to = about: | doubts as to whether"], ["aboutCircle", "About", false, "about me = | a topic about me"]], ["as for = turning to someone new", "as to = about"]),
+          ...PLAB.kit.lineup("why", "____ me, I agree with the plan.", [["turnTo", "As for", true, "turning to | a new person"], ["question", "As to", false, "as to = about: | doubts as to whether"], ["aboutCircle", "About", false, "about me = | a topic about me"]], ["as for = turning to someone new", "as to = about"], null, []),
         ],
       },
       {

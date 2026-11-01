@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx0"),
-          ...PLAB.kit.lineup("byx0", "Submit the form ____ Friday.", [["priorDot", "by", true, "one action, done | Friday or earlier"], ["notUntil", "until", false, "you do not keep | submitting till Friday"]], ["Why by? one action, done Friday or earlier", "Ask: Is it one action that must be done before a deadline?"]),
+          ...PLAB.kit.lineup("byx0", "Submit the form ____ Friday.", [["priorDot", "by", true, "one action, done | Friday or earlier"], ["notUntil", "until", false, "you do not keep | submitting till Friday"]], ["Why by? one action, done Friday or earlier", "Ask: Is it one action that must be done before a deadline?"], null, []),
         ],
       },
       {
@@ -68,7 +68,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-byx1"),
-          ...PLAB.kit.lineup("byx1", "I will be home ____ six.", [["priorDot", "by", true, "I arrive at six | or before"], ["notUntil", "until", false, "arriving is one action, | not continuing"]], ["Why by? I arrive at six or before", "Ask: Is it one action that must be done before a deadline?"]),
+          ...PLAB.kit.lineup("byx1", "I will be home ____ six.", [["priorDot", "by", true, "I arrive at six | or before"], ["notUntil", "until", false, "arriving is one action, | not continuing"]], ["Why by? I arrive at six or before", "Ask: Is it one action that must be done before a deadline?"], null, []),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-untilx0"),
-          ...PLAB.kit.lineup("untilx0", "Wait here ____ I come.", [["priorDot", "by", false, "waiting is not one | action with a deadline"], ["notUntil", "until", true, "waiting continues | up to my arrival"]], ["Why until? waiting continues up to my arrival", "Ask: Does something continue up to that point?"]),
+          ...PLAB.kit.lineup("untilx0", "Wait here ____ I come.", [["priorDot", "by", false, "waiting is not one | action with a deadline"], ["notUntil", "until", true, "waiting continues | up to my arrival"]], ["Why until? waiting continues up to my arrival", "Ask: Does something continue up to that point?"], null, []),
         ],
       },
       {
@@ -107,11 +107,11 @@
         alt: "The shop is open with a gap ten. Answer: until, because open the whole time, then it closes. Not by: open by ten = it will have opened before ten.",
         say: [
           { text: "Fill the gap: The shop is open … ten. Picture it: open the whole time, then it closes. So **until**.", cue: "untilx12" },
-          { text: "Why not **by**? open by ten = it will have opened before ten That is correct English, but it says something else.", cue: "untilx1-r2" },
+          { text: "Why not **by**? open by ten = it will have opened before ten That is correct English, but it says something else. Where by fits: _The shop will be open by ten._", cue: "untilx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-untilx1"),
-          ...PLAB.kit.lineup("untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"]),
+          ...PLAB.kit.lineup("untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"], null, ["≈ by: The shop will be open by ten."]),
         ],
       },
       {

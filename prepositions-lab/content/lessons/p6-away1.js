@@ -87,11 +87,11 @@
         alt: "The sentence His grandfather with a gap last year., then the candidates: pass away (fits: die (polite)); pass out (correct English, different meaning: faint); pass over (correct English, different meaning: ignore, skip)",
         say: [
           { text: "Fill the gap: His grandfather \u2026 last year. The sentence wants **pass away**: die (polite).", cue: "f1w1" },
-          { text: "Why not the others? **pass out** is correct English, but it means faint. That is not what this sentence says. **pass over** is correct English, but it means ignore, skip. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **pass out** is correct English, but it means faint. That is not what this sentence says. Where pass out fits: _He passed out in the heat._ **pass over** is correct English, but it means ignore, skip. That is not what this sentence says. Where pass over fits: _They passed over him for the job._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "His grandfather ____ last year.", [["personLeft", "pass away", true, "die (polite)"], ["goOut", "pass out", "diff", "faint"], ["overRock", "pass over", "diff", "ignore, skip"]], ["pass away = die (polite)", "Why away? away = gone"]),
+          ...PLAB.kit.lineup("f1w", "His grandfather ____ last year.", [["personLeft", "pass away", true, "die (polite)"], ["goOut", "pass out", "diff", "faint"], ["overRock", "pass over", "diff", "ignore, skip"]], ["pass away = die (polite)", "Why away? away = gone"], null, ["\u2248 pass out: He passed out in the heat.", "\u2248 pass over: They passed over him for the job."]),
         ],
       },
       {
@@ -154,11 +154,11 @@
         alt: "The sentence He with a gap all his money., then the candidates: give away (fits: donate, or reveal); give up (correct English, different meaning: stop doing); give in (correct English, different meaning: surrender)",
         say: [
           { text: "Fill the gap: He \u2026 all his money. The sentence wants **give away**: donate, or reveal.", cue: "f2w1" },
-          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. **give in** is correct English, but it means surrender. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. Where give up fits: _He gave up smoking._ **give in** is correct English, but it means surrender. That is not what this sentence says. Where give in fits: _The rebels finally gave in._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He ____ all his money.", [["gift", "give away", true, "donate, or reveal"], ["arrowUp", "give up", "diff", "stop doing"], ["absorbedIn", "give in", "diff", "surrender"]], ["give away = donate, or reveal", "Why away? away = from you"]),
+          ...PLAB.kit.lineup("f2w", "He ____ all his money.", [["gift", "give away", true, "donate, or reveal"], ["arrowUp", "give up", "diff", "stop doing"], ["absorbedIn", "give in", "diff", "surrender"]], ["give away = donate, or reveal", "Why away? away = from you"], null, ["\u2248 give up: He gave up smoking.", "\u2248 give in: The rebels finally gave in."]),
         ],
       },
       {
@@ -219,11 +219,11 @@
         alt: "The sentence The boy with a gap from home., then the candidates: run away (fits: escape); run out (correct English, different meaning: be used up); run over (correct English, different meaning: hit with a vehicle)",
         say: [
           { text: "Fill the gap: The boy \u2026 from home. The sentence wants **run away**: escape.", cue: "f3w1" },
-          { text: "Why not the others? **run out** is correct English, but it means be used up. That is not what this sentence says. **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **run out** is correct English, but it means be used up. That is not what this sentence says. Where run out fits: _Our time has run out._ **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says. Where run over fits: _A car ran over the dog._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The boy ____ from home.", [["goOut", "run away", true, "escape"], ["goOut", "run out", "diff", "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"]], ["run away = escape", "Why away? away = gone"]),
+          ...PLAB.kit.lineup("f3w", "The boy ____ from home.", [["goOut", "run away", true, "escape"], ["goOut", "run out", "diff", "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"]], ["run away = escape", "Why away? away = gone"], null, ["\u2248 run out: Our time has run out.", "\u2248 run over: A car ran over the dog."]),
         ],
       },
       {
@@ -284,11 +284,11 @@
         alt: "The sentence Hundreds were with a gap at the gate., then the candidates: turn away (fits: refuse entry); turn down (correct English, different meaning: refuse an offer); turn out (correct English, different meaning: prove to be)",
         say: [
           { text: "Fill the gap: Hundreds were \u2026 at the gate. The sentence wants **turn away**: refuse entry.", cue: "f4w1" },
-          { text: "Why not the others? **turn down** is correct English, but it means refuse an offer. That is not what this sentence says. **turn out** is correct English, but it means prove to be. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **turn down** is correct English, but it means refuse an offer. That is not what this sentence says. Where turn down fits: _She turned down the offer._ **turn out** is correct English, but it means prove to be. That is not what this sentence says. Where turn out fits: _The rumour turned out to be false._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Hundreds were ____ at the gate.", [["gate", "turn away", true, "refuse entry"], ["arrowDown", "turn down", "diff", "refuse an offer"], ["goOut", "turn out", "diff", "prove to be"]], ["turn away = refuse entry", "Why away? away = from you"]),
+          ...PLAB.kit.lineup("f4w", "Hundreds were ____ at the gate.", [["gate", "turn away", true, "refuse entry"], ["arrowDown", "turn down", "diff", "refuse an offer"], ["goOut", "turn out", "diff", "prove to be"]], ["turn away = refuse entry", "Why away? away = from you"], null, ["\u2248 turn down: She turned down the offer.", "\u2248 turn out: The rumour turned out to be false."]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence with a gap your books., then the candidates: put away (fits: store in its place); put off (correct English, different meaning: postpone); put out (correct English, different meaning: extinguish)",
         say: [
           { text: "Fill the gap: \u2026 your books. The sentence wants **put away**: store in its place.", cue: "f5w1" },
-          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. **put out** is correct English, but it means extinguish. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. Where put off fits: _They put off the meeting till Monday._ **put out** is correct English, but it means extinguish. That is not what this sentence says. Where put out fits: _Firemen put out the fire._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____ your books.", [["inDrawer", "put away", true, "store in its place"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put away = store in its place", "Why away? away = gone"]),
+          ...PLAB.kit.lineup("f5w", "____ your books.", [["inDrawer", "put away", true, "store in its place"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put away = store in its place", "Why away? away = gone"], null, ["\u2248 put off: They put off the meeting till Monday.", "\u2248 put out: Firemen put out the fire."]),
         ],
       },
       {
@@ -416,11 +416,11 @@
         alt: "The sentence She with a gap her tears., then the candidates: hold back (fits: restrain); hold up (correct English, different meaning: delay); hold on (correct English, different meaning: wait)",
         say: [
           { text: "Fill the gap: She \u2026 her tears. The sentence wants **hold back**: restrain.", cue: "f6w1" },
-          { text: "Why not the others? **hold up** is correct English, but it means delay. That is not what this sentence says. **hold on** is correct English, but it means wait. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **hold up** is correct English, but it means delay. That is not what this sentence says. Where hold up fits: _Heavy traffic held up the ambulance._ **hold on** is correct English, but it means wait. That is not what this sentence says. Where hold on fits: _Hold on a minute, please._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "She ____ her tears.", [["holdBack", "hold back", true, "restrain"], ["arrowUp", "hold up", "diff", "delay"], ["support", "hold on", "diff", "wait"]], ["hold back = restrain", "Why back? back = kept behind"]),
+          ...PLAB.kit.lineup("f6w", "She ____ her tears.", [["holdBack", "hold back", true, "restrain"], ["arrowUp", "hold up", "diff", "delay"], ["support", "hold on", "diff", "wait"]], ["hold back = restrain", "Why back? back = kept behind"], null, ["\u2248 hold up: Heavy traffic held up the ambulance.", "\u2248 hold on: Hold on a minute, please."]),
         ],
       },
       {

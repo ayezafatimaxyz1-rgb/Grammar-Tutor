@@ -1,4 +1,6 @@
-import json, re, sys
+import json, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from uses import use_for
 exec(open(sys.argv[1]).read())
 T = json.dumps
 ROOT = "/home/user/Grammar-Tutor/prepositions-lab/content/lessons/"
@@ -27,7 +29,8 @@ def step_js(lid, sentence, opts, rules, ind):
     others = [i for i in range(len(opts)) if i != ok]
     why = []
     for i in diff:
-        why.append(f"**{opts[i][1]}** is correct English, but it would mean {clean(opts[i][3])}. That is not what this sentence says.")
+        ex_ = use_for(opts[i][1], f"{lid}|{opts[i][1]}", strict=True)
+        why.append(f"**{opts[i][1]}** is correct English, but it would mean {clean(opts[i][3])}. That is not what this sentence says." + (f" Where {opts[i][1]} fits: _{ex_}_" if ex_ else ""))
     for i in wrong:
         why.append(f"**{opts[i][1]}**: {clean(opts[i][3])}.")
     says = [
@@ -47,7 +50,7 @@ def step_js(lid, sentence, opts, rules, ind):
         i2 + "],",
         i2 + "actions: [",
         i2 + '  PLAB.kit.clear("clear-why"),',
-        i2 + "  ...PLAB.kit.lineup(\"why\", " + T(sentence) + ", [" + opt_js + "], " + T(rules) + "),",
+        i2 + "  ...PLAB.kit.lineup(\"why\", " + T(sentence) + ", [" + opt_js + "], " + T(rules) + ", null, " + T([f"\u2248 {opts[i][1]}: {use_for(opts[i][1], f'{lid}|{opts[i][1]}', strict=True)}" for i in diff if use_for(opts[i][1], f'{lid}|{opts[i][1]}', strict=True)]) + "),",
         i2 + "],",
         ind + "},"]
     return "\n".join(lines) + "\n"
