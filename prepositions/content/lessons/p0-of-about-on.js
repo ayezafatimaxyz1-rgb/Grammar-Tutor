@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 30,
     summary: "OF, ABOUT, ON side by side: OF after know/feel words · ABOUT for everyday topics · ON for formal topics think of = have an idea · think about = consider all sides.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **of** = the thing the mind holds (_aware of the danger_) · **about** = around a topic, everyday (_talk about the match_) · **on** = a focused, formal topic (_a book on law_).", cue: "d1" },
           { text: "OF after know/feel words · ABOUT for everyday topics · ON for formal topics.", cue: "d-r0" },
           { text: "think of = have an idea · think about = consider all sides.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,153 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: OF, ABOUT, ON",
+        id: "of-pic",
+        title: "of: its picture",
+        alt: "of: OF: after words of knowing and feeling, it names the thing the mind holds. Ask yourself: Does a know or feel word come before it (aware, afraid, proud)?",
+        say: [
+          { text: "OF: after words of knowing and feeling, it names the thing the mind holds.", cue: "of-l0" },
+          { text: "Before you choose **of**, ask yourself: Does a know or feel word come before it (aware, afraid, proud)?", cue: "of-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-of"),
+          { do: "write", id: "of-t", text: "OF: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("of-p", "awareOf", 340, 86, 2),
+          { do: "write", id: "of-l0", text: "OF: after words of knowing and feeling,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "of-l1", text: "it names the thing the mind holds.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "of-ask", text: "Ask yourself: Does a know or feel word come before it (aware, afraid, proud)?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "of-ex1",
+        title: "of: example 1, why this and not the others",
+        alt: "She is aware with a gap the risk. Answer: of, because aware is a knowing word: the risk is what she knows. Not about: aware takes of, not about. Not on: on is for formal topics like books.",
+        say: [
+          { text: "Fill the gap: She is aware … the risk. Picture it: aware is a knowing word: the risk is what she knows. So **of**.", cue: "ofx01" },
+          { text: "Why not **about**? aware takes of, not about. Why not **on**? on is for formal topics like books.", cue: "ofx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-ofx0"),
+          ...PLAB.kit.lineup("ofx0", "She is aware ____ the risk.", [["awareOf", "of", true, "aware is a knowing word: | the risk is what she knows"], ["aboutCircle", "about", false, "aware takes of, | not about"], ["pointDoc", "on", false, "on is for formal | topics like books"]], ["Why of? aware is a knowing word: the risk is what she knows", "Ask: Does a know or feel word come before it (aware, afraid, proud)?"]),
+        ],
+      },
+      {
+        id: "of-ex2",
+        title: "of: example 2, why this and not the others",
+        alt: "He is afraid with a gap snakes. Answer: of, because fear holds the snakes in the mind. Not about: afraid about = worried about a situation. Not on: on is not a feeling word partner.",
+        say: [
+          { text: "Fill the gap: He is afraid … snakes. Picture it: fear holds the snakes in the mind. So **of**.", cue: "ofx11" },
+          { text: "Why not **about**? afraid about = worried about a situation That is correct English, but it says something else. Why not **on**? on is not a feeling word partner.", cue: "ofx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-ofx1"),
+          ...PLAB.kit.lineup("ofx1", "He is afraid ____ snakes.", [["awareOf", "of", true, "fear holds the snakes | in the mind"], ["aboutCircle", "about", "diff", "afraid about = worried | about a situation"], ["pointDoc", "on", false, "on is not a feeling | word partner"]], ["Why of? fear holds the snakes in the mind", "Ask: Does a know or feel word come before it (aware, afraid, proud)?"]),
+        ],
+      },
+      {
+        id: "about-pic",
+        title: "about: its picture",
+        alt: "about: ABOUT: around a topic, every side of it, in everyday talk. Ask yourself: Is it everyday talk around a topic?",
+        say: [
+          { text: "ABOUT: around a topic, every side of it, in everyday talk.", cue: "about-l0" },
+          { text: "Before you choose **about**, ask yourself: Is it everyday talk around a topic?", cue: "about-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-about"),
+          { do: "write", id: "about-t", text: "ABOUT: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("about-p", "aboutCircle", 340, 86, 2),
+          { do: "write", id: "about-l0", text: "ABOUT: around a topic, every side of it,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "about-l1", text: "in everyday talk.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "about-ask", text: "Ask yourself: Is it everyday talk around a topic?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "about-ex1",
+        title: "about: example 1, why this and not the others",
+        alt: "They talked with a gap the match. Answer: about, because they went round and round the topic, casually. Not of: talk of is old, not everyday. Not on: talked on = gave a formal talk.",
+        say: [
+          { text: "Fill the gap: They talked … the match. Picture it: they went round and round the topic, casually. So **about**.", cue: "aboutx02" },
+          { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk That is correct English, but it says something else.", cue: "aboutx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-aboutx0"),
+          ...PLAB.kit.lineup("aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "they went round and round | the topic, casually"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? they went round and round the topic, casually", "Ask: Is it everyday talk around a topic?"]),
+        ],
+      },
+      {
+        id: "about-ex2",
+        title: "about: example 2, why this and not the others",
+        alt: "I am worried with a gap my exam. Answer: about, because the worry circles around the exam. Not of: worried takes about. Not on: on is formal, not a feeling.",
+        say: [
+          { text: "Fill the gap: I am worried … my exam. Picture it: the worry circles around the exam. So **about**.", cue: "aboutx12" },
+          { text: "Why not **of**? worried takes about. Why not **on**? on is formal, not a feeling.", cue: "aboutx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-aboutx1"),
+          ...PLAB.kit.lineup("aboutx1", "I am worried ____ my exam.", [["awareOf", "of", false, "worried takes about"], ["aboutCircle", "about", true, "the worry circles | around the exam"], ["pointDoc", "on", false, "on is formal, | not a feeling"]], ["Why about? the worry circles around the exam", "Ask: Is it everyday talk around a topic?"]),
+        ],
+      },
+      {
+        id: "on-pic",
+        title: "on: its picture",
+        alt: "on: ON: a focused, formal topic: books, lectures, essays, reports. Ask yourself: Is it a book, lecture, essay or report on one subject?",
+        say: [
+          { text: "ON: a focused, formal topic: books, lectures, essays, reports.", cue: "on-l0" },
+          { text: "Before you choose **on**, ask yourself: Is it a book, lecture, essay or report on one subject?", cue: "on-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-on"),
+          { do: "write", id: "on-t", text: "ON: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("on-p", "pointDoc", 340, 86, 2),
+          { do: "write", id: "on-l0", text: "ON: a focused, formal topic:", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "on-l1", text: "books, lectures, essays, reports.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "on-ask", text: "Ask yourself: Is it a book, lecture, essay or report on one subject?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "on-ex1",
+        title: "on: example 1, why this and not the others",
+        alt: "He wrote a book with a gap Iqbal. Answer: on, because a book is a formal study of one subject. Not of: a book of Iqbal = a book by him. Not about: about is fine but everyday in tone.",
+        say: [
+          { text: "Fill the gap: He wrote a book … Iqbal. Picture it: a book is a formal study of one subject. So **on**.", cue: "onx03" },
+          { text: "Why not **of**? a book of Iqbal = a book by him That is correct English, but it says something else. Why not **about**? about is fine but everyday in tone That is correct English, but it says something else.", cue: "onx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx0"),
+          ...PLAB.kit.lineup("onx0", "He wrote a book ____ Iqbal.", [["awareOf", "of", "diff", "a book of Iqbal = | a book by him"], ["aboutCircle", "about", "diff", "about is fine but | everyday in tone"], ["pointDoc", "on", true, "a book is a formal | study of one subject"]], ["Why on? a book is a formal study of one subject", "Ask: Is it a book, lecture, essay or report on one subject?"]),
+        ],
+      },
+      {
+        id: "on-ex2",
+        title: "on: example 2, why this and not the others",
+        alt: "She gave a lecture with a gap climate change. Answer: on, because a lecture points at one serious subject. Not of: lecture of = given by. Not about: less formal.",
+        say: [
+          { text: "Fill the gap: She gave a lecture … climate change. Picture it: a lecture points at one serious subject. So **on**.", cue: "onx13" },
+          { text: "Why not **of**? lecture of = given by. Why not **about**? less formal That is correct English, but it says something else.", cue: "onx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx1"),
+          ...PLAB.kit.lineup("onx1", "She gave a lecture ____ climate change.", [["awareOf", "of", false, "lecture of = given by"], ["aboutCircle", "about", "diff", "less formal"], ["pointDoc", "on", true, "a lecture points at | one serious subject"]], ["Why on? a lecture points at one serious subject", "Ask: Is it a book, lecture, essay or report on one subject?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "OF, ABOUT, ON: how to choose",
+        alt: "How to choose: Does a know or feel word come before it (aware, afraid, proud)? Then of. Is it everyday talk around a topic? Then about. Is it a book, lecture, essay or report on one subject? Then on.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does a know or feel word come before it (aware, afraid, proud)? Then **of**. Is it everyday talk around a topic? Then **about**. Is it a book, lecture, essay or report on one subject? Then **on**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["awareOf", "Does a know or feel word come before it (aware, afraid, proud)?", { sub: "yes → OF", size: 26 }], ["aboutCircle", "Is it everyday talk around a topic?", { sub: "yes → ABOUT", size: 26 }], ["pointDoc", "Is it a book, lecture, essay or report on one subject?", { sub: "yes → ON", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: OF, ABOUT, ON",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +199,105 @@
               "text": "on",
               "correct": true,
               "why": "Correct. A thesis is a formal study of one topic: on."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: OF, ABOUT, ON",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-of-about-on-of",
+          "source": "original",
+          "skill": "OF, ABOUT, ON: of",
+          "prompt": "We are proud ___ our soldiers.",
+          "options": [
+            {
+              "text": "about",
+              "misconception": "p0-sense",
+              "why": "Proud takes of."
+            },
+            {
+              "text": "of",
+              "correct": true,
+              "why": "Correct. Proud is a feeling: of names its object. Ask: Does a know or feel word come before it (aware, afraid, proud)?"
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "Not used."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: OF, ABOUT, ON",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-of-about-on-about",
+          "source": "original",
+          "skill": "OF, ABOUT, ON: about",
+          "prompt": "Tell me ___ your village.",
+          "options": [
+            {
+              "text": "about",
+              "correct": true,
+              "why": "Correct. Every side of the topic: people, fields, food. Ask: Is it everyday talk around a topic?"
+            },
+            {
+              "text": "of",
+              "misconception": "p0-sense",
+              "why": "Tell me of is poetic, old-fashioned. It is correct English, but it says something else."
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "Not a formal study."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-4",
+        title: "Practice 4: OF, ABOUT, ON",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-of-about-on-on",
+          "source": "original",
+          "skill": "OF, ABOUT, ON: on",
+          "prompt": "Write an essay ___ democracy.",
+          "options": [
+            {
+              "text": "about",
+              "misconception": "p0-sense",
+              "why": "Less formal. It is correct English, but it says something else."
+            },
+            {
+              "text": "of",
+              "misconception": "p0-sense",
+              "why": "Essay of = written by."
+            },
+            {
+              "text": "on",
+              "correct": true,
+              "why": "Correct. An essay focuses on one subject. Ask: Is it a book, lecture, essay or report on one subject?"
             }
           ]
         },

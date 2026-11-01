@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "DUE TO and BECAUSE OF side by side: DUE TO after be (and nouns) · BECAUSE OF after action verbs His absence was due to illness. He was absent because of illness..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **due to** = after BE (_The delay was due to fog._) · **because of** = after an action (_We were late because of fog._).", cue: "d1" },
           { text: "DUE TO after be (and nouns) · BECAUSE OF after action verbs.", cue: "d-r0" },
           { text: "His absence was due to illness. He was absent because of illness..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: DUE TO and BECAUSE OF",
+        id: "due-to-pic",
+        title: "due to: its picture",
+        alt: "due to: DUE TO: caused by. In formal English it follows BE (or a noun). Ask yourself: Does it come after is, was, are (or a noun)?",
+        say: [
+          { text: "DUE TO: caused by. In formal English it follows BE (or a noun).", cue: "due-to-l0" },
+          { text: "Before you choose **due to**, ask yourself: Does it come after is, was, are (or a noun)?", cue: "due-to-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-due-to"),
+          { do: "write", id: "due-to-t", text: "DUE TO: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("due-to-p", "causeEffect", 340, 86, 2),
+          { do: "write", id: "due-to-l0", text: "DUE TO: caused by. In formal English", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "due-to-l1", text: "it follows BE (or a noun).", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "due-to-ask", text: "Ask yourself: Does it come after is, was, are (or a noun)?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "due-to-ex1",
+        title: "due to: example 1, why this and not the others",
+        alt: "The delay was with a gap fog. Answer: due to, because after was: the delay is caused by fog. Not because of: accepted in speech; formal tests prefer due to.",
+        say: [
+          { text: "Fill the gap: The delay was … fog. Picture it: after was: the delay is caused by fog. So **due to**.", cue: "due-tox01" },
+          { text: "Why not **because of**? accepted in speech; formal tests prefer due to That is correct English, but it says something else.", cue: "due-tox0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-due-tox0"),
+          ...PLAB.kit.lineup("due-tox0", "The delay was ____ fog.", [["causeEffect", "due to", true, "after was: the delay | is caused by fog"], ["reasonFor", "because of", "diff", "accepted in speech; | formal tests prefer due to"]], ["Why due to? after was: the delay is caused by fog", "Ask: Does it come after is, was, are (or a noun)?"]),
+        ],
+      },
+      {
+        id: "due-to-ex2",
+        title: "due to: example 2, why this and not the others",
+        alt: "His success is with a gap hard work. Answer: due to, because after is. Not because of: accepted, but due to is the formal choice.",
+        say: [
+          { text: "Fill the gap: His success is … hard work. Picture it: after is. So **due to**.", cue: "due-tox11" },
+          { text: "Why not **because of**? accepted, but due to is the formal choice That is correct English, but it says something else.", cue: "due-tox1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-due-tox1"),
+          ...PLAB.kit.lineup("due-tox1", "His success is ____ hard work.", [["causeEffect", "due to", true, "after is"], ["reasonFor", "because of", "diff", "accepted, but due to | is the formal choice"]], ["Why due to? after is", "Ask: Does it come after is, was, are (or a noun)?"]),
+        ],
+      },
+      {
+        id: "because-of-pic",
+        title: "because of: its picture",
+        alt: "because of: BECAUSE OF: the reason for an action. It follows an action verb. Ask yourself: Does it give the reason for an action (stopped, cancelled, missed)?",
+        say: [
+          { text: "BECAUSE OF: the reason for an action. It follows an action verb.", cue: "because-of-l0" },
+          { text: "Before you choose **because of**, ask yourself: Does it give the reason for an action (stopped, cancelled, missed)?", cue: "because-of-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-because-of"),
+          { do: "write", id: "because-of-t", text: "BECAUSE OF: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("because-of-p", "reasonFor", 340, 86, 2),
+          { do: "write", id: "because-of-l0", text: "BECAUSE OF: the reason for an action.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "because-of-l1", text: "It follows an action verb.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "because-of-ask", text: "Ask yourself: Does it give the reason for an action (stopped, cancelled, missed)?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "because-of-ex1",
+        title: "because of: example 1, why this and not the others",
+        alt: "The match was stopped with a gap rain. Answer: because of, because stopped is an action: rain is its reason. Not due to: disputed after an action in formal tests.",
+        say: [
+          { text: "Fill the gap: The match was stopped … rain. Picture it: stopped is an action: rain is its reason. So **because of**.", cue: "because-ofx02" },
+          { text: "Why not **due to**? disputed after an action in formal tests That is correct English, but it says something else.", cue: "because-ofx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-because-ofx0"),
+          ...PLAB.kit.lineup("because-ofx0", "The match was stopped ____ rain.", [["causeEffect", "due to", "diff", "disputed after an | action in formal tests"], ["reasonFor", "because of", true, "stopped is an action: | rain is its reason"]], ["Why because of? stopped is an action: rain is its reason", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"]),
+        ],
+      },
+      {
+        id: "because-of-ex2",
+        title: "because of: example 2, why this and not the others",
+        alt: "She missed school with a gap illness. Answer: because of, because missed is an action. Not due to: after missed, formal tests reject due to.",
+        say: [
+          { text: "Fill the gap: She missed school … illness. Picture it: missed is an action. So **because of**.", cue: "because-ofx12" },
+          { text: "Why not **due to**? after missed, formal tests reject due to.", cue: "because-ofx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-because-ofx1"),
+          ...PLAB.kit.lineup("because-ofx1", "She missed school ____ illness.", [["causeEffect", "due to", false, "after missed, formal | tests reject due to"], ["reasonFor", "because of", true, "missed is an action"]], ["Why because of? missed is an action", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "DUE TO and BECAUSE OF: how to choose",
+        alt: "How to choose: Does it come after is, was, are (or a noun)? Then due to. Does it give the reason for an action (stopped, cancelled, missed)? Then because of.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does it come after is, was, are (or a noun)? Then **due to**. Does it give the reason for an action (stopped, cancelled, missed)? Then **because of**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["causeEffect", "Does it come after is, was, are (or a noun)?", { sub: "yes → DUE TO", size: 26 }], ["reasonFor", "Does it give the reason for an action (stopped, cancelled, missed)?", { sub: "yes → BECAUSE OF", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: DUE TO and BECAUSE OF",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "thanks to",
               "misconception": "p0-sense",
               "why": "Due to fits after be: the cancellation was due to bad weather. Thanks to is for good causes."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: DUE TO and BECAUSE OF",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-due-because-due-to",
+          "source": "original",
+          "skill": "DUE TO and BECAUSE OF: due to",
+          "prompt": "The accident was ___ carelessness.",
+          "options": [
+            {
+              "text": "because of",
+              "misconception": "p0-sense",
+              "why": "Formal tests prefer due to. It is correct English, but it says something else."
+            },
+            {
+              "text": "due to",
+              "correct": true,
+              "why": "Correct. After was. Ask: Does it come after is, was, are (or a noun)?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: DUE TO and BECAUSE OF",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-due-because-because-of",
+          "source": "original",
+          "skill": "DUE TO and BECAUSE OF: because of",
+          "prompt": "We stayed home ___ the storm.",
+          "options": [
+            {
+              "text": "because of",
+              "correct": true,
+              "why": "Correct. Stayed is an action. Ask: Does it give the reason for an action (stopped, cancelled, missed)?"
+            },
+            {
+              "text": "due to",
+              "misconception": "p0-sense",
+              "why": "Formal tests reject it here."
             }
           ]
         },

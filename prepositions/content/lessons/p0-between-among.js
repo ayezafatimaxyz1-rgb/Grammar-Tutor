@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "BETWEEN and AMONG side by side: BETWEEN = two, or clearly separate items · AMONG = a group or crowd Divide the land between the two brothers · among the villagers.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **between** = a gap with one on each side (_between two trees_) · **among** = lost in a crowd (_among the trees_).", cue: "d1" },
           { text: "BETWEEN = two, or clearly separate items · AMONG = a group or crowd.", cue: "d-r0" },
           { text: "Divide the land between the two brothers · among the villagers.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: BETWEEN and AMONG",
+        id: "between-pic",
+        title: "between: its picture",
+        alt: "between: BETWEEN: a gap with something on each side, or a link between separate, named items. Ask yourself: Are there two, or separate items you can name one by one?",
+        say: [
+          { text: "BETWEEN: a gap with something on each side, or a link between separate, named items.", cue: "between-l0" },
+          { text: "Before you choose **between**, ask yourself: Are there two, or separate items you can name one by one?", cue: "between-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-between"),
+          { do: "write", id: "between-t", text: "BETWEEN: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("between-p", "betweenTicks", 340, 86, 2),
+          { do: "write", id: "between-l0", text: "BETWEEN: a gap with something on each side,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "between-l1", text: "or a link between separate, named items.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "between-ask", text: "Ask yourself: Are there two, or separate items you can name one by one?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "between-ex1",
+        title: "between: example 1, why this and not the others",
+        alt: "Sit with a gap Ali and Sara. Answer: between, because one on each side, you in the gap. Not among: two people are not a crowd.",
+        say: [
+          { text: "Fill the gap: Sit … Ali and Sara. Picture it: one on each side, you in the gap. So **between**.", cue: "betweenx01" },
+          { text: "Why not **among**? two people are not a crowd.", cue: "betweenx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-betweenx0"),
+          ...PLAB.kit.lineup("betweenx0", "Sit ____ Ali and Sara.", [["betweenTicks", "between", true, "one on each side, | you in the gap"], ["crowdDot", "among", false, "two people are | not a crowd"]], ["Why between? one on each side, you in the gap", "Ask: Are there two, or separate items you can name one by one?"]),
+        ],
+      },
+      {
+        id: "between-ex2",
+        title: "between: example 2, why this and not the others",
+        alt: "a treaty with a gap Pakistan, China and Iran Answer: between, because three named partners, each linked to each. Not among: among blurs them into a crowd.",
+        say: [
+          { text: "Fill the gap: a treaty … Pakistan, China and Iran Picture it: three named partners, each linked to each. So **between**.", cue: "betweenx11" },
+          { text: "Why not **among**? among blurs them into a crowd.", cue: "betweenx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-betweenx1"),
+          ...PLAB.kit.lineup("betweenx1", "a treaty ____ Pakistan, China and Iran", [["betweenTicks", "between", true, "three named partners, | each linked to each"], ["crowdDot", "among", false, "among blurs them | into a crowd"]], ["Why between? three named partners, each linked to each", "Ask: Are there two, or separate items you can name one by one?"]),
+        ],
+      },
+      {
+        id: "among-pic",
+        title: "among: its picture",
+        alt: "among: AMONG: inside a crowd or group, not counting one by one. Ask yourself: Is it a crowd or group seen as a whole?",
+        say: [
+          { text: "AMONG: inside a crowd or group, not counting one by one.", cue: "among-l0" },
+          { text: "Before you choose **among**, ask yourself: Is it a crowd or group seen as a whole?", cue: "among-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-among"),
+          { do: "write", id: "among-t", text: "AMONG: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("among-p", "crowdDot", 340, 86, 2),
+          { do: "write", id: "among-l0", text: "AMONG: inside a crowd or group,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "among-l1", text: "not counting one by one.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "among-ask", text: "Ask yourself: Is it a crowd or group seen as a whole?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "among-ex1",
+        title: "among: example 1, why this and not the others",
+        alt: "He felt lost with a gap strangers. Answer: among, because strangers all around, a crowd. Not between: no gap of two.",
+        say: [
+          { text: "Fill the gap: He felt lost … strangers. Picture it: strangers all around, a crowd. So **among**.", cue: "amongx02" },
+          { text: "Why not **between**? no gap of two.", cue: "amongx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-amongx0"),
+          ...PLAB.kit.lineup("amongx0", "He felt lost ____ strangers.", [["betweenTicks", "between", false, "no gap of two"], ["crowdDot", "among", true, "strangers all around, | a crowd"]], ["Why among? strangers all around, a crowd", "Ask: Is it a crowd or group seen as a whole?"]),
+        ],
+      },
+      {
+        id: "among-ex2",
+        title: "among: example 2, why this and not the others",
+        alt: "Divide the sweets with a gap the children. Answer: among, because shared through the whole group. Not between: between the two children if there are two.",
+        say: [
+          { text: "Fill the gap: Divide the sweets … the children. Picture it: shared through the whole group. So **among**.", cue: "amongx12" },
+          { text: "Why not **between**? between the two children if there are two That is correct English, but it says something else.", cue: "amongx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-amongx1"),
+          ...PLAB.kit.lineup("amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "BETWEEN and AMONG: how to choose",
+        alt: "How to choose: Are there two, or separate items you can name one by one? Then between. Is it a crowd or group seen as a whole? Then among.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Are there two, or separate items you can name one by one? Then **between**. Is it a crowd or group seen as a whole? Then **among**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["betweenTicks", "Are there two, or separate items you can name one by one?", { sub: "yes → BETWEEN", size: 26 }], ["crowdDot", "Is it a crowd or group seen as a whole?", { sub: "yes → AMONG", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: BETWEEN and AMONG",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "in",
               "misconception": "p0-sense",
               "why": "Between is for two, or separate named items."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: BETWEEN and AMONG",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-between-among-between",
+          "source": "original",
+          "skill": "BETWEEN and AMONG: between",
+          "prompt": "Choose ___ tea and coffee.",
+          "options": [
+            {
+              "text": "among",
+              "misconception": "p0-sense",
+              "why": "Two is not a group."
+            },
+            {
+              "text": "between",
+              "correct": true,
+              "why": "Correct. Two separate choices. Ask: Are there two, or separate items you can name one by one?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: BETWEEN and AMONG",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-between-among-among",
+          "source": "original",
+          "skill": "BETWEEN and AMONG: among",
+          "prompt": "She is popular ___ students.",
+          "options": [
+            {
+              "text": "among",
+              "correct": true,
+              "why": "Correct. The whole group of students. Ask: Is it a crowd or group seen as a whole?"
+            },
+            {
+              "text": "between",
+              "misconception": "p0-sense",
+              "why": "Not two or named items."
             }
           ]
         },

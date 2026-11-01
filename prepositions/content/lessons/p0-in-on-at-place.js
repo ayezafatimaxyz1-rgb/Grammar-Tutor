@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 30,
     summary: "IN, ON, AT for place side by side: Bigger area = IN · a line or surface = ON · one point = AT I live in Lahore, on Mall Road, at number 15..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **in** = a big area around you (_in Lahore_) · **on** = a line you stand along (_on Mall Road_) · **at** = one point (_at the museum_).", cue: "d1" },
           { text: "Bigger area = IN · a line or surface = ON · one point = AT.", cue: "d-r0" },
           { text: "I live in Lahore, on Mall Road, at number 15..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,153 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: IN, ON, AT for place",
+        id: "in-pic",
+        title: "in: its picture",
+        alt: "in: IN: a big area or a box around you. Borders or walls are on every side. Ask yourself: Is there an area or walls all around?",
+        say: [
+          { text: "IN: a big area or a box around you. Borders or walls are on every side.", cue: "in-l0" },
+          { text: "Before you choose **in**, ask yourself: Is there an area or walls all around?", cue: "in-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-in"),
+          { do: "write", id: "in-t", text: "IN: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("in-p", "inCity", 340, 86, 2),
+          { do: "write", id: "in-l0", text: "IN: a big area or a box around you.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "in-l1", text: "Borders or walls are on every side.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "in-ask", text: "Ask yourself: Is there an area or walls all around?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "in-ex1",
+        title: "in: example 1, why this and not the others",
+        alt: "She lives with a gap Karachi. Answer: in, because a city is an area with borders all round. Not on: a city is not a surface or line. Not at: we are not marking one point.",
+        say: [
+          { text: "Fill the gap: She lives … Karachi. Picture it: a city is an area with borders all round. So **in**.", cue: "inx01" },
+          { text: "Why not **on**? a city is not a surface or line. Why not **at**? we are not marking one point.", cue: "inx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx0"),
+          ...PLAB.kit.lineup("inx0", "She lives ____ Karachi.", [["inCity", "in", true, "a city is an area | with borders all round"], ["roadPass", "on", false, "a city is not | a surface or line"], ["airportDot", "at", false, "we are not marking | one point"]], ["Why in? a city is an area with borders all round", "Ask: Is there an area or walls all around?"]),
+        ],
+      },
+      {
+        id: "in-ex2",
+        title: "in: example 2, why this and not the others",
+        alt: "The students are with a gap the hall. Answer: in, because walls are all around the students. Not on: they are not on its roof. Not at: at the hall = at the place, maybe outside.",
+        say: [
+          { text: "Fill the gap: The students are … the hall. Picture it: walls are all around the students. So **in**.", cue: "inx11" },
+          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside That is correct English, but it says something else.", cue: "inx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx1"),
+          ...PLAB.kit.lineup("inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"]),
+        ],
+      },
+      {
+        id: "on-pic",
+        title: "on: its picture",
+        alt: "on: ON: a surface or a line. The thing touches it or stands along it. Ask yourself: Is it a surface, or a line like a road or coast?",
+        say: [
+          { text: "ON: a surface or a line. The thing touches it or stands along it.", cue: "on-l0" },
+          { text: "Before you choose **on**, ask yourself: Is it a surface, or a line like a road or coast?", cue: "on-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-on"),
+          { do: "write", id: "on-t", text: "ON: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("on-p", "roadPass", 340, 86, 2),
+          { do: "write", id: "on-l0", text: "ON: a surface or a line.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "on-l1", text: "The thing touches it or stands along it.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "on-ask", text: "Ask yourself: Is it a surface, or a line like a road or coast?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "on-ex1",
+        title: "on: example 1, why this and not the others",
+        alt: "The shop is with a gap Mall Road. Answer: on, because a road is a line; the shop stands along it. Not in: a road is not an area with walls. Not at: at needs a point: at 15 Mall Road.",
+        say: [
+          { text: "Fill the gap: The shop is … Mall Road. Picture it: a road is a line; the shop stands along it. So **on**.", cue: "onx02" },
+          { text: "Why not **in**? a road is not an area with walls. Why not **at**? at needs a point: at 15 Mall Road.", cue: "onx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx0"),
+          ...PLAB.kit.lineup("onx0", "The shop is ____ Mall Road.", [["inCity", "in", false, "a road is not an area | with walls"], ["roadPass", "on", true, "a road is a line; | the shop stands along it"], ["airportDot", "at", false, "at needs a point: | at 15 Mall Road"]], ["Why on? a road is a line; the shop stands along it", "Ask: Is it a surface, or a line like a road or coast?"]),
+        ],
+      },
+      {
+        id: "on-ex2",
+        title: "on: example 2, why this and not the others",
+        alt: "Gwadar is with a gap the coast. Answer: on, because a coast is a line where land meets sea. Not in: the coast is a line, not an area. Not at: the coast is long, not one point.",
+        say: [
+          { text: "Fill the gap: Gwadar is … the coast. Picture it: a coast is a line where land meets sea. So **on**.", cue: "onx12" },
+          { text: "Why not **in**? the coast is a line, not an area. Why not **at**? the coast is long, not one point.", cue: "onx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx1"),
+          ...PLAB.kit.lineup("onx1", "Gwadar is ____ the coast.", [["inCity", "in", false, "the coast is a line, | not an area"], ["roadPass", "on", true, "a coast is a line | where land meets sea"], ["airportDot", "at", false, "the coast is long, | not one point"]], ["Why on? a coast is a line where land meets sea", "Ask: Is it a surface, or a line like a road or coast?"]),
+        ],
+      },
+      {
+        id: "at-pic",
+        title: "at: its picture",
+        alt: "at: AT: one point. We only say where; we do not look inside. Ask yourself: Is it one exact point, a meeting place or an address?",
+        say: [
+          { text: "AT: one point. We only say where; we do not look inside.", cue: "at-l0" },
+          { text: "Before you choose **at**, ask yourself: Is it one exact point, a meeting place or an address?", cue: "at-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-at"),
+          { do: "write", id: "at-t", text: "AT: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("at-p", "airportDot", 340, 86, 2),
+          { do: "write", id: "at-l0", text: "AT: one point.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "at-l1", text: "We only say where; we do not look inside.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "at-ask", text: "Ask yourself: Is it one exact point, a meeting place or an address?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "at-ex1",
+        title: "at: example 1, why this and not the others",
+        alt: "Meet me with a gap the bus stop. Answer: at, because the bus stop is one point where we meet. Not in: a bus stop has no inside. Not on: it is not a surface or line.",
+        say: [
+          { text: "Fill the gap: Meet me … the bus stop. Picture it: the bus stop is one point where we meet. So **at**.", cue: "atx03" },
+          { text: "Why not **in**? a bus stop has no inside. Why not **on**? it is not a surface or line.", cue: "atx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-atx0"),
+          ...PLAB.kit.lineup("atx0", "Meet me ____ the bus stop.", [["inCity", "in", false, "a bus stop has | no inside"], ["roadPass", "on", false, "it is not a | surface or line"], ["airportDot", "at", true, "the bus stop is one | point where we meet"]], ["Why at? the bus stop is one point where we meet", "Ask: Is it one exact point, a meeting place or an address?"]),
+        ],
+      },
+      {
+        id: "at-ex2",
+        title: "at: example 2, why this and not the others",
+        alt: "He lives with a gap 15 Mall Road. Answer: at, because a house number is one exact point. Not in: an address is a point, not an area. Not on: on Mall Road is fine, but not with a number.",
+        say: [
+          { text: "Fill the gap: He lives … 15 Mall Road. Picture it: a house number is one exact point. So **at**.", cue: "atx13" },
+          { text: "Why not **in**? an address is a point, not an area. Why not **on**? on Mall Road is fine, but not with a number.", cue: "atx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-atx1"),
+          ...PLAB.kit.lineup("atx1", "He lives ____ 15 Mall Road.", [["inCity", "in", false, "an address is a point, | not an area"], ["roadPass", "on", false, "on Mall Road is fine, | but not with a number"], ["airportDot", "at", true, "a house number is | one exact point"]], ["Why at? a house number is one exact point", "Ask: Is it one exact point, a meeting place or an address?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "IN, ON, AT for place: how to choose",
+        alt: "How to choose: Is there an area or walls all around? Then in. Is it a surface, or a line like a road or coast? Then on. Is it one exact point, a meeting place or an address? Then at.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is there an area or walls all around? Then **in**. Is it a surface, or a line like a road or coast? Then **on**. Is it one exact point, a meeting place or an address? Then **at**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["inCity", "Is there an area or walls all around?", { sub: "yes → IN", size: 26 }], ["roadPass", "Is it a surface, or a line like a road or coast?", { sub: "yes → ON", size: 26 }], ["airportDot", "Is it one exact point, a meeting place or an address?", { sub: "yes → AT", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: IN, ON, AT for place",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +199,105 @@
               "text": "on",
               "misconception": "p0-sense",
               "why": "In the station = inside the building; on is not used here."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: IN, ON, AT for place",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-place-in",
+          "source": "original",
+          "skill": "IN, ON, AT for place: in",
+          "prompt": "There are many mosques ___ Lahore.",
+          "options": [
+            {
+              "text": "at",
+              "misconception": "p0-sense",
+              "why": "Lahore is an area here, not one point."
+            },
+            {
+              "text": "in",
+              "correct": true,
+              "why": "Correct. The mosques are inside the city's borders. Ask: Is there an area or walls all around?"
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "A city is not a line."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: IN, ON, AT for place",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-place-on",
+          "source": "original",
+          "skill": "IN, ON, AT for place: on",
+          "prompt": "There is a picture ___ the wall.",
+          "options": [
+            {
+              "text": "at",
+              "misconception": "p0-sense",
+              "why": "At the wall = standing beside it. It is correct English, but it says something else."
+            },
+            {
+              "text": "in",
+              "misconception": "p0-sense",
+              "why": "It is not inside the wall."
+            },
+            {
+              "text": "on",
+              "correct": true,
+              "why": "Correct. It touches the wall's surface. Ask: Is it a surface, or a line like a road or coast?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-4",
+        title: "Practice 4: IN, ON, AT for place",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-place-at",
+          "source": "original",
+          "skill": "IN, ON, AT for place: at",
+          "prompt": "We stopped ___ a petrol station.",
+          "options": [
+            {
+              "text": "at",
+              "correct": true,
+              "why": "Correct. One stop on the way: a point. Ask: Is it one exact point, a meeting place or an address?"
+            },
+            {
+              "text": "in",
+              "misconception": "p0-sense",
+              "why": "In it = inside the building itself. It is correct English, but it says something else."
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "Not a surface or line."
             }
           ]
         },

@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "BY and WITH side by side: BY = who did it, or the method · WITH = the tool used killed by a robber · killed with a knife.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **by** = the doer (_written by Iqbal_) · **with** = the tool in the hand (_written with a pen_).", cue: "d1" },
           { text: "BY = who did it, or the method · WITH = the tool used.", cue: "d-r0" },
           { text: "killed by a robber · killed with a knife.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: BY and WITH",
+        id: "by-pic",
+        title: "by: its picture",
+        alt: "by: BY: the doer of an action, or the method (by bus, by hand). Ask yourself: Who did it, or by what method?",
+        say: [
+          { text: "BY: the doer of an action, or the method (by bus, by hand).", cue: "by-l0" },
+          { text: "Before you choose **by**, ask yourself: Who did it, or by what method?", cue: "by-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-by"),
+          { do: "write", id: "by-t", text: "BY: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("by-p", "writtenBy", 340, 86, 2),
+          { do: "write", id: "by-l0", text: "BY: the doer of an action,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "by-l1", text: "or the method (by bus, by hand).", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "by-ask", text: "Ask yourself: Who did it, or by what method?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "by-ex1",
+        title: "by: example 1, why this and not the others",
+        alt: "The poem was written with a gap Faiz. Answer: by, because Faiz is the doer. Not with: Faiz is a person, not a tool.",
+        say: [
+          { text: "Fill the gap: The poem was written … Faiz. Picture it: Faiz is the doer. So **by**.", cue: "byx01" },
+          { text: "Why not **with**? Faiz is a person, not a tool.", cue: "byx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-byx0"),
+          ...PLAB.kit.lineup("byx0", "The poem was written ____ Faiz.", [["writtenBy", "by", true, "Faiz is the doer"], ["pen", "with", false, "Faiz is a person, | not a tool"]], ["Why by? Faiz is the doer", "Ask: Who did it, or by what method?"]),
+        ],
+      },
+      {
+        id: "by-ex2",
+        title: "by: example 2, why this and not the others",
+        alt: "We travelled with a gap train. Answer: by, because the method of travel. Not with: with a train = taking a train along with you.",
+        say: [
+          { text: "Fill the gap: We travelled … train. Picture it: the method of travel. So **by**.", cue: "byx11" },
+          { text: "Why not **with**? with a train = taking a train along with you.", cue: "byx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-byx1"),
+          ...PLAB.kit.lineup("byx1", "We travelled ____ train.", [["writtenBy", "by", true, "the method of travel"], ["pen", "with", false, "with a train = taking | a train along with you"]], ["Why by? the method of travel", "Ask: Who did it, or by what method?"]),
+        ],
+      },
+      {
+        id: "with-pic",
+        title: "with: its picture",
+        alt: "with: WITH: the tool held in the hand. Someone uses it to do the action. Ask yourself: Is it a tool someone used?",
+        say: [
+          { text: "WITH: the tool held in the hand. Someone uses it to do the action.", cue: "with-l0" },
+          { text: "Before you choose **with**, ask yourself: Is it a tool someone used?", cue: "with-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-with"),
+          { do: "write", id: "with-t", text: "WITH: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("with-p", "pen", 340, 86, 2),
+          { do: "write", id: "with-l0", text: "WITH: the tool held in the hand.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "with-l1", text: "Someone uses it to do the action.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "with-ask", text: "Ask yourself: Is it a tool someone used?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "with-ex1",
+        title: "with: example 1, why this and not the others",
+        alt: "He cut the rope with a gap a knife. Answer: with, because the knife is the tool in his hand. Not by: by a knife makes the knife the doer.",
+        say: [
+          { text: "Fill the gap: He cut the rope … a knife. Picture it: the knife is the tool in his hand. So **with**.", cue: "withx02" },
+          { text: "Why not **by**? by a knife makes the knife the doer.", cue: "withx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-withx0"),
+          ...PLAB.kit.lineup("withx0", "He cut the rope ____ a knife.", [["writtenBy", "by", false, "by a knife makes the | knife the doer"], ["pen", "with", true, "the knife is the tool | in his hand"]], ["Why with? the knife is the tool in his hand", "Ask: Is it a tool someone used?"]),
+        ],
+      },
+      {
+        id: "with-ex2",
+        title: "with: example 2, why this and not the others",
+        alt: "She wrote it with a gap a pen. Answer: with, because the pen is the tool. Not by: by hand is a method; by a pen is not used.",
+        say: [
+          { text: "Fill the gap: She wrote it … a pen. Picture it: the pen is the tool. So **with**.", cue: "withx12" },
+          { text: "Why not **by**? by hand is a method; by a pen is not used That is correct English, but it says something else.", cue: "withx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-withx1"),
+          ...PLAB.kit.lineup("withx1", "She wrote it ____ a pen.", [["writtenBy", "by", "diff", "by hand is a method; | by a pen is not used"], ["pen", "with", true, "the pen is the tool"]], ["Why with? the pen is the tool", "Ask: Is it a tool someone used?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "BY and WITH: how to choose",
+        alt: "How to choose: Who did it, or by what method? Then by. Is it a tool someone used? Then with.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Who did it, or by what method? Then **by**. Is it a tool someone used? Then **with**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["writtenBy", "Who did it, or by what method?", { sub: "yes → BY", size: 26 }], ["pen", "Is it a tool someone used?", { sub: "yes → WITH", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: BY and WITH",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "with",
               "correct": true,
               "why": "Correct. The stone is the tool used: with."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: BY and WITH",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-by-with-by",
+          "source": "original",
+          "skill": "BY and WITH: by",
+          "prompt": "The thief was caught ___ the police.",
+          "options": [
+            {
+              "text": "by",
+              "correct": true,
+              "why": "Correct. The police did the catching. Ask: Who did it, or by what method?"
+            },
+            {
+              "text": "with",
+              "misconception": "p0-sense",
+              "why": "The police are not a tool."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: BY and WITH",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-by-with-with",
+          "source": "original",
+          "skill": "BY and WITH: with",
+          "prompt": "The road was blocked ___ stones.",
+          "options": [
+            {
+              "text": "by",
+              "misconception": "p0-sense",
+              "why": "By stones sounds like the stones did it. It is correct English, but it says something else."
+            },
+            {
+              "text": "with",
+              "correct": true,
+              "why": "Correct. Stones are what was used. Ask: Is it a tool someone used?"
             }
           ]
         },

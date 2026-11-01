@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "BY and UNTIL side by side: BY = one action, done before the deadline · UNTIL = a state that goes on up to then Return the book by Monday. Keep the book until Monday..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **by** = a deadline: at or before (_finish by Friday_) · **until** = all the time up to (_wait until Friday_).", cue: "d1" },
           { text: "BY = one action, done before the deadline · UNTIL = a state that goes on up to then.", cue: "d-r0" },
           { text: "Return the book by Monday. Keep the book until Monday..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: BY and UNTIL",
+        id: "by-pic",
+        title: "by: its picture",
+        alt: "by: BY: a deadline. One action happens at the deadline or before it. Ask yourself: Is it one action that must be done before a deadline?",
+        say: [
+          { text: "BY: a deadline. One action happens at the deadline or before it.", cue: "by-l0" },
+          { text: "Before you choose **by**, ask yourself: Is it one action that must be done before a deadline?", cue: "by-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-by"),
+          { do: "write", id: "by-t", text: "BY: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("by-p", "priorDot", 340, 86, 2),
+          { do: "write", id: "by-l0", text: "BY: a deadline. One action happens", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "by-l1", text: "at the deadline or before it.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "by-ask", text: "Ask yourself: Is it one action that must be done before a deadline?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "by-ex1",
+        title: "by: example 1, why this and not the others",
+        alt: "Submit the form with a gap Friday. Answer: by, because one action, done Friday or earlier. Not until: you do not keep submitting till Friday.",
+        say: [
+          { text: "Fill the gap: Submit the form … Friday. Picture it: one action, done Friday or earlier. So **by**.", cue: "byx01" },
+          { text: "Why not **until**? you do not keep submitting till Friday.", cue: "byx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-byx0"),
+          ...PLAB.kit.lineup("byx0", "Submit the form ____ Friday.", [["priorDot", "by", true, "one action, done | Friday or earlier"], ["notUntil", "until", false, "you do not keep | submitting till Friday"]], ["Why by? one action, done Friday or earlier", "Ask: Is it one action that must be done before a deadline?"]),
+        ],
+      },
+      {
+        id: "by-ex2",
+        title: "by: example 2, why this and not the others",
+        alt: "I will be home with a gap six. Answer: by, because I arrive at six or before. Not until: arriving is one action, not continuing.",
+        say: [
+          { text: "Fill the gap: I will be home … six. Picture it: I arrive at six or before. So **by**.", cue: "byx11" },
+          { text: "Why not **until**? arriving is one action, not continuing.", cue: "byx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-byx1"),
+          ...PLAB.kit.lineup("byx1", "I will be home ____ six.", [["priorDot", "by", true, "I arrive at six | or before"], ["notUntil", "until", false, "arriving is one action, | not continuing"]], ["Why by? I arrive at six or before", "Ask: Is it one action that must be done before a deadline?"]),
+        ],
+      },
+      {
+        id: "until-pic",
+        title: "until: its picture",
+        alt: "until: UNTIL: the action keeps going all the time up to that point, then stops. Ask yourself: Does something continue up to that point?",
+        say: [
+          { text: "UNTIL: the action keeps going all the time up to that point, then stops.", cue: "until-l0" },
+          { text: "Before you choose **until**, ask yourself: Does something continue up to that point?", cue: "until-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-until"),
+          { do: "write", id: "until-t", text: "UNTIL: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("until-p", "notUntil", 340, 86, 2),
+          { do: "write", id: "until-l0", text: "UNTIL: the action keeps going", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "until-l1", text: "all the time up to that point, then stops.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "until-ask", text: "Ask yourself: Does something continue up to that point?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "until-ex1",
+        title: "until: example 1, why this and not the others",
+        alt: "Wait here with a gap I come. Answer: until, because waiting continues up to my arrival. Not by: waiting is not one action with a deadline.",
+        say: [
+          { text: "Fill the gap: Wait here … I come. Picture it: waiting continues up to my arrival. So **until**.", cue: "untilx02" },
+          { text: "Why not **by**? waiting is not one action with a deadline.", cue: "untilx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-untilx0"),
+          ...PLAB.kit.lineup("untilx0", "Wait here ____ I come.", [["priorDot", "by", false, "waiting is not one | action with a deadline"], ["notUntil", "until", true, "waiting continues | up to my arrival"]], ["Why until? waiting continues up to my arrival", "Ask: Does something continue up to that point?"]),
+        ],
+      },
+      {
+        id: "until-ex2",
+        title: "until: example 2, why this and not the others",
+        alt: "The shop is open with a gap ten. Answer: until, because open the whole time, then it closes. Not by: open by ten = it will have opened before ten.",
+        say: [
+          { text: "Fill the gap: The shop is open … ten. Picture it: open the whole time, then it closes. So **until**.", cue: "untilx12" },
+          { text: "Why not **by**? open by ten = it will have opened before ten That is correct English, but it says something else.", cue: "untilx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-untilx1"),
+          ...PLAB.kit.lineup("untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "BY and UNTIL: how to choose",
+        alt: "How to choose: Is it one action that must be done before a deadline? Then by. Does something continue up to that point? Then until.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is it one action that must be done before a deadline? Then **by**. Does something continue up to that point? Then **until**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["priorDot", "Is it one action that must be done before a deadline?", { sub: "yes → BY", size: 26 }], ["notUntil", "Does something continue up to that point?", { sub: "yes → UNTIL", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: BY and UNTIL",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "until",
               "misconception": "p0-sense",
               "why": "Until would mean it keeps reaching us all the time up to the 30th."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: BY and UNTIL",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-by-until-by",
+          "source": "original",
+          "skill": "BY and UNTIL: by",
+          "prompt": "The work must be finished ___ June.",
+          "options": [
+            {
+              "text": "by",
+              "correct": true,
+              "why": "Correct. Finishing is one action before the deadline. Ask: Is it one action that must be done before a deadline?"
+            },
+            {
+              "text": "until",
+              "misconception": "p0-sense",
+              "why": "Finish is not a continuing action."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: BY and UNTIL",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-by-until-until",
+          "source": "original",
+          "skill": "BY and UNTIL: until",
+          "prompt": "He stayed ___ the end.",
+          "options": [
+            {
+              "text": "by",
+              "misconception": "p0-sense",
+              "why": "Staying continues."
+            },
+            {
+              "text": "until",
+              "correct": true,
+              "why": "Correct. He kept staying right up to the end. Ask: Does something continue up to that point?"
             }
           ]
         },

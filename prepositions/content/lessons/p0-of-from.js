@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "OF and FROM side by side: OF = belongs, part of · FROM = starts there, comes out of made of wood (still wood) · made from milk (changed: cheese).",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **of** = a part that belongs (_the roof of the house_) · **from** = a starting point or source (_a letter from home_).", cue: "d1" },
           { text: "OF = belongs, part of · FROM = starts there, comes out of.", cue: "d-r0" },
           { text: "made of wood (still wood) · made from milk (changed: cheese).", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: OF and FROM",
+        id: "of-pic",
+        title: "of: its picture",
+        alt: "of: OF: a part that belongs to a whole, or the material that stays as it is. Ask yourself: Is it still part of the whole, or still that material?",
+        say: [
+          { text: "OF: a part that belongs to a whole, or the material that stays as it is.", cue: "of-l0" },
+          { text: "Before you choose **of**, ask yourself: Is it still part of the whole, or still that material?", cue: "of-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-of"),
+          { do: "write", id: "of-t", text: "OF: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("of-p", "roofOf", 340, 86, 2),
+          { do: "write", id: "of-l0", text: "OF: a part that belongs to a whole,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "of-l1", text: "or the material that stays as it is.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "of-ask", text: "Ask yourself: Is it still part of the whole, or still that material?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "of-ex1",
+        title: "of: example 1, why this and not the others",
+        alt: "the roof with a gap the house Answer: of, because the roof is a piece of the house. Not from: the roof has not come out of it.",
+        say: [
+          { text: "Fill the gap: the roof … the house Picture it: the roof is a piece of the house. So **of**.", cue: "ofx01" },
+          { text: "Why not **from**? the roof has not come out of it.", cue: "ofx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-ofx0"),
+          ...PLAB.kit.lineup("ofx0", "the roof ____ the house", [["roofOf", "of", true, "the roof is a piece | of the house"], ["origin", "from", false, "the roof has not | come out of it"]], ["Why of? the roof is a piece of the house", "Ask: Is it still part of the whole, or still that material?"]),
+        ],
+      },
+      {
+        id: "of-ex2",
+        title: "of: example 2, why this and not the others",
+        alt: "a table made with a gap wood Answer: of, because you can still see the wood. Not from: made from = changed into something new.",
+        say: [
+          { text: "Fill the gap: a table made … wood Picture it: you can still see the wood. So **of**.", cue: "ofx11" },
+          { text: "Why not **from**? made from = changed into something new That is correct English, but it says something else.", cue: "ofx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-ofx1"),
+          ...PLAB.kit.lineup("ofx1", "a table made ____ wood", [["roofOf", "of", true, "you can still see | the wood"], ["origin", "from", "diff", "made from = changed | into something new"]], ["Why of? you can still see the wood", "Ask: Is it still part of the whole, or still that material?"]),
+        ],
+      },
+      {
+        id: "from-pic",
+        title: "from: its picture",
+        alt: "from: FROM: a starting point or a source. Something leaves it or is changed out of it. Ask yourself: Did something start there, come out of it, or change from it?",
+        say: [
+          { text: "FROM: a starting point or a source. Something leaves it or is changed out of it.", cue: "from-l0" },
+          { text: "Before you choose **from**, ask yourself: Did something start there, come out of it, or change from it?", cue: "from-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-from"),
+          { do: "write", id: "from-t", text: "FROM: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("from-p", "origin", 340, 86, 2),
+          { do: "write", id: "from-l0", text: "FROM: a starting point or a source.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "from-l1", text: "Something leaves it or is changed out of it.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "from-ask", text: "Ask yourself: Did something start there, come out of it, or change from it?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "from-ex1",
+        title: "from: example 1, why this and not the others",
+        alt: "a letter with a gap my father Answer: from, because the letter started with him and travelled. Not of: a letter of my father = his letters, old use.",
+        say: [
+          { text: "Fill the gap: a letter … my father Picture it: the letter started with him and travelled. So **from**.", cue: "fromx02" },
+          { text: "Why not **of**? a letter of my father = his letters, old use.", cue: "fromx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-fromx0"),
+          ...PLAB.kit.lineup("fromx0", "a letter ____ my father", [["roofOf", "of", false, "a letter of my father | = his letters, old use"], ["origin", "from", true, "the letter started | with him and travelled"]], ["Why from? the letter started with him and travelled", "Ask: Did something start there, come out of it, or change from it?"]),
+        ],
+      },
+      {
+        id: "from-ex2",
+        title: "from: example 2, why this and not the others",
+        alt: "Cheese is made with a gap milk. Answer: from, because milk changed; you cannot see it now. Not of: made of keeps the material as it is.",
+        say: [
+          { text: "Fill the gap: Cheese is made … milk. Picture it: milk changed; you cannot see it now. So **from**.", cue: "fromx12" },
+          { text: "Why not **of**? made of keeps the material as it is.", cue: "fromx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-fromx1"),
+          ...PLAB.kit.lineup("fromx1", "Cheese is made ____ milk.", [["roofOf", "of", false, "made of keeps the | material as it is"], ["origin", "from", true, "milk changed; | you cannot see it now"]], ["Why from? milk changed; you cannot see it now", "Ask: Did something start there, come out of it, or change from it?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "OF and FROM: how to choose",
+        alt: "How to choose: Is it still part of the whole, or still that material? Then of. Did something start there, come out of it, or change from it? Then from.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is it still part of the whole, or still that material? Then **of**. Did something start there, come out of it, or change from it? Then **from**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["roofOf", "Is it still part of the whole, or still that material?", { sub: "yes → OF", size: 26 }], ["origin", "Did something start there, come out of it, or change from it?", { sub: "yes → FROM", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: OF and FROM",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "of",
               "misconception": "p0-sense",
               "why": "Made of keeps the material as it is: a table made of wood."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: OF and FROM",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-of-from-of",
+          "source": "original",
+          "skill": "OF and FROM: of",
+          "prompt": "the capital ___ Pakistan",
+          "options": [
+            {
+              "text": "from",
+              "misconception": "p0-sense",
+              "why": "Nothing comes out of Pakistan here."
+            },
+            {
+              "text": "of",
+              "correct": true,
+              "why": "Correct. The capital belongs to Pakistan. Ask: Is it still part of the whole, or still that material?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: OF and FROM",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-of-from-from",
+          "source": "original",
+          "skill": "OF and FROM: from",
+          "prompt": "He is ___ Peshawar.",
+          "options": [
+            {
+              "text": "from",
+              "correct": true,
+              "why": "Correct. Peshawar is where his story starts. Ask: Did something start there, come out of it, or change from it?"
+            },
+            {
+              "text": "of",
+              "misconception": "p0-sense",
+              "why": "Of Peshawar is old and formal."
             }
           ]
         },

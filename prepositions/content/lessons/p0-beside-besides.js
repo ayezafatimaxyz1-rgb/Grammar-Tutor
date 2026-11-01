@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "BESIDE and BESIDES side by side: BESIDE = a place · BESIDES = adding one more She sat beside Ali. Besides Ali, three others came..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **beside** = at my side (_sit beside me_) · **besides** = in addition to (_besides English_).", cue: "d1" },
           { text: "BESIDE = a place · BESIDES = adding one more.", cue: "d-r0" },
           { text: "She sat beside Ali. Besides Ali, three others came..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,108 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: BESIDE and BESIDES",
+        id: "beside-pic",
+        title: "beside: its picture",
+        alt: "beside: BESIDE: a place, at the side of. Ask yourself: Is it about where something is?",
+        say: [
+          { text: "BESIDE: a place, at the side of.", cue: "beside-l0" },
+          { text: "Before you choose **beside**, ask yourself: Is it about where something is?", cue: "beside-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-beside"),
+          { do: "write", id: "beside-t", text: "BESIDE: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("beside-p", "sideBySide", 340, 86, 2),
+          { do: "write", id: "beside-l0", text: "BESIDE: a place, at the side of.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "beside-ask", text: "Ask yourself: Is it about where something is?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "beside-ex1",
+        title: "beside: example 1, why this and not the others",
+        alt: "She sat with a gap her mother. Answer: beside, because a place: at her side. Not besides: besides adds; it is not a place.",
+        say: [
+          { text: "Fill the gap: She sat … her mother. Picture it: a place: at her side. So **beside**.", cue: "besidex01" },
+          { text: "Why not **besides**? besides adds; it is not a place.", cue: "besidex0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-besidex0"),
+          ...PLAB.kit.lineup("besidex0", "She sat ____ her mother.", [["sideBySide", "beside", true, "a place: at her side"], ["stackAdd", "besides", false, "besides adds; it is | not a place"]], ["Why beside? a place: at her side", "Ask: Is it about where something is?"]),
+        ],
+      },
+      {
+        id: "beside-ex2",
+        title: "beside: example 2, why this and not the others",
+        alt: "There is a well with a gap the mosque. Answer: beside, because the well is at the side of the mosque. Not besides: not adding anything.",
+        say: [
+          { text: "Fill the gap: There is a well … the mosque. Picture it: the well is at the side of the mosque. So **beside**.", cue: "besidex11" },
+          { text: "Why not **besides**? not adding anything.", cue: "besidex1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-besidex1"),
+          ...PLAB.kit.lineup("besidex1", "There is a well ____ the mosque.", [["sideBySide", "beside", true, "the well is at | the side of the mosque"], ["stackAdd", "besides", false, "not adding anything"]], ["Why beside? the well is at the side of the mosque", "Ask: Is it about where something is?"]),
+        ],
+      },
+      {
+        id: "besides-pic",
+        title: "besides: its picture",
+        alt: "besides: BESIDES: in addition to. One more thing added. Ask yourself: Is something being added?",
+        say: [
+          { text: "BESIDES: in addition to. One more thing added.", cue: "besides-l0" },
+          { text: "Before you choose **besides**, ask yourself: Is something being added?", cue: "besides-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-besides"),
+          { do: "write", id: "besides-t", text: "BESIDES: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("besides-p", "stackAdd", 340, 86, 2),
+          { do: "write", id: "besides-l0", text: "BESIDES: in addition to. One more thing added.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "besides-ask", text: "Ask yourself: Is something being added?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "besides-ex1",
+        title: "besides: example 1, why this and not the others",
+        alt: "with a gap Urdu, he speaks Pashto. Answer: besides, because Pashto is added to Urdu. Not beside: beside is a place, not adding.",
+        say: [
+          { text: "Fill the gap: … Urdu, he speaks Pashto. Picture it: Pashto is added to Urdu. So **besides**.", cue: "besidesx02" },
+          { text: "Why not **beside**? beside is a place, not adding.", cue: "besidesx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-besidesx0"),
+          ...PLAB.kit.lineup("besidesx0", "____ Urdu, he speaks Pashto.", [["sideBySide", "beside", false, "beside is a place, | not adding"], ["stackAdd", "besides", true, "Pashto is added | to Urdu"]], ["Why besides? Pashto is added to Urdu", "Ask: Is something being added?"]),
+        ],
+      },
+      {
+        id: "besides-ex2",
+        title: "besides: example 2, why this and not the others",
+        alt: "Who came with a gap Ali? Answer: besides, because who else, in addition to Ali. Not beside: who came beside Ali = walked at his side.",
+        say: [
+          { text: "Fill the gap: Who came … Ali? Picture it: who else, in addition to Ali. So **besides**.", cue: "besidesx12" },
+          { text: "Why not **beside**? who came beside Ali = walked at his side That is correct English, but it says something else.", cue: "besidesx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-besidesx1"),
+          ...PLAB.kit.lineup("besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "BESIDE and BESIDES: how to choose",
+        alt: "How to choose: Is it about where something is? Then beside. Is something being added? Then besides.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is it about where something is? Then **beside**. Is something being added? Then **besides**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["sideBySide", "Is it about where something is?", { sub: "yes → BESIDE", size: 26 }], ["stackAdd", "Is something being added?", { sub: "yes → BESIDES", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: BESIDE and BESIDES",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +154,62 @@
               "text": "Except",
               "misconception": "p0-sense",
               "why": "Beside is a place; except would take something out."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: BESIDE and BESIDES",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-beside-besides-beside",
+          "source": "original",
+          "skill": "BESIDE and BESIDES: beside",
+          "prompt": "Put the lamp ___ the bed.",
+          "options": [
+            {
+              "text": "beside",
+              "correct": true,
+              "why": "Correct. A place at the side. Ask: Is it about where something is?"
+            },
+            {
+              "text": "besides",
+              "misconception": "p0-sense",
+              "why": "Not in addition."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: BESIDE and BESIDES",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-beside-besides-besides",
+          "source": "original",
+          "skill": "BESIDE and BESIDES: besides",
+          "prompt": "___ being clever, she is kind.",
+          "options": [
+            {
+              "text": "Beside",
+              "misconception": "p0-sense",
+              "why": "Not a place."
+            },
+            {
+              "text": "Besides",
+              "correct": true,
+              "why": "Correct. Kindness is added to cleverness. Ask: Is something being added?"
             }
           ]
         },

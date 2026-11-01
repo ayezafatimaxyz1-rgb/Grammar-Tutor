@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 30,
     summary: "IN, ON, AT for time side by side: Long stretch = IN · one day = ON · one moment = AT in 1947, on 14 August, at midnight.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **in** = a long stretch (_in July_) · **on** = one day (_on Monday_) · **at** = one moment (_at 9 o'clock_).", cue: "d1" },
           { text: "Long stretch = IN · one day = ON · one moment = AT.", cue: "d-r0" },
           { text: "in 1947, on 14 August, at midnight.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,153 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: IN, ON, AT for time",
+        id: "in-pic",
+        title: "in: its picture",
+        alt: "in: IN: a long stretch of time. Months, years, seasons, parts of the day. Ask yourself: Is it a month, year, season or part of the day?",
+        say: [
+          { text: "IN: a long stretch of time. Months, years, seasons, parts of the day.", cue: "in-l0" },
+          { text: "Before you choose **in**, ask yourself: Is it a month, year, season or part of the day?", cue: "in-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-in"),
+          { do: "write", id: "in-t", text: "IN: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("in-p", "inPeriod", 340, 86, 2),
+          { do: "write", id: "in-l0", text: "IN: a long stretch of time.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "in-l1", text: "Months, years, seasons, parts of the day.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "in-ask", text: "Ask yourself: Is it a month, year, season or part of the day?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "in-ex1",
+        title: "in: example 1, why this and not the others",
+        alt: "Pakistan was founded with a gap 1947. Answer: in, because a year is a long stretch of time. Not on: on is for one day. Not at: at is for a moment.",
+        say: [
+          { text: "Fill the gap: Pakistan was founded … 1947. Picture it: a year is a long stretch of time. So **in**.", cue: "inx01" },
+          { text: "Why not **on**? on is for one day. Why not **at**? at is for a moment.", cue: "inx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx0"),
+          ...PLAB.kit.lineup("inx0", "Pakistan was founded ____ 1947.", [["inPeriod", "in", true, "a year is a long | stretch of time"], ["calendar", "on", false, "on is for one day"], ["clock", "at", false, "at is for a moment"]], ["Why in? a year is a long stretch of time", "Ask: Is it a month, year, season or part of the day?"]),
+        ],
+      },
+      {
+        id: "in-ex2",
+        title: "in: example 2, why this and not the others",
+        alt: "It is very cold with a gap January. Answer: in, because a month is a stretch of days. Not on: no single day is named. Not at: a month is not a moment.",
+        say: [
+          { text: "Fill the gap: It is very cold … January. Picture it: a month is a stretch of days. So **in**.", cue: "inx11" },
+          { text: "Why not **on**? no single day is named. Why not **at**? a month is not a moment.", cue: "inx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx1"),
+          ...PLAB.kit.lineup("inx1", "It is very cold ____ January.", [["inPeriod", "in", true, "a month is a | stretch of days"], ["calendar", "on", false, "no single day | is named"], ["clock", "at", false, "a month is not a moment"]], ["Why in? a month is a stretch of days", "Ask: Is it a month, year, season or part of the day?"]),
+        ],
+      },
+      {
+        id: "on-pic",
+        title: "on: its picture",
+        alt: "on: ON: one day. A date, a day of the week, a special day. Ask yourself: Is there one day or date?",
+        say: [
+          { text: "ON: one day. A date, a day of the week, a special day.", cue: "on-l0" },
+          { text: "Before you choose **on**, ask yourself: Is there one day or date?", cue: "on-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-on"),
+          { do: "write", id: "on-t", text: "ON: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("on-p", "calendar", 340, 86, 2),
+          { do: "write", id: "on-l0", text: "ON: one day.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "on-l1", text: "A date, a day of the week, a special day.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "on-ask", text: "Ask yourself: Is there one day or date?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "on-ex1",
+        title: "on: example 1, why this and not the others",
+        alt: "The exam is with a gap Monday. Answer: on, because Monday is one day, one box on the calendar. Not in: in is for longer stretches. Not at: a day is not a clock moment.",
+        say: [
+          { text: "Fill the gap: The exam is … Monday. Picture it: Monday is one day, one box on the calendar. So **on**.", cue: "onx02" },
+          { text: "Why not **in**? in is for longer stretches. Why not **at**? a day is not a clock moment.", cue: "onx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx0"),
+          ...PLAB.kit.lineup("onx0", "The exam is ____ Monday.", [["inPeriod", "in", false, "in is for longer | stretches"], ["calendar", "on", true, "Monday is one day, | one box on the calendar"], ["clock", "at", false, "a day is not a | clock moment"]], ["Why on? Monday is one day, one box on the calendar", "Ask: Is there one day or date?"]),
+        ],
+      },
+      {
+        id: "on-ex2",
+        title: "on: example 2, why this and not the others",
+        alt: "She was born with a gap 5 May. Answer: on, because a date is one day. Not in: in May without the date. Not at: at is for a time on the clock.",
+        say: [
+          { text: "Fill the gap: She was born … 5 May. Picture it: a date is one day. So **on**.", cue: "onx12" },
+          { text: "Why not **in**? in May without the date. Why not **at**? at is for a time on the clock.", cue: "onx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx1"),
+          ...PLAB.kit.lineup("onx1", "She was born ____ 5 May.", [["inPeriod", "in", false, "in May without | the date"], ["calendar", "on", true, "a date is one day"], ["clock", "at", false, "at is for a time | on the clock"]], ["Why on? a date is one day", "Ask: Is there one day or date?"]),
+        ],
+      },
+      {
+        id: "at-pic",
+        title: "at: its picture",
+        alt: "at: AT: one moment. A clock time, or a point like night or noon. Ask yourself: Is it a clock time or one moment?",
+        say: [
+          { text: "AT: one moment. A clock time, or a point like night or noon.", cue: "at-l0" },
+          { text: "Before you choose **at**, ask yourself: Is it a clock time or one moment?", cue: "at-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-at"),
+          { do: "write", id: "at-t", text: "AT: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("at-p", "clock", 340, 86, 2),
+          { do: "write", id: "at-l0", text: "AT: one moment.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "at-l1", text: "A clock time, or a point like night or noon.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "at-ask", text: "Ask yourself: Is it a clock time or one moment?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "at-ex1",
+        title: "at: example 1, why this and not the others",
+        alt: "The train leaves with a gap 6:30. Answer: at, because 6:30 is one point on the clock. Not in: in 6:30 is not English; in 30 minutes. Not on: on is for days.",
+        say: [
+          { text: "Fill the gap: The train leaves … 6:30. Picture it: 6:30 is one point on the clock. So **at**.", cue: "atx03" },
+          { text: "Why not **in**? in 6:30 is not English; in 30 minutes That is correct English, but it says something else. Why not **on**? on is for days.", cue: "atx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-atx0"),
+          ...PLAB.kit.lineup("atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"]),
+        ],
+      },
+      {
+        id: "at-ex2",
+        title: "at: example 2, why this and not the others",
+        alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
+        say: [
+          { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "atx13" },
+          { text: "Why not **in**? in the night = during one particular night. Why not **on**? on is for days.", cue: "atx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-atx1"),
+          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", false, "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "IN, ON, AT for time: how to choose",
+        alt: "How to choose: Is it a month, year, season or part of the day? Then in. Is there one day or date? Then on. Is it a clock time or one moment? Then at.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is it a month, year, season or part of the day? Then **in**. Is there one day or date? Then **on**. Is it a clock time or one moment? Then **at**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["inPeriod", "Is it a month, year, season or part of the day?", { sub: "yes → IN", size: 26 }], ["calendar", "Is there one day or date?", { sub: "yes → ON", size: 26 }], ["clock", "Is it a clock time or one moment?", { sub: "yes → AT", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: IN, ON, AT for time",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +199,105 @@
               "text": "on",
               "correct": true,
               "why": "Correct. A date is one day: on."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: IN, ON, AT for time",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-time-in",
+          "source": "original",
+          "skill": "IN, ON, AT for time: in",
+          "prompt": "I study best ___ the morning.",
+          "options": [
+            {
+              "text": "at",
+              "misconception": "p0-sense",
+              "why": "At is for night, noon, dawn."
+            },
+            {
+              "text": "in",
+              "correct": true,
+              "why": "Correct. The morning is a stretch of hours. Ask: Is it a month, year, season or part of the day?"
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "On Monday morning, but not alone."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: IN, ON, AT for time",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-time-on",
+          "source": "original",
+          "skill": "IN, ON, AT for time: on",
+          "prompt": "We met ___ Eid day.",
+          "options": [
+            {
+              "text": "at",
+              "misconception": "p0-sense",
+              "why": "At Eid = the festival season, not the day."
+            },
+            {
+              "text": "in",
+              "misconception": "p0-sense",
+              "why": "A day is not a long stretch."
+            },
+            {
+              "text": "on",
+              "correct": true,
+              "why": "Correct. One special day. Ask: Is there one day or date?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-4",
+        title: "Practice 4: IN, ON, AT for time",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-in-on-at-time-at",
+          "source": "original",
+          "skill": "IN, ON, AT for time: at",
+          "prompt": "We had lunch ___ noon.",
+          "options": [
+            {
+              "text": "at",
+              "correct": true,
+              "why": "Correct. Noon is one moment. Ask: Is it a clock time or one moment?"
+            },
+            {
+              "text": "in",
+              "misconception": "p0-sense",
+              "why": "Noon is not a stretch."
+            },
+            {
+              "text": "on",
+              "misconception": "p0-sense",
+              "why": "Noon is not a day."
             }
           ]
         },
