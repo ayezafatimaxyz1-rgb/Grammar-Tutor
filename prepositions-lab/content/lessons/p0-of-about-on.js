@@ -7,111 +7,111 @@
     unit: "p0-pairs",
     level: "Basic",
     minutes: 30,
-    summary: "OF, ABOUT, ON side by side: OF after know/feel words · ABOUT for everyday topics · ON for formal topics think of = have an idea · think about = consider all sides.",
+    summary: "OF, ABOUT, ON side by side: OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic certain of success (one result) · uncertain about the future (many sides).",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
       {
         id: "pair",
         title: "OF, ABOUT, ON",
-        alt: "OF, ABOUT, ON: of: aware of the danger, the thing the mind holds; about: talk about the match, around a topic, everyday; on: a book on law, a focused, formal topic. OF after know/feel words · ABOUT for everyday topics · ON for formal topics think of = have an idea · think about = consider all sides",
+        alt: "OF, ABOUT, ON: of: sure of success, the mind holds one thing; about: unsure about the future, the mind circles a topic; on: a book on law, a focused, formal topic. OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic certain of success (one result) · uncertain about the future (many sides)",
         say: [
-          { text: "Put them side by side: **of** = the thing the mind holds (_aware of the danger_) · **about** = around a topic, everyday (_talk about the match_) · **on** = a focused, formal topic (_a book on law_).", cue: "d1" },
-          { text: "OF after know/feel words · ABOUT for everyday topics · ON for formal topics.", cue: "d-r0" },
-          { text: "think of = have an idea · think about = consider all sides.", cue: "d-r1" },
+          { text: "Put them side by side: **of** = the mind holds one thing (_sure of success_) · **about** = the mind circles a topic (_unsure about the future_) · **on** = a focused, formal topic (_a book on law_).", cue: "d1" },
+          { text: "OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic.", cue: "d-r0" },
+          { text: "certain of success (one result) · uncertain about the future (many sides).", cue: "d-r1" },
           { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
           { do: "write", id: "d-t", text: "OF, ABOUT, ON", x: 480, y: 46, size: 36, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.panels("d", [["awareOf", "aware of the danger", "the thing the mind holds", { hl: "of" }], ["aboutCircle", "talk about the match", "around a topic, everyday", { hl: "about" }], ["pointDoc", "a book on law", "a focused, formal topic", { hl: "on" }]], { y: 78, k: 1.5 }),
-          { do: "write", id: "d-r0", text: "OF after know/feel words · ABOUT for everyday topics · ON for formal topics", x: 480, y: 420, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
-          { do: "write", id: "d-r1", text: "think of = have an idea · think about = consider all sides", x: 480, y: 472, size: 25, ink: "accent2", anchor: "middle", fit: 910, gap: 300 },
+          ...PLAB.kit.panels("d", [["awareOf", "sure of success", "the mind holds one thing", { hl: "of" }], ["aboutCircle", "unsure about the future", "the mind circles a topic", { hl: "about" }], ["pointDoc", "a book on law", "a focused, formal topic", { hl: "on" }]], { y: 78, k: 1.5 }),
+          { do: "write", id: "d-r0", text: "OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic", x: 480, y: 420, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "d-r1", text: "certain of success (one result) · uncertain about the future (many sides)", x: 480, y: 472, size: 25, ink: "accent2", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
         id: "of-pic",
         title: "of: its picture",
-        alt: "of: OF: after words of knowing and feeling, it names the thing the mind holds. Ask yourself: Does a know or feel word come before it (aware, afraid, proud)?",
+        alt: "of: OF: the mind holds ONE thing: a fact, a result, a thing feared or known. Ask yourself: Is the mind holding one fact or result (aware of, sure of success)?",
         say: [
-          { text: "OF: after words of knowing and feeling, it names the thing the mind holds.", cue: "of-l0" },
-          { text: "Before you choose **of**, ask yourself: Does a know or feel word come before it (aware, afraid, proud)?", cue: "of-ask" },
+          { text: "OF: the mind holds ONE thing: a fact, a result, a thing feared or known.", cue: "of-l0" },
+          { text: "Before you choose **of**, ask yourself: Is the mind holding one fact or result (aware of, sure of success)?", cue: "of-ask" },
         ],
         actions: [
           PLAB.kit.clear("clear-of"),
           { do: "write", id: "of-t", text: "OF: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.pic("of-p", "awareOf", 340, 86, 2),
-          { do: "write", id: "of-l0", text: "OF: after words of knowing and feeling,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
-          { do: "write", id: "of-l1", text: "it names the thing the mind holds.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
-          { do: "write", id: "of-ask", text: "Ask yourself: Does a know or feel word come before it (aware, afraid, proud)?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "of-l0", text: "OF: the mind holds ONE thing:", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "of-l1", text: "a fact, a result, a thing feared or known.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "of-ask", text: "Ask yourself: Is the mind holding one fact or result (aware of, sure of success)?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
         ],
       },
       {
         id: "of-ex1",
         title: "of: example 1, why this and not the others",
-        alt: "She is aware with a gap the risk. Answer: of, because aware is a knowing word: the risk is what she knows. Not about: aware takes of, not about. Not on: on is for formal topics like books.",
+        alt: "She is aware with a gap the risk. Answer: of, because the risk is one fact her mind holds. Not about: aware takes of, never about. Not on: on is for formal topics like books.",
         say: [
-          { text: "Fill the gap: She is aware … the risk. Picture it: aware is a knowing word: the risk is what she knows. So **of**.", cue: "ofx01" },
-          { text: "Why not **about**? aware takes of, not about. Why not **on**? on is for formal topics like books.", cue: "ofx0-r2" },
+          { text: "Fill the gap: She is aware … the risk. Picture it: the risk is one fact her mind holds. So **of**.", cue: "ofx01" },
+          { text: "Why not **about**? aware takes of, never about. Why not **on**? on is for formal topics like books.", cue: "ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ofx0"),
-          ...PLAB.kit.lineup("ofx0", "She is aware ____ the risk.", [["awareOf", "of", true, "aware is a knowing word: | the risk is what she knows"], ["aboutCircle", "about", false, "aware takes of, | not about"], ["pointDoc", "on", false, "on is for formal | topics like books"]], ["Why of? aware is a knowing word: the risk is what she knows", "Ask: Does a know or feel word come before it (aware, afraid, proud)?"]),
+          ...PLAB.kit.lineup("ofx0", "She is aware ____ the risk.", [["awareOf", "of", true, "the risk is one fact | her mind holds"], ["aboutCircle", "about", false, "aware takes of, | never about"], ["pointDoc", "on", false, "on is for formal | topics like books"]], ["Why of? the risk is one fact her mind holds", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"]),
         ],
       },
       {
         id: "of-ex2",
         title: "of: example 2, why this and not the others",
-        alt: "He is afraid with a gap snakes. Answer: of, because fear holds the snakes in the mind. Not about: afraid about = worried about a situation. Not on: on is not a feeling word partner.",
+        alt: "He is certain with a gap success. Answer: of, because success is one result the mind holds firmly. Not about: certain about = sure of the details of it. Not on: not a formal topic.",
         say: [
-          { text: "Fill the gap: He is afraid … snakes. Picture it: fear holds the snakes in the mind. So **of**.", cue: "ofx11" },
-          { text: "Why not **about**? afraid about = worried about a situation That is correct English, but it says something else. Why not **on**? on is not a feeling word partner.", cue: "ofx1-r2" },
+          { text: "Fill the gap: He is certain … success. Picture it: success is one result the mind holds firmly. So **of**.", cue: "ofx11" },
+          { text: "Why not **about**? certain about = sure of the details of it That is correct English, but it says something else. Why not **on**? not a formal topic.", cue: "ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ofx1"),
-          ...PLAB.kit.lineup("ofx1", "He is afraid ____ snakes.", [["awareOf", "of", true, "fear holds the snakes | in the mind"], ["aboutCircle", "about", "diff", "afraid about = worried | about a situation"], ["pointDoc", "on", false, "on is not a feeling | word partner"]], ["Why of? fear holds the snakes in the mind", "Ask: Does a know or feel word come before it (aware, afraid, proud)?"]),
+          ...PLAB.kit.lineup("ofx1", "He is certain ____ success.", [["awareOf", "of", true, "success is one result | the mind holds firmly"], ["aboutCircle", "about", "diff", "certain about = sure | of the details of it"], ["pointDoc", "on", false, "not a formal topic"]], ["Why of? success is one result the mind holds firmly", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"]),
         ],
       },
       {
         id: "about-pic",
         title: "about: its picture",
-        alt: "about: ABOUT: around a topic, every side of it, in everyday talk. Ask yourself: Is it everyday talk around a topic?",
+        alt: "about: ABOUT: the mind goes ROUND a topic with many sides: plans, details, the future. Ask yourself: Is it a topic with many sides that the mind circles?",
         say: [
-          { text: "ABOUT: around a topic, every side of it, in everyday talk.", cue: "about-l0" },
-          { text: "Before you choose **about**, ask yourself: Is it everyday talk around a topic?", cue: "about-ask" },
+          { text: "ABOUT: the mind goes ROUND a topic with many sides: plans, details, the future.", cue: "about-l0" },
+          { text: "Before you choose **about**, ask yourself: Is it a topic with many sides that the mind circles?", cue: "about-ask" },
         ],
         actions: [
           PLAB.kit.clear("clear-about"),
           { do: "write", id: "about-t", text: "ABOUT: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.pic("about-p", "aboutCircle", 340, 86, 2),
-          { do: "write", id: "about-l0", text: "ABOUT: around a topic, every side of it,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
-          { do: "write", id: "about-l1", text: "in everyday talk.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
-          { do: "write", id: "about-ask", text: "Ask yourself: Is it everyday talk around a topic?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "about-l0", text: "ABOUT: the mind goes ROUND a topic", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "about-l1", text: "with many sides: plans, details, the future.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "about-ask", text: "Ask yourself: Is it a topic with many sides that the mind circles?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
         ],
       },
       {
         id: "about-ex1",
         title: "about: example 1, why this and not the others",
-        alt: "They talked with a gap the match. Answer: about, because they went round and round the topic, casually. Not of: talk of is old, not everyday. Not on: talked on = gave a formal talk.",
+        alt: "They talked with a gap the match. Answer: about, because the talk went round every side of the match. Not of: talk of is old, not everyday. Not on: talked on = gave a formal talk.",
         say: [
-          { text: "Fill the gap: They talked … the match. Picture it: they went round and round the topic, casually. So **about**.", cue: "aboutx02" },
+          { text: "Fill the gap: They talked … the match. Picture it: the talk went round every side of the match. So **about**.", cue: "aboutx02" },
           { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk That is correct English, but it says something else.", cue: "aboutx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-aboutx0"),
-          ...PLAB.kit.lineup("aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "they went round and round | the topic, casually"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? they went round and round the topic, casually", "Ask: Is it everyday talk around a topic?"]),
+          ...PLAB.kit.lineup("aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "the talk went round | every side of the match"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? the talk went round every side of the match", "Ask: Is it a topic with many sides that the mind circles?"]),
         ],
       },
       {
         id: "about-ex2",
         title: "about: example 2, why this and not the others",
-        alt: "I am worried with a gap my exam. Answer: about, because the worry circles around the exam. Not of: worried takes about. Not on: on is formal, not a feeling.",
+        alt: "She is uncertain with a gap the future. Answer: about, because the future has many sides; her mind circles them. Not of: uncertain of = unsure of one result: of success. Not on: not a formal topic.",
         say: [
-          { text: "Fill the gap: I am worried … my exam. Picture it: the worry circles around the exam. So **about**.", cue: "aboutx12" },
-          { text: "Why not **of**? worried takes about. Why not **on**? on is formal, not a feeling.", cue: "aboutx1-r2" },
+          { text: "Fill the gap: She is uncertain … the future. Picture it: the future has many sides; her mind circles them. So **about**.", cue: "aboutx12" },
+          { text: "Why not **of**? uncertain of = unsure of one result: of success That is correct English, but it says something else. Why not **on**? not a formal topic.", cue: "aboutx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-aboutx1"),
-          ...PLAB.kit.lineup("aboutx1", "I am worried ____ my exam.", [["awareOf", "of", false, "worried takes about"], ["aboutCircle", "about", true, "the worry circles | around the exam"], ["pointDoc", "on", false, "on is formal, | not a feeling"]], ["Why about? the worry circles around the exam", "Ask: Is it everyday talk around a topic?"]),
+          ...PLAB.kit.lineup("aboutx1", "She is uncertain ____ the future.", [["awareOf", "of", "diff", "uncertain of = unsure of | one result: of success"], ["aboutCircle", "about", true, "the future has many sides; | her mind circles them"], ["pointDoc", "on", false, "not a formal topic"]], ["Why about? the future has many sides; her mind circles them", "Ask: Is it a topic with many sides that the mind circles?"]),
         ],
       },
       {
@@ -160,14 +160,14 @@
       {
         id: "decide",
         title: "OF, ABOUT, ON: how to choose",
-        alt: "How to choose: Does a know or feel word come before it (aware, afraid, proud)? Then of. Is it everyday talk around a topic? Then about. Is it a book, lecture, essay or report on one subject? Then on.",
+        alt: "How to choose: Is the mind holding one fact or result (aware of, sure of success)? Then of. Is it a topic with many sides that the mind circles? Then about. Is it a book, lecture, essay or report on one subject? Then on.",
         say: [
-          { text: "How to choose: ask these questions about the situation in the sentence. Does a know or feel word come before it (aware, afraid, proud)? Then **of**. Is it everyday talk around a topic? Then **about**. Is it a book, lecture, essay or report on one subject? Then **on**.", cue: "dc1" },
+          { text: "How to choose: ask these questions about the situation in the sentence. Is the mind holding one fact or result (aware of, sure of success)? Then **of**. Is it a topic with many sides that the mind circles? Then **about**. Is it a book, lecture, essay or report on one subject? Then **on**.", cue: "dc1" },
         ],
         actions: [
           PLAB.kit.clear("clear-decide"),
           { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
-          ...PLAB.kit.rows("dc", [["awareOf", "Does a know or feel word come before it (aware, afraid, proud)?", { sub: "yes → OF", size: 26 }], ["aboutCircle", "Is it everyday talk around a topic?", { sub: "yes → ABOUT", size: 26 }], ["pointDoc", "Is it a book, lecture, essay or report on one subject?", { sub: "yes → ON", size: 26 }]], { y: 130, gap: 120 }),
+          ...PLAB.kit.rows("dc", [["awareOf", "Is the mind holding one fact or result (aware of, sure of success)?", { sub: "yes → OF", size: 26 }], ["aboutCircle", "Is it a topic with many sides that the mind circles?", { sub: "yes → ABOUT", size: 26 }], ["pointDoc", "Is it a book, lecture, essay or report on one subject?", { sub: "yes → ON", size: 26 }]], { y: 130, gap: 120 }),
         ],
       },
       {
@@ -226,7 +226,7 @@
             {
               "text": "of",
               "correct": true,
-              "why": "Correct. Proud is a feeling: of names its object. Ask: Does a know or feel word come before it (aware, afraid, proud)?"
+              "why": "Correct. The mind holds them with pride. Ask: Is the mind holding one fact or result (aware of, sure of success)?"
             },
             {
               "text": "on",
@@ -249,22 +249,22 @@
           "id": "p0-of-about-on-about",
           "source": "original",
           "skill": "OF, ABOUT, ON: about",
-          "prompt": "Tell me ___ your village.",
+          "prompt": "I am worried ___ my exam.",
           "options": [
             {
               "text": "about",
               "correct": true,
-              "why": "Correct. Every side of the topic: people, fields, food. Ask: Is it everyday talk around a topic?"
+              "why": "Correct. The worry circles around the exam. Ask: Is it a topic with many sides that the mind circles?"
             },
             {
               "text": "of",
               "misconception": "p0-sense",
-              "why": "Tell me of is poetic, old-fashioned. It is correct English, but it says something else."
+              "why": "Worried takes about."
             },
             {
               "text": "on",
               "misconception": "p0-sense",
-              "why": "Not a formal study."
+              "why": "On is formal, not a feeling."
             }
           ]
         },

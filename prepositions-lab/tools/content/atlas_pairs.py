@@ -36,14 +36,14 @@ PAIRS = {
     ("We had lunch [at] noon.", "noon is one moment", {"in": (N, "noon is not a stretch"), "on": (N, "noon is not a day")})]),
 }),
 "of-about-on": dict(order=["of", "about", "on"], prove={
-  "of": dict(logic=["OF: after words of knowing and feeling,", "it names the thing the mind holds."], ask="Does a know or feel word come before it (aware, afraid, proud)?", ex=[
-    ("She is aware [of] the risk.", "aware is a knowing word: | the risk is what she knows", {"about": (N, "aware takes of, | not about"), "on": (N, "on is for formal | topics like books")}),
-    ("He is afraid [of] snakes.", "fear holds the snakes | in the mind", {"about": (D, "afraid about = worried | about a situation"), "on": (N, "on is not a feeling | word partner")}),
-    ("We are proud [of] our soldiers.", "proud is a feeling: | of names its object", {"about": (N, "proud takes of"), "on": (N, "not used")})]),
-  "about": dict(logic=["ABOUT: around a topic, every side of it,", "in everyday talk."], ask="Is it everyday talk around a topic?", ex=[
-    ("They talked [about] the match.", "they went round and round | the topic, casually", {"of": (N, "talk of is old, | not everyday"), "on": (D, "talked on = gave a | formal talk")}),
-    ("I am worried [about] my exam.", "the worry circles | around the exam", {"of": (N, "worried takes about"), "on": (N, "on is formal, | not a feeling")}),
-    ("Tell me [about] your village.", "every side of the topic: | people, fields, food", {"of": (D, "tell me of is | poetic, old-fashioned"), "on": (N, "not a formal study")})]),
+  "of": dict(logic=["OF: the mind holds ONE thing:", "a fact, a result, a thing feared or known."], ask="Is the mind holding one fact or result (aware of, sure of success)?", ex=[
+    ("She is aware [of] the risk.", "the risk is one fact | her mind holds", {"about": (N, "aware takes of, | never about"), "on": (N, "on is for formal | topics like books")}),
+    ("He is certain [of] success.", "success is one result | the mind holds firmly", {"about": (D, "certain about = sure | of the details of it"), "on": (N, "not a formal topic")}),
+    ("We are proud [of] our soldiers.", "the mind holds them | with pride", {"about": (N, "proud takes of"), "on": (N, "not used")})]),
+  "about": dict(logic=["ABOUT: the mind goes ROUND a topic", "with many sides: plans, details, the future."], ask="Is it a topic with many sides that the mind circles?", ex=[
+    ("They talked [about] the match.", "the talk went round | every side of the match", {"of": (N, "talk of is old, | not everyday"), "on": (D, "talked on = gave a | formal talk")}),
+    ("She is uncertain [about] the future.", "the future has many sides; | her mind circles them", {"of": (D, "uncertain of = unsure of | one result: of success"), "on": (N, "not a formal topic")}),
+    ("I am worried [about] my exam.", "the worry circles | around the exam", {"of": (N, "worried takes about"), "on": (N, "on is formal, | not a feeling")})]),
   "on": dict(logic=["ON: a focused, formal topic:", "books, lectures, essays, reports."], ask="Is it a book, lecture, essay or report on one subject?", ex=[
     ("He wrote a book [on] Iqbal.", "a book is a formal | study of one subject", {"of": (D, "a book of Iqbal = | a book by him"), "about": (D, "about is fine but | everyday in tone")}),
     ("She gave a lecture [on] climate change.", "a lecture points at | one serious subject", {"of": (N, "lecture of = given by"), "about": (D, "less formal")}),

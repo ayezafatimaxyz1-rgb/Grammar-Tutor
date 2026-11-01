@@ -271,8 +271,8 @@ L("of", "OF", "ownerBook", "OF joins a part to its whole, a thing to what it bel
     ["OF names the material or what fills it."],
     ["a glass [of] water", "a ring made [of] gold"], ("from", "made from = changed into something new: paper is made from wood.")),
   S("of", "about, concerning (knowledge and feeling)", "awareOf", "the thing the mind holds",
-    ["After words of knowing and feeling,", "OF names the thing the mind holds."],
-    ["She is aware [of] the danger.", "He is afraid [of] dogs."], ("about", "ABOUT is around a topic: think about it.")),
+    ["After words of knowing and feeling,", "OF names the ONE thing the mind holds."],
+    ["She is aware [of] the danger.", "He is sure [of] success."], ("about", "ABOUT circles a topic with many sides: unsure about the future.")),
   S("of", "a cause from inside", "sickPerson", "an illness or condition",
     ["OF can give a cause that is part of the person."],
     ["He died [of] cancer.", "Many people die [of] hunger."], ("from", "FROM is an outside cause: died from his injuries.")),
@@ -427,10 +427,10 @@ D("in-on-at-time", "IN, ON, AT for time", [
   ["Long stretch = IN · one day = ON · one moment = AT", "in 1947, on 14 August, at midnight"],
   ("Pakistan came into being ___ 14 August 1947.", "on", ["in", "at"], "A date is one day: on.", "IN is for months and years without a day; AT is for clock times."))
 D("of-about-on", "OF, ABOUT, ON", [
-    ("of", "awareOf", "aware of the danger", "the thing the mind holds"),
-    ("about", "aboutCircle", "talk about the match", "around a topic, everyday"),
+    ("of", "awareOf", "sure of success", "the mind holds one thing"),
+    ("about", "aboutCircle", "unsure about the future", "the mind circles a topic"),
     ("on", "pointDoc", "a book on law", "a focused, formal topic")],
-  ["OF after know/feel words · ABOUT for everyday topics · ON for formal topics", "think of = have an idea · think about = consider all sides"],
+  ["OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic", "certain of success (one result) · uncertain about the future (many sides)"],
   ("She wrote a thesis ___ Iqbal's poetry.", "on", ["about", "of"], "A thesis is a formal study of one topic: on.", "About is everyday; of would mean belonging to."))
 D("of-from", "OF and FROM", [
     ("of", "roofOf", "the roof of the house", "a part that belongs"),

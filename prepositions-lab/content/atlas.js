@@ -1291,14 +1291,14 @@ PLAB.atlas = [
       "prep": "of",
       "name": "about, concerning (knowledge and feeling)",
       "caption": "the thing the mind holds",
-      "explain": "After words of knowing and feeling, OF names the thing the mind holds.",
+      "explain": "After words of knowing and feeling, OF names the ONE thing the mind holds.",
       "examples": [
        "She is aware of the danger.",
-       "He is afraid of dogs."
+       "He is sure of success."
       ],
       "vs": [
        "about",
-       "ABOUT is around a topic: think about it."
+       "ABOUT circles a topic with many sides: unsure about the future."
       ],
       "step": "s4-of"
      },
@@ -2039,19 +2039,19 @@ PLAB.atlas = [
     "lesson": "p0-of-about-on",
     "title": "OF, ABOUT, ON",
     "rules": [
-     "OF after know/feel words · ABOUT for everyday topics · ON for formal topics",
-     "think of = have an idea · think about = consider all sides"
+     "OF = the mind holds one thing · ABOUT = the mind circles a topic · ON = a formal topic",
+     "certain of success (one result) · uncertain about the future (many sides)"
     ],
     "panels": [
      {
       "prep": "of",
-      "example": "aware of the danger",
-      "caption": "the thing the mind holds"
+      "example": "sure of success",
+      "caption": "the mind holds one thing"
      },
      {
       "prep": "about",
-      "example": "talk about the match",
-      "caption": "around a topic, everyday"
+      "example": "unsure about the future",
+      "caption": "the mind circles a topic"
      },
      {
       "prep": "on",

@@ -101,11 +101,11 @@
       {
         id: "s4-of",
         title: "of: about, concerning (knowledge and feeling)",
-        alt: "of: about, concerning (knowledge and feeling). Picture: the thing the mind holds. After words of knowing and feeling, OF names the thing the mind holds. Examples: She is aware of the danger. He is afraid of dogs.",
+        alt: "of: about, concerning (knowledge and feeling). Picture: the thing the mind holds. After words of knowing and feeling, OF names the ONE thing the mind holds. Examples: She is aware of the danger. He is sure of success.",
         say: [
-          { text: "**of** here means about, concerning (knowledge and feeling). After words of knowing and feeling, OF names the thing the mind holds.", cue: "s4e0" },
-          { text: "Look: _She is aware of the danger._ _He is afraid of dogs._", cue: "s4x0" },
-          { text: "Not the same as **about**: ABOUT is around a topic: think about it.", cue: "s4v" },
+          { text: "**of** here means about, concerning (knowledge and feeling). After words of knowing and feeling, OF names the ONE thing the mind holds.", cue: "s4e0" },
+          { text: "Look: _She is aware of the danger._ _He is sure of success._", cue: "s4x0" },
+          { text: "Not the same as **about**: ABOUT circles a topic with many sides: unsure about the future.", cue: "s4v" },
         ],
         actions: [
           PLAB.kit.clear("clear-s4"),
@@ -113,12 +113,12 @@
           ...PLAB.kit.pic("s4p", "awareOf", 36, 92, 1.8, { gap: 300 }),
           { do: "write", id: "s4c", text: "the thing the mind holds", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "s4e0", text: "After words of knowing and feeling,", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
-          { do: "write", id: "s4e1", text: "OF names the thing the mind holds.", x: 328, y: 162, size: 26, fit: 610, gap: 0 },
+          { do: "write", id: "s4e1", text: "OF names the ONE thing the mind holds.", x: 328, y: 162, size: 26, fit: 610, gap: 0 },
           { do: "write", id: "s4x0", text: "She is aware of the danger.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },
           { do: "highlight", id: "s4x0h", target: "s4x0", word: "of" },
-          { do: "write", id: "s4x1", text: "He is afraid of dogs.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
+          { do: "write", id: "s4x1", text: "He is sure of success.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
           { do: "highlight", id: "s4x1h", target: "s4x1", word: "of" },
-          { do: "write", id: "s4v", text: "≠ ABOUT: ABOUT is around a topic: think about it.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "s4v", text: "≠ ABOUT: ABOUT circles a topic with many sides: unsure about the future.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
           { do: "write", id: "s4r", text: "OF joins a part to its whole, a thing to what it belongs to, or what it is made of.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
@@ -247,12 +247,12 @@
             {
               "text": "about",
               "misconception": "p0-sense",
-              "why": "ABOUT is around a topic: think about it."
+              "why": "ABOUT circles a topic with many sides: unsure about the future."
             },
             {
               "text": "of",
               "correct": true,
-              "why": "Correct. of here means about, concerning (knowledge and feeling): After words of knowing and feeling, OF names the thing the mind holds."
+              "why": "Correct. of here means about, concerning (knowledge and feeling): After words of knowing and feeling, OF names the ONE thing the mind holds."
             }
           ]
         },
