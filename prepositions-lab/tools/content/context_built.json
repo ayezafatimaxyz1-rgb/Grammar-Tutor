@@ -1,0 +1,68 @@
+[
+ {
+  "id": "transport",
+  "title": "Transportation and travelling",
+  "lessons": [
+   [
+    "pc-ct-transport",
+    "BY / ON / IN for transport: its senses"
+   ],
+   [
+    "pc-ct-boarding",
+    "GET ON / OFF, GET IN / OUT OF: its senses"
+   ],
+   [
+    "pc-ct-journey",
+    "Journeys: FROM, TO, FOR, AT, IN, VIA: its senses"
+   ],
+   [
+    "pc-ct-by-on",
+    "BY BUS or ON THE BUS"
+   ],
+   [
+    "pc-ct-arrive",
+    "ARRIVE AT, ARRIVE IN, REACH"
+   ],
+   [
+    "pc-ct-get",
+    "GET ON or GET IN"
+   ]
+  ]
+ },
+ {
+  "id": "directions",
+  "title": "Giving directions",
+  "lessons": [
+   [
+    "pc-ct-directions",
+    "Directions: ALONG, PAST, ACROSS, THROUGH, AT, ON, INTO: its senses"
+   ],
+   [
+    "pc-ct-corner",
+    "AT, ON, IN THE CORNER"
+   ],
+   [
+    "pc-ct-past-through",
+    "ALONG, ACROSS, PAST, THROUGH"
+   ]
+  ]
+ },
+ {
+  "id": "numbers",
+  "title": "Numbers, money and measurement",
+  "lessons": [
+   [
+    "pc-ct-numbers",
+    "Numbers, money and measurement: its senses"
+   ],
+   [
+    "pc-ct-by-to",
+    "RISE BY or RISE TO"
+   ],
+   [
+    "pc-ct-at-for",
+    "SOLD AT or SOLD FOR"
+   ]
+  ]
+ }
+]
