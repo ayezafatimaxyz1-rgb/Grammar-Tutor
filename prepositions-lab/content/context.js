@@ -126,6 +126,9 @@ PLAB.context = [
       "lesson": "py-dawn"
      },
      {
+      "lesson": "py-parts-of-day"
+     },
+     {
       "lesson": "py-in-on-time"
      },
      {
