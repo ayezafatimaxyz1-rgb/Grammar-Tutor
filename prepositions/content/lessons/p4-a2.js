@@ -129,11 +129,11 @@
         alt: "The sentence How do you account with a gap the loss?, then the candidates: for (fits: explain the reason, or make up a part); to (correct English, different meaning: answering to the loss, as if it were a boss); of (not used: of needs on account: on account of)",
         say: [
           { text: "Fill the gap: How do you account \u2026 the loss? What does the sentence want to say? It wants **account for**: explain the reason, or make up a part.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean answering to the loss, as if it were a boss. That is not what this sentence says. Where to fits: _Ministers must account to Parliament._ **of**: of needs on account: on account of.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean answering to the loss, as if it were a boss. That is not what this sentence says. Where to fits: _Ministers must account to Parliament._ There **to** means answer to a person in authority. **of**: of needs on account: on account of.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "How do you account ____ the loss?", [["wantStar", "for", true, "explain the reason, | or make up a part"], ["reachDot", "to", "diff", "answering to the loss, | as if it were a boss"], ["cross", "of", false, "of needs on account: | on account of"]], ["account for = explain the reason, or make up a part", "account to = answer to a person in authority"], null, ["\u2248 to: Ministers must account to Parliament."]),
+          ...PLAB.kit.lineup("e3w", "How do you account ____ the loss?", [["wantStar", "for", true, "explain the reason, | or make up a part"], ["reachDot", "to", "diff", "answering to the loss, | as if it were a boss"], ["cross", "of", false, "of needs on account: | on account of"]], ["account for = explain the reason, or make up a part", "account to = answer to a person in authority"], null, ["\u2248 to: Ministers must account to Parliament.  = answer to a person in authority"]),
         ],
       },
       {
@@ -158,11 +158,11 @@
         alt: "The sentence Ministers are accountable with a gap Parliament., then the candidates: to (fits: answering to an authority); for (correct English, different meaning: Parliament would be the task they run); of (not used: of = belonging; nothing belongs here)",
         say: [
           { text: "Fill the gap: Ministers are accountable \u2026 Parliament. What does the sentence want to say? It wants **accountable to**: answering to an authority.", cue: "e4w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be the task they run. That is not what this sentence says. Where for fits: _They are accountable for public money._ **of**: of = belonging; nothing belongs here.", cue: "e4w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean Parliament would be the task they run. That is not what this sentence says. Where for fits: _They are accountable for public money._ There **for** means answering for a task. **of**: of = belonging; nothing belongs here.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Ministers are accountable ____ Parliament.", [["reachDot", "to", true, "answering to | an authority"], ["wantStar", "for", "diff", "Parliament would be | the task they run"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["accountable to = answering to an authority", "accountable for = answering for a task"], null, ["\u2248 for: They are accountable for public money."]),
+          ...PLAB.kit.lineup("e4w", "Ministers are accountable ____ Parliament.", [["reachDot", "to", true, "answering to | an authority"], ["wantStar", "for", "diff", "Parliament would be | the task they run"], ["cross", "of", false, "of = belonging; | nothing belongs here"]], ["accountable to = answering to an authority", "accountable for = answering for a task"], null, ["\u2248 for: They are accountable for public money.  = answering for a task"]),
         ],
       },
       {

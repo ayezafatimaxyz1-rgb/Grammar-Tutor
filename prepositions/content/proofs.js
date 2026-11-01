@@ -58,11 +58,11 @@
         alt: "He is certain with a gap success. Answer: of, because success is one result the mind holds firmly. Not about: certain about = sure of the details of it. Not on: not a formal topic.",
         say: [
           { text: "Fill the gap: He is certain … success. Picture it: success is one result the mind holds firmly. So **of**.", cue: "pv-ofx11" },
-          { text: "Why not **about**? certain about = sure of the details of it That is correct English, but it says something else. Where about fits: _I am not certain about the details._ Why not **on**? not a formal topic.", cue: "pv-ofx1-r2" },
+          { text: "Why not **about**? certain about = sure of the details of it. That is correct English, but it says something else. Where about fits: _I am not certain about the details._ There **about** means sure of the details, the facts. Why not **on**? not a formal topic.", cue: "pv-ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-ofx1"),
-          ...PLAB.kit.lineup("pv-ofx1", "He is certain ____ success.", [["awareOf", "of", true, "success is one result | the mind holds firmly"], ["aboutCircle", "about", "diff", "certain about = sure | of the details of it"], ["pointDoc", "on", false, "not a formal topic"]], ["Why of? success is one result the mind holds firmly", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"], null, ["≈ about: I am not certain about the details."]),
+          ...PLAB.kit.lineup("pv-ofx1", "He is certain ____ success.", [["awareOf", "of", true, "success is one result | the mind holds firmly"], ["aboutCircle", "about", "diff", "certain about = sure | of the details of it"], ["pointDoc", "on", false, "not a formal topic"]], ["Why of? success is one result the mind holds firmly", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"], null, ["≈ about: I am not certain about the details.  = sure of the details, the facts"]),
         ],
       },
       {
@@ -88,11 +88,11 @@
         alt: "They talked with a gap the match. Answer: about, because the talk went round every side of the match. Not of: talk of is old, not everyday. Not on: talked on = gave a formal talk.",
         say: [
           { text: "Fill the gap: They talked … the match. Picture it: the talk went round every side of the match. So **about**.", cue: "pv-aboutx02" },
-          { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk That is correct English, but it says something else. Where on fits: _The coach gave a talk on cricket rules._", cue: "pv-aboutx0-r2" },
+          { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk. That is correct English, but it says something else. Where on fits: _The coach gave a talk on cricket rules._ There **on** means a formal talk with cricket rules as its subject.", cue: "pv-aboutx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-aboutx0"),
-          ...PLAB.kit.lineup("pv-aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "the talk went round | every side of the match"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? the talk went round every side of the match", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ on: The coach gave a talk on cricket rules."]),
+          ...PLAB.kit.lineup("pv-aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "the talk went round | every side of the match"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? the talk went round every side of the match", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ on: The coach gave a talk on cricket rules.  = a formal talk with cricket rules as its subject"]),
         ],
       },
       {
@@ -101,11 +101,11 @@
         alt: "She is uncertain with a gap the future. Answer: about, because the future has many sides; her mind circles them. Not of: uncertain of = unsure of one result: of success. Not on: not a formal topic.",
         say: [
           { text: "Fill the gap: She is uncertain … the future. Picture it: the future has many sides; her mind circles them. So **about**.", cue: "pv-aboutx12" },
-          { text: "Why not **of**? uncertain of = unsure of one result: of success That is correct English, but it says something else. Where of fits: _She is uncertain of success._ Why not **on**? not a formal topic.", cue: "pv-aboutx1-r2" },
+          { text: "Why not **of**? uncertain of = unsure of one result: of success. That is correct English, but it says something else. Where of fits: _She is uncertain of success._ There **of** means not sure she will succeed. Why not **on**? not a formal topic.", cue: "pv-aboutx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-aboutx1"),
-          ...PLAB.kit.lineup("pv-aboutx1", "She is uncertain ____ the future.", [["awareOf", "of", "diff", "uncertain of = unsure of | one result: of success"], ["aboutCircle", "about", true, "the future has many sides; | her mind circles them"], ["pointDoc", "on", false, "not a formal topic"]], ["Why about? the future has many sides; her mind circles them", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ of: She is uncertain of success."]),
+          ...PLAB.kit.lineup("pv-aboutx1", "She is uncertain ____ the future.", [["awareOf", "of", "diff", "uncertain of = unsure of | one result: of success"], ["aboutCircle", "about", true, "the future has many sides; | her mind circles them"], ["pointDoc", "on", false, "not a formal topic"]], ["Why about? the future has many sides; her mind circles them", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ of: She is uncertain of success.  = not sure she will succeed"]),
         ],
       },
       {
@@ -131,11 +131,11 @@
         alt: "He wrote a book with a gap Iqbal. Answer: on, because a book is a formal study of one subject. Not of: a book of Iqbal = a book by him. Not about: about is fine but everyday in tone.",
         say: [
           { text: "Fill the gap: He wrote a book … Iqbal. Picture it: a book is a formal study of one subject. So **on**.", cue: "pv-onx03" },
-          { text: "Why not **of**? a book of Iqbal = a book by him That is correct English, but it says something else. Where of fits: _This is a book of Iqbal's letters._ Why not **about**? about is fine but everyday in tone That is correct English, but it says something else. Where about fits: _My son is reading a story about Iqbal._", cue: "pv-onx0-r2" },
+          { text: "Why not **of**? a book of Iqbal = a book by him. That is correct English, but it says something else. Where of fits: _This is a book of Iqbal's letters._ There **of** means a book made of Iqbal's own letters. Why not **about**? about is fine but everyday in tone. That is correct English, but it says something else. Where about fits: _My son is reading a story about Iqbal._ There **about** means a story with Iqbal as its topic.", cue: "pv-onx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-onx0"),
-          ...PLAB.kit.lineup("pv-onx0", "He wrote a book ____ Iqbal.", [["awareOf", "of", "diff", "a book of Iqbal = | a book by him"], ["aboutCircle", "about", "diff", "about is fine but | everyday in tone"], ["pointDoc", "on", true, "a book is a formal | study of one subject"]], ["Why on? a book is a formal study of one subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ of: This is a book of Iqbal's letters.", "≈ about: My son is reading a story about Iqbal."]),
+          ...PLAB.kit.lineup("pv-onx0", "He wrote a book ____ Iqbal.", [["awareOf", "of", "diff", "a book of Iqbal = | a book by him"], ["aboutCircle", "about", "diff", "about is fine but | everyday in tone"], ["pointDoc", "on", true, "a book is a formal | study of one subject"]], ["Why on? a book is a formal study of one subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ of: This is a book of Iqbal's letters.  = a book made of Iqbal's own letters", "≈ about: My son is reading a story about Iqbal.  = a story with Iqbal as its topic"]),
         ],
       },
       {
@@ -144,11 +144,11 @@
         alt: "She gave a lecture with a gap climate change. Answer: on, because a lecture points at one serious subject. Not of: lecture of = given by. Not about: less formal.",
         say: [
           { text: "Fill the gap: She gave a lecture … climate change. Picture it: a lecture points at one serious subject. So **on**.", cue: "pv-onx13" },
-          { text: "Why not **of**? lecture of = given by. Why not **about**? less formal That is correct English, but it says something else. Where about fits: _We chatted about climate change over tea._", cue: "pv-onx1-r2" },
+          { text: "Why not **of**? lecture of = given by. Why not **about**? less formal. That is correct English, but it says something else. Where about fits: _We chatted about climate change over tea._ There **about** means chatting with climate change as the topic.", cue: "pv-onx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-onx1"),
-          ...PLAB.kit.lineup("pv-onx1", "She gave a lecture ____ climate change.", [["awareOf", "of", false, "lecture of = given by"], ["aboutCircle", "about", "diff", "less formal"], ["pointDoc", "on", true, "a lecture points at | one serious subject"]], ["Why on? a lecture points at one serious subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ about: We chatted about climate change over tea."]),
+          ...PLAB.kit.lineup("pv-onx1", "She gave a lecture ____ climate change.", [["awareOf", "of", false, "lecture of = given by"], ["aboutCircle", "about", "diff", "less formal"], ["pointDoc", "on", true, "a lecture points at | one serious subject"]], ["Why on? a lecture points at one serious subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ about: We chatted about climate change over tea.  = chatting with climate change as the topic"]),
         ],
       },
       {
@@ -248,7 +248,7 @@
             {
               "text": "about",
               "misconception": "p0-sense",
-              "why": "Less formal. It is correct English, but it says something else. Where about fits: Tell me about your village."
+              "why": "Less formal. It is correct English, but it says something else. Where about fits: Tell me about your village. There about means tell me things about it."
             },
             {
               "text": "of",
@@ -315,11 +315,11 @@
         alt: "We walked with a gap the forest. Answer: through, because the trees were all around us. Not across: across the forest = over it, side to side. Not along: a forest is not a line.",
         say: [
           { text: "Fill the gap: We walked … the forest. Picture it: the trees were all around us. So **through**.", cue: "pv-throughx11" },
-          { text: "Why not **across**? across the forest = over it, side to side That is correct English, but it says something else. Where across fits: _We walked across the open field._ Why not **along**? a forest is not a line.", cue: "pv-throughx1-r2" },
+          { text: "Why not **across**? across the forest = over it, side to side. That is correct English, but it says something else. Where across fits: _We walked across the open field._ There **across** means from one side of the field to the other. Why not **along**? a forest is not a line.", cue: "pv-throughx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-throughx1"),
-          ...PLAB.kit.lineup("pv-throughx1", "We walked ____ the forest.", [["passThrough", "through", true, "the trees were | all around us"], ["acrossRoad", "across", "diff", "across the forest = | over it, side to side"], ["alongRiver", "along", false, "a forest is | not a line"]], ["Why through? the trees were all around us", "Ask: Do you go inside it from end to end?"], null, ["≈ across: We walked across the open field."]),
+          ...PLAB.kit.lineup("pv-throughx1", "We walked ____ the forest.", [["passThrough", "through", true, "the trees were | all around us"], ["acrossRoad", "across", "diff", "across the forest = | over it, side to side"], ["alongRiver", "along", false, "a forest is | not a line"]], ["Why through? the trees were all around us", "Ask: Do you go inside it from end to end?"], null, ["≈ across: We walked across the open field.  = from one side of the field to the other"]),
         ],
       },
       {
@@ -345,11 +345,11 @@
         alt: "She walked with a gap the road. Answer: across, because one side, then the opposite side. Not through: a road has no inside. Not along: along the road = following its length.",
         say: [
           { text: "Fill the gap: She walked … the road. Picture it: one side, then the opposite side. So **across**.", cue: "pv-acrossx02" },
-          { text: "Why not **through**? a road has no inside. Why not **along**? along the road = following its length That is correct English, but it says something else. Where along fits: _She walked along the road to the market._", cue: "pv-acrossx0-r2" },
+          { text: "Why not **through**? a road has no inside. Why not **along**? along the road = following its length. That is correct English, but it says something else. Where along fits: _She walked along the road to the market._ There **along** means following its length.", cue: "pv-acrossx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-acrossx0"),
-          ...PLAB.kit.lineup("pv-acrossx0", "She walked ____ the road.", [["passThrough", "through", false, "a road has no inside"], ["acrossRoad", "across", true, "one side, then | the opposite side"], ["alongRiver", "along", "diff", "along the road = | following its length"]], ["Why across? one side, then the opposite side", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: She walked along the road to the market."]),
+          ...PLAB.kit.lineup("pv-acrossx0", "She walked ____ the road.", [["passThrough", "through", false, "a road has no inside"], ["acrossRoad", "across", true, "one side, then | the opposite side"], ["alongRiver", "along", "diff", "along the road = | following its length"]], ["Why across? one side, then the opposite side", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: She walked along the road to the market.  = following its length"]),
         ],
       },
       {
@@ -358,11 +358,11 @@
         alt: "They swam with a gap the river. Answer: across, because bank to bank. Not through: not end to end inside. Not along: along = up or down the river's length.",
         say: [
           { text: "Fill the gap: They swam … the river. Picture it: bank to bank. So **across**.", cue: "pv-acrossx12" },
-          { text: "Why not **through**? not end to end inside. Why not **along**? along = up or down the river's length That is correct English, but it says something else. Where along fits: _They swam along the river bank._", cue: "pv-acrossx1-r2" },
+          { text: "Why not **through**? not end to end inside. Why not **along**? along = up or down the river's length. That is correct English, but it says something else. Where along fits: _They swam along the river bank._ There **along** means following the bank lengthwise.", cue: "pv-acrossx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-acrossx1"),
-          ...PLAB.kit.lineup("pv-acrossx1", "They swam ____ the river.", [["passThrough", "through", false, "not end to end inside"], ["acrossRoad", "across", true, "bank to bank"], ["alongRiver", "along", "diff", "along = up or down | the river's length"]], ["Why across? bank to bank", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: They swam along the river bank."]),
+          ...PLAB.kit.lineup("pv-acrossx1", "They swam ____ the river.", [["passThrough", "through", false, "not end to end inside"], ["acrossRoad", "across", true, "bank to bank"], ["alongRiver", "along", "diff", "along = up or down | the river's length"]], ["Why across? bank to bank", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: They swam along the river bank.  = following the bank lengthwise"]),
         ],
       },
       {
@@ -387,11 +387,11 @@
         alt: "We walked with a gap the canal. Answer: along, because following the canal's length. Not through: not inside the canal. Not across: across = to the other bank.",
         say: [
           { text: "Fill the gap: We walked … the canal. Picture it: following the canal's length. So **along**.", cue: "pv-alongx03" },
-          { text: "Why not **through**? not inside the canal. Why not **across**? across = to the other bank That is correct English, but it says something else. Where across fits: _We walked across the canal bridge._", cue: "pv-alongx0-r2" },
+          { text: "Why not **through**? not inside the canal. Why not **across**? across = to the other bank. That is correct English, but it says something else. Where across fits: _We walked across the canal bridge._ There **across** means over the bridge to the other bank.", cue: "pv-alongx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-alongx0"),
-          ...PLAB.kit.lineup("pv-alongx0", "We walked ____ the canal.", [["passThrough", "through", false, "not inside the canal"], ["acrossRoad", "across", "diff", "across = to the | other bank"], ["alongRiver", "along", true, "following the canal's | length"]], ["Why along? following the canal's length", "Ask: Do you follow its length?"], null, ["≈ across: We walked across the canal bridge."]),
+          ...PLAB.kit.lineup("pv-alongx0", "We walked ____ the canal.", [["passThrough", "through", false, "not inside the canal"], ["acrossRoad", "across", "diff", "across = to the | other bank"], ["alongRiver", "along", true, "following the canal's | length"]], ["Why along? following the canal's length", "Ask: Do you follow its length?"], null, ["≈ across: We walked across the canal bridge.  = over the bridge to the other bank"]),
         ],
       },
       {
@@ -459,11 +459,11 @@
         alt: "He fought with a gap a lion. Answer: like, because he is not a lion; he fought similarly. Not as: as a lion = he really was a lion.",
         say: [
           { text: "Fill the gap: He fought … a lion. Picture it: he is not a lion; he fought similarly. So **like**.", cue: "pv-likex01" },
-          { text: "Why not **as**? as a lion = he really was a lion That is correct English, but it says something else. Where as fits: _He played the hero as a young actor._", cue: "pv-likex0-r2" },
+          { text: "Why not **as**? as a lion = he really was a lion. That is correct English, but it says something else. Where as fits: _He played the hero as a young actor._ There **as** means when he was a young actor.", cue: "pv-likex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-likex0"),
-          ...PLAB.kit.lineup("pv-likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"], null, ["≈ as: He played the hero as a young actor."]),
+          ...PLAB.kit.lineup("pv-likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"], null, ["≈ as: He played the hero as a young actor.  = when he was a young actor"]),
         ],
       },
       {
@@ -502,11 +502,11 @@
         alt: "She works with a gap a teacher. Answer: as, because teaching is her real job. Not like: like a teacher = only similar, not her job.",
         say: [
           { text: "Fill the gap: She works … a teacher. Picture it: teaching is her real job. So **as**.", cue: "pv-asx02" },
-          { text: "Why not **like**? like a teacher = only similar, not her job That is correct English, but it says something else. Where like fits: _She talks like a teacher._", cue: "pv-asx0-r2" },
+          { text: "Why not **like**? like a teacher = only similar, not her job. That is correct English, but it says something else. Where like fits: _She talks like a teacher._ There **like** means in a teacher's way.", cue: "pv-asx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-asx0"),
-          ...PLAB.kit.lineup("pv-asx0", "She works ____ a teacher.", [["likeSim", "like", "diff", "like a teacher = only | similar, not her job"], ["asRole", "as", true, "teaching is her | real job"]], ["Why as? teaching is her real job", "Ask: Is it the real role or function?"], null, ["≈ like: She talks like a teacher."]),
+          ...PLAB.kit.lineup("pv-asx0", "She works ____ a teacher.", [["likeSim", "like", "diff", "like a teacher = only | similar, not her job"], ["asRole", "as", true, "teaching is her | real job"]], ["Why as? teaching is her real job", "Ask: Is it the real role or function?"], null, ["≈ like: She talks like a teacher.  = in a teacher's way"]),
         ],
       },
       {
@@ -586,7 +586,7 @@
             {
               "text": "like",
               "misconception": "p0-sense",
-              "why": "Like a table = it only looks similar. It is correct English, but it says something else. Where like fits: This box looks like a table."
+              "why": "Like a table = it only looks similar. It is correct English, but it says something else. Where like fits: This box looks like a table. There like means similar to a table in looks."
             }
           ]
         },
@@ -684,11 +684,11 @@
         alt: "Who came with a gap Ali? Answer: besides, because who else, in addition to Ali. Not beside: who came beside Ali = walked at his side.",
         say: [
           { text: "Fill the gap: Who came … Ali? Picture it: who else, in addition to Ali. So **besides**.", cue: "pv-besidesx12" },
-          { text: "Why not **beside**? who came beside Ali = walked at his side That is correct English, but it says something else. Where beside fits: _Who sat beside Ali?_", cue: "pv-besidesx1-r2" },
+          { text: "Why not **beside**? who came beside Ali = walked at his side. That is correct English, but it says something else. Where beside fits: _Who sat beside Ali?_ There **beside** means at Ali's side.", cue: "pv-besidesx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-besidesx1"),
-          ...PLAB.kit.lineup("pv-besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"], null, ["≈ beside: Who sat beside Ali?"]),
+          ...PLAB.kit.lineup("pv-besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"], null, ["≈ beside: Who sat beside Ali?  = at Ali's side"]),
         ],
       },
       {
@@ -855,11 +855,11 @@
         alt: "Divide the sweets with a gap the children. Answer: among, because shared through the whole group. Not between: between the two children if there are two.",
         say: [
           { text: "Fill the gap: Divide the sweets … the children. Picture it: shared through the whole group. So **among**.", cue: "pv-amongx12" },
-          { text: "Why not **between**? between the two children if there are two That is correct English, but it says something else. Where between fits: _Divide the sweets between the two sisters._", cue: "pv-amongx1-r2" },
+          { text: "Why not **between**? between the two children if there are two. That is correct English, but it says something else. Where between fits: _Divide the sweets between the two sisters._ There **between** means shared by exactly two.", cue: "pv-amongx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-amongx1"),
-          ...PLAB.kit.lineup("pv-amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"], null, ["≈ between: Divide the sweets between the two sisters."]),
+          ...PLAB.kit.lineup("pv-amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"], null, ["≈ between: Divide the sweets between the two sisters.  = shared by exactly two"]),
         ],
       },
       {
@@ -1026,11 +1026,11 @@
         alt: "The shop is open with a gap ten. Answer: until, because open the whole time, then it closes. Not by: open by ten = it will have opened before ten.",
         say: [
           { text: "Fill the gap: The shop is open … ten. Picture it: open the whole time, then it closes. So **until**.", cue: "pv-untilx12" },
-          { text: "Why not **by**? open by ten = it will have opened before ten That is correct English, but it says something else. Where by fits: _The shop will be open by ten._", cue: "pv-untilx1-r2" },
+          { text: "Why not **by**? open by ten = it will have opened before ten. That is correct English, but it says something else. Where by fits: _The shop will be open by ten._ There **by** means not later than ten.", cue: "pv-untilx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-untilx1"),
-          ...PLAB.kit.lineup("pv-untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"], null, ["≈ by: The shop will be open by ten."]),
+          ...PLAB.kit.lineup("pv-untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"], null, ["≈ by: The shop will be open by ten.  = not later than ten"]),
         ],
       },
       {
@@ -1197,11 +1197,11 @@
         alt: "It has rained with a gap morning. Answer: since, because morning is the start; it is still raining. Not for: morning is not a length. Not during: during the morning = at some time in it.",
         say: [
           { text: "Fill the gap: It has rained … morning. Picture it: morning is the start; it is still raining. So **since**.", cue: "pv-sincex12" },
-          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it That is correct English, but it says something else. Where during fits: _It rained twice during the morning._", cue: "pv-sincex1-r2" },
+          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it. That is correct English, but it says something else. Where during fits: _It rained twice during the morning._ There **during** means at some times within the morning.", cue: "pv-sincex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-sincex1"),
-          ...PLAB.kit.lineup("pv-sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning."]),
+          ...PLAB.kit.lineup("pv-sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning.  = at some times within the morning"]),
         ],
       },
       {
@@ -1240,11 +1240,11 @@
         alt: "Many lost their homes with a gap the floods. Answer: during, because inside the event of the floods. Not for: not a length. Not since: since the floods = from then till now.",
         say: [
           { text: "Fill the gap: Many lost their homes … the floods. Picture it: inside the event of the floods. So **during**.", cue: "pv-duringx13" },
-          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._", cue: "pv-duringx1-r2" },
+          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now. That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._ There **since** means from the floods until now.", cue: "pv-duringx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-duringx1"),
-          ...PLAB.kit.lineup("pv-duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods."]),
+          ...PLAB.kit.lineup("pv-duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods.  = from the floods until now"]),
         ],
       },
       {
@@ -1355,11 +1355,11 @@
         alt: "It has rained with a gap morning. Answer: since, because morning is the start; it is still raining. Not for: morning is not a length. Not during: during the morning = at some time in it.",
         say: [
           { text: "Fill the gap: It has rained … morning. Picture it: morning is the start; it is still raining. So **since**.", cue: "pv-sincex12" },
-          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it That is correct English, but it says something else. Where during fits: _It rained twice during the morning._", cue: "pv-sincex1-r2" },
+          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it. That is correct English, but it says something else. Where during fits: _It rained twice during the morning._ There **during** means at some times within the morning.", cue: "pv-sincex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-sincex1"),
-          ...PLAB.kit.lineup("pv-sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning."]),
+          ...PLAB.kit.lineup("pv-sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning.  = at some times within the morning"]),
         ],
       },
       {
@@ -1398,11 +1398,11 @@
         alt: "Many lost their homes with a gap the floods. Answer: during, because inside the event of the floods. Not for: not a length. Not since: since the floods = from then till now.",
         say: [
           { text: "Fill the gap: Many lost their homes … the floods. Picture it: inside the event of the floods. So **during**.", cue: "pv-duringx13" },
-          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._", cue: "pv-duringx1-r2" },
+          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now. That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._ There **since** means from the floods until now.", cue: "pv-duringx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-duringx1"),
-          ...PLAB.kit.lineup("pv-duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods."]),
+          ...PLAB.kit.lineup("pv-duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods.  = from the floods until now"]),
         ],
       },
       {
@@ -1470,11 +1470,11 @@
         alt: "The students are with a gap the hall. Answer: in, because walls are all around the students. Not on: they are not on its roof. Not at: at the hall = at the place, maybe outside.",
         say: [
           { text: "Fill the gap: The students are … the hall. Picture it: walls are all around the students. So **in**.", cue: "pv-inx11" },
-          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside That is correct English, but it says something else. Where at fits: _Meet me at the hall gate at nine._", cue: "pv-inx1-r2" },
+          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside. That is correct English, but it says something else. Where at fits: _Meet me at the hall gate at nine._ There **at** means at the hall as a meeting point.", cue: "pv-inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-inx1"),
-          ...PLAB.kit.lineup("pv-inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"], null, ["≈ at: Meet me at the hall gate at nine."]),
+          ...PLAB.kit.lineup("pv-inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"], null, ["≈ at: Meet me at the hall gate at nine.  = at the hall as a meeting point"]),
         ],
       },
       {
@@ -1627,7 +1627,7 @@
             {
               "text": "at",
               "misconception": "p0-sense",
-              "why": "At the wall = standing beside it. It is correct English, but it says something else. Where at fits: He stood at the wall and waited."
+              "why": "At the wall = standing beside it. It is correct English, but it says something else. Where at fits: He stood at the wall and waited. There at means beside the wall, not hanging on it."
             },
             {
               "text": "in",
@@ -1665,7 +1665,7 @@
             {
               "text": "in",
               "misconception": "p0-sense",
-              "why": "In it = inside the building itself. It is correct English, but it says something else. Where in fits: We waited in the petrol station's shop."
+              "why": "In it = inside the building itself. It is correct English, but it says something else. Where in fits: We waited in the petrol station's shop. There in means inside the shop building."
             },
             {
               "text": "on",
@@ -1800,11 +1800,11 @@
         alt: "The train leaves with a gap 6:30. Answer: at, because 6:30 is one point on the clock. Not in: in 6:30 is not English; in 30 minutes. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The train leaves … 6:30. Picture it: 6:30 is one point on the clock. So **at**.", cue: "pv-atx03" },
-          { text: "Why not **in**? in 6:30 is not English; in 30 minutes That is correct English, but it says something else. Where in fits: _The train leaves in thirty minutes._ Why not **on**? on is for days.", cue: "pv-atx0-r2" },
+          { text: "Why not **in**? in 6:30 is not English; in 30 minutes. That is correct English, but it says something else. Where in fits: _The train leaves in thirty minutes._ There **in** means thirty minutes from now. Why not **on**? on is for days.", cue: "pv-atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-atx0"),
-          ...PLAB.kit.lineup("pv-atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"], null, ["≈ in: The train leaves in thirty minutes."]),
+          ...PLAB.kit.lineup("pv-atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"], null, ["≈ in: The train leaves in thirty minutes.  = thirty minutes from now"]),
         ],
       },
       {
@@ -1813,11 +1813,11 @@
         alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "pv-atx13" },
-          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Where in fits: _I woke up twice in the night._ Why not **on**? on is for days.", cue: "pv-atx1-r2" },
+          { text: "Why not **in**? in the night = during one particular night. That is correct English, but it says something else. Where in fits: _I woke up twice in the night._ There **in** means during the night, at some point in it. Why not **on**? on is for days.", cue: "pv-atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-atx1"),
-          ...PLAB.kit.lineup("pv-atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"], null, ["≈ in: I woke up twice in the night."]),
+          ...PLAB.kit.lineup("pv-atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"], null, ["≈ in: I woke up twice in the night.  = during the night, at some point in it"]),
         ],
       },
       {
@@ -1970,11 +1970,11 @@
         alt: "He jumped with a gap the river. Answer: into, because a jump: outside, then inside. Not in: jumped in the river = jumped while inside it. Not onto: a river has no top surface.",
         say: [
           { text: "Fill the gap: He jumped … the river. Picture it: a jump: outside, then inside. So **into**.", cue: "pv-intox01" },
-          { text: "Why not **in**? jumped in the river = jumped while inside it That is correct English, but it says something else. Where in fits: _The boys jumped and played in the river._ Why not **onto**? a river has no top surface.", cue: "pv-intox0-r2" },
+          { text: "Why not **in**? jumped in the river = jumped while inside it. That is correct English, but it says something else. Where in fits: _The boys jumped and played in the river._ There **in** means they were already inside the river, playing. Why not **onto**? a river has no top surface.", cue: "pv-intox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-intox0"),
-          ...PLAB.kit.lineup("pv-intox0", "He jumped ____ the river.", [["intoBag", "into", true, "a jump: outside, | then inside"], ["dotIn", "in", "diff", "jumped in the river = | jumped while inside it"], ["turnOnto", "onto", false, "a river has | no top surface"]], ["Why into? a jump: outside, then inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The boys jumped and played in the river."]),
+          ...PLAB.kit.lineup("pv-intox0", "He jumped ____ the river.", [["intoBag", "into", true, "a jump: outside, | then inside"], ["dotIn", "in", "diff", "jumped in the river = | jumped while inside it"], ["turnOnto", "onto", false, "a river has | no top surface"]], ["Why into? a jump: outside, then inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The boys jumped and played in the river.  = they were already inside the river, playing"]),
         ],
       },
       {
@@ -1983,11 +1983,11 @@
         alt: "Put the files with a gap the drawer. Answer: into, because the files move inside. Not in: in is common in speech; into stresses movement. Not on: not on top.",
         say: [
           { text: "Fill the gap: Put the files … the drawer. Picture it: the files move inside. So **into**.", cue: "pv-intox11" },
-          { text: "Why not **in**? in is common in speech; into stresses movement That is correct English, but it says something else. Where in fits: _The files are in the drawer._ Why not **on**? not on top.", cue: "pv-intox1-r2" },
+          { text: "Why not **in**? in is common in speech; into stresses movement. That is correct English, but it says something else. Where in fits: _The files are in the drawer._ There **in** means already inside; where they are. Why not **on**? not on top.", cue: "pv-intox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-intox1"),
-          ...PLAB.kit.lineup("pv-intox1", "Put the files ____ the drawer.", [["intoBag", "into", true, "the files move inside"], ["dotIn", "in", "diff", "in is common in speech; | into stresses movement"], ["cupOnTable", "on", false, "not on top"]], ["Why into? the files move inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The files are in the drawer."]),
+          ...PLAB.kit.lineup("pv-intox1", "Put the files ____ the drawer.", [["intoBag", "into", true, "the files move inside"], ["dotIn", "in", "diff", "in is common in speech; | into stresses movement"], ["cupOnTable", "on", false, "not on top"]], ["Why into? the files move inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The files are in the drawer.  = already inside; where they are"]),
         ],
       },
       {
@@ -2054,11 +2054,11 @@
         alt: "The cat jumped with a gap the table. Answer: onto, because a jump that ends on the top. Not into: a table has no inside. Not on: jumped on the table = jumped up and down there.",
         say: [
           { text: "Fill the gap: The cat jumped … the table. Picture it: a jump that ends on the top. So **onto**.", cue: "pv-ontox02" },
-          { text: "Why not **into**? a table has no inside. Why not **on**? jumped on the table = jumped up and down there That is correct English, but it says something else. Where on fits: _The children jumped on the bed for fun._", cue: "pv-ontox0-r2" },
+          { text: "Why not **into**? a table has no inside. Why not **on**? jumped on the table = jumped up and down there. That is correct English, but it says something else. Where on fits: _The children jumped on the bed for fun._ There **on** means jumping up and down on the bed.", cue: "pv-ontox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-ontox0"),
-          ...PLAB.kit.lineup("pv-ontox0", "The cat jumped ____ the table.", [["intoBag", "into", false, "a table has no inside"], ["turnOnto", "onto", true, "a jump that ends | on the top"], ["cupOnTable", "on", "diff", "jumped on the table = | jumped up and down there"]], ["Why onto? a jump that ends on the top", "Ask: Is there movement up onto a surface?"], null, ["≈ on: The children jumped on the bed for fun."]),
+          ...PLAB.kit.lineup("pv-ontox0", "The cat jumped ____ the table.", [["intoBag", "into", false, "a table has no inside"], ["turnOnto", "onto", true, "a jump that ends | on the top"], ["cupOnTable", "on", "diff", "jumped on the table = | jumped up and down there"]], ["Why onto? a jump that ends on the top", "Ask: Is there movement up onto a surface?"], null, ["≈ on: The children jumped on the bed for fun.  = jumping up and down on the bed"]),
         ],
       },
       {
@@ -2155,11 +2155,11 @@
         alt: "A bridge was built with a gap the river. Answer: over, because it crosses from one side to the other. Not above: above = only higher, not crossing. Not under: opposite.",
         say: [
           { text: "Fill the gap: A bridge was built … the river. Picture it: it crosses from one side to the other. So **over**.", cue: "pv-overx11" },
-          { text: "Why not **above**? above = only higher, not crossing That is correct English, but it says something else. Where above fits: _Clouds hung above the river._ Why not **under**? opposite.", cue: "pv-overx1-r2" },
+          { text: "Why not **above**? above = only higher, not crossing. That is correct English, but it says something else. Where above fits: _Clouds hung above the river._ There **above** means higher than the river. Why not **under**? opposite.", cue: "pv-overx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-overx1"),
-          ...PLAB.kit.lineup("pv-overx1", "A bridge was built ____ the river.", [["tankOver", "over", true, "it crosses from | one side to the other"], ["floatAbove", "above", "diff", "above = only higher, | not crossing"], ["underTable", "under", false, "opposite"]], ["Why over? it crosses from one side to the other", "Ask: Does it cover, or cross over?"], null, ["≈ above: Clouds hung above the river."]),
+          ...PLAB.kit.lineup("pv-overx1", "A bridge was built ____ the river.", [["tankOver", "over", true, "it crosses from | one side to the other"], ["floatAbove", "above", "diff", "above = only higher, | not crossing"], ["underTable", "under", false, "opposite"]], ["Why over? it crosses from one side to the other", "Ask: Does it cover, or cross over?"], null, ["≈ above: Clouds hung above the river.  = higher than the river"]),
         ],
       },
       {
@@ -2185,11 +2185,11 @@
         alt: "The temperature is with a gap 40 degrees. Answer: above, because a level on a scale. Not over: over 40 is common for numbers, not scales. Not below: opposite meaning.",
         say: [
           { text: "Fill the gap: The temperature is … 40 degrees. Picture it: a level on a scale. So **above**.", cue: "pv-abovex02" },
-          { text: "Why not **over**? over 40 is common for numbers, not scales That is correct English, but it says something else. Where over fits: _He is over forty years old._ Why not **below**? opposite meaning.", cue: "pv-abovex0-r2" },
+          { text: "Why not **over**? over 40 is common for numbers, not scales. That is correct English, but it says something else. Where over fits: _He is over forty years old._ There **over** means more than forty. Why not **below**? opposite meaning.", cue: "pv-abovex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-abovex0"),
-          ...PLAB.kit.lineup("pv-abovex0", "The temperature is ____ 40 degrees.", [["tankOver", "over", "diff", "over 40 is common for | numbers, not scales"], ["floatAbove", "above", true, "a level on a scale"], ["belowLine", "below", false, "opposite meaning"]], ["Why above? a level on a scale", "Ask: Is it just at a higher level?"], null, ["≈ over: He is over forty years old."]),
+          ...PLAB.kit.lineup("pv-abovex0", "The temperature is ____ 40 degrees.", [["tankOver", "over", "diff", "over 40 is common for | numbers, not scales"], ["floatAbove", "above", true, "a level on a scale"], ["belowLine", "below", false, "opposite meaning"]], ["Why above? a level on a scale", "Ask: Is it just at a higher level?"], null, ["≈ over: He is over forty years old.  = more than forty"]),
         ],
       },
       {
@@ -2198,11 +2198,11 @@
         alt: "His flat is with a gap the shop. Answer: above, because only higher, one floor up. Not over: over the shop is also heard. Not under: opposite meaning.",
         say: [
           { text: "Fill the gap: His flat is … the shop. Picture it: only higher, one floor up. So **above**.", cue: "pv-abovex12" },
-          { text: "Why not **over**? over the shop is also heard That is correct English, but it says something else. Where over fits: _He lives in a flat over the shop._ Why not **under**? opposite meaning.", cue: "pv-abovex1-r2" },
+          { text: "Why not **over**? over the shop is also heard. That is correct English, but it says something else. Where over fits: _He lives in a flat over the shop._ There **over** means on the floor above the shop. Why not **under**? opposite meaning.", cue: "pv-abovex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-abovex1"),
-          ...PLAB.kit.lineup("pv-abovex1", "His flat is ____ the shop.", [["tankOver", "over", "diff", "over the shop is | also heard"], ["floatAbove", "above", true, "only higher, | one floor up"], ["underTable", "under", false, "opposite meaning"]], ["Why above? only higher, one floor up", "Ask: Is it just at a higher level?"], null, ["≈ over: He lives in a flat over the shop."]),
+          ...PLAB.kit.lineup("pv-abovex1", "His flat is ____ the shop.", [["tankOver", "over", "diff", "over the shop is | also heard"], ["floatAbove", "above", true, "only higher, | one floor up"], ["underTable", "under", false, "opposite meaning"]], ["Why above? only higher, one floor up", "Ask: Is it just at a higher level?"], null, ["≈ over: He lives in a flat over the shop.  = on the floor above the shop"]),
         ],
       },
       {
@@ -2328,11 +2328,11 @@
         alt: "A bridge was built with a gap the river. Answer: over, because it crosses from one side to the other. Not above: above = only higher, not crossing. Not under: opposite.",
         say: [
           { text: "Fill the gap: A bridge was built … the river. Picture it: it crosses from one side to the other. So **over**.", cue: "pv-overx11" },
-          { text: "Why not **above**? above = only higher, not crossing That is correct English, but it says something else. Where above fits: _Clouds hung above the river._ Why not **under**? opposite.", cue: "pv-overx1-r2" },
+          { text: "Why not **above**? above = only higher, not crossing. That is correct English, but it says something else. Where above fits: _Clouds hung above the river._ There **above** means higher than the river. Why not **under**? opposite.", cue: "pv-overx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-overx1"),
-          ...PLAB.kit.lineup("pv-overx1", "A bridge was built ____ the river.", [["tankOver", "over", true, "it crosses from | one side to the other"], ["floatAbove", "above", "diff", "above = only higher, | not crossing"], ["underTable", "under", false, "opposite"]], ["Why over? it crosses from one side to the other", "Ask: Does it cover, or cross over?"], null, ["≈ above: Clouds hung above the river."]),
+          ...PLAB.kit.lineup("pv-overx1", "A bridge was built ____ the river.", [["tankOver", "over", true, "it crosses from | one side to the other"], ["floatAbove", "above", "diff", "above = only higher, | not crossing"], ["underTable", "under", false, "opposite"]], ["Why over? it crosses from one side to the other", "Ask: Does it cover, or cross over?"], null, ["≈ above: Clouds hung above the river.  = higher than the river"]),
         ],
       },
       {
@@ -2358,11 +2358,11 @@
         alt: "The temperature is with a gap 40 degrees. Answer: above, because a level on a scale. Not over: over 40 is common for numbers, not scales. Not below: opposite meaning.",
         say: [
           { text: "Fill the gap: The temperature is … 40 degrees. Picture it: a level on a scale. So **above**.", cue: "pv-abovex02" },
-          { text: "Why not **over**? over 40 is common for numbers, not scales That is correct English, but it says something else. Where over fits: _He is over forty years old._ Why not **below**? opposite meaning.", cue: "pv-abovex0-r2" },
+          { text: "Why not **over**? over 40 is common for numbers, not scales. That is correct English, but it says something else. Where over fits: _He is over forty years old._ There **over** means more than forty. Why not **below**? opposite meaning.", cue: "pv-abovex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-abovex0"),
-          ...PLAB.kit.lineup("pv-abovex0", "The temperature is ____ 40 degrees.", [["tankOver", "over", "diff", "over 40 is common for | numbers, not scales"], ["floatAbove", "above", true, "a level on a scale"], ["belowLine", "below", false, "opposite meaning"]], ["Why above? a level on a scale", "Ask: Is it just at a higher level?"], null, ["≈ over: He is over forty years old."]),
+          ...PLAB.kit.lineup("pv-abovex0", "The temperature is ____ 40 degrees.", [["tankOver", "over", "diff", "over 40 is common for | numbers, not scales"], ["floatAbove", "above", true, "a level on a scale"], ["belowLine", "below", false, "opposite meaning"]], ["Why above? a level on a scale", "Ask: Is it just at a higher level?"], null, ["≈ over: He is over forty years old.  = more than forty"]),
         ],
       },
       {
@@ -2371,11 +2371,11 @@
         alt: "His flat is with a gap the shop. Answer: above, because only higher, one floor up. Not over: over the shop is also heard. Not under: opposite meaning.",
         say: [
           { text: "Fill the gap: His flat is … the shop. Picture it: only higher, one floor up. So **above**.", cue: "pv-abovex12" },
-          { text: "Why not **over**? over the shop is also heard That is correct English, but it says something else. Where over fits: _He lives in a flat over the shop._ Why not **under**? opposite meaning.", cue: "pv-abovex1-r2" },
+          { text: "Why not **over**? over the shop is also heard. That is correct English, but it says something else. Where over fits: _He lives in a flat over the shop._ There **over** means on the floor above the shop. Why not **under**? opposite meaning.", cue: "pv-abovex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-abovex1"),
-          ...PLAB.kit.lineup("pv-abovex1", "His flat is ____ the shop.", [["tankOver", "over", "diff", "over the shop is | also heard"], ["floatAbove", "above", true, "only higher, | one floor up"], ["underTable", "under", false, "opposite meaning"]], ["Why above? only higher, one floor up", "Ask: Is it just at a higher level?"], null, ["≈ over: He lives in a flat over the shop."]),
+          ...PLAB.kit.lineup("pv-abovex1", "His flat is ____ the shop.", [["tankOver", "over", "diff", "over the shop is | also heard"], ["floatAbove", "above", true, "only higher, | one floor up"], ["underTable", "under", false, "opposite meaning"]], ["Why above? only higher, one floor up", "Ask: Is it just at a higher level?"], null, ["≈ over: He lives in a flat over the shop.  = on the floor above the shop"]),
         ],
       },
       {
@@ -2487,11 +2487,11 @@
         alt: "We went with a gap Murree. Answer: to, because we reached Murree. Not towards: towards Murree = in that direction, maybe not there.",
         say: [
           { text: "Fill the gap: We went … Murree. Picture it: we reached Murree. So **to**.", cue: "pv-tox01" },
-          { text: "Why not **towards**? towards Murree = in that direction, maybe not there That is correct English, but it says something else. Where towards fits: _We drove towards Murree but turned back._", cue: "pv-tox0-r2" },
+          { text: "Why not **towards**? towards Murree = in that direction, maybe not there. That is correct English, but it says something else. Where towards fits: _We drove towards Murree but turned back._ There **towards** means in the direction of Murree only.", cue: "pv-tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-tox0"),
-          ...PLAB.kit.lineup("pv-tox0", "We went ____ Murree.", [["reachDot", "to", true, "we reached Murree"], ["lookAhead", "towards", "diff", "towards Murree = in that | direction, maybe not there"]], ["Why to? we reached Murree", "Ask: Does it reach the end?"], null, ["≈ towards: We drove towards Murree but turned back."]),
+          ...PLAB.kit.lineup("pv-tox0", "We went ____ Murree.", [["reachDot", "to", true, "we reached Murree"], ["lookAhead", "towards", "diff", "towards Murree = in that | direction, maybe not there"]], ["Why to? we reached Murree", "Ask: Does it reach the end?"], null, ["≈ towards: We drove towards Murree but turned back.  = in the direction of Murree only"]),
         ],
       },
       {
@@ -2530,11 +2530,11 @@
         alt: "The dog ran with a gap me. Answer: towards, because the direction of running. Not to: to me = it reached me.",
         say: [
           { text: "Fill the gap: The dog ran … me. Picture it: the direction of running. So **towards**.", cue: "pv-towardsx02" },
-          { text: "Why not **to**? to me = it reached me That is correct English, but it says something else. Where to fits: _The dog ran to me and licked my hand._", cue: "pv-towardsx0-r2" },
+          { text: "Why not **to**? to me = it reached me. That is correct English, but it says something else. Where to fits: _The dog ran to me and licked my hand._ There **to** means ran and reached me.", cue: "pv-towardsx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-towardsx0"),
-          ...PLAB.kit.lineup("pv-towardsx0", "The dog ran ____ me.", [["reachDot", "to", "diff", "to me = it reached me"], ["lookAhead", "towards", true, "the direction of running"]], ["Why towards? the direction of running", "Ask: Is it only the direction, or an attitude aimed at someone?"], null, ["≈ to: The dog ran to me and licked my hand."]),
+          ...PLAB.kit.lineup("pv-towardsx0", "The dog ran ____ me.", [["reachDot", "to", "diff", "to me = it reached me"], ["lookAhead", "towards", true, "the direction of running"]], ["Why towards? the direction of running", "Ask: Is it only the direction, or an attitude aimed at someone?"], null, ["≈ to: The dog ran to me and licked my hand.  = ran and reached me"]),
         ],
       },
       {
@@ -2586,7 +2586,7 @@
             {
               "text": "towards",
               "misconception": "p0-sense",
-              "why": "Towards = in that direction only. It is correct English, but it says something else. Where towards fits: He walked towards school, then stopped at a shop."
+              "why": "Towards = in that direction only. It is correct English, but it says something else. Where towards fits: He walked towards school, then stopped at a shop. There towards means in the direction of school only."
             }
           ]
         },
@@ -2657,11 +2657,11 @@
         alt: "All passed with a gap Hamid. Answer: except, because Hamid did not pass: he is taken out. Not besides: besides Hamid = Hamid also passed. Not instead of: no one replaced him.",
         say: [
           { text: "Fill the gap: All passed … Hamid. Picture it: Hamid did not pass: he is taken out. So **except**.", cue: "pv-exceptx01" },
-          { text: "Why not **besides**? besides Hamid = Hamid also passed That is correct English, but it says something else. Where besides fits: _Besides Hamid, all the others passed too._ Why not **instead of**? no one replaced him.", cue: "pv-exceptx0-r2" },
+          { text: "Why not **besides**? besides Hamid = Hamid also passed. That is correct English, but it says something else. Where besides fits: _Besides Hamid, all the others passed too._ There **besides** means in addition to Hamid. Why not **instead of**? no one replaced him.", cue: "pv-exceptx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-exceptx0"),
-          ...PLAB.kit.lineup("pv-exceptx0", "All passed ____ Hamid.", [["exceptOne", "except", true, "Hamid did not pass: | he is taken out"], ["stackAdd", "besides", "diff", "besides Hamid = Hamid | also passed"], ["replaceDoc", "instead of", false, "no one replaced him"]], ["Why except? Hamid did not pass: he is taken out", "Ask: Is one left out?"], null, ["≈ besides: Besides Hamid, all the others passed too."]),
+          ...PLAB.kit.lineup("pv-exceptx0", "All passed ____ Hamid.", [["exceptOne", "except", true, "Hamid did not pass: | he is taken out"], ["stackAdd", "besides", "diff", "besides Hamid = Hamid | also passed"], ["replaceDoc", "instead of", false, "no one replaced him"]], ["Why except? Hamid did not pass: he is taken out", "Ask: Is one left out?"], null, ["≈ besides: Besides Hamid, all the others passed too.  = in addition to Hamid"]),
         ],
       },
       {
@@ -2699,11 +2699,11 @@
         alt: "with a gap Hamid, five others passed. Answer: besides, because Hamid passed, and five more too. Not except: except Hamid = Hamid failed. Not instead of: no swap.",
         say: [
           { text: "Fill the gap: … Hamid, five others passed. Picture it: Hamid passed, and five more too. So **besides**.", cue: "pv-besidesx02" },
-          { text: "Why not **except**? except Hamid = Hamid failed That is correct English, but it says something else. Where except fits: _All passed except Hamid._ Why not **instead of**? no swap.", cue: "pv-besidesx0-r2" },
+          { text: "Why not **except**? except Hamid = Hamid failed. That is correct English, but it says something else. Where except fits: _All passed except Hamid._ There **except** means Hamid is left out. Why not **instead of**? no swap.", cue: "pv-besidesx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-besidesx0"),
-          ...PLAB.kit.lineup("pv-besidesx0", "____ Hamid, five others passed.", [["exceptOne", "except", "diff", "except Hamid = Hamid | failed"], ["stackAdd", "besides", true, "Hamid passed, and | five more too"], ["replaceDoc", "instead of", false, "no swap"]], ["Why besides? Hamid passed, and five more too", "Ask: Is one more added?"], null, ["≈ except: All passed except Hamid."]),
+          ...PLAB.kit.lineup("pv-besidesx0", "____ Hamid, five others passed.", [["exceptOne", "except", "diff", "except Hamid = Hamid | failed"], ["stackAdd", "besides", true, "Hamid passed, and | five more too"], ["replaceDoc", "instead of", false, "no swap"]], ["Why besides? Hamid passed, and five more too", "Ask: Is one more added?"], null, ["≈ except: All passed except Hamid.  = Hamid is left out"]),
         ],
       },
       {
@@ -2712,11 +2712,11 @@
         alt: "with a gap a car, he owns a bike. Answer: besides, because the bike is added. Not except: not leaving out. Not instead of: instead of = he has a bike, no car.",
         say: [
           { text: "Fill the gap: … a car, he owns a bike. Picture it: the bike is added. So **besides**.", cue: "pv-besidesx12" },
-          { text: "Why not **except**? not leaving out. Why not **instead of**? instead of = he has a bike, no car That is correct English, but it says something else. Where instead of fits: _He bought a bike instead of a car._", cue: "pv-besidesx1-r2" },
+          { text: "Why not **except**? not leaving out. Why not **instead of**? instead of = he has a bike, no car. That is correct English, but it says something else. Where instead of fits: _He bought a bike instead of a car._ There **instead of** means in place of a car.", cue: "pv-besidesx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-besidesx1"),
-          ...PLAB.kit.lineup("pv-besidesx1", "____ a car, he owns a bike.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", true, "the bike is added"], ["replaceDoc", "instead of", "diff", "instead of = he has | a bike, no car"]], ["Why besides? the bike is added", "Ask: Is one more added?"], null, ["≈ instead of: He bought a bike instead of a car."]),
+          ...PLAB.kit.lineup("pv-besidesx1", "____ a car, he owns a bike.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", true, "the bike is added"], ["replaceDoc", "instead of", "diff", "instead of = he has | a bike, no car"]], ["Why besides? the bike is added", "Ask: Is one more added?"], null, ["≈ instead of: He bought a bike instead of a car.  = in place of a car"]),
         ],
       },
       {
@@ -2741,11 +2741,11 @@
         alt: "Drink water with a gap cola. Answer: instead of, because water takes the place of cola. Not except: nothing is left out of a group. Not besides: besides = drink both.",
         say: [
           { text: "Fill the gap: Drink water … cola. Picture it: water takes the place of cola. So **instead of**.", cue: "pv-instead-ofx03" },
-          { text: "Why not **except**? nothing is left out of a group. Why not **besides**? besides = drink both That is correct English, but it says something else. Where besides fits: _Besides water, you may drink juice._", cue: "pv-instead-ofx0-r2" },
+          { text: "Why not **except**? nothing is left out of a group. Why not **besides**? besides = drink both. That is correct English, but it says something else. Where besides fits: _Besides water, you may drink juice._ There **besides** means in addition to water.", cue: "pv-instead-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-instead-ofx0"),
-          ...PLAB.kit.lineup("pv-instead-ofx0", "Drink water ____ cola.", [["exceptOne", "except", false, "nothing is left out | of a group"], ["stackAdd", "besides", "diff", "besides = drink both"], ["replaceDoc", "instead of", true, "water takes the | place of cola"]], ["Why instead of? water takes the place of cola", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides water, you may drink juice."]),
+          ...PLAB.kit.lineup("pv-instead-ofx0", "Drink water ____ cola.", [["exceptOne", "except", false, "nothing is left out | of a group"], ["stackAdd", "besides", "diff", "besides = drink both"], ["replaceDoc", "instead of", true, "water takes the | place of cola"]], ["Why instead of? water takes the place of cola", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides water, you may drink juice.  = in addition to water"]),
         ],
       },
       {
@@ -2754,11 +2754,11 @@
         alt: "He sent his son with a gap going himself. Answer: instead of, because the son replaced him. Not except: not leaving out. Not besides: besides = both went.",
         say: [
           { text: "Fill the gap: He sent his son … going himself. Picture it: the son replaced him. So **instead of**.", cue: "pv-instead-ofx13" },
-          { text: "Why not **except**? not leaving out. Why not **besides**? besides = both went That is correct English, but it says something else. Where besides fits: _Besides his son, he went himself too._", cue: "pv-instead-ofx1-r2" },
+          { text: "Why not **except**? not leaving out. Why not **besides**? besides = both went. That is correct English, but it says something else. Where besides fits: _Besides his son, he went himself too._ There **besides** means in addition to his son.", cue: "pv-instead-ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-instead-ofx1"),
-          ...PLAB.kit.lineup("pv-instead-ofx1", "He sent his son ____ going himself.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", "diff", "besides = both went"], ["replaceDoc", "instead of", true, "the son replaced him"]], ["Why instead of? the son replaced him", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides his son, he went himself too."]),
+          ...PLAB.kit.lineup("pv-instead-ofx1", "He sent his son ____ going himself.", [["exceptOne", "except", false, "not leaving out"], ["stackAdd", "besides", "diff", "besides = both went"], ["replaceDoc", "instead of", true, "the son replaced him"]], ["Why instead of? the son replaced him", "Ask: Does one take the place of the other?"], null, ["≈ besides: Besides his son, he went himself too.  = in addition to his son"]),
         ],
       },
       {
@@ -2981,11 +2981,11 @@
         alt: "Wash your hands with a gap eating. Answer: before, because washing comes earlier than eating. Not after: after eating = later. Not ago: ago comes after a length of time: two days ago.",
         say: [
           { text: "Fill the gap: Wash your hands … eating. Picture it: washing comes earlier than eating. So **before**.", cue: "pv-beforex01" },
-          { text: "Why not **after**? after eating = later That is correct English, but it says something else. Where after fits: _Wash your hands after eating too._ Why not **ago**? ago comes after a length of time: two days ago.", cue: "pv-beforex0-r2" },
+          { text: "Why not **after**? after eating = later. That is correct English, but it says something else. Where after fits: _Wash your hands after eating too._ There **after** means when eating is over. Why not **ago**? ago comes after a length of time: two days ago.", cue: "pv-beforex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-beforex0"),
-          ...PLAB.kit.lineup("pv-beforex0", "Wash your hands ____ eating.", [["priorDot", "before", true, "washing comes earlier | than eating"], ["afterDot", "after", "diff", "after eating = later"], ["pointPast", "ago", false, "ago comes after a length | of time: two days ago"]], ["Why before? washing comes earlier than eating", "Ask: Is it earlier than a named event or time?"], null, ["≈ after: Wash your hands after eating too."]),
+          ...PLAB.kit.lineup("pv-beforex0", "Wash your hands ____ eating.", [["priorDot", "before", true, "washing comes earlier | than eating"], ["afterDot", "after", "diff", "after eating = later"], ["pointPast", "ago", false, "ago comes after a length | of time: two days ago"]], ["Why before? washing comes earlier than eating", "Ask: Is it earlier than a named event or time?"], null, ["≈ after: Wash your hands after eating too.  = when eating is over"]),
         ],
       },
       {
@@ -2994,11 +2994,11 @@
         alt: "Finish the work with a gap Friday. Answer: before, because earlier than Friday. Not after: after Friday = later. Not ago: ago does not take a day.",
         say: [
           { text: "Fill the gap: Finish the work … Friday. Picture it: earlier than Friday. So **before**.", cue: "pv-beforex11" },
-          { text: "Why not **after**? after Friday = later That is correct English, but it says something else. Where after fits: _We can rest after Friday._ Why not **ago**? ago does not take a day.", cue: "pv-beforex1-r2" },
+          { text: "Why not **after**? after Friday = later. That is correct English, but it says something else. Where after fits: _We can rest after Friday._ There **after** means once Friday is over. Why not **ago**? ago does not take a day.", cue: "pv-beforex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-beforex1"),
-          ...PLAB.kit.lineup("pv-beforex1", "Finish the work ____ Friday.", [["priorDot", "before", true, "earlier than Friday"], ["afterDot", "after", "diff", "after Friday = later"], ["pointPast", "ago", false, "ago does not take | a day"]], ["Why before? earlier than Friday", "Ask: Is it earlier than a named event or time?"], null, ["≈ after: We can rest after Friday."]),
+          ...PLAB.kit.lineup("pv-beforex1", "Finish the work ____ Friday.", [["priorDot", "before", true, "earlier than Friday"], ["afterDot", "after", "diff", "after Friday = later"], ["pointPast", "ago", false, "ago does not take | a day"]], ["Why before? earlier than Friday", "Ask: Is it earlier than a named event or time?"], null, ["≈ after: We can rest after Friday.  = once Friday is over"]),
         ],
       },
       {
@@ -3023,11 +3023,11 @@
         alt: "We rested with a gap the match. Answer: after, because the rest came later. Not before: before = earlier. Not ago: ago is never before a noun.",
         say: [
           { text: "Fill the gap: We rested … the match. Picture it: the rest came later. So **after**.", cue: "pv-afterx02" },
-          { text: "Why not **before**? before = earlier That is correct English, but it says something else. Where before fits: _We rested before the match._ Why not **ago**? ago is never before a noun.", cue: "pv-afterx0-r2" },
+          { text: "Why not **before**? before = earlier. That is correct English, but it says something else. Where before fits: _We rested before the match._ There **before** means earlier than the match. Why not **ago**? ago is never before a noun.", cue: "pv-afterx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-afterx0"),
-          ...PLAB.kit.lineup("pv-afterx0", "We rested ____ the match.", [["priorDot", "before", "diff", "before = earlier"], ["afterDot", "after", true, "the rest came later"], ["pointPast", "ago", false, "ago is never before | a noun"]], ["Why after? the rest came later", "Ask: Is it later than a named event or time?"], null, ["≈ before: We rested before the match."]),
+          ...PLAB.kit.lineup("pv-afterx0", "We rested ____ the match.", [["priorDot", "before", "diff", "before = earlier"], ["afterDot", "after", true, "the rest came later"], ["pointPast", "ago", false, "ago is never before | a noun"]], ["Why after? the rest came later", "Ask: Is it later than a named event or time?"], null, ["≈ before: We rested before the match.  = earlier than the match"]),
         ],
       },
       {
@@ -3036,11 +3036,11 @@
         alt: "with a gap the war, prices rose. Answer: after, because the rise came later than the war. Not before: before = earlier. Not ago: not used.",
         say: [
           { text: "Fill the gap: … the war, prices rose. Picture it: the rise came later than the war. So **after**.", cue: "pv-afterx12" },
-          { text: "Why not **before**? before = earlier That is correct English, but it says something else. Where before fits: _Before the war, prices were low._ Why not **ago**? not used.", cue: "pv-afterx1-r2" },
+          { text: "Why not **before**? before = earlier. That is correct English, but it says something else. Where before fits: _Before the war, prices were low._ There **before** means earlier than the war. Why not **ago**? not used.", cue: "pv-afterx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-afterx1"),
-          ...PLAB.kit.lineup("pv-afterx1", "____ the war, prices rose.", [["priorDot", "before", "diff", "before = earlier"], ["afterDot", "after", true, "the rise came later | than the war"], ["pointPast", "ago", false, "not used"]], ["Why after? the rise came later than the war", "Ask: Is it later than a named event or time?"], null, ["≈ before: Before the war, prices were low."]),
+          ...PLAB.kit.lineup("pv-afterx1", "____ the war, prices rose.", [["priorDot", "before", "diff", "before = earlier"], ["afterDot", "after", true, "the rise came later | than the war"], ["pointPast", "ago", false, "not used"]], ["Why after? the rise came later than the war", "Ask: Is it later than a named event or time?"], null, ["≈ before: Before the war, prices were low.  = earlier than the war"]),
         ],
       },
       {
@@ -3066,11 +3066,11 @@
         alt: "He left two years with a gap. Answer: ago, because two years back from now. Not before: two years before = before another past event. Not after: not used.",
         say: [
           { text: "Fill the gap: He left two years …. Picture it: two years back from now. So **ago**.", cue: "pv-agox03" },
-          { text: "Why not **before**? two years before = before another past event That is correct English, but it says something else. Where before fits: _He had left two years before the war._ Why not **after**? not used.", cue: "pv-agox0-r2" },
+          { text: "Why not **before**? two years before = before another past event. That is correct English, but it says something else. Where before fits: _He had left two years before the war._ There **before** means two years earlier than the war. Why not **after**? not used.", cue: "pv-agox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-agox0"),
-          ...PLAB.kit.lineup("pv-agox0", "He left two years ____.", [["priorDot", "before", "diff", "two years before = | before another past event"], ["afterDot", "after", false, "not used"], ["pointPast", "ago", true, "two years back from now"]], ["Why ago? two years back from now", "Ask: Is it a length of time counted back from now?"], null, ["≈ before: He had left two years before the war."]),
+          ...PLAB.kit.lineup("pv-agox0", "He left two years ____.", [["priorDot", "before", "diff", "two years before = | before another past event"], ["afterDot", "after", false, "not used"], ["pointPast", "ago", true, "two years back from now"]], ["Why ago? two years back from now", "Ask: Is it a length of time counted back from now?"], null, ["≈ before: He had left two years before the war.  = two years earlier than the war"]),
         ],
       },
       {
@@ -3079,11 +3079,11 @@
         alt: "I met her a week with a gap. Answer: ago, because a week back from today. Not before: a week before = before something else. Not after: not used.",
         say: [
           { text: "Fill the gap: I met her a week …. Picture it: a week back from today. So **ago**.", cue: "pv-agox13" },
-          { text: "Why not **before**? a week before = before something else That is correct English, but it says something else. Where before fits: _I had met her a week before the wedding._ Why not **after**? not used.", cue: "pv-agox1-r2" },
+          { text: "Why not **before**? a week before = before something else. That is correct English, but it says something else. Where before fits: _I had met her a week before the wedding._ There **before** means a week earlier than the wedding. Why not **after**? not used.", cue: "pv-agox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-agox1"),
-          ...PLAB.kit.lineup("pv-agox1", "I met her a week ____.", [["priorDot", "before", "diff", "a week before = | before something else"], ["afterDot", "after", false, "not used"], ["pointPast", "ago", true, "a week back from today"]], ["Why ago? a week back from today", "Ask: Is it a length of time counted back from now?"], null, ["≈ before: I had met her a week before the wedding."]),
+          ...PLAB.kit.lineup("pv-agox1", "I met her a week ____.", [["priorDot", "before", "diff", "a week before = | before something else"], ["afterDot", "after", false, "not used"], ["pointPast", "ago", true, "a week back from today"]], ["Why ago? a week back from today", "Ask: Is it a length of time counted back from now?"], null, ["≈ before: I had met her a week before the wedding.  = a week earlier than the wedding"]),
         ],
       },
       {
@@ -3117,7 +3117,7 @@
             {
               "text": "after",
               "misconception": "p0-sense",
-              "why": "Later than me. It is correct English, but it says something else. Where after fits: He came after me, ten minutes late."
+              "why": "Later than me. It is correct English, but it says something else. Where after fits: He came after me, ten minutes late. There after means later than me."
             },
             {
               "text": "ago",
@@ -3160,7 +3160,7 @@
             {
               "text": "before",
               "misconception": "p0-sense",
-              "why": "Earlier. It is correct English, but it says something else. Where before fits: Call me before lunch."
+              "why": "Earlier. It is correct English, but it says something else. Where before fits: Call me before lunch. There before means earlier than lunch."
             }
           ]
         },
@@ -3193,7 +3193,7 @@
             {
               "text": "before",
               "misconception": "p0-sense",
-              "why": "Long before = before another time. It is correct English, but it says something else. Where before fits: The shop opened long before the mall."
+              "why": "Long before = before another time. It is correct English, but it says something else. Where before fits: The shop opened long before the mall. There before means much earlier than the mall."
             }
           ]
         },
@@ -3589,11 +3589,11 @@
         alt: "The car is parked with a gap the house. Answer: in front of, because on the side the house faces, nothing between. Not behind: behind = at the back. Not opposite: opposite = across the road from it.",
         say: [
           { text: "Fill the gap: The car is parked … the house. Picture it: on the side the house faces, nothing between. So **in front of**.", cue: "pv-in-front-ofx01" },
-          { text: "Why not **behind**? behind = at the back That is correct English, but it says something else. Where behind fits: _The car is parked behind the house, in the garage._ Why not **opposite**? opposite = across the road from it That is correct English, but it says something else. Where opposite fits: _The car is parked opposite the house, across the road._", cue: "pv-in-front-ofx0-r2" },
+          { text: "Why not **behind**? behind = at the back. That is correct English, but it says something else. Where behind fits: _The car is parked behind the house, in the garage._ There **behind** means at the back of the house. Why not **opposite**? opposite = across the road from it. That is correct English, but it says something else. Where opposite fits: _The car is parked opposite the house, across the road._ There **opposite** means facing the house from across the road.", cue: "pv-in-front-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-in-front-ofx0"),
-          ...PLAB.kit.lineup("pv-in-front-ofx0", "The car is parked ____ the house.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", true, "on the side the house | faces, nothing between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "behind = at the back"], ["faces", "opposite", "diff", "opposite = across | the road from it"]], ["Why in front of? on the side the house faces, nothing between", "Ask: Is it on the facing side, close, with nothing between?"], null, ["≈ behind: The car is parked behind the house, in the garage.", "≈ opposite: The car is parked opposite the house, across the road."]),
+          ...PLAB.kit.lineup("pv-in-front-ofx0", "The car is parked ____ the house.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", true, "on the side the house | faces, nothing between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "behind = at the back"], ["faces", "opposite", "diff", "opposite = across | the road from it"]], ["Why in front of? on the side the house faces, nothing between", "Ask: Is it on the facing side, close, with nothing between?"], null, ["≈ behind: The car is parked behind the house, in the garage.  = at the back of the house", "≈ opposite: The car is parked opposite the house, across the road.  = facing the house from across the road"]),
         ],
       },
       {
@@ -3602,11 +3602,11 @@
         alt: "She stood with a gap the class. Answer: in front of, because facing the class, no space between. Not behind: at the back. Not opposite: no road or table between them.",
         say: [
           { text: "Fill the gap: She stood … the class. Picture it: facing the class, no space between. So **in front of**.", cue: "pv-in-front-ofx11" },
-          { text: "Why not **behind**? at the back That is correct English, but it says something else. Where behind fits: _She stood behind the class to watch them._ Why not **opposite**? no road or table between them.", cue: "pv-in-front-ofx1-r2" },
+          { text: "Why not **behind**? at the back. That is correct English, but it says something else. Where behind fits: _She stood behind the class to watch them._ There **behind** means at the back of the class. Why not **opposite**? no road or table between them.", cue: "pv-in-front-ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-in-front-ofx1"),
-          ...PLAB.kit.lineup("pv-in-front-ofx1", "She stood ____ the class.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", true, "facing the class, | no space between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at the back"], ["faces", "opposite", false, "no road or table | between them"]], ["Why in front of? facing the class, no space between", "Ask: Is it on the facing side, close, with nothing between?"], null, ["≈ behind: She stood behind the class to watch them."]),
+          ...PLAB.kit.lineup("pv-in-front-ofx1", "She stood ____ the class.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", true, "facing the class, | no space between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at the back"], ["faces", "opposite", false, "no road or table | between them"]], ["Why in front of? facing the class, no space between", "Ask: Is it on the facing side, close, with nothing between?"], null, ["≈ behind: She stood behind the class to watch them.  = at the back of the class"]),
         ],
       },
       {
@@ -3632,11 +3632,11 @@
         alt: "The garden is with a gap the house. Answer: behind, because at the back side. Not in front of: the facing side. Not opposite: across a road.",
         say: [
           { text: "Fill the gap: The garden is … the house. Picture it: at the back side. So **behind**.", cue: "pv-behindx02" },
-          { text: "Why not **in front of**? the facing side That is correct English, but it says something else. Where in front of fits: _There is a lawn in front of the house._ Why not **opposite**? across a road That is correct English, but it says something else. Where opposite fits: _There is a park opposite the house._", cue: "pv-behindx0-r2" },
+          { text: "Why not **in front of**? the facing side. That is correct English, but it says something else. Where in front of fits: _There is a lawn in front of the house._ There **in front of** means on the side the house faces. Why not **opposite**? across a road. That is correct English, but it says something else. Where opposite fits: _There is a park opposite the house._ There **opposite** means facing it, across the road.", cue: "pv-behindx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-behindx0"),
-          ...PLAB.kit.lineup("pv-behindx0", "The garden is ____ the house.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "the facing side"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", true, "at the back side"], ["faces", "opposite", "diff", "across a road"]], ["Why behind? at the back side", "Ask: Is it at the back?"], null, ["≈ in front of: There is a lawn in front of the house.", "≈ opposite: There is a park opposite the house."]),
+          ...PLAB.kit.lineup("pv-behindx0", "The garden is ____ the house.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "the facing side"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", true, "at the back side"], ["faces", "opposite", "diff", "across a road"]], ["Why behind? at the back side", "Ask: Is it at the back?"], null, ["≈ in front of: There is a lawn in front of the house.  = on the side the house faces", "≈ opposite: There is a park opposite the house.  = facing it, across the road"]),
         ],
       },
       {
@@ -3645,11 +3645,11 @@
         alt: "He hid with a gap a tree. Answer: behind, because at the back, hidden. Not in front of: then he is seen. Not opposite: not across a space.",
         say: [
           { text: "Fill the gap: He hid … a tree. Picture it: at the back, hidden. So **behind**.", cue: "pv-behindx12" },
-          { text: "Why not **in front of**? then he is seen That is correct English, but it says something else. Where in front of fits: _He stood in front of a tree for the photo._ Why not **opposite**? not across a space.", cue: "pv-behindx1-r2" },
+          { text: "Why not **in front of**? then he is seen. That is correct English, but it says something else. Where in front of fits: _He stood in front of a tree for the photo._ There **in front of** means on the facing side, where he can be seen. Why not **opposite**? not across a space.", cue: "pv-behindx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-behindx1"),
-          ...PLAB.kit.lineup("pv-behindx1", "He hid ____ a tree.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "then he is seen"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", true, "at the back, | hidden"], ["faces", "opposite", false, "not across a space"]], ["Why behind? at the back, hidden", "Ask: Is it at the back?"], null, ["≈ in front of: He stood in front of a tree for the photo."]),
+          ...PLAB.kit.lineup("pv-behindx1", "He hid ____ a tree.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "then he is seen"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", true, "at the back, | hidden"], ["faces", "opposite", false, "not across a space"]], ["Why behind? at the back, hidden", "Ask: Is it at the back?"], null, ["≈ in front of: He stood in front of a tree for the photo.  = on the facing side, where he can be seen"]),
         ],
       },
       {
@@ -3675,11 +3675,11 @@
         alt: "The bank is with a gap the mosque. Answer: opposite, because a road between; they face each other. Not in front of: in front of = nothing between. Not behind: at the back.",
         say: [
           { text: "Fill the gap: The bank is … the mosque. Picture it: a road between; they face each other. So **opposite**.", cue: "pv-oppositex03" },
-          { text: "Why not **in front of**? in front of = nothing between That is correct English, but it says something else. Where in front of fits: _The car stopped in front of the mosque gate._ Why not **behind**? at the back That is correct English, but it says something else. Where behind fits: _The graveyard is behind the mosque._", cue: "pv-oppositex0-r2" },
+          { text: "Why not **in front of**? in front of = nothing between. That is correct English, but it says something else. Where in front of fits: _The car stopped in front of the mosque gate._ There **in front of** means at the facing side of the gate. Why not **behind**? at the back. That is correct English, but it says something else. Where behind fits: _The graveyard is behind the mosque._ There **behind** means at the back of the mosque.", cue: "pv-oppositex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-oppositex0"),
-          ...PLAB.kit.lineup("pv-oppositex0", "The bank is ____ the mosque.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "in front of = | nothing between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at the back"], ["faces", "opposite", true, "a road between; | they face each other"]], ["Why opposite? a road between; they face each other", "Ask: Do they face each other across a space?"], null, ["≈ in front of: The car stopped in front of the mosque gate.", "≈ behind: The graveyard is behind the mosque."]),
+          ...PLAB.kit.lineup("pv-oppositex0", "The bank is ____ the mosque.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "in front of = | nothing between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at the back"], ["faces", "opposite", true, "a road between; | they face each other"]], ["Why opposite? a road between; they face each other", "Ask: Do they face each other across a space?"], null, ["≈ in front of: The car stopped in front of the mosque gate.  = at the facing side of the gate", "≈ behind: The graveyard is behind the mosque.  = at the back of the mosque"]),
         ],
       },
       {
@@ -3688,11 +3688,11 @@
         alt: "She sat with a gap me at dinner. Answer: opposite, because a table between; face to face. Not in front of: close, no table between. Not behind: at my back.",
         say: [
           { text: "Fill the gap: She sat … me at dinner. Picture it: a table between; face to face. So **opposite**.", cue: "pv-oppositex13" },
-          { text: "Why not **in front of**? close, no table between That is correct English, but it says something else. Where in front of fits: _She sat in front of me in the bus._ Why not **behind**? at my back That is correct English, but it says something else. Where behind fits: _She sat behind me in class._", cue: "pv-oppositex1-r2" },
+          { text: "Why not **in front of**? close, no table between. That is correct English, but it says something else. Where in front of fits: _She sat in front of me in the bus._ There **in front of** means in the seat ahead of mine. Why not **behind**? at my back. That is correct English, but it says something else. Where behind fits: _She sat behind me in class._ There **behind** means in the seat at my back.", cue: "pv-oppositex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-oppositex1"),
-          ...PLAB.kit.lineup("pv-oppositex1", "She sat ____ me at dinner.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "close, no table between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at my back"], ["faces", "opposite", true, "a table between; | face to face"]], ["Why opposite? a table between; face to face", "Ask: Do they face each other across a space?"], null, ["≈ in front of: She sat in front of me in the bus.", "≈ behind: She sat behind me in class."]),
+          ...PLAB.kit.lineup("pv-oppositex1", "She sat ____ me at dinner.", [[[["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "in front of", "diff", "close, no table between"], [[["box", 4, 24, 0.4], ["person", 25, 0]], "behind", "diff", "at my back"], ["faces", "opposite", true, "a table between; | face to face"]], ["Why opposite? a table between; face to face", "Ask: Do they face each other across a space?"], null, ["≈ in front of: She sat in front of me in the bus.  = in the seat ahead of mine", "≈ behind: She sat behind me in class.  = in the seat at my back"]),
         ],
       },
       {
@@ -3726,7 +3726,7 @@
             {
               "text": "behind",
               "misconception": "p0-sense",
-              "why": "At its back. It is correct English, but it says something else. Where behind fits: The photographer stood behind the camera."
+              "why": "At its back. It is correct English, but it says something else. Where behind fits: The photographer stood behind the camera. There behind means at the back of the camera."
             },
             {
               "text": "in front of",
@@ -3792,12 +3792,12 @@
             {
               "text": "behind",
               "misconception": "p0-sense",
-              "why": "At the back. It is correct English, but it says something else. Where behind fits: They live behind us, in the next street."
+              "why": "At the back. It is correct English, but it says something else. Where behind fits: They live behind us, in the next street. There behind means at the back of our house."
             },
             {
               "text": "in front of",
               "misconception": "p0-sense",
-              "why": "Right before our door. It is correct English, but it says something else. Where in front of fits: A tree grows in front of our door."
+              "why": "Right before our door. It is correct English, but it says something else. Where in front of fits: A tree grows in front of our door. There in front of means just before our door."
             },
             {
               "text": "opposite",
@@ -3845,11 +3845,11 @@
         alt: "Ten people came, with a gap two children. Answer: including, because the children are part of the ten. Not excluding: then twelve came.",
         say: [
           { text: "Fill the gap: Ten people came, … two children. Picture it: the children are part of the ten. So **including**.", cue: "pv-includingx01" },
-          { text: "Why not **excluding**? then twelve came That is correct English, but it says something else. Where excluding fits: _Ten people came, excluding the children._", cue: "pv-includingx0-r2" },
+          { text: "Why not **excluding**? then twelve came. That is correct English, but it says something else. Where excluding fits: _Ten people came, excluding the children._ There **excluding** means the children are not counted.", cue: "pv-includingx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-includingx0"),
-          ...PLAB.kit.lineup("pv-includingx0", "Ten people came, ____ two children.", [["stackAdd", "including", true, "the children are part | of the ten"], ["exceptOne", "excluding", "diff", "then twelve came"]], ["Why including? the children are part of the ten", "Ask: Is it part of the total?"], null, ["≈ excluding: Ten people came, excluding the children."]),
+          ...PLAB.kit.lineup("pv-includingx0", "Ten people came, ____ two children.", [["stackAdd", "including", true, "the children are part | of the ten"], ["exceptOne", "excluding", "diff", "then twelve came"]], ["Why including? the children are part of the ten", "Ask: Is it part of the total?"], null, ["≈ excluding: Ten people came, excluding the children.  = the children are not counted"]),
         ],
       },
       {
@@ -3858,11 +3858,11 @@
         alt: "The price is 500 rupees, with a gap tax. Answer: including, because the tax is inside the 500. Not excluding: tax is extra.",
         say: [
           { text: "Fill the gap: The price is 500 rupees, … tax. Picture it: the tax is inside the 500. So **including**.", cue: "pv-includingx11" },
-          { text: "Why not **excluding**? tax is extra That is correct English, but it says something else. Where excluding fits: _The price is 500 rupees, excluding tax._", cue: "pv-includingx1-r2" },
+          { text: "Why not **excluding**? tax is extra. That is correct English, but it says something else. Where excluding fits: _The price is 500 rupees, excluding tax._ There **excluding** means tax is not counted; you pay it extra.", cue: "pv-includingx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-includingx1"),
-          ...PLAB.kit.lineup("pv-includingx1", "The price is 500 rupees, ____ tax.", [["stackAdd", "including", true, "the tax is inside | the 500"], ["exceptOne", "excluding", "diff", "tax is extra"]], ["Why including? the tax is inside the 500", "Ask: Is it part of the total?"], null, ["≈ excluding: The price is 500 rupees, excluding tax."]),
+          ...PLAB.kit.lineup("pv-includingx1", "The price is 500 rupees, ____ tax.", [["stackAdd", "including", true, "the tax is inside | the 500"], ["exceptOne", "excluding", "diff", "tax is extra"]], ["Why including? the tax is inside the 500", "Ask: Is it part of the total?"], null, ["≈ excluding: The price is 500 rupees, excluding tax.  = tax is not counted; you pay it extra"]),
         ],
       },
       {
@@ -3887,11 +3887,11 @@
         alt: "The fare is 900 rupees, with a gap food. Answer: excluding, because food is not in the 900. Not including: food is inside the 900.",
         say: [
           { text: "Fill the gap: The fare is 900 rupees, … food. Picture it: food is not in the 900. So **excluding**.", cue: "pv-excludingx02" },
-          { text: "Why not **including**? food is inside the 900 That is correct English, but it says something else. Where including fits: _The fare is 900 rupees, including food._", cue: "pv-excludingx0-r2" },
+          { text: "Why not **including**? food is inside the 900. That is correct English, but it says something else. Where including fits: _The fare is 900 rupees, including food._ There **including** means food is counted inside the 900.", cue: "pv-excludingx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-excludingx0"),
-          ...PLAB.kit.lineup("pv-excludingx0", "The fare is 900 rupees, ____ food.", [["stackAdd", "including", "diff", "food is inside the 900"], ["exceptOne", "excluding", true, "food is not in | the 900"]], ["Why excluding? food is not in the 900", "Ask: Is it kept out of the total?"], null, ["≈ including: The fare is 900 rupees, including food."]),
+          ...PLAB.kit.lineup("pv-excludingx0", "The fare is 900 rupees, ____ food.", [["stackAdd", "including", "diff", "food is inside the 900"], ["exceptOne", "excluding", true, "food is not in | the 900"]], ["Why excluding? food is not in the 900", "Ask: Is it kept out of the total?"], null, ["≈ including: The fare is 900 rupees, including food.  = food is counted inside the 900"]),
         ],
       },
       {
@@ -3900,11 +3900,11 @@
         alt: "All shops close, with a gap pharmacies. Answer: excluding, because pharmacies are left out. Not including: pharmacies close too.",
         say: [
           { text: "Fill the gap: All shops close, … pharmacies. Picture it: pharmacies are left out. So **excluding**.", cue: "pv-excludingx12" },
-          { text: "Why not **including**? pharmacies close too That is correct English, but it says something else. Where including fits: _All shops close, including pharmacies._", cue: "pv-excludingx1-r2" },
+          { text: "Why not **including**? pharmacies close too. That is correct English, but it says something else. Where including fits: _All shops close, including pharmacies._ There **including** means pharmacies close too.", cue: "pv-excludingx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-excludingx1"),
-          ...PLAB.kit.lineup("pv-excludingx1", "All shops close, ____ pharmacies.", [["stackAdd", "including", "diff", "pharmacies close too"], ["exceptOne", "excluding", true, "pharmacies are left out"]], ["Why excluding? pharmacies are left out", "Ask: Is it kept out of the total?"], null, ["≈ including: All shops close, including pharmacies."]),
+          ...PLAB.kit.lineup("pv-excludingx1", "All shops close, ____ pharmacies.", [["stackAdd", "including", "diff", "pharmacies close too"], ["exceptOne", "excluding", true, "pharmacies are left out"]], ["Why excluding? pharmacies are left out", "Ask: Is it kept out of the total?"], null, ["≈ including: All shops close, including pharmacies.  = pharmacies close too"]),
         ],
       },
       {
@@ -3938,7 +3938,7 @@
             {
               "text": "excluding",
               "misconception": "p0-sense",
-              "why": "The teacher did not. It is correct English, but it says something else. Where excluding fits: Everyone, excluding the teacher, laughed."
+              "why": "The teacher did not. It is correct English, but it says something else. Where excluding fits: Everyone, excluding the teacher, laughed. There excluding means the teacher is left out."
             },
             {
               "text": "including",
@@ -3971,7 +3971,7 @@
             {
               "text": "including",
               "misconception": "p0-sense",
-              "why": "Sunday is counted. It is correct English, but it says something else. Where including fits: Seven days a week, including Sunday."
+              "why": "Sunday is counted. It is correct English, but it says something else. Where including fits: Seven days a week, including Sunday. There including means Sunday is counted in the seven."
             }
           ]
         },
@@ -4014,11 +4014,11 @@
         alt: "Wait with a gap the car. Answer: inside, because within the car. Not outside: outside = beyond it. Not out of: out of needs movement leaving.",
         say: [
           { text: "Fill the gap: Wait … the car. Picture it: within the car. So **inside**.", cue: "pv-insidex01" },
-          { text: "Why not **outside**? outside = beyond it That is correct English, but it says something else. Where outside fits: _Wait outside the car; it is too hot inside._ Why not **out of**? out of needs movement leaving.", cue: "pv-insidex0-r2" },
+          { text: "Why not **outside**? outside = beyond it. That is correct English, but it says something else. Where outside fits: _Wait outside the car; it is too hot inside._ There **outside** means out of the car, next to it. Why not **out of**? out of needs movement leaving.", cue: "pv-insidex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-insidex0"),
-          ...PLAB.kit.lineup("pv-insidex0", "Wait ____ the car.", [["insideBuilding", "inside", true, "within the car"], ["personLeft", "outside", "diff", "outside = beyond it"], ["goOut", "out of", false, "out of needs | movement leaving"]], ["Why inside? within the car", "Ask: Is it within the walls?"], null, ["≈ outside: Wait outside the car; it is too hot inside."]),
+          ...PLAB.kit.lineup("pv-insidex0", "Wait ____ the car.", [["insideBuilding", "inside", true, "within the car"], ["personLeft", "outside", "diff", "outside = beyond it"], ["goOut", "out of", false, "out of needs | movement leaving"]], ["Why inside? within the car", "Ask: Is it within the walls?"], null, ["≈ outside: Wait outside the car; it is too hot inside.  = out of the car, next to it"]),
         ],
       },
       {
@@ -4027,11 +4027,11 @@
         alt: "It is warm with a gap the house. Answer: inside, because within the walls. Not outside: beyond the walls. Not out of: no movement.",
         say: [
           { text: "Fill the gap: It is warm … the house. Picture it: within the walls. So **inside**.", cue: "pv-insidex11" },
-          { text: "Why not **outside**? beyond the walls That is correct English, but it says something else. Where outside fits: _It is cold outside the house._ Why not **out of**? no movement.", cue: "pv-insidex1-r2" },
+          { text: "Why not **outside**? beyond the walls. That is correct English, but it says something else. Where outside fits: _It is cold outside the house._ There **outside** means out beyond its walls. Why not **out of**? no movement.", cue: "pv-insidex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-insidex1"),
-          ...PLAB.kit.lineup("pv-insidex1", "It is warm ____ the house.", [["insideBuilding", "inside", true, "within the walls"], ["personLeft", "outside", "diff", "beyond the walls"], ["goOut", "out of", false, "no movement"]], ["Why inside? within the walls", "Ask: Is it within the walls?"], null, ["≈ outside: It is cold outside the house."]),
+          ...PLAB.kit.lineup("pv-insidex1", "It is warm ____ the house.", [["insideBuilding", "inside", true, "within the walls"], ["personLeft", "outside", "diff", "beyond the walls"], ["goOut", "out of", false, "no movement"]], ["Why inside? within the walls", "Ask: Is it within the walls?"], null, ["≈ outside: It is cold outside the house.  = out beyond its walls"]),
         ],
       },
       {
@@ -4056,11 +4056,11 @@
         alt: "The children play with a gap the house. Answer: outside, because a place beyond the walls. Not inside: within. Not out of: out of needs movement leaving.",
         say: [
           { text: "Fill the gap: The children play … the house. Picture it: a place beyond the walls. So **outside**.", cue: "pv-outsidex02" },
-          { text: "Why not **inside**? within That is correct English, but it says something else. Where inside fits: _On rainy days the children play inside the house._ Why not **out of**? out of needs movement leaving.", cue: "pv-outsidex0-r2" },
+          { text: "Why not **inside**? within. That is correct English, but it says something else. Where inside fits: _On rainy days the children play inside the house._ There **inside** means within its walls. Why not **out of**? out of needs movement leaving.", cue: "pv-outsidex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-outsidex0"),
-          ...PLAB.kit.lineup("pv-outsidex0", "The children play ____ the house.", [["insideBuilding", "inside", "diff", "within"], ["personLeft", "outside", true, "a place beyond the walls"], ["goOut", "out of", false, "out of needs | movement leaving"]], ["Why outside? a place beyond the walls", "Ask: Is it a place beyond the walls, with no movement out?"], null, ["≈ inside: On rainy days the children play inside the house."]),
+          ...PLAB.kit.lineup("pv-outsidex0", "The children play ____ the house.", [["insideBuilding", "inside", "diff", "within"], ["personLeft", "outside", true, "a place beyond the walls"], ["goOut", "out of", false, "out of needs | movement leaving"]], ["Why outside? a place beyond the walls", "Ask: Is it a place beyond the walls, with no movement out?"], null, ["≈ inside: On rainy days the children play inside the house.  = within its walls"]),
         ],
       },
       {
@@ -4069,11 +4069,11 @@
         alt: "Wait with a gap the room. Answer: outside, because a position beyond it. Not inside: within. Not out of: no movement.",
         say: [
           { text: "Fill the gap: Wait … the room. Picture it: a position beyond it. So **outside**.", cue: "pv-outsidex12" },
-          { text: "Why not **inside**? within That is correct English, but it says something else. Where inside fits: _Wait inside the room; it is cold._ Why not **out of**? no movement.", cue: "pv-outsidex1-r2" },
+          { text: "Why not **inside**? within. That is correct English, but it says something else. Where inside fits: _Wait inside the room; it is cold._ There **inside** means within the room. Why not **out of**? no movement.", cue: "pv-outsidex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-outsidex1"),
-          ...PLAB.kit.lineup("pv-outsidex1", "Wait ____ the room.", [["insideBuilding", "inside", "diff", "within"], ["personLeft", "outside", true, "a position beyond it"], ["goOut", "out of", false, "no movement"]], ["Why outside? a position beyond it", "Ask: Is it a place beyond the walls, with no movement out?"], null, ["≈ inside: Wait inside the room; it is cold."]),
+          ...PLAB.kit.lineup("pv-outsidex1", "Wait ____ the room.", [["insideBuilding", "inside", "diff", "within"], ["personLeft", "outside", true, "a position beyond it"], ["goOut", "out of", false, "no movement"]], ["Why outside? a position beyond it", "Ask: Is it a place beyond the walls, with no movement out?"], null, ["≈ inside: Wait inside the room; it is cold.  = within the room"]),
         ],
       },
       {
@@ -4098,11 +4098,11 @@
         alt: "He ran with a gap the room. Answer: out of, because from inside to outside. Not inside: opposite. Not outside: ran outside the room = ran about out there.",
         say: [
           { text: "Fill the gap: He ran … the room. Picture it: from inside to outside. So **out of**.", cue: "pv-out-ofx03" },
-          { text: "Why not **inside**? opposite. Why not **outside**? ran outside the room = ran about out there That is correct English, but it says something else. Where outside fits: _The children ran about outside the room._", cue: "pv-out-ofx0-r2" },
+          { text: "Why not **inside**? opposite. Why not **outside**? ran outside the room = ran about out there. That is correct English, but it says something else. Where outside fits: _The children ran about outside the room._ There **outside** means out of the room, around it.", cue: "pv-out-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-out-ofx0"),
-          ...PLAB.kit.lineup("pv-out-ofx0", "He ran ____ the room.", [["insideBuilding", "inside", false, "opposite"], ["personLeft", "outside", "diff", "ran outside the room = | ran about out there"], ["goOut", "out of", true, "from inside to outside"]], ["Why out of? from inside to outside", "Ask: Is something leaving the inside?"], null, ["≈ outside: The children ran about outside the room."]),
+          ...PLAB.kit.lineup("pv-out-ofx0", "He ran ____ the room.", [["insideBuilding", "inside", false, "opposite"], ["personLeft", "outside", "diff", "ran outside the room = | ran about out there"], ["goOut", "out of", true, "from inside to outside"]], ["Why out of? from inside to outside", "Ask: Is something leaving the inside?"], null, ["≈ outside: The children ran about outside the room.  = out of the room, around it"]),
         ],
       },
       {
@@ -4149,7 +4149,7 @@
             {
               "text": "inside",
               "misconception": "p0-sense",
-              "why": "Within the city. It is correct English, but it says something else. Where inside fits: There is a big park inside the city."
+              "why": "Within the city. It is correct English, but it says something else. Where inside fits: There is a big park inside the city. There inside means within the city's limits."
             },
             {
               "text": "out of",
@@ -4236,11 +4236,11 @@
         alt: "We live with a gap the park. Answer: near, because a short walk away. Not next to: next to = nothing between. Not by: by the park = right at its edge.",
         say: [
           { text: "Fill the gap: We live … the park. Picture it: a short walk away. So **near**.", cue: "pv-nearx01" },
-          { text: "Why not **next to**? next to = nothing between That is correct English, but it says something else. Where next to fits: _Our house is next to the park gate._ Why not **by**? by the park = right at its edge That is correct English, but it says something else. Where by fits: _We live right by the park._", cue: "pv-nearx0-r2" },
+          { text: "Why not **next to**? next to = nothing between. That is correct English, but it says something else. Where next to fits: _Our house is next to the park gate._ There **next to** means right beside, nothing between. Why not **by**? by the park = right at its edge. That is correct English, but it says something else. Where by fits: _We live right by the park._ There **by** means very close to.", cue: "pv-nearx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-nearx0"),
-          ...PLAB.kit.lineup("pv-nearx0", "We live ____ the park.", [["nearSchool", "near", true, "a short walk away"], ["sideBySide", "next to", "diff", "next to = nothing | between"], ["nearbyShop", "by", "diff", "by the park = | right at its edge"]], ["Why near? a short walk away", "Ask: Is it a short distance, maybe with things between?"], null, ["≈ next to: Our house is next to the park gate.", "≈ by: We live right by the park."]),
+          ...PLAB.kit.lineup("pv-nearx0", "We live ____ the park.", [["nearSchool", "near", true, "a short walk away"], ["sideBySide", "next to", "diff", "next to = nothing | between"], ["nearbyShop", "by", "diff", "by the park = | right at its edge"]], ["Why near? a short walk away", "Ask: Is it a short distance, maybe with things between?"], null, ["≈ next to: Our house is next to the park gate.  = right beside, nothing between", "≈ by: We live right by the park.  = very close to"]),
         ],
       },
       {
@@ -4279,11 +4279,11 @@
         alt: "My house is with a gap the mosque. Answer: next to, because the very next building. Not near: near = maybe a few houses away. Not by: by = at its side.",
         say: [
           { text: "Fill the gap: My house is … the mosque. Picture it: the very next building. So **next to**.", cue: "pv-next-tox02" },
-          { text: "Why not **near**? near = maybe a few houses away That is correct English, but it says something else. Where near fits: _My house is near the mosque, two streets away._ Why not **by**? by = at its side That is correct English, but it says something else. Where by fits: _My house is by the mosque._", cue: "pv-next-tox0-r2" },
+          { text: "Why not **near**? near = maybe a few houses away. That is correct English, but it says something else. Where near fits: _My house is near the mosque, two streets away._ There **near** means a short distance from it. Why not **by**? by = at its side. That is correct English, but it says something else. Where by fits: _My house is by the mosque._ There **by** means beside it.", cue: "pv-next-tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-next-tox0"),
-          ...PLAB.kit.lineup("pv-next-tox0", "My house is ____ the mosque.", [["nearSchool", "near", "diff", "near = maybe a few | houses away"], ["sideBySide", "next to", true, "the very next building"], ["nearbyShop", "by", "diff", "by = at its side"]], ["Why next to? the very next building", "Ask: Is it the very next place, with nothing between?"], null, ["≈ near: My house is near the mosque, two streets away.", "≈ by: My house is by the mosque."]),
+          ...PLAB.kit.lineup("pv-next-tox0", "My house is ____ the mosque.", [["nearSchool", "near", "diff", "near = maybe a few | houses away"], ["sideBySide", "next to", true, "the very next building"], ["nearbyShop", "by", "diff", "by = at its side"]], ["Why next to? the very next building", "Ask: Is it the very next place, with nothing between?"], null, ["≈ near: My house is near the mosque, two streets away.  = a short distance from it", "≈ by: My house is by the mosque.  = beside it"]),
         ],
       },
       {
@@ -4292,11 +4292,11 @@
         alt: "Sit with a gap me. Answer: next to, because the very next seat. Not near: near = close, maybe not beside. Not by: by me = at my side, less common.",
         say: [
           { text: "Fill the gap: Sit … me. Picture it: the very next seat. So **next to**.", cue: "pv-next-tox12" },
-          { text: "Why not **near**? near = close, maybe not beside That is correct English, but it says something else. Where near fits: _Sit near me, so you can hear._ Why not **by**? by me = at my side, less common That is correct English, but it says something else. Where by fits: _Come and sit by me._", cue: "pv-next-tox1-r2" },
+          { text: "Why not **near**? near = close, maybe not beside. That is correct English, but it says something else. Where near fits: _Sit near me, so you can hear._ There **near** means close to me. Why not **by**? by me = at my side, less common. That is correct English, but it says something else. Where by fits: _Come and sit by me._ There **by** means at my side.", cue: "pv-next-tox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-next-tox1"),
-          ...PLAB.kit.lineup("pv-next-tox1", "Sit ____ me.", [["nearSchool", "near", "diff", "near = close, | maybe not beside"], ["sideBySide", "next to", true, "the very next seat"], ["nearbyShop", "by", "diff", "by me = at my side, | less common"]], ["Why next to? the very next seat", "Ask: Is it the very next place, with nothing between?"], null, ["≈ near: Sit near me, so you can hear.", "≈ by: Come and sit by me."]),
+          ...PLAB.kit.lineup("pv-next-tox1", "Sit ____ me.", [["nearSchool", "near", "diff", "near = close, | maybe not beside"], ["sideBySide", "next to", true, "the very next seat"], ["nearbyShop", "by", "diff", "by me = at my side, | less common"]], ["Why next to? the very next seat", "Ask: Is it the very next place, with nothing between?"], null, ["≈ near: Sit near me, so you can hear.  = close to me", "≈ by: Come and sit by me.  = at my side"]),
         ],
       },
       {
@@ -4321,11 +4321,11 @@
         alt: "They have a house with a gap the river. Answer: by, because at the river's edge. Not near: near = a short distance away. Not next to: next to = touching close.",
         say: [
           { text: "Fill the gap: They have a house … the river. Picture it: at the river's edge. So **by**.", cue: "pv-byx03" },
-          { text: "Why not **near**? near = a short distance away That is correct English, but it says something else. Where near fits: _They live near the river, a short walk away._ Why not **next to**? next to = touching close That is correct English, but it says something else. Where next to fits: _Their house is next to the river bank._", cue: "pv-byx0-r2" },
+          { text: "Why not **near**? near = a short distance away. That is correct English, but it says something else. Where near fits: _They live near the river, a short walk away._ There **near** means a short distance from it. Why not **next to**? next to = touching close. That is correct English, but it says something else. Where next to fits: _Their house is next to the river bank._ There **next to** means right beside it.", cue: "pv-byx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-byx0"),
-          ...PLAB.kit.lineup("pv-byx0", "They have a house ____ the river.", [["nearSchool", "near", "diff", "near = a short | distance away"], ["sideBySide", "next to", "diff", "next to = | touching close"], ["nearbyShop", "by", true, "at the river's edge"]], ["Why by? at the river's edge", "Ask: Is it right at the side or edge?"], null, ["≈ near: They live near the river, a short walk away.", "≈ next to: Their house is next to the river bank."]),
+          ...PLAB.kit.lineup("pv-byx0", "They have a house ____ the river.", [["nearSchool", "near", "diff", "near = a short | distance away"], ["sideBySide", "next to", "diff", "next to = | touching close"], ["nearbyShop", "by", true, "at the river's edge"]], ["Why by? at the river's edge", "Ask: Is it right at the side or edge?"], null, ["≈ near: They live near the river, a short walk away.  = a short distance from it", "≈ next to: Their house is next to the river bank.  = right beside it"]),
         ],
       },
       {
@@ -4334,11 +4334,11 @@
         alt: "He stood with a gap the window. Answer: by, because at the window's side. Not near: a little further. Not next to: very similar.",
         say: [
           { text: "Fill the gap: He stood … the window. Picture it: at the window's side. So **by**.", cue: "pv-byx13" },
-          { text: "Why not **near**? a little further That is correct English, but it says something else. Where near fits: _He stood near the window._ Why not **next to**? very similar That is correct English, but it says something else. Where next to fits: _He stood next to the window._", cue: "pv-byx1-r2" },
+          { text: "Why not **near**? a little further. That is correct English, but it says something else. Where near fits: _He stood near the window._ There **near** means close to it. Why not **next to**? very similar. That is correct English, but it says something else. Where next to fits: _He stood next to the window._ There **next to** means right beside it.", cue: "pv-byx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-byx1"),
-          ...PLAB.kit.lineup("pv-byx1", "He stood ____ the window.", [["nearSchool", "near", "diff", "a little further"], ["sideBySide", "next to", "diff", "very similar"], ["nearbyShop", "by", true, "at the window's side"]], ["Why by? at the window's side", "Ask: Is it right at the side or edge?"], null, ["≈ near: He stood near the window.", "≈ next to: He stood next to the window."]),
+          ...PLAB.kit.lineup("pv-byx1", "He stood ____ the window.", [["nearSchool", "near", "diff", "a little further"], ["sideBySide", "next to", "diff", "very similar"], ["nearbyShop", "by", true, "at the window's side"]], ["Why by? at the window's side", "Ask: Is it right at the side or edge?"], null, ["≈ near: He stood near the window.  = close to it", "≈ next to: He stood next to the window.  = right beside it"]),
         ],
       },
       {
@@ -4377,7 +4377,7 @@
             {
               "text": "near",
               "misconception": "p0-sense",
-              "why": "A little further. It is correct English, but it says something else. Where near fits: a cottage near the sea"
+              "why": "A little further. It is correct English, but it says something else. Where near fits: a cottage near the sea There near means a short distance from the sea."
             },
             {
               "text": "next to",
@@ -4594,11 +4594,11 @@
         alt: "He walked with a gap the bank. Answer: past, because beside the bank, then beyond it. Not via: via is a stop on a route. Not by: by the bank = also beside it.",
         say: [
           { text: "Fill the gap: He walked … the bank. Picture it: beside the bank, then beyond it. So **past**.", cue: "pv-pastx01" },
-          { text: "Why not **via**? via is a stop on a route. Why not **by**? by the bank = also beside it That is correct English, but it says something else. Where by fits: _He walked by the bank on his way home._", cue: "pv-pastx0-r2" },
+          { text: "Why not **via**? via is a stop on a route. Why not **by**? by the bank = also beside it. That is correct English, but it says something else. Where by fits: _He walked by the bank on his way home._ There **by** means past the bank.", cue: "pv-pastx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-pastx0"),
-          ...PLAB.kit.lineup("pv-pastx0", "He walked ____ the bank.", [["pastBank", "past", true, "beside the bank, | then beyond it"], ["roadPass", "via", false, "via is a stop | on a route"], ["emailBy", "by", "diff", "by the bank = | also beside it"]], ["Why past? beside the bank, then beyond it", "Ask: Do you go beside it and beyond?"], null, ["≈ by: He walked by the bank on his way home."]),
+          ...PLAB.kit.lineup("pv-pastx0", "He walked ____ the bank.", [["pastBank", "past", true, "beside the bank, | then beyond it"], ["roadPass", "via", false, "via is a stop | on a route"], ["emailBy", "by", "diff", "by the bank = | also beside it"]], ["Why past? beside the bank, then beyond it", "Ask: Do you go beside it and beyond?"], null, ["≈ by: He walked by the bank on his way home.  = past the bank"]),
         ],
       },
       {
@@ -4649,11 +4649,11 @@
         alt: "Send it with a gap email. Answer: via, because the route the message takes. Not past: not used. Not by: by email also works.",
         say: [
           { text: "Fill the gap: Send it … email. Picture it: the route the message takes. So **via**.", cue: "pv-viax12" },
-          { text: "Why not **past**? not used. Why not **by**? by email also works That is correct English, but it says something else. Where by fits: _Send it by email._", cue: "pv-viax1-r2" },
+          { text: "Why not **past**? not used. Why not **by**? by email also works. That is correct English, but it says something else. Where by fits: _Send it by email._ There **by** means using email as the means.", cue: "pv-viax1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-viax1"),
-          ...PLAB.kit.lineup("pv-viax1", "Send it ____ email.", [["pastBank", "past", false, "not used"], ["roadPass", "via", true, "the route the | message takes"], ["emailBy", "by", "diff", "by email | also works"]], ["Why via? the route the message takes", "Ask: Is it a stop or route you pass through?"], null, ["≈ by: Send it by email."]),
+          ...PLAB.kit.lineup("pv-viax1", "Send it ____ email.", [["pastBank", "past", false, "not used"], ["roadPass", "via", true, "the route the | message takes"], ["emailBy", "by", "diff", "by email | also works"]], ["Why via? the route the message takes", "Ask: Is it a stop or route you pass through?"], null, ["≈ by: Send it by email.  = using email as the means"]),
         ],
       },
       {
@@ -4750,11 +4750,11 @@
         alt: "He was suspended with a gap an inquiry. Answer: pending, because the inquiry is not finished yet. Not following: following = after the inquiry. Not given: given = considering.",
         say: [
           { text: "Fill the gap: He was suspended … an inquiry. Picture it: the inquiry is not finished yet. So **pending**.", cue: "pv-pendingx01" },
-          { text: "Why not **following**? following = after the inquiry That is correct English, but it says something else. Where following fits: _He was dismissed following the inquiry._ Why not **given**? given = considering.", cue: "pv-pendingx0-r2" },
+          { text: "Why not **following**? following = after the inquiry. That is correct English, but it says something else. Where following fits: _He was dismissed following the inquiry._ There **following** means after the inquiry. Why not **given**? given = considering.", cue: "pv-pendingx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-pendingx0"),
-          ...PLAB.kit.lineup("pv-pendingx0", "He was suspended ____ an inquiry.", [["notWait", "pending", true, "the inquiry is not | finished yet"], ["followEvent", "following", "diff", "following = after | the inquiry"], ["scale", "given", false, "given = considering"]], ["Why pending? the inquiry is not finished yet", "Ask: Is something still waiting to be decided?"], null, ["≈ following: He was dismissed following the inquiry."]),
+          ...PLAB.kit.lineup("pv-pendingx0", "He was suspended ____ an inquiry.", [["notWait", "pending", true, "the inquiry is not | finished yet"], ["followEvent", "following", "diff", "following = after | the inquiry"], ["scale", "given", false, "given = considering"]], ["Why pending? the inquiry is not finished yet", "Ask: Is something still waiting to be decided?"], null, ["≈ following: He was dismissed following the inquiry.  = after the inquiry"]),
         ],
       },
       {
@@ -4763,11 +4763,11 @@
         alt: "The bill is on hold with a gap approval. Answer: pending, because approval has not come. Not following: after approval. Not given: not used.",
         say: [
           { text: "Fill the gap: The bill is on hold … approval. Picture it: approval has not come. So **pending**.", cue: "pv-pendingx11" },
-          { text: "Why not **following**? after approval That is correct English, but it says something else. Where following fits: _The bill became law following approval._ Why not **given**? not used.", cue: "pv-pendingx1-r2" },
+          { text: "Why not **following**? after approval. That is correct English, but it says something else. Where following fits: _The bill became law following approval._ There **following** means after approval. Why not **given**? not used.", cue: "pv-pendingx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-pendingx1"),
-          ...PLAB.kit.lineup("pv-pendingx1", "The bill is on hold ____ approval.", [["notWait", "pending", true, "approval has not come"], ["followEvent", "following", "diff", "after approval"], ["scale", "given", false, "not used"]], ["Why pending? approval has not come", "Ask: Is something still waiting to be decided?"], null, ["≈ following: The bill became law following approval."]),
+          ...PLAB.kit.lineup("pv-pendingx1", "The bill is on hold ____ approval.", [["notWait", "pending", true, "approval has not come"], ["followEvent", "following", "diff", "after approval"], ["scale", "given", false, "not used"]], ["Why pending? approval has not come", "Ask: Is something still waiting to be decided?"], null, ["≈ following: The bill became law following approval.  = after approval"]),
         ],
       },
       {
@@ -4792,11 +4792,11 @@
         alt: "with a gap the inquiry, he was dismissed. Answer: following, because the inquiry came first, then the dismissal. Not pending: pending = while still waiting. Not given: given = considering.",
         say: [
           { text: "Fill the gap: … the inquiry, he was dismissed. Picture it: the inquiry came first, then the dismissal. So **following**.", cue: "pv-followingx02" },
-          { text: "Why not **pending**? pending = while still waiting That is correct English, but it says something else. Where pending fits: _He was suspended pending the inquiry._ Why not **given**? given = considering That is correct English, but it says something else. Where given fits: _Given the inquiry's findings, he was dismissed._", cue: "pv-followingx0-r2" },
+          { text: "Why not **pending**? pending = while still waiting. That is correct English, but it says something else. Where pending fits: _He was suspended pending the inquiry._ There **pending** means while waiting for the inquiry to finish. Why not **given**? given = considering. That is correct English, but it says something else. Where given fits: _Given the inquiry's findings, he was dismissed._ There **given** means considering the findings.", cue: "pv-followingx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-followingx0"),
-          ...PLAB.kit.lineup("pv-followingx0", "____ the inquiry, he was dismissed.", [["notWait", "pending", "diff", "pending = while | still waiting"], ["followEvent", "following", true, "the inquiry came first, | then the dismissal"], ["scale", "given", "diff", "given = considering"]], ["Why following? the inquiry came first, then the dismissal", "Ask: Did it happen after the event?"], null, ["≈ pending: He was suspended pending the inquiry.", "≈ given: Given the inquiry's findings, he was dismissed."]),
+          ...PLAB.kit.lineup("pv-followingx0", "____ the inquiry, he was dismissed.", [["notWait", "pending", "diff", "pending = while | still waiting"], ["followEvent", "following", true, "the inquiry came first, | then the dismissal"], ["scale", "given", "diff", "given = considering"]], ["Why following? the inquiry came first, then the dismissal", "Ask: Did it happen after the event?"], null, ["≈ pending: He was suspended pending the inquiry.  = while waiting for the inquiry to finish", "≈ given: Given the inquiry's findings, he was dismissed.  = considering the findings"]),
         ],
       },
       {
@@ -4805,11 +4805,11 @@
         alt: "with a gap the rains, roads were closed. Answer: following, because after the rains. Not pending: rain is not decided. Not given: considering the rains.",
         say: [
           { text: "Fill the gap: … the rains, roads were closed. Picture it: after the rains. So **following**.", cue: "pv-followingx12" },
-          { text: "Why not **pending**? rain is not decided. Why not **given**? considering the rains That is correct English, but it says something else. Where given fits: _Given the rains, we stayed home._", cue: "pv-followingx1-r2" },
+          { text: "Why not **pending**? rain is not decided. Why not **given**? considering the rains. That is correct English, but it says something else. Where given fits: _Given the rains, we stayed home._ There **given** means considering the rains.", cue: "pv-followingx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-followingx1"),
-          ...PLAB.kit.lineup("pv-followingx1", "____ the rains, roads were closed.", [["notWait", "pending", false, "rain is not decided"], ["followEvent", "following", true, "after the rains"], ["scale", "given", "diff", "considering the rains"]], ["Why following? after the rains", "Ask: Did it happen after the event?"], null, ["≈ given: Given the rains, we stayed home."]),
+          ...PLAB.kit.lineup("pv-followingx1", "____ the rains, roads were closed.", [["notWait", "pending", false, "rain is not decided"], ["followEvent", "following", true, "after the rains"], ["scale", "given", "diff", "considering the rains"]], ["Why following? after the rains", "Ask: Did it happen after the event?"], null, ["≈ given: Given the rains, we stayed home.  = considering the rains"]),
         ],
       },
       {
@@ -5019,11 +5019,11 @@
         alt: "I am writing with a gap your complaint. Answer: regarding, because a formal letter's topic. Not about: about is fine, but less formal. Not with regard to: also formal: with regard to.",
         say: [
           { text: "Fill the gap: I am writing … your complaint. Picture it: a formal letter's topic. So **regarding**.", cue: "pv-regardingx01" },
-          { text: "Why not **about**? about is fine, but less formal That is correct English, but it says something else. Where about fits: _We were talking about your complaint._ Why not **with regard to**? also formal: with regard to That is correct English, but it says something else.", cue: "pv-regardingx0-r2" },
+          { text: "Why not **about**? about is fine, but less formal. That is correct English, but it says something else. Where about fits: _We were talking about your complaint._ There **about** means on the topic of, in everyday talk. Why not **with regard to**? also formal: with regard to. That is correct English, but it says something else.", cue: "pv-regardingx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-regardingx0"),
-          ...PLAB.kit.lineup("pv-regardingx0", "I am writing ____ your complaint.", [["pointDoc", "regarding", true, "a formal letter's topic"], ["aboutCircle", "about", "diff", "about is fine, | but less formal"], ["docSays", "with regard to", "diff", "also formal: | with regard to"]], ["Why regarding? a formal letter's topic", "Ask: Is it formal writing about a topic?"], null, ["≈ about: We were talking about your complaint."]),
+          ...PLAB.kit.lineup("pv-regardingx0", "I am writing ____ your complaint.", [["pointDoc", "regarding", true, "a formal letter's topic"], ["aboutCircle", "about", "diff", "about is fine, | but less formal"], ["docSays", "with regard to", "diff", "also formal: | with regard to"]], ["Why regarding? a formal letter's topic", "Ask: Is it formal writing about a topic?"], null, ["≈ about: We were talking about your complaint.  = on the topic of, in everyday talk"]),
         ],
       },
       {
@@ -5032,11 +5032,11 @@
         alt: "a notice with a gap fees Answer: regarding, because formal notice. Not about: less formal. Not with regard to: same meaning.",
         say: [
           { text: "Fill the gap: a notice … fees Picture it: formal notice. So **regarding**.", cue: "pv-regardingx11" },
-          { text: "Why not **about**? less formal That is correct English, but it says something else. Where about fits: _Students were chatting about fees._ Why not **with regard to**? same meaning That is correct English, but it says something else.", cue: "pv-regardingx1-r2" },
+          { text: "Why not **about**? less formal. That is correct English, but it says something else. Where about fits: _Students were chatting about fees._ There **about** means on the topic of, in everyday talk. Why not **with regard to**? same meaning. That is correct English, but it says something else.", cue: "pv-regardingx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-regardingx1"),
-          ...PLAB.kit.lineup("pv-regardingx1", "a notice ____ fees", [["pointDoc", "regarding", true, "formal notice"], ["aboutCircle", "about", "diff", "less formal"], ["docSays", "with regard to", "diff", "same meaning"]], ["Why regarding? formal notice", "Ask: Is it formal writing about a topic?"], null, ["≈ about: Students were chatting about fees."]),
+          ...PLAB.kit.lineup("pv-regardingx1", "a notice ____ fees", [["pointDoc", "regarding", true, "formal notice"], ["aboutCircle", "about", "diff", "less formal"], ["docSays", "with regard to", "diff", "same meaning"]], ["Why regarding? formal notice", "Ask: Is it formal writing about a topic?"], null, ["≈ about: Students were chatting about fees.  = on the topic of, in everyday talk"]),
         ],
       },
       {
@@ -5061,11 +5061,11 @@
         alt: "We talked with a gap the fees. Answer: about, because everyday talk. Not regarding: too formal for talk. Not with regard to: too formal.",
         say: [
           { text: "Fill the gap: We talked … the fees. Picture it: everyday talk. So **about**.", cue: "pv-aboutx02" },
-          { text: "Why not **regarding**? too formal for talk That is correct English, but it says something else. Where regarding fits: _A notice regarding the fees was issued._ Why not **with regard to**? too formal That is correct English, but it says something else.", cue: "pv-aboutx0-r2" },
+          { text: "Why not **regarding**? too formal for talk. That is correct English, but it says something else. Where regarding fits: _A notice regarding the fees was issued._ There **regarding** means concerning (formal writing). Why not **with regard to**? too formal. That is correct English, but it says something else.", cue: "pv-aboutx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-aboutx0"),
-          ...PLAB.kit.lineup("pv-aboutx0", "We talked ____ the fees.", [["pointDoc", "regarding", "diff", "too formal | for talk"], ["aboutCircle", "about", true, "everyday talk"], ["docSays", "with regard to", "diff", "too formal"]], ["Why about? everyday talk", "Ask: Is it everyday talk?"], null, ["≈ regarding: A notice regarding the fees was issued."]),
+          ...PLAB.kit.lineup("pv-aboutx0", "We talked ____ the fees.", [["pointDoc", "regarding", "diff", "too formal | for talk"], ["aboutCircle", "about", true, "everyday talk"], ["docSays", "with regard to", "diff", "too formal"]], ["Why about? everyday talk", "Ask: Is it everyday talk?"], null, ["≈ regarding: A notice regarding the fees was issued.  = concerning (formal writing)"]),
         ],
       },
       {
@@ -5103,11 +5103,11 @@
         alt: "with a gap fees, nothing has changed. Answer: with regard to, because formal; regard to points at the topic. Not regarding: also correct, one word. Not about: less formal.",
         say: [
           { text: "Fill the gap: … fees, nothing has changed. Picture it: formal; regard to points at the topic. So **with regard to**.", cue: "pv-with-regard-tox03" },
-          { text: "Why not **regarding**? also correct, one word That is correct English, but it says something else. Where regarding fits: _Regarding fees, nothing has changed._ Why not **about**? less formal That is correct English, but it says something else. Where about fits: _We talked about fees._", cue: "pv-with-regard-tox0-r2" },
+          { text: "Why not **regarding**? also correct, one word. That is correct English, but it says something else. Where regarding fits: _Regarding fees, nothing has changed._ There **regarding** means concerning. Why not **about**? less formal. That is correct English, but it says something else. Where about fits: _We talked about fees._ There **about** means on the topic of.", cue: "pv-with-regard-tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-with-regard-tox0"),
-          ...PLAB.kit.lineup("pv-with-regard-tox0", "____ fees, nothing has changed.", [["pointDoc", "regarding", "diff", "also correct, | one word"], ["aboutCircle", "about", "diff", "less formal"], ["docSays", "with regard to", true, "formal; regard to | points at the topic"]], ["Why with regard to? formal; regard to points at the topic", "Ask: Is it formal, and is TO kept?"], null, ["≈ regarding: Regarding fees, nothing has changed.", "≈ about: We talked about fees."]),
+          ...PLAB.kit.lineup("pv-with-regard-tox0", "____ fees, nothing has changed.", [["pointDoc", "regarding", "diff", "also correct, | one word"], ["aboutCircle", "about", "diff", "less formal"], ["docSays", "with regard to", true, "formal; regard to | points at the topic"]], ["Why with regard to? formal; regard to points at the topic", "Ask: Is it formal, and is TO kept?"], null, ["≈ regarding: Regarding fees, nothing has changed.  = concerning", "≈ about: We talked about fees.  = on the topic of"]),
         ],
       },
       {
@@ -5161,11 +5161,11 @@
         alt: "She climbed with a gap the ladder. Answer: up, because climbing goes higher. Not down: down = lower.",
         say: [
           { text: "Fill the gap: She climbed … the ladder. Picture it: climbing goes higher. So **up**.", cue: "pv-upx01" },
-          { text: "Why not **down**? down = lower That is correct English, but it says something else. Where down fits: _She climbed down the ladder._", cue: "pv-upx0-r2" },
+          { text: "Why not **down**? down = lower. That is correct English, but it says something else. Where down fits: _She climbed down the ladder._ There **down** means from the top to the bottom.", cue: "pv-upx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-upx0"),
-          ...PLAB.kit.lineup("pv-upx0", "She climbed ____ the ladder.", [["hillUp", "up", true, "climbing goes higher"], ["arrowDown", "down", "diff", "down = lower"]], ["Why up? climbing goes higher", "Ask: Does it go higher?"], null, ["≈ down: She climbed down the ladder."]),
+          ...PLAB.kit.lineup("pv-upx0", "She climbed ____ the ladder.", [["hillUp", "up", true, "climbing goes higher"], ["arrowDown", "down", "diff", "down = lower"]], ["Why up? climbing goes higher", "Ask: Does it go higher?"], null, ["≈ down: She climbed down the ladder.  = from the top to the bottom"]),
         ],
       },
       {
@@ -5254,7 +5254,7 @@
             {
               "text": "down",
               "misconception": "p0-sense",
-              "why": "Towards the bottom. It is correct English, but it says something else. Where down fits: They walked down the hill to the village."
+              "why": "Towards the bottom. It is correct English, but it says something else. Where down fits: They walked down the hill to the village. There down means from the top to the bottom."
             },
             {
               "text": "up",
@@ -5287,7 +5287,7 @@
             {
               "text": "up",
               "misconception": "p0-sense",
-              "why": "To a higher floor. It is correct English, but it says something else. Where up fits: He went up the stairs to his room."
+              "why": "To a higher floor. It is correct English, but it says something else. Where up fits: He went up the stairs to his room. There up means from the bottom to the top."
             }
           ]
         },
@@ -5330,11 +5330,11 @@
         alt: "I'll be back with a gap ten minutes. Answer: in, because when ten minutes have passed. Not within: within = before ten minutes end. Not after: after ten minutes needs a past starting point.",
         say: [
           { text: "Fill the gap: I'll be back … ten minutes. Picture it: when ten minutes have passed. So **in**.", cue: "pv-inx01" },
-          { text: "Why not **within**? within = before ten minutes end That is correct English, but it says something else. Where within fits: _Reply within ten minutes._ Why not **after**? after ten minutes needs a past starting point.", cue: "pv-inx0-r2" },
+          { text: "Why not **within**? within = before ten minutes end. That is correct English, but it says something else. Where within fits: _Reply within ten minutes._ There **within** means before ten minutes are over. Why not **after**? after ten minutes needs a past starting point.", cue: "pv-inx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-inx0"),
-          ...PLAB.kit.lineup("pv-inx0", "I'll be back ____ ten minutes.", [["inTimeBefore", "in", true, "when ten minutes | have passed"], ["inTimeBefore", "within", "diff", "within = before | ten minutes end"], ["afterDot", "after", false, "after ten minutes needs | a past starting point"]], ["Why in? when ten minutes have passed", "Ask: Is it from now, at the end of a stretch?"], null, ["≈ within: Reply within ten minutes."]),
+          ...PLAB.kit.lineup("pv-inx0", "I'll be back ____ ten minutes.", [["inTimeBefore", "in", true, "when ten minutes | have passed"], ["inTimeBefore", "within", "diff", "within = before | ten minutes end"], ["afterDot", "after", false, "after ten minutes needs | a past starting point"]], ["Why in? when ten minutes have passed", "Ask: Is it from now, at the end of a stretch?"], null, ["≈ within: Reply within ten minutes.  = before ten minutes are over"]),
         ],
       },
       {
@@ -5343,11 +5343,11 @@
         alt: "The results come out with a gap a week. Answer: in, because a week from now. Not within: before a week ends. Not after: not from now.",
         say: [
           { text: "Fill the gap: The results come out … a week. Picture it: a week from now. So **in**.", cue: "pv-inx11" },
-          { text: "Why not **within**? before a week ends That is correct English, but it says something else. Where within fits: _Results must come out within a week._ Why not **after**? not from now.", cue: "pv-inx1-r2" },
+          { text: "Why not **within**? before a week ends. That is correct English, but it says something else. Where within fits: _Results must come out within a week._ There **within** means before a week is over. Why not **after**? not from now.", cue: "pv-inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-inx1"),
-          ...PLAB.kit.lineup("pv-inx1", "The results come out ____ a week.", [["inTimeBefore", "in", true, "a week from now"], ["inTimeBefore", "within", "diff", "before a week ends"], ["afterDot", "after", false, "not from now"]], ["Why in? a week from now", "Ask: Is it from now, at the end of a stretch?"], null, ["≈ within: Results must come out within a week."]),
+          ...PLAB.kit.lineup("pv-inx1", "The results come out ____ a week.", [["inTimeBefore", "in", true, "a week from now"], ["inTimeBefore", "within", "diff", "before a week ends"], ["afterDot", "after", false, "not from now"]], ["Why in? a week from now", "Ask: Is it from now, at the end of a stretch?"], null, ["≈ within: Results must come out within a week.  = before a week is over"]),
         ],
       },
       {
@@ -5372,11 +5372,11 @@
         alt: "Reply with a gap a week. Answer: within, because any time before the week ends. Not in: in a week = at the end. Not after: after = later than.",
         say: [
           { text: "Fill the gap: Reply … a week. Picture it: any time before the week ends. So **within**.", cue: "pv-withinx02" },
-          { text: "Why not **in**? in a week = at the end That is correct English, but it says something else. Where in fits: _The results come out in a week._ Why not **after**? after = later than.", cue: "pv-withinx0-r2" },
+          { text: "Why not **in**? in a week = at the end. That is correct English, but it says something else. Where in fits: _The results come out in a week._ There **in** means at the end of a week. Why not **after**? after = later than.", cue: "pv-withinx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-withinx0"),
-          ...PLAB.kit.lineup("pv-withinx0", "Reply ____ a week.", [["inTimeBefore", "in", "diff", "in a week = at the end"], ["inTimeBefore", "within", true, "any time before | the week ends"], ["afterDot", "after", false, "after = later than"]], ["Why within? any time before the week ends", "Ask: Must it happen before the limit ends?"], null, ["≈ in: The results come out in a week."]),
+          ...PLAB.kit.lineup("pv-withinx0", "Reply ____ a week.", [["inTimeBefore", "in", "diff", "in a week = at the end"], ["inTimeBefore", "within", true, "any time before | the week ends"], ["afterDot", "after", false, "after = later than"]], ["Why within? any time before the week ends", "Ask: Must it happen before the limit ends?"], null, ["≈ in: The results come out in a week.  = at the end of a week"]),
         ],
       },
       {
@@ -5385,11 +5385,11 @@
         alt: "The pain stopped with a gap an hour. Answer: within, because before the hour ended. Not in: in an hour = at the end. Not after: later than an hour.",
         say: [
           { text: "Fill the gap: The pain stopped … an hour. Picture it: before the hour ended. So **within**.", cue: "pv-withinx12" },
-          { text: "Why not **in**? in an hour = at the end That is correct English, but it says something else. Where in fits: _The pain will stop in an hour._ Why not **after**? later than an hour That is correct English, but it says something else. Where after fits: _The pain stopped after an hour._", cue: "pv-withinx1-r2" },
+          { text: "Why not **in**? in an hour = at the end. That is correct English, but it says something else. Where in fits: _The pain will stop in an hour._ There **in** means at the end of an hour. Why not **after**? later than an hour. That is correct English, but it says something else. Where after fits: _The pain stopped after an hour._ There **after** means once an hour was over.", cue: "pv-withinx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-withinx1"),
-          ...PLAB.kit.lineup("pv-withinx1", "The pain stopped ____ an hour.", [["inTimeBefore", "in", "diff", "in an hour = | at the end"], ["inTimeBefore", "within", true, "before the hour ended"], ["afterDot", "after", "diff", "later than an hour"]], ["Why within? before the hour ended", "Ask: Must it happen before the limit ends?"], null, ["≈ in: The pain will stop in an hour.", "≈ after: The pain stopped after an hour."]),
+          ...PLAB.kit.lineup("pv-withinx1", "The pain stopped ____ an hour.", [["inTimeBefore", "in", "diff", "in an hour = | at the end"], ["inTimeBefore", "within", true, "before the hour ended"], ["afterDot", "after", "diff", "later than an hour"]], ["Why within? before the hour ended", "Ask: Must it happen before the limit ends?"], null, ["≈ in: The pain will stop in an hour.  = at the end of an hour", "≈ after: The pain stopped after an hour.  = once an hour was over"]),
         ],
       },
       {
@@ -5414,11 +5414,11 @@
         alt: "He returned with a gap two days. Answer: after, because two days after he left. Not in: in two days looks forward from now. Not within: within = before two days ended.",
         say: [
           { text: "Fill the gap: He returned … two days. Picture it: two days after he left. So **after**.", cue: "pv-afterx03" },
-          { text: "Why not **in**? in two days looks forward from now. Why not **within**? within = before two days ended That is correct English, but it says something else. Where within fits: _Please reply within two days._", cue: "pv-afterx0-r2" },
+          { text: "Why not **in**? in two days looks forward from now. Why not **within**? within = before two days ended. That is correct English, but it says something else. Where within fits: _Please reply within two days._ There **within** means before the two days end.", cue: "pv-afterx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-afterx0"),
-          ...PLAB.kit.lineup("pv-afterx0", "He returned ____ two days.", [["inTimeBefore", "in", false, "in two days looks | forward from now"], ["inTimeBefore", "within", "diff", "within = before | two days ended"], ["afterDot", "after", true, "two days after he left"]], ["Why after? two days after he left", "Ask: Is it counted from a point in the past?"], null, ["≈ within: Please reply within two days."]),
+          ...PLAB.kit.lineup("pv-afterx0", "He returned ____ two days.", [["inTimeBefore", "in", false, "in two days looks | forward from now"], ["inTimeBefore", "within", "diff", "within = before | two days ended"], ["afterDot", "after", true, "two days after he left"]], ["Why after? two days after he left", "Ask: Is it counted from a point in the past?"], null, ["≈ within: Please reply within two days.  = before the two days end"]),
         ],
       },
       {

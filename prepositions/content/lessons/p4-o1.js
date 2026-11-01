@@ -81,11 +81,11 @@
         alt: "The sentence I am much obliged with a gap you., then the candidates: to (fits: thankful to a person); for (correct English, different meaning: thankful for you, as if you were the favour); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: I am much obliged \u2026 you. What does the sentence want to say? It wants **obliged to**: thankful to a person.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean thankful for you, as if you were the favour. That is not what this sentence says. Where for fits: _I am obliged to you for your help._ **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean thankful for you, as if you were the favour. That is not what this sentence says. Where for fits: _I am obliged to you for your help._ There **for** means thankful for something. **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "I am much obliged ____ you.", [["reachDot", "to", true, "thankful to | a person"], ["wantStar", "for", "diff", "thankful for you, as | if you were the favour"], ["cross", "of", false, "of = belonging; | not used"]], ["obliged to = thankful to a person", "obliged for = thankful for something"], null, ["\u2248 for: I am obliged to you for your help."]),
+          ...PLAB.kit.lineup("e2w", "I am much obliged ____ you.", [["reachDot", "to", true, "thankful to | a person"], ["wantStar", "for", "diff", "thankful for you, as | if you were the favour"], ["cross", "of", false, "of = belonging; | not used"]], ["obliged to = thankful to a person", "obliged for = thankful for something"], null, ["\u2248 for: I am obliged to you for your help.  = thankful for something"]),
         ],
       },
       {
@@ -164,11 +164,11 @@
         alt: "The sentence She was occupied with a gap her work., then the candidates: with (fits: busy with); by (correct English, different meaning: taken over by her work, as a seat is taken by a person); in (not used: in is inside; not used)",
         say: [
           { text: "Fill the gap: She was occupied \u2026 her work. What does the sentence want to say? It wants **occupied with**: busy with.", cue: "e5w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean taken over by her work, as a seat is taken by a person. That is not what this sentence says. Where by fits: _The seat is occupied by a guest._ **in**: in is inside; not used.", cue: "e5w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean taken over by her work, as a seat is taken by a person. That is not what this sentence says. Where by fits: _The seat is occupied by a guest._ There **by** means taken or used by. **in**: in is inside; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "She was occupied ____ her work.", [["agreeWith", "with", true, "busy with"], ["followRule", "by", "diff", "taken over by her work, as | a seat is taken by a person"], ["cross", "in", false, "in is inside; | not used"]], ["occupied with = busy with", "occupied by = taken or used by"], null, ["\u2248 by: The seat is occupied by a guest."]),
+          ...PLAB.kit.lineup("e5w", "She was occupied ____ her work.", [["agreeWith", "with", true, "busy with"], ["followRule", "by", "diff", "taken over by her work, as | a seat is taken by a person"], ["cross", "in", false, "in is inside; | not used"]], ["occupied with = busy with", "occupied by = taken or used by"], null, ["\u2248 by: The seat is occupied by a guest.  = taken or used by"]),
         ],
       },
       {

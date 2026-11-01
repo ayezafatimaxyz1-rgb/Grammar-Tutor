@@ -137,11 +137,11 @@
         alt: "The train leaves with a gap 6:30. Answer: at, because 6:30 is one point on the clock. Not in: in 6:30 is not English; in 30 minutes. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The train leaves … 6:30. Picture it: 6:30 is one point on the clock. So **at**.", cue: "atx03" },
-          { text: "Why not **in**? in 6:30 is not English; in 30 minutes That is correct English, but it says something else. Where in fits: _The train leaves in thirty minutes._ Why not **on**? on is for days.", cue: "atx0-r2" },
+          { text: "Why not **in**? in 6:30 is not English; in 30 minutes. That is correct English, but it says something else. Where in fits: _The train leaves in thirty minutes._ There **in** means thirty minutes from now. Why not **on**? on is for days.", cue: "atx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx0"),
-          ...PLAB.kit.lineup("atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"], null, ["≈ in: The train leaves in thirty minutes."]),
+          ...PLAB.kit.lineup("atx0", "The train leaves ____ 6:30.", [["inPeriod", "in", "diff", "in 6:30 is not | English; in 30 minutes"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "6:30 is one point | on the clock"]], ["Why at? 6:30 is one point on the clock", "Ask: Is it a clock time or one moment?"], null, ["≈ in: The train leaves in thirty minutes.  = thirty minutes from now"]),
         ],
       },
       {
@@ -150,11 +150,11 @@
         alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "atx13" },
-          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Where in fits: _I woke up twice in the night._ Why not **on**? on is for days.", cue: "atx1-r2" },
+          { text: "Why not **in**? in the night = during one particular night. That is correct English, but it says something else. Where in fits: _I woke up twice in the night._ There **in** means during the night, at some point in it. Why not **on**? on is for days.", cue: "atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"], null, ["≈ in: I woke up twice in the night."]),
+          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"], null, ["≈ in: I woke up twice in the night.  = during the night, at some point in it"]),
         ],
       },
       {

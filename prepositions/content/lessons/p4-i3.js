@@ -157,11 +157,11 @@
         alt: "The sentence The poem was inspired with a gap Iqbal., then the candidates: by (fits: given ideas or feeling by); with (correct English, different meaning: filled with Iqbal as a feeling); from (not used: from is a source; inspired takes by)",
         say: [
           { text: "Fill the gap: The poem was inspired \u2026 Iqbal. What does the sentence want to say? It wants **inspired by**: given ideas or feeling by.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean filled with Iqbal as a feeling. That is not what this sentence says. Where with fits: _The speech inspired them with courage._ **from**: from is a source; inspired takes by.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean filled with Iqbal as a feeling. That is not what this sentence says. Where with fits: _The speech inspired them with courage._ There **with** means filled with a feeling. **from**: from is a source; inspired takes by.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The poem was inspired ____ Iqbal.", [["followRule", "by", true, "given ideas | or feeling by"], ["agreeWith", "with", "diff", "filled with Iqbal | as a feeling"], ["cross", "from", false, "from is a source; | inspired takes by"]], ["inspired by = given ideas or feeling by", "inspired with = filled with a feeling"], null, ["\u2248 with: The speech inspired them with courage."]),
+          ...PLAB.kit.lineup("e4w", "The poem was inspired ____ Iqbal.", [["followRule", "by", true, "given ideas | or feeling by"], ["agreeWith", "with", "diff", "filled with Iqbal | as a feeling"], ["cross", "from", false, "from is a source; | inspired takes by"]], ["inspired by = given ideas or feeling by", "inspired with = filled with a feeling"], null, ["\u2248 with: The speech inspired them with courage.  = filled with a feeling"]),
         ],
       },
       {
@@ -186,11 +186,11 @@
         alt: "The sentence The house is insured with a gap fire., then the candidates: against (fits: protected by insurance from a risk); for (correct English, different meaning: fire would be the amount it is insured for); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: The house is insured \u2026 fire. What does the sentence want to say? It wants **insured against**: protected by insurance from a risk.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean fire would be the amount it is insured for. That is not what this sentence says. Where for fits: _The house is insured for Rs 5 million._ **from**: from is a source; not used.", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean fire would be the amount it is insured for. That is not what this sentence says. Where for fits: _The house is insured for Rs 5 million._ There **for** means covered for an amount. **from**: from is a source; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The house is insured ____ fire.", [["shield", "against", true, "protected by | insurance from a risk"], ["wantStar", "for", "diff", "fire would be the amount | it is insured for"], ["cross", "from", false, "from is a | source; not used"]], ["insured against = protected by insurance from a risk", "insured for = covered for an amount"], null, ["\u2248 for: The house is insured for Rs 5 million."]),
+          ...PLAB.kit.lineup("e5w", "The house is insured ____ fire.", [["shield", "against", true, "protected by | insurance from a risk"], ["wantStar", "for", "diff", "fire would be the amount | it is insured for"], ["cross", "from", false, "from is a | source; not used"]], ["insured against = protected by insurance from a risk", "insured for = covered for an amount"], null, ["\u2248 for: The house is insured for Rs 5 million.  = covered for an amount"]),
         ],
       },
       {
@@ -300,11 +300,11 @@
         alt: "The sentence The noise interferes with a gap my work., then the candidates: with (fits: disturb or hinder); in (correct English, different meaning: meddle in my work as if it were a private matter); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: The noise interferes \u2026 my work. What does the sentence want to say? It wants **interfere with**: disturb or hinder.", cue: "e8w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean meddle in my work as if it were a private matter. That is not what this sentence says. Where in fits: _Do not interfere in my affairs._ **on**: on is resting; not used.", cue: "e8w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean meddle in my work as if it were a private matter. That is not what this sentence says. Where in fits: _Do not interfere in my affairs._ There **in** means get involved in someone's affairs. **on**: on is resting; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The noise interferes ____ my work.", [["agreeWith", "with", true, "disturb or hinder"], ["absorbedIn", "in", "diff", "meddle in my work as if | it were a private matter"], ["cross", "on", false, "on is resting; | not used"]], ["interfere in = get involved in someone's affairs", "interfere with = disturb or hinder"], null, ["\u2248 in: Do not interfere in my affairs."]),
+          ...PLAB.kit.lineup("e8w", "The noise interferes ____ my work.", [["agreeWith", "with", true, "disturb or hinder"], ["absorbedIn", "in", "diff", "meddle in my work as if | it were a private matter"], ["cross", "on", false, "on is resting; | not used"]], ["interfere in = get involved in someone's affairs", "interfere with = disturb or hinder"], null, ["\u2248 in: Do not interfere in my affairs.  = get involved in someone's affairs"]),
         ],
       },
       {

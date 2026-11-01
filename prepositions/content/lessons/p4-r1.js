@@ -63,11 +63,11 @@
         alt: "The sentence How did he react with a gap the news?, then the candidates: to (fits: respond to); against (correct English, different meaning: rebelled against the news); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: How did he react \u2026 the news? What does the sentence want to say? It wants **react to**: respond to.", cue: "e1w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean rebelled against the news. That is not what this sentence says. Where against fits: _Young people often react against strict rules._ **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean rebelled against the news. That is not what this sentence says. Where against fits: _Young people often react against strict rules._ There **against** means rebel against. **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "How did he react ____ the news?", [["reachDot", "to", true, "respond to"], ["shield", "against", "diff", "rebelled | against the news"], ["cross", "on", false, "on is resting; | not used"]], ["react to = respond to", "react against = rebel against"], null, ["\u2248 against: Young people often react against strict rules."]),
+          ...PLAB.kit.lineup("e1w", "How did he react ____ the news?", [["reachDot", "to", true, "respond to"], ["shield", "against", "diff", "rebelled | against the news"], ["cross", "on", false, "on is resting; | not used"]], ["react to = respond to", "react against = rebel against"], null, ["\u2248 against: Young people often react against strict rules.  = rebel against"]),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence Prices were reduced with a gap 10 per cent., then the candidates: by (fits: made smaller by an amount); to (correct English, different meaning: brought down to 10 per cent of the old price); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: Prices were reduced \u2026 10 per cent. What does the sentence want to say? It wants **reduced by**: made smaller by an amount.", cue: "e4w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean brought down to 10 per cent of the old price. That is not what this sentence says. Where to fits: _The house was reduced to ashes._ **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean brought down to 10 per cent of the old price. That is not what this sentence says. Where to fits: _The house was reduced to ashes._ There **to** means brought down to a level or state. **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Prices were reduced ____ 10 per cent.", [["followRule", "by", true, "made smaller | by an amount"], ["reachDot", "to", "diff", "brought down to 10 per | cent of the old price"], ["cross", "of", false, "of = belonging; | not used"]], ["reduced by = made smaller by an amount", "reduced to = brought down to a level or state"], null, ["\u2248 to: The house was reduced to ashes."]),
+          ...PLAB.kit.lineup("e4w", "Prices were reduced ____ 10 per cent.", [["followRule", "by", true, "made smaller | by an amount"], ["reachDot", "to", "diff", "brought down to 10 per | cent of the old price"], ["cross", "of", false, "of = belonging; | not used"]], ["reduced by = made smaller by an amount", "reduced to = brought down to a level or state"], null, ["\u2248 to: The house was reduced to ashes.  = brought down to a level or state"]),
         ],
       },
       {

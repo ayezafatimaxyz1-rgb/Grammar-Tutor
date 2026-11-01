@@ -71,11 +71,11 @@
         alt: "The sentence Nothing can with a gap the loss., then the candidates: make up for (fits: compensate for); make up with (correct English, different meaning: become friends again); make up of (not used: be made up of = consist of)",
         say: [
           { text: "Fill the gap: Nothing can \u2026 the loss. The sentence wants **make up for**: compensate for.", cue: "f1w1" },
-          { text: "Why not the others? **make up with** is correct English, but it means become friends again. That is not what this sentence says. Where make up with fits: _He made up with his brother._ **make up of**: be made up of = consist of.", cue: "f1w2" },
+          { text: "Why not the others? **make up with** is correct English, but it means become friends again. That is not what this sentence says. Where make up with fits: _He made up with his brother._ There **make up with** means become friends again. **make up of**: be made up of = consist of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Nothing can ____ the loss.", [["exchange", "make up for", true, "compensate for"], ["agreeWith", "make up with", "diff", "become | friends again"], ["cross", "make up of", false, "be made up of | = consist of"]], ["make up for = compensate for", "Why for? for = in exchange for"], null, ["\u2248 make up with: He made up with his brother."]),
+          ...PLAB.kit.lineup("f1w", "Nothing can ____ the loss.", [["exchange", "make up for", true, "compensate for"], ["agreeWith", "make up with", "diff", "become | friends again"], ["cross", "make up of", false, "be made up of | = consist of"]], ["make up for = compensate for", "Why for? for = in exchange for"], null, ["\u2248 make up with: He made up with his brother.  = become friends again"]),
         ],
       },
       {
@@ -139,11 +139,11 @@
         alt: "The sentence with a gap your rights., then the candidates: stand up for (fits: defend); stand up to (correct English, different meaning: resist someone stronger); stand by (correct English, different meaning: support, stay loyal)",
         say: [
           { text: "Fill the gap: \u2026 your rights. The sentence wants **stand up for**: defend.", cue: "f2w1" },
-          { text: "Why not the others? **stand up to** is correct English, but it means resist someone stronger. That is not what this sentence says. Where stand up to fits: _She stood up to the bully._ **stand by** is correct English, but it means support, stay loyal. That is not what this sentence says. Where stand by fits: _I will stand by you._", cue: "f2w2" },
+          { text: "Why not the others? **stand up to** is correct English, but it means resist someone stronger. That is not what this sentence says. Where stand up to fits: _She stood up to the bully._ There **stand up to** means resist someone stronger. **stand by** is correct English, but it means support, stay loyal. That is not what this sentence says. Where stand by fits: _I will stand by you._ There **stand by** means support, stay loyal.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ your rights.", [["shield", "stand up for", true, "defend"], ["reachDot", "stand up to", "diff", "resist someone | stronger"], ["followRule", "stand by", "diff", "support, stay loyal"]], ["stand up for = defend", "Why for? for = on behalf of"], null, ["\u2248 stand up to: She stood up to the bully.", "\u2248 stand by: I will stand by you."]),
+          ...PLAB.kit.lineup("f2w", "____ your rights.", [["shield", "stand up for", true, "defend"], ["reachDot", "stand up to", "diff", "resist someone | stronger"], ["followRule", "stand by", "diff", "support, stay loyal"]], ["stand up for = defend", "Why for? for = on behalf of"], null, ["\u2248 stand up to: She stood up to the bully.  = resist someone stronger", "\u2248 stand by: I will stand by you.  = support, stay loyal"]),
         ],
       },
       {
@@ -207,11 +207,11 @@
         alt: "The sentence He with a gap medicine., then the candidates: go in for (fits: take up (a career or contest)); go in with (correct English, different meaning: join as a partner); go for (correct English, different meaning: choose, or attack)",
         say: [
           { text: "Fill the gap: He \u2026 medicine. The sentence wants **go in for**: take up (a career or contest).", cue: "f3w1" },
-          { text: "Why not the others? **go in with** is correct English, but it means join as a partner. That is not what this sentence says. Where go in with fits: _He went in with his cousin to open a shop._ **go for** is correct English, but it means choose, or attack. That is not what this sentence says. Where go for fits: _I will go for the blue shirt._", cue: "f3w2" },
+          { text: "Why not the others? **go in with** is correct English, but it means join as a partner. That is not what this sentence says. Where go in with fits: _He went in with his cousin to open a shop._ There **go in with** means join as a partner. **go for** is correct English, but it means choose, or attack. That is not what this sentence says. Where go for fits: _I will go for the blue shirt._ There **go for** means choose.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "He ____ medicine.", [["aimGoal", "go in for", true, "take up (a career | or contest)"], ["agreeWith", "go in with", "diff", "join as a partner"], ["wantStar", "go for", "diff", "choose, or attack"]], ["go in for = take up (a career or contest)", "Why for? for = aiming at"], null, ["\u2248 go in with: He went in with his cousin to open a shop.", "\u2248 go for: I will go for the blue shirt."]),
+          ...PLAB.kit.lineup("f3w", "He ____ medicine.", [["aimGoal", "go in for", true, "take up (a career | or contest)"], ["agreeWith", "go in with", "diff", "join as a partner"], ["wantStar", "go for", "diff", "choose, or attack"]], ["go in for = take up (a career or contest)", "Why for? for = aiming at"], null, ["\u2248 go in with: He went in with his cousin to open a shop.  = join as a partner", "\u2248 go for: I will go for the blue shirt.  = choose"]),
         ],
       },
       {
@@ -275,11 +275,11 @@
         alt: "The sentence We with a gap our savings., then the candidates: fall back on (fits: use when other things fail); fall behind with (correct English, different meaning: be late with payments); fall back to (not used: on: you rest on what holds you up)",
         say: [
           { text: "Fill the gap: We \u2026 our savings. The sentence wants **fall back on**: use when other things fail.", cue: "f4w1" },
-          { text: "Why not the others? **fall behind with** is correct English, but it means be late with payments. That is not what this sentence says. Where fall behind with fits: _They fell behind with the rent._ **fall back to**: on: you rest on what holds you up.", cue: "f4w2" },
+          { text: "Why not the others? **fall behind with** is correct English, but it means be late with payments. That is not what this sentence says. Where fall behind with fits: _They fell behind with the rent._ There **fall behind with** means be late with payments. **fall back to**: on: you rest on what holds you up.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "We ____ our savings.", [["support", "fall back on", true, "use when other | things fail"], ["agreeWith", "fall behind with", "diff", "be late with | payments"], ["cross", "fall back to", false, "on: you rest on | what holds you up"]], ["fall back on = use when other things fail", "Why on? on = resting on"], null, ["\u2248 fall behind with: They fell behind with the rent."]),
+          ...PLAB.kit.lineup("f4w", "We ____ our savings.", [["support", "fall back on", true, "use when other | things fail"], ["agreeWith", "fall behind with", "diff", "be late with | payments"], ["cross", "fall back to", false, "on: you rest on | what holds you up"]], ["fall back on = use when other things fail", "Why on? on = resting on"], null, ["\u2248 fall behind with: They fell behind with the rent.  = be late with payments"]),
         ],
       },
       {
@@ -345,11 +345,11 @@
         alt: "The sentence She with a gap her colleagues., then the candidates: get on with (fits: have a good relationship with); get on to (correct English, different meaning: contact); get away with (correct English, different meaning: escape punishment for)",
         say: [
           { text: "Fill the gap: She \u2026 her colleagues. The sentence wants **get on with**: have a good relationship with.", cue: "f5w1" },
-          { text: "Why not the others? **get on to** is correct English, but it means contact. That is not what this sentence says. Where get on to fits: _I'll get on to the bank about the loan._ **get away with** is correct English, but it means escape punishment for. That is not what this sentence says. Where get away with fits: _He got away with the crime._", cue: "f5w2" },
+          { text: "Why not the others? **get on to** is correct English, but it means contact. That is not what this sentence says. Where get on to fits: _I'll get on to the bank about the loan._ There **get on to** means contact. **get away with** is correct English, but it means escape punishment for. That is not what this sentence says. Where get away with fits: _He got away with the crime._ There **get away with** means escape punishment for.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "She ____ her colleagues.", [["agreeWith", "get on with", true, "have a good | relationship with"], ["reachDot", "get on to", "diff", "contact"], ["agreeWith", "get away with", "diff", "escape | punishment for"]], ["get on with = have a good relationship with", "Why with? with = together with"], null, ["\u2248 get on to: I'll get on to the bank about the loan.", "\u2248 get away with: He got away with the crime."]),
+          ...PLAB.kit.lineup("f5w", "She ____ her colleagues.", [["agreeWith", "get on with", true, "have a good | relationship with"], ["reachDot", "get on to", "diff", "contact"], ["agreeWith", "get away with", "diff", "escape | punishment for"]], ["get on with = have a good relationship with", "Why with? with = together with"], null, ["\u2248 get on to: I'll get on to the bank about the loan.  = contact", "\u2248 get away with: He got away with the crime.  = escape punishment for"]),
         ],
       },
       {

@@ -73,12 +73,12 @@
         alt: "The sentence The flood resulted with a gap heavy losses., then the candidates with pictures: in (right: cause first: looks to the effect); from (correct English but a different meaning: the losses caused the flood); to (wrong: to = arriving; result points at the effect with in). Rule: subject = cause: result in; subject = effect: result from.",
         say: [
           { text: "Fill the gap: The flood resulted \u2026 heavy losses. What does the sentence want to say? The answer is **in**: cause first: looks to the effect.", cue: "why1" },
-          { text: "Why not the others? **from** is correct English, but it would mean the losses caused the flood. That is not what this sentence says. Where from fits: _Heavy losses resulted from the flood._ **to**: to = arriving; result points at the effect with in.", cue: "why2" },
+          { text: "Why not the others? **from** is correct English, but it would mean the losses caused the flood. That is not what this sentence says. Where from fits: _Heavy losses resulted from the flood._ There **from** means the flood was the cause of the losses. **to**: to = arriving; result points at the effect with in.", cue: "why2" },
           { text: "The rule: subject = cause: result in; subject = effect: result from.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The flood resulted ____ heavy losses.", [["causeEffect", "in", true, "cause first: | looks to the effect"], ["wrongWay", "from", "diff", "the losses caused | the flood"], ["cross", "to", false, "to = arriving; | result points at the effect with in"]], ["subject = cause: result in", "subject = effect: result from"], null, ["\u2248 from: Heavy losses resulted from the flood."]),
+          ...PLAB.kit.lineup("why", "The flood resulted ____ heavy losses.", [["causeEffect", "in", true, "cause first: | looks to the effect"], ["wrongWay", "from", "diff", "the losses caused | the flood"], ["cross", "to", false, "to = arriving; | result points at the effect with in"]], ["subject = cause: result in", "subject = effect: result from"], null, ["\u2248 from: Heavy losses resulted from the flood.  = the flood was the cause of the losses"]),
         ],
       },
       {

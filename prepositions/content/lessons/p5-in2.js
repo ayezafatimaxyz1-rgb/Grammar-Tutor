@@ -33,11 +33,11 @@
         alt: "The sentence with a gap his salary, he gets a car., then the candidates: in addition to (fits: as well as); in addition of (not used: you add to something, so to); in lieu of (correct English, different meaning: instead of his salary)",
         say: [
           { text: "Fill the gap: \u2026 his salary, he gets a car. The sentence wants **in addition to**: as well as.", cue: "f1w1" },
-          { text: "Why not the others? **in addition of**: you add to something, so to. **in lieu of** is correct English, but it means instead of his salary. That is not what this sentence says. Where in lieu of fits: _Employees were paid cash in lieu of unused leave._", cue: "f1w2" },
+          { text: "Why not the others? **in addition of**: you add to something, so to. **in lieu of** is correct English, but it means instead of his salary. That is not what this sentence says. Where in lieu of fits: _Employees were paid cash in lieu of unused leave._ There **in lieu of** means instead of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ his salary, he gets a car.", [["addMore", "in addition to", true, "as well as"], ["cross", "in addition of", false, "you add to | something, so to"], ["absorbedIn", "in lieu of", "diff", "instead of | his salary"]], ["in addition to = as well as", "Why to? add to: one thing is joined to another"], null, ["\u2248 in lieu of: Employees were paid cash in lieu of unused leave."]),
+          ...PLAB.kit.lineup("f1w", "____ his salary, he gets a car.", [["addMore", "in addition to", true, "as well as"], ["cross", "in addition of", false, "you add to | something, so to"], ["absorbedIn", "in lieu of", "diff", "instead of | his salary"]], ["in addition to = as well as", "Why to? add to: one thing is joined to another"], null, ["\u2248 in lieu of: Employees were paid cash in lieu of unused leave.  = instead of"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence She is with a gap the whole project., then the candidates: in charge of (fits: responsible for); in the charge of (correct English, different meaning: being looked after by someone); on charge of (not used: a role is something you are in)",
         say: [
           { text: "Fill the gap: She is \u2026 the whole project. The sentence wants **in charge of**: responsible for.", cue: "f2w1" },
-          { text: "Why not the others? **in the charge of** is correct English, but it means being looked after by someone. That is not what this sentence says. Where in the charge of fits: _The children were left in the charge of their aunt._ **on charge of**: a role is something you are in.", cue: "f2w2" },
+          { text: "Why not the others? **in the charge of** is correct English, but it means being looked after by someone. That is not what this sentence says. Where in the charge of fits: _The children were left in the charge of their aunt._ There **in the charge of** means looked after by someone. **on charge of**: a role is something you are in.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "She is ____ the whole project.", [["leaderGroup", "in charge of", true, "responsible for"], ["absorbedIn", "in the charge of", "diff", "being looked | after by someone"], ["cross", "on charge of", false, "a role is something | you are in"]], ["in charge of = responsible for", "Why in? charge = duty"], null, ["\u2248 in the charge of: The children were left in the charge of their aunt."]),
+          ...PLAB.kit.lineup("f2w", "She is ____ the whole project.", [["leaderGroup", "in charge of", true, "responsible for"], ["absorbedIn", "in the charge of", "diff", "being looked | after by someone"], ["cross", "on charge of", false, "a role is something | you are in"]], ["in charge of = responsible for", "Why in? charge = duty"], null, ["\u2248 in the charge of: The children were left in the charge of their aunt.  = looked after by someone"]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence with a gap fire, use the stairs., then the candidates: in case of (fits: if there is); in spite of (correct English, different meaning: although there is a fire); on case of (not used: a situation is something you are in)",
         say: [
           { text: "Fill the gap: \u2026 fire, use the stairs. The sentence wants **in case of**: if there is.", cue: "f3w1" },
-          { text: "Why not the others? **in spite of** is correct English, but it means although there is a fire. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ **on case of**: a situation is something you are in.", cue: "f3w2" },
+          { text: "Why not the others? **in spite of** is correct English, but it means although there is a fire. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ There **in spite of** means despite. **on case of**: a situation is something you are in.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____ fire, use the stairs.", [["fireStairs", "in case of", true, "if there is"], ["absorbedIn", "in spite of", "diff", "although there | is a fire"], ["cross", "on case of", false, "a situation is | something you are in"]], ["in case of = if there is", "Why in? case = a situation"], null, ["\u2248 in spite of: The match went on in spite of the rain."]),
+          ...PLAB.kit.lineup("f3w", "____ fire, use the stairs.", [["fireStairs", "in case of", true, "if there is"], ["absorbedIn", "in spite of", "diff", "although there | is a fire"], ["cross", "on case of", false, "a situation is | something you are in"]], ["in case of = if there is", "Why in? case = a situation"], null, ["\u2248 in spite of: The match went on in spite of the rain.  = despite"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence with a gap salary, the job is good., then the candidates: in terms of (fits: measured by, as regards); on terms with (correct English, different meaning: on friendly terms with someone); in term of (not used: always plural: terms)",
         say: [
           { text: "Fill the gap: \u2026 salary, the job is good. The sentence wants **in terms of**: measured by, as regards.", cue: "f4w1" },
-          { text: "Why not the others? **on terms with** is correct English, but it means on friendly terms with someone. That is not what this sentence says. Where on terms with fits: _The two brothers are on good terms with each other._ **in term of**: always plural: terms.", cue: "f4w2" },
+          { text: "Why not the others? **on terms with** is correct English, but it means on friendly terms with someone. That is not what this sentence says. Where on terms with fits: _The two brothers are on good terms with each other._ There **on terms with** means having a (friendly) relationship with. **in term of**: always plural: terms.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "____ salary, the job is good.", [["scale", "in terms of", true, "measured by, | as regards"], ["support", "on terms with", "diff", "on friendly terms | with someone"], ["cross", "in term of", false, "always | plural: terms"]], ["in terms of = measured by, as regards", "Why in? terms = the units you measure in"], null, ["\u2248 on terms with: The two brothers are on good terms with each other."]),
+          ...PLAB.kit.lineup("f4w", "____ salary, the job is good.", [["scale", "in terms of", true, "measured by, | as regards"], ["support", "on terms with", "diff", "on friendly terms | with someone"], ["cross", "in term of", false, "always | plural: terms"]], ["in terms of = measured by, as regards", "Why in? terms = the units you measure in"], null, ["\u2248 on terms with: The two brothers are on good terms with each other.  = having a (friendly) relationship with"]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence Prices rose with a gap the floods., then the candidates: in the wake of (fits: just after and because of); in the face of (correct English, different meaning: while facing the floods); on the wake of (not used: you ride inside the trail, so in)",
         say: [
           { text: "Fill the gap: Prices rose \u2026 the floods. The sentence wants **in the wake of**: just after and because of.", cue: "f5w1" },
-          { text: "Why not the others? **in the face of** is correct English, but it means while facing the floods. That is not what this sentence says. Where in the face of fits: _They stayed calm in the face of danger._ **on the wake of**: you ride inside the trail, so in.", cue: "f5w2" },
+          { text: "Why not the others? **in the face of** is correct English, but it means while facing the floods. That is not what this sentence says. Where in the face of fits: _They stayed calm in the face of danger._ There **in the face of** means when facing, despite. **on the wake of**: you ride inside the trail, so in.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Prices rose ____ the floods.", [["boat", "in the wake of", true, "just after | and because of"], ["absorbedIn", "in the face of", "diff", "while facing | the floods"], ["cross", "on the wake of", false, "you ride inside | the trail, so in"]], ["in the wake of = just after and because of", "Why in? wake = the trail behind a ship"], null, ["\u2248 in the face of: They stayed calm in the face of danger."]),
+          ...PLAB.kit.lineup("f5w", "Prices rose ____ the floods.", [["boat", "in the wake of", true, "just after | and because of"], ["absorbedIn", "in the face of", "diff", "while facing | the floods"], ["cross", "on the wake of", false, "you ride inside | the trail, so in"]], ["in the wake of = just after and because of", "Why in? wake = the trail behind a ship"], null, ["\u2248 in the face of: They stayed calm in the face of danger.  = when facing, despite"]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence They stayed calm with a gap danger., then the candidates: in the face of (fits: when facing, despite); in the wake of (correct English, different meaning: just after the danger); on the face of it (correct English, different meaning: apparently, judging by looks)",
         say: [
           { text: "Fill the gap: They stayed calm \u2026 danger. The sentence wants **in the face of**: when facing, despite.", cue: "f6w1" },
-          { text: "Why not the others? **in the wake of** is correct English, but it means just after the danger. That is not what this sentence says. Where in the wake of fits: _Prices rose in the wake of the floods._ **on the face of it** is correct English, but it means apparently, judging by looks. That is not what this sentence says. Where on the face of it fits: _On the face of it, the plan looks easy._", cue: "f6w2" },
+          { text: "Why not the others? **in the wake of** is correct English, but it means just after the danger. That is not what this sentence says. Where in the wake of fits: _Prices rose in the wake of the floods._ There **in the wake of** means just after and because of. **on the face of it** is correct English, but it means apparently, judging by looks. That is not what this sentence says. Where on the face of it fits: _On the face of it, the plan looks easy._ There **on the face of it** means apparently, judging by looks.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "They stayed calm ____ danger.", [["faceWind", "in the face of", true, "when facing, | despite"], ["absorbedIn", "in the wake of", "diff", "just after | the danger"], ["support", "on the face of it", "diff", "apparently, | judging by looks"]], ["in the face of = when facing, despite", "Why in? face to face with it"], null, ["\u2248 in the wake of: Prices rose in the wake of the floods.", "\u2248 on the face of it: On the face of it, the plan looks easy."]),
+          ...PLAB.kit.lineup("f6w", "They stayed calm ____ danger.", [["faceWind", "in the face of", true, "when facing, | despite"], ["absorbedIn", "in the wake of", "diff", "just after | the danger"], ["support", "on the face of it", "diff", "apparently, | judging by looks"]], ["in the face of = when facing, despite", "Why in? face to face with it"], null, ["\u2248 in the wake of: Prices rose in the wake of the floods.  = just after and because of", "\u2248 on the face of it: On the face of it, the plan looks easy.  = apparently, judging by looks"]),
         ],
       },
       {

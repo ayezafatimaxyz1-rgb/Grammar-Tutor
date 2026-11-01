@@ -63,11 +63,11 @@
         alt: "The sentence She hated to part with a gap her books., then the candidates: with (fits: give up a thing); from (correct English, different meaning: said goodbye to her books as if they were people); of (not used: of goes with the noun: part of)",
         say: [
           { text: "Fill the gap: She hated to part \u2026 her books. What does the sentence want to say? It wants **part with**: give up a thing.", cue: "e1w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean said goodbye to her books as if they were people. That is not what this sentence says. Where from fits: _He parted from his family at the station._ **of**: of goes with the noun: part of.", cue: "e1w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean said goodbye to her books as if they were people. That is not what this sentence says. Where from fits: _He parted from his family at the station._ There **from** means leave a person. **of**: of goes with the noun: part of.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She hated to part ____ her books.", [["agreeWith", "with", true, "give up a thing"], ["holdBack", "from", "diff", "said goodbye to her books | as if they were people"], ["cross", "of", false, "of goes with the | noun: part of"]], ["part with = give up a thing", "part from = leave a person"], null, ["\u2248 from: He parted from his family at the station."]),
+          ...PLAB.kit.lineup("e1w", "She hated to part ____ her books.", [["agreeWith", "with", true, "give up a thing"], ["holdBack", "from", "diff", "said goodbye to her books | as if they were people"], ["cross", "of", false, "of goes with the | noun: part of"]], ["part with = give up a thing", "part from = leave a person"], null, ["\u2248 from: He parted from his family at the station.  = leave a person"]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "The sentence He is partial with a gap sweets., then the candidates: to (fits: fond of); towards (correct English, different meaning: unfairly favouring sweets in a contest); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He is partial \u2026 sweets. What does the sentence want to say? It wants **partial to**: fond of.", cue: "e2w1" },
-          { text: "Why not the others? **towards** is correct English, but it would mean unfairly favouring sweets in a contest. That is not what this sentence says. Where towards fits: _The referee was partial towards the home team._ **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **towards** is correct English, but it would mean unfairly favouring sweets in a contest. That is not what this sentence says. Where towards fits: _The referee was partial towards the home team._ There **towards** means unfairly favouring. **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He is partial ____ sweets.", [["reachDot", "to", true, "fond of"], ["lookAhead", "towards", "diff", "unfairly favouring | sweets in a contest"], ["cross", "of", false, "of = belonging; | not used"]], ["partial to = fond of", "partial towards = unfairly favouring"], null, ["\u2248 towards: The referee was partial towards the home team."]),
+          ...PLAB.kit.lineup("e2w", "He is partial ____ sweets.", [["reachDot", "to", true, "fond of"], ["lookAhead", "towards", "diff", "unfairly favouring | sweets in a contest"], ["cross", "of", false, "of = belonging; | not used"]], ["partial to = fond of", "partial towards = unfairly favouring"], null, ["\u2248 towards: The referee was partial towards the home team.  = unfairly favouring"]),
         ],
       },
       {
@@ -246,11 +246,11 @@
         alt: "The sentence The teacher was pleased with a gap the result., then the candidates: with (fits: satisfied with); about (correct English, different meaning: glad about the result as a piece of news); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: The teacher was pleased \u2026 the result. What does the sentence want to say? It wants **pleased with**: satisfied with.", cue: "e6w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean glad about the result as a piece of news. That is not what this sentence says. Where about fits: _We are pleased about the decision._ **from**: a word-for-word translation.", cue: "e6w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean glad about the result as a piece of news. That is not what this sentence says. Where about fits: _We are pleased about the decision._ There **about** means glad about a situation. **from**: a word-for-word translation.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The teacher was pleased ____ the result.", [["agreeWith", "with", true, "satisfied with"], ["aboutCircle", "about", "diff", "glad about the result | as a piece of news"], ["cross", "from", false, "a word-for-word | translation"]], ["pleased with = satisfied with", "pleased about = glad about a situation"], null, ["\u2248 about: We are pleased about the decision."]),
+          ...PLAB.kit.lineup("e6w", "The teacher was pleased ____ the result.", [["agreeWith", "with", true, "satisfied with"], ["aboutCircle", "about", "diff", "glad about the result | as a piece of news"], ["cross", "from", false, "a word-for-word | translation"]], ["pleased with = satisfied with", "pleased about = glad about a situation"], null, ["\u2248 about: We are pleased about the decision.  = glad about a situation"]),
         ],
       },
       {

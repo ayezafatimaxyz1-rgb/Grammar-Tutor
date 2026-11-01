@@ -33,11 +33,11 @@
         alt: "The sentence He waited at the gate with a gap a reply., then the candidates: in the hope of (fits: hoping to get); in the habit of (correct English, different meaning: used to doing something); in the hope for (not used: the noun phrase takes of)",
         say: [
           { text: "Fill the gap: He waited at the gate \u2026 a reply. The sentence wants **in the hope of**: hoping to get.", cue: "f1w1" },
-          { text: "Why not the others? **in the habit of** is correct English, but it means used to doing something. That is not what this sentence says. Where in the habit of fits: _He is in the habit of waking up early._ **in the hope for**: the noun phrase takes of.", cue: "f1w2" },
+          { text: "Why not the others? **in the habit of** is correct English, but it means used to doing something. That is not what this sentence says. Where in the habit of fits: _He is in the habit of waking up early._ There **in the habit of** means used to doing something. **in the hope for**: the noun phrase takes of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He waited at the gate ____ a reply.", [["star", "in the hope of", true, "hoping to get"], ["absorbedIn", "in the habit of", "diff", "used to doing | something"], ["cross", "in the hope for", false, "the noun phrase | takes of"]], ["in the hope of = hoping to get", "Why of? a hope of something"], null, ["\u2248 in the habit of: He is in the habit of waking up early."]),
+          ...PLAB.kit.lineup("f1w", "He waited at the gate ____ a reply.", [["star", "in the hope of", true, "hoping to get"], ["absorbedIn", "in the habit of", "diff", "used to doing | something"], ["cross", "in the hope for", false, "the noun phrase | takes of"]], ["in the hope of = hoping to get", "Why of? a hope of something"], null, ["\u2248 in the habit of: He is in the habit of waking up early.  = used to doing something"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence Losses were with a gap ten million rupees., then the candidates: in excess of (fits: more than); in want of (correct English, different meaning: lacking ten million); in excess to (not used: an excess of a limit)",
         say: [
           { text: "Fill the gap: Losses were \u2026 ten million rupees. The sentence wants **in excess of**: more than.", cue: "f2w1" },
-          { text: "Why not the others? **in want of** is correct English, but it means lacking ten million. That is not what this sentence says. Where in want of fits: _The old house is in want of repair._ **in excess to**: an excess of a limit.", cue: "f2w2" },
+          { text: "Why not the others? **in want of** is correct English, but it means lacking ten million. That is not what this sentence says. Where in want of fits: _The old house is in want of repair._ There **in want of** means needing. **in excess to**: an excess of a limit.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Losses were ____ ten million rupees.", [["excess", "in excess of", true, "more than"], ["absorbedIn", "in want of", "diff", "lacking ten million"], ["cross", "in excess to", false, "an excess | of a limit"]], ["in excess of = more than", "Why of? excess = going over"], null, ["\u2248 in want of: The old house is in want of repair."]),
+          ...PLAB.kit.lineup("f2w", "Losses were ____ ten million rupees.", [["excess", "in excess of", true, "more than"], ["absorbedIn", "in want of", "diff", "lacking ten million"], ["cross", "in excess to", false, "an excess | of a limit"]], ["in excess of = more than", "Why of? excess = going over"], null, ["\u2248 in want of: The old house is in want of repair.  = needing"]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence These roads are with a gap repair., then the candidates: in need of (fits: needing); in charge of (correct English, different meaning: responsible for repair); in need for (not used: a common error: in need of)",
         say: [
           { text: "Fill the gap: These roads are \u2026 repair. The sentence wants **in need of**: needing.", cue: "f3w1" },
-          { text: "Why not the others? **in charge of** is correct English, but it means responsible for repair. That is not what this sentence says. Where in charge of fits: _She is in charge of the whole project._ **in need for**: a common error: in need of.", cue: "f3w2" },
+          { text: "Why not the others? **in charge of** is correct English, but it means responsible for repair. That is not what this sentence says. Where in charge of fits: _She is in charge of the whole project._ There **in charge of** means responsible for. **in need for**: a common error: in need of.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "These roads are ____ repair.", [["emptyJar", "in need of", true, "needing"], ["absorbedIn", "in charge of", "diff", "responsible | for repair"], ["cross", "in need for", false, "a common error: | in need of"]], ["in need of = needing", "Why of? the need for X, but in need of X"], null, ["\u2248 in charge of: She is in charge of the whole project."]),
+          ...PLAB.kit.lineup("f3w", "These roads are ____ repair.", [["emptyJar", "in need of", true, "needing"], ["absorbedIn", "in charge of", "diff", "responsible | for repair"], ["cross", "in need for", false, "a common error: | in need of"]], ["in need of = needing", "Why of? the need for X, but in need of X"], null, ["\u2248 in charge of: She is in charge of the whole project.  = responsible for"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence A school was built with a gap the martyrs., then the candidates: in memory of (fits: to remember someone); in charge of (correct English, different meaning: responsible for the martyrs); on memory of (not used: the fixed phrase is in memory of)",
         say: [
           { text: "Fill the gap: A school was built \u2026 the martyrs. The sentence wants **in memory of**: to remember someone.", cue: "f4w1" },
-          { text: "Why not the others? **in charge of** is correct English, but it means responsible for the martyrs. That is not what this sentence says. Where in charge of fits: _She is in charge of the whole project._ **on memory of**: the fixed phrase is in memory of.", cue: "f4w2" },
+          { text: "Why not the others? **in charge of** is correct English, but it means responsible for the martyrs. That is not what this sentence says. Where in charge of fits: _She is in charge of the whole project._ There **in charge of** means responsible for. **on memory of**: the fixed phrase is in memory of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "A school was built ____ the martyrs.", [["heart", "in memory of", true, "to remember someone"], ["absorbedIn", "in charge of", "diff", "responsible | for the martyrs"], ["cross", "on memory of", false, "the fixed phrase | is in memory of"]], ["in memory of = to remember someone", "Why in? memory is the frame"], null, ["\u2248 in charge of: She is in charge of the whole project."]),
+          ...PLAB.kit.lineup("f4w", "A school was built ____ the martyrs.", [["heart", "in memory of", true, "to remember someone"], ["absorbedIn", "in charge of", "diff", "responsible | for the martyrs"], ["cross", "on memory of", false, "the fixed phrase | is in memory of"]], ["in memory of = to remember someone", "Why in? memory is the frame"], null, ["\u2248 in charge of: She is in charge of the whole project.  = responsible for"]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence Tax should be with a gap income., then the candidates: in proportion to (fits: matching in size); out of proportion to (correct English, different meaning: far too large for); in proportion of (not used: proportion takes to)",
         say: [
           { text: "Fill the gap: Tax should be \u2026 income. The sentence wants **in proportion to**: matching in size.", cue: "f5w1" },
-          { text: "Why not the others? **out of proportion to** is correct English, but it means far too large for. That is not what this sentence says. Where out of proportion to fits: _His anger was out of proportion to the small mistake._ **in proportion of**: proportion takes to.", cue: "f5w2" },
+          { text: "Why not the others? **out of proportion to** is correct English, but it means far too large for. That is not what this sentence says. Where out of proportion to fits: _His anger was out of proportion to the small mistake._ There **out of proportion to** means far too large for. **in proportion of**: proportion takes to.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Tax should be ____ income.", [["ratio", "in proportion to", true, "matching in size"], ["arrowR", "out of proportion to", "diff", "far too large for"], ["cross", "in proportion of", false, "proportion takes to"]], ["in proportion to = matching in size", "Why to? one size points to another"], null, ["\u2248 out of proportion to: His anger was out of proportion to the small mistake."]),
+          ...PLAB.kit.lineup("f5w", "Tax should be ____ income.", [["ratio", "in proportion to", true, "matching in size"], ["arrowR", "out of proportion to", "diff", "far too large for"], ["cross", "in proportion of", false, "proportion takes to"]], ["in proportion to = matching in size", "Why to? one size points to another"], null, ["\u2248 out of proportion to: His anger was out of proportion to the small mistake.  = far too large for"]),
         ],
       },
       {

@@ -64,11 +64,11 @@
         alt: "a table made with a gap wood Answer: of, because you can still see the wood. Not from: made from = changed into something new.",
         say: [
           { text: "Fill the gap: a table made … wood Picture it: you can still see the wood. So **of**.", cue: "ofx11" },
-          { text: "Why not **from**? made from = changed into something new That is correct English, but it says something else. Where from fits: _Paper is made from wood._", cue: "ofx1-r2" },
+          { text: "Why not **from**? made from = changed into something new. That is correct English, but it says something else. Where from fits: _Paper is made from wood._ There **from** means the wood changed into paper.", cue: "ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ofx1"),
-          ...PLAB.kit.lineup("ofx1", "a table made ____ wood", [["roofOf", "of", true, "you can still see | the wood"], ["origin", "from", "diff", "made from = changed | into something new"]], ["Why of? you can still see the wood", "Ask: Is it still part of the whole, or still that material?"], null, ["≈ from: Paper is made from wood."]),
+          ...PLAB.kit.lineup("ofx1", "a table made ____ wood", [["roofOf", "of", true, "you can still see | the wood"], ["origin", "from", "diff", "made from = changed | into something new"]], ["Why of? you can still see the wood", "Ask: Is it still part of the whole, or still that material?"], null, ["≈ from: Paper is made from wood.  = the wood changed into paper"]),
         ],
       },
       {

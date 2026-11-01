@@ -92,11 +92,11 @@
         alt: "I met him with a gap the bus. Answer: on, because the bus: where we were. Not by: by takes no the. Not in: heard, but on is standard for buses.",
         say: [
           { text: "Fill the gap: I met him … the bus. Picture it: the bus: where we were. So **on**.", cue: "onx02" },
-          { text: "Why not **by**? by takes no the. Why not **in**? heard, but on is standard for buses That is correct English, but it says something else. Where in fits: _I met him in the car._", cue: "onx0-r2" },
+          { text: "Why not **by**? by takes no the. Why not **in**? heard, but on is standard for buses. That is correct English, but it says something else. Where in fits: _I met him in the car._ There **in** means inside a car (a small vehicle).", cue: "onx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "I met him ____ the bus.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "the bus: where | we were"], ["dotIn", "in", "diff", "heard, but on | is standard for buses"]], ["Why on? the bus: where we were", "Ask: Is there a, the or my, and is it transport with a floor?"], null, ["≈ in: I met him in the car."]),
+          ...PLAB.kit.lineup("onx0", "I met him ____ the bus.", [["emailBy", "by", false, "by takes no the"], ["busOn", "on", true, "the bus: where | we were"], ["dotIn", "in", "diff", "heard, but on | is standard for buses"]], ["Why on? the bus: where we were", "Ask: Is there a, the or my, and is it transport with a floor?"], null, ["≈ in: I met him in the car.  = inside a car (a small vehicle)"]),
         ],
       },
       {
@@ -256,7 +256,7 @@
             {
               "text": "in",
               "misconception": "p0-sense",
-              "why": "Heard; on is standard. It is correct English, but it says something else. Where in fits: We sat in a small car for six hours."
+              "why": "Heard; on is standard. It is correct English, but it says something else. Where in fits: We sat in a small car for six hours. There in means inside a small car."
             },
             {
               "text": "on",

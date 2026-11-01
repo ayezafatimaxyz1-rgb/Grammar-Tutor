@@ -128,12 +128,12 @@ PLAB.registerLesson({
       alt: "The sentence She wrote a book with a gap Iqbal., then the candidates with pictures: about (right: the topic); around (wrong: informal for a topic); of (correct English but a different meaning: written by Iqbal, not about him). Rule: about, on = a topic; around = in a circle, or approximately.",
       say: [
         { text: "Fill the gap: She wrote a book \u2026 Iqbal. What does the sentence want to say? The answer is **about**: the topic.", cue: "why1" },
-        { text: "Why not the others? **of** is correct English, but it would mean written by Iqbal, not about him. That is not what this sentence says. Where of fits: _Bang-e-Dra is a book of Iqbal's poems._ **around**: informal for a topic.", cue: "why2" },
+        { text: "Why not the others? **of** is correct English, but it would mean written by Iqbal, not about him. That is not what this sentence says. Where of fits: _Bang-e-Dra is a book of Iqbal's poems._ There **of** means written by Iqbal (his poems). **around**: informal for a topic.", cue: "why2" },
         { text: "The rule: about, on = a topic; around = in a circle, or approximately.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She wrote a book ____ Iqbal.", [["aboutCircle", "about", true, "the topic"], ["circleDoc", "around", false, "informal for | a topic"], ["ownerBook", "of", "diff", "written by Iqbal, | not about him"]], ["about, on = a topic", "around = in a circle, or approximately"], null, ["\u2248 of: Bang-e-Dra is a book of Iqbal's poems."]),
+        ...PLAB.kit.lineup("why", "She wrote a book ____ Iqbal.", [["aboutCircle", "about", true, "the topic"], ["circleDoc", "around", false, "informal for | a topic"], ["ownerBook", "of", "diff", "written by Iqbal, | not about him"]], ["about, on = a topic", "around = in a circle, or approximately"], null, ["\u2248 of: Bang-e-Dra is a book of Iqbal's poems.  = written by Iqbal (his poems)"]),
       ],
     },
     {

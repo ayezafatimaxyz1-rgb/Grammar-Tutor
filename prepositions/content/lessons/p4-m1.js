@@ -32,11 +32,11 @@
         alt: "The sentence He is mad with a gap cricket., then the candidates: about (fits: very keen on); at (correct English, different meaning: angry with cricket); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: He is mad \u2026 cricket. What does the sentence want to say? It wants **mad about**: very keen on.", cue: "e1w1" },
-          { text: "Why not the others? **at** is correct English, but it would mean angry with cricket. That is not what this sentence says. Where at fits: _She is mad at her brother._ **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **at** is correct English, but it would mean angry with cricket. That is not what this sentence says. Where at fits: _She is mad at her brother._ There **at** means angry with. **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He is mad ____ cricket.", [["aboutCircle", "about", true, "very keen on"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "angry with cricket"], ["cross", "on", false, "on is resting; | not used"]], ["mad about = very keen on", "mad at = angry with"], null, ["\u2248 at: She is mad at her brother."]),
+          ...PLAB.kit.lineup("e1w", "He is mad ____ cricket.", [["aboutCircle", "about", true, "very keen on"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "angry with cricket"], ["cross", "on", false, "on is resting; | not used"]], ["mad about = very keen on", "mad at = angry with"], null, ["\u2248 at: She is mad at her brother.  = angry with"]),
         ],
       },
       {
@@ -62,11 +62,11 @@
         alt: "The sentence The table is made with a gap wood., then the candidates: of (fits: built from a material you can still see); from (correct English, different meaning: the wood would have changed beyond seeing); by (correct English, different meaning: wood would be the maker)",
         say: [
           { text: "Fill the gap: The table is made \u2026 wood. What does the sentence want to say? It wants **made of**: built from a material you can still see.", cue: "e2w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean the wood would have changed beyond seeing. That is not what this sentence says. Where from fits: _Paper is made from wood._ **by** is correct English, but it would mean wood would be the maker. That is not what this sentence says. Where by fits: _The chair was made by my grandfather._", cue: "e2w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean the wood would have changed beyond seeing. That is not what this sentence says. Where from fits: _Paper is made from wood._ There **from** means made from a material that has changed. **by** is correct English, but it would mean wood would be the maker. That is not what this sentence says. Where by fits: _The chair was made by my grandfather._ There **by** means made by a maker.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "The table is made ____ wood.", [["awareOf", "of", true, "built from a material | you can still see"], ["holdBack", "from", "diff", "the wood would have | changed beyond seeing"], ["followRule", "by", "diff", "wood would | be the maker"]], ["made of = built from a material you can still see", "made from = made from a material that has changed"], null, ["\u2248 from: Paper is made from wood.", "\u2248 by: The chair was made by my grandfather."]),
+          ...PLAB.kit.lineup("e2w", "The table is made ____ wood.", [["awareOf", "of", true, "built from a material | you can still see"], ["holdBack", "from", "diff", "the wood would have | changed beyond seeing"], ["followRule", "by", "diff", "wood would | be the maker"]], ["made of = built from a material you can still see", "made from = made from a material that has changed"], null, ["\u2248 from: Paper is made from wood.  = made from a material that has changed", "\u2248 by: The chair was made by my grandfather.  = made by a maker"]),
         ],
       },
       {
@@ -296,11 +296,11 @@
         alt: "The sentence Oil does not mix with a gap water., then the candidates: with (fits: combine with); in (correct English, different meaning: stir something into the water); to (not used: to points; not used)",
         say: [
           { text: "Fill the gap: Oil does not mix \u2026 water. What does the sentence want to say? It wants **mix with**: combine with.", cue: "e7w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean stir something into the water. That is not what this sentence says. Where in fits: _Mix in the sugar slowly._ **to**: to points; not used.", cue: "e7w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean stir something into the water. That is not what this sentence says. Where in fits: _Mix in the sugar slowly._ There **in** means stir it into the rest. **to**: to points; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Oil does not mix ____ water.", [["agreeWith", "with", true, "combine with"], ["absorbedIn", "in", "diff", "stir something | into the water"], ["cross", "to", false, "to points; not used"]], ["mix with = combine with", "mix up = confuse two things"], null, ["\u2248 in: Mix in the sugar slowly."]),
+          ...PLAB.kit.lineup("e7w", "Oil does not mix ____ water.", [["agreeWith", "with", true, "combine with"], ["absorbedIn", "in", "diff", "stir something | into the water"], ["cross", "to", false, "to points; not used"]], ["mix with = combine with", "mix up = confuse two things"], null, ["\u2248 in: Mix in the sugar slowly.  = stir it into the rest"]),
         ],
       },
       {

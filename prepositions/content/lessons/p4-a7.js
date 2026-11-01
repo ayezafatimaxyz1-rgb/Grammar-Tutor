@@ -54,11 +54,11 @@
         alt: "The sentence The manager will attend with a gap your complaint., then the candidates: to (fits: deal with, take care of); (no word) (correct English, different meaning: be present at your complaint); on (not used: on is resting, not dealing with)",
         say: [
           { text: "Fill the gap: The manager will attend \u2026 your complaint. What does the sentence want to say? It wants **attend to**: deal with, take care of.", cue: "e1w1" },
-          { text: "Why not the others? **(no word)** is correct English, but it would mean be present at your complaint. That is not what this sentence says. Where (no word) fits: _She attended the meeting._ **on**: on is resting, not dealing with.", cue: "e1w2" },
+          { text: "Why not the others? **(no word)** is correct English, but it would mean be present at your complaint. That is not what this sentence says. Where (no word) fits: _She attended the meeting._ There **(no word)** means be present at. **on**: on is resting, not dealing with.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The manager will attend ____ your complaint.", [["reachDot", "to", true, "deal with, | take care of"], ["check", "(no word)", "diff", "be present at | your complaint"], ["cross", "on", false, "on is resting, | not dealing with"]], ["attend = be present at", "attend to = deal with, take care of"], null, ["\u2248 (no word): She attended the meeting."]),
+          ...PLAB.kit.lineup("e1w", "The manager will attend ____ your complaint.", [["reachDot", "to", true, "deal with, | take care of"], ["check", "(no word)", "diff", "be present at | your complaint"], ["cross", "on", false, "on is resting, | not dealing with"]], ["attend = be present at", "attend to = deal with, take care of"], null, ["\u2248 (no word): She attended the meeting.  = be present at"]),
         ],
       },
       {

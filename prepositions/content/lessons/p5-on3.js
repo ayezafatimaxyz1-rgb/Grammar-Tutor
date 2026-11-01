@@ -33,11 +33,11 @@
         alt: "The sentence He was fined with a gap., then the candidates: on the spot (fits: immediately, there and then); in a spot (correct English, different meaning: in trouble (informal)); at spot (not used: the fixed phrase is on the spot)",
         say: [
           { text: "Fill the gap: He was fined \u2026. The sentence wants **on the spot**: immediately, there and then.", cue: "f1w1" },
-          { text: "Why not the others? **in a spot** is correct English, but it means in trouble (informal). That is not what this sentence says. Where in a spot fits: _I am in a spot: I have lost my wallet._ **at spot**: the fixed phrase is on the spot.", cue: "f1w2" },
+          { text: "Why not the others? **in a spot** is correct English, but it means in trouble (informal). That is not what this sentence says. Where in a spot fits: _I am in a spot: I have lost my wallet._ There **in a spot** means in trouble (informal). **at spot**: the fixed phrase is on the spot.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He was fined ____.", [["directHit", "on the spot", true, "immediately, | there and then"], ["absorbedIn", "in a spot", "diff", "in trouble | (informal)"], ["cross", "at spot", false, "the fixed phrase | is on the spot"]], ["on the spot = immediately, there and then", "Why on? you stand on that very spot"], null, ["\u2248 in a spot: I am in a spot: I have lost my wallet."]),
+          ...PLAB.kit.lineup("f1w", "He was fined ____.", [["directHit", "on the spot", true, "immediately, | there and then"], ["absorbedIn", "in a spot", "diff", "in trouble | (informal)"], ["cross", "at spot", false, "the fixed phrase | is on the spot"]], ["on the spot = immediately, there and then", "Why on? you stand on that very spot"], null, ["\u2248 in a spot: I am in a spot: I have lost my wallet.  = in trouble (informal)"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence with a gap should you open this door., then the candidates: on no account (fits: never); on account of (correct English, different meaning: because of); in no account (not used: the fixed phrase is on no account)",
         say: [
           { text: "Fill the gap: \u2026 should you open this door. The sentence wants **on no account**: never.", cue: "f2w1" },
-          { text: "Why not the others? **on account of** is correct English, but it means because of. That is not what this sentence says. Where on account of fits: _The flight was delayed on account of fog._ **in no account**: the fixed phrase is on no account.", cue: "f2w2" },
+          { text: "Why not the others? **on account of** is correct English, but it means because of. That is not what this sentence says. Where on account of fits: _The flight was delayed on account of fog._ There **on account of** means because of. **in no account**: the fixed phrase is on no account.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ should you open this door.", [["cross", "on no account", true, "never"], ["support", "on account of", "diff", "because of"], ["cross", "in no account", false, "the fixed phrase | is on no account"]], ["on no account = never", "Why on? no account to rest on"], null, ["\u2248 on account of: The flight was delayed on account of fog."]),
+          ...PLAB.kit.lineup("f2w", "____ should you open this door.", [["cross", "on no account", true, "never"], ["support", "on account of", "diff", "because of"], ["cross", "in no account", false, "the fixed phrase | is on no account"]], ["on no account = never", "Why on? no account to rest on"], null, ["\u2248 on account of: The flight was delayed on account of fog.  = because of"]),
         ],
       },
       {

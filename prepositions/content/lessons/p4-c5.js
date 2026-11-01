@@ -318,11 +318,11 @@
         alt: "The sentence The copy corresponds with a gap the original., then the candidates: to (fits: match); with (correct English, different meaning: wrote letters with the original); for (not used: for is a purpose; not used)",
         say: [
           { text: "Fill the gap: The copy corresponds \u2026 the original. What does the sentence want to say? It wants **correspond to**: match.", cue: "e8w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean wrote letters with the original. That is not what this sentence says. Where with fits: _She corresponded with a pen friend._ **for**: for is a purpose; not used.", cue: "e8w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean wrote letters with the original. That is not what this sentence says. Where with fits: _She corresponded with a pen friend._ There **with** means write letters to. **for**: for is a purpose; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The copy corresponds ____ the original.", [["reachDot", "to", true, "match"], ["agreeWith", "with", "diff", "wrote letters | with the original"], ["cross", "for", false, "for is a purpose; | not used"]], ["correspond to = match", "correspond with = write letters to"], null, ["\u2248 with: She corresponded with a pen friend."]),
+          ...PLAB.kit.lineup("e8w", "The copy corresponds ____ the original.", [["reachDot", "to", true, "match"], ["agreeWith", "with", "diff", "wrote letters | with the original"], ["cross", "for", false, "for is a purpose; | not used"]], ["correspond to = match", "correspond with = write letters to"], null, ["\u2248 with: She corresponded with a pen friend.  = write letters to"]),
         ],
       },
       {

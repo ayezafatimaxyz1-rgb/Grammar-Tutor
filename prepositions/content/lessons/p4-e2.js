@@ -79,11 +79,11 @@
         alt: "The sentence She is endowed with a gap great talent., then the candidates: with (fits: naturally having a quality); by (correct English, different meaning: the founder who gave it: a college endowed by a donor); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: She is endowed \u2026 great talent. What does the sentence want to say? It wants **endowed with**: naturally having a quality.", cue: "e2w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean the founder who gave it: a college endowed by a donor. That is not what this sentence says. Where by fits: _The college was endowed by a rich donor._ **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean the founder who gave it: a college endowed by a donor. That is not what this sentence says. Where by fits: _The college was endowed by a rich donor._ There **by** means given money by a founder. **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She is endowed ____ great talent.", [["agreeWith", "with", true, "naturally having | a quality"], ["followRule", "by", "diff", "the founder who gave it: a | college endowed by a donor"], ["cross", "of", false, "of = belonging; | not used"]], ["endowed with = naturally having a quality"], null, ["\u2248 by: The college was endowed by a rich donor."]),
+          ...PLAB.kit.lineup("e2w", "She is endowed ____ great talent.", [["agreeWith", "with", true, "naturally having | a quality"], ["followRule", "by", "diff", "the founder who gave it: a | college endowed by a donor"], ["cross", "of", false, "of = belonging; | not used"]], ["endowed with = naturally having a quality"], null, ["\u2248 by: The college was endowed by a rich donor.  = given money by a founder"]),
         ],
       },
       {
@@ -108,11 +108,11 @@
         alt: "The sentence She is engaged with a gap research., then the candidates: in (fits: busy doing); to (correct English, different meaning: promised to marry research); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She is engaged \u2026 research. What does the sentence want to say? It wants **engaged in**: busy doing.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean promised to marry research. That is not what this sentence says. Where to fits: _He is engaged to her cousin._ **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean promised to marry research. That is not what this sentence says. Where to fits: _He is engaged to her cousin._ There **to** means promised to marry. **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is engaged ____ research.", [["absorbedIn", "in", true, "busy doing"], ["reachDot", "to", "diff", "promised to | marry research"], ["cross", "on", false, "on is resting; | not used"]], ["engaged in = busy doing", "engaged to = promised to marry"], null, ["\u2248 to: He is engaged to her cousin."]),
+          ...PLAB.kit.lineup("e3w", "She is engaged ____ research.", [["absorbedIn", "in", true, "busy doing"], ["reachDot", "to", "diff", "promised to | marry research"], ["cross", "on", false, "on is resting; | not used"]], ["engaged in = busy doing", "engaged to = promised to marry"], null, ["\u2248 to: He is engaged to her cousin.  = promised to marry"]),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence The committee will enquire with a gap the matter., then the candidates: into (fits: investigate); about (correct English, different meaning: only ask a few questions about it); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: The committee will enquire \u2026 the matter. What does the sentence want to say? It wants **enquire into**: investigate.", cue: "e4w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean only ask a few questions about it. That is not what this sentence says. Where about fits: _She enquired about the fees._ **on**: on is resting; not used.", cue: "e4w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean only ask a few questions about it. That is not what this sentence says. Where about fits: _She enquired about the fees._ There **about** means ask for information about. **on**: on is resting; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The committee will enquire ____ the matter.", [["intoBag", "into", true, "investigate"], ["aboutCircle", "about", "diff", "only ask a few | questions about it"], ["cross", "on", false, "on is resting; | not used"]], ["enquire into = investigate", "enquire about = ask for information about"], null, ["\u2248 about: She enquired about the fees."]),
+          ...PLAB.kit.lineup("e4w", "The committee will enquire ____ the matter.", [["intoBag", "into", true, "investigate"], ["aboutCircle", "about", "diff", "only ask a few | questions about it"], ["cross", "on", false, "on is resting; | not used"]], ["enquire into = investigate", "enquire about = ask for information about"], null, ["\u2248 about: She enquired about the fees.  = ask for information about"]),
         ],
       },
       {

@@ -54,11 +54,11 @@
         alt: "The sentence My parents do not approve with a gap smoking., then the candidates: of (fits: think something is good); (no word) (correct English, different meaning: officially allowed it, like a law); for (not used: for is a purpose, not an opinion)",
         say: [
           { text: "Fill the gap: My parents do not approve \u2026 smoking. What does the sentence want to say? It wants **approve of**: think something is good.", cue: "e1w1" },
-          { text: "Why not the others? **(no word)** is correct English, but it would mean officially allowed it, like a law. That is not what this sentence says. Where (no word) fits: _Parliament approved the budget._ **for**: for is a purpose, not an opinion.", cue: "e1w2" },
+          { text: "Why not the others? **(no word)** is correct English, but it would mean officially allowed it, like a law. That is not what this sentence says. Where (no word) fits: _Parliament approved the budget._ There **(no word)** means officially accept. **for**: for is a purpose, not an opinion.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "My parents do not approve ____ smoking.", [["awareOf", "of", true, "think something | is good"], ["check", "(no word)", "diff", "officially allowed | it, like a law"], ["cross", "for", false, "for is a purpose, | not an opinion"]], ["approve of = think something is good", "approve = officially accept"], null, ["\u2248 (no word): Parliament approved the budget."]),
+          ...PLAB.kit.lineup("e1w", "My parents do not approve ____ smoking.", [["awareOf", "of", true, "think something | is good"], ["check", "(no word)", "diff", "officially allowed | it, like a law"], ["cross", "for", false, "for is a purpose, | not an opinion"]], ["approve of = think something is good", "approve = officially accept"], null, ["\u2248 (no word): Parliament approved the budget.  = officially accept"]),
         ],
       },
       {
@@ -124,11 +124,11 @@
         alt: "The sentence She argued with a gap lower taxes., then the candidates: for (fits: speak in support of); with (correct English, different meaning: quarrelled with lower taxes as a person); against (correct English, different meaning: opposing lower taxes)",
         say: [
           { text: "Fill the gap: She argued \u2026 lower taxes. What does the sentence want to say? It wants **argue for**: speak in support of.", cue: "e2w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean quarrelled with lower taxes as a person. That is not what this sentence says. Where with fits: _He argued with his brother._ **against** is correct English, but it would mean opposing lower taxes. That is not what this sentence says. Where against fits: _They argued against the new law._", cue: "e2w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean quarrelled with lower taxes as a person. That is not what this sentence says. Where with fits: _He argued with his brother._ There **with** means quarrel with a person. **against** is correct English, but it would mean opposing lower taxes. That is not what this sentence says. Where against fits: _They argued against the new law._ There **against** means speak in opposition to.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She argued ____ lower taxes.", [["wantStar", "for", true, "speak in support of"], ["agreeWith", "with", "diff", "quarrelled with lower | taxes as a person"], ["shield", "against", "diff", "opposing | lower taxes"]], ["argue with = quarrel with a person", "argue for = speak in support of"], null, ["\u2248 with: He argued with his brother.", "\u2248 against: They argued against the new law."]),
+          ...PLAB.kit.lineup("e2w", "She argued ____ lower taxes.", [["wantStar", "for", true, "speak in support of"], ["agreeWith", "with", "diff", "quarrelled with lower | taxes as a person"], ["shield", "against", "diff", "opposing | lower taxes"]], ["argue with = quarrel with a person", "argue for = speak in support of"], null, ["\u2248 with: He argued with his brother.  = quarrel with a person", "\u2248 against: They argued against the new law.  = speak in opposition to"]),
         ],
       },
       {
@@ -184,11 +184,11 @@
         alt: "The sentence We arrived with a gap the airport., then the candidates: at (fits: reach a point or building); in (correct English, different meaning: were already inside the building); to (not used: to is still moving; arrive is the end)",
         say: [
           { text: "Fill the gap: We arrived \u2026 the airport. What does the sentence want to say? It wants **arrive at**: reach a point or building.", cue: "e3w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean were already inside the building. That is not what this sentence says. Where in fits: _We arrived in Lahore._ **to**: to is still moving; arrive is the end.", cue: "e3w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean were already inside the building. That is not what this sentence says. Where in fits: _We arrived in Lahore._ There **in** means reach a city or country. **to**: to is still moving; arrive is the end.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "We arrived ____ the airport.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "reach a point | or building"], ["absorbedIn", "in", "diff", "were already inside | the building"], ["cross", "to", false, "to is still moving; | arrive is the end"]], ["arrive at = reach a point or building", "arrive in = reach a city or country"], null, ["\u2248 in: We arrived in Lahore."]),
+          ...PLAB.kit.lineup("e3w", "We arrived ____ the airport.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "reach a point | or building"], ["absorbedIn", "in", "diff", "were already inside | the building"], ["cross", "to", false, "to is still moving; | arrive is the end"]], ["arrive at = reach a point or building", "arrive in = reach a city or country"], null, ["\u2248 in: We arrived in Lahore.  = reach a city or country"]),
         ],
       },
       {
@@ -213,11 +213,11 @@
         alt: "The sentence He is ashamed with a gap his behaviour., then the candidates: of (fits: feeling bad about something you did); for (correct English, different meaning: embarrassed for his behaviour, as if it were another person); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: He is ashamed \u2026 his behaviour. What does the sentence want to say? It wants **ashamed of**: feeling bad about something you did.", cue: "e4w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean embarrassed for his behaviour, as if it were another person. That is not what this sentence says. Where for fits: _I felt ashamed for him._ **from**: a word-for-word translation.", cue: "e4w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean embarrassed for his behaviour, as if it were another person. That is not what this sentence says. Where for fits: _I felt ashamed for him._ There **for** means embarrassed on someone else's behalf. **from**: a word-for-word translation.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is ashamed ____ his behaviour.", [["awareOf", "of", true, "feeling bad about | something you did"], ["wantStar", "for", "diff", "embarrassed for his behaviour, | as if it were another person"], ["cross", "from", false, "a word-for-word | translation"]], ["ashamed of = feeling bad about something you did", "ashamed for = embarrassed on someone else's behalf"], null, ["\u2248 for: I felt ashamed for him."]),
+          ...PLAB.kit.lineup("e4w", "He is ashamed ____ his behaviour.", [["awareOf", "of", true, "feeling bad about | something you did"], ["wantStar", "for", "diff", "embarrassed for his behaviour, | as if it were another person"], ["cross", "from", false, "a word-for-word | translation"]], ["ashamed of = feeling bad about something you did", "ashamed for = embarrassed on someone else's behalf"], null, ["\u2248 for: I felt ashamed for him.  = embarrassed on someone else's behalf"]),
         ],
       },
       {
@@ -283,11 +283,11 @@
         alt: "The sentence She asked with a gap her grandmother., then the candidates: after (fits: enquire about someone's health); for (correct English, different meaning: wanted to see her, requesting her); about (correct English, different meaning: asked for facts about her)",
         say: [
           { text: "Fill the gap: She asked \u2026 her grandmother. What does the sentence want to say? It wants **ask after**: enquire about someone's health.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean wanted to see her, requesting her. That is not what this sentence says. Where for fits: _She asked for help._ **about** is correct English, but it would mean asked for facts about her. That is not what this sentence says. Where about fits: _He asked about the fees._", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean wanted to see her, requesting her. That is not what this sentence says. Where for fits: _She asked for help._ There **for** means request something. **about** is correct English, but it would mean asked for facts about her. That is not what this sentence says. Where about fits: _He asked about the fees._ There **about** means enquire about details.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "She asked ____ her grandmother.", [["careFor", "after", true, "enquire about | someone's health"], ["wantStar", "for", "diff", "wanted to see her, | requesting her"], ["aboutCircle", "about", "diff", "asked for | facts about her"]], ["ask for = request something", "ask about = enquire about details"], null, ["\u2248 for: She asked for help.", "\u2248 about: He asked about the fees."]),
+          ...PLAB.kit.lineup("e5w", "She asked ____ her grandmother.", [["careFor", "after", true, "enquire about | someone's health"], ["wantStar", "for", "diff", "wanted to see her, | requesting her"], ["aboutCircle", "about", "diff", "asked for | facts about her"]], ["ask for = request something", "ask about = enquire about details"], null, ["\u2248 for: She asked for help.  = request something", "\u2248 about: He asked about the fees.  = enquire about details"]),
         ],
       },
       {
@@ -408,11 +408,11 @@
         alt: "The sentence Please attach the photo with a gap the form., then the candidates: to (fits: fix one thing to another); with (correct English, different meaning: the tool used: attach it with glue); on (not used: on is resting on top, not fixing to)",
         say: [
           { text: "Fill the gap: Please attach the photo \u2026 the form. What does the sentence want to say? It wants **attach to**: fix one thing to another.", cue: "e8w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean the tool used: attach it with glue. That is not what this sentence says. Where with fits: _Attach the photo with glue._ **on**: on is resting on top, not fixing to.", cue: "e8w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean the tool used: attach it with glue. That is not what this sentence says. Where with fits: _Attach the photo with glue._ There **with** means using it as the tool. **on**: on is resting on top, not fixing to.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "Please attach the photo ____ the form.", [["reachDot", "to", true, "fix one thing | to another"], ["agreeWith", "with", "diff", "the tool used: | attach it with glue"], ["cross", "on", false, "on is resting on | top, not fixing to"]], ["attach to = fix one thing to another"], null, ["\u2248 with: Attach the photo with glue."]),
+          ...PLAB.kit.lineup("e8w", "Please attach the photo ____ the form.", [["reachDot", "to", true, "fix one thing | to another"], ["agreeWith", "with", "diff", "the tool used: | attach it with glue"], ["cross", "on", false, "on is resting on | top, not fixing to"]], ["attach to = fix one thing to another"], null, ["\u2248 with: Attach the photo with glue.  = using it as the tool"]),
         ],
       },
       {

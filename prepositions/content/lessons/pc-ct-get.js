@@ -63,11 +63,11 @@
         alt: "She got with a gap her bike. Answer: on, because you sit on top of a bike. Not in: not inside a bike. Not off: leaving it.",
         say: [
           { text: "Fill the gap: She got … her bike. Picture it: you sit on top of a bike. So **on**.", cue: "onx11" },
-          { text: "Why not **in**? not inside a bike. Why not **off**? leaving it That is correct English, but it says something else. Where off fits: _She got off her bike._", cue: "onx1-r2" },
+          { text: "Why not **in**? not inside a bike. Why not **off**? leaving it. That is correct English, but it says something else. Where off fits: _She got off her bike._ There **off** means left the bike.", cue: "onx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "She got ____ her bike.", [["cupOnTable", "on", true, "you sit on top of a bike"], ["dotIn", "in", false, "not inside a bike"], ["arrowR", "off", "diff", "leaving it"]], ["Why on? you sit on top of a bike", "Ask: Is it a bus, train, plane, ship or bike?"], null, ["≈ off: She got off her bike."]),
+          ...PLAB.kit.lineup("onx1", "She got ____ her bike.", [["cupOnTable", "on", true, "you sit on top of a bike"], ["dotIn", "in", false, "not inside a bike"], ["arrowR", "off", "diff", "leaving it"]], ["Why on? you sit on top of a bike", "Ask: Is it a bus, train, plane, ship or bike?"], null, ["≈ off: She got off her bike.  = left the bike"]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "He got with a gap a taxi. Answer: in, because inside it. Not on: not for taxis. Not out of: leaving it.",
         say: [
           { text: "Fill the gap: He got … a taxi. Picture it: inside it. So **in**.", cue: "inx12" },
-          { text: "Why not **on**? not for taxis. Why not **out of**? leaving it That is correct English, but it says something else. Where out of fits: _He got out of the taxi._", cue: "inx1-r2" },
+          { text: "Why not **on**? not for taxis. Why not **out of**? leaving it. That is correct English, but it says something else. Where out of fits: _He got out of the taxi._ There **out of** means left the taxi.", cue: "inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "He got ____ a taxi.", [["cupOnTable", "on", false, "not for taxis"], ["dotIn", "in", true, "inside it"], ["arrowR", "out of", "diff", "leaving it"]], ["Why in? inside it", "Ask: Is it a car or a taxi?"], null, ["≈ out of: He got out of the taxi."]),
+          ...PLAB.kit.lineup("inx1", "He got ____ a taxi.", [["cupOnTable", "on", false, "not for taxis"], ["dotIn", "in", true, "inside it"], ["arrowR", "out of", "diff", "leaving it"]], ["Why in? inside it", "Ask: Is it a car or a taxi?"], null, ["≈ out of: He got out of the taxi.  = left the taxi"]),
         ],
       },
       {
@@ -134,11 +134,11 @@
         alt: "Get with a gap the bus at Liberty. Answer: off, because leaving its floor. Not on: boarding it. Not out of: out of is for cars.",
         say: [
           { text: "Fill the gap: Get … the bus at Liberty. Picture it: leaving its floor. So **off**.", cue: "offx02" },
-          { text: "Why not **on**? boarding it That is correct English, but it says something else. Where on fits: _Get on the bus at Liberty._ Why not **out of**? out of is for cars.", cue: "offx0-r2" },
+          { text: "Why not **on**? boarding it. That is correct English, but it says something else. Where on fits: _Get on the bus at Liberty._ There **on** means boarded the bus. Why not **out of**? out of is for cars.", cue: "offx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-offx0"),
-          ...PLAB.kit.lineup("offx0", "Get ____ the bus at Liberty.", [["cupOnTable", "on", "diff", "boarding it"], ["arrowR", "off", true, "leaving its floor"], ["arrowR", "out of", false, "out of is for cars"]], ["Why off? leaving its floor", "Ask: Is it leaving a bus, train, plane or bike?"], null, ["≈ on: Get on the bus at Liberty."]),
+          ...PLAB.kit.lineup("offx0", "Get ____ the bus at Liberty.", [["cupOnTable", "on", "diff", "boarding it"], ["arrowR", "off", true, "leaving its floor"], ["arrowR", "out of", false, "out of is for cars"]], ["Why off? leaving its floor", "Ask: Is it leaving a bus, train, plane or bike?"], null, ["≈ on: Get on the bus at Liberty.  = boarded the bus"]),
         ],
       },
       {
@@ -147,11 +147,11 @@
         alt: "We got with a gap the plane. Answer: off, because leaving it. Not on: boarding. Not out of: not for planes.",
         say: [
           { text: "Fill the gap: We got … the plane. Picture it: leaving it. So **off**.", cue: "offx12" },
-          { text: "Why not **on**? boarding That is correct English, but it says something else. Where on fits: _We got on the plane._ Why not **out of**? not for planes.", cue: "offx1-r2" },
+          { text: "Why not **on**? boarding. That is correct English, but it says something else. Where on fits: _We got on the plane._ There **on** means boarded the plane. Why not **out of**? not for planes.", cue: "offx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-offx1"),
-          ...PLAB.kit.lineup("offx1", "We got ____ the plane.", [["cupOnTable", "on", "diff", "boarding"], ["arrowR", "off", true, "leaving it"], ["arrowR", "out of", false, "not for planes"]], ["Why off? leaving it", "Ask: Is it leaving a bus, train, plane or bike?"], null, ["≈ on: We got on the plane."]),
+          ...PLAB.kit.lineup("offx1", "We got ____ the plane.", [["cupOnTable", "on", "diff", "boarding"], ["arrowR", "off", true, "leaving it"], ["arrowR", "out of", false, "not for planes"]], ["Why off? leaving it", "Ask: Is it leaving a bus, train, plane or bike?"], null, ["≈ on: We got on the plane.  = boarded the plane"]),
         ],
       },
       {
@@ -176,11 +176,11 @@
         alt: "Get with a gap the car slowly. Answer: out of, because leaving the inside. Not in: getting into it. Not off: off is for buses, trains.",
         say: [
           { text: "Fill the gap: Get … the car slowly. Picture it: leaving the inside. So **out of**.", cue: "out-ofx03" },
-          { text: "Why not **in**? getting into it That is correct English, but it says something else. Where in fits: _Get in the car slowly._ Why not **off**? off is for buses, trains.", cue: "out-ofx0-r2" },
+          { text: "Why not **in**? getting into it. That is correct English, but it says something else. Where in fits: _Get in the car slowly._ There **in** means entered the car. Why not **off**? off is for buses, trains.", cue: "out-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-out-ofx0"),
-          ...PLAB.kit.lineup("out-ofx0", "Get ____ the car slowly.", [["dotIn", "in", "diff", "getting into it"], ["arrowR", "off", false, "off is for buses, trains"], ["arrowR", "out of", true, "leaving the inside"]], ["Why out of? leaving the inside", "Ask: Is it leaving a car or taxi?"], null, ["≈ in: Get in the car slowly."]),
+          ...PLAB.kit.lineup("out-ofx0", "Get ____ the car slowly.", [["dotIn", "in", "diff", "getting into it"], ["arrowR", "off", false, "off is for buses, trains"], ["arrowR", "out of", true, "leaving the inside"]], ["Why out of? leaving the inside", "Ask: Is it leaving a car or taxi?"], null, ["≈ in: Get in the car slowly.  = entered the car"]),
         ],
       },
       {
@@ -189,11 +189,11 @@
         alt: "She got with a gap the taxi. Answer: out of, because leaving the inside. Not in: getting into it. Not off: not for taxis.",
         say: [
           { text: "Fill the gap: She got … the taxi. Picture it: leaving the inside. So **out of**.", cue: "out-ofx13" },
-          { text: "Why not **in**? getting into it That is correct English, but it says something else. Where in fits: _She got in the taxi._ Why not **off**? not for taxis.", cue: "out-ofx1-r2" },
+          { text: "Why not **in**? getting into it. That is correct English, but it says something else. Where in fits: _She got in the taxi._ There **in** means entered the taxi. Why not **off**? not for taxis.", cue: "out-ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-out-ofx1"),
-          ...PLAB.kit.lineup("out-ofx1", "She got ____ the taxi.", [["dotIn", "in", "diff", "getting into it"], ["arrowR", "off", false, "not for taxis"], ["arrowR", "out of", true, "leaving the inside"]], ["Why out of? leaving the inside", "Ask: Is it leaving a car or taxi?"], null, ["≈ in: She got in the taxi."]),
+          ...PLAB.kit.lineup("out-ofx1", "She got ____ the taxi.", [["dotIn", "in", "diff", "getting into it"], ["arrowR", "off", false, "not for taxis"], ["arrowR", "out of", true, "leaving the inside"]], ["Why out of? leaving the inside", "Ask: Is it leaving a car or taxi?"], null, ["≈ in: She got in the taxi.  = entered the taxi"]),
         ],
       },
       {

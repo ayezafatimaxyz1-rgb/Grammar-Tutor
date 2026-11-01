@@ -18,14 +18,14 @@
           { text: "Your sentence: _I must start … dawn to reach the station in time._ Here is every choice, side by side.", cue: "ys-s" },
           { text: "**at** is right: dawn is one point of time.", cue: "ys1" },
           { text: "**on** is wrong: on is for days and dates.", cue: "ys2" },
-          { text: "**by** is correct English, but a different meaning: no later than dawn: a deadline. Where by fits: _I must reach the station by dawn._", cue: "ys3" },
-          { text: "**after** is correct English, but a different meaning: later than dawn. Where after fits: _The shops open after dawn._", cue: "ys4" },
+          { text: "**by** is correct English, but a different meaning: no later than dawn: a deadline. Where by fits: _I must reach the station by dawn._ There **by** means not later than dawn (a deadline).", cue: "ys3" },
+          { text: "**after** is correct English, but a different meaning: later than dawn. Where after fits: _The shops open after dawn._ There **after** means later than dawn.", cue: "ys4" },
           { text: "AT a point of time: at dawn, at noon, at night.", cue: "ys-r1" },
           { text: "BY = no later than · AFTER = later than.", cue: "ys-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "I must start ____ dawn to reach the station in time.", [["onTimeDot", "at", true, "dawn is one point | of time"], ["calendar", "on", false, "on is for days | and dates"], ["priorDot", "by", "diff", "no later than dawn: | a deadline"], ["afterDot", "after", "diff", "later than dawn"]], ["AT a point of time: at dawn, at noon, at night.", "BY = no later than · AFTER = later than"], null, ["≈ by: I must reach the station by dawn.", "≈ after: The shops open after dawn."]),
+          ...PLAB.kit.lineup("ys", "I must start ____ dawn to reach the station in time.", [["onTimeDot", "at", true, "dawn is one point | of time"], ["calendar", "on", false, "on is for days | and dates"], ["priorDot", "by", "diff", "no later than dawn: | a deadline"], ["afterDot", "after", "diff", "later than dawn"]], ["AT a point of time: at dawn, at noon, at night.", "BY = no later than · AFTER = later than"], null, ["≈ by: I must reach the station by dawn.  = not later than dawn (a deadline)", "≈ after: The shops open after dawn.  = later than dawn"]),
         ],
       },
       {

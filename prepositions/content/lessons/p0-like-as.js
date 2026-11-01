@@ -51,11 +51,11 @@
         alt: "He fought with a gap a lion. Answer: like, because he is not a lion; he fought similarly. Not as: as a lion = he really was a lion.",
         say: [
           { text: "Fill the gap: He fought … a lion. Picture it: he is not a lion; he fought similarly. So **like**.", cue: "likex01" },
-          { text: "Why not **as**? as a lion = he really was a lion That is correct English, but it says something else. Where as fits: _He played the hero as a young actor._", cue: "likex0-r2" },
+          { text: "Why not **as**? as a lion = he really was a lion. That is correct English, but it says something else. Where as fits: _He played the hero as a young actor._ There **as** means when he was a young actor.", cue: "likex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-likex0"),
-          ...PLAB.kit.lineup("likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"], null, ["≈ as: He played the hero as a young actor."]),
+          ...PLAB.kit.lineup("likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"], null, ["≈ as: He played the hero as a young actor.  = when he was a young actor"]),
         ],
       },
       {
@@ -94,11 +94,11 @@
         alt: "She works with a gap a teacher. Answer: as, because teaching is her real job. Not like: like a teacher = only similar, not her job.",
         say: [
           { text: "Fill the gap: She works … a teacher. Picture it: teaching is her real job. So **as**.", cue: "asx02" },
-          { text: "Why not **like**? like a teacher = only similar, not her job That is correct English, but it says something else. Where like fits: _She talks like a teacher._", cue: "asx0-r2" },
+          { text: "Why not **like**? like a teacher = only similar, not her job. That is correct English, but it says something else. Where like fits: _She talks like a teacher._ There **like** means in a teacher's way.", cue: "asx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-asx0"),
-          ...PLAB.kit.lineup("asx0", "She works ____ a teacher.", [["likeSim", "like", "diff", "like a teacher = only | similar, not her job"], ["asRole", "as", true, "teaching is her | real job"]], ["Why as? teaching is her real job", "Ask: Is it the real role or function?"], null, ["≈ like: She talks like a teacher."]),
+          ...PLAB.kit.lineup("asx0", "She works ____ a teacher.", [["likeSim", "like", "diff", "like a teacher = only | similar, not her job"], ["asRole", "as", true, "teaching is her | real job"]], ["Why as? teaching is her real job", "Ask: Is it the real role or function?"], null, ["≈ like: She talks like a teacher.  = in a teacher's way"]),
         ],
       },
       {
@@ -211,7 +211,7 @@
             {
               "text": "like",
               "misconception": "p0-sense",
-              "why": "Like a table = it only looks similar. It is correct English, but it says something else. Where like fits: This box looks like a table."
+              "why": "Like a table = it only looks similar. It is correct English, but it says something else. Where like fits: This box looks like a table. There like means similar to a table in looks."
             }
           ]
         },

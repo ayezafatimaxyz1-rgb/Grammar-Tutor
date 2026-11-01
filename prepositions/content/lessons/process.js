@@ -40,12 +40,12 @@
         alt: "The sentence with a gap the inquiry, new facts emerged., then the candidates with pictures: In the course of (right: = during); At the expense of (correct English but a different meaning: harming the inquiry); By way of (wrong: = as a form of). Rule: in the course of = during; at the expense of = at the cost of.",
         say: [
           { text: "Fill the gap: \u2026 the inquiry, new facts emerged. What does the sentence want to say? The answer is **In the course of**: = during.", cue: "why1" },
-          { text: "Why not the others? **At the expense of** is correct English, but it would mean harming the inquiry. That is not what this sentence says. Where At the expense of fits: _He finished fast at the expense of quality._ **By way of**: = as a form of.", cue: "why2" },
+          { text: "Why not the others? **At the expense of** is correct English, but it would mean harming the inquiry. That is not what this sentence says. Where At the expense of fits: _He finished fast at the expense of quality._ There **At the expense of** means losing quality to gain speed. **By way of**: = as a form of.", cue: "why2" },
           { text: "The rule: in the course of = during; at the expense of = at the cost of.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ the inquiry, new facts emerged.", [["courseAlong", "In the course of", true, "= during"], ["expense", "At the expense of", "diff", "harming | the inquiry"], ["flowersApology", "By way of", false, "= as a form of"]], ["in the course of = during", "at the expense of = at the cost of"], null, ["\u2248 At the expense of: He finished fast at the expense of quality."]),
+          ...PLAB.kit.lineup("why", "____ the inquiry, new facts emerged.", [["courseAlong", "In the course of", true, "= during"], ["expense", "At the expense of", "diff", "harming | the inquiry"], ["flowersApology", "By way of", false, "= as a form of"]], ["in the course of = during", "at the expense of = at the cost of"], null, ["\u2248 At the expense of: He finished fast at the expense of quality.  = losing quality to gain speed"]),
         ],
       },
       {

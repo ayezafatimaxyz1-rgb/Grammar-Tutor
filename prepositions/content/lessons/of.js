@@ -76,12 +76,12 @@
         alt: "The sentence The legs with a gap the table are broken., then the candidates with pictures: of (right: a part of a thing); from (correct English but a different meaning: legs taken off the table); for (correct English but a different meaning: legs made for it, not yet fitted). Rule: of = part of, belonging to; people: Ali's book \u00b7 things: the legs of the table.",
         say: [
           { text: "Fill the gap: The legs \u2026 the table are broken. What does the sentence want to say? The answer is **of**: a part of a thing.", cue: "why1" },
-          { text: "Why not the others? **from** is correct English, but it would mean legs taken off the table. That is not what this sentence says. Where from fits: _The legs were taken from the old table._ **for** is correct English, but it would mean legs made for it, not yet fitted. That is not what this sentence says. Where for fits: _I bought new legs for the table._", cue: "why2" },
+          { text: "Why not the others? **from** is correct English, but it would mean legs taken off the table. That is not what this sentence says. Where from fits: _The legs were taken from the old table._ There **from** means taken off the old table (the source). **for** is correct English, but it would mean legs made for it, not yet fitted. That is not what this sentence says. Where for fits: _I bought new legs for the table._ There **for** means meant for the table, bought to fit it.", cue: "why2" },
           { text: "The rule: of = part of, belonging to; people: Ali's book \u00b7 things: the legs of the table.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The legs ____ the table are broken.", [["roofOf", "of", true, "a part of | a thing"], ["origin", "from", "diff", "legs taken | off the table"], ["target", "for", "diff", "legs made for it, | not yet fitted"]], ["of = part of, belonging to", "people: Ali's book \u00b7 things: the legs of the table"], null, ["\u2248 from: The legs were taken from the old table.", "\u2248 for: I bought new legs for the table."]),
+          ...PLAB.kit.lineup("why", "The legs ____ the table are broken.", [["roofOf", "of", true, "a part of | a thing"], ["origin", "from", "diff", "legs taken | off the table"], ["target", "for", "diff", "legs made for it, | not yet fitted"]], ["of = part of, belonging to", "people: Ali's book \u00b7 things: the legs of the table"], null, ["\u2248 from: The legs were taken from the old table.  = taken off the old table (the source)", "\u2248 for: I bought new legs for the table.  = meant for the table, bought to fit it"]),
         ],
       },
       {

@@ -32,11 +32,11 @@
         alt: "The sentence He is generous with a gap his money., then the candidates: with (fits: giving freely of something); to (correct English, different meaning: kind to his money as if it were a person); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: He is generous \u2026 his money. What does the sentence want to say? It wants **generous with**: giving freely of something.", cue: "e1w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean kind to his money as if it were a person. That is not what this sentence says. Where to fits: _She is generous to the poor._ **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean kind to his money as if it were a person. That is not what this sentence says. Where to fits: _She is generous to the poor._ There **to** means kind and giving to people. **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He is generous ____ his money.", [["agreeWith", "with", true, "giving freely | of something"], ["reachDot", "to", "diff", "kind to his money as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["generous with = giving freely of something", "generous to = kind and giving to people"], null, ["\u2248 to: She is generous to the poor."]),
+          ...PLAB.kit.lineup("e1w", "He is generous ____ his money.", [["agreeWith", "with", true, "giving freely | of something"], ["reachDot", "to", "diff", "kind to his money as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["generous with = giving freely of something", "generous to = kind and giving to people"], null, ["\u2248 to: She is generous to the poor.  = kind and giving to people"]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "The sentence She soon got with a gap the illness., then the candidates: over (fits: recover from); through (correct English, different meaning: lasted until the illness ended, not recovered); off (not used: get off is for vehicles)",
         say: [
           { text: "Fill the gap: She soon got \u2026 the illness. What does the sentence want to say? It wants **get over**: recover from.", cue: "e2w1" },
-          { text: "Why not the others? **through** is correct English, but it would mean lasted until the illness ended, not recovered. That is not what this sentence says. Where through fits: _We got through the exam week._ **off**: get off is for vehicles.", cue: "e2w2" },
+          { text: "Why not the others? **through** is correct English, but it would mean lasted until the illness ended, not recovered. That is not what this sentence says. Where through fits: _We got through the exam week._ There **through** means survive to the end of. **off**: get off is for vehicles.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She soon got ____ the illness.", [["overRock", "over", true, "recover from"], ["passThrough", "through", "diff", "lasted until the illness | ended, not recovered"], ["cross", "off", false, "get off is | for vehicles"]], ["get over = recover from", "get through = survive to the end of"], null, ["\u2248 through: We got through the exam week."]),
+          ...PLAB.kit.lineup("e2w", "She soon got ____ the illness.", [["overRock", "over", true, "recover from"], ["passThrough", "through", "diff", "lasted until the illness | ended, not recovered"], ["cross", "off", false, "get off is | for vehicles"]], ["get over = recover from", "get through = survive to the end of"], null, ["\u2248 through: We got through the exam week.  = survive to the end of"]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence He gave with a gap smoking., then the candidates: up (fits: stop doing); in (correct English, different meaning: surrendered to smoking (give in to)); off (not used: give off = send out a smell or heat)",
         say: [
           { text: "Fill the gap: He gave \u2026 smoking. What does the sentence want to say? It wants **give up**: stop doing.", cue: "e3w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean surrendered to smoking (give in to). That is not what this sentence says. Where in fits: _The rebels finally gave in._ **off**: give off = send out a smell or heat.", cue: "e3w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean surrendered to smoking (give in to). That is not what this sentence says. Where in fits: _The rebels finally gave in._ There **in** means stop resisting, surrender. **off**: give off = send out a smell or heat.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He gave ____ smoking.", [["arrowUp", "up", true, "stop doing"], ["absorbedIn", "in", "diff", "surrendered to | smoking (give in to)"], ["cross", "off", false, "give off = send | out a smell or heat"]], ["give up = stop doing", "give in = stop resisting, surrender"], null, ["\u2248 in: The rebels finally gave in."]),
+          ...PLAB.kit.lineup("e3w", "He gave ____ smoking.", [["arrowUp", "up", true, "stop doing"], ["absorbedIn", "in", "diff", "surrendered to | smoking (give in to)"], ["cross", "off", false, "give off = send | out a smell or heat"]], ["give up = stop doing", "give in = stop resisting, surrender"], null, ["\u2248 in: The rebels finally gave in.  = stop resisting, surrender"]),
         ],
       },
       {
@@ -182,11 +182,11 @@
         alt: "The sentence Exercise is good with a gap your health., then the candidates: for (fits: helpful for); at (correct English, different meaning: skilled at your health); to (correct English, different meaning: kind to your health as if it were a person)",
         say: [
           { text: "Fill the gap: Exercise is good \u2026 your health. What does the sentence want to say? It wants **good for**: helpful for.", cue: "e4w1" },
-          { text: "Why not the others? **at** is correct English, but it would mean skilled at your health. That is not what this sentence says. Where at fits: _She is good at mathematics._ **to** is correct English, but it would mean kind to your health as if it were a person. That is not what this sentence says. Where to fits: _He is good to his parents._", cue: "e4w2" },
+          { text: "Why not the others? **at** is correct English, but it would mean skilled at your health. That is not what this sentence says. Where at fits: _She is good at mathematics._ There **at** means skilled at. **to** is correct English, but it would mean kind to your health as if it were a person. That is not what this sentence says. Where to fits: _He is good to his parents._ There **to** means kind to.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Exercise is good ____ your health.", [["wantStar", "for", true, "helpful for"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "skilled at | your health"], ["reachDot", "to", "diff", "kind to your health as | if it were a person"]], ["good at = skilled at", "good for = helpful for"], null, ["\u2248 at: She is good at mathematics.", "\u2248 to: He is good to his parents."]),
+          ...PLAB.kit.lineup("e4w", "Exercise is good ____ your health.", [["wantStar", "for", true, "helpful for"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "skilled at | your health"], ["reachDot", "to", "diff", "kind to your health as | if it were a person"]], ["good at = skilled at", "good for = helpful for"], null, ["\u2248 at: She is good at mathematics.  = skilled at", "\u2248 to: He is good to his parents.  = kind to"]),
         ],
       },
       {
@@ -211,11 +211,11 @@
         alt: "The sentence I am grateful with a gap your help., then the candidates: for (fits: thankful for something); to (correct English, different meaning: thankful to your help as if it were a person); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: I am grateful \u2026 your help. What does the sentence want to say? It wants **grateful for**: thankful for something.", cue: "e5w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean thankful to your help as if it were a person. That is not what this sentence says. Where to fits: _I am grateful to my teachers._ **of**: of = belonging; not used.", cue: "e5w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean thankful to your help as if it were a person. That is not what this sentence says. Where to fits: _I am grateful to my teachers._ There **to** means thankful to a person. **of**: of = belonging; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "I am grateful ____ your help.", [["wantStar", "for", true, "thankful for | something"], ["reachDot", "to", "diff", "thankful to your help | as if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["grateful to = thankful to a person", "grateful for = thankful for something"], null, ["\u2248 to: I am grateful to my teachers."]),
+          ...PLAB.kit.lineup("e5w", "I am grateful ____ your help.", [["wantStar", "for", true, "thankful for | something"], ["reachDot", "to", "diff", "thankful to your help | as if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["grateful to = thankful to a person", "grateful for = thankful for something"], null, ["\u2248 to: I am grateful to my teachers.  = thankful to a person"]),
         ],
       },
       {

@@ -130,11 +130,11 @@
         alt: "The sentence He is connected with a gap the scandal., then the candidates: with (fits: related to); to (correct English, different meaning: physically joined to the scandal); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: He is connected \u2026 the scandal. What does the sentence want to say? It wants **connected with**: related to.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean physically joined to the scandal. That is not what this sentence says. Where to fits: _The village is connected to the main road._ **from**: from is a source; not used.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean physically joined to the scandal. That is not what this sentence says. Where to fits: _The village is connected to the main road._ There **to** means joined to. **from**: from is a source; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He is connected ____ the scandal.", [["agreeWith", "with", true, "related to"], ["reachDot", "to", "diff", "physically joined | to the scandal"], ["cross", "from", false, "from is a | source; not used"]], ["connected to = joined to", "connected with = related to"], null, ["\u2248 to: The village is connected to the main road."]),
+          ...PLAB.kit.lineup("e3w", "He is connected ____ the scandal.", [["agreeWith", "with", true, "related to"], ["reachDot", "to", "diff", "physically joined | to the scandal"], ["cross", "from", false, "from is a | source; not used"]], ["connected to = joined to", "connected with = related to"], null, ["\u2248 to: The village is connected to the main road.  = joined to"]),
         ],
       },
       {
@@ -266,11 +266,11 @@
         alt: "The sentence Happiness consists with a gap contentment., then the candidates: in (fits: have as its essence); of (correct English, different meaning: contentment would be one part happiness is made of); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: Happiness consists \u2026 contentment. What does the sentence want to say? It wants **consist in**: have as its essence.", cue: "e6w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean contentment would be one part happiness is made of. That is not what this sentence says. Where of fits: _The team consists of ten players._ **from**: a word-for-word translation.", cue: "e6w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean contentment would be one part happiness is made of. That is not what this sentence says. Where of fits: _The team consists of ten players._ There **of** means be made of parts. **from**: a word-for-word translation.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Happiness consists ____ contentment.", [["absorbedIn", "in", true, "have as its essence"], ["awareOf", "of", "diff", "contentment would be one | part happiness is made of"], ["cross", "from", false, "a word-for-word | translation"]], ["consist of = be made of parts", "consist in = have as its essence"], null, ["\u2248 of: The team consists of ten players."]),
+          ...PLAB.kit.lineup("e6w", "Happiness consists ____ contentment.", [["absorbedIn", "in", true, "have as its essence"], ["awareOf", "of", "diff", "contentment would be one | part happiness is made of"], ["cross", "from", false, "a word-for-word | translation"]], ["consist of = be made of parts", "consist in = have as its essence"], null, ["\u2248 of: The team consists of ten players.  = be made of parts"]),
         ],
       },
       {

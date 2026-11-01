@@ -73,11 +73,11 @@
         alt: "The sentence The opposition called with a gap new elections., then the candidates: for (fits: demand publicly); on (correct English, different meaning: urged the elections, as if they were people); off (correct English, different meaning: cancelled new elections)",
         say: [
           { text: "Fill the gap: The opposition called \u2026 new elections. What does the sentence want to say? It wants **call for**: demand publicly.", cue: "e1w1" },
-          { text: "Why not the others? **on** is correct English, but it would mean urged the elections, as if they were people. That is not what this sentence says. Where on fits: _The minister called on the families._ **off** is correct English, but it would mean cancelled new elections. That is not what this sentence says. Where off fits: _They called off the match._", cue: "e1w2" },
+          { text: "Why not the others? **on** is correct English, but it would mean urged the elections, as if they were people. That is not what this sentence says. Where on fits: _The minister called on the families._ There **on** means visit, or urge someone. **off** is correct English, but it would mean cancelled new elections. That is not what this sentence says. Where off fits: _They called off the match._ There **off** means cancel.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The opposition called ____ new elections.", [["wantStar", "for", true, "demand publicly"], ["support", "on", "diff", "urged the elections, | as if they were people"], ["bookTable", "off", "diff", "cancelled | new elections"]], ["call for = demand publicly", "call on = visit, or urge someone"], null, ["\u2248 on: The minister called on the families.", "\u2248 off: They called off the match."]),
+          ...PLAB.kit.lineup("e1w", "The opposition called ____ new elections.", [["wantStar", "for", true, "demand publicly"], ["support", "on", "diff", "urged the elections, | as if they were people"], ["bookTable", "off", "diff", "cancelled | new elections"]], ["call for = demand publicly", "call on = visit, or urge someone"], null, ["\u2248 on: The minister called on the families.  = visit, or urge someone", "\u2248 off: They called off the match.  = cancel"]),
         ],
       },
       {
@@ -160,11 +160,11 @@
         alt: "The sentence Nurses care with a gap the sick., then the candidates: for (fits: look after, or like); about (correct English, different meaning: feel concern about them, without looking after them); of (not used: of is only in an address: care of)",
         say: [
           { text: "Fill the gap: Nurses care \u2026 the sick. What does the sentence want to say? It wants **care for**: look after, or like.", cue: "e3w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean feel concern about them, without looking after them. That is not what this sentence says. Where about fits: _He cares about the environment._ **of**: of is only in an address: care of.", cue: "e3w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean feel concern about them, without looking after them. That is not what this sentence says. Where about fits: _He cares about the environment._ There **about** means feel concern about. **of**: of is only in an address: care of.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Nurses care ____ the sick.", [["wantStar", "for", true, "look after, or like"], ["aboutCircle", "about", "diff", "feel concern about them, | without looking after them"], ["cross", "of", false, "of is only in an | address: care of"]], ["care for = look after, or like", "care about = feel concern about"], null, ["\u2248 about: He cares about the environment."]),
+          ...PLAB.kit.lineup("e3w", "Nurses care ____ the sick.", [["wantStar", "for", true, "look after, or like"], ["aboutCircle", "about", "diff", "feel concern about them, | without looking after them"], ["cross", "of", false, "of is only in an | address: care of"]], ["care for = look after, or like", "care about = feel concern about"], null, ["\u2248 about: He cares about the environment.  = feel concern about"]),
         ],
       },
       {
@@ -265,11 +265,11 @@
         alt: "The sentence Nobody is certain with a gap the future., then the candidates: about (fits: sure about a topic with many sides: details, what it holds); of (correct English, different meaning: certain of holds one fact or result; the future is a topic with many sides); on (not used: on is a surface or topic, not certainty)",
         say: [
           { text: "Fill the gap: Nobody is certain \u2026 the future. What does the sentence want to say? It wants **certain about**: sure about a topic with many sides: details, what it holds.", cue: "e6w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean certain of holds one fact or result; the future is a topic with many sides. That is not what this sentence says. Where of fits: _She is certain of victory._ **on**: on is a surface or topic, not certainty.", cue: "e6w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean certain of holds one fact or result; the future is a topic with many sides. That is not what this sentence says. Where of fits: _She is certain of victory._ There **of** means sure that it is true or will happen. **on**: on is a surface or topic, not certainty.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Nobody is certain ____ the future.", [["aboutCircle", "about", true, "sure about a topic with many | sides: details, what it holds"], ["awareOf", "of", "diff", "certain of holds one fact or result; | the future is a topic with many sides"], ["cross", "on", false, "on is a surface or | topic, not certainty"]], ["certain of = sure that it is true or will happen", "certain about = sure about a topic with many sides: details, what it holds"], null, ["\u2248 of: She is certain of victory."]),
+          ...PLAB.kit.lineup("e6w", "Nobody is certain ____ the future.", [["aboutCircle", "about", true, "sure about a topic with many | sides: details, what it holds"], ["awareOf", "of", "diff", "certain of holds one fact or result; | the future is a topic with many sides"], ["cross", "on", false, "on is a surface or | topic, not certainty"]], ["certain of = sure that it is true or will happen", "certain about = sure about a topic with many sides: details, what it holds"], null, ["\u2248 of: She is certain of victory.  = sure that it is true or will happen"]),
         ],
       },
       {
@@ -352,11 +352,11 @@
         alt: "The sentence He was charged with a gap murder., then the candidates: with (fits: accuse formally of a crime); for (correct English, different meaning: made him pay a price for murder); of (not used: of belongs to in charge of, a different phrase)",
         say: [
           { text: "Fill the gap: He was charged \u2026 murder. What does the sentence want to say? It wants **charge with**: accuse formally of a crime.", cue: "e8w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean made him pay a price for murder. That is not what this sentence says. Where for fits: _They charged Rs 500 for the ticket._ **of**: of belongs to in charge of, a different phrase.", cue: "e8w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean made him pay a price for murder. That is not what this sentence says. Where for fits: _They charged Rs 500 for the ticket._ There **for** means ask a price for. **of**: of belongs to in charge of, a different phrase.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He was charged ____ murder.", [["agreeWith", "with", true, "accuse formally | of a crime"], ["wantStar", "for", "diff", "made him pay a | price for murder"], ["cross", "of", false, "of belongs to in charge | of, a different phrase"]], ["charge with = accuse formally of a crime", "charge for = ask a price for"], null, ["\u2248 for: They charged Rs 500 for the ticket."]),
+          ...PLAB.kit.lineup("e8w", "He was charged ____ murder.", [["agreeWith", "with", true, "accuse formally | of a crime"], ["wantStar", "for", "diff", "made him pay a | price for murder"], ["cross", "of", false, "of belongs to in charge | of, a different phrase"]], ["charge with = accuse formally of a crime", "charge for = ask a price for"], null, ["\u2248 for: They charged Rs 500 for the ticket.  = ask a price for"]),
         ],
       },
       {

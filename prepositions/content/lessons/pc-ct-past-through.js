@@ -50,11 +50,11 @@
         alt: "Walk with a gap the canal to the bridge. Answer: along, because following the canal. Not across: to the other bank. Not through: not inside the canal.",
         say: [
           { text: "Fill the gap: Walk … the canal to the bridge. Picture it: following the canal. So **along**.", cue: "alongx01" },
-          { text: "Why not **across**? to the other bank That is correct English, but it says something else. Where across fits: _Walk across the canal bridge._ Why not **through**? not inside the canal.", cue: "alongx0-r2" },
+          { text: "Why not **across**? to the other bank. That is correct English, but it says something else. Where across fits: _Walk across the canal bridge._ There **across** means from one side to the other. Why not **through**? not inside the canal.", cue: "alongx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-alongx0"),
-          ...PLAB.kit.lineup("alongx0", "Walk ____ the canal to the bridge.", [["alongRiver", "along", true, "following the canal"], ["arrowR", "across", "diff", "to the other bank"], ["passThrough", "through", false, "not inside the canal"]], ["Why along? following the canal", "Ask: Do you follow its length?"], null, ["≈ across: Walk across the canal bridge."]),
+          ...PLAB.kit.lineup("alongx0", "Walk ____ the canal to the bridge.", [["alongRiver", "along", true, "following the canal"], ["arrowR", "across", "diff", "to the other bank"], ["passThrough", "through", false, "not inside the canal"]], ["Why along? following the canal", "Ask: Do you follow its length?"], null, ["≈ across: Walk across the canal bridge.  = from one side to the other"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "Drive with a gap this road for a mile. Answer: along, because the length of the road. Not across: across = to the other side. Not past: past needs a landmark.",
         say: [
           { text: "Fill the gap: Drive … this road for a mile. Picture it: the length of the road. So **along**.", cue: "alongx11" },
-          { text: "Why not **across**? across = to the other side That is correct English, but it says something else. Where across fits: _Walk across this road carefully._ Why not **past**? past needs a landmark.", cue: "alongx1-r2" },
+          { text: "Why not **across**? across = to the other side. That is correct English, but it says something else. Where across fits: _Walk across this road carefully._ There **across** means from one side to the other. Why not **past**? past needs a landmark.", cue: "alongx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-alongx1"),
-          ...PLAB.kit.lineup("alongx1", "Drive ____ this road for a mile.", [["alongRiver", "along", true, "the length of the road"], ["arrowR", "across", "diff", "across = to the | other side"], ["pastBank", "past", false, "past needs a landmark"]], ["Why along? the length of the road", "Ask: Do you follow its length?"], null, ["≈ across: Walk across this road carefully."]),
+          ...PLAB.kit.lineup("alongx1", "Drive ____ this road for a mile.", [["alongRiver", "along", true, "the length of the road"], ["arrowR", "across", "diff", "across = to the | other side"], ["pastBank", "past", false, "past needs a landmark"]], ["Why along? the length of the road", "Ask: Do you follow its length?"], null, ["≈ across: Walk across this road carefully.  = from one side to the other"]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "Walk with a gap the bridge. Answer: across, because one side to the other. Not along: along its length. Not through: a bridge has no inside.",
         say: [
           { text: "Fill the gap: Walk … the bridge. Picture it: one side to the other. So **across**.", cue: "acrossx02" },
-          { text: "Why not **along**? along its length That is correct English, but it says something else. Where along fits: _Walk along the bridge and look at the river._ Why not **through**? a bridge has no inside.", cue: "acrossx0-r2" },
+          { text: "Why not **along**? along its length. That is correct English, but it says something else. Where along fits: _Walk along the bridge and look at the river._ There **along** means following its length. Why not **through**? a bridge has no inside.", cue: "acrossx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-acrossx0"),
-          ...PLAB.kit.lineup("acrossx0", "Walk ____ the bridge.", [["alongRiver", "along", "diff", "along its length"], ["arrowR", "across", true, "one side to the other"], ["passThrough", "through", false, "a bridge has | no inside"]], ["Why across? one side to the other", "Ask: Do you cross to the other side?"], null, ["≈ along: Walk along the bridge and look at the river."]),
+          ...PLAB.kit.lineup("acrossx0", "Walk ____ the bridge.", [["alongRiver", "along", "diff", "along its length"], ["arrowR", "across", true, "one side to the other"], ["passThrough", "through", false, "a bridge has | no inside"]], ["Why across? one side to the other", "Ask: Do you cross to the other side?"], null, ["≈ along: Walk along the bridge and look at the river.  = following its length"]),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "The post office is with a gap the road. Answer: across, because on the other side. Not along: somewhere along it. Not past: beyond it.",
         say: [
           { text: "Fill the gap: The post office is … the road. Picture it: on the other side. So **across**.", cue: "acrossx12" },
-          { text: "Why not **along**? somewhere along it That is correct English, but it says something else. Where along fits: _There are shops along the road._ Why not **past**? beyond it That is correct English, but it says something else. Where past fits: _The post office is past the bank._", cue: "acrossx1-r2" },
+          { text: "Why not **along**? somewhere along it. That is correct English, but it says something else. Where along fits: _There are shops along the road._ There **along** means at points beside the road. Why not **past**? beyond it. That is correct English, but it says something else. Where past fits: _The post office is past the bank._ There **past** means further on, beyond the bank.", cue: "acrossx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-acrossx1"),
-          ...PLAB.kit.lineup("acrossx1", "The post office is ____ the road.", [["alongRiver", "along", "diff", "somewhere along it"], ["arrowR", "across", true, "on the other side"], ["pastBank", "past", "diff", "beyond it"]], ["Why across? on the other side", "Ask: Do you cross to the other side?"], null, ["≈ along: There are shops along the road.", "≈ past: The post office is past the bank."]),
+          ...PLAB.kit.lineup("acrossx1", "The post office is ____ the road.", [["alongRiver", "along", "diff", "somewhere along it"], ["arrowR", "across", true, "on the other side"], ["pastBank", "past", "diff", "beyond it"]], ["Why across? on the other side", "Ask: Do you cross to the other side?"], null, ["≈ along: There are shops along the road.  = at points beside the road", "≈ past: The post office is past the bank.  = further on, beyond the bank"]),
         ],
       },
       {
@@ -134,11 +134,11 @@
         alt: "Go with a gap the hospital. Answer: past, because beside it, then beyond. Not along: a hospital is not a line. Not through: into it and out.",
         say: [
           { text: "Fill the gap: Go … the hospital. Picture it: beside it, then beyond. So **past**.", cue: "pastx02" },
-          { text: "Why not **along**? a hospital is not a line. Why not **through**? into it and out That is correct English, but it says something else. Where through fits: _Go through the hospital to the back gate._", cue: "pastx0-r2" },
+          { text: "Why not **along**? a hospital is not a line. Why not **through**? into it and out. That is correct English, but it says something else. Where through fits: _Go through the hospital to the back gate._ There **through** means in one side and out the other.", cue: "pastx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pastx0"),
-          ...PLAB.kit.lineup("pastx0", "Go ____ the hospital.", [["alongRiver", "along", false, "a hospital is | not a line"], ["pastBank", "past", true, "beside it, then beyond"], ["passThrough", "through", "diff", "into it and out"]], ["Why past? beside it, then beyond", "Ask: Do you go beside it and keep going?"], null, ["≈ through: Go through the hospital to the back gate."]),
+          ...PLAB.kit.lineup("pastx0", "Go ____ the hospital.", [["alongRiver", "along", false, "a hospital is | not a line"], ["pastBank", "past", true, "beside it, then beyond"], ["passThrough", "through", "diff", "into it and out"]], ["Why past? beside it, then beyond", "Ask: Do you go beside it and keep going?"], null, ["≈ through: Go through the hospital to the back gate.  = in one side and out the other"]),
         ],
       },
       {
@@ -176,11 +176,11 @@
         alt: "Go with a gap the main gate. Answer: through, because in one side, out the other. Not across: a gate is not crossed side to side. Not past: beside it, not in.",
         say: [
           { text: "Fill the gap: Go … the main gate. Picture it: in one side, out the other. So **through**.", cue: "throughx03" },
-          { text: "Why not **across**? a gate is not crossed side to side. Why not **past**? beside it, not in That is correct English, but it says something else. Where past fits: _Go past the main gate._", cue: "throughx0-r2" },
+          { text: "Why not **across**? a gate is not crossed side to side. Why not **past**? beside it, not in. That is correct English, but it says something else. Where past fits: _Go past the main gate._ There **past** means beside it and beyond it, not in.", cue: "throughx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-throughx0"),
-          ...PLAB.kit.lineup("throughx0", "Go ____ the main gate.", [["arrowR", "across", false, "a gate is not crossed | side to side"], ["pastBank", "past", "diff", "beside it, not in"], ["passThrough", "through", true, "in one side, out the other"]], ["Why through? in one side, out the other", "Ask: Do you go inside it and out the other end?"], null, ["≈ past: Go past the main gate."]),
+          ...PLAB.kit.lineup("throughx0", "Go ____ the main gate.", [["arrowR", "across", false, "a gate is not crossed | side to side"], ["pastBank", "past", "diff", "beside it, not in"], ["passThrough", "through", true, "in one side, out the other"]], ["Why through? in one side, out the other", "Ask: Do you go inside it and out the other end?"], null, ["≈ past: Go past the main gate.  = beside it and beyond it, not in"]),
         ],
       },
       {
@@ -189,11 +189,11 @@
         alt: "Walk with a gap the bazaar. Answer: through, because inside it, end to end. Not across: side to side. Not past: beside it only.",
         say: [
           { text: "Fill the gap: Walk … the bazaar. Picture it: inside it, end to end. So **through**.", cue: "throughx13" },
-          { text: "Why not **across**? side to side That is correct English, but it says something else. Where across fits: _Walk across the bazaar to the other side._ Why not **past**? beside it only That is correct English, but it says something else. Where past fits: _Walk past the bazaar._", cue: "throughx1-r2" },
+          { text: "Why not **across**? side to side. That is correct English, but it says something else. Where across fits: _Walk across the bazaar to the other side._ There **across** means from one side to the other. Why not **past**? beside it only. That is correct English, but it says something else. Where past fits: _Walk past the bazaar._ There **past** means beside it and on, not into it.", cue: "throughx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-throughx1"),
-          ...PLAB.kit.lineup("throughx1", "Walk ____ the bazaar.", [["arrowR", "across", "diff", "side to side"], ["pastBank", "past", "diff", "beside it only"], ["passThrough", "through", true, "inside it, end to end"]], ["Why through? inside it, end to end", "Ask: Do you go inside it and out the other end?"], null, ["≈ across: Walk across the bazaar to the other side.", "≈ past: Walk past the bazaar."]),
+          ...PLAB.kit.lineup("throughx1", "Walk ____ the bazaar.", [["arrowR", "across", "diff", "side to side"], ["pastBank", "past", "diff", "beside it only"], ["passThrough", "through", true, "inside it, end to end"]], ["Why through? inside it, end to end", "Ask: Do you go inside it and out the other end?"], null, ["≈ across: Walk across the bazaar to the other side.  = from one side to the other", "≈ past: Walk past the bazaar.  = beside it and on, not into it"]),
         ],
       },
       {

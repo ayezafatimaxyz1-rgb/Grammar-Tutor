@@ -107,11 +107,11 @@
         alt: "Divide the sweets with a gap the children. Answer: among, because shared through the whole group. Not between: between the two children if there are two.",
         say: [
           { text: "Fill the gap: Divide the sweets … the children. Picture it: shared through the whole group. So **among**.", cue: "amongx12" },
-          { text: "Why not **between**? between the two children if there are two That is correct English, but it says something else. Where between fits: _Divide the sweets between the two sisters._", cue: "amongx1-r2" },
+          { text: "Why not **between**? between the two children if there are two. That is correct English, but it says something else. Where between fits: _Divide the sweets between the two sisters._ There **between** means shared by exactly two.", cue: "amongx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-amongx1"),
-          ...PLAB.kit.lineup("amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"], null, ["≈ between: Divide the sweets between the two sisters."]),
+          ...PLAB.kit.lineup("amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"], null, ["≈ between: Divide the sweets between the two sisters.  = shared by exactly two"]),
         ],
       },
       {

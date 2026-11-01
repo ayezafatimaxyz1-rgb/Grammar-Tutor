@@ -117,12 +117,12 @@
         alt: "The sentence The cup is with a gap the table., then the candidates with pictures: on (right: resting on its surface); in (wrong: inside the table); under (correct English but a different meaning: beneath the table). Rule: the preposition shows how the thing sits; against the reference point.",
         say: [
           { text: "Fill the gap: The cup is \u2026 the table. What does the sentence want to say? The answer is **on**: resting on its surface.", cue: "why1" },
-          { text: "Why not the others? **under** is correct English, but it would mean beneath the table. That is not what this sentence says. Where under fits: _The cat is under the table._ **in**: inside the table.", cue: "why2" },
+          { text: "Why not the others? **under** is correct English, but it would mean beneath the table. That is not what this sentence says. Where under fits: _The cat is under the table._ There **under** means lower than the table, covered by it. **in**: inside the table.", cue: "why2" },
           { text: "The rule: the preposition shows how the thing sits; against the reference point.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The cup is ____ the table.", [["cupOnTable", "on", true, "resting on its | surface"], ["inDrawer", "in", false, "inside the table"], ["underTable", "under", "diff", "beneath | the table"]], ["the preposition shows how the thing sits", "against the reference point"], null, ["\u2248 under: The cat is under the table."]),
+          ...PLAB.kit.lineup("why", "The cup is ____ the table.", [["cupOnTable", "on", true, "resting on its | surface"], ["inDrawer", "in", false, "inside the table"], ["underTable", "under", "diff", "beneath | the table"]], ["the preposition shows how the thing sits", "against the reference point"], null, ["\u2248 under: The cat is under the table.  = lower than the table, covered by it"]),
         ],
       },
       {

@@ -79,11 +79,11 @@
         alt: "The sentence This is an exception with a gap the rule., then the candidates: to (fits: a case not following a rule); for (correct English, different meaning: a special allowance made for someone); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: This is an exception \u2026 the rule. What does the sentence want to say? It wants **exception to**: a case not following a rule.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean a special allowance made for someone. That is not what this sentence says. Where for fits: _The school made an exception for the sick child._ **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean a special allowance made for someone. That is not what this sentence says. Where for fits: _The school made an exception for the sick child._ There **for** means a special allowance for someone. **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "This is an exception ____ the rule.", [["reachDot", "to", true, "a case not | following a rule"], ["wantStar", "for", "diff", "a special allowance | made for someone"], ["cross", "of", false, "of = belonging; | not used"]], ["exception to = a case not following a rule"], null, ["\u2248 for: The school made an exception for the sick child."]),
+          ...PLAB.kit.lineup("e2w", "This is an exception ____ the rule.", [["reachDot", "to", true, "a case not | following a rule"], ["wantStar", "for", "diff", "a special allowance | made for someone"], ["cross", "of", false, "of = belonging; | not used"]], ["exception to = a case not following a rule"], null, ["\u2248 for: The school made an exception for the sick child.  = a special allowance for someone"]),
         ],
       },
       {
@@ -139,11 +139,11 @@
         alt: "The sentence They exchanged rice with a gap wheat., then the candidates: for (fits: give one thing and get another); with (correct English, different meaning: traded with wheat as if it were a partner); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: They exchanged rice \u2026 wheat. What does the sentence want to say? It wants **exchange for**: give one thing and get another.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean traded with wheat as if it were a partner. That is not what this sentence says. Where with fits: _They exchanged gifts with their neighbours._ **of**: of = belonging; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean traded with wheat as if it were a partner. That is not what this sentence says. Where with fits: _They exchanged gifts with their neighbours._ There **with** means trade with a partner. **of**: of = belonging; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "They exchanged rice ____ wheat.", [["wantStar", "for", true, "give one thing | and get another"], ["agreeWith", "with", "diff", "traded with wheat as | if it were a partner"], ["cross", "of", false, "of = belonging; | not used"]], ["exchange for = give one thing and get another", "exchange with = trade with a partner"], null, ["\u2248 with: They exchanged gifts with their neighbours."]),
+          ...PLAB.kit.lineup("e3w", "They exchanged rice ____ wheat.", [["wantStar", "for", true, "give one thing | and get another"], ["agreeWith", "with", "diff", "traded with wheat as | if it were a partner"], ["cross", "of", false, "of = belonging; | not used"]], ["exchange for = give one thing and get another", "exchange with = trade with a partner"], null, ["\u2248 with: They exchanged gifts with their neighbours.  = trade with a partner"]),
         ],
       },
       {
@@ -195,11 +195,11 @@
         alt: "The sentence He is an expert with a gap Iqbal., then the candidates: on (fits: knowing a lot about a topic or person); in (correct English, different meaning: skilled inside Iqbal as if he were a field); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He is an expert \u2026 Iqbal. What does the sentence want to say? It wants **expert on**: knowing a lot about a topic or person.", cue: "e5w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean skilled inside Iqbal as if he were a field. That is not what this sentence says. Where in fits: _She is an expert in criminal law._ **of**: of = belonging; not used.", cue: "e5w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean skilled inside Iqbal as if he were a field. That is not what this sentence says. Where in fits: _She is an expert in criminal law._ There **in** means skilled in a field. **of**: of = belonging; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He is an expert ____ Iqbal.", [["support", "on", true, "knowing a lot about | a topic or person"], ["absorbedIn", "in", "diff", "skilled inside Iqbal | as if he were a field"], ["cross", "of", false, "of = belonging; | not used"]], ["expert in = skilled in a field", "expert on = knowing a lot about a topic or person"], null, ["\u2248 in: She is an expert in criminal law."]),
+          ...PLAB.kit.lineup("e5w", "He is an expert ____ Iqbal.", [["support", "on", true, "knowing a lot about | a topic or person"], ["absorbedIn", "in", "diff", "skilled inside Iqbal | as if he were a field"], ["cross", "of", false, "of = belonging; | not used"]], ["expert in = skilled in a field", "expert on = knowing a lot about a topic or person"], null, ["\u2248 in: She is an expert in criminal law.  = skilled in a field"]),
         ],
       },
       {

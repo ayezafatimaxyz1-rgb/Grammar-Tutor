@@ -59,11 +59,11 @@
         alt: "The sentence At last she was free with a gap pain., then the candidates: from (fits: without something bad); for (correct English, different meaning: pain would cost her nothing); at (not used: at is a point; not used)",
         say: [
           { text: "Fill the gap: At last she was free \u2026 pain. What does the sentence want to say? It wants **free from**: without something bad.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean pain would cost her nothing. That is not what this sentence says. Where for fits: _Entry is free for children._ **at**: at is a point; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean pain would cost her nothing. That is not what this sentence says. Where for fits: _Entry is free for children._ There **for** means costing nothing for. **at**: at is a point; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "At last she was free ____ pain.", [["holdBack", "from", true, "without | something bad"], ["wantStar", "for", "diff", "pain would cost | her nothing"], ["cross", "at", false, "at is a point; | not used"]], ["free from = without something bad", "free for = costing nothing for"], null, ["\u2248 for: Entry is free for children."]),
+          ...PLAB.kit.lineup("e2w", "At last she was free ____ pain.", [["holdBack", "from", true, "without | something bad"], ["wantStar", "for", "diff", "pain would cost | her nothing"], ["cross", "at", false, "at is a point; | not used"]], ["free from = without something bad", "free for = costing nothing for"], null, ["\u2248 for: Entry is free for children.  = costing nothing for"]),
         ],
       },
       {

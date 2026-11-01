@@ -68,11 +68,11 @@
         alt: "The sentence Terrorists with a gap the bridge., then the candidates: blow up (fits: destroy by explosion); blow out (correct English, different meaning: put out a flame by blowing); blow over (correct English, different meaning: pass without harm)",
         say: [
           { text: "Fill the gap: Terrorists \u2026 the bridge. The sentence wants **blow up**: destroy by explosion.", cue: "f1w1" },
-          { text: "Why not the others? **blow out** is correct English, but it means put out a flame by blowing. That is not what this sentence says. Where blow out fits: _Blow out the candles._ **blow over** is correct English, but it means pass without harm. That is not what this sentence says. Where blow over fits: _The storm soon blew over._", cue: "f1w2" },
+          { text: "Why not the others? **blow out** is correct English, but it means put out a flame by blowing. That is not what this sentence says. Where blow out fits: _Blow out the candles._ There **blow out** means put out a flame by blowing. **blow over** is correct English, but it means pass without harm. That is not what this sentence says. Where blow over fits: _The storm soon blew over._ There **blow over** means pass without harm.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Terrorists ____ the bridge.", [["flame", "blow up", true, "destroy by | explosion"], ["goOut", "blow out", "diff", "put out a flame | by blowing"], ["overRock", "blow over", "diff", "pass without harm"]], ["blow up = destroy by explosion", "Why up? up = completely"], null, ["\u2248 blow out: Blow out the candles.", "\u2248 blow over: The storm soon blew over."]),
+          ...PLAB.kit.lineup("f1w", "Terrorists ____ the bridge.", [["flame", "blow up", true, "destroy by | explosion"], ["goOut", "blow out", "diff", "put out a flame | by blowing"], ["overRock", "blow over", "diff", "pass without harm"]], ["blow up = destroy by explosion", "Why up? up = completely"], null, ["\u2248 blow out: Blow out the candles.  = put out a flame by blowing", "\u2248 blow over: The storm soon blew over.  = pass without harm"]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Heavy traffic with a gap the ambulance., then the candidates: hold up (fits: delay); hold on (correct English, different meaning: wait); hold back (correct English, different meaning: restrain)",
         say: [
           { text: "Fill the gap: Heavy traffic \u2026 the ambulance. The sentence wants **hold up**: delay.", cue: "f2w1" },
-          { text: "Why not the others? **hold on** is correct English, but it means wait. That is not what this sentence says. Where hold on fits: _Hold on a minute, please._ **hold back** is correct English, but it means restrain. That is not what this sentence says. Where hold back fits: _She held back her tears._", cue: "f2w2" },
+          { text: "Why not the others? **hold on** is correct English, but it means wait. That is not what this sentence says. Where hold on fits: _Hold on a minute, please._ There **hold on** means wait. **hold back** is correct English, but it means restrain. That is not what this sentence says. Where hold back fits: _She held back her tears._ There **hold back** means restrain.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Heavy traffic ____ the ambulance.", [["fogDelay", "hold up", true, "delay"], ["support", "hold on", "diff", "wait"], ["returnArc", "hold back", "diff", "restrain"]], ["hold up = delay", "Why up? up = stopped"], null, ["\u2248 hold on: Hold on a minute, please.", "\u2248 hold back: She held back her tears."]),
+          ...PLAB.kit.lineup("f2w", "Heavy traffic ____ the ambulance.", [["fogDelay", "hold up", true, "delay"], ["support", "hold on", "diff", "wait"], ["returnArc", "hold back", "diff", "restrain"]], ["hold up = delay", "Why up? up = stopped"], null, ["\u2248 hold on: Hold on a minute, please.  = wait", "\u2248 hold back: She held back her tears.  = restrain"]),
         ],
       },
       {
@@ -200,11 +200,11 @@
         alt: "The sentence Prices rise fast and wages cannot with a gap., then the candidates: keep up (fits: stay at the same pace); keep on (correct English, different meaning: continue); keep off (correct English, different meaning: stay away from)",
         say: [
           { text: "Fill the gap: Prices rise fast and wages cannot \u2026. The sentence wants **keep up**: stay at the same pace.", cue: "f3w1" },
-          { text: "Why not the others? **keep on** is correct English, but it means continue. That is not what this sentence says. Where keep on fits: _Keep on trying._ **keep off** is correct English, but it means stay away from. That is not what this sentence says. Where keep off fits: _Keep off the grass._", cue: "f3w2" },
+          { text: "Why not the others? **keep on** is correct English, but it means continue. That is not what this sentence says. Where keep on fits: _Keep on trying._ There **keep on** means continue. **keep off** is correct English, but it means stay away from. That is not what this sentence says. Where keep off fits: _Keep off the grass._ There **keep off** means stay away from.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Prices rise fast and wages cannot ____.", [["levelScale", "keep up", true, "stay at the | same pace"], ["support", "keep on", "diff", "continue"], ["bounceOff", "keep off", "diff", "stay away from"]], ["keep up = stay at the same pace", "Why up? up = level"], null, ["\u2248 keep on: Keep on trying.", "\u2248 keep off: Keep off the grass."]),
+          ...PLAB.kit.lineup("f3w", "Prices rise fast and wages cannot ____.", [["levelScale", "keep up", true, "stay at the | same pace"], ["support", "keep on", "diff", "continue"], ["bounceOff", "keep off", "diff", "stay away from"]], ["keep up = stay at the same pace", "Why up? up = level"], null, ["\u2248 keep on: Keep on trying.  = continue", "\u2248 keep off: Keep off the grass.  = stay away from"]),
         ],
       },
       {

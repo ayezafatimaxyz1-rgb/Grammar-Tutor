@@ -68,11 +68,11 @@
         alt: "The sentence Firemen with a gap the fire., then the candidates: put out (fits: extinguish); put off (correct English, different meaning: postpone); put down (correct English, different meaning: crush by force)",
         say: [
           { text: "Fill the gap: Firemen \u2026 the fire. The sentence wants **put out**: extinguish.", cue: "f1w1" },
-          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. Where put off fits: _They put off the meeting till Monday._ **put down** is correct English, but it means crush by force. That is not what this sentence says. Where put down fits: _The army put down the revolt._", cue: "f1w2" },
+          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. Where put off fits: _They put off the meeting till Monday._ There **put off** means postpone. **put down** is correct English, but it means crush by force. That is not what this sentence says. Where put down fits: _The army put down the revolt._ There **put down** means crush by force.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Firemen ____ the fire.", [["flame", "put out", true, "extinguish"], ["bounceOff", "put off", "diff", "postpone"], ["arrowDown", "put down", "diff", "crush by force"]], ["put out = extinguish", "Why out? out = gone"], null, ["\u2248 put off: They put off the meeting till Monday.", "\u2248 put down: The army put down the revolt."]),
+          ...PLAB.kit.lineup("f1w", "Firemen ____ the fire.", [["flame", "put out", true, "extinguish"], ["bounceOff", "put off", "diff", "postpone"], ["arrowDown", "put down", "diff", "crush by force"]], ["put out = extinguish", "Why out? out = gone"], null, ["\u2248 put off: They put off the meeting till Monday.  = postpone", "\u2248 put down: The army put down the revolt.  = crush by force"]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Our time has with a gap., then the candidates: run out (fits: be used up); run over (correct English, different meaning: hit with a vehicle); run into (correct English, different meaning: meet by chance)",
         say: [
           { text: "Fill the gap: Our time has \u2026. The sentence wants **run out**: be used up.", cue: "f2w1" },
-          { text: "Why not the others? **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says. Where run over fits: _A car ran over the dog._ **run into** is correct English, but it means meet by chance. That is not what this sentence says. Where run into fits: _I ran into an old friend at the station._", cue: "f2w2" },
+          { text: "Why not the others? **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says. Where run over fits: _A car ran over the dog._ There **run over** means hit with a vehicle. **run into** is correct English, but it means meet by chance. That is not what this sentence says. Where run into fits: _I ran into an old friend at the station._ There **run into** means meet by chance.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Our time has ____.", [["emptyJar", "run out", true, "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"], ["intoBag", "run into", "diff", "meet by chance"]], ["run out = be used up", "Why out? out = gone"], null, ["\u2248 run over: A car ran over the dog.", "\u2248 run into: I ran into an old friend at the station."]),
+          ...PLAB.kit.lineup("f2w", "Our time has ____.", [["emptyJar", "run out", true, "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"], ["intoBag", "run into", "diff", "meet by chance"]], ["run out = be used up", "Why out? out = gone"], null, ["\u2248 run over: A car ran over the dog.  = hit with a vehicle", "\u2248 run into: I ran into an old friend at the station.  = meet by chance"]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence The teacher with a gap the papers., then the candidates: give out (fits: distribute); give up (correct English, different meaning: stop doing); give in (correct English, different meaning: surrender)",
         say: [
           { text: "Fill the gap: The teacher \u2026 the papers. The sentence wants **give out**: distribute.", cue: "f3w1" },
-          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. Where give up fits: _He gave up smoking._ **give in** is correct English, but it means surrender. That is not what this sentence says. Where give in fits: _The rebels finally gave in._", cue: "f3w2" },
+          { text: "Why not the others? **give up** is correct English, but it means stop doing. That is not what this sentence says. Where give up fits: _He gave up smoking._ There **give up** means stop doing. **give in** is correct English, but it means surrender. That is not what this sentence says. Where give in fits: _The rebels finally gave in._ There **give in** means stop resisting, surrender.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The teacher ____ the papers.", [["giveTo", "give out", true, "distribute"], ["arrowUp", "give up", "diff", "stop doing"], ["absorbedIn", "give in", "diff", "surrender"]], ["give out = distribute", "Why out? out = outward"], null, ["\u2248 give up: He gave up smoking.", "\u2248 give in: The rebels finally gave in."]),
+          ...PLAB.kit.lineup("f3w", "The teacher ____ the papers.", [["giveTo", "give out", true, "distribute"], ["arrowUp", "give up", "diff", "stop doing"], ["absorbedIn", "give in", "diff", "surrender"]], ["give out = distribute", "Why out? out = outward"], null, ["\u2248 give up: He gave up smoking.  = stop doing", "\u2248 give in: The rebels finally gave in.  = stop resisting, surrender"]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence I could not with a gap his words., then the candidates: make out (fits: see or understand with difficulty); make up (correct English, different meaning: form, or invent); make off (correct English, different meaning: run away)",
         say: [
           { text: "Fill the gap: I could not \u2026 his words. The sentence wants **make out**: see or understand with difficulty.", cue: "f4w1" },
-          { text: "Why not the others? **make up** is correct English, but it means form, or invent. That is not what this sentence says. Where make up fits: _Women make up half the population._ **make off** is correct English, but it means run away. That is not what this sentence says. Where make off fits: _The thieves made off with the money._", cue: "f4w2" },
+          { text: "Why not the others? **make up** is correct English, but it means form, or invent. That is not what this sentence says. Where make up fits: _Women make up half the population._ There **make up** means form, together make. **make off** is correct English, but it means run away. That is not what this sentence says. Where make off fits: _The thieves made off with the money._ There **make off** means run away.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "I could not ____ his words.", [["eyeLook", "make out", true, "see or understand | with difficulty"], ["arrowUp", "make up", "diff", "form, or invent"], ["bounceOff", "make off", "diff", "run away"]], ["make out = see or understand with difficulty", "Why out? out = into the open"], null, ["\u2248 make up: Women make up half the population.", "\u2248 make off: The thieves made off with the money."]),
+          ...PLAB.kit.lineup("f4w", "I could not ____ his words.", [["eyeLook", "make out", true, "see or understand | with difficulty"], ["arrowUp", "make up", "diff", "form, or invent"], ["bounceOff", "make off", "diff", "run away"]], ["make out = see or understand with difficulty", "Why out? out = into the open"], null, ["\u2248 make up: Women make up half the population.  = form, together make", "\u2248 make off: The thieves made off with the money.  = run away"]),
         ],
       },
       {
@@ -328,11 +328,11 @@
         alt: "The sentence The rumour with a gap to be false., then the candidates: turn out (fits: prove to be); turn up (correct English, different meaning: arrive); turn down (correct English, different meaning: refuse)",
         say: [
           { text: "Fill the gap: The rumour \u2026 to be false. The sentence wants **turn out**: prove to be.", cue: "f5w1" },
-          { text: "Why not the others? **turn up** is correct English, but it means arrive. That is not what this sentence says. Where turn up fits: _Only ten people turned up for the meeting._ **turn down** is correct English, but it means refuse. That is not what this sentence says. Where turn down fits: _She turned down the offer._", cue: "f5w2" },
+          { text: "Why not the others? **turn up** is correct English, but it means arrive. That is not what this sentence says. Where turn up fits: _Only ten people turned up for the meeting._ There **turn up** means arrive, appear. **turn down** is correct English, but it means refuse. That is not what this sentence says. Where turn down fits: _She turned down the offer._ There **turn down** means refuse.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The rumour ____ to be false.", [["question", "turn out", true, "prove to be"], ["arrowUp", "turn up", "diff", "arrive"], ["arrowDown", "turn down", "diff", "refuse"]], ["turn out = prove to be", "Why out? out = into the open"], null, ["\u2248 turn up: Only ten people turned up for the meeting.", "\u2248 turn down: She turned down the offer."]),
+          ...PLAB.kit.lineup("f5w", "The rumour ____ to be false.", [["question", "turn out", true, "prove to be"], ["arrowUp", "turn up", "diff", "arrive"], ["arrowDown", "turn down", "diff", "refuse"]], ["turn out = prove to be", "Why out? out = into the open"], null, ["\u2248 turn up: Only ten people turned up for the meeting.  = arrive, appear", "\u2248 turn down: She turned down the offer.  = refuse"]),
         ],
       },
       {
@@ -393,11 +393,11 @@
         alt: "The sentence The flood with a gap the village., then the candidates: wipe out (fits: destroy completely); wipe off (correct English, different meaning: clean off a surface); wipe up (correct English, different meaning: clean up a spill)",
         say: [
           { text: "Fill the gap: The flood \u2026 the village. The sentence wants **wipe out**: destroy completely.", cue: "f6w1" },
-          { text: "Why not the others? **wipe off** is correct English, but it means clean off a surface. That is not what this sentence says. Where wipe off fits: _Wipe off the dust from the table._ **wipe up** is correct English, but it means clean up a spill. That is not what this sentence says. Where wipe up fits: _Wipe up the spilt milk._", cue: "f6w2" },
+          { text: "Why not the others? **wipe off** is correct English, but it means clean off a surface. That is not what this sentence says. Where wipe off fits: _Wipe off the dust from the table._ There **wipe off** means clean off a surface. **wipe up** is correct English, but it means clean up a spill. That is not what this sentence says. Where wipe up fits: _Wipe up the spilt milk._ There **wipe up** means clean up a spill.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The flood ____ the village.", [["wave", "wipe out", true, "destroy completely"], ["bounceOff", "wipe off", "diff", "clean off a surface"], ["arrowUp", "wipe up", "diff", "clean up a spill"]], ["wipe out = destroy completely", "Why out? out = gone"], null, ["\u2248 wipe off: Wipe off the dust from the table.", "\u2248 wipe up: Wipe up the spilt milk."]),
+          ...PLAB.kit.lineup("f6w", "The flood ____ the village.", [["wave", "wipe out", true, "destroy completely"], ["bounceOff", "wipe off", "diff", "clean off a surface"], ["arrowUp", "wipe up", "diff", "clean up a spill"]], ["wipe out = destroy completely", "Why out? out = gone"], null, ["\u2248 wipe off: Wipe off the dust from the table.  = clean off a surface", "\u2248 wipe up: Wipe up the spilt milk.  = clean up a spill"]),
         ],
       },
       {

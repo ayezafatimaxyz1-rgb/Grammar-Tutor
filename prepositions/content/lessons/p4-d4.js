@@ -248,11 +248,11 @@
         alt: "The sentence Do not dwell with a gap the past., then the candidates: on (fits: think or talk too long about); in (correct English, different meaning: live inside the past); at (not used: at is a point; not used)",
         say: [
           { text: "Fill the gap: Do not dwell \u2026 the past. What does the sentence want to say? It wants **dwell on**: think or talk too long about.", cue: "e5w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean live inside the past. That is not what this sentence says. Where in fits: _They dwell in the mountains._ **at**: at is a point; not used.", cue: "e5w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean live inside the past. That is not what this sentence says. Where in fits: _They dwell in the mountains._ There **in** means live in. **at**: at is a point; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Do not dwell ____ the past.", [["support", "on", true, "think or talk | too long about"], ["absorbedIn", "in", "diff", "live inside | the past"], ["cross", "at", false, "at is a point; | not used"]], ["dwell on = think or talk too long about", "dwell in = live in"], null, ["\u2248 in: They dwell in the mountains."]),
+          ...PLAB.kit.lineup("e5w", "Do not dwell ____ the past.", [["support", "on", true, "think or talk | too long about"], ["absorbedIn", "in", "diff", "live inside | the past"], ["cross", "at", false, "at is a point; | not used"]], ["dwell on = think or talk too long about", "dwell in = live in"], null, ["\u2248 in: They dwell in the mountains.  = live in"]),
         ],
       },
       {

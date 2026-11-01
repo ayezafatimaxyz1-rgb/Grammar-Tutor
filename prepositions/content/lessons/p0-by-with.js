@@ -206,7 +206,7 @@
             {
               "text": "by",
               "misconception": "p0-sense",
-              "why": "By stones sounds like the stones did it. It is correct English, but it says something else. Where by fits: The road was blocked by the protesters."
+              "why": "By stones sounds like the stones did it. It is correct English, but it says something else. Where by fits: The road was blocked by the protesters. There by means the protesters did the blocking."
             },
             {
               "text": "with",

@@ -33,11 +33,11 @@
         alt: "The sentence The law was passed with a gap public demand., then the candidates: in response to (fits: as an answer to); in respect of (correct English, different meaning: concerning public demand); in response of (not used: a response goes to something)",
         say: [
           { text: "Fill the gap: The law was passed \u2026 public demand. The sentence wants **in response to**: as an answer to.", cue: "f1w1" },
-          { text: "Why not the others? **in respect of** is correct English, but it means concerning public demand. That is not what this sentence says. Where in respect of fits: _No fee is charged in respect of the first visit._ **in response of**: a response goes to something.", cue: "f1w2" },
+          { text: "Why not the others? **in respect of** is correct English, but it means concerning public demand. That is not what this sentence says. Where in respect of fits: _No fee is charged in respect of the first visit._ There **in respect of** means concerning, for. **in response of**: a response goes to something.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The law was passed ____ public demand.", [["qToA", "in response to", true, "as an answer to"], ["absorbedIn", "in respect of", "diff", "concerning | public demand"], ["cross", "in response of", false, "a response goes | to something"]], ["in response to = as an answer to", "Why to? a response goes to what it answers"], null, ["\u2248 in respect of: No fee is charged in respect of the first visit."]),
+          ...PLAB.kit.lineup("f1w", "The law was passed ____ public demand.", [["qToA", "in response to", true, "as an answer to"], ["absorbedIn", "in respect of", "diff", "concerning | public demand"], ["cross", "in response of", false, "a response goes | to something"]], ["in response to = as an answer to", "Why to? a response goes to what it answers"], null, ["\u2248 in respect of: No fee is charged in respect of the first visit.  = concerning, for"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence He helped me with a gap a small favour., then the candidates: in return for (fits: as payment or exchange for); in place of (correct English, different meaning: instead of a favour); in return of (not used: you give in return for what you get)",
         say: [
           { text: "Fill the gap: He helped me \u2026 a small favour. The sentence wants **in return for**: as payment or exchange for.", cue: "f2w1" },
-          { text: "Why not the others? **in place of** is correct English, but it means instead of a favour. That is not what this sentence says. Where in place of fits: _Use honey in place of sugar._ **in return of**: you give in return for what you get.", cue: "f2w2" },
+          { text: "Why not the others? **in place of** is correct English, but it means instead of a favour. That is not what this sentence says. Where in place of fits: _Use honey in place of sugar._ There **in place of** means instead of. **in return of**: you give in return for what you get.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He helped me ____ a small favour.", [["exchange", "in return for", true, "as payment or | exchange for"], ["absorbedIn", "in place of", "diff", "instead of a favour"], ["cross", "in return of", false, "you give in return | for what you get"]], ["in return for = as payment or exchange for", "Why for? for = exchange"], null, ["\u2248 in place of: Use honey in place of sugar."]),
+          ...PLAB.kit.lineup("f2w", "He helped me ____ a small favour.", [["exchange", "in return for", true, "as payment or | exchange for"], ["absorbedIn", "in place of", "diff", "instead of a favour"], ["cross", "in return of", false, "you give in return | for what you get"]], ["in return for = as payment or exchange for", "Why for? for = exchange"], null, ["\u2248 in place of: Use honey in place of sugar.  = instead of"]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence Use honey with a gap sugar., then the candidates: in place of (fits: instead of); in case of (correct English, different meaning: if there is sugar); on place of (not used: a place is something you stand in)",
         say: [
           { text: "Fill the gap: Use honey \u2026 sugar. The sentence wants **in place of**: instead of.", cue: "f3w1" },
-          { text: "Why not the others? **in case of** is correct English, but it means if there is sugar. That is not what this sentence says. Where in case of fits: _In case of fire, use the stairs._ **on place of**: a place is something you stand in.", cue: "f3w2" },
+          { text: "Why not the others? **in case of** is correct English, but it means if there is sugar. That is not what this sentence says. Where in case of fits: _In case of fire, use the stairs._ There **in case of** means if there is. **on place of**: a place is something you stand in.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Use honey ____ sugar.", [["swap", "in place of", true, "instead of"], ["absorbedIn", "in case of", "diff", "if there is sugar"], ["cross", "on place of", false, "a place is something | you stand in"]], ["in place of = instead of", "Why in? a place you stand in"], null, ["\u2248 in case of: In case of fire, use the stairs."]),
+          ...PLAB.kit.lineup("f3w", "Use honey ____ sugar.", [["swap", "in place of", true, "instead of"], ["absorbedIn", "in case of", "diff", "if there is sugar"], ["cross", "on place of", false, "a place is something | you stand in"]], ["in place of = instead of", "Why in? a place you stand in"], null, ["\u2248 in case of: In case of fire, use the stairs.  = if there is"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence A dinner was held with a gap the guest., then the candidates: in honour of (fits: to show respect to); in favour of (correct English, different meaning: supporting the guest); for honour of (not used: the fixed phrase is in honour of)",
         say: [
           { text: "Fill the gap: A dinner was held \u2026 the guest. The sentence wants **in honour of**: to show respect to.", cue: "f4w1" },
-          { text: "Why not the others? **in favour of** is correct English, but it means supporting the guest. That is not what this sentence says. Where in favour of fits: _Most members voted in favour of the bill._ **for honour of**: the fixed phrase is in honour of.", cue: "f4w2" },
+          { text: "Why not the others? **in favour of** is correct English, but it means supporting the guest. That is not what this sentence says. Where in favour of fits: _Most members voted in favour of the bill._ There **in favour of** means supporting. **for honour of**: the fixed phrase is in honour of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "A dinner was held ____ the guest.", [["crown", "in honour of", true, "to show respect to"], ["absorbedIn", "in favour of", "diff", "supporting | the guest"], ["cross", "for honour of", false, "the fixed phrase | is in honour of"]], ["in honour of = to show respect to", "Why in? honour is the frame of the event"], null, ["\u2248 in favour of: Most members voted in favour of the bill."]),
+          ...PLAB.kit.lineup("f4w", "A dinner was held ____ the guest.", [["crown", "in honour of", true, "to show respect to"], ["absorbedIn", "in favour of", "diff", "supporting | the guest"], ["cross", "for honour of", false, "the fixed phrase | is in honour of"]], ["in honour of = to show respect to", "Why in? honour is the frame of the event"], null, ["\u2248 in favour of: Most members voted in favour of the bill.  = supporting"]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence The study was done with a gap Punjab University., then the candidates: in collaboration with (fits: working together with); in competition with (correct English, different meaning: competing against them); in collaboration of (not used: collaborate with, so with)",
         say: [
           { text: "Fill the gap: The study was done \u2026 Punjab University. The sentence wants **in collaboration with**: working together with.", cue: "f5w1" },
-          { text: "Why not the others? **in competition with** is correct English, but it means competing against them. That is not what this sentence says. Where in competition with fits: _Our shop is in competition with the new mall._ **in collaboration of**: collaborate with, so with.", cue: "f5w2" },
+          { text: "Why not the others? **in competition with** is correct English, but it means competing against them. That is not what this sentence says. Where in competition with fits: _Our shop is in competition with the new mall._ There **in competition with** means competing against. **in collaboration of**: collaborate with, so with.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The study was done ____ Punjab University.", [["agreeWith", "in collaboration with", true, "working | together with"], ["absorbedIn", "in competition with", "diff", "competing | against them"], ["cross", "in collaboration of", false, "collaborate | with, so with"]], ["in collaboration with = working together with", "Why with? labour together"], null, ["\u2248 in competition with: Our shop is in competition with the new mall."]),
+          ...PLAB.kit.lineup("f5w", "The study was done ____ Punjab University.", [["agreeWith", "in collaboration with", true, "working | together with"], ["absorbedIn", "in competition with", "diff", "competing | against them"], ["cross", "in collaboration of", false, "collaborate | with, so with"]], ["in collaboration with = working together with", "Why with? labour together"], null, ["\u2248 in competition with: Our shop is in competition with the new mall.  = competing against"]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence with a gap his brother, he is shy., then the candidates: in contrast to (fits: unlike); in addition to (correct English, different meaning: as well as his brother); in contrast of (not used: contrast to or with, never of)",
         say: [
           { text: "Fill the gap: \u2026 his brother, he is shy. The sentence wants **in contrast to**: unlike.", cue: "f6w1" },
-          { text: "Why not the others? **in addition to** is correct English, but it means as well as his brother. That is not what this sentence says. Where in addition to fits: _In addition to his salary, he gets a car._ **in contrast of**: contrast to or with, never of.", cue: "f6w2" },
+          { text: "Why not the others? **in addition to** is correct English, but it means as well as his brother. That is not what this sentence says. Where in addition to fits: _In addition to his salary, he gets a car._ There **in addition to** means as well as. **in contrast of**: contrast to or with, never of.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "____ his brother, he is shy.", [["contrast", "in contrast to", true, "unlike"], ["absorbedIn", "in addition to", "diff", "as well as | his brother"], ["cross", "in contrast of", false, "contrast to or | with, never of"]], ["in contrast to = unlike", "Why to? set one against the other"], null, ["\u2248 in addition to: In addition to his salary, he gets a car."]),
+          ...PLAB.kit.lineup("f6w", "____ his brother, he is shy.", [["contrast", "in contrast to", true, "unlike"], ["absorbedIn", "in addition to", "diff", "as well as | his brother"], ["cross", "in contrast of", false, "contrast to or | with, never of"]], ["in contrast to = unlike", "Why to? set one against the other"], null, ["\u2248 in addition to: In addition to his salary, he gets a car.  = as well as"]),
         ],
       },
       {

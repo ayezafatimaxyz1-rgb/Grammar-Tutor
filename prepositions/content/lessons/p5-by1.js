@@ -52,11 +52,11 @@
         alt: "The sentence He rose with a gap hard work., then the candidates: by dint of (fits: by means of (effort)); in spite of (correct English, different meaning: although he worked hard); with dint of (not used: the fixed phrase uses by)",
         say: [
           { text: "Fill the gap: He rose \u2026 hard work. The sentence wants **by dint of**: by means of (effort).", cue: "f1w1" },
-          { text: "Why not the others? **in spite of** is correct English, but it means although he worked hard. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ **with dint of**: the fixed phrase uses by.", cue: "f1w2" },
+          { text: "Why not the others? **in spite of** is correct English, but it means although he worked hard. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ There **in spite of** means despite. **with dint of**: the fixed phrase uses by.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He rose ____ hard work.", [["pushRock", "by dint of", true, "by means of | (effort)"], ["absorbedIn", "in spite of", "diff", "although he | worked hard"], ["cross", "with dint of", false, "the fixed | phrase uses by"]], ["by dint of = by means of (effort)", "Why by? dint = force"], null, ["\u2248 in spite of: The match went on in spite of the rain."]),
+          ...PLAB.kit.lineup("f1w", "He rose ____ hard work.", [["pushRock", "by dint of", true, "by means of | (effort)"], ["absorbedIn", "in spite of", "diff", "although he | worked hard"], ["cross", "with dint of", false, "the fixed | phrase uses by"]], ["by dint of = by means of (effort)", "Why by? dint = force"], null, ["\u2248 in spite of: The match went on in spite of the rain.  = despite"]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence He is a citizen with a gap his birth here., then the candidates: by virtue of (fits: because of (a quality or right)); in view of (correct English, different meaning: considering his birth); in virtue of (not used: rare and old; CSS expects by virtue of)",
         say: [
           { text: "Fill the gap: He is a citizen \u2026 his birth here. The sentence wants **by virtue of**: because of (a quality or right).", cue: "f2w1" },
-          { text: "Why not the others? **in view of** is correct English, but it means considering his birth. That is not what this sentence says. Where in view of fits: _In view of the strike, the exam was postponed._ **in virtue of**: rare and old; CSS expects by virtue of.", cue: "f2w2" },
+          { text: "Why not the others? **in view of** is correct English, but it means considering his birth. That is not what this sentence says. Where in view of fits: _In view of the strike, the exam was postponed._ There **in view of** means considering. **in virtue of**: rare and old; CSS expects by virtue of.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He is a citizen ____ his birth here.", [["keyLock", "by virtue of", true, "because of (a | quality or right)"], ["absorbedIn", "in view of", "diff", "considering | his birth"], ["cross", "in virtue of", false, "rare and old; CSS | expects by virtue of"]], ["by virtue of = because of (a quality or right)", "Why by? virtue = power or quality"], null, ["\u2248 in view of: In view of the strike, the exam was postponed."]),
+          ...PLAB.kit.lineup("f2w", "He is a citizen ____ his birth here.", [["keyLock", "by virtue of", true, "because of (a | quality or right)"], ["absorbedIn", "in view of", "diff", "considering | his birth"], ["cross", "in virtue of", false, "rare and old; CSS | expects by virtue of"]], ["by virtue of = because of (a quality or right)", "Why by? virtue = power or quality"], null, ["\u2248 in view of: In view of the strike, the exam was postponed.  = considering"]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence Water is lifted with a gap a pump., then the candidates: by means of (fits: using); by way of (correct English, different meaning: as a form of, or via); with means of (not used: a means is a way, and ways take by)",
         say: [
           { text: "Fill the gap: Water is lifted \u2026 a pump. The sentence wants **by means of**: using.", cue: "f3w1" },
-          { text: "Why not the others? **by way of** is correct English, but it means as a form of, or via. That is not what this sentence says. Where by way of fits: _He said nothing by way of apology._ **with means of**: a means is a way, and ways take by.", cue: "f3w2" },
+          { text: "Why not the others? **by way of** is correct English, but it means as a form of, or via. That is not what this sentence says. Where by way of fits: _He said nothing by way of apology._ There **by way of** means as a form of, or via. **with means of**: a means is a way, and ways take by.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Water is lifted ____ a pump.", [["pulley", "by means of", true, "using"], ["followRule", "by way of", "diff", "as a form | of, or via"], ["cross", "with means of", false, "a means is a way, | and ways take by"]], ["by means of = using", "Why by? means = a tool"], null, ["\u2248 by way of: He said nothing by way of apology."]),
+          ...PLAB.kit.lineup("f3w", "Water is lifted ____ a pump.", [["pulley", "by means of", true, "using"], ["followRule", "by way of", "diff", "as a form | of, or via"], ["cross", "with means of", false, "a means is a way, | and ways take by"]], ["by means of = using", "Why by? means = a tool"], null, ["\u2248 by way of: He said nothing by way of apology.  = as a form of, or via"]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence He said nothing with a gap apology., then the candidates: by way of (fits: as a form of, or via); by means of (correct English, different meaning: using an apology as a tool); in way of (not used: the fixed phrase is by way of)",
         say: [
           { text: "Fill the gap: He said nothing \u2026 apology. The sentence wants **by way of**: as a form of, or via.", cue: "f4w1" },
-          { text: "Why not the others? **by means of** is correct English, but it means using an apology as a tool. That is not what this sentence says. Where by means of fits: _Water is lifted by means of a pump._ **in way of**: the fixed phrase is by way of.", cue: "f4w2" },
+          { text: "Why not the others? **by means of** is correct English, but it means using an apology as a tool. That is not what this sentence says. Where by means of fits: _Water is lifted by means of a pump._ There **by means of** means using. **in way of**: the fixed phrase is by way of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He said nothing ____ apology.", [["roadPass", "by way of", true, "as a form | of, or via"], ["followRule", "by means of", "diff", "using an apology | as a tool"], ["cross", "in way of", false, "the fixed phrase | is by way of"]], ["by way of = as a form of, or via", "Why by? a way = a route"], null, ["\u2248 by means of: Water is lifted by means of a pump."]),
+          ...PLAB.kit.lineup("f4w", "He said nothing ____ apology.", [["roadPass", "by way of", true, "as a form | of, or via"], ["followRule", "by means of", "diff", "using an apology | as a tool"], ["cross", "in way of", false, "the fixed phrase | is by way of"]], ["by way of = as a form of, or via", "Why by? a way = a route"], null, ["\u2248 by means of: Water is lifted by means of a pump.  = using"]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence She is with a gap the best student in class., then the candidates: by far (fits: by a great amount); so far (correct English, different meaning: until now); from far (not used: the fixed phrase is by far)",
         say: [
           { text: "Fill the gap: She is \u2026 the best student in class. The sentence wants **by far**: by a great amount.", cue: "f5w1" },
-          { text: "Why not the others? **so far** is correct English, but it means until now. That is not what this sentence says. Where so far fits: _So far, ten students have passed._ **from far**: the fixed phrase is by far.", cue: "f5w2" },
+          { text: "Why not the others? **so far** is correct English, but it means until now. That is not what this sentence says. Where so far fits: _So far, ten students have passed._ There **so far** means until now. **from far**: the fixed phrase is by far.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "She is ____ the best student in class.", [["taller", "by far", true, "by a great amount"], ["arrowR", "so far", "diff", "until now"], ["cross", "from far", false, "the fixed phrase | is by far"]], ["by far = by a great amount", "Why by? by marks the size of a difference"], null, ["\u2248 so far: So far, ten students have passed."]),
+          ...PLAB.kit.lineup("f5w", "She is ____ the best student in class.", [["taller", "by far", true, "by a great amount"], ["arrowR", "so far", "diff", "until now"], ["cross", "from far", false, "the fixed phrase | is by far"]], ["by far = by a great amount", "Why by? by marks the size of a difference"], null, ["\u2248 so far: So far, ten students have passed.  = until now"]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence He learnt the poem with a gap., then the candidates: by heart (fits: from memory); at heart (correct English, different meaning: really, deep down); with heart (not used: the fixed phrase is by heart)",
         say: [
           { text: "Fill the gap: He learnt the poem \u2026. The sentence wants **by heart**: from memory.", cue: "f6w1" },
-          { text: "Why not the others? **at heart** is correct English, but it means really, deep down. That is not what this sentence says. Where at heart fits: _He looks strict, but at heart he is kind._ **with heart**: the fixed phrase is by heart.", cue: "f6w2" },
+          { text: "Why not the others? **at heart** is correct English, but it means really, deep down. That is not what this sentence says. Where at heart fits: _He looks strict, but at heart he is kind._ There **at heart** means really, deep down. **with heart**: the fixed phrase is by heart.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "He learnt the poem ____.", [["learnHeart", "by heart", true, "from memory"], [[["arrowR", -40, 0], ["target", 30, 0]], "at heart", "diff", "really, deep down"], ["cross", "with heart", false, "the fixed phrase | is by heart"]], ["by heart = from memory", "Why by? the heart is the means of keeping it"], null, ["\u2248 at heart: He looks strict, but at heart he is kind."]),
+          ...PLAB.kit.lineup("f6w", "He learnt the poem ____.", [["learnHeart", "by heart", true, "from memory"], [[["arrowR", -40, 0], ["target", 30, 0]], "at heart", "diff", "really, deep down"], ["cross", "with heart", false, "the fixed phrase | is by heart"]], ["by heart = from memory", "Why by? the heart is the means of keeping it"], null, ["\u2248 at heart: He looks strict, but at heart he is kind.  = really, deep down"]),
         ],
       },
       {

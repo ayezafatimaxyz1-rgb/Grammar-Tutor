@@ -154,11 +154,11 @@
         alt: "The sentence Most members voted with a gap the bill., then the candidates: for (fits: support with your vote); against (correct English, different meaning: opposing the bill); on (correct English, different meaning: deciding about the bill by a vote, without saying which way)",
         say: [
           { text: "Fill the gap: Most members voted \u2026 the bill. What does the sentence want to say? It wants **vote for**: support with your vote.", cue: "e4w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean opposing the bill. That is not what this sentence says. Where against fits: _Ten members voted against the bill._ **on** is correct English, but it would mean deciding about the bill by a vote, without saying which way. That is not what this sentence says. Where on fits: _Parliament will vote on the bill tomorrow._", cue: "e4w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean opposing the bill. That is not what this sentence says. Where against fits: _Ten members voted against the bill._ There **against** means oppose with your vote. **on** is correct English, but it would mean deciding about the bill by a vote, without saying which way. That is not what this sentence says. Where on fits: _Parliament will vote on the bill tomorrow._ There **on** means decide by voting.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Most members voted ____ the bill.", [["wantStar", "for", true, "support with | your vote"], ["shield", "against", "diff", "opposing the bill"], ["support", "on", "diff", "deciding about the bill by a | vote, without saying which way"]], ["vote for = support with your vote", "vote against = oppose with your vote"], null, ["\u2248 against: Ten members voted against the bill.", "\u2248 on: Parliament will vote on the bill tomorrow."]),
+          ...PLAB.kit.lineup("e4w", "Most members voted ____ the bill.", [["wantStar", "for", true, "support with | your vote"], ["shield", "against", "diff", "opposing the bill"], ["support", "on", "diff", "deciding about the bill by a | vote, without saying which way"]], ["vote for = support with your vote", "vote against = oppose with your vote"], null, ["\u2248 against: Ten members voted against the bill.  = oppose with your vote", "\u2248 on: Parliament will vote on the bill tomorrow.  = decide by voting"]),
         ],
       },
       {

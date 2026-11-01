@@ -52,12 +52,12 @@
         alt: "The sentence I am familiar with a gap the rules., then the candidates with pictures: with (right: the person knows them); to (correct English but a different meaning: the rules would know me); of (wrong: of goes with aware). Rule: person first: familiar with; thing first: familiar to.",
         say: [
           { text: "Fill the gap: I am familiar \u2026 the rules. What does the sentence want to say? The answer is **with**: the person knows them.", cue: "why1" },
-          { text: "Why not the others? **to** is correct English, but it would mean the rules would know me. That is not what this sentence says. Where to fits: _Her face is familiar to me._ **of**: of goes with aware.", cue: "why2" },
+          { text: "Why not the others? **to** is correct English, but it would mean the rules would know me. That is not what this sentence says. Where to fits: _Her face is familiar to me._ There **to** means I know her face (the face is known to me). **of**: of goes with aware.", cue: "why2" },
           { text: "The rule: person first: familiar with; thing first: familiar to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I am familiar ____ the rules.", [["knowsWay", "with", true, "the person | knows them"], [[["doc", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "to", "diff", "the rules | would know me"], ["awareOf", "of", false, "of goes with | aware"]], ["person first: familiar with", "thing first: familiar to"], null, ["\u2248 to: Her face is familiar to me."]),
+          ...PLAB.kit.lineup("why", "I am familiar ____ the rules.", [["knowsWay", "with", true, "the person | knows them"], [[["doc", -38, 0, 0.8], ["arrowR", 0, 0, 0.5], ["person", 40, 0, 0.8]], "to", "diff", "the rules | would know me"], ["awareOf", "of", false, "of goes with | aware"]], ["person first: familiar with", "thing first: familiar to"], null, ["\u2248 to: Her face is familiar to me.  = I know her face (the face is known to me)"]),
         ],
       },
       {
