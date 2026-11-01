@@ -4,37 +4,62 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wedding Invitation</title>
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9a14a;
-    --gold-light: #f3d98b;
-    --gold-dark: #8a6a25;
-    --maroon: #4a0d1a;
-    --ink: #5a2a1a;
-    --paper: #f4e4c1;
-    --paper-dark: #e2c993;
-    --open-h: min(78vh, 640px);
+  /* ===== Themes (samples) ===== */
+  :root, body[data-theme="classic"] {
+    --bg1: #7a1a2c; --bg2: #4a0d1a; --bg3: #22050b;
+    --accent: #4a0d1a; --ink: #5a2a1a;
+    --seal1: #d3445a; --seal2: #8e1b2e; --seal3: #5c0d1b;
+    --ribbon1: #8e1b2e; --ribbon2: #c43a52;
+    --petal1: #ffd1dc; --petal2: #e98aa3;
+    --paper: #f4e4c1; --paper-dark: #e2c993;
   }
+  body[data-theme="mehndi"] {
+    --bg1: #2f7a3e; --bg2: #174a26; --bg3: #07180c;
+    --accent: #1d5a2b; --ink: #3d3a14;
+    --seal1: #ffc94a; --seal2: #e08a12; --seal3: #a85b06;
+    --ribbon1: #d9700f; --ribbon2: #ffb02e;
+    --petal1: #ffe27a; --petal2: #f39a1c;
+    --paper: #fbf0c9; --paper-dark: #ead48f;
+  }
+  body[data-theme="royal"] {
+    --bg1: #234a8a; --bg2: #102650; --bg3: #040b1c;
+    --accent: #13285a; --ink: #2a2f45;
+    --seal1: #4a6fb5; --seal2: #1c3770; --seal3: #0c1a3d;
+    --ribbon1: #1c3770; --ribbon2: #3d63a8;
+    --petal1: #ffffff; --petal2: #cfd9ee;
+    --paper: #f6f1e4; --paper-dark: #e0d4b5;
+  }
+  body[data-theme="blush"] {
+    --bg1: #e4a9b4; --bg2: #b36678; --bg3: #4d2332;
+    --accent: #7a2e45; --ink: #5a3340;
+    --seal1: #e98ea2; --seal2: #b04b65; --seal3: #7a2e45;
+    --ribbon1: #c56c82; --ribbon2: #f0a9b9;
+    --petal1: #ffffff; --petal2: #f7c6d1;
+    --paper: #fbeee9; --paper-dark: #ecd2c6;
+  }
+  :root {
+    --gold: #c9a14a; --gold-light: #f3d98b; --gold-dark: #8a6a25;
+    --open-h: min(calc(100vh - 200px), 760px);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
     display: flex; align-items: center; justify-content: center;
     min-height: 100vh; overflow: hidden;
     font-family: 'Cormorant Garamond', serif;
-    background:
-      radial-gradient(circle at 50% 40%, #7a1a2c 0%, var(--maroon) 55%, #22050b 100%);
+    background: radial-gradient(circle at 50% 40%, var(--bg1) 0%, var(--bg2) 55%, var(--bg3) 100%);
+    transition: background .6s ease;
   }
-  /* floating petals */
   .petal {
     position: fixed; top: -40px; width: 14px; height: 18px;
-    background: radial-gradient(circle at 30% 30%, #ffd1dc, #e98aa3);
+    background: radial-gradient(circle at 30% 30%, var(--petal1), var(--petal2));
     border-radius: 80% 0 80% 0; opacity: .8; pointer-events: none;
     animation: fall linear infinite;
   }
-  @keyframes fall {
-    to { transform: translateY(110vh) rotate(540deg) translateX(60px); }
-  }
+  @keyframes fall { to { transform: translateY(110vh) rotate(540deg) translateX(60px); } }
 
   .stage { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; }
 
@@ -47,31 +72,27 @@
   @keyframes pulse { 50% { opacity: .35; } }
 
   .scroll {
-    position: relative; width: min(80vw, 460px);
+    position: relative; width: min(84vw, 480px);
     display: flex; flex-direction: column; align-items: center;
     cursor: pointer; filter: drop-shadow(0 18px 30px rgba(0,0,0,.55));
   }
   .opened .scroll { cursor: default; }
 
-  /* wooden / gold rods */
   .rod {
-    position: relative; z-index: 3; width: 112%; height: 34px;
-    border-radius: 17px;
-    background: linear-gradient(180deg, #e8d3a0 0%, var(--paper-dark) 30%, #b8945a 60%, #8c6a36 100%);
+    position: relative; z-index: 3; width: 110%; height: 32px; border-radius: 16px;
+    background: linear-gradient(180deg, #ecd9a8 0%, var(--paper-dark) 30%, #b8945a 60%, #8c6a36 100%);
     box-shadow: inset 0 -4px 8px rgba(0,0,0,.25), inset 0 3px 6px rgba(255,255,255,.4);
   }
   .rod::before, .rod::after {
-    content: ""; position: absolute; top: -6px; width: 30px; height: 46px; border-radius: 10px;
+    content: ""; position: absolute; top: -6px; width: 28px; height: 44px; border-radius: 10px;
     background: linear-gradient(90deg, var(--gold-dark), var(--gold-light) 45%, var(--gold) 60%, var(--gold-dark));
     box-shadow: 0 2px 6px rgba(0,0,0,.4);
   }
-  .rod::before { left: -14px; }
-  .rod::after { right: -14px; }
+  .rod::before { left: -12px; }
+  .rod::after { right: -12px; }
 
-  /* the paper that unrolls */
   .paper {
-    position: relative; z-index: 2; width: 100%; height: 0; overflow: hidden;
-    margin: -10px 0;
+    position: relative; z-index: 2; width: 100%; height: 0; overflow: hidden; margin: -10px 0;
     background:
       radial-gradient(ellipse at center, rgba(255,255,255,.35), transparent 70%),
       repeating-linear-gradient(0deg, rgba(120,80,30,.03) 0 2px, transparent 2px 5px),
@@ -81,53 +102,63 @@
   .opened .paper { height: var(--open-h); }
 
   .content {
-    height: var(--open-h); padding: 42px 38px; text-align: center; color: var(--ink);
-    display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 14px;
+    height: var(--open-h); padding: 40px 34px 34px; text-align: center; color: var(--ink);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    overflow-y: auto; scrollbar-width: none;
     opacity: 0; transform: translateY(14px);
     transition: opacity 1.2s ease 1.8s, transform 1.2s ease 1.8s;
   }
+  .content::-webkit-scrollbar { display: none; }
+  .content > :first-child { margin-top: auto; }
+  .content > :last-child { margin-bottom: auto; }
   .opened .content { opacity: 1; transform: none; }
 
   .frame {
-    position: absolute; inset: 22px 18px; border: 1.5px solid var(--gold);
+    position: absolute; inset: 20px 16px; border: 1.5px solid var(--gold);
     pointer-events: none; opacity: 0; transition: opacity 1s ease 1.6s;
   }
   .frame::after { content: ""; position: absolute; inset: 6px; border: 1px solid rgba(201,161,74,.5); }
   .opened .frame { opacity: 1; }
 
-  .bismillah, .small { font-size: 15px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-dark); }
-  .script { font-family: 'Great Vibes', cursive; font-weight: 400; color: var(--maroon); line-height: 1.1; }
-  .title { font-size: clamp(34px, 9vw, 48px); }
-  .amp { font-family: 'Great Vibes', cursive; font-size: 36px; color: var(--gold); }
+  .bismillah {
+    font-family: 'Amiri', serif; font-weight: 700; direction: rtl;
+    font-size: clamp(22px, 6vw, 28px); color: var(--accent); line-height: 1.6;
+  }
+  .small { font-size: 13px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold-dark); line-height: 1.5; }
+  .script { font-family: 'Great Vibes', cursive; font-weight: 400; color: var(--accent); line-height: 1.1; }
+  .daughters { font-size: clamp(24px, 6.5vw, 30px); }
+  .father { font-size: clamp(36px, 10vw, 50px); margin-top: -4px; }
+  .amp { font-family: 'Great Vibes', cursive; font-size: 30px; color: var(--gold); line-height: 1; }
+  .ornament { width: 150px; height: 20px; color: var(--gold); flex-shrink: 0; }
 
-  .ornament { width: 160px; height: 22px; color: var(--gold); }
-
-  /* empty fields: editable, no data */
   .field {
     min-width: 70%; min-height: 1.4em; padding: 2px 8px;
     border-bottom: 1px dashed rgba(138,106,37,.55);
-    outline: none; font-size: 20px; color: var(--ink);
+    outline: none; font-size: 17px; color: var(--ink);
   }
-  .field.name { font-family: 'Great Vibes', cursive; font-size: clamp(30px, 8vw, 40px); color: var(--maroon); min-height: 1.3em; }
-  .field:empty::before { content: attr(data-label); color: rgba(90,42,26,.32); font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; letter-spacing: 1px; }
-  .field:focus { border-bottom-color: var(--gold); background: rgba(255,255,255,.25); }
+  .field.name { font-family: 'Great Vibes', cursive; font-size: clamp(28px, 7.5vw, 36px); color: var(--accent); min-height: 1.25em; }
+  .field:empty::before { content: attr(data-label); color: rgba(90,42,26,.35); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; letter-spacing: 1px; }
+  .field:focus { border-bottom-color: var(--gold); background: rgba(255,255,255,.3); }
 
-  .row { display: flex; gap: 14px; width: 80%; }
-  .row .field { min-width: 0; flex: 1; }
+  .events { display: flex; width: 100%; margin-top: 10px; }
+  .event { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0 8px; }
+  .event + .event { border-left: 1px solid rgba(201,161,74,.6); }
+  .event h3 { font-family: 'Great Vibes', cursive; font-weight: 400; font-size: 32px; color: var(--accent); line-height: 1; }
+  .event .field { min-width: 0; width: 100%; font-size: 15px; }
+  .rsvp { margin-top: 10px; }
 
-  /* ribbon + wax seal on the closed scroll */
+  /* ribbon + wax seal */
   .seal-wrap {
     position: absolute; z-index: 5; top: 50%; left: 50%; transform: translate(-50%,-50%);
     transition: opacity .6s ease, transform .8s ease;
   }
   .ribbon {
-    position: absolute; top: 50%; left: 50%; width: 26px; height: 110px;
-    transform: translate(-50%,-50%);
-    background: linear-gradient(90deg, #8e1b2e, #c43a52 50%, #8e1b2e);
+    position: absolute; top: 50%; left: 50%; width: 26px; height: 110px; transform: translate(-50%,-50%);
+    background: linear-gradient(90deg, var(--ribbon1), var(--ribbon2) 50%, var(--ribbon1));
   }
   .seal {
     position: relative; width: 74px; height: 74px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, #d3445a, #8e1b2e 60%, #5c0d1b);
+    background: radial-gradient(circle at 35% 30%, var(--seal1), var(--seal2) 60%, var(--seal3));
     box-shadow: 0 4px 10px rgba(0,0,0,.45), inset 0 -3px 6px rgba(0,0,0,.35);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Great Vibes', cursive; font-size: 34px; color: var(--gold-light);
@@ -137,8 +168,8 @@
   .opened .seal-wrap { opacity: 0; transform: translate(-50%, 40px) scale(.6); pointer-events: none; }
 
   .replay {
-    position: fixed; bottom: 20px; right: 20px; padding: 8px 16px;
-    background: transparent; border: 1px solid var(--gold); color: var(--gold-light);
+    position: fixed; bottom: 20px; right: 20px; z-index: 10; padding: 8px 16px;
+    background: rgba(0,0,0,.2); border: 1px solid var(--gold); color: var(--gold-light);
     font-family: inherit; letter-spacing: 2px; text-transform: uppercase; font-size: 12px;
     cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .6s ease 3s;
   }
@@ -147,7 +178,7 @@
 
   .music {
     position: fixed; top: 18px; right: 18px; z-index: 10; width: 44px; height: 44px; border-radius: 50%;
-    background: rgba(34,5,11,.55); border: 1px solid var(--gold); color: var(--gold-light);
+    background: rgba(0,0,0,.35); border: 1px solid var(--gold); color: var(--gold-light);
     font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;
     opacity: 0; pointer-events: none; transition: opacity .6s ease;
   }
@@ -156,13 +187,40 @@
   .music.muted { opacity: .55; text-decoration: line-through; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* sample picker */
+  .samples {
+    position: fixed; bottom: 16px; left: 16px; z-index: 10; display: flex; align-items: center; gap: 8px;
+    padding: 6px 10px; border-radius: 24px; background: rgba(0,0,0,.35); border: 1px solid rgba(201,161,74,.6);
+  }
+  .samples span { color: var(--gold-light); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-right: 2px; }
+  .swatch {
+    width: 24px; height: 24px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.35);
+  }
+  .swatch.active { border-color: var(--gold-light); transform: scale(1.12); }
+  .swatch[data-t="classic"] { background: radial-gradient(circle, #c43a52, #4a0d1a); }
+  .swatch[data-t="mehndi"]  { background: radial-gradient(circle, #ffc94a 30%, #174a26 75%); }
+  .swatch[data-t="royal"]   { background: radial-gradient(circle, #4a6fb5, #102650); }
+  .swatch[data-t="blush"]   { background: radial-gradient(circle, #f7c6d1, #b36678); }
+
+  @media (max-width: 400px) { .samples span { display: none; } }
+
   @media print {
     body { background: none; }
-    .hint, .replay, .music, .petal, .seal-wrap { display: none; }
+    .hint, .replay, .music, .samples, .petal, .seal-wrap { display: none; }
   }
 </style>
 </head>
-<body>
+<body data-theme="classic">
+
+<div class="samples" aria-label="Choose a sample design">
+  <span>Samples</span>
+  <button class="swatch active" data-t="classic" title="Sample 1: Maroon &amp; Gold"></button>
+  <button class="swatch" data-t="mehndi" title="Sample 2: Mehndi Green &amp; Marigold"></button>
+  <button class="swatch" data-t="royal" title="Sample 3: Royal Blue"></button>
+  <button class="swatch" data-t="blush" title="Sample 4: Blush Rose"></button>
+</div>
+
 <div class="stage" id="stage">
   <div class="scroll" id="scroll" role="button" aria-label="Open invitation" tabindex="0">
     <div class="rod"></div>
@@ -170,25 +228,36 @@
     <div class="paper">
       <div class="frame"></div>
       <div class="content">
+        <div class="bismillah" lang="ar">بِسْمِ ٱللّٰهِ ٱلرَّحْمٰنِ ٱلرَّحِيْمِ</div>
+
         <svg class="ornament" viewBox="0 0 160 22" fill="none" stroke="currentColor" stroke-width="1.2">
           <path d="M0 11h55M105 11h55"/><path d="M80 2c-8 0-12 9-25 9 13 0 17 9 25 9 8 0 12-9 25-9-13 0-17-9-25-9z"/><circle cx="80" cy="11" r="2.5" fill="currentColor"/>
         </svg>
 
-        <div class="small">Together with their families</div>
-        <div class="script title">Wedding Invitation</div>
+        <div class="small">You are cordially invited to the weddings of</div>
+        <div class="script daughters">The beloved daughters of</div>
+        <div class="script father">Rana Asghar Ali</div>
 
-        <div class="field name" contenteditable="true" data-label="Bride's name"></div>
+        <div class="field name" contenteditable="true" data-label="First bride's name"></div>
         <div class="amp">&amp;</div>
-        <div class="field name" contenteditable="true" data-label="Groom's name"></div>
+        <div class="field name" contenteditable="true" data-label="Second bride's name"></div>
 
-        <div class="small" style="margin-top:6px">request the pleasure of your company</div>
-
-        <div class="row">
-          <div class="field" contenteditable="true" data-label="Date"></div>
-          <div class="field" contenteditable="true" data-label="Time"></div>
+        <div class="events">
+          <div class="event">
+            <h3>Mehndi</h3>
+            <div class="field" contenteditable="true" data-label="Date"></div>
+            <div class="field" contenteditable="true" data-label="Time"></div>
+            <div class="field" contenteditable="true" data-label="Venue"></div>
+          </div>
+          <div class="event">
+            <h3>Nikkah</h3>
+            <div class="field" contenteditable="true" data-label="Date"></div>
+            <div class="field" contenteditable="true" data-label="Time"></div>
+            <div class="field" contenteditable="true" data-label="Venue"></div>
+          </div>
         </div>
-        <div class="field" contenteditable="true" data-label="Venue"></div>
-        <div class="field" contenteditable="true" data-label="RSVP"></div>
+
+        <div class="field rsvp" contenteditable="true" data-label="RSVP"></div>
 
         <svg class="ornament" viewBox="0 0 160 22" fill="none" stroke="currentColor" stroke-width="1.2" style="transform:rotate(180deg)">
           <path d="M0 11h55M105 11h55"/><path d="M80 2c-8 0-12 9-25 9 13 0 17 9 25 9 8 0 12-9 25-9-13 0-17-9-25-9z"/><circle cx="80" cy="11" r="2.5" fill="currentColor"/>
@@ -213,12 +282,25 @@
 <audio id="song" src="music.mp3" loop preload="auto"></audio>
 
 <script>
-  const stage = document.getElementById('stage');
   const scroll = document.getElementById('scroll');
   const open = () => { document.body.classList.add('opened'); Music.start(); };
   scroll.addEventListener('click', e => { if (!e.target.isContentEditable) open(); });
-  scroll.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(); });
+  scroll.addEventListener('keydown', e => { if ((e.key === 'Enter' || e.key === ' ') && !e.target.isContentEditable) open(); });
   document.getElementById('replay').addEventListener('click', () => document.body.classList.remove('opened'));
+
+  // sample designs: #classic, #mehndi, #royal, #blush
+  const themes = ['classic', 'mehndi', 'royal', 'blush'];
+  function setTheme(t) {
+    if (!themes.includes(t)) t = 'classic';
+    document.body.dataset.theme = t;
+    document.querySelectorAll('.swatch').forEach(s => s.classList.toggle('active', s.dataset.t === t));
+  }
+  document.querySelectorAll('.swatch').forEach(s => s.addEventListener('click', () => {
+    setTheme(s.dataset.t);
+    try { history.replaceState(null, '', '#' + s.dataset.t); } catch (e) {}
+  }));
+  setTheme(location.hash.slice(1));
+  window.addEventListener('hashchange', () => setTheme(location.hash.slice(1)));
 
   // falling petals
   for (let i = 0; i < 18; i++) {
@@ -231,100 +313,100 @@
     document.body.appendChild(p);
   }
 
-  // ===== Background music =====
-  // Uses music.mp3 if present, otherwise plays an original music box waltz
-  // synthesized live with the Web Audio API (no files, no copyright issues).
-  const Music = (() => {
-    const btn = document.getElementById('music');
-    const song = document.getElementById('song');
-    let hasFile = false, started = false, on = false;
-    song.addEventListener('canplaythrough', () => { hasFile = true; }, { once: true });
-    song.addEventListener('error', () => { hasFile = false; });
+    // ===== Background music =====
+    // Uses music.mp3 if present, otherwise plays an original music box waltz
+    // synthesized live with the Web Audio API (no files, no copyright issues).
+    const Music = (() => {
+      const btn = document.getElementById('music');
+      const song = document.getElementById('song');
+      let hasFile = false, started = false, on = false;
+      song.addEventListener('canplaythrough', () => { hasFile = true; }, { once: true });
+      song.addEventListener('error', () => { hasFile = false; });
 
-    let ctx, master, timer, nextTime = 0, step = 0;
-    const BPM = 76, EIGHTH = 60 / BPM / 2;           // 3/4 waltz, six eighths per bar
-    const hz = n => 440 * Math.pow(2, (n - 69) / 12); // midi to frequency
-    // F  Dm  Bb  C  |  F  Am  Gm  C  (chord tones as midi notes)
-    const bars = [
-      [53, [65, 69, 72]], [50, [62, 65, 69]], [46, [58, 62, 65]], [48, [60, 64, 67]],
-      [53, [65, 69, 72]], [45, [57, 60, 64]], [43, [55, 58, 62]], [48, [60, 64, 67]]
-    ];
-    // simple original melody, one entry per eighth (null = rest)
-    const melody = [
-      [77,null,76,null,74,null], [74,null,null,null,72,null], [70,null,72,null,74,null], [72,null,null,null,null,null],
-      [77,null,79,null,81,null], [81,null,79,null,76,null], [74,null,76,null,77,null], [76,null,null,null,72,null]
-    ];
+      let ctx, master, timer, nextTime = 0, step = 0;
+      const BPM = 76, EIGHTH = 60 / BPM / 2;           // 3/4 waltz, six eighths per bar
+      const hz = n => 440 * Math.pow(2, (n - 69) / 12); // midi to frequency
+      // F  Dm  Bb  C  |  F  Am  Gm  C  (chord tones as midi notes)
+      const bars = [
+        [53, [65, 69, 72]], [50, [62, 65, 69]], [46, [58, 62, 65]], [48, [60, 64, 67]],
+        [53, [65, 69, 72]], [45, [57, 60, 64]], [43, [55, 58, 62]], [48, [60, 64, 67]]
+      ];
+      // simple original melody, one entry per eighth (null = rest)
+      const melody = [
+        [77,null,76,null,74,null], [74,null,null,null,72,null], [70,null,72,null,74,null], [72,null,null,null,null,null],
+        [77,null,79,null,81,null], [81,null,79,null,76,null], [74,null,76,null,77,null], [76,null,null,null,72,null]
+      ];
 
-    function bell(t, midi, vol, len) {
-      const f = hz(midi), g = ctx.createGain();
-      g.gain.setValueAtTime(0.0001, t);
-      g.gain.exponentialRampToValueAtTime(vol, t + 0.006);
-      g.gain.exponentialRampToValueAtTime(0.0001, t + len);
-      g.connect(master);
-      [[1, 1], [2, 0.25], [3.01, 0.08]].forEach(([mul, amp]) => {
-        const o = ctx.createOscillator(), og = ctx.createGain();
-        o.type = 'sine'; o.frequency.value = f * mul; og.gain.value = amp;
-        o.connect(og).connect(g); o.start(t); o.stop(t + len + 0.05);
-      });
-    }
-
-    function schedule() {
-      while (nextTime < ctx.currentTime + 0.25) {
-        const bar = Math.floor(step / 6) % bars.length, beat = step % 6;
-        const [bass, chord] = bars[bar];
-        if (beat === 0) bell(nextTime, bass - 12, 0.22, 2.4);
-        if (beat === 2 || beat === 4) chord.forEach(n => bell(nextTime, n, 0.035, 1.2));
-        const m = melody[bar][beat];
-        if (m) bell(nextTime, m, 0.12, 1.8);
-        if (beat % 2 === 1) bell(nextTime, chord[(step >> 1) % 3] + 12, 0.025, 0.8); // sparkle
-        nextTime += EIGHTH; step++;
+      function bell(t, midi, vol, len) {
+        const f = hz(midi), g = ctx.createGain();
+        g.gain.setValueAtTime(0.0001, t);
+        g.gain.exponentialRampToValueAtTime(vol, t + 0.006);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+        g.connect(master);
+        [[1, 1], [2, 0.25], [3.01, 0.08]].forEach(([mul, amp]) => {
+          const o = ctx.createOscillator(), og = ctx.createGain();
+          o.type = 'sine'; o.frequency.value = f * mul; og.gain.value = amp;
+          o.connect(og).connect(g); o.start(t); o.stop(t + len + 0.05);
+        });
       }
-    }
 
-    function initSynth() {
-      ctx = new (window.AudioContext || window.webkitAudioContext)();
-      master = ctx.createGain(); master.gain.value = 0;
-      // soft echo for a hall like feel
-      const delay = ctx.createDelay(); delay.delayTime.value = EIGHTH * 3;
-      const fb = ctx.createGain(); fb.gain.value = 0.28;
-      const tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 2200;
-      master.connect(ctx.destination);
-      master.connect(delay); delay.connect(tone).connect(fb).connect(delay);
-      tone.connect(ctx.destination);
-    }
-
-    function fadeTo(v, sec) {
-      if (hasFile) {
-        const from = song.volume, t0 = performance.now();
-        const tick = () => { const k = Math.min(1, (performance.now() - t0) / (sec * 1000));
-          song.volume = from + (v - from) * k; if (k < 1) requestAnimationFrame(tick); else if (!v) song.pause(); };
-        if (v) song.play().catch(() => {});
-        tick();
-      } else {
-        master.gain.cancelScheduledValues(ctx.currentTime);
-        master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
-        master.gain.linearRampToValueAtTime(v ? 0.6 : 0, ctx.currentTime + sec);
+      function schedule() {
+        while (nextTime < ctx.currentTime + 0.25) {
+          const bar = Math.floor(step / 6) % bars.length, beat = step % 6;
+          const [bass, chord] = bars[bar];
+          if (beat === 0) bell(nextTime, bass - 12, 0.22, 2.4);
+          if (beat === 2 || beat === 4) chord.forEach(n => bell(nextTime, n, 0.035, 1.2));
+          const m = melody[bar][beat];
+          if (m) bell(nextTime, m, 0.12, 1.8);
+          if (beat % 2 === 1) bell(nextTime, chord[(step >> 1) % 3] + 12, 0.025, 0.8); // sparkle
+          nextTime += EIGHTH; step++;
+        }
       }
-    }
 
-    function play() {
-      if (hasFile) { song.volume = 0; }
-      else {
-        if (!ctx) initSynth();
-        ctx.resume();
-        if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 40); }
+      function initSynth() {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        master = ctx.createGain(); master.gain.value = 0;
+        // soft echo for a hall like feel
+        const delay = ctx.createDelay(); delay.delayTime.value = EIGHTH * 3;
+        const fb = ctx.createGain(); fb.gain.value = 0.28;
+        const tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 2200;
+        master.connect(ctx.destination);
+        master.connect(delay); delay.connect(tone).connect(fb).connect(delay);
+        tone.connect(ctx.destination);
       }
-      on = true; fadeTo(1, 2.5);
-      btn.classList.add('playing'); btn.classList.remove('muted');
-    }
-    function pause() {
-      on = false; fadeTo(0, 0.8);
-      btn.classList.remove('playing'); btn.classList.add('muted');
-    }
 
-    btn.addEventListener('click', () => on ? pause() : play());
-    return { start() { btn.classList.add('show'); if (!started) { started = true; play(); } } };
-  })();
+      function fadeTo(v, sec) {
+        if (hasFile) {
+          const from = song.volume, t0 = performance.now();
+          const tick = () => { const k = Math.min(1, (performance.now() - t0) / (sec * 1000));
+            song.volume = from + (v - from) * k; if (k < 1) requestAnimationFrame(tick); else if (!v) song.pause(); };
+          if (v) song.play().catch(() => {});
+          tick();
+        } else {
+          master.gain.cancelScheduledValues(ctx.currentTime);
+          master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
+          master.gain.linearRampToValueAtTime(v ? 0.6 : 0, ctx.currentTime + sec);
+        }
+      }
+
+      function play() {
+        if (hasFile) { song.volume = 0; }
+        else {
+          if (!ctx) initSynth();
+          ctx.resume();
+          if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 40); }
+        }
+        on = true; fadeTo(1, 2.5);
+        btn.classList.add('playing'); btn.classList.remove('muted');
+      }
+      function pause() {
+        on = false; fadeTo(0, 0.8);
+        btn.classList.remove('playing'); btn.classList.add('muted');
+      }
+
+      btn.addEventListener('click', () => on ? pause() : play());
+      return { start() { btn.classList.add('show'); if (!started) { started = true; play(); } } };
+    })();
 </script>
 </body>
 </html>
