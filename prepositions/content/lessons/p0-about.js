@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-ideas",
     level: "Basic",
-    minutes: 12,
+    minutes: 10,
     summary: "The basic senses of about / on (topic), each drawn as its logic: about = around a topic; on = a focused topic; about = approximately; about = here and there.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -119,34 +119,6 @@
           { do: "write", id: "s4v", text: "≠ AROUND: AROUND works the same way.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
           { do: "write", id: "s4r", text: "ABOUT = around a topic, all its sides. ON = a serious, focused topic.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
-      },
-      {
-        id: "practice-1",
-        title: "Practice: about, around a topic",
-        alt: "The last board stays.",
-        say: [
-          { text: "Which one fits? Picture what each one means first." },
-        ],
-        actions: [
-        ],
-        check: {
-          "id": "p0-about-1",
-          "source": "original",
-          "skill": "about: around a topic",
-          "prompt": "We talked ___ the match.",
-          "options": [
-            {
-              "text": "about",
-              "correct": true,
-              "why": "Correct. about here means around a topic: ABOUT goes all around a topic, in an everyday way."
-            },
-            {
-              "text": "on",
-              "misconception": "p0-sense",
-              "why": "ON is narrower and more formal: a lecture on law."
-            }
-          ]
-        },
       },
     ],
   });

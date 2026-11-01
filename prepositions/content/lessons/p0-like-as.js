@@ -51,11 +51,11 @@
         alt: "He fought with a gap a lion. Answer: like, because he is not a lion; he fought similarly. Not as: as a lion = he really was a lion.",
         say: [
           { text: "Fill the gap: He fought … a lion. Picture it: he is not a lion; he fought similarly. So **like**.", cue: "likex01" },
-          { text: "Why not **as**? as a lion = he really was a lion.", cue: "likex0-r2" },
+          { text: "Why not **as**? as a lion = he really was a lion That is correct English, but it says something else.", cue: "likex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-likex0"),
-          ...PLAB.kit.lineup("likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", false, "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"]),
+          ...PLAB.kit.lineup("likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"]),
         ],
       },
       {

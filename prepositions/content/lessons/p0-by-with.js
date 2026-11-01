@@ -107,11 +107,11 @@
         alt: "She wrote it with a gap a pen. Answer: with, because the pen is the tool. Not by: by hand is a method; by a pen is not used.",
         say: [
           { text: "Fill the gap: She wrote it … a pen. Picture it: the pen is the tool. So **with**.", cue: "withx12" },
-          { text: "Why not **by**? by hand is a method; by a pen is not used That is correct English, but it says something else.", cue: "withx1-r2" },
+          { text: "Why not **by**? by hand is a method; by a pen is not used.", cue: "withx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-withx1"),
-          ...PLAB.kit.lineup("withx1", "She wrote it ____ a pen.", [["writtenBy", "by", "diff", "by hand is a method; | by a pen is not used"], ["pen", "with", true, "the pen is the tool"]], ["Why with? the pen is the tool", "Ask: Is it a tool someone used?"]),
+          ...PLAB.kit.lineup("withx1", "She wrote it ____ a pen.", [["writtenBy", "by", false, "by hand is a method; | by a pen is not used"], ["pen", "with", true, "the pen is the tool"]], ["Why with? the pen is the tool", "Ask: Is it a tool someone used?"]),
         ],
       },
       {

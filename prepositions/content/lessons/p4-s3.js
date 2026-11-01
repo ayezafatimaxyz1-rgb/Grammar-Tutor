@@ -56,14 +56,14 @@
       {
         id: "sure-why",
         title: "sure: why this one?",
-        alt: "The sentence I am not sure with a gap the date., then the candidates: about (fits: certain about details); of (correct English, different meaning: not sure that the date exists at all); on (not used: on is resting; not used)",
+        alt: "The sentence I am not sure with a gap the date., then the candidates: about (fits: certain about details); of (correct English, different meaning: sure of holds one fact or result; the date's details are a topic); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: I am not sure \u2026 the date. What does the sentence want to say? It wants **sure about**: certain about details.", cue: "e2w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean not sure that the date exists at all. That is not what this sentence says. **on**: on is resting; not used.", cue: "e2w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean sure of holds one fact or result; the date's details are a topic. That is not what this sentence says. **on**: on is resting; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "I am not sure ____ the date.", [["aboutCircle", "about", true, "certain | about details"], ["awareOf", "of", "diff", "not sure that the | date exists at all"], ["cross", "on", false, "on is resting; | not used"]], ["sure of = certain that it is true or will happen", "sure about = certain about details"]),
+          ...PLAB.kit.lineup("e2w", "I am not sure ____ the date.", [["aboutCircle", "about", true, "certain | about details"], ["awareOf", "of", "diff", "sure of holds one fact or result; | the date's details are a topic"], ["cross", "on", false, "on is resting; | not used"]], ["sure of = certain that it is true or will happen", "sure about = certain about details"]),
         ],
       },
       {

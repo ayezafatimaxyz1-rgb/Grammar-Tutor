@@ -208,14 +208,14 @@
       {
         id: "lean-why",
         title: "lean: why this one?",
-        alt: "The sentence She leaned with a gap the wall., then the candidates: against (fits: rest your weight on something upright); on (correct English, different meaning: rested on top of the wall); to (not used: to points; leaning rests against)",
+        alt: "The sentence She leaned with a gap the wall., then the candidates: against (fits: rest your weight on something upright); on (correct English, different meaning: lean on = put your weight on it; against = pressed on its side); to (not used: to points; leaning rests against)",
         say: [
           { text: "Fill the gap: She leaned \u2026 the wall. What does the sentence want to say? It wants **lean against**: rest your weight on something upright.", cue: "e4w1" },
-          { text: "Why not the others? **on** is correct English, but it would mean rested on top of the wall. That is not what this sentence says. **to**: to points; leaning rests against.", cue: "e4w2" },
+          { text: "Why not the others? **on** is correct English, but it would mean lean on = put your weight on it; against = pressed on its side. That is not what this sentence says. **to**: to points; leaning rests against.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She leaned ____ the wall.", [["shield", "against", true, "rest your weight on | something upright"], ["support", "on", "diff", "rested on top | of the wall"], ["cross", "to", false, "to points; leaning | rests against"]], ["lean against = rest your weight on something upright", "lean on = rest on, or depend on"]),
+          ...PLAB.kit.lineup("e4w", "She leaned ____ the wall.", [["shield", "against", true, "rest your weight on | something upright"], ["support", "on", "diff", "lean on = put your weight on it; | against = pressed on its side"], ["cross", "to", false, "to points; leaning | rests against"]], ["lean against = rest your weight on something upright", "lean on = rest on, or depend on"]),
         ],
       },
       {
