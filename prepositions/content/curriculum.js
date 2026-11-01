@@ -731,6 +731,27 @@
           },
         ],
       },
+      {
+        id: "p8",
+        title: "Phase 8: Your sentences, solved",
+        intro: "Lessons built from the sentences you asked about. Each starts from your sentence with every choice side by side, pictures each word, proves the rule, shows the common mistakes, and ends with practice and a summary rule.",
+        units: [
+          {
+            id: "py-yours",
+            title: "Your sentences",
+            lessons: [
+              L("py-price", "FOR or AT a price", { status: "tested", lessonId: "py-price" }),
+              L("py-address", "TO, AT, ON, IN with an address", { status: "tested", lessonId: "py-address" }),
+              L("py-at-on-to-upon", "AT, ON, TO, UPON side by side", { status: "tested", lessonId: "py-at-on-to-upon" }),
+              L("py-with-by", "WITH, BY, THROUGH: a tool, a way, a passage", { status: "tested", lessonId: "py-with-by" }),
+              L("py-dawn", "AT dawn: a point of time", { status: "tested", lessonId: "py-dawn" }),
+              L("py-in-on-time", "IN TIME, ON TIME (never AT TIME)", { status: "tested", lessonId: "py-in-on-time" }),
+              L("py-for-since", "FOR, SINCE, FROM, OVER with time", { status: "tested", lessonId: "py-for-since" }),
+              L("py-into", "INTO, IN, TO, BY: walk into my parlour", { status: "tested", lessonId: "py-into" }),
+            ],
+          },
+        ],
+      },
     ],
     gaps: [
       "The inventory has not yet been checked item by item against dictionaries or grammar references.",

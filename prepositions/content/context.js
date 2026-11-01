@@ -121,6 +121,18 @@ PLAB.context = [
      },
      {
       "lesson": "pending"
+     },
+     {
+      "lesson": "py-dawn"
+     },
+     {
+      "lesson": "py-in-on-time"
+     },
+     {
+      "lesson": "py-for-since"
+     },
+     {
+      "lesson": "py-at-on-to-upon"
      }
     ]
    },
@@ -284,6 +296,15 @@ PLAB.context = [
      },
      {
       "lesson": "throughout"
+     },
+     {
+      "lesson": "py-address"
+     },
+     {
+      "lesson": "py-at-on-to-upon"
+     },
+     {
+      "lesson": "py-into"
      }
     ]
    },
@@ -381,6 +402,12 @@ PLAB.context = [
      },
      {
       "lesson": "past-by-via"
+     },
+     {
+      "lesson": "py-address"
+     },
+     {
+      "lesson": "py-into"
      }
     ]
    },
@@ -618,6 +645,9 @@ PLAB.context = [
      },
      {
       "lesson": "through"
+     },
+     {
+      "lesson": "py-with-by"
      }
     ]
    },
@@ -1125,6 +1155,9 @@ PLAB.context = [
      },
      {
       "lesson": "increase-decrease"
+     },
+     {
+      "lesson": "py-price"
      }
     ]
    }
