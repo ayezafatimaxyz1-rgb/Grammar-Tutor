@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "TO and TOWARDS side by side: TO = the goal is reached · TOWARDS = the direction his attitude towards the poor (feeling aimed that way).",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **to** = reaches it (_go to the door_) · **towards** = that direction, maybe not reaching (_walk towards the door_).", cue: "d1" },
           { text: "TO = the goal is reached · TOWARDS = the direction.", cue: "d-r0" },
           { text: "his attitude towards the poor (feeling aimed that way).", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,109 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: TO and TOWARDS",
+        id: "to-pic",
+        title: "to: its picture",
+        alt: "to: TO: the movement reaches the goal. Ask yourself: Does it reach the end?",
+        say: [
+          { text: "TO: the movement reaches the goal.", cue: "to-l0" },
+          { text: "Before you choose **to**, ask yourself: Does it reach the end?", cue: "to-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-to"),
+          { do: "write", id: "to-t", text: "TO: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("to-p", "reachDot", 340, 86, 2),
+          { do: "write", id: "to-l0", text: "TO: the movement reaches the goal.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "to-ask", text: "Ask yourself: Does it reach the end?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "to-ex1",
+        title: "to: example 1, why this and not the others",
+        alt: "We went with a gap Murree. Answer: to, because we reached Murree. Not towards: towards Murree = in that direction, maybe not there.",
+        say: [
+          { text: "Fill the gap: We went … Murree. Picture it: we reached Murree. So **to**.", cue: "tox01" },
+          { text: "Why not **towards**? towards Murree = in that direction, maybe not there That is correct English, but it says something else.", cue: "tox0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-tox0"),
+          ...PLAB.kit.lineup("tox0", "We went ____ Murree.", [["reachDot", "to", true, "we reached Murree"], ["lookAhead", "towards", "diff", "towards Murree = in that | direction, maybe not there"]], ["Why to? we reached Murree", "Ask: Does it reach the end?"]),
+        ],
+      },
+      {
+        id: "to-ex2",
+        title: "to: example 2, why this and not the others",
+        alt: "Send the file with a gap me. Answer: to, because the file must reach me. Not towards: a file cannot only head my way.",
+        say: [
+          { text: "Fill the gap: Send the file … me. Picture it: the file must reach me. So **to**.", cue: "tox11" },
+          { text: "Why not **towards**? a file cannot only head my way.", cue: "tox1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-tox1"),
+          ...PLAB.kit.lineup("tox1", "Send the file ____ me.", [["reachDot", "to", true, "the file must | reach me"], ["lookAhead", "towards", false, "a file cannot only | head my way"]], ["Why to? the file must reach me", "Ask: Does it reach the end?"]),
+        ],
+      },
+      {
+        id: "towards-pic",
+        title: "towards: its picture",
+        alt: "towards: TOWARDS: in the direction of. Facing or moving that way, maybe not arriving. Ask yourself: Is it only the direction, or an attitude aimed at someone?",
+        say: [
+          { text: "TOWARDS: in the direction of. Facing or moving that way, maybe not arriving.", cue: "towards-l0" },
+          { text: "Before you choose **towards**, ask yourself: Is it only the direction, or an attitude aimed at someone?", cue: "towards-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-towards"),
+          { do: "write", id: "towards-t", text: "TOWARDS: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("towards-p", "lookAhead", 340, 86, 2),
+          { do: "write", id: "towards-l0", text: "TOWARDS: in the direction of.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "towards-l1", text: "Facing or moving that way, maybe not arriving.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "towards-ask", text: "Ask yourself: Is it only the direction, or an attitude aimed at someone?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "towards-ex1",
+        title: "towards: example 1, why this and not the others",
+        alt: "The dog ran with a gap me. Answer: towards, because the direction of running. Not to: to me = it reached me.",
+        say: [
+          { text: "Fill the gap: The dog ran … me. Picture it: the direction of running. So **towards**.", cue: "towardsx02" },
+          { text: "Why not **to**? to me = it reached me That is correct English, but it says something else.", cue: "towardsx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-towardsx0"),
+          ...PLAB.kit.lineup("towardsx0", "The dog ran ____ me.", [["reachDot", "to", "diff", "to me = it reached me"], ["lookAhead", "towards", true, "the direction of running"]], ["Why towards? the direction of running", "Ask: Is it only the direction, or an attitude aimed at someone?"]),
+        ],
+      },
+      {
+        id: "towards-ex2",
+        title: "towards: example 2, why this and not the others",
+        alt: "His attitude with a gap the poor is kind. Answer: towards, because a feeling aimed in a direction. Not to: attitude takes towards.",
+        say: [
+          { text: "Fill the gap: His attitude … the poor is kind. Picture it: a feeling aimed in a direction. So **towards**.", cue: "towardsx12" },
+          { text: "Why not **to**? attitude takes towards.", cue: "towardsx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-towardsx1"),
+          ...PLAB.kit.lineup("towardsx1", "His attitude ____ the poor is kind.", [["reachDot", "to", false, "attitude takes towards"], ["lookAhead", "towards", true, "a feeling aimed | in a direction"]], ["Why towards? a feeling aimed in a direction", "Ask: Is it only the direction, or an attitude aimed at someone?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "TO and TOWARDS: how to choose",
+        alt: "How to choose: Does it reach the end? Then to. Is it only the direction, or an attitude aimed at someone? Then towards.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does it reach the end? Then **to**. Is it only the direction, or an attitude aimed at someone? Then **towards**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["reachDot", "Does it reach the end?", { sub: "yes → TO", size: 26 }], ["lookAhead", "Is it only the direction, or an attitude aimed at someone?", { sub: "yes → TOWARDS", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: TO and TOWARDS",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +155,62 @@
               "text": "towards",
               "correct": true,
               "why": "Correct. An attitude is aimed in a direction: towards."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: TO and TOWARDS",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-to-towards-to",
+          "source": "original",
+          "skill": "TO and TOWARDS: to",
+          "prompt": "He walked ___ school.",
+          "options": [
+            {
+              "text": "to",
+              "correct": true,
+              "why": "Correct. He arrived at school. Ask: Does it reach the end?"
+            },
+            {
+              "text": "towards",
+              "misconception": "p0-sense",
+              "why": "Towards = in that direction only. It is correct English, but it says something else."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: TO and TOWARDS",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-to-towards-towards",
+          "source": "original",
+          "skill": "TO and TOWARDS: towards",
+          "prompt": "We are working ___ a solution.",
+          "options": [
+            {
+              "text": "to",
+              "misconception": "p0-sense",
+              "why": "Work to a solution is not used."
+            },
+            {
+              "text": "towards",
+              "correct": true,
+              "why": "Correct. The direction of the work; not there yet. Ask: Is it only the direction, or an attitude aimed at someone?"
             }
           ]
         },

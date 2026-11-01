@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 26,
     summary: "IN and INTO, ON and ONTO side by side: INTO/ONTO = moving to · IN/ON = already there He jumped into the river. Now he is in the river..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **into** = the journey (_put it into the bag_) · **in** = the position after (_it is in the bag_).", cue: "d1" },
           { text: "INTO/ONTO = moving to · IN/ON = already there.", cue: "d-r0" },
           { text: "He jumped into the river. Now he is in the river..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,166 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: IN and INTO, ON and ONTO",
+        id: "into-pic",
+        title: "into: its picture",
+        alt: "into: INTO: a movement that ends inside. Ask yourself: Is there movement from outside to inside?",
+        say: [
+          { text: "INTO: a movement that ends inside.", cue: "into-l0" },
+          { text: "Before you choose **into**, ask yourself: Is there movement from outside to inside?", cue: "into-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-into"),
+          { do: "write", id: "into-t", text: "INTO: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("into-p", "intoBag", 340, 86, 2),
+          { do: "write", id: "into-l0", text: "INTO: a movement that ends inside.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "into-ask", text: "Ask yourself: Is there movement from outside to inside?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "into-ex1",
+        title: "into: example 1, why this and not the others",
+        alt: "He jumped with a gap the river. Answer: into, because a jump: outside, then inside. Not in: jumped in the river = jumped while inside it. Not onto: a river has no top surface.",
+        say: [
+          { text: "Fill the gap: He jumped … the river. Picture it: a jump: outside, then inside. So **into**.", cue: "intox01" },
+          { text: "Why not **in**? jumped in the river = jumped while inside it That is correct English, but it says something else. Why not **onto**? a river has no top surface.", cue: "intox0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-intox0"),
+          ...PLAB.kit.lineup("intox0", "He jumped ____ the river.", [["intoBag", "into", true, "a jump: outside, | then inside"], ["dotIn", "in", "diff", "jumped in the river = | jumped while inside it"], ["turnOnto", "onto", false, "a river has | no top surface"]], ["Why into? a jump: outside, then inside", "Ask: Is there movement from outside to inside?"]),
+        ],
+      },
+      {
+        id: "into-ex2",
+        title: "into: example 2, why this and not the others",
+        alt: "Put the files with a gap the drawer. Answer: into, because the files move inside. Not in: in is common in speech; into stresses movement. Not on: not on top.",
+        say: [
+          { text: "Fill the gap: Put the files … the drawer. Picture it: the files move inside. So **into**.", cue: "intox11" },
+          { text: "Why not **in**? in is common in speech; into stresses movement That is correct English, but it says something else. Why not **on**? not on top.", cue: "intox1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-intox1"),
+          ...PLAB.kit.lineup("intox1", "Put the files ____ the drawer.", [["intoBag", "into", true, "the files move inside"], ["dotIn", "in", "diff", "in is common in speech; | into stresses movement"], ["cupOnTable", "on", false, "not on top"]], ["Why into? the files move inside", "Ask: Is there movement from outside to inside?"]),
+        ],
+      },
+      {
+        id: "in-pic",
+        title: "in: its picture",
+        alt: "in: IN: already inside, no movement. Ask yourself: Is it just where something is now?",
+        say: [
+          { text: "IN: already inside, no movement.", cue: "in-l0" },
+          { text: "Before you choose **in**, ask yourself: Is it just where something is now?", cue: "in-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-in"),
+          { do: "write", id: "in-t", text: "IN: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("in-p", "dotIn", 340, 86, 2),
+          { do: "write", id: "in-l0", text: "IN: already inside, no movement.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "in-ask", text: "Ask yourself: Is it just where something is now?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "in-ex1",
+        title: "in: example 1, why this and not the others",
+        alt: "The files are with a gap the drawer. Answer: in, because they are inside now; no movement. Not into: into needs movement. Not on: not on top.",
+        say: [
+          { text: "Fill the gap: The files are … the drawer. Picture it: they are inside now; no movement. So **in**.", cue: "inx02" },
+          { text: "Why not **into**? into needs movement. Why not **on**? not on top.", cue: "inx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx0"),
+          ...PLAB.kit.lineup("inx0", "The files are ____ the drawer.", [["intoBag", "into", false, "into needs movement"], ["dotIn", "in", true, "they are inside now; | no movement"], ["cupOnTable", "on", false, "not on top"]], ["Why in? they are inside now; no movement", "Ask: Is it just where something is now?"]),
+        ],
+      },
+      {
+        id: "in-ex2",
+        title: "in: example 2, why this and not the others",
+        alt: "He is swimming with a gap the river. Answer: in, because he is inside the river the whole time. Not into: into needs a move from outside. Not onto: not used.",
+        say: [
+          { text: "Fill the gap: He is swimming … the river. Picture it: he is inside the river the whole time. So **in**.", cue: "inx12" },
+          { text: "Why not **into**? into needs a move from outside. Why not **onto**? not used.", cue: "inx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-inx1"),
+          ...PLAB.kit.lineup("inx1", "He is swimming ____ the river.", [["intoBag", "into", false, "into needs a | move from outside"], ["dotIn", "in", true, "he is inside the river | the whole time"], ["turnOnto", "onto", false, "not used"]], ["Why in? he is inside the river the whole time", "Ask: Is it just where something is now?"]),
+        ],
+      },
+      {
+        id: "onto-pic",
+        title: "onto: its picture",
+        alt: "onto: ONTO: a movement that ends on a surface. Ask yourself: Is there movement up onto a surface?",
+        say: [
+          { text: "ONTO: a movement that ends on a surface.", cue: "onto-l0" },
+          { text: "Before you choose **onto**, ask yourself: Is there movement up onto a surface?", cue: "onto-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onto"),
+          { do: "write", id: "onto-t", text: "ONTO: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("onto-p", "turnOnto", 340, 86, 2),
+          { do: "write", id: "onto-l0", text: "ONTO: a movement that ends on a surface.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "onto-ask", text: "Ask yourself: Is there movement up onto a surface?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "onto-ex1",
+        title: "onto: example 1, why this and not the others",
+        alt: "The cat jumped with a gap the table. Answer: onto, because a jump that ends on the top. Not into: a table has no inside. Not on: jumped on the table = jumped up and down there.",
+        say: [
+          { text: "Fill the gap: The cat jumped … the table. Picture it: a jump that ends on the top. So **onto**.", cue: "ontox02" },
+          { text: "Why not **into**? a table has no inside. Why not **on**? jumped on the table = jumped up and down there That is correct English, but it says something else.", cue: "ontox0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-ontox0"),
+          ...PLAB.kit.lineup("ontox0", "The cat jumped ____ the table.", [["intoBag", "into", false, "a table has no inside"], ["turnOnto", "onto", true, "a jump that ends | on the top"], ["cupOnTable", "on", "diff", "jumped on the table = | jumped up and down there"]], ["Why onto? a jump that ends on the top", "Ask: Is there movement up onto a surface?"]),
+        ],
+      },
+      {
+        id: "on-pic",
+        title: "on: its picture",
+        alt: "on: ON: already resting on a surface. Ask yourself: Is it just resting there now?",
+        say: [
+          { text: "ON: already resting on a surface.", cue: "on-l0" },
+          { text: "Before you choose **on**, ask yourself: Is it just resting there now?", cue: "on-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-on"),
+          { do: "write", id: "on-t", text: "ON: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("on-p", "cupOnTable", 340, 86, 2),
+          { do: "write", id: "on-l0", text: "ON: already resting on a surface.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "on-ask", text: "Ask yourself: Is it just resting there now?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "on-ex1",
+        title: "on: example 1, why this and not the others",
+        alt: "The cat is sleeping with a gap the table. Answer: on, because resting on top, no movement. Not into: not inside. Not onto: onto needs movement.",
+        say: [
+          { text: "Fill the gap: The cat is sleeping … the table. Picture it: resting on top, no movement. So **on**.", cue: "onx03" },
+          { text: "Why not **into**? not inside. Why not **onto**? onto needs movement.", cue: "onx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-onx0"),
+          ...PLAB.kit.lineup("onx0", "The cat is sleeping ____ the table.", [["intoBag", "into", false, "not inside"], ["turnOnto", "onto", false, "onto needs movement"], ["cupOnTable", "on", true, "resting on top, | no movement"]], ["Why on? resting on top, no movement", "Ask: Is it just resting there now?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "IN and INTO, ON and ONTO: how to choose",
+        alt: "How to choose: Is there movement from outside to inside? Then into. Is it just where something is now? Then in. Is there movement up onto a surface? Then onto. Is it just resting there now? Then on.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is there movement from outside to inside? Then **into**. Is it just where something is now? Then **in**. Is there movement up onto a surface? Then **onto**. Is it just resting there now? Then **on**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["intoBag", "Is there movement from outside to inside?", { sub: "yes → INTO", size: 26 }], ["dotIn", "Is it just where something is now?", { sub: "yes → IN", size: 26 }], ["turnOnto", "Is there movement up onto a surface?", { sub: "yes → ONTO", size: 26 }], ["cupOnTable", "Is it just resting there now?", { sub: "yes → ON", size: 26 }]], { y: 130, gap: 100 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: IN and INTO, ON and ONTO",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],

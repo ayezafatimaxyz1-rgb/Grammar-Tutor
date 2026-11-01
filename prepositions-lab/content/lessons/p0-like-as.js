@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "LIKE and AS side by side: LIKE = similar to · AS = in the real role of As your friend, I advise you. Like a friend, he helped me..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **like** = similar, not really (_he talks like a teacher_) · **as** = really in that role (_he works as a teacher_).", cue: "d1" },
           { text: "LIKE = similar to · AS = in the real role of.", cue: "d-r0" },
           { text: "As your friend, I advise you. Like a friend, he helped me..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: LIKE and AS",
+        id: "like-pic",
+        title: "like: its picture",
+        alt: "like: LIKE: similar to. It only looks or acts the same; it is not really that thing. Ask yourself: Is it only similar, not really that?",
+        say: [
+          { text: "LIKE: similar to. It only looks or acts the same; it is not really that thing.", cue: "like-l0" },
+          { text: "Before you choose **like**, ask yourself: Is it only similar, not really that?", cue: "like-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-like"),
+          { do: "write", id: "like-t", text: "LIKE: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("like-p", "likeSim", 340, 86, 2),
+          { do: "write", id: "like-l0", text: "LIKE: similar to. It only looks or acts the same;", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "like-l1", text: "it is not really that thing.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "like-ask", text: "Ask yourself: Is it only similar, not really that?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "like-ex1",
+        title: "like: example 1, why this and not the others",
+        alt: "He fought with a gap a lion. Answer: like, because he is not a lion; he fought similarly. Not as: as a lion = he really was a lion.",
+        say: [
+          { text: "Fill the gap: He fought … a lion. Picture it: he is not a lion; he fought similarly. So **like**.", cue: "likex01" },
+          { text: "Why not **as**? as a lion = he really was a lion.", cue: "likex0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-likex0"),
+          ...PLAB.kit.lineup("likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", false, "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"]),
+        ],
+      },
+      {
+        id: "like-ex2",
+        title: "like: example 2, why this and not the others",
+        alt: "She looks with a gap her mother. Answer: like, because similar faces. Not as: she is not her mother.",
+        say: [
+          { text: "Fill the gap: She looks … her mother. Picture it: similar faces. So **like**.", cue: "likex11" },
+          { text: "Why not **as**? she is not her mother.", cue: "likex1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-likex1"),
+          ...PLAB.kit.lineup("likex1", "She looks ____ her mother.", [["likeSim", "like", true, "similar faces"], ["asRole", "as", false, "she is not her mother"]], ["Why like? similar faces", "Ask: Is it only similar, not really that?"]),
+        ],
+      },
+      {
+        id: "as-pic",
+        title: "as: its picture",
+        alt: "as: AS: in the real role or job of. It really is that. Ask yourself: Is it the real role or function?",
+        say: [
+          { text: "AS: in the real role or job of. It really is that.", cue: "as-l0" },
+          { text: "Before you choose **as**, ask yourself: Is it the real role or function?", cue: "as-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-as"),
+          { do: "write", id: "as-t", text: "AS: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("as-p", "asRole", 340, 86, 2),
+          { do: "write", id: "as-l0", text: "AS: in the real role or job of.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "as-l1", text: "It really is that.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "as-ask", text: "Ask yourself: Is it the real role or function?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "as-ex1",
+        title: "as: example 1, why this and not the others",
+        alt: "She works with a gap a teacher. Answer: as, because teaching is her real job. Not like: like a teacher = only similar, not her job.",
+        say: [
+          { text: "Fill the gap: She works … a teacher. Picture it: teaching is her real job. So **as**.", cue: "asx02" },
+          { text: "Why not **like**? like a teacher = only similar, not her job That is correct English, but it says something else.", cue: "asx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-asx0"),
+          ...PLAB.kit.lineup("asx0", "She works ____ a teacher.", [["likeSim", "like", "diff", "like a teacher = only | similar, not her job"], ["asRole", "as", true, "teaching is her | real job"]], ["Why as? teaching is her real job", "Ask: Is it the real role or function?"]),
+        ],
+      },
+      {
+        id: "as-ex2",
+        title: "as: example 2, why this and not the others",
+        alt: "He spoke with a gap the chief guest. Answer: as, because he really was the chief guest. Not like: he did not only seem to be.",
+        say: [
+          { text: "Fill the gap: He spoke … the chief guest. Picture it: he really was the chief guest. So **as**.", cue: "asx12" },
+          { text: "Why not **like**? he did not only seem to be.", cue: "asx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-asx1"),
+          ...PLAB.kit.lineup("asx1", "He spoke ____ the chief guest.", [["likeSim", "like", false, "he did not only | seem to be"], ["asRole", "as", true, "he really was | the chief guest"]], ["Why as? he really was the chief guest", "Ask: Is it the real role or function?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "LIKE and AS: how to choose",
+        alt: "How to choose: Is it only similar, not really that? Then like. Is it the real role or function? Then as.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Is it only similar, not really that? Then **like**. Is it the real role or function? Then **as**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["likeSim", "Is it only similar, not really that?", { sub: "yes → LIKE", size: 26 }], ["asRole", "Is it the real role or function?", { sub: "yes → AS", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: LIKE and AS",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "like",
               "misconception": "p0-sense",
               "why": "Like would mean she only seemed like a nurse."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: LIKE and AS",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-like-as-like",
+          "source": "original",
+          "skill": "LIKE and AS: like",
+          "prompt": "It tastes ___ honey.",
+          "options": [
+            {
+              "text": "as",
+              "misconception": "p0-sense",
+              "why": "It is not honey."
+            },
+            {
+              "text": "like",
+              "correct": true,
+              "why": "Correct. Similar taste, not honey. Ask: Is it only similar, not really that?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: LIKE and AS",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-like-as-as",
+          "source": "original",
+          "skill": "LIKE and AS: as",
+          "prompt": "Use the box ___ a table.",
+          "options": [
+            {
+              "text": "as",
+              "correct": true,
+              "why": "Correct. The box really does the job of a table. Ask: Is it the real role or function?"
+            },
+            {
+              "text": "like",
+              "misconception": "p0-sense",
+              "why": "Like a table = it only looks similar. It is correct English, but it says something else."
             }
           ]
         },

@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 24,
     summary: "THROUGH, ACROSS, ALONG side by side: THROUGH = inside · ACROSS = over the width · ALONG = the length through the forest, across the field, along the path.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **through** = inside, end to end (_through the tunnel_) · **across** = side to side, on the surface (_across the road_) · **along** = following its length (_along the river_).", cue: "d1" },
           { text: "THROUGH = inside · ACROSS = over the width · ALONG = the length.", cue: "d-r0" },
           { text: "through the forest, across the field, along the path.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,152 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: THROUGH, ACROSS, ALONG",
+        id: "through-pic",
+        title: "through: its picture",
+        alt: "through: THROUGH: inside something, in at one end and out at the other. Ask yourself: Do you go inside it from end to end?",
+        say: [
+          { text: "THROUGH: inside something, in at one end and out at the other.", cue: "through-l0" },
+          { text: "Before you choose **through**, ask yourself: Do you go inside it from end to end?", cue: "through-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-through"),
+          { do: "write", id: "through-t", text: "THROUGH: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("through-p", "passThrough", 340, 86, 2),
+          { do: "write", id: "through-l0", text: "THROUGH: inside something,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "through-l1", text: "in at one end and out at the other.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "through-ask", text: "Ask yourself: Do you go inside it from end to end?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "through-ex1",
+        title: "through: example 1, why this and not the others",
+        alt: "The train passed with a gap the tunnel. Answer: through, because inside the tunnel, end to end. Not across: across stays on top of a surface. Not along: along follows a line beside it.",
+        say: [
+          { text: "Fill the gap: The train passed … the tunnel. Picture it: inside the tunnel, end to end. So **through**.", cue: "throughx01" },
+          { text: "Why not **across**? across stays on top of a surface. Why not **along**? along follows a line beside it.", cue: "throughx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-throughx0"),
+          ...PLAB.kit.lineup("throughx0", "The train passed ____ the tunnel.", [["passThrough", "through", true, "inside the tunnel, | end to end"], ["acrossRoad", "across", false, "across stays on | top of a surface"], ["alongRiver", "along", false, "along follows | a line beside it"]], ["Why through? inside the tunnel, end to end", "Ask: Do you go inside it from end to end?"]),
+        ],
+      },
+      {
+        id: "through-ex2",
+        title: "through: example 2, why this and not the others",
+        alt: "We walked with a gap the forest. Answer: through, because the trees were all around us. Not across: across the forest = over it, side to side. Not along: a forest is not a line.",
+        say: [
+          { text: "Fill the gap: We walked … the forest. Picture it: the trees were all around us. So **through**.", cue: "throughx11" },
+          { text: "Why not **across**? across the forest = over it, side to side That is correct English, but it says something else. Why not **along**? a forest is not a line.", cue: "throughx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-throughx1"),
+          ...PLAB.kit.lineup("throughx1", "We walked ____ the forest.", [["passThrough", "through", true, "the trees were | all around us"], ["acrossRoad", "across", "diff", "across the forest = | over it, side to side"], ["alongRiver", "along", false, "a forest is | not a line"]], ["Why through? the trees were all around us", "Ask: Do you go inside it from end to end?"]),
+        ],
+      },
+      {
+        id: "across-pic",
+        title: "across: its picture",
+        alt: "across: ACROSS: from one side to the other side, over a flat surface. Ask yourself: Do you go from one side to the opposite side?",
+        say: [
+          { text: "ACROSS: from one side to the other side, over a flat surface.", cue: "across-l0" },
+          { text: "Before you choose **across**, ask yourself: Do you go from one side to the opposite side?", cue: "across-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-across"),
+          { do: "write", id: "across-t", text: "ACROSS: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("across-p", "acrossRoad", 340, 86, 2),
+          { do: "write", id: "across-l0", text: "ACROSS: from one side to the other side,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "across-l1", text: "over a flat surface.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "across-ask", text: "Ask yourself: Do you go from one side to the opposite side?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "across-ex1",
+        title: "across: example 1, why this and not the others",
+        alt: "She walked with a gap the road. Answer: across, because one side, then the opposite side. Not through: a road has no inside. Not along: along the road = following its length.",
+        say: [
+          { text: "Fill the gap: She walked … the road. Picture it: one side, then the opposite side. So **across**.", cue: "acrossx02" },
+          { text: "Why not **through**? a road has no inside. Why not **along**? along the road = following its length That is correct English, but it says something else.", cue: "acrossx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-acrossx0"),
+          ...PLAB.kit.lineup("acrossx0", "She walked ____ the road.", [["passThrough", "through", false, "a road has no inside"], ["acrossRoad", "across", true, "one side, then | the opposite side"], ["alongRiver", "along", "diff", "along the road = | following its length"]], ["Why across? one side, then the opposite side", "Ask: Do you go from one side to the opposite side?"]),
+        ],
+      },
+      {
+        id: "across-ex2",
+        title: "across: example 2, why this and not the others",
+        alt: "They swam with a gap the river. Answer: across, because bank to bank. Not through: not end to end inside. Not along: along = up or down the river's length.",
+        say: [
+          { text: "Fill the gap: They swam … the river. Picture it: bank to bank. So **across**.", cue: "acrossx12" },
+          { text: "Why not **through**? not end to end inside. Why not **along**? along = up or down the river's length That is correct English, but it says something else.", cue: "acrossx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-acrossx1"),
+          ...PLAB.kit.lineup("acrossx1", "They swam ____ the river.", [["passThrough", "through", false, "not end to end inside"], ["acrossRoad", "across", true, "bank to bank"], ["alongRiver", "along", "diff", "along = up or down | the river's length"]], ["Why across? bank to bank", "Ask: Do you go from one side to the opposite side?"]),
+        ],
+      },
+      {
+        id: "along-pic",
+        title: "along: its picture",
+        alt: "along: ALONG: following the length of a line. Ask yourself: Do you follow its length?",
+        say: [
+          { text: "ALONG: following the length of a line.", cue: "along-l0" },
+          { text: "Before you choose **along**, ask yourself: Do you follow its length?", cue: "along-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-along"),
+          { do: "write", id: "along-t", text: "ALONG: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("along-p", "alongRiver", 340, 86, 2),
+          { do: "write", id: "along-l0", text: "ALONG: following the length of a line.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "along-ask", text: "Ask yourself: Do you follow its length?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "along-ex1",
+        title: "along: example 1, why this and not the others",
+        alt: "We walked with a gap the canal. Answer: along, because following the canal's length. Not through: not inside the canal. Not across: across = to the other bank.",
+        say: [
+          { text: "Fill the gap: We walked … the canal. Picture it: following the canal's length. So **along**.", cue: "alongx03" },
+          { text: "Why not **through**? not inside the canal. Why not **across**? across = to the other bank That is correct English, but it says something else.", cue: "alongx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-alongx0"),
+          ...PLAB.kit.lineup("alongx0", "We walked ____ the canal.", [["passThrough", "through", false, "not inside the canal"], ["acrossRoad", "across", "diff", "across = to the | other bank"], ["alongRiver", "along", true, "following the canal's | length"]], ["Why along? following the canal's length", "Ask: Do you follow its length?"]),
+        ],
+      },
+      {
+        id: "along-ex2",
+        title: "along: example 2, why this and not the others",
+        alt: "Trees grow with a gap the road. Answer: along, because a line of trees following the road. Not through: no inside. Not across: trees do not cross it.",
+        say: [
+          { text: "Fill the gap: Trees grow … the road. Picture it: a line of trees following the road. So **along**.", cue: "alongx13" },
+          { text: "Why not **through**? no inside. Why not **across**? trees do not cross it.", cue: "alongx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-alongx1"),
+          ...PLAB.kit.lineup("alongx1", "Trees grow ____ the road.", [["passThrough", "through", false, "no inside"], ["acrossRoad", "across", false, "trees do not cross it"], ["alongRiver", "along", true, "a line of trees | following the road"]], ["Why along? a line of trees following the road", "Ask: Do you follow its length?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "THROUGH, ACROSS, ALONG: how to choose",
+        alt: "How to choose: Do you go inside it from end to end? Then through. Do you go from one side to the opposite side? Then across. Do you follow its length? Then along.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Do you go inside it from end to end? Then **through**. Do you go from one side to the opposite side? Then **across**. Do you follow its length? Then **along**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["passThrough", "Do you go inside it from end to end?", { sub: "yes → THROUGH", size: 26 }], ["acrossRoad", "Do you go from one side to the opposite side?", { sub: "yes → ACROSS", size: 26 }], ["alongRiver", "Do you follow its length?", { sub: "yes → ALONG", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: THROUGH, ACROSS, ALONG",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],

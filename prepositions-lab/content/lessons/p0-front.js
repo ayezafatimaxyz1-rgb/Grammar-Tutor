@@ -41,7 +41,7 @@
         actions: [
           PLAB.kit.clear("clear-s1"),
           { do: "write", id: "s1h", text: "IN FRONT OF · before the face", x: 480, y: 52, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.pic("s1p", [["person", 60, 0], ["arrowR", -10, 20, 0.6], ["box", 140, 25, 0.55]], 36, 92, 1.8, { gap: 300 }),
+          ...PLAB.kit.pic("s1p", [["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], 36, 92, 1.8, { gap: 300 }),
           { do: "write", id: "s1c", text: "where the front faces", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "s1e0", text: "IN FRONT OF: on the side the thing faces.", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
           { do: "write", id: "s1x0", text: "The car is parked in front of the house.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },
@@ -64,7 +64,7 @@
         actions: [
           PLAB.kit.clear("clear-s2"),
           { do: "write", id: "s2h", text: "BEHIND · at the back", x: 480, y: 52, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.pic("s2p", [["box", 0, 25, 0.55], ["person", 120, 0]], 36, 92, 1.8, { gap: 300 }),
+          ...PLAB.kit.pic("s2p", [["box", 4, 24, 0.4], ["person", 25, 0]], 36, 92, 1.8, { gap: 300 }),
           { do: "write", id: "s2c", text: "at the back side", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "s2e0", text: "BEHIND: at the back, often hidden.", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
           { do: "write", id: "s2x0", text: "The garden is behind the house.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },

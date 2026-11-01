@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 26,
     summary: "OVER, ABOVE, UNDER, BELOW side by side: OVER covers or crosses · ABOVE is only higher · UNDER is right beneath · BELOW is only lower above/below for levels: above average, below zero.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **over** = covering or crossing (_a blanket over the bed_) · **above** = only higher (_a bird above the tree_) · **under** = right beneath (_a cat under the table_).", cue: "d1" },
           { text: "OVER covers or crosses · ABOVE is only higher · UNDER is right beneath · BELOW is only lower.", cue: "d-r0" },
           { text: "above/below for levels: above average, below zero.", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,168 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: OVER, ABOVE, UNDER, BELOW",
+        id: "over-pic",
+        title: "over: its picture",
+        alt: "over: OVER: higher and covering, or crossing from side to side. Ask yourself: Does it cover, or cross over?",
+        say: [
+          { text: "OVER: higher and covering, or crossing from side to side.", cue: "over-l0" },
+          { text: "Before you choose **over**, ask yourself: Does it cover, or cross over?", cue: "over-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-over"),
+          { do: "write", id: "over-t", text: "OVER: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("over-p", "tankOver", 340, 86, 2),
+          { do: "write", id: "over-l0", text: "OVER: higher and covering,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "over-l1", text: "or crossing from side to side.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "over-ask", text: "Ask yourself: Does it cover, or cross over?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "over-ex1",
+        title: "over: example 1, why this and not the others",
+        alt: "She spread a sheet with a gap the bed. Answer: over, because the sheet covers the bed. Not above: above does not cover. Not below: opposite side.",
+        say: [
+          { text: "Fill the gap: She spread a sheet … the bed. Picture it: the sheet covers the bed. So **over**.", cue: "overx01" },
+          { text: "Why not **above**? above does not cover. Why not **below**? opposite side.", cue: "overx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-overx0"),
+          ...PLAB.kit.lineup("overx0", "She spread a sheet ____ the bed.", [["tankOver", "over", true, "the sheet covers | the bed"], ["floatAbove", "above", false, "above does not cover"], ["belowLine", "below", false, "opposite side"]], ["Why over? the sheet covers the bed", "Ask: Does it cover, or cross over?"]),
+        ],
+      },
+      {
+        id: "over-ex2",
+        title: "over: example 2, why this and not the others",
+        alt: "A bridge was built with a gap the river. Answer: over, because it crosses from one side to the other. Not above: above = only higher, not crossing. Not under: opposite.",
+        say: [
+          { text: "Fill the gap: A bridge was built … the river. Picture it: it crosses from one side to the other. So **over**.", cue: "overx11" },
+          { text: "Why not **above**? above = only higher, not crossing That is correct English, but it says something else. Why not **under**? opposite.", cue: "overx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-overx1"),
+          ...PLAB.kit.lineup("overx1", "A bridge was built ____ the river.", [["tankOver", "over", true, "it crosses from | one side to the other"], ["floatAbove", "above", "diff", "above = only higher, | not crossing"], ["underTable", "under", false, "opposite"]], ["Why over? it crosses from one side to the other", "Ask: Does it cover, or cross over?"]),
+        ],
+      },
+      {
+        id: "above-pic",
+        title: "above: its picture",
+        alt: "above: ABOVE: only higher. No touching, no covering. Also higher on a scale. Ask yourself: Is it just at a higher level?",
+        say: [
+          { text: "ABOVE: only higher. No touching, no covering. Also higher on a scale.", cue: "above-l0" },
+          { text: "Before you choose **above**, ask yourself: Is it just at a higher level?", cue: "above-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-above"),
+          { do: "write", id: "above-t", text: "ABOVE: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("above-p", "floatAbove", 340, 86, 2),
+          { do: "write", id: "above-l0", text: "ABOVE: only higher. No touching,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "above-l1", text: "no covering. Also higher on a scale.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "above-ask", text: "Ask yourself: Is it just at a higher level?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "above-ex1",
+        title: "above: example 1, why this and not the others",
+        alt: "The temperature is with a gap 40 degrees. Answer: above, because a level on a scale. Not over: over 40 is common for numbers, not scales. Not below: opposite meaning.",
+        say: [
+          { text: "Fill the gap: The temperature is … 40 degrees. Picture it: a level on a scale. So **above**.", cue: "abovex02" },
+          { text: "Why not **over**? over 40 is common for numbers, not scales That is correct English, but it says something else. Why not **below**? opposite meaning.", cue: "abovex0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-abovex0"),
+          ...PLAB.kit.lineup("abovex0", "The temperature is ____ 40 degrees.", [["tankOver", "over", "diff", "over 40 is common for | numbers, not scales"], ["floatAbove", "above", true, "a level on a scale"], ["belowLine", "below", false, "opposite meaning"]], ["Why above? a level on a scale", "Ask: Is it just at a higher level?"]),
+        ],
+      },
+      {
+        id: "above-ex2",
+        title: "above: example 2, why this and not the others",
+        alt: "His flat is with a gap the shop. Answer: above, because only higher, one floor up. Not over: over the shop is also heard. Not under: opposite meaning.",
+        say: [
+          { text: "Fill the gap: His flat is … the shop. Picture it: only higher, one floor up. So **above**.", cue: "abovex12" },
+          { text: "Why not **over**? over the shop is also heard That is correct English, but it says something else. Why not **under**? opposite meaning.", cue: "abovex1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-abovex1"),
+          ...PLAB.kit.lineup("abovex1", "His flat is ____ the shop.", [["tankOver", "over", "diff", "over the shop is | also heard"], ["floatAbove", "above", true, "only higher, | one floor up"], ["underTable", "under", false, "opposite meaning"]], ["Why above? only higher, one floor up", "Ask: Is it just at a higher level?"]),
+        ],
+      },
+      {
+        id: "under-pic",
+        title: "under: its picture",
+        alt: "under: UNDER: directly beneath, often covered. Ask yourself: Is something right over it, covering it?",
+        say: [
+          { text: "UNDER: directly beneath, often covered.", cue: "under-l0" },
+          { text: "Before you choose **under**, ask yourself: Is something right over it, covering it?", cue: "under-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-under"),
+          { do: "write", id: "under-t", text: "UNDER: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("under-p", "underTable", 340, 86, 2),
+          { do: "write", id: "under-l0", text: "UNDER: directly beneath, often covered.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "under-ask", text: "Ask yourself: Is something right over it, covering it?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "under-ex1",
+        title: "under: example 1, why this and not the others",
+        alt: "The cat is hiding with a gap the bed. Answer: under, because the bed is right over the cat. Not over: opposite. Not below: below is a level, not hidden beneath.",
+        say: [
+          { text: "Fill the gap: The cat is hiding … the bed. Picture it: the bed is right over the cat. So **under**.", cue: "underx02" },
+          { text: "Why not **over**? opposite. Why not **below**? below is a level, not hidden beneath.", cue: "underx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-underx0"),
+          ...PLAB.kit.lineup("underx0", "The cat is hiding ____ the bed.", [["tankOver", "over", false, "opposite"], ["underTable", "under", true, "the bed is right | over the cat"], ["belowLine", "below", false, "below is a level, | not hidden beneath"]], ["Why under? the bed is right over the cat", "Ask: Is something right over it, covering it?"]),
+        ],
+      },
+      {
+        id: "below-pic",
+        title: "below: its picture",
+        alt: "below: BELOW: at a lower level, or lower on a scale. Ask yourself: Is it just lower, or lower on a scale?",
+        say: [
+          { text: "BELOW: at a lower level, or lower on a scale.", cue: "below-l0" },
+          { text: "Before you choose **below**, ask yourself: Is it just lower, or lower on a scale?", cue: "below-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-below"),
+          { do: "write", id: "below-t", text: "BELOW: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("below-p", "belowLine", 340, 86, 2),
+          { do: "write", id: "below-l0", text: "BELOW: at a lower level, or lower on a scale.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "below-ask", text: "Ask yourself: Is it just lower, or lower on a scale?", x: 480, y: 404, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "below-ex1",
+        title: "below: example 1, why this and not the others",
+        alt: "The marks were with a gap average. Answer: below, because a lower point on a scale. Not above: opposite. Not under: under is for things directly beneath.",
+        say: [
+          { text: "Fill the gap: The marks were … average. Picture it: a lower point on a scale. So **below**.", cue: "belowx03" },
+          { text: "Why not **above**? opposite. Why not **under**? under is for things directly beneath.", cue: "belowx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-belowx0"),
+          ...PLAB.kit.lineup("belowx0", "The marks were ____ average.", [["floatAbove", "above", false, "opposite"], ["underTable", "under", false, "under is for things | directly beneath"], ["belowLine", "below", true, "a lower point | on a scale"]], ["Why below? a lower point on a scale", "Ask: Is it just lower, or lower on a scale?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "OVER, ABOVE, UNDER, BELOW: how to choose",
+        alt: "How to choose: Does it cover, or cross over? Then over. Is it just at a higher level? Then above. Is something right over it, covering it? Then under. Is it just lower, or lower on a scale? Then below.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does it cover, or cross over? Then **over**. Is it just at a higher level? Then **above**. Is something right over it, covering it? Then **under**. Is it just lower, or lower on a scale? Then **below**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["tankOver", "Does it cover, or cross over?", { sub: "yes → OVER", size: 26 }], ["floatAbove", "Is it just at a higher level?", { sub: "yes → ABOVE", size: 26 }], ["underTable", "Is something right over it, covering it?", { sub: "yes → UNDER", size: 26 }], ["belowLine", "Is it just lower, or lower on a scale?", { sub: "yes → BELOW", size: 26 }]], { y: 130, gap: 100 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: OVER, ABOVE, UNDER, BELOW",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],

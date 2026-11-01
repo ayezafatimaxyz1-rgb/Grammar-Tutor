@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 22,
     summary: "FOR and TO side by side: TO = the thing travels and reaches · FOR = someone gets the good send a letter to him · write a letter for him (on his behalf).",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **to** = a receiver: it reaches her (_give it to her_) · **for** = a benefit: it is good for her (_buy it for her_).", cue: "d1" },
           { text: "TO = the thing travels and reaches · FOR = someone gets the good.", cue: "d-r0" },
           { text: "send a letter to him · write a letter for him (on his behalf).", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,110 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: FOR and TO",
+        id: "to-pic",
+        title: "to: its picture",
+        alt: "to: TO: something travels and reaches a person or place. Ask yourself: Does something move and reach the person?",
+        say: [
+          { text: "TO: something travels and reaches a person or place.", cue: "to-l0" },
+          { text: "Before you choose **to**, ask yourself: Does something move and reach the person?", cue: "to-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-to"),
+          { do: "write", id: "to-t", text: "TO: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("to-p", "giveTo", 340, 86, 2),
+          { do: "write", id: "to-l0", text: "TO: something travels and reaches", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "to-l1", text: "a person or place.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "to-ask", text: "Ask yourself: Does something move and reach the person?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "to-ex1",
+        title: "to: example 1, why this and not the others",
+        alt: "Give the book with a gap Ali. Answer: to, because the book travels and reaches Ali. Not for: for Ali = on his behalf, he gets the good.",
+        say: [
+          { text: "Fill the gap: Give the book … Ali. Picture it: the book travels and reaches Ali. So **to**.", cue: "tox01" },
+          { text: "Why not **for**? for Ali = on his behalf, he gets the good That is correct English, but it says something else.", cue: "tox0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-tox0"),
+          ...PLAB.kit.lineup("tox0", "Give the book ____ Ali.", [["giveTo", "to", true, "the book travels | and reaches Ali"], ["careBox", "for", "diff", "for Ali = on his | behalf, he gets the good"]], ["Why to? the book travels and reaches Ali", "Ask: Does something move and reach the person?"]),
+        ],
+      },
+      {
+        id: "to-ex2",
+        title: "to: example 2, why this and not the others",
+        alt: "She wrote a letter with a gap her mother. Answer: to, because the letter goes to her mother. Not for: for her mother = on her behalf.",
+        say: [
+          { text: "Fill the gap: She wrote a letter … her mother. Picture it: the letter goes to her mother. So **to**.", cue: "tox11" },
+          { text: "Why not **for**? for her mother = on her behalf That is correct English, but it says something else.", cue: "tox1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-tox1"),
+          ...PLAB.kit.lineup("tox1", "She wrote a letter ____ her mother.", [["giveTo", "to", true, "the letter goes to | her mother"], ["careBox", "for", "diff", "for her mother = | on her behalf"]], ["Why to? the letter goes to her mother", "Ask: Does something move and reach the person?"]),
+        ],
+      },
+      {
+        id: "for-pic",
+        title: "for: its picture",
+        alt: "for: FOR: someone gets the good, or it is aimed at a purpose. Ask yourself: Who benefits, or what is it for?",
+        say: [
+          { text: "FOR: someone gets the good, or it is aimed at a purpose.", cue: "for-l0" },
+          { text: "Before you choose **for**, ask yourself: Who benefits, or what is it for?", cue: "for-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-for"),
+          { do: "write", id: "for-t", text: "FOR: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("for-p", "careBox", 340, 86, 2),
+          { do: "write", id: "for-l0", text: "FOR: someone gets the good,", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "for-l1", text: "or it is aimed at a purpose.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "for-ask", text: "Ask yourself: Who benefits, or what is it for?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "for-ex1",
+        title: "for: example 1, why this and not the others",
+        alt: "I cooked dinner with a gap my parents. Answer: for, because they get the good; nothing travels to them. Not to: cook to is not English.",
+        say: [
+          { text: "Fill the gap: I cooked dinner … my parents. Picture it: they get the good; nothing travels to them. So **for**.", cue: "forx02" },
+          { text: "Why not **to**? cook to is not English.", cue: "forx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-forx0"),
+          ...PLAB.kit.lineup("forx0", "I cooked dinner ____ my parents.", [["giveTo", "to", false, "cook to is not English"], ["careBox", "for", true, "they get the good; | nothing travels to them"]], ["Why for? they get the good; nothing travels to them", "Ask: Who benefits, or what is it for?"]),
+        ],
+      },
+      {
+        id: "for-ex2",
+        title: "for: example 2, why this and not the others",
+        alt: "This medicine is with a gap fever. Answer: for, because the purpose: what it is used against. Not to: to does not show purpose with nouns.",
+        say: [
+          { text: "Fill the gap: This medicine is … fever. Picture it: the purpose: what it is used against. So **for**.", cue: "forx12" },
+          { text: "Why not **to**? to does not show purpose with nouns.", cue: "forx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-forx1"),
+          ...PLAB.kit.lineup("forx1", "This medicine is ____ fever.", [["giveTo", "to", false, "to does not show | purpose with nouns"], ["careBox", "for", true, "the purpose: what | it is used against"]], ["Why for? the purpose: what it is used against", "Ask: Who benefits, or what is it for?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "FOR and TO: how to choose",
+        alt: "How to choose: Does something move and reach the person? Then to. Who benefits, or what is it for? Then for.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does something move and reach the person? Then **to**. Who benefits, or what is it for? Then **for**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["giveTo", "Does something move and reach the person?", { sub: "yes → TO", size: 26 }], ["careBox", "Who benefits, or what is it for?", { sub: "yes → FOR", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: FOR and TO",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],
@@ -56,6 +156,62 @@
               "text": "with",
               "misconception": "p0-sense",
               "why": "To would need movement: I took the tea to her."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-2",
+        title: "Practice 2: FOR and TO",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-for-to-to",
+          "source": "original",
+          "skill": "FOR and TO: to",
+          "prompt": "Explain the rule ___ the class.",
+          "options": [
+            {
+              "text": "for",
+              "misconception": "p0-sense",
+              "why": "Explain for is not used here."
+            },
+            {
+              "text": "to",
+              "correct": true,
+              "why": "Correct. The words travel to the students. Ask: Does something move and reach the person?"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-3",
+        title: "Practice 3: FOR and TO",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-for-to-for",
+          "source": "original",
+          "skill": "FOR and TO: for",
+          "prompt": "She works ___ a bank.",
+          "options": [
+            {
+              "text": "for",
+              "correct": true,
+              "why": "Correct. The bank gets the good of her work. Ask: Who benefits, or what is it for?"
+            },
+            {
+              "text": "to",
+              "misconception": "p0-sense",
+              "why": "Works to is not used."
             }
           ]
         },

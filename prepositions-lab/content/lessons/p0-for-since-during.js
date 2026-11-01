@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-pairs",
     level: "Basic",
-    minutes: 4,
+    minutes: 24,
     summary: "FOR, SINCE, DURING side by side: FOR + length · SINCE + starting point · DURING + event I have been here for two years, since 2020; I met him during the war..",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -18,6 +18,7 @@
           { text: "Put them side by side: **for** = a length (_for two years_) · **since** = a starting point (_since 2020_) · **during** = inside an event (_during the war_).", cue: "d1" },
           { text: "FOR + length · SINCE + starting point · DURING + event.", cue: "d-r0" },
           { text: "I have been here for two years, since 2020; I met him during the war..", cue: "d-r1" },
+          { text: "Now we prove it. For each one: its picture, the question to ask, and sentences where it is right and the others are wrong." },
         ],
         actions: [
           PLAB.kit.clear("clear-pair"),
@@ -28,11 +29,153 @@
         ],
       },
       {
-        id: "practice",
-        title: "Practice: FOR, SINCE, DURING",
+        id: "for-pic",
+        title: "for: its picture",
+        alt: "for: FOR: how long. A length of time: two hours, three years, a week. Ask yourself: Does it measure how long?",
+        say: [
+          { text: "FOR: how long. A length of time: two hours, three years, a week.", cue: "for-l0" },
+          { text: "Before you choose **for**, ask yourself: Does it measure how long?", cue: "for-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-for"),
+          { do: "write", id: "for-t", text: "FOR: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("for-p", "span", 340, 86, 2),
+          { do: "write", id: "for-l0", text: "FOR: how long. A length of time:", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "for-l1", text: "two hours, three years, a week.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "for-ask", text: "Ask yourself: Does it measure how long?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "for-ex1",
+        title: "for: example 1, why this and not the others",
+        alt: "I have lived here with a gap ten years. Answer: for, because ten years is a length. Not since: since needs a start: since 2015. Not during: during needs an event.",
+        say: [
+          { text: "Fill the gap: I have lived here … ten years. Picture it: ten years is a length. So **for**.", cue: "forx01" },
+          { text: "Why not **since**? since needs a start: since 2015. Why not **during**? during needs an event.", cue: "forx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-forx0"),
+          ...PLAB.kit.lineup("forx0", "I have lived here ____ ten years.", [["span", "for", true, "ten years is a length"], ["sincePoint", "since", false, "since needs a start: | since 2015"], ["decade", "during", false, "during needs an event"]], ["Why for? ten years is a length", "Ask: Does it measure how long?"]),
+        ],
+      },
+      {
+        id: "for-ex2",
+        title: "for: example 2, why this and not the others",
+        alt: "He waited with a gap two hours. Answer: for, because two hours measures the waiting. Not since: two hours is not a starting point. Not during: not an event.",
+        say: [
+          { text: "Fill the gap: He waited … two hours. Picture it: two hours measures the waiting. So **for**.", cue: "forx11" },
+          { text: "Why not **since**? two hours is not a starting point. Why not **during**? not an event.", cue: "forx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-forx1"),
+          ...PLAB.kit.lineup("forx1", "He waited ____ two hours.", [["span", "for", true, "two hours measures | the waiting"], ["sincePoint", "since", false, "two hours is not | a starting point"], ["decade", "during", false, "not an event"]], ["Why for? two hours measures the waiting", "Ask: Does it measure how long?"]),
+        ],
+      },
+      {
+        id: "since-pic",
+        title: "since: its picture",
+        alt: "since: SINCE: from which point till now. A starting point: 2015, Monday, childhood. Ask yourself: Does it name the point when it started?",
+        say: [
+          { text: "SINCE: from which point till now. A starting point: 2015, Monday, childhood.", cue: "since-l0" },
+          { text: "Before you choose **since**, ask yourself: Does it name the point when it started?", cue: "since-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-since"),
+          { do: "write", id: "since-t", text: "SINCE: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("since-p", "sincePoint", 340, 86, 2),
+          { do: "write", id: "since-l0", text: "SINCE: from which point till now.", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "since-l1", text: "A starting point: 2015, Monday, childhood.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "since-ask", text: "Ask yourself: Does it name the point when it started?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "since-ex1",
+        title: "since: example 1, why this and not the others",
+        alt: "I have lived here with a gap 2015. Answer: since, because 2015 is where the line starts. Not for: for needs a length. Not during: 2015 is not an event here.",
+        say: [
+          { text: "Fill the gap: I have lived here … 2015. Picture it: 2015 is where the line starts. So **since**.", cue: "sincex02" },
+          { text: "Why not **for**? for needs a length. Why not **during**? 2015 is not an event here.", cue: "sincex0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sincex0"),
+          ...PLAB.kit.lineup("sincex0", "I have lived here ____ 2015.", [["span", "for", false, "for needs a length"], ["sincePoint", "since", true, "2015 is where | the line starts"], ["decade", "during", false, "2015 is not an event | here"]], ["Why since? 2015 is where the line starts", "Ask: Does it name the point when it started?"]),
+        ],
+      },
+      {
+        id: "since-ex2",
+        title: "since: example 2, why this and not the others",
+        alt: "It has rained with a gap morning. Answer: since, because morning is the start; it is still raining. Not for: morning is not a length. Not during: during the morning = at some time in it.",
+        say: [
+          { text: "Fill the gap: It has rained … morning. Picture it: morning is the start; it is still raining. So **since**.", cue: "sincex12" },
+          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it That is correct English, but it says something else.", cue: "sincex1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sincex1"),
+          ...PLAB.kit.lineup("sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"]),
+        ],
+      },
+      {
+        id: "during-pic",
+        title: "during: its picture",
+        alt: "during: DURING: inside an event or a period: the war, the film, the night. Ask yourself: Does it name an event, and something happens inside it?",
+        say: [
+          { text: "DURING: inside an event or a period: the war, the film, the night.", cue: "during-l0" },
+          { text: "Before you choose **during**, ask yourself: Does it name an event, and something happens inside it?", cue: "during-ask" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-during"),
+          { do: "write", id: "during-t", text: "DURING: its picture", x: 480, y: 52, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("during-p", "decade", 340, 86, 2),
+          { do: "write", id: "during-l0", text: "DURING: inside an event or a period:", x: 480, y: 300, size: 30, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "during-l1", text: "the war, the film, the night.", x: 480, y: 344, size: 30, ink: "main", anchor: "middle", fit: 910, gap: 200 },
+          { do: "write", id: "during-ask", text: "Ask yourself: Does it name an event, and something happens inside it?", x: 480, y: 448, size: 27, ink: "accent", anchor: "middle", fit: 910, gap: 500 },
+        ],
+      },
+      {
+        id: "during-ex1",
+        title: "during: example 1, why this and not the others",
+        alt: "He fell asleep with a gap the film. Answer: during, because the film is the event; the sleep is inside it. Not for: for answers how long. Not since: since needs a starting point till now.",
+        say: [
+          { text: "Fill the gap: He fell asleep … the film. Picture it: the film is the event; the sleep is inside it. So **during**.", cue: "duringx03" },
+          { text: "Why not **for**? for answers how long. Why not **since**? since needs a starting point till now.", cue: "duringx0-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-duringx0"),
+          ...PLAB.kit.lineup("duringx0", "He fell asleep ____ the film.", [["span", "for", false, "for answers how long"], ["sincePoint", "since", false, "since needs a starting | point till now"], ["decade", "during", true, "the film is the event; | the sleep is inside it"]], ["Why during? the film is the event; the sleep is inside it", "Ask: Does it name an event, and something happens inside it?"]),
+        ],
+      },
+      {
+        id: "during-ex2",
+        title: "during: example 2, why this and not the others",
+        alt: "Many lost their homes with a gap the floods. Answer: during, because inside the event of the floods. Not for: not a length. Not since: since the floods = from then till now.",
+        say: [
+          { text: "Fill the gap: Many lost their homes … the floods. Picture it: inside the event of the floods. So **during**.", cue: "duringx13" },
+          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now That is correct English, but it says something else.", cue: "duringx1-r2" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-duringx1"),
+          ...PLAB.kit.lineup("duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"]),
+        ],
+      },
+      {
+        id: "decide",
+        title: "FOR, SINCE, DURING: how to choose",
+        alt: "How to choose: Does it measure how long? Then for. Does it name the point when it started? Then since. Does it name an event, and something happens inside it? Then during.",
+        say: [
+          { text: "How to choose: ask these questions about the situation in the sentence. Does it measure how long? Then **for**. Does it name the point when it started? Then **since**. Does it name an event, and something happens inside it? Then **during**.", cue: "dc1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-decide"),
+          { do: "write", id: "dc-t", text: "How to choose", x: 480, y: 50, size: 38, ink: "accent", anchor: "middle" },
+          ...PLAB.kit.rows("dc", [["span", "Does it measure how long?", { sub: "yes → FOR", size: 26 }], ["sincePoint", "Does it name the point when it started?", { sub: "yes → SINCE", size: 26 }], ["decade", "Does it name an event, and something happens inside it?", { sub: "yes → DURING", size: 26 }]], { y: 130, gap: 120 }),
+        ],
+      },
+      {
+        id: "practice-1",
+        title: "Practice 1: FOR, SINCE, DURING",
         alt: "The last board stays.",
         say: [
-          { text: "Which one fits? Picture each one first." },
+          { text: "Which one fits? Picture the situation, ask the question, then choose." },
         ],
         actions: [
         ],

@@ -113,10 +113,10 @@ L("between", "BETWEEN / AMONG", "betweenTicks", "BETWEEN = in the gap of two (or
     ["the match [between] Pakistan and India", "Choose [between] tea and coffee."], ("among", "AMONG shares something in a group: divide it among them.")),
 ])
 L("front", "IN FRONT OF / BEHIND / OPPOSITE", "faces", "IN FRONT OF = before the face of something. BEHIND = at its back. OPPOSITE = facing it across a space.", "Imagine a person: in front is where the face looks, behind is the back.", [
-  S("in front of", "before the face", [["person", 60, 0], ["arrowR", -10, 20, 0.6], ["box", 140, 25, 0.55]], "where the front faces",
+  S("in front of", "before the face", [["person", -32, 0], ["arrowR", 22, 24, 0.4], ["box", 78, 24, 0.4]], "where the front faces",
     ["IN FRONT OF: on the side the thing faces."],
     ["The car is parked [in front of] the house.", "Don't stand [in front of] the TV."], ("opposite", "OPPOSITE has a road or space between, facing each other.")),
-  S("behind", "at the back", [["box", 0, 25, 0.55], ["person", 120, 0]], "at the back side",
+  S("behind", "at the back", [["box", 4, 24, 0.4], ["person", 25, 0]], "at the back side",
     ["BEHIND: at the back, often hidden."],
     ["The garden is [behind] the house.", "Who is [behind] this plan?"], ("after", "AFTER is about time or order, not place.")),
   S("opposite", "facing across a space", "faces", "two things face each other",
