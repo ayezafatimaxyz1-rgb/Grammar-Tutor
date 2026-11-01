@@ -649,6 +649,24 @@
         },
       };
     },
+    context(id) {
+      const ch = P.contextPage && P.contextPage.find(id);
+      if (!ch) return null;
+      return {
+        title: ch.title,
+        subtitle: `${ch.section}. Every board of this chapter, drawn step by step, with its explanation and tests`,
+        file: fileName(`context-${ch.title}`),
+        chapters: true,
+        phasePages: false,
+        items: P.contextPage.items(id),
+        intro(n) {
+          n.text(ch.intro, { size: 11, gap: 3 });
+          n.text("Quick reference", { size: 13, bold: true, gap: 1.5 });
+          (ch.table || []).forEach((r) => n.text(`${r[0]}: ${r[1]}.  ${r[2]}`, { size: 9.5, indent: 3, gap: 0.4 }));
+          n.y += 3;
+        },
+      };
+    },
     atlas(lessonId) {
       if (!P.atlasPage) return null;
       const it = lessonId && (P.atlas || []).flatMap((u) => u.items).find((x) => x.lesson === lessonId);

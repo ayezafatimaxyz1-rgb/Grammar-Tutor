@@ -694,6 +694,43 @@
           },
         ],
       },
+      {
+        id: "p7",
+        title: "Phase 7: Prepositions in context",
+        intro: "New drawn lessons for situations: transport and travelling, giving directions, numbers and money. The Prepositions in context section puts these together with every other board in the course, chapter by chapter.",
+        units: [
+          {
+            id: "pc-transport",
+            title: "Transportation and travelling",
+            lessons: [
+              L("pc-ct-transport", "BY / ON / IN for transport: its senses", { status: "tested", lessonId: "pc-ct-transport" }),
+              L("pc-ct-boarding", "GET ON / OFF, GET IN / OUT OF: its senses", { status: "tested", lessonId: "pc-ct-boarding" }),
+              L("pc-ct-journey", "Journeys: FROM, TO, FOR, AT, IN, VIA: its senses", { status: "tested", lessonId: "pc-ct-journey" }),
+              L("pc-ct-by-on", "BY BUS or ON THE BUS", { status: "tested", lessonId: "pc-ct-by-on" }),
+              L("pc-ct-arrive", "ARRIVE AT, ARRIVE IN, REACH", { status: "tested", lessonId: "pc-ct-arrive" }),
+              L("pc-ct-get", "GET ON or GET IN", { status: "tested", lessonId: "pc-ct-get" }),
+            ],
+          },
+          {
+            id: "pc-directions",
+            title: "Giving directions",
+            lessons: [
+              L("pc-ct-directions", "Directions: ALONG, PAST, ACROSS, THROUGH, AT, ON, INTO: its senses", { status: "tested", lessonId: "pc-ct-directions" }),
+              L("pc-ct-corner", "AT, ON, IN THE CORNER", { status: "tested", lessonId: "pc-ct-corner" }),
+              L("pc-ct-past-through", "ALONG, ACROSS, PAST, THROUGH", { status: "tested", lessonId: "pc-ct-past-through" }),
+            ],
+          },
+          {
+            id: "pc-numbers",
+            title: "Numbers, money and measurement",
+            lessons: [
+              L("pc-ct-numbers", "Numbers, money and measurement: its senses", { status: "tested", lessonId: "pc-ct-numbers" }),
+              L("pc-ct-by-to", "RISE BY or RISE TO", { status: "tested", lessonId: "pc-ct-by-to" }),
+              L("pc-ct-at-for", "SOLD AT or SOLD FOR", { status: "tested", lessonId: "pc-ct-at-for" }),
+            ],
+          },
+        ],
+      },
     ],
     gaps: [
       "The inventory has not yet been checked item by item against dictionaries or grammar references.",

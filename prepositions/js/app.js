@@ -58,6 +58,9 @@
       P.ask.render(app, { esc, prefill: askPrefill.q, context: askPrefill.context });
       askPrefill = {};
       $('[data-nav="ask"]').setAttribute("aria-current", "page");
+    } else if (hash === "context" || hash.startsWith("context-")) {
+      P.contextPage.render(app, { esc, focus: hash.startsWith("context-") ? hash.slice(8) : null });
+      $('[data-nav="prepositions"]').setAttribute("aria-current", "page");
     } else if (hash === "atlas" || hash.startsWith("atlas-")) {
       P.atlasPage.render(app, { esc, rich, focus: hash.startsWith("atlas-") ? hash.slice(6) : null });
       $('[data-nav="prepositions"]').setAttribute("aria-current", "page");
@@ -130,6 +133,13 @@
         <span class="sc-badge">Start here</span>
         <span class="sc-title">The sense atlas</span>
         <span class="sc-text">Every preposition's basic senses, each drawn as its logic, with the confusing pairs side by side. One PDF for all of it.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
+      <a class="start-card ctx-start" href="#context">
+        <span class="sc-badge">By situation</span>
+        <span class="sc-title">Prepositions in context</span>
+        <span class="sc-text">Time, place, travelling, directions, causes, feelings, numbers, and after verbs, adjectives and nouns: 15 chapters, each with a quick table, its boards and a PDF.</span>
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 
