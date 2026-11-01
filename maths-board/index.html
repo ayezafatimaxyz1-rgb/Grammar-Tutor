@@ -421,7 +421,7 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L),...buildEnglish(),...buildEnglish2()]}
+  return [prepare(L),...buildEnglish(),...buildEnglish2(),...buildEnglish3()]}
 
 /* ---------- English part: drawing helpers ---------- */
 function wseqC(id,cx,y,parts,o={}){const s=o.size||30,w=parts.reduce((a,p)=>a+measure(p,s,700),0);return wseq(id,cx-w/2,y,parts,o)}
@@ -769,6 +769,153 @@ const C={id:'prep-with-by-through',phase:'eng',title:'"With", "by" or "through"?
   {q:'He cut the cake ___ a knife.',options:[{t:'with',ok:true,why:'Right. A knife is a tool he holds.'},{t:'by',tag:'prep-tool',why:'"By" is for a way or a person, not a tool. Use "with a knife".'},{t:'through',tag:'prep-through',why:'"Through the cake" would mean the knife went all the way through it, but the tool still takes "with".'},{t:'at',tag:'prep-other',why:'"At" is for a point or a target, not a tool.'}]},
   {q:'This sweater was made ___ hand.',options:[{t:'by',ok:true,why:'Right. "By hand" is the way it was made, with no "a" or "the".'},{t:'with',tag:'prep-way',why:'We say "made by hand". "With" needs a tool: "with a needle".'},{t:'through',tag:'prep-through',why:'"Through hand" is not English.'},{t:'on',tag:'prep-other',why:'"On hand" means available nearby. It does not show how it was made.'}]},
   {q:'The tree was felled ___ the woodcutter ___ an axe.',options:[{t:'by … with',ok:true,why:'Right. By the woodcutter (who did it), with an axe (the tool).'},{t:'with … by',tag:'prep-tool',why:'Swapped. The person takes "by", the tool takes "with".'},{t:'through … with',tag:'prep-through',why:'The woodcutter is the person who did it, so use "by", not "through".'},{t:'by … by',tag:'prep-tool',why:'The axe is a tool you hold, so it takes "with".'}]}]};
+return [prepare(A),prepare(C)]}
+
+/* ---------- English part 3: at/on/by/after dawn, and in time / on time / at time ---------- */
+function sun(id,cx,cy,r){const arc=range(0,13).map(i=>{const a=Math.PI*i/12;return [cx+r*Math.cos(a),cy-r*Math.sin(a)]});
+  return [D(id+'.disc',{kind:'poly',pts:arc,amp:.5},{ink:'#d97706',fill:'#f59e0b',fillOp:.35,dur:600}),
+    D(id+'.rays',{kind:'lines',segs:[30,60,90,120,150].map(d=>{const a=d*Math.PI/180;return [cx+(r+10)*Math.cos(a),cy-(r+10)*Math.sin(a),cx+(r+26)*Math.cos(a),cy-(r+26)*Math.sin(a)]})},{ink:'#d97706',sw:2.6,dur:500})]}
+const dotAt=(id,x,y,ink)=>D(id,{kind:'circle',cx:x,cy:y,r:10},{ink,fill:ink,fillOp:.85,dur:350});
+const bracket=(id,x1,x2,y,ink)=>D(id,{kind:'lines',segs:[[x1,y,x2,y],[x1,y-10,x1,y+10],[x2,y-10,x2,y+10]]},{ink,sw:2.6,dur:500});
+
+Object.assign(TAGS,{
+  'time-by':'Mixing up "by" (no later than) with "at" or "after"',
+  'time-part-day':'Mixing up at night / in the morning / on Monday morning',
+  'time-in-on':'Mixing up "in time" (early enough) and "on time" (as planned)',
+  'time-at-time':'Saying "at time" (use on time, at the time or at times)'});
+PHASES.find(p=>p.id==='eng').lessons.push('prep-dawn','prep-in-on-time');
+
+function buildEnglish3(){const G='accent2',B='accent',T='trouble',P='#7c3aed';
+/* ===== Lesson: at / on / by / after dawn ===== */
+const A={id:'prep-dawn',phase:'eng',title:'Start "at", "on", "by" or "after" dawn?',
+ summary:'Why we start at dawn, what "by dawn" and "after dawn" mean, and when "on" is used for time.',
+ objectives:['Use "at" for a point of time: at dawn, at noon, at night.','Know that "by" means no later than, and "after" means later than.','Use "on" for days and dates, and "in" for parts of the day.'],
+ steps:[
+ {title:'Your sentence',actions:[
+   ...lineup('L',30,90,900,['I must start','___','dawn.'],[
+     {tokens:['at'],mark:'✓',why:'Dawn is a point of time, like noon or night.'},
+     {tokens:['on'],mark:'✗',why:'"On" is for days and dates, not dawn.'},
+     {tokens:['by'],mark:'≈',why:'Correct English, but means "no later than dawn".'},
+     {tokens:['after'],mark:'≈',why:'Correct English, but means later than dawn.'}],{size:34}),
+   W('Lb',480,548,'Best answer: I must start at dawn to reach the station in time.',{size:25,anchor:'middle',ink:G,weight:700})],
+  explain:[{cue:'L.p',t:'Your sentence: "I must start ___ dawn to reach the station in time."'},{cue:'L.o0',t:'**at**: dawn is one **point** of time. **Best answer.**'},{cue:'L.o1',t:'**on**: used for days and dates, so it is wrong here.'},
+   {cue:'L.o2',t:'**by**: correct English, but it changes the meaning to **no later than** dawn.'},{cue:'L.o3',t:'**after**: correct English, but it means **later** than dawn.'},{cue:'Lb',t:'So: "I must start **at** dawn to reach the station in time."'}]},
+ {title:'Dawn is a point on the time line',actions:[ER('er_f2'),
+   D('tl',{kind:'arrow',x1:60,y1:260,x2:900,y2:260},{dur:800}),W('night',70,300,'night',{size:24,ink:'muted'}),W('day',900,300,'day',{size:24,anchor:'end',ink:'muted'}),
+   ...sun('sun',480,260,38),W('dawn',480,310,'dawn',{size:28,anchor:'middle',ink:'#b45309',weight:700}),
+   W('atl',480,120,'at dawn = exactly then',{size:28,anchor:'middle',ink:T,weight:700}),D('ata',{kind:'arrow',x1:480,y1:135,x2:480,y2:185},{ink:T,dur:400}),
+   bracket('byb',120,470,355,B),W('byl',295,395,'by dawn = at dawn or before',{size:24,anchor:'middle',ink:B}),
+   bracket('afb',490,860,355,G),W('afl',675,395,'after dawn = later',{size:24,anchor:'middle',ink:G}),
+   W('pts',480,475,'Points of time take "at": at dawn, at noon, at night, at sunrise',{size:24,anchor:'middle'}),
+   W('k',480,540,'"I must start at dawn" = start exactly when the sun comes up.',{size:24,anchor:'middle',ink:T,weight:700})],
+  explain:[{cue:'tl',t:'A time line, from **night** to **day**.'},{cue:'sun',t:'**Dawn** is the moment the sun comes up. It is one **point** on the line.'},
+   {cue:'atl',t:'A point of time takes **at**: "at dawn" means exactly at that moment.'},{cue:'byb',t:'**by** dawn means at dawn **or before**: dawn is the latest time. It is a **deadline**.'},
+   {cue:'afb',t:'**after** dawn means any time **later** than dawn.'},{cue:'pts',t:'Other points of time also take "at": at noon, at night, at sunrise, at midnight.'},{cue:'k',t:'Your sentence wants the exact moment, so **at dawn** is best.'}],
+  check:{q:'The shop opens ___ sunrise.',options:[
+   {t:'at',ok:true,why:'Right. Sunrise is a point of time, like dawn, so use "at".'},
+   {t:'on',tag:'prep-time',why:'"On" is for days and dates. Sunrise is a point of time.'},
+   {t:'in',tag:'time-part-day',why:'"In" is for longer parts of the day (in the morning). Sunrise is a single moment.'},
+   {t:'to',tag:'prep-time',why:'"To" shows the end of a time span (from 9 to 5), not one moment.'}]}},
+ {title:'"At", "on" and "in" for time',actions:[ER('er_f3'),D('dv',{kind:'line',x1:480,y1:40,x2:480,y2:370},{ink:'muted',sw:1.5,dur:400}),
+   W('h1',240,80,'at + a point of time',{size:28,anchor:'middle',ink:T,weight:700}),
+   ...['at dawn','at noon','at night','at midnight'].map((t,i)=>W('a'+i,240,160+i*58,t,{size:26,anchor:'middle',dur:350})),
+   W('h2',720,80,'on + a day or date',{size:28,anchor:'middle',ink:B,weight:700}),
+   ...['on Monday','on 14 August','on Monday morning','on Eid'].map((t,i)=>W('o'+i,720,160+i*58,t,{size:26,anchor:'middle',dur:350})),
+   W('in1',480,440,'in + a part of the day: in the morning, in the evening',{size:25,anchor:'middle',ink:G}),
+   W('in2',480,495,'Remember: at night (not "in night")',{size:25,anchor:'middle',ink:T}),
+   W('in3',480,550,'A named day takes "on": on Monday morning',{size:25,anchor:'middle',ink:B})],
+  explain:[{cue:'h1',t:'**at** + a point of time.'},{cue:'a0',t:'at dawn, at noon, at night, at midnight.'},{cue:'h2',t:'**on** + a day or a date. This is why "on dawn" is wrong: dawn is not a day.'},
+   {cue:'o0',t:'on Monday, on 14 August, on Eid.'},{cue:'in1',t:'**in** + a longer part of the day: in the morning, in the evening.'},{cue:'in2',t:'One to remember: **at night**, not "in night".'},{cue:'in3',t:'When a day has a name, it takes **on**: in the morning, but **on Monday morning**.'}],
+  check:{q:'We will leave ___ Monday morning.',options:[
+   {t:'on',ok:true,why:'Right. A named day takes "on", even with "morning": on Monday morning.'},
+   {t:'in',tag:'time-part-day',why:'"In the morning" is right, but with a named day say "on Monday morning".'},
+   {t:'at',tag:'prep-time',why:'"At" is for a point of time like dawn or 6 o\'clock, not a day.'},
+   {t:'to',tag:'prep-time',why:'"To" shows the end of a time span, not when something happens.'}]}},
+ {title:'Your sentence, fully explained',actions:[ER('er_f4'),
+   ...wseqC('fs',480,190,['I must start ','at dawn',' to reach the station ','in time','.'],{size:32}),HL('r1','fs.1','swipe'),HL('r2','fs.3','underline',{ink:G}),
+   W('n1',480,300,'at dawn = exactly when the sun comes up',{size:28,anchor:'middle',ink:T}),
+   W('n2',480,360,'in time = early enough to catch the train',{size:28,anchor:'middle',ink:G}),
+   W('n3',480,470,'"In time", "on time" and "at time" have their own lesson next.',{size:24,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'fs',t:'The whole sentence: "I must start **at dawn** to reach the station **in time**."'},{cue:'n1',t:'**at dawn**: at that exact point of time.'},{cue:'n2',t:'**in time**: early enough, so you do not miss the train.'},{cue:'n3',t:'Next lesson: the difference between in time, on time and at time.'}]}],
+ practice:[
+  {q:'Please finish the work ___ 5 pm. That is the latest I can wait.',options:[{t:'by',ok:true,why:'Right. "That is the latest" means a deadline: no later than 5 pm.'},{t:'on',tag:'prep-time',why:'"On" is for days and dates, not clock times.'},{t:'in',tag:'time-part-day',why:'"In 5 pm" is not English.'},{t:'after',tag:'time-by',why:'"After 5 pm" means later than 5, but 5 pm is the latest time.'}]},
+  {q:'The farmers start work ___ dawn.',options:[{t:'at',ok:true,why:'Right. Dawn is a point of time.'},{t:'on',tag:'prep-time',why:'"On" is for days and dates.'},{t:'in',tag:'time-part-day',why:'"In" is for longer parts of the day, like in the morning.'},{t:'to',tag:'prep-time',why:'"To" shows the end of a time span.'}]},
+  {q:'Which sentence means "no later than dawn"?',options:[{t:'I will be there by dawn.',ok:true,why:'Right. "By" sets a deadline: at dawn or before.'},{t:'I will be there after dawn.',tag:'time-by',why:'"After dawn" means later than dawn.'},{t:'I will be there on dawn.',tag:'prep-time',why:'"On dawn" is not English. "On" is for days and dates.'},{t:'I will be there in dawn.',tag:'time-part-day',why:'"In dawn" is not English. Dawn is a point: "at dawn".'}]}]};
+
+/* ===== Lesson: in time, on time, at time ===== */
+const C={id:'prep-in-on-time',phase:'eng',title:'"In time", "on time" or "at time"?',
+ summary:'In time = early enough. On time = exactly as planned. "At time" is never used alone.',
+ objectives:['Use "on time" for exactly the planned time.','Use "in time" for early enough, before it is too late.','Use "at the time", "at times" and "one at a time" correctly.'],
+ steps:[
+ {title:'Three phrases',actions:[D('dv',{kind:'lines',segs:[[320,40,320,420],[640,40,640,420]]},{ink:'muted',sw:1.5,dur:500}),
+   ...[['in time',B,'✓','early enough, before it is too late'],['on time',G,'✓','exactly at the planned time'],['at time',T,'✗','never used alone']].flatMap(([w,c,mk,m],i)=>{const cx=160+i*320;return [
+     W('h'+i,cx,88,w,{size:42,anchor:'middle',ink:c,weight:700,dur:450}),D('k'+i,{kind:mk==='✓'?'tick':'cross',x:cx,y:165,s:22},{ink:c,sw:4,dur:400}),
+     ...wrapText('m'+i,cx,250,m,270,{size:24,anchor:'middle',ink:c})]}),
+   W('alt',800,345,'say: at the time / at times',{size:22,anchor:'middle',ink:'muted'}),
+   W('tip',480,530,'in time = early enough   ·   on time = as planned',{size:28,anchor:'middle',weight:700})],
+  explain:[{cue:'h0',t:'**in time**: early enough, before it is too late.'},{cue:'h1',t:'**on time**: exactly at the planned time. Not early, not late.'},{cue:'h2',t:'**at time**: we never say it on its own.'},
+   {cue:'alt',t:'Instead we say **at the time** or **at times**. You will see them in step 4.'},{cue:'tip',t:'The short rule: **in time = early enough**, **on time = as planned**.'}]},
+ {title:'Draw it on a time line',actions:[ER('er_g2'),
+   D('tl',{kind:'arrow',x1:60,y1:250,x2:900,y2:250},{dur:800}),
+   D('dl',{kind:'line',x1:600,y1:170,x2:600,y2:330},{ink:T,sw:3.5,dur:400}),W('dll',600,150,'7:00 the train leaves',{size:24,anchor:'middle',ink:T,weight:700}),
+   dotAt('d1',400,250,INK.accent),W('il',400,215,'in time',{size:26,anchor:'middle',ink:B,weight:700}),
+   bracket('sp',400,592,295,'muted'),W('spl',496,330,'spare time',{size:22,anchor:'middle',ink:'muted'}),
+   dotAt('d2',600,250,INK.accent2),W('ol',600,385,'on time',{size:26,anchor:'middle',ink:G,weight:700}),
+   dotAt('d3',800,250,INK.trouble),W('ll',800,215,'late',{size:26,anchor:'middle',ink:T,weight:700}),
+   W('s1',480,460,'We reached the station in time to catch the train.',{size:25,anchor:'middle',ink:B}),
+   W('s2',480,510,'The train left on time, at exactly 7:00.',{size:25,anchor:'middle',ink:G}),
+   W('s3',480,560,'just in time = with only a moment to spare',{size:22,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'tl',t:'A time line. Time moves from left to right.'},{cue:'dl',t:'The red line is the **planned time**: the train leaves at 7:00.'},
+   {cue:'d1',t:'You arrive before 7:00. You are **in time**: early enough to catch the train.'},{cue:'sp',t:'The gap before 7:00 is your spare time.'},
+   {cue:'d2',t:'Something that happens exactly at 7:00 is **on time**, as planned.'},{cue:'d3',t:'After 7:00 you are **late**.'},
+   {cue:'s1',t:'"We reached the station **in time** to catch the train."'},{cue:'s2',t:'"The train left **on time**, at exactly 7:00."'},{cue:'s3',t:'**Just in time** means only a moment before it was too late.'}],
+  check:{q:'The meeting started at exactly 9:00, as planned. It started ___.',options:[
+   {t:'on time',ok:true,why:'Right. Exactly at the planned time = on time.'},
+   {t:'in time',tag:'time-in-on',why:'"In time" means early enough for something else. Here we mean exactly as planned.'},
+   {t:'at time',tag:'time-at-time',why:'"At time" is never used alone.'},
+   {t:'at the time',tag:'time-at-time',why:'"At the time" means "then, in the past", not "as planned".'}]}},
+ {title:'How we use them',actions:[ER('er_g3'),D('dv3',{kind:'line',x1:480,y1:40,x2:480,y2:400},{ink:'muted',sw:1.5,dur:400}),
+   W('u1',240,82,'in time',{size:38,anchor:'middle',ink:B,weight:700}),W('u2',720,82,'on time',{size:38,anchor:'middle',ink:G,weight:700}),
+   W('m1',240,140,'early enough for something',{size:23,anchor:'middle',ink:B}),W('m2',720,140,'as planned, punctual',{size:23,anchor:'middle',ink:G}),
+   ...['in time to catch the train','in time for dinner','just in time'].map((t,i)=>W('x'+i,240,215+i*58,t,{size:24,anchor:'middle',dur:450})),
+   ...['start on time','pay the bill on time','The bus is never on time.'].map((t,i)=>W('y'+i,720,215+i*58,t,{size:24,anchor:'middle',dur:450})),
+   W('q1',480,470,'Is there a planned time?  →  on time',{size:26,anchor:'middle',ink:G}),
+   W('q2',480,530,'Do I need to be early enough for something?  →  in time',{size:26,anchor:'middle',ink:B})],
+  explain:[{cue:'u1',t:'**in time** often comes with **to** or **for**: in time **to** catch the train, in time **for** dinner.'},{cue:'u2',t:'**on time** is about a **plan** or a **timetable**: start on time, pay on time.'},
+   {cue:'x0',t:'Examples of in time.'},{cue:'y0',t:'Examples of on time.'},{cue:'q1',t:'Ask: is there a **planned time**? Then **on time**.'},{cue:'q2',t:'Ask: do I need to be **early enough** for something? Then **in time**.'}],
+  check:{q:'We got to the hospital ___ to see the baby being born.',options:[
+   {t:'in time',ok:true,why:'Right. Early enough to see it: in time to see the baby.'},
+   {t:'on time',tag:'time-in-on',why:'There was no planned time for the birth. We mean early enough: in time.'},
+   {t:'at time',tag:'time-at-time',why:'"At time" is never used alone.'},
+   {t:'at times',tag:'time-at-time',why:'"At times" means sometimes.'}]}},
+ {title:'Why not "at time"?',actions:[ER('er_g4'),
+   W('t0',480,70,'"at time" is never used alone. These are correct:',{size:26,anchor:'middle',ink:T}),
+   W('p1',60,150,'at the time',{size:28,ink:P,weight:700}),W('p1m',290,150,'= then.  At the time, I was a student.',{size:24}),
+   W('p2',60,225,'at times',{size:28,ink:P,weight:700}),W('p2m',290,225,'= sometimes.  At times, I feel tired.',{size:24}),
+   W('p3',60,300,'one at a time',{size:28,ink:P,weight:700}),W('p3m',290,300,'= one by one.  Come in one at a time.',{size:24}),
+   D('mx',{kind:'cross',x:80,y:405,s:14},{ink:T,sw:4,dur:350}),W('mt',110,415,'Please come at time.',{size:28,ink:T}),
+   D('mk',{kind:'tick',x:560,y:405,s:15},{ink:G,sw:4,dur:350}),W('mg',590,415,'Please come on time.',{size:28,ink:G}),
+   W('tip4',480,530,'Coming at the planned time → on time',{size:28,anchor:'middle',weight:700})],
+  explain:[{cue:'t0',t:'"At time" on its own is **not English**. But "at" makes three useful phrases.'},{cue:'p1',t:'**at the time** = then, at that moment in the past.'},{cue:'p2',t:'**at times** = sometimes.'},{cue:'p3',t:'**one at a time** = one by one.'},
+   {cue:'mx',t:'A common mistake: "Please come at time."'},{cue:'mk',t:'Say: "Please come **on time**." It means at the planned time.'}],
+  check:{q:'___, I did not know the answer, but now I do.',options:[
+   {t:'At the time',ok:true,why:'Right. "At the time" means then, in the past.'},
+   {t:'On time',tag:'time-in-on',why:'"On time" means as planned. It does not mean "then".'},
+   {t:'In time',tag:'time-in-on',why:'"In time" means early enough, or slowly after a while. It does not fit here.'},
+   {t:'At time',tag:'time-at-time',why:'"At time" is never used alone. Add "the": at the time.'}]}},
+ {title:'All together',actions:[ER('er_g5'),
+   ...wseqC('fs',480,130,['I must start ','at dawn',' to reach the station ','in time','.'],{size:30}),HL('r1','fs.1','swipe'),HL('r2','fs.3','underline',{ink:G}),
+   W('w1',480,240,'in time → early enough to catch the train',{size:26,anchor:'middle',ink:G}),
+   W('w2',480,300,'on time → at the planned time (also possible here)',{size:26,anchor:'middle',ink:B}),
+   W('w3',480,360,'at time → never on its own',{size:26,anchor:'middle',ink:T}),
+   W('r_a',480,470,'at dawn = a point of time',{size:28,anchor:'middle',weight:700}),
+   W('r_b',480,530,'in time = early enough  ·  on time = as planned',{size:28,anchor:'middle',weight:700})],
+  explain:[{cue:'fs',t:'Your first sentence again: "I must start **at dawn** to reach the station **in time**."'},{cue:'w1',t:'**in time** fits best: the goal is to be early enough for the train.'},
+   {cue:'w2',t:'**on time** is also possible if you mean arriving at a planned time.'},{cue:'w3',t:'**at time** never stands alone.'},{cue:'r_a',t:'Summary: **at** + a point of time.'},{cue:'r_b',t:'**in time** = early enough. **on time** = as planned.'}]}],
+ practice:[
+  {q:'Our teacher always starts the class ___.',options:[{t:'on time',ok:true,why:'Right. The class has a planned start time, and she keeps to it.'},{t:'in time',tag:'time-in-on',why:'"In time" needs something to be early enough for. Here we mean the planned time.'},{t:'at time',tag:'time-at-time',why:'"At time" is never used alone.'},{t:'at times',tag:'time-at-time',why:'"At times" means sometimes, which does not fit "always".'}]},
+  {q:'Run, or you will not get there ___ to catch the bus!',options:[{t:'in time',ok:true,why:'Right. Early enough to catch the bus: in time to.'},{t:'on time',tag:'time-in-on',why:'"In time to catch" is the usual phrase. "On time" is about a planned time, not being early enough.'},{t:'at time',tag:'time-at-time',why:'"At time" is never used alone.'},{t:'at a time',tag:'time-at-time',why:'"At a time" means together or one by one, like "two at a time".'}]},
+  {q:'He gets angry ___. (= sometimes)',options:[{t:'at times',ok:true,why:'Right. "At times" means sometimes.'},{t:'on time',tag:'time-in-on',why:'"On time" means as planned.'},{t:'in time',tag:'time-in-on',why:'"In time" means early enough, or after a while.'},{t:'at time',tag:'time-at-time',why:'"At time" is never used alone. Add the "s": at times.'}]}]};
 return [prepare(A),prepare(C)]}
 
 /* =====================================================================
