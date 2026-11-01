@@ -58,6 +58,9 @@
       P.ask.render(app, { esc, prefill: askPrefill.q, context: askPrefill.context });
       askPrefill = {};
       $('[data-nav="ask"]').setAttribute("aria-current", "page");
+    } else if (hash === "atlas" || hash.startsWith("atlas-")) {
+      P.atlasPage.render(app, { esc, rich, focus: hash.startsWith("atlas-") ? hash.slice(6) : null });
+      $('[data-nav="prepositions"]').setAttribute("aria-current", "page");
     } else if (hash === "prepositions" || hash.startsWith("prep-")) {
       P.prepbook.render(app, { esc, rich, prep: hash.startsWith("prep-") ? hash.slice(5) : null });
       $('[data-nav="prepositions"]').setAttribute("aria-current", "page");
@@ -123,6 +126,13 @@
         </div>
       </section>
 
+      <a class="start-card" href="#atlas">
+        <span class="sc-badge">Start here</span>
+        <span class="sc-title">The sense atlas</span>
+        <span class="sc-text">Every preposition's basic senses, each drawn as its logic, with the confusing pairs side by side. One PDF for all of it.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
       <section class="curriculum" aria-labelledby="curr-h">
         <h2 id="curr-h" class="sr-only">Curriculum</h2>
         <label class="search">
@@ -137,13 +147,14 @@
             const ls = ph.units.flatMap((u) => u.lessons).filter((l) => l.lessonId && P.lessons[l.lessonId]);
             const fin = ls.filter((l) => done(l.lessonId)).length;
             const [num, name] = ph.title.includes(":") ? [ph.title.split(":")[0].replace(/\D+/g, ""), ph.title.split(":").slice(1).join(":").trim()] : [pi + 1, ph.title];
+            const star = !String(num).trim();
             const hasLast = last && ph.units.some((u) => u.lessons.some((l) => l.lessonId === last.id));
             return `
           <details class="phase-card" data-phase style="--ph:${PHASE_COLOURS[pi % PHASE_COLOURS.length]}"${hasLast ? " open" : ""}>
             <summary>
-              <span class="ph-num">${esc(num)}</span>
+              <span class="ph-num">${star ? "\u2605" : esc(num)}</span>
               <span class="ph-text">
-                <span class="ph-kicker">Phase ${esc(num)}</span>
+                <span class="ph-kicker">${star ? "Start here" : `Phase ${esc(num)}`}</span>
                 <span class="ph-title">${esc(name)}</span>
                 <span class="ph-intro">${esc(ph.intro)}</span>
                 <span class="ph-bar"><span style="width:${pct(fin, ls.length)}%"></span></span>
@@ -417,7 +428,7 @@
       tourBar.hidden = false;
       tourBar.innerHTML = `
         <div class="tour-info">
-          <p class="eyebrow">Learning <a href="#prep-${esc(t.slug)}">${esc(t.prep)}</a>${t.sense ? ` · ${esc(t.sense)}` : ""} · board ${t.i + 1} of ${n}</p>
+          <p class="eyebrow">Learning <a href="${esc(t.href || "#prep-" + t.slug)}">${esc(t.prep)}</a>${t.sense ? ` · ${esc(t.sense)}` : ""} · board ${t.i + 1} of ${n}</p>
           <p class="tour-label">${esc(item.label)}</p>
           <div class="tour-meter" aria-hidden="true"><span style="width:${(((t.i + 1) / n) * 100).toFixed(1)}%"></span></div>
         </div>
@@ -428,7 +439,7 @@
               ? '<button type="button" class="button small primary" data-tour-go="1">Next board</button>'
               : t.next
               ? `<button type="button" class="button small primary" data-tour-next>Next: ${esc(t.next.name)}</button>`
-              : `<a class="button small primary" href="#prep-${esc(t.slug)}" data-tour-end>Finished: back to ${esc(t.prep)}</a>`
+              : `<a class="button small primary" href="${esc(t.href || "#prep-" + t.slug)}" data-tour-end>Finished: back to ${esc(t.prep)}</a>`
           }
           <button type="button" class="button small ghost" data-tour-end>End</button>
         </div>`;
@@ -485,7 +496,7 @@
       const done = answered(step);
       ui.check.hidden = false;
       ui.check.innerHTML = `
-        <p class="check-label">Your turn${c.source === "original" ? ' <span class="tag">original practice question</span>' : ""}${c.source === "past-paper" ? ` <span class="tag tag--paper" title="${esc(c.citation)}">CSS past paper · ${c.year ? c.year : "year not confirmed"}${c.question ? " · " + esc(c.question) : ""}</span>` : ""}</p>
+        <p class="check-label">Your turn${c.source === "original" ? ' <span class="tag">original practice question</span>' : ""}${c.source === "past-paper" ? ` <span class="tag tag--paper" title="${esc(c.citation)}">CSS past paper · ${c.year ? c.year : "2016 onward"}${c.question ? " · " + esc(c.question) : ""}</span>` : ""}</p>
         <p class="check-prompt" id="q-${c.id}">${rich(c.prompt)}</p>
         <div class="options" role="group" aria-labelledby="q-${c.id}">
           ${c.options.map((o, i) => `<button type="button" class="option" data-i="${i}">${rich(o.text)}</button>`).join("")}

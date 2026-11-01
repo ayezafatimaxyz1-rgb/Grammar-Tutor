@@ -53,16 +53,16 @@
       },
       {
         id: "item3",
-        title: "CSS paper (year not confirmed) \u00b7 Q.4(vii)",
-        alt: "The sentence Correct it: The new session commences with a gap February 1st, 2020., then the candidates: on (right); from (wrong); in (wrong). Source: CSS paper (year not confirmed), Q.4(vii) \u00b7 the paper had: commences from.",
+        title: "CSS paper (2016 onward) \u00b7 Q.4(vii)",
+        alt: "The sentence Correct it: The new session commences with a gap February 1st, 2020., then the candidates: on (right); from (wrong); in (wrong). Source: CSS paper (2016 onward), Q.4(vii) \u00b7 the paper had: commences from.",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.4(vii) \u00b7 the paper had: commences from: Correct it: The new session commences \u2026 February 1st, 2020. The answer is **on**: a date takes on.", cue: "w31" },
+          { text: "From CSS paper (2016 onward), Q.4(vii) \u00b7 the paper had: commences from: Correct it: The new session commences \u2026 February 1st, 2020. The answer is **on**: a date takes on.", cue: "w31" },
           { text: "Why not the others? **from**: from needs an end: from 1 to 28 February. **in**: in is for months: in February.", cue: "w32" },
           { text: "Remember: on a date: on February 1st; from ... to for a period.", cue: "w3-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item3"),
-          ...PLAB.kit.lineup("w3", "Correct it: The new session commences ____ February 1st, 2020.", [["calendar", "on", true, "a date takes on"], ["origin", "from", false, "from needs an end: | from 1 to 28 February"], ["inPeriod", "in", false, "in is for months: | in February"]], ["on a date: on February 1st", "from ... to for a period"], "Source: CSS paper (year not confirmed), Q.4(vii) \u00b7 the paper had: commences from"),
+          ...PLAB.kit.lineup("w3", "Correct it: The new session commences ____ February 1st, 2020.", [["calendar", "on", true, "a date takes on"], ["origin", "from", false, "from needs an end: | from 1 to 28 February"], ["inPeriod", "in", false, "in is for months: | in February"]], ["on a date: on February 1st", "from ... to for a period"], "Source: CSS paper (2016 onward), Q.4(vii) \u00b7 the paper had: commences from"),
         ],
       },
       {
@@ -175,10 +175,10 @@
       },
       {
         id: "try4",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.4(vi)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.4(vi)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.4(vi). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.4(vi). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -205,16 +205,16 @@
           ],
           "source": "past-paper",
           "question": "Q.4(vi)",
-          "citation": "CSS English (Precis & Composition), Q.4(vi). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.4(vi). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try5",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.4(viii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.4(viii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.4(viii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.4(viii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -241,8 +241,8 @@
           ],
           "source": "past-paper",
           "question": "Q.4(viii)",
-          "citation": "CSS English (Precis & Composition), Q.4(viii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.4(viii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
     ],

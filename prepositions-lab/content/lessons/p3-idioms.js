@@ -67,16 +67,16 @@
       },
       {
         id: "item4",
-        title: "CSS paper (year not confirmed) \u00b7 Q.4(b)(iv)",
-        alt: "The sentence I said it with a gap his face., then the candidates: to (right); at (wrong); on (wrong). Source: CSS paper (year not confirmed), Q.4(b)(iv).",
+        title: "CSS paper (2016 onward) \u00b7 Q.4(b)(iv)",
+        alt: "The sentence I said it with a gap his face., then the candidates: to (right); at (wrong); on (wrong). Source: CSS paper (2016 onward), Q.4(b)(iv).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.4(b)(iv): I said it \u2026 his face. The answer is **to**: to his face = directly to him.", cue: "w41" },
+          { text: "From CSS paper (2016 onward), Q.4(b)(iv): I said it \u2026 his face. The answer is **to**: to his face = directly to him.", cue: "w41" },
           { text: "Why not the others? **at**: at = a point you aim at. **on**: on his face = on its surface.", cue: "w42" },
           { text: "Remember: say it to someone's face = openly; behind someone's back = secretly.", cue: "w4-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item4"),
-          ...PLAB.kit.lineup("w4", "I said it ____ his face.", [["faces", "to", true, "to his face = | directly to him"], ["reachDot", "at", false, "at = a point | you aim at"], ["onBase", "on", false, "on his face = on | its surface"]], ["say it to someone's face = openly", "behind someone's back = secretly"], "Source: CSS paper (year not confirmed), Q.4(b)(iv)"),
+          ...PLAB.kit.lineup("w4", "I said it ____ his face.", [["faces", "to", true, "to his face = | directly to him"], ["reachDot", "at", false, "at = a point | you aim at"], ["onBase", "on", false, "on his face = on | its surface"]], ["say it to someone's face = openly", "behind someone's back = secretly"], "Source: CSS paper (2016 onward), Q.4(b)(iv)"),
         ],
       },
       {

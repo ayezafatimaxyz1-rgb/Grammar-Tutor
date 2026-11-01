@@ -1,0 +1,224 @@
+[
+ {
+  "id": "place",
+  "title": "Where things are",
+  "lessons": [
+   [
+    "p0-at",
+    "AT: its senses"
+   ],
+   [
+    "p0-on",
+    "ON: its senses"
+   ],
+   [
+    "p0-in",
+    "IN: its senses"
+   ],
+   [
+    "p0-inside",
+    "INSIDE / OUTSIDE: its senses"
+   ],
+   [
+    "p0-over",
+    "OVER / ABOVE: its senses"
+   ],
+   [
+    "p0-under",
+    "UNDER / BELOW / BENEATH: its senses"
+   ],
+   [
+    "p0-beside",
+    "BESIDE / BESIDES: its senses"
+   ],
+   [
+    "p0-near",
+    "NEAR / NEXT TO / BY: its senses"
+   ],
+   [
+    "p0-between",
+    "BETWEEN / AMONG: its senses"
+   ],
+   [
+    "p0-front",
+    "IN FRONT OF / BEHIND / OPPOSITE: its senses"
+   ],
+   [
+    "p0-around",
+    "AROUND / ROUND / ON TOP OF: its senses"
+   ]
+  ]
+ },
+ {
+  "id": "move",
+  "title": "Movement and direction",
+  "lessons": [
+   [
+    "p0-to",
+    "TO / TOWARDS: its senses"
+   ],
+   [
+    "p0-from",
+    "FROM: its senses"
+   ],
+   [
+    "p0-into",
+    "INTO / OUT OF / ONTO / OFF: its senses"
+   ],
+   [
+    "p0-through",
+    "THROUGH / ACROSS / ALONG: its senses"
+   ],
+   [
+    "p0-past",
+    "PAST / UP / DOWN / VIA: its senses"
+   ]
+  ]
+ },
+ {
+  "id": "time",
+  "title": "Time",
+  "lessons": [
+   [
+    "p0-attime",
+    "AT / ON / IN for time: its senses"
+   ],
+   [
+    "p0-fortime",
+    "FOR / SINCE / DURING: its senses"
+   ],
+   [
+    "p0-bytime",
+    "BY / UNTIL: its senses"
+   ],
+   [
+    "p0-before",
+    "BEFORE / AFTER / WITHIN: its senses"
+   ]
+  ]
+ },
+ {
+  "id": "ideas",
+  "title": "Ideas and relations",
+  "lessons": [
+   [
+    "p0-of",
+    "OF: its senses"
+   ],
+   [
+    "p0-about",
+    "ABOUT / ON (topic): its senses"
+   ],
+   [
+    "p0-for",
+    "FOR: its senses"
+   ],
+   [
+    "p0-with",
+    "WITH / WITHOUT: its senses"
+   ],
+   [
+    "p0-byagent",
+    "BY (doer and means): its senses"
+   ],
+   [
+    "p0-like",
+    "LIKE / AS / THAN: its senses"
+   ],
+   [
+    "p0-except",
+    "EXCEPT / BESIDES / INSTEAD OF: its senses"
+   ],
+   [
+    "p0-despite",
+    "DESPITE / IN SPITE OF: its senses"
+   ],
+   [
+    "p0-because",
+    "BECAUSE OF / DUE TO / OWING TO / THANKS TO: its senses"
+   ],
+   [
+    "p0-against",
+    "AGAINST / ACCORDING TO / PER: its senses"
+   ],
+   [
+    "p0-beyond",
+    "BEYOND / WITHIN / UNDER / OVER (power): its senses"
+   ]
+  ]
+ },
+ {
+  "id": "pairs",
+  "title": "Confusing pairs, side by side",
+  "lessons": [
+   [
+    "p0-in-on-at-place",
+    "IN, ON, AT for place"
+   ],
+   [
+    "p0-in-on-at-time",
+    "IN, ON, AT for time"
+   ],
+   [
+    "p0-of-about-on",
+    "OF, ABOUT, ON"
+   ],
+   [
+    "p0-of-from",
+    "OF and FROM"
+   ],
+   [
+    "p0-for-to",
+    "FOR and TO"
+   ],
+   [
+    "p0-by-with",
+    "BY and WITH"
+   ],
+   [
+    "p0-in-into",
+    "IN and INTO, ON and ONTO"
+   ],
+   [
+    "p0-between-among",
+    "BETWEEN and AMONG"
+   ],
+   [
+    "p0-over-above",
+    "OVER, ABOVE, UNDER, BELOW"
+   ],
+   [
+    "p0-through-across-along",
+    "THROUGH, ACROSS, ALONG"
+   ],
+   [
+    "p0-for-since-during",
+    "FOR, SINCE, DURING"
+   ],
+   [
+    "p0-by-until",
+    "BY and UNTIL"
+   ],
+   [
+    "p0-beside-besides",
+    "BESIDE and BESIDES"
+   ],
+   [
+    "p0-like-as",
+    "LIKE and AS"
+   ],
+   [
+    "p0-except-besides",
+    "EXCEPT, BESIDES, INSTEAD OF"
+   ],
+   [
+    "p0-due-because",
+    "DUE TO and BECAUSE OF"
+   ],
+   [
+    "p0-to-towards",
+    "TO and TOWARDS"
+   ]
+  ]
+ }
+]

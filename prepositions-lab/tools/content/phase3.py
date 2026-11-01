@@ -19,15 +19,15 @@ PAPERS = {
     "2023": dict(year=2023, note="FPSC paper headed Competitive Examination 2023 (voluntary simplicity passage)"),
     "2024": dict(year=2024, note="FPSC 2024 paper (digital divide passage)"),
     "2026": dict(year=2026, note="year printed on the paper"),
-    "A": dict(year=None, note="paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed"),
-    "B": dict(year=None, note="paper with the passage on machines and civilization; year not printed, not yet confirmed"),
-    "C": dict(year=None, note="paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"),
-    "D": dict(year=None, note="paper with the passage on wandering; year not printed, not yet confirmed"),
+    "A": dict(year=None, note="paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward"),
+    "B": dict(year=None, note="paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward"),
+    "C": dict(year=None, note="paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"),
+    "D": dict(year=None, note="paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"),
 }
 
 def paper_label(pid):
     y = PAPERS[pid]["year"]
-    return f"CSS {y}" if y else "CSS paper (year not confirmed)"
+    return f"CSS {y}" if y else "CSS paper (2016 onward)"
 
 def citation(pid, q):
     p = PAPERS[pid]

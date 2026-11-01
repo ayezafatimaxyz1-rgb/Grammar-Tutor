@@ -84,7 +84,7 @@
             ["writtenBy", "2 Look right: by the Chairman (passive)", { hl: "by the Chairman" }],
             ["calendar", "3 Meaning needed: postponed", { hl: "postponed" }],
             ["check", "4 Test: off ✓ · out ✗ · down ✗", { hl: "off ✓", ink: "accent2" }],
-          ], "Source: CSS paper (year not confirmed), Q.5(b)(vii)"),
+          ], "Source: CSS paper (2016 onward), Q.5(b)(vii)"),
         ],
       },
       {
@@ -103,7 +103,7 @@
             ["storyBook", "2 Look right: verses (a long stretch)", { hl: "verses" }],
             ["passThrough", "3 Picture: a thread running all along", { hl: "all along" }],
             ["check", "4 Test: through ✓ · into ✗ · over ✗", { hl: "through ✓", ink: "accent2" }],
-          ], "Source: CSS paper (year not confirmed), Q.5(b)(viii)"),
+          ], "Source: CSS paper (2016 onward), Q.5(b)(viii)"),
         ],
       },
       {
