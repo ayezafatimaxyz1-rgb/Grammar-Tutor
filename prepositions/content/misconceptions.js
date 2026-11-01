@@ -546,4 +546,8 @@ PLAB.misconceptions = {
     label: "INTO moves inside, IN is already inside, TO goes towards, BY goes past",
     explain: "INTO is movement from outside to inside (walk into the room). IN is already inside, no movement (he is in the room). TO is towards a place, maybe not going in. BY is past it, or near it.",
   },
+  "y-day-parts": {
+    label: "IN a stretch of the day, AT a moment of the day",
+    explain: "The morning, the afternoon and the evening are stretches of hours you are inside: IN. Noon, midnight, daybreak and sunset are single moments: AT. At night is a fixed phrase for night in general; in the night is one particular night. A named day takes ON: on Monday morning.",
+  },
 };

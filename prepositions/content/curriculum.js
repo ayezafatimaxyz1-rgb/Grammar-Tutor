@@ -748,6 +748,7 @@
               L("py-in-on-time", "IN TIME, ON TIME (never AT TIME)", { status: "tested", lessonId: "py-in-on-time" }),
               L("py-for-since", "FOR, SINCE, FROM, OVER with time", { status: "tested", lessonId: "py-for-since" }),
               L("py-into", "INTO, IN, TO, BY: walk into my parlour", { status: "tested", lessonId: "py-into" }),
+              L("py-parts-of-day", "IN the morning, AT noon: stretches and moments", { status: "tested", lessonId: "py-parts-of-day" }),
             ],
           },
         ],
