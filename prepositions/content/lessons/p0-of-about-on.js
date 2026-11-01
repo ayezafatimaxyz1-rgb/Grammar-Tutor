@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ofx0"),
-          ...PLAB.kit.lineup("ofx0", "She is aware ____ the risk.", [["awareOf", "of", true, "the risk is one fact | her mind holds"], ["aboutCircle", "about", false, "aware takes of, | never about"], ["pointDoc", "on", false, "on is for formal | topics like books"]], ["Why of? the risk is one fact her mind holds", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"]),
+          ...PLAB.kit.lineup("ofx0", "She is aware ____ the risk.", [["awareOf", "of", true, "the risk is one fact | her mind holds"], ["aboutCircle", "about", false, "aware takes of, | never about"], ["pointDoc", "on", false, "on is for formal | topics like books"]], ["Why of? the risk is one fact her mind holds", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"], null, []),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "He is certain with a gap success. Answer: of, because success is one result the mind holds firmly. Not about: certain about = sure of the details of it. Not on: not a formal topic.",
         say: [
           { text: "Fill the gap: He is certain … success. Picture it: success is one result the mind holds firmly. So **of**.", cue: "ofx11" },
-          { text: "Why not **about**? certain about = sure of the details of it That is correct English, but it says something else. Why not **on**? not a formal topic.", cue: "ofx1-r2" },
+          { text: "Why not **about**? certain about = sure of the details of it That is correct English, but it says something else. Where about fits: _I am not certain about the details._ Why not **on**? not a formal topic.", cue: "ofx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ofx1"),
-          ...PLAB.kit.lineup("ofx1", "He is certain ____ success.", [["awareOf", "of", true, "success is one result | the mind holds firmly"], ["aboutCircle", "about", "diff", "certain about = sure | of the details of it"], ["pointDoc", "on", false, "not a formal topic"]], ["Why of? success is one result the mind holds firmly", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"]),
+          ...PLAB.kit.lineup("ofx1", "He is certain ____ success.", [["awareOf", "of", true, "success is one result | the mind holds firmly"], ["aboutCircle", "about", "diff", "certain about = sure | of the details of it"], ["pointDoc", "on", false, "not a formal topic"]], ["Why of? success is one result the mind holds firmly", "Ask: Is the mind holding one fact or result (aware of, sure of success)?"], null, ["≈ about: I am not certain about the details."]),
         ],
       },
       {
@@ -94,11 +94,11 @@
         alt: "They talked with a gap the match. Answer: about, because the talk went round every side of the match. Not of: talk of is old, not everyday. Not on: talked on = gave a formal talk.",
         say: [
           { text: "Fill the gap: They talked … the match. Picture it: the talk went round every side of the match. So **about**.", cue: "aboutx02" },
-          { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk That is correct English, but it says something else.", cue: "aboutx0-r2" },
+          { text: "Why not **of**? talk of is old, not everyday. Why not **on**? talked on = gave a formal talk That is correct English, but it says something else. Where on fits: _The coach gave a talk on cricket rules._", cue: "aboutx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-aboutx0"),
-          ...PLAB.kit.lineup("aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "the talk went round | every side of the match"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? the talk went round every side of the match", "Ask: Is it a topic with many sides that the mind circles?"]),
+          ...PLAB.kit.lineup("aboutx0", "They talked ____ the match.", [["awareOf", "of", false, "talk of is old, | not everyday"], ["aboutCircle", "about", true, "the talk went round | every side of the match"], ["pointDoc", "on", "diff", "talked on = gave a | formal talk"]], ["Why about? the talk went round every side of the match", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ on: The coach gave a talk on cricket rules."]),
         ],
       },
       {
@@ -107,11 +107,11 @@
         alt: "She is uncertain with a gap the future. Answer: about, because the future has many sides; her mind circles them. Not of: uncertain of = unsure of one result: of success. Not on: not a formal topic.",
         say: [
           { text: "Fill the gap: She is uncertain … the future. Picture it: the future has many sides; her mind circles them. So **about**.", cue: "aboutx12" },
-          { text: "Why not **of**? uncertain of = unsure of one result: of success That is correct English, but it says something else. Why not **on**? not a formal topic.", cue: "aboutx1-r2" },
+          { text: "Why not **of**? uncertain of = unsure of one result: of success That is correct English, but it says something else. Where of fits: _She is uncertain of success._ Why not **on**? not a formal topic.", cue: "aboutx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-aboutx1"),
-          ...PLAB.kit.lineup("aboutx1", "She is uncertain ____ the future.", [["awareOf", "of", "diff", "uncertain of = unsure of | one result: of success"], ["aboutCircle", "about", true, "the future has many sides; | her mind circles them"], ["pointDoc", "on", false, "not a formal topic"]], ["Why about? the future has many sides; her mind circles them", "Ask: Is it a topic with many sides that the mind circles?"]),
+          ...PLAB.kit.lineup("aboutx1", "She is uncertain ____ the future.", [["awareOf", "of", "diff", "uncertain of = unsure of | one result: of success"], ["aboutCircle", "about", true, "the future has many sides; | her mind circles them"], ["pointDoc", "on", false, "not a formal topic"]], ["Why about? the future has many sides; her mind circles them", "Ask: Is it a topic with many sides that the mind circles?"], null, ["≈ of: She is uncertain of success."]),
         ],
       },
       {
@@ -137,11 +137,11 @@
         alt: "He wrote a book with a gap Iqbal. Answer: on, because a book is a formal study of one subject. Not of: a book of Iqbal = a book by him. Not about: about is fine but everyday in tone.",
         say: [
           { text: "Fill the gap: He wrote a book … Iqbal. Picture it: a book is a formal study of one subject. So **on**.", cue: "onx03" },
-          { text: "Why not **of**? a book of Iqbal = a book by him That is correct English, but it says something else. Why not **about**? about is fine but everyday in tone That is correct English, but it says something else.", cue: "onx0-r2" },
+          { text: "Why not **of**? a book of Iqbal = a book by him That is correct English, but it says something else. Where of fits: _This is a book of Iqbal's letters._ Why not **about**? about is fine but everyday in tone That is correct English, but it says something else. Where about fits: _My son is reading a story about Iqbal._", cue: "onx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "He wrote a book ____ Iqbal.", [["awareOf", "of", "diff", "a book of Iqbal = | a book by him"], ["aboutCircle", "about", "diff", "about is fine but | everyday in tone"], ["pointDoc", "on", true, "a book is a formal | study of one subject"]], ["Why on? a book is a formal study of one subject", "Ask: Is it a book, lecture, essay or report on one subject?"]),
+          ...PLAB.kit.lineup("onx0", "He wrote a book ____ Iqbal.", [["awareOf", "of", "diff", "a book of Iqbal = | a book by him"], ["aboutCircle", "about", "diff", "about is fine but | everyday in tone"], ["pointDoc", "on", true, "a book is a formal | study of one subject"]], ["Why on? a book is a formal study of one subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ of: This is a book of Iqbal's letters.", "≈ about: My son is reading a story about Iqbal."]),
         ],
       },
       {
@@ -150,11 +150,11 @@
         alt: "She gave a lecture with a gap climate change. Answer: on, because a lecture points at one serious subject. Not of: lecture of = given by. Not about: less formal.",
         say: [
           { text: "Fill the gap: She gave a lecture … climate change. Picture it: a lecture points at one serious subject. So **on**.", cue: "onx13" },
-          { text: "Why not **of**? lecture of = given by. Why not **about**? less formal That is correct English, but it says something else.", cue: "onx1-r2" },
+          { text: "Why not **of**? lecture of = given by. Why not **about**? less formal That is correct English, but it says something else. Where about fits: _We chatted about climate change over tea._", cue: "onx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-onx1"),
-          ...PLAB.kit.lineup("onx1", "She gave a lecture ____ climate change.", [["awareOf", "of", false, "lecture of = given by"], ["aboutCircle", "about", "diff", "less formal"], ["pointDoc", "on", true, "a lecture points at | one serious subject"]], ["Why on? a lecture points at one serious subject", "Ask: Is it a book, lecture, essay or report on one subject?"]),
+          ...PLAB.kit.lineup("onx1", "She gave a lecture ____ climate change.", [["awareOf", "of", false, "lecture of = given by"], ["aboutCircle", "about", "diff", "less formal"], ["pointDoc", "on", true, "a lecture points at | one serious subject"]], ["Why on? a lecture points at one serious subject", "Ask: Is it a book, lecture, essay or report on one subject?"], null, ["≈ about: We chatted about climate change over tea."]),
         ],
       },
       {
@@ -287,7 +287,7 @@
             {
               "text": "about",
               "misconception": "p0-sense",
-              "why": "Less formal. It is correct English, but it says something else."
+              "why": "Less formal. It is correct English, but it says something else. Where about fits: Tell me about your village."
             },
             {
               "text": "of",

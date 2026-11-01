@@ -75,7 +75,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The car was going 120 km ____ hour.", [["perKilo", "per", true, "for each hour"], ["inPeriod", "in", false, "in an hour = | within one hour"], ["cross", "by", false, "by = a means or a | change: rose by 10"]], ["per = for each", "Rs 200 per kilo \u00b7 120 km per hour"]),
+          ...PLAB.kit.lineup("why", "The car was going 120 km ____ hour.", [["perKilo", "per", true, "for each hour"], ["inPeriod", "in", false, "in an hour = | within one hour"], ["cross", "by", false, "by = a means or a | change: rose by 10"]], ["per = for each", "Rs 200 per kilo \u00b7 120 km per hour"], null, []),
         ],
       },
       {

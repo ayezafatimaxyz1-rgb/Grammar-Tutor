@@ -76,7 +76,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Peace is conducive ____ economic growth.", [["growTo", "to", true, "leading towards | a result"], ["target", "for", false, "for = a purpose; peace | is not aimed at growth"], ["levelScale", "with", false, "with goes with | commensurate"]], ["conducive to, averse to, tantamount to", "contingent on \u00b7 commensurate with"]),
+          ...PLAB.kit.lineup("why", "Peace is conducive ____ economic growth.", [["growTo", "to", true, "leading towards | a result"], ["target", "for", false, "for = a purpose; peace | is not aimed at growth"], ["levelScale", "with", false, "with goes with | commensurate"]], ["conducive to, averse to, tantamount to", "contingent on \u00b7 commensurate with"], null, []),
         ],
       },
       {

@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-throughx0"),
-          ...PLAB.kit.lineup("throughx0", "The train passed ____ the tunnel.", [["passThrough", "through", true, "inside the tunnel, | end to end"], ["acrossRoad", "across", false, "across stays on | top of a surface"], ["alongRiver", "along", false, "along follows | a line beside it"]], ["Why through? inside the tunnel, end to end", "Ask: Do you go inside it from end to end?"]),
+          ...PLAB.kit.lineup("throughx0", "The train passed ____ the tunnel.", [["passThrough", "through", true, "inside the tunnel, | end to end"], ["acrossRoad", "across", false, "across stays on | top of a surface"], ["alongRiver", "along", false, "along follows | a line beside it"]], ["Why through? inside the tunnel, end to end", "Ask: Do you go inside it from end to end?"], null, []),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "We walked with a gap the forest. Answer: through, because the trees were all around us. Not across: across the forest = over it, side to side. Not along: a forest is not a line.",
         say: [
           { text: "Fill the gap: We walked … the forest. Picture it: the trees were all around us. So **through**.", cue: "throughx11" },
-          { text: "Why not **across**? across the forest = over it, side to side That is correct English, but it says something else. Why not **along**? a forest is not a line.", cue: "throughx1-r2" },
+          { text: "Why not **across**? across the forest = over it, side to side That is correct English, but it says something else. Where across fits: _We walked across the open field._ Why not **along**? a forest is not a line.", cue: "throughx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-throughx1"),
-          ...PLAB.kit.lineup("throughx1", "We walked ____ the forest.", [["passThrough", "through", true, "the trees were | all around us"], ["acrossRoad", "across", "diff", "across the forest = | over it, side to side"], ["alongRiver", "along", false, "a forest is | not a line"]], ["Why through? the trees were all around us", "Ask: Do you go inside it from end to end?"]),
+          ...PLAB.kit.lineup("throughx1", "We walked ____ the forest.", [["passThrough", "through", true, "the trees were | all around us"], ["acrossRoad", "across", "diff", "across the forest = | over it, side to side"], ["alongRiver", "along", false, "a forest is | not a line"]], ["Why through? the trees were all around us", "Ask: Do you go inside it from end to end?"], null, ["≈ across: We walked across the open field."]),
         ],
       },
       {
@@ -94,11 +94,11 @@
         alt: "She walked with a gap the road. Answer: across, because one side, then the opposite side. Not through: a road has no inside. Not along: along the road = following its length.",
         say: [
           { text: "Fill the gap: She walked … the road. Picture it: one side, then the opposite side. So **across**.", cue: "acrossx02" },
-          { text: "Why not **through**? a road has no inside. Why not **along**? along the road = following its length That is correct English, but it says something else.", cue: "acrossx0-r2" },
+          { text: "Why not **through**? a road has no inside. Why not **along**? along the road = following its length That is correct English, but it says something else. Where along fits: _She walked along the road to the market._", cue: "acrossx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-acrossx0"),
-          ...PLAB.kit.lineup("acrossx0", "She walked ____ the road.", [["passThrough", "through", false, "a road has no inside"], ["acrossRoad", "across", true, "one side, then | the opposite side"], ["alongRiver", "along", "diff", "along the road = | following its length"]], ["Why across? one side, then the opposite side", "Ask: Do you go from one side to the opposite side?"]),
+          ...PLAB.kit.lineup("acrossx0", "She walked ____ the road.", [["passThrough", "through", false, "a road has no inside"], ["acrossRoad", "across", true, "one side, then | the opposite side"], ["alongRiver", "along", "diff", "along the road = | following its length"]], ["Why across? one side, then the opposite side", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: She walked along the road to the market."]),
         ],
       },
       {
@@ -107,11 +107,11 @@
         alt: "They swam with a gap the river. Answer: across, because bank to bank. Not through: not end to end inside. Not along: along = up or down the river's length.",
         say: [
           { text: "Fill the gap: They swam … the river. Picture it: bank to bank. So **across**.", cue: "acrossx12" },
-          { text: "Why not **through**? not end to end inside. Why not **along**? along = up or down the river's length That is correct English, but it says something else.", cue: "acrossx1-r2" },
+          { text: "Why not **through**? not end to end inside. Why not **along**? along = up or down the river's length That is correct English, but it says something else. Where along fits: _They swam along the river bank._", cue: "acrossx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-acrossx1"),
-          ...PLAB.kit.lineup("acrossx1", "They swam ____ the river.", [["passThrough", "through", false, "not end to end inside"], ["acrossRoad", "across", true, "bank to bank"], ["alongRiver", "along", "diff", "along = up or down | the river's length"]], ["Why across? bank to bank", "Ask: Do you go from one side to the opposite side?"]),
+          ...PLAB.kit.lineup("acrossx1", "They swam ____ the river.", [["passThrough", "through", false, "not end to end inside"], ["acrossRoad", "across", true, "bank to bank"], ["alongRiver", "along", "diff", "along = up or down | the river's length"]], ["Why across? bank to bank", "Ask: Do you go from one side to the opposite side?"], null, ["≈ along: They swam along the river bank."]),
         ],
       },
       {
@@ -136,11 +136,11 @@
         alt: "We walked with a gap the canal. Answer: along, because following the canal's length. Not through: not inside the canal. Not across: across = to the other bank.",
         say: [
           { text: "Fill the gap: We walked … the canal. Picture it: following the canal's length. So **along**.", cue: "alongx03" },
-          { text: "Why not **through**? not inside the canal. Why not **across**? across = to the other bank That is correct English, but it says something else.", cue: "alongx0-r2" },
+          { text: "Why not **through**? not inside the canal. Why not **across**? across = to the other bank That is correct English, but it says something else. Where across fits: _We walked across the canal bridge._", cue: "alongx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-alongx0"),
-          ...PLAB.kit.lineup("alongx0", "We walked ____ the canal.", [["passThrough", "through", false, "not inside the canal"], ["acrossRoad", "across", "diff", "across = to the | other bank"], ["alongRiver", "along", true, "following the canal's | length"]], ["Why along? following the canal's length", "Ask: Do you follow its length?"]),
+          ...PLAB.kit.lineup("alongx0", "We walked ____ the canal.", [["passThrough", "through", false, "not inside the canal"], ["acrossRoad", "across", "diff", "across = to the | other bank"], ["alongRiver", "along", true, "following the canal's | length"]], ["Why along? following the canal's length", "Ask: Do you follow its length?"], null, ["≈ across: We walked across the canal bridge."]),
         ],
       },
       {
@@ -153,7 +153,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-alongx1"),
-          ...PLAB.kit.lineup("alongx1", "Trees grow ____ the road.", [["passThrough", "through", false, "no inside"], ["acrossRoad", "across", false, "trees do not cross it"], ["alongRiver", "along", true, "a line of trees | following the road"]], ["Why along? a line of trees following the road", "Ask: Do you follow its length?"]),
+          ...PLAB.kit.lineup("alongx1", "Trees grow ____ the road.", [["passThrough", "through", false, "no inside"], ["acrossRoad", "across", false, "trees do not cross it"], ["alongRiver", "along", true, "a line of trees | following the road"]], ["Why along? a line of trees following the road", "Ask: Do you follow its length?"], null, []),
         ],
       },
       {

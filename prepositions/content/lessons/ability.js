@@ -76,7 +76,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She is good ____ mathematics.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "hitting the | target"], ["expertIn", "in", false, "informal; in | is for fields: proficient in"], ["onBase", "on", false, "on = a topic: | a book on maths"]], ["good at, bad at \u00b7 capable of", "proficient in, experienced in"]),
+          ...PLAB.kit.lineup("why", "She is good ____ mathematics.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "hitting the | target"], ["expertIn", "in", false, "informal; in | is for fields: proficient in"], ["onBase", "on", false, "on = a topic: | a book on maths"]], ["good at, bad at \u00b7 capable of", "proficient in, experienced in"], null, []),
         ],
       },
       {

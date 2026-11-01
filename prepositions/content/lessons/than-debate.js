@@ -54,7 +54,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She is taller ____ me.", [["taller", "than", true, "comparison after | -er"], ["timeline", "then", false, "then = next, | at that time"], ["origin", "from", false, "taller from | is wrong"]], ["taller than, better than", "then = time"]),
+          ...PLAB.kit.lineup("why", "She is taller ____ me.", [["taller", "than", true, "comparison after | -er"], ["timeline", "then", false, "then = next, | at that time"], ["origin", "from", false, "taller from | is wrong"]], ["taller than, better than", "then = time"], null, []),
         ],
       },
       {

@@ -138,7 +138,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "Paper is made ____ wood.", [[[["tree", -40, 0, 0.8], ["arrowR", 0, 0, 0.5], ["doc", 40, 0, 0.8]], "from", true, "the wood has | changed"], ["table", "of", false, "of = the material | still shows"], ["writtenBy", "by", false, "by names the | maker"]], ["made from = changed \u00b7 made of = still visible", "made by = the maker"]),
+        ...PLAB.kit.lineup("why", "Paper is made ____ wood.", [[[["tree", -40, 0, 0.8], ["arrowR", 0, 0, 0.5], ["doc", 40, 0, 0.8]], "from", true, "the wood has | changed"], ["table", "of", false, "of = the material | still shows"], ["writtenBy", "by", false, "by names the | maker"]], ["made from = changed \u00b7 made of = still visible", "made by = the maker"], null, []),
       ],
     },
     {

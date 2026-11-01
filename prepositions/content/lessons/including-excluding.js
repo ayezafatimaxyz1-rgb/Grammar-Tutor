@@ -53,12 +53,12 @@
         alt: "The sentence The fee is Rs 50,000, with a gap hostel charges. (They are not in it.), then the candidates with pictures: excluding (right: left out of the total); including (correct English but a different meaning: the charges are inside the total); besides (correct English but a different meaning: in addition to the charges). Rule: including = part of the total; excluding = left out.",
         say: [
           { text: "Fill the gap: The fee is Rs 50,000, \u2026 hostel charges. (They are not in it.) What does the sentence want to say? The answer is **excluding**: left out of the total.", cue: "why1" },
-          { text: "Why not the others? **including** is correct English, but it would mean the charges are inside the total. That is not what this sentence says. **besides** is correct English, but it would mean in addition to the charges. That is not what this sentence says.", cue: "why2" },
+          { text: "Why not the others? **including** is correct English, but it would mean the charges are inside the total. That is not what this sentence says. Where including fits: _The fee is Rs 60,000, including hostel charges._ **besides** is correct English, but it would mean in addition to the charges. That is not what this sentence says. Where besides fits: _Besides the fee, you pay for books._", cue: "why2" },
           { text: "The rule: including = part of the total; excluding = left out.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The fee is Rs 50,000, ____ hostel charges. (They are not in it.)", [["groupOut", "excluding", true, "left out of | the total"], ["plus", "including", "diff", "the charges are | inside the total"], ["addMore", "besides", "diff", "in addition | to the charges"]], ["including = part of the total", "excluding = left out"]),
+          ...PLAB.kit.lineup("why", "The fee is Rs 50,000, ____ hostel charges. (They are not in it.)", [["groupOut", "excluding", true, "left out of | the total"], ["plus", "including", "diff", "the charges are | inside the total"], ["addMore", "besides", "diff", "in addition | to the charges"]], ["including = part of the total", "excluding = left out"], null, ["\u2248 including: The fee is Rs 60,000, including hostel charges.", "\u2248 besides: Besides the fee, you pay for books."]),
         ],
       },
       {

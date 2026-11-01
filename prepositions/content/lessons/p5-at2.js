@@ -33,11 +33,11 @@
         alt: "The sentence She is with a gap the company., then the candidates: at the helm of (fits: in charge of); at the mercy of (correct English, different meaning: in the power of the company); on the helm of (not used: you stand at the helm)",
         say: [
           { text: "Fill the gap: She is \u2026 the company. The sentence wants **at the helm of**: in charge of.", cue: "f1w1" },
-          { text: "Why not the others? **at the mercy of** is correct English, but it means in the power of the company. That is not what this sentence says. **on the helm of**: you stand at the helm.", cue: "f1w2" },
+          { text: "Why not the others? **at the mercy of** is correct English, but it means in the power of the company. That is not what this sentence says. Where at the mercy of fits: _The boat was at the mercy of the waves._ **on the helm of**: you stand at the helm.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "She is ____ the company.", [["leadGroup", "at the helm of", true, "in charge of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the mercy of", "diff", "in the power | of the company"], ["cross", "on the helm of", false, "you stand | at the helm"]], ["at the helm of = in charge of", "Why at? helm = the steering wheel"]),
+          ...PLAB.kit.lineup("f1w", "She is ____ the company.", [["leadGroup", "at the helm of", true, "in charge of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the mercy of", "diff", "in the power | of the company"], ["cross", "on the helm of", false, "you stand | at the helm"]], ["at the helm of = in charge of", "Why at? helm = the steering wheel"], null, ["\u2248 at the mercy of: The boat was at the mercy of the waves."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence They suffered badly with a gap the enemy., then the candidates: at the hands of (fits: caused by (harm)); in the hands of (correct English, different meaning: in the control or care of); on the hands of (not used: the fixed phrase is at the hands of)",
         say: [
           { text: "Fill the gap: They suffered badly \u2026 the enemy. The sentence wants **at the hands of**: caused by (harm).", cue: "f2w1" },
-          { text: "Why not the others? **in the hands of** is correct English, but it means in the control or care of. That is not what this sentence says. **on the hands of**: the fixed phrase is at the hands of.", cue: "f2w2" },
+          { text: "Why not the others? **in the hands of** is correct English, but it means in the control or care of. That is not what this sentence says. Where in the hands of fits: _The decision is now in the hands of the court._ **on the hands of**: the fixed phrase is at the hands of.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "They suffered badly ____ the enemy.", [["puppetHand", "at the hands of", true, "caused by (harm)"], ["absorbedIn", "in the hands of", "diff", "in the control | or care of"], ["cross", "on the hands of", false, "the fixed phrase | is at the hands of"]], ["at the hands of = caused by (harm)", "Why at? harm comes from that point"]),
+          ...PLAB.kit.lineup("f2w", "They suffered badly ____ the enemy.", [["puppetHand", "at the hands of", true, "caused by (harm)"], ["absorbedIn", "in the hands of", "diff", "in the control | or care of"], ["cross", "on the hands of", false, "the fixed phrase | is at the hands of"]], ["at the hands of = caused by (harm)", "Why at? harm comes from that point"], null, ["\u2248 in the hands of: The decision is now in the hands of the court."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence The report is with a gap the facts., then the candidates: at variance with (fits: different from); in keeping with (correct English, different meaning: matching the facts); at variance to (not used: at variance with)",
         say: [
           { text: "Fill the gap: The report is \u2026 the facts. The sentence wants **at variance with**: different from.", cue: "f3w1" },
-          { text: "Why not the others? **in keeping with** is correct English, but it means matching the facts. That is not what this sentence says. **at variance to**: at variance with.", cue: "f3w2" },
+          { text: "Why not the others? **in keeping with** is correct English, but it means matching the facts. That is not what this sentence says. Where in keeping with fits: _The decision is in keeping with the constitution._ **at variance to**: at variance with.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The report is ____ the facts.", [["mismatch", "at variance with", true, "different from"], ["absorbedIn", "in keeping with", "diff", "matching the facts"], ["cross", "at variance to", false, "at variance with"]], ["at variance with = different from", "Why with? variance = difference"]),
+          ...PLAB.kit.lineup("f3w", "The report is ____ the facts.", [["mismatch", "at variance with", true, "different from"], ["absorbedIn", "in keeping with", "diff", "matching the facts"], ["cross", "at variance to", false, "at variance with"]], ["at variance with = different from", "Why with? variance = difference"], null, ["\u2248 in keeping with: The decision is in keeping with the constitution."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence Names were chosen with a gap., then the candidates: at random (fits: without a plan); at large (correct English, different meaning: free, not caught); by random (not used: the fixed phrase is at random)",
         say: [
           { text: "Fill the gap: Names were chosen \u2026. The sentence wants **at random**: without a plan.", cue: "f4w1" },
-          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. **by random**: the fixed phrase is at random.", cue: "f4w2" },
+          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. Where at large fits: _The killer is still at large._ **by random**: the fixed phrase is at random.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Names were chosen ____.", [["dice", "at random", true, "without a plan"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["cross", "by random", false, "the fixed phrase | is at random"]], ["at random = without a plan", "Why at? any point at all"]),
+          ...PLAB.kit.lineup("f4w", "Names were chosen ____.", [["dice", "at random", true, "without a plan"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["cross", "by random", false, "the fixed phrase | is at random"]], ["at random = without a plan", "Why at? any point at all"], null, ["\u2248 at large: The killer is still at large."]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence The killer is still with a gap., then the candidates: at large (fits: free, not caught); at random (correct English, different meaning: without a plan); in large (not used: the fixed phrase is at large)",
         say: [
           { text: "Fill the gap: The killer is still \u2026. The sentence wants **at large**: free, not caught.", cue: "f5w1" },
-          { text: "Why not the others? **at random** is correct English, but it means without a plan. That is not what this sentence says. **in large**: the fixed phrase is at large.", cue: "f5w2" },
+          { text: "Why not the others? **at random** is correct English, but it means without a plan. That is not what this sentence says. Where at random fits: _Names were chosen at random._ **in large**: the fixed phrase is at large.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The killer is still ____.", [["escaped", "at large", true, "free, not caught"], [[["arrowR", -40, 0], ["target", 30, 0]], "at random", "diff", "without a plan"], ["cross", "in large", false, "the fixed phrase | is at large"]], ["at large = free, not caught", "Why at? loose at no fixed point"]),
+          ...PLAB.kit.lineup("f5w", "The killer is still ____.", [["escaped", "at large", true, "free, not caught"], [[["arrowR", -40, 0], ["target", 30, 0]], "at random", "diff", "without a plan"], ["cross", "in large", false, "the fixed phrase | is at large"]], ["at large = free, not caught", "Why at? loose at no fixed point"], null, ["\u2248 at random: Names were chosen at random."]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence The inquiry began with a gap the court., then the candidates: at the instance of (fits: at the request of); for instance (correct English, different meaning: for example); on the instance of (not used: the fixed phrase is at the instance of)",
         say: [
           { text: "Fill the gap: The inquiry began \u2026 the court. The sentence wants **at the instance of**: at the request of.", cue: "f6w1" },
-          { text: "Why not the others? **for instance** is correct English, but it means for example. That is not what this sentence says. **on the instance of**: the fixed phrase is at the instance of.", cue: "f6w2" },
+          { text: "Why not the others? **for instance** is correct English, but it means for example. That is not what this sentence says. Where for instance fits: _Many fruits, for instance mangoes, grow here._ **on the instance of**: the fixed phrase is at the instance of.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The inquiry began ____ the court.", [["speak", "at the instance of", true, "at the request of"], ["wantStar", "for instance", "diff", "for example"], ["cross", "on the instance of", false, "the fixed phrase is | at the instance of"]], ["at the instance of = at the request of", "Why at? instance = request"]),
+          ...PLAB.kit.lineup("f6w", "The inquiry began ____ the court.", [["speak", "at the instance of", true, "at the request of"], ["wantStar", "for instance", "diff", "for example"], ["cross", "on the instance of", false, "the fixed phrase is | at the instance of"]], ["at the instance of = at the request of", "Why at? instance = request"], null, ["\u2248 for instance: Many fruits, for instance mangoes, grow here."]),
         ],
       },
       {

@@ -184,7 +184,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The photo is ____ page 12.", [["storyBook", "on", true, "a page is a | surface"], ["dotIn", "in", false, "in is for what the | picture contains"], ["reachDot", "at", false, "at is a point, | not a page"]], ["on a page, on a screen (a surface)", "in the photo, in the report (contents)"]),
+        ...PLAB.kit.lineup("why", "The photo is ____ page 12.", [["storyBook", "on", true, "a page is a | surface"], ["dotIn", "in", false, "in is for what the | picture contains"], ["reachDot", "at", false, "at is a point, | not a page"]], ["on a page, on a screen (a surface)", "in the photo, in the report (contents)"], null, []),
       ],
     },
     {

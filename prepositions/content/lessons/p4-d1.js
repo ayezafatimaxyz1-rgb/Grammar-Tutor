@@ -63,11 +63,11 @@
         alt: "The sentence The police dealt with a gap the crisis., then the candidates: with (fits: handle or take action on); in (correct English, different meaning: traded in the crisis as goods for sale); on (not used: on is resting; dealing handles with)",
         say: [
           { text: "Fill the gap: The police dealt \u2026 the crisis. What does the sentence want to say? It wants **deal with**: handle or take action on.", cue: "e1w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean traded in the crisis as goods for sale. That is not what this sentence says. **on**: on is resting; dealing handles with.", cue: "e1w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean traded in the crisis as goods for sale. That is not what this sentence says. Where in fits: _He deals in spices._ **on**: on is resting; dealing handles with.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The police dealt ____ the crisis.", [["agreeWith", "with", true, "handle or take | action on"], ["absorbedIn", "in", "diff", "traded in the crisis | as goods for sale"], ["cross", "on", false, "on is resting; | dealing handles with"]], ["deal with = handle or take action on", "deal in = buy and sell as a trade"]),
+          ...PLAB.kit.lineup("e1w", "The police dealt ____ the crisis.", [["agreeWith", "with", true, "handle or take | action on"], ["absorbedIn", "in", "diff", "traded in the crisis | as goods for sale"], ["cross", "on", false, "on is resting; | dealing handles with"]], ["deal with = handle or take action on", "deal in = buy and sell as a trade"], null, ["\u2248 in: He deals in spices."]),
         ],
       },
       {
@@ -116,7 +116,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He was debarred ____ the examination.", [["holdBack", "from", true, "officially | keep out of"], ["cross", "of", false, "of = belonging; | debar keeps away from"], ["cross", "to", false, "to moves towards; | debar keeps away"]], ["debar from = officially keep out of"]),
+          ...PLAB.kit.lineup("e2w", "He was debarred ____ the examination.", [["holdBack", "from", true, "officially | keep out of"], ["cross", "of", false, "of = belonging; | debar keeps away from"], ["cross", "to", false, "to moves towards; | debar keeps away"]], ["debar from = officially keep out of"], null, []),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence We decided with a gap the blue car., then the candidates: on (fits: choose after thinking); against (correct English, different meaning: chose not to buy the blue car); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: We decided \u2026 the blue car. What does the sentence want to say? It wants **decide on**: choose after thinking.", cue: "e3w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean chose not to buy the blue car. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e3w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean chose not to buy the blue car. That is not what this sentence says. Where against fits: _We decided against the blue car._ **of**: of = belonging; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "We decided ____ the blue car.", [["support", "on", true, "choose after | thinking"], ["shield", "against", "diff", "chose not to | buy the blue car"], ["cross", "of", false, "of = belonging; | not used"]], ["decide on = choose after thinking", "decide against = choose not to have or do"]),
+          ...PLAB.kit.lineup("e3w", "We decided ____ the blue car.", [["support", "on", true, "choose after | thinking"], ["shield", "against", "diff", "chose not to | buy the blue car"], ["cross", "of", false, "of = belonging; | not used"]], ["decide on = choose after thinking", "decide against = choose not to have or do"], null, ["\u2248 against: We decided against the blue car."]),
         ],
       },
       {
@@ -203,7 +203,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is dedicated ____ her work.", [["reachDot", "to", true, "giving all | your effort to"], ["cross", "for", false, "for is a purpose; | dedication points to"], ["cross", "with", false, "with = together; | not used"]], ["dedicated to = giving all your effort to"]),
+          ...PLAB.kit.lineup("e4w", "She is dedicated ____ her work.", [["reachDot", "to", true, "giving all | your effort to"], ["cross", "for", false, "for is a purpose; | dedication points to"], ["cross", "with", false, "with = together; | not used"]], ["dedicated to = giving all your effort to"], null, []),
         ],
       },
       {
@@ -230,7 +230,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The diet is deficient ____ iron.", [["absorbedIn", "in", true, "lacking something | it should contain"], ["cross", "of", false, "of = belonging; lack | inside takes in"], ["cross", "from", false, "from is a | source; not used"]], ["deficient in = lacking something it should contain"]),
+          ...PLAB.kit.lineup("e5w", "The diet is deficient ____ iron.", [["absorbedIn", "in", true, "lacking something | it should contain"], ["cross", "of", false, "of = belonging; lack | inside takes in"], ["cross", "from", false, "from is a | source; not used"]], ["deficient in = lacking something it should contain"], null, []),
         ],
       },
       {
@@ -279,7 +279,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "It all depends ____ the weather.", [["support", "on", true, "rest on as | a support"], ["cross", "of", false, "a word-for-word | translation; depend on"], ["cross", "from", false, "from is a starting | point, not a support"]], ["depend on = rest on as a support"]),
+          ...PLAB.kit.lineup("e6w", "It all depends ____ the weather.", [["support", "on", true, "rest on as | a support"], ["cross", "of", false, "a word-for-word | translation; depend on"], ["cross", "from", false, "from is a starting | point, not a support"]], ["depend on = rest on as a support"], null, []),
         ],
       },
       {
@@ -328,7 +328,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The war deprived them ____ food.", [["awareOf", "of", true, "take something | away from someone"], ["cross", "from", false, "a common error; | deprive someone of"], ["cross", "with", false, "with = together; | the opposite"]], ["deprive of = take something away from someone"]),
+          ...PLAB.kit.lineup("e7w", "The war deprived them ____ food.", [["awareOf", "of", true, "take something | away from someone"], ["cross", "from", false, "a common error; | deprive someone of"], ["cross", "with", false, "with = together; | the opposite"]], ["deprive of = take something away from someone"], null, []),
         ],
       },
       {
@@ -377,7 +377,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The word is derived ____ Latin.", [["holdBack", "from", true, "come from a source"], ["cross", "of", false, "of = belonging; a | source takes from"], ["cross", "by", false, "by is a means, | not a source"]], ["derive from = come from a source"]),
+          ...PLAB.kit.lineup("e8w", "The word is derived ____ Latin.", [["holdBack", "from", true, "come from a source"], ["cross", "of", false, "of = belonging; a | source takes from"], ["cross", "by", false, "by is a means, | not a source"]], ["derive from = come from a source"], null, []),
         ],
       },
       {

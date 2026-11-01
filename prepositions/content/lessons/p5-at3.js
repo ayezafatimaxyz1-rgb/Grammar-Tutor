@@ -33,11 +33,11 @@
         alt: "The sentence Thousands of lives are with a gap., then the candidates: at stake (fits: at risk); at large (correct English, different meaning: free, not caught); on stake (not used: the fixed phrase is at stake)",
         say: [
           { text: "Fill the gap: Thousands of lives are \u2026. The sentence wants **at stake**: at risk.", cue: "f1w1" },
-          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. **on stake**: the fixed phrase is at stake.", cue: "f1w2" },
+          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. Where at large fits: _The killer is still at large._ **on stake**: the fixed phrase is at stake.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Thousands of lives are ____.", [["scaleTip", "at stake", true, "at risk"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["cross", "on stake", false, "the fixed phrase | is at stake"]], ["at stake = at risk", "Why at? a stake = what is bet"]),
+          ...PLAB.kit.lineup("f1w", "Thousands of lives are ____.", [["scaleTip", "at stake", true, "at risk"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["cross", "on stake", false, "the fixed phrase | is at stake"]], ["at stake = at risk", "Why at? a stake = what is bet"], null, ["\u2248 at large: The killer is still at large."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence Prices rose with a gap ten percent a year., then the candidates: at the rate of (fits: at the speed or level of); at the cost of (correct English, different meaning: losing ten percent); on the rate of (not used: a point on a scale takes at)",
         say: [
           { text: "Fill the gap: Prices rose \u2026 ten percent a year. The sentence wants **at the rate of**: at the speed or level of.", cue: "f2w1" },
-          { text: "Why not the others? **at the cost of** is correct English, but it means losing ten percent. That is not what this sentence says. **on the rate of**: a point on a scale takes at.", cue: "f2w2" },
+          { text: "Why not the others? **at the cost of** is correct English, but it means losing ten percent. That is not what this sentence says. Where at the cost of fits: _He succeeded at the cost of his health._ **on the rate of**: a point on a scale takes at.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Prices rose ____ ten percent a year.", [["perKilo", "at the rate of", true, "at the speed | or level of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the cost of", "diff", "losing ten percent"], ["cross", "on the rate of", false, "a point on a | scale takes at"]], ["at the rate of = at the speed or level of", "Why at? a rate is a point on a scale"]),
+          ...PLAB.kit.lineup("f2w", "Prices rose ____ ten percent a year.", [["perKilo", "at the rate of", true, "at the speed | or level of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the cost of", "diff", "losing ten percent"], ["cross", "on the rate of", false, "a point on a | scale takes at"]], ["at the rate of = at the speed or level of", "Why at? a rate is a point on a scale"], null, ["\u2248 at the cost of: He succeeded at the cost of his health."]),
         ],
       },
       {

@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Minors are prohibited ____ driving.", [["holdBack", "from", true, "forbid by law"], ["cross", "to", false, "prohibit does not | take to + verb"], ["cross", "of", false, "of = belonging; | not used"]], ["prohibit from = forbid by law"]),
+          ...PLAB.kit.lineup("e1w", "Minors are prohibited ____ driving.", [["holdBack", "from", true, "forbid by law"], ["cross", "to", false, "prohibit does not | take to + verb"], ["cross", "of", false, "of = belonging; | not used"]], ["prohibit from = forbid by law"], null, []),
         ],
       },
       {
@@ -105,7 +105,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Vaccines protect children ____ disease.", [["holdBack", "from", true, "keep safe from"], ["cross", "of", false, "of = belonging; protection | keeps away from"], ["cross", "to", false, "to points; not used"]], ["protect from = keep safe from"]),
+          ...PLAB.kit.lineup("e2w", "Vaccines protect children ____ disease.", [["holdBack", "from", true, "keep safe from"], ["cross", "of", false, "of = belonging; protection | keeps away from"], ["cross", "to", false, "to points; not used"]], ["protect from = keep safe from"], null, []),
         ],
       },
       {
@@ -130,11 +130,11 @@
         alt: "The sentence She is proud with a gap her son., then the candidates: of (fits: pleased with someone's achievement); for (correct English, different meaning: happy on her son's behalf, about something he did); on (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: She is proud \u2026 her son. What does the sentence want to say? It wants **proud of**: pleased with someone's achievement.", cue: "e3w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean happy on her son's behalf, about something he did. That is not what this sentence says. **on**: a word-for-word translation.", cue: "e3w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean happy on her son's behalf, about something he did. That is not what this sentence says. Where for fits: _I am so proud for you._ **on**: a word-for-word translation.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is proud ____ her son.", [["awareOf", "of", true, "pleased with | someone's achievement"], ["wantStar", "for", "diff", "happy on her son's behalf, | about something he did"], ["cross", "on", false, "a word-for-word | translation"]], ["proud of = pleased with someone's achievement", "proud for = happy on someone's behalf"]),
+          ...PLAB.kit.lineup("e3w", "She is proud ____ her son.", [["awareOf", "of", true, "pleased with | someone's achievement"], ["wantStar", "for", "diff", "happy on her son's behalf, | about something he did"], ["cross", "on", false, "a word-for-word | translation"]], ["proud of = pleased with someone's achievement", "proud for = happy on someone's behalf"], null, ["\u2248 for: I am so proud for you."]),
         ],
       },
       {
@@ -194,7 +194,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "They provided the villagers ____ food.", [["agreeWith", "with", true, "give someone | something"], ["cross", "for", false, "for comes when the thing comes | first: provide food for them"], ["cross", "to", false, "to points; with | names the thing given"]], ["provide with = give someone something", "provide for = give something to people"]),
+          ...PLAB.kit.lineup("e4w", "They provided the villagers ____ food.", [["agreeWith", "with", true, "give someone | something"], ["cross", "for", false, "for comes when the thing comes | first: provide food for them"], ["cross", "to", false, "to points; with | names the thing given"]], ["provide with = give someone something", "provide for = give something to people"], null, []),
         ],
       },
       {
@@ -243,7 +243,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He was punished ____ cheating.", [["wantStar", "for", true, "make someone | suffer for a wrong"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "on", false, "on is resting; | not used"]], ["punish for = make someone suffer for a wrong"]),
+          ...PLAB.kit.lineup("e5w", "He was punished ____ cheating.", [["wantStar", "for", true, "make someone | suffer for a wrong"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "on", false, "on is resting; | not used"]], ["punish for = make someone suffer for a wrong"], null, []),
         ],
       },
       {

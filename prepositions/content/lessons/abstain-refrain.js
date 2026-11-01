@@ -78,7 +78,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Please refrain ____ smoking.", [["holdBack", "from", true, "holding back | from it"], ["arrowR", "to", false, "to = moving towards; | refrain is moving away"], ["cross", "of", false, "of = belonging; nothing | belongs here"]], ["refrain from, abstain from + -ing", "comply with \u00b7 adhere to"]),
+          ...PLAB.kit.lineup("why", "Please refrain ____ smoking.", [["holdBack", "from", true, "holding back | from it"], ["arrowR", "to", false, "to = moving towards; | refrain is moving away"], ["cross", "of", false, "of = belonging; nothing | belongs here"]], ["refrain from, abstain from + -ing", "comply with \u00b7 adhere to"], null, []),
         ],
       },
       {

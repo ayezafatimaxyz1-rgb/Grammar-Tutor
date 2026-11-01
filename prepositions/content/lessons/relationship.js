@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Doctors found a link ____ smoking and cancer.", [["linkBetween", "between", true, "both sides | named"], ["linkWith", "with", false, "with = from one | side: its link with"], ["cross", "of", false, "of names one side; | a link needs both"]], ["between X and Y", "X's link with Y"]),
+          ...PLAB.kit.lineup("why", "Doctors found a link ____ smoking and cancer.", [["linkBetween", "between", true, "both sides | named"], ["linkWith", "with", false, "with = from one | side: its link with"], ["cross", "of", false, "of names one side; | a link needs both"]], ["between X and Y", "X's link with Y"], null, []),
         ],
       },
       {

@@ -63,11 +63,11 @@
         alt: "The sentence How did he react with a gap the news?, then the candidates: to (fits: respond to); against (correct English, different meaning: rebelled against the news); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: How did he react \u2026 the news? What does the sentence want to say? It wants **react to**: respond to.", cue: "e1w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean rebelled against the news. That is not what this sentence says. **on**: on is resting; not used.", cue: "e1w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean rebelled against the news. That is not what this sentence says. Where against fits: _Young people often react against strict rules._ **on**: on is resting; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "How did he react ____ the news?", [["reachDot", "to", true, "respond to"], ["shield", "against", "diff", "rebelled | against the news"], ["cross", "on", false, "on is resting; | not used"]], ["react to = respond to", "react against = rebel against"]),
+          ...PLAB.kit.lineup("e1w", "How did he react ____ the news?", [["reachDot", "to", true, "respond to"], ["shield", "against", "diff", "rebelled | against the news"], ["cross", "on", false, "on is resting; | not used"]], ["react to = respond to", "react against = rebel against"], null, ["\u2248 against: Young people often react against strict rules."]),
         ],
       },
       {
@@ -94,7 +94,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Are you ready ____ the exam?", [["wantStar", "for", true, "prepared for"], ["cross", "to", false, "to needs a verb: | ready to go"], ["cross", "of", false, "of = belonging; | not used"]], ["ready for = prepared for"]),
+          ...PLAB.kit.lineup("e2w", "Are you ready ____ the exam?", [["wantStar", "for", true, "prepared for"], ["cross", "to", false, "to needs a verb: | ready to go"], ["cross", "of", false, "of = belonging; | not used"]], ["ready for = prepared for"], null, []),
         ],
       },
       {
@@ -143,7 +143,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She recovered ____ the illness.", [["holdBack", "from", true, "get well after"], ["cross", "of", false, "of = belonging; recovery | moves away from"], ["cross", "out", false, "out alone is | not enough"]], ["recover from = get well after"]),
+          ...PLAB.kit.lineup("e3w", "She recovered ____ the illness.", [["holdBack", "from", true, "get well after"], ["cross", "of", false, "of = belonging; recovery | moves away from"], ["cross", "out", false, "out alone is | not enough"]], ["recover from = get well after"], null, []),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence Prices were reduced with a gap 10 per cent., then the candidates: by (fits: made smaller by an amount); to (correct English, different meaning: brought down to 10 per cent of the old price); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: Prices were reduced \u2026 10 per cent. What does the sentence want to say? It wants **reduced by**: made smaller by an amount.", cue: "e4w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean brought down to 10 per cent of the old price. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean brought down to 10 per cent of the old price. That is not what this sentence says. Where to fits: _The house was reduced to ashes._ **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Prices were reduced ____ 10 per cent.", [["followRule", "by", true, "made smaller | by an amount"], ["reachDot", "to", "diff", "brought down to 10 per | cent of the old price"], ["cross", "of", false, "of = belonging; | not used"]], ["reduced by = made smaller by an amount", "reduced to = brought down to a level or state"]),
+          ...PLAB.kit.lineup("e4w", "Prices were reduced ____ 10 per cent.", [["followRule", "by", true, "made smaller | by an amount"], ["reachDot", "to", "diff", "brought down to 10 per | cent of the old price"], ["cross", "of", false, "of = belonging; | not used"]], ["reduced by = made smaller by an amount", "reduced to = brought down to a level or state"], null, ["\u2248 to: The house was reduced to ashes."]),
         ],
       },
       {
@@ -221,7 +221,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Refer ____ the dictionary.", [["reachDot", "to", true, "look at for | information, or mention"], ["cross", "(no word)", false, "refer cannot reach | its object alone"], ["cross", "on", false, "on is resting; | not used"]], ["refer to = look at for information, or mention"]),
+          ...PLAB.kit.lineup("e5w", "Refer ____ the dictionary.", [["reachDot", "to", true, "look at for | information, or mention"], ["cross", "(no word)", false, "refer cannot reach | its object alone"], ["cross", "on", false, "on is resting; | not used"]], ["refer to = look at for information, or mention"], null, []),
         ],
       },
       {
@@ -270,7 +270,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Everyone regarded him ____ a hero.", [["arrowR", "as", true, "consider to be"], ["cross", "like", false, "regard takes as"], ["cross", "for", false, "for goes with the | noun: regard for others"]], ["regard as = consider to be"]),
+          ...PLAB.kit.lineup("e6w", "Everyone regarded him ____ a hero.", [["arrowR", "as", true, "consider to be"], ["cross", "like", false, "regard takes as"], ["cross", "for", false, "for goes with the | noun: regard for others"]], ["regard as = consider to be"], null, []),
         ],
       },
       {
@@ -297,7 +297,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "His illness is related ____ stress.", [["reachDot", "to", true, "connected with"], ["cross", "with", false, "a common error; | related to"], ["cross", "from", false, "from is a | source; not used"]], ["related to = connected with"]),
+          ...PLAB.kit.lineup("e7w", "His illness is related ____ stress.", [["reachDot", "to", true, "connected with"], ["cross", "with", false, "a common error; | related to"], ["cross", "from", false, "from is a | source; not used"]], ["related to = connected with"], null, []),
         ],
       },
       {
@@ -324,7 +324,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "This point is relevant ____ the case.", [["reachDot", "to", true, "connected to | the matter"], ["cross", "with", false, "with = together; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["relevant to = connected to the matter"]),
+          ...PLAB.kit.lineup("e8w", "This point is relevant ____ the case.", [["reachDot", "to", true, "connected to | the matter"], ["cross", "with", false, "with = together; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["relevant to = connected to the matter"], null, []),
         ],
       },
       {

@@ -54,7 +54,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-besidex0"),
-          ...PLAB.kit.lineup("besidex0", "She sat ____ her mother.", [["sideBySide", "beside", true, "a place: at her side"], ["stackAdd", "besides", false, "besides adds; it is | not a place"]], ["Why beside? a place: at her side", "Ask: Is it about where something is?"]),
+          ...PLAB.kit.lineup("besidex0", "She sat ____ her mother.", [["sideBySide", "beside", true, "a place: at her side"], ["stackAdd", "besides", false, "besides adds; it is | not a place"]], ["Why beside? a place: at her side", "Ask: Is it about where something is?"], null, []),
         ],
       },
       {
@@ -67,7 +67,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-besidex1"),
-          ...PLAB.kit.lineup("besidex1", "There is a well ____ the mosque.", [["sideBySide", "beside", true, "the well is at | the side of the mosque"], ["stackAdd", "besides", false, "not adding anything"]], ["Why beside? the well is at the side of the mosque", "Ask: Is it about where something is?"]),
+          ...PLAB.kit.lineup("besidex1", "There is a well ____ the mosque.", [["sideBySide", "beside", true, "the well is at | the side of the mosque"], ["stackAdd", "besides", false, "not adding anything"]], ["Why beside? the well is at the side of the mosque", "Ask: Is it about where something is?"], null, []),
         ],
       },
       {
@@ -96,7 +96,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-besidesx0"),
-          ...PLAB.kit.lineup("besidesx0", "____ Urdu, he speaks Pashto.", [["sideBySide", "beside", false, "beside is a place, | not adding"], ["stackAdd", "besides", true, "Pashto is added | to Urdu"]], ["Why besides? Pashto is added to Urdu", "Ask: Is something being added?"]),
+          ...PLAB.kit.lineup("besidesx0", "____ Urdu, he speaks Pashto.", [["sideBySide", "beside", false, "beside is a place, | not adding"], ["stackAdd", "besides", true, "Pashto is added | to Urdu"]], ["Why besides? Pashto is added to Urdu", "Ask: Is something being added?"], null, []),
         ],
       },
       {
@@ -105,11 +105,11 @@
         alt: "Who came with a gap Ali? Answer: besides, because who else, in addition to Ali. Not beside: who came beside Ali = walked at his side.",
         say: [
           { text: "Fill the gap: Who came … Ali? Picture it: who else, in addition to Ali. So **besides**.", cue: "besidesx12" },
-          { text: "Why not **beside**? who came beside Ali = walked at his side That is correct English, but it says something else.", cue: "besidesx1-r2" },
+          { text: "Why not **beside**? who came beside Ali = walked at his side That is correct English, but it says something else. Where beside fits: _Who sat beside Ali?_", cue: "besidesx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-besidesx1"),
-          ...PLAB.kit.lineup("besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"]),
+          ...PLAB.kit.lineup("besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"], null, ["≈ beside: Who sat beside Ali?"]),
         ],
       },
       {

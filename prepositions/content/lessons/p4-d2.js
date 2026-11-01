@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She is descended ____ a royal family.", [["holdBack", "from", true, "having as | an ancestor"], ["cross", "of", false, "of = belonging; | ancestry comes from"], ["cross", "by", false, "by is a means, | not a source"]], ["descended from = having as an ancestor"]),
+          ...PLAB.kit.lineup("e1w", "She is descended ____ a royal family.", [["holdBack", "from", true, "having as | an ancestor"], ["cross", "of", false, "of = belonging; | ancestry comes from"], ["cross", "by", false, "by is a means, | not a source"]], ["descended from = having as an ancestor"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Such courage is deserving ____ praise.", [["awareOf", "of", true, "worthy of"], ["cross", "for", false, "for is a purpose; | deserving takes of"], ["cross", "to", false, "to points; not used"]], ["deserving of = worthy of"]),
+          ...PLAB.kit.lineup("e2w", "Such courage is deserving ____ praise.", [["awareOf", "of", true, "worthy of"], ["cross", "for", false, "for is a purpose; | deserving takes of"], ["cross", "to", false, "to points; not used"]], ["deserving of = worthy of"], null, []),
         ],
       },
       {
@@ -88,7 +88,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "There is a deep desire ____ peace.", [["wantStar", "for", true, "a strong wish | for (noun)"], ["cross", "of", false, "of = belonging; a | wish reaches for"], ["cross", "to", false, "to + a verb only: | a desire to win"]], ["desire for = a strong wish for (noun)"]),
+          ...PLAB.kit.lineup("e3w", "There is a deep desire ____ peace.", [["wantStar", "for", true, "a strong wish | for (noun)"], ["cross", "of", false, "of = belonging; a | wish reaches for"], ["cross", "to", false, "to + a verb only: | a desire to win"]], ["desire for = a strong wish for (noun)"], null, []),
         ],
       },
       {
@@ -115,7 +115,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She seemed destined ____ greatness.", [["wantStar", "for", true, "going to reach | a future state"], ["cross", "to", false, "to needs a verb: | destined to rule"], ["cross", "on", false, "on is resting; | not used"]], ["destined for = going to reach a future state"]),
+          ...PLAB.kit.lineup("e4w", "She seemed destined ____ greatness.", [["wantStar", "for", true, "going to reach | a future state"], ["cross", "to", false, "to needs a verb: | destined to rule"], ["cross", "on", false, "on is resting; | not used"]], ["destined for = going to reach a future state"], null, []),
         ],
       },
       {
@@ -142,7 +142,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Smoking is detrimental ____ health.", [["reachDot", "to", true, "harmful to"], ["cross", "for", false, "for is a purpose; | harm points to"], ["cross", "of", false, "of = belonging; | not used"]], ["detrimental to = harmful to"]),
+          ...PLAB.kit.lineup("e5w", "Smoking is detrimental ____ health.", [["reachDot", "to", true, "harmful to"], ["cross", "for", false, "for is a purpose; | harm points to"], ["cross", "of", false, "of = belonging; | not used"]], ["detrimental to = harmful to"], null, []),
         ],
       },
       {
@@ -191,7 +191,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Do not deviate ____ the plan.", [["holdBack", "from", true, "move away | from a course"], ["cross", "of", false, "of = belonging; moving | away takes from"], ["cross", "to", false, "to moves towards; | deviating moves away"]], ["deviate from = move away from a course"]),
+          ...PLAB.kit.lineup("e6w", "Do not deviate ____ the plan.", [["holdBack", "from", true, "move away | from a course"], ["cross", "of", false, "of = belonging; moving | away takes from"], ["cross", "to", false, "to moves towards; | deviating moves away"]], ["deviate from = move away from a course"], null, []),
         ],
       },
       {
@@ -218,7 +218,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The speech was devoid ____ meaning.", [["awareOf", "of", true, "completely without"], ["cross", "from", false, "from is moving away; | devoid takes of"], ["cross", "in", false, "in is inside; | the opposite"]], ["devoid of = completely without"]),
+          ...PLAB.kit.lineup("e7w", "The speech was devoid ____ meaning.", [["awareOf", "of", true, "completely without"], ["cross", "from", false, "from is moving away; | devoid takes of"], ["cross", "in", false, "in is inside; | the opposite"]], ["devoid of = completely without"], null, []),
         ],
       },
       {
@@ -267,7 +267,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He devoted his life ____ teaching.", [["reachDot", "to", true, "give time or | effort to"], ["cross", "for", false, "for is a purpose; | devote points to"], ["cross", "in", false, "in is inside; | not used"]], ["devote to = give time or effort to"]),
+          ...PLAB.kit.lineup("e8w", "He devoted his life ____ teaching.", [["reachDot", "to", true, "give time or | effort to"], ["cross", "for", false, "for is a purpose; | devote points to"], ["cross", "in", false, "in is inside; | not used"]], ["devote to = give time or effort to"], null, []),
         ],
       },
       {

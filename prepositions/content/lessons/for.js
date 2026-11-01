@@ -65,7 +65,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "This knife is ____ cutting bread.", [["bread", "for", true, "purpose + -ing"], ["arrowR", "to", false, "to + verb: | to cut bread"], ["bread", "with", false, "with names the | tool, not the aim"]], ["for + -ing or noun = purpose", "to + verb = purpose: went to buy"]),
+          ...PLAB.kit.lineup("why", "This knife is ____ cutting bread.", [["bread", "for", true, "purpose + -ing"], ["arrowR", "to", false, "to + verb: | to cut bread"], ["bread", "with", false, "with names the | tool, not the aim"]], ["for + -ing or noun = purpose", "to + verb = purpose: went to buy"], null, []),
         ],
       },
       {

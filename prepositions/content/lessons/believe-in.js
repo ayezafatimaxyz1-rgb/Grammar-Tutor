@@ -80,7 +80,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I believe ____ democracy.", [["beliefIn", "in", true, "trust placed | in an idea"], ["pressOn", "on", false, "on = resting on a | surface; belief goes inside"], ["believeWords", "(no word)", false, "believe + a person | = accept their words"]], ["believe in = trust its value or existence", "believe someone = accept their words"]),
+          ...PLAB.kit.lineup("why", "I believe ____ democracy.", [["beliefIn", "in", true, "trust placed | in an idea"], ["pressOn", "on", false, "on = resting on a | surface; belief goes inside"], ["believeWords", "(no word)", false, "believe + a person | = accept their words"]], ["believe in = trust its value or existence", "believe someone = accept their words"], null, []),
         ],
       },
       {

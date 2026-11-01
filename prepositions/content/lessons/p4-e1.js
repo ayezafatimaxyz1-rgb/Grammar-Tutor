@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The crowd was eager ____ news.", [["wantStar", "for", true, "wanting something | very much"], ["cross", "of", false, "of = belonging; | eagerness reaches for"], ["cross", "about", false, "about is a topic; | eagerness reaches for"]], ["eager for = wanting something very much"]),
+          ...PLAB.kit.lineup("e1w", "The crowd was eager ____ news.", [["wantStar", "for", true, "wanting something | very much"], ["cross", "of", false, "of = belonging; | eagerness reaches for"], ["cross", "about", false, "about is a topic; | eagerness reaches for"]], ["eager for = wanting something very much"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Be economical ____ water.", [["agreeWith", "with", true, "careful not | to waste"], ["cross", "on", false, "on is resting; | not used"], ["cross", "to", false, "to points; not used"]], ["economical with = careful not to waste"]),
+          ...PLAB.kit.lineup("e2w", "Be economical ____ water.", [["agreeWith", "with", true, "careful not | to waste"], ["cross", "on", false, "on is resting; | not used"], ["cross", "to", false, "to points; not used"]], ["economical with = careful not to waste"], null, []),
         ],
       },
       {
@@ -88,7 +88,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Smoking has a bad effect ____ health.", [["support", "on", true, "a result landing on | something (noun)"], ["cross", "to", false, "to points; an | effect lands on"], ["cross", "at", false, "at is a point; | not used"]], ["effect on = a result landing on something (noun)"]),
+          ...PLAB.kit.lineup("e3w", "Smoking has a bad effect ____ health.", [["support", "on", true, "a result landing on | something (noun)"], ["cross", "to", false, "to points; an | effect lands on"], ["cross", "at", false, "at is a point; | not used"]], ["effect on = a result landing on something (noun)"], null, []),
         ],
       },
       {
@@ -115,7 +115,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is eligible ____ the post.", [["wantStar", "for", true, "allowed to have | or apply for"], ["cross", "to", false, "to needs a verb: | eligible to vote"], ["cross", "of", false, "of = belonging; | not used"]], ["eligible for = allowed to have or apply for"]),
+          ...PLAB.kit.lineup("e4w", "She is eligible ____ the post.", [["wantStar", "for", true, "allowed to have | or apply for"], ["cross", "to", false, "to needs a verb: | eligible to vote"], ["cross", "of", false, "of = belonging; | not used"]], ["eligible for = allowed to have or apply for"], null, []),
         ],
       },
       {
@@ -164,7 +164,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The country embarked ____ reforms.", [["support", "on", true, "start something new"], ["cross", "in", false, "in is inside; embark | takes on (upon)"], ["cross", "to", false, "to points; not used"]], ["embark on = start something new"]),
+          ...PLAB.kit.lineup("e5w", "The country embarked ____ reforms.", [["support", "on", true, "start something new"], ["cross", "in", false, "in is inside; embark | takes on (upon)"], ["cross", "to", false, "to points; not used"]], ["embark on = start something new"], null, []),
         ],
       },
       {
@@ -213,7 +213,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The country emerged ____ the crisis.", [["holdBack", "from", true, "come out of"], ["cross", "out", false, "out alone is not | enough; emerge from"], ["cross", "of", false, "of = belonging; | not used"]], ["emerge from = come out of"]),
+          ...PLAB.kit.lineup("e6w", "The country emerged ____ the crisis.", [["holdBack", "from", true, "come out of"], ["cross", "out", false, "out alone is not | enough; emerge from"], ["cross", "of", false, "of = belonging; | not used"]], ["emerge from = come out of"], null, []),
         ],
       },
       {
@@ -240,7 +240,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The plan puts emphasis ____ education.", [["support", "on", true, "special importance | on (noun)"], ["cross", "about", false, "about is a topic; | emphasis presses on"], ["cross", "to", false, "to points; not used"]], ["emphasis on = special importance on (noun)"]),
+          ...PLAB.kit.lineup("e7w", "The plan puts emphasis ____ education.", [["support", "on", true, "special importance | on (noun)"], ["cross", "about", false, "about is a topic; | emphasis presses on"], ["cross", "to", false, "to points; not used"]], ["emphasis on = special importance on (noun)"], null, []),
         ],
       },
       {
@@ -267,7 +267,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "His words were empty ____ meaning.", [["awareOf", "of", true, "with nothing inside"], ["cross", "from", false, "from is a source; | empty takes of"], ["cross", "with", false, "with = together; | the opposite"]], ["empty of = with nothing inside"]),
+          ...PLAB.kit.lineup("e8w", "His words were empty ____ meaning.", [["awareOf", "of", true, "with nothing inside"], ["cross", "from", false, "from is a source; | empty takes of"], ["cross", "with", false, "with = together; | the opposite"]], ["empty of = with nothing inside"], null, []),
         ],
       },
       {

@@ -52,11 +52,11 @@
         alt: "The sentence The lift is with a gap., then the candidates: out of order (fits: not working); in order (correct English, different meaning: arranged correctly, or allowed); off order (not used: the fixed phrase is out of order)",
         say: [
           { text: "Fill the gap: The lift is \u2026. The sentence wants **out of order**: not working.", cue: "f1w1" },
-          { text: "Why not the others? **in order** is correct English, but it means arranged correctly, or allowed. That is not what this sentence says. **off order**: the fixed phrase is out of order.", cue: "f1w2" },
+          { text: "Why not the others? **in order** is correct English, but it means arranged correctly, or allowed. That is not what this sentence says. Where in order fits: _Your papers are in order._ **off order**: the fixed phrase is out of order.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The lift is ____.", [["switchOff", "out of order", true, "not working"], ["absorbedIn", "in order", "diff", "arranged correctly, | or allowed"], ["cross", "off order", false, "the fixed phrase | is out of order"]], ["out of order = not working", "Why out of? out of = outside a state"]),
+          ...PLAB.kit.lineup("f1w", "The lift is ____.", [["switchOff", "out of order", true, "not working"], ["absorbedIn", "in order", "diff", "arranged correctly, | or allowed"], ["cross", "off order", false, "the fixed phrase | is out of order"]], ["out of order = not working", "Why out of? out of = outside a state"], null, ["\u2248 in order: Your papers are in order."]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence This map is with a gap., then the candidates: out of date (fits: old, no longer valid); up to date (correct English, different meaning: current, the opposite); off date (not used: the fixed phrase is out of date)",
         say: [
           { text: "Fill the gap: This map is \u2026. The sentence wants **out of date**: old, no longer valid.", cue: "f2w1" },
-          { text: "Why not the others? **up to date** is correct English, but it means current, the opposite. That is not what this sentence says. **off date**: the fixed phrase is out of date.", cue: "f2w2" },
+          { text: "Why not the others? **up to date** is correct English, but it means current, the opposite. That is not what this sentence says. Where up to date fits: _Keep your records up to date._ **off date**: the fixed phrase is out of date.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "This map is ____.", [["oldCalendar", "out of date", true, "old, no | longer valid"], ["arrowUp", "up to date", "diff", "current, | the opposite"], ["cross", "off date", false, "the fixed phrase | is out of date"]], ["out of date = old, no longer valid", "Why out of? out of = outside"]),
+          ...PLAB.kit.lineup("f2w", "This map is ____.", [["oldCalendar", "out of date", true, "old, no | longer valid"], ["arrowUp", "up to date", "diff", "current, | the opposite"], ["cross", "off date", false, "the fixed phrase | is out of date"]], ["out of date = old, no longer valid", "Why out of? out of = outside"], null, ["\u2248 up to date: Keep your records up to date."]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence A holiday is with a gap this year., then the candidates: out of the question (fits: impossible); beyond question (correct English, different meaning: certainly true); without question (correct English, different meaning: with no doubt)",
         say: [
           { text: "Fill the gap: A holiday is \u2026 this year. The sentence wants **out of the question**: impossible.", cue: "f3w1" },
-          { text: "Why not the others? **beyond question** is correct English, but it means certainly true. That is not what this sentence says. **without question** is correct English, but it means with no doubt. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **beyond question** is correct English, but it means certainly true. That is not what this sentence says. Where beyond question fits: _Her honesty is beyond question._ **without question** is correct English, but it means with no doubt. That is not what this sentence says. Where without question fits: _He is without question the best student._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "A holiday is ____ this year.", [["cross", "out of the question", true, "impossible"], ["arrowR", "beyond question", "diff", "certainly true"], ["arrowR", "without question", "diff", "with no doubt"]], ["out of the question = impossible", "Why out of? outside what can even be asked"]),
+          ...PLAB.kit.lineup("f3w", "A holiday is ____ this year.", [["cross", "out of the question", true, "impossible"], ["arrowR", "beyond question", "diff", "certainly true"], ["arrowR", "without question", "diff", "with no doubt"]], ["out of the question = impossible", "Why out of? outside what can even be asked"], null, ["\u2248 beyond question: Her honesty is beyond question.", "\u2248 without question: He is without question the best student."]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence His guilt has been proved with a gap., then the candidates: beyond doubt (fits: certainly); in doubt (correct English, different meaning: uncertain); over doubt (not used: the fixed phrase is beyond doubt)",
         say: [
           { text: "Fill the gap: His guilt has been proved \u2026. The sentence wants **beyond doubt**: certainly.", cue: "f4w1" },
-          { text: "Why not the others? **in doubt** is correct English, but it means uncertain. That is not what this sentence says. **over doubt**: the fixed phrase is beyond doubt.", cue: "f4w2" },
+          { text: "Why not the others? **in doubt** is correct English, but it means uncertain. That is not what this sentence says. Where in doubt fits: _The result of the match is still in doubt._ **over doubt**: the fixed phrase is beyond doubt.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "His guilt has been proved ____.", [["check", "beyond doubt", true, "certainly"], ["absorbedIn", "in doubt", "diff", "uncertain"], ["cross", "over doubt", false, "the fixed phrase | is beyond doubt"]], ["beyond doubt = certainly", "Why beyond? past the reach of doubt"]),
+          ...PLAB.kit.lineup("f4w", "His guilt has been proved ____.", [["check", "beyond doubt", true, "certainly"], ["absorbedIn", "in doubt", "diff", "uncertain"], ["cross", "over doubt", false, "the fixed phrase | is beyond doubt"]], ["beyond doubt = certainly", "Why beyond? past the reach of doubt"], null, ["\u2248 in doubt: The result of the match is still in doubt."]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence They live with a gap., then the candidates: beyond one's means (fits: spending more than you have); within their means (correct English, different meaning: spending only what they have); above their means (not used: the fixed phrase is beyond your means)",
         say: [
           { text: "Fill the gap: They live \u2026. The sentence wants **beyond one's means**: spending more than you have.", cue: "f5w1" },
-          { text: "Why not the others? **within their means** is correct English, but it means spending only what they have. That is not what this sentence says. **above their means**: the fixed phrase is beyond your means.", cue: "f5w2" },
+          { text: "Why not the others? **within their means** is correct English, but it means spending only what they have. That is not what this sentence says. Where within their means fits: _Good families live within their means._ **above their means**: the fixed phrase is beyond your means.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "They live ____.", [["coin", "beyond one's means", true, "spending more | than you have"], ["arrowR", "within their means", "diff", "spending only | what they have"], ["cross", "above their means", false, "the fixed phrase is | beyond your means"]], ["beyond one's means = spending more than you have", "Why beyond? past the limit of what you have"]),
+          ...PLAB.kit.lineup("f5w", "They live ____.", [["coin", "beyond one's means", true, "spending more | than you have"], ["arrowR", "within their means", "diff", "spending only | what they have"], ["cross", "above their means", false, "the fixed phrase is | beyond your means"]], ["beyond one's means = spending more than you have", "Why beyond? past the limit of what you have"], null, ["\u2248 within their means: Good families live within their means."]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence Success is now with a gap., then the candidates: within reach (fits: close enough to get); out of reach (correct English, different meaning: too far to get); inside reach (not used: the fixed phrase is within reach)",
         say: [
           { text: "Fill the gap: Success is now \u2026. The sentence wants **within reach**: close enough to get.", cue: "f6w1" },
-          { text: "Why not the others? **out of reach** is correct English, but it means too far to get. That is not what this sentence says. **inside reach**: the fixed phrase is within reach.", cue: "f6w2" },
+          { text: "Why not the others? **out of reach** is correct English, but it means too far to get. That is not what this sentence says. Where out of reach fits: _Keep medicines out of reach of children._ **inside reach**: the fixed phrase is within reach.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "Success is now ____.", [["reachDot", "within reach", true, "close enough to get"], ["arrowR", "out of reach", "diff", "too far to get"], ["cross", "inside reach", false, "the fixed phrase | is within reach"]], ["within reach = close enough to get", "Why within? inside the limit of your arm"]),
+          ...PLAB.kit.lineup("f6w", "Success is now ____.", [["reachDot", "within reach", true, "close enough to get"], ["arrowR", "out of reach", "diff", "too far to get"], ["cross", "inside reach", false, "the fixed phrase | is within reach"]], ["within reach = close enough to get", "Why within? inside the limit of your arm"], null, ["\u2248 out of reach: Keep medicines out of reach of children."]),
         ],
       },
       {

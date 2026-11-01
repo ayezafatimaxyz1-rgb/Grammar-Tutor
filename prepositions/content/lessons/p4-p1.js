@@ -63,11 +63,11 @@
         alt: "The sentence She hated to part with a gap her books., then the candidates: with (fits: give up a thing); from (correct English, different meaning: said goodbye to her books as if they were people); of (not used: of goes with the noun: part of)",
         say: [
           { text: "Fill the gap: She hated to part \u2026 her books. What does the sentence want to say? It wants **part with**: give up a thing.", cue: "e1w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean said goodbye to her books as if they were people. That is not what this sentence says. **of**: of goes with the noun: part of.", cue: "e1w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean said goodbye to her books as if they were people. That is not what this sentence says. Where from fits: _He parted from his family at the station._ **of**: of goes with the noun: part of.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She hated to part ____ her books.", [["agreeWith", "with", true, "give up a thing"], ["holdBack", "from", "diff", "said goodbye to her books | as if they were people"], ["cross", "of", false, "of goes with the | noun: part of"]], ["part with = give up a thing", "part from = leave a person"]),
+          ...PLAB.kit.lineup("e1w", "She hated to part ____ her books.", [["agreeWith", "with", true, "give up a thing"], ["holdBack", "from", "diff", "said goodbye to her books | as if they were people"], ["cross", "of", false, "of goes with the | noun: part of"]], ["part with = give up a thing", "part from = leave a person"], null, ["\u2248 from: He parted from his family at the station."]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "The sentence He is partial with a gap sweets., then the candidates: to (fits: fond of); towards (correct English, different meaning: unfairly favouring sweets in a contest); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He is partial \u2026 sweets. What does the sentence want to say? It wants **partial to**: fond of.", cue: "e2w1" },
-          { text: "Why not the others? **towards** is correct English, but it would mean unfairly favouring sweets in a contest. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **towards** is correct English, but it would mean unfairly favouring sweets in a contest. That is not what this sentence says. Where towards fits: _The referee was partial towards the home team._ **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He is partial ____ sweets.", [["reachDot", "to", true, "fond of"], ["lookAhead", "towards", "diff", "unfairly favouring | sweets in a contest"], ["cross", "of", false, "of = belonging; | not used"]], ["partial to = fond of", "partial towards = unfairly favouring"]),
+          ...PLAB.kit.lineup("e2w", "He is partial ____ sweets.", [["reachDot", "to", true, "fond of"], ["lookAhead", "towards", "diff", "unfairly favouring | sweets in a contest"], ["cross", "of", false, "of = belonging; | not used"]], ["partial to = fond of", "partial towards = unfairly favouring"], null, ["\u2248 towards: The referee was partial towards the home team."]),
         ],
       },
       {
@@ -145,7 +145,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Everyone should participate ____ the debate.", [["absorbedIn", "in", true, "take part in"], ["cross", "on", false, "on is resting; taking | part goes inside"], ["cross", "at", false, "at is a point; | not used"]], ["participate in = take part in"]),
+          ...PLAB.kit.lineup("e3w", "Everyone should participate ____ the debate.", [["absorbedIn", "in", true, "take part in"], ["cross", "on", false, "on is resting; taking | part goes inside"], ["cross", "at", false, "at is a point; | not used"]], ["participate in = take part in"], null, []),
         ],
       },
       {
@@ -172,7 +172,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Be patient ____ children.", [["agreeWith", "with", true, "calm with"], ["cross", "for", false, "for is a purpose; | not used"], ["cross", "to", false, "to points; not used"]], ["patient with = calm with"]),
+          ...PLAB.kit.lineup("e4w", "Be patient ____ children.", [["agreeWith", "with", true, "calm with"], ["cross", "for", false, "for is a purpose; | not used"], ["cross", "to", false, "to points; not used"]], ["patient with = calm with"], null, []),
         ],
       },
       {
@@ -221,7 +221,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He persisted ____ asking questions.", [["absorbedIn", "in", true, "continue firmly in"], ["cross", "on", false, "on is resting; persisting | goes round inside"], ["cross", "at", false, "at is a point; | not used"]], ["persist in = continue firmly in"]),
+          ...PLAB.kit.lineup("e5w", "He persisted ____ asking questions.", [["absorbedIn", "in", true, "continue firmly in"], ["cross", "on", false, "on is resting; persisting | goes round inside"], ["cross", "at", false, "at is a point; | not used"]], ["persist in = continue firmly in"], null, []),
         ],
       },
       {
@@ -246,11 +246,11 @@
         alt: "The sentence The teacher was pleased with a gap the result., then the candidates: with (fits: satisfied with); about (correct English, different meaning: glad about the result as a piece of news); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: The teacher was pleased \u2026 the result. What does the sentence want to say? It wants **pleased with**: satisfied with.", cue: "e6w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean glad about the result as a piece of news. That is not what this sentence says. **from**: a word-for-word translation.", cue: "e6w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean glad about the result as a piece of news. That is not what this sentence says. Where about fits: _We are pleased about the decision._ **from**: a word-for-word translation.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The teacher was pleased ____ the result.", [["agreeWith", "with", true, "satisfied with"], ["aboutCircle", "about", "diff", "glad about the result | as a piece of news"], ["cross", "from", false, "a word-for-word | translation"]], ["pleased with = satisfied with", "pleased about = glad about a situation"]),
+          ...PLAB.kit.lineup("e6w", "The teacher was pleased ____ the result.", [["agreeWith", "with", true, "satisfied with"], ["aboutCircle", "about", "diff", "glad about the result | as a piece of news"], ["cross", "from", false, "a word-for-word | translation"]], ["pleased with = satisfied with", "pleased about = glad about a situation"], null, ["\u2248 about: We are pleased about the decision."]),
         ],
       },
       {
@@ -277,7 +277,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Be polite ____ guests.", [["reachDot", "to", true, "courteous to"], ["cross", "with", false, "with = together; | courtesy points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["polite to = courteous to"]),
+          ...PLAB.kit.lineup("e7w", "Be polite ____ guests.", [["reachDot", "to", true, "courteous to"], ["cross", "with", false, "with = together; | courtesy points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["polite to = courteous to"], null, []),
         ],
       },
       {
@@ -304,7 +304,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The teacher is popular ____ students.", [["agreeWith", "with", true, "liked by"], ["cross", "for", false, "for is a reason: | popular for its beaches"], ["cross", "to", false, "to points; not used"]], ["popular with = liked by"]),
+          ...PLAB.kit.lineup("e8w", "The teacher is popular ____ students.", [["agreeWith", "with", true, "liked by"], ["cross", "for", false, "for is a reason: | popular for its beaches"], ["cross", "to", false, "to points; not used"]], ["popular with = liked by"], null, []),
         ],
       },
       {

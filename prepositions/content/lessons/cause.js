@@ -75,7 +75,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ fog, the flight was delayed.", [["fogDelay", "Owing to", true, "safe at the | start"], ["fogDelay", "Due to", false, "disputed at the | start; fine after be"], ["rain", "Because", false, "+ a clause: | because it was foggy"]], ["Owing to fog, ... \u00b7 Because of fog, ...", "The delay was due to fog."]),
+          ...PLAB.kit.lineup("why", "____ fog, the flight was delayed.", [["fogDelay", "Owing to", true, "safe at the | start"], ["fogDelay", "Due to", false, "disputed at the | start; fine after be"], ["rain", "Because", false, "+ a clause: | because it was foggy"]], ["Owing to fog, ... \u00b7 Because of fog, ...", "The delay was due to fog."], null, []),
         ],
       },
       {

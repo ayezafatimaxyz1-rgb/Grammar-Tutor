@@ -92,7 +92,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The film starts ____ Monday.", [["calendar", "on", true, "days take on"], ["calendar", "upon", false, "upon is never used | for days"], ["clock", "at", false, "at is for | clock times"]], ["upon: depend upon, upon arrival (formal)", "days: on Monday"]),
+        ...PLAB.kit.lineup("why", "The film starts ____ Monday.", [["calendar", "on", true, "days take on"], ["calendar", "upon", false, "upon is never used | for days"], ["clock", "at", false, "at is for | clock times"]], ["upon: depend upon, upon arrival (formal)", "days: on Monday"], null, []),
       ],
     },
     {

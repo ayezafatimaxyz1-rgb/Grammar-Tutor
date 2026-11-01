@@ -70,12 +70,12 @@
         alt: "The sentence with a gap teaching, she writes novels., then the candidates with pictures: In addition to (right: adds a second thing); Except (correct English but a different meaning: teaching taken away); Instead of (correct English but a different meaning: teaching replaced). Rule: in addition to, as well as = adding; except = taking away \u00b7 instead of = replacing.",
         say: [
           { text: "Fill the gap: \u2026 teaching, she writes novels. What does the sentence want to say? The answer is **In addition to**: adds a second thing.", cue: "why1" },
-          { text: "Why not the others? **Except** is correct English, but it would mean teaching taken away. That is not what this sentence says. **Instead of** is correct English, but it would mean teaching replaced. That is not what this sentence says.", cue: "why2" },
+          { text: "Why not the others? **Except** is correct English, but it would mean teaching taken away. That is not what this sentence says. Where Except fits: _Except teaching, she has no job._ **Instead of** is correct English, but it would mean teaching replaced. That is not what this sentence says. Where Instead of fits: _Instead of teaching, she now writes novels._", cue: "why2" },
           { text: "The rule: in addition to, as well as = adding; except = taking away \u00b7 instead of = replacing.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ teaching, she writes novels.", [["addMore", "In addition to", true, "adds a second | thing"], ["groupOut", "Except", "diff", "teaching taken | away"], ["swap", "Instead of", "diff", "teaching | replaced"]], ["in addition to, as well as = adding", "except = taking away \u00b7 instead of = replacing"]),
+          ...PLAB.kit.lineup("why", "____ teaching, she writes novels.", [["addMore", "In addition to", true, "adds a second | thing"], ["groupOut", "Except", "diff", "teaching taken | away"], ["swap", "Instead of", "diff", "teaching | replaced"]], ["in addition to, as well as = adding", "except = taking away \u00b7 instead of = replacing"], null, ["\u2248 Except: Except teaching, she has no job.", "\u2248 Instead of: Instead of teaching, she now writes novels."]),
         ],
       },
       {

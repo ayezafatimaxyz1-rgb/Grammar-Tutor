@@ -71,11 +71,11 @@
         alt: "The sentence You must with a gap the facts., then the candidates: face up to (fits: accept and deal with); face up with (not used: to points at what you face); look up to (correct English, different meaning: admire)",
         say: [
           { text: "Fill the gap: You must \u2026 the facts. The sentence wants **face up to**: accept and deal with.", cue: "f1w1" },
-          { text: "Why not the others? **face up with**: to points at what you face. **look up to** is correct English, but it means admire. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **face up with**: to points at what you face. **look up to** is correct English, but it means admire. That is not what this sentence says. Where look up to fits: _Students look up to their teacher._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "You must ____ the facts.", [["faceWind", "face up to", true, "accept and | deal with"], ["cross", "face up with", false, "to points at | what you face"], ["reachDot", "look up to", "diff", "admire"]], ["face up to = accept and deal with", "Why to? to = pointing at"]),
+          ...PLAB.kit.lineup("f1w", "You must ____ the facts.", [["faceWind", "face up to", true, "accept and | deal with"], ["cross", "face up with", false, "to points at | what you face"], ["reachDot", "look up to", "diff", "admire"]], ["face up to = accept and deal with", "Why to? to = pointing at"], null, ["\u2248 look up to: Students look up to their teacher."]),
         ],
       },
       {
@@ -139,11 +139,11 @@
         alt: "The sentence He with a gap the poor., then the candidates: look down on (fits: despise); look up to (correct English, different meaning: admire); look down to (not used: on lands on the person)",
         say: [
           { text: "Fill the gap: He \u2026 the poor. The sentence wants **look down on**: despise.", cue: "f2w1" },
-          { text: "Why not the others? **look up to** is correct English, but it means admire. That is not what this sentence says. **look down to**: on lands on the person.", cue: "f2w2" },
+          { text: "Why not the others? **look up to** is correct English, but it means admire. That is not what this sentence says. Where look up to fits: _Students look up to their teacher._ **look down to**: on lands on the person.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He ____ the poor.", [["lookDown", "look down on", true, "despise"], ["reachDot", "look up to", "diff", "admire"], ["cross", "look down to", false, "on lands on | the person"]], ["look down on = despise", "Why on? on = landing on"]),
+          ...PLAB.kit.lineup("f2w", "He ____ the poor.", [["lookDown", "look down on", true, "despise"], ["reachDot", "look up to", "diff", "admire"], ["cross", "look down to", false, "on lands on | the person"]], ["look down on = despise", "Why on? on = landing on"], null, ["\u2248 look up to: Students look up to their teacher."]),
         ],
       },
       {
@@ -207,11 +207,11 @@
         alt: "The sentence Students with a gap their teacher., then the candidates: look up to (fits: admire); look down on (correct English, different meaning: despise); look up at (correct English, different meaning: raise your eyes to (literally))",
         say: [
           { text: "Fill the gap: Students \u2026 their teacher. The sentence wants **look up to**: admire.", cue: "f3w1" },
-          { text: "Why not the others? **look down on** is correct English, but it means despise. That is not what this sentence says. **look up at** is correct English, but it means raise your eyes to (literally). That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **look down on** is correct English, but it means despise. That is not what this sentence says. Where look down on fits: _He looks down on the poor._ **look up at** is correct English, but it means raise your eyes to (literally). That is not what this sentence says. Where look up at fits: _Look up at the stars._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Students ____ their teacher.", [["arrowUp", "look up to", true, "admire"], ["support", "look down on", "diff", "despise"], [[["arrowR", -40, 0], ["target", 30, 0]], "look up at", "diff", "raise your eyes | to (literally)"]], ["look up to = admire", "Why to? to = pointing at"]),
+          ...PLAB.kit.lineup("f3w", "Students ____ their teacher.", [["arrowUp", "look up to", true, "admire"], ["support", "look down on", "diff", "despise"], [[["arrowR", -40, 0], ["target", 30, 0]], "look up at", "diff", "raise your eyes | to (literally)"]], ["look up to = admire", "Why to? to = pointing at"], null, ["\u2248 look down on: He looks down on the poor.", "\u2248 look up at: Look up at the stars."]),
         ],
       },
       {
@@ -275,11 +275,11 @@
         alt: "The sentence He with a gap the crime., then the candidates: get away with (fits: escape punishment for); get away from (correct English, different meaning: escape from a place); get along with (correct English, different meaning: be friendly with)",
         say: [
           { text: "Fill the gap: He \u2026 the crime. The sentence wants **get away with**: escape punishment for.", cue: "f4w1" },
-          { text: "Why not the others? **get away from** is correct English, but it means escape from a place. That is not what this sentence says. **get along with** is correct English, but it means be friendly with. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **get away from** is correct English, but it means escape from a place. That is not what this sentence says. Where get away from fits: _We need to get away from the city noise._ **get along with** is correct English, but it means be friendly with. That is not what this sentence says. Where get along with fits: _She gets along with everyone._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He ____ the crime.", [["escaped", "get away with", true, "escape | punishment for"], ["holdBack", "get away from", "diff", "escape from a place"], ["agreeWith", "get along with", "diff", "be friendly with"]], ["get away with = escape punishment for", "Why with? with = together with"]),
+          ...PLAB.kit.lineup("f4w", "He ____ the crime.", [["escaped", "get away with", true, "escape | punishment for"], ["holdBack", "get away from", "diff", "escape from a place"], ["agreeWith", "get along with", "diff", "be friendly with"]], ["get away with = escape punishment for", "Why with? with = together with"], null, ["\u2248 get away from: We need to get away from the city noise.", "\u2248 get along with: She gets along with everyone."]),
         ],
       },
       {
@@ -343,11 +343,11 @@
         alt: "The sentence I ran to with a gap them., then the candidates: catch up with (fits: reach someone ahead); keep up with (correct English, different meaning: stay level with); catch up on (correct English, different meaning: do work left undone)",
         say: [
           { text: "Fill the gap: I ran to \u2026 them. The sentence wants **catch up with**: reach someone ahead.", cue: "f5w1" },
-          { text: "Why not the others? **keep up with** is correct English, but it means stay level with. That is not what this sentence says. **catch up on** is correct English, but it means do work left undone. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **keep up with** is correct English, but it means stay level with. That is not what this sentence says. Where keep up with fits: _It is hard to keep up with the news._ **catch up on** is correct English, but it means do work left undone. That is not what this sentence says. Where catch up on fits: _I need to catch up on my sleep._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "I ran to ____ them.", [["arrowR", "catch up with", true, "reach someone ahead"], ["agreeWith", "keep up with", "diff", "stay level with"], ["support", "catch up on", "diff", "do work left undone"]], ["catch up with = reach someone ahead", "Why with? with = together with"]),
+          ...PLAB.kit.lineup("f5w", "I ran to ____ them.", [["arrowR", "catch up with", true, "reach someone ahead"], ["agreeWith", "keep up with", "diff", "stay level with"], ["support", "catch up on", "diff", "do work left undone"]], ["catch up with = reach someone ahead", "Why with? with = together with"], null, ["\u2248 keep up with: It is hard to keep up with the news.", "\u2248 catch up on: I need to catch up on my sleep."]),
         ],
       },
       {
@@ -411,11 +411,11 @@
         alt: "The sentence It is hard to with a gap the news., then the candidates: keep up with (fits: stay level with); catch up with (correct English, different meaning: reach someone ahead); put up with (correct English, different meaning: tolerate)",
         say: [
           { text: "Fill the gap: It is hard to \u2026 the news. The sentence wants **keep up with**: stay level with.", cue: "f6w1" },
-          { text: "Why not the others? **catch up with** is correct English, but it means reach someone ahead. That is not what this sentence says. **put up with** is correct English, but it means tolerate. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **catch up with** is correct English, but it means reach someone ahead. That is not what this sentence says. Where catch up with fits: _I ran to catch up with them._ **put up with** is correct English, but it means tolerate. That is not what this sentence says. Where put up with fits: _I cannot put up with this noise._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "It is hard to ____ the news.", [["levelScale", "keep up with", true, "stay level with"], ["agreeWith", "catch up with", "diff", "reach someone ahead"], ["agreeWith", "put up with", "diff", "tolerate"]], ["keep up with = stay level with", "Why with? with = together with"]),
+          ...PLAB.kit.lineup("f6w", "It is hard to ____ the news.", [["levelScale", "keep up with", true, "stay level with"], ["agreeWith", "catch up with", "diff", "reach someone ahead"], ["agreeWith", "put up with", "diff", "tolerate"]], ["keep up with = stay level with", "Why with? with = together with"], null, ["\u2248 catch up with: I ran to catch up with them.", "\u2248 put up with: I cannot put up with this noise."]),
         ],
       },
       {

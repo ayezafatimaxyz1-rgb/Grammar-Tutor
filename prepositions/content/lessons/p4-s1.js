@@ -32,11 +32,11 @@
         alt: "The sentence The village is safe with a gap floods., then the candidates: from (fits: protected from); with (correct English, different meaning: kept safely by the floods, as if they were a guard); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The village is safe \u2026 floods. What does the sentence want to say? It wants **safe from**: protected from.", cue: "e1w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean kept safely by the floods, as if they were a guard. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e1w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean kept safely by the floods, as if they were a guard. That is not what this sentence says. Where with fits: _Your secret is safe with me._ **of**: of = belonging; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The village is safe ____ floods.", [["holdBack", "from", true, "protected from"], ["agreeWith", "with", "diff", "kept safely by the floods, | as if they were a guard"], ["cross", "of", false, "of = belonging; | not used"]], ["safe from = protected from", "safe with = kept safely by someone"]),
+          ...PLAB.kit.lineup("e1w", "The village is safe ____ floods.", [["holdBack", "from", true, "protected from"], ["agreeWith", "with", "diff", "kept safely by the floods, | as if they were a guard"], ["cross", "of", false, "of = belonging; | not used"]], ["safe from = protected from", "safe with = kept safely by someone"], null, ["\u2248 with: Your secret is safe with me."]),
         ],
       },
       {
@@ -63,7 +63,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She is satisfied ____ the result.", [["agreeWith", "with", true, "pleased with"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "from", false, "a word-for-word | translation"]], ["satisfied with = pleased with"]),
+          ...PLAB.kit.lineup("e2w", "She is satisfied ____ the result.", [["agreeWith", "with", true, "pleased with"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "from", false, "a word-for-word | translation"]], ["satisfied with = pleased with"], null, []),
         ],
       },
       {
@@ -110,11 +110,11 @@
         alt: "The sentence The police searched with a gap the missing boy., then the candidates: for (fits: look for something lost or wanted); (no word) (correct English, different meaning: examined the boy's body and clothes); of (not used: of goes with in search of)",
         say: [
           { text: "Fill the gap: The police searched \u2026 the missing boy. What does the sentence want to say? It wants **search for**: look for something lost or wanted.", cue: "e3w1" },
-          { text: "Why not the others? **(no word)** is correct English, but it would mean examined the boy's body and clothes. That is not what this sentence says. **of**: of goes with in search of.", cue: "e3w2" },
+          { text: "Why not the others? **(no word)** is correct English, but it would mean examined the boy's body and clothes. That is not what this sentence says. Where (no word) fits: _They searched the house._ **of**: of goes with in search of.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "The police searched ____ the missing boy.", [["wantStar", "for", true, "look for something | lost or wanted"], ["check", "(no word)", "diff", "examined the boy's | body and clothes"], ["cross", "of", false, "of goes with | in search of"]], ["search for = look for something lost or wanted", "search = examine a place or person"]),
+          ...PLAB.kit.lineup("e3w", "The police searched ____ the missing boy.", [["wantStar", "for", true, "look for something | lost or wanted"], ["check", "(no word)", "diff", "examined the boy's | body and clothes"], ["cross", "of", false, "of goes with | in search of"]], ["search for = look for something lost or wanted", "search = examine a place or person"], null, ["\u2248 (no word): They searched the house."]),
         ],
       },
       {
@@ -139,11 +139,11 @@
         alt: "The sentence He is sensitive with a gap his weight., then the candidates: about (fits: easily upset about); to (correct English, different meaning: physically affected by his weight); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He is sensitive \u2026 his weight. What does the sentence want to say? It wants **sensitive about**: easily upset about.", cue: "e4w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean physically affected by his weight. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean physically affected by his weight. That is not what this sentence says. Where to fits: _His eyes are sensitive to light._ **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is sensitive ____ his weight.", [["aboutCircle", "about", true, "easily upset about"], ["reachDot", "to", "diff", "physically affected | by his weight"], ["cross", "of", false, "of = belonging; | not used"]], ["sensitive to = easily affected by", "sensitive about = easily upset about"]),
+          ...PLAB.kit.lineup("e4w", "He is sensitive ____ his weight.", [["aboutCircle", "about", true, "easily upset about"], ["reachDot", "to", "diff", "physically affected | by his weight"], ["cross", "of", false, "of = belonging; | not used"]], ["sensitive to = easily affected by", "sensitive about = easily upset about"], null, ["\u2248 to: His eyes are sensitive to light."]),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence He was sentenced with a gap five years., then the candidates: to (fits: given a punishment); for (correct English, different meaning: five years would be his crime); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: He was sentenced \u2026 five years. What does the sentence want to say? It wants **sentenced to**: given a punishment.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean five years would be his crime. That is not what this sentence says. **with**: with = together; not used.", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean five years would be his crime. That is not what this sentence says. Where for fits: _He was sentenced for theft._ **with**: with = together; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He was sentenced ____ five years.", [["reachDot", "to", true, "given a punishment"], ["wantStar", "for", "diff", "five years would | be his crime"], ["cross", "with", false, "with = together; | not used"]], ["sentenced to = given a punishment", "sentenced for = punished because of a crime"]),
+          ...PLAB.kit.lineup("e5w", "He was sentenced ____ five years.", [["reachDot", "to", true, "given a punishment"], ["wantStar", "for", "diff", "five years would | be his crime"], ["cross", "with", false, "with = together; | not used"]], ["sentenced to = given a punishment", "sentenced for = punished because of a crime"], null, ["\u2248 for: He was sentenced for theft."]),
         ],
       },
       {
@@ -199,7 +199,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "We were shocked ____ the news.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "very surprised | and upset by"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "on", false, "on is resting; | not used"]], ["shocked at = very surprised and upset by"]),
+          ...PLAB.kit.lineup("e6w", "We were shocked ____ the news.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "very surprised | and upset by"], ["cross", "from", false, "a word-for-word | translation"], ["cross", "on", false, "on is resting; | not used"]], ["shocked at = very surprised and upset by"], null, []),
         ],
       },
       {
@@ -226,7 +226,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "We are short ____ money.", [["awareOf", "of", true, "not having enough"], ["cross", "in", false, "in is inside; | not used"], ["cross", "with", false, "with = together; | the opposite"]], ["short of = not having enough"]),
+          ...PLAB.kit.lineup("e7w", "We are short ____ money.", [["awareOf", "of", true, "not having enough"], ["cross", "in", false, "in is inside; | not used"], ["cross", "with", false, "with = together; | the opposite"]], ["short of = not having enough"], null, []),
         ],
       },
       {
@@ -253,7 +253,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "Your answer is similar ____ mine.", [["reachDot", "to", true, "almost the same as"], ["cross", "with", false, "a common error; | similar to"], ["cross", "than", false, "similar is not a | comparative; it takes to"]], ["similar to = almost the same as"]),
+          ...PLAB.kit.lineup("e8w", "Your answer is similar ____ mine.", [["reachDot", "to", true, "almost the same as"], ["cross", "with", false, "a common error; | similar to"], ["cross", "than", false, "similar is not a | comparative; it takes to"]], ["similar to = almost the same as"], null, []),
         ],
       },
       {

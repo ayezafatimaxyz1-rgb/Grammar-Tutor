@@ -63,7 +63,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I woke up twice ____ the night.", [["inPeriod", "during", true, "when: inside | that time"], ["span", "for", false, "for = how long"], ["speak", "while", false, "while + a clause: | while I slept"]], ["during + noun = when", "for = how long \u00b7 while + clause"]),
+          ...PLAB.kit.lineup("why", "I woke up twice ____ the night.", [["inPeriod", "during", true, "when: inside | that time"], ["span", "for", false, "for = how long"], ["speak", "while", false, "while + a clause: | while I slept"]], ["during + noun = when", "for = how long \u00b7 while + clause"], null, []),
         ],
       },
       {

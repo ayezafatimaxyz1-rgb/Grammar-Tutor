@@ -32,11 +32,11 @@
         alt: "The sentence Our team had an advantage with a gap the others., then the candidates: over (fits: a lead over a rival); of (correct English, different meaning: the benefit the others have); on (not used: on is resting, not leading)",
         say: [
           { text: "Fill the gap: Our team had an advantage \u2026 the others. What does the sentence want to say? It wants **advantage over**: a lead over a rival.", cue: "e1w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean the benefit the others have. That is not what this sentence says. **on**: on is resting, not leading.", cue: "e1w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean the benefit the others have. That is not what this sentence says. Where of fits: _The advantage of this plan is its speed._ **on**: on is resting, not leading.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Our team had an advantage ____ the others.", [["overRock", "over", true, "a lead over a rival"], ["awareOf", "of", "diff", "the benefit | the others have"], ["cross", "on", false, "on is resting, | not leading"]], ["advantage over = a lead over a rival", "advantage of = the benefit something has"]),
+          ...PLAB.kit.lineup("e1w", "Our team had an advantage ____ the others.", [["overRock", "over", true, "a lead over a rival"], ["awareOf", "of", "diff", "the benefit | the others have"], ["cross", "on", false, "on is resting, | not leading"]], ["advantage over = a lead over a rival", "advantage of = the benefit something has"], null, ["\u2248 of: The advantage of this plan is its speed."]),
         ],
       },
       {
@@ -61,11 +61,11 @@
         alt: "The sentence She was afraid with a gap her son., then the candidates: for (fits: worried about someone's safety); of (correct English, different meaning: scared of her son himself); from (not used: a word-for-word translation; afraid of)",
         say: [
           { text: "Fill the gap: She was afraid \u2026 her son. What does the sentence want to say? It wants **afraid for**: worried about someone's safety.", cue: "e2w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean scared of her son himself. That is not what this sentence says. **from**: a word-for-word translation; afraid of.", cue: "e2w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean scared of her son himself. That is not what this sentence says. Where of fits: _The child is afraid of the dark._ **from**: a word-for-word translation; afraid of.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She was afraid ____ her son.", [["wantStar", "for", true, "worried about | someone's safety"], ["awareOf", "of", "diff", "scared of her | son himself"], ["cross", "from", false, "a word-for-word | translation; afraid of"]], ["afraid of = scared of something", "afraid for = worried about someone's safety"]),
+          ...PLAB.kit.lineup("e2w", "She was afraid ____ her son.", [["wantStar", "for", true, "worried about | someone's safety"], ["awareOf", "of", "diff", "scared of her | son himself"], ["cross", "from", false, "a word-for-word | translation; afraid of"]], ["afraid of = scared of something", "afraid for = worried about someone's safety"], null, ["\u2248 of: The child is afraid of the dark."]),
         ],
       },
       {
@@ -131,11 +131,11 @@
         alt: "The sentence The two sides agreed with a gap a ceasefire., then the candidates: on (fits: both sides decide one point); to (correct English, different meaning: accepted a ceasefire someone proposed); with (not used: with a person or a view, not a decision)",
         say: [
           { text: "Fill the gap: The two sides agreed \u2026 a ceasefire. What does the sentence want to say? It wants **agree on**: both sides decide one point.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean accepted a ceasefire someone proposed. That is not what this sentence says. **with**: with a person or a view, not a decision.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean accepted a ceasefire someone proposed. That is not what this sentence says. Where to fits: _The union agreed to the new terms._ **with**: with a person or a view, not a decision.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "The two sides agreed ____ a ceasefire.", [["support", "on", true, "both sides | decide one point"], ["reachDot", "to", "diff", "accepted a ceasefire | someone proposed"], ["cross", "with", false, "with a person or a | view, not a decision"]], ["agree with = share a view with a person", "agree on = both sides decide one point"]),
+          ...PLAB.kit.lineup("e3w", "The two sides agreed ____ a ceasefire.", [["support", "on", true, "both sides | decide one point"], ["reachDot", "to", "diff", "accepted a ceasefire | someone proposed"], ["cross", "with", false, "with a person or a | view, not a decision"]], ["agree with = share a view with a person", "agree on = both sides decide one point"], null, ["\u2248 to: The union agreed to the new terms."]),
         ],
       },
       {
@@ -184,7 +184,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The policy aims ____ reducing poverty.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "point at a | target or goal"], ["cross", "on", false, "on is resting, | not aiming"], ["cross", "in", false, "in is inside, | not a target"]], ["aim at = point at a target or goal"]),
+          ...PLAB.kit.lineup("e4w", "The policy aims ____ reducing poverty.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "point at a | target or goal"], ["cross", "on", false, "on is resting, | not aiming"], ["cross", "in", false, "in is inside, | not a target"]], ["aim at = point at a target or goal"], null, []),
         ],
       },
       {
@@ -211,7 +211,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "Doctors were alarmed ____ the rise in cases.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "suddenly frightened | by something"], ["cross", "from", false, "from is a source; | alarm hits at a point"], ["cross", "on", false, "on is a surface | or topic"]], ["alarmed at = suddenly frightened by something"]),
+          ...PLAB.kit.lineup("e5w", "Doctors were alarmed ____ the rise in cases.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "suddenly frightened | by something"], ["cross", "from", false, "from is a source; | alarm hits at a point"], ["cross", "on", false, "on is a surface | or topic"]], ["alarmed at = suddenly frightened by something"], null, []),
         ],
       },
       {
@@ -238,7 +238,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Such ideas are alien ____ our culture.", [["reachDot", "to", true, "strange or | foreign to"], ["cross", "for", false, "for is a purpose, | not strangeness"], ["cross", "with", false, "with = together; | the opposite"]], ["alien to = strange or foreign to"]),
+          ...PLAB.kit.lineup("e6w", "Such ideas are alien ____ our culture.", [["reachDot", "to", true, "strange or | foreign to"], ["cross", "for", false, "for is a purpose, | not strangeness"], ["cross", "with", false, "with = together; | the opposite"]], ["alien to = strange or foreign to"], null, []),
         ],
       },
       {
@@ -265,7 +265,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She is allergic ____ dust.", [["reachDot", "to", true, "reacting badly to"], ["cross", "from", false, "from is a source; the | reaction points to it"], ["cross", "with", false, "with = together; | not used"]], ["allergic to = reacting badly to"]),
+          ...PLAB.kit.lineup("e7w", "She is allergic ____ dust.", [["reachDot", "to", true, "reacting badly to"], ["cross", "from", false, "from is a source; the | reaction points to it"], ["cross", "with", false, "with = together; | not used"]], ["allergic to = reacting badly to"], null, []),
         ],
       },
       {
@@ -292,7 +292,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "Is there an alternative ____ war?", [["reachDot", "to", true, "another choice | in place of"], ["cross", "of", false, "of = belonging; an | alternative points to"], ["cross", "from", false, "from is a source, | not a choice"]], ["alternative to = another choice in place of"]),
+          ...PLAB.kit.lineup("e8w", "Is there an alternative ____ war?", [["reachDot", "to", true, "another choice | in place of"], ["cross", "of", false, "of = belonging; an | alternative points to"], ["cross", "from", false, "from is a source, | not a choice"]], ["alternative to = another choice in place of"], null, []),
         ],
       },
       {

@@ -245,7 +245,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She is waiting ____ the bus stop.", [["reachDot", "at", true, "a bus stop is | a point"], ["insideBuilding", "in", false, "a bus stop has | no inside"], ["onBase", "on", false, "not standing on | top of it"], ["goHome", "to", false, "waiting is not | moving"]], ["at = a place pictured as a point", "in = inside \u00b7 to = movement towards"]),
+        ...PLAB.kit.lineup("why", "She is waiting ____ the bus stop.", [["reachDot", "at", true, "a bus stop is | a point"], ["insideBuilding", "in", false, "a bus stop has | no inside"], ["onBase", "on", false, "not standing on | top of it"], ["goHome", "to", false, "waiting is not | moving"]], ["at = a place pictured as a point", "in = inside \u00b7 to = movement towards"], null, []),
       ],
     },
     {

@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Please inform them ____ the decision.", [["awareOf", "of", true, "tell someone a fact"], ["cross", "to", false, "inform takes the person | directly: inform them"], ["cross", "with", false, "with = together; | not used"]], ["inform of = tell someone a fact"]),
+          ...PLAB.kit.lineup("e1w", "Please inform them ____ the decision.", [["awareOf", "of", true, "tell someone a fact"], ["cross", "to", false, "inform takes the person | directly: inform them"], ["cross", "with", false, "with = together; | not used"]], ["inform of = tell someone a fact"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Risk is inherent ____ every investment.", [["absorbedIn", "in", true, "a natural part of"], ["cross", "of", false, "of = belonging; | inherent takes in"], ["cross", "with", false, "with = together; | not used"]], ["inherent in = a natural part of"]),
+          ...PLAB.kit.lineup("e2w", "Risk is inherent ____ every investment.", [["absorbedIn", "in", true, "a natural part of"], ["cross", "of", false, "of = belonging; | inherent takes in"], ["cross", "with", false, "with = together; | not used"]], ["inherent in = a natural part of"], null, []),
         ],
       },
       {
@@ -132,7 +132,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He insisted ____ paying the bill.", [["support", "on", true, "demand firmly"], ["cross", "to", false, "insist does not | take to + verb"], ["cross", "for", false, "for is a purpose; | insist presses on"]], ["insist on = demand firmly"]),
+          ...PLAB.kit.lineup("e3w", "He insisted ____ paying the bill.", [["support", "on", true, "demand firmly"], ["cross", "to", false, "insist does not | take to + verb"], ["cross", "for", false, "for is a purpose; | insist presses on"]], ["insist on = demand firmly"], null, []),
         ],
       },
       {
@@ -157,11 +157,11 @@
         alt: "The sentence The poem was inspired with a gap Iqbal., then the candidates: by (fits: given ideas or feeling by); with (correct English, different meaning: filled with Iqbal as a feeling); from (not used: from is a source; inspired takes by)",
         say: [
           { text: "Fill the gap: The poem was inspired \u2026 Iqbal. What does the sentence want to say? It wants **inspired by**: given ideas or feeling by.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean filled with Iqbal as a feeling. That is not what this sentence says. **from**: from is a source; inspired takes by.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean filled with Iqbal as a feeling. That is not what this sentence says. Where with fits: _The speech inspired them with courage._ **from**: from is a source; inspired takes by.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The poem was inspired ____ Iqbal.", [["followRule", "by", true, "given ideas | or feeling by"], ["agreeWith", "with", "diff", "filled with Iqbal | as a feeling"], ["cross", "from", false, "from is a source; | inspired takes by"]], ["inspired by = given ideas or feeling by", "inspired with = filled with a feeling"]),
+          ...PLAB.kit.lineup("e4w", "The poem was inspired ____ Iqbal.", [["followRule", "by", true, "given ideas | or feeling by"], ["agreeWith", "with", "diff", "filled with Iqbal | as a feeling"], ["cross", "from", false, "from is a source; | inspired takes by"]], ["inspired by = given ideas or feeling by", "inspired with = filled with a feeling"], null, ["\u2248 with: The speech inspired them with courage."]),
         ],
       },
       {
@@ -186,11 +186,11 @@
         alt: "The sentence The house is insured with a gap fire., then the candidates: against (fits: protected by insurance from a risk); for (correct English, different meaning: fire would be the amount it is insured for); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: The house is insured \u2026 fire. What does the sentence want to say? It wants **insured against**: protected by insurance from a risk.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean fire would be the amount it is insured for. That is not what this sentence says. **from**: from is a source; not used.", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean fire would be the amount it is insured for. That is not what this sentence says. Where for fits: _The house is insured for Rs 5 million._ **from**: from is a source; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The house is insured ____ fire.", [["shield", "against", true, "protected by | insurance from a risk"], ["wantStar", "for", "diff", "fire would be the amount | it is insured for"], ["cross", "from", false, "from is a | source; not used"]], ["insured against = protected by insurance from a risk", "insured for = covered for an amount"]),
+          ...PLAB.kit.lineup("e5w", "The house is insured ____ fire.", [["shield", "against", true, "protected by | insurance from a risk"], ["wantStar", "for", "diff", "fire would be the amount | it is insured for"], ["cross", "from", false, "from is a | source; not used"]], ["insured against = protected by insurance from a risk", "insured for = covered for an amount"], null, ["\u2248 for: The house is insured for Rs 5 million."]),
         ],
       },
       {
@@ -217,7 +217,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "She is intent ____ winning.", [["support", "on", true, "determined to do"], ["cross", "to", false, "to points; intent | presses on one aim"], ["cross", "in", false, "in is inside; | not used"]], ["intent on = determined to do"]),
+          ...PLAB.kit.lineup("e6w", "She is intent ____ winning.", [["support", "on", true, "determined to do"], ["cross", "to", false, "to points; intent | presses on one aim"], ["cross", "in", false, "in is inside; | not used"]], ["intent on = determined to do"], null, []),
         ],
       },
       {
@@ -244,7 +244,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She is interested ____ history.", [["absorbedIn", "in", true, "wanting to | know about"], ["cross", "on", false, "on is a surface or | topic: a book on history"], ["cross", "about", false, "about goes with | worried, angry"]], ["interested in = wanting to know about"]),
+          ...PLAB.kit.lineup("e7w", "She is interested ____ history.", [["absorbedIn", "in", true, "wanting to | know about"], ["cross", "on", false, "on is a surface or | topic: a book on history"], ["cross", "about", false, "about goes with | worried, angry"]], ["interested in = wanting to know about"], null, []),
         ],
       },
       {
@@ -300,11 +300,11 @@
         alt: "The sentence The noise interferes with a gap my work., then the candidates: with (fits: disturb or hinder); in (correct English, different meaning: meddle in my work as if it were a private matter); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: The noise interferes \u2026 my work. What does the sentence want to say? It wants **interfere with**: disturb or hinder.", cue: "e8w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean meddle in my work as if it were a private matter. That is not what this sentence says. **on**: on is resting; not used.", cue: "e8w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean meddle in my work as if it were a private matter. That is not what this sentence says. Where in fits: _Do not interfere in my affairs._ **on**: on is resting; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The noise interferes ____ my work.", [["agreeWith", "with", true, "disturb or hinder"], ["absorbedIn", "in", "diff", "meddle in my work as if | it were a private matter"], ["cross", "on", false, "on is resting; | not used"]], ["interfere in = get involved in someone's affairs", "interfere with = disturb or hinder"]),
+          ...PLAB.kit.lineup("e8w", "The noise interferes ____ my work.", [["agreeWith", "with", true, "disturb or hinder"], ["absorbedIn", "in", "diff", "meddle in my work as if | it were a private matter"], ["cross", "on", false, "on is resting; | not used"]], ["interfere in = get involved in someone's affairs", "interfere with = disturb or hinder"], null, ["\u2248 in: Do not interfere in my affairs."]),
         ],
       },
       {

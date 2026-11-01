@@ -32,11 +32,11 @@
         alt: "The sentence She is qualified with a gap the post., then the candidates: for (fits: having what a post needs); in (correct English, different meaning: trained in the post as if it were a subject); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: She is qualified \u2026 the post. What does the sentence want to say? It wants **qualified for**: having what a post needs.", cue: "e1w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean trained in the post as if it were a subject. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e1w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean trained in the post as if it were a subject. That is not what this sentence says. Where in fits: _He is qualified in medicine._ **of**: of = belonging; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She is qualified ____ the post.", [["wantStar", "for", true, "having what | a post needs"], ["absorbedIn", "in", "diff", "trained in the post as | if it were a subject"], ["cross", "of", false, "of = belonging; | not used"]], ["qualified for = having what a post needs", "qualified in = trained in a subject"]),
+          ...PLAB.kit.lineup("e1w", "She is qualified ____ the post.", [["wantStar", "for", true, "having what | a post needs"], ["absorbedIn", "in", "diff", "trained in the post as | if it were a subject"], ["cross", "of", false, "of = belonging; | not used"]], ["qualified for = having what a post needs", "qualified in = trained in a subject"], null, ["\u2248 in: He is qualified in medicine."]),
         ],
       },
       {
@@ -92,11 +92,11 @@
         alt: "The sentence They quarrelled with a gap the land., then the candidates: over (fits: argue about a thing); with (correct English, different meaning: fought with the land as if it were a person); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: They quarrelled \u2026 the land. What does the sentence want to say? It wants **quarrel over**: argue about a thing.", cue: "e2w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean fought with the land as if it were a person. That is not what this sentence says. **on**: on is resting; not used.", cue: "e2w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean fought with the land as if it were a person. That is not what this sentence says. Where with fits: _He quarrelled with his neighbour._ **on**: on is resting; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "They quarrelled ____ the land.", [["overRock", "over", true, "argue about a thing"], ["agreeWith", "with", "diff", "fought with the land | as if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["quarrel with = argue angrily with a person", "quarrel over = argue about a thing"]),
+          ...PLAB.kit.lineup("e2w", "They quarrelled ____ the land.", [["overRock", "over", true, "argue about a thing"], ["agreeWith", "with", "diff", "fought with the land | as if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["quarrel with = argue angrily with a person", "quarrel over = argue about a thing"], null, ["\u2248 with: He quarrelled with his neighbour."]),
         ],
       },
       {

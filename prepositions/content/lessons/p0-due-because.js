@@ -51,11 +51,11 @@
         alt: "The delay was with a gap fog. Answer: due to, because after was: the delay is caused by fog. Not because of: accepted in speech; formal tests prefer due to.",
         say: [
           { text: "Fill the gap: The delay was … fog. Picture it: after was: the delay is caused by fog. So **due to**.", cue: "due-tox01" },
-          { text: "Why not **because of**? accepted in speech; formal tests prefer due to That is correct English, but it says something else.", cue: "due-tox0-r2" },
+          { text: "Why not **because of**? accepted in speech; formal tests prefer due to That is correct English, but it says something else. Where because of fits: _The flight was delayed because of fog._", cue: "due-tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-due-tox0"),
-          ...PLAB.kit.lineup("due-tox0", "The delay was ____ fog.", [["causeEffect", "due to", true, "after was: the delay | is caused by fog"], ["reasonFor", "because of", "diff", "accepted in speech; | formal tests prefer due to"]], ["Why due to? after was: the delay is caused by fog", "Ask: Does it come after is, was, are (or a noun)?"]),
+          ...PLAB.kit.lineup("due-tox0", "The delay was ____ fog.", [["causeEffect", "due to", true, "after was: the delay | is caused by fog"], ["reasonFor", "because of", "diff", "accepted in speech; | formal tests prefer due to"]], ["Why due to? after was: the delay is caused by fog", "Ask: Does it come after is, was, are (or a noun)?"], null, ["≈ because of: The flight was delayed because of fog."]),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "His success is with a gap hard work. Answer: due to, because after is. Not because of: accepted, but due to is the formal choice.",
         say: [
           { text: "Fill the gap: His success is … hard work. Picture it: after is. So **due to**.", cue: "due-tox11" },
-          { text: "Why not **because of**? accepted, but due to is the formal choice That is correct English, but it says something else.", cue: "due-tox1-r2" },
+          { text: "Why not **because of**? accepted, but due to is the formal choice That is correct English, but it says something else. Where because of fits: _He succeeded because of hard work._", cue: "due-tox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-due-tox1"),
-          ...PLAB.kit.lineup("due-tox1", "His success is ____ hard work.", [["causeEffect", "due to", true, "after is"], ["reasonFor", "because of", "diff", "accepted, but due to | is the formal choice"]], ["Why due to? after is", "Ask: Does it come after is, was, are (or a noun)?"]),
+          ...PLAB.kit.lineup("due-tox1", "His success is ____ hard work.", [["causeEffect", "due to", true, "after is"], ["reasonFor", "because of", "diff", "accepted, but due to | is the formal choice"]], ["Why due to? after is", "Ask: Does it come after is, was, are (or a noun)?"], null, ["≈ because of: He succeeded because of hard work."]),
         ],
       },
       {
@@ -94,11 +94,11 @@
         alt: "The match was stopped with a gap rain. Answer: because of, because stopped is an action: rain is its reason. Not due to: disputed after an action in formal tests.",
         say: [
           { text: "Fill the gap: The match was stopped … rain. Picture it: stopped is an action: rain is its reason. So **because of**.", cue: "because-ofx02" },
-          { text: "Why not **due to**? disputed after an action in formal tests That is correct English, but it says something else.", cue: "because-ofx0-r2" },
+          { text: "Why not **due to**? disputed after an action in formal tests That is correct English, but it says something else. Where due to fits: _The stoppage was due to rain._", cue: "because-ofx0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-because-ofx0"),
-          ...PLAB.kit.lineup("because-ofx0", "The match was stopped ____ rain.", [["causeEffect", "due to", "diff", "disputed after an | action in formal tests"], ["reasonFor", "because of", true, "stopped is an action: | rain is its reason"]], ["Why because of? stopped is an action: rain is its reason", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"]),
+          ...PLAB.kit.lineup("because-ofx0", "The match was stopped ____ rain.", [["causeEffect", "due to", "diff", "disputed after an | action in formal tests"], ["reasonFor", "because of", true, "stopped is an action: | rain is its reason"]], ["Why because of? stopped is an action: rain is its reason", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"], null, ["≈ due to: The stoppage was due to rain."]),
         ],
       },
       {
@@ -111,7 +111,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-because-ofx1"),
-          ...PLAB.kit.lineup("because-ofx1", "She missed school ____ illness.", [["causeEffect", "due to", false, "after missed, formal | tests reject due to"], ["reasonFor", "because of", true, "missed is an action"]], ["Why because of? missed is an action", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"]),
+          ...PLAB.kit.lineup("because-ofx1", "She missed school ____ illness.", [["causeEffect", "due to", false, "after missed, formal | tests reject due to"], ["reasonFor", "because of", true, "missed is an action"]], ["Why because of? missed is an action", "Ask: Does it give the reason for an action (stopped, cancelled, missed)?"], null, []),
         ],
       },
       {
@@ -178,7 +178,7 @@
             {
               "text": "because of",
               "misconception": "p0-sense",
-              "why": "Formal tests prefer due to. It is correct English, but it says something else."
+              "why": "Formal tests prefer due to. It is correct English, but it says something else. Where because of fits: The car crashed because of carelessness."
             },
             {
               "text": "due to",

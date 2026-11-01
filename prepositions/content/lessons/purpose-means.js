@@ -60,7 +60,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "They cut staff with a view to ____ costs.", [["aimGoal", "reducing", true, "to is a | preposition: -ing"], ["aimGoal", "reduce", false, "to + verb is | the infinitive"], ["pointPast", "reduced", false, "a past form"]], ["with a view to + -ing", "in order to + verb"]),
+          ...PLAB.kit.lineup("why", "They cut staff with a view to ____ costs.", [["aimGoal", "reducing", true, "to is a | preposition: -ing"], ["aimGoal", "reduce", false, "to + verb is | the infinitive"], ["pointPast", "reduced", false, "a past form"]], ["with a view to + -ing", "in order to + verb"], null, []),
         ],
       },
       {

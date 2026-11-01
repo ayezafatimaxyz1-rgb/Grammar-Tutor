@@ -87,11 +87,11 @@
         alt: "The sentence The police with a gap a raid., then the candidates: carry out (fits: perform, do); carry on (correct English, different meaning: continue); carry off (correct English, different meaning: win, or do well)",
         say: [
           { text: "Fill the gap: The police \u2026 a raid. The sentence wants **carry out**: perform, do.", cue: "f1w1" },
-          { text: "Why not the others? **carry on** is correct English, but it means continue. That is not what this sentence says. **carry off** is correct English, but it means win, or do well. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **carry on** is correct English, but it means continue. That is not what this sentence says. Where carry on fits: _Carry on with your work._ **carry off** is correct English, but it means win, or do well. That is not what this sentence says. Where carry off fits: _She carried off the first prize._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The police ____ a raid.", [["check", "carry out", true, "perform, do"], ["support", "carry on", "diff", "continue"], ["bounceOff", "carry off", "diff", "win, or do well"]], ["carry out = perform, do", "Why out? out = to the end"]),
+          ...PLAB.kit.lineup("f1w", "The police ____ a raid.", [["check", "carry out", true, "perform, do"], ["support", "carry on", "diff", "continue"], ["bounceOff", "carry off", "diff", "win, or do well"]], ["carry out = perform, do", "Why out? out = to the end"], null, ["\u2248 carry on: Carry on with your work.", "\u2248 carry off: She carried off the first prize."]),
         ],
       },
       {
@@ -154,11 +154,11 @@
         alt: "The sentence We soon with a gap the truth., then the candidates: find out (fits: discover); look out (correct English, different meaning: be careful); find in (not used: not used)",
         say: [
           { text: "Fill the gap: We soon \u2026 the truth. The sentence wants **find out**: discover.", cue: "f2w1" },
-          { text: "Why not the others? **look out** is correct English, but it means be careful. That is not what this sentence says. **find in**: not used.", cue: "f2w2" },
+          { text: "Why not the others? **look out** is correct English, but it means be careful. That is not what this sentence says. Where look out fits: _Look out! A car is coming._ **find in**: not used.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "We soon ____ the truth.", [["magnifier", "find out", true, "discover"], ["goOut", "look out", "diff", "be careful"], ["cross", "find in", false, "not used"]], ["find out = discover", "Why out? out = into the open"]),
+          ...PLAB.kit.lineup("f2w", "We soon ____ the truth.", [["magnifier", "find out", true, "discover"], ["goOut", "look out", "diff", "be careful"], ["cross", "find in", false, "not used"]], ["find out = discover", "Why out? out = into the open"], null, ["\u2248 look out: Look out! A car is coming."]),
         ],
       },
       {
@@ -219,11 +219,11 @@
         alt: "The sentence War with a gap in 1939., then the candidates: break out (fits: start suddenly); break down (correct English, different meaning: collapse, fail); break up (correct English, different meaning: end, scatter)",
         say: [
           { text: "Fill the gap: War \u2026 in 1939. The sentence wants **break out**: start suddenly.", cue: "f3w1" },
-          { text: "Why not the others? **break down** is correct English, but it means collapse, fail. That is not what this sentence says. **break up** is correct English, but it means end, scatter. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **break down** is correct English, but it means collapse, fail. That is not what this sentence says. Where break down fits: _The talks broke down after a week._ **break up** is correct English, but it means end, scatter. That is not what this sentence says. Where break up fits: _The meeting broke up at noon._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "War ____ in 1939.", [["flame", "break out", true, "start suddenly"], ["arrowDown", "break down", "diff", "collapse, fail"], ["arrowUp", "break up", "diff", "end, scatter"]], ["break out = start suddenly", "Why out? out = outward"]),
+          ...PLAB.kit.lineup("f3w", "War ____ in 1939.", [["flame", "break out", true, "start suddenly"], ["arrowDown", "break down", "diff", "collapse, fail"], ["arrowUp", "break up", "diff", "end, scatter"]], ["break out = start suddenly", "Why out? out = outward"], null, ["\u2248 break down: The talks broke down after a week.", "\u2248 break up: The meeting broke up at noon."]),
         ],
       },
       {
@@ -284,11 +284,11 @@
         alt: "The sentence She with a gap the mistake., then the candidates: point out (fits: draw attention to); point at (correct English, different meaning: aim a finger at); point off (not used: not used)",
         say: [
           { text: "Fill the gap: She \u2026 the mistake. The sentence wants **point out**: draw attention to.", cue: "f4w1" },
-          { text: "Why not the others? **point at** is correct English, but it means aim a finger at. That is not what this sentence says. **point off**: not used.", cue: "f4w2" },
+          { text: "Why not the others? **point at** is correct English, but it means aim a finger at. That is not what this sentence says. Where point at fits: _Don't point at people._ **point off**: not used.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "She ____ the mistake.", [["pointDoc", "point out", true, "draw attention to"], [[["arrowR", -40, 0], ["target", 30, 0]], "point at", "diff", "aim a finger at"], ["cross", "point off", false, "not used"]], ["point out = draw attention to", "Why out? out = into the open"]),
+          ...PLAB.kit.lineup("f4w", "She ____ the mistake.", [["pointDoc", "point out", true, "draw attention to"], [[["arrowR", -40, 0], ["target", 30, 0]], "point at", "diff", "aim a finger at"], ["cross", "point off", false, "not used"]], ["point out = draw attention to", "Why out? out = into the open"], null, ["\u2248 point at: Don't point at people."]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence The police with a gap murder., then the candidates: rule out (fits: exclude); rule over (correct English, different meaning: govern); rule on (correct English, different meaning: decide officially about)",
         say: [
           { text: "Fill the gap: The police \u2026 murder. The sentence wants **rule out**: exclude.", cue: "f5w1" },
-          { text: "Why not the others? **rule over** is correct English, but it means govern. That is not what this sentence says. **rule on** is correct English, but it means decide officially about. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **rule over** is correct English, but it means govern. That is not what this sentence says. Where rule over fits: _The king ruled over a large land._ **rule on** is correct English, but it means decide officially about. That is not what this sentence says. Where rule on fits: _The court will rule on the case tomorrow._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "The police ____ murder.", [["cross", "rule out", true, "exclude"], ["overRock", "rule over", "diff", "govern"], ["support", "rule on", "diff", "decide | officially about"]], ["rule out = exclude", "Why out? out = taken out"]),
+          ...PLAB.kit.lineup("f5w", "The police ____ murder.", [["cross", "rule out", true, "exclude"], ["overRock", "rule over", "diff", "govern"], ["support", "rule on", "diff", "decide | officially about"]], ["rule out = exclude", "Why out? out = taken out"], null, ["\u2248 rule over: The king ruled over a large land.", "\u2248 rule on: The court will rule on the case tomorrow."]),
         ],
       },
       {
@@ -414,11 +414,11 @@
         alt: "The sentence The report with a gap the facts., then the candidates: set out (fits: explain clearly); set up (correct English, different meaning: establish); set off (correct English, different meaning: start a journey, or cause)",
         say: [
           { text: "Fill the gap: The report \u2026 the facts. The sentence wants **set out**: explain clearly.", cue: "f6w1" },
-          { text: "Why not the others? **set up** is correct English, but it means establish. That is not what this sentence says. **set off** is correct English, but it means start a journey, or cause. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **set up** is correct English, but it means establish. That is not what this sentence says. Where set up fits: _The government set up a commission._ **set off** is correct English, but it means start a journey, or cause. That is not what this sentence says. Where set off fits: _We set off at dawn._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The report ____ the facts.", [["doc", "set out", true, "explain clearly"], ["arrowUp", "set up", "diff", "establish"], ["bounceOff", "set off", "diff", "start a journey, | or cause"]], ["set out = explain clearly", "Why out? out = into the open"]),
+          ...PLAB.kit.lineup("f6w", "The report ____ the facts.", [["doc", "set out", true, "explain clearly"], ["arrowUp", "set up", "diff", "establish"], ["bounceOff", "set off", "diff", "start a journey, | or cause"]], ["set out = explain clearly", "Why out? out = into the open"], null, ["\u2248 set up: The government set up a commission.", "\u2248 set off: We set off at dawn."]),
         ],
       },
       {

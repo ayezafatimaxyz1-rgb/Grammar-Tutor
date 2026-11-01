@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The loan is contingent ____ approval.", [["support", "on", true, "depending on | a condition"], ["cross", "to", false, "a common error; | contingent on (upon)"], ["cross", "with", false, "with goes with | commensurate"]], ["contingent on = depending on a condition"]),
+          ...PLAB.kit.lineup("e1w", "The loan is contingent ____ approval.", [["support", "on", true, "depending on | a condition"], ["cross", "to", false, "a common error; | contingent on (upon)"], ["cross", "with", false, "with goes with | commensurate"]], ["contingent on = depending on a condition"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Contrary ____ popular belief, bats are not blind.", [["reachDot", "to", true, "opposite to"], ["cross", "of", false, "of = belonging; | contrary points to"], ["cross", "from", false, "from is a | source; not used"]], ["contrary to = opposite to"]),
+          ...PLAB.kit.lineup("e2w", "Contrary ____ popular belief, bats are not blind.", [["reachDot", "to", true, "opposite to"], ["cross", "of", false, "of = belonging; | contrary points to"], ["cross", "from", false, "from is a | source; not used"]], ["contrary to = opposite to"], null, []),
         ],
       },
       {
@@ -110,7 +110,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Everyone contributed ____ the fund.", [["reachDot", "to", true, "give or add to"], ["cross", "in", false, "a word-for-word | translation; contribute to"], ["cross", "for", false, "for is a purpose; | not used"]], ["contribute to = give or add to"]),
+          ...PLAB.kit.lineup("e3w", "Everyone contributed ____ the fund.", [["reachDot", "to", true, "give or add to"], ["cross", "in", false, "a word-for-word | translation; contribute to"], ["cross", "for", false, "for is a purpose; | not used"]], ["contribute to = give or add to"], null, []),
         ],
       },
       {
@@ -137,7 +137,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He was convicted ____ fraud.", [["awareOf", "of", true, "found guilty of"], ["cross", "with", false, "with goes | with charged"], ["cross", "in", false, "in is inside; | not used"]], ["convicted of = found guilty of"]),
+          ...PLAB.kit.lineup("e4w", "He was convicted ____ fraud.", [["awareOf", "of", true, "found guilty of"], ["cross", "with", false, "with goes | with charged"], ["cross", "in", false, "in is inside; | not used"]], ["convicted of = found guilty of"], null, []),
         ],
       },
       {
@@ -164,7 +164,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "I am convinced ____ his innocence.", [["awareOf", "of", true, "fully sure of"], ["cross", "on", false, "on is resting; | not used"], ["cross", "from", false, "from is a | source; not used"]], ["convinced of = fully sure of"]),
+          ...PLAB.kit.lineup("e5w", "I am convinced ____ his innocence.", [["awareOf", "of", true, "fully sure of"], ["cross", "on", false, "on is resting; | not used"], ["cross", "from", false, "from is a | source; not used"]], ["convinced of = fully sure of"], null, []),
         ],
       },
       {
@@ -213,7 +213,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Please cooperate ____ the police.", [["agreeWith", "with", true, "work together with"], ["cross", "to", false, "to points; working | together takes with"], ["cross", "in", false, "in is the task: | cooperate in the inquiry"]], ["cooperate with = work together with"]),
+          ...PLAB.kit.lineup("e6w", "Please cooperate ____ the police.", [["agreeWith", "with", true, "work together with"], ["cross", "to", false, "to points; working | together takes with"], ["cross", "in", false, "in is the task: | cooperate in the inquiry"]], ["cooperate with = work together with"], null, []),
         ],
       },
       {
@@ -262,7 +262,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She coped ____ the stress.", [["agreeWith", "with", true, "manage a difficulty"], ["cross", "up", false, "a word-for-word | error"], ["cross", "to", false, "to points; not used"]], ["cope with = manage a difficulty"]),
+          ...PLAB.kit.lineup("e7w", "She coped ____ the stress.", [["agreeWith", "with", true, "manage a difficulty"], ["cross", "up", false, "a word-for-word | error"], ["cross", "to", false, "to points; not used"]], ["cope with = manage a difficulty"], null, []),
         ],
       },
       {
@@ -318,11 +318,11 @@
         alt: "The sentence The copy corresponds with a gap the original., then the candidates: to (fits: match); with (correct English, different meaning: wrote letters with the original); for (not used: for is a purpose; not used)",
         say: [
           { text: "Fill the gap: The copy corresponds \u2026 the original. What does the sentence want to say? It wants **correspond to**: match.", cue: "e8w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean wrote letters with the original. That is not what this sentence says. **for**: for is a purpose; not used.", cue: "e8w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean wrote letters with the original. That is not what this sentence says. Where with fits: _She corresponded with a pen friend._ **for**: for is a purpose; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "The copy corresponds ____ the original.", [["reachDot", "to", true, "match"], ["agreeWith", "with", "diff", "wrote letters | with the original"], ["cross", "for", false, "for is a purpose; | not used"]], ["correspond to = match", "correspond with = write letters to"]),
+          ...PLAB.kit.lineup("e8w", "The copy corresponds ____ the original.", [["reachDot", "to", true, "match"], ["agreeWith", "with", "diff", "wrote letters | with the original"], ["cross", "for", false, "for is a purpose; | not used"]], ["correspond to = match", "correspond with = write letters to"], null, ["\u2248 with: She corresponded with a pen friend."]),
         ],
       },
       {

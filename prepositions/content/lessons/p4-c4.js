@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The building does not conform ____ safety standards.", [["reachDot", "to", true, "fit a rule | or standard"], ["cross", "on", false, "on is resting; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["conform to = fit a rule or standard"]),
+          ...PLAB.kit.lineup("e1w", "The building does not conform ____ safety standards.", [["reachDot", "to", true, "fit a rule | or standard"], ["cross", "on", false, "on is resting; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["conform to = fit a rule or standard"], null, []),
         ],
       },
       {
@@ -105,7 +105,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "We congratulated her ____ her success.", [["support", "on", true, "praise someone | for an achievement"], ["cross", "for", false, "for goes with thank"], ["cross", "at", false, "at is a point; | not used"]], ["congratulate on = praise someone for an achievement"]),
+          ...PLAB.kit.lineup("e2w", "We congratulated her ____ her success.", [["support", "on", true, "praise someone | for an achievement"], ["cross", "for", false, "for goes with thank"], ["cross", "at", false, "at is a point; | not used"]], ["congratulate on = praise someone for an achievement"], null, []),
         ],
       },
       {
@@ -130,11 +130,11 @@
         alt: "The sentence He is connected with a gap the scandal., then the candidates: with (fits: related to); to (correct English, different meaning: physically joined to the scandal); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: He is connected \u2026 the scandal. What does the sentence want to say? It wants **connected with**: related to.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean physically joined to the scandal. That is not what this sentence says. **from**: from is a source; not used.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean physically joined to the scandal. That is not what this sentence says. Where to fits: _The village is connected to the main road._ **from**: from is a source; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He is connected ____ the scandal.", [["agreeWith", "with", true, "related to"], ["reachDot", "to", "diff", "physically joined | to the scandal"], ["cross", "from", false, "from is a | source; not used"]], ["connected to = joined to", "connected with = related to"]),
+          ...PLAB.kit.lineup("e3w", "He is connected ____ the scandal.", [["agreeWith", "with", true, "related to"], ["reachDot", "to", "diff", "physically joined | to the scandal"], ["cross", "from", false, "from is a | source; not used"]], ["connected to = joined to", "connected with = related to"], null, ["\u2248 to: The village is connected to the main road."]),
         ],
       },
       {
@@ -161,7 +161,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is conscious ____ his duties.", [["awareOf", "of", true, "aware of"], ["cross", "about", false, "self-conscious about is | different; conscious of"], ["cross", "from", false, "from is a | source; not used"]], ["conscious of = aware of"]),
+          ...PLAB.kit.lineup("e4w", "He is conscious ____ his duties.", [["awareOf", "of", true, "aware of"], ["cross", "about", false, "self-conscious about is | different; conscious of"], ["cross", "from", false, "from is a | source; not used"]], ["conscious of = aware of"], null, []),
         ],
       },
       {
@@ -210,7 +210,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "She consented ____ the marriage.", [["reachDot", "to", true, "agree to"], ["cross", "for", false, "for is a purpose; | consent points to"], ["cross", "on", false, "on is resting; | not used"]], ["consent to = agree to"]),
+          ...PLAB.kit.lineup("e5w", "She consented ____ the marriage.", [["reachDot", "to", true, "agree to"], ["cross", "for", false, "for is a purpose; | consent points to"], ["cross", "on", false, "on is resting; | not used"]], ["consent to = agree to"], null, []),
         ],
       },
       {
@@ -266,11 +266,11 @@
         alt: "The sentence Happiness consists with a gap contentment., then the candidates: in (fits: have as its essence); of (correct English, different meaning: contentment would be one part happiness is made of); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: Happiness consists \u2026 contentment. What does the sentence want to say? It wants **consist in**: have as its essence.", cue: "e6w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean contentment would be one part happiness is made of. That is not what this sentence says. **from**: a word-for-word translation.", cue: "e6w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean contentment would be one part happiness is made of. That is not what this sentence says. Where of fits: _The team consists of ten players._ **from**: a word-for-word translation.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Happiness consists ____ contentment.", [["absorbedIn", "in", true, "have as its essence"], ["awareOf", "of", "diff", "contentment would be one | part happiness is made of"], ["cross", "from", false, "a word-for-word | translation"]], ["consist of = be made of parts", "consist in = have as its essence"]),
+          ...PLAB.kit.lineup("e6w", "Happiness consists ____ contentment.", [["absorbedIn", "in", true, "have as its essence"], ["awareOf", "of", "diff", "contentment would be one | part happiness is made of"], ["cross", "from", false, "a word-for-word | translation"]], ["consist of = be made of parts", "consist in = have as its essence"], null, ["\u2248 of: The team consists of ten players."]),
         ],
       },
       {
@@ -297,7 +297,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "We are in contact ____ the embassy.", [["agreeWith", "with", true, "in contact with: | in touch with"], ["cross", "to", false, "to points; contact | is being with"], ["cross", "(no word)", false, "the verb takes none: contact | them; the noun takes with"]], ["contact with = in contact with: in touch with"]),
+          ...PLAB.kit.lineup("e7w", "We are in contact ____ the embassy.", [["agreeWith", "with", true, "in contact with: | in touch with"], ["cross", "to", false, "to points; contact | is being with"], ["cross", "(no word)", false, "the verb takes none: contact | them; the noun takes with"]], ["contact with = in contact with: in touch with"], null, []),
         ],
       },
       {
@@ -324,7 +324,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He is content ____ his salary.", [["agreeWith", "with", true, "satisfied with"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "on", false, "on is resting; | not used"]], ["content with = satisfied with"]),
+          ...PLAB.kit.lineup("e8w", "He is content ____ his salary.", [["agreeWith", "with", true, "satisfied with"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "on", false, "on is resting; | not used"]], ["content with = satisfied with"], null, []),
         ],
       },
       {

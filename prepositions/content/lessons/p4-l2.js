@@ -63,11 +63,11 @@
         alt: "The sentence Pakistan lost with a gap Australia., then the candidates: to (fits: be beaten by); by (correct English, different meaning: Australia would be the margin); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: Pakistan lost \u2026 Australia. What does the sentence want to say? It wants **lose to**: be beaten by.", cue: "e1w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean Australia would be the margin. That is not what this sentence says. **from**: a word-for-word translation.", cue: "e1w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean Australia would be the margin. That is not what this sentence says. Where by fits: _Pakistan lost by two runs._ **from**: a word-for-word translation.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Pakistan lost ____ Australia.", [["reachDot", "to", true, "be beaten by"], ["followRule", "by", "diff", "Australia would | be the margin"], ["cross", "from", false, "a word-for-word | translation"]], ["lose to = be beaten by", "lose by = lose by a margin"]),
+          ...PLAB.kit.lineup("e1w", "Pakistan lost ____ Australia.", [["reachDot", "to", true, "be beaten by"], ["followRule", "by", "diff", "Australia would | be the margin"], ["cross", "from", false, "a word-for-word | translation"]], ["lose to = be beaten by", "lose by = lose by a margin"], null, ["\u2248 by: Pakistan lost by two runs."]),
         ],
       },
       {
@@ -94,7 +94,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He is loyal ____ his country.", [["reachDot", "to", true, "faithful to"], ["cross", "with", false, "with = together; | loyalty points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["loyal to = faithful to"]),
+          ...PLAB.kit.lineup("e2w", "He is loyal ____ his country.", [["reachDot", "to", true, "faithful to"], ["cross", "with", false, "with = together; | loyalty points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["loyal to = faithful to"], null, []),
         ],
       },
       {

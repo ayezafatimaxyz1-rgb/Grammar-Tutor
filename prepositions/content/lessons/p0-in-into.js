@@ -50,11 +50,11 @@
         alt: "He jumped with a gap the river. Answer: into, because a jump: outside, then inside. Not in: jumped in the river = jumped while inside it. Not onto: a river has no top surface.",
         say: [
           { text: "Fill the gap: He jumped … the river. Picture it: a jump: outside, then inside. So **into**.", cue: "intox01" },
-          { text: "Why not **in**? jumped in the river = jumped while inside it That is correct English, but it says something else. Why not **onto**? a river has no top surface.", cue: "intox0-r2" },
+          { text: "Why not **in**? jumped in the river = jumped while inside it That is correct English, but it says something else. Where in fits: _The boys jumped and played in the river._ Why not **onto**? a river has no top surface.", cue: "intox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-intox0"),
-          ...PLAB.kit.lineup("intox0", "He jumped ____ the river.", [["intoBag", "into", true, "a jump: outside, | then inside"], ["dotIn", "in", "diff", "jumped in the river = | jumped while inside it"], ["turnOnto", "onto", false, "a river has | no top surface"]], ["Why into? a jump: outside, then inside", "Ask: Is there movement from outside to inside?"]),
+          ...PLAB.kit.lineup("intox0", "He jumped ____ the river.", [["intoBag", "into", true, "a jump: outside, | then inside"], ["dotIn", "in", "diff", "jumped in the river = | jumped while inside it"], ["turnOnto", "onto", false, "a river has | no top surface"]], ["Why into? a jump: outside, then inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The boys jumped and played in the river."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "Put the files with a gap the drawer. Answer: into, because the files move inside. Not in: in is common in speech; into stresses movement. Not on: not on top.",
         say: [
           { text: "Fill the gap: Put the files … the drawer. Picture it: the files move inside. So **into**.", cue: "intox11" },
-          { text: "Why not **in**? in is common in speech; into stresses movement That is correct English, but it says something else. Why not **on**? not on top.", cue: "intox1-r2" },
+          { text: "Why not **in**? in is common in speech; into stresses movement That is correct English, but it says something else. Where in fits: _The files are in the drawer._ Why not **on**? not on top.", cue: "intox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-intox1"),
-          ...PLAB.kit.lineup("intox1", "Put the files ____ the drawer.", [["intoBag", "into", true, "the files move inside"], ["dotIn", "in", "diff", "in is common in speech; | into stresses movement"], ["cupOnTable", "on", false, "not on top"]], ["Why into? the files move inside", "Ask: Is there movement from outside to inside?"]),
+          ...PLAB.kit.lineup("intox1", "Put the files ____ the drawer.", [["intoBag", "into", true, "the files move inside"], ["dotIn", "in", "diff", "in is common in speech; | into stresses movement"], ["cupOnTable", "on", false, "not on top"]], ["Why into? the files move inside", "Ask: Is there movement from outside to inside?"], null, ["≈ in: The files are in the drawer."]),
         ],
       },
       {
@@ -96,7 +96,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx0"),
-          ...PLAB.kit.lineup("inx0", "The files are ____ the drawer.", [["intoBag", "into", false, "into needs movement"], ["dotIn", "in", true, "they are inside now; | no movement"], ["cupOnTable", "on", false, "not on top"]], ["Why in? they are inside now; no movement", "Ask: Is it just where something is now?"]),
+          ...PLAB.kit.lineup("inx0", "The files are ____ the drawer.", [["intoBag", "into", false, "into needs movement"], ["dotIn", "in", true, "they are inside now; | no movement"], ["cupOnTable", "on", false, "not on top"]], ["Why in? they are inside now; no movement", "Ask: Is it just where something is now?"], null, []),
         ],
       },
       {
@@ -109,7 +109,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "He is swimming ____ the river.", [["intoBag", "into", false, "into needs a | move from outside"], ["dotIn", "in", true, "he is inside the river | the whole time"], ["turnOnto", "onto", false, "not used"]], ["Why in? he is inside the river the whole time", "Ask: Is it just where something is now?"]),
+          ...PLAB.kit.lineup("inx1", "He is swimming ____ the river.", [["intoBag", "into", false, "into needs a | move from outside"], ["dotIn", "in", true, "he is inside the river | the whole time"], ["turnOnto", "onto", false, "not used"]], ["Why in? he is inside the river the whole time", "Ask: Is it just where something is now?"], null, []),
         ],
       },
       {
@@ -134,11 +134,11 @@
         alt: "The cat jumped with a gap the table. Answer: onto, because a jump that ends on the top. Not into: a table has no inside. Not on: jumped on the table = jumped up and down there.",
         say: [
           { text: "Fill the gap: The cat jumped … the table. Picture it: a jump that ends on the top. So **onto**.", cue: "ontox02" },
-          { text: "Why not **into**? a table has no inside. Why not **on**? jumped on the table = jumped up and down there That is correct English, but it says something else.", cue: "ontox0-r2" },
+          { text: "Why not **into**? a table has no inside. Why not **on**? jumped on the table = jumped up and down there That is correct English, but it says something else. Where on fits: _The children jumped on the bed for fun._", cue: "ontox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ontox0"),
-          ...PLAB.kit.lineup("ontox0", "The cat jumped ____ the table.", [["intoBag", "into", false, "a table has no inside"], ["turnOnto", "onto", true, "a jump that ends | on the top"], ["cupOnTable", "on", "diff", "jumped on the table = | jumped up and down there"]], ["Why onto? a jump that ends on the top", "Ask: Is there movement up onto a surface?"]),
+          ...PLAB.kit.lineup("ontox0", "The cat jumped ____ the table.", [["intoBag", "into", false, "a table has no inside"], ["turnOnto", "onto", true, "a jump that ends | on the top"], ["cupOnTable", "on", "diff", "jumped on the table = | jumped up and down there"]], ["Why onto? a jump that ends on the top", "Ask: Is there movement up onto a surface?"], null, ["≈ on: The children jumped on the bed for fun."]),
         ],
       },
       {
@@ -167,7 +167,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-onx0"),
-          ...PLAB.kit.lineup("onx0", "The cat is sleeping ____ the table.", [["intoBag", "into", false, "not inside"], ["turnOnto", "onto", false, "onto needs movement"], ["cupOnTable", "on", true, "resting on top, | no movement"]], ["Why on? resting on top, no movement", "Ask: Is it just resting there now?"]),
+          ...PLAB.kit.lineup("onx0", "The cat is sleeping ____ the table.", [["intoBag", "into", false, "not inside"], ["turnOnto", "onto", false, "onto needs movement"], ["cupOnTable", "on", true, "resting on top, | no movement"]], ["Why on? resting on top, no movement", "Ask: Is it just resting there now?"], null, []),
         ],
       },
       {

@@ -56,7 +56,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "I prefer tea ____ coffee.", [["reachDot", "to", true, "like one more | than another"], ["cross", "than", false, "a common error; | prefer X to Y"], ["cross", "from", false, "from = apart; | not used"]], ["prefer to = like one more than another"]),
+          ...PLAB.kit.lineup("e1w", "I prefer tea ____ coffee.", [["reachDot", "to", true, "like one more | than another"], ["cross", "than", false, "a common error; | prefer X to Y"], ["cross", "from", false, "from = apart; | not used"]], ["prefer to = like one more than another"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Peace is preferable ____ war.", [["reachDot", "to", true, "better than, more | suitable than"], ["cross", "than", false, "preferable already | compares; it takes to"], ["cross", "over", false, "not standard | after preferable"]], ["preferable to = better than, more suitable than"]),
+          ...PLAB.kit.lineup("e2w", "Peace is preferable ____ war.", [["reachDot", "to", true, "better than, more | suitable than"], ["cross", "than", false, "preferable already | compares; it takes to"], ["cross", "over", false, "not standard | after preferable"]], ["preferable to = better than, more suitable than"], null, []),
         ],
       },
       {
@@ -108,11 +108,11 @@
         alt: "The sentence Some employers are prejudiced with a gap women., then the candidates: against (fits: unfairly opposed to); in favour of (correct English, different meaning: unfairly favouring women); to (not used: to points; not used)",
         say: [
           { text: "Fill the gap: Some employers are prejudiced \u2026 women. What does the sentence want to say? It wants **prejudiced against**: unfairly opposed to.", cue: "e3w1" },
-          { text: "Why not the others? **in favour of** is correct English, but it would mean unfairly favouring women. That is not what this sentence says. **to**: to points; not used.", cue: "e3w2" },
+          { text: "Why not the others? **in favour of** is correct English, but it would mean unfairly favouring women. That is not what this sentence says. Where in favour of fits: _The judge was prejudiced in favour of the rich._ **to**: to points; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Some employers are prejudiced ____ women.", [["shield", "against", true, "unfairly opposed to"], ["awareOf", "in favour of", "diff", "unfairly | favouring women"], ["cross", "to", false, "to points; not used"]], ["prejudiced against = unfairly opposed to", "prejudiced in favour of = unfairly favouring"]),
+          ...PLAB.kit.lineup("e3w", "Some employers are prejudiced ____ women.", [["shield", "against", true, "unfairly opposed to"], ["awareOf", "in favour of", "diff", "unfairly | favouring women"], ["cross", "to", false, "to points; not used"]], ["prejudiced against = unfairly opposed to", "prejudiced in favour of = unfairly favouring"], null, ["\u2248 in favour of: The judge was prejudiced in favour of the rich."]),
         ],
       },
       {
@@ -139,7 +139,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "We are prepared ____ the worst.", [["wantStar", "for", true, "ready for"], ["cross", "to", false, "to needs a verb: | prepared to wait"], ["cross", "against", false, "against is | opposing; not used"]], ["prepared for = ready for"]),
+          ...PLAB.kit.lineup("e4w", "We are prepared ____ the worst.", [["wantStar", "for", true, "ready for"], ["cross", "to", false, "to needs a verb: | prepared to wait"], ["cross", "against", false, "against is | opposing; not used"]], ["prepared for = ready for"], null, []),
         ],
       },
       {
@@ -164,11 +164,11 @@
         alt: "The sentence All members were present with a gap the meeting., then the candidates: at (fits: attending an event); in (correct English, different meaning: existing inside the meeting, like iron in blood); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: All members were present \u2026 the meeting. What does the sentence want to say? It wants **present at**: attending an event.", cue: "e5w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean existing inside the meeting, like iron in blood. That is not what this sentence says. **on**: on is resting; not used.", cue: "e5w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean existing inside the meeting, like iron in blood. That is not what this sentence says. Where in fits: _Iron is present in the blood._ **on**: on is resting; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "All members were present ____ the meeting.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "attending an event"], ["absorbedIn", "in", "diff", "existing inside the | meeting, like iron in blood"], ["cross", "on", false, "on is resting; | not used"]], ["present at = attending an event", "present in = existing inside"]),
+          ...PLAB.kit.lineup("e5w", "All members were present ____ the meeting.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "attending an event"], ["absorbedIn", "in", "diff", "existing inside the | meeting, like iron in blood"], ["cross", "on", false, "on is resting; | not used"]], ["present at = attending an event", "present in = existing inside"], null, ["\u2248 in: Iron is present in the blood."]),
         ],
       },
       {
@@ -217,7 +217,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The rain prevented us ____ playing.", [["holdBack", "from", true, "stop someone doing"], ["cross", "to", false, "prevent does not | take to + verb"], ["cross", "of", false, "of = belonging; | not used"]], ["prevent from = stop someone doing"]),
+          ...PLAB.kit.lineup("e6w", "The rain prevented us ____ playing.", [["holdBack", "from", true, "stop someone doing"], ["cross", "to", false, "prevent does not | take to + verb"], ["cross", "of", false, "of = belonging; | not used"]], ["prevent from = stop someone doing"], null, []),
         ],
       },
       {
@@ -242,11 +242,11 @@
         alt: "The sentence She takes pride with a gap her work., then the candidates: in (fits: a feeling of satisfaction in (noun)); of (correct English, different meaning: her work would be her best thing, not the source of her feeling); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She takes pride \u2026 her work. What does the sentence want to say? It wants **pride in**: a feeling of satisfaction in (noun).", cue: "e7w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean her work would be her best thing, not the source of her feeling. That is not what this sentence says. **on**: on is resting; not used.", cue: "e7w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean her work would be her best thing, not the source of her feeling. That is not what this sentence says. Where of fits: _He is the pride of the nation._ **on**: on is resting; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She takes pride ____ her work.", [["absorbedIn", "in", true, "a feeling of | satisfaction in (noun)"], ["awareOf", "of", "diff", "her work would be her best thing, | not the source of her feeling"], ["cross", "on", false, "on is resting; | not used"]], ["pride in = a feeling of satisfaction in (noun)", "pride of = the pride of: the best of"]),
+          ...PLAB.kit.lineup("e7w", "She takes pride ____ her work.", [["absorbedIn", "in", true, "a feeling of | satisfaction in (noun)"], ["awareOf", "of", "diff", "her work would be her best thing, | not the source of her feeling"], ["cross", "on", false, "on is resting; | not used"]], ["pride in = a feeling of satisfaction in (noun)", "pride of = the pride of: the best of"], null, ["\u2248 of: He is the pride of the nation."]),
         ],
       },
       {
@@ -273,7 +273,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "She is proficient ____ English.", [["absorbedIn", "in", true, "skilled in"], ["cross", "at", false, "at goes with good at; | proficient takes in"], ["cross", "on", false, "on is a topic; | not used"]], ["proficient in = skilled in"]),
+          ...PLAB.kit.lineup("e8w", "She is proficient ____ English.", [["absorbedIn", "in", true, "skilled in"], ["cross", "at", false, "at goes with good at; | proficient takes in"], ["cross", "on", false, "on is a topic; | not used"]], ["proficient in = skilled in"], null, []),
         ],
       },
       {

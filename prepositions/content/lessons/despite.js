@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ the rain, we played the match.", [["overRock", "Despite", true, "+ a noun"], ["rain", "Although", false, "+ a clause: | although it rained"], ["cross", "Despite of", false, "never despite of"]], ["despite / in spite of + noun", "although + clause"]),
+          ...PLAB.kit.lineup("why", "____ the rain, we played the match.", [["overRock", "Despite", true, "+ a noun"], ["rain", "Although", false, "+ a clause: | although it rained"], ["cross", "Despite of", false, "never despite of"]], ["despite / in spite of + noun", "although + clause"], null, []),
         ],
       },
       {

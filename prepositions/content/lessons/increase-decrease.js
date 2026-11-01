@@ -59,7 +59,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "There was a sharp increase ____ prices.", [["riseIn", "in", true, "the thing that | changes"], ["riseBy", "of", false, "of = the amount: | of 10 per cent"], ["arrowUp", "by", false, "by follows the verb: | rose by 10 per cent"]], ["an increase in prices \u00b7 an increase of 10%", "prices rose by 10%"]),
+          ...PLAB.kit.lineup("why", "There was a sharp increase ____ prices.", [["riseIn", "in", true, "the thing that | changes"], ["riseBy", "of", false, "of = the amount: | of 10 per cent"], ["arrowUp", "by", false, "by follows the verb: | rose by 10 per cent"]], ["an increase in prices \u00b7 an increase of 10%", "prices rose by 10%"], null, []),
         ],
       },
       {

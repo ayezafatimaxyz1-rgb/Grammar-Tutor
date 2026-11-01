@@ -469,7 +469,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "Sara lives ____ Lahore.", [["liveIn", "in", true, "an area she is | inside"], ["roadPass", "at", false, "shrinks Lahore to a | dot on a route"], ["onBase", "on", false, "on top of the city, | like a lid"], ["goHome", "to", false, "to is movement; | living is not"]], ["in = inside an area: live in Lahore", "at = a stop on a route: stopped at Lahore"]),
+        ...PLAB.kit.lineup("why", "Sara lives ____ Lahore.", [["liveIn", "in", true, "an area she is | inside"], ["roadPass", "at", false, "shrinks Lahore to a | dot on a route"], ["onBase", "on", false, "on top of the city, | like a lid"], ["goHome", "to", false, "to is movement; | living is not"]], ["in = inside an area: live in Lahore", "at = a stop on a route: stopped at Lahore"], null, []),
       ],
     },
     {

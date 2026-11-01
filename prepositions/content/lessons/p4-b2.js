@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He is blind ____ his own faults.", [["reachDot", "to", true, "unable to see | a fault or fact"], ["cross", "of", false, "of = belonging; | blindness points to"], ["cross", "from", false, "from is a | source; not used"]], ["blind to = unable to see a fault or fact"]),
+          ...PLAB.kit.lineup("e1w", "He is blind ____ his own faults.", [["reachDot", "to", true, "unable to see | a fault or fact"], ["cross", "of", false, "of = belonging; | blindness points to"], ["cross", "from", false, "from is a | source; not used"]], ["blind to = unable to see a fault or fact"], null, []),
         ],
       },
       {
@@ -83,7 +83,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "He boasted ____ his wealth.", [["aboutCircle", "about", true, "talk proudly about"], ["cross", "on", false, "on is a surface; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["boast about = talk proudly about"]),
+          ...PLAB.kit.lineup("e2w", "He boasted ____ his wealth.", [["aboutCircle", "about", true, "talk proudly about"], ["cross", "on", false, "on is a surface; | not used"], ["cross", "for", false, "for is a purpose; | not used"]], ["boast about = talk proudly about"], null, []),
         ],
       },
       {
@@ -110,7 +110,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She was bored ____ the routine.", [["agreeWith", "with", true, "tired of | something dull"], ["cross", "of", false, "common in speech, but | not in formal writing"], ["cross", "from", false, "a word-for-word | translation"]], ["bored with = tired of something dull"]),
+          ...PLAB.kit.lineup("e3w", "She was bored ____ the routine.", [["agreeWith", "with", true, "tired of | something dull"], ["cross", "of", false, "common in speech, but | not in formal writing"], ["cross", "from", false, "a word-for-word | translation"]], ["bored with = tired of something dull"], null, []),
         ],
       },
       {
@@ -159,7 +159,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He borrowed money ____ a bank.", [["holdBack", "from", true, "take for a time | from someone"], ["cross", "to", false, "to goes with | lend: lend to"], ["cross", "by", false, "by names a means, | not a source"]], ["borrow from = take for a time from someone"]),
+          ...PLAB.kit.lineup("e4w", "He borrowed money ____ a bank.", [["holdBack", "from", true, "take for a time | from someone"], ["cross", "to", false, "to goes with | lend: lend to"], ["cross", "by", false, "by names a means, | not a source"]], ["borrow from = take for a time from someone"], null, []),
         ],
       },
       {
@@ -185,11 +185,11 @@
         alt: "The sentence The ship is bound with a gap Karachi., then the candidates: for (fits: travelling towards); to (correct English, different meaning: tied to Karachi, or certain to); at (not used: at is a point, not a destination)",
         say: [
           { text: "Fill the gap: The ship is bound \u2026 Karachi. What does the sentence want to say? It wants **bound for**: travelling towards.", cue: "e5w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean tied to Karachi, or certain to. That is not what this sentence says. **at**: at is a point, not a destination.", cue: "e5w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean tied to Karachi, or certain to. That is not what this sentence says. Where to fits: _He is bound to win._ **at**: at is a point, not a destination.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The ship is bound ____ Karachi.", [["wantStar", "for", true, "travelling towards"], ["reachDot", "to", "diff", "tied to Karachi, | or certain to"], ["cross", "at", false, "at is a point, | not a destination"]], ["bound for = travelling towards", "bound to = certain to, or tied to"]),
+          ...PLAB.kit.lineup("e5w", "The ship is bound ____ Karachi.", [["wantStar", "for", true, "travelling towards"], ["reachDot", "to", "diff", "tied to Karachi, | or certain to"], ["cross", "at", false, "at is a point, | not a destination"]], ["bound for = travelling towards", "bound to = certain to, or tied to"], null, ["\u2248 to: He is bound to win."]),
         ],
       },
       {
@@ -245,11 +245,11 @@
         alt: "The sentence Thieves broke with a gap the house., then the candidates: into (fits: enter by force); out of (correct English, different meaning: escaped from inside the house); in (not used: broke in takes no object; with an object, into)",
         say: [
           { text: "Fill the gap: Thieves broke \u2026 the house. What does the sentence want to say? It wants **break into**: enter by force.", cue: "e6w1" },
-          { text: "Why not the others? **out of** is correct English, but it would mean escaped from inside the house. That is not what this sentence says. **in**: broke in takes no object; with an object, into.", cue: "e6w2" },
+          { text: "Why not the others? **out of** is correct English, but it would mean escaped from inside the house. That is not what this sentence says. Where out of fits: _Two prisoners broke out of jail._ **in**: broke in takes no object; with an object, into.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Thieves broke ____ the house.", [["intoBag", "into", true, "enter by force"], ["goOut", "out of", "diff", "escaped from | inside the house"], ["cross", "in", false, "broke in takes no object; | with an object, into"]], ["break into = enter by force", "break off = end suddenly"]),
+          ...PLAB.kit.lineup("e6w", "Thieves broke ____ the house.", [["intoBag", "into", true, "enter by force"], ["goOut", "out of", "diff", "escaped from | inside the house"], ["cross", "in", false, "broke in takes no object; | with an object, into"]], ["break into = enter by force", "break off = end suddenly"], null, ["\u2248 out of: Two prisoners broke out of jail."]),
         ],
       },
       {
@@ -298,7 +298,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "He brooded ____ his failure.", [["overRock", "over", true, "think long and | unhappily about"], ["cross", "at", false, "at is a point; | brooding hangs over"], ["cross", "with", false, "with = together; | not used"]], ["brood over = think long and unhappily about"]),
+          ...PLAB.kit.lineup("e7w", "He brooded ____ his failure.", [["overRock", "over", true, "think long and | unhappily about"], ["cross", "at", false, "at is a point; | brooding hangs over"], ["cross", "with", false, "with = together; | not used"]], ["brood over = think long and unhappily about"], null, []),
         ],
       },
       {
@@ -325,7 +325,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "She is busy ____ her studies.", [["agreeWith", "with", true, "occupied | with a task"], ["cross", "in", false, "a common error; busy | with, or busy + -ing"], ["cross", "at", false, "at is a point; | not used"]], ["busy with = occupied with a task"]),
+          ...PLAB.kit.lineup("e8w", "She is busy ____ her studies.", [["agreeWith", "with", true, "occupied | with a task"], ["cross", "in", false, "a common error; busy | with, or busy + -ing"], ["cross", "at", false, "at is a point; | not used"]], ["busy with = occupied with a task"], null, []),
         ],
       },
       {

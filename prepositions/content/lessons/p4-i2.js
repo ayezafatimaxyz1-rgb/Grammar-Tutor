@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "His statement is inconsistent ____ the facts.", [["agreeWith", "with", true, "not agreeing with"], ["cross", "to", false, "to points; | agreement takes with"], ["cross", "from", false, "from is a | source; not used"]], ["inconsistent with = not agreeing with"]),
+          ...PLAB.kit.lineup("e1w", "His statement is inconsistent ____ the facts.", [["agreeWith", "with", true, "not agreeing with"], ["cross", "to", false, "to points; | agreement takes with"], ["cross", "from", false, "from is a | source; not used"]], ["inconsistent with = not agreeing with"], null, []),
         ],
       },
       {
@@ -59,11 +59,11 @@
         alt: "The sentence I am indebted with a gap my teacher., then the candidates: to (fits: owing thanks to a person); for (correct English, different meaning: owing thanks for my teacher, as if she were a favour); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: I am indebted \u2026 my teacher. What does the sentence want to say? It wants **indebted to**: owing thanks to a person.", cue: "e2w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean owing thanks for my teacher, as if she were a favour. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e2w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean owing thanks for my teacher, as if she were a favour. That is not what this sentence says. Where for fits: _I am indebted to her for her help._ **of**: of = belonging; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "I am indebted ____ my teacher.", [["reachDot", "to", true, "owing thanks | to a person"], ["wantStar", "for", "diff", "owing thanks for my teacher, | as if she were a favour"], ["cross", "of", false, "of = belonging; | not used"]], ["indebted to = owing thanks to a person", "indebted for = owing thanks for something"]),
+          ...PLAB.kit.lineup("e2w", "I am indebted ____ my teacher.", [["reachDot", "to", true, "owing thanks | to a person"], ["wantStar", "for", "diff", "owing thanks for my teacher, | as if she were a favour"], ["cross", "of", false, "of = belonging; | not used"]], ["indebted to = owing thanks to a person", "indebted for = owing thanks for something"], null, ["\u2248 for: I am indebted to her for her help."]),
         ],
       },
       {
@@ -90,7 +90,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is independent ____ her parents.", [["awareOf", "of", true, "not depending on"], ["cross", "on", false, "on belongs to dependent; | independent takes of"], ["cross", "to", false, "to points; not used"]], ["independent of = not depending on"]),
+          ...PLAB.kit.lineup("e3w", "She is independent ____ her parents.", [["awareOf", "of", true, "not depending on"], ["cross", "on", false, "on belongs to dependent; | independent takes of"], ["cross", "to", false, "to points; not used"]], ["independent of = not depending on"], null, []),
         ],
       },
       {
@@ -117,7 +117,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is indifferent ____ their suffering.", [["reachDot", "to", true, "not caring about"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | not used"]], ["indifferent to = not caring about"]),
+          ...PLAB.kit.lineup("e4w", "He is indifferent ____ their suffering.", [["reachDot", "to", true, "not caring about"], ["cross", "with", false, "with = together; | not used"], ["cross", "of", false, "of = belonging; | not used"]], ["indifferent to = not caring about"], null, []),
         ],
       },
       {
@@ -144,7 +144,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "She was indignant ____ the insult.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "angry about | something unfair"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "from", false, "from is a | source; not used"]], ["indignant at = angry about something unfair"]),
+          ...PLAB.kit.lineup("e5w", "She was indignant ____ the insult.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "angry about | something unfair"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "from", false, "from is a | source; not used"]], ["indignant at = angry about something unfair"], null, []),
         ],
       },
       {
@@ -193,7 +193,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Do not indulge ____ gossip.", [["absorbedIn", "in", true, "allow yourself | to enjoy"], ["cross", "with", false, "with = together; | indulging goes inside"], ["cross", "on", false, "on is resting; | not used"]], ["indulge in = allow yourself to enjoy"]),
+          ...PLAB.kit.lineup("e6w", "Do not indulge ____ gossip.", [["absorbedIn", "in", true, "allow yourself | to enjoy"], ["cross", "with", false, "with = together; | indulging goes inside"], ["cross", "on", false, "on is resting; | not used"]], ["indulge in = allow yourself to enjoy"], null, []),
         ],
       },
       {
@@ -218,11 +218,11 @@
         alt: "The sentence He was infected with a gap malaria., then the candidates: with (fits: carrying a disease); by (correct English, different meaning: malaria would be the carrier that gave it); from (not used: from is a source; infected takes with)",
         say: [
           { text: "Fill the gap: He was infected \u2026 malaria. What does the sentence want to say? It wants **infected with**: carrying a disease.", cue: "e7w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean malaria would be the carrier that gave it. That is not what this sentence says. **from**: from is a source; infected takes with.", cue: "e7w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean malaria would be the carrier that gave it. That is not what this sentence says. Where by fits: _He was infected by a mosquito._ **from**: from is a source; infected takes with.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "He was infected ____ malaria.", [["agreeWith", "with", true, "carrying a disease"], ["followRule", "by", "diff", "malaria would be the | carrier that gave it"], ["cross", "from", false, "from is a source; | infected takes with"]], ["infected with = carrying a disease", "infected by = given a disease by a carrier"]),
+          ...PLAB.kit.lineup("e7w", "He was infected ____ malaria.", [["agreeWith", "with", true, "carrying a disease"], ["followRule", "by", "diff", "malaria would be the | carrier that gave it"], ["cross", "from", false, "from is a source; | infected takes with"]], ["infected with = carrying a disease", "infected by = given a disease by a carrier"], null, ["\u2248 by: He was infected by a mosquito."]),
         ],
       },
       {
@@ -249,7 +249,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "This copy is inferior ____ the original.", [["reachDot", "to", true, "lower in | quality than"], ["cross", "than", false, "inferior already means | lower; it takes to"], ["cross", "from", false, "from = apart; | not used"]], ["inferior to = lower in quality than"]),
+          ...PLAB.kit.lineup("e8w", "This copy is inferior ____ the original.", [["reachDot", "to", true, "lower in | quality than"], ["cross", "than", false, "inferior already means | lower; it takes to"], ["cross", "from", false, "from = apart; | not used"]], ["inferior to = lower in quality than"], null, []),
         ],
       },
       {

@@ -62,7 +62,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She spoke ____ the government at the UN.", [["speakFor", "on behalf of", true, "as its | representative"], ["blame", "on the part of", false, "= by: a mistake | on the part of"], ["scaleTip", "in favour of", "diff", "speaking in | support of it"]], ["on behalf of = representing", "on the part of = by"]),
+          ...PLAB.kit.lineup("why", "She spoke ____ the government at the UN.", [["speakFor", "on behalf of", true, "as its | representative"], ["blame", "on the part of", false, "= by: a mistake | on the part of"], ["scaleTip", "in favour of", "diff", "speaking in | support of it"]], ["on behalf of = representing", "on the part of = by"], null, []),
         ],
       },
       {

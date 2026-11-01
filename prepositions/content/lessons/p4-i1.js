@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "This copy is identical ____ the original.", [["reachDot", "to", true, "exactly the same as"], ["cross", "from", false, "from = apart; identical | means the same"], ["cross", "of", false, "of = belonging; | not used"]], ["identical to = exactly the same as"]),
+          ...PLAB.kit.lineup("e1w", "This copy is identical ____ the original.", [["reachDot", "to", true, "exactly the same as"], ["cross", "from", false, "from = apart; identical | means the same"], ["cross", "of", false, "of = belonging; | not used"]], ["identical to = exactly the same as"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Many people are ignorant ____ the law.", [["awareOf", "of", true, "not knowing about"], ["cross", "about", false, "heard in speech, but formal | English says ignorant of"], ["cross", "from", false, "from is a | source; not used"]], ["ignorant of = not knowing about"]),
+          ...PLAB.kit.lineup("e2w", "Many people are ignorant ____ the law.", [["awareOf", "of", true, "not knowing about"], ["cross", "about", false, "heard in speech, but formal | English says ignorant of"], ["cross", "from", false, "from is a | source; not used"]], ["ignorant of = not knowing about"], null, []),
         ],
       },
       {
@@ -86,11 +86,11 @@
         alt: "The sentence She is immune with a gap the virus., then the candidates: to (fits: not affected by); from (correct English, different meaning: legally protected from the virus, like a law); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: She is immune \u2026 the virus. What does the sentence want to say? It wants **immune to**: not affected by.", cue: "e3w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean legally protected from the virus, like a law. That is not what this sentence says. **with**: with = together; not used.", cue: "e3w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean legally protected from the virus, like a law. That is not what this sentence says. Where from fits: _Diplomats are immune from prosecution._ **with**: with = together; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is immune ____ the virus.", [["reachDot", "to", true, "not affected by"], ["holdBack", "from", "diff", "legally protected from | the virus, like a law"], ["cross", "with", false, "with = together; | not used"]], ["immune to = not affected by", "immune from = legally protected from"]),
+          ...PLAB.kit.lineup("e3w", "She is immune ____ the virus.", [["reachDot", "to", true, "not affected by"], ["holdBack", "from", "diff", "legally protected from | the virus, like a law"], ["cross", "with", false, "with = together; | not used"]], ["immune to = not affected by", "immune from = legally protected from"], null, ["\u2248 from: Diplomats are immune from prosecution."]),
         ],
       },
       {
@@ -115,11 +115,11 @@
         alt: "The sentence The people are impatient with a gap change., then the candidates: for (fits: eager to get); with (correct English, different meaning: irritated by change as if it were a person); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The people are impatient \u2026 change. What does the sentence want to say? It wants **impatient for**: eager to get.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean irritated by change as if it were a person. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean irritated by change as if it were a person. That is not what this sentence says. Where with fits: _The teacher was impatient with the slow student._ **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The people are impatient ____ change.", [["wantStar", "for", true, "eager to get"], ["agreeWith", "with", "diff", "irritated by change as | if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["impatient with = irritated by a person", "impatient for = eager to get"]),
+          ...PLAB.kit.lineup("e4w", "The people are impatient ____ change.", [["wantStar", "for", true, "eager to get"], ["agreeWith", "with", "diff", "irritated by change as | if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["impatient with = irritated by a person", "impatient for = eager to get"], null, ["\u2248 with: The teacher was impatient with the slow student."]),
         ],
       },
       {
@@ -146,7 +146,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He seemed impervious ____ criticism.", [["reachDot", "to", true, "not affected by"], ["cross", "from", false, "from is moving away; | impervious takes to"], ["cross", "of", false, "of = belonging; | not used"]], ["impervious to = not affected by"]),
+          ...PLAB.kit.lineup("e5w", "He seemed impervious ____ criticism.", [["reachDot", "to", true, "not affected by"], ["cross", "from", false, "from is moving away; | impervious takes to"], ["cross", "of", false, "of = belonging; | not used"]], ["impervious to = not affected by"], null, []),
         ],
       },
       {
@@ -173,7 +173,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Two officials were implicated ____ the scandal.", [["absorbedIn", "in", true, "shown to be | involved in a crime"], ["cross", "with", false, "with = together; | involvement goes inside"], ["cross", "of", false, "of = belonging; | not used"]], ["implicated in = shown to be involved in a crime"]),
+          ...PLAB.kit.lineup("e6w", "Two officials were implicated ____ the scandal.", [["absorbedIn", "in", true, "shown to be | involved in a crime"], ["cross", "with", false, "with = together; | involvement goes inside"], ["cross", "of", false, "of = belonging; | not used"]], ["implicated in = shown to be involved in a crime"], null, []),
         ],
       },
       {
@@ -222,7 +222,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "The government imposed a tax ____ imports.", [["support", "on", true, "force something | on someone"], ["cross", "to", false, "to points; a | burden presses on"], ["cross", "over", false, "over covers; | a tax lands on"]], ["impose on = force something on someone"]),
+          ...PLAB.kit.lineup("e7w", "The government imposed a tax ____ imports.", [["support", "on", true, "force something | on someone"], ["cross", "to", false, "to points; a | burden presses on"], ["cross", "over", false, "over covers; | a tax lands on"]], ["impose on = force something on someone"], null, []),
         ],
       },
       {
@@ -249,7 +249,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He is incapable ____ lying.", [["awareOf", "of", true, "not able to"], ["cross", "to", false, "unable to + verb; | incapable of + -ing"], ["cross", "for", false, "for is a purpose; | not used"]], ["incapable of = not able to"]),
+          ...PLAB.kit.lineup("e8w", "He is incapable ____ lying.", [["awareOf", "of", true, "not able to"], ["cross", "to", false, "unable to + verb; | incapable of + -ing"], ["cross", "for", false, "for is a purpose; | not used"]], ["incapable of = not able to"], null, []),
         ],
       },
       {

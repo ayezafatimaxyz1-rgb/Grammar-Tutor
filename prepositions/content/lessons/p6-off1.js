@@ -87,11 +87,11 @@
         alt: "The sentence The match was with a gap because of rain., then the candidates: call off (fits: cancel); call out (correct English, different meaning: shout, or challenge); call up (correct English, different meaning: phone, or summon)",
         say: [
           { text: "Fill the gap: The match was \u2026 because of rain. The sentence wants **call off**: cancel.", cue: "f1w1" },
-          { text: "Why not the others? **call out** is correct English, but it means shout, or challenge. That is not what this sentence says. **call up** is correct English, but it means phone, or summon. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **call out** is correct English, but it means shout, or challenge. That is not what this sentence says. Where call out fits: _The teacher called out the names._ **call up** is correct English, but it means phone, or summon. That is not what this sentence says. Where call up fits: _I'll call you up tonight._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The match was ____ because of rain.", [["rainCancel", "call off", true, "cancel"], ["goOut", "call out", "diff", "shout, or challenge"], ["arrowUp", "call up", "diff", "phone, or summon"]], ["call off = cancel", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f1w", "The match was ____ because of rain.", [["rainCancel", "call off", true, "cancel"], ["goOut", "call out", "diff", "shout, or challenge"], ["arrowUp", "call up", "diff", "phone, or summon"]], ["call off = cancel", "Why off? off = away"], null, ["\u2248 call out: The teacher called out the names.", "\u2248 call up: I'll call you up tonight."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence They with a gap the meeting till Monday., then the candidates: put off (fits: postpone); put out (correct English, different meaning: extinguish); put on (correct English, different meaning: wear, or stage)",
         say: [
           { text: "Fill the gap: They \u2026 the meeting till Monday. The sentence wants **put off**: postpone.", cue: "f2w1" },
-          { text: "Why not the others? **put out** is correct English, but it means extinguish. That is not what this sentence says. **put on** is correct English, but it means wear, or stage. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **put out** is correct English, but it means extinguish. That is not what this sentence says. Where put out fits: _Firemen put out the fire._ **put on** is correct English, but it means wear, or stage. That is not what this sentence says. Where put on fits: _She put on her coat._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "They ____ the meeting till Monday.", [["calendar", "put off", true, "postpone"], ["goOut", "put out", "diff", "extinguish"], ["support", "put on", "diff", "wear, or stage"]], ["put off = postpone", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f2w", "They ____ the meeting till Monday.", [["calendar", "put off", true, "postpone"], ["goOut", "put out", "diff", "extinguish"], ["support", "put on", "diff", "wear, or stage"]], ["put off = postpone", "Why off? off = away"], null, ["\u2248 put out: Firemen put out the fire.", "\u2248 put on: She put on her coat."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence We with a gap at dawn., then the candidates: set off (fits: start a journey); set up (correct English, different meaning: establish); set in (correct English, different meaning: begin and continue)",
         say: [
           { text: "Fill the gap: We \u2026 at dawn. The sentence wants **set off**: start a journey.", cue: "f3w1" },
-          { text: "Why not the others? **set up** is correct English, but it means establish. That is not what this sentence says. **set in** is correct English, but it means begin and continue. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **set up** is correct English, but it means establish. That is not what this sentence says. Where set up fits: _The government set up a commission._ **set in** is correct English, but it means begin and continue. That is not what this sentence says. Where set in fits: _The rainy season has set in._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "We ____ at dawn.", [["car", "set off", true, "start a journey"], ["arrowUp", "set up", "diff", "establish"], ["absorbedIn", "set in", "diff", "begin and continue"]], ["set off = start a journey", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f3w", "We ____ at dawn.", [["car", "set off", true, "start a journey"], ["arrowUp", "set up", "diff", "establish"], ["absorbedIn", "set in", "diff", "begin and continue"]], ["set off = start a journey", "Why off? off = away"], null, ["\u2248 set up: The government set up a commission.", "\u2248 set in: The rainy season has set in."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence The plane with a gap on time., then the candidates: take off (fits: leave the ground); take over (correct English, different meaning: take control); take up (correct English, different meaning: start a hobby)",
         say: [
           { text: "Fill the gap: The plane \u2026 on time. The sentence wants **take off**: leave the ground.", cue: "f4w1" },
-          { text: "Why not the others? **take over** is correct English, but it means take control. That is not what this sentence says. **take up** is correct English, but it means start a hobby. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **take over** is correct English, but it means take control. That is not what this sentence says. Where take over fits: _The army took over the government._ **take up** is correct English, but it means start a hobby. That is not what this sentence says. Where take up fits: _She took up painting after she retired._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The plane ____ on time.", [["plane", "take off", true, "leave the ground"], ["overRock", "take over", "diff", "take control"], ["arrowUp", "take up", "diff", "start a hobby"]], ["take off = leave the ground", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f4w", "The plane ____ on time.", [["plane", "take off", true, "leave the ground"], ["overRock", "take over", "diff", "take control"], ["arrowUp", "take up", "diff", "start a hobby"]], ["take off = leave the ground", "Why off? off = away"], null, ["\u2248 take over: The army took over the government.", "\u2248 take up: She took up painting after she retired."]),
         ],
       },
       {
@@ -349,11 +349,11 @@
         alt: "The sentence We went to the airport to with a gap our friend., then the candidates: see off (fits: say goodbye as someone leaves); see through (correct English, different meaning: not be fooled by); see to (correct English, different meaning: deal with)",
         say: [
           { text: "Fill the gap: We went to the airport to \u2026 our friend. The sentence wants **see off**: say goodbye as someone leaves.", cue: "f5w1" },
-          { text: "Why not the others? **see through** is correct English, but it means not be fooled by. That is not what this sentence says. **see to** is correct English, but it means deal with. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **see through** is correct English, but it means not be fooled by. That is not what this sentence says. Where see through fits: _She saw through his lies._ **see to** is correct English, but it means deal with. That is not what this sentence says. Where see to fits: _I will see to the guests._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "We went to the airport to ____ our friend.", [["train", "see off", true, "say goodbye as | someone leaves"], ["passThrough", "see through", "diff", "not be fooled by"], ["reachDot", "see to", "diff", "deal with"]], ["see off = say goodbye as someone leaves", "Why off? off = away"]),
+          ...PLAB.kit.lineup("f5w", "We went to the airport to ____ our friend.", [["train", "see off", true, "say goodbye as | someone leaves"], ["passThrough", "see through", "diff", "not be fooled by"], ["reachDot", "see to", "diff", "deal with"]], ["see off = say goodbye as someone leaves", "Why off? off = away"], null, ["\u2248 see through: She saw through his lies.", "\u2248 see to: I will see to the guests."]),
         ],
       },
       {
@@ -414,11 +414,11 @@
         alt: "The sentence The factory with a gap two hundred workers., then the candidates: lay off (fits: dismiss for lack of work); lay down (correct English, different meaning: state a rule); lay out (correct English, different meaning: arrange, plan)",
         say: [
           { text: "Fill the gap: The factory \u2026 two hundred workers. The sentence wants **lay off**: dismiss for lack of work.", cue: "f6w1" },
-          { text: "Why not the others? **lay down** is correct English, but it means state a rule. That is not what this sentence says. **lay out** is correct English, but it means arrange, plan. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **lay down** is correct English, but it means state a rule. That is not what this sentence says. Where lay down fits: _The rules were laid down by the board._ **lay out** is correct English, but it means arrange, plan. That is not what this sentence says. Where lay out fits: _Lay out the plates on the table._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The factory ____ two hundred workers.", [["personLeft", "lay off", true, "dismiss for | lack of work"], ["arrowDown", "lay down", "diff", "state a rule"], ["goOut", "lay out", "diff", "arrange, plan"]], ["lay off = dismiss for lack of work", "Why off? off = removed"]),
+          ...PLAB.kit.lineup("f6w", "The factory ____ two hundred workers.", [["personLeft", "lay off", true, "dismiss for | lack of work"], ["arrowDown", "lay down", "diff", "state a rule"], ["goOut", "lay out", "diff", "arrange, plan"]], ["lay off = dismiss for lack of work", "Why off? off = removed"], null, ["\u2248 lay down: The rules were laid down by the board.", "\u2248 lay out: Lay out the plates on the table."]),
         ],
       },
       {

@@ -63,11 +63,11 @@
         alt: "The sentence She takes with a gap her mother., then the candidates: after (fits: look or behave like a parent); over (correct English, different meaning: took control of her mother); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: She takes \u2026 her mother. What does the sentence want to say? It wants **take after**: look or behave like a parent.", cue: "e1w1" },
-          { text: "Why not the others? **over** is correct English, but it would mean took control of her mother. That is not what this sentence says. **from**: from is a source; not used.", cue: "e1w2" },
+          { text: "Why not the others? **over** is correct English, but it would mean took control of her mother. That is not what this sentence says. Where over fits: _The army took over the government._ **from**: from is a source; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "She takes ____ her mother.", [["careFor", "after", true, "look or behave | like a parent"], ["overRock", "over", "diff", "took control | of her mother"], ["cross", "from", false, "from is a | source; not used"]], ["take after = look or behave like a parent", "take over = take control of"]),
+          ...PLAB.kit.lineup("e1w", "She takes ____ her mother.", [["careFor", "after", true, "look or behave | like a parent"], ["overRock", "over", "diff", "took control | of her mother"], ["cross", "from", false, "from is a | source; not used"]], ["take after = look or behave like a parent", "take over = take control of"], null, ["\u2248 over: The army took over the government."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence They talked with a gap politics., then the candidates: about (fits: discuss a topic); to (correct English, different meaning: spoke to politics as if it were a person); on (correct English, different meaning: gave a formal talk on politics)",
         say: [
           { text: "Fill the gap: They talked \u2026 politics. What does the sentence want to say? It wants **talk about**: discuss a topic.", cue: "e2w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean spoke to politics as if it were a person. That is not what this sentence says. **on** is correct English, but it would mean gave a formal talk on politics. That is not what this sentence says.", cue: "e2w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean spoke to politics as if it were a person. That is not what this sentence says. Where to fits: _I talked to the manager._ **on** is correct English, but it would mean gave a formal talk on politics. That is not what this sentence says. Where on fits: _The professor gave a talk on Iqbal's poetry._", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "They talked ____ politics.", [["aboutCircle", "about", true, "discuss a topic"], ["reachDot", "to", "diff", "spoke to politics as | if it were a person"], ["support", "on", "diff", "gave a formal | talk on politics"]], ["talk about = discuss a topic", "talk to = speak to a person"]),
+          ...PLAB.kit.lineup("e2w", "They talked ____ politics.", [["aboutCircle", "about", true, "discuss a topic"], ["reachDot", "to", "diff", "spoke to politics as | if it were a person"], ["support", "on", "diff", "gave a formal | talk on politics"]], ["talk about = discuss a topic", "talk to = speak to a person"], null, ["\u2248 to: I talked to the manager.", "\u2248 on: The professor gave a talk on Iqbal's poetry."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence I am thankful with a gap your help., then the candidates: for (fits: grateful for something); to (correct English, different meaning: thankful to your help as if it were a person); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: I am thankful \u2026 your help. What does the sentence want to say? It wants **thankful for**: grateful for something.", cue: "e3w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean thankful to your help as if it were a person. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e3w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean thankful to your help as if it were a person. That is not what this sentence says. Where to fits: _I am thankful to my parents._ **of**: of = belonging; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "I am thankful ____ your help.", [["wantStar", "for", true, "grateful for | something"], ["reachDot", "to", "diff", "thankful to your help | as if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["thankful for = grateful for something", "thankful to = grateful to a person"]),
+          ...PLAB.kit.lineup("e3w", "I am thankful ____ your help.", [["wantStar", "for", true, "grateful for | something"], ["reachDot", "to", "diff", "thankful to your help | as if it were a person"], ["cross", "of", false, "of = belonging; | not used"]], ["thankful for = grateful for something", "thankful to = grateful to a person"], null, ["\u2248 to: I am thankful to my parents."]),
         ],
       },
       {
@@ -181,11 +181,11 @@
         alt: "The sentence Terrorism is a threat with a gap peace., then the candidates: to (fits: a danger to (noun)); of (correct English, different meaning: the danger that peace will happen); for (not used: a common error; a threat to)",
         say: [
           { text: "Fill the gap: Terrorism is a threat \u2026 peace. What does the sentence want to say? It wants **threat to**: a danger to (noun).", cue: "e4w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean the danger that peace will happen. That is not what this sentence says. **for**: a common error; a threat to.", cue: "e4w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean the danger that peace will happen. That is not what this sentence says. Where of fits: _The threat of war is real._ **for**: a common error; a threat to.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Terrorism is a threat ____ peace.", [["reachDot", "to", true, "a danger to (noun)"], ["awareOf", "of", "diff", "the danger that | peace will happen"], ["cross", "for", false, "a common error; | a threat to"]], ["threat to = a danger to (noun)", "threat of = the danger that something will happen"]),
+          ...PLAB.kit.lineup("e4w", "Terrorism is a threat ____ peace.", [["reachDot", "to", true, "a danger to (noun)"], ["awareOf", "of", "diff", "the danger that | peace will happen"], ["cross", "for", false, "a common error; | a threat to"]], ["threat to = a danger to (noun)", "threat of = the danger that something will happen"], null, ["\u2248 of: The threat of war is real."]),
         ],
       },
       {
@@ -210,11 +210,11 @@
         alt: "The sentence I am tired with a gap waiting., then the candidates: of (fits: bored or annoyed with); from (correct English, different meaning: physically exhausted by waiting); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: I am tired \u2026 waiting. What does the sentence want to say? It wants **tired of**: bored or annoyed with.", cue: "e5w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean physically exhausted by waiting. That is not what this sentence says. **with**: with = together; not used.", cue: "e5w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean physically exhausted by waiting. That is not what this sentence says. Where from fits: _She was tired from the journey._ **with**: with = together; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "I am tired ____ waiting.", [["awareOf", "of", true, "bored or | annoyed with"], ["holdBack", "from", "diff", "physically | exhausted by waiting"], ["cross", "with", false, "with = together; | not used"]], ["tired of = bored or annoyed with", "tired from = exhausted by"]),
+          ...PLAB.kit.lineup("e5w", "I am tired ____ waiting.", [["awareOf", "of", true, "bored or | annoyed with"], ["holdBack", "from", "diff", "physically | exhausted by waiting"], ["cross", "with", false, "with = together; | not used"]], ["tired of = bored or annoyed with", "tired from = exhausted by"], null, ["\u2248 from: She was tired from the journey."]),
         ],
       },
       {
@@ -241,7 +241,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "He was true ____ his word.", [["reachDot", "to", true, "faithful to"], ["cross", "with", false, "with = together; | faithfulness points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["true to = faithful to"]),
+          ...PLAB.kit.lineup("e6w", "He was true ____ his word.", [["reachDot", "to", true, "faithful to"], ["cross", "with", false, "with = together; | faithfulness points to"], ["cross", "for", false, "for is a purpose; | not used"]], ["true to = faithful to"], null, []),
         ],
       },
       {
@@ -268,7 +268,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Put your trust ____ God.", [["absorbedIn", "in", true, "faith placed | in (noun)"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "of", false, "of = belonging; | not used"]], ["trust in = faith placed in (noun)"]),
+          ...PLAB.kit.lineup("e7w", "Put your trust ____ God.", [["absorbedIn", "in", true, "faith placed | in (noun)"], ["cross", "on", false, "a word-for-word | translation"], ["cross", "of", false, "of = belonging; | not used"]], ["trust in = faith placed in (noun)"], null, []),
         ],
       },
       {

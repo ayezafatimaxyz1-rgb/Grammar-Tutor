@@ -33,11 +33,11 @@
         alt: "The sentence He was dismissed with a gap misconduct., then the candidates: on the grounds of (fits: because of (a reason)); in the light of (correct English, different meaning: considering new facts); at the grounds of (not used: grounds are a base you stand on)",
         say: [
           { text: "Fill the gap: He was dismissed \u2026 misconduct. The sentence wants **on the grounds of**: because of (a reason).", cue: "f1w1" },
-          { text: "Why not the others? **in the light of** is correct English, but it means considering new facts. That is not what this sentence says. **at the grounds of**: grounds are a base you stand on.", cue: "f1w2" },
+          { text: "Why not the others? **in the light of** is correct English, but it means considering new facts. That is not what this sentence says. Where in the light of fits: _In the light of new evidence, the case was reopened._ **at the grounds of**: grounds are a base you stand on.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He was dismissed ____ misconduct.", [["reasonFor", "on the grounds of", true, "because of | (a reason)"], ["absorbedIn", "in the light of", "diff", "considering | new facts"], ["cross", "at the grounds of", false, "grounds are a | base you stand on"]], ["on the grounds of = because of (a reason)", "Why on? grounds = the ground under a decision"]),
+          ...PLAB.kit.lineup("f1w", "He was dismissed ____ misconduct.", [["reasonFor", "on the grounds of", true, "because of | (a reason)"], ["absorbedIn", "in the light of", "diff", "considering | new facts"], ["cross", "at the grounds of", false, "grounds are a | base you stand on"]], ["on the grounds of = because of (a reason)", "Why on? grounds = the ground under a decision"], null, ["\u2248 in the light of: In the light of new evidence, the case was reopened."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence He is not lazy; with a gap, he works day and night., then the candidates: on the contrary (fits: the opposite is true); on the other hand (correct English, different meaning: a second point, not a denial); in the contrary (not used: the fixed phrase is on the contrary)",
         say: [
           { text: "Fill the gap: He is not lazy; \u2026, he works day and night. The sentence wants **on the contrary**: the opposite is true.", cue: "f2w1" },
-          { text: "Why not the others? **on the other hand** is correct English, but it means a second point, not a denial. That is not what this sentence says. **in the contrary**: the fixed phrase is on the contrary.", cue: "f2w2" },
+          { text: "Why not the others? **on the other hand** is correct English, but it means a second point, not a denial. That is not what this sentence says. Where on the other hand fits: _The job pays well. On the other hand, the hours are long._ **in the contrary**: the fixed phrase is on the contrary.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He is not lazy; ____, he works day and night.", [["opposite", "on the contrary", true, "the opposite | is true"], ["support", "on the other hand", "diff", "a second point, | not a denial"], ["cross", "in the contrary", false, "the fixed phrase | is on the contrary"]], ["on the contrary = the opposite is true", "Why on? you stand on the opposite side"]),
+          ...PLAB.kit.lineup("f2w", "He is not lazy; ____, he works day and night.", [["opposite", "on the contrary", true, "the opposite | is true"], ["support", "on the other hand", "diff", "a second point, | not a denial"], ["cross", "in the contrary", false, "the fixed phrase | is on the contrary"]], ["on the contrary = the opposite is true", "Why on? you stand on the opposite side"], null, ["\u2248 on the other hand: The job pays well. On the other hand, the hours are long."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence with a gap, the plan worked well., then the candidates: on the whole (fits: generally); as a whole (correct English, different meaning: taken together as one unit); in the whole (not used: the fixed phrase is on the whole)",
         say: [
           { text: "Fill the gap: \u2026, the plan worked well. The sentence wants **on the whole**: generally.", cue: "f3w1" },
-          { text: "Why not the others? **as a whole** is correct English, but it means taken together as one unit. That is not what this sentence says. **in the whole**: the fixed phrase is on the whole.", cue: "f3w2" },
+          { text: "Why not the others? **as a whole** is correct English, but it means taken together as one unit. That is not what this sentence says. Where as a whole fits: _The country as a whole is getting richer._ **in the whole**: the fixed phrase is on the whole.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____, the plan worked well.", [["everywhere", "on the whole", true, "generally"], ["arrowR", "as a whole", "diff", "taken together | as one unit"], ["cross", "in the whole", false, "the fixed phrase | is on the whole"]], ["on the whole = generally", "Why on? standing on the whole thing"]),
+          ...PLAB.kit.lineup("f3w", "____, the plan worked well.", [["everywhere", "on the whole", true, "generally"], ["arrowR", "as a whole", "diff", "taken together | as one unit"], ["cross", "in the whole", false, "the fixed phrase | is on the whole"]], ["on the whole = generally", "Why on? standing on the whole thing"], null, ["\u2248 as a whole: The country as a whole is getting richer."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence He got the job with a gap his degree., then the candidates: on the strength of (fits: because of the support of); on the part of (correct English, different meaning: done by his degree); by the strength of (not used: a support is rested on, so on)",
         say: [
           { text: "Fill the gap: He got the job \u2026 his degree. The sentence wants **on the strength of**: because of the support of.", cue: "f4w1" },
-          { text: "Why not the others? **on the part of** is correct English, but it means done by his degree. That is not what this sentence says. **by the strength of**: a support is rested on, so on.", cue: "f4w2" },
+          { text: "Why not the others? **on the part of** is correct English, but it means done by his degree. That is not what this sentence says. Where on the part of fits: _There was no mistake on the part of the driver._ **by the strength of**: a support is rested on, so on.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He got the job ____ his degree.", [["support", "on the strength of", true, "because of | the support of"], ["support", "on the part of", "diff", "done by his degree"], ["cross", "by the strength of", false, "a support is | rested on, so on"]], ["on the strength of = because of the support of", "Why on? strength is a support"]),
+          ...PLAB.kit.lineup("f4w", "He got the job ____ his degree.", [["support", "on the strength of", true, "because of | the support of"], ["support", "on the part of", "diff", "done by his degree"], ["cross", "by the strength of", false, "a support is | rested on, so on"]], ["on the strength of = because of the support of", "Why on? strength is a support"], null, ["\u2248 on the part of: There was no mistake on the part of the driver."]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence Our universities are not with a gap the best in the world., then the candidates: on a par with (fits: equal to); in line with (correct English, different meaning: matching a policy); on a par to (not used: equal with, so with)",
         say: [
           { text: "Fill the gap: Our universities are not \u2026 the best in the world. The sentence wants **on a par with**: equal to.", cue: "f5w1" },
-          { text: "Why not the others? **in line with** is correct English, but it means matching a policy. That is not what this sentence says. **on a par to**: equal with, so with.", cue: "f5w2" },
+          { text: "Why not the others? **in line with** is correct English, but it means matching a policy. That is not what this sentence says. Where in line with fits: _Salaries were raised in line with inflation._ **on a par to**: equal with, so with.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Our universities are not ____ the best in the world.", [["levelScale", "on a par with", true, "equal to"], ["absorbedIn", "in line with", "diff", "matching a policy"], ["cross", "on a par to", false, "equal with, so with"]], ["on a par with = equal to", "Why with? par = level"]),
+          ...PLAB.kit.lineup("f5w", "Our universities are not ____ the best in the world.", [["levelScale", "on a par with", true, "equal to"], ["absorbedIn", "in line with", "diff", "matching a policy"], ["cross", "on a par to", false, "equal with, so with"]], ["on a par with = equal to", "Why with? par = level"], null, ["\u2248 in line with: Salaries were raised in line with inflation."]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence The economy is with a gap collapse., then the candidates: on the brink of (fits: very close to (danger)); on the eve of (correct English, different meaning: the day before collapse); at the brink of (not used: brink is an edge, and you stand on it)",
         say: [
           { text: "Fill the gap: The economy is \u2026 collapse. The sentence wants **on the brink of**: very close to (danger).", cue: "f6w1" },
-          { text: "Why not the others? **on the eve of** is correct English, but it means the day before collapse. That is not what this sentence says. **at the brink of**: brink is an edge, and you stand on it.", cue: "f6w2" },
+          { text: "Why not the others? **on the eve of** is correct English, but it means the day before collapse. That is not what this sentence says. Where on the eve of fits: _Riots broke out on the eve of the election._ **at the brink of**: brink is an edge, and you stand on it.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The economy is ____ collapse.", [["endOfPath", "on the brink of", true, "very close | to (danger)"], ["support", "on the eve of", "diff", "the day before | collapse"], ["cross", "at the brink of", false, "brink is an edge, | and you stand on it"]], ["on the brink of = very close to (danger)", "Why on? brink = the edge of a cliff"]),
+          ...PLAB.kit.lineup("f6w", "The economy is ____ collapse.", [["endOfPath", "on the brink of", true, "very close | to (danger)"], ["support", "on the eve of", "diff", "the day before | collapse"], ["cross", "at the brink of", false, "brink is an edge, | and you stand on it"]], ["on the brink of = very close to (danger)", "Why on? brink = the edge of a cliff"], null, ["\u2248 on the eve of: Riots broke out on the eve of the election."]),
         ],
       },
       {

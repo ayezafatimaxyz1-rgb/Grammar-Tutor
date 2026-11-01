@@ -80,7 +80,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "We discussed ____ the issue.", [["discuss", "(no word)", true, "discuss already | means talk about"], ["aboutCircle", "about", false, "says about | twice"], ["onBase", "on", false, "discuss takes | no preposition"]], ["discuss, reach, enter, marry: no preposition", "the nouns keep it: a discussion about"]),
+          ...PLAB.kit.lineup("why", "We discussed ____ the issue.", [["discuss", "(no word)", true, "discuss already | means talk about"], ["aboutCircle", "about", false, "says about | twice"], ["onBase", "on", false, "discuss takes | no preposition"]], ["discuss, reach, enter, marry: no preposition", "the nouns keep it: a discussion about"], null, []),
         ],
       },
       {

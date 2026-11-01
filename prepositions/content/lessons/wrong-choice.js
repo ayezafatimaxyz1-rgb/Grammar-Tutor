@@ -78,7 +78,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She is married ____ a doctor.", [["marry", "to", true, "be married to | someone"], ["people", "with", false, "with = together, | not the bond of marriage"], ["writtenBy", "by", false, "by = who | performed it"]], ["married to \u00b7 angry with \u00b7 afraid of", "consist of \u00b7 for two years"]),
+          ...PLAB.kit.lineup("why", "She is married ____ a doctor.", [["marry", "to", true, "be married to | someone"], ["people", "with", false, "with = together, | not the bond of marriage"], ["writtenBy", "by", false, "by = who | performed it"]], ["married to \u00b7 angry with \u00b7 afraid of", "consist of \u00b7 for two years"], null, []),
         ],
       },
       {

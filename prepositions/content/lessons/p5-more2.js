@@ -33,11 +33,11 @@
         alt: "The sentence They rebuilt the school with a gap., then the candidates: from scratch (fits: from the very beginning); from time to time (correct English, different meaning: now and then); by scratch (not used: you start from a starting line)",
         say: [
           { text: "Fill the gap: They rebuilt the school \u2026. The sentence wants **from scratch**: from the very beginning.", cue: "f1w1" },
-          { text: "Why not the others? **from time to time** is correct English, but it means now and then. That is not what this sentence says. **by scratch**: you start from a starting line.", cue: "f1w2" },
+          { text: "Why not the others? **from time to time** is correct English, but it means now and then. That is not what this sentence says. Where from time to time fits: _We visit our village from time to time._ **by scratch**: you start from a starting line.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "They rebuilt the school ____.", [["pen", "from scratch", true, "from the very | beginning"], ["holdBack", "from time to time", "diff", "now and then"], ["cross", "by scratch", false, "you start from | a starting line"]], ["from scratch = from the very beginning", "Why from? scratch = the starting line"]),
+          ...PLAB.kit.lineup("f1w", "They rebuilt the school ____.", [["pen", "from scratch", true, "from the very | beginning"], ["holdBack", "from time to time", "diff", "now and then"], ["cross", "by scratch", false, "you start from | a starting line"]], ["from scratch = from the very beginning", "Why from? scratch = the starting line"], null, ["\u2248 from time to time: We visit our village from time to time."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence His speech was short and with a gap., then the candidates: to the point (fits: relevant, brief); on the point of (correct English, different meaning: about to do something); at the point (not used: the fixed phrase is to the point)",
         say: [
           { text: "Fill the gap: His speech was short and \u2026. The sentence wants **to the point**: relevant, brief.", cue: "f2w1" },
-          { text: "Why not the others? **on the point of** is correct English, but it means about to do something. That is not what this sentence says. **at the point**: the fixed phrase is to the point.", cue: "f2w2" },
+          { text: "Why not the others? **on the point of** is correct English, but it means about to do something. That is not what this sentence says. Where on the point of fits: _I was on the point of leaving when he called._ **at the point**: the fixed phrase is to the point.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "His speech was short and ____.", [["target", "to the point", true, "relevant, brief"], ["support", "on the point of", "diff", "about to do | something"], ["cross", "at the point", false, "the fixed phrase | is to the point"]], ["to the point = relevant, brief", "Why to? to points at"]),
+          ...PLAB.kit.lineup("f2w", "His speech was short and ____.", [["target", "to the point", true, "relevant, brief"], ["support", "on the point of", "diff", "about to do | something"], ["cross", "at the point", false, "the fixed phrase | is to the point"]], ["to the point = relevant, brief", "Why to? to points at"], null, ["\u2248 on the point of: I was on the point of leaving when he called."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence with a gap he has been unwell., then the candidates: of late (fits: recently); at last (correct English, different meaning: finally); in late (not used: the fixed phrase is of late)",
         say: [
           { text: "Fill the gap: \u2026 he has been unwell. The sentence wants **of late**: recently.", cue: "f3w1" },
-          { text: "Why not the others? **at last** is correct English, but it means finally. That is not what this sentence says. **in late**: the fixed phrase is of late.", cue: "f3w2" },
+          { text: "Why not the others? **at last** is correct English, but it means finally. That is not what this sentence says. Where at last fits: _At last, the train arrived._ **in late**: the fixed phrase is of late.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____ he has been unwell.", [["recentYears", "of late", true, "recently"], [[["arrowR", -40, 0], ["target", 30, 0]], "at last", "diff", "finally"], ["cross", "in late", false, "the fixed phrase | is of late"]], ["of late = recently", "Why of? an old phrase"]),
+          ...PLAB.kit.lineup("f3w", "____ he has been unwell.", [["recentYears", "of late", true, "recently"], [[["arrowR", -40, 0], ["target", 30, 0]], "at last", "diff", "finally"], ["cross", "in late", false, "the fixed phrase | is of late"]], ["of late = recently", "Why of? an old phrase"], null, ["\u2248 at last: At last, the train arrived."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence Elections were held with a gap violence., then the candidates: against the backdrop of (fits: with that situation in the background); in the wake of (correct English, different meaning: just after the violence); on the backdrop of (not used: a background stands behind: against)",
         say: [
           { text: "Fill the gap: Elections were held \u2026 violence. The sentence wants **against the backdrop of**: with that situation in the background.", cue: "f4w1" },
-          { text: "Why not the others? **in the wake of** is correct English, but it means just after the violence. That is not what this sentence says. **on the backdrop of**: a background stands behind: against.", cue: "f4w2" },
+          { text: "Why not the others? **in the wake of** is correct English, but it means just after the violence. That is not what this sentence says. Where in the wake of fits: _Prices rose in the wake of the floods._ **on the backdrop of**: a background stands behind: against.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Elections were held ____ violence.", [["wall", "against the backdrop of", true, "with that situation | in the background"], ["absorbedIn", "in the wake of", "diff", "just after | the violence"], ["cross", "on the backdrop of", false, "a background stands | behind: against"]], ["against the backdrop of = with that situation in the background", "Why against? a backdrop hangs behind"]),
+          ...PLAB.kit.lineup("f4w", "Elections were held ____ violence.", [["wall", "against the backdrop of", true, "with that situation | in the background"], ["absorbedIn", "in the wake of", "diff", "just after | the violence"], ["cross", "on the backdrop of", false, "a background stands | behind: against"]], ["against the backdrop of = with that situation in the background", "Why against? a backdrop hangs behind"], null, ["\u2248 in the wake of: Prices rose in the wake of the floods."]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence with a gap the report, crime has fallen., then the candidates: according to (fits: as stated by); in accordance with (correct English, different meaning: following a rule); according with (not used: the fixed phrase is according to)",
         say: [
           { text: "Fill the gap: \u2026 the report, crime has fallen. The sentence wants **according to**: as stated by.", cue: "f5w1" },
-          { text: "Why not the others? **in accordance with** is correct English, but it means following a rule. That is not what this sentence says. **according with**: the fixed phrase is according to.", cue: "f5w2" },
+          { text: "Why not the others? **in accordance with** is correct English, but it means following a rule. That is not what this sentence says. Where in accordance with fits: _The land was divided in accordance with the law._ **according with**: the fixed phrase is according to.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____ the report, crime has fallen.", [["docSays", "according to", true, "as stated by"], ["absorbedIn", "in accordance with", "diff", "following a rule"], ["cross", "according with", false, "the fixed phrase | is according to"]], ["according to = as stated by", "Why to? accord = agree"]),
+          ...PLAB.kit.lineup("f5w", "____ the report, crime has fallen.", [["docSays", "according to", true, "as stated by"], ["absorbedIn", "in accordance with", "diff", "following a rule"], ["cross", "according with", false, "the fixed phrase | is according to"]], ["according to = as stated by", "Why to? accord = agree"], null, ["\u2248 in accordance with: The land was divided in accordance with the law."]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence with a gap illness, he missed the exam., then the candidates: owing to (fits: because of); thanks to (correct English, different meaning: because of, with credit or thanks); owing for (not used: the fixed phrase is owing to)",
         say: [
           { text: "Fill the gap: \u2026 illness, he missed the exam. The sentence wants **owing to**: because of.", cue: "f6w1" },
-          { text: "Why not the others? **thanks to** is correct English, but it means because of, with credit or thanks. That is not what this sentence says. **owing for**: the fixed phrase is owing to.", cue: "f6w2" },
+          { text: "Why not the others? **thanks to** is correct English, but it means because of, with credit or thanks. That is not what this sentence says. Where thanks to fits: _Thanks to the doctors, she recovered._ **owing for**: the fixed phrase is owing to.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "____ illness, he missed the exam.", [["causeEffect", "owing to", true, "because of"], ["arrowR", "thanks to", "diff", "because of, with | credit or thanks"], ["cross", "owing for", false, "the fixed phrase | is owing to"]], ["owing to = because of", "Why to? owe to = the debt points to the cause"]),
+          ...PLAB.kit.lineup("f6w", "____ illness, he missed the exam.", [["causeEffect", "owing to", true, "because of"], ["arrowR", "thanks to", "diff", "because of, with | credit or thanks"], ["cross", "owing for", false, "the fixed phrase | is owing to"]], ["owing to = because of", "Why to? owe to = the debt points to the cause"], null, ["\u2248 thanks to: Thanks to the doctors, she recovered."]),
         ],
       },
       {

@@ -149,12 +149,12 @@ PLAB.registerLesson({
       alt: "The sentence The cat is sleeping with a gap the table., then the candidates with pictures: under (right: directly beneath, covered by it); below (correct English but a different meaning: on a lower level, like the floor below); on (correct English but a different meaning: lying on top of the table); in (wrong: inside it, in a drawer). Rule: under = directly beneath, covered; below = lower on a level or scale.",
       say: [
         { text: "Fill the gap: The cat is sleeping \u2026 the table. What does the sentence want to say? The answer is **under**: directly beneath, covered by it.", cue: "why1" },
-        { text: "Why not the others? **below** is correct English, but it would mean on a lower level, like the floor below. That is not what this sentence says. **on** is correct English, but it would mean lying on top of the table. That is not what this sentence says. **in**: inside it, in a drawer.", cue: "why2" },
+        { text: "Why not the others? **below** is correct English, but it would mean on a lower level, like the floor below. That is not what this sentence says. Where below fits: _The kitchen is on the floor below._ **on** is correct English, but it would mean lying on top of the table. That is not what this sentence says. Where on fits: _The cat is sleeping on the table._ **in**: inside it, in a drawer.", cue: "why2" },
         { text: "The rule: under = directly beneath, covered; below = lower on a level or scale.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The cat is sleeping ____ the table.", [["underTable", "under", true, "directly beneath, | covered by it"], ["belowLine", "below", "diff", "on a lower level, | like the floor below"], ["cupOnTable", "on", "diff", "lying on top | of the table"], ["inDrawer", "in", false, "inside it, | in a drawer"]], ["under = directly beneath, covered", "below = lower on a level or scale"]),
+        ...PLAB.kit.lineup("why", "The cat is sleeping ____ the table.", [["underTable", "under", true, "directly beneath, | covered by it"], ["belowLine", "below", "diff", "on a lower level, | like the floor below"], ["cupOnTable", "on", "diff", "lying on top | of the table"], ["inDrawer", "in", false, "inside it, | in a drawer"]], ["under = directly beneath, covered", "below = lower on a level or scale"], null, ["\u2248 below: The kitchen is on the floor below.", "\u2248 on: The cat is sleeping on the table."]),
       ],
     },
     {

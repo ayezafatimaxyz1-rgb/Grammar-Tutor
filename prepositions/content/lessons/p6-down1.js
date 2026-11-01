@@ -87,11 +87,11 @@
         alt: "The sentence She with a gap the offer., then the candidates: turn down (fits: refuse); turn up (correct English, different meaning: arrive, appear); turn over (correct English, different meaning: flip, or hand over)",
         say: [
           { text: "Fill the gap: She \u2026 the offer. The sentence wants **turn down**: refuse.", cue: "f1w1" },
-          { text: "Why not the others? **turn up** is correct English, but it means arrive, appear. That is not what this sentence says. **turn over** is correct English, but it means flip, or hand over. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **turn up** is correct English, but it means arrive, appear. That is not what this sentence says. Where turn up fits: _Only ten people turned up for the meeting._ **turn over** is correct English, but it means flip, or hand over. That is not what this sentence says. Where turn over fits: _Turn over the page._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "She ____ the offer.", [["cross", "turn down", true, "refuse"], ["arrowUp", "turn up", "diff", "arrive, appear"], ["overRock", "turn over", "diff", "flip, or hand over"]], ["turn down = refuse", "Why down? down = rejected"]),
+          ...PLAB.kit.lineup("f1w", "She ____ the offer.", [["cross", "turn down", true, "refuse"], ["arrowUp", "turn up", "diff", "arrive, appear"], ["overRock", "turn over", "diff", "flip, or hand over"]], ["turn down = refuse", "Why down? down = rejected"], null, ["\u2248 turn up: Only ten people turned up for the meeting.", "\u2248 turn over: Turn over the page."]),
         ],
       },
       {
@@ -152,11 +152,11 @@
         alt: "The sentence The talks with a gap after a week., then the candidates: break down (fits: collapse, fail); break up (correct English, different meaning: end and scatter); break into (correct English, different meaning: enter by force)",
         say: [
           { text: "Fill the gap: The talks \u2026 after a week. The sentence wants **break down**: collapse, fail.", cue: "f2w1" },
-          { text: "Why not the others? **break up** is correct English, but it means end and scatter. That is not what this sentence says. **break into** is correct English, but it means enter by force. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **break up** is correct English, but it means end and scatter. That is not what this sentence says. Where break up fits: _The meeting broke up at noon._ **break into** is correct English, but it means enter by force. That is not what this sentence says. Where break into fits: _Thieves broke into the house._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The talks ____ after a week.", [["brokenBox", "break down", true, "collapse, fail"], ["arrowUp", "break up", "diff", "end and scatter"], ["intoBag", "break into", "diff", "enter by force"]], ["break down = collapse, fail", "Why down? down = collapsed"]),
+          ...PLAB.kit.lineup("f2w", "The talks ____ after a week.", [["brokenBox", "break down", true, "collapse, fail"], ["arrowUp", "break up", "diff", "end and scatter"], ["intoBag", "break into", "diff", "enter by force"]], ["break down = collapse, fail", "Why down? down = collapsed"], null, ["\u2248 break up: The meeting broke up at noon.", "\u2248 break into: Thieves broke into the house."]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence They with a gap the old trees., then the candidates: cut down (fits: fell (a tree)); cut off (correct English, different meaning: disconnect, isolate); cut out (correct English, different meaning: remove, or stop doing)",
         say: [
           { text: "Fill the gap: They \u2026 the old trees. The sentence wants **cut down**: fell (a tree).", cue: "f3w1" },
-          { text: "Why not the others? **cut off** is correct English, but it means disconnect, isolate. That is not what this sentence says. **cut out** is correct English, but it means remove, or stop doing. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **cut off** is correct English, but it means disconnect, isolate. That is not what this sentence says. Where cut off fits: _The village was cut off by floods._ **cut out** is correct English, but it means remove, or stop doing. That is not what this sentence says. Where cut out fits: _Cut out sugar from your diet._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "They ____ the old trees.", [["tree", "cut down", true, "fell (a tree)"], ["bounceOff", "cut off", "diff", "disconnect, isolate"], ["goOut", "cut out", "diff", "remove, or | stop doing"]], ["cut down = fell (a tree)", "Why down? down = to the ground"]),
+          ...PLAB.kit.lineup("f3w", "They ____ the old trees.", [["tree", "cut down", true, "fell (a tree)"], ["bounceOff", "cut off", "diff", "disconnect, isolate"], ["goOut", "cut out", "diff", "remove, or | stop doing"]], ["cut down = fell (a tree)", "Why down? down = to the ground"], null, ["\u2248 cut off: The village was cut off by floods.", "\u2248 cut out: Cut out sugar from your diet."]),
         ],
       },
       {
@@ -282,11 +282,11 @@
         alt: "The sentence The army with a gap the revolt., then the candidates: put down (fits: crush by force); put off (correct English, different meaning: postpone); put out (correct English, different meaning: extinguish)",
         say: [
           { text: "Fill the gap: The army \u2026 the revolt. The sentence wants **put down**: crush by force.", cue: "f4w1" },
-          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. **put out** is correct English, but it means extinguish. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **put off** is correct English, but it means postpone. That is not what this sentence says. Where put off fits: _They put off the meeting till Monday._ **put out** is correct English, but it means extinguish. That is not what this sentence says. Where put out fits: _Firemen put out the fire._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The army ____ the revolt.", [["pressed", "put down", true, "crush by force"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put down = crush by force", "Why down? down = defeated"]),
+          ...PLAB.kit.lineup("f4w", "The army ____ the revolt.", [["pressed", "put down", true, "crush by force"], ["bounceOff", "put off", "diff", "postpone"], ["goOut", "put out", "diff", "extinguish"]], ["put down = crush by force", "Why down? down = defeated"], null, ["\u2248 put off: They put off the meeting till Monday.", "\u2248 put out: Firemen put out the fire."]),
         ],
       },
       {
@@ -347,11 +347,11 @@
         alt: "The sentence He with a gap his friends., then the candidates: let down (fits: disappoint); let off (correct English, different meaning: excuse from punishment); let in (correct English, different meaning: allow to enter)",
         say: [
           { text: "Fill the gap: He \u2026 his friends. The sentence wants **let down**: disappoint.", cue: "f5w1" },
-          { text: "Why not the others? **let off** is correct English, but it means excuse from punishment. That is not what this sentence says. **let in** is correct English, but it means allow to enter. That is not what this sentence says.", cue: "f5w2" },
+          { text: "Why not the others? **let off** is correct English, but it means excuse from punishment. That is not what this sentence says. Where let off fits: _The teacher let him off with a warning._ **let in** is correct English, but it means allow to enter. That is not what this sentence says. Where let in fits: _Open the window and let in fresh air._", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "He ____ his friends.", [["angryFace", "let down", true, "disappoint"], ["bounceOff", "let off", "diff", "excuse from | punishment"], ["absorbedIn", "let in", "diff", "allow to enter"]], ["let down = disappoint", "Why down? down = lower"]),
+          ...PLAB.kit.lineup("f5w", "He ____ his friends.", [["angryFace", "let down", true, "disappoint"], ["bounceOff", "let off", "diff", "excuse from | punishment"], ["absorbedIn", "let in", "diff", "allow to enter"]], ["let down = disappoint", "Why down? down = lower"], null, ["\u2248 let off: The teacher let him off with a warning.", "\u2248 let in: Open the window and let in fresh air."]),
         ],
       },
       {
@@ -412,11 +412,11 @@
         alt: "The sentence The minister with a gap after the scandal., then the candidates: step down (fits: resign); step up (correct English, different meaning: increase); step in (correct English, different meaning: intervene)",
         say: [
           { text: "Fill the gap: The minister \u2026 after the scandal. The sentence wants **step down**: resign.", cue: "f6w1" },
-          { text: "Why not the others? **step up** is correct English, but it means increase. That is not what this sentence says. **step in** is correct English, but it means intervene. That is not what this sentence says.", cue: "f6w2" },
+          { text: "Why not the others? **step up** is correct English, but it means increase. That is not what this sentence says. Where step up fits: _Police have stepped up patrols in the city._ **step in** is correct English, but it means intervene. That is not what this sentence says. Where step in fits: _The army stepped in to restore order._", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "The minister ____ after the scandal.", [["stairs", "step down", true, "resign"], ["arrowUp", "step up", "diff", "increase"], ["absorbedIn", "step in", "diff", "intervene"]], ["step down = resign", "Why down? down = lower"]),
+          ...PLAB.kit.lineup("f6w", "The minister ____ after the scandal.", [["stairs", "step down", true, "resign"], ["arrowUp", "step up", "diff", "increase"], ["absorbedIn", "step in", "diff", "intervene"]], ["step down = resign", "Why down? down = lower"], null, ["\u2248 step up: Police have stepped up patrols in the city.", "\u2248 step in: The army stepped in to restore order."]),
         ],
       },
       {

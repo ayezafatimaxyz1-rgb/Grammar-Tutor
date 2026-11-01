@@ -68,11 +68,11 @@
         alt: "The sentence with a gap whenever you are passing., then the candidates: drop in (fits: visit briefly); drop out (correct English, different meaning: leave a course); drop off (correct English, different meaning: fall asleep, or deliver)",
         say: [
           { text: "Fill the gap: \u2026 whenever you are passing. The sentence wants **drop in**: visit briefly.", cue: "f1w1" },
-          { text: "Why not the others? **drop out** is correct English, but it means leave a course. That is not what this sentence says. **drop off** is correct English, but it means fall asleep, or deliver. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **drop out** is correct English, but it means leave a course. That is not what this sentence says. Where drop out fits: _He dropped out of college._ **drop off** is correct English, but it means fall asleep, or deliver. That is not what this sentence says. Where drop off fits: _I'll drop you off at the station._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ whenever you are passing.", [["house", "drop in", true, "visit briefly"], ["goOut", "drop out", "diff", "leave a course"], ["bounceOff", "drop off", "diff", "fall asleep, | or deliver"]], ["drop in = visit briefly", "Why in? in = entering"]),
+          ...PLAB.kit.lineup("f1w", "____ whenever you are passing.", [["house", "drop in", true, "visit briefly"], ["goOut", "drop out", "diff", "leave a course"], ["bounceOff", "drop off", "diff", "fall asleep, | or deliver"]], ["drop in = visit briefly", "Why in? in = entering"], null, ["\u2248 drop out: He dropped out of college.", "\u2248 drop off: I'll drop you off at the station."]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence The rainy season has with a gap., then the candidates: set in (fits: begin and continue); set off (correct English, different meaning: start a journey); set up (correct English, different meaning: establish)",
         say: [
           { text: "Fill the gap: The rainy season has \u2026. The sentence wants **set in**: begin and continue.", cue: "f2w1" },
-          { text: "Why not the others? **set off** is correct English, but it means start a journey. That is not what this sentence says. **set up** is correct English, but it means establish. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **set off** is correct English, but it means start a journey. That is not what this sentence says. Where set off fits: _We set off at dawn._ **set up** is correct English, but it means establish. That is not what this sentence says. Where set up fits: _The government set up a commission._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The rainy season has ____.", [["rain", "set in", true, "begin and continue"], ["bounceOff", "set off", "diff", "start a journey"], ["arrowUp", "set up", "diff", "establish"]], ["set in = begin and continue", "Why in? in = entering"]),
+          ...PLAB.kit.lineup("f2w", "The rainy season has ____.", [["rain", "set in", true, "begin and continue"], ["bounceOff", "set off", "diff", "start a journey"], ["arrowUp", "set up", "diff", "establish"]], ["set in = begin and continue", "Why in? in = entering"], null, ["\u2248 set off: We set off at dawn.", "\u2248 set up: The government set up a commission."]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence I with a gap an old friend at the station., then the candidates: run into (fits: meet by chance); run out (correct English, different meaning: be used up); run over (correct English, different meaning: hit with a vehicle)",
         say: [
           { text: "Fill the gap: I \u2026 an old friend at the station. The sentence wants **run into**: meet by chance.", cue: "f3w1" },
-          { text: "Why not the others? **run out** is correct English, but it means be used up. That is not what this sentence says. **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **run out** is correct English, but it means be used up. That is not what this sentence says. Where run out fits: _Our time has run out._ **run over** is correct English, but it means hit with a vehicle. That is not what this sentence says. Where run over fits: _A car ran over the dog._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "I ____ an old friend at the station.", [["people", "run into", true, "meet by chance"], ["goOut", "run out", "diff", "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"]], ["run into = meet by chance", "Why into? into = entering"]),
+          ...PLAB.kit.lineup("f3w", "I ____ an old friend at the station.", [["people", "run into", true, "meet by chance"], ["goOut", "run out", "diff", "be used up"], ["overRock", "run over", "diff", "hit with a vehicle"]], ["run into = meet by chance", "Why into? into = entering"], null, ["\u2248 run out: Our time has run out.", "\u2248 run over: A car ran over the dog."]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence Many people were with a gap by the trick., then the candidates: take in (fits: deceive); take off (correct English, different meaning: leave the ground); take on (correct English, different meaning: hire, or accept a task)",
         say: [
           { text: "Fill the gap: Many people were \u2026 by the trick. The sentence wants **take in**: deceive.", cue: "f4w1" },
-          { text: "Why not the others? **take off** is correct English, but it means leave the ground. That is not what this sentence says. **take on** is correct English, but it means hire, or accept a task. That is not what this sentence says.", cue: "f4w2" },
+          { text: "Why not the others? **take off** is correct English, but it means leave the ground. That is not what this sentence says. Where take off fits: _The plane took off on time._ **take on** is correct English, but it means hire, or accept a task. That is not what this sentence says. Where take on fits: _The firm took on new staff._", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Many people were ____ by the trick.", [["secret", "take in", true, "deceive"], ["bounceOff", "take off", "diff", "leave the ground"], ["support", "take on", "diff", "hire, or | accept a task"]], ["take in = deceive", "Why in? in = inward"]),
+          ...PLAB.kit.lineup("f4w", "Many people were ____ by the trick.", [["secret", "take in", true, "deceive"], ["bounceOff", "take off", "diff", "leave the ground"], ["support", "take on", "diff", "hire, or | accept a task"]], ["take in = deceive", "Why in? in = inward"], null, ["\u2248 take off: The plane took off on time.", "\u2248 take on: The firm took on new staff."]),
         ],
       },
       {

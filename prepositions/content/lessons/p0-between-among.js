@@ -55,7 +55,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-betweenx0"),
-          ...PLAB.kit.lineup("betweenx0", "Sit ____ Ali and Sara.", [["betweenTicks", "between", true, "one on each side, | you in the gap"], ["crowdDot", "among", false, "two people are | not a crowd"]], ["Why between? one on each side, you in the gap", "Ask: Are there two, or separate items you can name one by one?"]),
+          ...PLAB.kit.lineup("betweenx0", "Sit ____ Ali and Sara.", [["betweenTicks", "between", true, "one on each side, | you in the gap"], ["crowdDot", "among", false, "two people are | not a crowd"]], ["Why between? one on each side, you in the gap", "Ask: Are there two, or separate items you can name one by one?"], null, []),
         ],
       },
       {
@@ -68,7 +68,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-betweenx1"),
-          ...PLAB.kit.lineup("betweenx1", "a treaty ____ Pakistan, China and Iran", [["betweenTicks", "between", true, "three named partners, | each linked to each"], ["crowdDot", "among", false, "among blurs them | into a crowd"]], ["Why between? three named partners, each linked to each", "Ask: Are there two, or separate items you can name one by one?"]),
+          ...PLAB.kit.lineup("betweenx1", "a treaty ____ Pakistan, China and Iran", [["betweenTicks", "between", true, "three named partners, | each linked to each"], ["crowdDot", "among", false, "among blurs them | into a crowd"]], ["Why between? three named partners, each linked to each", "Ask: Are there two, or separate items you can name one by one?"], null, []),
         ],
       },
       {
@@ -98,7 +98,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-amongx0"),
-          ...PLAB.kit.lineup("amongx0", "He felt lost ____ strangers.", [["betweenTicks", "between", false, "no gap of two"], ["crowdDot", "among", true, "strangers all around, | a crowd"]], ["Why among? strangers all around, a crowd", "Ask: Is it a crowd or group seen as a whole?"]),
+          ...PLAB.kit.lineup("amongx0", "He felt lost ____ strangers.", [["betweenTicks", "between", false, "no gap of two"], ["crowdDot", "among", true, "strangers all around, | a crowd"]], ["Why among? strangers all around, a crowd", "Ask: Is it a crowd or group seen as a whole?"], null, []),
         ],
       },
       {
@@ -107,11 +107,11 @@
         alt: "Divide the sweets with a gap the children. Answer: among, because shared through the whole group. Not between: between the two children if there are two.",
         say: [
           { text: "Fill the gap: Divide the sweets … the children. Picture it: shared through the whole group. So **among**.", cue: "amongx12" },
-          { text: "Why not **between**? between the two children if there are two That is correct English, but it says something else.", cue: "amongx1-r2" },
+          { text: "Why not **between**? between the two children if there are two That is correct English, but it says something else. Where between fits: _Divide the sweets between the two sisters._", cue: "amongx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-amongx1"),
-          ...PLAB.kit.lineup("amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"]),
+          ...PLAB.kit.lineup("amongx1", "Divide the sweets ____ the children.", [["betweenTicks", "between", "diff", "between the two children | if there are two"], ["crowdDot", "among", true, "shared through the | whole group"]], ["Why among? shared through the whole group", "Ask: Is it a crowd or group seen as a whole?"], null, ["≈ between: Divide the sweets between the two sisters."]),
         ],
       },
       {

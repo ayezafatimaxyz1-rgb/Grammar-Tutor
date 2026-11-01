@@ -120,7 +120,7 @@ PLAB.registerLesson({
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "We live ____ the school.", [["nearSchool", "near", true, "a short distance | from it"], ["nearbyShop", "nearby", false, "nearby takes | no object"], ["cross", "next", false, "next needs to: | next to the school"]], ["near the school \u00b7 next to the school", "a nearby shop \u00b7 we live nearby"]),
+        ...PLAB.kit.lineup("why", "We live ____ the school.", [["nearSchool", "near", true, "a short distance | from it"], ["nearbyShop", "nearby", false, "nearby takes | no object"], ["cross", "next", false, "next needs to: | next to the school"]], ["near the school \u00b7 next to the school", "a nearby shop \u00b7 we live nearby"], null, []),
       ],
     },
     {

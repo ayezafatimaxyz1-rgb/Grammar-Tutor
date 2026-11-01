@@ -33,11 +33,11 @@
         alt: "The sentence The decision is with a gap the constitution., then the candidates: in keeping with (fits: matching); in keeping to (not used: keeping takes with here); in breach of (correct English, different meaning: breaking the constitution)",
         say: [
           { text: "Fill the gap: The decision is \u2026 the constitution. The sentence wants **in keeping with**: matching.", cue: "f1w1" },
-          { text: "Why not the others? **in keeping to**: keeping takes with here. **in breach of** is correct English, but it means breaking the constitution. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **in keeping to**: keeping takes with here. **in breach of** is correct English, but it means breaking the constitution. That is not what this sentence says. Where in breach of fits: _The order was in breach of the law._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The decision is ____ the constitution.", [["fitMould", "in keeping with", true, "matching"], ["cross", "in keeping to", false, "keeping takes | with here"], ["absorbedIn", "in breach of", "diff", "breaking the | constitution"]], ["in keeping with = matching", "Why with? keep with = stay together with"]),
+          ...PLAB.kit.lineup("f1w", "The decision is ____ the constitution.", [["fitMould", "in keeping with", true, "matching"], ["cross", "in keeping to", false, "keeping takes | with here"], ["absorbedIn", "in breach of", "diff", "breaking the | constitution"]], ["in keeping with = matching", "Why with? keep with = stay together with"], null, ["\u2248 in breach of: The order was in breach of the law."]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence The order was with a gap the law., then the candidates: in breach of (fits: breaking a rule); in keeping with (correct English, different meaning: matching the law); in breach with (not used: a breach is of something)",
         say: [
           { text: "Fill the gap: The order was \u2026 the law. The sentence wants **in breach of**: breaking a rule.", cue: "f2w1" },
-          { text: "Why not the others? **in keeping with** is correct English, but it means matching the law. That is not what this sentence says. **in breach with**: a breach is of something.", cue: "f2w2" },
+          { text: "Why not the others? **in keeping with** is correct English, but it means matching the law. That is not what this sentence says. Where in keeping with fits: _The decision is in keeping with the constitution._ **in breach with**: a breach is of something.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The order was ____ the law.", [["brokenBox", "in breach of", true, "breaking a rule"], ["absorbedIn", "in keeping with", "diff", "matching the law"], ["cross", "in breach with", false, "a breach is | of something"]], ["in breach of = breaking a rule", "Why of? a breach of something"]),
+          ...PLAB.kit.lineup("f2w", "The order was ____ the law.", [["brokenBox", "in breach of", true, "breaking a rule"], ["absorbedIn", "in keeping with", "diff", "matching the law"], ["cross", "in breach with", false, "a breach is | of something"]], ["in breach of = breaking a rule", "Why of? a breach of something"], null, ["\u2248 in keeping with: The decision is in keeping with the constitution."]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence He went abroad with a gap knowledge., then the candidates: in pursuit of (fits: trying to get); in place of (correct English, different meaning: instead of knowledge); in pursuit for (not used: the chase of its goal, so of)",
         say: [
           { text: "Fill the gap: He went abroad \u2026 knowledge. The sentence wants **in pursuit of**: trying to get.", cue: "f3w1" },
-          { text: "Why not the others? **in place of** is correct English, but it means instead of knowledge. That is not what this sentence says. **in pursuit for**: the chase of its goal, so of.", cue: "f3w2" },
+          { text: "Why not the others? **in place of** is correct English, but it means instead of knowledge. That is not what this sentence says. Where in place of fits: _Use honey in place of sugar._ **in pursuit for**: the chase of its goal, so of.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "He went abroad ____ knowledge.", [["aimGoal", "in pursuit of", true, "trying to get"], ["absorbedIn", "in place of", "diff", "instead of | knowledge"], ["cross", "in pursuit for", false, "the chase of | its goal, so of"]], ["in pursuit of = trying to get", "Why of? pursuit = the chase"]),
+          ...PLAB.kit.lineup("f3w", "He went abroad ____ knowledge.", [["aimGoal", "in pursuit of", true, "trying to get"], ["absorbedIn", "in place of", "diff", "instead of | knowledge"], ["cross", "in pursuit for", false, "the chase of | its goal, so of"]], ["in pursuit of = trying to get", "Why of? pursuit = the chase"], null, ["\u2248 in place of: Use honey in place of sugar."]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence Thousands left the village with a gap work., then the candidates: in search of (fits: looking for); in charge of (correct English, different meaning: responsible for work); in search for (not used: the fixed phrase takes of)",
         say: [
           { text: "Fill the gap: Thousands left the village \u2026 work. The sentence wants **in search of**: looking for.", cue: "f4w1" },
-          { text: "Why not the others? **in charge of** is correct English, but it means responsible for work. That is not what this sentence says. **in search for**: the fixed phrase takes of.", cue: "f4w2" },
+          { text: "Why not the others? **in charge of** is correct English, but it means responsible for work. That is not what this sentence says. Where in charge of fits: _She is in charge of the whole project._ **in search for**: the fixed phrase takes of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "Thousands left the village ____ work.", [["searchQ", "in search of", true, "looking for"], ["absorbedIn", "in charge of", "diff", "responsible | for work"], ["cross", "in search for", false, "the fixed | phrase takes of"]], ["in search of = looking for", "Why of? a search of something"]),
+          ...PLAB.kit.lineup("f4w", "Thousands left the village ____ work.", [["searchQ", "in search of", true, "looking for"], ["absorbedIn", "in charge of", "diff", "responsible | for work"], ["cross", "in search for", false, "the fixed | phrase takes of"]], ["in search of = looking for", "Why of? a search of something"], null, ["\u2248 in charge of: She is in charge of the whole project."]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence with a gap the court's order, the shop was sealed., then the candidates: in compliance with (fits: obeying); in defiance of (correct English, different meaning: openly disobeying); in compliance to (not used: comply with, so compliance with)",
         say: [
           { text: "Fill the gap: \u2026 the court's order, the shop was sealed. The sentence wants **in compliance with**: obeying.", cue: "f5w1" },
-          { text: "Why not the others? **in defiance of** is correct English, but it means openly disobeying. That is not what this sentence says. **in compliance to**: comply with, so compliance with.", cue: "f5w2" },
+          { text: "Why not the others? **in defiance of** is correct English, but it means openly disobeying. That is not what this sentence says. Where in defiance of fits: _They marched in defiance of the ban._ **in compliance to**: comply with, so compliance with.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____ the court's order, the shop was sealed.", [["complyWith", "in compliance with", true, "obeying"], ["absorbedIn", "in defiance of", "diff", "openly disobeying"], ["cross", "in compliance to", false, "comply with, so | compliance with"]], ["in compliance with = obeying", "Why with? comply with"]),
+          ...PLAB.kit.lineup("f5w", "____ the court's order, the shop was sealed.", [["complyWith", "in compliance with", true, "obeying"], ["absorbedIn", "in defiance of", "diff", "openly disobeying"], ["cross", "in compliance to", false, "comply with, so | compliance with"]], ["in compliance with = obeying", "Why with? comply with"], null, ["\u2248 in defiance of: They marched in defiance of the ban."]),
         ],
       },
       {
@@ -183,11 +183,11 @@
         alt: "The sentence They marched with a gap the ban., then the candidates: in defiance of (fits: openly disobeying); in compliance with (correct English, different meaning: obeying the ban); in defiance to (not used: defiance is of something)",
         say: [
           { text: "Fill the gap: They marched \u2026 the ban. The sentence wants **in defiance of**: openly disobeying.", cue: "f6w1" },
-          { text: "Why not the others? **in compliance with** is correct English, but it means obeying the ban. That is not what this sentence says. **in defiance to**: defiance is of something.", cue: "f6w2" },
+          { text: "Why not the others? **in compliance with** is correct English, but it means obeying the ban. That is not what this sentence says. Where in compliance with fits: _In compliance with the court's order, the shop was sealed._ **in defiance to**: defiance is of something.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "They marched ____ the ban.", [["barrierStop", "in defiance of", true, "openly disobeying"], ["absorbedIn", "in compliance with", "diff", "obeying the ban"], ["cross", "in defiance to", false, "defiance is | of something"]], ["in defiance of = openly disobeying", "Why of? defiance of something"]),
+          ...PLAB.kit.lineup("f6w", "They marched ____ the ban.", [["barrierStop", "in defiance of", true, "openly disobeying"], ["absorbedIn", "in compliance with", "diff", "obeying the ban"], ["cross", "in defiance to", false, "defiance is | of something"]], ["in defiance of = openly disobeying", "Why of? defiance of something"], null, ["\u2248 in compliance with: In compliance with the court's order, the shop was sealed."]),
         ],
       },
       {

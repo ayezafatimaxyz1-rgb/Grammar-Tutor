@@ -71,11 +71,11 @@
         alt: "The sentence He with a gap the loan., then the candidates: pay back (fits: return money); pay off (correct English, different meaning: bring success, or clear a debt); pay up (correct English, different meaning: pay what you owe)",
         say: [
           { text: "Fill the gap: He \u2026 the loan. The sentence wants **pay back**: return money.", cue: "f1w1" },
-          { text: "Why not the others? **pay off** is correct English, but it means bring success, or clear a debt. That is not what this sentence says. **pay up** is correct English, but it means pay what you owe. That is not what this sentence says.", cue: "f1w2" },
+          { text: "Why not the others? **pay off** is correct English, but it means bring success, or clear a debt. That is not what this sentence says. Where pay off fits: _His hard work paid off._ **pay up** is correct English, but it means pay what you owe. That is not what this sentence says. Where pay up fits: _Pay up, or we will take you to court._", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He ____ the loan.", [["coin", "pay back", true, "return money"], ["bounceOff", "pay off", "diff", "bring success, | or clear a debt"], ["arrowUp", "pay up", "diff", "pay what you owe"]], ["pay back = return money", "Why back? back = returned"]),
+          ...PLAB.kit.lineup("f1w", "He ____ the loan.", [["coin", "pay back", true, "return money"], ["bounceOff", "pay off", "diff", "bring success, | or clear a debt"], ["arrowUp", "pay up", "diff", "pay what you owe"]], ["pay back = return money", "Why back? back = returned"], null, ["\u2248 pay off: His hard work paid off.", "\u2248 pay up: Pay up, or we will take you to court."]),
         ],
       },
       {
@@ -136,11 +136,11 @@
         alt: "The sentence The firm with a gap spending., then the candidates: cut back (fits: reduce); cut off (correct English, different meaning: isolate); cut out (correct English, different meaning: remove, or stop)",
         say: [
           { text: "Fill the gap: The firm \u2026 spending. The sentence wants **cut back**: reduce.", cue: "f2w1" },
-          { text: "Why not the others? **cut off** is correct English, but it means isolate. That is not what this sentence says. **cut out** is correct English, but it means remove, or stop. That is not what this sentence says.", cue: "f2w2" },
+          { text: "Why not the others? **cut off** is correct English, but it means isolate. That is not what this sentence says. Where cut off fits: _The village was cut off by floods._ **cut out** is correct English, but it means remove, or stop. That is not what this sentence says. Where cut out fits: _Cut out sugar from your diet._", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The firm ____ spending.", [["minus", "cut back", true, "reduce"], ["bounceOff", "cut off", "diff", "isolate"], ["goOut", "cut out", "diff", "remove, or stop"]], ["cut back = reduce", "Why back? back = kept behind"]),
+          ...PLAB.kit.lineup("f2w", "The firm ____ spending.", [["minus", "cut back", true, "reduce"], ["bounceOff", "cut off", "diff", "isolate"], ["goOut", "cut out", "diff", "remove, or stop"]], ["cut back = reduce", "Why back? back = kept behind"], null, ["\u2248 cut off: The village was cut off by floods.", "\u2248 cut out: Cut out sugar from your diet."]),
         ],
       },
       {
@@ -201,11 +201,11 @@
         alt: "The sentence with a gap, I made many mistakes., then the candidates: look back (fits: think about the past); look up (correct English, different meaning: search for information); look over (correct English, different meaning: examine quickly)",
         say: [
           { text: "Fill the gap: \u2026, I made many mistakes. The sentence wants **look back**: think about the past.", cue: "f3w1" },
-          { text: "Why not the others? **look up** is correct English, but it means search for information. That is not what this sentence says. **look over** is correct English, but it means examine quickly. That is not what this sentence says.", cue: "f3w2" },
+          { text: "Why not the others? **look up** is correct English, but it means search for information. That is not what this sentence says. Where look up fits: _Look up the word in a dictionary._ **look over** is correct English, but it means examine quickly. That is not what this sentence says. Where look over fits: _Please look over my essay._", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____, I made many mistakes.", [["returnArc", "look back", true, "think about | the past"], ["arrowUp", "look up", "diff", "search for | information"], ["overRock", "look over", "diff", "examine quickly"]], ["look back = think about the past", "Why back? back = returned"]),
+          ...PLAB.kit.lineup("f3w", "____, I made many mistakes.", [["returnArc", "look back", true, "think about | the past"], ["arrowUp", "look up", "diff", "search for | information"], ["overRock", "look over", "diff", "examine quickly"]], ["look back = think about the past", "Why back? back = returned"], null, ["\u2248 look up: Look up the word in a dictionary.", "\u2248 look over: Please look over my essay."]),
         ],
       },
       {

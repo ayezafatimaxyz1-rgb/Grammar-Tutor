@@ -80,7 +80,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ to the meeting, the minister met reporters.", [["priorDot", "Prior", true, "prior always | takes to"], ["priorDot", "Before", false, "before takes no to: | before the meeting"], ["afterDot", "Subsequent", false, "= after, the | opposite"]], ["prior to = before (formal)", "subsequent to = after (formal)"]),
+          ...PLAB.kit.lineup("why", "____ to the meeting, the minister met reporters.", [["priorDot", "Prior", true, "prior always | takes to"], ["priorDot", "Before", false, "before takes no to: | before the meeting"], ["afterDot", "Subsequent", false, "= after, the | opposite"]], ["prior to = before (formal)", "subsequent to = after (formal)"], null, []),
         ],
       },
       {

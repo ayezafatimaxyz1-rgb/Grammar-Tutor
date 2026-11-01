@@ -24,7 +24,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "Send this book ____ my home address.", [["goHome", "to", true, "the book moves | towards the house"], ["airportDot", "at", false, "at is a still point; | send needs movement"], ["roadPass", "on", false, "on is for a street | with no number"]], ["SEND, POST, DELIVER, BRING + TO a place.", "Send it to me at my home address."]),
+          ...PLAB.kit.lineup("ys", "Send this book ____ my home address.", [["goHome", "to", true, "the book moves | towards the house"], ["airportDot", "at", false, "at is a still point; | send needs movement"], ["roadPass", "on", false, "on is for a street | with no number"]], ["SEND, POST, DELIVER, BRING + TO a place.", "Send it to me at my home address."], null, []),
         ],
       },
       {

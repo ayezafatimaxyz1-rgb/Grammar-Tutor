@@ -68,12 +68,12 @@
         alt: "The sentence We arrived with a gap the airport at noon., then the candidates with pictures: at (right: a building is a point); in (correct English but a different meaning: arrived in = already inside the building; at = the point); to (wrong: to = still moving). Rule: arrive at a point \u00b7 arrive in an area; never arrive to.",
         say: [
           { text: "Fill the gap: We arrived \u2026 the airport at noon. What does the sentence want to say? The answer is **at**: a building is a point.", cue: "why1" },
-          { text: "Why not the others? **in** is correct English, but it would mean arrived in = already inside the building; at = the point. That is not what this sentence says. **to**: to = still moving.", cue: "why2" },
+          { text: "Why not the others? **in** is correct English, but it would mean arrived in = already inside the building; at = the point. That is not what this sentence says. Where in fits: _We arrived in Lahore at noon._ **to**: to = still moving.", cue: "why2" },
           { text: "The rule: arrive at a point \u00b7 arrive in an area; never arrive to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "We arrived ____ the airport at noon.", [["airportDot", "at", true, "a building is | a point"], ["inCity", "in", "diff", "arrived in = already inside | the building; at = the point"], ["goHome", "to", false, "to = still | moving"]], ["arrive at a point \u00b7 arrive in an area", "never arrive to"]),
+          ...PLAB.kit.lineup("why", "We arrived ____ the airport at noon.", [["airportDot", "at", true, "a building is | a point"], ["inCity", "in", "diff", "arrived in = already inside | the building; at = the point"], ["goHome", "to", false, "to = still | moving"]], ["arrive at a point \u00b7 arrive in an area", "never arrive to"], null, ["\u2248 in: We arrived in Lahore at noon."]),
         ],
       },
       {

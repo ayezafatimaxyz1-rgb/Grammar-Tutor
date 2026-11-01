@@ -77,7 +77,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She is interested ____ history.", [["absorbedIn", "in", true, "attention goes | inside the subject"], ["pressOn", "on", false, "on = a surface or topic: | a book on history"], ["aboutCircle", "about", false, "about goes with | worried, angry"]], ["interested in \u00b7 afraid of \u00b7 keen on", "angry with a person, about a situation"]),
+          ...PLAB.kit.lineup("why", "She is interested ____ history.", [["absorbedIn", "in", true, "attention goes | inside the subject"], ["pressOn", "on", false, "on = a surface or topic: | a book on history"], ["aboutCircle", "about", false, "about goes with | worried, angry"]], ["interested in \u00b7 afraid of \u00b7 keen on", "angry with a person, about a situation"], null, []),
         ],
       },
       {

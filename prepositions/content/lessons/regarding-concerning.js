@@ -62,7 +62,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "I am writing ____ the delay.", [["pointDoc", "regarding", true, "= about it"], ["wave", "regards", false, "regards = | greetings"], ["cross", "regard", false, "needs with ... to: | with regard to"]], ["regarding, concerning, with regard to", "never with regards to"]),
+          ...PLAB.kit.lineup("why", "I am writing ____ the delay.", [["pointDoc", "regarding", true, "= about it"], ["wave", "regards", false, "regards = | greetings"], ["cross", "regard", false, "needs with ... to: | with regard to"]], ["regarding, concerning, with regard to", "never with regards to"], null, []),
         ],
       },
       {

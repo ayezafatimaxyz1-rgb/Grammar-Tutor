@@ -43,12 +43,12 @@
         alt: "The sentence The work will be finished with a gap two weeks, maybe sooner., then the candidates with pictures: within (right: any time inside the two weeks); in (correct English but a different meaning: after exactly two weeks); after (correct English but a different meaning: only once the two weeks are over). Rule: within = no later than; in = when the time has passed.",
         say: [
           { text: "Fill the gap: The work will be finished \u2026 two weeks, maybe sooner. What does the sentence want to say? The answer is **within**: any time inside the two weeks.", cue: "why1" },
-          { text: "Why not the others? **in** is correct English, but it would mean after exactly two weeks. That is not what this sentence says. **after** is correct English, but it would mean only once the two weeks are over. That is not what this sentence says.", cue: "why2" },
+          { text: "Why not the others? **in** is correct English, but it would mean after exactly two weeks. That is not what this sentence says. Where in fits: _The work will be finished in two weeks, not before._ **after** is correct English, but it would mean only once the two weeks are over. That is not what this sentence says. Where after fits: _You can apply again after two weeks._", cue: "why2" },
           { text: "The rule: within = no later than; in = when the time has passed.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The work will be finished ____ two weeks, maybe sooner.", [["inPeriod", "within", true, "any time inside | the two weeks"], ["pointFuture", "in", "diff", "after exactly | two weeks"], ["afterDot", "after", "diff", "only once the | two weeks are over"]], ["within = no later than", "in = when the time has passed"]),
+          ...PLAB.kit.lineup("why", "The work will be finished ____ two weeks, maybe sooner.", [["inPeriod", "within", true, "any time inside | the two weeks"], ["pointFuture", "in", "diff", "after exactly | two weeks"], ["afterDot", "after", "diff", "only once the | two weeks are over"]], ["within = no later than", "in = when the time has passed"], null, ["\u2248 in: The work will be finished in two weeks, not before.", "\u2248 after: You can apply again after two weeks."]),
         ],
       },
       {

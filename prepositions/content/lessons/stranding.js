@@ -71,7 +71,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "This is the house I grew up ____.", [["house", "in", true, "grow up in | a place"], ["reachDot", "at", false, "at = a point, | not a home"], ["onBase", "on", false, "on = a surface"]], ["ending with a preposition is fine", "formal: the house in which I grew up"]),
+          ...PLAB.kit.lineup("why", "This is the house I grew up ____.", [["house", "in", true, "grow up in | a place"], ["reachDot", "at", false, "at = a point, | not a home"], ["onBase", "on", false, "on = a surface"]], ["ending with a preposition is fine", "formal: the house in which I grew up"], null, []),
         ],
       },
       {

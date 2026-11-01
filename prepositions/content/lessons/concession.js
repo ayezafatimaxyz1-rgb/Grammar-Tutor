@@ -45,7 +45,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "The school is open to all, ____ income.", [[[["crowd", -30, 0, 0.8], ["gate", 40, 0, 0.9]], "regardless of", true, "income makes | no difference"], ["cross", "irregardless of", false, "not standard | English"], ["overRock", "despite", false, "despite = a real | obstacle overcome"]], ["regardless of, irrespective of", "despite + an obstacle"]),
+          ...PLAB.kit.lineup("why", "The school is open to all, ____ income.", [[[["crowd", -30, 0, 0.8], ["gate", 40, 0, 0.9]], "regardless of", true, "income makes | no difference"], ["cross", "irregardless of", false, "not standard | English"], ["overRock", "despite", false, "despite = a real | obstacle overcome"]], ["regardless of, irrespective of", "despite + an obstacle"], null, []),
         ],
       },
       {

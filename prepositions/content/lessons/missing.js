@@ -77,7 +77,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "Please listen ____ me carefully.", [["speak", "to", true, "listen needs to | before its object"], ["cross", "(no word)", false, "listen cannot reach | its object alone"], ["eyeLook", "at", false, "at goes with look"]], ["listen to, wait for, reply to, belong to", "explain it to me"]),
+          ...PLAB.kit.lineup("why", "Please listen ____ me carefully.", [["speak", "to", true, "listen needs to | before its object"], ["cross", "(no word)", false, "listen cannot reach | its object alone"], ["eyeLook", "at", false, "at goes with look"]], ["listen to, wait for, reply to, belong to", "explain it to me"], null, []),
         ],
       },
       {

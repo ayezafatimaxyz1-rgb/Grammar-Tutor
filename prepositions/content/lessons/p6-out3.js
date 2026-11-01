@@ -70,11 +70,11 @@
         alt: "The sentence He was with a gap for praise., then the candidates: single out (fits: choose one for attention); point out (correct English, different meaning: draw attention to a thing); single in (not used: not used)",
         say: [
           { text: "Fill the gap: He was \u2026 for praise. The sentence wants **single out**: choose one for attention.", cue: "f1w1" },
-          { text: "Why not the others? **point out** is correct English, but it means draw attention to a thing. That is not what this sentence says. **single in**: not used.", cue: "f1w2" },
+          { text: "Why not the others? **point out** is correct English, but it means draw attention to a thing. That is not what this sentence says. Where point out fits: _She pointed out the mistake._ **single in**: not used.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He was ____ for praise.", [["exceptOne", "single out", true, "choose one | for attention"], ["goOut", "point out", "diff", "draw attention | to a thing"], ["cross", "single in", false, "not used"]], ["single out = choose one for attention", "Why out? out = taken out"]),
+          ...PLAB.kit.lineup("f1w", "He was ____ for praise.", [["exceptOne", "single out", true, "choose one | for attention"], ["goOut", "point out", "diff", "draw attention | to a thing"], ["cross", "single in", false, "not used"]], ["single out = choose one for attention", "Why out? out = taken out"], null, ["\u2248 point out: She pointed out the mistake."]),
         ],
       },
       {
@@ -135,11 +135,11 @@
         alt: "The sentence The test with a gap weak candidates., then the candidates: weed out (fits: remove what is unwanted); sort out (correct English, different meaning: organise, or solve); weed off (not used: not used)",
         say: [
           { text: "Fill the gap: The test \u2026 weak candidates. The sentence wants **weed out**: remove what is unwanted.", cue: "f2w1" },
-          { text: "Why not the others? **sort out** is correct English, but it means organise, or solve. That is not what this sentence says. **weed off**: not used.", cue: "f2w2" },
+          { text: "Why not the others? **sort out** is correct English, but it means organise, or solve. That is not what this sentence says. Where sort out fits: _Let me sort out this problem._ **weed off**: not used.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The test ____ weak candidates.", [["groupOut", "weed out", true, "remove what | is unwanted"], ["goOut", "sort out", "diff", "organise, or solve"], ["cross", "weed off", false, "not used"]], ["weed out = remove what is unwanted", "Why out? out = taken out"]),
+          ...PLAB.kit.lineup("f2w", "The test ____ weak candidates.", [["groupOut", "weed out", true, "remove what | is unwanted"], ["goOut", "sort out", "diff", "organise, or solve"], ["cross", "weed off", false, "not used"]], ["weed out = remove what is unwanted", "Why out? out = taken out"], null, ["\u2248 sort out: Let me sort out this problem."]),
         ],
       },
       {

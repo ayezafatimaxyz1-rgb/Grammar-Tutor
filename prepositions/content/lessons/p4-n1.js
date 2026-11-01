@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "Water is necessary ____ life.", [["wantStar", "for", true, "needed for"], ["cross", "of", false, "of = belonging; | need reaches for"], ["cross", "in", false, "in is inside; | not used"]], ["necessary for = needed for"]),
+          ...PLAB.kit.lineup("e1w", "Water is necessary ____ life.", [["wantStar", "for", true, "needed for"], ["cross", "of", false, "of = belonging; | need reaches for"], ["cross", "in", false, "in is inside; | not used"]], ["necessary for = needed for"], null, []),
         ],
       },
       {
@@ -61,7 +61,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "There is an urgent need ____ reform.", [["wantStar", "for", true, "a lack that must | be filled (noun)"], ["cross", "of", false, "of goes with in need of: | a person in need of help"], ["cross", "to", false, "to + a verb only: | no need to worry"]], ["need for = a lack that must be filled (noun)"]),
+          ...PLAB.kit.lineup("e2w", "There is an urgent need ____ reform.", [["wantStar", "for", true, "a lack that must | be filled (noun)"], ["cross", "of", false, "of goes with in need of: | a person in need of help"], ["cross", "to", false, "to + a verb only: | no need to worry"]], ["need for = a lack that must be filled (noun)"], null, []),
         ],
       },
       {
@@ -88,7 +88,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "The officer was negligent ____ his duties.", [["absorbedIn", "in", true, "careless in doing"], ["cross", "on", false, "on is resting; | not used"], ["cross", "about", false, "about is a | topic; not used"]], ["negligent in = careless in doing"]),
+          ...PLAB.kit.lineup("e3w", "The officer was negligent ____ his duties.", [["absorbedIn", "in", true, "careless in doing"], ["cross", "on", false, "on is resting; | not used"], ["cross", "about", false, "about is a | topic; not used"]], ["negligent in = careless in doing"], null, []),
         ],
       },
       {
@@ -111,11 +111,11 @@
         alt: "The sentence She is nervous with a gap the interview., then the candidates: about (fits: worried about); of (correct English, different meaning: nervous of = afraid of a thing (BrE): nervous of dogs); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She is nervous \u2026 the interview. What does the sentence want to say? It wants **nervous about**: worried about.", cue: "e4w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean nervous of = afraid of a thing (BrE): nervous of dogs. That is not what this sentence says. **on**: on is resting; not used.", cue: "e4w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean nervous of = afraid of a thing (BrE): nervous of dogs. That is not what this sentence says. Where of fits: _She is nervous of big dogs._ **on**: on is resting; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is nervous ____ the interview.", [["aboutCircle", "about", true, "worried about"], ["awareOf", "of", "diff", "nervous of = afraid of a thing | (BrE): nervous of dogs"], ["cross", "on", false, "on is resting; | not used"]], ["nervous about = worried about"]),
+          ...PLAB.kit.lineup("e4w", "She is nervous ____ the interview.", [["aboutCircle", "about", true, "worried about"], ["awareOf", "of", "diff", "nervous of = afraid of a thing | (BrE): nervous of dogs"], ["cross", "on", false, "on is resting; | not used"]], ["nervous about = worried about"], null, ["\u2248 of: She is nervous of big dogs."]),
         ],
       },
       {
@@ -140,11 +140,11 @@
         alt: "The sentence It was nice with a gap you to help., then the candidates: of (fits: kind of someone (judging an act)); to (correct English, different meaning: kind to you, said of how someone treats you); for (not used: for is a purpose; not used)",
         say: [
           { text: "Fill the gap: It was nice \u2026 you to help. What does the sentence want to say? It wants **nice of**: kind of someone (judging an act).", cue: "e5w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean kind to you, said of how someone treats you. That is not what this sentence says. **for**: for is a purpose; not used.", cue: "e5w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean kind to you, said of how someone treats you. That is not what this sentence says. Where to fits: _She is always nice to her students._ **for**: for is a purpose; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "It was nice ____ you to help.", [["awareOf", "of", true, "kind of someone | (judging an act)"], ["reachDot", "to", "diff", "kind to you, said of | how someone treats you"], ["cross", "for", false, "for is a purpose; | not used"]], ["nice of = kind of someone (judging an act)", "nice to = kind to someone"]),
+          ...PLAB.kit.lineup("e5w", "It was nice ____ you to help.", [["awareOf", "of", true, "kind of someone | (judging an act)"], ["reachDot", "to", "diff", "kind to you, said of | how someone treats you"], ["cross", "for", false, "for is a purpose; | not used"]], ["nice of = kind of someone (judging an act)", "nice to = kind to someone"], null, ["\u2248 to: She is always nice to her students."]),
         ],
       },
       {
@@ -169,11 +169,11 @@
         alt: "The sentence The area is notorious with a gap crime., then the candidates: for (fits: well known for something bad); as (correct English, different meaning: the area itself would be crime, in a role); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The area is notorious \u2026 crime. What does the sentence want to say? It wants **notorious for**: well known for something bad.", cue: "e6w1" },
-          { text: "Why not the others? **as** is correct English, but it would mean the area itself would be crime, in a role. That is not what this sentence says. **of**: of = belonging; not used.", cue: "e6w2" },
+          { text: "Why not the others? **as** is correct English, but it would mean the area itself would be crime, in a role. That is not what this sentence says. Where as fits: _He is notorious as a liar._ **of**: of = belonging; not used.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The area is notorious ____ crime.", [["wantStar", "for", true, "well known for | something bad"], ["arrowR", "as", "diff", "the area itself would | be crime, in a role"], ["cross", "of", false, "of = belonging; | not used"]], ["notorious for = well known for something bad", "notorious as = known in a bad role"]),
+          ...PLAB.kit.lineup("e6w", "The area is notorious ____ crime.", [["wantStar", "for", true, "well known for | something bad"], ["arrowR", "as", "diff", "the area itself would | be crime, in a role"], ["cross", "of", false, "of = belonging; | not used"]], ["notorious for = well known for something bad", "notorious as = known in a bad role"], null, ["\u2248 as: He is notorious as a liar."]),
         ],
       },
       {

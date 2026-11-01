@@ -34,7 +34,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The people yearn ____ peace.", [["wantStar", "for", true, "long for"], ["cross", "of", false, "of = belonging; | longing reaches for"], ["cross", "to", false, "to needs a verb: | yearn to return"]], ["yearn for = long for"]),
+          ...PLAB.kit.lineup("e1w", "The people yearn ____ peace.", [["wantStar", "for", true, "long for"], ["cross", "of", false, "of = belonging; | longing reaches for"], ["cross", "to", false, "to needs a verb: | yearn to return"]], ["yearn for = long for"], null, []),
         ],
       },
       {
