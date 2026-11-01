@@ -510,4 +510,8 @@ PLAB.misconceptions = {
     label: "The particle carries the meaning",
     explain: "In a phrasal verb the particle says what happens: up = completely or more, off = away or cancelled, out = into the open or gone. The same verb with another particle is another verb: call off (cancel) is not call out (shout) or call up (phone).",
   },
+  "p0-sense": {
+    label: "Picture the preposition first",
+    explain: "Each preposition draws its own picture: AT a point, ON a surface, IN an area, FROM a starting point, OF a part of a whole. Picture the situation in the sentence and choose the preposition whose picture matches it.",
+  },
 };

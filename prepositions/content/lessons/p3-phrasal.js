@@ -25,16 +25,16 @@
       },
       {
         id: "item1",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(vii)",
-        alt: "The sentence The meeting was put with a gap by the Chairman., then the candidates: off (right); out (wrong); down (wrong). Source: CSS paper (year not confirmed), Q.5(b)(vii).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(vii)",
+        alt: "The sentence The meeting was put with a gap by the Chairman., then the candidates: off (right); out (wrong); down (wrong). Source: CSS paper (2016 onward), Q.5(b)(vii).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(vii): The meeting was put \u2026 by the Chairman. The answer is **off**: put off = postponed.", cue: "w11" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(vii): The meeting was put \u2026 by the Chairman. The answer is **off**: put off = postponed.", cue: "w11" },
           { text: "Why not the others? **out**: put out = extinguish (a fire). **down**: put down = write, or crush.", cue: "w12" },
           { text: "Remember: put off = postpone; call off = cancel.", cue: "w1-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item1"),
-          ...PLAB.kit.lineup("w1", "The meeting was put ____ by the Chairman.", [["calendar", "off", true, "put off = | postponed"], ["cross", "out", false, "put out = | extinguish (a fire)"], ["arrowDown", "down", false, "put down = write, | or crush"]], ["put off = postpone", "call off = cancel"], "Source: CSS paper (year not confirmed), Q.5(b)(vii)"),
+          ...PLAB.kit.lineup("w1", "The meeting was put ____ by the Chairman.", [["calendar", "off", true, "put off = | postponed"], ["cross", "out", false, "put out = | extinguish (a fire)"], ["arrowDown", "down", false, "put down = write, | or crush"]], ["put off = postpone", "call off = cancel"], "Source: CSS paper (2016 onward), Q.5(b)(vii)"),
         ],
       },
       {
@@ -53,16 +53,16 @@
       },
       {
         id: "item3",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(iii)",
-        alt: "The sentence The pistol went with a gap by accident., then the candidates: off (right); up (wrong); on (wrong). Source: CSS paper (year not confirmed), Q.5(b)(iii).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(iii)",
+        alt: "The sentence The pistol went with a gap by accident., then the candidates: off (right); up (wrong); on (wrong). Source: CSS paper (2016 onward), Q.5(b)(iii).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(iii): The pistol went \u2026 by accident. The answer is **off**: go off = fire, explode.", cue: "w31" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(iii): The pistol went \u2026 by accident. The answer is **off**: go off = fire, explode.", cue: "w31" },
           { text: "Why not the others? **up**: go up = rise. **on**: go on = continue.", cue: "w32" },
           { text: "Remember: a gun, bomb or alarm goes off; go on = continue.", cue: "w3-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item3"),
-          ...PLAB.kit.lineup("w3", "The pistol went ____ by accident.", [["flame", "off", true, "go off = fire, | explode"], ["arrowUp", "up", false, "go up = rise"], ["arrowR", "on", false, "go on = continue"]], ["a gun, bomb or alarm goes off", "go on = continue"], "Source: CSS paper (year not confirmed), Q.5(b)(iii)"),
+          ...PLAB.kit.lineup("w3", "The pistol went ____ by accident.", [["flame", "off", true, "go off = fire, | explode"], ["arrowUp", "up", false, "go up = rise"], ["arrowR", "on", false, "go on = continue"]], ["a gun, bomb or alarm goes off", "go on = continue"], "Source: CSS paper (2016 onward), Q.5(b)(iii)"),
         ],
       },
       {
@@ -81,10 +81,10 @@
       },
       {
         id: "try1",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(iv)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(iv)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(iv). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(iv). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -111,16 +111,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(iv)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try2",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(v)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(v)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(v). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(v). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -147,16 +147,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(v)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(v). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(v). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try3",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(viii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(viii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(viii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(viii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -183,8 +183,8 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(viii)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(viii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(viii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {

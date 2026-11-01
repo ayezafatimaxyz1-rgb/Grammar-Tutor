@@ -355,6 +355,12 @@
           <h1>Prepositions</h1>
           <p class="lede">Pick one to see every sense it can convey, with its words, phrases and boards. Anywhere in the app, a dotted preposition brings you here.</p>
         </section>
+        <a class="start-card" href="#atlas">
+          <span class="sc-badge">Start here</span>
+          <span class="sc-title">The sense atlas</span>
+          <span class="sc-text">The basic senses of every preposition in one place, drawn and explained simply.</span>
+          <span class="sc-go" aria-hidden="true">›</span>
+        </a>
         <label class="search">
           <span class="sr-only">Find a preposition</span>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>

@@ -159,7 +159,7 @@
       this.text(`Test yourself  ·  Q${n}`, { size: 9, bold: true, color: C.green, gap: 1, indent: 3 });
       this.text(c.prompt, { size: 10.5, bold: true, indent: 3 });
       c.options.forEach((o, i) => this.text(`[   ]  ${"ABCDEFG"[i]}.  ${o.text}`, { indent: 6, gap: 0.8 }));
-      if (c.source === "past-paper") this.text(`CSS past paper${c.year ? " " + c.year : " (year not confirmed)"}${c.question ? ", " + c.question : ""}`, { size: 8.5, color: C.muted, italic: true, indent: 3 });
+      if (c.source === "past-paper") this.text(`CSS past paper${c.year ? " " + c.year : " (2016 onward)"}${c.question ? ", " + c.question : ""}`, { size: 8.5, color: C.muted, italic: true, indent: 3 });
       this.doc.setDrawColor(...C.green);
       this.doc.setLineWidth(0.6);
       this.doc.line(this.M, Math.min(top, this.y), this.M, this.y);
@@ -336,6 +336,37 @@
             plan.rest.forEach((w) => n.text(`${w.word} ${prep}: ${w.meaning}.  ${w.example}`, { size: 9.5, indent: 6, gap: 0.3 }));
           }
           n.y += 3;
+        },
+      };
+    },
+    atlas(lessonId) {
+      if (!P.atlasPage) return null;
+      const it = lessonId && (P.atlas || []).flatMap((u) => u.items).find((x) => x.lesson === lessonId);
+      const list = P.atlasPage.items(lessonId || null);
+      if (lessonId && !it) return null;
+      return {
+        title: it ? `${it.title}: the senses` : "The sense atlas",
+        subtitle: "Every sense drawn as its logic, explained simply, with what it is confused with",
+        file: fileName(it ? `atlas-${it.title}` : "sense-atlas"),
+        items: list,
+        intro(n) {
+          // A one-page summary first: each preposition and its senses, then the pairs.
+          for (const u of P.atlas || []) {
+            const xs = u.items.filter((x) => !lessonId || x.lesson === lessonId);
+            if (!xs.length) continue;
+            if (!lessonId) n.text(u.title, { size: 14, bold: true, color: C.accent, gap: 1 });
+            for (const x of xs) {
+              if (x.kind === "pair") {
+                n.text(x.title, { bold: true, gap: 0.3 });
+                x.rules.forEach((r) => n.text(r, { size: 9.5, indent: 4, gap: 0.3 }));
+              } else {
+                n.text(`${x.title}: ${x.core}`, { bold: true, gap: 0.3 });
+                x.senses.forEach((s, i) => n.text(`${i + 1}. ${s.prep} = ${s.name}. ${s.examples[0]}${s.vs ? `  (not ${s.vs[0]}: ${s.vs[1]})` : ""}`, { size: 9.5, indent: 4, gap: 0.3 }));
+              }
+              n.y += 1.5;
+            }
+          }
+          n.y += 2;
         },
       };
     },

@@ -67,16 +67,16 @@
       },
       {
         id: "item4",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(a)(i)",
-        alt: "The sentence with a gap a Ford he has a Fiat car., then the candidates: Besides (right); Before (wrong); Despite (wrong). Source: CSS paper (year not confirmed), Q.5(a)(i).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(a)(i)",
+        alt: "The sentence with a gap a Ford he has a Fiat car., then the candidates: Besides (right); Before (wrong); Despite (wrong). Source: CSS paper (2016 onward), Q.5(a)(i).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(a)(i): \u2026 a Ford he has a Fiat car. The answer is **Besides**: in addition to a Ford.", cue: "w41" },
+          { text: "From CSS paper (2016 onward), Q.5(a)(i): \u2026 a Ford he has a Fiat car. The answer is **Besides**: in addition to a Ford.", cue: "w41" },
           { text: "Why not the others? **Before**: before = earlier in time. **Despite**: despite = an obstacle.", cue: "w42" },
           { text: "Remember: besides = in addition to; beside = at the side of.", cue: "w4-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item4"),
-          ...PLAB.kit.lineup("w4", "____ a Ford he has a Fiat car.", [["plus", "Besides", true, "in addition | to a Ford"], ["priorDot", "Before", false, "before = earlier | in time"], ["overRock", "Despite", false, "despite = an | obstacle"]], ["besides = in addition to", "beside = at the side of"], "Source: CSS paper (year not confirmed), Q.5(a)(i)"),
+          ...PLAB.kit.lineup("w4", "____ a Ford he has a Fiat car.", [["plus", "Besides", true, "in addition | to a Ford"], ["priorDot", "Before", false, "before = earlier | in time"], ["overRock", "Despite", false, "despite = an | obstacle"]], ["besides = in addition to", "beside = at the side of"], "Source: CSS paper (2016 onward), Q.5(a)(i)"),
         ],
       },
       {
@@ -189,10 +189,10 @@
       },
       {
         id: "try4",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.4(b)(i)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.4(b)(i)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.4(b)(i). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.4(b)(i). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -224,16 +224,16 @@
           ],
           "source": "past-paper",
           "question": "Q.4(b)(i)",
-          "citation": "CSS English (Precis & Composition), Q.4(b)(i). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.4(b)(i). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try5",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.4(b)(ii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.4(b)(ii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.4(b)(ii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.4(b)(ii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -265,16 +265,16 @@
           ],
           "source": "past-paper",
           "question": "Q.4(b)(ii)",
-          "citation": "CSS English (Precis & Composition), Q.4(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.4(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try6",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(a)(ii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(a)(ii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(a)(ii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(a)(ii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -306,16 +306,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(a)(ii)",
-          "citation": "CSS English (Precis & Composition), Q.5(a)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on machines and civilization; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(a)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try7",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(a)(iii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(a)(iii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(a)(iii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(a)(iii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -347,16 +347,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(a)(iii)",
-          "citation": "CSS English (Precis & Composition), Q.5(a)(iii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on machines and civilization; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(a)(iii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try8",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(a)(iv)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(a)(iv)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(a)(iv). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(a)(iv). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -388,8 +388,8 @@
           ],
           "source": "past-paper",
           "question": "Q.5(a)(iv)",
-          "citation": "CSS English (Precis & Composition), Q.5(a)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on machines and civilization; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(a)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward"
         },
       },
     ],

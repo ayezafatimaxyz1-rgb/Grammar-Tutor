@@ -25,52 +25,52 @@
       },
       {
         id: "item1",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(i)",
-        alt: "The sentence The massive landslide tumbled with a gap the valley below., then the candidates: into (right); over (wrong); at (wrong). Source: CSS paper (year not confirmed), Q.5(b)(i).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(i)",
+        alt: "The sentence The massive landslide tumbled with a gap the valley below., then the candidates: into (right); over (wrong); at (wrong). Source: CSS paper (2016 onward), Q.5(b)(i).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(i): The massive landslide tumbled \u2026 the valley below. The answer is **into**: falling down and ending inside it.", cue: "w11" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(i): The massive landslide tumbled \u2026 the valley below. The answer is **into**: falling down and ending inside it.", cue: "w11" },
           { text: "Why not the others? **over**: over = across the top, not down in. **at**: at = a point; no movement.", cue: "w12" },
           { text: "Remember: into = movement ending inside; down into the valley.", cue: "w1-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item1"),
-          ...PLAB.kit.lineup("w1", "The massive landslide tumbled ____ the valley below.", [["intoBag", "into", true, "falling down and | ending inside it"], ["hillUp", "over", false, "over = across the | top, not down in"], ["airportDot", "at", false, "at = a point; | no movement"]], ["into = movement ending inside", "down into the valley"], "Source: CSS paper (year not confirmed), Q.5(b)(i)"),
+          ...PLAB.kit.lineup("w1", "The massive landslide tumbled ____ the valley below.", [["intoBag", "into", true, "falling down and | ending inside it"], ["hillUp", "over", false, "over = across the | top, not down in"], ["airportDot", "at", false, "at = a point; | no movement"]], ["into = movement ending inside", "down into the valley"], "Source: CSS paper (2016 onward), Q.5(b)(i)"),
         ],
       },
       {
         id: "item2",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(iii)",
-        alt: "The sentence The subtle symbolism and metaphors whispered with a gap the surface of the words., then the candidates: beneath (right); above (wrong); on (wrong). Source: CSS paper (year not confirmed), Q.5(b)(iii).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(iii)",
+        alt: "The sentence The subtle symbolism and metaphors whispered with a gap the surface of the words., then the candidates: beneath (right); above (wrong); on (wrong). Source: CSS paper (2016 onward), Q.5(b)(iii).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(iii): The subtle symbolism and metaphors whispered \u2026 the surface of the words. The answer is **beneath**: hidden below the surface meaning.", cue: "w21" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(iii): The subtle symbolism and metaphors whispered \u2026 the surface of the words. The answer is **beneath**: hidden below the surface meaning.", cue: "w21" },
           { text: "Why not the others? **above**: above = on show, not hidden. **on**: on the surface = obvious.", cue: "w22" },
           { text: "Remember: beneath the surface = hidden meaning; on the surface = obvious.", cue: "w2-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item2"),
-          ...PLAB.kit.lineup("w2", "The subtle symbolism and metaphors whispered ____ the surface of the words.", [["fish", "beneath", true, "hidden below the | surface meaning"], ["floatAbove", "above", false, "above = on show, | not hidden"], ["onBase", "on", false, "on the surface = | obvious"]], ["beneath the surface = hidden meaning", "on the surface = obvious"], "Source: CSS paper (year not confirmed), Q.5(b)(iii)"),
+          ...PLAB.kit.lineup("w2", "The subtle symbolism and metaphors whispered ____ the surface of the words.", [["fish", "beneath", true, "hidden below the | surface meaning"], ["floatAbove", "above", false, "above = on show, | not hidden"], ["onBase", "on", false, "on the surface = | obvious"]], ["beneath the surface = hidden meaning", "on the surface = obvious"], "Source: CSS paper (2016 onward), Q.5(b)(iii)"),
         ],
       },
       {
         id: "item3",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(vii)",
-        alt: "The sentence Her online persona leaned with a gap perfection, hiding flaws., then the candidates: towards (right); on (wrong); against (wrong). Source: CSS paper (year not confirmed), Q.5(b)(vii).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(vii)",
+        alt: "The sentence Her online persona leaned with a gap perfection, hiding flaws., then the candidates: towards (right); on (wrong); against (wrong). Source: CSS paper (2016 onward), Q.5(b)(vii).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(vii): Her online persona leaned \u2026 perfection, hiding flaws. The answer is **towards**: pointing at an ideal.", cue: "w31" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(vii): Her online persona leaned \u2026 perfection, hiding flaws. The answer is **towards**: pointing at an ideal.", cue: "w31" },
           { text: "Why not the others? **on**: lean on = depend on for support. **against**: lean against = rest on a wall.", cue: "w32" },
           { text: "Remember: lean towards = tend to; lean on = depend on.", cue: "w3-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item3"),
-          ...PLAB.kit.lineup("w3", "Her online persona leaned ____ perfection, hiding flaws.", [["lookAhead", "towards", true, "pointing at an | ideal"], ["onBase", "on", false, "lean on = depend on | for support"], ["pressOn", "against", false, "lean against = rest | on a wall"]], ["lean towards = tend to", "lean on = depend on"], "Source: CSS paper (year not confirmed), Q.5(b)(vii)"),
+          ...PLAB.kit.lineup("w3", "Her online persona leaned ____ perfection, hiding flaws.", [["lookAhead", "towards", true, "pointing at an | ideal"], ["onBase", "on", false, "lean on = depend on | for support"], ["pressOn", "against", false, "lean against = rest | on a wall"]], ["lean towards = tend to", "lean on = depend on"], "Source: CSS paper (2016 onward), Q.5(b)(vii)"),
         ],
       },
       {
         id: "try1",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(ii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(ii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(ii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(ii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -97,16 +97,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(ii)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on wandering; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try2",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(iv)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(iv)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(iv). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(iv). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -133,16 +133,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(iv)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on wandering; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(iv). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try3",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(v)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(v)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(v). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(v). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -169,16 +169,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(v)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(v). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on wandering; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(v). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try4",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(vi)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(vi)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(vi). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(vi). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -205,16 +205,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(vi)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(vi). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on wandering; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(vi). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try5",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(viii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(viii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(viii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(viii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -241,8 +241,8 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(viii)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(viii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on wandering; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(viii). Copy supplied by the learner (cssaspirants.pk); paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on wandering; year not printed; one of the learner's papers from 2016 onward"
         },
       },
     ],

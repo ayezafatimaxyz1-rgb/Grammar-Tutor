@@ -95,30 +95,30 @@
       },
       {
         id: "item6",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(a)(vi)",
-        alt: "The sentence The public are cautioned with a gap pickpockets., then the candidates: against (right); about (wrong); for (wrong). Source: CSS paper (year not confirmed), Q.5(a)(vi).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(a)(vi)",
+        alt: "The sentence The public are cautioned with a gap pickpockets., then the candidates: against (right); about (wrong); for (wrong). Source: CSS paper (2016 onward), Q.5(a)(vi).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(a)(vi): The public are cautioned \u2026 pickpockets. The answer is **against**: a warning that protects from danger.", cue: "w61" },
+          { text: "From CSS paper (2016 onward), Q.5(a)(vi): The public are cautioned \u2026 pickpockets. The answer is **against**: a warning that protects from danger.", cue: "w61" },
           { text: "Why not the others? **about**: about = the topic; weaker. **for**: for = aimed at a benefit.", cue: "w62" },
           { text: "Remember: caution / warn against + a danger; protect against, insure against.", cue: "w6-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item6"),
-          ...PLAB.kit.lineup("w6", "The public are cautioned ____ pickpockets.", [["shield", "against", true, "a warning that | protects from danger"], ["aboutCircle", "about", false, "about = the topic; | weaker"], ["target", "for", false, "for = aimed at a | benefit"]], ["caution / warn against + a danger", "protect against, insure against"], "Source: CSS paper (year not confirmed), Q.5(a)(vi)"),
+          ...PLAB.kit.lineup("w6", "The public are cautioned ____ pickpockets.", [["shield", "against", true, "a warning that | protects from danger"], ["aboutCircle", "about", false, "about = the topic; | weaker"], ["target", "for", false, "for = aimed at a | benefit"]], ["caution / warn against + a danger", "protect against, insure against"], "Source: CSS paper (2016 onward), Q.5(a)(vi)"),
         ],
       },
       {
         id: "item7",
-        title: "CSS paper (year not confirmed) \u00b7 Q.5(b)(i)",
-        alt: "The sentence I was annoyed with a gap him., then the candidates: with (right); about (wrong); on (wrong). Source: CSS paper (year not confirmed), Q.5(b)(i).",
+        title: "CSS paper (2016 onward) \u00b7 Q.5(b)(i)",
+        alt: "The sentence I was annoyed with a gap him., then the candidates: with (right); about (wrong); on (wrong). Source: CSS paper (2016 onward), Q.5(b)(i).",
         say: [
-          { text: "From CSS paper (year not confirmed), Q.5(b)(i): I was annoyed \u2026 him. The answer is **with**: a person: with.", cue: "w71" },
+          { text: "From CSS paper (2016 onward), Q.5(b)(i): I was annoyed \u2026 him. The answer is **with**: a person: with.", cue: "w71" },
           { text: "Why not the others? **about**: about = a situation: annoyed about the delay. **on**: word-for-word translation.", cue: "w72" },
           { text: "Remember: annoyed with a person; annoyed about (at) a situation.", cue: "w7-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-item7"),
-          ...PLAB.kit.lineup("w7", "I was annoyed ____ him.", [["angryFace", "with", true, "a person: with"], ["aboutCircle", "about", false, "about = a situation: | annoyed about the delay"], ["pressOn", "on", false, "word-for-word | translation"]], ["annoyed with a person", "annoyed about (at) a situation"], "Source: CSS paper (year not confirmed), Q.5(b)(i)"),
+          ...PLAB.kit.lineup("w7", "I was annoyed ____ him.", [["angryFace", "with", true, "a person: with"], ["aboutCircle", "about", false, "about = a situation: | annoyed about the delay"], ["pressOn", "on", false, "word-for-word | translation"]], ["annoyed with a person", "annoyed about (at) a situation"], "Source: CSS paper (2016 onward), Q.5(b)(i)"),
         ],
       },
       {
@@ -447,10 +447,10 @@
       },
       {
         id: "try10",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(ii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(ii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(ii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(ii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -477,16 +477,16 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(ii)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(ii). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try11",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(b)(vi)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(b)(vi)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(b)(vi). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(b)(vi). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -513,8 +513,8 @@
           ],
           "source": "past-paper",
           "question": "Q.5(b)(vi)",
-          "citation": "CSS English (Precis & Composition), Q.5(b)(vi). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed.",
-          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, but the year is not confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(b)(vi). Copy supplied by the learner (cssaspirants.pk); paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the Manto precis; a sentence mentions February 2020, one of the learner's papers from 2016 onward"
         },
       },
       {

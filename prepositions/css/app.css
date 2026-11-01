@@ -494,3 +494,51 @@ strong.key.is-prep:hover, strong.key.is-prep:focus-visible { color: var(--accent
 .ask-form textarea, .ask-inline input, .notes textarea { border-radius: 12px; background: var(--sunk); }
 .tour-bar { border-radius: 16px; border-width: 1px; background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
 h1 { letter-spacing: -0.015em; }
+
+/* ---------- Start here: the sense atlas ---------- */
+.start-card {
+  position: relative; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center;
+  padding: 16px 18px; border-radius: 20px; text-decoration: none; color: #fff;
+  background: linear-gradient(135deg, var(--accent), #0d7366); box-shadow: 0 8px 24px rgb(29 79 156 / 25%);
+}
+.sc-badge { grid-column: 1; justify-self: start; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; background: rgb(255 255 255 / 20%); padding: 3px 9px; border-radius: 999px; }
+.sc-title { grid-column: 1; font: 700 1.6rem/1.15 var(--font-board); }
+.sc-text { grid-column: 1; font-size: 0.9rem; opacity: 0.92; line-height: 1.4; }
+.sc-go { grid-column: 2; grid-row: 1 / span 3; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--accent); font-size: 1.6rem; font-weight: 700; }
+.atlas-page { display: flex; flex-direction: column; gap: 18px; }
+.atlas-hero h1 { font: 700 clamp(2.2rem, 1.6rem + 3vw, 3.2rem)/1.05 var(--font-board); color: var(--accent); }
+.atlas-jump { display: flex; flex-direction: column; gap: 10px; background: var(--sunk); border-radius: 18px; padding: 14px; }
+.atlas-jump h2 { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.atlas-jump p { display: flex; flex-wrap: wrap; gap: 6px; }
+.atlas-jump a { text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; font-weight: 700; font-size: 0.85rem; color: var(--accent); }
+.atlas-unit { display: flex; flex-direction: column; gap: 12px; }
+.atlas-unit > h2 { font-size: 1.3rem; padding-top: 6px; }
+.atlas-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 8px; scroll-margin-top: 70px; box-shadow: 0 1px 2px rgb(15 23 42 / 4%); }
+.atlas-card h3 { font-size: 1.15rem; }
+.atlas-card h3 .hand { font-size: 1.7rem; }
+.atlas-card h3 .hand::after { display: none; }
+.atlas-core { font-weight: 700; color: var(--accent-2); }
+.atlas-senses { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; counter-reset: s; }
+.atlas-senses li { counter-increment: s; }
+.atlas-sense {
+  width: 100%; text-align: left; font: inherit; color: var(--fg); cursor: pointer;
+  display: flex; flex-direction: column; gap: 3px; padding: 12px 12px 10px 44px; position: relative;
+  background: var(--sunk); border: 1px solid transparent; border-radius: 14px;
+}
+.atlas-sense::before { content: counter(s); position: absolute; left: 10px; top: 11px; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 700; display: grid; place-items: center; }
+.atlas-sense:hover { border-color: var(--accent); }
+.as-head b { font-family: var(--font-board); font-size: 1.15rem; color: var(--accent); }
+.as-explain { color: var(--muted); font-size: 0.92rem; }
+.as-ex { font-style: italic; font-size: 0.95rem; }
+.as-ex mark, .pair-cell mark { background: color-mix(in srgb, var(--ink-hi) 60%, transparent); color: inherit; font-weight: 700; border-radius: 3px; padding: 0 2px; }
+.as-vs { font-size: 0.85rem; color: var(--bad); }
+.as-go { font-size: 0.8rem; font-weight: 700; color: var(--accent); }
+.atlas-actions { margin-top: 4px; }
+.atlas-actions .button.primary { flex: 1 1 auto; }
+.pair-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; }
+.pair-cell { background: var(--sunk); border-radius: 14px; padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.pair-cell b.hand { font-size: 1.4rem; }
+.pair-cell b.hand::after { display: none; }
+.pair-cell span { font-size: 0.85rem; color: var(--muted); }
+.pair-cell em { font-size: 0.92rem; }
+.atlas-rules { margin: 0; padding-left: 1.1em; font-size: 0.92rem; color: var(--accent); font-weight: 700; display: flex; flex-direction: column; gap: 2px; }

@@ -211,10 +211,10 @@
       },
       {
         id: "try5",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.4(b)(iii)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.4(b)(iii)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.4(b)(iii). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.4(b)(iii). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -246,16 +246,16 @@
           ],
           "source": "past-paper",
           "question": "Q.4(b)(iii)",
-          "citation": "CSS English (Precis & Composition), Q.4(b)(iii). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.4(b)(iii). Copy supplied by the learner (cssaspirants.pk); paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage 'Beauty is not an ornament to life'; year not printed; one of the learner's papers from 2016 onward"
         },
       },
       {
         id: "try6",
-        title: "Try it: CSS paper (year not confirmed) \u00b7 Q.5(a)(v)",
+        title: "Try it: CSS paper (2016 onward) \u00b7 Q.5(a)(v)",
         alt: "The board stays as it is.",
         say: [
-          { text: "A real item from CSS paper (year not confirmed), Q.5(a)(v). Solve it with the same method." },
+          { text: "A real item from CSS paper (2016 onward), Q.5(a)(v). Solve it with the same method." },
         ],
         actions: [
         ],
@@ -287,8 +287,8 @@
           ],
           "source": "past-paper",
           "question": "Q.5(a)(v)",
-          "citation": "CSS English (Precis & Composition), Q.5(a)(v). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed, not yet confirmed.",
-          "yearNote": "paper with the passage on machines and civilization; year not printed, not yet confirmed"
+          "citation": "CSS English (Precis & Composition), Q.5(a)(v). Copy supplied by the learner (cssaspirants.pk); paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward.",
+          "yearNote": "paper with the passage on machines and civilization; year not printed; one of the learner's papers from 2016 onward"
         },
       },
     ],
