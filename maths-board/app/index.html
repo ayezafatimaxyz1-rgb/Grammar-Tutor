@@ -246,7 +246,7 @@ function fbar(id,x,y,w,h,parts,o={}){const ink=o.ink||'main',a=[D(id+'.box',{kin
 /* cut an existing bar into more pieces: only the new lines are drawn */
 function recut(id,x,y,w,h,oldP,newP,o={}){const segs=range(1,newP).filter(k=>(k*oldP)%newP!==0).map(k=>[x+k*w/newP,y+5,x+k*w/newP,y+h-5]);return D(id,{kind:'lines',segs},{ink:o.ink||'accent',sw:2.4,dur:o.dur||1000,sync:o.sync})}
 /* text written in pieces, so one word or number can be highlighted on its own */
-function wseq(id,x,y,parts,o={}){const s=o.size||30;let cx=x;return parts.map((p,i)=>{const it=W(`${id}.${i}`,cx,y,p,{...o,size:s,dur:Math.max(260,p.length*55),sync:i===0?o.sync:false});cx+=measure(p,s);return it})}
+function wseq(id,x,y,parts,o={}){const s=o.size||30;let cx=x;return parts.map((p,i)=>{const it=W(`${id}.${i}`,cx,y,p,{...o,size:s,dur:Math.max(260,p.length*55),sync:i===0?o.sync:false});cx+=measure(p,s,700);return it})}
 function wrapText(id,x,y,text,maxW,o={}){const s=o.size||24,lh=o.lh||s*1.28,lines=[];let cur='';
   for(const w of text.split(' ')){const t=cur?cur+' '+w:w;if(measure(t,s)>maxW&&cur){lines.push(cur);cur=w}else cur=t}if(cur)lines.push(cur);
   return lines.map((l,i)=>W(`${id}.${i}`,x,y+i*lh,l,{...o,size:s,dur:Math.max(450,l.length*38),sync:i===0?o.sync:false}))}
@@ -434,10 +434,10 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L),...buildEnglish()]}
+  return [prepare(L),...buildEnglish(),...buildEnglish2()]}
 
 /* ---------- English part: drawing helpers ---------- */
-function wseqC(id,cx,y,parts,o={}){const s=o.size||30,w=parts.reduce((a,p)=>a+measure(p,s),0);return wseq(id,cx-w/2,y,parts,o)}
+function wseqC(id,cx,y,parts,o={}){const s=o.size||30,w=parts.reduce((a,p)=>a+measure(p,s,700),0);return wseq(id,cx-w/2,y,parts,o)}
 function house(id,x,y,w,o={}){const h=w*.8,ink=o.ink||'main';return [
   D(id+'.roof',{kind:'poly',pts:[[x-12,y+h*.42],[x+w/2,y],[x+w+12,y+h*.42]]},{ink,dur:600}),
   D(id+'.body',{kind:'rect',x,y:y+h*.42,w,h:h*.58},{ink,fill:o.fill||'accent2',fillOp:.16,dur:700}),
@@ -619,6 +619,170 @@ const Bl={id:'prep-address',phase:'eng',title:'Addresses: "to", "at", "on" or "i
   {q:'Our office is ___ Islamabad.',options:[{t:'in',ok:true,why:'Right. Islamabad is a city, so use "in".'},{t:'at',tag:'prep-at-city',why:'"At" is for an exact address. For a city, use "in".'},{t:'on',tag:'prep-other',why:'"On" is for a street, not a city.'},{t:'to',tag:'prep-to-at',why:'"Is" is not movement, so "to" does not fit.'}]},
   {q:'Which sentence is correct?',options:[{t:'Send it to me at my home address.',ok:true,why:'Right. "To me" is the person it goes to, "at my home address" is the exact spot.'},{t:'Send it at me to my home address.',tag:'prep-to-at',why:'The two words are swapped. The person takes "to", the address takes "at".'},{t:'Send it on me at my home address.',tag:'prep-on-address',why:'"On me" does not mean the person it is sent to. Use "to me".'},{t:'Send it me on my home address.',tag:'prep-on-address',why:'"On" is never used with an address, and "to" is missing before "me".'}]}]};
 return [prepare(A),prepare(Bl)]}
+
+/* ---------- English part 2: at / on / to / upon, and with / by / through ---------- */
+function person(id,x,y,o={}){const ink=o.ink||'main';return [D(id+'.h',{kind:'circle',cx:x,cy:y,r:18},{ink,dur:350}),
+  D(id+'.b',{kind:'lines',segs:[[x,y+18,x,y+90],[x-28,y+45,x+28,y+45],[x,y+90,x-22,y+140],[x,y+90,x+22,y+140]]},{ink,dur:600})]}
+function table(id,x,y,w){return [D(id,{kind:'lines',segs:[[x,y,x+w,y],[x+12,y,x+12,y+55],[x+w-12,y,x+w-12,y+55]]},{sw:3,dur:600})]}
+function tree(id,x,y){return [D(id+'.crown',{kind:'ellipse',cx:x,cy:y+60,rx:72,ry:62},{ink:'accent2',fill:'accent2',fillOp:.25,dur:800}),
+  D(id+'.trunk',{kind:'rect',x:x-14,y:y+118,w:28,h:112},{ink:'main',fill:'#8a5a2b',fillOp:.3,dur:600})]}
+function hatchet(id,x,y){return [D(id+'.handle',{kind:'line',x1:x,y1:y,x2:x-95,y2:y-95},{ink:'#8a5a2b',sw:6,dur:500}),
+  D(id+'.blade',{kind:'poly',closed:true,pts:[[x-120,y-92],[x-102,y-128],[x-62,y-112],[x-80,y-74]],amp:.6},{ink:'main',fill:'muted',fillOp:.4,dur:600})]}
+function wordBox(id,cx,y,w,text,ink){return [D(id+'.b',{kind:'rect',x:cx-w/2,y,w,h:62},{ink,fill:ink,fillOp:.1,dur:500}),W(id+'.t',cx,y+42,text,{size:28,anchor:'middle',ink,dur:500})]}
+
+Object.assign(TAGS,{
+  'prep-time':'Using the wrong little word for a time, day or date',
+  'prep-at-to':'Mixing up "throw at" (to hit) and "throw to" (to catch)',
+  'prep-upon':'Using formal "upon" where everyday English uses "on"',
+  'prep-tool':'Using "by" or "through" for a tool you hold (use "with")',
+  'prep-way':'Using "with" for a way of doing or travelling (use "by")',
+  'prep-through':'Mixing up "through" with "with" or "by"'});
+PHASES.find(p=>p.id==='eng').lessons.push('prep-at-on-to-upon','prep-with-by-through');
+
+function buildEnglish2(){const G='accent2',B='accent',T='trouble',P='#7c3aed';
+const COLS=[120,360,600,840],WORDS=[['at',T],['on',B],['to',G],['upon',P]];
+const head=()=>[D('dv',{kind:'lines',segs:[[240,40,240,430],[480,40,480,430],[720,40,720,430]]},{ink:'muted',sw:1.5,dur:500}),
+  ...WORDS.map(([w,c],i)=>W('w'+i,COLS[i],82,w,{size:46,anchor:'middle',ink:c,weight:700,dur:400}))];
+const exCol=(pre,rows)=>rows.flatMap((col,i)=>col.map((t,j)=>W(`${pre}${i}_${j}`,COLS[i],185+j*75,t,{size:23,anchor:'middle',ink:j===2&&t.startsWith('(')?'muted':'main',dur:500})));
+
+/* ===== Lesson: at, on, to, upon ===== */
+const A={id:'prep-at-on-to-upon',phase:'eng',title:'"At", "on", "to" and "upon", side by side',
+ summary:'Four little words, each with its own picture: a point, a surface, an arrow, and a formal "on".',
+ objectives:['See the picture behind each word: point, surface, arrow, formal "on".','Use them for places.','Use them for time.','Know when "upon" is used, and say "on" in everyday English.'],
+ steps:[
+ {title:'Four words, four pictures',actions:[...head(),
+   D('atl',{kind:'line',x1:40,y1:260,x2:200,y2:260},{ink:'muted',dur:400}),...pin('atp',120,225),
+   ...table('ont',290,245,140),...book('onb',330,205,60,38),
+   D('toar',{kind:'arrow',x1:500,y1:240,x2:600,y2:240},{ink:G,sw:4,dur:600}),...house('toh',615,196,70),
+   ...book('upb',770,128,60,34),D('upar',{kind:'arrow',x1:800,y1:172,x2:800,y2:232},{ink:P,dur:500}),...table('upt',770,245,140),
+   ...wrapText('m0',COLS[0],340,'a point: one exact place or time',205,{size:22,anchor:'middle',ink:T}),
+   ...wrapText('m1',COLS[1],340,'touching a surface or a line',205,{size:22,anchor:'middle',ink:B}),
+   ...wrapText('m2',COLS[2],340,'movement towards a place or a person',205,{size:22,anchor:'middle',ink:G}),
+   ...wrapText('m3',COLS[3],340,'a formal, old-style "on"',205,{size:22,anchor:'middle',ink:P}),
+   W('tip',480,530,'at = point   ·   on = surface   ·   to = arrow   ·   upon = formal on',{size:26,anchor:'middle',weight:700})],
+  explain:[{cue:'w0',t:'Four little words. Each one has a **picture** behind it.'},{cue:'atl',t:'**at**: a pin on **one exact point**.'},{cue:'ont',t:'**on**: touching a **surface**, like a book lying on a table.'},
+   {cue:'toar',t:'**to**: an **arrow**. Something moves towards a place or a person.'},{cue:'upb',t:'**upon**: means the same as **on**, often with movement onto something. It sounds **formal or old**.'},
+   {cue:'m0',t:'Under each picture: its meaning in a few words.'},{cue:'tip',t:'Remember the four pictures: **point, surface, arrow, formal on**.'}]},
+ {title:'For places',actions:[ER('er_c2','all',{keep:['dv','w0','w1','w2','w3']}),
+   ...exCol('p',[['at the bus stop','at the door','at 25 Mall Road'],['on the table','on the wall','on Mall Road'],['go to school','send it to Ali','walk to the shop'],['jumped upon the bed','= jumped on the bed','(formal / old style)']]),
+   W('ptip',480,530,'Place:  point → at   ·   surface → on   ·   moving → to',{size:26,anchor:'middle',weight:700})],
+  explain:[{cue:'p0_0',t:'**at** a point: the bus stop, the door, an exact address.'},{cue:'p1_0',t:'**on** a surface or a line: the table, the wall, a road.'},{cue:'p2_0',t:'**to** shows **moving**: go to school, send to Ali, walk to the shop.'},
+   {cue:'p3_0',t:'**upon** is the same as **on**, just more formal: "jumped upon the bed" = "jumped on the bed".'},{cue:'ptip',t:'Ask: is it a **point**, a **surface**, or **moving**?'}],
+  check:{q:'The picture is hanging ___ the wall.',options:[
+   {t:'on',ok:true,why:'Right. The picture touches the surface of the wall, so use "on".'},
+   {t:'at',tag:'prep-other',why:'"At the wall" means standing near the wall, not hanging on it.'},
+   {t:'to',tag:'prep-other',why:'"To" shows movement. The picture is not moving.'},
+   {t:'in',tag:'prep-other',why:'"In the wall" would mean inside the wall, like a pipe.'}]}},
+ {title:'For time',actions:[ER('er_c3','all',{keep:['dv','w0','w1','w2','w3']}),
+   ...exCol('t',[["at 5 o'clock",'at night','at noon'],['on Monday','on 14 August','on Eid day'],['from 9 to 5','Monday to Friday','(= until)'],['upon arrival','upon hearing this','(= as soon as)']]),
+   W('ttip',480,530,'Time:  clock → at   ·   day or date → on   ·   until → to',{size:26,anchor:'middle',weight:700})],
+  explain:[{cue:'t0_0',t:'**at** + a clock time, or a point in the day: at 5 o\'clock, at night, at noon.'},{cue:'t1_0',t:'**on** + a day or a date: on Monday, on 14 August, on Eid day.'},
+   {cue:'t2_0',t:'**to** + the end of a time: from 9 **to** 5 means until 5.'},{cue:'t3_0',t:'**upon** + an action means **as soon as**: "upon arrival" = as soon as you arrive. This is formal.'},
+   {cue:'ttip',t:'Clock time → **at**. Day or date → **on**. Until → **to**.'}],
+  check:{q:'The train leaves ___ 6:30.',options:[
+   {t:'at',ok:true,why:'Right. 6:30 is a clock time, a point in the day, so use "at".'},
+   {t:'on',tag:'prep-time',why:'"On" is for days and dates (on Monday), not clock times.'},
+   {t:'to',tag:'prep-time',why:'"To" is for the end of a time span (from 6 to 7). Here we mean one point in time.'},
+   {t:'upon',tag:'prep-upon',why:'"Upon" is never used with a clock time.'}]}},
+ {title:'"Throw at" or "throw to"?',actions:[ER('er_c4'),D('dv4',{kind:'line',x1:480,y1:50,x2:480,y2:470},{ink:'muted',sw:1.5,dur:400}),
+   ...person('pa',80,170),...person('pb',390,170),D('aa',{kind:'arrow',x1:115,y1:205,x2:362,y2:172},{ink:T,sw:3.5,dur:700}),
+   W('sa',240,400,'throw the ball at Ali',{size:26,anchor:'middle',ink:T,weight:700}),W('sa2',240,445,'= to hit him',{size:24,anchor:'middle',ink:T}),
+   ...person('pc',560,170),...person('pd',880,170),D('ab',{kind:'poly',pts:[[595,210],[650,140],[720,115],[790,140],[840,200]]},{ink:G,sw:3.5,dur:700}),D('abh',{kind:'arrow',x1:828,y1:186,x2:845,y2:208,head:14},{ink:G,sw:3.5,dur:200}),
+   W('sb',720,400,'throw the ball to Ali',{size:26,anchor:'middle',ink:G,weight:700}),W('sb2',720,445,'= so he can catch it',{size:24,anchor:'middle',ink:G}),
+   W('stip',480,540,'at → aiming at a target   ·   to → giving to a person',{size:24,anchor:'middle',weight:700})],
+  explain:[{cue:'pa',t:'Two boys, and the ball flies straight at Ali\'s head.'},{cue:'sa',t:'"Throw the ball **at** Ali" means aiming at him, **to hit him**. "At" is the target point.'},
+   {cue:'pc',t:'Two more boys. This time the ball flies gently over.'},{cue:'sb',t:'"Throw the ball **to** Ali" means **so he can catch it**. "To" is the arrow to a person.'},
+   {cue:'stip',t:'One little word changes a game into a fight! Also: shout **at** someone (angry), but talk **to** someone.'}],
+  check:{q:'Some angry boys threw stones ___ the dog.',options:[
+   {t:'at',ok:true,why:'Right. They were aiming at the dog to hit it, so use "at".'},
+   {t:'to',tag:'prep-at-to',why:'"Threw stones to the dog" would mean so the dog could catch them, like a game.'},
+   {t:'on',tag:'prep-other',why:'"On the dog" would mean the stones landed on its back. "At" shows the aim.'},
+   {t:'upon',tag:'prep-upon',why:'"Upon" is formal "on" and does not show aiming.'}]}},
+ {title:'"Upon" in real life',actions:[ER('er_c5'),D('dv5',{kind:'line',x1:480,y1:40,x2:480,y2:350},{ink:'muted',sw:1.5,dur:400}),
+   W('fh',240,78,'Formal (upon)',{size:28,anchor:'middle',ink:P,weight:700}),W('eh',720,78,'Everyday',{size:28,anchor:'middle',ink:G,weight:700}),
+   W('f1',240,160,'Once upon a time…',{size:24,anchor:'middle',ink:P}),W('e1',720,160,'A long time ago…',{size:24,anchor:'middle',ink:G}),
+   W('f2',240,240,'Upon arrival, call me.',{size:24,anchor:'middle',ink:P}),W('e2',720,240,'When you arrive, call me.',{size:24,anchor:'middle',ink:G}),
+   W('f3',240,320,'It depends upon the weather.',{size:24,anchor:'middle',ink:P}),W('e3',720,320,'It depends on the weather.',{size:24,anchor:'middle',ink:G}),
+   D('mx',{kind:'cross',x:80,y:420,s:14},{ink:T,sw:4,dur:350}),W('m1',110,430,"I'll call you upon Monday.",{size:26,ink:T}),
+   D('mk',{kind:'tick',x:560,y:420,s:15},{ink:G,sw:4,dur:350}),W('m2',590,430,"I'll call you on Monday.",{size:26,ink:G}),
+   W('utip',480,535,'upon = formal on. In everyday English, just say on.',{size:26,anchor:'middle',weight:700})],
+  explain:[{cue:'fh',t:'Where will you meet **upon**? Mostly in stories and formal writing.'},{cue:'f1',t:'In stories: "Once **upon** a time…" means _a long time ago_.'},{cue:'f2',t:'In formal notices: "**Upon** arrival" means _when you arrive_.'},
+   {cue:'f3',t:'"Depend **upon**" and "depend **on**" mean the same. "On" is more common.'},{cue:'mx',t:'Do not use "upon" for a day. Say "on Monday".'},{cue:'utip',t:'Rule: **upon = formal on**. In daily speaking and writing, use **on**.'}]}],
+ practice:[
+  {q:'The meeting is ___ Monday.',options:[{t:'on',ok:true,why:'Right. Monday is a day, and days take "on".'},{t:'at',tag:'prep-time',why:'"At" is for clock times (at 3 pm), not days.'},{t:'to',tag:'prep-time',why:'"To" is for the end of a time span (Monday to Friday).'},{t:'upon',tag:'prep-upon',why:'"Upon" is formal and is not used for days.'}]},
+  {q:'Please throw the ball ___ me so I can catch it.',options:[{t:'to',ok:true,why:'Right. "Throw to" means giving it to someone to catch.'},{t:'at',tag:'prep-at-to',why:'"Throw at me" means aiming at me, to hit me.'},{t:'on',tag:'prep-other',why:'"On me" would mean the ball lands on my body.'},{t:'upon',tag:'prep-upon',why:'"Upon" is formal "on" and does not mean giving.'}]},
+  {q:'Which is the everyday way to say "Upon arrival, sign the register"?',options:[{t:'When you arrive, sign the register.',ok:true,why:'Right. "Upon arrival" is formal for "when you arrive".'},{t:'At arrival, sign the register.',tag:'prep-other',why:'"At arrival" is not used in English.'},{t:'To arrival, sign the register.',tag:'prep-other',why:'"To" shows movement towards a place. It does not mean "when".'},{t:'In arrive, sign the register.',tag:'prep-other',why:'"In arrive" is not correct English.'}]}]};
+
+/* ===== Lesson: with, by, through ===== */
+const C={id:'prep-with-by-through',phase:'eng',title:'"With", "by" or "through"?',
+ summary:'Why we fell a tree with a hatchet, travel by bus, and look through a window.',
+ objectives:['Use "with" for a tool you hold.','Use "by" for a way of doing something, or for who did it.','Use "through" for going in one side and out the other.'],
+ steps:[
+ {title:'Your sentence',actions:[
+   ...lineup('L',30,90,900,['I saw him felling the tree','___','a hatchet.'],[
+     {tokens:['with'],mark:'✓',why:'A hatchet is a tool in his hand. Tools take "with".'},
+     {tokens:['by'],mark:'✗',why:'"By" is for a way (by hand, by bus) or who did it.'},
+     {tokens:['through'],mark:'✗',why:'"Through" means in one side and out the other.'}],{size:32}),
+   W('Lb',480,545,'Answer: I saw him felling the tree with a hatchet.',{size:27,anchor:'middle',ink:G,weight:700})],
+  explain:[{cue:'L.p',t:'Your sentence: "I saw him felling the tree ___ a hatchet."'},{cue:'L.o0',t:'**with**: the hatchet is the tool he holds. **Right.**'},{cue:'L.o1',t:'**by**: for a way of doing something, or for the person who did it. Not here.'},{cue:'L.o2',t:'**through**: in one side and out the other. Not here.'},{cue:'Lb',t:'So: "I saw him felling the tree **with** a hatchet."'}]},
+ {title:'"With" = the tool in your hand',actions:[ER('er_d2'),
+   ...tree('tr',200,70),...hatchet('hx',400,300),W('hxl',330,345,'hatchet',{size:22,anchor:'middle',ink:'muted'}),
+   W('wpat',560,140,'with + a tool you hold',{size:30,ink:B,weight:700}),
+   W('w1',560,205,'cut it with a knife',{size:24}),W('w2',560,255,'write with a pen',{size:24}),W('w3',560,305,'open it with a key',{size:24}),
+   ...wseqC('ws',480,420,['I saw him felling the tree ','with',' a hatchet.'],{size:30}),HL('r1','ws.1','swipe'),
+   W('wmean',480,480,'with = using this tool',{size:28,anchor:'middle',ink:B,weight:700}),
+   W('fell',480,545,'fell a tree = cut it down   (felling, not falling)',{size:22,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'tr',t:'Here is a tree.'},{cue:'hx',t:'And here is a hatchet: a small axe you hold in one hand.'},{cue:'wpat',t:'A tool you hold and use takes **with**.'},
+   {cue:'w1',t:'Cut **with** a knife. Write **with** a pen. Open **with** a key.'},{cue:'ws',t:'So: "I saw him felling the tree **with** a hatchet."'},{cue:'wmean',t:'**With** = using this tool.'},
+   {cue:'fell',t:'Also good: **fell** means cut a tree down, so "felling the tree" is right. "Falling" means dropping down.'}],
+  check:{q:'She opened the door ___ a key.',options:[
+   {t:'with',ok:true,why:'Right. A key is a tool she holds, so use "with".'},
+   {t:'by',tag:'prep-tool',why:'"By" is for a way (by hand) or a person. A key is a tool: use "with".'},
+   {t:'through',tag:'prep-through',why:'"Through" means passing in one side and out the other. She did not pass through the key.'},
+   {t:'on',tag:'prep-other',why:'"On" is for touching a surface, not for using a tool.'}]}},
+ {title:'"By" = the way, or who did it',actions:[ER('er_d3'),
+   ...wordBox('b1',200,80,220,'by hand',B),...wordBox('b2',480,80,220,'by bus',B),...wordBox('b3',760,80,220,'by email',B),
+   W('bway',480,200,'by + a way of doing or travelling (no "a", no "the")',{size:24,anchor:'middle',ink:B}),
+   ...wseqC('bp',480,295,['The tree was felled ','by Ali',' ','with a hatchet','.'],{size:30}),HL('r2','bp.1','swipe'),HL('r3','bp.3','underline',{ink:G}),
+   W('bwho',480,365,'by Ali → who did it',{size:26,anchor:'middle',ink:B}),W('bwhat',480,415,'with a hatchet → what tool he used',{size:26,anchor:'middle',ink:G}),
+   W('btip',480,520,'tool → with      ·      way or person → by',{size:28,anchor:'middle',weight:700})],
+  explain:[{cue:'b1',t:'**By** shows **the way** something is done: by hand, by bus, by email.'},{cue:'bway',t:'Notice: no "a" or "the" after "by" here. We say "by bus", not "by a bus".'},
+   {cue:'bp',t:'**By** also shows **who did it**: "The tree was felled **by Ali** **with a hatchet**."'},{cue:'bwho',t:'**by Ali** = the person who did it.'},{cue:'bwhat',t:'**with a hatchet** = the tool he used.'},{cue:'btip',t:'Short rule: **tool → with**. **Way or person → by**.'}],
+  check:{q:'I come to the office ___ bus.',options:[
+   {t:'by',ok:true,why:'Right. "Bus" is the way you travel, so use "by" (with no "a" or "the").'},
+   {t:'with',tag:'prep-way',why:'"With" is for a tool you hold. A bus is a way of travelling: "by bus".'},
+   {t:'through',tag:'prep-through',why:'"Through" means passing through something, like a tunnel.'},
+   {t:'on',tag:'prep-other',why:'"On" needs "the": "on the bus". Without "the", say "by bus".'}]}},
+ {title:'"Through" = in one side, out the other',actions:[ER('er_d4'),
+   D('tun',{kind:'lines',segs:[[300,150,660,150],[300,240,660,240]]},{ink:'muted',sw:4,dur:700}),
+   D('tha',{kind:'arrow',x1:140,y1:195,x2:820,y2:195},{ink:P,sw:4,dur:900}),W('thl',480,120,'through',{size:40,anchor:'middle',ink:P,weight:700}),
+   W('tin',220,285,'in',{size:24,anchor:'middle',ink:'muted'}),W('tout',740,285,'out',{size:24,anchor:'middle',ink:'muted'}),
+   W('tmean',480,340,'through = in one side and out the other',{size:28,anchor:'middle',ink:P,weight:700}),
+   W('t1',480,395,'Light comes through the window.',{size:24,anchor:'middle'}),
+   W('t2',480,440,'We drove through the tunnel.',{size:24,anchor:'middle'}),
+   W('t3',480,485,'I got the job through a friend.  (the friend was the channel)',{size:24,anchor:'middle'}),
+   W('tno',480,550,'A hatchet is a tool, not a tunnel, so not "through".',{size:24,anchor:'middle',ink:T})],
+  explain:[{cue:'tun',t:'A tunnel, open at both ends.'},{cue:'tha',t:'The arrow goes **in one side and out the other**. That is **through**.'},
+   {cue:'tmean',t:'**Through** = in one side and out the other.'},{cue:'t1',t:'Light comes **through** the window. We drove **through** the tunnel.'},
+   {cue:'t3',t:'It can also mean a **channel**: "I got the job **through** a friend." The friend was the path to the job.'},{cue:'tno',t:'A hatchet is not a path or a channel, so "through a hatchet" is wrong.'}],
+  check:{q:'Sunlight comes ___ the window.',options:[
+   {t:'through',ok:true,why:'Right. The light goes in one side of the glass and out the other.'},
+   {t:'with',tag:'prep-through',why:'"With" is for a tool you hold. A window is not a tool.'},
+   {t:'by',tag:'prep-through',why:'"By the window" means near the window. The light passes through it.'},
+   {t:'at',tag:'prep-other',why:'"At the window" means at that point, not passing through.'}]}},
+ {title:'All three, side by side',actions:[ER('er_d5'),D('dv',{kind:'lines',segs:[[320,40,320,400],[640,40,640,400]]},{ink:'muted',sw:1.5,dur:500}),
+   ...[['with',B,'a tool you hold',['with a hatchet','with a pen','with a key']],['by',G,'the way, or who did it',['by hand','by bus','by Ali']],['through',P,'in one side, out the other',['through the door','through a friend','through hard work']]].flatMap(([w,c,m,ex],i)=>{const cx=160+i*320;return [
+     W('h'+i,cx,82,w,{size:44,anchor:'middle',ink:c,weight:700,dur:400}),W('m'+i,cx,140,m,{size:23,anchor:'middle',ink:c}),
+     ...ex.map((e,j)=>W(`e${i}_${j}`,cx,225+j*58,e,{size:24,anchor:'middle',dur:450}))]}),
+   ...wseqC('fin',480,480,['I saw him felling the tree ','with',' a hatchet.'],{size:30,ink:G}),HL('r4','fin.1','swipe'),
+   W('fin2',480,545,'tool → with   ·   way or person → by   ·   passing in and out → through',{size:22,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'h0',t:'**with**: a tool you hold.'},{cue:'h1',t:'**by**: the way you do something, or the person who did it.'},{cue:'h2',t:'**through**: in one side and out the other, or a channel like a friend.'},
+   {cue:'fin',t:'Your sentence again: "I saw him felling the tree **with** a hatchet."'},{cue:'fin2',t:'Before choosing, ask: is it a **tool**, a **way or person**, or **passing through**?'}]}],
+ practice:[
+  {q:'He cut the cake ___ a knife.',options:[{t:'with',ok:true,why:'Right. A knife is a tool he holds.'},{t:'by',tag:'prep-tool',why:'"By" is for a way or a person, not a tool. Use "with a knife".'},{t:'through',tag:'prep-through',why:'"Through the cake" would mean the knife went all the way through it, but the tool still takes "with".'},{t:'at',tag:'prep-other',why:'"At" is for a point or a target, not a tool.'}]},
+  {q:'This sweater was made ___ hand.',options:[{t:'by',ok:true,why:'Right. "By hand" is the way it was made, with no "a" or "the".'},{t:'with',tag:'prep-way',why:'We say "made by hand". "With" needs a tool: "with a needle".'},{t:'through',tag:'prep-through',why:'"Through hand" is not English.'},{t:'on',tag:'prep-other',why:'"On hand" means available nearby. It does not show how it was made.'}]},
+  {q:'The tree was felled ___ the woodcutter ___ an axe.',options:[{t:'by … with',ok:true,why:'Right. By the woodcutter (who did it), with an axe (the tool).'},{t:'with … by',tag:'prep-tool',why:'Swapped. The person takes "by", the tool takes "with".'},{t:'through … with',tag:'prep-through',why:'The woodcutter is the person who did it, so use "by", not "through".'},{t:'by … by',tag:'prep-tool',why:'The axe is a tool you hold, so it takes "with".'}]}]};
+return [prepare(A),prepare(C)]}
 
 /* =====================================================================
    4. CONTENT VALIDATOR + LAYOUT CHECK (also used by the automated test)
