@@ -52,11 +52,11 @@
         alt: "The sentence The raid was carried out with a gap the minister., then the candidates: at the behest of (fits: on the order of); on behalf of (correct English, different meaning: representing the minister); on the behest of (not used: the fixed phrase is at the behest of)",
         say: [
           { text: "Fill the gap: The raid was carried out \u2026 the minister. The sentence wants **at the behest of**: on the order of.", cue: "f1w1" },
-          { text: "Why not the others? **on behalf of** is correct English, but it means representing the minister. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ **on the behest of**: the fixed phrase is at the behest of.", cue: "f1w2" },
+          { text: "Why not the others? **on behalf of** is correct English, but it means representing the minister. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ There **on behalf of** means representing, for. **on the behest of**: the fixed phrase is at the behest of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The raid was carried out ____ the minister.", [["gavel", "at the behest of", true, "on the order of"], ["support", "on behalf of", "diff", "representing | the minister"], ["cross", "on the behest of", false, "the fixed phrase is | at the behest of"]], ["at the behest of = on the order of", "Why at? behest = command"], null, ["\u2248 on behalf of: I am writing on behalf of my father."]),
+          ...PLAB.kit.lineup("f1w", "The raid was carried out ____ the minister.", [["gavel", "at the behest of", true, "on the order of"], ["support", "on behalf of", "diff", "representing | the minister"], ["cross", "on the behest of", false, "the fixed phrase is | at the behest of"]], ["at the behest of = on the order of", "Why at? behest = command"], null, ["\u2248 on behalf of: I am writing on behalf of my father.  = representing, for"]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence He succeeded with a gap his health., then the candidates: at the cost of (fits: losing something to get it); in the course of (correct English, different meaning: while his health went on); on the cost of (not used: a price is a point you pay at)",
         say: [
           { text: "Fill the gap: He succeeded \u2026 his health. The sentence wants **at the cost of**: losing something to get it.", cue: "f2w1" },
-          { text: "Why not the others? **in the course of** is correct English, but it means while his health went on. That is not what this sentence says. Where in the course of fits: _In the course of the inquiry, new facts emerged._ **on the cost of**: a price is a point you pay at.", cue: "f2w2" },
+          { text: "Why not the others? **in the course of** is correct English, but it means while his health went on. That is not what this sentence says. Where in the course of fits: _In the course of the inquiry, new facts emerged._ There **in the course of** means during. **on the cost of**: a price is a point you pay at.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "He succeeded ____ his health.", [["weighCost", "at the cost of", true, "losing something | to get it"], ["absorbedIn", "in the course of", "diff", "while his | health went on"], ["cross", "on the cost of", false, "a price is a | point you pay at"]], ["at the cost of = losing something to get it", "Why at? a price is a point you pay at"], null, ["\u2248 in the course of: In the course of the inquiry, new facts emerged."]),
+          ...PLAB.kit.lineup("f2w", "He succeeded ____ his health.", [["weighCost", "at the cost of", true, "losing something | to get it"], ["absorbedIn", "in the course of", "diff", "while his | health went on"], ["cross", "on the cost of", false, "a price is a | point you pay at"]], ["at the cost of = losing something to get it", "Why at? a price is a point you pay at"], null, ["\u2248 in the course of: In the course of the inquiry, new facts emerged.  = during"]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence They grew rich with a gap the poor., then the candidates: at the expense of (fits: causing loss to); at the mercy of (correct English, different meaning: in the power of the poor); on the expense of (not used: a price is a point: at)",
         say: [
           { text: "Fill the gap: They grew rich \u2026 the poor. The sentence wants **at the expense of**: causing loss to.", cue: "f3w1" },
-          { text: "Why not the others? **at the mercy of** is correct English, but it means in the power of the poor. That is not what this sentence says. Where at the mercy of fits: _The boat was at the mercy of the waves._ **on the expense of**: a price is a point: at.", cue: "f3w2" },
+          { text: "Why not the others? **at the mercy of** is correct English, but it means in the power of the poor. That is not what this sentence says. Where at the mercy of fits: _The boat was at the mercy of the waves._ There **at the mercy of** means completely in the power of. **on the expense of**: a price is a point: at.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "They grew rich ____ the poor.", [["expense", "at the expense of", true, "causing loss to"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the mercy of", "diff", "in the power | of the poor"], ["cross", "on the expense of", false, "a price is | a point: at"]], ["at the expense of = causing loss to", "Why at? the bill lands at that point"], null, ["\u2248 at the mercy of: The boat was at the mercy of the waves."]),
+          ...PLAB.kit.lineup("f3w", "They grew rich ____ the poor.", [["expense", "at the expense of", true, "causing loss to"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the mercy of", "diff", "in the power | of the poor"], ["cross", "on the expense of", false, "a price is | a point: at"]], ["at the expense of = causing loss to", "Why at? the bill lands at that point"], null, ["\u2248 at the mercy of: The boat was at the mercy of the waves.  = completely in the power of"]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence The boat was with a gap the waves., then the candidates: at the mercy of (fits: completely in the power of); at the expense of (correct English, different meaning: causing loss to the waves); in the mercy of (not used: the fixed phrase is at the mercy of)",
         say: [
           { text: "Fill the gap: The boat was \u2026 the waves. The sentence wants **at the mercy of**: completely in the power of.", cue: "f4w1" },
-          { text: "Why not the others? **at the expense of** is correct English, but it means causing loss to the waves. That is not what this sentence says. Where at the expense of fits: _They grew rich at the expense of the poor._ **in the mercy of**: the fixed phrase is at the mercy of.", cue: "f4w2" },
+          { text: "Why not the others? **at the expense of** is correct English, but it means causing loss to the waves. That is not what this sentence says. Where at the expense of fits: _They grew rich at the expense of the poor._ There **at the expense of** means causing loss to. **in the mercy of**: the fixed phrase is at the mercy of.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The boat was ____ the waves.", [["puppet", "at the mercy of", true, "completely in | the power of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the expense of", "diff", "causing loss | to the waves"], ["cross", "in the mercy of", false, "the fixed phrase | is at the mercy of"]], ["at the mercy of = completely in the power of", "Why at? you are at the point where they decide"], null, ["\u2248 at the expense of: They grew rich at the expense of the poor."]),
+          ...PLAB.kit.lineup("f4w", "The boat was ____ the waves.", [["puppet", "at the mercy of", true, "completely in | the power of"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the expense of", "diff", "causing loss | to the waves"], ["cross", "in the mercy of", false, "the fixed phrase | is at the mercy of"]], ["at the mercy of = completely in the power of", "Why at? you are at the point where they decide"], null, ["\u2248 at the expense of: They grew rich at the expense of the poor.  = causing loss to"]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence with a gap, I must thank the organisers., then the candidates: at the outset (fits: at the start); at last (correct English, different meaning: finally, after a long wait); in the outset (not used: a starting point takes at)",
         say: [
           { text: "Fill the gap: \u2026, I must thank the organisers. The sentence wants **at the outset**: at the start.", cue: "f5w1" },
-          { text: "Why not the others? **at last** is correct English, but it means finally, after a long wait. That is not what this sentence says. Where at last fits: _At last, the train arrived._ **in the outset**: a starting point takes at.", cue: "f5w2" },
+          { text: "Why not the others? **at last** is correct English, but it means finally, after a long wait. That is not what this sentence says. Where at last fits: _At last, the train arrived._ There **at last** means finally, after a long wait. **in the outset**: a starting point takes at.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____, I must thank the organisers.", [["flag", "at the outset", true, "at the start"], [[["arrowR", -40, 0], ["target", 30, 0]], "at last", "diff", "finally, after | a long wait"], ["cross", "in the outset", false, "a starting | point takes at"]], ["at the outset = at the start", "Why at? the start is a point in time"], null, ["\u2248 at last: At last, the train arrived."]),
+          ...PLAB.kit.lineup("f5w", "____, I must thank the organisers.", [["flag", "at the outset", true, "at the start"], [[["arrowR", -40, 0], ["target", 30, 0]], "at last", "diff", "finally, after | a long wait"], ["cross", "in the outset", false, "a starting | point takes at"]], ["at the outset = at the start", "Why at? the start is a point in time"], null, ["\u2248 at last: At last, the train arrived.  = finally, after a long wait"]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence His words are with a gap his actions., then the candidates: at odds with (fits: in disagreement with); in line with (correct English, different meaning: matching his actions); at odds to (not used: at odds with, never to)",
         say: [
           { text: "Fill the gap: His words are \u2026 his actions. The sentence wants **at odds with**: in disagreement with.", cue: "f6w1" },
-          { text: "Why not the others? **in line with** is correct English, but it means matching his actions. That is not what this sentence says. Where in line with fits: _Salaries were raised in line with inflation._ **at odds to**: at odds with, never to.", cue: "f6w2" },
+          { text: "Why not the others? **in line with** is correct English, but it means matching his actions. That is not what this sentence says. Where in line with fits: _Salaries were raised in line with inflation._ There **in line with** means matching, rising with. **at odds to**: at odds with, never to.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "His words are ____ his actions.", [["argue", "at odds with", true, "in disagreement | with"], ["absorbedIn", "in line with", "diff", "matching | his actions"], ["cross", "at odds to", false, "at odds with, | never to"]], ["at odds with = in disagreement with", "Why with? odds = difference"], null, ["\u2248 in line with: Salaries were raised in line with inflation."]),
+          ...PLAB.kit.lineup("f6w", "His words are ____ his actions.", [["argue", "at odds with", true, "in disagreement | with"], ["absorbedIn", "in line with", "diff", "matching | his actions"], ["cross", "at odds to", false, "at odds with, | never to"]], ["at odds with = in disagreement with", "Why with? odds = difference"], null, ["\u2248 in line with: Salaries were raised in line with inflation.  = matching, rising with"]),
         ],
       },
       {

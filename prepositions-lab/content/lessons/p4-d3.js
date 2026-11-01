@@ -63,11 +63,11 @@
         alt: "The sentence He died with a gap cancer., then the candidates: of (fits: die because of an illness or condition); from (correct English, different meaning: an outside cause, like an injury (a tendency, not a strict rule)); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: He died \u2026 cancer. What does the sentence want to say? It wants **die of**: die because of an illness or condition.", cue: "e1w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean an outside cause, like an injury (a tendency, not a strict rule). That is not what this sentence says. Where from fits: _She died from her injuries._ **with**: with = together; not used.", cue: "e1w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean an outside cause, like an injury (a tendency, not a strict rule). That is not what this sentence says. Where from fits: _She died from her injuries._ There **from** means die because of an outside cause. **with**: with = together; not used.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "He died ____ cancer.", [["awareOf", "of", true, "die because of an | illness or condition"], ["holdBack", "from", "diff", "an outside cause, like an injury | (a tendency, not a strict rule)"], ["cross", "with", false, "with = together; | not used"]], ["die of = die because of an illness or condition", "die from = die because of an outside cause"], null, ["\u2248 from: She died from her injuries."]),
+          ...PLAB.kit.lineup("e1w", "He died ____ cancer.", [["awareOf", "of", true, "die because of an | illness or condition"], ["holdBack", "from", "diff", "an outside cause, like an injury | (a tendency, not a strict rule)"], ["cross", "with", false, "with = together; | not used"]], ["die of = die because of an illness or condition", "die from = die because of an outside cause"], null, ["\u2248 from: She died from her injuries.  = die because of an outside cause"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence Urdu differs with a gap Arabic in its grammar., then the candidates: from (fits: be unlike); with (correct English, different meaning: disagree with Arabic as if it were a person); to (not used: to points; differing moves apart)",
         say: [
           { text: "Fill the gap: Urdu differs \u2026 Arabic in its grammar. What does the sentence want to say? It wants **differ from**: be unlike.", cue: "e2w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean disagree with Arabic as if it were a person. That is not what this sentence says. Where with fits: _I differ with you on this point._ **to**: to points; differing moves apart.", cue: "e2w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean disagree with Arabic as if it were a person. That is not what this sentence says. Where with fits: _I differ with you on this point._ There **with** means disagree with a person. **to**: to points; differing moves apart.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Urdu differs ____ Arabic in its grammar.", [["holdBack", "from", true, "be unlike"], ["agreeWith", "with", "diff", "disagree with Arabic | as if it were a person"], ["cross", "to", false, "to points; differing | moves apart"]], ["differ from = be unlike", "differ with = disagree with a person"], null, ["\u2248 with: I differ with you on this point."]),
+          ...PLAB.kit.lineup("e2w", "Urdu differs ____ Arabic in its grammar.", [["holdBack", "from", true, "be unlike"], ["agreeWith", "with", "diff", "disagree with Arabic | as if it were a person"], ["cross", "to", false, "to points; differing | moves apart"]], ["differ from = be unlike", "differ with = disagree with a person"], null, ["\u2248 with: I differ with you on this point.  = disagree with a person"]),
         ],
       },
       {
@@ -228,11 +228,11 @@
         alt: "The sentence We were disappointed with a gap the results., then the candidates: with (fits: unhappy with a result); in (correct English, different meaning: let down by the results as if they were a person); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: We were disappointed \u2026 the results. What does the sentence want to say? It wants **disappointed with**: unhappy with a result.", cue: "e5w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean let down by the results as if they were a person. That is not what this sentence says. Where in fits: _I am disappointed in you._ **from**: a word-for-word translation.", cue: "e5w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean let down by the results as if they were a person. That is not what this sentence says. Where in fits: _I am disappointed in you._ There **in** means let down by a person. **from**: a word-for-word translation.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "We were disappointed ____ the results.", [["agreeWith", "with", true, "unhappy with | a result"], ["absorbedIn", "in", "diff", "let down by the results | as if they were a person"], ["cross", "from", false, "a word-for-word | translation"]], ["disappointed with = unhappy with a result", "disappointed in = let down by a person"], null, ["\u2248 in: I am disappointed in you."]),
+          ...PLAB.kit.lineup("e5w", "We were disappointed ____ the results.", [["agreeWith", "with", true, "unhappy with | a result"], ["absorbedIn", "in", "diff", "let down by the results | as if they were a person"], ["cross", "from", false, "a word-for-word | translation"]], ["disappointed with = unhappy with a result", "disappointed in = let down by a person"], null, ["\u2248 in: I am disappointed in you.  = let down by a person"]),
         ],
       },
       {
@@ -288,11 +288,11 @@
         alt: "The sentence Employers must not discriminate with a gap women., then the candidates: against (fits: treat unfairly); between (correct English, different meaning: tell women apart from something); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: Employers must not discriminate \u2026 women. What does the sentence want to say? It wants **discriminate against**: treat unfairly.", cue: "e6w1" },
-          { text: "Why not the others? **between** is correct English, but it would mean tell women apart from something. That is not what this sentence says. Where between fits: _A judge must discriminate between fact and opinion._ **from**: from is a source; not used.", cue: "e6w2" },
+          { text: "Why not the others? **between** is correct English, but it would mean tell women apart from something. That is not what this sentence says. Where between fits: _A judge must discriminate between fact and opinion._ There **between** means tell apart. **from**: from is a source; not used.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Employers must not discriminate ____ women.", [["shield", "against", true, "treat unfairly"], ["linkBetween", "between", "diff", "tell women apart | from something"], ["cross", "from", false, "from is a | source; not used"]], ["discriminate against = treat unfairly", "discriminate between = tell apart"], null, ["\u2248 between: A judge must discriminate between fact and opinion."]),
+          ...PLAB.kit.lineup("e6w", "Employers must not discriminate ____ women.", [["shield", "against", true, "treat unfairly"], ["linkBetween", "between", "diff", "tell women apart | from something"], ["cross", "from", false, "from is a | source; not used"]], ["discriminate against = treat unfairly", "discriminate between = tell apart"], null, ["\u2248 between: A judge must discriminate between fact and opinion.  = tell apart"]),
         ],
       },
       {

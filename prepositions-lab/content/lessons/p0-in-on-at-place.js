@@ -64,11 +64,11 @@
         alt: "The students are with a gap the hall. Answer: in, because walls are all around the students. Not on: they are not on its roof. Not at: at the hall = at the place, maybe outside.",
         say: [
           { text: "Fill the gap: The students are … the hall. Picture it: walls are all around the students. So **in**.", cue: "inx11" },
-          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside That is correct English, but it says something else. Where at fits: _Meet me at the hall gate at nine._", cue: "inx1-r2" },
+          { text: "Why not **on**? they are not on its roof. Why not **at**? at the hall = at the place, maybe outside. That is correct English, but it says something else. Where at fits: _Meet me at the hall gate at nine._ There **at** means at the hall as a meeting point.", cue: "inx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-inx1"),
-          ...PLAB.kit.lineup("inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"], null, ["≈ at: Meet me at the hall gate at nine."]),
+          ...PLAB.kit.lineup("inx1", "The students are ____ the hall.", [["inCity", "in", true, "walls are all around | the students"], ["roadPass", "on", false, "they are not on | its roof"], ["airportDot", "at", "diff", "at the hall = at the | place, maybe outside"]], ["Why in? walls are all around the students", "Ask: Is there an area or walls all around?"], null, ["≈ at: Meet me at the hall gate at nine.  = at the hall as a meeting point"]),
         ],
       },
       {
@@ -254,7 +254,7 @@
             {
               "text": "at",
               "misconception": "p0-sense",
-              "why": "At the wall = standing beside it. It is correct English, but it says something else. Where at fits: He stood at the wall and waited."
+              "why": "At the wall = standing beside it. It is correct English, but it says something else. Where at fits: He stood at the wall and waited. There at means beside the wall, not hanging on it."
             },
             {
               "text": "in",
@@ -292,7 +292,7 @@
             {
               "text": "in",
               "misconception": "p0-sense",
-              "why": "In it = inside the building itself. It is correct English, but it says something else. Where in fits: We waited in the petrol station's shop."
+              "why": "In it = inside the building itself. It is correct English, but it says something else. Where in fits: We waited in the petrol station's shop. There in means inside the shop building."
             },
             {
               "text": "on",

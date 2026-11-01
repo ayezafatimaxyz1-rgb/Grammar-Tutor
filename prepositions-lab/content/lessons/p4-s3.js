@@ -59,11 +59,11 @@
         alt: "The sentence I am not sure with a gap the date., then the candidates: about (fits: certain about details); of (correct English, different meaning: sure of holds one fact or result; the date's details are a topic); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: I am not sure \u2026 the date. What does the sentence want to say? It wants **sure about**: certain about details.", cue: "e2w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean sure of holds one fact or result; the date's details are a topic. That is not what this sentence says. Where of fits: _We are sure of success._ **on**: on is resting; not used.", cue: "e2w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean sure of holds one fact or result; the date's details are a topic. That is not what this sentence says. Where of fits: _We are sure of success._ There **of** means certain that it is true or will happen. **on**: on is resting; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "I am not sure ____ the date.", [["aboutCircle", "about", true, "certain | about details"], ["awareOf", "of", "diff", "sure of holds one fact or result; | the date's details are a topic"], ["cross", "on", false, "on is resting; | not used"]], ["sure of = certain that it is true or will happen", "sure about = certain about details"], null, ["\u2248 of: We are sure of success."]),
+          ...PLAB.kit.lineup("e2w", "I am not sure ____ the date.", [["aboutCircle", "about", true, "certain | about details"], ["awareOf", "of", "diff", "sure of holds one fact or result; | the date's details are a topic"], ["cross", "on", false, "on is resting; | not used"]], ["sure of = certain that it is true or will happen", "sure about = certain about details"], null, ["\u2248 of: We are sure of success.  = certain that it is true or will happen"]),
         ],
       },
       {
@@ -218,11 +218,11 @@
         alt: "The sentence We have sympathy with a gap the victims., then the candidates: for (fits: feeling sorry for); with (correct English, different meaning: agreeing with the victims' views, not pity); to (not used: to points; not used)",
         say: [
           { text: "Fill the gap: We have sympathy \u2026 the victims. What does the sentence want to say? It wants **sympathy for**: feeling sorry for.", cue: "e7w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean agreeing with the victims' views, not pity. That is not what this sentence says. Where with fits: _I have some sympathy with their views._ **to**: to points; not used.", cue: "e7w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean agreeing with the victims' views, not pity. That is not what this sentence says. Where with fits: _I have some sympathy with their views._ There **with** means agreeing with. **to**: to points; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "We have sympathy ____ the victims.", [["wantStar", "for", true, "feeling sorry for"], ["agreeWith", "with", "diff", "agreeing with the | victims' views, not pity"], ["cross", "to", false, "to points; not used"]], ["sympathy for = feeling sorry for", "sympathy with = agreeing with"], null, ["\u2248 with: I have some sympathy with their views."]),
+          ...PLAB.kit.lineup("e7w", "We have sympathy ____ the victims.", [["wantStar", "for", true, "feeling sorry for"], ["agreeWith", "with", "diff", "agreeing with the | victims' views, not pity"], ["cross", "to", false, "to points; not used"]], ["sympathy for = feeling sorry for", "sympathy with = agreeing with"], null, ["\u2248 with: I have some sympathy with their views.  = agreeing with"]),
         ],
       },
       {

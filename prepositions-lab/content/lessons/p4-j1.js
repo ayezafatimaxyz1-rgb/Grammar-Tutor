@@ -81,11 +81,11 @@
         alt: "The sentence She joined with a gap the army., then the candidates: (no word) (fits: become a member of); in (correct English, different meaning: took part in the army as if it were an activity); to (not used: join takes its object directly)",
         say: [
           { text: "Fill the gap: She joined \u2026 the army. What does the sentence want to say? It wants **join**: become a member of.", cue: "e2w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean took part in the army as if it were an activity. That is not what this sentence says. Where in fits: _Everyone joined in the singing._ **to**: join takes its object directly.", cue: "e2w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean took part in the army as if it were an activity. That is not what this sentence says. Where in fits: _Everyone joined in the singing._ There **in** means take part in an activity. **to**: join takes its object directly.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "She joined ____ the army.", [["check", "(no word)", true, "become a member of"], ["absorbedIn", "in", "diff", "took part in the army as | if it were an activity"], ["cross", "to", false, "join takes its | object directly"]], ["join = become a member of", "join in = take part in an activity"], null, ["\u2248 in: Everyone joined in the singing."]),
+          ...PLAB.kit.lineup("e2w", "She joined ____ the army.", [["check", "(no word)", true, "become a member of"], ["absorbedIn", "in", "diff", "took part in the army as | if it were an activity"], ["cross", "to", false, "join takes its | object directly"]], ["join = become a member of", "join in = take part in an activity"], null, ["\u2248 in: Everyone joined in the singing.  = take part in an activity"]),
         ],
       },
       {

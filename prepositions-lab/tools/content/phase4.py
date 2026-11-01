@@ -16,7 +16,7 @@ the others" lineup, and a practice question at the end of its lesson.
 """
 import json, glob, os, re, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from uses import use_for
+from uses import use_for, use_line, use_say
 
 T = json.dumps
 D, N = "D", "N"
@@ -133,10 +133,10 @@ def entry_steps(e, n, lid):
     why = []
     for p, v, r in e["others"]:
         ex_ = use_for(w if p == "(no word)" else f"{w} {p}") if v == D else None
-        why.append((f"**{p}** is correct English, but it would mean {clean(r)}. That is not what this sentence says." + (f" Where {p} fits: _{ex_}_" if ex_ else "")) if v == D else f"**{p}**: {clean(r)}.")
+        why.append((f"**{p}** is correct English, but it would mean {clean(r)}. That is not what this sentence says." + use_say(p, w if p == "(no word)" else f"{w} {p}", reason=r)) if v == D else f"**{p}**: {clean(r)}.")
     says2 = [(f"Fill the gap: {sentence.replace('____', '…')} What does the sentence want to say? It wants **{phrase(w, prep)}**: {meaning}.", f"e{n}w1"),
              ("Why not the others? " + " ".join(why), f"e{n}w2")]
-    uses_ = [f"\u2248 {p}: {use_for(w if p == '(no word)' else f'{w} {p}')}" for p, v, r in e["others"] if v == D and use_for(w if p == '(no word)' else f'{w} {p}')]
+    uses_ = [x for x in (use_line(p, w if p == "(no word)" else f"{w} {p}", reason=r) for p, v, r in e["others"] if v == D) if x]
     rules = [f"{phrase(w, s_[0])} = {s_[1]}" for s_ in senses][:2]
     opt_js = ", ".join(f"[{o[0]}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
     alt2 = f"The sentence {sentence.replace('____', 'with a gap')}, then the candidates: " + "; ".join(

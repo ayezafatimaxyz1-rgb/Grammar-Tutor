@@ -157,11 +157,11 @@
         alt: "The sentence The report is concerned with a gap rural health., then the candidates: with (fits: dealing with, about a subject); about (correct English, different meaning: the report is worried about rural health); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The report is concerned \u2026 rural health. What does the sentence want to say? It wants **concerned with**: dealing with, about a subject.", cue: "e4w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean the report is worried about rural health. That is not what this sentence says. Where about fits: _Parents are concerned about safety._ **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean the report is worried about rural health. That is not what this sentence says. Where about fits: _Parents are concerned about safety._ There **about** means worried about. **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The report is concerned ____ rural health.", [["agreeWith", "with", true, "dealing with, | about a subject"], ["aboutCircle", "about", "diff", "the report is worried | about rural health"], ["cross", "of", false, "of = belonging; | not used"]], ["concerned about = worried about", "concerned with = dealing with, about a subject"], null, ["\u2248 about: Parents are concerned about safety."]),
+          ...PLAB.kit.lineup("e4w", "The report is concerned ____ rural health.", [["agreeWith", "with", true, "dealing with, | about a subject"], ["aboutCircle", "about", "diff", "the report is worried | about rural health"], ["cross", "of", false, "of = belonging; | not used"]], ["concerned about = worried about", "concerned with = dealing with, about a subject"], null, ["\u2248 about: Parents are concerned about safety.  = worried about"]),
         ],
       },
       {
@@ -217,11 +217,11 @@
         alt: "The sentence He was condemned with a gap death., then the candidates: to (fits: sentence to a punishment); for (correct English, different meaning: blamed because of death); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: He was condemned \u2026 death. What does the sentence want to say? It wants **condemn to**: sentence to a punishment.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean blamed because of death. That is not what this sentence says. Where for fits: _He was condemned for his crimes._ **with**: with = together; not used.", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean blamed because of death. That is not what this sentence says. Where for fits: _He was condemned for his crimes._ There **for** means blame strongly for. **with**: with = together; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He was condemned ____ death.", [["reachDot", "to", true, "sentence to | a punishment"], ["wantStar", "for", "diff", "blamed because | of death"], ["cross", "with", false, "with = together; | not used"]], ["condemn to = sentence to a punishment", "condemn for = blame strongly for"], null, ["\u2248 for: He was condemned for his crimes."]),
+          ...PLAB.kit.lineup("e5w", "He was condemned ____ death.", [["reachDot", "to", true, "sentence to | a punishment"], ["wantStar", "for", "diff", "blamed because | of death"], ["cross", "with", false, "with = together; | not used"]], ["condemn to = sentence to a punishment", "condemn for = blame strongly for"], null, ["\u2248 for: He was condemned for his crimes.  = blame strongly for"]),
         ],
       },
       {
@@ -304,11 +304,11 @@
         alt: "The sentence She confided with a gap her sister., then the candidates: in (fits: trust someone with secrets); to (correct English, different meaning: told something to her sister (needs an object first)); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: She confided \u2026 her sister. What does the sentence want to say? It wants **confide in**: trust someone with secrets.", cue: "e7w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean told something to her sister (needs an object first). That is not what this sentence says. Where to fits: _She confided her fears to her sister._ **with**: with = together; not used.", cue: "e7w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean told something to her sister (needs an object first). That is not what this sentence says. Where to fits: _She confided her fears to her sister._ There **to** means tell a secret to someone. **with**: with = together; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "She confided ____ her sister.", [["absorbedIn", "in", true, "trust someone | with secrets"], ["reachDot", "to", "diff", "told something to her sister | (needs an object first)"], ["cross", "with", false, "with = together; | not used"]], ["confide in = trust someone with secrets", "confide to = tell a secret to someone"], null, ["\u2248 to: She confided her fears to her sister."]),
+          ...PLAB.kit.lineup("e7w", "She confided ____ her sister.", [["absorbedIn", "in", true, "trust someone | with secrets"], ["reachDot", "to", "diff", "told something to her sister | (needs an object first)"], ["cross", "with", false, "with = together; | not used"]], ["confide in = trust someone with secrets", "confide to = tell a secret to someone"], null, ["\u2248 to: She confided her fears to her sister.  = tell a secret to someone"]),
         ],
       },
       {
@@ -333,11 +333,11 @@
         alt: "The sentence We are confident with a gap success., then the candidates: of (fits: sure of a result); in (correct English, different meaning: trusting success as if it were a person); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: We are confident \u2026 success. What does the sentence want to say? It wants **confident of**: sure of a result.", cue: "e8w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean trusting success as if it were a person. That is not what this sentence says. Where in fits: _We are confident in our team._ **on**: on is resting; not used.", cue: "e8w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean trusting success as if it were a person. That is not what this sentence says. Where in fits: _We are confident in our team._ There **in** means trusting someone's ability. **on**: on is resting; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "We are confident ____ success.", [["awareOf", "of", true, "sure of a result"], ["absorbedIn", "in", "diff", "trusting success as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["confident of = sure of a result", "confident in = trusting someone's ability"], null, ["\u2248 in: We are confident in our team."]),
+          ...PLAB.kit.lineup("e8w", "We are confident ____ success.", [["awareOf", "of", true, "sure of a result"], ["absorbedIn", "in", "diff", "trusting success as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["confident of = sure of a result", "confident in = trusting someone's ability"], null, ["\u2248 in: We are confident in our team.  = trusting someone's ability"]),
         ],
       },
       {

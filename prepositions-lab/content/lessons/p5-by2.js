@@ -33,11 +33,11 @@
         alt: "The sentence We met with a gap in the market., then the candidates: by chance (fits: accidentally); by choice (correct English, different meaning: deliberately); with chance (not used: the fixed phrase is by chance)",
         say: [
           { text: "Fill the gap: We met \u2026 in the market. The sentence wants **by chance**: accidentally.", cue: "f1w1" },
-          { text: "Why not the others? **by choice** is correct English, but it means deliberately. That is not what this sentence says. Where by choice fits: _She lives alone by choice._ **with chance**: the fixed phrase is by chance.", cue: "f1w2" },
+          { text: "Why not the others? **by choice** is correct English, but it means deliberately. That is not what this sentence says. Where by choice fits: _She lives alone by choice._ There **by choice** means deliberately. **with chance**: the fixed phrase is by chance.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "We met ____ in the market.", [["question", "by chance", true, "accidentally"], ["followRule", "by choice", "diff", "deliberately"], ["cross", "with chance", false, "the fixed phrase | is by chance"]], ["by chance = accidentally", "Why by? chance is the way it happened"], null, ["\u2248 by choice: She lives alone by choice."]),
+          ...PLAB.kit.lineup("f1w", "We met ____ in the market.", [["question", "by chance", true, "accidentally"], ["followRule", "by choice", "diff", "deliberately"], ["cross", "with chance", false, "the fixed phrase | is by chance"]], ["by chance = accidentally", "Why by? chance is the way it happened"], null, ["\u2248 by choice: She lives alone by choice.  = deliberately"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence The task is with a gap easy., then the candidates: by no means (fits: not at all); by all means (correct English, different meaning: certainly, of course); in no means (not used: the fixed phrase is by no means)",
         say: [
           { text: "Fill the gap: The task is \u2026 easy. The sentence wants **by no means**: not at all.", cue: "f2w1" },
-          { text: "Why not the others? **by all means** is correct English, but it means certainly, of course. That is not what this sentence says. Where by all means fits: _\"May I sit here?\" \"By all means.\"_ **in no means**: the fixed phrase is by no means.", cue: "f2w2" },
+          { text: "Why not the others? **by all means** is correct English, but it means certainly, of course. That is not what this sentence says. Where by all means fits: _\"May I sit here?\" \"By all means.\"_ There **by all means** means certainly, of course. **in no means**: the fixed phrase is by no means.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The task is ____ easy.", [["minus", "by no means", true, "not at all"], ["followRule", "by all means", "diff", "certainly, | of course"], ["cross", "in no means", false, "the fixed phrase | is by no means"]], ["by no means = not at all", "Why by? no means = no way at all"], null, ["\u2248 by all means: \"May I sit here?\" \"By all means.\""]),
+          ...PLAB.kit.lineup("f2w", "The task is ____ easy.", [["minus", "by no means", true, "not at all"], ["followRule", "by all means", "diff", "certainly, | of course"], ["cross", "in no means", false, "the fixed phrase | is by no means"]], ["by no means = not at all", "Why by? no means = no way at all"], null, ["\u2248 by all means: \"May I sit here?\" \"By all means.\"  = certainly, of course"]),
         ],
       },
       {
@@ -93,11 +93,11 @@
         alt: "The sentence with a gap, the people are honest., then the candidates: by and large (fits: generally); at large (correct English, different meaning: free, not caught); by and by (correct English, different meaning: after a while)",
         say: [
           { text: "Fill the gap: \u2026, the people are honest. The sentence wants **by and large**: generally.", cue: "f3w1" },
-          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. Where at large fits: _The killer is still at large._ **by and by** is correct English, but it means after a while. That is not what this sentence says. Where by and by fits: _By and by, the pain went away._", cue: "f3w2" },
+          { text: "Why not the others? **at large** is correct English, but it means free, not caught. That is not what this sentence says. Where at large fits: _The killer is still at large._ There **at large** means free, not caught. **by and by** is correct English, but it means after a while. That is not what this sentence says. Where by and by fits: _By and by, the pain went away._ There **by and by** means after a while.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "____, the people are honest.", [["crowd", "by and large", true, "generally"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["followRule", "by and by", "diff", "after a while"]], ["by and large = generally", "Why by? an old sailing phrase"], null, ["\u2248 at large: The killer is still at large.", "\u2248 by and by: By and by, the pain went away."]),
+          ...PLAB.kit.lineup("f3w", "____, the people are honest.", [["crowd", "by and large", true, "generally"], [[["arrowR", -40, 0], ["target", 30, 0]], "at large", "diff", "free, not caught"], ["followRule", "by and by", "diff", "after a while"]], ["by and large = generally", "Why by? an old sailing phrase"], null, ["\u2248 at large: The killer is still at large.  = free, not caught", "\u2248 by and by: By and by, the pain went away.  = after a while"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence He took my bag with a gap., then the candidates: by mistake (fits: accidentally, in error); on purpose (correct English, different meaning: deliberately); in mistake (not used: the fixed phrase is by mistake)",
         say: [
           { text: "Fill the gap: He took my bag \u2026. The sentence wants **by mistake**: accidentally, in error.", cue: "f4w1" },
-          { text: "Why not the others? **on purpose** is correct English, but it means deliberately. That is not what this sentence says. Where on purpose fits: _He broke the window on purpose._ **in mistake**: the fixed phrase is by mistake.", cue: "f4w2" },
+          { text: "Why not the others? **on purpose** is correct English, but it means deliberately. That is not what this sentence says. Where on purpose fits: _He broke the window on purpose._ There **on purpose** means deliberately. **in mistake**: the fixed phrase is by mistake.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He took my bag ____.", [["wrongWay", "by mistake", true, "accidentally, | in error"], ["support", "on purpose", "diff", "deliberately"], ["cross", "in mistake", false, "the fixed phrase | is by mistake"]], ["by mistake = accidentally, in error", "Why by? the mistake is the way it happened"], null, ["\u2248 on purpose: He broke the window on purpose."]),
+          ...PLAB.kit.lineup("f4w", "He took my bag ____.", [["wrongWay", "by mistake", true, "accidentally, | in error"], ["support", "on purpose", "diff", "deliberately"], ["cross", "in mistake", false, "the fixed phrase | is by mistake"]], ["by mistake = accidentally, in error", "Why by? the mistake is the way it happened"], null, ["\u2248 on purpose: He broke the window on purpose.  = deliberately"]),
         ],
       },
       {
@@ -153,11 +153,11 @@
         alt: "The sentence He woke at five with a gap habit., then the candidates: by force of (fits: because of the power of); in spite of (correct English, different meaning: although he had the habit); with force of (not used: the fixed phrase is by force of)",
         say: [
           { text: "Fill the gap: He woke at five \u2026 habit. The sentence wants **by force of**: because of the power of.", cue: "f5w1" },
-          { text: "Why not the others? **in spite of** is correct English, but it means although he had the habit. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ **with force of**: the fixed phrase is by force of.", cue: "f5w2" },
+          { text: "Why not the others? **in spite of** is correct English, but it means although he had the habit. That is not what this sentence says. Where in spite of fits: _The match went on in spite of the rain._ There **in spite of** means despite. **with force of**: the fixed phrase is by force of.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "He woke at five ____ habit.", [["loop", "by force of", true, "because of | the power of"], ["absorbedIn", "in spite of", "diff", "although he | had the habit"], ["cross", "with force of", false, "the fixed phrase | is by force of"]], ["by force of = because of the power of", "Why by? force is the means"], null, ["\u2248 in spite of: The match went on in spite of the rain."]),
+          ...PLAB.kit.lineup("f5w", "He woke at five ____ habit.", [["loop", "by force of", true, "because of | the power of"], ["absorbedIn", "in spite of", "diff", "although he | had the habit"], ["cross", "with force of", false, "the fixed phrase | is by force of"]], ["by force of = because of the power of", "Why by? force is the means"], null, ["\u2248 in spite of: The match went on in spite of the rain.  = despite"]),
         ],
       },
       {

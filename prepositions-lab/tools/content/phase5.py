@@ -18,7 +18,7 @@ not the others" lineup, and a practice question that blanks the tested prepositi
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from uses import use_for
+from uses import use_for, use_line, use_say
 
 sys.path.insert(0, os.path.dirname(__file__))
 from phase4 import T, D, N, LEVEL, pic, lines, js  # same board kit and output format as Phase 4
@@ -84,8 +84,8 @@ def entry_steps(e, n, lid):
     for p, v, r in e["others"]:
         opts.append(('"cross"' if v == N else other_pic(p), p, "diff" if v == D else False, lines(r)))
     clean = lambda r: " ".join(x.strip() for x in r.split("|"))
-    why = [(f"**{p}** is correct English, but it means {clean(r)}. That is not what this sentence says." + (f" Where {p} fits: _{use_for(p)}_" if use_for(p) else "")) if v == D else f"**{p}**: {clean(r)}." for p, v, r in e["others"]]
-    uses_ = [f"\u2248 {p}: {use_for(p)}" for p, v, r in e["others"] if v == D and use_for(p)]
+    why = [(f"**{p}** is correct English, but it means {clean(r)}. That is not what this sentence says." + use_say(p, p, reason=r)) if v == D else f"**{p}**: {clean(r)}." for p, v, r in e["others"]]
+    uses_ = [x for x in (use_line(p, p, reason=r) for p, v, r in e["others"] if v == D) if x]
     opt_js = ", ".join(f"[{o[0]}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
     steps.append(dict(
         id=f"{sid}-why", title=f"{ph}: why this one?",

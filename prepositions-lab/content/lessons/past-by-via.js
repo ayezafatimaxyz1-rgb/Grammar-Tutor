@@ -115,12 +115,12 @@ PLAB.registerLesson({
       alt: "The sentence She walked with a gap the bank., then the candidates with pictures: past (right: beside it and beyond it); passed (wrong: a verb; walked is already the verb); through (correct English but a different meaning: walked through the bank = into it and out again). Rule: walked past (preposition); passed it (verb).",
       say: [
         { text: "Fill the gap: She walked \u2026 the bank. What does the sentence want to say? The answer is **past**: beside it and beyond it.", cue: "why1" },
-        { text: "Why not the others? **through** is correct English, but it would mean walked through the bank = into it and out again. That is not what this sentence says. Where through fits: _She walked through the bank to the back door._ **passed**: a verb; walked is already the verb.", cue: "why2" },
+        { text: "Why not the others? **through** is correct English, but it would mean walked through the bank = into it and out again. That is not what this sentence says. Where through fits: _She walked through the bank to the back door._ There **through** means into the bank and out the other side. **passed**: a verb; walked is already the verb.", cue: "why2" },
         { text: "The rule: walked past (preposition); passed it (verb).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She walked ____ the bank.", [["pastBank", "past", true, "beside it and | beyond it"], ["pastBank", "passed", false, "a verb; walked is | already the verb"], ["passThrough", "through", "diff", "walked through the bank | = into it and out again"]], ["walked past (preposition)", "passed it (verb)"], null, ["\u2248 through: She walked through the bank to the back door."]),
+        ...PLAB.kit.lineup("why", "She walked ____ the bank.", [["pastBank", "past", true, "beside it and | beyond it"], ["pastBank", "passed", false, "a verb; walked is | already the verb"], ["passThrough", "through", "diff", "walked through the bank | = into it and out again"]], ["walked past (preposition)", "passed it (verb)"], null, ["\u2248 through: She walked through the bank to the back door.  = into the bank and out the other side"]),
       ],
     },
     {

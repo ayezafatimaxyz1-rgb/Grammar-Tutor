@@ -105,11 +105,11 @@
         alt: "Who came with a gap Ali? Answer: besides, because who else, in addition to Ali. Not beside: who came beside Ali = walked at his side.",
         say: [
           { text: "Fill the gap: Who came … Ali? Picture it: who else, in addition to Ali. So **besides**.", cue: "besidesx12" },
-          { text: "Why not **beside**? who came beside Ali = walked at his side That is correct English, but it says something else. Where beside fits: _Who sat beside Ali?_", cue: "besidesx1-r2" },
+          { text: "Why not **beside**? who came beside Ali = walked at his side. That is correct English, but it says something else. Where beside fits: _Who sat beside Ali?_ There **beside** means at Ali's side.", cue: "besidesx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-besidesx1"),
-          ...PLAB.kit.lineup("besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"], null, ["≈ beside: Who sat beside Ali?"]),
+          ...PLAB.kit.lineup("besidesx1", "Who came ____ Ali?", [["sideBySide", "beside", "diff", "who came beside Ali = | walked at his side"], ["stackAdd", "besides", true, "who else, in | addition to Ali"]], ["Why besides? who else, in addition to Ali", "Ask: Is something being added?"], null, ["≈ beside: Who sat beside Ali?  = at Ali's side"]),
         ],
       },
       {

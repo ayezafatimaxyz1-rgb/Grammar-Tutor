@@ -50,12 +50,12 @@
         alt: "The sentence She works with a gap a teacher at a college., then the candidates with pictures: as (right: her real job: she is one); like (correct English but a different meaning: she only resembles a teacher); for (correct English but a different meaning: employed by a teacher). Rule: as = a real role; like = similar to.",
         say: [
           { text: "Fill the gap: She works \u2026 a teacher at a college. What does the sentence want to say? The answer is **as**: her real job: she is one.", cue: "why1" },
-          { text: "Why not the others? **like** is correct English, but it would mean she only resembles a teacher. That is not what this sentence says. Where like fits: _She talks like a teacher._ **for** is correct English, but it would mean employed by a teacher. That is not what this sentence says. Where for fits: _She works for a teacher as his secretary._", cue: "why2" },
+          { text: "Why not the others? **like** is correct English, but it would mean she only resembles a teacher. That is not what this sentence says. Where like fits: _She talks like a teacher._ There **like** means in the same way as a teacher, but she is not one. **for** is correct English, but it would mean employed by a teacher. That is not what this sentence says. Where for fits: _She works for a teacher as his secretary._ There **for** means her employer is a teacher.", cue: "why2" },
           { text: "The rule: as = a real role; like = similar to.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "She works ____ a teacher at a college.", [["asRole", "as", true, "her real job: | she is one"], ["likeSim", "like", "diff", "she only resembles | a teacher"], ["giveTo", "for", "diff", "employed by | a teacher"]], ["as = a real role", "like = similar to"], null, ["\u2248 like: She talks like a teacher.", "\u2248 for: She works for a teacher as his secretary."]),
+          ...PLAB.kit.lineup("why", "She works ____ a teacher at a college.", [["asRole", "as", true, "her real job: | she is one"], ["likeSim", "like", "diff", "she only resembles | a teacher"], ["giveTo", "for", "diff", "employed by | a teacher"]], ["as = a real role", "like = similar to"], null, ["\u2248 like: She talks like a teacher.  = in the same way as a teacher, but she is not one", "\u2248 for: She works for a teacher as his secretary.  = her employer is a teacher"]),
         ],
       },
       {

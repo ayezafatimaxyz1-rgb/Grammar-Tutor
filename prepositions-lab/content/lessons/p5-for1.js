@@ -52,11 +52,11 @@
         alt: "The sentence He left the city with a gap his children., then the candidates: for the sake of (fits: for the good of); on behalf of (correct English, different meaning: representing his children); to the sake of (not used: the fixed phrase is for the sake of)",
         say: [
           { text: "Fill the gap: He left the city \u2026 his children. The sentence wants **for the sake of**: for the good of.", cue: "f1w1" },
-          { text: "Why not the others? **on behalf of** is correct English, but it means representing his children. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ **to the sake of**: the fixed phrase is for the sake of.", cue: "f1w2" },
+          { text: "Why not the others? **on behalf of** is correct English, but it means representing his children. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ There **on behalf of** means representing, for. **to the sake of**: the fixed phrase is for the sake of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "He left the city ____ his children.", [["careFor", "for the sake of", true, "for the good of"], ["support", "on behalf of", "diff", "representing | his children"], ["cross", "to the sake of", false, "the fixed phrase | is for the sake of"]], ["for the sake of = for the good of", "Why for? for aims at the benefit"], null, ["\u2248 on behalf of: I am writing on behalf of my father."]),
+          ...PLAB.kit.lineup("f1w", "He left the city ____ his children.", [["careFor", "for the sake of", true, "for the good of"], ["support", "on behalf of", "diff", "representing | his children"], ["cross", "to the sake of", false, "the fixed phrase | is for the sake of"]], ["for the sake of = for the good of", "Why for? for aims at the benefit"], null, ["\u2248 on behalf of: I am writing on behalf of my father.  = representing, for"]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence The plants died with a gap water., then the candidates: for want of (fits: because of a lack of); in need of (correct English, different meaning: needing water, still alive); by want of (not used: the fixed phrase is for want of)",
         say: [
           { text: "Fill the gap: The plants died \u2026 water. The sentence wants **for want of**: because of a lack of.", cue: "f2w1" },
-          { text: "Why not the others? **in need of** is correct English, but it means needing water, still alive. That is not what this sentence says. Where in need of fits: _These roads are in need of repair._ **by want of**: the fixed phrase is for want of.", cue: "f2w2" },
+          { text: "Why not the others? **in need of** is correct English, but it means needing water, still alive. That is not what this sentence says. Where in need of fits: _These roads are in need of repair._ There **in need of** means needing. **by want of**: the fixed phrase is for want of.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The plants died ____ water.", [["drop", "for want of", true, "because of | a lack of"], ["absorbedIn", "in need of", "diff", "needing water, | still alive"], ["cross", "by want of", false, "the fixed phrase | is for want of"]], ["for want of = because of a lack of", "Why for? want = lack"], null, ["\u2248 in need of: These roads are in need of repair."]),
+          ...PLAB.kit.lineup("f2w", "The plants died ____ water.", [["drop", "for want of", true, "because of | a lack of"], ["absorbedIn", "in need of", "diff", "needing water, | still alive"], ["cross", "by want of", false, "the fixed phrase | is for want of"]], ["for want of = because of a lack of", "Why for? want = lack"], null, ["\u2248 in need of: These roads are in need of repair.  = needing"]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence He kept quiet with a gap punishment., then the candidates: for fear of (fits: because afraid of); for the sake of (correct English, different meaning: to benefit punishment); to fear of (not used: the fixed phrase is for fear of)",
         say: [
           { text: "Fill the gap: He kept quiet \u2026 punishment. The sentence wants **for fear of**: because afraid of.", cue: "f3w1" },
-          { text: "Why not the others? **for the sake of** is correct English, but it means to benefit punishment. That is not what this sentence says. Where for the sake of fits: _He left the city for the sake of his children._ **to fear of**: the fixed phrase is for fear of.", cue: "f3w2" },
+          { text: "Why not the others? **for the sake of** is correct English, but it means to benefit punishment. That is not what this sentence says. Where for the sake of fits: _He left the city for the sake of his children._ There **for the sake of** means for the good of. **to fear of**: the fixed phrase is for fear of.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "He kept quiet ____ punishment.", [["afraidOf", "for fear of", true, "because afraid of"], ["wantStar", "for the sake of", "diff", "to benefit | punishment"], ["cross", "to fear of", false, "the fixed phrase | is for fear of"]], ["for fear of = because afraid of", "Why for? for names the cause"], null, ["\u2248 for the sake of: He left the city for the sake of his children."]),
+          ...PLAB.kit.lineup("f3w", "He kept quiet ____ punishment.", [["afraidOf", "for fear of", true, "because afraid of"], ["wantStar", "for the sake of", "diff", "to benefit | punishment"], ["cross", "to fear of", false, "the fixed phrase | is for fear of"]], ["for fear of = because afraid of", "Why for? for names the cause"], null, ["\u2248 for the sake of: He left the city for the sake of his children.  = for the good of"]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence He has left the country with a gap., then the candidates: for good (fits: for ever, permanently); for a while (correct English, different meaning: for a short time); in good (not used: the fixed phrase is for good)",
         say: [
           { text: "Fill the gap: He has left the country \u2026. The sentence wants **for good**: for ever, permanently.", cue: "f4w1" },
-          { text: "Why not the others? **for a while** is correct English, but it means for a short time. That is not what this sentence says. Where for a while fits: _Wait here for a while._ **in good**: the fixed phrase is for good.", cue: "f4w2" },
+          { text: "Why not the others? **for a while** is correct English, but it means for a short time. That is not what this sentence says. Where for a while fits: _Wait here for a while._ There **for a while** means for a short time. **in good**: the fixed phrase is for good.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "He has left the country ____.", [["goHome", "for good", true, "for ever, | permanently"], ["wantStar", "for a while", "diff", "for a short time"], ["cross", "in good", false, "the fixed phrase | is for good"]], ["for good = for ever, permanently", "Why for? for marks how long"], null, ["\u2248 for a while: Wait here for a while."]),
+          ...PLAB.kit.lineup("f4w", "He has left the country ____.", [["goHome", "for good", true, "for ever, | permanently"], ["wantStar", "for a while", "diff", "for a short time"], ["cross", "in good", false, "the fixed phrase | is for good"]], ["for good = for ever, permanently", "Why for? for marks how long"], null, ["\u2248 for a while: Wait here for a while.  = for a short time"]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence with a gap you can use my room., then the candidates: for the time being (fits: for now, temporarily); from time to time (correct English, different meaning: now and then); at the time being (not used: the fixed phrase is for the time being)",
         say: [
           { text: "Fill the gap: \u2026 you can use my room. The sentence wants **for the time being**: for now, temporarily.", cue: "f5w1" },
-          { text: "Why not the others? **from time to time** is correct English, but it means now and then. That is not what this sentence says. Where from time to time fits: _We visit our village from time to time._ **at the time being**: the fixed phrase is for the time being.", cue: "f5w2" },
+          { text: "Why not the others? **from time to time** is correct English, but it means now and then. That is not what this sentence says. Where from time to time fits: _We visit our village from time to time._ There **from time to time** means now and then. **at the time being**: the fixed phrase is for the time being.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "____ you can use my room.", [["clock", "for the time being", true, "for now, | temporarily"], ["holdBack", "from time to time", "diff", "now and then"], ["cross", "at the time being", false, "the fixed phrase is | for the time being"]], ["for the time being = for now, temporarily", "Why for? for marks how long"], null, ["\u2248 from time to time: We visit our village from time to time."]),
+          ...PLAB.kit.lineup("f5w", "____ you can use my room.", [["clock", "for the time being", true, "for now, | temporarily"], ["holdBack", "from time to time", "diff", "now and then"], ["cross", "at the time being", false, "the fixed phrase is | for the time being"]], ["for the time being = for now, temporarily", "Why for? for marks how long"], null, ["\u2248 from time to time: We visit our village from time to time.  = now and then"]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence Many fruits, with a gap mangoes, grow here., then the candidates: for instance (fits: for example); at the instance of (correct English, different meaning: at the request of); in instance (not used: the fixed phrase is for instance)",
         say: [
           { text: "Fill the gap: Many fruits, \u2026 mangoes, grow here. The sentence wants **for instance**: for example.", cue: "f6w1" },
-          { text: "Why not the others? **at the instance of** is correct English, but it means at the request of. That is not what this sentence says. Where at the instance of fits: _The inquiry began at the instance of the court._ **in instance**: the fixed phrase is for instance.", cue: "f6w2" },
+          { text: "Why not the others? **at the instance of** is correct English, but it means at the request of. That is not what this sentence says. Where at the instance of fits: _The inquiry began at the instance of the court._ There **at the instance of** means at the request of. **in instance**: the fixed phrase is for instance.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "Many fruits, ____ mangoes, grow here.", [["magnifier", "for instance", true, "for example"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the instance of", "diff", "at the request of"], ["cross", "in instance", false, "the fixed phrase | is for instance"]], ["for instance = for example", "Why for? for = in the role of"], null, ["\u2248 at the instance of: The inquiry began at the instance of the court."]),
+          ...PLAB.kit.lineup("f6w", "Many fruits, ____ mangoes, grow here.", [["magnifier", "for instance", true, "for example"], [[["arrowR", -40, 0], ["target", 30, 0]], "at the instance of", "diff", "at the request of"], ["cross", "in instance", false, "the fixed phrase | is for instance"]], ["for instance = for example", "Why for? for = in the role of"], null, ["\u2248 at the instance of: The inquiry began at the instance of the court.  = at the request of"]),
         ],
       },
       {

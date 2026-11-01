@@ -86,11 +86,11 @@
         alt: "The sentence She was upset with a gap the result., then the candidates: about (fits: unhappy about a situation); with (correct English, different meaning: angry at the result as if it were a person); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She was upset \u2026 the result. What does the sentence want to say? It wants **upset about**: unhappy about a situation.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean angry at the result as if it were a person. That is not what this sentence says. Where with fits: _He was upset with his friend._ **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean angry at the result as if it were a person. That is not what this sentence says. Where with fits: _He was upset with his friend._ There **with** means unhappy with a person. **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She was upset ____ the result.", [["aboutCircle", "about", true, "unhappy about | a situation"], ["agreeWith", "with", "diff", "angry at the result as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["upset about = unhappy about a situation", "upset with = unhappy with a person"], null, ["\u2248 with: He was upset with his friend."]),
+          ...PLAB.kit.lineup("e3w", "She was upset ____ the result.", [["aboutCircle", "about", true, "unhappy about | a situation"], ["agreeWith", "with", "diff", "angry at the result as | if it were a person"], ["cross", "on", false, "on is resting; | not used"]], ["upset about = unhappy about a situation", "upset with = unhappy with a person"], null, ["\u2248 with: He was upset with his friend.  = unhappy with a person"]),
         ],
       },
       {

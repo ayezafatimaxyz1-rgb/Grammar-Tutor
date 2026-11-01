@@ -51,11 +51,11 @@
         alt: "Give the book with a gap Ali. Answer: to, because the book travels and reaches Ali. Not for: for Ali = on his behalf, he gets the good.",
         say: [
           { text: "Fill the gap: Give the book … Ali. Picture it: the book travels and reaches Ali. So **to**.", cue: "tox01" },
-          { text: "Why not **for**? for Ali = on his behalf, he gets the good That is correct English, but it says something else. Where for fits: _I bought this book for Ali._", cue: "tox0-r2" },
+          { text: "Why not **for**? for Ali = on his behalf, he gets the good. That is correct English, but it says something else. Where for fits: _I bought this book for Ali._ There **for** means bought to give to Ali.", cue: "tox0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-tox0"),
-          ...PLAB.kit.lineup("tox0", "Give the book ____ Ali.", [["giveTo", "to", true, "the book travels | and reaches Ali"], ["careBox", "for", "diff", "for Ali = on his | behalf, he gets the good"]], ["Why to? the book travels and reaches Ali", "Ask: Does something move and reach the person?"], null, ["≈ for: I bought this book for Ali."]),
+          ...PLAB.kit.lineup("tox0", "Give the book ____ Ali.", [["giveTo", "to", true, "the book travels | and reaches Ali"], ["careBox", "for", "diff", "for Ali = on his | behalf, he gets the good"]], ["Why to? the book travels and reaches Ali", "Ask: Does something move and reach the person?"], null, ["≈ for: I bought this book for Ali.  = bought to give to Ali"]),
         ],
       },
       {
@@ -64,11 +64,11 @@
         alt: "She wrote a letter with a gap her mother. Answer: to, because the letter goes to her mother. Not for: for her mother = on her behalf.",
         say: [
           { text: "Fill the gap: She wrote a letter … her mother. Picture it: the letter goes to her mother. So **to**.", cue: "tox11" },
-          { text: "Why not **for**? for her mother = on her behalf That is correct English, but it says something else. Where for fits: _She wrote a letter for her mother, who cannot write._", cue: "tox1-r2" },
+          { text: "Why not **for**? for her mother = on her behalf. That is correct English, but it says something else. Where for fits: _She wrote a letter for her mother, who cannot write._ There **for** means wrote it on her mother's behalf.", cue: "tox1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-tox1"),
-          ...PLAB.kit.lineup("tox1", "She wrote a letter ____ her mother.", [["giveTo", "to", true, "the letter goes to | her mother"], ["careBox", "for", "diff", "for her mother = | on her behalf"]], ["Why to? the letter goes to her mother", "Ask: Does something move and reach the person?"], null, ["≈ for: She wrote a letter for her mother, who cannot write."]),
+          ...PLAB.kit.lineup("tox1", "She wrote a letter ____ her mother.", [["giveTo", "to", true, "the letter goes to | her mother"], ["careBox", "for", "diff", "for her mother = | on her behalf"]], ["Why to? the letter goes to her mother", "Ask: Does something move and reach the person?"], null, ["≈ for: She wrote a letter for her mother, who cannot write.  = wrote it on her mother's behalf"]),
         ],
       },
       {

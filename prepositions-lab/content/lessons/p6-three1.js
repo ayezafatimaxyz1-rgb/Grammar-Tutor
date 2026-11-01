@@ -90,11 +90,11 @@
         alt: "The sentence I cannot with a gap this noise., then the candidates: put up with (fits: tolerate); put up (correct English, different meaning: give a guest a place to stay); put up to (correct English, different meaning: persuade someone to do wrong)",
         say: [
           { text: "Fill the gap: I cannot \u2026 this noise. The sentence wants **put up with**: tolerate.", cue: "f1w1" },
-          { text: "Why not the others? **put up** is correct English, but it means give a guest a place to stay. That is not what this sentence says. Where put up fits: _We can put you up for the night._ **put up to** is correct English, but it means persuade someone to do wrong. That is not what this sentence says. Where put up to fits: _Who put you up to this?_", cue: "f1w2" },
+          { text: "Why not the others? **put up** is correct English, but it means give a guest a place to stay. That is not what this sentence says. Where put up fits: _We can put you up for the night._ There **put up** means give a guest a place to stay. **put up to** is correct English, but it means persuade someone to do wrong. That is not what this sentence says. Where put up to fits: _Who put you up to this?_ There **put up to** means persuade someone to do wrong.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "I cannot ____ this noise.", [["umbrellaRain", "put up with", true, "tolerate"], ["arrowUp", "put up", "diff", "give a guest a | place to stay"], ["reachDot", "put up to", "diff", "persuade someone | to do wrong"]], ["put up with = tolerate", "Why with? with = together with"], null, ["\u2248 put up: We can put you up for the night.", "\u2248 put up to: Who put you up to this?"]),
+          ...PLAB.kit.lineup("f1w", "I cannot ____ this noise.", [["umbrellaRain", "put up with", true, "tolerate"], ["arrowUp", "put up", "diff", "give a guest a | place to stay"], ["reachDot", "put up to", "diff", "persuade someone | to do wrong"]], ["put up with = tolerate", "Why with? with = together with"], null, ["\u2248 put up: We can put you up for the night.  = give a guest a place to stay", "\u2248 put up to: Who put you up to this?  = persuade someone to do wrong"]),
         ],
       },
       {
@@ -158,11 +158,11 @@
         alt: "The sentence We with a gap your reply., then the candidates: look forward to (fits: wait for with pleasure); look forward for (not used: to points at what is ahead); look up to (correct English, different meaning: admire)",
         say: [
           { text: "Fill the gap: We \u2026 your reply. The sentence wants **look forward to**: wait for with pleasure.", cue: "f2w1" },
-          { text: "Why not the others? **look forward for**: to points at what is ahead. **look up to** is correct English, but it means admire. That is not what this sentence says. Where look up to fits: _Students look up to their teacher._", cue: "f2w2" },
+          { text: "Why not the others? **look forward for**: to points at what is ahead. **look up to** is correct English, but it means admire. That is not what this sentence says. Where look up to fits: _Students look up to their teacher._ There **look up to** means admire.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "We ____ your reply.", [["lookAhead", "look forward to", true, "wait for with | pleasure"], ["cross", "look forward for", false, "to points at | what is ahead"], ["reachDot", "look up to", "diff", "admire"]], ["look forward to = wait for with pleasure", "Why to? to = pointing at"], null, ["\u2248 look up to: Students look up to their teacher."]),
+          ...PLAB.kit.lineup("f2w", "We ____ your reply.", [["lookAhead", "look forward to", true, "wait for with | pleasure"], ["cross", "look forward for", false, "to points at | what is ahead"], ["reachDot", "look up to", "diff", "admire"]], ["look forward to = wait for with pleasure", "Why to? to = pointing at"], null, ["\u2248 look up to: Students look up to their teacher.  = admire"]),
         ],
       },
       {
@@ -226,11 +226,11 @@
         alt: "The sentence The government with a gap the tax., then the candidates: do away with (fits: abolish); do without (correct English, different meaning: manage without); do away of (not used: the fixed form is do away with)",
         say: [
           { text: "Fill the gap: The government \u2026 the tax. The sentence wants **do away with**: abolish.", cue: "f3w1" },
-          { text: "Why not the others? **do without** is correct English, but it means manage without. That is not what this sentence says. Where do without fits: _We can do without sugar._ **do away of**: the fixed form is do away with.", cue: "f3w2" },
+          { text: "Why not the others? **do without** is correct English, but it means manage without. That is not what this sentence says. Where do without fits: _We can do without sugar._ There **do without** means manage without. **do away of**: the fixed form is do away with.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The government ____ the tax.", [["cross", "do away with", true, "abolish"], ["arrowR", "do without", "diff", "manage without"], ["cross", "do away of", false, "the fixed form | is do away with"]], ["do away with = abolish", "Why with? with = together with"], null, ["\u2248 do without: We can do without sugar."]),
+          ...PLAB.kit.lineup("f3w", "The government ____ the tax.", [["cross", "do away with", true, "abolish"], ["arrowR", "do without", "diff", "manage without"], ["cross", "do away of", false, "the fixed form | is do away with"]], ["do away with = abolish", "Why with? with = together with"], null, ["\u2248 do without: We can do without sugar.  = manage without"]),
         ],
       },
       {
@@ -294,11 +294,11 @@
         alt: "The sentence We have with a gap petrol., then the candidates: run out of (fits: have no more); run short of (correct English, different meaning: have too little); run out from (not used: of names the supply)",
         say: [
           { text: "Fill the gap: We have \u2026 petrol. The sentence wants **run out of**: have no more.", cue: "f4w1" },
-          { text: "Why not the others? **run short of** is correct English, but it means have too little. That is not what this sentence says. Where run short of fits: _We are running short of time._ **run out from**: of names the supply.", cue: "f4w2" },
+          { text: "Why not the others? **run short of** is correct English, but it means have too little. That is not what this sentence says. Where run short of fits: _We are running short of time._ There **run short of** means have too little. **run out from**: of names the supply.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "We have ____ petrol.", [["emptyJar", "run out of", true, "have no more"], ["awareOf", "run short of", "diff", "have too little"], ["cross", "run out from", false, "of names the supply"]], ["run out of = have no more", "Why of? of = what it is made of"], null, ["\u2248 run short of: We are running short of time."]),
+          ...PLAB.kit.lineup("f4w", "We have ____ petrol.", [["emptyJar", "run out of", true, "have no more"], ["awareOf", "run short of", "diff", "have too little"], ["cross", "run out from", false, "of names the supply"]], ["run out of = have no more", "Why of? of = what it is made of"], null, ["\u2248 run short of: We are running short of time.  = have too little"]),
         ],
       },
       {
@@ -362,11 +362,11 @@
         alt: "The sentence She with a gap a good plan., then the candidates: come up with (fits: think of (an idea)); come up against (correct English, different meaning: face a problem); come up to (correct English, different meaning: reach a standard)",
         say: [
           { text: "Fill the gap: She \u2026 a good plan. The sentence wants **come up with**: think of (an idea).", cue: "f5w1" },
-          { text: "Why not the others? **come up against** is correct English, but it means face a problem. That is not what this sentence says. Where come up against fits: _We came up against many problems._ **come up to** is correct English, but it means reach a standard. That is not what this sentence says. Where come up to fits: _His work did not come up to our standard._", cue: "f5w2" },
+          { text: "Why not the others? **come up against** is correct English, but it means face a problem. That is not what this sentence says. Where come up against fits: _We came up against many problems._ There **come up against** means face a problem. **come up to** is correct English, but it means reach a standard. That is not what this sentence says. Where come up to fits: _His work did not come up to our standard._ There **come up to** means reach a standard.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "She ____ a good plan.", [["star", "come up with", true, "think of (an idea)"], ["shield", "come up against", "diff", "face a problem"], ["reachDot", "come up to", "diff", "reach a standard"]], ["come up with = think of (an idea)", "Why with? with = together with"], null, ["\u2248 come up against: We came up against many problems.", "\u2248 come up to: His work did not come up to our standard."]),
+          ...PLAB.kit.lineup("f5w", "She ____ a good plan.", [["star", "come up with", true, "think of (an idea)"], ["shield", "come up against", "diff", "face a problem"], ["reachDot", "come up to", "diff", "reach a standard"]], ["come up with = think of (an idea)", "Why with? with = together with"], null, ["\u2248 come up against: We came up against many problems.  = face a problem", "\u2248 come up to: His work did not come up to our standard.  = reach a standard"]),
         ],
       },
       {
@@ -430,11 +430,11 @@
         alt: "The sentence Try to with a gap sugar., then the candidates: cut down on (fits: reduce); cut down (correct English, different meaning: fell a tree); cut down with (not used: on points at what is reduced)",
         say: [
           { text: "Fill the gap: Try to \u2026 sugar. The sentence wants **cut down on**: reduce.", cue: "f6w1" },
-          { text: "Why not the others? **cut down** is correct English, but it means fell a tree. That is not what this sentence says. Where cut down fits: _They cut down the old trees._ **cut down with**: on points at what is reduced.", cue: "f6w2" },
+          { text: "Why not the others? **cut down** is correct English, but it means fell a tree. That is not what this sentence says. Where cut down fits: _They cut down the old trees._ There **cut down** means fell (a tree). **cut down with**: on points at what is reduced.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "Try to ____ sugar.", [["minus", "cut down on", true, "reduce"], ["arrowDown", "cut down", "diff", "fell a tree"], ["cross", "cut down with", false, "on points at | what is reduced"]], ["cut down on = reduce", "Why on? on = landing on"], null, ["\u2248 cut down: They cut down the old trees."]),
+          ...PLAB.kit.lineup("f6w", "Try to ____ sugar.", [["minus", "cut down on", true, "reduce"], ["arrowDown", "cut down", "diff", "fell a tree"], ["cross", "cut down with", false, "on points at | what is reduced"]], ["cut down on = reduce", "Why on? on = landing on"], null, ["\u2248 cut down: They cut down the old trees.  = fell (a tree)"]),
         ],
       },
       {

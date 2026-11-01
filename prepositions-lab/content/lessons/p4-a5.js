@@ -108,11 +108,11 @@
         alt: "The sentence He was angry with a gap the delay., then the candidates: about (fits: angry over a situation); with (correct English, different meaning: angry at the delay as if it were a person); on (not used: a word-for-word translation; never angry on)",
         say: [
           { text: "Fill the gap: He was angry \u2026 the delay. What does the sentence want to say? It wants **angry about**: angry over a situation.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean angry at the delay as if it were a person. That is not what this sentence says. Where with fits: _She was angry with him._ **on**: a word-for-word translation; never angry on.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean angry at the delay as if it were a person. That is not what this sentence says. Where with fits: _She was angry with him._ There **with** means angry at a person. **on**: a word-for-word translation; never angry on.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He was angry ____ the delay.", [["aboutCircle", "about", true, "angry over | a situation"], ["agreeWith", "with", "diff", "angry at the delay as | if it were a person"], ["cross", "on", false, "a word-for-word | translation; never angry on"]], ["angry with = angry at a person", "angry about = angry over a situation"], null, ["\u2248 with: She was angry with him."]),
+          ...PLAB.kit.lineup("e3w", "He was angry ____ the delay.", [["aboutCircle", "about", true, "angry over | a situation"], ["agreeWith", "with", "diff", "angry at the delay as | if it were a person"], ["cross", "on", false, "a word-for-word | translation; never angry on"]], ["angry with = angry at a person", "angry about = angry over a situation"], null, ["\u2248 with: She was angry with him.  = angry at a person"]),
         ],
       },
       {
@@ -137,11 +137,11 @@
         alt: "The sentence Students are anxious with a gap the results., then the candidates: about (fits: worried about); for (correct English, different meaning: eager to have the results); on (not used: on is a surface, not worry)",
         say: [
           { text: "Fill the gap: Students are anxious \u2026 the results. What does the sentence want to say? It wants **anxious about**: worried about.", cue: "e4w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean eager to have the results. That is not what this sentence says. Where for fits: _The people are anxious for peace._ **on**: on is a surface, not worry.", cue: "e4w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean eager to have the results. That is not what this sentence says. Where for fits: _The people are anxious for peace._ There **for** means eager to have. **on**: on is a surface, not worry.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "Students are anxious ____ the results.", [["aboutCircle", "about", true, "worried about"], ["wantStar", "for", "diff", "eager to have | the results"], ["cross", "on", false, "on is a surface, | not worry"]], ["anxious about = worried about", "anxious for = eager to have"], null, ["\u2248 for: The people are anxious for peace."]),
+          ...PLAB.kit.lineup("e4w", "Students are anxious ____ the results.", [["aboutCircle", "about", true, "worried about"], ["wantStar", "for", "diff", "eager to have | the results"], ["cross", "on", false, "on is a surface, | not worry"]], ["anxious about = worried about", "anxious for = eager to have"], null, ["\u2248 for: The people are anxious for peace.  = eager to have"]),
         ],
       },
       {
@@ -197,11 +197,11 @@
         alt: "The sentence He apologised with a gap the court., then the candidates: to (fits: say sorry to a person); for (correct English, different meaning: the court would be the mistake he is sorry for); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: He apologised \u2026 the court. What does the sentence want to say? It wants **apologise to**: say sorry to a person.", cue: "e5w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean the court would be the mistake he is sorry for. That is not what this sentence says. Where for fits: _He apologised for the delay._ **with**: with = together; not used.", cue: "e5w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean the court would be the mistake he is sorry for. That is not what this sentence says. Where for fits: _He apologised for the delay._ There **for** means say sorry for a reason. **with**: with = together; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "He apologised ____ the court.", [["reachDot", "to", true, "say sorry | to a person"], ["wantStar", "for", "diff", "the court would be the | mistake he is sorry for"], ["cross", "with", false, "with = together; | not used"]], ["apologise to = say sorry to a person", "apologise for = say sorry for a reason"], null, ["\u2248 for: He apologised for the delay."]),
+          ...PLAB.kit.lineup("e5w", "He apologised ____ the court.", [["reachDot", "to", true, "say sorry | to a person"], ["wantStar", "for", "diff", "the court would be the | mistake he is sorry for"], ["cross", "with", false, "with = together; | not used"]], ["apologise to = say sorry to a person", "apologise for = say sorry for a reason"], null, ["\u2248 for: He apologised for the delay.  = say sorry for a reason"]),
         ],
       },
       {
@@ -267,11 +267,11 @@
         alt: "The sentence He appealed with a gap the verdict., then the candidates: against (fits: ask a higher court to change a decision); to (correct English, different meaning: asked the verdict itself, or the verdict attracted him); for (correct English, different meaning: asked for the verdict, wanting it)",
         say: [
           { text: "Fill the gap: He appealed \u2026 the verdict. What does the sentence want to say? It wants **appeal against**: ask a higher court to change a decision.", cue: "e6w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean asked the verdict itself, or the verdict attracted him. That is not what this sentence says. Where to fits: _The idea appeals to young voters._ **for** is correct English, but it would mean asked for the verdict, wanting it. That is not what this sentence says. Where for fits: _The charity appealed for donations._", cue: "e6w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean asked the verdict itself, or the verdict attracted him. That is not what this sentence says. Where to fits: _The idea appeals to young voters._ There **to** means ask a person or body, or attract. **for** is correct English, but it would mean asked for the verdict, wanting it. That is not what this sentence says. Where for fits: _The charity appealed for donations._ There **for** means ask strongly for help.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "He appealed ____ the verdict.", [["shield", "against", true, "ask a higher court | to change a decision"], ["reachDot", "to", "diff", "asked the verdict itself, or | the verdict attracted him"], ["wantStar", "for", "diff", "asked for the | verdict, wanting it"]], ["appeal against = ask a higher court to change a decision", "appeal to = ask a person or body, or attract"], null, ["\u2248 to: The idea appeals to young voters.", "\u2248 for: The charity appealed for donations."]),
+          ...PLAB.kit.lineup("e6w", "He appealed ____ the verdict.", [["shield", "against", true, "ask a higher court | to change a decision"], ["reachDot", "to", "diff", "asked the verdict itself, or | the verdict attracted him"], ["wantStar", "for", "diff", "asked for the | verdict, wanting it"]], ["appeal against = ask a higher court to change a decision", "appeal to = ask a person or body, or attract"], null, ["\u2248 to: The idea appeals to young voters.  = ask a person or body, or attract", "\u2248 for: The charity appealed for donations.  = ask strongly for help"]),
         ],
       },
       {
@@ -354,11 +354,11 @@
         alt: "The sentence This rule applies with a gap everyone., then the candidates: to (fits: send to a place, or be relevant to); for (correct English, different meaning: asked to get everyone); on (not used: on is resting, not reaching)",
         say: [
           { text: "Fill the gap: This rule applies \u2026 everyone. What does the sentence want to say? It wants **apply to**: send to a place, or be relevant to.", cue: "e8w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean asked to get everyone. That is not what this sentence says. Where for fits: _She applied for the job._ **on**: on is resting, not reaching.", cue: "e8w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean asked to get everyone. That is not what this sentence says. Where for fits: _She applied for the job._ There **for** means ask for something you want. **on**: on is resting, not reaching.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "This rule applies ____ everyone.", [["reachDot", "to", true, "send to a place, | or be relevant to"], ["wantStar", "for", "diff", "asked to | get everyone"], ["cross", "on", false, "on is resting, | not reaching"]], ["apply for = ask for something you want", "apply to = send to a place, or be relevant to"], null, ["\u2248 for: She applied for the job."]),
+          ...PLAB.kit.lineup("e8w", "This rule applies ____ everyone.", [["reachDot", "to", true, "send to a place, | or be relevant to"], ["wantStar", "for", "diff", "asked to | get everyone"], ["cross", "on", false, "on is resting, | not reaching"]], ["apply for = ask for something you want", "apply to = send to a place, or be relevant to"], null, ["\u2248 for: She applied for the job.  = ask for something you want"]),
         ],
       },
       {

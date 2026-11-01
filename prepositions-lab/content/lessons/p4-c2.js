@@ -166,11 +166,11 @@
         alt: "The sentence The poet compared her smile with a gap the sun., then the candidates: to (fits: say one thing is like another); with (correct English, different meaning: examining both, like an analyst); from (not used: from = apart; not used)",
         say: [
           { text: "Fill the gap: The poet compared her smile \u2026 the sun. What does the sentence want to say? It wants **compare to**: say one thing is like another.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean examining both, like an analyst. That is not what this sentence says. Where with fits: _Compare this year's results with last year's._ **from**: from = apart; not used.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean examining both, like an analyst. That is not what this sentence says. Where with fits: _Compare this year's results with last year's._ There **with** means examine two things side by side. **from**: from = apart; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The poet compared her smile ____ the sun.", [["reachDot", "to", true, "say one thing | is like another"], ["agreeWith", "with", "diff", "examining both, | like an analyst"], ["cross", "from", false, "from = apart; | not used"]], ["compare to = say one thing is like another", "compare with = examine two things side by side"], null, ["\u2248 with: Compare this year's results with last year's."]),
+          ...PLAB.kit.lineup("e4w", "The poet compared her smile ____ the sun.", [["reachDot", "to", true, "say one thing | is like another"], ["agreeWith", "with", "diff", "examining both, | like an analyst"], ["cross", "from", false, "from = apart; | not used"]], ["compare to = say one thing is like another", "compare with = examine two things side by side"], null, ["\u2248 with: Compare this year's results with last year's.  = examine two things side by side"]),
         ],
       },
       {
@@ -312,11 +312,11 @@
         alt: "The sentence Ten teams competed with a gap the trophy., then the candidates: for (fits: try to win a prize); with (correct English, different meaning: the trophy would be a rival team); in (correct English, different meaning: the trophy would be the contest itself)",
         say: [
           { text: "Fill the gap: Ten teams competed \u2026 the trophy. What does the sentence want to say? It wants **compete for**: try to win a prize.", cue: "e7w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean the trophy would be a rival team. That is not what this sentence says. Where with fits: _Small shops cannot compete with big stores._ **in** is correct English, but it would mean the trophy would be the contest itself. That is not what this sentence says. Where in fits: _She competed in the final._", cue: "e7w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean the trophy would be a rival team. That is not what this sentence says. Where with fits: _Small shops cannot compete with big stores._ There **with** means try to beat a rival. **in** is correct English, but it would mean the trophy would be the contest itself. That is not what this sentence says. Where in fits: _She competed in the final._ There **in** means take part in a contest.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "Ten teams competed ____ the trophy.", [["wantStar", "for", true, "try to win a prize"], ["agreeWith", "with", "diff", "the trophy would | be a rival team"], ["absorbedIn", "in", "diff", "the trophy would be | the contest itself"]], ["compete for = try to win a prize", "compete with = try to beat a rival"], null, ["\u2248 with: Small shops cannot compete with big stores.", "\u2248 in: She competed in the final."]),
+          ...PLAB.kit.lineup("e7w", "Ten teams competed ____ the trophy.", [["wantStar", "for", true, "try to win a prize"], ["agreeWith", "with", "diff", "the trophy would | be a rival team"], ["absorbedIn", "in", "diff", "the trophy would be | the contest itself"]], ["compete for = try to win a prize", "compete with = try to beat a rival"], null, ["\u2248 with: Small shops cannot compete with big stores.  = try to beat a rival", "\u2248 in: She competed in the final.  = take part in a contest"]),
         ],
       },
       {
@@ -382,11 +382,11 @@
         alt: "The sentence He complained with a gap a headache., then the candidates: of (fits: report a pain or illness); about (correct English, different meaning: grumbled about the headache as a problem, not reported it as a symptom); from (not used: from is a source; not used)",
         say: [
           { text: "Fill the gap: He complained \u2026 a headache. What does the sentence want to say? It wants **complain of**: report a pain or illness.", cue: "e8w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean grumbled about the headache as a problem, not reported it as a symptom. That is not what this sentence says. Where about fits: _She complained about the noise._ **from**: from is a source; not used.", cue: "e8w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean grumbled about the headache as a problem, not reported it as a symptom. That is not what this sentence says. Where about fits: _She complained about the noise._ There **about** means say you are unhappy with. **from**: from is a source; not used.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "He complained ____ a headache.", [["awareOf", "of", true, "report a pain | or illness"], ["aboutCircle", "about", "diff", "grumbled about the headache as a | problem, not reported it as a symptom"], ["cross", "from", false, "from is a | source; not used"]], ["complain about = say you are unhappy with", "complain to = say it to a person"], null, ["\u2248 about: She complained about the noise."]),
+          ...PLAB.kit.lineup("e8w", "He complained ____ a headache.", [["awareOf", "of", true, "report a pain | or illness"], ["aboutCircle", "about", "diff", "grumbled about the headache as a | problem, not reported it as a symptom"], ["cross", "from", false, "from is a | source; not used"]], ["complain about = say you are unhappy with", "complain to = say it to a person"], null, ["\u2248 about: She complained about the noise.  = say you are unhappy with"]),
         ],
       },
       {

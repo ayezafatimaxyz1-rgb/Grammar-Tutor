@@ -100,11 +100,11 @@
         alt: "The sentence Hand with a gap your papers now., then the candidates: in (fits: submit); over (correct English, different meaning: give control of them to someone); out (correct English, different meaning: give one to each student)",
         say: [
           { text: "Fill the gap: Hand \u2026 your papers now. What does the sentence want to say? It wants **hand in**: submit.", cue: "e2w1" },
-          { text: "Why not the others? **over** is correct English, but it would mean give control of them to someone. That is not what this sentence says. Where over fits: _He handed over the keys._ **out** is correct English, but it would mean give one to each student. That is not what this sentence says. Where out fits: _The teacher handed out the papers._", cue: "e2w2" },
+          { text: "Why not the others? **over** is correct English, but it would mean give control of them to someone. That is not what this sentence says. Where over fits: _He handed over the keys._ There **over** means give control to someone. **out** is correct English, but it would mean give one to each student. That is not what this sentence says. Where out fits: _The teacher handed out the papers._ There **out** means give to each person.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "Hand ____ your papers now.", [["absorbedIn", "in", true, "submit"], ["overRock", "over", "diff", "give control of | them to someone"], ["arrowR", "out", "diff", "give one to | each student"]], ["hand in = submit", "hand over = give control to someone"], null, ["\u2248 over: He handed over the keys.", "\u2248 out: The teacher handed out the papers."]),
+          ...PLAB.kit.lineup("e2w", "Hand ____ your papers now.", [["absorbedIn", "in", true, "submit"], ["overRock", "over", "diff", "give control of | them to someone"], ["arrowR", "out", "diff", "give one to | each student"]], ["hand in = submit", "hand over = give control to someone"], null, ["\u2248 over: He handed over the keys.  = give control to someone", "\u2248 out: The teacher handed out the papers.  = give to each person"]),
         ],
       },
       {
@@ -129,11 +129,11 @@
         alt: "The sentence I am so happy with a gap you., then the candidates: for (fits: glad because of someone's good luck); with (correct English, different meaning: satisfied with you, as if you were a result); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: I am so happy \u2026 you. What does the sentence want to say? It wants **happy for**: glad because of someone's good luck.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean satisfied with you, as if you were a result. That is not what this sentence says. Where with fits: _I am happy with the result._ **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean satisfied with you, as if you were a result. That is not what this sentence says. Where with fits: _I am happy with the result._ There **with** means satisfied with. **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "I am so happy ____ you.", [["wantStar", "for", true, "glad because of | someone's good luck"], ["agreeWith", "with", "diff", "satisfied with you, as | if you were a result"], ["cross", "on", false, "on is resting; | not used"]], ["happy with = satisfied with", "happy for = glad because of someone's good luck"], null, ["\u2248 with: I am happy with the result."]),
+          ...PLAB.kit.lineup("e3w", "I am so happy ____ you.", [["wantStar", "for", true, "glad because of | someone's good luck"], ["agreeWith", "with", "diff", "satisfied with you, as | if you were a result"], ["cross", "on", false, "on is resting; | not used"]], ["happy with = satisfied with", "happy for = glad because of someone's good luck"], null, ["\u2248 with: I am happy with the result.  = satisfied with"]),
         ],
       },
       {
@@ -226,11 +226,11 @@
         alt: "The sentence I have never heard with a gap him., then the candidates: of (fits: know that someone or something exists); about (correct English, different meaning: never heard details about him); from (correct English, different meaning: never got a message from him)",
         say: [
           { text: "Fill the gap: I have never heard \u2026 him. What does the sentence want to say? It wants **hear of**: know that someone or something exists.", cue: "e5w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean never heard details about him. That is not what this sentence says. Where about fits: _Did you hear about the accident?_ **from** is correct English, but it would mean never got a message from him. That is not what this sentence says. Where from fits: _I heard from my brother today._", cue: "e5w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean never heard details about him. That is not what this sentence says. Where about fits: _Did you hear about the accident?_ There **about** means get details about. **from** is correct English, but it would mean never got a message from him. That is not what this sentence says. Where from fits: _I heard from my brother today._ There **from** means get a message from.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "I have never heard ____ him.", [["awareOf", "of", true, "know that someone | or something exists"], ["aboutCircle", "about", "diff", "never heard | details about him"], ["holdBack", "from", "diff", "never got a | message from him"]], ["hear of = know that someone or something exists", "hear about = get details about"], null, ["\u2248 about: Did you hear about the accident?", "\u2248 from: I heard from my brother today."]),
+          ...PLAB.kit.lineup("e5w", "I have never heard ____ him.", [["awareOf", "of", true, "know that someone | or something exists"], ["aboutCircle", "about", "diff", "never heard | details about him"], ["holdBack", "from", "diff", "never got a | message from him"]], ["hear of = know that someone or something exists", "hear about = get details about"], null, ["\u2248 about: Did you hear about the accident?  = get details about", "\u2248 from: I heard from my brother today.  = get a message from"]),
         ],
       },
       {
@@ -253,11 +253,11 @@
         alt: "The sentence He is heir with a gap the throne., then the candidates: to (fits: the next to have a title or property); of (correct English, different meaning: the heir of a person: heir of the king); for (not used: for is a purpose; not used)",
         say: [
           { text: "Fill the gap: He is heir \u2026 the throne. What does the sentence want to say? It wants **heir to**: the next to have a title or property.", cue: "e6w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean the heir of a person: heir of the king. That is not what this sentence says. Where of fits: _He is the heir of a rich landlord._ **for**: for is a purpose; not used.", cue: "e6w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean the heir of a person: heir of the king. That is not what this sentence says. Where of fits: _He is the heir of a rich landlord._ There **of** means the one who will inherit from a person. **for**: for is a purpose; not used.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "He is heir ____ the throne.", [["reachDot", "to", true, "the next to have a | title or property"], ["awareOf", "of", "diff", "the heir of a person: | heir of the king"], ["cross", "for", false, "for is a purpose; | not used"]], ["heir to = the next to have a title or property"], null, ["\u2248 of: He is the heir of a rich landlord."]),
+          ...PLAB.kit.lineup("e6w", "He is heir ____ the throne.", [["reachDot", "to", true, "the next to have a | title or property"], ["awareOf", "of", "diff", "the heir of a person: | heir of the king"], ["cross", "for", false, "for is a purpose; | not used"]], ["heir to = the next to have a title or property"], null, ["\u2248 of: He is the heir of a rich landlord.  = the one who will inherit from a person"]),
         ],
       },
       {

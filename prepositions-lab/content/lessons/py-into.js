@@ -17,15 +17,15 @@
         say: [
           { text: "Your sentence: _Will you walk … my parlour?_ Here is every choice, side by side.", cue: "ys-s" },
           { text: "**into** is right: from outside to inside: the spider wants that.", cue: "ys1" },
-          { text: "**in** is correct English, but a different meaning: already inside, no movement. Where in fits: _The spider waits in its parlour._", cue: "ys2" },
-          { text: "**to** is correct English, but a different meaning: towards it, maybe not going in. Where to fits: _Walk to my door, and I will meet you there._", cue: "ys3" },
-          { text: "**by** is correct English, but a different meaning: past it, without going in. Where by fits: _The fly walked by the parlour without going in._", cue: "ys4" },
+          { text: "**in** is correct English, but a different meaning: already inside, no movement. Where in fits: _The spider waits in its parlour._ There **in** means already inside, not moving in.", cue: "ys2" },
+          { text: "**to** is correct English, but a different meaning: towards it, maybe not going in. Where to fits: _Walk to my door, and I will meet you there._ There **to** means as far as my door, not going in.", cue: "ys3" },
+          { text: "**by** is correct English, but a different meaning: past it, without going in. Where by fits: _The fly walked by the parlour without going in._ There **by** means past it, without going in.", cue: "ys4" },
           { text: "INTO = from outside to inside.", cue: "ys-r1" },
           { text: "The Spider and the Fly, by Mary Howitt.", cue: "ys-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-ys"),
-          ...PLAB.kit.lineup("ys", "Will you walk ____ my parlour?", [["enterRoom", "into", true, "from outside to inside: | the spider wants that"], ["insideBuilding", "in", "diff", "already inside, | no movement"], ["arriveDoor", "to", "diff", "towards it, maybe | not going in"], ["pastBank", "by", "diff", "past it, without | going in"]], ["INTO = from outside to inside.", "The Spider and the Fly, by Mary Howitt"], null, ["≈ in: The spider waits in its parlour.", "≈ to: Walk to my door, and I will meet you there.", "≈ by: The fly walked by the parlour without going in."]),
+          ...PLAB.kit.lineup("ys", "Will you walk ____ my parlour?", [["enterRoom", "into", true, "from outside to inside: | the spider wants that"], ["insideBuilding", "in", "diff", "already inside, | no movement"], ["arriveDoor", "to", "diff", "towards it, maybe | not going in"], ["pastBank", "by", "diff", "past it, without | going in"]], ["INTO = from outside to inside.", "The Spider and the Fly, by Mary Howitt"], null, ["≈ in: The spider waits in its parlour.  = already inside, not moving in", "≈ to: Walk to my door, and I will meet you there.  = as far as my door, not going in", "≈ by: The fly walked by the parlour without going in.  = past it, without going in"]),
         ],
       },
       {

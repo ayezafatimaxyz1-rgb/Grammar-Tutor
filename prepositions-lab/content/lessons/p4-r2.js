@@ -90,11 +90,11 @@
         alt: "The sentence This photo reminds me with a gap my childhood., then the candidates: of (fits: bring to mind); about (correct English, different meaning: tell me not to forget my childhood); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: This photo reminds me \u2026 my childhood. What does the sentence want to say? It wants **remind of**: bring to mind.", cue: "e2w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean tell me not to forget my childhood. That is not what this sentence says. Where about fits: _Remind me about the meeting._ **from**: a word-for-word translation.", cue: "e2w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean tell me not to forget my childhood. That is not what this sentence says. Where about fits: _Remind me about the meeting._ There **about** means tell someone not to forget. **from**: a word-for-word translation.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "This photo reminds me ____ my childhood.", [["awareOf", "of", true, "bring to mind"], ["aboutCircle", "about", "diff", "tell me not to | forget my childhood"], ["cross", "from", false, "a word-for-word | translation"]], ["remind of = bring to mind", "remind about = tell someone not to forget"], null, ["\u2248 about: Remind me about the meeting."]),
+          ...PLAB.kit.lineup("e2w", "This photo reminds me ____ my childhood.", [["awareOf", "of", true, "bring to mind"], ["aboutCircle", "about", "diff", "tell me not to | forget my childhood"], ["cross", "from", false, "a word-for-word | translation"]], ["remind of = bring to mind", "remind about = tell someone not to forget"], null, ["\u2248 about: Remind me about the meeting.  = tell someone not to forget"]),
         ],
       },
       {
@@ -199,11 +199,11 @@
         alt: "The sentence The minister resigned with a gap the cabinet., then the candidates: from (fits: leave a job officially); to (correct English, different meaning: accepted the cabinet calmly as her fate); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: The minister resigned \u2026 the cabinet. What does the sentence want to say? It wants **resign from**: leave a job officially.", cue: "e4w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean accepted the cabinet calmly as her fate. That is not what this sentence says. Where to fits: _She was resigned to her fate._ **of**: of = belonging; not used.", cue: "e4w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean accepted the cabinet calmly as her fate. That is not what this sentence says. Where to fits: _She was resigned to her fate._ There **to** means accept it calmly. **of**: of = belonging; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "The minister resigned ____ the cabinet.", [["holdBack", "from", true, "leave a job | officially"], ["reachDot", "to", "diff", "accepted the cabinet | calmly as her fate"], ["cross", "of", false, "of = belonging; | not used"]], ["resign from = leave a job officially", "resign to = resigned to: accept calmly"], null, ["\u2248 to: She was resigned to her fate."]),
+          ...PLAB.kit.lineup("e4w", "The minister resigned ____ the cabinet.", [["holdBack", "from", true, "leave a job | officially"], ["reachDot", "to", "diff", "accepted the cabinet | calmly as her fate"], ["cross", "of", false, "of = belonging; | not used"]], ["resign from = leave a job officially", "resign to = resigned to: accept calmly"], null, ["\u2248 to: She was resigned to her fate.  = accept it calmly"]),
         ],
       },
       {
@@ -335,11 +335,11 @@
         alt: "The sentence He retired with a gap the army., then the candidates: from (fits: stop working at); to (correct English, different meaning: went to live in the army after retiring); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: He retired \u2026 the army. What does the sentence want to say? It wants **retire from**: stop working at.", cue: "e7w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean went to live in the army after retiring. That is not what this sentence says. Where to fits: _They retired to the village._ **of**: of = belonging; not used.", cue: "e7w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean went to live in the army after retiring. That is not what this sentence says. Where to fits: _They retired to the village._ There **to** means move to a quiet place. **of**: of = belonging; not used.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "He retired ____ the army.", [["holdBack", "from", true, "stop working at"], ["reachDot", "to", "diff", "went to live in the | army after retiring"], ["cross", "of", false, "of = belonging; | not used"]], ["retire from = stop working at", "retire to = move to a quiet place"], null, ["\u2248 to: They retired to the village."]),
+          ...PLAB.kit.lineup("e7w", "He retired ____ the army.", [["holdBack", "from", true, "stop working at"], ["reachDot", "to", "diff", "went to live in the | army after retiring"], ["cross", "of", false, "of = belonging; | not used"]], ["retire from = stop working at", "retire to = move to a quiet place"], null, ["\u2248 to: They retired to the village.  = move to a quiet place"]),
         ],
       },
       {

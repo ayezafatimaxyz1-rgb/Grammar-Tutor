@@ -68,11 +68,11 @@
         alt: "The sentence The crowd with a gap as the building burned., then the candidates: look on (fits: watch without acting); look after (correct English, different meaning: take care of); look into (correct English, different meaning: investigate)",
         say: [
           { text: "Fill the gap: The crowd \u2026 as the building burned. The sentence wants **look on**: watch without acting.", cue: "f1w1" },
-          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. Where look after fits: _She looks after her old parents._ **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._", cue: "f1w2" },
+          { text: "Why not the others? **look after** is correct English, but it means take care of. That is not what this sentence says. Where look after fits: _She looks after her old parents._ There **look after** means take care of. **look into** is correct English, but it means investigate. That is not what this sentence says. Where look into fits: _The police are looking into the case._ There **look into** means investigate.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "The crowd ____ as the building burned.", [["eye", "look on", true, "watch without | acting"], ["careFor", "look after", "diff", "take care of"], ["intoBag", "look into", "diff", "investigate"]], ["look on = watch without acting", "Why on? on = continuing"], null, ["\u2248 look after: She looks after her old parents.", "\u2248 look into: The police are looking into the case."]),
+          ...PLAB.kit.lineup("f1w", "The crowd ____ as the building burned.", [["eye", "look on", true, "watch without | acting"], ["careFor", "look after", "diff", "take care of"], ["intoBag", "look into", "diff", "investigate"]], ["look on = watch without acting", "Why on? on = continuing"], null, ["\u2248 look after: She looks after her old parents.  = take care of", "\u2248 look into: The police are looking into the case.  = investigate"]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Please with a gap the message., then the candidates: pass on (fits: give to the next person); pass out (correct English, different meaning: faint); pass over (correct English, different meaning: ignore, skip)",
         say: [
           { text: "Fill the gap: Please \u2026 the message. The sentence wants **pass on**: give to the next person.", cue: "f2w1" },
-          { text: "Why not the others? **pass out** is correct English, but it means faint. That is not what this sentence says. Where pass out fits: _He passed out in the heat._ **pass over** is correct English, but it means ignore, skip. That is not what this sentence says. Where pass over fits: _They passed over him for the job._", cue: "f2w2" },
+          { text: "Why not the others? **pass out** is correct English, but it means faint. That is not what this sentence says. Where pass out fits: _He passed out in the heat._ There **pass out** means faint. **pass over** is correct English, but it means ignore, skip. That is not what this sentence says. Where pass over fits: _They passed over him for the job._ There **pass over** means ignore, skip.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Please ____ the message.", [["envelope", "pass on", true, "give to the | next person"], ["goOut", "pass out", "diff", "faint"], ["overRock", "pass over", "diff", "ignore, skip"]], ["pass on = give to the next person", "Why on? on = continuing"], null, ["\u2248 pass out: He passed out in the heat.", "\u2248 pass over: They passed over him for the job."]),
+          ...PLAB.kit.lineup("f2w", "Please ____ the message.", [["envelope", "pass on", true, "give to the | next person"], ["goOut", "pass out", "diff", "faint"], ["overRock", "pass over", "diff", "ignore, skip"]], ["pass on = give to the next person", "Why on? on = continuing"], null, ["\u2248 pass out: He passed out in the heat.  = faint", "\u2248 pass over: They passed over him for the job.  = ignore, skip"]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence You can with a gap me., then the candidates: count on (fits: depend on); count in (correct English, different meaning: include); count out (correct English, different meaning: exclude)",
         say: [
           { text: "Fill the gap: You can \u2026 me. The sentence wants **count on**: depend on.", cue: "f3w1" },
-          { text: "Why not the others? **count in** is correct English, but it means include. That is not what this sentence says. Where count in fits: _If you are going to the match, count me in._ **count out** is correct English, but it means exclude. That is not what this sentence says. Where count out fits: _I am too busy; count me out._", cue: "f3w2" },
+          { text: "Why not the others? **count in** is correct English, but it means include. That is not what this sentence says. Where count in fits: _If you are going to the match, count me in._ There **count in** means include. **count out** is correct English, but it means exclude. That is not what this sentence says. Where count out fits: _I am too busy; count me out._ There **count out** means exclude.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "You can ____ me.", [["support", "count on", true, "depend on"], ["absorbedIn", "count in", "diff", "include"], ["goOut", "count out", "diff", "exclude"]], ["count on = depend on", "Why on? on = resting on"], null, ["\u2248 count in: If you are going to the match, count me in.", "\u2248 count out: I am too busy; count me out."]),
+          ...PLAB.kit.lineup("f3w", "You can ____ me.", [["support", "count on", true, "depend on"], ["absorbedIn", "count in", "diff", "include"], ["goOut", "count out", "diff", "exclude"]], ["count on = depend on", "Why on? on = resting on"], null, ["\u2248 count in: If you are going to the match, count me in.  = include", "\u2248 count out: I am too busy; count me out.  = exclude"]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence The president with a gap the nation to stay calm., then the candidates: call on (fits: formally ask, urge); call off (correct English, different meaning: cancel); call up (correct English, different meaning: phone, or summon)",
         say: [
           { text: "Fill the gap: The president \u2026 the nation to stay calm. The sentence wants **call on**: formally ask, urge.", cue: "f4w1" },
-          { text: "Why not the others? **call off** is correct English, but it means cancel. That is not what this sentence says. Where call off fits: _They called off the match._ **call up** is correct English, but it means phone, or summon. That is not what this sentence says. Where call up fits: _I'll call you up tonight._", cue: "f4w2" },
+          { text: "Why not the others? **call off** is correct English, but it means cancel. That is not what this sentence says. Where call off fits: _They called off the match._ There **call off** means cancel. **call up** is correct English, but it means phone, or summon. That is not what this sentence says. Where call up fits: _I'll call you up tonight._ There **call up** means phone.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The president ____ the nation to stay calm.", [["speak", "call on", true, "formally ask, urge"], ["bounceOff", "call off", "diff", "cancel"], ["arrowUp", "call up", "diff", "phone, or summon"]], ["call on = formally ask, urge", "Why on? on = resting on"], null, ["\u2248 call off: They called off the match.", "\u2248 call up: I'll call you up tonight."]),
+          ...PLAB.kit.lineup("f4w", "The president ____ the nation to stay calm.", [["speak", "call on", true, "formally ask, urge"], ["bounceOff", "call off", "diff", "cancel"], ["arrowUp", "call up", "diff", "phone, or summon"]], ["call on = formally ask, urge", "Why on? on = resting on"], null, ["\u2248 call off: They called off the match.  = cancel", "\u2248 call up: I'll call you up tonight.  = phone"]),
         ],
       },
       {

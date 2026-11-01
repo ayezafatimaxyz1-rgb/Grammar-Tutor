@@ -42,12 +42,12 @@
         alt: "The sentence with a gap fire, use the stairs., then the candidates with pictures: In the event of (right: if it happens); In view of (correct English but a different meaning: because a fire is happening now); In the wake of (correct English but a different meaning: after a fire has happened). Rule: in the event of = if it happens; in view of = considering \u00b7 in the wake of = after.",
         say: [
           { text: "Fill the gap: \u2026 fire, use the stairs. What does the sentence want to say? The answer is **In the event of**: if it happens.", cue: "why1" },
-          { text: "Why not the others? **In view of** is correct English, but it would mean because a fire is happening now. That is not what this sentence says. Where In view of fits: _In view of the fire, the building was closed._ **In the wake of** is correct English, but it would mean after a fire has happened. That is not what this sentence says. Where In the wake of fits: _In the wake of the fire, new rules were made._", cue: "why2" },
+          { text: "Why not the others? **In view of** is correct English, but it would mean because a fire is happening now. That is not what this sentence says. Where In view of fits: _In view of the fire, the building was closed._ There **In view of** means because of the fire (it is a reason). **In the wake of** is correct English, but it would mean after a fire has happened. That is not what this sentence says. Where In the wake of fits: _In the wake of the fire, new rules were made._ There **In the wake of** means after the fire, as a result of it.", cue: "why2" },
           { text: "The rule: in the event of = if it happens; in view of = considering \u00b7 in the wake of = after.", cue: "why-r1" },
         ],
         actions: [
           PLAB.kit.clear("clear-why"),
-          ...PLAB.kit.lineup("why", "____ fire, use the stairs.", [["fireStairs", "In the event of", true, "if it happens"], ["viewRisk", "In view of", "diff", "because a fire | is happening now"], ["boat", "In the wake of", "diff", "after a fire | has happened"]], ["in the event of = if it happens", "in view of = considering \u00b7 in the wake of = after"], null, ["\u2248 In view of: In view of the fire, the building was closed.", "\u2248 In the wake of: In the wake of the fire, new rules were made."]),
+          ...PLAB.kit.lineup("why", "____ fire, use the stairs.", [["fireStairs", "In the event of", true, "if it happens"], ["viewRisk", "In view of", "diff", "because a fire | is happening now"], ["boat", "In the wake of", "diff", "after a fire | has happened"]], ["in the event of = if it happens", "in view of = considering \u00b7 in the wake of = after"], null, ["\u2248 In view of: In view of the fire, the building was closed.  = because of the fire (it is a reason)", "\u2248 In the wake of: In the wake of the fire, new rules were made.  = after the fire, as a result of it"]),
         ],
       },
       {

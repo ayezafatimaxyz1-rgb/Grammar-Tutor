@@ -13,7 +13,7 @@ import json, os, re, sys
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, here)
 from atlas import T, js_steps, plain, marked
-from uses import use_for
+from uses import use_for, use_line, use_say
 
 exec(open(os.path.join(here, "yours_data.py")).read())
 
@@ -158,8 +158,8 @@ def lesson(d):
     opts = ", ".join(f"[{T(spec)}, {T(word)}, {'true' if v == 'Y' else T('diff') if v == 'D' else 'false'}, {T(r)}]" for word, spec, v, r in d["choices"])
     says = [(f"Your sentence: _{d['sentence'].replace('____', '…')}_ Here is every choice, side by side.", "ys-s")]
     yu = lambda word: use_for(word, f"y:{d['id']}|{word}", strict=True)
-    says += [(f"**{word}** is {VERDICT[v]}: {flat(r)}." + (f" Where {word} fits: _{yu(word)}_" if v == "D" and yu(word) else ""), f"ys{i + 1}") for i, (word, spec, v, r) in enumerate(d["choices"])]
-    uses_ = [f"\u2248 {word}: {yu(word)}" for word, spec, v, r in d["choices"] if v == "D" and yu(word)]
+    says += [(f"**{word}** is {VERDICT[v]}: {flat(r)}." + (use_say(word, word, f"y:{d['id']}|{word}", True, r) if v == "D" else ""), f"ys{i + 1}") for i, (word, spec, v, r) in enumerate(d["choices"])]
+    uses_ = [x for x in (use_line(word, word, f"y:{d['id']}|{word}", True, r) for word, spec, v, r in d["choices"] if v == "D") if x]
     says += [(r if r.endswith(".") else r + ".", f"ys-r{j + 1}") for j, r in enumerate(d["choice_rules"])]
     steps.append(dict(id="your-sentence", title="Your sentence: every choice side by side",
                       alt=f"{d['sentence'].replace('____', 'with a gap')} Choices: " + "; ".join(f"{word}: {VERDICT[v]}, {flat(r)}" for word, spec, v, r in d["choices"]),

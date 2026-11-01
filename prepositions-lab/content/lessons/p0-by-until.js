@@ -107,11 +107,11 @@
         alt: "The shop is open with a gap ten. Answer: until, because open the whole time, then it closes. Not by: open by ten = it will have opened before ten.",
         say: [
           { text: "Fill the gap: The shop is open … ten. Picture it: open the whole time, then it closes. So **until**.", cue: "untilx12" },
-          { text: "Why not **by**? open by ten = it will have opened before ten That is correct English, but it says something else. Where by fits: _The shop will be open by ten._", cue: "untilx1-r2" },
+          { text: "Why not **by**? open by ten = it will have opened before ten. That is correct English, but it says something else. Where by fits: _The shop will be open by ten._ There **by** means not later than ten.", cue: "untilx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-untilx1"),
-          ...PLAB.kit.lineup("untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"], null, ["≈ by: The shop will be open by ten."]),
+          ...PLAB.kit.lineup("untilx1", "The shop is open ____ ten.", [["priorDot", "by", "diff", "open by ten = it will | have opened before ten"], ["notUntil", "until", true, "open the whole time, | then it closes"]], ["Why until? open the whole time, then it closes", "Ask: Does something continue up to that point?"], null, ["≈ by: The shop will be open by ten.  = not later than ten"]),
         ],
       },
       {

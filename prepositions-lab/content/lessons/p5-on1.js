@@ -52,11 +52,11 @@
         alt: "The sentence I am writing with a gap my father., then the candidates: on behalf of (fits: representing, for); on account of (correct English, different meaning: because of my father); in behalf of (not used: old American use; CSS expects on behalf of)",
         say: [
           { text: "Fill the gap: I am writing \u2026 my father. The sentence wants **on behalf of**: representing, for.", cue: "f1w1" },
-          { text: "Why not the others? **on account of** is correct English, but it means because of my father. That is not what this sentence says. Where on account of fits: _The flight was delayed on account of fog._ **in behalf of**: old American use; CSS expects on behalf of.", cue: "f1w2" },
+          { text: "Why not the others? **on account of** is correct English, but it means because of my father. That is not what this sentence says. Where on account of fits: _The flight was delayed on account of fog._ There **on account of** means because of. **in behalf of**: old American use; CSS expects on behalf of.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "I am writing ____ my father.", [["speakFor", "on behalf of", true, "representing, for"], ["support", "on account of", "diff", "because of | my father"], ["cross", "in behalf of", false, "old American use; CSS | expects on behalf of"]], ["on behalf of = representing, for", "Why on? you act resting on his authority"], null, ["\u2248 on account of: The flight was delayed on account of fog."]),
+          ...PLAB.kit.lineup("f1w", "I am writing ____ my father.", [["speakFor", "on behalf of", true, "representing, for"], ["support", "on account of", "diff", "because of | my father"], ["cross", "in behalf of", false, "old American use; CSS | expects on behalf of"]], ["on behalf of = representing, for", "Why on? you act resting on his authority"], null, ["\u2248 on account of: The flight was delayed on account of fog.  = because of"]),
         ],
       },
       {
@@ -82,11 +82,11 @@
         alt: "The sentence The flight was delayed with a gap fog., then the candidates: on account of (fits: because of); on behalf of (correct English, different meaning: representing the fog); in account of (not used: a reason is a base the result rests on)",
         say: [
           { text: "Fill the gap: The flight was delayed \u2026 fog. The sentence wants **on account of**: because of.", cue: "f2w1" },
-          { text: "Why not the others? **on behalf of** is correct English, but it means representing the fog. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ **in account of**: a reason is a base the result rests on.", cue: "f2w2" },
+          { text: "Why not the others? **on behalf of** is correct English, but it means representing the fog. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ There **on behalf of** means representing, for. **in account of**: a reason is a base the result rests on.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "The flight was delayed ____ fog.", [["causeEffect", "on account of", true, "because of"], ["support", "on behalf of", "diff", "representing | the fog"], ["cross", "in account of", false, "a reason is a base | the result rests on"]], ["on account of = because of", "Why on? the result rests on its reason"], null, ["\u2248 on behalf of: I am writing on behalf of my father."]),
+          ...PLAB.kit.lineup("f2w", "The flight was delayed ____ fog.", [["causeEffect", "on account of", true, "because of"], ["support", "on behalf of", "diff", "representing | the fog"], ["cross", "in account of", false, "a reason is a base | the result rests on"]], ["on account of = because of", "Why on? the result rests on its reason"], null, ["\u2248 on behalf of: I am writing on behalf of my father.  = representing, for"]),
         ],
       },
       {
@@ -112,11 +112,11 @@
         alt: "The sentence Admission is given with a gap merit., then the candidates: on the basis of (fits: based on); on the verge of (correct English, different meaning: about to reach merit); at the basis of (not used: a basis is something you rest on)",
         say: [
           { text: "Fill the gap: Admission is given \u2026 merit. The sentence wants **on the basis of**: based on.", cue: "f3w1" },
-          { text: "Why not the others? **on the verge of** is correct English, but it means about to reach merit. That is not what this sentence says. Where on the verge of fits: _The species is on the verge of extinction._ **at the basis of**: a basis is something you rest on.", cue: "f3w2" },
+          { text: "Why not the others? **on the verge of** is correct English, but it means about to reach merit. That is not what this sentence says. Where on the verge of fits: _The species is on the verge of extinction._ There **on the verge of** means very near to. **at the basis of**: a basis is something you rest on.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "Admission is given ____ merit.", [["onBase", "on the basis of", true, "based on"], ["support", "on the verge of", "diff", "about to | reach merit"], ["cross", "at the basis of", false, "a basis is something | you rest on"]], ["on the basis of = based on", "Why on? a basis is a base"], null, ["\u2248 on the verge of: The species is on the verge of extinction."]),
+          ...PLAB.kit.lineup("f3w", "Admission is given ____ merit.", [["onBase", "on the basis of", true, "based on"], ["support", "on the verge of", "diff", "about to | reach merit"], ["cross", "at the basis of", false, "a basis is something | you rest on"]], ["on the basis of = based on", "Why on? a basis is a base"], null, ["\u2248 on the verge of: The species is on the verge of extinction.  = very near to"]),
         ],
       },
       {
@@ -142,11 +142,11 @@
         alt: "The sentence The species is with a gap extinction., then the candidates: on the verge of (fits: very near to); on the eve of (correct English, different meaning: the day before extinction); at the verge of (not used: you stand on an edge)",
         say: [
           { text: "Fill the gap: The species is \u2026 extinction. The sentence wants **on the verge of**: very near to.", cue: "f4w1" },
-          { text: "Why not the others? **on the eve of** is correct English, but it means the day before extinction. That is not what this sentence says. Where on the eve of fits: _Riots broke out on the eve of the election._ **at the verge of**: you stand on an edge.", cue: "f4w2" },
+          { text: "Why not the others? **on the eve of** is correct English, but it means the day before extinction. That is not what this sentence says. Where on the eve of fits: _Riots broke out on the eve of the election._ There **on the eve of** means just before an event. **at the verge of**: you stand on an edge.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "The species is ____ extinction.", [["nearEnd", "on the verge of", true, "very near to"], ["support", "on the eve of", "diff", "the day before | extinction"], ["cross", "at the verge of", false, "you stand | on an edge"]], ["on the verge of = very near to", "Why on? verge = edge"], null, ["\u2248 on the eve of: Riots broke out on the eve of the election."]),
+          ...PLAB.kit.lineup("f4w", "The species is ____ extinction.", [["nearEnd", "on the verge of", true, "very near to"], ["support", "on the eve of", "diff", "the day before | extinction"], ["cross", "at the verge of", false, "you stand | on an edge"]], ["on the verge of = very near to", "Why on? verge = edge"], null, ["\u2248 on the eve of: Riots broke out on the eve of the election.  = just before an event"]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence Riots broke out with a gap the election., then the candidates: on the eve of (fits: just before an event); on the verge of (correct English, different meaning: very near to (a state)); in the eve of (not used: eve is a day, and days take on)",
         say: [
           { text: "Fill the gap: Riots broke out \u2026 the election. The sentence wants **on the eve of**: just before an event.", cue: "f5w1" },
-          { text: "Why not the others? **on the verge of** is correct English, but it means very near to (a state). That is not what this sentence says. Where on the verge of fits: _The species is on the verge of extinction._ **in the eve of**: eve is a day, and days take on.", cue: "f5w2" },
+          { text: "Why not the others? **on the verge of** is correct English, but it means very near to (a state). That is not what this sentence says. Where on the verge of fits: _The species is on the verge of extinction._ There **on the verge of** means very near to. **in the eve of**: eve is a day, and days take on.", cue: "f5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("f5w", "Riots broke out ____ the election.", [["calendar", "on the eve of", true, "just before | an event"], ["support", "on the verge of", "diff", "very near to | (a state)"], ["cross", "in the eve of", false, "eve is a day, | and days take on"]], ["on the eve of = just before an event", "Why on? eve = the evening before"], null, ["\u2248 on the verge of: The species is on the verge of extinction."]),
+          ...PLAB.kit.lineup("f5w", "Riots broke out ____ the election.", [["calendar", "on the eve of", true, "just before | an event"], ["support", "on the verge of", "diff", "very near to | (a state)"], ["cross", "in the eve of", false, "eve is a day, | and days take on"]], ["on the eve of = just before an event", "Why on? eve = the evening before"], null, ["\u2248 on the verge of: The species is on the verge of extinction.  = very near to"]),
         ],
       },
       {
@@ -202,11 +202,11 @@
         alt: "The sentence There was no mistake with a gap the driver., then the candidates: on the part of (fits: by, coming from); on behalf of (correct English, different meaning: representing the driver); from the part of (not used: the fixed phrase is on the part of)",
         say: [
           { text: "Fill the gap: There was no mistake \u2026 the driver. The sentence wants **on the part of**: by, coming from.", cue: "f6w1" },
-          { text: "Why not the others? **on behalf of** is correct English, but it means representing the driver. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ **from the part of**: the fixed phrase is on the part of.", cue: "f6w2" },
+          { text: "Why not the others? **on behalf of** is correct English, but it means representing the driver. That is not what this sentence says. Where on behalf of fits: _I am writing on behalf of my father._ There **on behalf of** means representing, for. **from the part of**: the fixed phrase is on the part of.", cue: "f6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("f6w", "There was no mistake ____ the driver.", [["person", "on the part of", true, "by, coming from"], ["support", "on behalf of", "diff", "representing | the driver"], ["cross", "from the part of", false, "the fixed phrase | is on the part of"]], ["on the part of = by, coming from", "Why on? the act rests on that side"], null, ["\u2248 on behalf of: I am writing on behalf of my father."]),
+          ...PLAB.kit.lineup("f6w", "There was no mistake ____ the driver.", [["person", "on the part of", true, "by, coming from"], ["support", "on behalf of", "diff", "representing | the driver"], ["cross", "from the part of", false, "the fixed phrase | is on the part of"]], ["on the part of = by, coming from", "Why on? the act rests on that side"], null, ["\u2248 on behalf of: I am writing on behalf of my father.  = representing, for"]),
         ],
       },
       {

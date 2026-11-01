@@ -107,11 +107,11 @@
         alt: "It has rained with a gap morning. Answer: since, because morning is the start; it is still raining. Not for: morning is not a length. Not during: during the morning = at some time in it.",
         say: [
           { text: "Fill the gap: It has rained … morning. Picture it: morning is the start; it is still raining. So **since**.", cue: "sincex12" },
-          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it That is correct English, but it says something else. Where during fits: _It rained twice during the morning._", cue: "sincex1-r2" },
+          { text: "Why not **for**? morning is not a length. Why not **during**? during the morning = at some time in it. That is correct English, but it says something else. Where during fits: _It rained twice during the morning._ There **during** means at some times within the morning.", cue: "sincex1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-sincex1"),
-          ...PLAB.kit.lineup("sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning."]),
+          ...PLAB.kit.lineup("sincex1", "It has rained ____ morning.", [["span", "for", false, "morning is not a length"], ["sincePoint", "since", true, "morning is the start; | it is still raining"], ["decade", "during", "diff", "during the morning = | at some time in it"]], ["Why since? morning is the start; it is still raining", "Ask: Does it name the point when it started?"], null, ["≈ during: It rained twice during the morning.  = at some times within the morning"]),
         ],
       },
       {
@@ -150,11 +150,11 @@
         alt: "Many lost their homes with a gap the floods. Answer: during, because inside the event of the floods. Not for: not a length. Not since: since the floods = from then till now.",
         say: [
           { text: "Fill the gap: Many lost their homes … the floods. Picture it: inside the event of the floods. So **during**.", cue: "duringx13" },
-          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._", cue: "duringx1-r2" },
+          { text: "Why not **for**? not a length. Why not **since**? since the floods = from then till now. That is correct English, but it says something else. Where since fits: _Prices have risen since the floods._ There **since** means from the floods until now.", cue: "duringx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-duringx1"),
-          ...PLAB.kit.lineup("duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods."]),
+          ...PLAB.kit.lineup("duringx1", "Many lost their homes ____ the floods.", [["span", "for", false, "not a length"], ["sincePoint", "since", "diff", "since the floods = from | then till now"], ["decade", "during", true, "inside the event of | the floods"]], ["Why during? inside the event of the floods", "Ask: Does it name an event, and something happens inside it?"], null, ["≈ since: Prices have risen since the floods.  = from the floods until now"]),
         ],
       },
       {

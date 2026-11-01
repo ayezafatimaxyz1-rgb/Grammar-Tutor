@@ -33,11 +33,11 @@
         alt: "The sentence with a gap the meeting, the papers were sent., then the candidates: prior to (fits: before); subsequent to (correct English, different meaning: after the meeting); prior than (not used: prior takes to, not than)",
         say: [
           { text: "Fill the gap: \u2026 the meeting, the papers were sent. The sentence wants **prior to**: before.", cue: "f1w1" },
-          { text: "Why not the others? **subsequent to** is correct English, but it means after the meeting. That is not what this sentence says. Where subsequent to fits: _Subsequent to the meeting, a report was sent._ **prior than**: prior takes to, not than.", cue: "f1w2" },
+          { text: "Why not the others? **subsequent to** is correct English, but it means after the meeting. That is not what this sentence says. Where subsequent to fits: _Subsequent to the meeting, a report was sent._ There **subsequent to** means after. **prior than**: prior takes to, not than.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "____ the meeting, the papers were sent.", [["priorDot", "prior to", true, "before"], ["arrowR", "subsequent to", "diff", "after the meeting"], ["cross", "prior than", false, "prior takes | to, not than"]], ["prior to = before", "Why to? prior = earlier"], null, ["\u2248 subsequent to: Subsequent to the meeting, a report was sent."]),
+          ...PLAB.kit.lineup("f1w", "____ the meeting, the papers were sent.", [["priorDot", "prior to", true, "before"], ["arrowR", "subsequent to", "diff", "after the meeting"], ["cross", "prior than", false, "prior takes | to, not than"]], ["prior to = before", "Why to? prior = earlier"], null, ["\u2248 subsequent to: Subsequent to the meeting, a report was sent.  = after"]),
         ],
       },
       {
@@ -63,11 +63,11 @@
         alt: "The sentence with a gap English, he speaks French., then the candidates: apart from (fits: except, or as well as); instead of (correct English, different meaning: in place of English); apart of (not used: the fixed phrase is apart from)",
         say: [
           { text: "Fill the gap: \u2026 English, he speaks French. The sentence wants **apart from**: except, or as well as.", cue: "f2w1" },
-          { text: "Why not the others? **instead of** is correct English, but it means in place of English. That is not what this sentence says. Where instead of fits: _Drink water instead of cola._ **apart of**: the fixed phrase is apart from.", cue: "f2w2" },
+          { text: "Why not the others? **instead of** is correct English, but it means in place of English. That is not what this sentence says. Where instead of fits: _Drink water instead of cola._ There **instead of** means in place of. **apart of**: the fixed phrase is apart from.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "____ English, he speaks French.", [["groupOut", "apart from", true, "except, or | as well as"], ["arrowR", "instead of", "diff", "in place of English"], ["cross", "apart of", false, "the fixed phrase | is apart from"]], ["apart from = except, or as well as", "Why from? apart = separated"], null, ["\u2248 instead of: Drink water instead of cola."]),
+          ...PLAB.kit.lineup("f2w", "____ English, he speaks French.", [["groupOut", "apart from", true, "except, or | as well as"], ["arrowR", "instead of", "diff", "in place of English"], ["cross", "apart of", false, "the fixed phrase | is apart from"]], ["apart from = except, or as well as", "Why from? apart = separated"], null, ["\u2248 instead of: Drink water instead of cola.  = in place of"]),
         ],
       },
       {

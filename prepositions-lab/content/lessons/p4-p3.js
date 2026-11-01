@@ -130,11 +130,11 @@
         alt: "The sentence She is proud with a gap her son., then the candidates: of (fits: pleased with someone's achievement); for (correct English, different meaning: happy on her son's behalf, about something he did); on (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: She is proud \u2026 her son. What does the sentence want to say? It wants **proud of**: pleased with someone's achievement.", cue: "e3w1" },
-          { text: "Why not the others? **for** is correct English, but it would mean happy on her son's behalf, about something he did. That is not what this sentence says. Where for fits: _I am so proud for you._ **on**: a word-for-word translation.", cue: "e3w2" },
+          { text: "Why not the others? **for** is correct English, but it would mean happy on her son's behalf, about something he did. That is not what this sentence says. Where for fits: _I am so proud for you._ There **for** means happy on someone's behalf. **on**: a word-for-word translation.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "She is proud ____ her son.", [["awareOf", "of", true, "pleased with | someone's achievement"], ["wantStar", "for", "diff", "happy on her son's behalf, | about something he did"], ["cross", "on", false, "a word-for-word | translation"]], ["proud of = pleased with someone's achievement", "proud for = happy on someone's behalf"], null, ["\u2248 for: I am so proud for you."]),
+          ...PLAB.kit.lineup("e3w", "She is proud ____ her son.", [["awareOf", "of", true, "pleased with | someone's achievement"], ["wantStar", "for", "diff", "happy on her son's behalf, | about something he did"], ["cross", "on", false, "a word-for-word | translation"]], ["proud of = pleased with someone's achievement", "proud for = happy on someone's behalf"], null, ["\u2248 for: I am so proud for you.  = happy on someone's behalf"]),
         ],
       },
       {

@@ -185,11 +185,11 @@
         alt: "The sentence The ship is bound with a gap Karachi., then the candidates: for (fits: travelling towards); to (correct English, different meaning: tied to Karachi, or certain to); at (not used: at is a point, not a destination)",
         say: [
           { text: "Fill the gap: The ship is bound \u2026 Karachi. What does the sentence want to say? It wants **bound for**: travelling towards.", cue: "e5w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean tied to Karachi, or certain to. That is not what this sentence says. Where to fits: _He is bound to win._ **at**: at is a point, not a destination.", cue: "e5w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean tied to Karachi, or certain to. That is not what this sentence says. Where to fits: _He is bound to win._ There **to** means certain to, or tied to. **at**: at is a point, not a destination.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "The ship is bound ____ Karachi.", [["wantStar", "for", true, "travelling towards"], ["reachDot", "to", "diff", "tied to Karachi, | or certain to"], ["cross", "at", false, "at is a point, | not a destination"]], ["bound for = travelling towards", "bound to = certain to, or tied to"], null, ["\u2248 to: He is bound to win."]),
+          ...PLAB.kit.lineup("e5w", "The ship is bound ____ Karachi.", [["wantStar", "for", true, "travelling towards"], ["reachDot", "to", "diff", "tied to Karachi, | or certain to"], ["cross", "at", false, "at is a point, | not a destination"]], ["bound for = travelling towards", "bound to = certain to, or tied to"], null, ["\u2248 to: He is bound to win.  = certain to, or tied to"]),
         ],
       },
       {
@@ -245,11 +245,11 @@
         alt: "The sentence Thieves broke with a gap the house., then the candidates: into (fits: enter by force); out of (correct English, different meaning: escaped from inside the house); in (not used: broke in takes no object; with an object, into)",
         say: [
           { text: "Fill the gap: Thieves broke \u2026 the house. What does the sentence want to say? It wants **break into**: enter by force.", cue: "e6w1" },
-          { text: "Why not the others? **out of** is correct English, but it would mean escaped from inside the house. That is not what this sentence says. Where out of fits: _Two prisoners broke out of jail._ **in**: broke in takes no object; with an object, into.", cue: "e6w2" },
+          { text: "Why not the others? **out of** is correct English, but it would mean escaped from inside the house. That is not what this sentence says. Where out of fits: _Two prisoners broke out of jail._ There **out of** means escape from inside a place. **in**: broke in takes no object; with an object, into.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Thieves broke ____ the house.", [["intoBag", "into", true, "enter by force"], ["goOut", "out of", "diff", "escaped from | inside the house"], ["cross", "in", false, "broke in takes no object; | with an object, into"]], ["break into = enter by force", "break off = end suddenly"], null, ["\u2248 out of: Two prisoners broke out of jail."]),
+          ...PLAB.kit.lineup("e6w", "Thieves broke ____ the house.", [["intoBag", "into", true, "enter by force"], ["goOut", "out of", "diff", "escaped from | inside the house"], ["cross", "in", false, "broke in takes no object; | with an object, into"]], ["break into = enter by force", "break off = end suddenly"], null, ["\u2248 out of: Two prisoners broke out of jail.  = escape from inside a place"]),
         ],
       },
       {

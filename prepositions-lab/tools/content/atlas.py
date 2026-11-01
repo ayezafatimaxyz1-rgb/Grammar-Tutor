@@ -15,7 +15,7 @@ and tools/content/atlas_built.json (for register_atlas.py).
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from uses import use_for
+from uses import use_for, use_line, use_say
 
 T = lambda v: json.dumps(v, ensure_ascii=False)
 UNITS = []
@@ -146,8 +146,8 @@ def proof_steps(title, proof, pics, pre="", qpre="p0"):
                 opt_js = ", ".join(f"[{pic(o[0])}, {T(o[1])}, {'true' if o[2] is True else T('diff') if o[2] == 'diff' else 'false'}, {T(o[3])}]" for o in opts)
                 t = f"{sp}x{j}"
                 ex_of = lambda q: use_for(q, f"{gapped}|{q}", strict=True) if others[q][0] == "D" else None
-                why_not = " ".join(f"Why not **{q}**? {flat(others[q][1])}" + ((" That is correct English, but it says something else." + (f" Where {q} fits: _{ex_of(q)}_" if ex_of(q) else "")) if others[q][0] == "D" else ".") for q in cands if q != p)
-                uses_ = [f"\u2248 {q}: {ex_of(q)}" for q in cands if q != p and ex_of(q)]
+                why_not = " ".join(f"Why not **{q}**? {flat(others[q][1]).rstrip('.')}." + ((" That is correct English, but it says something else." + use_say(q, q, f"{gapped}|{q}", True, others[q][1])) if others[q][0] == "D" else "") for q in cands if q != p)
+                uses_ = [x for x in (use_line(q, q, f"{gapped}|{q}", True, others[q][1]) for q in cands if q != p and others[q][0] == "D") if x]
                 steps.append(dict(id=f"{sp}-ex{j + 1}", title=f"{p}: example {j + 1}, why this and not the others",
                                   alt=f"{gapped.replace('____', 'with a gap')} Answer: {p}, because {flat(why)}. " + " ".join(f"Not {q}: {flat(others[q][1])}." for q in cands if q != p),
                                   says=[(f"Fill the gap: {gapped.replace('____', '…')} Picture it: {flat(why)}. So **{p}**.", f"{t}{cands.index(p) + 1}"),
@@ -156,7 +156,7 @@ def proof_steps(title, proof, pics, pre="", qpre="p0"):
             else:
                 cap = (lambda w: w[0].upper() + w[1:]) if sent.startswith("[") else (lambda w: w)
                 o = [dict(text=cap(p), correct=True, why=f"Correct. {flat(why)[0].upper() + flat(why)[1:]}. Ask: {pr['ask']}")]
-                o += [dict(text=cap(q), misconception="p0-sense", why=(f"{flat(others[q][1])[0].upper() + flat(others[q][1])[1:]}." + ((" It is correct English, but it says something else." + (f" Where {q} fits: {use_for(q, gapped + '|' + q, strict=True)}" if use_for(q, gapped + '|' + q, strict=True) else "")) if others[q][0] == "D" else ""))) for q in cands if q != p]
+                o += [dict(text=cap(q), misconception="p0-sense", why=(f"{flat(others[q][1])[0].upper() + flat(others[q][1])[1:]}." + ((" It is correct English, but it says something else." + use_say(q, q, gapped + '|' + q, True, others[q][1]).replace("_", "").replace("**", "")) if others[q][0] == "D" else ""))) for q in cands if q != p]
                 o.sort(key=lambda x: x["text"].lower())
                 checks.append((p, {"id": f"{qpre}-{sp}", "source": "original", "skill": f"{item['title']}: {p}", "prompt": re.sub(r"\[[^\]]*\]", "___", sent), "options": o}))
     # How to choose: one question per preposition.

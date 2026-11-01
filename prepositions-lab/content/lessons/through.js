@@ -89,12 +89,12 @@ PLAB.registerLesson({
       alt: "The sentence The train went with a gap the tunnel., then the candidates with pictures: through (right: in one end, out the other); across (wrong: across = over a surface); along (wrong: along = following a line); in (correct English but a different meaning: was inside it, not passing through). Rule: through = in one side and out the other; across = over a surface \u00b7 along = following a line.",
       say: [
         { text: "Fill the gap: The train went \u2026 the tunnel. What does the sentence want to say? The answer is **through**: in one end, out the other.", cue: "why1" },
-        { text: "Why not the others? **in** is correct English, but it would mean was inside it, not passing through. That is not what this sentence says. Where in fits: _The train waited in the tunnel for an hour._ **across**: across = over a surface. **along**: along = following a line.", cue: "why2" },
+        { text: "Why not the others? **in** is correct English, but it would mean was inside it, not passing through. That is not what this sentence says. Where in fits: _The train waited in the tunnel for an hour._ There **in** means inside the tunnel, not moving through. **across**: across = over a surface. **along**: along = following a line.", cue: "why2" },
         { text: "The rule: through = in one side and out the other; across = over a surface \u00b7 along = following a line.", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "The train went ____ the tunnel.", [["passThrough", "through", true, "in one end, | out the other"], ["roadPass", "across", false, "across = over | a surface"], ["alongRiver", "along", false, "along = following | a line"], ["loop", "in", "diff", "was inside it, | not passing through"]], ["through = in one side and out the other", "across = over a surface \u00b7 along = following a line"], null, ["\u2248 in: The train waited in the tunnel for an hour."]),
+        ...PLAB.kit.lineup("why", "The train went ____ the tunnel.", [["passThrough", "through", true, "in one end, | out the other"], ["roadPass", "across", false, "across = over | a surface"], ["alongRiver", "along", false, "along = following | a line"], ["loop", "in", "diff", "was inside it, | not passing through"]], ["through = in one side and out the other", "across = over a surface \u00b7 along = following a line"], null, ["\u2248 in: The train waited in the tunnel for an hour.  = inside the tunnel, not moving through"]),
       ],
     },
     {

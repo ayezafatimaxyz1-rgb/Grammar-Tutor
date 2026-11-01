@@ -13,6 +13,7 @@ import glob, os, re
 here = os.path.dirname(os.path.abspath(__file__))
 plain = lambda ex: re.sub(r"\s+", " ", re.sub(r"\[([^\]]*)\]", r"\1", ex).replace("(no word) ", "").replace(" (no word)", "")).strip()
 INDEX = {}
+MEANING = {}  # alt -> meaning, from the course's own entries
 
 def _load():
     if INDEX:
@@ -28,7 +29,9 @@ def _load():
     for word, senses in ents:
         for s in senses:
             prep, ex = s[0], s[2]
-            INDEX.setdefault(word if prep == "(no word)" else f"{word} {prep}", plain(ex))
+            k = word if prep == "(no word)" else f"{word} {prep}"
+            INDEX.setdefault(k, plain(ex))
+            MEANING.setdefault(k, s[1])
     # Phase 5 and 6: each phrase or verb with its example.
     def surf(phrase, example):
         m = re.search(r"\{([^}]*)\}", example)
@@ -37,8 +40,12 @@ def _load():
         return re.sub(r"[{}]", "", s)
     ns2 = {"N": "N", "D": "D"}
     ns2["U"] = lambda *a, **k: None
-    ns2["F"] = lambda phrase, level, meaning, example, *a, **k: INDEX.setdefault(re.sub(r"[\[\]]", "", phrase), surf(re.sub(r"[\[\]]", "", phrase), example))
-    ns2["V"] = lambda verb, level, meaning, example, *a, **k: INDEX.setdefault(re.sub(r"[\[\]]", "", verb), surf(re.sub(r"[\[\]]", "", verb), example))
+    def add(phrase, meaning, example):
+        k = re.sub(r"[\[\]]", "", phrase)
+        INDEX.setdefault(k, surf(k, example))
+        MEANING.setdefault(k, meaning)
+    ns2["F"] = lambda phrase, level, meaning, example, *a, **k: add(phrase, meaning, example)
+    ns2["V"] = lambda verb, level, meaning, example, *a, **k: add(verb, meaning, example)
     exec(open(os.path.join(here, "p5_phrases.py")).read(), ns2)
     exec(open(os.path.join(here, "p6_verbs.py")).read(), ns2)
     ns3 = {}
@@ -57,6 +64,20 @@ def use_for(alt, key=None, strict=False):
     if alt in USE:
         return USE[alt]
     return INDEX.get(alt)
+
+def meaning_for(alt, key=None, strict=False, reason=""):
+    """What the other choice means in its own example: a hand-written meaning first, then the course's
+    own entry for that phrase, then the reason given on the board."""
+    _load()
+    for k in (key, None if strict else alt):
+        if k and k in MEAN:
+            return MEAN[k]
+    if not strict and not (key and key in USE) and alt in MEANING:
+        return MEANING[alt]
+    r = " ".join(x.strip() for x in reason.split("|"))
+    return re.sub(r"^[^=]{1,40}=\s*", "", r) if "=" in r[:42] else r
+
+MEAN = {}  # hand-written meanings for examples whose board reason only fits the original sentence
 
 # Hand-written examples: where the other choice is the right one.
 USE = {}
@@ -230,3 +251,145 @@ USE.update({
 "y:in-on-time|in": "Come in time for dinner.", "y:into|in": "The spider waits in its parlour.",
 "y:into|to": "Walk to my door, and I will meet you there.", "y:into|by": "The fly walked by the parlour without going in.",
 })
+
+# The exact meaning the word gives in its "where it fits" example (shown after the example).
+MEAN.update({
+    # Phase 4 words
+    "access for": "meant for these people", "attach with": "using it as the tool", "break out of": "escape from inside a place",
+    "endowed by": "given money by a founder", "exception for": "a special allowance for someone", "filled by": "done by this person",
+    "heir of": "the one who will inherit from a person", "knock off": "push it off a surface", "mix in": "stir it into the rest",
+    "nervous of": "afraid of a thing (British English)", "talk on": "give a formal talk about a subject", "write for": "write on someone's behalf",
+    "pride of": "the best of; what makes them proud", "resign to": "accept it calmly", "subject of": "the topic of",
+    # Phase 5 and 6 phrases and verbs
+    "in favour with": "liked by someone powerful", "against": "opposing it", "in the charge of": "looked after by someone",
+    "on terms with": "having a (friendly) relationship with", "in the case of": "as for, concerning", "by the name of": "called",
+    "in respect of": "concerning, for", "in competition with": "competing against", "in want of": "needing",
+    "in line with": "matching, rising with", "subsequent to": "after", "instead of": "in place of",
+    "up to date": "current, with the latest information", "on the other hand": "here is the other side of it",
+    "turn in": "go to bed", "turn over": "flip to the other side", "call out": "say aloud", "call up": "phone",
+    "drop off": "take someone and leave them somewhere", "put up": "give a guest a place to stay", "carry off": "win",
+    "cut out": "stop eating or doing it", "go for": "choose", "fill up": "fill completely",
+    # Phase 1 and 2 lineups
+    "on-core|in": "set inside the wall itself", "on-core|at": "at the point beside the wall, not touching it", "on-core|above": "higher than the door, not on it",
+    "into-onto|in": "inside the box the whole time; no entering", "into-onto|onto": "moved and ended on top of the lid", "into-onto|to": "moved as far as the wall, not into it",
+    "within-without|in": "at the end of ten days", "within-without|after": "any time once ten days are over",
+    "over-above|above": "higher than the river, not crossing it", "under-below|below": "on a lower level, not right under",
+    "under-below|on": "resting on the top surface", "on-top-of|above": "higher than the books, not touching", "on-top-of|over": "covering the pile",
+    "front-behind|opposite": "facing it from across the road", "front-behind|ahead of": "further along the same road, in front",
+    "around-round-about|of": "written by Iqbal (his poems)", "against|for": "in support of the bill",
+    "to-towards|towards": "in the direction of Lahore, not reaching it", "to-towards|into": "entered the city",
+    "through|in": "inside the tunnel, not moving through", "across-along|along": "lengthwise, following the river",
+    "past-by-via|through": "into the bank and out the other side", "up-down|down": "from the top to the bottom",
+    "beyond|under": "being repaired right now", "throughout|through": "from one end to the other, not every part",
+    "throughout|along": "in a line by the side of the motorway", "what-is-a-preposition|under": "lower than the table, covered by it",
+    "within-time|in": "at the end of two weeks", "within-time|after": "any time once two weeks are over",
+    "pending|following": "after the inquiry ended", "pending|despite": "even though there was an inquiry",
+    "of|from": "taken off the old table (the source)", "of|for": "meant for the table, bought to fit it",
+    "about-on-topic|on": "a formal lecture with cricket history as its subject",
+    "as-like|like": "in the same way as a teacher, but she is not one", "as-like|for": "her employer is a teacher",
+    "except-but-save|besides": "in addition to Ali (Ali came too)", "except-but-save|without": "Ali was left behind",
+    "including-excluding|including": "the hostel charges are inside the Rs 60,000", "including-excluding|besides": "in addition to the fee",
+    "addition-exception|Except": "teaching is the one thing left out", "addition-exception|Instead of": "writing has replaced teaching",
+    "circumstance|In view of": "because of the fire (it is a reason)", "circumstance|In the wake of": "after the fire, as a result of it",
+    "process|At the expense of": "losing quality to gain speed",
+    "arrive-at-in|in": "reached a city or big area", "look-family|for": "trying to find something lost",
+    "look-family|at": "turning the eyes to it", "look-family|into": "investigating it",
+    "die-of-from|from": "the flood was the cause of the losses", "compare-to-with|with": "set side by side to find differences",
+    "responsibility|for": "must explain the decisions themselves", "familiarity|to": "I know her face (the face is known to me)",
+    "separability|it off": "switched it off", "in-idioms|on": "at the planned time, not late",
+    # Proofs and pairs
+    "The students are ____ the hall.|at": "at the hall as a meeting point", "There is a picture ____ the wall.|at": "beside the wall, not hanging on it",
+    "We stopped ____ a petrol station.|in": "inside the shop building", "The train leaves ____ 6:30.|in": "thirty minutes from now",
+    "The shops close ____ night.|in": "during the night, at some point in it", "He is certain ____ success.|about": "sure of the details, the facts",
+    "They talked ____ the match.|on": "a formal talk with cricket rules as its subject", "She is uncertain ____ the future.|of": "not sure she will succeed",
+    "He wrote a book ____ Iqbal.|of": "a book made of Iqbal's own letters", "He wrote a book ____ Iqbal.|about": "a story with Iqbal as its topic",
+    "She gave a lecture ____ climate change.|about": "chatting with climate change as the topic", "Write an essay ____ democracy.|about": "tell me things about it",
+    "a table made ____ wood|from": "the wood changed into paper", "Give the book ____ Ali.|for": "bought to give to Ali",
+    "She wrote a letter ____ her mother.|for": "wrote it on her mother's behalf", "The road was blocked ____ stones.|by": "the protesters did the blocking",
+    "He jumped ____ the river.|in": "they were already inside the river, playing", "Put the files ____ the drawer.|in": "already inside; where they are",
+    "The cat jumped ____ the table.|on": "jumping up and down on the bed", "Divide the sweets ____ the children.|between": "shared by exactly two",
+    "A bridge was built ____ the river.|above": "higher than the river", "The temperature is ____ 40 degrees.|over": "more than forty",
+    "His flat is ____ the shop.|over": "on the floor above the shop", "We walked ____ the forest.|across": "from one side of the field to the other",
+    "She walked ____ the road.|along": "following its length", "They swam ____ the river.|along": "following the bank lengthwise",
+    "We walked ____ the canal.|across": "over the bridge to the other bank", "It has rained ____ morning.|during": "at some times within the morning",
+    "Many lost their homes ____ the floods.|since": "from the floods until now", "The shop is open ____ ten.|by": "not later than ten",
+    "Who came ____ Ali?|beside": "at Ali's side", "He fought ____ a lion.|as": "when he was a young actor",
+    "She works ____ a teacher.|like": "in a teacher's way", "Use the box ____ a table.|like": "similar to a table in looks",
+    "All passed ____ Hamid.|besides": "in addition to Hamid", "____ Hamid, five others passed.|except": "Hamid is left out",
+    "____ a car, he owns a bike.|instead of": "in place of a car", "Drink water ____ cola.|besides": "in addition to water",
+    "He sent his son ____ going himself.|besides": "in addition to his son", "The delay was ____ fog.|because of": "fog was the reason",
+    "His success is ____ hard work.|because of": "hard work was the reason", "The accident was ____ carelessness.|because of": "carelessness was the reason",
+    "The match was stopped ____ rain.|due to": "caused by rain", "We went ____ Murree.|towards": "in the direction of Murree only",
+    "He walked ____ school.|towards": "in the direction of school only", "The dog ran ____ me.|to": "ran and reached me",
+    "Wash your hands ____ eating.|after": "when eating is over", "Finish the work ____ Friday.|after": "once Friday is over",
+    "He reached the station ____ me.|after": "later than me", "We rested ____ the match.|before": "earlier than the match",
+    "____ the war, prices rose.|before": "earlier than the war", "Call me ____ lunch.|before": "earlier than lunch",
+    "He left two years ____.|before": "two years earlier than the war", "I met her a week ____.|before": "a week earlier than the wedding",
+    "The shop opened long ____.|before": "much earlier than the mall",
+    "The car is parked ____ the house.|behind": "at the back of the house", "The car is parked ____ the house.|opposite": "facing the house from across the road",
+    "She stood ____ the class.|behind": "at the back of the class", "Don't walk ____ the camera.|behind": "at the back of the camera",
+    "The garden is ____ the house.|in front of": "on the side the house faces", "The garden is ____ the house.|opposite": "facing it, across the road",
+    "He hid ____ a tree.|in front of": "on the facing side, where he can be seen", "The bank is ____ the mosque.|in front of": "at the facing side of the gate",
+    "The bank is ____ the mosque.|behind": "at the back of the mosque", "She sat ____ me at dinner.|in front of": "in the seat ahead of mine",
+    "She sat ____ me at dinner.|behind": "in the seat at my back", "They live ____ us.|in front of": "just before our door",
+    "They live ____ us.|behind": "at the back of our house",
+    "Ten people came, ____ two children.|excluding": "the children are not counted", "The price is 500 rupees, ____ tax.|excluding": "tax is not counted; you pay it extra",
+    "Everyone, ____ the teacher, laughed.|excluding": "the teacher is left out", "The fare is 900 rupees, ____ food.|including": "food is counted inside the 900",
+    "All shops close, ____ pharmacies.|including": "pharmacies close too", "Five days a week, ____ Sunday|including": "Sunday is counted in the seven",
+    "Wait ____ the car.|outside": "out of the car, next to it", "It is warm ____ the house.|outside": "out beyond its walls",
+    "The children play ____ the house.|inside": "within its walls", "Wait ____ the room.|inside": "within the room",
+    "There is a park ____ the city.|inside": "within the city's limits", "He ran ____ the room.|outside": "out of the room, around it",
+    "We live ____ the park.|next to": "right beside, nothing between", "We live ____ the park.|by": "very close to",
+    "My house is ____ the mosque.|near": "a short distance from it", "My house is ____ the mosque.|by": "beside it",
+    "Sit ____ me.|near": "close to me", "Sit ____ me.|by": "at my side",
+    "They have a house ____ the river.|near": "a short distance from it", "They have a house ____ the river.|next to": "right beside it",
+    "He stood ____ the window.|near": "close to it", "He stood ____ the window.|next to": "right beside it",
+    "a cottage ____ the sea|near": "a short distance from the sea", "He walked ____ the bank.|by": "past the bank",
+    "Send it ____ email.|by": "using email as the means",
+    "He was suspended ____ an inquiry.|following": "after the inquiry", "The bill is on hold ____ approval.|following": "after approval",
+    "____ the inquiry, he was dismissed.|pending": "while waiting for the inquiry to finish", "____ the inquiry, he was dismissed.|given": "considering the findings",
+    "____ the rains, roads were closed.|given": "considering the rains",
+    "I am writing ____ your complaint.|about": "on the topic of, in everyday talk", "a notice ____ fees|about": "on the topic of, in everyday talk",
+    "We talked ____ the fees.|regarding": "concerning (formal writing)", "____ fees, nothing has changed.|regarding": "concerning",
+    "____ fees, nothing has changed.|about": "on the topic of",
+    "She climbed ____ the ladder.|down": "from the top to the bottom", "They walked ____ the hill.|down": "from the top to the bottom",
+    "He came ____ the stairs.|up": "from the bottom to the top",
+    "I'll be back ____ ten minutes.|within": "before ten minutes are over", "The results come out ____ a week.|within": "before a week is over",
+    "Reply ____ a week.|in": "at the end of a week", "The pain stopped ____ an hour.|in": "at the end of an hour",
+    "The pain stopped ____ an hour.|after": "once an hour was over", "He returned ____ two days.|within": "before the two days end",
+    "I met him ____ the bus.|in": "inside a car (a small vehicle)", "We were ____ a plane for six hours.|in": "inside a small car",
+    "We arrived ____ the station.|in": "inside the building", "They arrived ____ the hotel late.|in": "inside the hotel as guests",
+    "She got ____ her bike.|off": "left the bike", "He got ____ a taxi.|out of": "left the taxi",
+    "Get ____ the bus at Liberty.|on": "boarded the bus", "We got ____ the plane.|on": "boarded the plane",
+    "Get ____ the car slowly.|in": "entered the car", "She got ____ the taxi.|in": "entered the taxi",
+    "Turn left ____ the corner.|on": "standing on that corner plot", "Wait for me ____ the corner.|on": "standing on that corner plot",
+    "There is a bakery ____ the corner.|at": "at that point where you turn", "The bank ____ the corner is closed.|at": "at that meeting point",
+    "He sat ____ the corner, alone.|at": "at the street corner point",
+    "Walk ____ the canal to the bridge.|across": "from one side to the other", "Drive ____ this road for a mile.|across": "from one side to the other",
+    "Go ____ the hospital.|through": "in one side and out the other", "Go ____ the main gate.|past": "beside it and beyond it, not in",
+    "Walk ____ the bazaar.|across": "from one side to the other", "Walk ____ the bazaar.|past": "beside it and on, not into it",
+    "Walk ____ the bridge.|along": "following its length", "The post office is ____ the road.|along": "at points beside the road",
+    "The post office is ____ the road.|past": "further on, beyond the bank",
+    "Prices rose ____ 5 percent.|to": "the new level it reached", "Prices rose ____ 5 percent.|from": "the level it started at",
+    "Petrol rose ____ 290 rupees.|by": "the size of the rise", "Petrol rose ____ 290 rupees.|from": "the price it started at",
+    "The score fell ____ zero.|by": "the size of the fall", "The score fell ____ zero.|from": "where it started",
+    "Apples are sold ____ 250 rupees a kilo.|for": "the total paid in exchange", "I bought the phone ____ 30,000 rupees.|at": "the rate for each phone",
+    "She sold her gold ____ a good price.|at": "the rate it sells at", "The fee is 2,000 rupees ____ student.|for": "paid in exchange for one student",
+    "He earns 1,500 ____ day.|for": "paid in exchange for one day's work",
+    # Your lessons
+    "y:dawn|by": "not later than dawn (a deadline)", "y:dawn|after": "later than dawn",
+    "y:in-on-time|in": "early enough, with time to spare", "y:into|in": "already inside, not moving in",
+    "y:into|to": "as far as my door, not going in", "y:into|by": "past it, without going in",
+})
+
+def use_line(p, alt, key=None, strict=False, reason=""):
+    """The board line for a ≈ option: its example and what the word means there, or None."""
+    ex = use_for(alt, key, strict)
+    return f"≈ {p}: {ex}  = {meaning_for(alt, key, strict, reason)}" if ex else None
+
+def use_say(p, alt, key=None, strict=False, reason=""):
+    """The spoken add-on for a ≈ option: where it fits and what it means there."""
+    ex = use_for(alt, key, strict)
+    if not ex: return ""
+    m = meaning_for(alt, key, strict, reason)
+    return f" Where {p} fits: _{ex}_ There **{p}** means {m}."

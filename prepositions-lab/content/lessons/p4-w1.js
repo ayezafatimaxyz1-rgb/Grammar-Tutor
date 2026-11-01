@@ -63,11 +63,11 @@
         alt: "The sentence We waited with a gap the bus., then the candidates: for (fits: stay until someone or something comes); on (correct English, different meaning: served the bus like a waiter); (no word) (not used: wait cannot reach its object alone)",
         say: [
           { text: "Fill the gap: We waited \u2026 the bus. What does the sentence want to say? It wants **wait for**: stay until someone or something comes.", cue: "e1w1" },
-          { text: "Why not the others? **on** is correct English, but it would mean served the bus like a waiter. That is not what this sentence says. Where on fits: _He waits on the guests._ **(no word)**: wait cannot reach its object alone.", cue: "e1w2" },
+          { text: "Why not the others? **on** is correct English, but it would mean served the bus like a waiter. That is not what this sentence says. Where on fits: _He waits on the guests._ There **on** means serve, as a waiter does. **(no word)**: wait cannot reach its object alone.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "We waited ____ the bus.", [["wantStar", "for", true, "stay until someone | or something comes"], ["support", "on", "diff", "served the bus | like a waiter"], ["cross", "(no word)", false, "wait cannot reach | its object alone"]], ["wait for = stay until someone or something comes", "wait on = serve, as a waiter does"], null, ["\u2248 on: He waits on the guests."]),
+          ...PLAB.kit.lineup("e1w", "We waited ____ the bus.", [["wantStar", "for", true, "stay until someone | or something comes"], ["support", "on", "diff", "served the bus | like a waiter"], ["cross", "(no word)", false, "wait cannot reach | its object alone"]], ["wait for = stay until someone or something comes", "wait on = serve, as a waiter does"], null, ["\u2248 on: He waits on the guests.  = serve, as a waiter does"]),
         ],
       },
       {
@@ -123,11 +123,11 @@
         alt: "The sentence They warned us with a gap the storm., then the candidates: about (fits: tell someone of a danger); against (correct English, different meaning: advised us not to do the storm); from (not used: a word-for-word translation)",
         say: [
           { text: "Fill the gap: They warned us \u2026 the storm. What does the sentence want to say? It wants **warn about**: tell someone of a danger.", cue: "e2w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean advised us not to do the storm. That is not what this sentence says. Where against fits: _The doctor warned him against smoking._ **from**: a word-for-word translation.", cue: "e2w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean advised us not to do the storm. That is not what this sentence says. Where against fits: _The doctor warned him against smoking._ There **against** means advise not to do. **from**: a word-for-word translation.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "They warned us ____ the storm.", [["aboutCircle", "about", true, "tell someone | of a danger"], ["shield", "against", "diff", "advised us not | to do the storm"], ["cross", "from", false, "a word-for-word | translation"]], ["warn against = advise not to do", "warn about = tell someone of a danger"], null, ["\u2248 against: The doctor warned him against smoking."]),
+          ...PLAB.kit.lineup("e2w", "They warned us ____ the storm.", [["aboutCircle", "about", true, "tell someone | of a danger"], ["shield", "against", "diff", "advised us not | to do the storm"], ["cross", "from", false, "a word-for-word | translation"]], ["warn against = advise not to do", "warn about = tell someone of a danger"], null, ["\u2248 against: The doctor warned him against smoking.  = advise not to do"]),
         ],
       },
       {
@@ -237,11 +237,11 @@
         alt: "The sentence I often wonder with a gap my future., then the candidates: about (fits: think about with curiosity); at (correct English, different meaning: marvelled at my future as a sight); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: I often wonder \u2026 my future. What does the sentence want to say? It wants **wonder about**: think about with curiosity.", cue: "e5w1" },
-          { text: "Why not the others? **at** is correct English, but it would mean marvelled at my future as a sight. That is not what this sentence says. Where at fits: _We wondered at the beauty of the valley._ **on**: on is resting; not used.", cue: "e5w2" },
+          { text: "Why not the others? **at** is correct English, but it would mean marvelled at my future as a sight. That is not what this sentence says. Where at fits: _We wondered at the beauty of the valley._ There **at** means marvel at. **on**: on is resting; not used.", cue: "e5w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-5b"),
-          ...PLAB.kit.lineup("e5w", "I often wonder ____ my future.", [["aboutCircle", "about", true, "think about | with curiosity"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "marvelled at my | future as a sight"], ["cross", "on", false, "on is resting; | not used"]], ["wonder about = think about with curiosity", "wonder at = marvel at"], null, ["\u2248 at: We wondered at the beauty of the valley."]),
+          ...PLAB.kit.lineup("e5w", "I often wonder ____ my future.", [["aboutCircle", "about", true, "think about | with curiosity"], [[["arrowR", -40, 0], ["target", 30, 0]], "at", "diff", "marvelled at my | future as a sight"], ["cross", "on", false, "on is resting; | not used"]], ["wonder about = think about with curiosity", "wonder at = marvel at"], null, ["\u2248 at: We wondered at the beauty of the valley.  = marvel at"]),
         ],
       },
       {
@@ -361,11 +361,11 @@
         alt: "The sentence She wrote with a gap her mother., then the candidates: to (fits: send a letter to); about (correct English, different meaning: wrote about her mother as a topic); for (correct English, different meaning: wrote on her mother's behalf)",
         say: [
           { text: "Fill the gap: She wrote \u2026 her mother. What does the sentence want to say? It wants **write to**: send a letter to.", cue: "e8w1" },
-          { text: "Why not the others? **about** is correct English, but it would mean wrote about her mother as a topic. That is not what this sentence says. Where about fits: _She wrote about her mother._ **for** is correct English, but it would mean wrote on her mother's behalf. That is not what this sentence says. Where for fits: _He writes letters for people who cannot read._", cue: "e8w2" },
+          { text: "Why not the others? **about** is correct English, but it would mean wrote about her mother as a topic. That is not what this sentence says. Where about fits: _She wrote about her mother._ There **about** means write on a topic. **for** is correct English, but it would mean wrote on her mother's behalf. That is not what this sentence says. Where for fits: _He writes letters for people who cannot read._ There **for** means write on someone's behalf.", cue: "e8w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-8b"),
-          ...PLAB.kit.lineup("e8w", "She wrote ____ her mother.", [["reachDot", "to", true, "send a letter to"], ["aboutCircle", "about", "diff", "wrote about her | mother as a topic"], ["wantStar", "for", "diff", "wrote on her | mother's behalf"]], ["write to = send a letter to", "write about = write on a topic"], null, ["\u2248 about: She wrote about her mother.", "\u2248 for: He writes letters for people who cannot read."]),
+          ...PLAB.kit.lineup("e8w", "She wrote ____ her mother.", [["reachDot", "to", true, "send a letter to"], ["aboutCircle", "about", "diff", "wrote about her | mother as a topic"], ["wantStar", "for", "diff", "wrote on her | mother's behalf"]], ["write to = send a letter to", "write about = write on a topic"], null, ["\u2248 about: She wrote about her mother.  = write on a topic", "\u2248 for: He writes letters for people who cannot read.  = write on someone's behalf"]),
         ],
       },
       {

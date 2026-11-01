@@ -68,11 +68,11 @@
         alt: "The sentence Please with a gap the address., then the candidates: write down (fits: record on paper); write off (correct English, different meaning: cancel a debt, or give up on); write up (correct English, different meaning: write a full report)",
         say: [
           { text: "Fill the gap: Please \u2026 the address. The sentence wants **write down**: record on paper.", cue: "f1w1" },
-          { text: "Why not the others? **write off** is correct English, but it means cancel a debt, or give up on. That is not what this sentence says. Where write off fits: _The bank wrote off the loan._ **write up** is correct English, but it means write a full report. That is not what this sentence says. Where write up fits: _Write up your notes after the class._", cue: "f1w2" },
+          { text: "Why not the others? **write off** is correct English, but it means cancel a debt, or give up on. That is not what this sentence says. Where write off fits: _The bank wrote off the loan._ There **write off** means cancel (a debt). **write up** is correct English, but it means write a full report. That is not what this sentence says. Where write up fits: _Write up your notes after the class._ There **write up** means write a full report.", cue: "f1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("f1w", "Please ____ the address.", [["pen", "write down", true, "record on paper"], ["bounceOff", "write off", "diff", "cancel a debt, | or give up on"], ["arrowUp", "write up", "diff", "write a full report"]], ["write down = record on paper", "Why down? down = onto paper"], null, ["\u2248 write off: The bank wrote off the loan.", "\u2248 write up: Write up your notes after the class."]),
+          ...PLAB.kit.lineup("f1w", "Please ____ the address.", [["pen", "write down", true, "record on paper"], ["bounceOff", "write off", "diff", "cancel a debt, | or give up on"], ["arrowUp", "write up", "diff", "write a full report"]], ["write down = record on paper", "Why down? down = onto paper"], null, ["\u2248 write off: The bank wrote off the loan.  = cancel (a debt)", "\u2248 write up: Write up your notes after the class.  = write a full report"]),
         ],
       },
       {
@@ -133,11 +133,11 @@
         alt: "The sentence Drivers must with a gap near schools., then the candidates: slow down (fits: go slower); speed up (correct English, different meaning: go faster); slow off (not used: not used)",
         say: [
           { text: "Fill the gap: Drivers must \u2026 near schools. The sentence wants **slow down**: go slower.", cue: "f2w1" },
-          { text: "Why not the others? **speed up** is correct English, but it means go faster. That is not what this sentence says. Where speed up fits: _We must speed up the work._ **slow off**: not used.", cue: "f2w2" },
+          { text: "Why not the others? **speed up** is correct English, but it means go faster. That is not what this sentence says. Where speed up fits: _We must speed up the work._ There **speed up** means go faster. **slow off**: not used.", cue: "f2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("f2w", "Drivers must ____ near schools.", [["car", "slow down", true, "go slower"], ["arrowUp", "speed up", "diff", "go faster"], ["cross", "slow off", false, "not used"]], ["slow down = go slower", "Why down? down = less"], null, ["\u2248 speed up: We must speed up the work."]),
+          ...PLAB.kit.lineup("f2w", "Drivers must ____ near schools.", [["car", "slow down", true, "go slower"], ["arrowUp", "speed up", "diff", "go faster"], ["cross", "slow off", false, "not used"]], ["slow down = go slower", "Why down? down = less"], null, ["\u2248 speed up: We must speed up the work.  = go faster"]),
         ],
       },
       {
@@ -198,11 +198,11 @@
         alt: "The sentence The scandal with a gap the government., then the candidates: bring down (fits: cause to fall); bring up (correct English, different meaning: raise a child, or mention); bring about (correct English, different meaning: cause to happen)",
         say: [
           { text: "Fill the gap: The scandal \u2026 the government. The sentence wants **bring down**: cause to fall.", cue: "f3w1" },
-          { text: "Why not the others? **bring up** is correct English, but it means raise a child, or mention. That is not what this sentence says. Where bring up fits: _She brought up three children alone._ **bring about** is correct English, but it means cause to happen. That is not what this sentence says. Where bring about fits: _The war brought about great changes._", cue: "f3w2" },
+          { text: "Why not the others? **bring up** is correct English, but it means raise a child, or mention. That is not what this sentence says. Where bring up fits: _She brought up three children alone._ There **bring up** means raise a child. **bring about** is correct English, but it means cause to happen. That is not what this sentence says. Where bring about fits: _The war brought about great changes._ There **bring about** means cause to happen.", cue: "f3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The scandal ____ the government.", [["arrowDown", "bring down", true, "cause to fall"], ["arrowUp", "bring up", "diff", "raise a child, | or mention"], ["aboutCircle", "bring about", "diff", "cause to happen"]], ["bring down = cause to fall", "Why down? down = lower"], null, ["\u2248 bring up: She brought up three children alone.", "\u2248 bring about: The war brought about great changes."]),
+          ...PLAB.kit.lineup("f3w", "The scandal ____ the government.", [["arrowDown", "bring down", true, "cause to fall"], ["arrowUp", "bring up", "diff", "raise a child, | or mention"], ["aboutCircle", "bring about", "diff", "cause to happen"]], ["bring down = cause to fall", "Why down? down = lower"], null, ["\u2248 bring up: She brought up three children alone.  = raise a child", "\u2248 bring about: The war brought about great changes.  = cause to happen"]),
         ],
       },
       {
@@ -263,11 +263,11 @@
         alt: "The sentence These customs were with a gap from father to son., then the candidates: hand down (fits: pass to the next generation); hand over (correct English, different meaning: give control to); hand in (correct English, different meaning: submit)",
         say: [
           { text: "Fill the gap: These customs were \u2026 from father to son. The sentence wants **hand down**: pass to the next generation.", cue: "f4w1" },
-          { text: "Why not the others? **hand over** is correct English, but it means give control to. That is not what this sentence says. Where hand over fits: _He handed over the keys._ **hand in** is correct English, but it means submit. That is not what this sentence says. Where hand in fits: _Hand in your papers now._", cue: "f4w2" },
+          { text: "Why not the others? **hand over** is correct English, but it means give control to. That is not what this sentence says. Where hand over fits: _He handed over the keys._ There **hand over** means give control to someone. **hand in** is correct English, but it means submit. That is not what this sentence says. Where hand in fits: _Hand in your papers now._ There **hand in** means submit.", cue: "f4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("f4w", "These customs were ____ from father to son.", [["giveTo", "hand down", true, "pass to the | next generation"], ["overRock", "hand over", "diff", "give control to"], ["absorbedIn", "hand in", "diff", "submit"]], ["hand down = pass to the next generation", "Why down? down = down the line"], null, ["\u2248 hand over: He handed over the keys.", "\u2248 hand in: Hand in your papers now."]),
+          ...PLAB.kit.lineup("f4w", "These customs were ____ from father to son.", [["giveTo", "hand down", true, "pass to the | next generation"], ["overRock", "hand over", "diff", "give control to"], ["absorbedIn", "hand in", "diff", "submit"]], ["hand down = pass to the next generation", "Why down? down = down the line"], null, ["\u2248 hand over: He handed over the keys.  = give control to someone", "\u2248 hand in: Hand in your papers now.  = submit"]),
         ],
       },
       {

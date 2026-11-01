@@ -63,11 +63,11 @@
         alt: "The sentence We must adapt with a gap the new climate., then the candidates: to (fits: change to fit new conditions); from (correct English, different meaning: the climate would be the source it came from); with (not used: with = together; adapting fits to)",
         say: [
           { text: "Fill the gap: We must adapt \u2026 the new climate. What does the sentence want to say? It wants **adapt to**: change to fit new conditions.", cue: "e1w1" },
-          { text: "Why not the others? **from** is correct English, but it would mean the climate would be the source it came from. That is not what this sentence says. Where from fits: _The film was adapted from a novel._ **with**: with = together; adapting fits to.", cue: "e1w2" },
+          { text: "Why not the others? **from** is correct English, but it would mean the climate would be the source it came from. That is not what this sentence says. Where from fits: _The film was adapted from a novel._ There **from** means make from a source. **with**: with = together; adapting fits to.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "We must adapt ____ the new climate.", [["reachDot", "to", true, "change to fit | new conditions"], ["holdBack", "from", "diff", "the climate would be | the source it came from"], ["cross", "with", false, "with = together; | adapting fits to"]], ["adapt to = change to fit new conditions", "adapt from = make from a source"], null, ["\u2248 from: The film was adapted from a novel."]),
+          ...PLAB.kit.lineup("e1w", "We must adapt ____ the new climate.", [["reachDot", "to", true, "change to fit | new conditions"], ["holdBack", "from", "diff", "the climate would be | the source it came from"], ["cross", "with", false, "with = together; | adapting fits to"]], ["adapt to = change to fit new conditions", "adapt from = make from a source"], null, ["\u2248 from: The film was adapted from a novel.  = make from a source"]),
         ],
       },
       {
@@ -168,11 +168,11 @@
         alt: "The sentence She is adept with a gap negotiating., then the candidates: at (fits: skilled at an activity); with (correct English, different meaning: skilled with negotiating as a tool); on (not used: on is a topic or surface)",
         say: [
           { text: "Fill the gap: She is adept \u2026 negotiating. What does the sentence want to say? It wants **adept at**: skilled at an activity.", cue: "e4w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean skilled with negotiating as a tool. That is not what this sentence says. Where with fits: _He is adept with a sword._ **on**: on is a topic or surface.", cue: "e4w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean skilled with negotiating as a tool. That is not what this sentence says. Where with fits: _He is adept with a sword._ There **with** means skilled with a tool. **on**: on is a topic or surface.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is adept ____ negotiating.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "skilled at | an activity"], ["agreeWith", "with", "diff", "skilled with | negotiating as a tool"], ["cross", "on", false, "on is a topic | or surface"]], ["adept at = skilled at an activity", "adept with = skilled with a tool"], null, ["\u2248 with: He is adept with a sword."]),
+          ...PLAB.kit.lineup("e4w", "She is adept ____ negotiating.", [[[["arrowR", -40, 0], ["target", 30, 0]], "at", true, "skilled at | an activity"], ["agreeWith", "with", "diff", "skilled with | negotiating as a tool"], ["cross", "on", false, "on is a topic | or surface"]], ["adept at = skilled at an activity", "adept with = skilled with a tool"], null, ["\u2248 with: He is adept with a sword.  = skilled with a tool"]),
         ],
       },
       {

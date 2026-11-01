@@ -81,11 +81,11 @@
         alt: "The sentence We were moved with a gap the speech., then the candidates: by (fits: touched emotionally by); to (correct English, different meaning: relocated to the speech); with (not used: with = together; not used)",
         say: [
           { text: "Fill the gap: We were moved \u2026 the speech. What does the sentence want to say? It wants **moved by**: touched emotionally by.", cue: "e2w1" },
-          { text: "Why not the others? **to** is correct English, but it would mean relocated to the speech. That is not what this sentence says. Where to fits: _The office moved to Lahore._ **with**: with = together; not used.", cue: "e2w2" },
+          { text: "Why not the others? **to** is correct English, but it would mean relocated to the speech. That is not what this sentence says. Where to fits: _The office moved to Lahore._ There **to** means relocated to. **with**: with = together; not used.", cue: "e2w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-2b"),
-          ...PLAB.kit.lineup("e2w", "We were moved ____ the speech.", [["followRule", "by", true, "touched | emotionally by"], ["reachDot", "to", "diff", "relocated to | the speech"], ["cross", "with", false, "with = together; | not used"]], ["moved by = touched emotionally by", "moved to = relocated to"], null, ["\u2248 to: The office moved to Lahore."]),
+          ...PLAB.kit.lineup("e2w", "We were moved ____ the speech.", [["followRule", "by", true, "touched | emotionally by"], ["reachDot", "to", "diff", "relocated to | the speech"], ["cross", "with", false, "with = together; | not used"]], ["moved by = touched emotionally by", "moved to = relocated to"], null, ["\u2248 to: The office moved to Lahore.  = relocated to"]),
         ],
       },
       {

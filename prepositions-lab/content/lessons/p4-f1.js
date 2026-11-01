@@ -86,11 +86,11 @@
         alt: "The sentence Multan is famous with a gap its mangoes., then the candidates: for (fits: known because of); as (correct English, different meaning: Multan would be known in the role of its mangoes); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: Multan is famous \u2026 its mangoes. What does the sentence want to say? It wants **famous for**: known because of.", cue: "e3w1" },
-          { text: "Why not the others? **as** is correct English, but it would mean Multan would be known in the role of its mangoes. That is not what this sentence says. Where as fits: _Iqbal is famous as a poet._ **of**: of = belonging; not used.", cue: "e3w2" },
+          { text: "Why not the others? **as** is correct English, but it would mean Multan would be known in the role of its mangoes. That is not what this sentence says. Where as fits: _Iqbal is famous as a poet._ There **as** means known in a role. **of**: of = belonging; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Multan is famous ____ its mangoes.", [["wantStar", "for", true, "known because of"], ["arrowR", "as", "diff", "Multan would be known in | the role of its mangoes"], ["cross", "of", false, "of = belonging; | not used"]], ["famous for = known because of", "famous as = known in a role"], null, ["\u2248 as: Iqbal is famous as a poet."]),
+          ...PLAB.kit.lineup("e3w", "Multan is famous ____ its mangoes.", [["wantStar", "for", true, "known because of"], ["arrowR", "as", "diff", "Multan would be known in | the role of its mangoes"], ["cross", "of", false, "of = belonging; | not used"]], ["famous for = known because of", "famous as = known in a role"], null, ["\u2248 as: Iqbal is famous as a poet.  = known in a role"]),
         ],
       },
       {
@@ -167,11 +167,11 @@
         alt: "The sentence The jar was filled with a gap water., then the candidates: with (fits: made full of); by (correct English, different meaning: the person who did the filling); of (not used: of goes with full: full of)",
         say: [
           { text: "Fill the gap: The jar was filled \u2026 water. What does the sentence want to say? It wants **filled with**: made full of.", cue: "e6w1" },
-          { text: "Why not the others? **by** is correct English, but it would mean the person who did the filling. That is not what this sentence says. Where by fits: _The post was filled by a young officer._ **of**: of goes with full: full of.", cue: "e6w2" },
+          { text: "Why not the others? **by** is correct English, but it would mean the person who did the filling. That is not what this sentence says. Where by fits: _The post was filled by a young officer._ There **by** means done by this person. **of**: of goes with full: full of.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "The jar was filled ____ water.", [["agreeWith", "with", true, "made full of"], ["followRule", "by", "diff", "the person who | did the filling"], ["cross", "of", false, "of goes with | full: full of"]], ["filled with = made full of"], null, ["\u2248 by: The post was filled by a young officer."]),
+          ...PLAB.kit.lineup("e6w", "The jar was filled ____ water.", [["agreeWith", "with", true, "made full of"], ["followRule", "by", "diff", "the person who | did the filling"], ["cross", "of", false, "of goes with | full: full of"]], ["filled with = made full of"], null, ["\u2248 by: The post was filled by a young officer.  = done by this person"]),
         ],
       },
       {
@@ -196,11 +196,11 @@
         alt: "The sentence He is fit with a gap the job., then the candidates: for (fits: suitable for); into (correct English, different meaning: squeezes inside the job); to (not used: to needs a verb: fit to work)",
         say: [
           { text: "Fill the gap: He is fit \u2026 the job. What does the sentence want to say? It wants **fit for**: suitable for.", cue: "e7w1" },
-          { text: "Why not the others? **into** is correct English, but it would mean squeezes inside the job. That is not what this sentence says. Where into fits: _The bag fits into the cupboard._ **to**: to needs a verb: fit to work.", cue: "e7w2" },
+          { text: "Why not the others? **into** is correct English, but it would mean squeezes inside the job. That is not what this sentence says. Where into fits: _The bag fits into the cupboard._ There **into** means able to go inside. **to**: to needs a verb: fit to work.", cue: "e7w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-7b"),
-          ...PLAB.kit.lineup("e7w", "He is fit ____ the job.", [["wantStar", "for", true, "suitable for"], ["intoBag", "into", "diff", "squeezes | inside the job"], ["cross", "to", false, "to needs a verb: | fit to work"]], ["fit for = suitable for", "fit into = able to go inside"], null, ["\u2248 into: The bag fits into the cupboard."]),
+          ...PLAB.kit.lineup("e7w", "He is fit ____ the job.", [["wantStar", "for", true, "suitable for"], ["intoBag", "into", "diff", "squeezes | inside the job"], ["cross", "to", false, "to needs a verb: | fit to work"]], ["fit for = suitable for", "fit into = able to go inside"], null, ["\u2248 into: The bag fits into the cupboard.  = able to go inside"]),
         ],
       },
       {

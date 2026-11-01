@@ -63,11 +63,11 @@
         alt: "The sentence The police dealt with a gap the crisis., then the candidates: with (fits: handle or take action on); in (correct English, different meaning: traded in the crisis as goods for sale); on (not used: on is resting; dealing handles with)",
         say: [
           { text: "Fill the gap: The police dealt \u2026 the crisis. What does the sentence want to say? It wants **deal with**: handle or take action on.", cue: "e1w1" },
-          { text: "Why not the others? **in** is correct English, but it would mean traded in the crisis as goods for sale. That is not what this sentence says. Where in fits: _He deals in spices._ **on**: on is resting; dealing handles with.", cue: "e1w2" },
+          { text: "Why not the others? **in** is correct English, but it would mean traded in the crisis as goods for sale. That is not what this sentence says. Where in fits: _He deals in spices._ There **in** means buy and sell as a trade. **on**: on is resting; dealing handles with.", cue: "e1w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-1b"),
-          ...PLAB.kit.lineup("e1w", "The police dealt ____ the crisis.", [["agreeWith", "with", true, "handle or take | action on"], ["absorbedIn", "in", "diff", "traded in the crisis | as goods for sale"], ["cross", "on", false, "on is resting; | dealing handles with"]], ["deal with = handle or take action on", "deal in = buy and sell as a trade"], null, ["\u2248 in: He deals in spices."]),
+          ...PLAB.kit.lineup("e1w", "The police dealt ____ the crisis.", [["agreeWith", "with", true, "handle or take | action on"], ["absorbedIn", "in", "diff", "traded in the crisis | as goods for sale"], ["cross", "on", false, "on is resting; | dealing handles with"]], ["deal with = handle or take action on", "deal in = buy and sell as a trade"], null, ["\u2248 in: He deals in spices.  = buy and sell as a trade"]),
         ],
       },
       {
@@ -172,11 +172,11 @@
         alt: "The sentence We decided with a gap the blue car., then the candidates: on (fits: choose after thinking); against (correct English, different meaning: chose not to buy the blue car); of (not used: of = belonging; not used)",
         say: [
           { text: "Fill the gap: We decided \u2026 the blue car. What does the sentence want to say? It wants **decide on**: choose after thinking.", cue: "e3w1" },
-          { text: "Why not the others? **against** is correct English, but it would mean chose not to buy the blue car. That is not what this sentence says. Where against fits: _We decided against the blue car._ **of**: of = belonging; not used.", cue: "e3w2" },
+          { text: "Why not the others? **against** is correct English, but it would mean chose not to buy the blue car. That is not what this sentence says. Where against fits: _We decided against the blue car._ There **against** means choose not to have or do. **of**: of = belonging; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "We decided ____ the blue car.", [["support", "on", true, "choose after | thinking"], ["shield", "against", "diff", "chose not to | buy the blue car"], ["cross", "of", false, "of = belonging; | not used"]], ["decide on = choose after thinking", "decide against = choose not to have or do"], null, ["\u2248 against: We decided against the blue car."]),
+          ...PLAB.kit.lineup("e3w", "We decided ____ the blue car.", [["support", "on", true, "choose after | thinking"], ["shield", "against", "diff", "chose not to | buy the blue car"], ["cross", "of", false, "of = belonging; | not used"]], ["decide on = choose after thinking", "decide against = choose not to have or do"], null, ["\u2248 against: We decided against the blue car.  = choose not to have or do"]),
         ],
       },
       {

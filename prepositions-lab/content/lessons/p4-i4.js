@@ -130,11 +130,11 @@
         alt: "The sentence Many students were involved with a gap the project., then the candidates: in (fits: taking part in); with (correct English, different meaning: in a close relationship with the project); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: Many students were involved \u2026 the project. What does the sentence want to say? It wants **involved in**: taking part in.", cue: "e3w1" },
-          { text: "Why not the others? **with** is correct English, but it would mean in a close relationship with the project. That is not what this sentence says. Where with fits: _He is involved with a rival company._ **on**: on is resting; not used.", cue: "e3w2" },
+          { text: "Why not the others? **with** is correct English, but it would mean in a close relationship with the project. That is not what this sentence says. Where with fits: _He is involved with a rival company._ There **with** means in a close relationship with. **on**: on is resting; not used.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "Many students were involved ____ the project.", [["absorbedIn", "in", true, "taking part in"], ["agreeWith", "with", "diff", "in a close relationship | with the project"], ["cross", "on", false, "on is resting; | not used"]], ["involved in = taking part in", "involved with = in a close relationship with"], null, ["\u2248 with: He is involved with a rival company."]),
+          ...PLAB.kit.lineup("e3w", "Many students were involved ____ the project.", [["absorbedIn", "in", true, "taking part in"], ["agreeWith", "with", "diff", "in a close relationship | with the project"], ["cross", "on", false, "on is resting; | not used"]], ["involved in = taking part in", "involved with = in a close relationship with"], null, ["\u2248 with: He is involved with a rival company.  = in a close relationship with"]),
         ],
       },
       {

@@ -117,11 +117,11 @@
         alt: "The sentence He was knocked with a gap by a bus., then the candidates: down (fits: hit and make fall); out (correct English, different meaning: made unconscious by the bus); off (correct English, different meaning: knocked off a surface, like a cup off a table)",
         say: [
           { text: "Fill the gap: He was knocked \u2026 by a bus. What does the sentence want to say? It wants **knock down**: hit and make fall.", cue: "e3w1" },
-          { text: "Why not the others? **out** is correct English, but it would mean made unconscious by the bus. That is not what this sentence says. Where out fits: _The boxer was knocked out._ **off** is correct English, but it would mean knocked off a surface, like a cup off a table. That is not what this sentence says. Where off fits: _The cat knocked the cup off the table._", cue: "e3w2" },
+          { text: "Why not the others? **out** is correct English, but it would mean made unconscious by the bus. That is not what this sentence says. Where out fits: _The boxer was knocked out._ There **out** means make unconscious, or put out of a contest. **off** is correct English, but it would mean knocked off a surface, like a cup off a table. That is not what this sentence says. Where off fits: _The cat knocked the cup off the table._ There **off** means push it off a surface.", cue: "e3w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("e3w", "He was knocked ____ by a bus.", [["arrowDown", "down", true, "hit and make fall"], ["arrowR", "out", "diff", "made unconscious | by the bus"], ["bookTable", "off", "diff", "knocked off a surface, | like a cup off a table"]], ["knock down = hit and make fall", "knock out = make unconscious, or put out of a contest"], null, ["\u2248 out: The boxer was knocked out.", "\u2248 off: The cat knocked the cup off the table."]),
+          ...PLAB.kit.lineup("e3w", "He was knocked ____ by a bus.", [["arrowDown", "down", true, "hit and make fall"], ["arrowR", "out", "diff", "made unconscious | by the bus"], ["bookTable", "off", "diff", "knocked off a surface, | like a cup off a table"]], ["knock down = hit and make fall", "knock out = make unconscious, or put out of a contest"], null, ["\u2248 out: The boxer was knocked out.  = make unconscious, or put out of a contest", "\u2248 off: The cat knocked the cup off the table.  = push it off a surface"]),
         ],
       },
       {
