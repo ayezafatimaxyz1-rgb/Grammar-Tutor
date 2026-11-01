@@ -163,6 +163,7 @@
               <span class="chev" aria-hidden="true">${icon("next")}</span>
             </summary>
             <div class="ph-body">
+              <div class="ph-pdf"><button type="button" class="pdf-mini" data-pdf="phase:${esc(ph.id)}">${icon("pdf")}<span>PDF of this whole phase</span></button></div>
             ${ph.units
               .map(
                 (u) => `
@@ -193,6 +194,19 @@
           </details>`;
           })
           .join("")}
+        </div>
+      </section>
+
+      <section class="notes-all" aria-labelledby="notes-h">
+        <h2 id="notes-h">${icon("pdf")} All the notes as PDF</h2>
+        <p class="muted small">Print them or send them anywhere. One phase at a time keeps every drawing sharp and the file a good size.</p>
+        <div class="notes-grid">${P.curriculum.phases
+          .filter((ph) => ph.units.some((u) => u.lessons.some((l) => l.lessonId && P.lessons[l.lessonId])))
+          .map((ph, i) => `<button type="button" class="notes-btn" data-pdf="phase:${esc(ph.id)}" style="--ph:${PHASE_COLOURS[i % PHASE_COLOURS.length]}"><b>${esc(ph.title.split(":")[0])}</b><span>${esc(ph.title.split(":").slice(1).join(":").trim() || ph.title)}</span></button>`)
+          .join("")}</div>
+        <div class="row-buttons">
+          <button type="button" class="button primary" data-pdf="course:text">The whole course as notes (text, small file)</button>
+          <button type="button" class="button" data-pdf="course:boards">The whole course with every board (very large, takes several minutes)</button>
         </div>
       </section>
 
