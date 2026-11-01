@@ -444,10 +444,10 @@ const TOPICS = [
 ];
 const NEWS = TOPICS.find((t) => t.kind === "news"), MYWORDS = TOPICS.find((t) => t.kind === "words"), IVSETUP = TOPICS.find((t) => t.kind === "ivsetup");
 const LEVEL_STYLE = {
-  A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences. Often give a model sentence the student can copy (\"You can say: ...\").",
-  A2: "Use simple English (CEFR A2): up to 3 short sentences. Ask \"why\" or \"how\" follow-ups so the student gives reasons. Give a model sentence only when the student is stuck.",
-  B1: "Use natural everyday English (CEFR B1): up to 3 sentences. Ask for reasons and examples. Encourage answers of 3 to 4 sentences.",
-  B2: "Use fluent, natural English (CEFR B2), like a friendly CSS interviewer: politely challenge the student's opinion and ask follow-ups that need explanation or examples.",
+  A1: "Use very simple English (CEFR A1): very short sentences and common words. At most 2 short sentences.",
+  A2: "Use simple English (CEFR A2): up to 3 short sentences.",
+  B1: "Use natural everyday English (CEFR B1): up to 3 sentences, and questions that need reasons and examples.",
+  B2: "Use fluent, natural English (CEFR B2): up to 4 sentences, and questions that need explanation, examples and opinions.",
 };
 const CHECK_STYLE = {
   A1: "The student is a beginner: only correct mistakes that change the meaning or are very common; ignore small article mistakes.",
@@ -739,10 +739,34 @@ function speakLine(line, onend, rate) {
 }
 
 // ---------- prompts ----------
-const RULES = (t) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is from Pakistan (first language Urdu), is practising spoken English and is preparing for the CSS exam interview. Topic: "${t.name}" (${t.desc}). ${t.extra || ""}
+// Mam's replies change shape from turn to turn, like a real person's: the page picks what she does next, never the same as
+// in her last few replies.
+const TALK_MOVES = [
+  "Share a short opinion or experience of your own about what they said (one sentence, as a real person would), then ask what they think.",
+  "Ask a why or how question about one detail they mentioned.",
+  "Ask them to describe something from their answer in detail: a place, a person, a moment or a feeling.",
+  "Ask them to compare two things linked to what they said (then and now, village and city, two choices).",
+  "Ask an imagine question linked to what they said: what would they do if...?",
+  "Gently give a different view or a small challenge, and ask whether they agree and why.",
+  "Ask them to tell a short story: a time when something linked to their answer happened.",
+  "Link what they said to something bigger (their future, their dream of the civil service, Pakistan, society) and ask their opinion.",
+  "React with real interest, surprise or a little humour, then ask a follow-up that takes the talk somewhere new.",
+  "Pick up an interesting word or idea they used and ask what it means to them.",
+  "Ask for their advice: what would they tell a friend in the same situation?",
+  "Move the talk to a new topic linked to this one in a natural way, with an open question.",
+];
+let recentMoves = [];
+function nextMove() {
+  const m = pickN(TALK_MOVES.filter((x) => !recentMoves.includes(x)), 1)[0];
+  recentMoves = [m, ...recentMoves].slice(0, 4); return m;
+}
+const RULES = (t, move) => `You are Mam, a warm and patient female English speaking teacher (the student calls you "Mam"; never use any other name for yourself). Your student is from Pakistan (first language Urdu), is practising spoken English and is preparing for the CSS exam interview. Topic: "${t.name}" (${t.desc}). ${t.extra || ""}
 Rules:
-- ${LEVEL_STYLE[level()]} Always end with ONE question so the student keeps talking.
-- This is a spoken conversation: sound natural and friendly, react to what the student says, and keep the conversation going.
+- ${LEVEL_STYLE[level()]} End with ONE open question or invitation to talk ("Tell me about..."), never a yes or no question, so the student keeps talking.
+- This is a spoken conversation: sound like a real person who is interested in the student, not like a lesson. React to what they actually said.
+- Never tell the student what to say: no "You can say...", no model answers and no sentences to copy (better ways to say it are shown to them separately). Only if they ask how to say something, tell them.
+- Vary your replies: never start two replies the same way (look at your earlier replies above), do not repeat their words back to them, and do not praise every answer.${move ? `
+- This time: ${move}` : ""}
 - Speak ENGLISH ONLY. Never write Urdu or Roman Urdu. If the student uses an Urdu word, give them the English word and ask them to say it again in English.
 - Do not correct the student's mistakes in your reply (corrections are shown separately); just answer the meaning naturally.
 Reply with only the words you say: no labels, no quotes, no emoji, no lists.`;
@@ -883,7 +907,7 @@ async function askMam(t, history, opts, check) {
   const iv = t.kind === "interview", board = iv && t.panel !== "mam";
   const convo = history.slice(-16).map((x) => (x.role === "user" ? (board ? "Candidate: " : "Student: ") : (board ? "Board: " : "Mam: ")) + x.content).join("\n");
   const answered = history.filter((x, i) => x.role === "user" && (history[i + 1]?.role === "assistant" || i === history.length - 1)).length;
-  const base = (iv ? BOARD_RULES(answered, t) : RULES(t)) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : iv ? "Write Mam's next interview turn now." : "Write Mam's next reply now.");
+  const base = (iv ? BOARD_RULES(answered, t) : RULES(t, history.length > 1 ? nextMove() : "")) + "\n\nConversation so far:\n" + convo + "\n\n" + (board ? "Write the board's next turn now." : iv ? "Write Mam's next interview turn now." : "Write Mam's next reply now.");
   if (check?.audio) {
     try {
       const r = await askJson(base + hearReply(check.lastQ), { audio: check.audio, modelTier: "quick", temperature: 0.4, cache: false, signal: opts?.signal });
