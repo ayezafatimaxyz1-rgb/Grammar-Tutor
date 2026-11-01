@@ -514,4 +514,36 @@ PLAB.misconceptions = {
     label: "Picture the preposition first",
     explain: "Each preposition draws its own picture: AT a point, ON a surface, IN an area, FROM a starting point, OF a part of a whole. Picture the situation in the sentence and choose the preposition whose picture matches it.",
   },
+  "y-price": {
+    label: "FOR is a swap, AT is a point on the price line",
+    explain: "FOR swaps money for a thing: bought it for 20 lakh. AT marks a point on the price line: at this price, at Rs 300 a kilo. A price is never IN.",
+  },
+  "y-address": {
+    label: "TO moves, AT is a spot, ON is a street, IN is an area",
+    explain: "Send, post and deliver move a thing, so they take TO. A house number is one spot (AT), a street is a line (ON), a city is an area (IN).",
+  },
+  "y-point-surface": {
+    label: "AT a point, ON a surface or day, TO an arrow, UPON formal on",
+    explain: "AT is one point (at the door, at 5 o'clock). ON touches a surface or line, and takes days (on Monday). TO is movement (go to school). UPON is a formal ON, never for days.",
+  },
+  "y-tool": {
+    label: "WITH a tool, BY a way or a doer, THROUGH in and out",
+    explain: "WITH is the tool you hold (with a hatchet). BY is the way, with no a or the (by hand, by bus), or the person who did it (by Ali). THROUGH goes in one side and out the other.",
+  },
+  "y-time-point": {
+    label: "AT a point of time, IN a part of the day, ON a named day",
+    explain: "Dawn, noon, night and midnight are points: AT. The morning and evening are stretches: IN. A named day takes ON, even with morning: on Monday morning. BY = no later than; AFTER = later than.",
+  },
+  "y-in-on-time": {
+    label: "IN TIME = early enough, ON TIME = exactly as planned",
+    explain: "IN TIME means early enough, with spare time. ON TIME means exactly at the planned time. AT TIME is never used alone: say at the time, at times, or one at a time.",
+  },
+  "y-for-since": {
+    label: "FOR a length, SINCE a start till now, FROM a start with an end",
+    explain: "FOR measures a length (for ten years). SINCE pins a start and runs to now (since 2016). FROM needs an end (from 2016 to 2021). OVER covers a whole period while things change.",
+  },
+  "y-into-in": {
+    label: "INTO moves inside, IN is already inside, TO goes towards, BY goes past",
+    explain: "INTO is movement from outside to inside (walk into the room). IN is already inside, no movement (he is in the room). TO is towards a place, maybe not going in. BY is past it, or near it.",
+  },
 };
