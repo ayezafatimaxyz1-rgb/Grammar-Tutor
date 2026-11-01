@@ -7,7 +7,7 @@ W("need", "B", [("for", "a lack that must be filled (noun)", "There is an urgent
 W("negligent", "A", [("in", "careless in doing", "The officer was negligent [in] his duties.")], 0, [
   ("on", N, "on is resting; not used"), ("about", N, "about is a topic; not used")])
 W("nervous", "B", [("about", "worried about", "She is nervous [about] the interview.")], 0, [
-  ("of", N, "of = belonging; worry goes about"), ("on", N, "on is resting; not used")])
+  ("of", D, "nervous of = afraid of a thing | (BrE): nervous of dogs"), ("on", N, "on is resting; not used")])
 W("nice", "B", [("of", "kind of someone (judging an act)", "It was nice [of] you to help."),
   ("to", "kind to someone", "She is always nice [to] her students.")], 0, [
   ("to", D, "kind to you, said of how someone treats you"), ("for", N, "for is a purpose; not used")])
@@ -23,7 +23,7 @@ W("obliged", "A", [("to", "thankful to a person", "I am much obliged [to] you.")
 W("oblivious", "A", [("to", "not noticing", "He was oblivious [to] the danger.")], 0, [
   ("from", N, "from is a source; not used"), ("about", N, "about is a topic; not used")])
 W("obsessed", "I", [("with", "thinking about it all the time", "He is obsessed [with] money.")], 0, [
-  ("of", N, "of = belonging; not used"), ("about", N, "about is a topic; obsession clings with")])
+  ("of", N, "of = belonging; not used"), ("about", N, "heard in speech, but formal | English says obsessed with")])
 W("occupied", "I", [("with", "busy with", "She was occupied [with] her work."),
   ("by", "taken or used by", "The seat is occupied [by] a guest.")], 0, [
   ("by", D, "taken over by her work, as a seat is taken by a person"), ("in", N, "in is inside; not used")])

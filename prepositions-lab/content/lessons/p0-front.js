@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-place",
     level: "Basic",
-    minutes: 12,
+    minutes: 10,
     summary: "The basic senses of in front of / behind / opposite, each drawn as its logic: in front of = before the face; behind = at the back; opposite = facing across a space.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -100,34 +100,6 @@
       },
       {
         id: "practice-1",
-        title: "Practice: in front of, before the face",
-        alt: "The last board stays.",
-        say: [
-          { text: "Which one fits? Picture what each one means first." },
-        ],
-        actions: [
-        ],
-        check: {
-          "id": "p0-front-1",
-          "source": "original",
-          "skill": "in front of: before the face",
-          "prompt": "The car is parked ___ the house.",
-          "options": [
-            {
-              "text": "in front of",
-              "correct": true,
-              "why": "Correct. in front of here means before the face: IN FRONT OF: on the side the thing faces."
-            },
-            {
-              "text": "opposite",
-              "misconception": "p0-sense",
-              "why": "OPPOSITE has a road or space between, facing each other."
-            }
-          ]
-        },
-      },
-      {
-        id: "practice-2",
         title: "Practice: behind, at the back",
         alt: "The last board stays.",
         say: [

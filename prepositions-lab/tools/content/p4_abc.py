@@ -185,8 +185,8 @@ W("careful", "B", [("with", "handle with care", "Be careful [with] that knife.")
 W("cater", "I", [("for", "provide what is needed for", "The hotel caters [for] tourists.")], 0, [
   ("on", N, "on is resting; not used"), ("with", N, "with = together; not used")])
 W("certain", "B", [("of", "sure that it is true or will happen", "She is certain [of] victory."),
-  ("about", "sure of the details, what it holds", "Nobody is certain [about] the future.")], 1, [
-  ("of", D, "nobody is sure the future will come at all"), ("on", N, "on is a surface or topic, not certainty")])
+  ("about", "sure about a topic with many sides: details, what it holds", "Nobody is certain [about] the future.")], 1, [
+  ("of", D, "certain of holds one fact or result; | the future is a topic with many sides"), ("on", N, "on is a surface or topic, not certainty")])
 W("characterised", "A", [("by", "marked by a quality", "His work is characterised [by] honesty.")], 0, [
   ("with", N, "with = a tool or company; the quality marks it"), ("of", N, "of = belonging; passive takes by")])
 W("charge", "I", [("with", "accuse formally of a crime", "He was charged [with] murder."),

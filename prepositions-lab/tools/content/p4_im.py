@@ -94,7 +94,7 @@ W("laugh", "B", [("at", "mock, or find funny", "Do not laugh [at] him."),
   ("with", D, "laugh together with him, in friendship"), ("about", D, "joke about him as a topic")])
 W("lean", "B", [("against", "rest your weight on something upright", "She leaned [against] the wall."),
   ("on", "rest on, or depend on", "He leans [on] his friends.")], 0, [
-  ("on", D, "rested on top of the wall"), ("to", N, "to points; leaning rests against")])
+  ("on", D, "lean on = put your weight on it; | against = pressed on its side"), ("to", N, "to points; leaning rests against")])
 W("liable", "A", [("for", "legally responsible for", "The company is liable [for] the damage."),
   ("to", "likely to suffer, or open to", "This road is liable [to] flooding.")], 0, [
   ("to", D, "likely to suffer the damage itself"), ("of", N, "of = belonging; not used")])

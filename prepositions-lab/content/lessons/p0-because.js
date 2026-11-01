@@ -6,7 +6,7 @@
     phase: 0,
     unit: "p0-ideas",
     level: "Basic",
-    minutes: 14,
+    minutes: 12,
     summary: "The basic senses of because of / due to / owing to / thanks to, each drawn as its logic: because of = the cause; due to = caused by (after be); owing to = because of (formal); thanks to = a cause you are glad of.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
@@ -145,34 +145,6 @@
               "text": "because of",
               "correct": true,
               "why": "Correct. because of here means the cause: BECAUSE OF + a noun gives the cause of an action."
-            }
-          ]
-        },
-      },
-      {
-        id: "practice-2",
-        title: "Practice: due to, caused by (after be)",
-        alt: "The last board stays.",
-        say: [
-          { text: "Which one fits? Picture what each one means first." },
-        ],
-        actions: [
-        ],
-        check: {
-          "id": "p0-because-2",
-          "source": "original",
-          "skill": "due to: caused by (after be)",
-          "prompt": "The delay was ___ fog.",
-          "options": [
-            {
-              "text": "because of",
-              "misconception": "p0-sense",
-              "why": "Use because of after an action verb."
-            },
-            {
-              "text": "due to",
-              "correct": true,
-              "why": "Correct. due to here means caused by (after be): Formal English uses DUE TO after BE."
             }
           ]
         },

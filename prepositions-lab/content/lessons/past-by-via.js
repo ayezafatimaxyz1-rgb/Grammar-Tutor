@@ -112,15 +112,15 @@ PLAB.registerLesson({
     {
       id: "why-not",
       title: "Why this one and not the others?",
-      alt: "The sentence She walked with a gap the bank., then the candidates with pictures: past (right: beside it and beyond it); passed (wrong: a verb; walked is already the verb); through (wrong: into it and out again). Rule: walked past (preposition); passed it (verb).",
+      alt: "The sentence She walked with a gap the bank., then the candidates with pictures: past (right: beside it and beyond it); passed (wrong: a verb; walked is already the verb); through (correct English but a different meaning: walked through the bank = into it and out again). Rule: walked past (preposition); passed it (verb).",
       say: [
         { text: "Fill the gap: She walked \u2026 the bank. What does the sentence want to say? The answer is **past**: beside it and beyond it.", cue: "why1" },
-        { text: "Why not the others? **passed**: a verb; walked is already the verb. **through**: into it and out again.", cue: "why2" },
+        { text: "Why not the others? **through** is correct English, but it would mean walked through the bank = into it and out again. That is not what this sentence says. **passed**: a verb; walked is already the verb.", cue: "why2" },
         { text: "The rule: walked past (preposition); passed it (verb).", cue: "why-r1" },
       ],
       actions: [
         PLAB.kit.clear("clear-why"),
-        ...PLAB.kit.lineup("why", "She walked ____ the bank.", [["pastBank", "past", true, "beside it and | beyond it"], ["pastBank", "passed", false, "a verb; walked is | already the verb"], ["passThrough", "through", false, "into it and | out again"]], ["walked past (preposition)", "passed it (verb)"]),
+        ...PLAB.kit.lineup("why", "She walked ____ the bank.", [["pastBank", "past", true, "beside it and | beyond it"], ["pastBank", "passed", false, "a verb; walked is | already the verb"], ["passThrough", "through", "diff", "walked through the bank | = into it and out again"]], ["walked past (preposition)", "passed it (verb)"]),
       ],
     },
     {

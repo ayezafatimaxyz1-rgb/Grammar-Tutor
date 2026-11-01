@@ -132,14 +132,14 @@
       {
         id: "obsessed-why",
         title: "obsessed: why this one?",
-        alt: "The sentence He is obsessed with a gap money., then the candidates: with (fits: thinking about it all the time); of (not used: of = belonging; not used); about (not used: about is a topic; obsession clings with)",
+        alt: "The sentence He is obsessed with a gap money., then the candidates: with (fits: thinking about it all the time); of (not used: of = belonging; not used); about (not used: heard in speech, but formal English says obsessed with)",
         say: [
           { text: "Fill the gap: He is obsessed \u2026 money. What does the sentence want to say? It wants **obsessed with**: thinking about it all the time.", cue: "e4w1" },
-          { text: "Why not the others? **of**: of = belonging; not used. **about**: about is a topic; obsession clings with.", cue: "e4w2" },
+          { text: "Why not the others? **of**: of = belonging; not used. **about**: heard in speech, but formal English says obsessed with.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "He is obsessed ____ money.", [["agreeWith", "with", true, "thinking about | it all the time"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "about", false, "about is a topic; | obsession clings with"]], ["obsessed with = thinking about it all the time"]),
+          ...PLAB.kit.lineup("e4w", "He is obsessed ____ money.", [["agreeWith", "with", true, "thinking about | it all the time"], ["cross", "of", false, "of = belonging; | not used"], ["cross", "about", false, "heard in speech, but formal | English says obsessed with"]], ["obsessed with = thinking about it all the time"]),
         ],
       },
       {
@@ -390,7 +390,7 @@
           "options": [
             {
               "text": "about",
-              "why": "About is a topic; obsession clings with.",
+              "why": "Heard in speech, but formal English says obsessed with.",
               "misconception": "p4-sense"
             },
             {

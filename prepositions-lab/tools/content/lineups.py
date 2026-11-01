@@ -17,7 +17,7 @@ L = {
 "on-core": ("The picture is ____ the wall.", [
   ('[["wall", -30, 0], ["doc", 20, 0, 0.6]]', "on", Y, "touching the wall's | surface"),
   ('"inDrawer"', "in", D, "built into the wall, | like a safe"),
-  ('"reachDot"', "at", N, "at = a point near it, | not touching"),
+  ('"reachDot"', "at", D, "at the wall = standing | at it, not hanging on it"),
   ('"floatAbove"', "above", D, "higher than the wall, | not hanging on it")],
   ["on = touching a surface, even a wall or a ceiling", "in = inside · above = higher, no contact"]),
 "at-core": ("She is waiting ____ the bus stop.", [
@@ -136,7 +136,7 @@ L = {
 "past-by-via": ("She walked ____ the bank.", [
   ('"pastBank"', "past", Y, "beside it and | beyond it"),
   ('"pastBank"', "passed", N, "a verb; walked is | already the verb"),
-  ('"passThrough"', "through", N, "into it and | out again")],
+  ('"passThrough"', "through", D, "walked through the bank | = into it and out again")],
   ["walked past (preposition)", "passed it (verb)"]),
 "up-down": ("He climbed ____ the hill to the top.", [
   ('"hillUp"', "up", Y, "towards the top"),
@@ -361,7 +361,7 @@ L = {
   ["agree with a person · agree to a proposal", "agree on a date"]),
 "arrive-at-in": ("We arrived ____ the airport at noon.", [
   ('"airportDot"', "at", Y, "a building is | a point"),
-  ('"inCity"', "in", N, "in is for cities, | countries"),
+  ('"inCity"', "in", D, "arrived in = already inside | the building; at = the point"),
   ('"goHome"', "to", N, "to = still | moving")],
   ["arrive at a point · arrive in an area", "never arrive to"]),
 "look-family": ("Please look ____ the children while I am out.", [

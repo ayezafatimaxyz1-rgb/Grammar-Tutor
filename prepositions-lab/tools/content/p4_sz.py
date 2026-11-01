@@ -43,7 +43,7 @@ W("superior", "I", [("to", "better than", "This plan is superior [to] that one."
   ("than", N, "superior already means more; it takes to"), ("from", N, "from = apart; not used")])
 W("sure", "B", [("of", "certain that it is true or will happen", "We are sure [of] success."),
   ("about", "certain about details", "I am not sure [about] the date.")], 1, [
-  ("of", D, "not sure that the date exists at all"), ("on", N, "on is resting; not used")])
+  ("of", D, "sure of holds one fact or result; | the date's details are a topic"), ("on", N, "on is resting; not used")])
 W("surprised", "B", [("at", "astonished by", "I was surprised [at] the result.")], 0, [
   ("from", N, "a word-for-word translation"), ("on", N, "on is resting; not used")])
 W("susceptible", "A", [("to", "easily affected by", "Children are susceptible [to] infection.")], 0, [

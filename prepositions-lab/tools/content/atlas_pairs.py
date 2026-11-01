@@ -32,7 +32,7 @@ PAIRS = {
     ("We met [on] Eid day.", "one special day", {"in": (N, "a day is not a | long stretch"), "at": (N, "at Eid = the festival | season, not the day")})]),
   "at": dict(logic=["AT: one moment.", "A clock time, or a point like night or noon."], ask="Is it a clock time or one moment?", ex=[
     ("The train leaves [at] 6:30.", "6:30 is one point | on the clock", {"in": (D, "in 6:30 is not | English; in 30 minutes"), "on": (N, "on is for days")}),
-    ("The shops close [at] night.", "night is treated | as one point", {"in": (N, "in the night = during | one particular night"), "on": (N, "on is for days")}),
+    ("The shops close [at] night.", "night is treated | as one point", {"in": (D, "in the night = during | one particular night"), "on": (N, "on is for days")}),
     ("We had lunch [at] noon.", "noon is one moment", {"in": (N, "noon is not a stretch"), "on": (N, "noon is not a day")})]),
 }),
 "of-about-on": dict(order=["of", "about", "on"], prove={
@@ -76,7 +76,7 @@ PAIRS = {
     ("The thief was caught [by] the police.", "the police did | the catching", {"with": (N, "the police are | not a tool")})]),
   "with": dict(logic=["WITH: the tool held in the hand.", "Someone uses it to do the action."], ask="Is it a tool someone used?", ex=[
     ("He cut the rope [with] a knife.", "the knife is the tool | in his hand", {"by": (N, "by a knife makes the | knife the doer")}),
-    ("She wrote it [with] a pen.", "the pen is the tool", {"by": (D, "by hand is a method; | by a pen is not used")}),
+    ("She wrote it [with] a pen.", "the pen is the tool", {"by": (N, "by hand is a method; | by a pen is not used")}),
     ("The road was blocked [with] stones.", "stones are what was used", {"by": (D, "by stones sounds like | the stones did it")})]),
 }),
 "in-into": dict(order=["into", "in", "onto", "on"], prove={
@@ -157,7 +157,7 @@ PAIRS = {
 }),
 "like-as": dict(order=["like", "as"], prove={
   "like": dict(logic=["LIKE: similar to. It only looks or acts the same;", "it is not really that thing."], ask="Is it only similar, not really that?", ex=[
-    ("He fought [like] a lion.", "he is not a lion; | he fought similarly", {"as": (N, "as a lion = he really | was a lion")}),
+    ("He fought [like] a lion.", "he is not a lion; | he fought similarly", {"as": (D, "as a lion = he really | was a lion")}),
     ("She looks [like] her mother.", "similar faces", {"as": (N, "she is not her mother")}),
     ("It tastes [like] honey.", "similar taste, | not honey", {"as": (N, "it is not honey")})]),
   "as": dict(logic=["AS: in the real role or job of.", "It really is that."], ask="Is it the real role or function?", ex=[

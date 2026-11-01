@@ -150,11 +150,11 @@
         alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "atx13" },
-          { text: "Why not **in**? in the night = during one particular night. Why not **on**? on is for days.", cue: "atx1-r2" },
+          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Why not **on**? on is for days.", cue: "atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-atx1"),
-          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", false, "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
+          ...PLAB.kit.lineup("atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
         ],
       },
       {

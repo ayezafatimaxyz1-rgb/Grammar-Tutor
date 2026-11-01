@@ -26,7 +26,8 @@ NOCHECK = {("about", "approximately"), ("about", "here and there"), ("in spite o
            ("into", "a change of state"), ("towards", "in the direction of"), ("to", "up to a limit"),
            ("in", "after a time from now"), ("within", "inside a limit"), ("at", "a place where something happens"),
            ("beyond", "further than a limit"), ("against", "pressing on, touching"), ("of", "a cause from inside"),
-           ("by", "an amount of difference"), ("out of", "moving to the outside"), ("off", "away from a surface")}
+           ("by", "an amount of difference"), ("out of", "moving to the outside"), ("off", "away from a surface"),
+           ("due to", "caused by (after be)"), ("in front of", "before the face"), ("about", "around a topic")}
 
 def UNIT(uid, title):
     UNITS.append(dict(id=uid, title=title, items=[]))

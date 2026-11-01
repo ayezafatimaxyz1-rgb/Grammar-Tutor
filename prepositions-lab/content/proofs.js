@@ -459,11 +459,11 @@
         alt: "He fought with a gap a lion. Answer: like, because he is not a lion; he fought similarly. Not as: as a lion = he really was a lion.",
         say: [
           { text: "Fill the gap: He fought … a lion. Picture it: he is not a lion; he fought similarly. So **like**.", cue: "pv-likex01" },
-          { text: "Why not **as**? as a lion = he really was a lion.", cue: "pv-likex0-r2" },
+          { text: "Why not **as**? as a lion = he really was a lion That is correct English, but it says something else.", cue: "pv-likex0-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-likex0"),
-          ...PLAB.kit.lineup("pv-likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", false, "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"]),
+          ...PLAB.kit.lineup("pv-likex0", "He fought ____ a lion.", [["likeSim", "like", true, "he is not a lion; | he fought similarly"], ["asRole", "as", "diff", "as a lion = he really | was a lion"]], ["Why like? he is not a lion; he fought similarly", "Ask: Is it only similar, not really that?"]),
         ],
       },
       {
@@ -1813,11 +1813,11 @@
         alt: "The shops close with a gap night. Answer: at, because night is treated as one point. Not in: in the night = during one particular night. Not on: on is for days.",
         say: [
           { text: "Fill the gap: The shops close … night. Picture it: night is treated as one point. So **at**.", cue: "pv-atx13" },
-          { text: "Why not **in**? in the night = during one particular night. Why not **on**? on is for days.", cue: "pv-atx1-r2" },
+          { text: "Why not **in**? in the night = during one particular night That is correct English, but it says something else. Why not **on**? on is for days.", cue: "pv-atx1-r2" },
         ],
         actions: [
           PLAB.kit.clear("clear-pv-atx1"),
-          ...PLAB.kit.lineup("pv-atx1", "The shops close ____ night.", [["inPeriod", "in", false, "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
+          ...PLAB.kit.lineup("pv-atx1", "The shops close ____ night.", [["inPeriod", "in", "diff", "in the night = during | one particular night"], ["calendar", "on", false, "on is for days"], ["clock", "at", true, "night is treated | as one point"]], ["Why at? night is treated as one point", "Ask: Is it a clock time or one moment?"]),
         ],
       },
       {

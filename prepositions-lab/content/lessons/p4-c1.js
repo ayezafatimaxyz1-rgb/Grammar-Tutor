@@ -246,30 +246,30 @@
       {
         id: "certain-senses",
         title: "certain \u00b7 Basic",
-        alt: "certain (Basic): certain of = sure that it is true or will happen, as in She is certain of victory.; certain about = sure of the details, what it holds, as in Nobody is certain about the future.",
+        alt: "certain (Basic): certain of = sure that it is true or will happen, as in She is certain of victory.; certain about = sure about a topic with many sides: details, what it holds, as in Nobody is certain about the future.",
         say: [
           { text: "**certain** can take 2 prepositions, and each one says something different. Look at what comes after it." },
           { text: "**certain of** means sure that it is true or will happen: _She is certain of victory._", cue: "e6s1" },
-          { text: "**certain about** means sure of the details, what it holds: _Nobody is certain about the future._", cue: "e6s2" },
+          { text: "**certain about** means sure about a topic with many sides: details, what it holds: _Nobody is certain about the future._", cue: "e6s2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6a"),
           { do: "write", id: "e6h", text: "certain", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Basic \u00b7 certain of, certain about", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
-          ...PLAB.kit.rows("e6s", [["awareOf", "She is certain of victory.", { hl: "of", sub: "certain of = sure that it is true or will happen", size: 30 }], ["aboutCircle", "Nobody is certain about the future.", { hl: "about", sub: "certain about = sure of the details, what it holds", size: 30 }]], { y: 260, gap: 140 }),
+          ...PLAB.kit.rows("e6s", [["awareOf", "She is certain of victory.", { hl: "of", sub: "certain of = sure that it is true or will happen", size: 30 }], ["aboutCircle", "Nobody is certain about the future.", { hl: "about", sub: "certain about = sure about a topic with many sides: details, what it holds", size: 30 }]], { y: 260, gap: 140 }),
         ],
       },
       {
         id: "certain-why",
         title: "certain: why this one?",
-        alt: "The sentence Nobody is certain with a gap the future., then the candidates: about (fits: sure of the details, what it holds); of (correct English, different meaning: nobody is sure the future will come at all); on (not used: on is a surface or topic, not certainty)",
+        alt: "The sentence Nobody is certain with a gap the future., then the candidates: about (fits: sure about a topic with many sides: details, what it holds); of (correct English, different meaning: certain of holds one fact or result; the future is a topic with many sides); on (not used: on is a surface or topic, not certainty)",
         say: [
-          { text: "Fill the gap: Nobody is certain \u2026 the future. What does the sentence want to say? It wants **certain about**: sure of the details, what it holds.", cue: "e6w1" },
-          { text: "Why not the others? **of** is correct English, but it would mean nobody is sure the future will come at all. That is not what this sentence says. **on**: on is a surface or topic, not certainty.", cue: "e6w2" },
+          { text: "Fill the gap: Nobody is certain \u2026 the future. What does the sentence want to say? It wants **certain about**: sure about a topic with many sides: details, what it holds.", cue: "e6w1" },
+          { text: "Why not the others? **of** is correct English, but it would mean certain of holds one fact or result; the future is a topic with many sides. That is not what this sentence says. **on**: on is a surface or topic, not certainty.", cue: "e6w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-6b"),
-          ...PLAB.kit.lineup("e6w", "Nobody is certain ____ the future.", [["aboutCircle", "about", true, "sure of the details, | what it holds"], ["awareOf", "of", "diff", "nobody is sure the | future will come at all"], ["cross", "on", false, "on is a surface or | topic, not certainty"]], ["certain of = sure that it is true or will happen", "certain about = sure of the details, what it holds"]),
+          ...PLAB.kit.lineup("e6w", "Nobody is certain ____ the future.", [["aboutCircle", "about", true, "sure about a topic with many | sides: details, what it holds"], ["awareOf", "of", "diff", "certain of holds one fact or result; | the future is a topic with many sides"], ["cross", "on", false, "on is a surface or | topic, not certainty"]], ["certain of = sure that it is true or will happen", "certain about = sure about a topic with many sides: details, what it holds"]),
         ],
       },
       {
@@ -541,7 +541,7 @@
           "options": [
             {
               "text": "about",
-              "why": "certain about means sure of the details, what it holds, which is not what this sentence says.",
+              "why": "certain about means sure about a topic with many sides: details, what it holds, which is not what this sentence says.",
               "misconception": "p4-sense"
             },
             {

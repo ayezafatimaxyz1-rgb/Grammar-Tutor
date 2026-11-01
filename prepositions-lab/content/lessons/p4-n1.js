@@ -108,14 +108,14 @@
       {
         id: "nervous-why",
         title: "nervous: why this one?",
-        alt: "The sentence She is nervous with a gap the interview., then the candidates: about (fits: worried about); of (not used: of = belonging; worry goes about); on (not used: on is resting; not used)",
+        alt: "The sentence She is nervous with a gap the interview., then the candidates: about (fits: worried about); of (correct English, different meaning: nervous of = afraid of a thing (BrE): nervous of dogs); on (not used: on is resting; not used)",
         say: [
           { text: "Fill the gap: She is nervous \u2026 the interview. What does the sentence want to say? It wants **nervous about**: worried about.", cue: "e4w1" },
-          { text: "Why not the others? **of**: of = belonging; worry goes about. **on**: on is resting; not used.", cue: "e4w2" },
+          { text: "Why not the others? **of** is correct English, but it would mean nervous of = afraid of a thing (BrE): nervous of dogs. That is not what this sentence says. **on**: on is resting; not used.", cue: "e4w2" },
         ],
         actions: [
           PLAB.kit.clear("clear-4b"),
-          ...PLAB.kit.lineup("e4w", "She is nervous ____ the interview.", [["aboutCircle", "about", true, "worried about"], ["cross", "of", false, "of = belonging; | worry goes about"], ["cross", "on", false, "on is resting; | not used"]], ["nervous about = worried about"]),
+          ...PLAB.kit.lineup("e4w", "She is nervous ____ the interview.", [["aboutCircle", "about", true, "worried about"], ["awareOf", "of", "diff", "nervous of = afraid of a thing | (BrE): nervous of dogs"], ["cross", "on", false, "on is resting; | not used"]], ["nervous about = worried about"]),
         ],
       },
       {
@@ -297,7 +297,7 @@
             },
             {
               "text": "of",
-              "why": "Of = belonging; worry goes about.",
+              "why": "Nervous of = afraid of a thing (BrE): nervous of dogs.",
               "misconception": "p4-sense"
             },
             {
