@@ -145,9 +145,20 @@
   .opened .replay { opacity: 1; pointer-events: auto; }
   .replay:hover { background: rgba(201,161,74,.15); }
 
+  .music {
+    position: fixed; top: 18px; right: 18px; z-index: 10; width: 44px; height: 44px; border-radius: 50%;
+    background: rgba(34,5,11,.55); border: 1px solid var(--gold); color: var(--gold-light);
+    font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .6s ease;
+  }
+  .music.show { opacity: 1; pointer-events: auto; }
+  .music.playing { animation: spin 6s linear infinite; }
+  .music.muted { opacity: .55; text-decoration: line-through; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   @media print {
     body { background: none; }
-    .hint, .replay, .petal, .seal-wrap { display: none; }
+    .hint, .replay, .music, .petal, .seal-wrap { display: none; }
   }
 </style>
 </head>
@@ -196,11 +207,15 @@
 </div>
 
 <button class="replay" id="replay">Roll up</button>
+<button class="music" id="music" aria-label="Toggle music" title="Music on / off">&#9835;</button>
+
+<!-- Optional: put your own song next to this file named music.mp3 and it will play instead of the built in melody -->
+<audio id="song" src="music.mp3" loop preload="auto"></audio>
 
 <script>
   const stage = document.getElementById('stage');
   const scroll = document.getElementById('scroll');
-  const open = () => document.body.classList.add('opened');
+  const open = () => { document.body.classList.add('opened'); Music.start(); };
   scroll.addEventListener('click', e => { if (!e.target.isContentEditable) open(); });
   scroll.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') open(); });
   document.getElementById('replay').addEventListener('click', () => document.body.classList.remove('opened'));
@@ -215,6 +230,101 @@
     p.style.transform = `scale(${0.6 + Math.random() * 0.7})`;
     document.body.appendChild(p);
   }
+
+  // ===== Background music =====
+  // Uses music.mp3 if present, otherwise plays an original music box waltz
+  // synthesized live with the Web Audio API (no files, no copyright issues).
+  const Music = (() => {
+    const btn = document.getElementById('music');
+    const song = document.getElementById('song');
+    let hasFile = false, started = false, on = false;
+    song.addEventListener('canplaythrough', () => { hasFile = true; }, { once: true });
+    song.addEventListener('error', () => { hasFile = false; });
+
+    let ctx, master, timer, nextTime = 0, step = 0;
+    const BPM = 76, EIGHTH = 60 / BPM / 2;           // 3/4 waltz, six eighths per bar
+    const hz = n => 440 * Math.pow(2, (n - 69) / 12); // midi to frequency
+    // F  Dm  Bb  C  |  F  Am  Gm  C  (chord tones as midi notes)
+    const bars = [
+      [53, [65, 69, 72]], [50, [62, 65, 69]], [46, [58, 62, 65]], [48, [60, 64, 67]],
+      [53, [65, 69, 72]], [45, [57, 60, 64]], [43, [55, 58, 62]], [48, [60, 64, 67]]
+    ];
+    // simple original melody, one entry per eighth (null = rest)
+    const melody = [
+      [77,null,76,null,74,null], [74,null,null,null,72,null], [70,null,72,null,74,null], [72,null,null,null,null,null],
+      [77,null,79,null,81,null], [81,null,79,null,76,null], [74,null,76,null,77,null], [76,null,null,null,72,null]
+    ];
+
+    function bell(t, midi, vol, len) {
+      const f = hz(midi), g = ctx.createGain();
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(vol, t + 0.006);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + len);
+      g.connect(master);
+      [[1, 1], [2, 0.25], [3.01, 0.08]].forEach(([mul, amp]) => {
+        const o = ctx.createOscillator(), og = ctx.createGain();
+        o.type = 'sine'; o.frequency.value = f * mul; og.gain.value = amp;
+        o.connect(og).connect(g); o.start(t); o.stop(t + len + 0.05);
+      });
+    }
+
+    function schedule() {
+      while (nextTime < ctx.currentTime + 0.25) {
+        const bar = Math.floor(step / 6) % bars.length, beat = step % 6;
+        const [bass, chord] = bars[bar];
+        if (beat === 0) bell(nextTime, bass - 12, 0.22, 2.4);
+        if (beat === 2 || beat === 4) chord.forEach(n => bell(nextTime, n, 0.035, 1.2));
+        const m = melody[bar][beat];
+        if (m) bell(nextTime, m, 0.12, 1.8);
+        if (beat % 2 === 1) bell(nextTime, chord[(step >> 1) % 3] + 12, 0.025, 0.8); // sparkle
+        nextTime += EIGHTH; step++;
+      }
+    }
+
+    function initSynth() {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      master = ctx.createGain(); master.gain.value = 0;
+      // soft echo for a hall like feel
+      const delay = ctx.createDelay(); delay.delayTime.value = EIGHTH * 3;
+      const fb = ctx.createGain(); fb.gain.value = 0.28;
+      const tone = ctx.createBiquadFilter(); tone.type = 'lowpass'; tone.frequency.value = 2200;
+      master.connect(ctx.destination);
+      master.connect(delay); delay.connect(tone).connect(fb).connect(delay);
+      tone.connect(ctx.destination);
+    }
+
+    function fadeTo(v, sec) {
+      if (hasFile) {
+        const from = song.volume, t0 = performance.now();
+        const tick = () => { const k = Math.min(1, (performance.now() - t0) / (sec * 1000));
+          song.volume = from + (v - from) * k; if (k < 1) requestAnimationFrame(tick); else if (!v) song.pause(); };
+        if (v) song.play().catch(() => {});
+        tick();
+      } else {
+        master.gain.cancelScheduledValues(ctx.currentTime);
+        master.gain.setValueAtTime(master.gain.value, ctx.currentTime);
+        master.gain.linearRampToValueAtTime(v ? 0.6 : 0, ctx.currentTime + sec);
+      }
+    }
+
+    function play() {
+      if (hasFile) { song.volume = 0; }
+      else {
+        if (!ctx) initSynth();
+        ctx.resume();
+        if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 40); }
+      }
+      on = true; fadeTo(1, 2.5);
+      btn.classList.add('playing'); btn.classList.remove('muted');
+    }
+    function pause() {
+      on = false; fadeTo(0, 0.8);
+      btn.classList.remove('playing'); btn.classList.add('muted');
+    }
+
+    btn.addEventListener('click', () => on ? pause() : play());
+    return { start() { btn.classList.add('show'); if (!started) { started = true; play(); } } };
+  })();
 </script>
 </body>
 </html>
