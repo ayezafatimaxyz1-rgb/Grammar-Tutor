@@ -83,6 +83,10 @@ const mock = fs.readFileSync(path.join(__dirname, "mock-claude.js"), "utf8");
   await p.evaluate(() => [...document.querySelectorAll(".msg.me")].pop().querySelector(".verdict").click()); await wait(500);
   check("trying again shows the corrections", (await lastTag()).includes("mistake"));
 
+  const talk = await p.evaluate(() => window.__calls.filter((c) => c.prompt.includes("Write Mam's next reply now")).map((c) => c.prompt));
+  const moves = talk.map((x) => (x.match(/- This time: ([^\n]*)/) || [])[1]).filter(Boolean);
+  check("Mam never gives sentences to copy in her replies", talk.length >= 3 && talk.every((x) => x.includes('Never tell the student what to say: no "You can say..."') && !/Often give a model sentence/.test(x)));
+  check("each reply has its own shape: what Mam does changes every turn", moves.length >= 3 && moves.slice(-3).every((m, i, a) => a.indexOf(m) === i), moves.slice(-3).join(" | "));
   // ---- errors ----
   await p.evaluate(() => { window.__failNext = "upstream_error"; });
   await say("My city is very old", 500);
