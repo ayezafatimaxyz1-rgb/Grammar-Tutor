@@ -476,6 +476,7 @@ function viewHome(q=''){const L=LBY[S.last]||LESSONS[0],p=prog(L.id),n=L.steps.l
   const ql=q.trim().toLowerCase(),match=l=>!ql||(l.title+' '+l.steps.map(s=>s.title+' '+s.explain.map(e=>e.t).join(' ')).join(' ')).toLowerCase().includes(ql);
   app.innerHTML=`<div class="wrap">
   <div><div class="eyebrow">Maths, one drawing at a time</div><h1>Maths Board</h1></div>
+  ${installHTML()}
   <section class="card cont">
     <svg class="ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="34" fill="none" stroke="${'#e1e4ed'}" stroke-width="9"/><circle cx="42" cy="42" r="34" fill="none" stroke="${INK.accent2}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C*pct/100} ${C}" transform="rotate(-90 42 42)"/><text x="42" y="48" text-anchor="middle" font-size="18" font-weight="700" fill="${INK.main}" font-family="Atkinson Hyperlegible, sans-serif">${pct}%</text></svg>
     <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><div class="eyebrow">${S.last?'Continue where you stopped':'Start your first lesson'}</div><h2>${esc(L.title)}</h2><p class="muted">${p.done?'Finished. You can watch it again any time.':`Step ${Math.min(p.step+1,n)} of ${n}`}</p><div><a class="btn primary" href="#board" data-open="${L.id}">${S.last?'Continue':'Start'}</a></div></div>
@@ -485,6 +486,16 @@ function viewHome(q=''){const L=LBY[S.last]||LESSONS[0],p=prog(L.id),n=L.steps.l
     return `<section class="phase ${ph.lessons.length?'':'soon'}" style="--pc:${ph.color}"><h3>${esc(ph.name)}</h3>${ls.length?ls.map(l=>{const s=lessonStatus(l.id);return `<a class="lesson" href="#board" data-open="${l.id}"><span>${esc(l.title)}</span><span class="pill ${s==='finished'?'done':s==='started'?'start':''}">${s}</span></a>`}).join(''):'<p class="muted" style="font-size:.9rem">Lessons for this part are being drawn next.</p>'}</section>`}).join('')}</div>
   </div>`;
   const s=document.getElementById('search');s.addEventListener('input',()=>{const v=s.value,pos=s.selectionStart;viewHome(v);const n2=document.getElementById('search');n2.focus();n2.setSelectionRange(pos,pos)})}
+
+/* ---------- install as an app (only in the installable build, which has a manifest) ---------- */
+let deferredInstall=null;
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;if(view==='home')viewHome()});
+addEventListener('appinstalled',()=>{deferredInstall=null;if(view==='home')viewHome()});
+function installHTML(){const isApp=!!document.querySelector('link[rel=manifest]'),standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+  if(!isApp||standalone)return '';
+  if(deferredInstall)return `<section class="card" style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><h3>Install Maths Board</h3><p class="muted">Put it on your home screen. It works offline too.</p></div><button class="btn primary" data-act="install">Install</button></section>`;
+  if(/iphone|ipad|ipod/i.test(navigator.userAgent))return `<section class="card"><h3>Install on iPhone</h3><p class="muted">In Safari, tap the Share button, then <b>Add to Home Screen</b>.</p></section>`;
+  return ''}
 
 /* ---------- board player ---------- */
 function openBoard(id){const L=LBY[id||S.last]||LESSONS[0];S.last=L.id;save();const p=prog(L.id);PL.L=L;PL.clicked={};
@@ -580,6 +591,7 @@ document.addEventListener('click',e=>{
   else if(a.id==='b-bm'){const p=prog(PL.L.id),i=p.bm.indexOf(PL.si);if(i>=0)p.bm.splice(i,1);else p.bm.push(PL.si);save();buildExplain()}
   else if(a.dataset.step!==undefined){goStep(+a.dataset.step)}
   else if(a.dataset.act==='back-steps'){document.getElementById('stage').innerHTML='';goStep(PL.L.steps.length-1,false)}
+  else if(a.dataset.act==='install'){if(deferredInstall){deferredInstall.prompt();deferredInstall.userChoice.finally(()=>{deferredInstall=null;viewHome()})}}
   else if(a.dataset.act==='finish'){prog(PL.L.id).done=true;save();viewPractice()}});
 document.addEventListener('input',e=>{if(e.target.id==='scrub'){const st=PL.L.steps[PL.si];PL.playing=false;PL.t=+e.target.value/1000*st.total;if(PL.t>=st.total&&!PL.ended){PL.ended=true;renderCheck();updateChrome()}PL.dirty=true}
   if(e.target.id==='note'){prog(PL.L.id).note=e.target.value;save()}});
