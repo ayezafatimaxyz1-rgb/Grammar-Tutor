@@ -199,14 +199,14 @@
 
       <section class="notes-all" aria-labelledby="notes-h">
         <h2 id="notes-h">${icon("pdf")} All the notes as PDF</h2>
-        <p class="muted small">Print them or send them anywhere. One phase at a time keeps every drawing sharp and the file a good size.</p>
+        <p class="muted small">Each PDF is a book: a cover, contents with page numbers, a title page for every phase, every lesson on its own pages, every board drawn step by step with its explanation, tests and an answer key. One phase at a time keeps each file a good size.</p>
         <div class="notes-grid">${P.curriculum.phases
           .filter((ph) => ph.units.some((u) => u.lessons.some((l) => l.lessonId && P.lessons[l.lessonId])))
           .map((ph, i) => `<button type="button" class="notes-btn" data-pdf="phase:${esc(ph.id)}" style="--ph:${PHASE_COLOURS[i % PHASE_COLOURS.length]}"><b>${esc(ph.title.split(":")[0])}</b><span>${esc(ph.title.split(":").slice(1).join(":").trim() || ph.title)}</span></button>`)
           .join("")}</div>
         <div class="row-buttons">
-          <button type="button" class="button primary" data-pdf="course:text">The whole course as notes (text, small file)</button>
-          <button type="button" class="button" data-pdf="course:boards">The whole course with every board (very large, takes several minutes)</button>
+          <button type="button" class="button primary" data-pdf="course:boards">The whole course as one book: every board, chapters and contents (large, takes several minutes)</button>
+          <button type="button" class="button" data-pdf="course:text">The same book without pictures (small file)</button>
         </div>
       </section>
 

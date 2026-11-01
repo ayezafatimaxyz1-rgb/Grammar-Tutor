@@ -113,28 +113,96 @@
       this.M = 14;
       this.W = 210 - 2 * this.M;
       this.H = 297;
+      this.top = this.M;
       this.y = this.M;
       this.title = title;
       this.answers = [];
+      this.toc = [];
+      this.heads = {};
+      this.running = "";
+      this.noHeader = { 1: true };
+    }
+    pageNo() {
+      return this.doc.getNumberOfPages();
     }
     page() {
       this.doc.addPage();
-      this.y = this.M;
+      this.heads[this.pageNo()] = this.running;
+      this.y = this.running ? this.M + 8 : this.M;
     }
     ensure(h) {
       if (this.y + h > this.H - this.M - 6) this.page();
     }
-    text(str, { size = 10.5, bold = false, color = C.ink, gap = 1.6, indent = 0, italic = false } = {}) {
+    font(size, bold, italic, color) {
       const d = this.doc;
       d.setFont("helvetica", bold ? (italic ? "bolditalic" : "bold") : italic ? "italic" : "normal");
       d.setFontSize(size);
       d.setTextColor(...color);
+    }
+    text(str, { size = 10.5, bold = false, color = C.ink, gap = 1.6, indent = 0, italic = false, width } = {}) {
+      const d = this.doc;
+      this.font(size, bold, italic, color);
       const lh = size * 0.3528 * 1.38;
-      for (const ln of d.splitTextToSize(clean(str), this.W - indent)) {
+      for (const ln of d.splitTextToSize(clean(str), (width || this.W) - indent)) {
         this.ensure(lh);
         d.text(ln, this.M + indent, this.y + lh * 0.78);
         this.y += lh;
       }
+      this.y += gap;
+    }
+    // Text with **bold** key words and _italic_ examples kept, wrapped by hand.
+    rich(str, { size = 10.5, color = C.ink, indent = 0, gap = 1.6, bullet } = {}) {
+      const d = this.doc;
+      const runs = [];
+      String(str || "")
+        .replace(/_{3,}/g, "________")
+        .split(/(\*\*.+?\*\*)/)
+        .forEach((part) => {
+          if (/^\*\*.+\*\*$/.test(part)) return runs.push({ t: part.slice(2, -2), b: true });
+          part.split(/((?:^|(?<=[\s(]))_.+?_(?=[\s.,;:)!?]|$))/).forEach((q) => {
+            if (/^_.+_$/.test(q)) runs.push({ t: q.slice(1, -1), i: true });
+            else if (q) runs.push({ t: q });
+          });
+        });
+      const words = [];
+      runs.forEach((r) => clean(r.t).split(/(\s+)/).forEach((w) => w && words.push({ w, b: r.b, i: r.i })));
+      const lh = size * 0.3528 * 1.38;
+      const x0 = this.M + indent;
+      const maxW = this.W - indent;
+      let line = [], lw = 0;
+      const width = (wd) => {
+        this.font(size, wd.b, wd.i, color);
+        return d.getTextWidth(wd.w);
+      };
+      const flush = (first) => {
+        while (line.length && /^\s+$/.test(line[line.length - 1].w)) line.pop();
+        this.ensure(lh);
+        if (first && bullet) {
+          this.font(size, true, false, C.accent);
+          d.text(bullet, x0 - 5, this.y + lh * 0.78);
+        }
+        let x = x0;
+        for (const wd of line) {
+          this.font(size, wd.b, wd.i, wd.b ? C.accent : color);
+          d.text(wd.w, x, this.y + lh * 0.78);
+          x += d.getTextWidth(wd.w);
+        }
+        this.y += lh;
+        line = [];
+        lw = 0;
+      };
+      let first = true;
+      for (const wd of words) {
+        const ww = width(wd);
+        if (lw + ww > maxW && line.length && !/^\s+$/.test(wd.w)) {
+          flush(first);
+          first = false;
+        }
+        if (!line.length && /^\s+$/.test(wd.w)) continue;
+        line.push(wd);
+        lw += ww;
+      }
+      if (line.length) flush(first);
       this.y += gap;
     }
     rule(color = C.line) {
@@ -143,15 +211,141 @@
       this.doc.line(this.M, this.y, this.M + this.W, this.y);
       this.y += 3;
     }
+    // Boards are drawn 152 mm wide, centred, so two steps fit on a page.
     image(url) {
-      const h = (this.W * 600) / 960;
+      const w = 152, h = (w * 600) / 960, x = this.M + (this.W - w) / 2;
       this.ensure(h + 3);
-      this.doc.addImage(url, "JPEG", this.M, this.y, this.W, h, undefined, "FAST");
+      this.doc.addImage(url, "JPEG", x, this.y, w, h, undefined, "FAST");
       this.doc.setDrawColor(...C.line);
       this.doc.setLineWidth(0.3);
-      this.doc.roundedRect(this.M, this.y, this.W, h, 2, 2);
+      this.doc.roundedRect(x, this.y, w, h, 2, 2);
       this.y += h + 3;
     }
+    mark(level, title) {
+      this.toc.push({ level, title: clean(title), page: this.pageNo() });
+    }
+
+    /* chapters */
+    cover(plan, contents) {
+      const d = this.doc;
+      d.setFillColor(...C.accent);
+      d.rect(0, 0, 210, 92, "F");
+      this.font(11, true, false, [255, 255, 255]);
+      d.text("PREPOSITIONS LAB  ·  CSS ENGLISH PRECIS AND COMPOSITION", this.M, 22);
+      this.font(30, true, false, [255, 255, 255]);
+      d.text(d.splitTextToSize(clean(plan.title), this.W), this.M, 44);
+      this.font(12, false, false, [225, 233, 245]);
+      d.text(d.splitTextToSize(clean(plan.subtitle || ""), this.W), this.M, 76);
+      this.y = 106;
+      if (plan.intro) plan.intro(this, clean);
+      if (contents) {
+        this.text("What is inside", { size: 13, bold: true, gap: 1.5 });
+        contents.forEach((c) => this.text(`•  ${c}`, { indent: 3, gap: 0.6 }));
+        this.y += 3;
+      }
+      this.text("How to use these notes: read each step's explanation under its board, try the test questions before you look at the answer key at the end, and use the contents pages to find any preposition.", { size: 9.5, color: C.muted });
+    }
+    reserveToc(n) {
+      this.tocStart = this.pageNo() + 1;
+      this.tocPages = Math.max(1, Math.ceil(n / 42));
+      for (let i = 0; i < this.tocPages; i++) {
+        this.doc.addPage();
+        this.noHeader[this.pageNo()] = true;
+      }
+    }
+    writeToc() {
+      if (!this.tocStart) return;
+      const d = this.doc;
+      let p = this.tocStart;
+      d.setPage(p);
+      let y = this.M;
+      this.font(20, true, false, C.accent);
+      d.text("Contents", this.M, y + 8);
+      y += 18;
+      for (const e of this.toc) {
+        if (y > this.H - this.M - 10) {
+          if (p >= this.tocStart + this.tocPages - 1) break;
+          p++;
+          d.setPage(p);
+          y = this.M + 4;
+        }
+        const ind = [0, 5, 10][e.level] || 10;
+        const size = [11.5, 10, 9.5][e.level] || 9.5;
+        this.font(size, e.level < 2, false, e.level === 0 ? C.accent : e.level === 1 ? C.green : C.ink);
+        const t = d.splitTextToSize(e.title, this.W - ind - 16)[0];
+        d.text(t, this.M + ind, y);
+        d.text(String(e.page), this.M + this.W, y, { align: "right" });
+        d.link(this.M, y - 4, this.W, 5.5, { pageNumber: e.page });
+        y += e.level === 0 ? 8 : 6;
+      }
+    }
+    phasePage(ph, colour) {
+      this.running = ph.title;
+      this.doc.addPage();
+      this.noHeader[this.pageNo()] = true;
+      const d = this.doc;
+      d.setFillColor(...colour);
+      d.rect(0, 0, 210, 120, "F");
+      const [num, name] = ph.title.includes(":") ? [ph.title.split(":")[0], ph.title.split(":").slice(1).join(":").trim()] : ["", ph.title];
+      this.font(14, true, false, [255, 255, 255]);
+      if (num) d.text(clean(num.toUpperCase()), this.M, 50);
+      this.font(30, true, false, [255, 255, 255]);
+      d.text(d.splitTextToSize(clean(name), this.W), this.M, 68);
+      this.y = 134;
+      this.mark(0, ph.title);
+      this.text(ph.intro || "", { size: 12, gap: 6 });
+      this.text("Parts in this phase", { size: 13, bold: true, gap: 2 });
+      ph.units.forEach((u, i) => {
+        const n = u.lessons.filter((x) => x.lessonId && P.lessons[x.lessonId]).length;
+        if (n) this.text(`${i + 1}.  ${u.title}  (${n} ${n === 1 ? "lesson" : "lessons"})`, { indent: 3, gap: 1 });
+      });
+    }
+    lessonPage(lesson, unitTitle, newUnit, colour) {
+      this.page();
+      const d = this.doc;
+      if (newUnit && unitTitle) {
+        this.mark(1, unitTitle);
+        this.font(9, true, false, colour);
+        d.text(clean(unitTitle.toUpperCase()), this.M, this.y + 3);
+        this.y += 7;
+      }
+      this.mark(2, lesson.title);
+      d.setFillColor(...colour);
+      d.rect(this.M, this.y, 2.2, 12, "F");
+      this.font(17, true, false, C.ink);
+      const lines = d.splitTextToSize(clean(lesson.title), this.W - 6);
+      d.text(lines, this.M + 5, this.y + 6.5);
+      this.y += 6.5 * lines.length + 6;
+      const n = lesson.steps.length;
+      this.text(`${lesson.level || ""}  ·  about ${lesson.minutes || n * 2} minutes  ·  ${n} steps`, { size: 9, color: C.muted, gap: 3 });
+      if (lesson.summary) {
+        const top = this.y;
+        this.y += 3;
+        this.text(lesson.summary, { size: 10, indent: 4, width: this.W - 4, gap: 1 });
+        if ((lesson.objectives || []).length) {
+          this.text("You will learn:", { size: 10, bold: true, indent: 4, gap: 0.5 });
+          lesson.objectives.forEach((o) => this.text(`•  ${o}`, { size: 9.5, indent: 7, width: this.W - 4, gap: 0.3 }));
+        }
+        this.y += 2;
+        d.setDrawColor(...C.line);
+        d.setLineWidth(0.3);
+        if (this.pageNo() === this.heads.__last || true) d.roundedRect(this.M, top, this.W, this.y - top, 2, 2);
+        this.y += 5;
+      }
+    }
+    stepHeading(i, n, title, colour) {
+      const d = this.doc;
+      d.setFillColor(...colour);
+      d.circle(this.M + 3.6, this.y + 3.4, 3.6, "F");
+      this.font(9, true, false, [255, 255, 255]);
+      d.text(String(i), this.M + 3.6, this.y + 4.6, { align: "center" });
+      this.font(12, true, false, C.ink);
+      d.text(d.splitTextToSize(clean(title), this.W - 40)[0], this.M + 10, this.y + 4.8);
+      this.font(8.5, false, false, C.muted);
+      d.text(`step ${i} of ${n}`, this.M + this.W, this.y + 4.8, { align: "right" });
+      this.y += 10;
+    }
+
     check(c, where) {
       const n = this.answers.length + 1;
       this.ensure(30);
@@ -170,14 +364,23 @@
     }
     answerKey() {
       if (!this.answers.length) return;
+      this.running = "Answer key";
       this.page();
-      this.text("Answer key", { size: 18, bold: true, color: C.accent, gap: 1 });
+      this.mark(0, "Answer key");
+      this.text("Answer key", { size: 20, bold: true, color: C.accent, gap: 1 });
       this.text("Cover this page while you attempt the questions.", { size: 9.5, color: C.muted, gap: 4 });
+      let group = null;
       for (const a of this.answers) {
-        this.ensure(14);
-        this.text(`Q${a.n}.  ${a.letter}:  ${a.text}`, { bold: true, gap: 0.5 });
-        if (a.why) this.text(a.why, { size: 9.5, color: C.muted, indent: 6, gap: 0.5 });
-        this.text(a.where, { size: 8, color: C.muted, indent: 6, gap: 3, italic: true });
+        const g = a.where.replace(/, step \d+$/, "");
+        if (g !== group) {
+          group = g;
+          this.ensure(16);
+          this.y += 1;
+          this.text(g, { size: 10.5, bold: true, color: C.green, gap: 1.5 });
+        }
+        this.ensure(12);
+        this.text(`Q${a.n}.  ${a.letter}:  ${a.text}`, { bold: true, gap: 0.5, indent: 2 });
+        if (a.why) this.rich(a.why, { size: 9.5, color: C.muted, indent: 7, gap: 2 });
       }
     }
     footer() {
@@ -185,76 +388,126 @@
       const n = d.getNumberOfPages();
       for (let i = 1; i <= n; i++) {
         d.setPage(i);
-        d.setFont("helvetica", "normal");
-        d.setFontSize(8);
-        d.setTextColor(...C.muted);
+        if (!this.noHeader[i] && this.heads[i]) {
+          this.font(8, false, false, C.muted);
+          d.text(d.splitTextToSize(clean(this.heads[i]), this.W)[0], this.M, this.M + 1);
+          d.setDrawColor(...C.line);
+          d.setLineWidth(0.2);
+          d.line(this.M, this.M + 3, this.M + this.W, this.M + 3);
+        }
+        if (i === 1) continue;
+        this.font(8, false, false, C.muted);
         d.text(clean(`Prepositions Lab  ·  ${this.title}`), this.M, this.H - 8);
         d.text(`${i} / ${n}`, this.M + this.W, this.H - 8, { align: "right" });
+      }
+    }
+    outline() {
+      const o = this.doc.outline;
+      if (!o || !o.add) return;
+      let p0 = null, p1 = null;
+      for (const e of this.toc) {
+        if (e.level === 0) p1 = p0 = o.add(null, e.title, { pageNumber: e.page });
+        else if (e.level === 1) p1 = o.add(p0, e.title, { pageNumber: e.page });
+        else o.add(p1 || p0, e.title, { pageNumber: e.page });
       }
     }
   }
 
   /* ---------- building a PDF from a list of boards ---------- */
 
-  // plan: { title, file, intro(notes), items: [{ l: lessonId, s: stepId, label }] }
+  const PH_RGB = [[36, 87, 197], [13, 138, 122], [194, 65, 12], [124, 58, 237], [21, 128, 61], [190, 24, 93]];
+
+  // Where each lesson sits in the course: its phase (with its colour) and its part.
+  function placeOf() {
+    const out = {};
+    P.curriculum.phases.forEach((ph, pi) =>
+      ph.units.forEach((u) => u.lessons.forEach((x) => x.lessonId && (out[x.lessonId] = { ph, u, colour: PH_RGB[pi % PH_RGB.length] })))
+    );
+    return out;
+  }
+
+  // plan: { title, file, intro(notes), items: [{ l: lessonId, s: stepId, label }], chapters? }
   async function make(plan, progress) {
     await ready();
     if (document.fonts && document.fonts.load) await Promise.all([document.fonts.load('400 38px "Kalam"'), document.fonts.load('700 38px "Kalam"')]).catch(() => {});
     const style = boardStyle();
     const notes = new Notes(plan.title);
-    notes.text(plan.title, { size: 22, bold: true, color: C.accent, gap: 1 });
-    notes.text(plan.subtitle || "Notes from the Prepositions Lab teaching board", { size: 10, color: C.muted, gap: 4 });
-    if (plan.intro) plan.intro(notes, clean);
-    notes.rule();
-
     const items = plan.items.filter((it) => P.lessons[it.l] && P.lessons[it.l].steps.some((s) => s.id === it.s));
-    let open = null;
-    let label = null;
-    let prev = null;
+    const where = placeOf();
+    const lessonIds = [...new Set(items.map((it) => it.l))];
+    const chapters = plan.chapters && lessonIds.length > 1;
+    const quality = plan.compact ? { w: 1120, h: 700, quality: 0.68 } : undefined;
+
+    if (chapters) {
+      const phases = [...new Set(lessonIds.map((id) => where[id] && where[id].ph))].filter(Boolean);
+      notes.cover(plan, plan.contents);
+      const units = new Set(lessonIds.map((id) => where[id] && where[id].u));
+      notes.reserveToc(lessonIds.length + units.size + phases.length + 1);
+    } else {
+      notes.text(plan.title, { size: 22, bold: true, color: C.accent, gap: 1 });
+      notes.text(plan.subtitle || "Notes from the Prepositions Lab teaching board", { size: 10, color: C.muted, gap: 4 });
+      if (plan.intro) plan.intro(notes, clean);
+      notes.rule();
+    }
+
+    let open = null, label = null, prev = null, curPhase = null, curUnit = null;
     for (let k = 0; k < items.length; k++) {
       if (progress.cancelled) throw new Error("cancelled");
       const it = items[k];
       const lesson = P.lessons[it.l];
+      const place = where[it.l] || { colour: C.accent };
+      const colour = place.colour || C.accent;
       if (!plan.noImages && (!open || open.lesson !== lesson)) {
         if (open) open.board.done();
         open = { lesson, board: offscreenScene(lesson) };
       }
       const si = lesson.steps.findIndex((s) => s.id === it.s);
       const step = lesson.steps[si];
-      // Draw the board when this step adds to it, or when the step before it is not already on the page.
       const ownDrawing = (step.actions || []).length > 0;
       const followsOn = prev && prev.l === it.l && prev.si === si - 1;
       const drawNow = !plan.noImages && (ownDrawing || !followsOn);
-      // A new phase starts on a new page with its own heading (whole-course notes).
-      if (it.phase && it.phase !== (prev && prev.phase)) {
-        if (k > 0) notes.page();
-        notes.text(it.phase, { size: 20, bold: true, color: C.accent, gap: 3 });
+      const need = drawNow ? 16 + (152 * 600) / 960 : 24;
+
+      if (chapters) {
+        if (place.ph && place.ph !== curPhase && plan.phasePages !== false) {
+          curPhase = place.ph;
+          curUnit = null;
+          notes.phasePage(place.ph, colour);
+        }
+        if (!prev || prev.l !== it.l) {
+          notes.running = `${place.ph ? place.ph.title + "  ·  " : ""}${lesson.title}`;
+          const newUnit = place.u && place.u !== curUnit;
+          curUnit = place.u || curUnit;
+          notes.lessonPage(lesson, place.u && place.u.title, newUnit, colour);
+        }
+        notes.ensure(need);
+        notes.stepHeading(si + 1, lesson.steps.length, step.title, colour);
+      } else {
+        if (it.label && it.label !== label) {
+          label = it.label;
+          notes.ensure(need + 10);
+          notes.y += 2;
+          notes.text(it.label, { size: 15, bold: true, color: C.accent, gap: 2 });
+        }
+        notes.ensure(need);
+        notes.stepHeading(si + 1, lesson.steps.length, `${plan.showLesson ? lesson.title + "  ·  " : ""}${step.title}`, colour);
       }
-      // Keep headings on the same page as the board under them.
-      const need = drawNow ? 12 + (notes.W * 600) / 960 : 20;
-      if (it.label && it.label !== label) {
-        label = it.label;
-        notes.ensure(need + 10);
-        notes.y += 2;
-        notes.text(it.label, { size: 15, bold: true, color: C.accent, gap: 2 });
-      }
-      notes.ensure(need);
-      notes.text(`${plan.showLesson ? lesson.title + "  ·  " : ""}Step ${si + 1}: ${step.title}`, { size: 11.5, bold: true, gap: 1.5 });
       if (drawNow) {
         open.board.scene.render(si, open.board.scene.length(si));
-        notes.image(await rasterize(open.board.svg, style, plan.compact ? { w: 1056, h: 660, quality: 0.6 } : undefined));
+        notes.image(await rasterize(open.board.svg, style, quality));
       }
-      for (const line of step.say || []) notes.text(line.text, { gap: 1.2 });
+      (step.say || []).forEach((line, j) => notes.rich(line.text, { indent: 6, gap: 1.4, bullet: `${j + 1}.` }));
       if (step.check) notes.check(step.check, `${lesson.title}, step ${si + 1}`);
-      notes.y += 3;
-      prev = { l: it.l, si, phase: it.phase };
+      notes.y += 4;
+      prev = { l: it.l, si };
       progress.tick(k + 1, items.length);
-      // Let the screen update during long runs.
       if (plan.noImages && k % 40 === 0) await new Promise((r) => setTimeout(r));
     }
     if (open) open.board.done();
     notes.answerKey();
+    notes.writeToc();
     notes.footer();
+    notes.outline();
     return { blob: notes.doc.output("blob"), pages: notes.doc.getNumberOfPages() };
   }
 
@@ -286,35 +539,33 @@
       if (!ph) return null;
       return {
         title: ph.title,
-        subtitle: "Every board of this phase, with its explanation and tests",
+        subtitle: "Every board drawn step by step, with its explanation and tests",
         file: fileName(ph.title),
+        chapters: true,
         items: phaseItems(ph, false),
         intro(n) {
-          n.text(ph.intro, { gap: 2 });
-          ph.units.forEach((u) => n.text(`•  ${u.title}`, { indent: 3, gap: 0.5 }));
-          n.y += 3;
+          n.text(ph.intro, { size: 11, gap: 4 });
         },
+        contents: ph.units.filter((u) => u.lessons.some((x) => x.lessonId && P.lessons[x.lessonId])).map((u) => u.title),
       };
     },
-    // The whole course, sense atlas to the end: "text" = every explanation and test without pictures;
-    // "boards" = with every board, using smaller pictures.
+    // The whole course, sense atlas to the end: "boards" = every board drawn, as a book with chapters;
+    // "text" = the same book without the pictures (small file).
     course(mode) {
-      const text = mode !== "boards";
+      const text = mode === "text";
+      const phases = P.curriculum.phases.filter((ph) => ph.units.some((u) => u.lessons.some((x) => x.lessonId && P.lessons[x.lessonId])));
       return {
-        title: text ? "The whole course: notes" : "The whole course with every board",
-        subtitle: text ? "Every explanation, example and test, from the sense atlas to the end. The answer key is at the end." : "Every board, explanation and test, from the sense atlas to the end",
-        file: fileName(text ? "whole-course-notes" : "whole-course-with-boards"),
+        title: text ? "The whole course: text notes" : "The whole course",
+        subtitle: text ? "Every explanation, example and test, from the sense atlas to the end, without the board pictures" : "Every board drawn step by step, with its explanation and tests, from the sense atlas to the end",
+        file: fileName(text ? "whole-course-text-notes" : "whole-course"),
+        chapters: true,
         noImages: text,
         compact: !text,
-        items: P.curriculum.phases.flatMap((ph) => phaseItems(ph, true)),
-        intro(n) {
-          n.text("Contents", { size: 14, bold: true, gap: 1 });
-          P.curriculum.phases.forEach((ph) => {
-            const k = ph.units.reduce((a, u) => a + u.lessons.filter((x) => x.lessonId && P.lessons[x.lessonId]).length, 0);
-            if (k) n.text(`${ph.title}  (${k} lessons)`, { indent: 3, gap: 0.5 });
-          });
-          n.y += 3;
-        },
+        items: phases.flatMap((ph) => phaseItems(ph, false)),
+        contents: phases.map((ph) => {
+          const k = ph.units.reduce((a, u) => a + u.lessons.filter((x) => x.lessonId && P.lessons[x.lessonId]).length, 0);
+          return `${ph.title}  (${k} lessons)`;
+        }),
       };
     },
     lesson(id) {
@@ -339,6 +590,8 @@
         title: f.u.title,
         subtitle: f.ph.title,
         file: fileName(f.u.title),
+        chapters: true,
+        phasePages: false,
         items: lessons.flatMap((l) => lessonItems(l, l.title)),
         intro(n) {
           n.text("Lessons in this part:", { bold: true, gap: 1 });
@@ -405,6 +658,8 @@
         title: it ? `${it.title}: the senses` : "The sense atlas",
         subtitle: "Every sense drawn as its logic, explained simply, with what it is confused with",
         file: fileName(it ? `atlas-${it.title}` : "sense-atlas"),
+        chapters: true,
+        phasePages: false,
         items: list,
         intro(n) {
           // A one-page summary first: each preposition and its senses, then the pairs.
