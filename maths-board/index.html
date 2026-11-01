@@ -421,7 +421,7 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L),...buildEnglish(),...buildEnglish2(),...buildEnglish3()]}
+  return [prepare(L),...buildEnglish(),...buildEnglish2(),...buildEnglish3(),...buildEnglish4()]}
 
 /* ---------- English part: drawing helpers ---------- */
 function wseqC(id,cx,y,parts,o={}){const s=o.size||30,w=parts.reduce((a,p)=>a+measure(p,s,700),0);return wseq(id,cx-w/2,y,parts,o)}
@@ -917,6 +917,169 @@ const C={id:'prep-in-on-time',phase:'eng',title:'"In time", "on time" or "at tim
   {q:'Run, or you will not get there ___ to catch the bus!',options:[{t:'in time',ok:true,why:'Right. Early enough to catch the bus: in time to.'},{t:'on time',tag:'time-in-on',why:'"In time to catch" is the usual phrase. "On time" is about a planned time, not being early enough.'},{t:'at time',tag:'time-at-time',why:'"At time" is never used alone.'},{t:'at a time',tag:'time-at-time',why:'"At a time" means together or one by one, like "two at a time".'}]},
   {q:'He gets angry ___. (= sometimes)',options:[{t:'at times',ok:true,why:'Right. "At times" means sometimes.'},{t:'on time',tag:'time-in-on',why:'"On time" means as planned.'},{t:'in time',tag:'time-in-on',why:'"In time" means early enough, or after a while.'},{t:'at time',tag:'time-at-time',why:'"At time" is never used alone. Add the "s": at times.'}]}]};
 return [prepare(A),prepare(C)]}
+
+/* ---------- English part 4: for/since/from/over, and into/in/to/by ---------- */
+function room(id,cx,y,w,h){const x=cx-w/2,g=22;return [D(id,{kind:'lines',segs:[[x,y,x+w,y],[x,y,x,y+h],[x+w,y,x+w,y+h],[x,y+h,cx-g,y+h],[cx+g,y+h,x+w,y+h]]},{dur:700})]}
+function loopIn(id,cx,cy,rx,ry,ink){const pts=range(0,15).map(i=>{const a=.4+i*(5.2/14);return [cx+rx*Math.cos(a),cy+ry*Math.sin(a)]}),p=pts[pts.length-1],q=pts[pts.length-2];
+  return [D(id,{kind:'poly',pts},{ink,sw:3.5,dur:700}),D(id+'h',{kind:'arrow',x1:q[0],y1:q[1],x2:p[0]+(p[0]-q[0])*.6,y2:p[1]+(p[1]-q[1])*.6,head:12},{ink,sw:3.5,dur:150})]}
+
+Object.assign(TAGS,{
+  'dur-for-since':'Mixing up "for" (a length of time) and "since" (a starting point)',
+  'dur-from':'Using "from" for a length of time (use "for")',
+  'dur-over':'Using "over" where "for" or "since" is needed',
+  'move-in-into':'Mixing up "in" (position) and "into" (movement inside)',
+  'move-to-by':'Mixing up "to" (towards), "by" (past) and "into" (inside)'});
+PHASES.find(p=>p.id==='eng').lessons.push('prep-for-since','prep-into');
+
+/* give every item in a step its own prefix, so steps can reuse simple names */
+function nsSteps(L){L.steps.forEach((st,i)=>{const ns='s'+(i+1)+'_',f=x=>x&&typeof x==='string'&&x!=='all'?ns+x:x;
+  st.actions.forEach(a=>{if(a.id)a.id=ns+a.id;if(a.target)a.target=ns+a.target;if(Array.isArray(a.targets))a.targets=a.targets.map(f)});st.explain.forEach(l=>l.cue=ns+l.cue)});return L}
+function buildEnglish4(){const G='accent2',B='accent',T='trouble',P='#7c3aed',O='#b45309';
+/* ===== Lesson: for, since, from, over ===== */
+const A={id:'prep-for-since',phase:'eng',title:'"For", "since", "from" or "over" a time?',
+ summary:'For a length of time, since a starting point, from a start to an end, and over a whole period.',
+ objectives:['Use "for" with a length of time.','Use "since" with a starting point up to now.','Use "from … to" for a period with a start and an end.','Use "over" for things that happen across a whole period.'],
+ steps:[
+ {title:'Your sentence',actions:[
+   ...lineup('L',30,90,900,['I have known him','___','a long time.'],[
+     {tokens:['for'],mark:'✓',why:'"A long time" is a length of time. Lengths take "for".'},
+     {tokens:['since'],mark:'✗',why:'"Since" needs a starting point: since 2016.'},
+     {tokens:['from'],mark:'✗',why:'"From" needs a start, usually with an end: from 2016 to 2021.'},
+     {tokens:['over'],mark:'≈',why:'"Over the years" is fine, but not with "have known … a long time".'}],{size:32}),
+   W('Lb',480,548,'Answer: I have known him for a long time.',{size:27,anchor:'middle',ink:G,weight:700})],
+  explain:[{cue:'L.p',t:'Your sentence: "I have known him ___ a long time."'},{cue:'L.o0',t:'**for**: "a long time" is a **length** of time. **Right.**'},{cue:'L.o1',t:'**since**: needs a **starting point**, like since 2016.'},
+   {cue:'L.o2',t:'**from**: needs a start, usually with an end: from 2016 to 2021.'},{cue:'L.o3',t:'**over**: "over the years" is good English, but it does not fit this sentence.'},{cue:'Lb',t:'So: "I have known him **for** a long time."'}]},
+ {title:'"For" a length, "since" a starting point',actions:[ER('er_h2'),
+   D('tl',{kind:'arrow',x1:60,y1:250,x2:900,y2:250},{dur:800}),
+   D('tk',{kind:'lines',segs:[[200,238,200,262],[520,238,520,262],[840,238,840,262]]},{sw:2.4,dur:400}),
+   W('y1',200,288,'2016',{size:22,anchor:'middle',ink:'muted'}),W('y2',520,288,'2021',{size:22,anchor:'middle',ink:'muted'}),W('y3',840,288,'now',{size:22,anchor:'middle',ink:'muted'}),
+   ...pin('sp',200,190),W('spl',200,135,'since 2016',{size:28,anchor:'middle',ink:B,weight:700}),
+   D('sa',{kind:'arrow',x1:225,y1:205,x2:830,y2:205},{ink:B,sw:3,dur:700}),
+   bracket('fb',200,840,330,G),W('fbl',520,370,'for 10 years',{size:28,anchor:'middle',ink:G,weight:700}),
+   W('s1',480,450,'I have known him since 2016.',{size:26,anchor:'middle',ink:B}),
+   W('s2',480,500,'I have known him for 10 years.',{size:26,anchor:'middle',ink:G}),
+   W('tip',480,555,'since + a starting point   ·   for + a length of time',{size:26,anchor:'middle',weight:700})],
+  explain:[{cue:'tl',t:'A time line, from the past to **now**.'},{cue:'sp',t:'**since** puts a pin at the **starting point**: since 2016.'},{cue:'sa',t:'…and the time runs from that point right up to now.'},
+   {cue:'fb',t:'**for** measures the **length** of the time: 10 years.'},{cue:'s1',t:'"I have known him **since** 2016." (the start)'},{cue:'s2',t:'"I have known him **for** 10 years." (the length) Both say the same thing in two ways.'},
+   {cue:'tip',t:'**since** + a point: since 2016, since Monday, since childhood. **for** + a length: for 10 years, for two hours, for a long time.'}],
+  check:{q:'She has lived here ___ 2019.',options:[
+   {t:'since',ok:true,why:'Right. 2019 is a starting point, so use "since".'},
+   {t:'for',tag:'dur-for-since',why:'"For" needs a length of time, like "for five years". 2019 is a point.'},
+   {t:'from',tag:'dur-from',why:'"From 2019" needs an end, like "from 2019 to 2022". For up to now, use "since".'},
+   {t:'over',tag:'dur-over',why:'"Over 2019" would mean during that year. It does not say from then until now.'}]}},
+ {title:'"From … to": a start and an end',actions:[ER('er_h3'),
+   D('tl',{kind:'arrow',x1:60,y1:250,x2:900,y2:250},{dur:800}),
+   D('tk',{kind:'lines',segs:[[200,238,200,262],[520,238,520,262],[840,238,840,262]]},{sw:2.4,dur:400}),
+   W('y1',200,288,'2016',{size:22,anchor:'middle',ink:'muted'}),W('y2',520,288,'2021',{size:22,anchor:'middle',ink:'muted'}),W('y3',840,288,'now',{size:22,anchor:'middle',ink:'muted'}),
+   bracket('fr',200,520,200,O),W('frl',360,170,'from 2016 to 2021',{size:28,anchor:'middle',ink:O,weight:700}),
+   W('s1',480,380,'I lived in Karachi from 2016 to 2021.',{size:26,anchor:'middle',ink:O}),
+   W('s2',480,430,'The shop is open from 9 am to 6 pm.',{size:26,anchor:'middle',ink:O}),
+   W('s3',480,500,'"from" marks the start, "to" or "until" marks the end',{size:24,anchor:'middle'}),
+   W('s4',480,555,'It is not used for "up to now": say since 2016, not from 2016.',{size:24,anchor:'middle',ink:T})],
+  explain:[{cue:'fr',t:'**from … to** marks a period with a **start** and an **end**.'},{cue:'s1',t:'"I lived in Karachi **from** 2016 **to** 2021." It started and it finished.'},{cue:'s2',t:'"The shop is open **from** 9 am **to** 6 pm."'},
+   {cue:'s3',t:'**from** is the start. **to** or **until** is the end.'},{cue:'s4',t:'For something that continues **up to now**, use **since**, not "from".'}],
+  check:{q:'The shop is open ___ 9 am to 6 pm.',options:[
+   {t:'from',ok:true,why:'Right. A start (9 am) and an end (6 pm): from … to.'},
+   {t:'since',tag:'dur-for-since',why:'"Since" goes from a point up to now. Here there is an end: 6 pm.'},
+   {t:'for',tag:'dur-for-since',why:'"For" needs a length, like "for nine hours".'},
+   {t:'over',tag:'dur-over',why:'"Over" does not pair with "to" for opening hours.'}]}},
+ {title:'"Over" a whole period',actions:[ER('er_h4'),
+   D('tl',{kind:'arrow',x1:60,y1:250,x2:900,y2:250},{dur:700}),
+   D('ov',{kind:'poly',pts:range(0,17).map(i=>[120+i*45,195-Math.sin(i*.8)*14-i*4])},{ink:P,sw:3.5,dur:900}),
+   W('ovl',480,120,'over the years',{size:32,anchor:'middle',ink:P,weight:700}),
+   W('m',480,330,'over = across the whole period, often while something changes',{size:24,anchor:'middle',ink:P}),
+   W('s1',480,410,'Over the years, we became good friends.',{size:26,anchor:'middle'}),
+   W('s2',480,460,'Prices have gone up over the last month.',{size:26,anchor:'middle'}),
+   W('s3',480,540,'"I have known him over a long time" sounds wrong: use for.',{size:24,anchor:'middle',ink:T})],
+  explain:[{cue:'tl',t:'The time line again.'},{cue:'ov',t:'This line grows slowly across the whole period. That is **over**.'},{cue:'ovl',t:'"**Over** the years" means all through those years, little by little.'},
+   {cue:'m',t:'Use **over** when something **happens or changes across** a period.'},{cue:'s1',t:'"**Over** the years, we became good friends." The friendship grew slowly.'},{cue:'s2',t:'"Prices have gone up **over** the last month."'},
+   {cue:'s3',t:'But for simply how long you have known someone, use **for**.'}],
+  check:{q:'___ the years, the village has changed a lot.',options:[
+   {t:'Over',ok:true,why:'Right. The change happened little by little across the whole period.'},
+   {t:'Since',tag:'dur-over',why:'"Since" needs a starting point, like "since 2010".'},
+   {t:'For',tag:'dur-over',why:'"For the years" is not used. "For" takes a length like "for ten years".'},
+   {t:'From',tag:'dur-from',why:'"From the years" is not English. "From" needs a starting point.'}]}},
+ {title:'All four, side by side',actions:[ER('er_h5'),D('dv',{kind:'lines',segs:[[240,40,240,330],[480,40,480,330],[720,40,720,330]]},{ink:'muted',sw:1.5,dur:500}),
+   ...[['for',G,'a length of time','for 10 years'],['since',B,'a starting point up to now','since 2016'],['from',O,'a start, with an end','from 2016 to 2021'],['over',P,'across a period, changing','over the years']].flatMap(([w,c,m,e],i)=>{const cx=120+i*240;return [
+     W('h'+i,cx,82,w,{size:42,anchor:'middle',ink:c,weight:700,dur:400}),...wrapText('m'+i,cx,150,m,205,{size:22,anchor:'middle',ink:c}),W('e'+i,cx,285,e,{size:23,anchor:'middle',dur:450})]}),
+   D('x1',{kind:'cross',x:90,y:395,s:12},{ink:T,sw:3.5,dur:300}),W('w1',115,403,'since 10 years',{size:24,ink:T}),W('c1',360,403,'→  for 10 years',{size:24,ink:G}),
+   D('x2',{kind:'cross',x:90,y:455,s:12},{ink:T,sw:3.5,dur:300}),W('w2',115,463,'from a long time',{size:24,ink:T}),W('c2',360,463,'→  for a long time',{size:24,ink:G}),
+   W('tip',480,550,'length → for   ·   start → since   ·   start and end → from … to',{size:24,anchor:'middle',weight:700})],
+  explain:[{cue:'h0',t:'**for**: a length of time.'},{cue:'h1',t:'**since**: a starting point, up to now.'},{cue:'h2',t:'**from**: a start, usually with an end (to, until).'},{cue:'h3',t:'**over**: across a whole period, often while something changes.'},
+   {cue:'x1',t:'Very common mistake: "since 10 years". 10 years is a length, so say **for** 10 years.'},{cue:'x2',t:'Another: "from a long time". Say **for** a long time.'},{cue:'tip',t:'Ask: is it a **length**, a **starting point**, or a **start and an end**?'}]}],
+ practice:[
+  {q:'We have waited ___ two hours.',options:[{t:'for',ok:true,why:'Right. Two hours is a length of time.'},{t:'since',tag:'dur-for-since',why:'"Since" needs a point, like "since 3 o\'clock".'},{t:'from',tag:'dur-from',why:'"From two hours" is not English. Use "for" with a length.'},{t:'at',tag:'prep-time',why:'"At" is for a point of time, like "at 3 pm".'}]},
+  {q:'He has been ill ___ Monday.',options:[{t:'since',ok:true,why:'Right. Monday is the starting point, and he is still ill now.'},{t:'for',tag:'dur-for-since',why:'"For" needs a length, like "for three days".'},{t:'from',tag:'dur-from',why:'"From Monday" needs an end. Up to now, use "since".'},{t:'over',tag:'dur-over',why:'"Over Monday" means during Monday only.'}]},
+  {q:'Which sentence is correct?',options:[{t:'I have known him for ten years.',ok:true,why:'Right. Ten years is a length, so "for".'},{t:'I have known him since ten years.',tag:'dur-for-since',why:'"Since" needs a starting point, like "since 2016".'},{t:'I have known him from ten years.',tag:'dur-from',why:'"From" needs a starting point, and "ten years" is a length.'},{t:'I know him since ten years.',tag:'dur-for-since',why:'Two mistakes: use "have known", and "for" with a length.'}]}]};
+
+/* ===== Lesson: into, in, to, by ===== */
+const COLS=[120,360,600,840];
+const C={id:'prep-into',phase:'eng',title:'Walk "into", "in", "to" or "by" my parlour?',
+ summary:'Into = from outside to inside. In = already inside. To = towards. By = past it.',
+ objectives:['Use "into" for moving from outside to inside.','Use "in" for being inside.','Use "to" for going towards a place, and "by" for going past it.'],
+ steps:[
+ {title:'Your sentence',actions:[
+   ...lineup('L',30,90,900,['Will you walk','___','my parlour?'],[
+     {tokens:['into'],mark:'✓',why:'Come from outside to inside my room.'},
+     {tokens:['in'],mark:'≈',why:'Means walking around when you are already inside.'},
+     {tokens:['to'],mark:'≈',why:'Means towards it. You may not go inside.'},
+     {tokens:['by'],mark:'≈',why:'Means walking past it, staying outside.'}],{size:32}),
+   W('Lb',480,520,'"Will you walk into my parlour?" said the Spider to the Fly.',{size:24,anchor:'middle',ink:G,weight:700}),
+   W('Lc',480,560,'(from the poem "The Spider and the Fly" by Mary Howitt)',{size:20,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'L.p',t:'Your sentence: "Will you walk ___ my parlour?" A parlour is an old word for a sitting room.'},{cue:'L.o0',t:'**into**: from outside to **inside** the room. **Right**: the spider wants the fly to come in!'},
+   {cue:'L.o1',t:'**in**: correct English, but it means walking around when you are **already inside**.'},{cue:'L.o2',t:'**to**: correct English, but it means **towards** the room, maybe without entering.'},
+   {cue:'L.o3',t:'**by**: correct English, but it means walking **past** it.'},{cue:'Lb',t:'This is the famous first line of the poem _The Spider and the Fly_.'}]},
+ {title:'Four pictures',actions:[ER('er_i2'),D('dv',{kind:'lines',segs:[[240,40,240,450],[480,40,480,450],[720,40,720,450]]},{ink:'muted',sw:1.5,dur:500}),
+   ...[['into',G],['in',B],['to',O],['by',P]].flatMap(([w,c],i)=>[W('h'+i,COLS[i],82,w,{size:42,anchor:'middle',ink:c,weight:700,dur:400}),...room('rm'+i,COLS[i],130,150,120)]),
+   D('a0',{kind:'arrow',x1:120,y1:345,x2:120,y2:175},{ink:G,sw:3.5,dur:700}),
+   ...loopIn('a1',360,190,42,30,INK.accent),
+   D('a2',{kind:'arrow',x1:600,y1:345,x2:600,y2:268},{ink:O,sw:3.5,dur:600}),
+   D('a3',{kind:'arrow',x1:745,y1:300,x2:935,y2:300},{ink:P,sw:3.5,dur:600}),
+   ...wrapText('m0',COLS[0],395,'from outside to inside',200,{size:22,anchor:'middle',ink:G}),
+   ...wrapText('m1',COLS[1],395,'already inside, moving around',200,{size:22,anchor:'middle',ink:B}),
+   ...wrapText('m2',COLS[2],395,'towards it, maybe not inside',200,{size:22,anchor:'middle',ink:O}),
+   ...wrapText('m3',COLS[3],395,'past it, staying outside',200,{size:22,anchor:'middle',ink:P}),
+   W('tip',480,540,'into = in + movement  ·  in = inside  ·  to = towards  ·  by = past',{size:24,anchor:'middle',weight:700})],
+  explain:[{cue:'h0',t:'Four rooms with a door at the bottom, one for each word.'},{cue:'a0',t:'**into**: the arrow starts outside, goes through the door and ends **inside**.'},{cue:'a1',t:'**in**: you are already inside, walking around.'},
+   {cue:'a2',t:'**to**: the arrow goes **towards** the room and stops at the door.'},{cue:'a3',t:'**by**: the arrow goes **past** the room. You never enter.'},{cue:'tip',t:'Remember: **into = in + movement**.'}],
+  check:{q:'"Will you walk into my parlour?" What does the spider want?',options:[
+   {t:'The fly to come inside the room.',ok:true,why:'Right. "Into" means from outside to inside.'},
+   {t:'The fly to walk past the room.',tag:'move-to-by',why:'That would be "walk by my parlour".'},
+   {t:'The fly to walk around, already inside.',tag:'move-in-into',why:'That would be "walk in my parlour". The fly is still outside.'},
+   {t:'The fly to walk up to the door only.',tag:'move-to-by',why:'That would be "walk to my parlour".'}]}},
+ {title:'"In" is a place, "into" is a movement',actions:[ER('er_i3'),D('dv',{kind:'line',x1:480,y1:40,x2:480,y2:420},{ink:'muted',sw:1.5,dur:400}),
+   W('hl',240,80,'in = where it is',{size:30,anchor:'middle',ink:B,weight:700}),
+   ...room('ra',240,125,180,130),D('pa',{kind:'circle',cx:240,cy:195,r:14},{ink:B,fill:B,fillOp:.6,dur:400}),W('sa',240,330,'He is in the room.',{size:26,anchor:'middle',ink:B}),
+   W('hr',720,80,'into = where it goes',{size:30,anchor:'middle',ink:G,weight:700}),
+   ...room('rb',720,125,180,130),D('pb',{kind:'arrow',x1:720,y1:340,x2:720,y2:180},{ink:G,sw:3.5,dur:700}),W('sb',720,385,'He walked into the room.',{size:26,anchor:'middle',ink:G}),
+   W('xa',240,400,'swim in the pool',{size:24,anchor:'middle',ink:B}),W('xb',720,435,'jump into the pool',{size:24,anchor:'middle',ink:G}),
+   W('tip',480,530,'No movement → in      ·      Moving inside → into',{size:28,anchor:'middle',weight:700})],
+  explain:[{cue:'hl',t:'**in** tells us **where** something is.'},{cue:'pa',t:'He is already inside: "He is **in** the room."'},{cue:'hr',t:'**into** tells us **where something goes**.'},
+   {cue:'pb',t:'He moves from outside to inside: "He walked **into** the room."'},{cue:'xa',t:'You swim **in** the pool (you are already in it), but you jump **into** the pool (from outside).'},{cue:'tip',t:'No movement → **in**. Moving to the inside → **into**.'}],
+  check:{q:'Sara is ___ the kitchen, cooking.',options:[
+   {t:'in',ok:true,why:'Right. She is already inside, not moving into it.'},
+   {t:'into',tag:'move-in-into',why:'"Into" needs movement from outside to inside, like "She went into the kitchen".'},
+   {t:'to',tag:'move-to-by',why:'"To" shows going towards a place. She is already there.'},
+   {t:'by',tag:'move-to-by',why:'"By the kitchen" means near it. She is cooking inside.'}]}},
+ {title:'"To" a place, "by" a place',actions:[ER('er_i4'),
+   ...house('sh',400,110,160),W('shl',480,330,'the shop',{size:24,anchor:'middle',ink:'muted'}),
+   D('ta',{kind:'arrow',x1:100,y1:260,x2:385,y2:260},{ink:O,sw:3.5,dur:700}),W('tal',240,235,'walk to the shop',{size:26,anchor:'middle',ink:O,weight:700}),
+   D('ba',{kind:'arrow',x1:100,y1:380,x2:880,y2:380},{ink:P,sw:3.5,dur:900}),W('bal',740,355,'walk by the shop',{size:26,anchor:'middle',ink:P,weight:700}),
+   W('m1',480,450,'to = towards it, it is where you are going',{size:24,anchor:'middle',ink:O}),
+   W('m2',480,495,'by = past it, without stopping  (also: near it, "sit by the window")',{size:23,anchor:'middle',ink:P}),
+   W('tip',480,555,'Going there → to   ·   Going past → by   ·   Going inside → into',{size:24,anchor:'middle',weight:700})],
+  explain:[{cue:'sh',t:'A shop.'},{cue:'ta',t:'"I walked **to** the shop." The shop is where you were going.'},{cue:'ba',t:'"I walked **by** the shop." You went **past** it and kept walking.'},
+   {cue:'m1',t:'**to** = towards, the end of your trip.'},{cue:'m2',t:'**by** = past it. "By" can also mean **near**: "sit by the window".'},{cue:'tip',t:'Going there → **to**. Going past → **by**. Going inside → **into**.'}],
+  check:{q:'I walked ___ the bank but did not go inside. I kept walking home.',options:[
+   {t:'by',ok:true,why:'Right. You went past the bank, so "by".'},
+   {t:'into',tag:'move-in-into',why:'"Into" means you went inside, but you did not.'},
+   {t:'in',tag:'move-in-into',why:'"In" means you were inside the bank.'},
+   {t:'on',tag:'prep-other',why:'"On the bank" would mean on top of it, or a river bank.'}]}}],
+ practice:[
+  {q:'He came ___ the room and sat down.',options:[{t:'into',ok:true,why:'Right. He moved from outside to inside the room.'},{t:'by',tag:'move-to-by',why:'"By the room" means past it. He sat down inside.'},{t:'on',tag:'prep-other',why:'"On the room" would mean on top of it.'},{t:'at',tag:'prep-other',why:'"At the room" means at that point, maybe the door, not inside.'}]},
+  {q:'The fish are swimming ___ the pond.',options:[{t:'in',ok:true,why:'Right. The fish are already inside the water, so "in".'},{t:'into',tag:'move-in-into',why:'"Into" means moving from outside to inside. The fish are already in it.'},{t:'by',tag:'move-to-by',why:'"By the pond" means near it, outside the water.'},{t:'to',tag:'move-to-by',why:'"To the pond" means towards it.'}]},
+  {q:'Every morning I walk ___ the mosque on my way to work, but I do not go in.',options:[{t:'by',ok:true,why:'Right. You pass it without going in.'},{t:'into',tag:'move-in-into',why:'"Into" means going inside.'},{t:'in',tag:'move-in-into',why:'"In" means being inside.'},{t:'at',tag:'prep-other',why:'"At the mosque" means you are there, not passing it.'}]}]};
+return [prepare(nsSteps(A)),prepare(nsSteps(C))]}
 
 /* =====================================================================
    4. CONTENT VALIDATOR + LAYOUT CHECK (also used by the automated test)
