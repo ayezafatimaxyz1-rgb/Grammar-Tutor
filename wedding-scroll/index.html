@@ -390,15 +390,22 @@
         }
       }
 
+      let fileFailed = false;
+      function startSynth() {
+        hasFile = false;
+        if (!ctx) initSynth();
+        ctx.resume();
+        if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 40); }
+        fadeTo(1, 2.5);
+      }
       function play() {
-        if (hasFile) { song.volume = 0; }
-        else {
-          if (!ctx) initSynth();
-          ctx.resume();
-          if (!timer) { nextTime = ctx.currentTime + 0.1; timer = setInterval(schedule, 40); }
-        }
-        on = true; fadeTo(1, 2.5);
+        on = true;
         btn.classList.add('playing'); btn.classList.remove('muted');
+        if (fileFailed) return startSynth();
+        // try the song first (must be called straight from the tap), fall back to the music box
+        song.volume = 0;
+        song.play().then(() => { hasFile = true; fadeTo(1, 2.5); })
+          .catch(() => { fileFailed = true; if (on) startSynth(); });
       }
       function pause() {
         on = false; fadeTo(0, 0.8);
