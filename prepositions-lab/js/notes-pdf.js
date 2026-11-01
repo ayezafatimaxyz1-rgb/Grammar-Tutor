@@ -54,11 +54,12 @@
       .board-swipe path{opacity:var(--swipe-opacity)}`;
   }
 
-  function rasterize(svg, style) {
+  // Full boards are 1440 x 900; the whole-course PDF uses smaller, lighter pictures to stay manageable.
+  function rasterize(svg, style, { w = 1440, h = 900, quality = 0.82 } = {}) {
     const copy = svg.cloneNode(true);
     copy.setAttribute("xmlns", NS);
-    copy.setAttribute("width", 1440);
-    copy.setAttribute("height", 900);
+    copy.setAttribute("width", w);
+    copy.setAttribute("height", h);
     const st = document.createElementNS(NS, "style");
     st.textContent = style;
     copy.insertBefore(st, copy.firstChild);
@@ -67,13 +68,13 @@
       const img = new Image();
       img.onload = () => {
         const c = document.createElement("canvas");
-        c.width = 1440;
-        c.height = 900;
+        c.width = w;
+        c.height = h;
         const x = c.getContext("2d");
         x.fillStyle = "#fff";
         x.fillRect(0, 0, c.width, c.height);
         x.drawImage(img, 0, 0, c.width, c.height);
-        ok(c.toDataURL("image/jpeg", 0.82));
+        ok(c.toDataURL("image/jpeg", quality));
       };
       img.onerror = () => fail(new Error("A board could not be drawn"));
       img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(xml);
@@ -214,7 +215,7 @@
       if (progress.cancelled) throw new Error("cancelled");
       const it = items[k];
       const lesson = P.lessons[it.l];
-      if (!open || open.lesson !== lesson) {
+      if (!plan.noImages && (!open || open.lesson !== lesson)) {
         if (open) open.board.done();
         open = { lesson, board: offscreenScene(lesson) };
       }
@@ -223,7 +224,12 @@
       // Draw the board when this step adds to it, or when the step before it is not already on the page.
       const ownDrawing = (step.actions || []).length > 0;
       const followsOn = prev && prev.l === it.l && prev.si === si - 1;
-      const drawNow = ownDrawing || !followsOn;
+      const drawNow = !plan.noImages && (ownDrawing || !followsOn);
+      // A new phase starts on a new page with its own heading (whole-course notes).
+      if (it.phase && it.phase !== (prev && prev.phase)) {
+        if (k > 0) notes.page();
+        notes.text(it.phase, { size: 20, bold: true, color: C.accent, gap: 3 });
+      }
       // Keep headings on the same page as the board under them.
       const need = drawNow ? 12 + (notes.W * 600) / 960 : 20;
       if (it.label && it.label !== label) {
@@ -236,13 +242,15 @@
       notes.text(`${plan.showLesson ? lesson.title + "  ·  " : ""}Step ${si + 1}: ${step.title}`, { size: 11.5, bold: true, gap: 1.5 });
       if (drawNow) {
         open.board.scene.render(si, open.board.scene.length(si));
-        notes.image(await rasterize(open.board.svg, style));
+        notes.image(await rasterize(open.board.svg, style, plan.compact ? { w: 1056, h: 660, quality: 0.6 } : undefined));
       }
       for (const line of step.say || []) notes.text(line.text, { gap: 1.2 });
       if (step.check) notes.check(step.check, `${lesson.title}, step ${si + 1}`);
       notes.y += 3;
-      prev = { l: it.l, si };
+      prev = { l: it.l, si, phase: it.phase };
       progress.tick(k + 1, items.length);
+      // Let the screen update during long runs.
+      if (plan.noImages && k % 40 === 0) await new Promise((r) => setTimeout(r));
     }
     if (open) open.board.done();
     notes.answerKey();
@@ -259,7 +267,56 @@
     return null;
   }
 
+  // Every step of every built lesson in a phase (or in all phases), in course order.
+  function phaseItems(ph, withPhase) {
+    const out = [];
+    const name = ph.title;
+    for (const u of ph.units)
+      for (const x of u.lessons) {
+        const l = x.lessonId && P.lessons[x.lessonId];
+        if (!l) continue;
+        for (const st of l.steps) out.push({ l: l.id, s: st.id, label: l.title, phase: withPhase ? name : undefined });
+      }
+    return out;
+  }
+
   const plans = {
+    phase(id) {
+      const ph = P.curriculum.phases.find((x) => x.id === id);
+      if (!ph) return null;
+      return {
+        title: ph.title,
+        subtitle: "Every board of this phase, with its explanation and tests",
+        file: fileName(ph.title),
+        items: phaseItems(ph, false),
+        intro(n) {
+          n.text(ph.intro, { gap: 2 });
+          ph.units.forEach((u) => n.text(`•  ${u.title}`, { indent: 3, gap: 0.5 }));
+          n.y += 3;
+        },
+      };
+    },
+    // The whole course, sense atlas to the end: "text" = every explanation and test without pictures;
+    // "boards" = with every board, using smaller pictures.
+    course(mode) {
+      const text = mode !== "boards";
+      return {
+        title: text ? "The whole course: notes" : "The whole course with every board",
+        subtitle: text ? "Every explanation, example and test, from the sense atlas to the end. The answer key is at the end." : "Every board, explanation and test, from the sense atlas to the end",
+        file: fileName(text ? "whole-course-notes" : "whole-course-with-boards"),
+        noImages: text,
+        compact: !text,
+        items: P.curriculum.phases.flatMap((ph) => phaseItems(ph, true)),
+        intro(n) {
+          n.text("Contents", { size: 14, bold: true, gap: 1 });
+          P.curriculum.phases.forEach((ph) => {
+            const k = ph.units.reduce((a, u) => a + u.lessons.filter((x) => x.lessonId && P.lessons[x.lessonId]).length, 0);
+            if (k) n.text(`${ph.title}  (${k} lessons)`, { indent: 3, gap: 0.5 });
+          });
+          n.y += 3;
+        },
+      };
+    },
     lesson(id) {
       const l = P.lessons[id];
       if (!l) return null;
@@ -454,7 +511,7 @@
     const done = showPanel(`
       <p class="eyebrow">Notes PDF</p>
       <h2>Your notes are ready</h2>
-      <p>${esc(plan.title)}: ${out.pages} pages, ${mb} MB. Boards, explanations, tests and an answer key at the end.</p>
+      <p>${esc(plan.title)}: ${out.pages} pages, ${mb} MB. ${plan.noImages ? "Every explanation, example and test, with an answer key at the end." : "Boards, explanations, tests and an answer key at the end."}</p>
       <p class="row-buttons">
         ${canShare ? '<button type="button" class="button primary" data-pdf-share>Share (WhatsApp, Files…)</button>' : ""}
         <button type="button" class="button${canShare ? "" : " primary"}" data-pdf-save>Download PDF</button>
