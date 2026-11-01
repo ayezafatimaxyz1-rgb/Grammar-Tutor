@@ -421,7 +421,191 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L)]}
+  return [prepare(L),...buildEnglish()]}
+
+/* ---------- English part: drawing helpers ---------- */
+function wseqC(id,cx,y,parts,o={}){const s=o.size||30,w=parts.reduce((a,p)=>a+measure(p,s),0);return wseq(id,cx-w/2,y,parts,o)}
+function house(id,x,y,w,o={}){const h=w*.8,ink=o.ink||'main';return [
+  D(id+'.roof',{kind:'poly',pts:[[x-12,y+h*.42],[x+w/2,y],[x+w+12,y+h*.42]]},{ink,dur:600}),
+  D(id+'.body',{kind:'rect',x,y:y+h*.42,w,h:h*.58},{ink,fill:o.fill||'accent2',fillOp:.16,dur:700}),
+  D(id+'.door',{kind:'rect',x:x+w*.42,y:y+h*.7,w:w*.16,h:h*.3},{ink,sw:2.4,dur:400})]}
+function car(id,x,y,w,o={}){const k=w/220,P=pts=>pts.map(([a,b])=>[x+a*k,y+b*k]),ink=o.ink||'main';return [
+  D(id+'.body',{kind:'poly',closed:true,pts:P([[0,80],[0,45],[50,40],[85,5],[175,5],[210,40],[220,45],[220,80]])},{ink,fill:'accent',fillOp:.14,dur:900}),
+  D(id+'.win',{kind:'poly',pts:P([[92,40],[108,16],[166,16],[182,40]])},{ink,sw:2.4,dur:450}),
+  D(id+'.w1',{kind:'circle',cx:x+50*k,cy:y+84*k,r:17*k},{ink,dur:350}),D(id+'.w2',{kind:'circle',cx:x+175*k,cy:y+84*k,r:17*k},{ink,dur:350,sync:true})]}
+function book(id,x,y,w,h,o={}){const ink=o.ink||'main';return [
+  D(id+'.cover',{kind:'rect',x,y,w,h},{ink,fill:'accent',fillOp:.18,dur:700}),
+  D(id+'.spine',{kind:'lines',segs:[[x+14,y+4,x+14,y+h-4],[x+30,y+h*.3,x+w-14,y+h*.3],[x+30,y+h*.42,x+w-24,y+h*.42]]},{ink,sw:2.2,dur:500})]}
+function pin(id,cx,cy,o={}){return [D(id,{kind:'poly',closed:true,pts:[[cx-15,cy],[cx,cy-30],[cx+15,cy],[cx,cy+30]].map(([a,b])=>[a,b]),amp:.4},{ink:'trouble',fill:'trouble',fillOp:.35,dur:600})]}
+function moneyNote(id,x,y,w,h,text){return [D(id+'.n',{kind:'rect',x,y,w,h},{ink:'accent2',fill:'accent2',fillOp:.16,dur:700}),W(id+'.t',x+w/2,y+h/2+11,text,{size:32,anchor:'middle',ink:'accent2',weight:700})]}
+
+Object.assign(TAGS,{
+  'prep-in-price':'Saying "in this price" instead of "at this price"',
+  'pay-order':'Wrong word order with "pay"',
+  'prep-other':'Choosing a little word that does not fit',
+  'prep-to-at':'Using "at" (a place) where "to" (movement) is needed',
+  'prep-on-address':'Using "on" with an address',
+  'prep-at-city':'Using "at" instead of "in" for a city or area',
+  'prep-street':'Mixing up "on" (street) and "at" (full address)'});
+PHASES.push({id:'eng',name:'English: little words (prepositions)',color:'#7c3aed',lessons:['prep-price','prep-address']});
+
+function buildEnglish(){const G='accent2',B='accent',T='trouble';
+/* ===== Lesson: for or at a price ===== */
+const A={id:'prep-price',phase:'eng',title:'Buying: "for" or "at" a price?',
+ summary:'When to say "for 20 lakh" and when to say "at this price".',
+ objectives:['Know that both "for this price" and "at this price" are correct.','Use "for" for the money you swap for a thing.','Use "at" for a price level, a rate or a discount.','Put the words in the right order with "pay".'],
+ steps:[
+ {title:'Two little words for prices',actions:[
+   W('h1',480,70,'Which one is right?',{size:30,anchor:'middle',ink:'muted'}),
+   ...wseqC('s1',440,170,["I can't buy this car ",'for',' this price.'],{size:34}),
+   ...wseqC('s2',440,260,["I can't buy this car ",'at',' this price.'],{size:34}),
+   HL('r1','s1.1','swipe'),HL('r2','s2.1','swipe',{sync:true}),
+   D('t1',{kind:'tick',x:860,y:158,s:20},{ink:G,sw:4,dur:400}),D('t2',{kind:'tick',x:860,y:248,s:20},{ink:G,sw:4,dur:400,sync:true}),
+   W('both',480,380,'Both are correct!',{size:38,anchor:'middle',ink:G,weight:700}),
+   W('diff',480,470,'But each word has its own small job.',{size:30,anchor:'middle'}),
+   W('diff2',480,535,'Let us draw the two jobs.',{size:28,anchor:'middle',ink:B})],
+  explain:[{cue:'h1',t:'Your question: should we say **for** this price or **at** this price?'},{cue:'s1',t:'"I can\'t buy this car **for** this price."'},{cue:'s2',t:'"I can\'t buy this car **at** this price."'},
+   {cue:'t1',t:'Good news: **both sentences are correct** English.'},{cue:'diff',t:'But "for" and "at" each have their **own small job**. Once you see the job, you will always know which one sounds best.'}]},
+ {title:'"For" = a swap: money for a thing',actions:[ER('er_a2'),
+   ...car('car',110,150,230),
+   D('ar1',{kind:'arrow',x1:380,y1:185,x2:600,y2:185},{ink:B,dur:600}),D('ar2',{kind:'arrow',x1:600,y1:240,x2:380,y2:240},{ink:G,dur:600}),
+   W('arL1',490,170,'car',{size:24,anchor:'middle',ink:B}),W('arL2',490,275,'money',{size:24,anchor:'middle',ink:G}),
+   ...moneyNote('cash',630,165,250,90,'Rs 20 lakh'),
+   ...wseqC('fs',480,370,['I bought this car ','for',' 20 lakh.'],{size:34}),HL('r3','fs.1','swipe'),
+   W('fmean',480,440,'for = in exchange for',{size:30,anchor:'middle',ink:B,weight:700}),
+   W('fpat',480,515,'buy / sell / get + thing + for + money',{size:26,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'car',t:'Here is the car.'},{cue:'ar1',t:'The seller gives you the car…'},{cue:'ar2',t:'…and you give the seller money. It is a **swap**.'},{cue:'cash',t:'The money is a real amount: Rs 20 lakh.'},
+   {cue:'fs',t:'So we say: "I bought this car **for** 20 lakh."'},{cue:'fmean',t:'**For** means _in exchange for_. It sounds best with a **real amount** of money.'},{cue:'fpat',t:'Pattern: buy, sell or get + the thing + **for** + the money.'}],
+  check:{q:'I sold my bike ___ 80,000 rupees.',options:[
+   {t:'for',ok:true,why:'Right. You swapped the bike for a real amount of money, so use "for".'},
+   {t:'in',tag:'prep-other',why:'"In" is for places and times (in Lahore, in May), not for the money you swap.'},
+   {t:'on',tag:'prep-other',why:'"On" is for surfaces, days and streets (on Monday, on Mall Road), not for money.'},
+   {t:'to',tag:'prep-other',why:'"To" shows movement towards someone or something. "Sold my bike to Ali" is fine, but not "to 80,000 rupees".'}]}},
+ {title:'"At" = a point on the price line',actions:[ER('er_a3'),
+   D('scale',{kind:'arrow',x1:70,y1:200,x2:900,y2:200},{dur:900}),
+   D('ticks',{kind:'lines',segs:[200,400,600,800].map(x=>[x,188,x,212])},{sw:2.4,dur:500}),
+   ...[200,400,600,800].map((x,i)=>W('tl'+i,x,248,`${(i+1)*10} lakh`,{size:22,anchor:'middle',ink:'muted',dur:300})),
+   W('cheap',70,165,'cheap',{size:24,ink:'muted'}),W('dear',900,165,'expensive',{size:24,anchor:'end',ink:'muted'}),
+   D('dot',{kind:'circle',cx:800,cy:200,r:11},{ink:T,fill:T,fillOp:.8,dur:500}),W('dotl',800,140,"the seller's price",{size:24,anchor:'middle',ink:T}),
+   ...wseqC('as',480,340,["I can't buy this car ",'at',' this price.'],{size:34}),HL('r4','as.1','swipe'),
+   W('amean',480,410,'at = at this point on the price line',{size:30,anchor:'middle',ink:B,weight:700}),
+   W('aex1',480,478,'at this price  ·  at a good price  ·  at half price  ·  at a discount',{size:24,anchor:'middle',ink:'muted'}),
+   W('aex2',480,535,'a rate: mangoes are sold at Rs 300 a kilo',{size:24,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'scale',t:'Think of prices on a line, from **cheap** to **expensive**.'},{cue:'dot',t:'The seller is asking for this point: 40 lakh, far up the line.'},
+   {cue:'as',t:'You say: "I can\'t buy this car **at** this price." You mean: at that point, it is too high for me.'},{cue:'amean',t:'**At** shows a **point** or **level** on the price line.'},
+   {cue:'aex1',t:'So "at" goes with **this price**, **that price**, **a good price**, **half price** and **a discount**.'},{cue:'aex2',t:'"At" also goes with a **rate**: so much per kilo, per litre or per hour.'}],
+  check:{q:'Mangoes are selling ___ Rs 300 a kilo.',options:[
+   {t:'at',ok:true,why:'Right. "Rs 300 a kilo" is a rate, a point on the price line, so use "at".'},
+   {t:'on',tag:'prep-other',why:'"On" is not used with prices or rates.'},
+   {t:'in',tag:'prep-in-price',why:'"In" is not used with prices. We never say "in Rs 300".'},
+   {t:'by',tag:'prep-other',why:'"By" shows who or how (made by hand). It does not go with a price.'}]}},
+ {title:'Which one sounds best?',actions:[ER('er_a4'),
+   W('q1',40,110,"I can't buy this car at this price.",{size:26}),W('n1',600,110,'best when bargaining',{size:22,ink:G}),
+   W('q2',40,190,"I can't buy this car for this price.",{size:26}),W('n2',600,190,'correct, a bit less common',{size:22,ink:B}),
+   W('q3',40,270,'I bought it for 20 lakh.',{size:26}),W('n3',600,270,'best: a real amount',{size:22,ink:G}),
+   W('q4',40,350,'Petrol is sold at Rs 260 a litre.',{size:26}),W('n4',600,350,'best: a rate',{size:22,ink:G}),
+   W('q5',40,430,"I can't buy it in this price.",{size:26,ink:T}),D('x5',{kind:'cross',x:640,y:422,s:16},{ink:T,sw:4,dur:400}),W('n5',680,430,'never "in"',{size:22,ink:T}),
+   W('tip',480,540,'real amount → for      this price / a rate / a discount → at',{size:26,anchor:'middle',ink:B,weight:700})],
+  explain:[{cue:'q1',t:'When you are **bargaining**, "at this price" is the most natural.'},{cue:'q2',t:'"For this price" is also correct, just used a little less.'},{cue:'q3',t:'With a **real amount**, like 20 lakh, "for" sounds best.'},{cue:'q4',t:'With a **rate**, like per litre, use "at".'},
+   {cue:'q5',t:'A very common mistake: "in this price". We **never** use "in" with a price.'},{cue:'tip',t:'The short rule: **real amount → for**. **This price, a rate or a discount → at**.'}]},
+ {title:'Watch out for "pay"',actions:[ER('er_a5'),D('div',{kind:'line',x1:480,y1:36,x2:480,y2:250},{ink:'muted',sw:1.6,dur:400}),
+   W('mL',240,66,'The mistake',{size:28,anchor:'middle',ink:T,weight:700}),W('mR',720,66,'The right way',{size:28,anchor:'middle',ink:G,weight:700}),
+   W('pL',240,150,'I paid the car for 20 lakh.',{size:26,anchor:'middle',ink:T}),D('pX',{kind:'cross',x:240,y:205,s:16},{ink:T,sw:4,dur:400}),
+   W('pR',720,150,'I paid 20 lakh for the car.',{size:26,anchor:'middle',ink:G}),D('pT',{kind:'tick',x:720,y:205,s:18},{ink:G,sw:4,dur:400}),
+   W('pat1',60,330,'pay  +  money  +  for  +  thing',{size:32,ink:G,weight:700}),
+   W('pat2',60,410,'buy  +  thing  +  for  +  money',{size:32,ink:B,weight:700}),
+   W('pat3',480,520,'With "pay", the money comes first.',{size:30,anchor:'middle'})],
+  explain:[{cue:'mL',t:'A common mistake: "I paid the car for 20 lakh."'},{cue:'mR',t:'The right way: "I paid **20 lakh for the car**."'},{cue:'pat1',t:'With **pay**, the money comes first, then **for**, then the thing.'},{cue:'pat2',t:'With **buy**, it is the other way round: the thing first, then **for** the money.'},{cue:'pat3',t:'Same little word "for", different order. The verb decides the order.'}],
+  check:{q:'Which sentence is correct?',options:[
+   {t:'I paid 5,000 for the ticket.',ok:true,why:'Right. pay + money + for + thing.'},
+   {t:'I paid the ticket for 5,000.',tag:'pay-order',why:'With "pay" the money comes first: "paid 5,000 for the ticket".'},
+   {t:'I paid 5,000 at the ticket.',tag:'prep-other',why:'"At" does not join the money to the thing you bought. Use "for".'},
+   {t:'I paid for 5,000 the ticket.',tag:'pay-order',why:'The words are mixed up. Say: "paid 5,000 for the ticket".'}]}},
+ {title:'Same price, two meanings',actions:[ER('er_a6'),
+   ...wseq('m1',60,130,['At',' that price, it is a great deal.'],{size:32}),HL('r6','m1.0','swipe'),
+   W('m1n',60,185,'= thinking about the price level: it is cheap',{size:24,ink:'muted'}),
+   ...wseq('m2',60,300,['For',' that price, you could buy a new car.'],{size:32}),HL('r7','m2.0','swipe'),
+   W('m2n',60,355,'= with that much money, you could get something else',{size:24,ink:'muted'}),
+   W('sum1',480,470,'at → the price level',{size:30,anchor:'middle',ink:B,weight:700}),
+   W('sum2',480,530,'for → the money you swap',{size:30,anchor:'middle',ink:G,weight:700})],
+  explain:[{cue:'m1',t:'"**At** that price, it is a great deal." We look at the price **level** and say it is low.'},{cue:'m2',t:'"**For** that price, you could buy a new car." We think about the **money** and what else it could be **swapped** for.'},
+   {cue:'sum1',t:'**At** = the price level or point.'},{cue:'sum2',t:'**For** = the money you swap for a thing.'}]}],
+ practice:[
+  {q:'We got the sofa ___ a 20% discount.',options:[{t:'at',ok:true,why:'Right. A discount is a price level, so use "at": at a 20% discount.'},{t:'for',tag:'prep-other',why:'"For" goes with the real money you swap, not with a discount.'},{t:'in',tag:'prep-in-price',why:'"In" is never used with prices or discounts.'},{t:'to',tag:'prep-other',why:'"To" shows movement, not a price.'}]},
+  {q:'He bought this watch ___ Rs 5,000.',options:[{t:'for',ok:true,why:'Right. Rs 5,000 is the real money he swapped for the watch.'},{t:'in',tag:'prep-in-price',why:'We never say "in Rs 5,000". Use "for" with a real amount.'},{t:'on',tag:'prep-other',why:'"On" is not used with prices.'},{t:'to',tag:'prep-other',why:'"To" shows movement, not money.'}]},
+  {q:'You are bargaining in a shop. Which sentence is the most natural?',options:[{t:"I can't buy it at this price.",ok:true,why:'Right. "At this price" is the most natural way to say the price level is too high.'},{t:"I can't buy it in this price.",tag:'prep-in-price',why:'"In this price" is a very common mistake. Prices take "at" (or "for"), never "in".'},{t:"I can't buy it on this price.",tag:'prep-other',why:'"On" is not used with prices.'},{t:"I can't buy it to this price.",tag:'prep-other',why:'"To" shows movement, not a price.'}]}]};
+
+/* ===== Lesson: to, at, on, in with addresses ===== */
+const Bl={id:'prep-address',phase:'eng',title:'Addresses: "to", "at", "on" or "in"?',
+ summary:'Why we send a book to an address, but live at an address, on a street and in a city.',
+ objectives:['Use "to" when something moves to a place.','Use "at" for an exact address with a house number.','Use "on" for a street and "in" for a city or area.'],
+ steps:[
+ {title:'Your question',actions:[
+   ...lineup('L',30,90,900,['Send this book','___','my home address.'],[
+     {tokens:['to'],mark:'✓',why:'Send = the book moves. "To" shows where it goes.'},
+     {tokens:['at'],mark:'✗',why:'"At" shows where something is, not where it goes.'},
+     {tokens:['on'],mark:'✗',why:'We do not use "on" with an address.'}],{size:34}),
+   W('Lb',480,540,'Answer: Send this book to my home address.',{size:28,anchor:'middle',ink:G,weight:700})],
+  explain:[{cue:'L.p',t:'Your question: "Send this book ___ my home address."'},{cue:'L.o0',t:'**to**: the book moves to your house. **Right.**'},{cue:'L.o1',t:'**at**: shows where something already is. Not right here.'},{cue:'L.o2',t:'**on**: we do not use "on" with an address.'},{cue:'Lb',t:'So: "Send this book **to** my home address."'}]},
+ {title:'"To" = the arrow: something moves',actions:[ER('er_b2'),
+   ...book('bk',90,160,120,150),W('bkl',150,350,'book',{size:24,anchor:'middle',ink:'muted'}),
+   D('arr',{kind:'arrow',x1:250,y1:240,x2:650,y2:240},{ink:B,dur:900,sw:4}),W('arrl',450,215,'to',{size:46,anchor:'middle',ink:B,weight:700}),
+   ...house('hs',690,150,180),W('hsl',780,350,'my home',{size:24,anchor:'middle',ink:'muted'}),
+   ...wseqC('ts',480,425,['Send this book ','to',' my home address.'],{size:32}),HL('r1','ts.1','swipe'),
+   W('tpat',480,490,'send / post / deliver / bring + to',{size:26,anchor:'middle',ink:'muted'}),
+   W('tmean',480,550,'to = towards a place (movement)',{size:28,anchor:'middle',ink:B,weight:700})],
+  explain:[{cue:'bk',t:'Here is the book.'},{cue:'arr',t:'It travels along an arrow…'},{cue:'hs',t:'…to your home. Something **moves** from one place to another.'},{cue:'ts',t:'When something moves towards a place, use **to**: "Send this book **to** my home address."'},
+   {cue:'tpat',t:'Verbs of moving go with "to": **send to**, **post to**, **deliver to**, **bring to**.'},{cue:'tmean',t:'**To** = towards. Think of an **arrow**.'}],
+  check:{q:'Please deliver the parcel ___ this address.',options:[
+   {t:'to',ok:true,why:'Right. "Deliver" means the parcel moves, so use "to".'},
+   {t:'on',tag:'prep-on-address',why:'We never use "on" with an address.'},
+   {t:'in',tag:'prep-other',why:'"In" is for a city or area, and the parcel is moving, so use "to".'},
+   {t:'by',tag:'prep-other',why:'"By" means near or shows who did something. It does not show where the parcel goes.'}]}},
+ {title:'"At" = the exact spot',actions:[ER('er_b3'),
+   ...house('h2',390,170,180),...pin('pn',480,110),
+   W('adr',480,380,'25 Mall Road',{size:32,anchor:'middle',ink:T,weight:700}),
+   ...wseqC('as',480,450,['I live ','at',' 25 Mall Road.'],{size:32}),HL('r2','as.1','swipe'),
+   W('amean',480,510,'at = the exact point (with a house number)',{size:28,anchor:'middle',ink:B,weight:700}),
+   W('aex',480,560,'Contact me at this address.  ·  She is at home.',{size:24,anchor:'middle',ink:'muted'})],
+  explain:[{cue:'h2',t:'Here is a house. It is not moving.'},{cue:'pn',t:'A pin marks one **exact spot**.'},{cue:'adr',t:'The full address, with a house number: 25 Mall Road.'},
+   {cue:'as',t:'For the exact spot where someone **is**, use **at**: "I live **at** 25 Mall Road."'},{cue:'amean',t:'**At** = a pin on the map. No movement.'},{cue:'aex',t:'More examples: "Contact me **at** this address." "She is **at** home."'}],
+  check:{q:'My uncle lives ___ 14 Canal View.',options:[
+   {t:'at',ok:true,why:'Right. A full address with a house number is an exact spot, so use "at".'},
+   {t:'on',tag:'prep-street',why:'"On" goes with a street name alone (on Canal View). With the house number, use "at".'},
+   {t:'to',tag:'prep-to-at',why:'"Lives" is not movement. "To" is only for moving towards a place.'},
+   {t:'in',tag:'prep-other',why:'"In" is for a city or area, like "in Lahore".'}]}},
+ {title:'"On" a street, "in" a city',actions:[ER('er_b4'),
+   D('city',{kind:'ellipse',cx:480,cy:225,rx:420,ry:165},{ink:'accent2',fill:'accent2',fillOp:.07,dur:900}),W('cityl',160,140,'Lahore',{size:30,ink:G,weight:700}),
+   D('road',{kind:'lines',segs:[[150,280,810,280],[150,320,810,320]]},{ink:'muted',dur:700}),W('roadl',190,355,'Mall Road',{size:24,ink:'muted'}),
+   ...house('h3',440,216,80),...pin('pn2',480,180),
+   ...wseq('w1',70,450,['in',' Lahore  (a city or area)'],{size:28}),HL('r3','w1.0','swipe',{ink:G}),
+   ...wseq('w2',70,500,['on',' Mall Road  (a street name)'],{size:28}),HL('r4','w2.0','swipe'),
+   ...wseq('w3',70,550,['at',' 25 Mall Road  (the full address)'],{size:28}),HL('r5','w3.0','swipe',{ink:T})],
+  explain:[{cue:'city',t:'A big shape for the city of Lahore. You are **inside** it, so use **in**: "in Lahore".'},{cue:'road',t:'A road is a line. Houses sit **on** it, so use **on**: "on Mall Road".'},
+   {cue:'h3',t:'One house, at one exact spot on that road.'},{cue:'w1',t:'**in** + a city, area or country.'},{cue:'w2',t:'**on** + a street name (no house number).'},{cue:'w3',t:'**at** + the full address with a number.'}],
+  check:{q:'She lives ___ Jail Road.',options:[
+   {t:'on',ok:true,why:'Right. "Jail Road" is a street name with no house number, so use "on".'},
+   {t:'at',tag:'prep-street',why:'"At" needs the full address with a house number, like "at 5 Jail Road".'},
+   {t:'to',tag:'prep-to-at',why:'"Lives" is not movement, so "to" does not fit.'},
+   {t:'by',tag:'prep-other',why:'"By Jail Road" means near it, not that she lives on it.'}]}},
+ {title:'Mistakes, and the whole rule',actions:[ER('er_b5'),D('div',{kind:'line',x1:480,y1:36,x2:480,y2:250},{ink:'muted',sw:1.6,dur:400}),
+   W('mL',240,66,'Mistakes',{size:28,anchor:'middle',ink:T,weight:700}),W('mR',720,66,'Right',{size:28,anchor:'middle',ink:G,weight:700}),
+   D('x1',{kind:'cross',x:40,y:132,s:12},{ink:T,sw:3.5,dur:300}),W('l1',66,140,'Send this book on my home address.',{size:23,ink:T}),
+   D('x2',{kind:'cross',x:40,y:202,s:12},{ink:T,sw:3.5,dur:300}),W('l2',66,210,'Send this book at my home address.',{size:23,ink:T}),
+   D('k1',{kind:'tick',x:515,y:132,s:13},{ink:G,sw:3.5,dur:300}),W('g1',540,140,'Send this book to my home address.',{size:23,ink:G}),
+   D('k2',{kind:'tick',x:515,y:202,s:13},{ink:G,sw:3.5,dur:300}),W('g2',540,210,'Send it to me at my home address.',{size:23,ink:G}),
+   W('z1',60,330,'moving → to   (send it to my address)',{size:28,ink:B}),
+   W('z2',60,395,'staying → at   (I live at 25 Mall Road)',{size:28,ink:T}),
+   W('z3',60,460,'street → on   (on Mall Road)',{size:28}),
+   W('z4',60,525,'city or area → in   (in Lahore)',{size:28,ink:G})],
+  explain:[{cue:'mL',t:'Two common mistakes: "on my home address" and "at my home address" after **send**.'},{cue:'mR',t:'With **send**, use **to**.'},
+   {cue:'g2',t:'A clever sentence: "Send it **to me at** my home address." **To me** = the person it goes to. **At my address** = the exact spot.'},
+   {cue:'z1',t:'**Moving** → to.'},{cue:'z2',t:'**Staying at an exact address** → at.'},{cue:'z3',t:'**A street name** → on.'},{cue:'z4',t:'**A city, area or country** → in.'}]}],
+ practice:[
+  {q:'Fill in the form and send it ___ the office.',options:[{t:'to',ok:true,why:'Right. The form moves to the office, so use "to".'},{t:'at',tag:'prep-to-at',why:'"At" shows where something is. The form is moving, so use "to".'},{t:'on',tag:'prep-on-address',why:'"On" is not used for where something is sent.'},{t:'in',tag:'prep-other',why:'"In" is for being inside a city or area, not for sending.'}]},
+  {q:'Our office is ___ Islamabad.',options:[{t:'in',ok:true,why:'Right. Islamabad is a city, so use "in".'},{t:'at',tag:'prep-at-city',why:'"At" is for an exact address. For a city, use "in".'},{t:'on',tag:'prep-other',why:'"On" is for a street, not a city.'},{t:'to',tag:'prep-to-at',why:'"Is" is not movement, so "to" does not fit.'}]},
+  {q:'Which sentence is correct?',options:[{t:'Send it to me at my home address.',ok:true,why:'Right. "To me" is the person it goes to, "at my home address" is the exact spot.'},{t:'Send it at me to my home address.',tag:'prep-to-at',why:'The two words are swapped. The person takes "to", the address takes "at".'},{t:'Send it on me at my home address.',tag:'prep-on-address',why:'"On me" does not mean the person it is sent to. Use "to me".'},{t:'Send it me on my home address.',tag:'prep-on-address',why:'"On" is never used with an address, and "to" is missing before "me".'}]}]};
+return [prepare(A),prepare(Bl)]}
 
 /* =====================================================================
    4. CONTENT VALIDATOR + LAYOUT CHECK (also used by the automated test)
