@@ -138,6 +138,7 @@
   }
   .field.name { font-family: 'Great Vibes', cursive; font-size: clamp(28px, 7.5vw, 36px); color: var(--accent); min-height: 1.25em; }
   .field:empty::before { content: attr(data-label); color: rgba(90,42,26,.35); font-family: 'Cormorant Garamond', serif; font-size: 14px; font-style: italic; letter-spacing: 1px; }
+  .field:not(:empty) { border-bottom-color: transparent; }
   .field:focus { border-bottom-color: var(--gold); background: rgba(255,255,255,.3); }
 
   .events { display: flex; width: 100%; margin-top: 10px; }
@@ -238,9 +239,9 @@
         <div class="script daughters">The beloved daughters of</div>
         <div class="script father">Rana Asghar Ali</div>
 
-        <div class="field name" contenteditable="true" data-label="First bride's name"></div>
+        <div class="field name" contenteditable="true" data-label="First bride's name">Nisha Asghar</div>
         <div class="amp">&amp;</div>
-        <div class="field name" contenteditable="true" data-label="Second bride's name"></div>
+        <div class="field name" contenteditable="true" data-label="Second bride's name">Aniqa Asghar</div>
 
         <div class="events">
           <div class="event">
