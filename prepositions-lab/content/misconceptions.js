@@ -570,4 +570,8 @@ PLAB.misconceptions = {
     label: "AGO counts back from NOW; BEFORE counts back from another past point",
     explain: "AGO comes after a length and counts back from NOW: two years ago (past simple, never has / have). BEFORE counts back from some other point in the past: two years before the war, or two years before (that). BEFORE alone means at any time up to now: I have been here before.",
   },
+  "y-eid": {
+    label: "AT a festival time, ON a day, IN a month, DURING the holidays",
+    explain: "A festival as a time of year takes AT: at Eid, at Christmas. Add the word DAY (or a date) and it becomes one day on the calendar: ON Eid day, on 14 August, on Chand Raat. A month takes IN: in Ramazan. The whole holiday stretch takes DURING or OVER.",
+  },
 };

@@ -49,6 +49,10 @@ PAST = {
     ("pointFuture", "From that day on, he never smoked again.", "From", "FROM a past day: a start, and it went on"),
     ("sincePoint", "I haven't seen him since he left.", "since", "SINCE + a past event, up to now"),
     ("cross", "She lived in Lahore since 2015.", "since", "wrong: lived is closed. Say from 2015 to 2020")])],
+"eid": [("In the past: AT Eid, ON Eid day, IN Ramazan", [
+    ("onTimeDot", "Last year, we went to Lahore at Eid.", "at", "past: still AT the festival time"),
+    ("calendar", "It rained on Eid day.", "on", "one calendar day: ON, past or not"),
+    ("inPeriod", "We fasted in Ramazan and visited Murree during the Eid holidays.", "in", "a month: IN; the holiday stretch: DURING")])],
 "within-during": [("In the past: WITHIN, IN, AFTER", [
     ("inTimeBefore", "The ambulance arrived within ten minutes.", "within", "past WITHIN: it came before ten minutes ran out"),
     ("inPeriod", "He finished the job in three days.", "in", "past IN: the job TOOK three days, not 'from now'"),

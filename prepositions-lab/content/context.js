@@ -150,6 +150,9 @@ PLAB.context = [
       "lesson": "py-ago-before"
      },
      {
+      "lesson": "py-eid"
+     },
+     {
       "lesson": "py-at-on-to-upon"
      }
     ]
