@@ -558,4 +558,8 @@ PLAB.misconceptions = {
     label: "BY = no later than; UNTIL = keep going up to then; OVER = across the whole stretch",
     explain: "BY is a deadline: the job is done at some point before it. UNTIL (TILL) means an action keeps going and stops at that time. OVER means somewhere across a whole stretch, like a weekend or a holiday.",
   },
+  "y-from-since": {
+    label: "SINCE = a start running up to NOW (has / have); FROM = a start with an end, or a start in the future",
+    explain: "SINCE and FROM both mark a starting point. SINCE runs from that point up to now, so it goes with has / have. FROM needs an end (from 2015 to 2020), or a start that is still coming (from next Monday).",
+  },
 };
