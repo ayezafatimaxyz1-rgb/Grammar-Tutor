@@ -499,4 +499,76 @@
         ],
       }
   ]);
+  add("in-on-at-place", [
+      {
+        id: "move-1",
+        title: "AT, ON, IN with an address",
+        alt: "AT, ON, IN with an address. I live at 15 Mall Road. A house number: one exact spot, so AT. I live on Mall Road. A street with no number: a line, so ON. I live in Lahore. A city or area: inside its borders, so IN.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_I live at 15 Mall Road._ A house number: one exact spot, so AT.", "cue": "mv1r1"}, {"text": "_I live on Mall Road._ A street with no number: a line, so ON.", "cue": "mv1r2"}, {"text": "_I live in Lahore._ A city or area: inside its borders, so IN.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "AT, ON, IN with an address", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["house", "I live at 15 Mall Road.", { hl: "at", sub: "a house number: one exact spot, so AT", size: 30 }], ["roadPass", "I live on Mall Road.", { hl: "on", sub: "a street with no number: a line, so ON", size: 30 }], ["inCity", "I live in Lahore.", { hl: "in", sub: "a city or area: inside its borders, so IN", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv2r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv2r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p0-at", [
+      {
+        id: "move-1",
+        title: "AT, ON, IN with an address",
+        alt: "AT, ON, IN with an address. I live at 15 Mall Road. A house number: one exact spot, so AT. I live on Mall Road. A street with no number: a line, so ON. I live in Lahore. A city or area: inside its borders, so IN.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_I live at 15 Mall Road._ A house number: one exact spot, so AT.", "cue": "mv1r1"}, {"text": "_I live on Mall Road._ A street with no number: a line, so ON.", "cue": "mv1r2"}, {"text": "_I live in Lahore._ A city or area: inside its borders, so IN.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "AT, ON, IN with an address", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["house", "I live at 15 Mall Road.", { hl: "at", sub: "a house number: one exact spot, so AT", size: 30 }], ["roadPass", "I live on Mall Road.", { hl: "on", sub: "a street with no number: a line, so ON", size: 30 }], ["inCity", "I live in Lahore.", { hl: "in", sub: "a city or area: inside its borders, so IN", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv2r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv2r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p0-in-on-at-place", [
+      {
+        id: "move-1",
+        title: "AT, ON, IN with an address",
+        alt: "AT, ON, IN with an address. I live at 15 Mall Road. A house number: one exact spot, so AT. I live on Mall Road. A street with no number: a line, so ON. I live in Lahore. A city or area: inside its borders, so IN.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_I live at 15 Mall Road._ A house number: one exact spot, so AT.", "cue": "mv1r1"}, {"text": "_I live on Mall Road._ A street with no number: a line, so ON.", "cue": "mv1r2"}, {"text": "_I live in Lahore._ A city or area: inside its borders, so IN.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "AT, ON, IN with an address", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["house", "I live at 15 Mall Road.", { hl: "at", sub: "a house number: one exact spot, so AT", size: 30 }], ["roadPass", "I live on Mall Road.", { hl: "on", sub: "a street with no number: a line, so ON", size: 30 }], ["inCity", "I live in Lahore.", { hl: "in", sub: "a city or area: inside its borders, so IN", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv2r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv2r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
 })();
