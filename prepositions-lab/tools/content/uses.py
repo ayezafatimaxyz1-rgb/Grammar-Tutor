@@ -396,3 +396,5 @@ def use_say(p, alt, key=None, strict=False, reason=""):
 
 USE["y:while-during|in"] = "He explained the rule in the lecture."
 MEAN["y:while-during|in"] = "as part of what the lecture said"
+USE["y:by-until-over|over"] = "I will read your report over the weekend."
+MEAN["y:by-until-over|over"] = "at some time across the whole weekend"

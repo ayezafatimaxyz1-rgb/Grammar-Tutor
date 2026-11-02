@@ -750,6 +750,7 @@
               L("py-into", "INTO, IN, TO, BY: walk into my parlour", { status: "tested", lessonId: "py-into" }),
               L("py-parts-of-day", "IN the morning, AT noon: stretches and moments", { status: "tested", lessonId: "py-parts-of-day" }),
               L("py-while-during", "WHILE or DURING: a stretch of time", { status: "tested", lessonId: "py-while-during" }),
+              L("py-by-until-over", "BY, UNTIL, OVER: a deadline, a wait, a stretch", { status: "tested", lessonId: "py-by-until-over" }),
             ],
           },
         ],

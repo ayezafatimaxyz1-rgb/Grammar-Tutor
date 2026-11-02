@@ -554,4 +554,8 @@ PLAB.misconceptions = {
     label: "DURING + a noun, WHILE + a doer and a verb",
     explain: "DURING and WHILE both mean inside a stretch of time. DURING takes a noun (during the lecture). WHILE takes a doer and a verb (while the teacher was speaking). FOR tells how long, not when.",
   },
+  "y-by-until-over": {
+    label: "BY = no later than; UNTIL = keep going up to then; OVER = across the whole stretch",
+    explain: "BY is a deadline: the job is done at some point before it. UNTIL (TILL) means an action keeps going and stops at that time. OVER means somewhere across a whole stretch, like a weekend or a holiday.",
+  },
 };
