@@ -58,3 +58,41 @@ PAST = {
     ("afterDot", "He returned two days later.", "later", "LATER: after a past point"),
     ("inTimeBefore", "He said he would return in two days.", "in", "IN two days from the time he spoke")])],
 }
+
+# Boards for the other time lessons (Phase 1, the sense atlas and the time chapter), spliced in by past.py.
+_ATONIN = [("In the past: AT, ON, IN with time", [
+    ("clock", "The meeting began at 9 o'clock.", "at", "AT a clock time, past or not"),
+    ("calendar", "We got married on 5 May 2019.", "on", "ON a day or a date"),
+    ("inPeriod", "Pakistan was created in 1947.", "in", "IN a year, month or season")]),
+  ("In the past: AT THAT TIME, IN THOSE DAYS", [
+    ("cross", "I met her last Monday.", "last Monday", "no AT / ON before last, next, this, every"),
+    ("clock", "At that time, I was a student.", "At that time", "AT THAT TIME: one point in the past"),
+    ("inPeriod", "In those days, there was no motorway.", "In those days", "IN THOSE DAYS: a stretch in the past")])]
+_IN = [("In the past: IN + a length", [
+    ("inPeriod", "He was born in 1998.", "in", "IN a past year"),
+    ("inPeriod", "He finished the job in three days.", "in", "past IN + a length: the job TOOK three days"),
+    ("afterDot", "He came back two days later.", "later", "counting from a past point: LATER, not IN")])]
+_BEFORE = [("In the past: BEFORE, AFTER", [
+    ("priorDot", "I had eaten before he arrived.", "before", "the earlier action can take had + done"),
+    ("afterDot", "After the war ended, prices rose.", "After", "AFTER + a past event"),
+    ("priorDot", "He left two years before the war.", "before", "a length + BEFORE: earlier than a past event")]),
+  ("In the past: AGO, BEFORE, LATER", [
+    ("pointPast", "He left two years ago.", "ago", "AGO: counted back from NOW"),
+    ("priorDot", "He had left two years before.", "before", "counted back from a PAST point: BEFORE, not ago"),
+    ("afterDot", "She arrived two days later.", "later", "counted forward from a past point: LATER")])]
+_AGO = [("In the past: AGO", [
+    ("pointPast", "I met him three days ago.", "ago", "AGO + past simple: met, went, saw"),
+    ("cross", "I have met him three days ago.", "ago", "wrong: AGO never takes have. Say I met him"),
+    ("sincePoint", "I have not met him since Monday.", "since", "up to now? use SINCE with have")])]
+_PENDING = [("In the past: PENDING, FOLLOWING, DURING", [
+    ("notWait", "He was suspended pending an inquiry.", "pending", "PENDING: while they were still waiting for it"),
+    ("followEvent", "He was dismissed following the inquiry.", "following", "FOLLOWING: after the past event"),
+    ("span", "During the inquiry, he stayed at home.", "During", "DURING: inside the inquiry")])]
+
+PAST_OTHER = {
+    "p0-attime": _ATONIN, "p0-in-on-at-time": _ATONIN, "in-on-at-time": _ATONIN, "in-time": _IN + _ATONIN[1:],
+    "p0-fortime": PAST["for-since"], "for-since": PAST["for-since"], "p0-for-since-during": PAST["for-since"][:1] + PAST["while-during"][:1],
+    "during-for": PAST["while-during"], "p0-bytime": PAST["by-until-over"], "p0-by-until": PAST["by-until-over"], "by-until": PAST["by-until-over"],
+    "p0-before": _BEFORE, "before-after": _BEFORE, "from-to-till": PAST["from-since"], "within-time": PAST["within-during"],
+    "ago-not-prep": _AGO + _BEFORE[1:], "pending": _PENDING,
+}
