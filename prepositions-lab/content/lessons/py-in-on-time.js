@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 26,
+    minutes: 28,
     summary: "Starts from the sentence: Please come ___ time. IN TIME = early enough: just in time. ON TIME = exactly at the planned time. Never AT TIME alone: at the time, at times, one at a time.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -194,6 +194,21 @@
           { do: "write", id: "sp0i4", text: "late", x: 740, y: 375, size: 22, ink: "trouble", anchor: "middle", fit: 250, gap: 150 },
           { do: "write", id: "sp0-r0", text: "IN TIME = before the line, with spare time.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp0-r1", text: "ON TIME = on the line.", x: 480, y: 516, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-2",
+        title: "In the past: ON time, IN time, AT that time",
+        alt: "In the past: ON time, IN time, AT that time. _The train left on time._ ON time: at the planned time, not late. _We reached the airport in time for the flight._ IN time: early enough, before it was too late. _At that time, I lived in Quetta._ AT THAT TIME: one point in the past.",
+        say: [
+          { text: "_The train left on time._ ON time: at the planned time, not late.", cue: "sp1r1" },
+          { text: "_We reached the airport in time for the flight._ IN time: early enough, before it was too late.", cue: "sp1r2" },
+          { text: "_At that time, I lived in Quetta._ AT THAT TIME: one point in the past.", cue: "sp1r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp1"),
+          { do: "write", id: "sp1-t", text: "In the past: ON time, IN time, AT that time", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp1r", [["onTimeDot", "The train left on time.", { hl: "on time", sub: "ON time: at the planned time, not late", size: 30 }], ["inTimeBefore", "We reached the airport in time for the flight.", { hl: "in time", sub: "IN time: early enough, before it was too late", size: 30 }], ["clock", "At that time, I lived in Quetta.", { hl: "At that time", sub: "AT THAT TIME: one point in the past", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

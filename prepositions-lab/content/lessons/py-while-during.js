@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 28,
+    minutes: 32,
     summary: "Starts from the sentence: I fell asleep ___ the lecture. DURING + a noun: during the lecture, during Ramazan. WHILE + a doer + a verb: while he was speaking, while driving. Both tell WHEN, inside a stretch. FOR tells HOW LONG: for ten minutes.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -220,6 +220,36 @@
           { do: "write", id: "sp11c", text: "while I was staying in Karachi", x: 710, y: 344, size: 22, anchor: "middle", fit: 414 },
           { do: "write", id: "sp1-r0", text: "DURING + noun  =  WHILE + doer + verb.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp1-r1", text: "Change the noun into an action, and DURING becomes WHILE.", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: DURING, WHILE, FOR",
+        alt: "In the past: DURING, WHILE, FOR. _I fell asleep during the lecture._ DURING + a noun, past or not. _He called while I was cooking._ Past WHILE: was / were + -ing for the long action. _I slept for ten minutes._ FOR: how long it lasted.",
+        say: [
+          { text: "_I fell asleep during the lecture._ DURING + a noun, past or not.", cue: "sp2r1" },
+          { text: "_He called while I was cooking._ Past WHILE: was / were + -ing for the long action.", cue: "sp2r2" },
+          { text: "_I slept for ten minutes._ FOR: how long it lasted.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: DURING, WHILE, FOR", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["span", "I fell asleep during the lecture.", { hl: "during", sub: "DURING + a noun, past or not", size: 30 }], ["speak", "He called while I was cooking.", { hl: "while", sub: "past WHILE: was / were + -ing for the long action", size: 30 }], ["ruler", "I slept for ten minutes.", { hl: "for", sub: "FOR: how long it lasted", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-4",
+        title: "In the past: one stretch, two ways",
+        alt: "In the past: one stretch, two ways. _While I was walking home, it started to rain._ Long action (was walking) + short action (started). _During my stay in Murree, it snowed twice._ DURING + a noun: my stay. _While I was staying in Murree, it snowed twice._ The same stretch as an action: was staying.",
+        say: [
+          { text: "_While I was walking home, it started to rain._ Long action (was walking) + short action (started).", cue: "sp3r1" },
+          { text: "_During my stay in Murree, it snowed twice._ DURING + a noun: my stay.", cue: "sp3r2" },
+          { text: "_While I was staying in Murree, it snowed twice._ The same stretch as an action: was staying.", cue: "sp3r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp3"),
+          { do: "write", id: "sp3-t", text: "In the past: one stretch, two ways", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp3r", [["speak", "While I was walking home, it started to rain.", { hl: "While", sub: "long action (was walking) + short action (started)", size: 30 }], ["span", "During my stay in Murree, it snowed twice.", { hl: "During", sub: "DURING + a noun: my stay", size: 30 }], ["speak", "While I was staying in Murree, it snowed twice.", { hl: "While", sub: "the same stretch as an action: was staying", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

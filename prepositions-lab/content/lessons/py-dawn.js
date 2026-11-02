@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 24,
+    minutes: 28,
     summary: "Starts from the sentence: I must start ___ dawn to reach the station in time. AT a point of time: at dawn, at noon, at night. IN a part of the day: in the morning. ON a named day: on Monday morning. BY dawn = no later than · AFTER dawn = later.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -172,6 +172,36 @@
           { do: "write", id: "sp0i2", text: "at dawn: the point", x: 480, y: 375, size: 22, ink: "accent", anchor: "middle", fit: 250, gap: 150 },
           { do: "write", id: "sp0-r0", text: "Dawn is a point: AT.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp0-r1", text: "BY marks a deadline · AFTER marks later", x: 480, y: 516, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-2",
+        title: "In the past: AT, BY, AFTER dawn",
+        alt: "In the past: AT, BY, AFTER dawn. _We left the house at dawn._ Past: still AT, dawn is one point. _We had reached the station by dawn._ Past BY: had + reached, done before dawn. _The bus left after dawn._ AFTER: later than dawn.",
+        say: [
+          { text: "_We left the house at dawn._ Past: still AT, dawn is one point.", cue: "sp1r1" },
+          { text: "_We had reached the station by dawn._ Past BY: had + reached, done before dawn.", cue: "sp1r2" },
+          { text: "_The bus left after dawn._ AFTER: later than dawn.", cue: "sp1r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp1"),
+          { do: "write", id: "sp1-t", text: "In the past: AT, BY, AFTER dawn", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp1r", [["onTimeDot", "We left the house at dawn.", { hl: "at", sub: "past: still AT, dawn is one point", size: 30 }], ["priorDot", "We had reached the station by dawn.", { hl: "by", sub: "past BY: had + reached, done before dawn", size: 30 }], ["afterDot", "The bus left after dawn.", { hl: "after", sub: "AFTER: later than dawn", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: IN the morning, ON Monday",
+        alt: "In the past: IN the morning, ON Monday. _I woke up early in the morning._ IN the morning: a stretch, past or not. _We met on Monday morning._ A named day takes ON, even in the past. _The guests went home at midnight._ AT midnight: one point.",
+        say: [
+          { text: "_I woke up early in the morning._ IN the morning: a stretch, past or not.", cue: "sp2r1" },
+          { text: "_We met on Monday morning._ A named day takes ON, even in the past.", cue: "sp2r2" },
+          { text: "_The guests went home at midnight._ AT midnight: one point.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: IN the morning, ON Monday", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["inPeriod", "I woke up early in the morning.", { hl: "in", sub: "IN the morning: a stretch, past or not", size: 30 }], ["calendar", "We met on Monday morning.", { hl: "on", sub: "a named day takes ON, even in the past", size: 30 }], ["onTimeDot", "The guests went home at midnight.", { hl: "at", sub: "AT midnight: one point", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

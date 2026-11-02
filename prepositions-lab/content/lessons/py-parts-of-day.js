@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 32,
+    minutes: 34,
     summary: "Starts from the sentence: I wake up ___ the morning, but I sleep ___ night. IN = a stretch you are inside: in the morning, afternoon, evening. AT = one moment: at noon, at midnight, at daybreak, at sunset. At night = in general · in the night = one night. On Monday morning · this morning (no preposition).",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -293,6 +293,21 @@
           { do: "write", id: "sp11b", text: "during one particular night", x: 710, y: 310, size: 20, ink: "muted", anchor: "middle", fit: 414 },
           { do: "write", id: "sp1-r0", text: "at night = in general · in the night = one night", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp1-r1", text: "never at the night", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: IN the evening, AT midnight, ON Friday night",
+        alt: "In the past: IN the evening, AT midnight, ON Friday night. _It rained heavily in the evening._ IN the evening: a stretch, past or not. _The plane landed at midnight._ AT midnight: one point. _He arrived on Friday night._ A named day takes ON: on Friday night.",
+        say: [
+          { text: "_It rained heavily in the evening._ IN the evening: a stretch, past or not.", cue: "sp2r1" },
+          { text: "_The plane landed at midnight._ AT midnight: one point.", cue: "sp2r2" },
+          { text: "_He arrived on Friday night._ A named day takes ON: on Friday night.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: IN the evening, AT midnight, ON Friday night", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["inPeriod", "It rained heavily in the evening.", { hl: "in", sub: "IN the evening: a stretch, past or not", size: 30 }], ["clock", "The plane landed at midnight.", { hl: "at", sub: "AT midnight: one point", size: 30 }], ["calendar", "He arrived on Friday night.", { hl: "on", sub: "a named day takes ON: on Friday night", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

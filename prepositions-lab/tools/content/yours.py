@@ -175,7 +175,9 @@ def lesson(d):
         a, s = word_board(f"wd{i}", wd)
         steps.append(dict(id=f"word-{i + 1}", title=f"{wd['word'].upper()}: {wd['name']}", alt=f"{wd['word']}: {wd['name']}. " + " ".join(wd["explain"]) + " " + " ".join(plain(e) for e in wd["examples"]), says=s, actions=a))
     # 5. special boards
-    for i, sp in enumerate(d["specials"]):
+    from past_data import PAST
+    extra = [dict(kind="rows", title=t, rows=r) for t, r in PAST.get(d["id"], [])]
+    for i, sp in enumerate(d["specials"] + extra):
         a, s = special(f"sp{i}", sp)
         steps.append(dict(id=f"picture-{i + 1}", title=sp["title"], alt=sp["title"] + ". " + " ".join(t for t, c in s), says=s, actions=a))
     # 6. mistakes
