@@ -446,6 +446,10 @@ dict(id="while-during", title="WHILE or DURING: a stretch of time", tag="y-while
       ("during", "span", "during the lecture", "noun", "during my stay in Karachi"),
       ("while", "speak", "while the lecture was going on", "doer + verb", "while I was staying in Karachi")],
       lines=["DURING + noun  =  WHILE + doer + verb.", "Change the noun into an action, and DURING becomes WHILE."]),
+    dict(kind="rows", title="Is it a noun? my STAY in Karachi", rows=[
+      ("span", "during my stay in Karachi", "stay", "STAY is the noun: a stay, my stay. My = whose, in Karachi = where"),
+      ("speak", "while I was staying in Karachi", "I was staying", "a doer (I) + a verb with a tense (was staying)"),
+      ("span", "during his speech = while he was speaking", "speech", "test: can you say A or THE before it? a speech: a noun")]),
   ],
   mistakes=[("I fell asleep while the lecture.", "I fell asleep during the lecture.", "The lecture is a noun with no verb. A noun takes DURING."),
             ("He called during I was cooking.", "He called while I was cooking.", "I was cooking has a doer and a verb. That takes WHILE."),
