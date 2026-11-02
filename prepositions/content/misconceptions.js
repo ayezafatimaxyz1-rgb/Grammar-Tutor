@@ -550,4 +550,8 @@ PLAB.misconceptions = {
     label: "IN a stretch of the day, AT a moment of the day",
     explain: "The morning, the afternoon and the evening are stretches of hours you are inside: IN. Noon, midnight, daybreak and sunset are single moments: AT. At night is a fixed phrase for night in general; in the night is one particular night. A named day takes ON: on Monday morning.",
   },
+  "y-while-during": {
+    label: "DURING + a noun, WHILE + a doer and a verb",
+    explain: "DURING and WHILE both mean inside a stretch of time. DURING takes a noun (during the lecture). WHILE takes a doer and a verb (while the teacher was speaking). FOR tells how long, not when.",
+  },
 };
