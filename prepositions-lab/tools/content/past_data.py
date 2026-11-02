@@ -115,3 +115,10 @@ _ADDRESS = [("Send it TO my address, or AT my address?", [
     ("house", "I live at 15 Mall Road.", "at", "live, stay, wait, meet me: no movement, so AT"),
     ("cross", "Send the letter at my home address.", "at", "wrong: AT does not show the movement")])]
 MOVE = {"to-towards": _ADDRESS, "p0-to": _ADDRESS, "p0-to-towards": _ADDRESS, "arrive-at-in": _ADDRESS}
+
+# Place lessons: AT, ON, IN with an address, then TO (moving there) vs AT (the spot).
+_PLACE_ADDRESS = [("AT, ON, IN with an address", [
+    ("house", "I live at 15 Mall Road.", "at", "a house number: one exact spot, so AT"),
+    ("roadPass", "I live on Mall Road.", "on", "a street with no number: a line, so ON"),
+    ("inCity", "I live in Lahore.", "in", "a city or area: inside its borders, so IN")])] + _ADDRESS[:1]
+MOVE.update({"in-on-at-place": _PLACE_ADDRESS, "p0-at": _PLACE_ADDRESS, "p0-in-on-at-place": _PLACE_ADDRESS})
