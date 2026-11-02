@@ -754,6 +754,7 @@
               L("py-from-since", "FROM or SINCE: where the line starts, and where it ends", { status: "tested", lessonId: "py-from-since" }),
               L("py-within-during", "WITHIN or DURING: a limit, or an event", { status: "tested", lessonId: "py-within-during" }),
               L("py-ago-before", "AGO or BEFORE: count back from where?", { status: "tested", lessonId: "py-ago-before" }),
+              L("py-eid", "AT Eid, but ON Eid day", { status: "tested", lessonId: "py-eid" }),
             ],
           },
         ],
