@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 28,
+    minutes: 32,
     summary: "Starts from the sentence: Please finish the report ___ the weekend. BY = a deadline: done once, no later than then. Submit it by Friday. UNTIL (TILL) = an action goes on, then stops. Wait until Friday. OVER = somewhere across a whole stretch. Over the weekend. Done once? BY. Goes on and on? UNTIL.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -225,6 +225,36 @@
           { do: "write", id: "sp11c", text: "Wait until Monday.", x: 710, y: 344, size: 22, anchor: "middle", fit: 414 },
           { do: "write", id: "sp1-r0", text: "Done once? BY. Goes on and on? UNTIL.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp1-r1", text: "Not until = not before: I can't come until Monday.", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: BY, UNTIL, NOT UNTIL",
+        alt: "In the past: BY, UNTIL, NOT UNTIL. _I had finished the report by Friday._ Past BY: had + finished, done before Friday. _I waited until six, then went home._ Past UNTIL: the waiting went on, then stopped. _He didn't come until Monday._ NOT UNTIL: he came on Monday, not before.",
+        say: [
+          { text: "_I had finished the report by Friday._ Past BY: had + finished, done before Friday.", cue: "sp2r1" },
+          { text: "_I waited until six, then went home._ Past UNTIL: the waiting went on, then stopped.", cue: "sp2r2" },
+          { text: "_He didn't come until Monday._ NOT UNTIL: he came on Monday, not before.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: BY, UNTIL, NOT UNTIL", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["priorDot", "I had finished the report by Friday.", { hl: "by", sub: "past BY: had + finished, done before Friday", size: 30 }], ["notUntil", "I waited until six, then went home.", { hl: "until", sub: "past UNTIL: the waiting went on, then stopped", size: 30 }], ["notUntil", "He didn't come until Monday.", { hl: "until", sub: "NOT UNTIL: he came on Monday, not before", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-4",
+        title: "In the past: OVER, BY THE TIME",
+        alt: "In the past: OVER, BY THE TIME. _We went to Murree over the weekend._ OVER: some time across that past weekend. _By the time we arrived, the train had left._ By the time + past, then had + left. _By 2010, he had become a doctor._ BY a past year: had + become.",
+        say: [
+          { text: "_We went to Murree over the weekend._ OVER: some time across that past weekend.", cue: "sp3r1" },
+          { text: "_By the time we arrived, the train had left._ By the time + past, then had + left.", cue: "sp3r2" },
+          { text: "_By 2010, he had become a doctor._ BY a past year: had + become.", cue: "sp3r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp3"),
+          { do: "write", id: "sp3-t", text: "In the past: OVER, BY THE TIME", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp3r", [["allThrough", "We went to Murree over the weekend.", { hl: "over", sub: "OVER: some time across that past weekend", size: 30 }], ["priorDot", "By the time we arrived, the train had left.", { hl: "By the time", sub: "by the time + past, then had + left", size: 30 }], ["priorDot", "By 2010, he had become a doctor.", { hl: "By", sub: "BY a past year: had + become", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

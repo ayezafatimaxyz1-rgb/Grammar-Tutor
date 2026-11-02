@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 26,
+    minutes: 30,
     summary: "Starts from the sentence: Please reply ___ three days. WITHIN + a length or limit: before it runs out. Reply within three days. DURING + a named event or period: some time inside it. During the exam. IN + a length: at the end of it, from now. In three days. A limit to beat? WITHIN. Inside an event? DURING.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -195,6 +195,36 @@
           { do: "write", id: "sp11c", text: "what happens inside", x: 710, y: 344, size: 22, anchor: "middle", fit: 414 },
           { do: "write", id: "sp1-r0", text: "Is there a limit to beat? WITHIN.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp1-r1", text: "Is it about what happens inside an event? DURING.", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: WITHIN, IN, AFTER",
+        alt: "In the past: WITHIN, IN, AFTER. _The ambulance arrived within ten minutes._ Past WITHIN: it came before ten minutes ran out. _He finished the job in three days._ Past IN: the job TOOK three days, not 'from now'. _He returned after two days._ Past AFTER: two days later than he left.",
+        say: [
+          { text: "_The ambulance arrived within ten minutes._ Past WITHIN: it came before ten minutes ran out.", cue: "sp2r1" },
+          { text: "_He finished the job in three days._ Past IN: the job TOOK three days, not 'from now'.", cue: "sp2r2" },
+          { text: "_He returned after two days._ Past AFTER: two days later than he left.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: WITHIN, IN, AFTER", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["inTimeBefore", "The ambulance arrived within ten minutes.", { hl: "within", sub: "past WITHIN: it came before ten minutes ran out", size: 30 }], ["inPeriod", "He finished the job in three days.", { hl: "in", sub: "past IN: the job TOOK three days, not 'from now'", size: 30 }], ["afterDot", "He returned after two days.", { hl: "after", sub: "past AFTER: two days later than he left", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-4",
+        title: "In the past: DURING, LATER",
+        alt: "In the past: DURING, LATER. _The lights went out during the match._ DURING an event, past or not. _He returned two days later._ LATER: after a past point. _He said he would return in two days._ IN two days from the time he spoke.",
+        say: [
+          { text: "_The lights went out during the match._ DURING an event, past or not.", cue: "sp3r1" },
+          { text: "_He returned two days later._ LATER: after a past point.", cue: "sp3r2" },
+          { text: "_He said he would return in two days._ IN two days from the time he spoke.", cue: "sp3r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp3"),
+          { do: "write", id: "sp3-t", text: "In the past: DURING, LATER", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp3r", [["span", "The lights went out during the match.", { hl: "during", sub: "DURING an event, past or not", size: 30 }], ["afterDot", "He returned two days later.", { hl: "later", sub: "LATER: after a past point", size: 30 }], ["inTimeBefore", "He said he would return in two days.", { hl: "in", sub: "IN two days from the time he spoke", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

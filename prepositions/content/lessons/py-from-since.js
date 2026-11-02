@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 28,
+    minutes: 32,
     summary: "Starts from the sentence: She has lived in Lahore ___ 2015. SINCE + a start up to now: has lived since 2015. FROM + a start + TO an end: from 2015 to 2020. FROM + a future start: from next Monday. See has / have? SINCE. See an end or the future? FROM.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -219,6 +219,36 @@
           { do: "write", id: "sp11c", text: "She lived here from 2015 to 2020.", x: 710, y: 344, size: 22, anchor: "middle", fit: 414 },
           { do: "write", id: "sp1-r0", text: "See has / have? Think SINCE.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
           { do: "write", id: "sp1-r1", text: "See an end (to, until) or the future? Think FROM.", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: FROM or SINCE?",
+        alt: "In the past: FROM or SINCE?. _She lived in Lahore from 2015 to 2020._ Lived + FROM ... TO: closed; she left. _She has lived in Lahore since 2015._ Has lived + SINCE: she still lives there. _By 2020, she had lived in Lahore since 2015._ Had lived + SINCE: up to a past point.",
+        say: [
+          { text: "_She lived in Lahore from 2015 to 2020._ Lived + FROM ... TO: closed; she left.", cue: "sp2r1" },
+          { text: "_She has lived in Lahore since 2015._ Has lived + SINCE: she still lives there.", cue: "sp2r2" },
+          { text: "_By 2020, she had lived in Lahore since 2015._ Had lived + SINCE: up to a past point.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: FROM or SINCE?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["betweenTicks", "She lived in Lahore from 2015 to 2020.", { hl: "from", sub: "lived + FROM ... TO: closed; she left", size: 30 }], ["sincePoint", "She has lived in Lahore since 2015.", { hl: "since", sub: "has lived + SINCE: she still lives there", size: 30 }], ["sincePoint", "By 2020, she had lived in Lahore since 2015.", { hl: "since", sub: "had lived + SINCE: up to a past point", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-4",
+        title: "In the past: more FROM and SINCE",
+        alt: "In the past: more FROM and SINCE. _From that day on, he never smoked again._ FROM a past day: a start, and it went on. _I haven't seen him since he left._ SINCE + a past event, up to now. _She lived in Lahore since 2015._ Wrong: lived is closed. Say from 2015 to 2020.",
+        say: [
+          { text: "_From that day on, he never smoked again._ FROM a past day: a start, and it went on.", cue: "sp3r1" },
+          { text: "_I haven't seen him since he left._ SINCE + a past event, up to now.", cue: "sp3r2" },
+          { text: "_She lived in Lahore since 2015._ Wrong: lived is closed. Say from 2015 to 2020.", cue: "sp3r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp3"),
+          { do: "write", id: "sp3-t", text: "In the past: more FROM and SINCE", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp3r", [["pointFuture", "From that day on, he never smoked again.", { hl: "From", sub: "FROM a past day: a start, and it went on", size: 30 }], ["sincePoint", "I haven't seen him since he left.", { hl: "since", sub: "SINCE + a past event, up to now", size: 30 }], ["cross", "She lived in Lahore since 2015.", { hl: "since", sub: "wrong: lived is closed. Say from 2015 to 2020", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {

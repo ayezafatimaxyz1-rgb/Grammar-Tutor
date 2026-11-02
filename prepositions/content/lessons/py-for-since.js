@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 28,
+    minutes: 32,
     summary: "Starts from the sentence: I have known him ___ a long time. FOR + a length: for ten years, for a long time. SINCE + a start up to now: since 2016. FROM ... TO: a closed piece of time. OVER: across a period, while things change.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -218,6 +218,36 @@
           { do: "write", id: "sp0i4", text: "from 2016 to 2021: closed", x: 380, y: 238, size: 21, ink: "trouble", anchor: "middle", fit: 420, gap: 150 },
           { do: "draw", id: "sp0i5d", shape: "line", from: [200, 455], to: [860, 405], ink: "muted", width: 3, dur: 800 },
           { do: "write", id: "sp0i5", text: "over the years: things slowly change", x: 530, y: 488, size: 21, ink: "muted", anchor: "middle", fit: 700, gap: 150 },
+        ],
+      },
+      {
+        id: "picture-2",
+        title: "In the past: FOR and SINCE",
+        alt: "In the past: FOR and SINCE. _I lived in Karachi for ten years._ Lived + FOR: the ten years are over; I left. _I have lived in Karachi for ten years._ Have lived + FOR: the ten years reach now. _By 2020, she had lived there since 2015._ Had + SINCE: up to a past point, 2020.",
+        say: [
+          { text: "_I lived in Karachi for ten years._ Lived + FOR: the ten years are over; I left.", cue: "sp1r1" },
+          { text: "_I have lived in Karachi for ten years._ Have lived + FOR: the ten years reach now.", cue: "sp1r2" },
+          { text: "_By 2020, she had lived there since 2015._ Had + SINCE: up to a past point, 2020.", cue: "sp1r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp1"),
+          { do: "write", id: "sp1-t", text: "In the past: FOR and SINCE", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp1r", [["span", "I lived in Karachi for ten years.", { hl: "for", sub: "lived + FOR: the ten years are over; I left", size: 30 }], ["span", "I have lived in Karachi for ten years.", { hl: "for", sub: "have lived + FOR: the ten years reach now", size: 30 }], ["sincePoint", "By 2020, she had lived there since 2015.", { hl: "since", sub: "had + SINCE: up to a past point, 2020", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-3",
+        title: "In the past: SINCE, FROM, OVER",
+        alt: "In the past: SINCE, FROM, OVER. _It was the first rain since March._ From March up to that past day. _I worked there from 2016 to 2019._ FROM ... TO: a closed piece in the past. _Over the years, the village grew into a town._ OVER: across the past years, while it changed.",
+        say: [
+          { text: "_It was the first rain since March._ From March up to that past day.", cue: "sp2r1" },
+          { text: "_I worked there from 2016 to 2019._ FROM ... TO: a closed piece in the past.", cue: "sp2r2" },
+          { text: "_Over the years, the village grew into a town._ OVER: across the past years, while it changed.", cue: "sp2r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp2"),
+          { do: "write", id: "sp2-t", text: "In the past: SINCE, FROM, OVER", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["sincePoint", "It was the first rain since March.", { hl: "since", sub: "from March up to that past day", size: 30 }], ["betweenTicks", "I worked there from 2016 to 2019.", { hl: "from", sub: "FROM ... TO: a closed piece in the past", size: 30 }], ["rising", "Over the years, the village grew into a town.", { hl: "Over", sub: "OVER: across the past years, while it changed", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {
