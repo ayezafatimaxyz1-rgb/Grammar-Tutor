@@ -135,6 +135,9 @@ PLAB.context = [
       "lesson": "py-for-since"
      },
      {
+      "lesson": "py-while-during"
+     },
+     {
       "lesson": "py-at-on-to-upon"
      }
     ]

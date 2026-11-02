@@ -393,3 +393,6 @@ def use_say(p, alt, key=None, strict=False, reason=""):
     if not ex: return ""
     m = meaning_for(alt, key, strict, reason)
     return f" Where {p} fits: _{ex}_ There **{p}** means {m}."
+
+USE["y:while-during|in"] = "He explained the rule in the lecture."
+MEAN["y:while-during|in"] = "as part of what the lecture said"
