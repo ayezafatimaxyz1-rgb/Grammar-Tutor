@@ -230,11 +230,10 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: Please reply during three days.. Right: Please reply within three days.. Three days is a limit to beat, not a named event: WITHIN. Wrong: The parcel will reach you during a week.. Right: The parcel will reach you within a week.. A limit: no later than a week. WITHIN. Wrong: He slept within the lecture.. Right: He slept during the lecture.. The lecture is an event; it happened inside it: DURING.",
+        alt: "Mistakes: Wrong: Please reply during three days.. Right: Please reply within three days.. Three days is a limit to beat, not a named event: WITHIN. Wrong: The parcel will reach you during a week.. Right: The parcel will reach you within a week.. A limit: no later than a week. WITHIN.",
         say: [
           { text: "Wrong: _Please reply during three days._ Right: _Please reply within three days._ Why? Three days is a limit to beat, not a named event: WITHIN.", cue: "mk0w" },
           { text: "Wrong: _The parcel will reach you during a week._ Right: _The parcel will reach you within a week._ Why? A limit: no later than a week. WITHIN.", cue: "mk1w" },
-          { text: "Wrong: _He slept within the lecture._ Right: _He slept during the lecture._ Why? The lecture is an event; it happened inside it: DURING.", cue: "mk2w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk"),
@@ -245,24 +244,25 @@
           { do: "write", id: "mk1w", text: "✗ The parcel will reach you during a week.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk1r", text: "✓ The parcel will reach you within a week.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk1y", text: "A limit: no later than a week. WITHIN.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk2w", text: "✗ He slept within the lecture.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk2r", text: "✓ He slept during the lecture.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk2y", text: "The lecture is an event; it happened inside it: DURING.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
         id: "mistakes-2",
         title: "Mistake board 2",
-        alt: "Mistakes: Wrong: Mobile phones are not allowed within the exam.. Right: Mobile phones are not allowed during the exam.. This is about what happens inside the exam, not a limit: DURING.",
+        alt: "Mistakes: Wrong: He slept within the lecture.. Right: He slept during the lecture.. The lecture is an event; it happened inside it: DURING. Wrong: Mobile phones are not allowed within the exam.. Right: Mobile phones are not allowed during the exam.. This is about what happens inside the exam, not a limit: DURING.",
         say: [
-          { text: "Wrong: _Mobile phones are not allowed within the exam._ Right: _Mobile phones are not allowed during the exam._ Why? This is about what happens inside the exam, not a limit: DURING.", cue: "mk20w" },
+          { text: "Wrong: _He slept within the lecture._ Right: _He slept during the lecture._ Why? The lecture is an event; it happened inside it: DURING.", cue: "mk20w" },
+          { text: "Wrong: _Mobile phones are not allowed within the exam._ Right: _Mobile phones are not allowed during the exam._ Why? This is about what happens inside the exam, not a limit: DURING.", cue: "mk21w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk2"),
           { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "mk20w", text: "✗ Mobile phones are not allowed within the exam.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk20r", text: "✓ Mobile phones are not allowed during the exam.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk20y", text: "This is about what happens inside the exam, not a limit: DURING.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk20w", text: "✗ He slept within the lecture.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ He slept during the lecture.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "The lecture is an event; it happened inside it: DURING.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk21w", text: "✗ Mobile phones are not allowed within the exam.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk21r", text: "✓ Mobile phones are not allowed during the exam.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk21y", text: "This is about what happens inside the exam, not a limit: DURING.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
