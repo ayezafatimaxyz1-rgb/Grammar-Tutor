@@ -14,4 +14,6 @@ pwa_head = base + ('<meta name="theme-color" content="#1d2b4f">\n<link rel="mani
 pwa_js = ("<script>if('serviceWorker' in navigator){addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));"
   "let reloaded=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!reloaded&&navigator.serviceWorker.controller){reloaded=true}})}</script>\n")
 (root / 'app' / 'index.html').write_text(f'<!DOCTYPE html>\n<html lang="en">\n<head>\n{pwa_head}{head}\n</head>\n<body>\n{body.strip()}\n{pwa_js}</body>\n</html>\n')
+import shutil
+shutil.copy(root / 'vendor' / 'jspdf.umd.min.js', root / 'app' / 'jspdf.umd.min.js')
 print('built dist/index.html and app/index.html')

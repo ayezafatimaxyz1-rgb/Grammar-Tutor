@@ -112,6 +112,10 @@ details summary{cursor:pointer;font-weight:700;color:var(--ink-accent)}
 .qcards{display:flex;flex-direction:column;gap:14px}
 .nbgroup{display:flex;flex-direction:column;gap:10px}
 .nbitem{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--ink-trouble);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.sheet{position:fixed;left:0;right:0;bottom:calc(var(--tabbar) + env(safe-area-inset-bottom,0px));z-index:9;display:flex;justify-content:center;padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px));padding-block:0 12px}
+.sheet-in{width:min(640px,100%);background:var(--paper);border:2px solid var(--ui);border-radius:14px;padding:16px 18px;box-shadow:0 10px 30px rgba(29,43,79,.18);display:flex;flex-direction:column;gap:10px}
+.pbar{height:10px;border-radius:5px;background:var(--rule);overflow:hidden}.pbar span{display:block;height:100%;background:var(--ink-accent);transition:width .2s}
+.dlrow{display:flex;gap:10px;flex-wrap:wrap}.dlgroup{display:flex;flex-direction:column;gap:6px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -481,6 +485,7 @@ function viewHome(q=''){const L=LBY[S.last]||LESSONS[0],p=prog(L.id),n=L.steps.l
     <svg class="ring" viewBox="0 0 84 84"><circle cx="42" cy="42" r="34" fill="none" stroke="${'#e1e4ed'}" stroke-width="9"/><circle cx="42" cy="42" r="34" fill="none" stroke="${INK.accent2}" stroke-width="9" stroke-linecap="round" stroke-dasharray="${C*pct/100} ${C}" transform="rotate(-90 42 42)"/><text x="42" y="48" text-anchor="middle" font-size="18" font-weight="700" fill="${INK.main}" font-family="Atkinson Hyperlegible, sans-serif">${pct}%</text></svg>
     <div style="display:flex;flex-direction:column;gap:8px;min-width:0"><div class="eyebrow">${S.last?'Continue where you stopped':'Start your first lesson'}</div><h2>${esc(L.title)}</h2><p class="muted">${p.done?'Finished. You can watch it again any time.':`Step ${Math.min(p.step+1,n)} of ${n}`}</p><div><a class="btn primary" href="#board" data-open="${L.id}">${S.last?'Continue':'Start'}</a></div></div>
   </section>
+  ${ql?'':notesCardHTML()}
   <label for="search" class="eyebrow">Search lessons</label><input id="search" class="search" placeholder="Try: fractions, common denominator" value="${esc(q)}" autocomplete="off">
   <div class="phases">${PHASES.map(ph=>{const ls=ph.lessons.map(id=>LBY[id]).filter(l=>l&&match(l));if(ql&&!ls.length)return '';
     return `<section class="phase ${ph.lessons.length?'':'soon'}" style="--pc:${ph.color}"><h3>${esc(ph.name)}</h3>${ls.length?ls.map(l=>{const s=lessonStatus(l.id);return `<a class="lesson" href="#board" data-open="${l.id}"><span>${esc(l.title)}</span><span class="pill ${s==='finished'?'done':s==='started'?'start':''}">${s}</span></a>`}).join(''):'<p class="muted" style="font-size:.9rem">Lessons for this part are being drawn next.</p>'}</section>`}).join('')}</div>
@@ -500,7 +505,7 @@ function installHTML(){const isApp=!!document.querySelector('link[rel=manifest]'
 /* ---------- board player ---------- */
 function openBoard(id){const L=LBY[id||S.last]||LESSONS[0];S.last=L.id;save();const p=prog(L.id);PL.L=L;PL.clicked={};
   app.innerHTML=`<div class="wrap">
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><div class="eyebrow">${esc(PHASES.find(x=>x.id===L.phase).name)}</div><h1>${esc(L.title)}</h1></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap"><div><div class="eyebrow">${esc(PHASES.find(x=>x.id===L.phase).name)}</div><h1>${esc(L.title)}</h1></div><button class="btn ghost" data-pdf="lesson:${L.id}">Download notes (PDF)</button></div>
   <div class="stage" id="stage"></div></div>`;
   goStep(Math.min(p.step,L.steps.length),!p.done&&p.step<L.steps.length)}
 function stageBoardHTML(){const L=PL.L;return `<div class="boardcol">
@@ -576,8 +581,124 @@ function viewNotebook(){const due=dueNow(),groups={};S.nb.filter(n=>!n.mastered)
 function reviewHTML(n){const L=LBY[n.lesson],q=allQuestions(L)[n.qkey],k='r'+n.id,cl=PL.clicked[k]||[];
   return `<div class="card" style="background:var(--desk)"><p class="qtext">${fmt(q.q)}</p><div class="opts" style="margin-top:10px">${q.options.map((o,j)=>optHTML(q,k,j,o,cl.includes(j),false)).join('')}</div></div>`}
 
+/* =====================================================================
+   7. NOTES PDF: one lesson, one section, or the whole book.
+   Made on the device with jsPDF (shipped with the app as jspdf.umd.min.js).
+   Boards are redrawn on a canvas in the handwriting font, so they keep
+   their hand-drawn look in the PDF.
+   ===================================================================== */
+const IS_APP=!!document.querySelector('link[rel=manifest]');
+const APP_URL='https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/maths-board/';
+function roundRect(x,X,Y,w,h,r){x.beginPath();x.moveTo(X+r,Y);x.arcTo(X+w,Y,X+w,Y+h,r);x.arcTo(X+w,Y+h,X,Y+h,r);x.arcTo(X,Y+h,X,Y,r);x.arcTo(X,Y,X+w,Y,r);x.closePath()}
+/* the finished board of one step, drawn on a canvas (same state as the SVG board at the end of the step) */
+function boardCanvas(L,si,scale=1.4){const c=document.createElement('canvas');c.width=BW*scale;c.height=BH*scale;const x=c.getContext('2d');x.scale(scale,scale);
+  x.fillStyle='#fff';x.fillRect(0,0,BW,BH);x.strokeStyle='#c9ced9';x.lineWidth=3;roundRect(x,1.5,1.5,BW-3,BH-3,10);x.stroke();
+  const {items,hls}=stateAt(L,si,L.steps[si].total+1);x.lineCap='round';x.lineJoin='round';
+  for(const h of hls)if(h.a.style==='swipe'){const bb=union(h.ids.map(i=>itemBox(L,i,items.get(i))));x.save();x.translate(bb.x,bb.y);x.rotate(-.7*Math.PI/180);x.globalAlpha=.9*h.op;x.fillStyle=INK.hi;roundRect(x,-6,-4,bb.w+12,bb.h+8,7);x.fill();x.restore()}
+  for(const [id,it] of items){const a=it.a;x.save();x.globalAlpha=it.op;x.translate(it.dx,it.dy);
+    if(a.type==='draw'){const g=geom(L.id+'/'+id,a.shape);if(a.fill&&g.fillD){x.globalAlpha=it.op*(a.fillOp??.3);x.fillStyle=inkOf(a.fill);x.fill(new Path2D(g.fillD));x.globalAlpha=it.op}
+      if(a.stroke!==false){x.strokeStyle=inkOf(a.ink);x.lineWidth=a.sw||3;for(const st of g.strokes)x.stroke(new Path2D(st.d))}}
+    else{const lit=!!it.hl;x.font=`${lit?700:a.weight} ${a.size}px Kalam, cursive`;x.fillStyle=inkOf(lit?it.hl.ink:a.ink);x.fillText(a.text,a.x,a.y)}
+    x.restore()}
+  for(const h of hls)if(h.a.style!=='swipe'){const bb=union(h.ids.map(i=>itemBox(L,i,items.get(i)))),st=h.a.style;
+    const shape=st==='ring'?{kind:'ellipse',cx:bb.x+bb.w/2,cy:bb.y+bb.h/2,rx:bb.w/2+14,ry:bb.h/2+11}:{kind:'line',x1:bb.x-4,y1:bb.y+bb.h+7,x2:bb.x+bb.w+4,y2:bb.y+bb.h+7};
+    const g=geom(`${L.id}/hl/${h.a.id}/${Math.round(bb.x)},${Math.round(bb.y)},${Math.round(bb.w)}`,shape);x.save();x.globalAlpha=h.op;x.strokeStyle=inkOf(h.a.ink||(st==='ring'?'trouble':'accent'));x.lineWidth=3;x.lineCap='round';for(const s of g.strokes)x.stroke(new Path2D(s.d));x.restore()}
+  return c}
+
+let jsPDFReady=null;
+function loadJsPDF(){if(window.jspdf)return Promise.resolve(window.jspdf.jsPDF);
+  return jsPDFReady||(jsPDFReady=new Promise((res,rej)=>{const s=document.createElement('script');s.src='jspdf.umd.min.js';s.onload=()=>window.jspdf?res(window.jspdf.jsPDF):rej(new Error('PDF tool did not load'));s.onerror=()=>{jsPDFReady=null;rej(new Error('PDF tool could not be loaded'))};document.head.appendChild(s)}))}
+
+/* plain text for the PDF's built-in font: fractions as 3/4, symbols it lacks replaced */
+const pdfClean=s=>String(s).replace(/\{(\d+)\/(\d+)\}/g,'$1/$2').replace(/[−–—]/g,'-').replace(/✓/g,'(right)').replace(/✗/g,'(wrong)').replace(/≈/g,'~').replace(/→/g,'->').replace(/…/g,'...').replace(/[‘’]/g,"'").replace(/[“”]/g,'"');
+function pdfRuns(s){const out=[];pdfClean(s).split(/(\*\*.+?\*\*)/).forEach(p=>{if(!p)return;if(p.length>4&&p.startsWith('**')&&p.endsWith('**')){out.push({t:p.slice(2,-2),st:'bold'});return}
+  p.split(/(_[^_]+_)/).forEach(q=>{if(!q)return;if(/^_[^_]+_$/.test(q))out.push({t:q.slice(1,-1),st:'italic'});else out.push({t:q,st:'normal'})})});return out}
+
+function makeBook(jsPDF,scope){
+  const doc=new jsPDF({unit:'mm',format:'a4',compress:true}),PW=210,PH=297,M=16,CW=PW-2*M,NAVY=[29,43,79],BLUE=[37,99,201],GREEN=[31,138,76],GREY=[91,102,131];
+  let y=M;const toc=[],key=[];
+  const color=c=>doc.setTextColor(c[0],c[1],c[2]);
+  const ensure=h=>{if(y+h>PH-18){doc.addPage();y=M+2}};
+  const text=(s,size,st='normal',c=NAVY,x=M,w=CW,lh=size*.48)=>{doc.setFont('helvetica',st);doc.setFontSize(size);color(c);for(const line of doc.splitTextToSize(pdfClean(s),w)){ensure(lh);doc.text(line,x,y+lh*.8);y+=lh}};
+  const rich=(s,size,x=M,w=CW,c=NAVY)=>{const lh=size*.5;doc.setFontSize(size);let cx=x;ensure(lh);
+    for(const run of pdfRuns(s)){doc.setFont('helvetica',run.st);color(run.st==='bold'?BLUE:c);
+      for(const word of run.t.split(/(\s+)/)){if(!word)continue;const ww=doc.getTextWidth(word);if(/^\s+$/.test(word)){if(cx>x)cx+=ww;continue}
+        if(cx+ww>x+w&&cx>x){y+=lh;cx=x;ensure(lh)}doc.text(word,cx,y+lh*.8);cx+=ww}}y+=lh};
+  const box=(x,yy,s=4)=>{doc.setDrawColor(150,158,175);doc.setLineWidth(.3);doc.rect(x,yy,s,s)};
+  const question=(q,label,blank)=>{doc.setFontSize(11);ensure(16+q.options.reduce((h,o)=>h+doc.splitTextToSize(pdfClean(o.t),CW-12).length*5.6+1.2,0)+(blank?27:3));text(label,10,'bold',GREY);rich(q.q,11.5);y+=1;
+    q.options.forEach((o,j)=>{doc.setFontSize(11);const lines=doc.splitTextToSize(`${'ABCD'[j]}.  ${pdfClean(o.t.replace(/\*\*/g,''))}`,CW-12);ensure(lines.length*5.6+1);box(M+1,y+1.2);doc.setFont('helvetica','normal');color(NAVY);lines.forEach((l,k)=>doc.text(l,M+8,y+4.5+k*5.6));y+=lines.length*5.6+1.2});
+    if(blank){ensure(26);doc.setDrawColor(200,205,215);doc.setLineWidth(.3);doc.rect(M,y+2,CW,22);doc.setFontSize(8.5);color(GREY);doc.text('My working',M+2,y+6);y+=27}else y+=3};
+  const phases=PHASES.filter(p=>p.lessons.some(id=>LBY[id])).filter(p=>scope.kind==='book'||(scope.kind==='phase'&&p.id===scope.id)||(scope.kind==='lesson'&&p.lessons.includes(scope.id)))
+    .map(p=>({...p,lessons:p.lessons.filter(id=>LBY[id]&&(scope.kind!=='lesson'||id===scope.id)).map(id=>LBY[id])}));
+  const scopeName=scope.kind==='book'?'The whole book':scope.kind==='phase'?phases[0].name:LBY[scope.id].title;
+  const nLessons=phases.reduce((a,p)=>a+p.lessons.length,0);
+  /* cover */
+  doc.setFillColor(244,245,249);doc.rect(0,0,PW,PH,'F');doc.setDrawColor(...NAVY);doc.setLineWidth(1.2);doc.roundedRect(M,M,CW,PH-2*M,4,4);
+  doc.setFont('helvetica','bold');doc.setFontSize(36);color(NAVY);doc.text('Maths Board',PW/2,78,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(15);color(GREY);doc.text('Notes, one drawing at a time',PW/2,90,{align:'center'});
+  doc.setFont('helvetica','bold');doc.setFontSize(18);color(BLUE);doc.splitTextToSize(pdfClean(scopeName),CW-30).forEach((l,i)=>doc.text(l,PW/2,118+i*9,{align:'center'}));
+  const first=phases[0].lessons[0];const img=boardCanvas(first,Math.min(3,first.steps.length-1)).toDataURL('image/jpeg',.85);doc.addImage(img,'JPEG',M+15,150,CW-30,(CW-30)*BH/BW);
+  doc.setFont('helvetica','normal');doc.setFontSize(11);color(GREY);doc.text(`${nLessons} lesson${nLessons>1?'s':''}  ·  made ${new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}`,PW/2,PH-30,{align:'center'});
+  /* contents pages reserved now, filled at the end */
+  const tocCount=Math.max(1,Math.ceil((phases.length+nLessons+1)/26));for(let i=0;i<tocCount;i++)doc.addPage();
+  return {doc,phases,scopeName,tocCount,PW,PH,M,CW,NAVY,BLUE,GREEN,GREY,toc,key,setY:v=>y=v,getY:()=>y,ensure,text,rich,question,color}}
+
+async function buildPDF(scope,progress){const jsPDF=await loadJsPDF();const B=makeBook(jsPDF,scope),{doc,phases,PW,PH,M,CW,NAVY,BLUE,GREEN,GREY,toc,text,rich,question}=B;
+  const tick=()=>new Promise(r=>setTimeout(r,0));let done=0;const total=phases.reduce((a,p)=>a+p.lessons.reduce((b,l)=>b+l.steps.length,0),0);
+  for(const ph of phases){
+    if(scope.kind!=='lesson'){doc.addPage();toc.push({t:ph.name,lvl:0,p:doc.getNumberOfPages()});
+      doc.setFillColor(...hexRGB(ph.color));doc.rect(0,0,12,PH,'F');doc.setFont('helvetica','normal');doc.setFontSize(12);B.color(GREY);doc.text('Section',M+6,100);
+      doc.setFont('helvetica','bold');doc.setFontSize(28);B.color(NAVY);doc.splitTextToSize(ph.name,CW-10).forEach((l,i)=>doc.text(l,M+6,114+i*12));
+      doc.setFont('helvetica','normal');doc.setFontSize(12);B.color(NAVY);ph.lessons.forEach((l,i)=>doc.text(`${i+1}.  ${pdfClean(l.title)}`,M+6,150+i*8))}
+    for(const L of ph.lessons){doc.addPage();B.setY(M);toc.push({t:L.title,lvl:1,p:doc.getNumberOfPages()});
+      text(ph.name.toUpperCase(),9,'bold',GREY);B.setY(B.getY()+1);text(L.title,20,'bold',NAVY);B.setY(B.getY()+2);rich(L.summary,12,M,CW,GREY);B.setY(B.getY()+3);
+      text('In this lesson you will learn to:',11,'bold',NAVY);L.objectives.forEach(o=>rich('•  '+o,11,M+3,CW-3));B.setY(B.getY()+4);
+      for(let si=0;si<L.steps.length;si++){const st=L.steps[si];progress(`Drawing "${L.title}", step ${si+1} of ${L.steps.length}`,done/total);await tick();
+        const ih=CW*BH/BW;B.ensure(ih+16);text(`Step ${si+1} of ${L.steps.length}:  ${st.title}`,13,'bold',BLUE);B.setY(B.getY()+1.5);
+        doc.addImage(boardCanvas(L,si).toDataURL('image/jpeg',.86),'JPEG',M,B.getY(),CW,ih,undefined,'FAST');B.setY(B.getY()+ih+4);
+        st.explain.forEach((l,i)=>rich(`${i+1}.  ${l.t}`,11,M+2,CW-2));B.setY(B.getY()+3);
+        if(st.check){question(st.check,`Check (step ${si+1})`,false);B.key.push({L,label:`Step ${si+1} check`,q:st.check})}
+        B.setY(B.getY()+3);done++}
+      if(L.practice&&L.practice.length){B.ensure(30);text('Practice',16,'bold',GREEN);B.setY(B.getY()+1);text('Tick one box for each question. Use the box under it for your working. Answers are at the back.',10.5,'normal',GREY);B.setY(B.getY()+2);
+        L.practice.forEach((q,i)=>{question(q,`Question ${i+1}`,true);B.key.push({L,label:`Practice question ${i+1}`,q})})}}}
+  /* answer key */
+  progress('Writing the answer key',1);await tick();doc.addPage();B.setY(M);toc.push({t:'Answer key',lvl:0,p:doc.getNumberOfPages()});text('Answer key',22,'bold',NAVY);B.setY(B.getY()+3);
+  let lastL=null;for(const k of B.key){if(k.L!==lastL){B.ensure(14);B.setY(B.getY()+2);text(k.L.title,13,'bold',BLUE);lastL=k.L}
+    const j=k.q.options.findIndex(o=>o.ok),o=k.q.options[j];B.ensure(12);rich(`**${k.label}: ${'ABCD'[j]}. ${o.t}**  ${o.why}`,10.5);B.setY(B.getY()+1.5)}
+  /* contents, page numbers, bookmarks */
+  for(let i=0;i<B.tocCount;i++){doc.setPage(2+i);let yy=M+4;if(i===0){doc.setFont('helvetica','bold');doc.setFontSize(22);B.color(NAVY);doc.text('Contents',M,yy+8);yy+=20}
+    for(const e of toc.slice(i*26,(i+1)*26)){doc.setFont('helvetica',e.lvl?'normal':'bold');doc.setFontSize(e.lvl?11.5:12.5);B.color(e.lvl?NAVY:BLUE);
+      const x=M+(e.lvl?6:0),t=doc.splitTextToSize(pdfClean(e.t),CW-30)[0];doc.text(t,x,yy);doc.text(String(e.p),PW-M,yy,{align:'right'});
+      doc.setDrawColor(220,224,232);doc.setLineDashPattern([.6,1.2],0);doc.line(x+doc.getTextWidth(t)+2,yy-1,PW-M-doc.getTextWidth(String(e.p))-2,yy-1);doc.setLineDashPattern([],0);
+      doc.link(x,yy-5,CW-(x-M),7,{pageNumber:e.p});yy+=e.lvl?8.5:10}}
+  const n=doc.getNumberOfPages();for(let p=2;p<=n;p++){doc.setPage(p);doc.setFont('helvetica','normal');doc.setFontSize(8.5);B.color(GREY);doc.text(`Maths Board  ·  ${pdfClean(B.scopeName)}`,M,PH-8);doc.text(`${p} / ${n}`,PW-M,PH-8,{align:'right'})}
+  if(doc.outline){const roots={};toc.forEach(e=>{if(e.lvl===0||scope.kind==='lesson')roots.cur=doc.outline.add(null,pdfClean(e.t),{pageNumber:e.p});else doc.outline.add(roots.cur||null,pdfClean(e.t),{pageNumber:e.p})})}
+  const name=('Maths-Board-'+(scope.kind==='book'?'whole-book':B.scopeName)).replace(/[^A-Za-z0-9]+/g,'-').replace(/-+$/,'')+'.pdf';
+  return {blob:doc.output('blob'),name,pages:n}}
+function hexRGB(h){const m=h.replace('#','').match(/../g);return m.map(x=>parseInt(x,16))}
+
+/* ---------- the notes panel (a sheet at the bottom of the screen) ---------- */
+let pdfBusy=false,pdfLast=null;
+function pdfSheet(html){let s=document.getElementById('pdfsheet');if(!s){s=document.createElement('div');s.id='pdfsheet';s.className='sheet';s.setAttribute('role','dialog');s.setAttribute('aria-label','Notes PDF');document.body.appendChild(s)}s.innerHTML=html;s.hidden=!html}
+async function makePDF(scope){if(pdfBusy)return;
+  if(!IS_APP){pdfSheet(`<div class="sheet-in"><h3>PDFs download in the app</h3><p class="muted">This preview cannot save files. Open the Maths Board app to download notes:</p><p><a href="${APP_URL}">${APP_URL}</a></p><div><button class="btn" data-act="pdf-close">Close</button></div></div>`);return}
+  pdfBusy=true;if(pdfLast)URL.revokeObjectURL(pdfLast.url);pdfLast=null;
+  const prog=(msg,f)=>pdfSheet(`<div class="sheet-in"><h3>Making your notes…</h3><p class="muted">${esc(msg)}</p><div class="pbar"><span style="width:${Math.round(f*100)}%"></span></div></div>`);
+  prog('Getting ready',0);
+  try{const r=await buildPDF(scope,prog);const file=new File([r.blob],r.name,{type:'application/pdf'}),url=URL.createObjectURL(r.blob);pdfLast={file,url};
+    const canShare=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+    pdfSheet(`<div class="sheet-in"><h3>Your notes are ready</h3><p class="muted">${esc(r.name)} · ${r.pages} pages · ${(r.blob.size/1048576).toFixed(1)} MB</p><div class="row" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="${url}" download="${esc(r.name)}">Download PDF</a>${canShare?'<button class="btn" data-act="pdf-share">Share (WhatsApp, Files…)</button>':''}<button class="btn ghost" data-act="pdf-close">Close</button></div></div>`)}
+  catch(e){pdfSheet(`<div class="sheet-in"><h3>Could not make the PDF</h3><p class="muted">${esc(e.message||e)}. Check your internet connection once, then try again.</p><div><button class="btn" data-act="pdf-close">Close</button></div></div>`)}
+  finally{pdfBusy=false}}
+function notesCardHTML(){const ph=PHASES.filter(p=>p.lessons.some(id=>LBY[id]));
+  return `<section class="card" style="display:flex;flex-direction:column;gap:12px"><div><div class="eyebrow">Notes PDF</div><h2>Download your notes</h2><p class="muted">Every board, every explanation, practice questions with boxes to write in, and an answer key.</p></div>
+  <div class="dlrow"><button class="btn primary" data-pdf="book">Whole book</button></div>
+  ${ph.map(p=>`<div class="dlgroup"><div class="dlrow"><button class="btn" data-pdf="phase:${p.id}">Section: ${esc(p.name)}</button></div>${p.lessons.filter(id=>LBY[id]).map(id=>`<button class="lesson" data-pdf="lesson:${id}"><span>${esc(LBY[id].title)}</span><span class="pill">PDF</span></button>`).join('')}</div>`).join('')}</section>`}
+
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
+  const pd=e.target.closest('[data-pdf]');if(pd){const v=pd.dataset.pdf;makePDF(v==='book'?{kind:'book'}:{kind:v.split(':')[0],id:v.split(':')[1]});return}
+  const pa=e.target.closest('[data-act="pdf-close"],[data-act="pdf-share"]');if(pa){if(pa.dataset.act==='pdf-close')pdfSheet('');else if(pdfLast)navigator.share({files:[pdfLast.file],title:pdfLast.file.name}).catch(()=>{});return}
   const op=e.target.closest('[data-open]');if(op){S.last=op.dataset.open;save();if(location.hash==='#board'){e.preventDefault();route()}return}
   const o=e.target.closest('.opt');if(o){const k=o.dataset.q,oi=+o.dataset.o;(PL.clicked[k]=PL.clicked[k]||[]);if(!PL.clicked[k].includes(oi))PL.clicked[k].push(oi);
     if(k[0]==='r'){const n=S.nb.find(x=>x.id===+k.slice(1)),L=LBY[n.lesson],ok=allQuestions(L)[n.qkey].options[oi].ok;if(PL.clicked[k].length===1){if(ok){n.stage++;if(n.stage>=5)n.mastered=true;else n.due=Date.now()+INTERVALS[n.stage]}else{n.stage=0;n.due=Date.now()+INTERVALS[0]}save()}
