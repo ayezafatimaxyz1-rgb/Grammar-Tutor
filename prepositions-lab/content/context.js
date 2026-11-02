@@ -536,6 +536,9 @@ PLAB.context = [
      },
      {
       "lesson": "up-down"
+     },
+     {
+      "lesson": "py-address"
      }
     ]
    },

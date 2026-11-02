@@ -113,7 +113,7 @@ SECTIONS = [
               ["until / as far as", "how far to go", "go straight until the bridge"], ["on", "which side", "it is on your left; on the corner"],
               ["opposite / next to / between", "where the place is", "opposite the bank, next to the school"], ["towards", "in the direction of", "walk towards the river"]],
        items=[dict(lesson=i) for i in new_lessons.get("directions", [])] + L("p0-to", "p0-to-towards", "p0-through", "p0-through-across-along", "p0-past",
-               "to-towards", "from", "through", "across-along", "past-by-via", "up-down")),
+               "to-towards", "from", "through", "across-along", "past-by-via", "up-down", "py-address")),
   dict(id="cause", title="Prepositions of cause, reason and purpose",
        intro="A cause comes before its result: because of, due to (after be), owing to, thanks to, for (a reason), from and of (die from / die of). A purpose aims ahead: for + noun or -ing, with a view to + -ing.",
        table=[["because of", "the cause of an action", "stopped because of rain"], ["due to", "caused by (after be)", "the delay was due to fog"],

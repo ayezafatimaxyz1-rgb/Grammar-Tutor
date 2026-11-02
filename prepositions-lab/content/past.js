@@ -403,4 +403,100 @@
         ],
       }
   ]);
+  add("to-towards", [
+      {
+        id: "move-1",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv1r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv1r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Moving verbs take TO, staying verbs take AT",
+        alt: "Moving verbs take TO, staying verbs take AT. Post the parcel to my office. Post, send, deliver, bring, go: something moves, so TO. I live at 15 Mall Road. Live, stay, wait, meet me: no movement, so AT. Send the letter at my home address. Wrong: AT does not show the movement.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Post the parcel to my office._ Post, send, deliver, bring, go: something moves, so TO.", "cue": "mv2r1"}, {"text": "_I live at 15 Mall Road._ Live, stay, wait, meet me: no movement, so AT.", "cue": "mv2r2"}, {"text": "_Send the letter at my home address._ Wrong: AT does not show the movement.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p0-to", [
+      {
+        id: "move-1",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv1r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv1r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Moving verbs take TO, staying verbs take AT",
+        alt: "Moving verbs take TO, staying verbs take AT. Post the parcel to my office. Post, send, deliver, bring, go: something moves, so TO. I live at 15 Mall Road. Live, stay, wait, meet me: no movement, so AT. Send the letter at my home address. Wrong: AT does not show the movement.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Post the parcel to my office._ Post, send, deliver, bring, go: something moves, so TO.", "cue": "mv2r1"}, {"text": "_I live at 15 Mall Road._ Live, stay, wait, meet me: no movement, so AT.", "cue": "mv2r2"}, {"text": "_Send the letter at my home address._ Wrong: AT does not show the movement.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p0-to-towards", [
+      {
+        id: "move-1",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv1r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv1r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Moving verbs take TO, staying verbs take AT",
+        alt: "Moving verbs take TO, staying verbs take AT. Post the parcel to my office. Post, send, deliver, bring, go: something moves, so TO. I live at 15 Mall Road. Live, stay, wait, meet me: no movement, so AT. Send the letter at my home address. Wrong: AT does not show the movement.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Post the parcel to my office._ Post, send, deliver, bring, go: something moves, so TO.", "cue": "mv2r1"}, {"text": "_I live at 15 Mall Road._ Live, stay, wait, meet me: no movement, so AT.", "cue": "mv2r2"}, {"text": "_Send the letter at my home address._ Wrong: AT does not show the movement.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("arrive-at-in", [
+      {
+        id: "move-1",
+        title: "Send it TO my address, or AT my address?",
+        alt: "Send it TO my address, or AT my address?. Send the letter to my home address. SEND moves the letter: movement towards a place takes TO. You can contact me at my home address. No movement: the spot where I am takes AT. Send it to me at my home address. TO = where it goes · AT = where I can be found.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv1-t"}, {"text": "_Send the letter to my home address._ SEND moves the letter: movement towards a place takes TO.", "cue": "mv1r1"}, {"text": "_You can contact me at my home address._ No movement: the spot where I am takes AT.", "cue": "mv1r2"}, {"text": "_Send it to me at my home address._ TO = where it goes · AT = where I can be found.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Moving verbs take TO, staying verbs take AT",
+        alt: "Moving verbs take TO, staying verbs take AT. Post the parcel to my office. Post, send, deliver, bring, go: something moves, so TO. I live at 15 Mall Road. Live, stay, wait, meet me: no movement, so AT. Send the letter at my home address. Wrong: AT does not show the movement.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv2-t"}, {"text": "_Post the parcel to my office._ Post, send, deliver, bring, go: something moves, so TO.", "cue": "mv2r1"}, {"text": "_I live at 15 Mall Road._ Live, stay, wait, meet me: no movement, so AT.", "cue": "mv2r2"}, {"text": "_Send the letter at my home address._ Wrong: AT does not show the movement.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
 })();

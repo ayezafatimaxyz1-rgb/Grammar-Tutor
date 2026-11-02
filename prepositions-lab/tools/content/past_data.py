@@ -104,3 +104,14 @@ PAST_OTHER = {
     "p0-before": _BEFORE, "before-after": _BEFORE, "from-to-till": PAST["from-since"], "within-time": PAST["within-during"],
     "ago-not-prep": _AGO + _BEFORE[1:], "pending": _PENDING,
 }
+
+# Movement lessons: TO my address (something moves there) or AT my address (the spot where I am).
+_ADDRESS = [("Send it TO my address, or AT my address?", [
+    ("goHome", "Send the letter to my home address.", "to", "SEND moves the letter: movement towards a place takes TO"),
+    ("house", "You can contact me at my home address.", "at", "no movement: the spot where I am takes AT"),
+    ("goHome", "Send it to me at my home address.", "to me at", "TO = where it goes · AT = where I can be found")]),
+  ("Moving verbs take TO, staying verbs take AT", [
+    ("arrowR", "Post the parcel to my office.", "to", "post, send, deliver, bring, go: something moves, so TO"),
+    ("house", "I live at 15 Mall Road.", "at", "live, stay, wait, meet me: no movement, so AT"),
+    ("cross", "Send the letter at my home address.", "at", "wrong: AT does not show the movement")])]
+MOVE = {"to-towards": _ADDRESS, "p0-to": _ADDRESS, "p0-to-towards": _ADDRESS, "arrive-at-in": _ADDRESS}
