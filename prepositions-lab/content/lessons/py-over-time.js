@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 34,
+    minutes: 36,
     summary: "Starts from the sentence: Prices have risen ___ the last five years. OVER the years: across a stretch, while things change. OVER the weekend, over tea: during it. OVER an hour: more than an hour (under = less). The match is OVER: finished. Neighbours: THROUGHOUT = every moment · DURING = inside · FOR = how long.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -310,7 +310,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: Prices have risen since the last five years.. Right: Prices have risen over the last five years.. SINCE needs a start point (since 2021). A stretch with change: OVER. Wrong: I waited more over an hour.. Right: I waited over an hour.. OVER already means more than. Say over an hour, or more than an hour. Wrong: We discussed it on tea.. Right: We discussed it over tea.. While having tea: OVER tea. Wrong: The match is overed.. Right: The match is over.. OVER is not a verb. The match is over = it has finished.",
+        alt: "Mistakes: Wrong: Prices have risen since the last five years.. Right: Prices have risen over the last five years.. SINCE needs a start point (since 2021). A stretch with change: OVER. Wrong: I waited more over an hour.. Right: I waited over an hour.. OVER already means more than. Say over an hour, or more than an hour. Wrong: We discussed it on tea.. Right: We discussed it over tea.. While having tea: OVER tea.",
         say: [
           { text: "Wrong: _Prices have risen since the last five years._ Right: _Prices have risen over the last five years._ Why? SINCE needs a start point (since 2021). A stretch with change: OVER.", cue: "mk0w" },
           { text: "Wrong: _I waited more over an hour._ Right: _I waited over an hour._ Why? OVER already means more than. Say over an hour, or more than an hour.", cue: "mk1w" },
@@ -328,6 +328,21 @@
           { do: "write", id: "mk2w", text: "✗ We discussed it on tea.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ We discussed it over tea.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "While having tea: OVER tea.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: The match is overed.. Right: The match is over.. OVER is not a verb. The match is over = it has finished.",
+        say: [
+          { text: "Wrong: _The match is overed._ Right: _The match is over._ Why? OVER is not a verb. The match is over = it has finished.", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ The match is overed.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ The match is over.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "OVER is not a verb. The match is over = it has finished.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

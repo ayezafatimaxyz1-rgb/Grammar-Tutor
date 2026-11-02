@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 32,
+    minutes: 34,
     summary: "Starts from the sentence: I fell asleep ___ the lecture. DURING + a noun: during the lecture, during Ramazan. WHILE + a doer + a verb: while he was speaking, while driving. Both tell WHEN, inside a stretch. FOR tells HOW LONG: for ten minutes.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -255,7 +255,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: I fell asleep while the lecture.. Right: I fell asleep during the lecture.. The lecture is a noun with no verb. A noun takes DURING. Wrong: He called during I was cooking.. Right: He called while I was cooking.. I was cooking has a doer and a verb. That takes WHILE. Wrong: I slept during ten minutes.. Right: I slept for ten minutes.. Ten minutes is a length, HOW LONG, so FOR. Wrong: During driving, don't use your phone.. Right: While driving, don't use your phone.. Driving is an action (verb-ing). Use WHILE.",
+        alt: "Mistakes: Wrong: I fell asleep while the lecture.. Right: I fell asleep during the lecture.. The lecture is a noun with no verb. A noun takes DURING. Wrong: He called during I was cooking.. Right: He called while I was cooking.. I was cooking has a doer and a verb. That takes WHILE. Wrong: I slept during ten minutes.. Right: I slept for ten minutes.. Ten minutes is a length, HOW LONG, so FOR.",
         say: [
           { text: "Wrong: _I fell asleep while the lecture._ Right: _I fell asleep during the lecture._ Why? The lecture is a noun with no verb. A noun takes DURING.", cue: "mk0w" },
           { text: "Wrong: _He called during I was cooking._ Right: _He called while I was cooking._ Why? I was cooking has a doer and a verb. That takes WHILE.", cue: "mk1w" },
@@ -273,6 +273,21 @@
           { do: "write", id: "mk2w", text: "✗ I slept during ten minutes.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ I slept for ten minutes.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "Ten minutes is a length, HOW LONG, so FOR.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: During driving, don't use your phone.. Right: While driving, don't use your phone.. Driving is an action (verb-ing). Use WHILE.",
+        say: [
+          { text: "Wrong: _During driving, don't use your phone._ Right: _While driving, don't use your phone._ Why? Driving is an action (verb-ing). Use WHILE.", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ During driving, don't use your phone.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ While driving, don't use your phone.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "Driving is an action (verb-ing). Use WHILE.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

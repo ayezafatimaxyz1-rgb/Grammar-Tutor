@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 30,
+    minutes: 32,
     summary: "Starts from the sentence: Please reply ___ three days. WITHIN + a length or limit: before it runs out. Reply within three days. DURING + a named event or period: some time inside it. During the exam. IN + a length: at the end of it, from now. In three days. A limit to beat? WITHIN. Inside an event? DURING.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -230,7 +230,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: Please reply during three days.. Right: Please reply within three days.. Three days is a limit to beat, not a named event: WITHIN. Wrong: The parcel will reach you during a week.. Right: The parcel will reach you within a week.. A limit: no later than a week. WITHIN. Wrong: He slept within the lecture.. Right: He slept during the lecture.. The lecture is an event; it happened inside it: DURING. Wrong: Mobile phones are not allowed within the exam.. Right: Mobile phones are not allowed during the exam.. This is about what happens inside the exam, not a limit: DURING.",
+        alt: "Mistakes: Wrong: Please reply during three days.. Right: Please reply within three days.. Three days is a limit to beat, not a named event: WITHIN. Wrong: The parcel will reach you during a week.. Right: The parcel will reach you within a week.. A limit: no later than a week. WITHIN. Wrong: He slept within the lecture.. Right: He slept during the lecture.. The lecture is an event; it happened inside it: DURING.",
         say: [
           { text: "Wrong: _Please reply during three days._ Right: _Please reply within three days._ Why? Three days is a limit to beat, not a named event: WITHIN.", cue: "mk0w" },
           { text: "Wrong: _The parcel will reach you during a week._ Right: _The parcel will reach you within a week._ Why? A limit: no later than a week. WITHIN.", cue: "mk1w" },
@@ -248,6 +248,21 @@
           { do: "write", id: "mk2w", text: "✗ He slept within the lecture.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ He slept during the lecture.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "The lecture is an event; it happened inside it: DURING.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: Mobile phones are not allowed within the exam.. Right: Mobile phones are not allowed during the exam.. This is about what happens inside the exam, not a limit: DURING.",
+        say: [
+          { text: "Wrong: _Mobile phones are not allowed within the exam._ Right: _Mobile phones are not allowed during the exam._ Why? This is about what happens inside the exam, not a limit: DURING.", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ Mobile phones are not allowed within the exam.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ Mobile phones are not allowed during the exam.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "This is about what happens inside the exam, not a limit: DURING.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

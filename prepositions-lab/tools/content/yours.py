@@ -181,8 +181,11 @@ def lesson(d):
         a, s = special(f"sp{i}", sp)
         steps.append(dict(id=f"picture-{i + 1}", title=sp["title"], alt=sp["title"] + ". " + " ".join(t for t, c in s), says=s, actions=a))
     # 6. mistakes
-    a, s = mistake_board("mk", d["mistakes"])
-    steps.append(dict(id="mistakes", title="Mistake board", alt="Mistakes: " + " ".join(f"Wrong: {b}. Right: {g}. {y}" for b, g, y in d["mistakes"]), says=s, actions=a))
+    for c in range(0, len(d["mistakes"]), 3):
+        part = d["mistakes"][c:c + 3]
+        a, s = mistake_board("mk" if c == 0 else f"mk{c // 3 + 1}", part)
+        steps.append(dict(id="mistakes" if c == 0 else f"mistakes-{c // 3 + 1}", title="Mistake board" if c == 0 else f"Mistake board {c // 3 + 1}",
+                          alt="Mistakes: " + " ".join(f"Wrong: {b}. Right: {g}. {y}" for b, g, y in part), says=s, actions=a))
     # 7. second check
     q, o = d["checks"][1]
     steps.append(dict(id="check-2", title="Check", alt="The last board stays.", says=[("Your turn again.", None)], actions=[], check=check(f"{lid}-c2", q, o, d["tag"])))

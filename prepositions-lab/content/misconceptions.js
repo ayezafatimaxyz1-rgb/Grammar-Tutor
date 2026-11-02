@@ -578,4 +578,8 @@ PLAB.misconceptions = {
     label: "OVER with time: across a whole stretch (often while something changes), during a weekend or a meal, or more than",
     explain: "OVER looks at a whole stretch of time from above, like a bridge across it. Over the years = across all of them, while things change. Over the weekend / over lunch = some time during it. Over an hour = more than an hour. The match is over = it has finished.",
   },
+  "y-before-ago-after": {
+    label: "AGO = back from NOW; BEFORE = back from a past point; AFTER / LATER = forward from a point; IN = forward from now",
+    explain: "Ask two questions. Where do I start counting: from NOW, or from another point? Which way do I go: back, or forward? Back from now = AGO. Back from another point = BEFORE. Forward from another point = AFTER (or a length + LATER). Forward from now, into the future = IN.",
+  },
 };

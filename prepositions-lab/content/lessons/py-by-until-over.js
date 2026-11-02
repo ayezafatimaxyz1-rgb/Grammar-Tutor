@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 32,
+    minutes: 34,
     summary: "Starts from the sentence: Please finish the report ___ the weekend. BY = a deadline: done once, no later than then. Submit it by Friday. UNTIL (TILL) = an action goes on, then stops. Wait until Friday. OVER = somewhere across a whole stretch. Over the weekend. Done once? BY. Goes on and on? UNTIL.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -260,7 +260,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: Submit the form till Monday.. Right: Submit the form by Monday.. Submit happens once. A deadline takes BY. Wrong: I will wait by six.. Right: I will wait until six.. Waiting goes on and on, then stops. That is UNTIL. Wrong: I will reach home until ten.. Right: I will reach home by ten.. Reaching happens once. No later than ten: BY. Wrong: We visited Murree in the weekend.. Right: We visited Murree over the weekend.. Across the whole weekend: OVER (or at the weekend).",
+        alt: "Mistakes: Wrong: Submit the form till Monday.. Right: Submit the form by Monday.. Submit happens once. A deadline takes BY. Wrong: I will wait by six.. Right: I will wait until six.. Waiting goes on and on, then stops. That is UNTIL. Wrong: I will reach home until ten.. Right: I will reach home by ten.. Reaching happens once. No later than ten: BY.",
         say: [
           { text: "Wrong: _Submit the form till Monday._ Right: _Submit the form by Monday._ Why? Submit happens once. A deadline takes BY.", cue: "mk0w" },
           { text: "Wrong: _I will wait by six._ Right: _I will wait until six._ Why? Waiting goes on and on, then stops. That is UNTIL.", cue: "mk1w" },
@@ -278,6 +278,21 @@
           { do: "write", id: "mk2w", text: "✗ I will reach home until ten.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ I will reach home by ten.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "Reaching happens once. No later than ten: BY.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: We visited Murree in the weekend.. Right: We visited Murree over the weekend.. Across the whole weekend: OVER (or at the weekend).",
+        say: [
+          { text: "Wrong: _We visited Murree in the weekend._ Right: _We visited Murree over the weekend._ Why? Across the whole weekend: OVER (or at the weekend).", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ We visited Murree in the weekend.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ We visited Murree over the weekend.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "Across the whole weekend: OVER (or at the weekend).", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
