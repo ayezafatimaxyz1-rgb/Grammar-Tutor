@@ -14,7 +14,7 @@
   --tabbar:64px;
 }
 *{box-sizing:border-box}
-body{background:var(--desk);color:var(--ui);font-family:var(--f-ui);font-size:16px;line-height:1.5;padding-bottom:calc(var(--tabbar) + env(safe-area-inset-bottom,0px))}
+body{background:var(--desk);color:var(--ui);font-family:var(--f-ui);font-size:16px;line-height:1.5;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(var(--tabbar) + env(safe-area-inset-bottom,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance}
 h1{font-family:var(--f-hand);font-weight:700;font-size:clamp(1.6rem,4.5vw,2.2rem)}
@@ -169,10 +169,12 @@ function geom(key,sh){if(GC.has(key))return GC.get(key);const r=rng(hash(key));l
     case 'tick':{const {x,y,s}=sh;strokes=[joinSegs(r,[[x-s*.85,y-s*.05],[x-s*.25,y+s*.6],[x+s*.9,y-s*.8]],.5)];break}
     case 'cross':{const {x,y,s}=sh;strokes=[wl(r,x-s*.7,y-s*.7,x+s*.7,y+s*.7,.6),wl(r,x+s*.7,y-s*.7,x-s*.7,y+s*.7,.6)];break}
     case 'approx':{const {x,y,s}=sh;strokes=[-1,1].map(k=>range(0,13).map(i=>{const t=i/12;return [x-s+2*s*t,y+k*s*.32+Math.sin(t*6.283)*s*.2]}));break}
+    case 'circles':strokes=sh.cs.map(([cx,cy,rr])=>wcirc(r,cx,cy,rr,rr));break;
     case 'grid':{const {x,y,w,h,step}=sh,segs=[];for(let gx=x;gx<=x+w+.1;gx+=step)segs.push([gx,y,gx,y+h]);for(let gy=y;gy<=y+h+.1;gy+=step)segs.push([x,gy,x+w,gy]);strokes=segs.map(s=>wl(r,s[0],s[1],s[2],s[3],.5));break}
     default:throw new Error('Unknown shape '+sh.kind)}
   const all=strokes.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);
   const g={strokes:strokes.map(p=>({d:pathD(p),len:plen(p)+1})),fillD:fill?pathD(fill)+'Z':null,bb:{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)}};
+  if(sh.kind==='circles')g.fillD=strokes.map(p=>pathD(p)+'Z').join(' ');
   g.total=g.strokes.reduce((a,s)=>a+s.len,0);GC.set(key,g);return g}
 
 /* schedule: every action gets a start time inside its step */
@@ -267,12 +269,13 @@ const TAGS={
 const PHASES=[
   {id:'p0',name:'Start here: the core pictures',color:'#8a5cd6',lessons:[]},
   {id:'p1',name:'Number',color:'#2563c9',lessons:[]},
-  {id:'p2',name:'Fractions & decimals',color:'#1f8a4c',lessons:['frac-add-unlike']},
+  {id:'p2',name:'Fractions, decimals, percentages & money',color:'#1f8a4c',lessons:[]},
   {id:'p3',name:'Algebra',color:'#c2410c',lessons:[]},
   {id:'p4',name:'Geometry',color:'#0e7490',lessons:[]},
   {id:'p5',name:'Graphs',color:'#b45309',lessons:[]},
   {id:'p6',name:'Statistics & probability',color:'#be185d',lessons:[]},
-  {id:'p7',name:'Advanced',color:'#475569',lessons:[]}];
+  {id:'p7',name:'Advanced: speed, work & rates',color:'#475569',lessons:[]},
+  {id:'p8',name:'Reasoning: patterns, logic & puzzles',color:'#7c3aed',lessons:[]}];
 
 function buildLessons(){
   const G='accent2',B='accent',X=60;
@@ -425,8 +428,13 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L)]}
+  const custom=prepare(L),all=[];
+  for(const f of SPECS){const sp=f();if(sp.ref===L.id)all.push(custom);else all.push(T(sp))}
+  if(!all.includes(custom))all.push(custom);
+  PHASES.forEach(p=>p.lessons=all.filter(l=>l.phase===p.id).map(l=>l.id));
+  return all}
 
+/*LESSON-FILES*/
 /* =====================================================================
    4. CONTENT VALIDATOR + LAYOUT CHECK (also used by the automated test)
    ===================================================================== */
@@ -655,7 +663,7 @@ async function buildPDF(scope,progress){const jsPDF=await loadJsPDF();const B=ma
       text('In this lesson you will learn to:',11,'bold',NAVY);L.objectives.forEach(o=>rich('•  '+o,11,M+3,CW-3));B.setY(B.getY()+4);
       for(let si=0;si<L.steps.length;si++){const st=L.steps[si];progress(`Drawing "${L.title}", step ${si+1} of ${L.steps.length}`,done/total);await tick();
         const ih=CW*BH/BW;B.ensure(ih+16);text(`Step ${si+1} of ${L.steps.length}:  ${st.title}`,13,'bold',BLUE);B.setY(B.getY()+1.5);
-        doc.addImage(boardCanvas(L,si).toDataURL('image/jpeg',.86),'JPEG',M,B.getY(),CW,ih,undefined,'FAST');B.setY(B.getY()+ih+4);
+        doc.addImage(boardCanvas(L,si,total>60?1.05:1.4).toDataURL('image/jpeg',total>60?.78:.86),'JPEG',M,B.getY(),CW,ih,undefined,'FAST');B.setY(B.getY()+ih+4);
         st.explain.forEach((l,i)=>rich(`${i+1}.  ${l.t}`,11,M+2,CW-2));B.setY(B.getY()+3);
         if(st.check){question(st.check,`Check (step ${si+1})`,false);B.key.push({L,label:`Step ${si+1} check`,q:st.check})}
         B.setY(B.getY()+3);done++}
@@ -693,7 +701,7 @@ async function makePDF(scope){if(pdfBusy)return;
 function notesCardHTML(){const ph=PHASES.filter(p=>p.lessons.some(id=>LBY[id]));
   return `<section class="card" style="display:flex;flex-direction:column;gap:12px"><div><div class="eyebrow">Notes PDF</div><h2>Download your notes</h2><p class="muted">Every board, every explanation, practice questions with boxes to write in, and an answer key.</p></div>
   <div class="dlrow"><button class="btn primary" data-pdf="book">Whole book</button></div>
-  ${ph.map(p=>`<div class="dlgroup"><div class="dlrow"><button class="btn" data-pdf="phase:${p.id}">Section: ${esc(p.name)}</button></div>${p.lessons.filter(id=>LBY[id]).map(id=>`<button class="lesson" data-pdf="lesson:${id}"><span>${esc(LBY[id].title)}</span><span class="pill">PDF</span></button>`).join('')}</div>`).join('')}</section>`}
+  <details class="dlgroup"><summary>One section or one lesson</summary><div class="dlgroup" style="margin-top:10px">${ph.map(p=>`<details class="dlgroup"><summary style="color:var(--ui)">${esc(p.name)} (${p.lessons.filter(id=>LBY[id]).length})</summary><div class="dlgroup" style="margin:8px 0 4px"><button class="btn" data-pdf="phase:${p.id}">Whole section</button>${p.lessons.filter(id=>LBY[id]).map(id=>`<button class="lesson" data-pdf="lesson:${id}"><span>${esc(LBY[id].title)}</span><span class="pill">PDF</span></button>`).join('')}</div></details>`).join('')}</div></details></section>`}
 
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{

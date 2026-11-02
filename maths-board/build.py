@@ -2,6 +2,9 @@
 import pathlib, re
 root = pathlib.Path(__file__).parent
 src = (root / 'index.html').read_text()
+lessons = '\n'.join(p.read_text() for p in sorted((root / 'lessons').glob('*.js')))
+assert '/*LESSON-FILES*/' in src
+src = src.replace('/*LESSON-FILES*/', lessons)
 head, body = src.split('</style>', 1)
 head += '</style>'
 base = '<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">\n'

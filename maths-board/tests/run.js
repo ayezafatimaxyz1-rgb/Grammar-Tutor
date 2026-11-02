@@ -3,11 +3,11 @@
 // for text that runs off the board or overlaps, and screenshots every step.
 const {chromium}=require('playwright');const fs=require('fs');const path=require('path');
 (async()=>{const root=path.join(__dirname,'..'),out=process.argv[2]||path.join(root,'tests','shots');fs.mkdirSync(out,{recursive:true});
- const page='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body>'+fs.readFileSync(path.join(root,'index.html'),'utf8')+'</body></html>';
+ const page=fs.readFileSync(path.join(root,'dist','index.html'),'utf8'); // run build.py first
  const tmp=path.join(out,'_page.html');fs.writeFileSync(tmp,page);
  const b=await chromium.launch(),errs=[];let fail=0;
  const p=await b.newPage({viewport:{width:1280,height:900}});p.on('pageerror',e=>errs.push(e.message));
- await p.goto('file://'+tmp+'#board');await p.waitForFunction(()=>window.MB&&window.MB.ready,null,{timeout:15000});
+ await p.goto('file://'+tmp+'#board');try{await p.waitForFunction(()=>window.MB&&window.MB.ready,null,{timeout:20000})}catch(e){console.log('app did not start:',errs.join(' | ')||e.message);process.exit(1)}
  const v=await p.evaluate(()=>MB.validate()),l=await p.evaluate(()=>MB.layoutIssues());
  console.log('validator:',v.length?v.join('\n  '):'ok');console.log('layout:',l.length?l.join('\n  '):'ok');fail+=v.length+l.length;
  const steps=await p.evaluate(()=>MB.LESSONS.map(L=>[L.id,L.steps.length]));

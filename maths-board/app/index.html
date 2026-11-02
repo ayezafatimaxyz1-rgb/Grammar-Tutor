@@ -26,7 +26,7 @@
   --tabbar:64px;
 }
 *{box-sizing:border-box}
-body{background:var(--desk);color:var(--ui);font-family:var(--f-ui);font-size:16px;line-height:1.5;padding-bottom:calc(var(--tabbar) + env(safe-area-inset-bottom,0px))}
+body{background:var(--desk);color:var(--ui);font-family:var(--f-ui);font-size:16px;line-height:1.5;padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(var(--tabbar) + env(safe-area-inset-bottom,0px))}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
 h1,h2,h3{margin:0;line-height:1.2;text-wrap:balance}
 h1{font-family:var(--f-hand);font-weight:700;font-size:clamp(1.6rem,4.5vw,2.2rem)}
@@ -182,10 +182,12 @@ function geom(key,sh){if(GC.has(key))return GC.get(key);const r=rng(hash(key));l
     case 'tick':{const {x,y,s}=sh;strokes=[joinSegs(r,[[x-s*.85,y-s*.05],[x-s*.25,y+s*.6],[x+s*.9,y-s*.8]],.5)];break}
     case 'cross':{const {x,y,s}=sh;strokes=[wl(r,x-s*.7,y-s*.7,x+s*.7,y+s*.7,.6),wl(r,x+s*.7,y-s*.7,x-s*.7,y+s*.7,.6)];break}
     case 'approx':{const {x,y,s}=sh;strokes=[-1,1].map(k=>range(0,13).map(i=>{const t=i/12;return [x-s+2*s*t,y+k*s*.32+Math.sin(t*6.283)*s*.2]}));break}
+    case 'circles':strokes=sh.cs.map(([cx,cy,rr])=>wcirc(r,cx,cy,rr,rr));break;
     case 'grid':{const {x,y,w,h,step}=sh,segs=[];for(let gx=x;gx<=x+w+.1;gx+=step)segs.push([gx,y,gx,y+h]);for(let gy=y;gy<=y+h+.1;gy+=step)segs.push([x,gy,x+w,gy]);strokes=segs.map(s=>wl(r,s[0],s[1],s[2],s[3],.5));break}
     default:throw new Error('Unknown shape '+sh.kind)}
   const all=strokes.flat(),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);
   const g={strokes:strokes.map(p=>({d:pathD(p),len:plen(p)+1})),fillD:fill?pathD(fill)+'Z':null,bb:{x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)}};
+  if(sh.kind==='circles')g.fillD=strokes.map(p=>pathD(p)+'Z').join(' ');
   g.total=g.strokes.reduce((a,s)=>a+s.len,0);GC.set(key,g);return g}
 
 /* schedule: every action gets a start time inside its step */
@@ -280,12 +282,13 @@ const TAGS={
 const PHASES=[
   {id:'p0',name:'Start here: the core pictures',color:'#8a5cd6',lessons:[]},
   {id:'p1',name:'Number',color:'#2563c9',lessons:[]},
-  {id:'p2',name:'Fractions & decimals',color:'#1f8a4c',lessons:['frac-add-unlike']},
+  {id:'p2',name:'Fractions, decimals, percentages & money',color:'#1f8a4c',lessons:[]},
   {id:'p3',name:'Algebra',color:'#c2410c',lessons:[]},
   {id:'p4',name:'Geometry',color:'#0e7490',lessons:[]},
   {id:'p5',name:'Graphs',color:'#b45309',lessons:[]},
   {id:'p6',name:'Statistics & probability',color:'#be185d',lessons:[]},
-  {id:'p7',name:'Advanced',color:'#475569',lessons:[]}];
+  {id:'p7',name:'Advanced: speed, work & rates',color:'#475569',lessons:[]},
+  {id:'p8',name:'Reasoning: patterns, logic & puzzles',color:'#7c3aed',lessons:[]}];
 
 function buildLessons(){
   const G='accent2',B='accent',X=60;
@@ -438,7 +441,913 @@ function buildLessons(){
         {t:'{2/6}',tag:'add-bottoms',why:'{2/6} is less than Sara\'s half on its own. Together they must have eaten more than that.'},
         {t:'{1/8}',tag:'multiply',why:'That is {1/4} × {1/2}. "Together" means add.'},
         {t:'{2/4}',tag:'partial',why:'{2/4} is just Sara\'s half written in quarters. Ali\'s quarter is missing.'}]}]};
-  return [prepare(L)]}
+  const custom=prepare(L),all=[];
+  for(const f of SPECS){const sp=f();if(sp.ref===L.id)all.push(custom);else all.push(T(sp))}
+  if(!all.includes(custom))all.push(custom);
+  PHASES.forEach(p=>p.lessons=all.filter(l=>l.phase===p.id).map(l=>l.id));
+  return all}
+
+/* =====================================================================
+   LESSON TEMPLATE KIT
+   A lesson file pushes a function that returns a short spec. T(spec)
+   turns it into full board steps:
+     pictures (custom drawings) → worked examples → mistake board → summary.
+   Specs are functions because layout needs the handwriting font loaded.
+   ===================================================================== */
+const SPECS=[];
+function nsSteps(L){L.steps.forEach((st,i)=>{const ns='s'+(i+1)+'_',f=x=>x&&typeof x==='string'&&x!=='all'?ns+x:x;
+  st.actions.forEach(a=>{if(a.id)a.id=ns+a.id;if(a.target)a.target=ns+a.target;if(Array.isArray(a.targets))a.targets=a.targets.map(f)});st.explain.forEach(l=>l.cue=ns+l.cue)});return L}
+const tokW=(t,s)=>t&&t.n!==undefined?fracW(t.n,t.d,s):measure(typeof t==='object'?t.t:String(t),s);
+const exprW=(toks,s)=>toks.reduce((a,t)=>a+tokW(t,s),0)+.32*s*(toks.length-1);
+function fitSize(t,s,maxW,wt=400){while(s>13&&measure(t,s,wt)>maxW)s--;return s}
+const fr=(n,d,ink)=>({n,d,ink});
+function wseqC(id,cx,y,parts,o={}){const sz=o.size||30,w=parts.reduce((a,p)=>a+measure(p,sz,700),0);return wseq(id,cx-w/2,y,parts,o)}
+const nm=v=>v<0?'−'+Math.abs(v):String(v);
+/* one line of working: a string, or a row of tokens with fractions */
+function LN(id,cx,ym,c,o={}){const maxW=o.maxW||900;let s=o.size||32;
+  if(typeof c==='string'){s=fitSize(c,s,maxW,o.weight||400);return [W(id,cx,ym+.32*s,c,{size:s,anchor:'middle',ink:o.ink,weight:o.weight,sync:o.sync,dur:o.dur})]}
+  while(s>14&&exprW(c,s)>maxW)s--;return expr(id,cx,ym,c,{size:s,center:true,ink:o.ink,sync:o.sync})}
+/* a question: the right answer first, then [text, misunderstanding tag, why] for each wrong one */
+function Q(q,ok,...wr){const opts=[{t:ok[0],ok:true,why:ok[1]},...wr.map(w=>({t:w[0],tag:w[1],why:w[2]}))],k=hash(q)%opts.length;return {q,options:opts.slice(k).concat(opts.slice(0,k))}}
+
+function exStep(e,i){const acts=[ER('er')],ex=[],qs=e.qSize||28;
+  const ql=wrapText('q',40,64,e.q,880,{size:qs,lh:qs*1.3});acts.push(...ql);ex.push({cue:'q',t:e.say||('**Question:** '+e.q)});
+  if(e.acts){acts.push(...e.acts);(e.ax||[]).forEach(([c,t])=>ex.push({cue:c,t}))}
+  const qb=64+(ql.length-1)*qs*1.3,y0=e.y0||(qb+66),cx=e.cx||480,maxW=e.maxW||880,n=e.lines.length,gap=n>1?Math.min(e.gap||74,(566-y0)/(n-1)):0,s=e.size||Math.min(32,Math.max(20,Math.round((gap||64)*.48)));
+  e.lines.forEach(([c,x,ink],j)=>{acts.push(...LN('l'+j,cx,y0+j*gap,c,{size:s,maxW,ink:ink||(j===n-1&&!e.noAns?'accent2':'main')}));if(x)ex.push({cue:'l'+j,t:x})});
+  return {title:e.title||`Worked example ${i+1}`,actions:acts,explain:ex,check:e.check}}
+function misStep(m){const acts=[ER('er'),D('dv',{kind:'line',x1:480,y1:36,x2:480,y2:340},{ink:'muted',sw:1.6,dur:400}),
+    W('mL',240,70,'The mistake',{size:28,anchor:'middle',ink:'trouble',weight:700}),D('mX',{kind:'cross',x:240,y:108,s:12},{ink:'trouble',sw:3.5,dur:300})];
+  m.wrong.forEach((c,j)=>acts.push(...LN('w'+j,240,172+j*62,c,{size:28,maxW:420,ink:'trouble'})));
+  acts.push(W('mR',720,70,'The right way',{size:28,anchor:'middle',ink:'accent2',weight:700}),D('mT',{kind:'tick',x:720,y:108,s:13},{ink:'accent2',sw:3.5,dur:300}));
+  m.right.forEach((c,j)=>acts.push(...LN('r'+j,720,172+j*62,c,{size:28,maxW:420,ink:'accent2'})));
+  acts.push(...wrapText('why',480,420,m.why,880,{size:25,anchor:'middle'}));
+  return {title:m.title||'Why not the other way?',actions:acts,explain:[{cue:'mL',t:m.ex[0]},{cue:'mR',t:m.ex[1]},{cue:'why',t:m.ex[2]}],check:m.check}}
+function sumStep(sp){const acts=[ER('er'),W('h',480,64,'Remember',{size:32,anchor:'middle',ink:'accent',weight:700})],ex=[{cue:'h',t:'The whole lesson in a few lines.'}];
+  sp.rules.forEach((r,j)=>{acts.push(...rule('s'+j,j+1,80,148+j*78,r,{size:fitSize(r,27,800)}));ex.push({cue:'s'+j,t:r})});
+  if(sp.sumLine){acts.push(...LN('m',480,sp.rules.length>4?532:505,sp.sumLine,{size:32,maxW:880,ink:'accent2'}));ex.push({cue:'m',t:sp.sumSay||'One example to remember it by.'})}
+  return {title:'Remember',actions:acts,explain:ex}}
+function T(sp){const steps=[];
+  (sp.pics||[]).forEach(p=>steps.push({title:p.title,actions:[ER('er'),...p.acts],explain:p.ex.map(([cue,t])=>({cue,t})),check:p.check}));
+  (sp.ex||[]).forEach((e,i)=>steps.push(exStep(e,i)));if(sp.mis)steps.push(misStep(sp.mis));steps.push(sumStep(sp));
+  return prepare(nsSteps({id:sp.id,phase:sp.ph,title:sp.title,summary:sp.sum,objectives:sp.obj,steps,practice:sp.prac}))}
+
+/* ---------- drawing helpers ---------- */
+function NL(id,x,y,w,a,b,o={}){const st=o.step||1,lb=o.lab||st,X=v=>x+(v-a)*w/(b-a),segs=[];
+  for(let v=a;v<=b+1e-9;v+=st)segs.push([X(v),y-9,X(v),y+9]);
+  const acts=[D(id+'.ln',{kind:'arrow',x1:x-22,y1:y,x2:x+w+32,y2:y,head:12},{dur:o.dur||700}),D(id+'.tk',{kind:'lines',segs},{sw:2.2,dur:500})];
+  let first=true;for(let v=a;v<=b+1e-9;v+=lb){acts.push(W(`${id}.v${acts.length}`,X(v),y+38,nm(Math.round(v*100)/100),{size:o.size||22,anchor:'middle',ink:'muted',dur:350,sync:!first}));first=false}
+  return {acts,X}}
+function JUMP(id,X1,X2,y,label,ink='accent',below=false){const k=below?1:-1,h=k*(28+Math.abs(X2-X1)*.12),pts=range(0,13).map(i=>{const t=i/12;return [X1+(X2-X1)*t,y+k*8+h*Math.sin(Math.PI*t)]}),p=pts[12],q=pts[10];
+  return [D(id,{kind:'poly',pts,amp:.3},{ink,sw:3,dur:600}),D(id+'.h',{kind:'arrow',x1:q[0],y1:q[1],x2:p[0],y2:p[1],head:11},{ink,sw:3,dur:120}),W(id+'.t',(X1+X2)/2,below?y+k*8+h+30:y+k*8+h-10,label,{size:24,anchor:'middle',ink,dur:300})]}
+const DOT=(id,x,y,ink='trouble',r=9)=>D(id,{kind:'circle',cx:x,cy:y,r},{ink,fill:ink,fillOp:.85,dur:300});
+function DOTS(id,x,y,rows,cols,gap,ink='accent',r=9){const cs=[];for(let i=0;i<rows;i++)for(let j=0;j<cols;j++)cs.push([x+j*gap,y+i*gap,r]);return D(id,{kind:'circles',cs},{ink,fill:ink,fillOp:.55,sw:2,dur:Math.min(1400,250+cs.length*35)})}
+function ANG(id,cx,cy,r,a1,a2,label,ink='accent'){const pts=range(0,13).map(i=>{const a=(a1+(a2-a1)*i/12)*Math.PI/180;return [cx+r*Math.cos(a),cy-r*Math.sin(a)]}),m=((a1+a2)/2)*Math.PI/180,acts=[D(id,{kind:'poly',pts,amp:.3},{ink,sw:2.6,dur:400})];
+  if(label)acts.push(W(id+'.t',cx+(r+28)*Math.cos(m),cy-(r+28)*Math.sin(m)+8,label,{size:24,anchor:'middle',ink,dur:300}));return acts}
+const RAY=(id,cx,cy,len,deg,o={})=>D(id,{kind:'line',x1:cx,y1:cy,x2:cx+len*Math.cos(deg*Math.PI/180),y2:cy-len*Math.sin(deg*Math.PI/180)},{ink:o.ink||'main',sw:o.sw||3,dur:o.dur||450});
+const POLY=(id,pts,o={})=>D(id,{kind:'poly',pts,closed:true},{ink:o.ink||'main',fill:o.fill,fillOp:o.fillOp??.15,dur:o.dur||800});
+function LABELS(id,pairs,o={}){return pairs.map(([x,y,t],i)=>W(`${id}.${i}`,x,y,t,{size:o.size||24,anchor:'middle',ink:o.ink||'main',dur:250,sync:i>0}))}
+function AXES(id,x0,y0,w,h,xs,ys,o={}){const X=v=>x0+v*w/xs,Y=v=>y0-v*h/ys,st=o.step||1,acts=[];
+  if(o.grid)acts.push(D(id+'.g',{kind:'lines',segs:[...range(1,Math.floor(xs/st)+1).map(i=>[X(i*st),y0,X(i*st),y0-h]),...range(1,Math.floor(ys/st)+1).map(i=>[x0,Y(i*st),x0+w,Y(i*st)])]},{ink:'#dfe3ec',sw:1.2,dur:500}));
+  acts.push(D(id+'.x',{kind:'arrow',x1:x0,y1:y0,x2:x0+w+28,y2:y0,head:12},{dur:500}),D(id+'.y',{kind:'arrow',x1:x0,y1:y0,x2:x0,y2:y0-h-28,head:12},{dur:500}));
+  acts.push(...range(1,Math.floor(xs/st)+1).map((i,k)=>W(`${id}.xl${i}`,X(i*st),y0+30,String(i*st),{size:20,anchor:'middle',ink:'muted',dur:200,sync:k>0})));
+  acts.push(...range(1,Math.floor(ys/st)+1).map((i,k)=>W(`${id}.yl${i}`,x0-16,Y(i*st)+7,String(i*st),{size:20,anchor:'end',ink:'muted',dur:200,sync:k>0})));
+  acts.push(W(id+'.o',x0-14,y0+26,'0',{size:20,anchor:'end',ink:'muted',dur:150}));
+  if(o.xl)acts.push(W(id+'.xn',x0+w+20,y0+32,o.xl,{size:22,anchor:'end',ink:'accent'}));if(o.yl)acts.push(W(id+'.yn',x0+8,y0-h-30,o.yl,{size:22,ink:'accent'}));
+  return {acts,X,Y}}
+function VENN(id,cx,cy,r,dx,la,lb){return [D(id+'.a',{kind:'circle',cx:cx-dx,cy,r},{ink:'accent',fill:'accent',fillOp:.12,dur:700}),D(id+'.b',{kind:'circle',cx:cx+dx,cy,r},{ink:'accent2',fill:'accent2',fillOp:.12,dur:700}),
+  W(id+'.la',cx-dx-r*.55,cy-r-12,la,{size:24,anchor:'middle',ink:'accent',weight:700}),W(id+'.lb',cx+dx+r*.55,cy-r-12,lb,{size:24,anchor:'middle',ink:'accent2',weight:700})]}
+function BARS(id,x0,y0,w,h,vals,labs,max,o={}){const n=vals.length,bw=w/n*.6,acts=[D(id+'.base',{kind:'line',x1:x0,y1:y0,x2:x0+w,y2:y0},{dur:400})];
+  vals.forEach((v,i)=>{const bx=x0+w/n*(i+.2),bh=v/max*h;acts.push(D(`${id}.b${i}`,{kind:'rect',x:bx,y:y0-bh,w:bw,h:bh},{ink:o.ink||'accent',fill:o.ink||'accent',fillOp:.3,dur:450}),
+    W(`${id}.v${i}`,bx+bw/2,y0-bh-10,String(v),{size:22,anchor:'middle',ink:o.ink||'accent',dur:200,sync:true}),W(`${id}.l${i}`,bx+bw/2,y0+30,labs[i],{size:21,anchor:'middle',ink:'muted',dur:200,sync:true}))});return acts}
+function CUBOID(id,x,y,w,h,d,o={}){const dx=d*.6,dy=d*.45;return [D(id+'.f',{kind:'rect',x,y,w,h},{ink:o.ink||'main',fill:o.fill||'accent',fillOp:.12,dur:600}),
+  D(id+'.t',{kind:'lines',segs:[[x,y,x+dx,y-dy],[x+w,y,x+w+dx,y-dy],[x+dx,y-dy,x+w+dx,y-dy],[x+w,y+h,x+w+dx,y+h-dy],[x+w+dx,y-dy,x+w+dx,y+h-dy]]},{ink:o.ink||'main',dur:600})]}
+function TANK(id,x,y,w,h,frac,o={}){return [D(id+'.w',{kind:'rect',x:x+4,y:y+h*(1-frac)+2,w:w-8,h:h*frac-6},{stroke:false,fill:'accent',fillOp:.35,dur:500}),D(id+'.box',{kind:'poly',pts:[[x,y],[x,y+h],[x+w,y+h],[x+w,y]]},{ink:'main',dur:600})]}
+function CLOCK(id,cx,cy,r,H,M){const am=(90-6*M)*Math.PI/180,ah=(90-30*(H%12)-.5*M)*Math.PI/180;return [D(id+'.c',{kind:'circle',cx,cy,r},{dur:600}),
+  D(id+'.tk',{kind:'lines',segs:range(0,12).map(i=>{const a=i*Math.PI/6;return [cx+Math.cos(a)*r*.86,cy+Math.sin(a)*r*.86,cx+Math.cos(a)*r*.97,cy+Math.sin(a)*r*.97]})},{sw:2.4,dur:400}),
+  D(id+'.h',{kind:'line',x1:cx,y1:cy,x2:cx+Math.cos(ah)*r*.5,y2:cy-Math.sin(ah)*r*.5},{ink:'trouble',sw:5,dur:300}),D(id+'.m',{kind:'line',x1:cx,y1:cy,x2:cx+Math.cos(am)*r*.8,y2:cy-Math.sin(am)*r*.8},{ink:'accent',sw:3.5,dur:300})]}
+function TABLE(id,x,y,cws,rh,rows,o={}){const tw=cws.reduce((a,b)=>a+b,0),th=rh*rows.length,segs=[];let cx=x;
+  for(let i=0;i<=rows.length;i++)segs.push([x,y+i*rh,x+tw,y+i*rh]);for(let j=0;j<=cws.length;j++){segs.push([cx,y,cx,y+th]);cx+=cws[j]||0}
+  const acts=[D(id+'.g',{kind:'lines',segs},{ink:'muted',sw:2,dur:600})];
+  rows.forEach((r,i)=>{let xx=x;r.forEach((c,j)=>{if(c!==''&&c!=null)acts.push(W(`${id}.${i}_${j}`,xx+cws[j]/2,y+i*rh+rh*.66,String(c),{size:o.size||24,anchor:'middle',ink:i===0&&o.head!==false?'accent':'main',weight:i===0&&o.head!==false?700:400,dur:220,sync:!(i===0&&j===0)}));xx+=cws[j]})});return acts}
+function PERSON(id,x,y,o={}){const ink=o.ink||'main';return [D(id+'.h',{kind:'circle',cx:x,cy:y,r:15},{ink,dur:300}),D(id+'.b',{kind:'lines',segs:[[x,y+15,x,y+75],[x-24,y+38,x+24,y+38],[x,y+75,x-18,y+118],[x,y+75,x+18,y+118]]},{ink,dur:500})]}
+function CAR(id,x,y,w,o={}){const k=w/220,P=pts=>pts.map(([a,b])=>[x+a*k,y+b*k]),ink=o.ink||'main';return [
+  D(id+'.b',{kind:'poly',closed:true,pts:P([[0,80],[0,45],[50,40],[85,5],[175,5],[210,40],[220,45],[220,80]])},{ink,fill:o.fill||'accent',fillOp:.14,dur:700}),
+  D(id+'.w',{kind:'circles',cs:[[x+50*k,y+84*k,17*k],[x+175*k,y+84*k,17*k]]},{ink,dur:350})]}
+
+/* ---------- misunderstandings used across the course ---------- */
+Object.assign(TAGS,{
+  'misread':'Reading the question wrongly','wrong-op':'Choosing the wrong operation','place-value':'Mixing up place values','carry':'Forgetting to carry or borrow',
+  'order-ops':'Doing the operations in the wrong order','sign':'Getting a plus or minus sign wrong','factor-multiple':'Mixing up factors and multiples','hcf-lcm':'Mixing up HCF and LCM',
+  'remainder':'Getting the remainder wrong','frac-concept':'Not seeing a fraction as equal parts of a whole','frac-op':'Using the wrong rule for fractions','decimal-point':'Putting the decimal point in the wrong place',
+  'rounding':'Rounding the wrong way','pct-base':'Taking the percentage of the wrong amount','pct-reverse':'Working forwards in a reverse-percentage question','ratio-parts':'Forgetting to add up the parts of a ratio',
+  'proportion':'Mixing up direct and inverse proportion','money-base':'Using the wrong base price','interest':'Mixing up simple and compound interest','algebra-like':'Adding unlike terms',
+  'algebra-balance':'Not doing the same thing to both sides','algebra-form':'Forming the equation wrongly','angle-fact':'Using the wrong angle fact','area-perim':'Mixing up area and perimeter',
+  'units':'Using the wrong units','radius-diam':'Mixing up radius and diameter','pyth':'Using Pythagoras the wrong way round','coord-order':'Mixing up the x and y coordinates',
+  'read-graph':'Reading the graph or table wrongly','mean-median':'Mixing up mean, median and mode','sort-first':'Forgetting to sort before finding the median','total-trick':'Not using total = mean × count',
+  'venn-double':'Counting the overlap twice','sample':'Mixing up population and sample','prob':'Getting the probability fraction wrong','speed-avg':'Averaging speeds instead of total distance ÷ total time',
+  'rel-speed':'Adding speeds when they should be subtracted, or the other way round','work-add':'Adding times instead of rates','series-rule':'Choosing a rule that does not fit every term',
+  'code-rule':'Applying the code rule wrongly','logic-extra':'Using outside knowledge or assuming too much','logic-converse':'Reversing an if-then statement','arrange':'Breaking one of the conditions',
+  'direction':'Turning the wrong way','clock':'Forgetting the hour hand moves too','multiply-op':'Multiplying when you should add, or the other way round'});
+
+/* ===== Phase 0: the core pictures ===== */
+SPECS.push(()=>{const A=NL('nl',80,250,800,0,10),B=NL('nm',80,250,800,-6,6);return {id:'core-numberline',ph:'p0',title:'Numbers live on a line',
+ sum:'Every number has a place on a line. Adding moves right, taking away moves left.',obj:['Put numbers in order on a number line.','Add and take away by jumping along the line.','See minus numbers to the left of zero.'],
+ pics:[{title:'A number line',acts:[...A.acts,DOT('d3',A.X(3),250),...JUMP('j1',A.X(3),A.X(7),250,'+4','accent2'),...JUMP('j2',A.X(7),A.X(5),250,'−2','trouble',true),
+   W('r1',480,420,'Adding moves right. Taking away moves left.',{size:28,anchor:'middle'}),W('r2',480,490,'Further right means bigger.',{size:28,anchor:'middle',ink:'accent'})],
+   ex:[['nl','A number line puts numbers in order, evenly spaced, like steps.'],['d3','Start at 3.'],['j1','Add 4: jump 4 steps right. You land on 7. So **3 + 4 = 7**.'],['j2','Take away 2: jump 2 steps left. **7 − 2 = 5**.'],['r1','Adding moves **right**. Taking away moves **left**.'],['r2','The further right a number is, the **bigger** it is.']],
+   check:Q('On a number line, where is 8 compared with 5?',['To the right of 5','Bigger numbers are further right.'],['To the left of 5','sign','Left is smaller, and 8 is bigger than 5.'],['In the same place','misread','8 and 5 are different numbers, so they have different places.'],['Below 5','misread','This number line goes left to right, not up and down.'])},
+  {title:'Before zero: minus numbers',acts:[...B.acts,DOT('d',B.X(-3),250),...JUMP('j',B.X(-3),B.X(2),250,'+5','accent2'),
+   W('r1',480,420,'Left of 0: minus numbers, like −3 °C on a cold night.',{size:27,anchor:'middle'}),W('r2',480,490,'−3 + 5 = 2',{size:32,anchor:'middle',ink:'accent2'})],
+   ex:[['nm','The line keeps going **left of 0**. These are **minus numbers**: −1, −2, −3 …'],['d','−3 is 3 steps below zero, like a temperature of −3 °C.'],['j','Add 5: jump 5 steps right. You pass 0 and land on 2.'],['r2','So **−3 + 5 = 2**.']]}],
+ ex:[{q:'Use the number line: 6 + 3',acts:[...NL('a',80,190,800,0,10).acts,...JUMP('j',80+6*80,80+9*80,190,'+3','accent2')],y0:330,lines:[['Start at 6, jump 3 steps right','Adding moves right.'],['6 + 3 = 9','We land on 9.']]},
+  {q:'Use the number line: 4 − 6',acts:[...NL('a',80,190,800,-5,5).acts,...JUMP('j',80+9*80,80+3*80,190,'−6','trouble',true)],y0:350,lines:[['Start at 4, jump 6 steps left','Taking away moves left. We go past 0.'],['4 − 6 = −2','We land on −2.']]},
+  {q:'Which is bigger: −7 or −2?',acts:[...NL('a',80,190,800,-8,2).acts,DOT('p',80+1*80,190),DOT('q',80+6*80,190,'accent2')],y0:330,lines:[['−2 is further right than −7','Further right is always bigger.'],['−2 > −7','The sign > means "is bigger than". Think of temperature: −2 °C is warmer than −7 °C.']]}],
+ mis:{wrong:['−7 > −2'],right:['−2 > −7'],why:'With minus numbers, the one closer to zero is bigger.',ex:['A common mistake: thinking −7 is bigger because 7 is bigger than 2.','The right way: −2 is closer to zero, so it is further right and bigger.','On a number line, further right is always bigger.']},
+ rules:['Numbers sit in order on a line, evenly spaced.','Adding moves right; taking away moves left.','Further right means bigger.','Left of 0 are minus numbers.'],sumLine:'−3 + 5 = 2',
+ prac:[Q('What is 3 − 5?',['−2','Start at 3 and jump 5 left: 2, 1, 0, −1, −2.'],['2','sign','5 − 3 = 2, but here we take 5 away from 3, so we go below zero.'],['8','wrong-op','That is 3 + 5. The question takes away.'],['−8','sign','Too far: from 3, five jumps left lands on −2.']),
+  Q('Which is the biggest?',['−1','−1 is closest to zero, so it is furthest right.'],['−10','sign','−10 is far to the left: the smallest.'],['−5','sign','−5 is left of −1.'],['−3','sign','−3 is left of −1.']),
+  Q('The temperature is −4 °C. It rises by 6 degrees. What is it now?',['2 °C','Start at −4 and jump 6 right: −3, −2, −1, 0, 1, 2.'],['−10 °C','wrong-op','Rising means going up (right), not down.'],['10 °C','sign','From −4, six steps right only reaches 2.'],['−2 °C','sign','That is only 2 steps right of −4.'])]}});
+
+SPECS.push(()=>({id:'core-operations',ph:'p0',title:'The four operations as pictures',
+ sum:'Plus joins, minus takes away, times makes equal groups, divide shares fairly.',obj:['See + as joining and − as taking away.','See × as equal groups.','See ÷ as fair sharing, and know which sums can be swapped.'],
+ pics:[{title:'Add = join, take away = remove',acts:[D('dv',{kind:'line',x1:480,y1:60,x2:480,y2:400},{ink:'muted',sw:1.5,dur:300}),
+   DOTS('a',80,180,1,3,50,'accent2'),W('pl',235,192,'+',{size:40,anchor:'middle'}),DOTS('b',285,180,1,4,48,'accent'),...LN('ae',240,300,'3 + 4 = 7',{ink:'accent2'}),W('ac',240,370,'join two groups',{size:24,anchor:'middle',ink:'muted'}),
+   DOTS('c',560,180,1,7,48,'accent'),D('x1',{kind:'cross',x:800,y:180,s:15},{ink:'trouble',sw:3.5,dur:250}),D('x2',{kind:'cross',x:848,y:180,s:15},{ink:'trouble',sw:3.5,dur:250}),...LN('ce',720,300,'7 − 2 = 5',{ink:'trouble'}),W('cc',720,370,'take some away',{size:24,anchor:'middle',ink:'muted'}),
+   W('t',480,500,'plus (+) puts together  ·  minus (−) takes away',{size:27,anchor:'middle',weight:700})],
+   ex:[['a','Here are 3 counters…'],['b','…and 4 more.'],['ae','Put them together: **3 + 4 = 7**. Adding **joins** groups.'],['c','Now 7 counters.'],['x1','Take 2 away.'],['ce','5 are left: **7 − 2 = 5**. Taking away **removes** some.'],['t','Plus puts together. Minus takes away.']]},
+  {title:'Times = equal groups, divide = fair sharing',acts:[D('dv',{kind:'line',x1:480,y1:60,x2:480,y2:400},{ink:'muted',sw:1.5,dur:300}),
+   DOTS('m',150,140,3,4,52,'accent'),...LN('me',240,330,'3 × 4 = 12',{ink:'accent'}),W('mc',240,390,'3 rows of 4',{size:24,anchor:'middle',ink:'muted'}),
+   ...[600,750,900].flatMap((cx,i)=>[D('p'+i,{kind:'ellipse',cx:cx-30,cy:200,rx:55,ry:42},{ink:'muted',dur:300}),DOTS('s'+i,cx-45,186,2,2,30,'accent2',8)]),
+   ...LN('se',720,330,'12 ÷ 3 = 4',{ink:'accent2'}),W('sc',720,390,'share 12 into 3: 4 each',{size:24,anchor:'middle',ink:'muted'}),
+   W('t',480,500,'times (×) = equal groups  ·  divide (÷) = fair shares',{size:27,anchor:'middle',weight:700})],
+   ex:[['m','3 rows with 4 in each row: 3 **equal groups** of 4.'],['me','**3 × 4 = 12**. Times means equal groups.'],['p0','Now share 12 counters fairly between 3 plates.'],['se','Each plate gets 4: **12 ÷ 3 = 4**. Divide means fair sharing.'],['t','Times and divide undo each other: 3 × 4 = 12, so 12 ÷ 3 = 4.']],
+   check:Q('Which picture shows 4 × 5?',['4 rows with 5 dots in each row','4 equal groups of 5 make 20.'],['4 dots and 5 dots side by side','wrong-op','That is 4 + 5: joining two groups.'],['20 dots shared onto 4 plates','wrong-op','That is 20 ÷ 4: sharing.'],['5 dots with 4 crossed out','wrong-op','That is 5 − 4: taking away.'])}],
+ ex:[{q:'A shop has 5 boxes. Each box holds 6 eggs. How many eggs are there?',acts:[DOTS('e',640,170,5,6,40,'accent2')],cx:300,maxW:520,lines:[['5 equal groups of 6','"Each box holds 6": equal groups, so multiply.'],['5 × 6','Write the sum.'],['= 30 eggs','5 rows of 6 dots: 30.']]},
+  {q:'24 sweets are shared equally among 4 children. How many does each child get?',acts:[...[[640,200],[820,200],[640,340],[820,340]].flatMap(([x,y],i)=>[D('p'+i,{kind:'ellipse',cx:x,cy:y,rx:72,ry:48},{ink:'muted',dur:250}),DOTS('d'+i,x-30,y-15,2,3,30,'accent',8)])],cx:300,maxW:520,lines:[['Shared equally → divide','"Shared equally" tells you to divide.'],['24 ÷ 4','Write the sum.'],['= 6 each','Check: 4 × 6 = 24.']]},
+  {q:'Sara had Rs 50. She spent Rs 18. How much does she have left?',lines:[['"Left" → take away','"Left" tells you to subtract.'],['50 − 18','Write the sum.'],['= Rs 32','Check: 32 + 18 = 50.']]}],
+ mis:{wrong:['8 − 3 = 3 − 8','12 ÷ 3 = 3 ÷ 12'],right:['3 + 8 = 8 + 3','3 × 4 = 4 × 3'],why:'You can swap the numbers in + and ×, but not in − and ÷.',ex:['A common mistake: thinking the order never matters.','For adding and times, the order does not matter: 3 rows of 4 is the same as 4 rows of 3.','For taking away and sharing it does: 8 − 3 = 5, but 3 − 8 = −5.']},
+ rules:['Add (+): join groups together.','Take away (−): remove some.','Times (×): equal groups.','Divide (÷): share fairly into equal groups.'],sumLine:'3 × 4 = 12, so 12 ÷ 3 = 4',
+ prac:[Q('A bus has 9 rows with 4 seats in each row. How many seats?',['36','9 equal rows of 4: 9 × 4 = 36.'],['13','wrong-op','9 + 4 joins two numbers, but the rows are equal groups.'],['5','wrong-op','9 − 4 takes away; nothing is taken away here.'],['94','place-value','That just writes 9 and 4 side by side.']),
+  Q('35 pencils are shared equally among 5 students. How many does each get?',['7','35 ÷ 5 = 7. Check: 5 × 7 = 35.'],['30','wrong-op','35 − 5 takes away only 5 pencils.'],['40','wrong-op','35 + 5 adds; sharing means divide.'],['175','wrong-op','35 × 5 makes more, but sharing gives each person less.']),
+  Q('Which one is NOT true?',['10 − 4 = 4 − 10','Taking away depends on order: 10 − 4 = 6, but 4 − 10 = −6.'],['6 + 9 = 9 + 6','misread','This is true: adding works in any order.'],['5 × 7 = 7 × 5','misread','This is true: 5 rows of 7 = 7 rows of 5.'],['20 ÷ 4 = 5','misread','This is true: 4 × 5 = 20.'])]}));
+
+/* ===== Phase 1: Number ===== */
+SPECS.push(()=>({id:'num-place',ph:'p1',title:'Place value: what each digit is worth',
+ sum:'A digit is worth more the further left it sits: each place is 10 times the one on its right.',obj:['Read the value of each digit.','Write numbers in expanded form.','Compare and round whole numbers.'],
+ pics:[{title:'Each place is worth 10 times more',acts:[...TABLE('t',180,90,[150,150,150,150],64,[['Th','H','T','O'],['4','7','2','8']],{size:30}),
+   ...LABELS('v',[[255,268,'4000'],[405,268,'700'],[555,268,'20'],[705,268,'8']],{size:26,ink:'accent'}),
+   ...LN('e',480,350,'4000 + 700 + 20 + 8 = 4,728',{ink:'accent2'}),W('r',480,450,'One place to the left = 10 times bigger.',{size:27,anchor:'middle'}),W('r2',480,515,'Th = thousands, H = hundreds, T = tens, O = ones',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['t','Write the number in **place-value columns**: thousands, hundreds, tens, ones.'],['v','The 4 is in the thousands place, so it means **4000**. The 7 means 700, the 2 means 20, the 8 means 8.'],['e','Add the parts back together: this is the **expanded form**.'],['r','Each place is worth **10 times** the place on its right.']],
+   check:Q('What is the value of the 6 in 3,629?',['600','The 6 is in the hundreds place.'],['6','place-value','6 alone would be in the ones place.'],['60','place-value','The tens digit is the 2.'],['6000','place-value','The thousands digit is the 3.'])}],
+ ex:[{q:'Which is bigger: 5,099 or 5,201?',lines:[['Both have 4 digits','First count the digits. More digits means bigger.'],['Thousands: 5 and 5, the same','Compare from the left.'],['Hundreds: 0 and 2, and 2 is bigger','The first place that is different decides.'],['5,201 > 5,099','']]},
+  {q:'Write 30,000 + 400 + 6 as one number.',lines:[['3 ten-thousands, 0 thousands, 4 hundreds, 0 tens, 6 ones','Fill every place, and use 0 for an empty place.'],['30,406','The zeros keep the other digits in the right places.']]},
+  {q:'Round 4,762 to the nearest hundred.',lines:[['4,762 is between 4,700 and 4,800','Find the two hundreds it sits between.'],['Look at the tens digit: 6','The digit just to the right decides.'],['6 is 5 or more, so round up','5 or more goes up; 4 or less stays.'],['4,800','']]}],
+ mis:{wrong:['30,000 + 400 + 6 = 3,046'],right:['30,000 + 400 + 6 = 30,406'],why:'An empty place still needs a 0, or every digit slides into the wrong place.',ex:['A common mistake: leaving out the zeros.','The right way: write a 0 for the empty thousands and tens.','Without the zeros, 30,000 shrinks to 3,000 and 400 to 40.']},
+ rules:['Each place is worth 10 times the place to its right.','Ones, tens, hundreds, thousands, ten-thousands…','Use 0 to hold an empty place.','Compare numbers from the left.'],sumLine:'4,728 = 4000 + 700 + 20 + 8',
+ prac:[Q('What is 7,000 + 50 + 3?',['7,053','7 thousands, 0 hundreds, 5 tens, 3 ones.'],['753','place-value','The empty hundreds place needs a 0.'],['7,503','place-value','50 is 5 tens, not 5 hundreds.'],['70,053','place-value','There are only 7 thousands, not 70.']),
+  Q('Which number is the smallest?',['40,099','All have 5 digits; 40,099 has the smallest digit in the thousands place.'],['40,909','place-value','Compare the thousands: 0 and 0, then hundreds: 9 is bigger than 0.'],['41,000','place-value','41,000 has 1 thousand more.'],['40,990','place-value','Hundreds: 9 is bigger than 0.']),
+  Q('Round 15,349 to the nearest thousand.',['15,000','Look at the hundreds digit: 3, which is less than 5, so round down.'],['16,000','rounding','The hundreds digit 3 means round down.'],['15,300','rounding','That is rounding to the nearest hundred.'],['15,350','rounding','That is rounding to the nearest ten.'])]}));
+
+SPECS.push(()=>{const C={H:420,T:490,O:560},dig=(id,col,y,t,o={})=>W(id,C[col],y,t,{size:o.size||40,anchor:'middle',ink:o.ink||'main',dur:o.dur||350,sync:o.sync});return {id:'num-addsub',ph:'p1',title:'Adding and taking away in columns',
+ sum:'Line up the places, start from the ones, carry when a column reaches 10, borrow when the top is too small.',obj:['Add big numbers in columns, carrying when needed.','Take away in columns, borrowing when needed.','Check an answer by doing the opposite sum.'],
+ pics:[{title:'Adding with carrying: 487 + 256',acts:[dig('a1','H',170,'4'),dig('a2','T',170,'8',{sync:true}),dig('a3','O',170,'7',{sync:true}),W('pl',340,240,'+',{size:40,anchor:'middle'}),dig('b1','H',240,'2'),dig('b2','T',240,'5',{sync:true}),dig('b3','O',240,'6',{sync:true}),
+   D('ln',{kind:'line',x1:330,y1:262,x2:600,y2:262},{dur:300}),dig('o','O',320,'3',{ink:'accent2'}),dig('c1','T',120,'1',{size:24,ink:'trouble'}),dig('t','T',320,'4',{ink:'accent2'}),dig('c2','H',120,'1',{size:24,ink:'trouble'}),dig('h','H',320,'7',{ink:'accent2'}),
+   W('n1',690,170,'ones: 7 + 6 = 13',{size:24,ink:'muted'}),W('n2',690,215,'tens: 8 + 5 + 1 = 14',{size:24,ink:'muted'}),W('n3',690,260,'hundreds: 4 + 2 + 1 = 7',{size:24,ink:'muted'}),
+   W('r',480,430,'13 ones = 1 ten and 3 ones: write 3, carry the 1.',{size:26,anchor:'middle'}),...LN('e',480,505,'487 + 256 = 743',{ink:'accent2'})],
+   ex:[['a1','Write the numbers one under the other: hundreds under hundreds, tens under tens, ones under ones.'],['o','Start with the **ones**: 7 + 6 = 13. Write **3**…'],['c1','…and **carry the 1** to the tens. 13 ones is 1 ten and 3 ones.'],['t','Tens: 8 + 5 + the carried 1 = 14. Write 4, carry 1.'],['h','Hundreds: 4 + 2 + 1 = 7.'],['e','So **487 + 256 = 743**.']]},
+  {title:'Taking away with borrowing: 503 − 178',acts:[dig('a1','H',190,'5'),dig('a2','T',190,'0',{sync:true}),dig('a3','O',190,'3',{sync:true}),W('mi',340,260,'−',{size:40,anchor:'middle'}),dig('b1','H',260,'1'),dig('b2','T',260,'7',{sync:true}),dig('b3','O',260,'8',{sync:true}),
+   D('ln',{kind:'line',x1:330,y1:282,x2:600,y2:282},{dur:300}),D('x',{kind:'lines',segs:[[400,198,440,168],[470,198,510,168],[545,198,575,168]]},{ink:'trouble',sw:2.4,dur:400}),
+   dig('n1','H',140,'4',{size:24,ink:'trouble'}),dig('n2','T',140,'9',{size:24,ink:'trouble',sync:true}),dig('n3','O',140,'13',{size:24,ink:'trouble',sync:true}),
+   dig('o','O',340,'5',{ink:'accent2'}),dig('t','T',340,'2',{ink:'accent2'}),dig('h','H',340,'3',{ink:'accent2'}),
+   W('r',480,440,'3 − 8 will not go: borrow from the left.',{size:26,anchor:'middle'}),...LN('e',480,510,'503 − 178 = 325',{ink:'accent2'})],
+   ex:[['a1','Line up the places again.'],['x','Ones: 3 − 8 will not go. The tens has 0, so borrow from the hundreds.'],['n1','5 hundreds become 4; the tens become 10, then lend 1 to the ones, leaving 9; the ones become **13**.'],['o','Ones: 13 − 8 = 5.'],['t','Tens: 9 − 7 = 2.'],['h','Hundreds: 4 − 1 = 3.'],['e','So **503 − 178 = 325**. Check: 325 + 178 = 503.']]}],
+ ex:[{q:'3,658 + 1,476',lines:[['Ones: 8 + 6 = 14, write 4, carry 1'],['Tens: 5 + 7 + 1 = 13, write 3, carry 1'],['Hundreds: 6 + 4 + 1 = 11, write 1, carry 1'],['Thousands: 3 + 1 + 1 = 5'],['= 5,134','']],say:'**Question:** add 3,658 and 1,476 in columns.'},
+  {q:'7,000 − 2,345',lines:[['0 − 5 will not go: borrow through the zeros'],['7,000 = 6 thousands, 9 hundreds, 9 tens, 10 ones'],['Ones 10 − 5 = 5,  tens 9 − 4 = 5'],['Hundreds 9 − 3 = 6,  thousands 6 − 2 = 4'],['= 4,655','Check: 4,655 + 2,345 = 7,000.']]},
+  {q:'A school has 1,248 boys and 1,375 girls. How many students in all, and how many more girls than boys?',lines:[['In all → add: 1,248 + 1,375 = 2,623','"In all" means add.'],['More than → take away: 1,375 − 1,248 = 127','"How many more" means take away.'],['2,623 students; 127 more girls','']]}],
+ mis:{wrong:['52 − 18 = 46'],right:['52 − 18 = 34'],why:'Always take the bottom digit from the top. If the top is smaller, borrow; never just swap them.',ex:['A common mistake: in the ones it does 8 − 2 instead of 2 − 8.','The right way: borrow a ten, so 12 − 8 = 4, then 4 − 1 = 3.','Check by adding back: 34 + 18 = 52.']},
+ rules:['Line up ones under ones, tens under tens.','Start from the right (the ones).','10 or more in a column: write the ones digit, carry 1.','Top digit too small: borrow 1 from the left.'],sumLine:'487 + 256 = 743',
+ prac:[Q('4,508 + 2,694',['7,202','8 + 4 = 12, carry; 0 + 9 + 1 = 10, carry; 5 + 6 + 1 = 12, carry; 4 + 2 + 1 = 7.'],['6,102','carry','The carries were forgotten.'],['7,192','carry','A carry into the tens was missed.'],['6,202','carry','The last carry into the thousands was forgotten.']),
+  Q('602 − 357',['245','Borrow through the 0: 12 − 7 = 5, 9 − 5 = 4, 5 − 3 = 2.'],['355','carry','That takes the smaller digit from the bigger in each column.'],['345','carry','After borrowing, the 6 hundreds become 5.'],['255','carry','After borrowing, the tens are 9 − 5 = 4.']),
+  Q('A shop had 1,200 bags of rice. It sold 465. How many are left?',['735','1,200 − 465 = 735. Check: 735 + 465 = 1,200.'],['1,665','wrong-op','"Left" means take away, not add.'],['845','carry','The borrowing went wrong.'],['765','carry','Check the tens column again.'])]}});
+
+SPECS.push(()=>{const X=220,Y=110,w1=400,w2=60,h1=220,h2=88;return {id:'num-mul',ph:'p1',title:'Multiplying bigger numbers',
+ sum:'Split a number into tens and ones, multiply each part, then add the parts.',obj:['See multiplication as a rectangle of equal rows.','Multiply 2-digit numbers by splitting them.','Use multiplying in word problems.'],
+ pics:[{title:'23 × 14 as a rectangle',acts:[D('r',{kind:'rect',x:X,y:Y,w:w1+w2,h:h1+h2},{dur:700}),D('c',{kind:'lines',segs:[[X+w1,Y,X+w1,Y+h1+h2],[X,Y+h1,X+w1+w2,Y+h1]]},{sw:2.4,dur:500}),
+   ...LABELS('top',[[X+w1/2,Y-14,'20'],[X+w1+w2/2,Y-14,'3']],{ink:'accent'}),...LABELS('side',[[X-30,Y+h1/2+8,'10'],[X-30,Y+h1+h2/2+8,'4']],{ink:'accent'}),
+   W('p1',X+w1/2,Y+h1/2+12,'20 × 10 = 200',{size:28,anchor:'middle'}),W('p2',X+w1+w2/2,Y+h1/2+10,'30',{size:24,anchor:'middle'}),W('p3',X+w1/2,Y+h1+h2/2+10,'20 × 4 = 80',{size:26,anchor:'middle'}),W('p4',X+w1+w2/2,Y+h1+h2/2+10,'12',{size:24,anchor:'middle'}),
+   ...LN('e',480,500,'200 + 30 + 80 + 12 = 322',{ink:'accent2'})],
+   ex:[['r','23 × 14 means 14 rows of 23. Draw it as a rectangle 23 wide and 14 tall.'],['c','Split 23 into **20 + 3** and 14 into **10 + 4**.'],['p1','Big piece: 20 × 10 = 200.'],['p2','3 × 10 = 30.'],['p3','20 × 4 = 80.'],['p4','3 × 4 = 12.'],['e','Add all four pieces: **23 × 14 = 322**.']]}],
+ ex:[{q:'36 × 7',lines:[['36 = 30 + 6','Split into tens and ones.'],['30 × 7 = 210'],['6 × 7 = 42'],['210 + 42 = 252','']]},
+  {q:'45 × 12',lines:[['12 = 10 + 2'],['45 × 10 = 450','Times 10: put a 0 on the end.'],['45 × 2 = 90'],['450 + 90 = 540','']]},
+  {q:'A train has 12 coaches with 72 seats in each. How many seats are there?',lines:[['12 equal groups of 72 → 12 × 72','"In each": equal groups.'],['10 × 72 = 720'],['2 × 72 = 144'],['720 + 144 = 864 seats','']]}],
+ mis:{wrong:['23 × 14 = 20 × 10 + 3 × 4','= 212'],right:['200 + 30 + 80 + 12','= 322'],why:'Every part must multiply every part: the rectangle has four pieces, not two.',ex:['A common mistake: multiplying only tens by tens and ones by ones.','The right way: all four pieces of the rectangle.','The two middle pieces, 30 and 80, were missing from the wrong answer.']},
+ rules:['× means equal groups: 4 × 3 = 4 groups of 3.','Split a number into tens and ones.','Multiply every part, then add.','Know your tables up to 12 × 12.'],sumLine:'23 × 14 = 322',
+ prac:[Q('15 × 6',['90','10 × 6 = 60 and 5 × 6 = 30, so 90.'],['65','multiply-op','You added the 5 instead of multiplying it: 5 × 6 = 30.'],['21','wrong-op','15 + 6 adds.'],['96','multiply-op','10 × 6 = 60 and 5 × 6 = 30, which make 90.']),
+  Q('25 × 4',['100','4 groups of 25 = 100, like four Rs 25 coins making Rs 100.'],['29','wrong-op','That is 25 + 4.'],['80','multiply-op','20 × 4 = 80, but 5 × 4 = 20 is missing.'],['104','multiply-op','25 × 4 is exactly 100.']),
+  Q('A box holds 24 eggs. How many eggs are in 15 boxes?',['360','24 × 15 = 24 × 10 + 24 × 5 = 240 + 120 = 360.'],['39','wrong-op','24 + 15 adds.'],['240','multiply-op','That is only 10 boxes.'],['120','multiply-op','That is only 5 boxes.'])]}});
+
+SPECS.push(()=>({id:'num-div',ph:'p1',title:'Dividing and remainders',
+ sum:'Divide by sharing into equal groups. What is left over is the remainder, and it is always smaller than the divisor.',obj:['Divide by finding the biggest multiple that fits.','Find and check the remainder.','Decide what to do with a remainder in a word problem.'],
+ pics:[{title:'14 sweets shared by 3 children',acts:[...[220,480,740].flatMap((cx,i)=>[D('p'+i,{kind:'ellipse',cx,cy:200,rx:80,ry:55},{ink:'muted',dur:250}),DOTS('d'+i,cx-18,182,2,2,36,'accent',10)]),
+   DOTS('left',462,320,1,2,36,'trouble',10),W('lt',480,375,'2 left over',{size:24,anchor:'middle',ink:'trouble'}),
+   ...LN('e',480,450,'14 ÷ 3 = 4 remainder 2',{ink:'accent2'}),...LN('c',480,520,'check: 3 × 4 + 2 = 14',{size:28,ink:'muted'})],
+   ex:[['p0','Share 14 sweets fairly between 3 children. Give one each, again and again.'],['d0','Each child gets 4. That uses 3 × 4 = 12 sweets.'],['left','2 sweets are left over: not enough for another round.'],['e','So **14 ÷ 3 = 4 remainder 2**.'],['c','Check: 3 × 4 + 2 = 14. The **remainder** is always smaller than 3.']]}],
+ ex:[{q:'47 ÷ 5',lines:[['5 × 9 = 45 is the biggest that fits','5 × 10 = 50 is too big.'],['47 − 45 = 2 left over'],['47 ÷ 5 = 9 remainder 2','']]},
+  {q:'156 ÷ 12',lines:[['12 × 10 = 120, and 156 − 120 = 36','Take out a big easy chunk first.'],['12 × 3 = 36','Then the rest.'],['10 + 3 = 13, nothing left over'],['156 ÷ 12 = 13','Check: 12 × 13 = 156.']]},
+  {q:'100 students go on buses that each hold 30. How many buses are needed?',lines:[['100 ÷ 30 = 3 remainder 10'],['10 students still need a seat','Does the answer make sense? Nobody can be left behind.'],['So 4 buses','Here we round up because of the remainder.']]}],
+ mis:{wrong:['47 ÷ 5 = 8 remainder 7'],right:['47 ÷ 5 = 9 remainder 2'],why:'A remainder must be smaller than the number you divide by. If it is not, one more group fits.',ex:['A common mistake: stopping too early.','The right way: 7 left over is enough for another 5, so the answer is 9 remainder 2.','Always check the remainder is smaller than the divisor.']},
+ rules:['÷ means share into equal groups.','Find the biggest multiple that fits.','What is left is the remainder: smaller than the divisor.','Check: divisor × answer + remainder = the number.'],sumLine:'14 ÷ 3 = 4 remainder 2',
+ prac:[Q('58 ÷ 7',['8 remainder 2','7 × 8 = 56, and 58 − 56 = 2.'],['7 remainder 9','remainder','A remainder of 9 is bigger than 7, so one more 7 fits.'],['8','remainder','There are 2 left over.'],['9 remainder 5','remainder','7 × 9 = 63 is more than 58.']),
+  Q('A rope 75 m long is cut into pieces of 8 m. How many full pieces are there?',['9','8 × 9 = 72; the last 3 m is too short for another piece.'],['10','remainder','10 pieces would need 80 m.'],['3','remainder','3 m is what is left over, not the number of pieces.'],['67','wrong-op','75 − 8 takes away just one piece.']),
+  Q('Which number gives 6 remainder 4 when divided by 9?',['58','9 × 6 + 4 = 54 + 4 = 58.'],['50','remainder','9 × 6 is 54, not 50.'],['54','remainder','You forgot to add the remainder 4.'],['19','wrong-op','That adds 9 + 6 + 4.'])]}));
+
+SPECS.push(()=>{const box=(id,y,t,ink)=>[D(id+'.b',{kind:'rect',x:250,y,w:460,h:62},{ink,fill:ink,fillOp:.12,dur:350}),W(id+'.t',480,y+42,t,{size:28,anchor:'middle',ink,dur:350})];return {id:'num-bodmas',ph:'p1',title:'BODMAS: which part first?',
+ sum:'Brackets, Orders, Divide and Multiply, Add and Subtract: always in this order.',obj:['Know the order of operations.','Work out × and ÷ (or + and −) from left to right.','Avoid the most common BODMAS traps.'],
+ pics:[{title:'The order, from first to last',acts:[...box('b',60,'1. Brackets ( )','trouble'),...box('o',140,'2. Orders: powers like 5²','accent'),...box('dm',220,'3. Divide and Multiply (left → right)','accent2'),...box('as',300,'4. Add and Subtract (left → right)','muted'),
+   ...LN('e',480,440,'8 + 2 × 3 = 8 + 6 = 14',{ink:'accent2'}),W('n',480,520,'not (8 + 2) × 3 = 30',{size:26,anchor:'middle',ink:'trouble'})],
+   ex:[['b','Everyone must get the same answer, so we always work in the same order. First: **brackets**.'],['o','Then **orders**: powers like 5² = 5 × 5.'],['dm','Then **divide and multiply**, working from left to right.'],['as','Last, **add and subtract**, from left to right.'],['e','So 8 + 2 × 3: multiply first, 2 × 3 = 6, then 8 + 6 = **14**.'],['n','Adding first gives 30, which is wrong.']]}],
+ ex:[{q:'(4 + 6) × 2 − 5',lines:[['Brackets: 4 + 6 = 10'],['10 × 2 − 5'],['Multiply: 10 × 2 = 20'],['20 − 5 = 15','']]},
+  {q:'18 ÷ 3 × 2',lines:[['÷ and × have the same rank','Neither one is "more important".'],['Left to right: 18 ÷ 3 = 6'],['6 × 2 = 12','Not 18 ÷ 6 = 3.']]},
+  {q:'5² − 3 × 4',lines:[['Orders: 5² = 5 × 5 = 25'],['Multiply: 3 × 4 = 12'],['25 − 12 = 13','']]}],
+ mis:{wrong:['8 + 2 × 3','= 10 × 3 = 30'],right:['8 + 2 × 3','= 8 + 6 = 14'],why:'Multiplying comes before adding, even when it is written later in the line.',ex:['A common mistake: working simply from left to right.','The right way: do the × first.','Brackets are the only way to make the adding happen first: (8 + 2) × 3 = 30.']},
+ rules:['Brackets first.','Then orders (powers and roots).','Then × and ÷, left to right.','Then + and −, left to right.'],sumLine:'8 + 2 × 3 = 14',
+ prac:[Q('20 − 4 × 3',['8','4 × 3 = 12 first, then 20 − 12 = 8.'],['48','order-ops','That takes away first: (20 − 4) × 3.'],['−12','order-ops','Check the last step: 20 − 12 = 8.'],['32','order-ops','That adds the 12 instead of taking it away.']),
+  Q('(3 + 5)²',['64','Brackets: 8. Then 8² = 8 × 8 = 64.'],['34','order-ops','3² + 5² = 9 + 25 ignores the brackets.'],['16','order-ops','8 × 2 = 16, but ² means 8 × 8.'],['28','order-ops','3 + 5² = 28 ignores the brackets.']),
+  Q('36 ÷ 6 × 3',['18','Left to right: 36 ÷ 6 = 6, then 6 × 3 = 18.'],['2','order-ops','That does 6 × 3 first, but × and ÷ go left to right.'],['12','order-ops','Check: 6 × 3 = 18.'],['108','order-ops','36 × 3 ignores the ÷ 6.'])]}});
+
+SPECS.push(()=>{const B=NL('nl',80,200,800,-6,6);return {id:'num-neg',ph:'p1',title:'Minus numbers: adding, taking away and times',
+ sum:'Use the number line for + and −, and the sign rule for × and ÷.',obj:['Add and take away with minus numbers.','Understand why taking away a minus adds.','Multiply and divide with signs.'],
+ pics:[{title:'Moving on the number line',acts:[...B.acts,...JUMP('j1',B.X(-2),B.X(3),200,'+5','accent2'),...JUMP('j2',B.X(1),B.X(-3),200,'−4','trouble',true),
+   ...LN('e1',300,420,'−2 + 5 = 3',{ink:'accent2',maxW:400}),...LN('e2',680,420,'1 − 4 = −3',{ink:'trouble',maxW:400}),W('r',480,520,'5 − (−3) = 5 + 3 = 8: taking away a minus adds.',{size:26,anchor:'middle'})],
+   ex:[['nl','The number line with minus numbers.'],['j1','−2 + 5: start at −2, jump 5 right. Land on **3**.'],['j2','1 − 4: start at 1, jump 4 left. Land on **−3**.'],['r','Taking away a minus is like **adding**: if a debt of Rs 3 is taken away, you are Rs 3 richer.']]},
+  {title:'Signs when multiplying',acts:[...TABLE('t',90,110,[110,110,110],66,[['×','+','−'],['+','+','−'],['−','−','+']],{size:32}),
+   ...LN('a',700,150,'(−3) × (−4) = 12',{maxW:440,ink:'accent2'}),...LN('b',700,240,'(−3) × 4 = −12',{maxW:440,ink:'trouble'}),...LN('c',700,330,'(−12) ÷ 3 = −4',{maxW:440,ink:'trouble'}),
+   W('r',480,480,'Same signs → plus.   Different signs → minus.',{size:28,anchor:'middle',weight:700})],
+   ex:[['t','The sign table for × and ÷.'],['a','Two minus signs: the answer is **plus**. (−3) × (−4) = 12.'],['b','One minus sign: the answer is **minus**.'],['c','The same rule works for dividing.'],['r','**Same signs → plus. Different signs → minus.**']],
+   check:Q('(−5) × (−6) = ?',['30','Same signs give plus: 5 × 6 = 30.'],['−30','sign','Two minus signs make a plus.'],['−11','wrong-op','That adds −5 and −6.'],['11','wrong-op','That adds, and the question multiplies.'])}],
+ ex:[{q:'−7 + 10',lines:[['Start at −7, move 10 right'],['−7 → 0 is 7 steps, 3 more steps → 3'],['= 3','']]},
+  {q:'5 − (−3)',lines:[['Taking away a minus is adding'],['5 + 3'],['= 8','']]},
+  {q:'(−6) × (−5)',lines:[['Same signs → plus'],['6 × 5 = 30'],['= 30','']]}],
+ mis:{wrong:['−3 − 4 = 1'],right:['−3 − 4 = −7'],why:'Taking away moves left. From −3, four steps left lands on −7.',ex:['A common mistake: doing 4 − 3 and ignoring the signs.','The right way: start at −3 and move 4 to the left.','It is like owing Rs 3 and then owing Rs 4 more: you owe Rs 7.']},
+ rules:['Left of 0 are minus numbers; further left is smaller.','Adding moves right; taking away moves left.','Taking away a minus = adding: 5 − (−3) = 8.','× or ÷: same signs → plus; different signs → minus.'],sumLine:'(−3) × (−4) = 12',
+ prac:[Q('−8 + 3',['−5','From −8, 3 steps right: −5.'],['5','sign','Too far: 5 is to the right of 0.'],['−11','sign','That moved left instead of right.'],['11','sign','8 + 3 = 11 ignores the minus.']),
+  Q('(−4) × 7',['−28','Different signs give minus: 4 × 7 = 28, so −28.'],['28','sign','Different signs give a minus.'],['3','wrong-op','That adds −4 and 7.'],['−11','wrong-op','That adds −4 and −7.']),
+  Q('3 − 9',['−6','From 3, 9 steps left: −6.'],['6','sign','9 − 3 = 6 is the other way round.'],['12','wrong-op','That adds.'],['−12','sign','Too far left.'])]}});
+
+SPECS.push(()=>({id:'num-factors',ph:'p1',title:'Factors, multiples and primes',
+ sum:'Factors go into a number exactly. Multiples are in its times table. Primes have exactly two factors.',obj:['Find all the factors of a number.','Tell factors from multiples.','Spot prime numbers and use divisibility tests.'],
+ pics:[{title:'12 counters in rectangles',acts:[DOTS('a',80,110,1,12,34,'accent'),W('al',560,120,'1 × 12',{size:28}),DOTS('b',80,190,2,6,34,'accent2'),W('bl',560,215,'2 × 6',{size:28}),DOTS('c',80,290,3,4,34,'trouble'),W('cl',560,330,'3 × 4',{size:28}),
+   W('f',480,450,'Factors of 12:  1, 2, 3, 4, 6, 12',{size:30,anchor:'middle',ink:'accent',weight:700}),W('m',480,515,'Multiples of 12:  12, 24, 36, 48 …',{size:28,anchor:'middle',ink:'accent2'})],
+   ex:[['a','12 counters can make 1 row of 12…'],['b','…or 2 rows of 6…'],['c','…or 3 rows of 4.'],['f','The side lengths are the **factors** of 12: 1, 2, 3, 4, 6, 12. They go into 12 exactly.'],['m','The **multiples** of 12 are its times table: 12, 24, 36 … They are made from 12.']]},
+  {title:'Prime numbers',acts:[DOTS('p',80,140,1,7,40,'accent'),W('pl',420,152,'7 = 1 × 7 only: prime',{size:28,ink:'accent2'}),DOTS('q',80,230,2,4,40,'muted'),W('ql',420,262,'8 = 2 × 4: not prime',{size:28,ink:'trouble'}),
+   W('list',480,400,'Primes: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 …',{size:28,anchor:'middle',weight:700}),W('n',480,470,'1 is not prime. 2 is the only even prime.',{size:26,anchor:'middle',ink:'muted'})],
+   ex:[['p','7 counters can only make one row. 7 has just two factors, 1 and 7: it is **prime**.'],['q','8 can make a rectangle, 2 × 4, so 8 is **not prime**.'],['list','The first primes. Learn them.'],['n','**1 is not prime**: it has only one factor. **2** is the only even prime.']],
+   check:Q('Which of these is prime?',['13','Only 1 × 13 makes 13.'],['15','factor-multiple','15 = 3 × 5.'],['21','factor-multiple','21 = 3 × 7.'],['1','factor-multiple','1 has only one factor, so it is not prime.'])}],
+ ex:[{q:'Find all the factors of 36.',lines:[['Find pairs that multiply to 36','Stop when the pairs start repeating.'],['1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6'],['1, 2, 3, 4, 6, 9, 12, 18, 36','']]},
+  {q:'Is 91 a prime number?',lines:[['Try 2: no (odd). 3: 9 + 1 = 10, no. 5: no','Test small primes one by one.'],['Try 7: 7 × 13 = 91, yes'],['91 is not prime','It has factors 7 and 13.']]},
+  {q:'Is 3,456 divisible by 9?',lines:[['Add the digits: 3 + 4 + 5 + 6 = 18','The test for 9: the digit sum must divide by 9.'],['18 divides by 9'],['Yes: 3,456 ÷ 9 = 384','']]}],
+ mis:{wrong:['Factors of 6:','6, 12, 18'],right:['Factors of 6: 1, 2, 3, 6','Multiples of 6: 6, 12, 18'],why:'Factors go INTO a number, so they are small. Multiples come OUT of its times table, so they are big.',ex:['A common mistake: listing the times table when the question asks for factors.','The right way: factors divide 6 exactly; multiples are 6, 12, 18 …','Memory trick: Factors are Few and small; Multiples are Many and big.']},
+ rules:['A factor divides a number exactly.','A multiple is in its times table.','A prime has exactly two factors: 1 and itself.','Digit sum divides by 3 (or 9) → so does the number.'],sumLine:'Factors of 12: 1, 2, 3, 4, 6, 12',
+ prac:[Q('Which is a multiple of 7?',['63','7 × 9 = 63.'],['17','factor-multiple','17 ÷ 7 leaves 3.'],['27','factor-multiple','27 ÷ 7 leaves 6.'],['47','factor-multiple','47 ÷ 7 leaves 5.']),
+  Q('How many factors does 18 have?',['6','1, 2, 3, 6, 9, 18.'],['4','factor-multiple','Some are missing: 1 × 18, 2 × 9 and 3 × 6 give six factors.'],['3','factor-multiple','Each pair gives two factors.'],['18','factor-multiple','18 is the number itself, not the count of its factors.']),
+  Q('Is 2,145 divisible by 3?',['Yes','Digit sum 2 + 1 + 4 + 5 = 12, and 12 divides by 3.'],['No','factor-multiple','Add the digits: 12 divides by 3, so 2,145 does too.'],['Only by 5','factor-multiple','It ends in 5 so it divides by 5, but its digit sum shows it divides by 3 too.'],['You cannot tell without dividing','factor-multiple','The digit-sum test tells you quickly.'])]}));
+
+SPECS.push(()=>({id:'num-hcf-lcm',ph:'p1',title:'HCF and LCM',
+ sum:'HCF is the biggest number that divides both. LCM is the smallest number both divide into.',obj:['Find the HCF and LCM by listing.','Know which one a word problem needs.','Check with HCF × LCM = the product.'],
+ pics:[{title:'Shared factors and shared multiples',acts:[...wseq('f12',60,130,['12:  1, 2, 3, 4, ','6',', 12'],{size:28}),...wseq('f18',60,190,['18:  1, 2, 3, ','6',', 9, 18'],{size:28}),HL('r1','f12.1','ring',{ink:'accent2'}),HL('r2','f18.1','ring',{ink:'accent2',sync:true}),
+   W('hcf',640,170,'HCF = 6',{size:36,ink:'accent2',weight:700}),
+   ...wseq('m4',60,320,['4:  4, 8, ','12',', 16, 20, 24'],{size:28}),...wseq('m6',60,380,['6:  6, ','12',', 18, 24'],{size:28}),HL('r3','m4.1','ring',{ink:'accent'}),HL('r4','m6.1','ring',{ink:'accent',sync:true}),
+   W('lcm',640,360,'LCM = 12',{size:36,ink:'accent',weight:700}),
+   W('t1',480,480,'HCF: the biggest that goes INTO both',{size:26,anchor:'middle',ink:'accent2'}),W('t2',480,535,'LCM: the first number BOTH go into',{size:26,anchor:'middle',ink:'accent'})],
+   ex:[['f12','List the factors of 12 and 18.'],['r1','The biggest factor they share is 6.'],['hcf','So the **HCF** (highest common factor) of 12 and 18 is **6**.'],['m4','List the multiples of 4 and 6.'],['r3','The first multiple they share is 12.'],['lcm','So the **LCM** (lowest common multiple) of 4 and 6 is **12**.'],['t1','HCF goes **into** both numbers. LCM is what both numbers go **into**.']]}],
+ ex:[{q:'Find the HCF and LCM of 8 and 12.',lines:[['Factors of 8: 1, 2, 4, 8'],['Factors of 12: 1, 2, 3, 4, 6, 12, so HCF = 4'],['Multiples: 8, 16, 24 … and 12, 24 …, so LCM = 24'],['Check: 4 × 24 = 96 = 8 × 12','HCF × LCM equals the two numbers multiplied.']]},
+  {q:'Two bells ring every 6 and 8 minutes. They ring together at 9:00. When do they next ring together?',lines:[['"Together again" → LCM'],['6: 6, 12, 18, 24 …   8: 8, 16, 24 …'],['LCM = 24 minutes'],['At 9:24','']]},
+  {q:'A teacher has 24 pens and 36 pencils to put into equal packs with nothing left. What is the most packs she can make?',lines:[['"Biggest equal groups" → HCF'],['Shared factors: 1, 2, 3, 4, 6, 12'],['HCF = 12 packs, each with 2 pens and 3 pencils','']]}],
+ mis:{wrong:['Bells together → HCF'],right:['Bells together → LCM','Biggest equal packs → HCF'],why:'"Together again" needs a number both divide into (LCM). "Biggest equal groups" needs a number that divides both (HCF).',ex:['A common mistake: choosing HCF and LCM by guessing.','The right way: ask whether the answer must divide the numbers, or be divided by them.','Bells meet at a bigger time (LCM). Packs are a smaller number that fits into both (HCF).']},
+ rules:['HCF: the biggest number that divides both.','LCM: the smallest number both divide into.','Equal groups, sharing → HCF.','Happening together again → LCM.'],sumLine:'HCF(12, 18) = 6     LCM(4, 6) = 12',
+ prac:[Q('What is the HCF of 16 and 24?',['8','Factors of 16: 1, 2, 4, 8, 16. Of 24: 1, 2, 3, 4, 6, 8, 12, 24. The biggest shared one is 8.'],['4','hcf-lcm','4 is shared, but 8 is bigger and also shared.'],['48','hcf-lcm','48 is the LCM.'],['2','hcf-lcm','2 is shared, but not the highest.']),
+  Q('What is the LCM of 9 and 12?',['36','9: 9, 18, 27, 36. 12: 12, 24, 36. The first shared one is 36.'],['3','hcf-lcm','3 is the HCF.'],['108','hcf-lcm','9 × 12 = 108 is shared, but 36 comes first.'],['21','wrong-op','That adds 9 and 12.']),
+  Q('Two lights flash every 10 and 15 seconds. They flash together now. After how many seconds will they flash together again?',['30','LCM of 10 and 15: 10, 20, 30 and 15, 30. So 30 seconds.'],['5','hcf-lcm','5 is the HCF, which goes into both. We need a time both go into.'],['150','hcf-lcm','10 × 15 = 150 works, but they meet earlier, at 30.'],['25','wrong-op','That adds 10 and 15.'])]}));
+
+SPECS.push(()=>({id:'num-props',ph:'p1',title:'Even, odd, consecutive numbers and remainders',
+ sum:'Even numbers make pairs, odd numbers have one left over. Three numbers in a row add to three times the middle one.',obj:['Use even and odd rules.','Solve consecutive-number problems.','Find remainders without big division.'],
+ pics:[{title:'Even and odd as pairs',acts:[DOTS('e',100,140,2,4,46,'accent2'),W('el',400,175,'8: all in pairs → even',{size:28,ink:'accent2'}),DOTS('o',100,280,2,3,46,'accent'),DOT('x',238,280,'trouble',9),W('ol',400,315,'7: one left over → odd',{size:28,ink:'trouble'}),
+   W('r1',480,450,'odd + odd = even    even + odd = odd',{size:28,anchor:'middle',weight:700}),W('r2',480,515,'odd × odd = odd    anything × even = even',{size:26,anchor:'middle'})],
+   ex:[['e','8 counters make pairs with none left over: **even**.'],['o','7 counters: pairs, plus **one left over**. That is **odd**.'],['r1','Two odd numbers each have one left over. Put together, the two left-overs make a pair: **odd + odd = even**.'],['r2','Times: the answer is odd only if both numbers are odd.']]}],
+ ex:[{q:'Three consecutive whole numbers add up to 48. What are they?',lines:[['Call them n − 1, n and n + 1','"Consecutive" means one after another.'],['They add to 3n, so 3n = 48','The −1 and +1 cancel out.'],['n = 16'],['15, 16, 17','Check: 15 + 16 + 17 = 48.']]},
+  {q:'A number leaves a remainder of 5 when divided by 12. What is the remainder when it is divided by 4?',lines:[['The number = 12 × something + 5'],['12 × something divides exactly by 4','Because 12 is a multiple of 4.'],['So only the 5 matters: 5 ÷ 4 leaves 1'],['Remainder 1','Try it: 17 ÷ 4 = 4 remainder 1.']]},
+  {q:'Is odd × odd + even an even or an odd number?',lines:[['Test with small numbers: 3 × 5 + 4','Use 3 and 5 for odd, 4 for even.'],['15 + 4 = 19'],['Odd','']]}],
+ mis:{wrong:['odd + odd = odd'],right:['odd + odd = even','3 + 5 = 8'],why:'Each odd number has one left over. Put together, the two left-overs make a pair.',ex:['A common mistake: thinking odd plus odd stays odd.','The right way: test it, 3 + 5 = 8, which is even.','When unsure, test with small numbers.']},
+ rules:['Even numbers make pairs; odd numbers have one left over.','odd + odd = even; even + odd = odd.','Three in a row: total = 3 × the middle number.','Not sure? Test with small numbers.'],sumLine:'15 + 16 + 17 = 48 = 3 × 16',
+ prac:[Q('The sum of three consecutive numbers is 72. What is the largest?',['25','Middle = 72 ÷ 3 = 24, so the numbers are 23, 24, 25.'],['24','misread','24 is the middle number.'],['23','misread','23 is the smallest.'],['26','misread','Check: 24 + 25 + 26 = 75, not 72.']),
+  Q('Is even × odd + odd an even or an odd number?',['Odd','Test: 4 × 3 + 5 = 12 + 5 = 17, which is odd.'],['Even','sign','4 × 3 = 12 is even, but adding an odd 5 makes it odd.'],['It can be either','sign','The rules always give the same answer: test with any numbers.'],['Neither','misread','Every whole number is even or odd.']),
+  Q('A number leaves remainder 7 when divided by 10. What is its remainder when divided by 5?',['2','10 is a multiple of 5, so only the 7 matters: 7 ÷ 5 leaves 2.'],['7','remainder','A remainder must be smaller than 5.'],['3','remainder','Try 17: 17 ÷ 5 = 3 remainder 2.'],['0','remainder','Try 17 or 27: both leave 2.'])]}));
+
+/* ===== Phase 2: fractions, decimals, percentages and money ===== */
+SPECS.push(()=>({id:'frac-what',ph:'p2',title:'What a fraction is, and equal fractions',
+ sum:'A fraction is equal parts of one whole. Multiplying or dividing the top and bottom by the same number keeps its value.',obj:['Read the top and bottom of a fraction.','Make equivalent fractions and simplify.','Compare fractions and write mixed numbers.'],
+ pics:[{title:'One half, three ways',acts:[...fbar('a',100,90,560,60,2,{shade:[[0,1,'accent2']]}),...frac('fa',780,118,1,2,{size:36}),
+   ...fbar('b',100,200,560,60,4,{shade:[[0,2,'accent2']]}),...frac('fb',780,228,2,4,{size:36}),
+   ...fbar('c',100,310,560,60,8,{shade:[[0,4,'accent2']]}),...frac('fc',780,338,4,8,{size:36}),
+   W('r',480,470,'Same amount shaded: the fractions are equal.',{size:27,anchor:'middle'}),W('r2',480,530,'× or ÷ top and bottom by the same number',{size:26,anchor:'middle',ink:'accent'})],
+   ex:[['a','One whole bar, cut into 2 equal parts, 1 shaded: {1/2}.'],['b','The same bar cut into 4 parts: 2 shaded. {2/4}.'],['c','Cut into 8 parts: 4 shaded. {4/8}.'],['r','The shaded amount is exactly the same each time, so {1/2} = {2/4} = {4/8}. These are **equivalent fractions**.'],['r2','To make one: multiply (or divide) the top **and** the bottom by the same number.']],
+   check:Q('Which fraction is equal to {2/3}?',['{8/12}','Multiply top and bottom by 4.'],['{4/5}','frac-op','Adding 2 to the top and bottom changes the value.'],['{2/6}','frac-op','Only the bottom changed, so the pieces got smaller.'],['{3/2}','frac-op','That is upside down: more than one whole.'])}],
+ ex:[{q:'Simplify 18/24.',lines:[[[fr(18,24)],'Find the HCF of 18 and 24. It is 6.'],[['÷ 6 top and bottom'],'Divide both by the HCF.'],[[fr(18,24),'=',fr(3,4)],'']]},
+  {q:'Which is bigger: 3/5 or 2/3?',lines:[['Cross-multiply: 3 × 3 = 9 and 2 × 5 = 10','This is the same as giving both the bottom 15: {9/15} and {10/15}.'],['10 is bigger, so the second fraction is bigger'],[[fr(2,3),'>',fr(3,5)],'']]},
+  {q:'Write 7/4 as a mixed number.',lines:[['7 ÷ 4 = 1 remainder 3','How many wholes, and what is left?'],[[fr(7,4),'=','1',fr(3,4)],'One whole and three quarters.']]}],
+ mis:{wrong:[[fr(1,4),'>',fr(1,2)]],right:[[fr(1,2),'>',fr(1,4)]],why:'A bigger bottom number means the whole is cut into MORE pieces, so each piece is SMALLER.',ex:['A common mistake: thinking 4 is bigger than 2, so a quarter is bigger than a half.','The right way: a half is bigger than a quarter.','Share a roti between 2 people or between 4: you get more when there are only 2.']},
+ rules:['A fraction = equal parts of one whole.','Bottom: how many parts. Top: how many we take.','Same × or ÷ on top and bottom → same value.','Simplify by dividing by the HCF.'],sumLine:[fr(1,2),'=',fr(2,4),'=',fr(4,8)],
+ prac:[Q('Simplify {15/20}.',['{3/4}','Divide top and bottom by 5.'],['{5/10}','frac-op','Taking 10 away from top and bottom changes the value.'],['{1/5}','frac-op','15 ÷ 5 = 3, not 1.'],['{3/5}','frac-op','The bottom must be divided by 5 too: 20 ÷ 5 = 4.']),
+  Q('Which is the biggest?',['{3/4}','{3/4} = 0.75, {2/3} ≈ 0.67, {5/8} = 0.625 and {1/2} = 0.5.'],['{2/3}','frac-concept','{2/3} is a little less than {3/4}.'],['{5/8}','frac-concept','{5/8} = 0.625, less than {3/4}.'],['{1/2}','frac-concept','{1/2} is the smallest here.']),
+  Q('Write {11/3} as a mixed number.',['3 {2/3}','11 ÷ 3 = 3 remainder 2.'],['2 {3/11}','frac-op','Divide the top by the bottom: 11 ÷ 3.'],['3 {1/3}','remainder','3 × 3 = 9, and 11 − 9 = 2.'],['1 {1/3}','frac-op','11 thirds is more than 3 wholes.'])]}));
+
+SPECS.push(()=>({ref:'frac-add-unlike',ph:'p2'}));
+
+SPECS.push(()=>({id:'frac-muldiv',ph:'p2',title:'Multiplying and dividing fractions',
+ sum:'Multiply tops and bottoms. To divide, flip the second fraction and multiply.',obj:['Multiply fractions and see why it works.','Understand "of" as multiply.','Divide by a fraction using keep, change, flip.'],
+ pics:[{title:'Half of a third',acts:[...fbar('a',140,100,540,150,3,{shade:[[0,1,'accent']]}),D('h',{kind:'line',x1:140,y1:175,x2:680,y2:175},{ink:'trouble',sw:2.6,dur:500}),
+   shade('a.sm',140,100,540,75,3,0,1,'trouble'),...frac('fa',780,175,1,6,{size:40,ink:'trouble'}),
+   ...LN('e',480,360,[fr(1,2),'×',fr(1,3),'=',fr(1,6)],{ink:'accent2'}),W('r',480,470,'tops × tops, bottoms × bottoms',{size:28,anchor:'middle',weight:700}),W('r2',480,530,'"of" means ×: half of a third = 1/2 × 1/3',{size:25,anchor:'middle',ink:'muted'})],
+   ex:[['a','A bar cut into thirds, with one third shaded blue.'],['h','Now cut the whole bar in half the other way.'],['a.sm','Half of the blue third is the red piece. The bar now has 6 equal pieces, so the red piece is {1/6}.'],['e','So {1/2} × {1/3} = {1/6}: multiply the tops (1 × 1) and the bottoms (2 × 3).'],['r2','"Half **of** a third" means {1/2} **×** {1/3}.']]}],
+ ex:[{q:'2/3 × 3/5',lines:[[[fr(2,3),'×',fr(3,5),'=',fr(6,15)],'Tops: 2 × 3 = 6. Bottoms: 3 × 5 = 15.'],[[fr(6,15),'=',fr(2,5)],'Simplify: divide top and bottom by 3.']]},
+  {q:'3/4 ÷ 1/2',lines:[[[fr(3,4),'÷',fr(1,2),'=',fr(3,4),'×',fr(2,1)],'Keep the first, change ÷ to ×, flip the second.'],[['=',fr(6,4),'=','1',fr(1,2)],'Multiply, then make a mixed number.'],['How many halves fit in three quarters? One and a half.','It makes sense: the answer is bigger.']]},
+  {q:'A recipe needs 3/4 kg of sugar. How much is needed for half the recipe?',lines:[['Half of → × 1/2','"Of" means multiply.'],[[fr(1,2),'×',fr(3,4),'=',fr(3,8)],''],['3/8 kg of sugar','']]}],
+ mis:{wrong:[[fr(3,4),'÷',fr(1,2),'=',fr(3,8)]],right:[[fr(3,4),'÷',fr(1,2),'=',fr(3,2)]],why:'Dividing by a half asks how many halves fit, so the answer gets bigger. Flip the second fraction, then multiply.',ex:['A common mistake: multiplying instead of dividing.','The right way: keep, change, flip. {3/4} × {2/1} = {6/4} = {3/2}.','Check with the picture: one and a half halves fit in three quarters.']},
+ rules:['Multiply: tops × tops, bottoms × bottoms.','"Of" means ×: half of 1/3 = 1/2 × 1/3.','Divide: keep, change ÷ to ×, flip the second.','Simplify at the end.'],sumLine:[fr(1,2),'×',fr(1,3),'=',fr(1,6)],
+ prac:[Q('{2/5} × {5/6} = ?',['{1/3}','{10/30} simplifies to {1/3}.'],['{7/11}','frac-op','That adds tops and bottoms.'],['{10/11}','frac-op','Multiply the bottoms too: 5 × 6 = 30.'],['{12/25}','frac-op','That flips the second fraction, which is only for dividing.']),
+  Q('{2/3} ÷ {1/6} = ?',['4','{2/3} × {6/1} = {12/3} = 4. Four sixths fit in two thirds.'],['{1/9}','frac-op','That multiplies without flipping.'],['{2/18}','frac-op','Dividing by a small fraction makes the answer bigger.'],['{1/4}','frac-op','That is upside down.']),
+  Q('What is {3/4} of 20?',['15','{1/4} of 20 is 5, so {3/4} is 15.'],['{3/80}','frac-op','"Of" means multiply 20 by {3/4}.'],['80','frac-op','That multiplies by 4 instead of dividing.'],['5','frac-op','5 is only one quarter.'])]}));
+
+SPECS.push(()=>({id:'dec-round',ph:'p2',title:'Decimals and rounding',
+ sum:'Digits after the point are tenths, hundredths and thousandths. Line up points to add; count decimal places to multiply.',obj:['Read decimal place values.','Add, take away and multiply decimals.','Change fractions to decimals and round numbers.'],
+ pics:[{title:'Tenths and hundredths',acts:[...fbar('t',100,90,700,60,10,{shade:[[0,7,'accent']]}),W('tl',830,130,'0.7',{size:34,ink:'accent',weight:700}),
+   ...TABLE('pv',220,210,[130,40,130,130],60,[['Ones','.','tenths','hundredths'],['3','.','7','5']],{size:26}),
+   ...LN('e',480,400,['3.75 = 3 +',fr(7,10),'+',fr(5,100)],{ink:'accent2'}),W('r',480,520,'Rs 3.75 = 3 rupees and 75 paisa',{size:26,anchor:'middle',ink:'muted'})],
+   ex:[['t','One whole cut into 10 tenths. 7 shaded: **0.7**, seven tenths.'],['pv','After the point: **tenths**, then **hundredths**.'],['e','So 3.75 means 3 ones, 7 tenths and 5 hundredths.'],['r','Money works the same way.']]}],
+ ex:[{q:'2.35 + 4.7',lines:[['Line up the points: 2.35 + 4.70','Write 4.7 as 4.70 so both have two decimal places.'],['= 7.05','']]},
+  {q:'0.3 × 0.2',lines:[['Ignore the points: 3 × 2 = 6'],['Decimal places in the question: 1 + 1 = 2','Count them.'],['= 0.06','Smaller than both: multiplying two numbers below 1 makes a smaller number.']]},
+  {q:'Write 3/8 as a decimal, then round 3.468 to 1 decimal place.',lines:[['3 ÷ 8 = 0.375','Divide the top by the bottom.'],['3.468: keep one digit after the point, 3.4|68','Look at the next digit: 6.'],['6 is 5 or more, so round up → 3.5','']]}],
+ mis:{wrong:['0.3 × 0.2 = 0.6'],right:['0.3 × 0.2 = 0.06'],why:'Count the decimal places: one in 0.3 and one in 0.2 make two in the answer.',ex:['A common mistake: putting only one decimal place in the answer.','The right way: two decimal places, so 0.06.','Check: three tenths of two tenths must be smaller than 0.2.']},
+ rules:['After the point: tenths, hundredths, thousandths.','Add or take away: line up the points.','Multiply: ignore the points, then count decimal places.','Rounding: next digit 5 or more → round up.'],sumLine:'0.75 = 75/100 = 3/4',
+ prac:[Q('5.6 + 2.45 = ?',['8.05','5.60 + 2.45 = 8.05.'],['7.01','decimal-point','The points were not lined up.'],['8.5','decimal-point','Write 5.6 as 5.60 and add the hundredths.'],['2.51','decimal-point','Line up the decimal points first.']),
+  Q('1.2 × 0.4 = ?',['0.48','12 × 4 = 48, with 2 decimal places.'],['4.8','decimal-point','There are two decimal places in the question.'],['0.048','decimal-point','Only two decimal places, not three.'],['48','decimal-point','The decimal places were left out.']),
+  Q('Round 7.649 to 2 decimal places.',['7.65','Keep 7.64|9: the next digit is 9, so round up.'],['7.64','rounding','The next digit 9 means round up.'],['7.6','rounding','That is 1 decimal place.'],['7.70','rounding','Only the second decimal place changes.'])]}));
+
+SPECS.push(()=>({id:'pct-basics',ph:'p2',title:'Percentages: what they mean',
+ sum:'Percent means out of 100. The amount you start with is always 100%.',obj:['Change between percentages, fractions and decimals.','Find a percentage of an amount.','Write one number as a percentage of another.'],
+ pics:[{title:'25 out of 100',acts:[D('g',{kind:'grid',x:80,y:80,w:300,h:300,step:30},{ink:'muted',dur:900}),D('s',{kind:'rect',x:82,y:82,w:146,h:146},{stroke:false,fill:'accent',fillOp:.4,dur:500}),
+   W('a',470,150,'25 squares out of 100',{size:28}),...LN('b',650,230,['25% =',fr(25,100),'=',fr(1,4)],{maxW:440,ink:'accent'}),W('c',470,330,'= 0.25',{size:30,ink:'accent'}),
+   W('r',480,470,'% means "out of 100"',{size:30,anchor:'middle',weight:700}),W('r2',480,535,'The whole is always 100%',{size:26,anchor:'middle',ink:'accent2'})],
+   ex:[['g','A square cut into 100 small squares.'],['s','25 of them are shaded.'],['b','25 out of 100 is **25%**. As a fraction it is {25/100}, which simplifies to {1/4}.'],['c','As a decimal it is 0.25.'],['r','Percent means **out of 100**.'],['r2','The full square, the whole thing, is **100%**.']]}],
+ ex:[{q:'Find 15% of 240.',lines:[['10% of 240 = 240 ÷ 10 = 24','10% means divide by 10.'],['5% is half of 10% = 12'],['15% = 24 + 12 = 36','']]},
+  {q:'Ahmed got 18 marks out of 20. What percentage is that?',lines:[['Write it as a fraction: 18/20'],['× 100: 18 ÷ 20 × 100','Multiply by 100 to get "out of 100".'],['= 90%','']]},
+  {q:'Change 3/5, 0.45 and 12.5% into the other forms.',lines:[['3/5 = 60/100 = 60%'],['0.45 = 45/100 = 45%'],['12.5% = 0.125 = 1/8','Divide by 100 to turn a percentage into a decimal.']]}],
+ mis:{wrong:['5% = 0.5'],right:['5% = 0.05'],why:'5% means 5 out of 100, and 5 ÷ 100 = 0.05. 0.5 is 50%.',ex:['A common mistake: putting the 5 straight after the point.','The right way: divide by 100.','0.5 is five tenths, which is half: 50%.']},
+ rules:['% means out of 100.','The whole you start with is 100%.','10% = divide by 10; 1% = divide by 100.','Fraction → %: multiply by 100.'],sumLine:'25% = 25/100 = 1/4 = 0.25',
+ prac:[Q('What is 30% of 400?',['120','10% = 40, so 30% = 120.'],['30','pct-base','30 is 30% of 100, not of 400.'],['1,200','decimal-point','30% is less than the whole, so the answer must be less than 400.'],['13.3','pct-base','That divides 400 by 30.']),
+  Q('12 is what percentage of 48?',['25%','12 ÷ 48 = {1/4} = 25%.'],['12%','pct-base','12 is the part, not the percentage.'],['400%','pct-base','That divides 48 by 12.'],['36%','pct-base','That subtracts 12 from 48.']),
+  Q('Which is the same as 0.08?',['8%','0.08 = 8 out of 100.'],['80%','decimal-point','80% would be 0.8.'],['0.8%','decimal-point','0.8% is 0.008.'],['{8/10}','decimal-point','0.08 is eight hundredths: {8/100}.'])]}));
+
+SPECS.push(()=>({id:'pct-change',ph:'p2',title:'Percentage increase, decrease and reverse',
+ sum:'Change ÷ the OLD amount × 100. For reverse questions, the new amount is (100 ± p)% of the old one.',obj:['Find a percentage increase or decrease.','Find the original amount (reverse percentage).','Handle two changes in a row.'],
+ pics:[{title:'An increase of 20%',acts:[D('o',{kind:'rect',x:120,y:110,w:500,h:70},{ink:'accent',fill:'accent',fillOp:.18,dur:600}),W('ol',370,155,'old price = 100%',{size:26,anchor:'middle',ink:'accent'}),
+   D('n',{kind:'rect',x:120,y:240,w:500,h:70},{ink:'accent',fill:'accent',fillOp:.18,dur:600}),D('x',{kind:'rect',x:620,y:240,w:100,h:70},{ink:'accent2',fill:'accent2',fillOp:.3,dur:400}),W('xl',670,285,'+20%',{size:24,anchor:'middle',ink:'accent2'}),
+   W('nl',420,355,'new price = 120% of the old',{size:26,anchor:'middle',ink:'accent2'}),W('r',480,460,'% change = change ÷ OLD × 100',{size:30,anchor:'middle',weight:700}),W('r2',480,525,'Always compare with the starting amount.',{size:25,anchor:'middle',ink:'muted'})],
+   ex:[['o','The old price is the whole: **100%**.'],['n','An increase of 20% adds another 20% on top.'],['nl','So the new price is **120%** of the old price.'],['r','To find a % change: the change ÷ the **old** amount × 100.']]}],
+ ex:[{q:'A price rose from Rs 80 to Rs 100. What is the percentage increase?',lines:[['Change = 100 − 80 = 20'],['Divide by the OLD price: 20 ÷ 80','The old price is 100%.'],['× 100 = 25% increase','']]},
+  {q:'After a 20% increase, a bag costs Rs 600. What was the old price?',lines:[['600 is 120% of the old price'],['1% = 600 ÷ 120 = 5'],['100% = 5 × 100 = Rs 500','Check: 20% of 500 is 100, and 500 + 100 = 600.']]},
+  {q:'A price goes up 10%, then down 10%. What is the overall change?',lines:[['Start with 100'],['+10% → 110'],['−10% of 110 is 11 → 99','The second change is on the new amount.'],['Overall: −1%','']]}],
+ mis:{wrong:['Old price = 600 − 20% of 600','= 480'],right:['600 = 120% of old','Old = Rs 500'],why:'The 20% was taken of the OLD price, so work back from 120%, not 20% of the new price.',ex:['A common mistake: taking 20% of the new price.','The right way: the new price is 120%; find 1%, then 100%.','Check 480: 20% of 480 is 96, and 480 + 96 = 576, not 600.']},
+ rules:['% change = change ÷ OLD × 100.','The old amount is always 100%.','Reverse: new = (100 ± p)% of old; find 1%.','Two changes in a row do not simply add.'],sumLine:'+10% then −10% = −1%',
+ prac:[Q('A salary rose from Rs 40,000 to Rs 46,000. What is the percentage increase?',['15%','6,000 ÷ 40,000 × 100 = 15%.'],['13%','pct-base','That divides by the new salary.'],['6%','pct-base','6,000 is the change, not a percentage.'],['115%','pct-base','The new salary is 115% of the old, but the increase is 15%.']),
+  Q('After a 25% discount, shoes cost Rs 3,000. What was the original price?',['Rs 4,000','3,000 is 75% of the old price; 1% = 40, so 100% = 4,000.'],['Rs 3,750','pct-reverse','That adds 25% of 3,000, but the discount was on the old price.'],['Rs 2,250','pct-reverse','That takes another 25% off.'],['Rs 3,250','pct-reverse','Work back from 75%.']),
+  Q('A price goes up 20%, then up 20% again. What is the overall increase?',['44%','100 → 120 → 144.'],['40%','pct-base','The second 20% is of 120, not 100.'],['20%','pct-base','There were two increases.'],['24%','pct-base','Check: 100 → 120 → 144.'])]}));
+
+SPECS.push(()=>{const box=(id,x,y,ink,t)=>[D(id,{kind:'rect',x,y,w:110,h:60},{ink,fill:ink,fillOp:.2,dur:250}),W(id+'.t',x+55,y+40,t,{size:22,anchor:'middle',ink,dur:200,sync:true})];return {id:'ratio-share',ph:'p2',title:'Ratio and sharing',
+ sum:'A ratio counts parts. Add the parts, find one part, then multiply.',obj:['Read and simplify ratios.','Share an amount in a ratio.','Solve the lottery-sharing and joined-ratio questions.'],
+ pics:[{title:'Sharing Rs 1,500 in the ratio 2 : 3',acts:[W('al',120,170,'Ali',{size:30,anchor:'end',ink:'accent'}),...box('a0',150,128,'accent','300'),...box('a1',270,128,'accent','300'),
+   W('sl',120,270,'Sara',{size:30,anchor:'end',ink:'accent2'}),...box('s0',150,228,'accent2','300'),...box('s1',270,228,'accent2','300'),...box('s2',390,228,'accent2','300'),
+   W('p',700,170,'2 + 3 = 5 parts',{size:28,anchor:'middle'}),W('o',700,250,'1 part = 1,500 ÷ 5 = 300',{size:26,anchor:'middle'}),
+   ...LN('e',480,400,'Ali 2 × 300 = 600,  Sara 3 × 300 = 900',{ink:'accent2'}),W('r',480,500,'Check: 600 + 900 = 1,500',{size:26,anchor:'middle',ink:'muted'})],
+   ex:[['al','Ali gets 2 parts…'],['sl','…and Sara gets 3 parts. All parts are the same size.'],['p','Add the parts: 2 + 3 = **5 parts** altogether.'],['o','One part is 1,500 ÷ 5 = **300**.'],['e','Ali: 600. Sara: 900.'],['r','Always check that the shares add up to the total.']]}],
+ ex:[{q:'Simplify the ratio 24 : 36.',lines:[['HCF of 24 and 36 = 12'],['24 ÷ 12 : 36 ÷ 12'],['= 2 : 3','']]},
+  {q:'A man gives half his lottery prize to his wife and a third of the rest to his son. His 2 daughters share the rest equally and each gets Rs 50,000. What was the prize?',qSize:25,lines:[['Daughters together: 2 × 50,000 = 100,000','Work backwards from the end.'],['The son took 1/3 of the rest, so this is 2/3 of the rest','So the rest after the wife was 150,000.'],['150,000 is the half left after the wife','The prize was twice that.'],['Prize = Rs 300,000','Check: 150,000 + 50,000 + 50,000 + 50,000 = 300,000.']]},
+  {q:'A : B = 2 : 3 and B : C = 4 : 5. Find A : B : C.',lines:[['B is 3 in one ratio and 4 in the other','Make B the same number: the LCM of 3 and 4 is 12.'],['A : B = 8 : 12 and B : C = 12 : 15'],['A : B : C = 8 : 12 : 15','']]}],
+ mis:{wrong:['Rs 1,500 in 2 : 3','→ 1,500 ÷ 2 and 1,500 ÷ 3'],right:['Add the parts: 2 + 3 = 5','1 part = 300 → 600 and 900'],why:'A ratio counts parts. Add the parts to find what one part is worth.',ex:['A common mistake: dividing the total by each number of the ratio.','The right way: add the parts first.','Check the wrong way: 750 + 500 = 1,250, which is not 1,500.']},
+ rules:['A ratio compares parts: 2 : 3.','Simplify by dividing by the HCF.','Sharing: add the parts, find 1 part, multiply.','Joining ratios: make the shared term equal.'],sumLine:'1,500 in 2 : 3 → 600 and 900',
+ prac:[Q('Share Rs 2,400 in the ratio 3 : 5. What is the bigger share?',['Rs 1,500','8 parts; 1 part = 300; 5 × 300 = 1,500.'],['Rs 480','ratio-parts','2,400 ÷ 5 forgets to add the parts.'],['Rs 900','ratio-parts','That is the smaller share.'],['Rs 800','ratio-parts','2,400 ÷ 3 forgets to add the parts.']),
+  Q('The ratio of boys to girls is 4 : 5 and there are 20 boys. How many girls?',['25','4 parts = 20, so 1 part = 5 and 5 parts = 25.'],['20','ratio-parts','There are more girls than boys.'],['45','ratio-parts','45 is the whole class.'],['16','ratio-parts','That is 20 × 4 ÷ 5, the wrong way round.']),
+  Q('A : B = 1 : 2 and B : C = 3 : 4. What is A : C?',['3 : 8','Make B equal: A : B = 3 : 6 and B : C = 6 : 8.'],['1 : 4','ratio-parts','B must be made the same number first.'],['3 : 4','ratio-parts','A is 3 when B is 6, and C is 8.'],['1 : 2','ratio-parts','That is A : B.'])]}});
+
+SPECS.push(()=>({id:'proportion',ph:'p2',title:'Direct and inverse proportion',
+ sum:'Direct: both go up together, so find the value of one. Inverse: one goes up as the other goes down, so the product stays the same.',obj:['Use the unitary method.','Spot direct and inverse proportion.','Solve worker-days problems.'],
+ pics:[{title:'Two kinds of proportion',acts:[D('dv',{kind:'line',x1:480,y1:50,x2:480,y2:420},{ink:'muted',sw:1.5,dur:300}),W('h1',240,80,'Direct',{size:30,anchor:'middle',ink:'accent2',weight:700}),
+   ...TABLE('t1',90,110,[150,150],56,[['pens','cost'],['1','Rs 12'],['5','Rs 60'],['8','Rs 96']],{size:24}),W('n1',240,380,'cost ÷ pens stays 12',{size:24,anchor:'middle',ink:'accent2'}),
+   W('h2',720,80,'Inverse',{size:30,anchor:'middle',ink:'trouble',weight:700}),...TABLE('t2',570,110,[150,150],56,[['workers','days'],['6','10'],['4','15'],['12','5']],{size:24}),W('n2',720,380,'workers × days stays 60',{size:24,anchor:'middle',ink:'trouble'}),
+   W('r',480,500,'More pens, more cost.  More workers, fewer days.',{size:27,anchor:'middle',weight:700})],
+   ex:[['h1','**Direct proportion**: when one goes up, the other goes up in the same way.'],['n1','Each pen costs Rs 12. Cost ÷ pens always gives 12.'],['h2','**Inverse proportion**: when one goes up, the other goes **down**.'],['n2','The total work is 60 worker-days. Workers × days always gives 60.'],['r','Ask first: does more of one mean more, or less, of the other?']]}],
+ ex:[{q:'5 pens cost Rs 60. What do 8 pens cost?',lines:[['More pens, more cost: direct'],['1 pen = 60 ÷ 5 = Rs 12','Unitary method: find the cost of one.'],['8 pens = 8 × 12 = Rs 96','']]},
+  {q:'6 workers build a wall in 10 days. How long would 4 workers take?',lines:[['Fewer workers, more days: inverse'],['Total work = 6 × 10 = 60 worker-days'],['4 workers: 60 ÷ 4 = 15 days','']]},
+  {q:'A car uses 8 litres of petrol for 100 km. How much for 250 km?',lines:[['Further, more petrol: direct'],['100 km → 8 L, so 50 km → 4 L'],['250 km = 5 × 50 km → 20 litres','']]}],
+ mis:{wrong:['6 workers: 10 days','4 workers: 10 × 4 ÷ 6 ≈ 6.7 days'],right:['6 × 10 = 60 worker-days','4 workers: 60 ÷ 4 = 15 days'],why:'Fewer workers must take MORE days. Check whether the answer should go up or down.',ex:['A common mistake: treating workers and days as direct proportion.','The right way: the total work (workers × days) stays the same.','Common sense check: fewer people cannot finish faster.']},
+ rules:['Direct: both go up together.','Unitary method: find the value of one first.','Inverse: one up, the other down.','Inverse: the product stays the same.'],sumLine:'6 workers × 10 days = 4 workers × 15 days',
+ prac:[Q('3 kg of rice costs Rs 720. What do 5 kg cost?',['Rs 1,200','1 kg = 240; 5 kg = 1,200.'],['Rs 432','proportion','More rice must cost more, not less.'],['Rs 3,600','proportion','720 × 5 is the price of 15 kg.'],['Rs 728','wrong-op','Adding 8 does not fit a price per kg.']),
+  Q('8 pipes fill a tank in 6 hours. How long would 12 pipes take?',['4 hours','8 × 6 = 48 pipe-hours; 48 ÷ 12 = 4.'],['9 hours','proportion','More pipes should take less time.'],['10 hours','proportion','More pipes, fewer hours.'],['2 hours','proportion','48 ÷ 12 = 4.']),
+  Q('Which of these is inverse proportion?',['Speed and time for the same journey','Going faster takes less time.'],['Number of tickets and total cost','proportion','More tickets cost more: direct.'],['Hours worked and pay at Rs 500 an hour','proportion','More hours, more pay: direct.'],['Kilograms of sugar and its price','proportion','More sugar costs more: direct.'])]}));
+
+SPECS.push(()=>({id:'money-profit',ph:'p2',title:'Profit, loss and discount',
+ sum:'Profit and loss percentages are on the cost price. Discount is on the marked price.',obj:['Find profit or loss and its percentage.','Work out a discount and the price paid.','Find the cost price from the selling price.'],
+ pics:[{title:'From cost to selling price',acts:[W('cp',180,150,'Cost price',{size:28,anchor:'middle',ink:'accent'}),W('cpv',180,195,'Rs 800',{size:32,anchor:'middle',ink:'accent',weight:700}),
+   D('a',{kind:'arrow',x1:290,y1:175,x2:640,y2:175},{ink:'accent2',sw:4,dur:600}),W('al',465,155,'+ Rs 200 profit',{size:26,anchor:'middle',ink:'accent2'}),
+   W('sp',780,150,'Selling price',{size:28,anchor:'middle',ink:'accent2'}),W('spv',780,195,'Rs 1,000',{size:32,anchor:'middle',ink:'accent2',weight:700}),
+   ...LN('p',480,300,'Profit % = 200 ÷ 800 × 100 = 25%',{ink:'accent2'}),
+   W('d1',480,400,'Marked Rs 2,000, discount 15% → you pay Rs 1,700',{size:27,anchor:'middle'}),W('r',480,500,'profit % → on COST price   ·   discount % → on MARKED price',{size:24,anchor:'middle',weight:700})],
+   ex:[['cp','The shopkeeper paid Rs 800: the **cost price** (CP).'],['a','He sells for more, so he makes a **profit** of Rs 200.'],['sp','Rs 1,000 is the **selling price** (SP).'],['p','Profit % is always worked out on the **cost price**: 200 ÷ 800 × 100 = 25%.'],['d1','A **discount** is a % of the **marked price** on the label: 15% of 2,000 is 300.'],['r','Before every calculation ask: **percentage of what?**']]}],
+ ex:[{q:'A watch bought for Rs 1,200 is sold for Rs 900. Find the loss %.',lines:[['Loss = 1,200 − 900 = 300'],['On the cost price: 300 ÷ 1,200 × 100'],['= 25% loss','']]},
+  {q:'A shopkeeper marks goods 40% above cost and then gives a 25% discount. Profit or loss %?',lines:[['Let the cost be 100'],['Marked price = 140'],['25% off 140 = 35 off → sells for 105','The discount is on the marked price.'],['5% profit','']]},
+  {q:'By selling a fan for Rs 3,300 a dealer gains 10%. What did it cost him?',lines:[['3,300 is 110% of the cost'],['1% = 3,300 ÷ 110 = 30'],['Cost = 30 × 100 = Rs 3,000','']]}],
+ mis:{wrong:['Mark up 40%, discount 25%','→ 40 − 25 = 15% profit'],right:['100 → 140 → 105','→ 5% profit'],why:'The two percentages are of different amounts: 40% of the cost, 25% of the marked price. Start with 100 and follow it through.',ex:['A common mistake: just taking one percentage from the other.','The right way: start with a cost of 100 and do each step.','25% of 140 is 35, much more than 25% of 100.']},
+ rules:['Profit = SP − CP; loss = CP − SP.','Profit % and loss % are on the cost price.','Discount % is on the marked price.','Unsure? Start with 100.'],sumLine:'CP 800 → SP 1,000: 25% profit',
+ prac:[Q('A phone bought for Rs 20,000 is sold for Rs 23,000. Profit %?',['15%','3,000 ÷ 20,000 × 100 = 15%.'],['13%','money-base','That divides by the selling price.'],['3%','money-base','3,000 is the profit in rupees, not a percentage.'],['115%','money-base','The selling price is 115% of the cost; the profit is 15%.']),
+  Q('A shirt marked Rs 1,500 has a 20% discount. What do you pay?',['Rs 1,200','20% of 1,500 = 300; 1,500 − 300 = 1,200.'],['Rs 1,480','pct-base','Take 20% of 1,500, not Rs 20.'],['Rs 300','misread','300 is the discount, not the price.'],['Rs 1,800','sign','A discount makes the price lower.']),
+  Q('Two discounts of 20% and 10% in a row equal one discount of:',['28%','100 → 80 → 72, so 28% off.'],['30%','pct-base','The 10% is of 80, not 100.'],['2%','wrong-op','The discounts do not cancel out.'],['18%','pct-base','Check: 100 → 80 → 72.'])]}));
+
+SPECS.push(()=>({id:'money-interest',ph:'p2',title:'Simple and compound interest',
+ sum:'Simple interest is the same every year. Compound interest is paid on the interest too, so it grows faster.',obj:['Use I = P × R × T ÷ 100.','Work out compound interest year by year.','Compare simple and compound interest.'],
+ pics:[{title:'Rs 10,000 at 10% for 2 years',acts:[D('base',{kind:'line',x1:80,y1:420,x2:880,y2:420},{dur:300}),W('h1',260,80,'Simple',{size:30,anchor:'middle',ink:'accent',weight:700}),
+   ...[[130,'yr 1',1000],[290,'yr 2',1000]].flatMap(([x,l,v],i)=>[D('s'+i,{kind:'rect',x,y:420-v/10*2.2,w:100,h:v/10*2.2},{ink:'accent',fill:'accent',fillOp:.3,dur:400}),W('sv'+i,x+50,420-v/10*2.2-12,'+'+v.toLocaleString('en-US'),{size:22,anchor:'middle',ink:'accent'}),W('sl'+i,x+50,452,l,{size:20,anchor:'middle',ink:'muted'})]),
+   W('h2',700,80,'Compound',{size:30,anchor:'middle',ink:'accent2',weight:700}),
+   ...[[570,'yr 1',1000],[730,'yr 2',1100]].flatMap(([x,l,v],i)=>[D('c'+i,{kind:'rect',x,y:420-v/10*2.2,w:100,h:v/10*2.2},{ink:'accent2',fill:'accent2',fillOp:.3,dur:400}),W('cv'+i,x+50,420-v/10*2.2-12,'+'+v.toLocaleString('en-US'),{size:22,anchor:'middle',ink:'accent2'}),W('cl'+i,x+50,452,l,{size:20,anchor:'middle',ink:'muted'})]),
+   W('r1',260,520,'total interest 2,000',{size:24,anchor:'middle',ink:'accent'}),W('r2',700,520,'total interest 2,100',{size:24,anchor:'middle',ink:'accent2'})],
+   ex:[['h1','**Simple interest**: the bank pays 10% of the original Rs 10,000 every year.'],['s0','That is Rs 1,000 each year, always the same.'],['h2','**Compound interest**: each year\'s interest is added to the money first.'],['c1','So year 2 pays 10% of 11,000 = Rs 1,100: interest on the interest.'],['r1','After 2 years: simple 2,000, compound 2,100.']]}],
+ ex:[{q:'Simple interest on Rs 15,000 at 8% a year for 3 years.',lines:[['I = P × R × T ÷ 100'],['15,000 × 8 × 3 ÷ 100'],['= Rs 3,600','']]},
+  {q:'Compound interest on Rs 20,000 at 10% a year for 2 years.',lines:[['Year 1: 10% of 20,000 = 2,000 → 22,000'],['Year 2: 10% of 22,000 = 2,200 → 24,200'],['CI = 24,200 − 20,000 = Rs 4,200','']]},
+  {q:'Rs 5,000 at 6% simple interest. What is the total amount after 4 years?',lines:[['I = 5,000 × 6 × 4 ÷ 100 = 1,200'],['Amount = principal + interest'],['5,000 + 1,200 = Rs 6,200','']]}],
+ mis:{wrong:['CI for 2 years at 10%','= 10% + 10% = 20%'],right:['10% then 10% of the new amount','= 21% of the start'],why:'Compound interest is worked out on the new, bigger amount each year, so it is more than simple interest.',ex:['A common mistake: treating compound interest like simple interest.','The right way: year by year, on the growing amount.','10,000 → 11,000 → 12,100: that is 21% growth.']},
+ rules:['Simple interest: I = P × R × T ÷ 100.','Simple: the same interest every year.','Compound: interest on the new amount each year.','Amount = principal + interest.'],sumLine:'10,000 at 10%: SI 2,000, CI 2,100 (2 years)',
+ prac:[Q('Simple interest on Rs 8,000 at 5% for 3 years?',['Rs 1,200','8,000 × 5 × 3 ÷ 100 = 1,200.'],['Rs 400','interest','That is only 1 year.'],['Rs 9,200','misread','That is the total amount, not the interest.'],['Rs 1,261','interest','That is compound interest.']),
+  Q('Compound interest on Rs 1,000 at 20% for 2 years?',['Rs 440','1,000 → 1,200 → 1,440.'],['Rs 400','interest','That is simple interest.'],['Rs 1,440','misread','That is the amount, not the interest.'],['Rs 240','interest','Interest in year 2 alone is 240; year 1 adds 200.']),
+  Q('Which grows faster over many years?',['Compound interest','It earns interest on the interest.'],['Simple interest','interest','Simple interest adds the same amount every year.'],['They are always equal','interest','They are only equal for 1 year.'],['It depends on the bank\'s name','misread','It depends only on how the interest is worked out.'])]}));
+
+/* ===== Phase 3: Algebra ===== */
+SPECS.push(()=>{const bx=(id,x,y,t,ink='accent')=>[D(id,{kind:'rect',x,y,w:70,h:70},{ink,fill:ink,fillOp:.15,dur:350}),W(id+'.t',x+35,y+48,t,{size:32,anchor:'middle',ink,dur:250})];return {id:'alg-letters',ph:'p3',title:'Letters that stand for numbers',
+ sum:'A letter is a box that hides a number. Put numbers in, and only add terms that are alike.',obj:['Read expressions like 3x + 5.','Substitute numbers for letters.','Collect like terms.'],
+ pics:[{title:'A letter is a box that hides a number',acts:[...bx('b1',120,120,'x'),...bx('b2',210,120,'x'),...bx('b3',300,120,'x'),W('pl',410,168,'+ 5',{size:36}),
+   W('e',700,168,'3x + 5',{size:42,anchor:'middle',ink:'accent',weight:700}),W('n1',480,290,'If each box hides 4:',{size:28,anchor:'middle'}),...LN('n2',480,360,'3 × 4 + 5 = 17',{ink:'accent2'}),
+   W('r',480,470,'3x means 3 × x.   5 is a constant: it never changes.',{size:26,anchor:'middle'})],
+   ex:[['b1','Imagine three boxes. Each box hides the **same** unknown number. We call it **x**.'],['pl','Add 5 more.'],['e','We write this as **3x + 5**. 3x means 3 × x.'],['n1','If each box hides 4…'],['n2','…then 3x + 5 = 3 × 4 + 5 = 17. This is called **substitution**.'],['r','The 3 in front of x is the **coefficient**. The 5 is a **constant**.']]}],
+ ex:[{q:'If x = 3, find 2x² + 1.',lines:[['Put 3 in place of x: 2 × 3² + 1','Use brackets in your head: x² = 3 × 3.'],['3² = 9, so 2 × 9 + 1','Powers first (BODMAS).'],['= 19','']]},
+  {q:'Simplify 4x + 3 + 2x − 1.',lines:[['x terms: 4x + 2x = 6x','Like terms have the same letter part.'],['Numbers: 3 − 1 = 2'],['= 6x + 2','']]},
+  {q:'If a = −2 and b = 5, find 3a + b².',lines:[['3 × (−2) + 5²','Put each number in place of its letter.'],['−6 + 25'],['= 19','']]}],
+ mis:{wrong:['3x + 2y = 5xy'],right:['3x + 2y stays 3x + 2y','3x + 2x = 5x'],why:'You can only add like terms. 3 apples + 2 bananas are not 5 "apple-bananas".',ex:['A common mistake: joining x terms and y terms.','The right way: only terms with exactly the same letters add.','Think of fruit: apples and bananas stay separate.']},
+ rules:['A letter stands for an unknown number.','3x means 3 × x; x² means x × x.','Substitute: put the number in place of the letter.','Only add like terms (same letters).'],sumLine:'x = 4 → 3x + 5 = 17',
+ prac:[Q('If y = 5, what is 4y − 3?',['17','4 × 5 − 3 = 20 − 3 = 17.'],['42','misread','4y means 4 × y, not 4 next to 5.'],['6','wrong-op','That adds 4 + 5 − 3.'],['23','sign','4 × 5 is 20, and 20 − 3 = 17.']),
+  Q('Simplify 5a + 2b + 3a.',['8a + 2b','5a + 3a = 8a; 2b stays.'],['10ab','algebra-like','a and b terms cannot be joined.'],['10a','algebra-like','The 2b is a different term and must stay.'],['8a + 2','algebra-like','The letter b must stay with the 2.']),
+  Q('If x = 4, find x² − 2x.',['8','16 − 8 = 8.'],['0','order-ops','x² is 16, not 8.'],['12','order-ops','2x = 8, so 16 − 8 = 8.'],['4','order-ops','Check: 4² = 16 and 2 × 4 = 8.'])]}});
+
+SPECS.push(()=>({id:'alg-equations',ph:'p3',title:'Solving equations: keep it balanced',
+ sum:'An equation is a balance. Do the same thing to both sides until the letter is alone.',obj:['See an equation as a balance.','Solve one-step and two-step equations.','Solve equations with brackets and letters on both sides.'],
+ pics:[{title:'An equation is a balance',acts:[D('beam',{kind:'line',x1:180,y1:200,x2:780,y2:200},{sw:4,dur:500}),D('stand',{kind:'poly',pts:[[480,200],[440,330],[520,330]],closed:true},{fill:'muted',fillOp:.2,dur:400}),
+   W('l',300,175,'3x + 5',{size:40,anchor:'middle',ink:'accent'}),W('r',660,175,'20',{size:40,anchor:'middle',ink:'accent2'}),
+   ...LN('s1',480,400,'take 5 from both sides:  3x = 15',{size:30}),...LN('s2',480,460,'divide both sides by 3:  x = 5',{size:30,ink:'accent2'}),W('c',480,535,'check: 3 × 5 + 5 = 20',{size:26,anchor:'middle',ink:'muted'})],
+   ex:[['beam','An equation is like a weighing scale. Both sides weigh the same.'],['l','On the left: 3x + 5.'],['r','On the right: 20.'],['s1','To keep it balanced, whatever you do to one side, **do to the other**. Take 5 from both: 3x = 15.'],['s2','Divide both sides by 3: **x = 5**.'],['c','Always check by putting the answer back in.']]}],
+ ex:[{q:'Solve 2x + 3 = 11.',lines:[['Take 3 from both sides: 2x = 8','Remove the plain number first.'],['Divide both sides by 2: x = 4','Then remove the number joined to x.'],['Check: 2 × 4 + 3 = 11','']]},
+  {q:'Solve 4(x − 2) = 20.',lines:[['Divide both sides by 4: x − 2 = 5','Or expand the bracket first: 4x − 8 = 20.'],['Add 2 to both sides: x = 7'],['Check: 4 × (7 − 2) = 20','']]},
+  {q:'Solve 5x + 3 = 2x + 18.',lines:[['Take 2x from both sides: 3x + 3 = 18','Get the x terms on one side.'],['Take 3 from both sides: 3x = 15'],['x = 5','Check: 28 = 28.']]}],
+ mis:{wrong:['2x + 3 = 11','2x = 11 + 3 = 14'],right:['2x + 3 = 11','2x = 11 − 3 = 8'],why:'To remove + 3, do the opposite: take 3 away from BOTH sides.',ex:['A common mistake: moving a number across and keeping its sign.','The right way: undo + 3 by taking 3 from both sides.','When a number moves across the = sign, its sign changes.']},
+ rules:['An equation is a balance.','Do the same to both sides.','Undo + with −, and × with ÷.','Check by putting the answer back in.'],sumLine:'3x + 5 = 20 → x = 5',
+ prac:[Q('Solve 3x − 4 = 14.',['x = 6','Add 4: 3x = 18; divide by 3: x = 6.'],['x = 10/3','algebra-balance','Add 4 to both sides, not take it away.'],['x = 18','algebra-balance','Divide by 3 at the end.'],['x = 30','algebra-balance','3x = 18, so x is 18 ÷ 3.']),
+  Q('Solve x/5 = 7.',['x = 35','Multiply both sides by 5.'],['x = 1.4','algebra-balance','That divides 7 by 5.'],['x = 12','wrong-op','That adds 5.'],['x = 2','wrong-op','That subtracts 5.']),
+  Q('Solve 6x − 2 = 4x + 10.',['x = 6','2x = 12, so x = 6.'],['x = 4','algebra-balance','6x − 4x = 2x and 10 + 2 = 12, so 2x = 12.'],['x = 0.8','algebra-balance','Collect the x terms on one side first.'],['x = 12','algebra-balance','2x = 12, so x = 6.'])]}));
+
+SPECS.push(()=>({id:'alg-word',ph:'p3',title:'Turning stories into equations',
+ sum:'Name the unknown, translate each sentence, solve, then check in the story.',obj:['Choose a letter for the unknown.','Translate sentences into an equation.','Solve number and age problems.'],
+ pics:[{title:'From words to an equation',acts:[W('w1',60,110,'"A number times 4, plus 6, makes 26."',{size:28}),D('a1',{kind:'arrow',x1:480,y1:130,x2:480,y2:180},{ink:'accent',dur:300}),
+   W('w2',480,220,'Let the number be n',{size:28,anchor:'middle',ink:'accent'}),D('a2',{kind:'arrow',x1:480,y1:240,x2:480,y2:290},{ink:'accent',dur:300}),
+   ...LN('e',480,330,'4n + 6 = 26',{ink:'accent',size:38}),...LN('s',480,420,'4n = 20  →  n = 5',{ink:'accent2'}),W('c',480,500,'check in the story: 5 × 4 + 6 = 26',{size:26,anchor:'middle',ink:'muted'})],
+   ex:[['w1','Read the story slowly.'],['w2','Give the unknown a letter. Here: **n**.'],['e','Translate word by word: "times 4" → 4n, "plus 6" → + 6, "makes 26" → = 26.'],['s','Solve it like any equation.'],['c','Check the answer in the **story**, not just in your equation.']]}],
+ ex:[{q:'A father is 3 times as old as his son. In 10 years he will be twice as old. How old is the son now?',lines:[['Son = x, father = 3x','Name the unknown.'],['In 10 years: 3x + 10 = 2(x + 10)','Both ages grow by 10.'],['3x + 10 = 2x + 20, so x = 10'],['Son 10, father 30','Check: in 10 years, 40 = 2 × 20.']]},
+  {q:'Two numbers add to 50 and their difference is 14. Find them.',lines:[['Big + small = 50; big − small = 14'],['Add the two lines: 2 × big = 64'],['big = 32, small = 18','Check: 32 + 18 = 50 and 32 − 18 = 14.']]},
+  {q:'A pen costs Rs 15 more than a pencil. Together they cost Rs 45. Find the price of each.',lines:[['Pencil = p, pen = p + 15'],['p + p + 15 = 45, so 2p = 30'],['Pencil Rs 15, pen Rs 30','']]}],
+ mis:{wrong:['"5 less than x"','5 − x'],right:['"5 less than x"','x − 5'],why:'"5 less than x" starts with x and takes 5 away. The order is the opposite of the words.',ex:['A common mistake: writing the numbers in the order they are spoken.','The right way: start with x, then take 5 away.','Test with a number: 5 less than 12 is 7, which is 12 − 5.']},
+ rules:['Choose a letter for the unknown.','Translate one phrase at a time.','"Less than" reverses the order.','Check the answer in the story.'],sumLine:'4n + 6 = 26 → n = 5',
+ prac:[Q('Three times a number, minus 7, is 20. What is the number?',['9','3n − 7 = 20, so 3n = 27 and n = 9.'],['4.3','algebra-form','Add 7 first: 3n = 27.'],['13','algebra-form','3n = 27, so n = 9.'],['27','algebra-form','27 is 3n, not n.']),
+  Q('Ali is 4 years older than Bilal. Their ages add to 30. How old is Bilal?',['13','b + b + 4 = 30, so 2b = 26 and b = 13.'],['17','misread','17 is Ali\'s age.'],['15','algebra-form','15 + 19 = 34, not 30.'],['26','algebra-form','26 is 2b.']),
+  Q('Which equation means "7 less than twice a number is 15"?',['2n − 7 = 15','Twice n is 2n; 7 less than it is 2n − 7.'],['7 − 2n = 15','algebra-form','"Less than" reverses the order.'],['2(n − 7) = 15','algebra-form','That takes 7 away before doubling.'],['2n + 7 = 15','sign','"Less than" means take away.'])]}));
+
+SPECS.push(()=>({id:'alg-two',ph:'p3',title:'Two unknowns at once',
+ sum:'With two unknowns you need two facts. Add or subtract the equations so one letter disappears.',obj:['Write two equations from a story.','Remove one letter by adding or subtracting.','Find both unknowns and check.'],
+ pics:[{title:'Make one letter disappear',acts:[...LN('e1',480,110,'3 pens + 2 books = Rs 260',{size:30}),...LN('e2',480,180,'1 pen + 2 books = Rs 200',{size:30}),D('ln',{kind:'line',x1:250,y1:215,x2:710,y2:215},{dur:300}),
+   ...LN('d',480,260,'subtract: 2 pens = Rs 60',{size:30,ink:'accent'}),...LN('p',480,340,'1 pen = Rs 30',{ink:'accent2'}),...LN('b',480,420,'30 + 2 books = 200 → 1 book = Rs 85',{size:28,ink:'accent2'}),
+   W('r',480,520,'The books are the same in both lines, so they cancel.',{size:25,anchor:'middle',ink:'muted'})],
+   ex:[['e1','Fact 1: 3 pens and 2 books cost Rs 260.'],['e2','Fact 2: 1 pen and 2 books cost Rs 200.'],['d','Both have 2 books. Take fact 2 from fact 1: the books disappear, leaving **2 pens = Rs 60**.'],['p','So one pen costs Rs 30.'],['b','Put that back into fact 2 to find a book: Rs 85.'],['r','This is called **elimination**: make one letter disappear.']]}],
+ ex:[{q:'x + y = 50 and x − y = 14. Find x and y.',lines:[['Add the equations: 2x = 64','The y terms cancel: +y and −y.'],['x = 32'],['32 + y = 50, so y = 18','']]},
+  {q:'2x + y = 11 and x + y = 7. Find x and y.',lines:[['Subtract: (2x + y) − (x + y) = 11 − 7'],['x = 4'],['4 + y = 7, so y = 3','Check: 2 × 4 + 3 = 11.']]},
+  {q:'Adult tickets cost Rs 50 and child tickets Rs 30. 10 tickets cost Rs 400. How many adult tickets?',lines:[['a + c = 10 and 50a + 30c = 400'],['If all were child tickets: 10 × 30 = 300','Rs 100 is missing.'],['Each adult ticket adds Rs 20 more: 100 ÷ 20 = 5'],['5 adult tickets, 5 child tickets','Check: 250 + 150 = 400.']]}],
+ mis:{wrong:['x + y = 50, x − y = 14','x = 50 − 14 = 36'],right:['add: 2x = 64','x = 32, y = 18'],why:'Taking 14 from 50 gives 2y, not x. Add or subtract whole equations so one letter cancels.',ex:['A common mistake: mixing up which letter is left.','The right way: add the two equations, so y cancels and 2x = 64.','Check both facts: 32 + 18 = 50 and 32 − 18 = 14.']},
+ rules:['Two unknowns need two facts.','Line up the equations.','Add or subtract so one letter cancels.','Put the answer back to find the other letter.'],sumLine:'x + y = 50, x − y = 14 → x = 32, y = 18',
+ prac:[Q('a + b = 20 and a − b = 4. What is a?',['12','Add: 2a = 24.'],['8','misread','8 is b.'],['16','algebra-form','20 − 4 = 16 is 2b.'],['24','algebra-form','24 is 2a.']),
+  Q('2 shirts and 1 tie cost Rs 1,700. 1 shirt and 1 tie cost Rs 1,000. Price of a shirt?',['Rs 700','Subtract: 1 shirt = 700.'],['Rs 300','misread','Rs 300 is the tie.'],['Rs 850','algebra-form','1,700 ÷ 2 ignores the tie.'],['Rs 2,700','wrong-op','That adds the two totals.']),
+  Q('The sum of two numbers is 30 and one is twice the other. The smaller number is:',['10','x + 2x = 30, so 3x = 30 and x = 10.'],['15','algebra-form','15 + 15 are equal, not double.'],['20','misread','20 is the bigger number.'],['60','algebra-form','The sum is 30.'])]}));
+
+/* ===== Phase 4: Geometry ===== */
+SPECS.push(()=>({id:'geo-angles',ph:'p4',title:'Angles: turns, lines and points',
+ sum:'Angles on a straight line add to 180°, around a point to 360°, and vertically opposite angles are equal.',obj:['Name acute, right, obtuse, straight and reflex angles.','Use straight-line and around-a-point facts.','Use complementary and supplementary angles.'],
+ pics:[{title:'Kinds of angle',acts:[...[[110,'acute',40],[330,'right',90],[560,'obtuse',130],[790,'straight',180]].flatMap(([x,n,a],i)=>[RAY('a'+i,x-50,230,110,0,{dur:250}),RAY('b'+i,x-50,230,110,a,{dur:250}),...ANG('g'+i,x-50,230,34,0,a,'',a===90?'accent2':'accent'),W('n'+i,x,300,n,{size:26,anchor:'middle',ink:'accent'}),W('v'+i,x,340,a===40?'less than 90°':a===90?'90°':a===130?'90° to 180°':'180°',{size:22,anchor:'middle',ink:'muted'})]),
+   W('r',480,460,'A full turn is 360°. Reflex angles are more than 180°.',{size:26,anchor:'middle'})],
+   ex:[['a0','An angle measures a **turn**. A small turn is **acute**: less than 90°.'],['a1','A quarter turn, like the corner of a book, is a **right angle**: 90°.'],['a2','Between 90° and 180° is **obtuse**.'],['a3','Half a turn makes a **straight line**: 180°.'],['r','A full turn is 360°.']]},
+  {title:'Angle facts',acts:[D('l',{kind:'line',x1:60,y1:220,x2:420,y2:220},{dur:400}),RAY('rr',240,220,150,60),...ANG('x',240,220,40,0,60,'60°'),...ANG('y',240,220,52,60,180,'120°','accent2'),W('t1',240,300,'on a straight line: 180°',{size:24,anchor:'middle'}),
+   D('c1',{kind:'line',x1:560,y1:120,x2:880,y2:320},{dur:400}),D('c2',{kind:'line',x1:560,y1:320,x2:880,y2:120},{dur:400}),...ANG('p',720,220,40,32,148,'116°'),...ANG('q',720,220,40,212,328,'116°'),W('t2',720,380,'vertically opposite: equal',{size:24,anchor:'middle'}),
+   W('t3',480,480,'around a point: 360°   ·   complementary: 90°   ·   supplementary: 180°',{size:23,anchor:'middle',weight:700})],
+   ex:[['l','Angles that sit on a straight line add up to **180°**.'],['x','So if one is 60°, the other is 180° − 60° = **120°**.'],['c1','When two straight lines cross…'],['p','…the opposite angles are **equal**.'],['t3','Also: around a point 360°. Two angles adding to 90° are **complementary**; to 180°, **supplementary**.']],
+   check:Q('Two angles on a straight line: one is 72°. The other is:',['108°','180° − 72° = 108°.'],['18°','angle-fact','That uses 90°. A straight line is 180°.'],['288°','angle-fact','That uses 360°.'],['72°','angle-fact','These are not vertically opposite angles.'])}],
+ ex:[{q:'Find the complement and the supplement of 35°.',lines:[['Complement: 90° − 35° = 55°','Complementary angles add to 90°.'],['Supplement: 180° − 35° = 145°','Supplementary angles add to 180°.'],['55° and 145°','']]},
+  {q:'Angles of 40°, 110° and 95° meet at a point with one more angle. Find it.',lines:[['Around a point: 360°'],['40 + 110 + 95 = 245'],['360° − 245° = 115°','']]},
+  {q:'Angles x, 2x and 3x lie on a straight line. Find x.',lines:[['x + 2x + 3x = 180'],['6x = 180'],['x = 30°','The angles are 30°, 60° and 90°.']]}],
+ mis:{wrong:['Around a point: 180°'],right:['Around a point: 360°','On a straight line: 180°'],why:'A straight line is half a turn (180°). Going all the way round a point is a full turn (360°).',ex:['A common mistake: using 180° for every angle question.','The right way: half a turn is 180°, a full turn is 360°.','Picture it: standing still and turning all the way round.']},
+ rules:['Right angle 90°; straight line 180°; full turn 360°.','On a straight line: angles add to 180°.','Around a point: angles add to 360°.','Vertically opposite angles are equal.'],sumLine:'60° + 120° = 180°',
+ prac:[Q('What is the supplement of 125°?',['55°','180° − 125° = 55°.'],['35°','angle-fact','Supplementary means adding to 180°, not 160°.'],['235°','angle-fact','That uses 360°.'],['−35°','angle-fact','That uses 90°; angles cannot be negative here.']),
+  Q('Two lines cross. One angle is 50°. The angle opposite it is:',['50°','Vertically opposite angles are equal.'],['130°','angle-fact','130° is the angle next to it, on the same straight line.'],['40°','angle-fact','That uses 90°.'],['310°','angle-fact','That uses 360°.']),
+  Q('Which angle is obtuse?',['135°','Between 90° and 180°.'],['85°','angle-fact','Less than 90° is acute.'],['90°','angle-fact','90° is a right angle.'],['200°','angle-fact','More than 180° is reflex.'])]}));
+
+SPECS.push(()=>({id:'geo-parallel',ph:'p4',title:'Parallel lines and the angles they make',
+ sum:'When a line crosses two parallel lines: corresponding angles are equal, alternate angles are equal, co-interior angles add to 180°.',obj:['Recognise parallel lines and a transversal.','Find corresponding and alternate angles.','Use co-interior angles.'],
+ pics:[{title:'F, Z and C shapes',acts:[D('p1',{kind:'arrow',x1:80,y1:180,x2:600,y2:180,head:12},{dur:400}),D('p2',{kind:'arrow',x1:80,y1:360,x2:600,y2:360,head:12},{dur:400}),D('t',{kind:'line',x1:220,y1:470,x2:460,y2:70},{ink:'trouble',dur:400}),
+   ...ANG('a',388,180,34,0,59,'65°'),...ANG('b',280,360,34,0,59,'65°'),...ANG('c',280,360,46,180,239,'65°','accent2'),...ANG('d',280,360,40,59,180,'115°','trouble'),
+   W('f',780,170,'corresponding: equal (F)',{size:24,anchor:'middle',ink:'accent'}),W('z',780,250,'alternate: equal (Z)',{size:24,anchor:'middle',ink:'accent2'}),W('cc',780,330,'co-interior: add to 180° (C)',{size:24,anchor:'middle',ink:'trouble'}),
+   W('r',480,520,'Parallel lines never meet, like railway tracks.',{size:25,anchor:'middle',ink:'muted'})],
+   ex:[['p1','Two **parallel** lines: they never meet, like railway tracks.'],['t','A third line crosses them: the **transversal**.'],['a','The angle at the top crossing is 65°.'],['b','At the bottom crossing, in the matching position: also 65°. These are **corresponding** angles (an F shape).'],['f','Corresponding angles are equal.'],['z','**Alternate** angles (a Z shape) are equal too.'],['cc','**Co-interior** angles (a C shape) add up to 180°: 65° + 115°.']]}],
+ ex:[{q:'One angle where a transversal meets parallel lines is 72°. Find its corresponding and co-interior angles.',lines:[['Corresponding angle = 72°','Same position, so equal.'],['Co-interior angle = 180° − 72° = 108°','Same side, between the lines.'],['72° and 108°','']]},
+  {q:'An alternate angle to 48° is x. Find x.',lines:[['Alternate angles are equal (Z shape)'],['x = 48°','']]},
+  {q:'Co-interior angles are 2y and 3y. Find y.',lines:[['2y + 3y = 180'],['5y = 180'],['y = 36°','The angles are 72° and 108°.']]}],
+ mis:{wrong:['co-interior angles are equal'],right:['co-interior angles add to 180°','alternate angles are equal'],why:'Only corresponding (F) and alternate (Z) angles are equal. Co-interior (C) angles add to 180°.',ex:['A common mistake: thinking every pair of angles is equal.','The right way: F and Z are equal, C adds to 180°.','Look at the picture: one co-interior angle is sharp, the other wide.']},
+ rules:['Parallel lines never meet.','Corresponding angles (F) are equal.','Alternate angles (Z) are equal.','Co-interior angles (C) add to 180°.'],sumLine:'65° + 115° = 180°',
+ prac:[Q('A corresponding angle to 110° is:',['110°','Corresponding angles are equal.'],['70°','angle-fact','70° would be co-interior.'],['250°','angle-fact','That uses 360°.'],['20°','angle-fact','That uses 90°.']),
+  Q('Co-interior angles: one is 95°. The other is:',['85°','180° − 95° = 85°.'],['95°','angle-fact','Co-interior angles add to 180°; they are not equal.'],['265°','angle-fact','That uses 360°.'],['5°','angle-fact','That uses 90°.']),
+  Q('Which pair of angles is always equal on parallel lines?',['Alternate angles','Z shapes give equal angles.'],['Co-interior angles','angle-fact','They add to 180°.'],['Angles on a straight line','angle-fact','They add to 180°.'],['Any two angles','angle-fact','Only F and Z pairs are equal.'])]}));
+
+SPECS.push(()=>({id:'geo-triangles',ph:'p4',title:'Triangles',
+ sum:'The angles of every triangle add up to 180°. Isosceles triangles have two equal sides and two equal angles.',obj:['Use the angle sum of a triangle.','Know equilateral, isosceles and scalene triangles.','Use the exterior angle fact.'],
+ pics:[{title:'Why a triangle\'s angles make 180°',acts:[POLY('t',[[150,380],[450,380],[300,140]],{fill:'accent'}),...ANG('a',150,380,30,0,58,'a','trouble'),...ANG('b',450,380,30,122,180,'b','accent2'),...ANG('c',300,140,30,238,302,'c','accent'),
+   D('ln',{kind:'line',x1:560,y1:300,x2:900,y2:300},{dur:400}),...ANG('a2',730,300,40,122,180,'a','trouble'),...ANG('c2',730,300,46,58,122,'c','accent'),...ANG('b2',730,300,40,0,58,'b','accent2'),
+   W('r',480,470,'a + b + c = 180°',{size:36,anchor:'middle',ink:'accent2',weight:700}),W('r2',480,530,'Tear off the three corners: they make a straight line.',{size:25,anchor:'middle',ink:'muted'})],
+   ex:[['t','Any triangle, with three angles a, b and c.'],['ln','Imagine tearing off the three corners and putting them side by side on a line.'],['c2','They fit together exactly along the straight line.'],['r','A straight line is 180°, so **a + b + c = 180°** in every triangle.']]},
+  {title:'Three kinds of triangle',acts:[POLY('e',[[80,360],[280,360],[180,187]],{fill:'accent'}),W('el',180,410,'equilateral',{size:24,anchor:'middle',ink:'accent'}),W('ev',180,445,'all angles 60°',{size:21,anchor:'middle',ink:'muted'}),
+   POLY('i',[[380,360],[580,360],[480,150]],{fill:'accent2'}),D('it',{kind:'lines',segs:[[425,250,440,260],[520,260,535,250]]},{ink:'trouble',sw:2.4,dur:200}),W('il',480,410,'isosceles',{size:24,anchor:'middle',ink:'accent2'}),W('iv',480,445,'2 equal sides and angles',{size:21,anchor:'middle',ink:'muted'}),
+   POLY('s',[[680,360],[900,360],[740,200]],{fill:'trouble'}),W('sl',790,410,'scalene',{size:24,anchor:'middle',ink:'trouble'}),W('sv',790,445,'no equal sides',{size:21,anchor:'middle',ink:'muted'})],
+   ex:[['e','**Equilateral**: all 3 sides equal, so every angle is 180° ÷ 3 = 60°.'],['i','**Isosceles**: 2 sides equal (the small marks), and the 2 angles at their base are equal.'],['s','**Scalene**: no sides equal, no angles equal.']],
+   check:Q('An isosceles triangle has a top angle of 40°. Each base angle is:',['70°','(180° − 40°) ÷ 2 = 70°.'],['140°','angle-fact','140° must be shared by two equal angles.'],['40°','angle-fact','Only the two base angles are equal.'],['50°','angle-fact','Check: 40 + 50 + 50 = 140, not 180.'])}],
+ ex:[{q:'Two angles of a triangle are 48° and 77°. Find the third.',lines:[['48 + 77 = 125'],['180 − 125 = 55'],['Third angle = 55°','']]},
+  {q:'Each base angle of an isosceles triangle is 65°. Find the top angle.',lines:[['65 + 65 = 130'],['180 − 130 = 50'],['Top angle = 50°','']]},
+  {q:'In a triangle two angles are 50° and 60°. Find the exterior angle at the third corner.',lines:[['An exterior angle = the two opposite inside angles added','It sits on a straight line with the third angle.'],['50° + 60° = 110°','Check: third angle 70°, and 70° + 110° = 180°.']]}],
+ mis:{wrong:['angles 90°, 60°, 40°'],right:['90° + 60° + 30° = 180°'],why:'Every triangle\'s angles add to exactly 180°. 90 + 60 + 40 = 190, so that triangle cannot exist.',ex:['A common mistake: guessing angles from how the drawing looks.','The right way: use the rule, the three angles add to 180°.','Diagrams are often not to scale. Trust the rule, not your eyes.']},
+ rules:['The three angles of a triangle add to 180°.','Equilateral: all sides equal, all angles 60°.','Isosceles: two equal sides and two equal base angles.','Exterior angle = sum of the two opposite inside angles.'],sumLine:'a + b + c = 180°',
+ prac:[Q('A right-angled triangle has one angle of 35°. The third angle is:',['55°','180 − 90 − 35 = 55.'],['145°','angle-fact','The 90° angle was forgotten.'],['35°','angle-fact','Only isosceles triangles have equal angles.'],['65°','angle-fact','90 + 35 + 65 = 190.']),
+  Q('Each angle of an equilateral triangle is:',['60°','180 ÷ 3 = 60.'],['90°','angle-fact','Three right angles would make 270°.'],['45°','angle-fact','45 × 3 = 135, not 180.'],['120°','angle-fact','120° is the outside angle.']),
+  Q('Can a triangle have two obtuse angles?',['No','Two angles over 90° already make more than 180°.'],['Yes','angle-fact','Two angles bigger than 90° would add to more than 180°.'],['Only if it is isosceles','angle-fact','No triangle can, isosceles or not.'],['Only if it is large','angle-fact','Size does not change the angle sum.'])]}));
+
+SPECS.push(()=>({id:'geo-polygons',ph:'p4',title:'Polygons and their angles',
+ sum:'An n-sided polygon splits into n − 2 triangles, so its angles add to (n − 2) × 180°. Exterior angles always add to 360°.',obj:['Find the interior angle sum of any polygon.','Find each angle of a regular polygon.','Use exterior angles to find the number of sides.'],
+ pics:[{title:'Split into triangles',acts:[POLY('q',[[120,350],[330,350],[330,170],[120,170]],{fill:'accent'}),D('qd',{kind:'line',x1:120,y1:350,x2:330,y2:170},{ink:'trouble',dur:300}),W('ql',225,410,'4 sides → 2 triangles',{size:22,anchor:'middle'}),
+   POLY('p',[[480,350],[640,350],[690,230],[560,140],[430,230]],{fill:'accent2'}),D('pd',{kind:'lines',segs:[[480,350,690,230],[480,350,560,140]]},{ink:'trouble',dur:400}),W('pl',560,410,'5 sides → 3 triangles',{size:22,anchor:'middle'}),
+   ...TABLE('t',740,150,[70,130],50,[['n','sum'],['4','360°'],['5','540°'],['6','720°']],{size:22}),
+   ...LN('r',480,500,'Interior sum = (n − 2) × 180°',{ink:'accent2'})],
+   ex:[['q','From one corner of a 4-sided shape, one line splits it into **2 triangles**: 2 × 180° = 360°.'],['p','A 5-sided shape splits into **3 triangles**: 3 × 180° = 540°.'],['t','Each extra side adds one more triangle.'],['r','So an n-sided polygon makes **n − 2 triangles**: (n − 2) × 180°.']]}],
+ ex:[{q:'Find the sum of the interior angles of a hexagon (6 sides).',lines:[['6 − 2 = 4 triangles'],['4 × 180°'],['= 720°','']]},
+  {q:'Find each interior angle of a regular octagon (8 sides).',lines:[['Each exterior angle = 360° ÷ 8 = 45°','Exterior angles always add to 360°.'],['Interior = 180° − 45°','Inside and outside angles sit on a straight line.'],['= 135°','']]},
+  {q:'Each exterior angle of a regular polygon is 30°. How many sides does it have?',lines:[['Exterior angles add to 360°'],['360 ÷ 30 = 12'],['12 sides','']]}],
+ mis:{wrong:['hexagon: 6 × 180° = 1,080°'],right:['hexagon: (6 − 2) × 180° = 720°'],why:'A polygon with n sides splits into n − 2 triangles, not n.',ex:['A common mistake: multiplying the number of sides by 180°.','The right way: n − 2 triangles.','Check with a square: (4 − 2) × 180 = 360°, which is right.']},
+ rules:['Interior angle sum = (n − 2) × 180°.','Exterior angles of any polygon add to 360°.','Regular polygon: each exterior angle = 360° ÷ n.','Interior + exterior = 180°.'],sumLine:'pentagon: 3 × 180° = 540°',
+ prac:[Q('The angles of a pentagon add up to:',['540°','(5 − 2) × 180 = 540.'],['900°','angle-fact','5 × 180 uses n instead of n − 2.'],['360°','angle-fact','360° is for quadrilaterals.'],['720°','angle-fact','720° is for hexagons.']),
+  Q('Each interior angle of a regular hexagon is:',['120°','Exterior 360 ÷ 6 = 60, interior 180 − 60 = 120.'],['60°','angle-fact','60° is the exterior angle.'],['720°','angle-fact','720° is the total, not each angle.'],['108°','angle-fact','108° is for a regular pentagon.']),
+  Q('A regular polygon has interior angles of 140°. How many sides?',['9','Exterior = 40°, and 360 ÷ 40 = 9.'],['7','angle-fact','Check: 360 ÷ 7 is not a whole number.'],['40','angle-fact','40° is the exterior angle.'],['14','angle-fact','Find the exterior angle first: 180 − 140 = 40.'])]}));
+
+SPECS.push(()=>({id:'geo-area',ph:'p4',title:'Perimeter and area',
+ sum:'Perimeter is the distance around. Area is how many unit squares cover the inside.',obj:['Find perimeters of shapes.','Find areas of rectangles, triangles and parallelograms.','Choose the right one in word problems.'],
+ pics:[{title:'Around the edge, or the inside?',acts:[D('g',{kind:'grid',x:120,y:110,w:300,h:180,step:60},{ink:'muted',dur:700}),D('b',{kind:'rect',x:120,y:110,w:300,h:180},{ink:'accent',sw:4,dur:600}),
+   W('w',270,95,'5 m',{size:24,anchor:'middle',ink:'accent'}),W('h',100,210,'3 m',{size:24,anchor:'end',ink:'accent'}),
+   W('p',700,160,'Perimeter: 5 + 3 + 5 + 3 = 16 m',{size:26,anchor:'middle',ink:'accent'}),W('a',700,240,'Area: 5 × 3 = 15 m²',{size:26,anchor:'middle',ink:'accent2'}),
+   POLY('t',[[140,480],[400,480],[260,360]],{fill:'trouble'}),D('th',{kind:'line',x1:260,y1:360,x2:260,y2:480},{ink:'trouble',sw:2,dur:300}),W('tl',700,430,'Triangle: ½ × base × height',{size:26,anchor:'middle',ink:'trouble'})],
+   ex:[['g','A field 5 m long and 3 m wide, drawn on 1 m squares.'],['p','**Perimeter** is the distance around the edge, like a fence: 16 m.'],['a','**Area** counts the 1 m × 1 m squares inside: 5 × 3 = **15 m²**.'],['t','A triangle is half of a rectangle with the same base and height, so its area is **½ × base × height**.']]}],
+ ex:[{q:'A square garden has sides of 12 m. Find its perimeter and area.',lines:[['Perimeter = 4 × 12 = 48 m'],['Area = 12 × 12 = 144 m²'],['48 m of fence, 144 m² of grass','']]},
+  {q:'A triangle has a base of 10 cm and a height of 6 cm. Find its area.',lines:[['Area = ½ × base × height'],['½ × 10 × 6'],['= 30 cm²','']]},
+  {q:'A rectangle has a perimeter of 30 cm and a length of 9 cm. Find its width.',lines:[['Length + width = 30 ÷ 2 = 15'],['Width = 15 − 9'],['= 6 cm','']]}],
+ mis:{wrong:['Fencing a field → area'],right:['Fencing → perimeter (m)','Carpet, paint → area (m²)'],why:'Fences go around the edge (perimeter, in m). Carpet covers the inside (area, in m²).',ex:['A common mistake: using area when the question asks about the edge.','The right way: around → perimeter; covering → area.','Check the units: perimeter is in m, area is in m².']},
+ rules:['Perimeter: add all the sides.','Rectangle area = length × width.','Triangle area = ½ × base × height.','Area units are squared: cm², m².'],sumLine:'5 m × 3 m = 15 m²',
+ prac:[Q('A rectangle is 8 cm by 5 cm. Its area is:',['40 cm²','8 × 5 = 40.'],['26 cm','area-perim','26 cm is the perimeter.'],['13 cm²','area-perim','That adds the sides.'],['80 cm²','area-perim','8 × 5 is 40.']),
+  Q('A parallelogram has base 12 cm and height 5 cm. Its area is:',['60 cm²','Base × height.'],['30 cm²','area-perim','Only a triangle uses ½.'],['34 cm','area-perim','That is a perimeter-style answer.'],['17 cm²','area-perim','Multiply, do not add.']),
+  Q('How much fencing is needed for a field 40 m by 25 m?',['130 m','2 × (40 + 25) = 130.'],['1,000 m²','area-perim','1,000 m² is the area.'],['65 m','area-perim','That is only two sides.'],['2,000 m','area-perim','Fencing goes round the edge.'])]}));
+
+SPECS.push(()=>({id:'geo-circles',ph:'p4',title:'Circles',
+ sum:'Circumference = 2πr, area = πr². The diameter is twice the radius.',obj:['Know radius, diameter and circumference.','Find the circumference of a circle.','Find the area of a circle.'],
+ pics:[{title:'Parts of a circle',acts:[D('c',{kind:'circle',cx:260,cy:260,r:150},{ink:'accent',fill:'accent',fillOp:.08,dur:800}),DOT('o',260,260,'main',5),D('r',{kind:'line',x1:260,y1:260,x2:410,y2:260},{ink:'trouble',sw:3,dur:400}),W('rl',335,245,'radius r',{size:22,anchor:'middle',ink:'trouble'}),
+   D('d',{kind:'line',x1:153,y1:154,x2:367,y2:366},{ink:'accent2',sw:3,dur:400}),W('dl',190,395,'diameter = 2r',{size:22,anchor:'middle',ink:'accent2'}),
+   W('f1',700,160,'circumference = 2πr',{size:30,anchor:'middle',ink:'accent'}),W('f2',700,240,'area = πr²',{size:30,anchor:'middle',ink:'accent2'}),W('f3',700,320,'π ≈ 22/7 ≈ 3.14',{size:26,anchor:'middle',ink:'muted'}),
+   W('ex',700,430,'r = 7: C = 44,  A = 154',{size:26,anchor:'middle',weight:700})],
+   ex:[['c','A circle. Every point on it is the same distance from the centre.'],['r','That distance is the **radius**, r.'],['d','A line right across through the centre is the **diameter**: two radii.'],['f1','The distance around is the **circumference**: 2πr.'],['f2','The space inside is the **area**: πr².'],['f3','π (pi) is about 22/7 or 3.14.'],['ex','With r = 7: C = 2 × 22/7 × 7 = 44 and A = 22/7 × 49 = 154.']]}],
+ ex:[{q:'Find the circumference of a circle with radius 14 cm (π = 22/7).',lines:[['C = 2πr'],['2 × 22/7 × 14'],['= 88 cm','']]},
+  {q:'Find the area of a circle with diameter 14 cm (π = 22/7).',lines:[['Radius = 14 ÷ 2 = 7 cm','Area uses the radius.'],['A = 22/7 × 7 × 7'],['= 154 cm²','']]},
+  {q:'A wheel has radius 35 cm. How far does it roll in one full turn? (π = 22/7)',lines:[['One turn = one circumference'],['2 × 22/7 × 35'],['= 220 cm','']]}],
+ mis:{wrong:['diameter 14 → A = π × 14²'],right:['radius 7 → A = π × 7²','= 154'],why:'The area formula uses the radius. Halve the diameter first.',ex:['A common mistake: putting the diameter into πr².','The right way: radius = diameter ÷ 2.','Using the diameter makes the area 4 times too big.']},
+ rules:['Diameter = 2 × radius.','Circumference = 2πr = πd.','Area = πr².','π ≈ 22/7 or 3.14.'],sumLine:'r = 7: C = 44, A = 154',
+ prac:[Q('Circumference of a circle with radius 21 cm (π = 22/7)?',['132 cm','2 × 22/7 × 21 = 132.'],['66 cm','radius-diam','That forgets the 2 in 2πr.'],['1,386 cm','area-perim','That is the area.'],['264 cm','radius-diam','That doubles the radius twice.']),
+  Q('Area of a circle with radius 10 cm (π = 3.14)?',['314 cm²','3.14 × 100 = 314.'],['62.8 cm²','area-perim','62.8 cm is the circumference.'],['31.4 cm²','area-perim','r² = 100, not 10.'],['1,256 cm²','radius-diam','That uses the diameter.']),
+  Q('A circle has diameter 28 cm. Its radius is:',['14 cm','Half the diameter.'],['56 cm','radius-diam','Diameter is double the radius, not half.'],['28 cm','radius-diam','28 is the diameter.'],['7 cm','radius-diam','That halves it twice.'])]}));
+
+SPECS.push(()=>({id:'geo-volume',ph:'p4',title:'Volume of cubes and cuboids',
+ sum:'Volume = length × width × height, measured in cubic units. 1 litre = 1000 cm³.',obj:['Find the volume of a cuboid and a cube.','Use cubic units and litres.','Solve packing and tank problems.'],
+ pics:[{title:'Counting cubes',acts:[...CUBOID('c',140,180,300,150,140),W('l',290,370,'length 5',{size:24,anchor:'middle',ink:'accent'}),W('w',490,330,'width 4',{size:24,ink:'accent'}),W('h',120,260,'height 3',{size:24,anchor:'end',ink:'accent'}),
+   W('f',720,180,'5 × 4 × 3 = 60',{size:34,anchor:'middle',ink:'accent2',weight:700}),W('u',720,240,'cubic units (cm³)',{size:26,anchor:'middle',ink:'muted'}),W('r',480,470,'Volume = length × width × height',{size:30,anchor:'middle',weight:700}),W('r2',480,530,'1 litre = 1000 cm³',{size:26,anchor:'middle',ink:'accent'})],
+   ex:[['c','A box (cuboid). Volume is how many 1 cm cubes fit inside.'],['l','5 cubes along the length…'],['w','…4 along the width, so 20 on the bottom layer…'],['h','…and 3 layers high.'],['f','5 × 4 × 3 = **60 cm³**.'],['r2','For liquids: **1 litre = 1000 cm³**.']]}],
+ ex:[{q:'Find the volume of a cube with sides of 6 cm.',lines:[['V = 6 × 6 × 6'],['= 216 cm³','']]},
+  {q:'A tank is 50 cm × 40 cm × 30 cm. How many litres does it hold?',lines:[['V = 50 × 40 × 30 = 60,000 cm³'],['÷ 1000 to get litres'],['= 60 litres','']]},
+  {q:'How many 2 cm cubes fit exactly in a box 10 cm × 6 cm × 4 cm?',lines:[['Along each edge: 10 ÷ 2 = 5, 6 ÷ 2 = 3, 4 ÷ 2 = 2'],['5 × 3 × 2'],['= 30 cubes','']]}],
+ mis:{wrong:['cube side 2 cm → 2 × 3 = 6 cm³'],right:['2 × 2 × 2 = 8 cm³'],why:'Volume multiplies three measurements, so a cube of side s has volume s × s × s.',ex:['A common mistake: multiplying the side by 3.','The right way: side × side × side.','A 2 cm cube holds 8 little 1 cm cubes: 2 layers of 4.']},
+ rules:['Volume = length × width × height.','Cube: side × side × side.','Units are cubed: cm³, m³.','1 litre = 1000 cm³.'],sumLine:'5 × 4 × 3 = 60 cm³',
+ prac:[Q('Volume of a cuboid 8 cm × 5 cm × 2 cm?',['80 cm³','8 × 5 × 2 = 80.'],['15 cm³','area-perim','That adds the sides.'],['40 cm³','area-perim','That is only one layer: 8 × 5.'],['160 cm³','units','8 × 5 × 2 is 80.']),
+  Q('A cube has volume 125 cm³. Its side is:',['5 cm','5 × 5 × 5 = 125.'],['25 cm','units','25 × 25 × 25 is far more.'],['41.7 cm','units','That divides by 3.'],['11 cm','units','11 × 11 × 11 = 1,331.']),
+  Q('How many litres is 3,500 cm³?',['3.5 litres','3,500 ÷ 1000.'],['35 litres','units','Divide by 1000, not 100.'],['350 litres','units','Divide by 1000.'],['3,500 litres','units','1 litre is 1000 cm³.'])]}));
+
+SPECS.push(()=>({id:'geo-pyth',ph:'p4',title:'Pythagoras',
+ sum:'In a right-angled triangle, a² + b² = c², where c is the longest side, opposite the right angle.',obj:['Find the hypotenuse.','Find a shorter side.','Use Pythagoras in real problems.'],
+ pics:[{title:'Squares on the sides',acts:[POLY('t',[[250,380],[430,380],[250,240]],{fill:'accent'}),D('ra',{kind:'poly',pts:[[250,360],[270,360],[270,380]]},{sw:2,dur:200}),
+   W('a',230,315,'3',{size:28,anchor:'end',ink:'accent'}),W('b',340,412,'4',{size:28,anchor:'middle',ink:'accent'}),W('c',360,295,'5',{size:28,anchor:'middle',ink:'trouble'}),
+   W('f1',720,180,'3² + 4² = 5²',{size:34,anchor:'middle',ink:'accent2',weight:700}),W('f2',720,250,'9 + 16 = 25',{size:30,anchor:'middle',ink:'accent2'}),
+   W('r',480,470,'short² + short² = long²',{size:30,anchor:'middle',weight:700}),W('r2',480,530,'Famous sets: 3-4-5, 5-12-13, 8-15-17',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['t','A right-angled triangle. The little square marks the 90° corner.'],['a','The two shorter sides are 3 and 4.'],['c','The longest side, opposite the right angle, is the **hypotenuse**: 5.'],['f1','Square each side: 3² + 4² = 9 + 16 = 25 = 5².'],['r','**a² + b² = c²**: the two short sides squared add to the long side squared.'],['r2','Learn these sets; they appear often.']]}],
+ ex:[{q:'A right-angled triangle has shorter sides 6 cm and 8 cm. Find the hypotenuse.',lines:[['6² + 8² = 36 + 64 = 100'],['c = √100'],['= 10 cm','']]},
+  {q:'A 13 m ladder leans on a wall with its foot 5 m from the wall. How high does it reach?',lines:[['Ladder = hypotenuse = 13'],['h² = 13² − 5² = 169 − 25 = 144','For a shorter side, take away.'],['h = 12 m','']]},
+  {q:'Find the distance between the points (1, 2) and (4, 6).',lines:[['Across: 4 − 1 = 3. Up: 6 − 2 = 4'],['√(3² + 4²) = √25'],['= 5 units','']]}],
+ mis:{wrong:['13 m ladder, foot 5 m:','h² = 13² + 5² = 194'],right:['h² = 13² − 5²','= 144, h = 12 m'],why:'The hypotenuse is the longest side. To find a shorter side, take away, do not add.',ex:['A common mistake: always adding the squares.','The right way: add only when finding the longest side; otherwise subtract.','Check: the wall height must be less than the ladder.']},
+ rules:['Only for right-angled triangles.','The hypotenuse is the longest side, opposite 90°.','Longest side: add the squares, then √.','Shorter side: subtract the squares, then √.'],sumLine:'3² + 4² = 5²',
+ prac:[Q('Shorter sides 5 and 12. The hypotenuse is:',['13','25 + 144 = 169 = 13².'],['17','pyth','5 + 12 adds the sides, not their squares.'],['√119','pyth','That subtracts; add to find the hypotenuse.'],['60','pyth','That multiplies.']),
+  Q('Hypotenuse 17, one side 8. The other side is:',['15','289 − 64 = 225 = 15².'],['√353','pyth','Subtract to find a shorter side.'],['9','pyth','17 − 8 subtracts the sides, not their squares.'],['25','pyth','A shorter side cannot be longer than the hypotenuse.']),
+  Q('A man walks 9 km north, then 12 km east. How far is he from the start?',['15 km','√(81 + 144) = √225 = 15.'],['21 km','pyth','That is the distance walked, not the straight line.'],['3 km','pyth','That subtracts the distances.'],['√63 km','pyth','Add the squares for the straight-line distance.'])]}));
+
+/* ===== Phase 5: Graphs ===== */
+SPECS.push(()=>{const A=AXES('ax',120,450,420,360,6,6,{grid:true,xl:'x',yl:'y'});return {id:'graph-coord',ph:'p5',title:'Coordinates: finding points on a grid',
+ sum:'(x, y) means go x across, then y up. Distances between points come from Pythagoras.',obj:['Read and plot points (x, y).','Find the midpoint of two points.','Find the distance between two points.'],
+ pics:[{title:'Across, then up',acts:[...A.acts,D('w1',{kind:'arrow',x1:A.X(0),y1:A.Y(0)-4,x2:A.X(2),y2:A.Y(0)-4,head:10},{ink:'accent',sw:3,dur:400}),D('w2',{kind:'arrow',x1:A.X(2),y1:A.Y(0),x2:A.X(2),y2:A.Y(3),head:10},{ink:'accent2',sw:3,dur:400}),
+   DOT('pa',A.X(2),A.Y(3),'trouble'),W('pal',A.X(2)+18,A.Y(3)-14,'A (2, 3)',{size:24,ink:'trouble'}),DOT('pb',A.X(5),A.Y(1),'accent'),W('pbl',A.X(5)+16,A.Y(1)-14,'B (5, 1)',{size:24,ink:'accent'}),
+   W('r1',760,200,'(x, y)',{size:40,anchor:'middle',weight:700}),W('r2',760,260,'x = across',{size:28,anchor:'middle',ink:'accent'}),W('r3',760,310,'y = up',{size:28,anchor:'middle',ink:'accent2'}),W('r4',760,390,'walk before you climb',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['ax','A grid with an x-axis (across) and a y-axis (up). They start at 0.'],['w1','To plot (2, 3): first go **2 across**…'],['w2','…then **3 up**.'],['pa','That is point A (2, 3).'],['pb','B (5, 1): 5 across, 1 up.'],['r1','The first number is always across, the second always up: **walk before you climb**.']]}],
+ ex:[{q:'Describe how to reach the point (3, 5) from 0.',lines:[['x = 3 → 3 steps across'],['y = 5 → 5 steps up'],['Across first, then up','']]},
+  {q:'Find the midpoint of (2, 4) and (6, 10).',lines:[['x: (2 + 6) ÷ 2 = 4','Average the x values.'],['y: (4 + 10) ÷ 2 = 7','Average the y values.'],['Midpoint (4, 7)','']]},
+  {q:'Find the distance between (1, 1) and (7, 9).',lines:[['Across: 7 − 1 = 6. Up: 9 − 1 = 8','Draw a right-angled triangle between the points.'],['√(6² + 8²) = √100','Pythagoras.'],['= 10 units','']]}],
+ mis:{wrong:['(3, 5): 3 up, 5 across'],right:['(3, 5): 3 across, 5 up'],why:'The first number is always across (x), the second is up (y). Walk before you climb.',ex:['A common mistake: swapping x and y.','The right way: across first, then up.','(3, 5) and (5, 3) are different points.']},
+ rules:['(x, y): x across, then y up.','Both axes start at 0.','Midpoint: average the x values and the y values.','Distance: across and up, then Pythagoras.'],sumLine:'(2, 3) → 2 across, 3 up',
+ prac:[Q('Which point is 4 across and 1 up?',['(4, 1)','Across first.'],['(1, 4)','coord-order','That is 1 across and 4 up.'],['(4, 4)','coord-order','Up is 1, not 4.'],['(5, 0)','coord-order','4 + 1 is not how coordinates work.']),
+  Q('Midpoint of (0, 0) and (8, 6)?',['(4, 3)','Halve each: 8 ÷ 2 and 6 ÷ 2.'],['(8, 6)','coord-order','That is the end point.'],['(3, 4)','coord-order','x and y are swapped.'],['(14, 0)','wrong-op','Do not add x and y together.']),
+  Q('Distance from (0, 0) to (6, 8)?',['10','√(36 + 64) = 10.'],['14','pyth','6 + 8 adds the sides, not their squares.'],['2','pyth','That subtracts.'],['48','pyth','That multiplies.'])]}});
+
+SPECS.push(()=>({id:'graph-charts',ph:'p5',title:'Reading bar charts and tables',
+ sum:'Before answering, read the title, the labels and the units. Then find, compare and calculate.',obj:['Read values from a bar chart.','Read and total a table.','Compare values with differences and percentages.'],
+ pics:[{title:'Favourite fruit of 40 students',acts:[W('ti',480,60,'Favourite fruit of 40 students',{size:28,anchor:'middle',weight:700}),...BARS('b',140,400,680,280,[12,8,15,5],['Mango','Apple','Banana','Orange'],16),
+   W('r',480,500,'Read: title, labels, units. Then answer.',{size:26,anchor:'middle',ink:'accent'}),W('r2',480,550,'Most popular: Banana (15). Total: 12 + 8 + 15 + 5 = 40.',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['ti','First read the **title**: it tells you what is being counted.'],['b','Each bar shows how many students chose that fruit. The number is on top.'],['r','Always check the title, the labels and the **units** before you calculate.'],['r2','Banana is the tallest bar: 15. The bars add up to 40, which matches the title.']]}],
+ ex:[{q:'Sales (in boxes): Jan 120, Feb 150, Mar 90, Apr 180. Which month sold most, and what is the average?',acts:[...TABLE('t',600,150,[130,130],52,[['Month','Boxes'],['Jan','120'],['Feb','150'],['Mar','90'],['Apr','180']],{size:24})],cx:300,maxW:520,lines:[['Most: April (180)','Find the biggest number.'],['Total: 120 + 150 + 90 + 180 = 540'],['Average: 540 ÷ 4 = 135 boxes','']]},
+  {q:'Profit (in thousand rupees): 2022 → 45, 2023 → 25. Find the change and the % decrease.',lines:[['45 → 25: a fall of 20 thousand = Rs 20,000','The units say "thousand rupees".'],['% decrease = 20 ÷ 45 × 100','Divide by the old value.'],['≈ 44.4% decrease','']]},
+  {q:'A table shows 40% of 250 students walk to school. How many walk?',lines:[['40% of 250'],['10% = 25, so 40% = 100'],['100 students','']]}],
+ mis:{wrong:['"in thousands": 45 → Rs 45'],right:['"in thousands": 45 → Rs 45,000'],why:'Always read the title, the axis labels and the units before answering.',ex:['A common mistake: ignoring the units written on the chart.','The right way: 45 thousand rupees is Rs 45,000.','Many chart questions are lost on units, not on maths.']},
+ rules:['Read the title first.','Check the labels and the units.','Find the values, then calculate.','% change: divide by the old value.'],sumLine:'12 + 8 + 15 + 5 = 40 students',
+ prac:[Q('In the fruit chart (Mango 12, Apple 8, Banana 15, Orange 5), how many more chose Banana than Apple?',['7','15 − 8 = 7.'],['23','wrong-op','"How many more" means take away.'],['15','read-graph','15 is Banana alone.'],['3','read-graph','Check: 15 − 8.']),
+  Q('What percentage of the 40 students chose Mango (12)?',['30%','12 ÷ 40 × 100 = 30%.'],['12%','read-graph','12 is a number of students, not a percentage.'],['33%','read-graph','Divide by 40, the total.'],['48%','read-graph','12 ÷ 25 would be 48%, but the total is 40.']),
+  Q('A chart is labelled "population in millions". A bar shows 3.5. The population is:',['3,500,000','3.5 million.'],['3.5','read-graph','The units say millions.'],['35,000','read-graph','3.5 million is 3,500,000.'],['350,000','read-graph','3.5 million is 3,500,000.'])]}));
+
+/* ===== Phase 6: Statistics & probability ===== */
+SPECS.push(()=>({id:'stat-mean',ph:'p6',title:'The mean (average)',
+ sum:'Mean = total ÷ how many. Total = mean × how many, which solves most average questions.',obj:['Find the mean.','Find a missing value from the mean.','Find a combined average.'],
+ pics:[{title:'Levelling out',acts:[...BARS('b',140,400,520,280,[2,6,4],['Ali','Sara','Hina'],7,{ink:'accent'}),D('m',{kind:'line',x1:140,y1:400-4/7*280,x2:660,y2:400-4/7*280},{ink:'trouble',sw:3,dur:500}),W('ml',680,400-4/7*280+8,'mean = 4',{size:26,ink:'trouble'}),
+   ...LN('e',480,490,'(2 + 6 + 4) ÷ 3 = 12 ÷ 3 = 4',{ink:'accent2'}),W('r',480,550,'If everyone shared equally, each would have 4.',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['b','Ali has 2 sweets, Sara 6, Hina 4.'],['m','If they put them together and shared equally, each would have 4. That level is the **mean**.'],['e','Mean = **total ÷ how many**: 12 ÷ 3 = 4.']]}],
+ ex:[{q:'Find the mean of 4, 7, 9 and 10.',lines:[['Total: 4 + 7 + 9 + 10 = 30'],['How many: 4'],['Mean = 30 ÷ 4 = 7.5','']]},
+  {q:'The mean of 5 numbers is 12. Four of them are 10, 14, 9 and 11. Find the fifth.',lines:[['Total of all 5 = 12 × 5 = 60','Total = mean × how many.'],['Known: 10 + 14 + 9 + 11 = 44'],['Fifth = 60 − 44 = 16','']]},
+  {q:'20 students average 60 marks and 30 students average 70. Find the mean of all 50.',lines:[['Totals: 20 × 60 = 1,200 and 30 × 70 = 2,100'],['All: 3,300 ÷ 50'],['= 66','Not 65: the bigger group counts more.']]}],
+ mis:{wrong:['(60 + 70) ÷ 2 = 65'],right:['(1,200 + 2,100) ÷ 50 = 66'],why:'The bigger group counts more. Use totals: total = mean × count.',ex:['A common mistake: averaging the two averages.','The right way: find each total, add, then divide by everyone.','Only when the groups are the same size does averaging the averages work.']},
+ rules:['Mean = total ÷ how many.','Total = mean × how many.','Missing value = full total − known total.','Combined mean: add the totals first.'],sumLine:'(2 + 6 + 4) ÷ 3 = 4',
+ prac:[Q('Mean of 12, 15, 18?',['15','45 ÷ 3.'],['45','misread','45 is the total.'],['18','mean-median','18 is the biggest.'],['6','mean-median','18 − 12 is the range.']),
+  Q('The mean of 4 numbers is 25. Three are 20, 30 and 22. The fourth is:',['28','100 − 72 = 28.'],['25','total-trick','Use total = 25 × 4 = 100.'],['24','total-trick','Check: 20 + 30 + 22 + 28 = 100.'],['72','total-trick','72 is the known total.']),
+  Q('10 boys average 50 kg and 15 girls average 40 kg. Mean of all 25?',['44 kg','(500 + 600) ÷ 25 = 44.'],['45 kg','total-trick','That averages the averages.'],['90 kg','total-trick','That adds the averages.'],['42 kg','total-trick','Check: 1,100 ÷ 25 = 44.'])]}));
+
+SPECS.push(()=>({id:'stat-median-mode',ph:'p6',title:'Median and mode',
+ sum:'Median: sort, then take the middle. Mode: the value that appears most often.',obj:['Find the median of odd and even lists.','Find the mode.','Choose mean, median or mode.'],
+ pics:[{title:'Sort first, then the middle',acts:[W('u',480,100,'3,  9,  1,  7,  5',{size:36,anchor:'middle',ink:'muted'}),D('a',{kind:'arrow',x1:480,y1:125,x2:480,y2:175},{ink:'accent',dur:300}),
+   ...wseqC('s',480,225,['1,  3,  ','5',',  7,  9'],{size:36}),HL('r1','s.1','ring',{ink:'accent2'}),W('ml',480,300,'median = 5',{size:30,anchor:'middle',ink:'accent2',weight:700}),
+   W('mo',480,400,'Shoe sizes 7, 8, 8, 9, 8, 6 → mode = 8',{size:28,anchor:'middle',ink:'accent'}),W('r',480,480,'Mode = Most often',{size:30,anchor:'middle',weight:700})],
+   ex:[['u','A list of numbers, not in order.'],['a','Step 1: **sort** them from small to big.'],['s','1, 3, 5, 7, 9.'],['r1','Step 2: take the **middle** one.'],['ml','The **median** is 5.'],['mo','The **mode** is the value that appears most: size 8 appears 3 times.'],['r','Memory trick: **Mo**de = **Mo**st.']]}],
+ ex:[{q:'Find the median of 2, 10, 4, 6.',lines:[['Sort: 2, 4, 6, 10'],['Two middle values: 4 and 6','With an even count there are two middle numbers.'],['Median = (4 + 6) ÷ 2 = 5','']]},
+  {q:'Find the mode of 5, 3, 5, 2, 3, 5, 1.',lines:[['Count each: 5 appears 3 times, 3 twice'],['Mode = 5','']]},
+  {q:'Salaries (thousand Rs): 20, 22, 25, 24, 500. Which average best shows a typical salary?',lines:[['Mean = 591 ÷ 5 = 118.2 thousand','One huge salary pulls the mean up.'],['Sorted: 20, 22, 24, 25, 500 → median 24 thousand'],['The median: Rs 24,000 is typical','']]}],
+ mis:{wrong:['median of 3, 9, 1 = 9'],right:['sort: 1, 3, 9','median = 3'],why:'The median is the middle of the SORTED list. Sort first.',ex:['A common mistake: taking the middle of the list as it is written.','The right way: sort, then take the middle.','Forgetting to sort is the most common median mistake.']},
+ rules:['Median: sort, then take the middle.','Even count: average the two middle values.','Mode: the value that appears most.','Extreme values? Use the median.'],sumLine:'1, 3, 5, 7, 9 → median 5',
+ prac:[Q('Median of 8, 3, 5, 12, 7?',['7','Sorted: 3, 5, 7, 8, 12.'],['5','sort-first','5 is the middle of the unsorted list.'],['7.0 is the mean','mean-median','The mean is also 7 here, but always sort for the median.'],['12','sort-first','12 is the biggest.']),
+  Q('Median of 4, 9, 2, 7?',['5.5','Sorted 2, 4, 7, 9; (4 + 7) ÷ 2 = 5.5.'],['9','sort-first','Sort first.'],['4.5','sort-first','The middle two are 4 and 7.'],['22','misread','22 is the total.']),
+  Q('Most houses cost about Rs 1.5 crore, but one mansion costs Rs 30 crore. Which average shows a typical price?',['Median','It is not pulled by one extreme value.'],['Mean','mean-median','One mansion pulls the mean far up.'],['The biggest value','mean-median','That is the mansion, not typical.'],['Range','mean-median','Range shows spread, not typical value.'])]}));
+
+SPECS.push(()=>({id:'stat-sets',ph:'p6',title:'Sets and Venn diagrams',
+ sum:'n(A ∪ B) = n(A) + n(B) − n(A ∩ B). The overlap is counted twice, so subtract it once.',obj:['Read set notation: ∪, ∩, complement.','Fill a Venn diagram.','Find n(A ∩ B) from totals.'],
+ pics:[{title:'Tea and coffee',acts:[D('u',{kind:'rect',x:150,y:80,w:660,h:330},{ink:'muted',dur:500}),W('ul',170,110,'U: 17 people',{size:22,ink:'muted'}),...VENN('v',480,250,130,85,'Tea','Coffee'),
+   W('a',395,262,'7',{size:34,anchor:'middle',ink:'accent'}),W('ab',480,262,'3',{size:34,anchor:'middle',ink:'trouble',weight:700}),W('b',565,262,'5',{size:34,anchor:'middle',ink:'accent2'}),W('n',760,385,'2',{size:30,anchor:'middle',ink:'muted'}),
+   W('r',480,470,'n(A ∪ B) = n(A) + n(B) − n(A ∩ B)',{size:28,anchor:'middle',weight:700}),W('r2',480,530,'10 + 8 − 3 = 15 drink at least one',{size:25,anchor:'middle',ink:'accent2'})],
+   ex:[['u','The rectangle holds everyone: the **universal set** U.'],['v','Two circles: people who like tea, people who like coffee.'],['a','7 like only tea.'],['ab','3 like **both**: the overlap, **A ∩ B**.'],['b','5 like only coffee.'],['n','2 like neither: outside both circles.'],['r','10 like tea and 8 like coffee, but the 3 in the middle were counted in both. So subtract them once.']]}],
+ ex:[{q:'In a group of 60, 35 read Dawn, 30 read Jang and 10 read neither. How many read both?',lines:[['At least one: 60 − 10 = 50'],['35 + 30 = 65, which is 15 too many'],['n(A ∩ B) = 15','Those 15 were counted twice: they read both.']]},
+  {q:'n(A) = 12, n(B) = 9 and n(A ∩ B) = 4. Find n(A ∪ B).',lines:[['n(A ∪ B) = n(A) + n(B) − n(A ∩ B)'],['12 + 9 − 4'],['= 17','']]},
+  {q:'A = {1, 2, 3, 4} and B = {3, 4, 5}. Find A ∪ B and A ∩ B.',lines:[['A ∪ B: everything in either = {1, 2, 3, 4, 5}','∪ looks like a cup: it holds everything.'],['A ∩ B: only what is in both = {3, 4}'],['∪ = {1, 2, 3, 4, 5},  ∩ = {3, 4}','']]}],
+ mis:{wrong:['n(A ∪ B) = 35 + 30 = 65'],right:['35 + 30 − 15 = 50'],why:'People in both groups are counted twice: once in each circle. Subtract the overlap once.',ex:['A common mistake: just adding the two groups.','The right way: add, then take away the overlap.','Check with the Venn diagram: 20 + 15 + 15 + 10 = 60.']},
+ rules:['∪ (union): in A or B or both.','∩ (intersection): in both.','n(A ∪ B) = n(A) + n(B) − n(A ∩ B).','Neither = total − n(A ∪ B).'],sumLine:'10 + 8 − 3 = 15',
+ prac:[Q('n(A) = 20, n(B) = 15, n(A ∩ B) = 5. n(A ∪ B) = ?',['30','20 + 15 − 5.'],['35','venn-double','The overlap was counted twice.'],['40','venn-double','Subtract the overlap, do not add it.'],['10','venn-double','That subtracts too much.']),
+  Q('Out of 50 students, 30 play cricket, 25 play hockey and 5 play neither. How many play both?',['10','At least one: 45; 30 + 25 − 45 = 10.'],['5','venn-double','5 play neither.'],['20','venn-double','30 + 25 − 35 is not the right total.'],['55','venn-double','That is 30 + 25 with no overlap.']),
+  Q('A = {2, 4, 6, 8} and B = {6, 8, 10}. A ∩ B = ?',['{6, 8}','Only the elements in both.'],['{2, 4, 6, 8, 10}','venn-double','That is the union.'],['{2, 4}','venn-double','That is A without B.'],['{10}','venn-double','10 is only in B.'])]}));
+
+SPECS.push(()=>({id:'stat-sampling',ph:'p6',title:'Population, sample and fair sampling',
+ sum:'The population is everyone you want to know about. A sample is the part you study. A random sample gives everyone an equal chance.',obj:['Tell the population from the sample.','Describe simple random sampling.','Spot a biased sample.'],
+ pics:[{title:'A sample from a population',acts:[D('pop',{kind:'rect',x:80,y:90,w:520,h:330},{ink:'muted',dur:500}),DOTS('d',110,120,7,12,42,'muted',7),D('s',{kind:'ellipse',cx:330,cy:250,rx:120,ry:85},{ink:'accent2',sw:4,dur:600}),
+   W('pl',340,460,'population: all 84 people',{size:24,anchor:'middle',ink:'muted'}),W('sl',780,200,'sample: the people we ask',{size:24,anchor:'middle',ink:'accent2'}),
+   W('r1',780,300,'random: names drawn from a box',{size:23,anchor:'middle'}),W('r2',780,360,'biased: only your friends',{size:23,anchor:'middle',ink:'trouble'})],
+   ex:[['pop','Everyone we want to know about is the **population**.'],['s','We cannot ask everyone, so we study a smaller group: the **sample**.'],['r1','In a **simple random sample**, every person has the **same chance** of being picked, like names drawn from a box.'],['r2','A **biased** sample is unfair, like asking only your friends: it may not represent everyone.']]}],
+ ex:[{q:'A researcher measures 500 randomly chosen Grade 10 students in Punjab. Name the population and the sample.',lines:[['Population: all Grade 10 students in Punjab'],['Sample: the 500 students measured'],['Random: every student had an equal chance','']]},
+  {q:'A survey on exercise only asks people leaving a gym. What is wrong?',lines:[['Gym visitors exercise more than most people'],['They do not represent everyone'],['The sample is biased','']]},
+  {q:'How can you choose 50 of 1,000 workers fairly?',lines:[['Number every worker from 1 to 1,000'],['Draw 50 numbers from a box, or use random numbers'],['Every worker has the same chance','']]}],
+ mis:{wrong:['Ask only people near you'],right:['Draw names at random'],why:'A sample must give everyone an equal chance, or it may not represent the whole population.',ex:['A common mistake: choosing whoever is easiest to ask.','The right way: give every member an equal chance.','Easy samples are often biased.']},
+ rules:['Population: everyone you want to know about.','Sample: the part you actually study.','Simple random: everyone has an equal chance.','Biased: the sample does not represent everyone.'],sumLine:'500 students out of all students in Punjab',
+ prac:[Q('A TV channel asks viewers to phone in their opinion. The main problem is:',['Only people who choose to call are counted','They may not represent most viewers.'],['The sample is too random','sample','Self-chosen callers are not random.'],['The population is too small','sample','The population is all viewers.'],['There is no problem','sample','Callers usually feel strongly, so they are not typical.']),
+  Q('In a survey of 200 shoppers in a city of 2 million, the sample is:',['The 200 shoppers','The sample is the part studied.'],['The 2 million people','sample','That is the population.'],['The city','sample','The city is the place.'],['The survey questions','sample','Questions are not people.']),
+  Q('Which gives a simple random sample of a class?',['Draw names from a hat','Everyone has an equal chance.'],['Pick the front row','sample','Only some students can be chosen.'],['Ask for volunteers','sample','Volunteers choose themselves.'],['Pick the tallest students','sample','That is not fair to everyone.'])]}));
+
+SPECS.push(()=>({id:'stat-prob',ph:'p6',title:'Probability: how likely?',
+ sum:'Probability = ways you want ÷ all equally likely ways. It is between 0 (impossible) and 1 (certain).',obj:['Place events on a 0 to 1 scale.','Find simple probabilities.','Use P(not A) = 1 − P(A).'],
+ pics:[{title:'A bag of balls',acts:[D('bag',{kind:'ellipse',cx:230,cy:240,rx:150,ry:120},{ink:'muted',dur:500}),D('r',{kind:'circles',cs:[[170,210,22],[230,190,22],[290,220,22]]},{ink:'trouble',fill:'trouble',fillOp:.6,dur:400}),D('b',{kind:'circles',cs:[[200,280,22],[270,285,22]]},{ink:'accent',fill:'accent',fillOp:.6,dur:400}),
+   ...LN('p',680,200,['P(red) =',fr(3,5)],{maxW:420,ink:'trouble'}),...LN('q',680,300,['P(blue) =',fr(2,5)],{maxW:420,ink:'accent'}),
+   ...NL('s',140,450,680,0,1,{step:.5,lab:.5}).acts,W('s0',140,520,'impossible',{size:20,anchor:'middle',ink:'muted'}),W('s1',480,520,'even chance',{size:20,anchor:'middle',ink:'muted'}),W('s2',820,520,'certain',{size:20,anchor:'middle',ink:'muted'})],
+   ex:[['bag','A bag with 5 balls.'],['r','3 are red…'],['b','…and 2 are blue. Each ball is equally likely to be picked.'],['p','P(red) = ways to get red ÷ all ways = **3/5**.'],['q','P(blue) = 2/5. Together: 3/5 + 2/5 = 1.'],['s','Probability goes from **0** (impossible) to **1** (certain). 1/2 is an even chance.']]}],
+ ex:[{q:'A fair dice is thrown. What is the probability of an even number?',lines:[['Even numbers: 2, 4, 6 → 3 ways'],['All outcomes: 6'],[['P(even) =',fr(3,6),'=',fr(1,2)],'']]},
+  {q:'A bag has 4 red and 6 green balls. P(green)?',lines:[['Green: 6 ways; all: 10'],[['P(green) =',fr(6,10),'=',fr(3,5)],'']]},
+  {q:'In the same bag, what is the probability of NOT red?',lines:[['P(red) = 4/10'],['P(not red) = 1 − 4/10'],[['=',fr(6,10),'=',fr(3,5)],'Same as P(green): not red means green here.']]}],
+ mis:{wrong:[['P(red) =',fr(3,2)]],right:[['P(red) =',fr(3,5)]],why:'Divide by ALL the possible outcomes, not by the other colour. A probability is never more than 1.',ex:['A common mistake: red ÷ blue.','The right way: red ÷ all balls.','A probability bigger than 1 is impossible, so 3/2 must be wrong.']},
+ rules:['P = ways you want ÷ all equally likely ways.','0 = impossible, 1 = certain.','All the probabilities add to 1.','P(not A) = 1 − P(A).'],sumLine:['P(red) =',fr(3,5)],
+ prac:[Q('A dice is thrown. P(a number greater than 4)?',['{1/3}','5 and 6: {2/6} = {1/3}.'],['{1/2}','prob','Only 5 and 6 are greater than 4.'],['{2/4}','prob','Divide by 6, all the outcomes.'],['{4/6}','prob','That counts 1 to 4.']),
+  Q('A box has 3 white and 7 black marbles. P(white)?',['{3/10}','3 ÷ 10.'],['{3/7}','prob','Divide by all 10 marbles.'],['{7/10}','prob','That is black.'],['3','prob','A probability is at most 1.']),
+  Q('P(rain tomorrow) = 0.3. P(no rain)?',['0.7','1 − 0.3.'],['0.3','prob','That is rain.'],['1.3','prob','A probability cannot be more than 1.'],['0','prob','No rain is quite likely.'])]}));
+
+/* ===== Phase 7: speed, work and rates ===== */
+SPECS.push(()=>({id:'adv-speed',ph:'p7',title:'Speed, distance and time',
+ sum:'Distance = speed × time. Cover the one you want in the triangle. Keep the units matching.',obj:['Use D = S × T in all three ways.','Change minutes to hours.','Change km/h to m/s.'],
+ pics:[{title:'The speed triangle',acts:[POLY('t',[[160,380],[440,380],[300,140]],{fill:'accent'}),D('m',{kind:'lines',segs:[[215,285,385,285],[300,285,300,380]]},{dur:400}),
+   W('d',300,255,'D',{size:44,anchor:'middle',ink:'accent',weight:700}),W('s',245,350,'S',{size:40,anchor:'middle',ink:'accent2',weight:700}),W('tt',355,350,'T',{size:40,anchor:'middle',ink:'trouble',weight:700}),
+   W('f1',720,180,'D = S × T',{size:32,anchor:'middle',ink:'accent'}),W('f2',720,250,'S = D ÷ T',{size:32,anchor:'middle',ink:'accent2'}),W('f3',720,320,'T = D ÷ S',{size:32,anchor:'middle',ink:'trouble'}),
+   W('r',480,470,'60 km/h for 3 hours = 180 km',{size:28,anchor:'middle',weight:700}),W('r2',480,530,'km with hours, m with seconds',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['t','The speed triangle: **D**istance on top, **S**peed and **T**ime below.'],['f1','Cover D: S and T are side by side, so **D = S × T**.'],['f2','Cover S: D is over T, so **S = D ÷ T**.'],['f3','Cover T: **T = D ÷ S**.'],['r','A bus at 60 km/h for 3 hours goes 180 km.'],['r2','The units must match: km with hours, metres with seconds.']]}],
+ ex:[{q:'A car covers 150 km in 2½ hours. Find its speed.',lines:[['S = D ÷ T'],['150 ÷ 2.5'],['= 60 km/h','']]},
+  {q:'How far does a cyclist at 12 km/h go in 45 minutes?',lines:[['45 minutes = 45 ÷ 60 = 0.75 hours','Change to hours first.'],['D = 12 × 0.75'],['= 9 km','']]},
+  {q:'Change 72 km/h into metres per second.',lines:[['1 km/h = 1000 m ÷ 3600 s = 5/18 m/s'],['72 × 5 ÷ 18'],['= 20 m/s','']]}],
+ mis:{wrong:['45 minutes = 0.45 hours'],right:['45 minutes = 45 ÷ 60','= 0.75 hours'],why:'An hour has 60 minutes, not 100. Divide minutes by 60.',ex:['A common mistake: putting the minutes after a decimal point.','The right way: divide by 60.','Half an hour is 30 minutes = 0.5 hours, not 0.30.']},
+ rules:['D = S × T, S = D ÷ T, T = D ÷ S.','Units must match.','Minutes → hours: divide by 60.','km/h → m/s: × 5/18; m/s → km/h: × 18/5.'],sumLine:'60 km/h × 3 h = 180 km',
+ prac:[Q('A train goes 240 km in 4 hours. Speed?',['60 km/h','240 ÷ 4.'],['960 km/h','units','That multiplies.'],['244 km/h','wrong-op','That adds.'],['236 km/h','wrong-op','That subtracts.']),
+  Q('How long to drive 90 km at 60 km/h?',['1.5 hours','90 ÷ 60 = 1.5 hours = 1 hour 30 minutes.'],['1.3 hours','units','1 hour 30 minutes is 1.5 hours.'],['5,400 hours','units','That multiplies.'],['0.67 hours','units','That divides 60 by 90.']),
+  Q('36 km/h in m/s?',['10 m/s','36 × 5 ÷ 18 = 10.'],['129.6 m/s','units','That uses × 18/5, which goes the other way.'],['3.6 m/s','units','Use × 5/18.'],['36,000 m/s','units','Hours must change to seconds too.'])]}));
+
+SPECS.push(()=>({id:'adv-avg-rel',ph:'p7',title:'Average speed and relative speed',
+ sum:'Average speed = total distance ÷ total time. Moving towards each other, add speeds; same direction, subtract.',obj:['Find the average speed of a whole journey.','Use relative speed for meeting problems.','Use relative speed for catching up.'],
+ pics:[{title:'Two trains meeting',acts:[D('rail',{kind:'line',x1:60,y1:260,x2:900,y2:260},{ink:'muted',dur:400}),...CAR('c1',80,190,170),...CAR('c2',710,190,170,{fill:'accent2'}),
+   D('a1',{kind:'arrow',x1:270,y1:170,x2:420,y2:170},{ink:'accent',sw:3.5,dur:400}),W('a1l',345,150,'70 km/h',{size:24,anchor:'middle',ink:'accent'}),D('a2',{kind:'arrow',x1:690,y1:170,x2:540,y2:170},{ink:'accent2',sw:3.5,dur:400}),W('a2l',615,150,'80 km/h',{size:24,anchor:'middle',ink:'accent2'}),
+   W('g',480,330,'300 km apart',{size:26,anchor:'middle'}),...LN('e',480,410,'gap closes at 70 + 80 = 150 km/h',{ink:'accent'}),...LN('t',480,480,'300 ÷ 150 = 2 hours',{ink:'accent2'})],
+   ex:[['c1','Two trains, 300 km apart.'],['a1','One goes at 70 km/h…'],['a2','…the other at 80 km/h, towards each other.'],['e','Every hour the gap shrinks by 70 + 80 = **150 km**. Towards each other: **add** the speeds.'],['t','So they meet after 300 ÷ 150 = **2 hours**.']]}],
+ ex:[{q:'Go 60 km at 30 km/h and return at 60 km/h. Average speed?',lines:[['Going: 60 ÷ 30 = 2 h. Returning: 60 ÷ 60 = 1 h'],['Total: 120 km in 3 h'],['Average = 120 ÷ 3 = 40 km/h','Not 45.']]},
+  {q:'A cyclist is 15 km ahead. She rides at 15 km/h; a car follows at 45 km/h. When does the car catch up?',lines:[['Same direction: subtract the speeds','The gap closes at 45 − 15 = 30 km/h.'],['15 ÷ 30'],['= 0.5 hours (30 minutes)','']]},
+  {q:'A train 150 m long passes a pole at 54 km/h. How many seconds?',lines:[['54 km/h = 54 × 5/18 = 15 m/s'],['It travels its own length: 150 m'],['150 ÷ 15 = 10 seconds','']]}],
+ mis:{wrong:['average of 30 and 60 km/h','= 45 km/h'],right:['total distance ÷ total time','= 120 ÷ 3 = 40 km/h'],why:'The slower part of the trip takes longer, so it counts for more.',ex:['A common mistake: averaging the two speeds.','The right way: total distance ÷ total time.','At 30 km/h you spend 2 hours; at 60 km/h only 1 hour.']},
+ rules:['Average speed = total distance ÷ total time.','Towards each other: add the speeds.','Same direction: subtract the speeds.','Passing a pole: the train travels its own length.'],sumLine:'300 ÷ (70 + 80) = 2 hours',
+ prac:[Q('Drive 120 km at 40 km/h and back at 60 km/h. Average speed?',['48 km/h','240 km in 3 + 2 = 5 hours.'],['50 km/h','speed-avg','That averages the speeds.'],['100 km/h','speed-avg','That adds them.'],['24 km/h','speed-avg','Total distance is 240 km.']),
+  Q('Two cars 200 km apart drive towards each other at 40 and 60 km/h. They meet after:',['2 hours','200 ÷ 100.'],['10 hours','rel-speed','Towards each other, add the speeds.'],['5 hours','rel-speed','Use both speeds: 100 km/h.'],['3.3 hours','rel-speed','Add the speeds, do not use one.']),
+  Q('A bus at 60 km/h is 10 km behind a truck at 40 km/h on the same road. It catches up in:',['30 minutes','10 ÷ 20 = 0.5 hours.'],['6 minutes','rel-speed','Same direction: subtract the speeds.'],['1 hour','rel-speed','The gap closes at 20 km/h.'],['15 minutes','rel-speed','10 ÷ 20 is half an hour.'])]}));
+
+SPECS.push(()=>({id:'adv-work',ph:'p7',title:'Working together',
+ sum:'If A finishes a job in 6 days, A does 1/6 of it each day. Add the daily amounts, not the days.',obj:['Turn "days to finish" into "part done per day".','Find the time for two people together.','Find one person\'s time from the total.'],
+ pics:[{title:'Painting one wall',acts:[...fbar('w',100,110,720,80,12),W('wl',460,95,'one wall = 12 pieces',{size:22,anchor:'middle',ink:'muted'}),shade('sa',100,110,720,80,12,0,2,'accent'),shade('sb',100,110,720,80,12,2,3,'accent2'),
+   W('a',300,250,'Asad: 6 days → 1/6 a day = 2 pieces',{size:25,anchor:'middle',ink:'accent'}),W('b',300,300,'Basit: 12 days → 1/12 a day = 1 piece',{size:25,anchor:'middle',ink:'accent2'}),
+   ...LN('e',480,390,['together:',fr(1,6),'+',fr(1,12),'=',fr(3,12),'=',fr(1,4),'a day'],{ink:'trouble'}),W('r',480,500,'1/4 of the wall each day → 4 days',{size:30,anchor:'middle',weight:700,ink:'accent2'})],
+   ex:[['w','Think of the wall as 12 equal pieces.'],['sa','Asad takes 6 days, so each day he paints 12 ÷ 6 = 2 pieces: {1/6} of the wall.'],['sb','Basit takes 12 days, so he paints 1 piece a day: {1/12}.'],['e','Together each day: 2 + 1 = 3 pieces = {1/4} of the wall.'],['r','So together they finish in **4 days**.']]}],
+ ex:[{q:'A can do a job in 10 days and B in 15 days. How long together?',lines:[[[fr(1,10),'+',fr(1,15),'=',fr(3,30),'+',fr(2,30)],'Use a common bottom: 30.'],[['=',fr(5,30),'=',fr(1,6),'of the job each day'],''],['6 days','']]},
+  {q:'Together A and B take 4 days. A alone takes 6 days. How long for B alone?',lines:[[['B =',fr(1,4),'−',fr(1,6)],'Take A\'s part from the total.'],[['=',fr(3,12),'−',fr(2,12),'=',fr(1,12)],''],['12 days','']]},
+  {q:'A works twice as fast as B. Together they finish in 6 days. How long would B take alone?',lines:[['B does r a day, A does 2r: together 3r'],[['3r =',fr(1,6),', so r =',fr(1,18)],''],['B: 18 days (A: 9 days)','']]}],
+ mis:{wrong:['6 days + 12 days','= 18 days together'],right:[[fr(1,6),'+',fr(1,12),'=',fr(1,4)],'→ 4 days'],why:'Working together must be FASTER than either person alone. Add the work done per day, not the days.',ex:['A common mistake: adding the days.','The right way: add the parts done each day.','18 days is slower than Asad alone, so it cannot be right.']},
+ rules:['Days to finish → part done per day (1 ÷ days).','Together: add the daily parts.','Time = 1 ÷ (daily part).','Together must be faster than either alone.'],sumLine:[fr(1,6),'+',fr(1,12),'=',fr(1,4),'→ 4 days'],
+ prac:[Q('A takes 4 days and B takes 12 days. Together?',['3 days','{1/4} + {1/12} = {4/12} = {1/3} a day.'],['16 days','work-add','Adding the days makes it slower.'],['8 days','work-add','That averages the days.'],['6 days','work-add','Check: {1/4} + {1/12} = {1/3}.']),
+  Q('Together 10 days; A alone 15 days. B alone?',['30 days','{1/10} − {1/15} = {1/30}.'],['5 days','work-add','B must be slower than the pair.'],['25 days','work-add','Subtract the daily parts, not the days.'],['12.5 days','work-add','Check: {3/30} − {2/30} = {1/30}.']),
+  Q('3 men take 8 days. How long for 6 men at the same rate?',['4 days','24 man-days ÷ 6.'],['16 days','proportion','More men take fewer days.'],['11 days','wrong-op','Do not add the numbers.'],['2 days','proportion','24 ÷ 6 = 4.'])]}));
+
+SPECS.push(()=>({id:'adv-pipes',ph:'p7',title:'Pipes and tanks',
+ sum:'A pipe that fills a tank in 4 hours fills 1/4 of it each hour. Add the rates of filling pipes; take away the rates of outlets.',obj:['Find the time for two pipes together.','Handle an outlet or a leak.','Solve the "one pipe is faster" question.'],
+ pics:[{title:'Two pipes and a leak',acts:[...TANK('t',330,150,300,260,.45),D('p1',{kind:'arrow',x1:200,y1:130,x2:380,y2:180,head:14},{ink:'accent2',sw:4,dur:400}),W('p1l',200,110,'A: 4 h → +1/4 an hour',{size:22,anchor:'middle',ink:'accent2'}),
+   D('p2',{kind:'arrow',x1:760,y1:130,x2:580,y2:180,head:14},{ink:'accent2',sw:4,dur:400}),W('p2l',760,110,'B: 6 h → +1/6 an hour',{size:22,anchor:'middle',ink:'accent2'}),
+   D('o',{kind:'arrow',x1:600,y1:395,x2:760,y2:460,head:14},{ink:'trouble',sw:4,dur:400}),W('ol',800,500,'leak: 12 h → −1/12',{size:22,anchor:'middle',ink:'trouble'}),
+   ...LN('e',300,500,[fr(1,4),'+',fr(1,6),'−',fr(1,12),'=',fr(1,3)],{maxW:480,ink:'accent'})],
+   ex:[['t','A tank. Filling it once is **one whole job**.'],['p1','Pipe A fills it in 4 hours: **{1/4} of the tank each hour**.'],['p2','Pipe B fills it in 6 hours: {1/6} each hour. Filling rates **add**.'],['o','A leak empties it in 12 hours: it **takes away** {1/12} each hour.'],['e','Net: {3/12} + {2/12} − {1/12} = {4/12} = {1/3} each hour, so the tank fills in **3 hours**.']]}],
+ ex:[{q:'Pipe A fills a tank in 3 hours, pipe B in 6 hours. Together?',lines:[[[fr(1,3),'+',fr(1,6),'=',fr(2,6),'+',fr(1,6),'=',fr(1,2)],''],['Half the tank each hour'],['2 hours','Shortcut: (3 × 6) ÷ (3 + 6) = 2.']]},
+  {q:'A tap fills a tank in 4 hours; a leak empties it in 6 hours. With both, how long to fill?',lines:[[[fr(1,4),'−',fr(1,6),'=',fr(3,12),'−',fr(2,12)],'The leak takes away.'],[['=',fr(1,12),'each hour'],''],['12 hours','']]},
+  {q:'Pipe A fills 3 times as fast as pipe B. Together they fill the tank in 6 hours. How long for B alone?',lines:[['B fills 1 part an hour, A fills 3: together 4 parts'],['6 hours × 4 parts = 24 parts in the tank'],['B alone: 24 hours (A alone: 8 hours)','Check: {1/8} + {1/24} = {1/6}.']]}],
+ mis:{wrong:[['with a leak:',fr(1,4),'+',fr(1,6)]],right:[['with a leak:',fr(1,4),'−',fr(1,6),'=',fr(1,12)]],why:'A leak or outlet empties the tank, so its rate is taken away.',ex:['A common mistake: adding every pipe.','The right way: filling pipes add, emptying pipes subtract.','With a leak, filling must be slower than with the tap alone.']},
+ rules:['Hours to fill → part filled each hour.','Filling pipes: add. Leaks and outlets: subtract.','Time = 1 ÷ (net part each hour).','Two pipes: time = (a × b) ÷ (a + b).'],sumLine:'3 h and 6 h together → 2 h',
+ prac:[Q('Pipes fill a tank in 5 hours and 20 hours. Together?',['4 hours','{1/5} + {1/20} = {5/20} = {1/4}.'],['25 hours','work-add','Adding the hours makes it slower.'],['12.5 hours','work-add','That averages the hours.'],['15 hours','work-add','20 − 5 does not give a time.']),
+  Q('A tap fills in 3 hours; an outlet empties in 6 hours. Both open: time to fill?',['6 hours','{1/3} − {1/6} = {1/6}.'],['2 hours','work-add','The outlet takes away; it does not help.'],['9 hours','work-add','Subtract the rates, not add the hours.'],['3 hours','work-add','The outlet slows the filling.']),
+  Q('Pipe A is twice as fast as B. Together they fill a tank in 4 hours. A alone takes:',['6 hours','B 1 part, A 2 parts: 3 parts × 4 h = 12 parts. A: 12 ÷ 2 = 6.'],['12 hours','misread','12 hours is B alone.'],['8 hours','work-add','Check: {1/6} + {1/12} = {1/4}.'],['2 hours','work-add','A alone must be slower than both together.'])]}));
+
+/* ===== Phase 8: reasoning ===== */
+SPECS.push(()=>({id:'rsn-series',ph:'p8',title:'Number and letter series',
+ sum:'Find the rule: differences, then times, then two series mixed. A rule only counts if it fits every term.',obj:['Find rules using differences.','Spot times patterns and mixed series.','Solve letter series with positions.'],
+ pics:[{title:'Look at the gaps',acts:[...LABELS('s1',['3','7','11','15','?'].map((t,i)=>[140+i*140,160,t]),{size:36}),...[0,1,2,3].flatMap(i=>JUMP('j'+i,140+i*140,140+(i+1)*140,122,'+4','accent2')),W('a1',800,160,'→ 19',{size:32,ink:'accent2',weight:700}),
+   ...LABELS('s2',['2','5','10','17','?'].map((t,i)=>[140+i*140,360,t]),{size:36}),...['+3','+5','+7','+9'].flatMap((l,i)=>JUMP('k'+i,140+i*140,140+(i+1)*140,322,l,i===3?'trouble':'accent')),
+   W('a2',800,360,'→ 26',{size:32,ink:'trouble',weight:700}),W('r',480,500,'Check the rule on EVERY term before answering.',{size:27,anchor:'middle',weight:700})],
+   ex:[['s1','A series: 3, 7, 11, 15, ?'],['j0','The gaps are all **+4**.'],['a1','So the next term is 15 + 4 = **19**.'],['s2','Another: 2, 5, 10, 17, ?'],['k0','The gaps are +3, +5, +7: they grow by 2 each time.'],['a2','Next gap +9: 17 + 9 = **26**.'],['r','A rule must fit **every** step.']]}],
+ ex:[{q:'Find the next number: 5, 10, 20, 40, ?',lines:[['Gaps 5, 10, 20 grow fast → try ×'],['Each term × 2'],['40 × 2 = 80','']]},
+  {q:'Find the next number: 1, 10, 3, 20, 5, 30, ?',lines:[['Odd places: 1, 3, 5 (+2)','Two series mixed together.'],['Even places: 10, 20, 30 (+10)'],['Next is an odd place: 7','']]},
+  {q:'Find the next letter: A, C, E, G, ?',lines:[['Positions: A = 1, C = 3, E = 5, G = 7','Change letters to numbers.'],['Each step +2 → 9'],['9th letter = I','EJOTY helps: E = 5, J = 10.']]}],
+ mis:{wrong:['2, 4, 8, ? → +2 → 10'],right:['2, 4, 8, ? → ×2 → 16'],why:'"+2" fits 2 → 4 but not 4 → 8. A rule must fit every step.',ex:['A common mistake: choosing a rule from the first step only.','The right way: test the rule on every step.','×2 works for 2 → 4 and 4 → 8.']},
+ rules:['First look at the differences.','Big growth? Try × or squares.','Up and down? Split into two series.','Letters → positions: EJOTY = 5, 10, 15, 20, 25.'],sumLine:'3, 7, 11, 15, 19 (+4)',
+ prac:[Q('Next: 2, 6, 18, 54, ?',['162','× 3 each time.'],['90','series-rule','+36 does not fit the earlier steps.'],['58','series-rule','The gaps are not +4.'],['108','series-rule','That is × 2.']),
+  Q('Next: 1, 4, 9, 16, ?',['25','Square numbers: 5² = 25.'],['20','series-rule','The gaps grow: +3, +5, +7, +9.'],['23','series-rule','16 + 7 repeats a gap.'],['32','series-rule','That doubles.']),
+  Q('Next letter: B, E, H, K, ?',['N','Positions 2, 5, 8, 11 (+3) → 14 = N.'],['M','series-rule','+3 from K (11) is 14.'],['L','series-rule','That is +1.'],['O','series-rule','O is 15.'])]}));
+
+SPECS.push(()=>({id:'rsn-coding',ph:'p8',title:'Coding and decoding',
+ sum:'Compare the word and its code letter by letter, find the rule, then use the same rule.',obj:['Use letter positions and EJOTY.','Find shift and reverse codes.','Use opposite letters.'],
+ pics:[{title:'CAT becomes DBU',acts:[...TABLE('t',200,90,[90,90,90],60,[['C','A','T'],['D','B','U']],{size:34,head:false}),
+   W('r',640,140,'each letter +1',{size:30,ink:'accent',weight:700}),W('d',640,210,'so DOG → EPH',{size:30,ink:'accent2'}),
+   W('ej',480,330,'E = 5   J = 10   O = 15   T = 20   Y = 25',{size:30,anchor:'middle',weight:700}),W('op',480,410,'Opposite letters add to 27: A–Z, B–Y, M–N',{size:26,anchor:'middle'}),W('rv',480,480,'Other codes: reversed words, swapped pairs',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['t','Write the word above its code, then compare each pair: C → D, A → B, T → U.'],['r','Every letter moved **one place forward**.'],['d','Use the same rule on DOG: **EPH**.'],['ej','Remember **EJOTY** to find positions fast.'],['op','Opposite letters (A and Z, B and Y) have positions adding to 27.']]}],
+ ex:[{q:'If BOOK is written CPPL, how is PEN written?',lines:[['B → C, O → P, K → L: each +1'],['P → Q, E → F, N → O'],['QFO','']]},
+  {q:'If PAKISTAN is written NATSIKAP, how is LAHORE written?',lines:[['NATSIKAP is PAKISTAN backwards'],['LAHORE backwards'],['EROHAL','']]},
+  {q:'Which letter is opposite to M?',lines:[['M is the 13th letter'],['27 − 13 = 14'],['14th letter = N','']]}],
+ mis:{wrong:['CAT → DBU, so DOG → CNF'],right:['each letter +1: DOG → EPH'],why:'Find the rule from the example, then apply the SAME rule in the SAME direction.',ex:['A common mistake: moving backwards when the example moved forwards.','The right way: C → D is forward, so move forward.','Check the rule on every letter of the example.']},
+ rules:['Write the word above its code.','Compare letter by letter.','Positions: EJOTY = 5, 10, 15, 20, 25.','Apply the same rule in the same direction.'],sumLine:'CAT → DBU, DOG → EPH',
+ prac:[Q('If FISH is coded GJTI, what is BIRD?',['CJSE','Each letter +1.'],['AHQC','code-rule','That moves back, but the example moved forward.'],['DRIB','code-rule','That reverses the word.'],['CJSD','code-rule','D + 1 = E.']),
+  Q('If MULTAN is written NATLUM, how is QUETTA written?',['ATTEUQ','The word is reversed.'],['RVFUUB','code-rule','The rule is reversing, not shifting.'],['QUETTA','code-rule','The word must change.'],['ATTUEQ','code-rule','Reverse every letter in order: A, T, T, E, U, Q.']),
+  Q('What is the 7th letter to the right of the 12th letter?',['S','12 + 7 = 19, the 19th letter is S.'],['E','code-rule','12 − 7 = 5 goes left.'],['T','code-rule','T is 20th.'],['R','code-rule','R is 18th.'])]}));
+
+SPECS.push(()=>({id:'rsn-syllogism',ph:'p8',title:'All, some and none: syllogisms',
+ sum:'Draw circles for the statements. A conclusion is "definitely true" only if it holds in every possible drawing.',obj:['Draw "all", "some" and "no" as circles.','Judge conclusions from the statements only.','Spot "cannot be determined".'],
+ pics:[{title:'Three pictures',acts:[D('o1',{kind:'circle',cx:160,cy:230,r:100},{ink:'accent',fill:'accent',fillOp:.08,dur:500}),D('i1',{kind:'circle',cx:160,cy:250,r:50},{ink:'accent2',fill:'accent2',fillOp:.2,dur:400}),W('l1',160,375,'All A are B',{size:24,anchor:'middle',weight:700}),W('l1b',160,250,'A',{size:24,anchor:'middle',ink:'accent2'}),W('l1c',160,165,'B',{size:24,anchor:'middle',ink:'accent'}),
+   D('o2',{kind:'circle',cx:440,cy:230,r:80},{ink:'accent',fill:'accent',fillOp:.08,dur:400}),D('o3',{kind:'circle',cx:540,cy:230,r:80},{ink:'accent2',fill:'accent2',fillOp:.08,dur:400}),W('l2',490,375,'Some A are B',{size:24,anchor:'middle',weight:700}),
+   D('o4',{kind:'circle',cx:740,cy:230,r:65},{ink:'accent',fill:'accent',fillOp:.08,dur:400}),D('o5',{kind:'circle',cx:880,cy:230,r:55},{ink:'accent2',fill:'accent2',fillOp:.08,dur:400}),W('l3',810,375,'No A is B',{size:24,anchor:'middle',weight:700}),
+   W('r',480,480,'Use only what is given, even if it sounds silly.',{size:26,anchor:'middle'}),W('r2',480,535,'If one drawing breaks it → cannot be determined',{size:24,anchor:'middle',ink:'trouble'})],
+   ex:[['o1','**All A are B**: circle A sits completely inside circle B.'],['o2','**Some A are B**: the circles overlap.'],['o4','**No A is B**: the circles are apart.'],['r','Judge only from the statements, not from real life. "All cats are blue; Tom is a cat" means Tom is blue.'],['r2','If you can draw a picture that fits the statements but breaks the conclusion, the answer is **cannot be determined**.']]}],
+ ex:[{q:'All roses are flowers. All flowers fade. Conclusion: all roses fade.',lines:[['Roses inside flowers, flowers inside "things that fade"'],['Every rose is inside "things that fade"'],['Definitely true','']]},
+  {q:'All doctors are graduates. Some graduates are teachers. Conclusion: some doctors are teachers.',lines:[['Doctors sit inside graduates'],['Teachers might overlap the graduates outside the doctors'],['Cannot be determined','']]},
+  {q:'No fish is a mammal. All whales are mammals. Conclusion: no whale is a fish.',lines:[['Whales inside mammals; mammals apart from fish'],['So whales are apart from fish'],['Definitely true','']]}],
+ mis:{wrong:['"Some … some …"','→ definitely true'],right:['"Some … some …"','→ cannot be determined'],why:'Two "some" statements never give a certain link: the two overlaps may be in different places.',ex:['A common mistake: joining two "some" statements.','The right way: try drawing it so the conclusion fails.','Some pens are blue and some blue things are cheap, but the cheap things may not be pens.']},
+ rules:['All A are B: A inside B.','Some A are B: the circles overlap.','No A is B: the circles are apart.','One drawing breaks it → cannot be determined.'],sumLine:'All → inside   Some → overlap   No → apart',
+ prac:[Q('All A are B. All B are C. Then all A are C is:',['Definitely true','A inside B inside C.'],['Definitely false','logic-extra','A is inside C.'],['Cannot be determined','logic-extra','Every drawing puts A inside C.'],['True only sometimes','logic-extra','It is true in every drawing.']),
+  Q('Some pens are blue. Some blue things are cheap. Then some pens are cheap is:',['Cannot be determined','The cheap blue things may not be pens.'],['Definitely true','logic-extra','Two "some" statements do not give a certain link.'],['Definitely false','logic-extra','It might be true; we just cannot be sure.'],['Always true for pens','logic-extra','Judge only from the statements.']),
+  Q('All A are B. No B is C. Then some A are C is:',['Definitely false','A is inside B, and B has nothing in common with C.'],['Definitely true','logic-extra','A cannot touch C.'],['Cannot be determined','logic-extra','Every drawing keeps A apart from C.'],['True if A is big','logic-extra','Size does not matter.'])]}));
+
+SPECS.push(()=>({id:'rsn-ifthen',ph:'p8',title:'If-then, necessary and sufficient',
+ sum:'"If P then Q": P gives Q, and no Q means no P. But Q does not prove P.',obj:['Find the valid conclusions from if-then.','Avoid reversing an if-then statement.','Tell necessary from sufficient.'],
+ pics:[{title:'If it rains, the ground is wet',acts:[W('s',480,80,'If it rains → the ground is wet',{size:32,anchor:'middle',ink:'accent',weight:700}),
+   D('k1',{kind:'tick',x:90,y:165,s:14},{ink:'accent2',sw:3.5,dur:250}),W('v1',120,175,'It rained → the ground is wet',{size:26,ink:'accent2'}),
+   D('k2',{kind:'tick',x:90,y:235,s:14},{ink:'accent2',sw:3.5,dur:250}),W('v2',120,245,'Ground NOT wet → it did NOT rain',{size:26,ink:'accent2'}),
+   D('x1',{kind:'cross',x:90,y:315,s:12},{ink:'trouble',sw:3.5,dur:250}),W('n1',120,325,'Ground wet → it rained?  (a pipe may have burst)',{size:26,ink:'trouble'}),
+   D('x2',{kind:'cross',x:90,y:385,s:12},{ink:'trouble',sw:3.5,dur:250}),W('n2',120,395,'No rain → ground dry?  (not certain)',{size:26,ink:'trouble'}),
+   W('r',480,500,'necessary = needed     sufficient = enough on its own',{size:26,anchor:'middle',weight:700})],
+   ex:[['s','A rule: **if** it rains, **then** the ground is wet.'],['v1','It rained, so the ground is wet. **Valid.**'],['v2','The ground is not wet, so it cannot have rained. **Valid.**'],['n1','The ground is wet, so it rained? **Not certain**: something else could wet it.'],['n2','It did not rain, so the ground is dry? **Not certain** either.'],['r','**Necessary**: you cannot do without it. **Sufficient**: it is enough on its own.']]}],
+ ex:[{q:'"Only members may use the pool." Saad used the pool. What follows?',lines:[['"Only members" = if you use it, you are a member'],['Saad used it'],['Saad is a member','']]},
+  {q:'"If it rains, the match is cancelled." The match was NOT cancelled. What follows?',lines:[['No Q → no P'],['The match was not cancelled'],['It did not rain','']]},
+  {q:'"A passport is necessary to fly abroad." What must be true?',lines:[['Necessary = cannot do without it'],['It may not be enough: you also need a ticket'],['No passport → cannot fly abroad','']]}],
+ mis:{wrong:['The ground is wet, so it rained'],right:['Wet ground does not prove rain'],why:'"If P then Q" does not mean "if Q then P". A burst pipe also makes the ground wet.',ex:['A common mistake: turning the rule around.','The right way: only P → Q and not Q → not P are certain.','This mistake is called affirming the consequent.']},
+ rules:['If P then Q: P → Q is certain.','Not Q → not P is certain.','Q → P is NOT certain.','Necessary = needed; sufficient = enough.'],sumLine:'rain → wet,   not wet → no rain',
+ prac:[Q('"If you study, you pass." Ali did not pass. Then:',['Ali did not study','Not Q → not P.'],['Ali studied','logic-converse','If he had studied he would have passed.'],['The exam was unfair','logic-extra','Do not add outside reasons.'],['Nothing follows','logic-converse','Not Q → not P is certain.']),
+  Q('"If you study, you pass." Sara passed. Then:',['Nothing certain about studying','She may have passed another way.'],['Sara studied','logic-converse','That reverses the rule.'],['Sara did not study','logic-converse','We cannot tell either way.'],['The exam was easy','logic-extra','Do not add outside reasons.']),
+  Q('"Having Rs 1,000 is enough to buy the Rs 500 ticket." Rs 1,000 is:',['Sufficient','It is enough on its own.'],['Necessary','logic-extra','You could also buy it with Rs 500.'],['Neither','logic-extra','It is enough, so it is sufficient.'],['Too little','misread','1,000 is more than 500.'])]}));
+
+SPECS.push(()=>{const slot=(id,i,t,ink)=>[D(id,{kind:'rect',x:95+i*112,y:150,w:96,h:96},{ink:t?'main':'muted',dur:200}),...(t?[W(id+'.t',143+i*112,215,t,{size:40,anchor:'middle',ink,weight:700,dur:250})]:[]),W(id+'.n',143+i*112,280,String(i+1),{size:22,anchor:'middle',ink:'muted',dur:150,sync:true})];return {id:'rsn-arrange',ph:'p8',title:'Arrangement puzzles',
+ sum:'Draw the places, place fixed facts first, then blocks, then test each case. "Must" means true in every valid order.',obj:['Turn rules into short notes.','Place fixed facts and blocks first.','Answer must-be-true and could-be-true questions.'],
+ pics:[{title:'The piano recital (7 students)',acts:[W('h',480,70,'Rules: D 4th · BG together · A before D, not 1st · C right after D · F not last · E before B',{size:21,anchor:'middle'}),
+   ...range(0,7).flatMap(i=>slot('b'+i,i,'')),W('d',143+3*112,215,'D',{size:40,anchor:'middle',ink:'accent',weight:700}),W('c',143+4*112,215,'C',{size:40,anchor:'middle',ink:'accent',weight:700}),
+   W('bb',143+5*112,215,'B',{size:40,anchor:'middle',ink:'accent2',weight:700}),W('g',143+6*112,215,'G',{size:40,anchor:'middle',ink:'accent2',weight:700}),
+   W('rest',255+0,360,'1st to 3rd: A, E and F, with A not first',{size:26,ink:'trouble'}),W('ans',480,450,'Must be true: Gul is 7th. Four orders work.',{size:28,anchor:'middle',weight:700,ink:'accent2'}),W('r',480,520,'Fixed facts → blocks → test cases',{size:24,anchor:'middle',ink:'muted'})],
+   ex:[['h','Seven students perform in order. Turn each rule into a short note.'],['b0','Draw 7 boxes. Never solve a 7-person puzzle in your head.'],['d','Fixed fact first: Dua is 4th.'],['c','Chand comes right after Dua: 5th.'],['bb','Bilal and Gul are a block "BG". Only places 6 and 7 are left for two neighbours that work with "Emaan before Bilal".'],['rest','Asma, Emaan and Faraz fill places 1 to 3, with Asma not first.'],['ans','**Gul is 7th** in every valid order, so it **must** be true.']]}],
+ ex:[{q:'Ali is taller than Babar. Chand is shorter than Babar. Daud is taller than Ali. Who is shortest?',lines:[['Daud > Ali','Write each fact as a symbol.'],['Ali > Babar > Chand'],['Daud > Ali > Babar > Chand: Chand','']]},
+  {q:'P, Q, R, S, T sit in a row. R is in the middle, P at the far left, Q just right of R, T not next to P. Who is second from the left?',lines:[['P _ R Q _','Place the fixed facts.'],['T cannot be 2nd (next to P), so T is 5th'],['S is 2nd','']]},
+  {q:'Sara is 7th from the top and 26th from the bottom of her class. How many students?',lines:[['She is counted in both rankings'],['7 + 26 − 1'],['= 32 students','']]}],
+ mis:{wrong:['"Could be true" → choose it as "must be true"'],right:['Must = true in EVERY valid order'],why:'An option that works in only some valid orders could be true, but it is not a must.',ex:['A common mistake: stopping at the first order that works.','The right way: find all valid orders, then check each option.','In the recital, Asma is 2nd in some orders but 3rd in others.']},
+ rules:['Draw the places as boxes.','Fixed facts first, then blocks.','Test every place a block can go.','Must = every valid order; could = at least one.'],sumLine:'D 4th, C 5th, B 6th, G 7th',
+ prac:[Q('In the recital, if Faraz is 2nd, who is 1st?',['Emaan','Asma cannot be 1st, so Asma is 3rd and Emaan 1st.'],['Asma','arrange','Asma is not allowed to be first.'],['Bilal','arrange','Bilal is 6th.'],['Chand','arrange','Chand is 5th.']),
+  Q('Ali ranks 12th from the top in a class of 40. His rank from the bottom is:',['29','40 − 12 + 1.'],['28','arrange','Ali himself must be counted.'],['52','wrong-op','That adds.'],['30','arrange','Check: 12 + 29 − 1 = 40.']),
+  Q('Which could be true in the recital?',['Emaan is 3rd','The order F, A, E, D, C, B, G works.'],['Asma is 1st','arrange','Asma cannot be first.'],['Bilal is 5th','arrange','Chand is always 5th.'],['Faraz is 7th','arrange','Faraz cannot be last.'])]}});
+
+SPECS.push(()=>({id:'rsn-direction-clock',ph:'p8',title:'Directions, clocks and gears',
+ sum:'Draw directions with north at the top. Clock angle = |30H − 5.5M|. Meshing gears turn opposite ways.',obj:['Solve direction and distance questions.','Find the angle between clock hands.','Reason about gears and turns.'],
+ pics:[{title:'Directions and clocks',acts:[W('n',180,90,'N',{size:28,anchor:'middle',weight:700}),D('cmp',{kind:'lines',segs:[[180,105,180,245],[110,175,250,175]]},{ink:'muted',dur:400}),W('e',270,183,'E',{size:24,anchor:'middle'}),W('s',180,272,'S',{size:24,anchor:'middle'}),W('w',92,183,'W',{size:24,anchor:'middle'}),
+   D('p1',{kind:'arrow',x1:120,y1:480,x2:120,y2:360,head:12},{ink:'accent',sw:3.5,dur:400}),D('p2',{kind:'arrow',x1:120,y1:360,x2:280,y2:360,head:12},{ink:'accent2',sw:3.5,dur:400}),D('p3',{kind:'line',x1:120,y1:480,x2:280,y2:360},{ink:'trouble',sw:2.6,dur:400}),
+   W('pl',300,440,'3 km N, 4 km E → 5 km',{size:24,ink:'trouble'}),...CLOCK('ck',720,240,140,3,0),W('cl',720,440,'3:00 → 90°',{size:28,anchor:'middle',ink:'accent'}),W('cf',720,500,'angle = |30H − 5.5M|',{size:26,anchor:'middle',weight:700})],
+   ex:[['n','Always draw **north at the top**: east right, south down, west left.'],['p1','Walk 3 km north…'],['p2','…then 4 km east.'],['p3','The straight line back to the start is the hypotenuse: √(9 + 16) = **5 km**.'],['ck','A clock at 3:00. The hands are 3 numbers apart: 3 × 30° = 90°.'],['cf','For any time: angle = |30 × hours − 5.5 × minutes|. If it is over 180°, take it from 360°.']]}],
+ ex:[{q:'Ahmed walks 8 km north, then 6 km east. How far is he from the start, and in which direction?',lines:[['A right-angled triangle: 8 and 6'],['√(64 + 36) = √100 = 10 km'],['10 km, north-east of the start','']]},
+  {q:'Find the smaller angle between the hands at 3:30.',lines:[['|30 × 3 − 5.5 × 30|'],['|90 − 165| = 75','The hour hand has moved halfway to 4.'],['75°','']]},
+  {q:'5 gears in a row mesh with each other. The first turns clockwise. Which way does the last turn?',lines:[['Meshing gears turn opposite ways'],['1 C, 2 A, 3 C, 4 A, 5 C','Odd-numbered gears match the first.'],['Clockwise','']]}],
+ mis:{wrong:['at 3:30, angle = 90°'],right:['the hour hand moved too','|90 − 165| = 75°'],why:'In 30 minutes the hour hand moves 15° towards 4, so the angle is not the same as at 3:00.',ex:['A common mistake: keeping the hour hand still on 3.','The right way: the hour hand moves 0.5° every minute.','Use the formula: |30H − 5.5M|.']},
+ rules:['Draw north at the top.','Straight-line distance: Pythagoras.','Clock angle = |30H − 5.5M|.','Meshing gears turn opposite ways.'],sumLine:'3 km N + 4 km E → 5 km',
+ prac:[Q('Facing north, you turn right, then right again. You now face:',['South','Right from north is east; right again is south.'],['West','direction','Two right turns from north face south.'],['East','direction','That is only one right turn.'],['North','direction','Two right turns make a half turn.']),
+  Q('The smaller angle between the hands at 6:00 is:',['180°','6 × 30 = 180.'],['90°','clock','6 numbers apart is 180°.'],['0°','clock','The hands point opposite ways.'],['360°','clock','The smaller angle is at most 180°.']),
+  Q('4 gears in a row; the first turns clockwise. The last turns:',['Anticlockwise','Gear 4 is even-numbered.'],['Clockwise','direction','Even-numbered gears turn the opposite way to the first.'],['It does not turn','direction','Meshing gears all turn.'],['Both ways','direction','Each gear turns one way.'])]}));
 
 /* =====================================================================
    4. CONTENT VALIDATOR + LAYOUT CHECK (also used by the automated test)
@@ -668,7 +1577,7 @@ async function buildPDF(scope,progress){const jsPDF=await loadJsPDF();const B=ma
       text('In this lesson you will learn to:',11,'bold',NAVY);L.objectives.forEach(o=>rich('•  '+o,11,M+3,CW-3));B.setY(B.getY()+4);
       for(let si=0;si<L.steps.length;si++){const st=L.steps[si];progress(`Drawing "${L.title}", step ${si+1} of ${L.steps.length}`,done/total);await tick();
         const ih=CW*BH/BW;B.ensure(ih+16);text(`Step ${si+1} of ${L.steps.length}:  ${st.title}`,13,'bold',BLUE);B.setY(B.getY()+1.5);
-        doc.addImage(boardCanvas(L,si).toDataURL('image/jpeg',.86),'JPEG',M,B.getY(),CW,ih,undefined,'FAST');B.setY(B.getY()+ih+4);
+        doc.addImage(boardCanvas(L,si,total>60?1.05:1.4).toDataURL('image/jpeg',total>60?.78:.86),'JPEG',M,B.getY(),CW,ih,undefined,'FAST');B.setY(B.getY()+ih+4);
         st.explain.forEach((l,i)=>rich(`${i+1}.  ${l.t}`,11,M+2,CW-2));B.setY(B.getY()+3);
         if(st.check){question(st.check,`Check (step ${si+1})`,false);B.key.push({L,label:`Step ${si+1} check`,q:st.check})}
         B.setY(B.getY()+3);done++}
@@ -706,7 +1615,7 @@ async function makePDF(scope){if(pdfBusy)return;
 function notesCardHTML(){const ph=PHASES.filter(p=>p.lessons.some(id=>LBY[id]));
   return `<section class="card" style="display:flex;flex-direction:column;gap:12px"><div><div class="eyebrow">Notes PDF</div><h2>Download your notes</h2><p class="muted">Every board, every explanation, practice questions with boxes to write in, and an answer key.</p></div>
   <div class="dlrow"><button class="btn primary" data-pdf="book">Whole book</button></div>
-  ${ph.map(p=>`<div class="dlgroup"><div class="dlrow"><button class="btn" data-pdf="phase:${p.id}">Section: ${esc(p.name)}</button></div>${p.lessons.filter(id=>LBY[id]).map(id=>`<button class="lesson" data-pdf="lesson:${id}"><span>${esc(LBY[id].title)}</span><span class="pill">PDF</span></button>`).join('')}</div>`).join('')}</section>`}
+  <details class="dlgroup"><summary>One section or one lesson</summary><div class="dlgroup" style="margin-top:10px">${ph.map(p=>`<details class="dlgroup"><summary style="color:var(--ui)">${esc(p.name)} (${p.lessons.filter(id=>LBY[id]).length})</summary><div class="dlgroup" style="margin:8px 0 4px"><button class="btn" data-pdf="phase:${p.id}">Whole section</button>${p.lessons.filter(id=>LBY[id]).map(id=>`<button class="lesson" data-pdf="lesson:${id}"><span>${esc(LBY[id].title)}</span><span class="pill">PDF</span></button>`).join('')}</div></details>`).join('')}</div></details></section>`}
 
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
