@@ -83,7 +83,7 @@ SECTIONS = [
               ["before / after", "earlier / later than", "before lunch, after the war"], ["within", "before a limit runs out", "within a week"],
               ["ago", "back from now (after the time)", "two years ago"]],
        items=L("p0-attime", "p0-in-on-at-time", "p0-fortime", "p0-for-since-during", "p0-bytime", "p0-by-until", "p0-before",
-               "in-time", "in-on-at-time", "for-since", "during-for", "by-until", "before-after", "from-to-till", "within-time", "ago-not-prep", "pending", "py-dawn", "py-parts-of-day", "py-in-on-time", "py-for-since", "py-while-during", "py-by-until-over", "py-from-since", "py-at-on-to-upon")),
+               "in-time", "in-on-at-time", "for-since", "during-for", "by-until", "before-after", "from-to-till", "within-time", "ago-not-prep", "pending", "py-dawn", "py-parts-of-day", "py-in-on-time", "py-for-since", "py-while-during", "py-by-until-over", "py-from-since", "py-within-during", "py-at-on-to-upon")),
   dict(id="place", title="Using prepositions when talking about place or location",
        intro="Place is a picture: AT a point, ON a surface or line, IN an area or container; then over, under, beside, between, in front of and the rest place one thing against another.",
        table=[["at", "a point, an address, a meeting place", "at the gate, at 15 Mall Road"], ["on", "a surface, a line, a floor", "on the table, on the coast, on the third floor"],

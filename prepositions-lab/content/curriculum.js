@@ -752,6 +752,7 @@
               L("py-while-during", "WHILE or DURING: a stretch of time", { status: "tested", lessonId: "py-while-during" }),
               L("py-by-until-over", "BY, UNTIL, OVER: a deadline, a wait, a stretch", { status: "tested", lessonId: "py-by-until-over" }),
               L("py-from-since", "FROM or SINCE: where the line starts, and where it ends", { status: "tested", lessonId: "py-from-since" }),
+              L("py-within-during", "WITHIN or DURING: a limit, or an event", { status: "tested", lessonId: "py-within-during" }),
             ],
           },
         ],
