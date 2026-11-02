@@ -260,11 +260,10 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: Submit the form till Monday.. Right: Submit the form by Monday.. Submit happens once. A deadline takes BY. Wrong: I will wait by six.. Right: I will wait until six.. Waiting goes on and on, then stops. That is UNTIL. Wrong: I will reach home until ten.. Right: I will reach home by ten.. Reaching happens once. No later than ten: BY.",
+        alt: "Mistakes: Wrong: Submit the form till Monday.. Right: Submit the form by Monday.. Submit happens once. A deadline takes BY. Wrong: I will wait by six.. Right: I will wait until six.. Waiting goes on and on, then stops. That is UNTIL.",
         say: [
           { text: "Wrong: _Submit the form till Monday._ Right: _Submit the form by Monday._ Why? Submit happens once. A deadline takes BY.", cue: "mk0w" },
           { text: "Wrong: _I will wait by six._ Right: _I will wait until six._ Why? Waiting goes on and on, then stops. That is UNTIL.", cue: "mk1w" },
-          { text: "Wrong: _I will reach home until ten._ Right: _I will reach home by ten._ Why? Reaching happens once. No later than ten: BY.", cue: "mk2w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk"),
@@ -275,24 +274,25 @@
           { do: "write", id: "mk1w", text: "✗ I will wait by six.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk1r", text: "✓ I will wait until six.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk1y", text: "Waiting goes on and on, then stops. That is UNTIL.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk2w", text: "✗ I will reach home until ten.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk2r", text: "✓ I will reach home by ten.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk2y", text: "Reaching happens once. No later than ten: BY.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
         id: "mistakes-2",
         title: "Mistake board 2",
-        alt: "Mistakes: Wrong: We visited Murree in the weekend.. Right: We visited Murree over the weekend.. Across the whole weekend: OVER (or at the weekend).",
+        alt: "Mistakes: Wrong: I will reach home until ten.. Right: I will reach home by ten.. Reaching happens once. No later than ten: BY. Wrong: We visited Murree in the weekend.. Right: We visited Murree over the weekend.. Across the whole weekend: OVER (or at the weekend).",
         say: [
-          { text: "Wrong: _We visited Murree in the weekend._ Right: _We visited Murree over the weekend._ Why? Across the whole weekend: OVER (or at the weekend).", cue: "mk20w" },
+          { text: "Wrong: _I will reach home until ten._ Right: _I will reach home by ten._ Why? Reaching happens once. No later than ten: BY.", cue: "mk20w" },
+          { text: "Wrong: _We visited Murree in the weekend._ Right: _We visited Murree over the weekend._ Why? Across the whole weekend: OVER (or at the weekend).", cue: "mk21w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk2"),
           { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "mk20w", text: "✗ We visited Murree in the weekend.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk20r", text: "✓ We visited Murree over the weekend.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk20y", text: "Across the whole weekend: OVER (or at the weekend).", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk20w", text: "✗ I will reach home until ten.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ I will reach home by ten.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "Reaching happens once. No later than ten: BY.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk21w", text: "✗ We visited Murree in the weekend.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk21r", text: "✓ We visited Murree over the weekend.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk21y", text: "Across the whole weekend: OVER (or at the weekend).", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

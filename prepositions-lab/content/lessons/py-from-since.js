@@ -254,11 +254,10 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: I am waiting since morning.. Right: I have been waiting since morning.. SINCE runs up to now, so the verb needs have / has. Wrong: She has lived here from 2015.. Right: She has lived here since 2015.. The line reaches now with has lived: SINCE. Wrong: He worked there since 2010 to 2015.. Right: He worked there from 2010 to 2015.. It has an end, so it is closed: FROM ... TO.",
+        alt: "Mistakes: Wrong: I am waiting since morning.. Right: I have been waiting since morning.. SINCE runs up to now, so the verb needs have / has. Wrong: She has lived here from 2015.. Right: She has lived here since 2015.. The line reaches now with has lived: SINCE.",
         say: [
           { text: "Wrong: _I am waiting since morning._ Right: _I have been waiting since morning._ Why? SINCE runs up to now, so the verb needs have / has.", cue: "mk0w" },
           { text: "Wrong: _She has lived here from 2015._ Right: _She has lived here since 2015._ Why? The line reaches now with has lived: SINCE.", cue: "mk1w" },
-          { text: "Wrong: _He worked there since 2010 to 2015._ Right: _He worked there from 2010 to 2015._ Why? It has an end, so it is closed: FROM ... TO.", cue: "mk2w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk"),
@@ -269,24 +268,25 @@
           { do: "write", id: "mk1w", text: "✗ She has lived here from 2015.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk1r", text: "✓ She has lived here since 2015.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk1y", text: "The line reaches now with has lived: SINCE.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk2w", text: "✗ He worked there since 2010 to 2015.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk2r", text: "✓ He worked there from 2010 to 2015.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk2y", text: "It has an end, so it is closed: FROM ... TO.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
         id: "mistakes-2",
         title: "Mistake board 2",
-        alt: "Mistakes: Wrong: Since tomorrow, the shop will open at 9.. Right: From tomorrow, the shop will open at 9.. Tomorrow is still coming. SINCE only looks back from now.",
+        alt: "Mistakes: Wrong: He worked there since 2010 to 2015.. Right: He worked there from 2010 to 2015.. It has an end, so it is closed: FROM ... TO. Wrong: Since tomorrow, the shop will open at 9.. Right: From tomorrow, the shop will open at 9.. Tomorrow is still coming. SINCE only looks back from now.",
         say: [
-          { text: "Wrong: _Since tomorrow, the shop will open at 9._ Right: _From tomorrow, the shop will open at 9._ Why? Tomorrow is still coming. SINCE only looks back from now.", cue: "mk20w" },
+          { text: "Wrong: _He worked there since 2010 to 2015._ Right: _He worked there from 2010 to 2015._ Why? It has an end, so it is closed: FROM ... TO.", cue: "mk20w" },
+          { text: "Wrong: _Since tomorrow, the shop will open at 9._ Right: _From tomorrow, the shop will open at 9._ Why? Tomorrow is still coming. SINCE only looks back from now.", cue: "mk21w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk2"),
           { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "mk20w", text: "✗ Since tomorrow, the shop will open at 9.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk20r", text: "✓ From tomorrow, the shop will open at 9.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk20y", text: "Tomorrow is still coming. SINCE only looks back from now.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk20w", text: "✗ He worked there since 2010 to 2015.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ He worked there from 2010 to 2015.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "It has an end, so it is closed: FROM ... TO.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk21w", text: "✗ Since tomorrow, the shop will open at 9.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk21r", text: "✓ From tomorrow, the shop will open at 9.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk21y", text: "Tomorrow is still coming. SINCE only looks back from now.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

@@ -143,8 +143,8 @@ def mistake_board(tag, rows):
         y0 = 115 + i * 150
         acts += [w(f"{tag}{i}w", "✗ " + bad, 60, y0, 29, "trouble", None, 840, gap=400),
                  w(f"{tag}{i}r", "✓ " + good, 60, y0 + 42, 29, "accent2", None, 840, gap=300),
-                 w(f"{tag}{i}y", why, 92, y0 + 80, 22, "muted", None, 820, gap=200)]
-        says.append((f"Wrong: _{bad}_ Right: _{good}_ Why? {why}", f"{tag}{i}w"))
+                 *[w(f"{tag}{i}y{j}" if j else f"{tag}{i}y", ln.strip(), 92, y0 + 80 + j * 28, 22, "muted", None, 820, gap=200) for j, ln in enumerate(why.split("|")[:2])]]
+        says.append((f"Wrong: _{bad}_ Right: _{good}_ Why? {' '.join(x.strip() for x in why.split('|'))}", f"{tag}{i}w"))
     return acts, says
 
 def check(qid, prompt, opts, tag):
@@ -181,11 +181,12 @@ def lesson(d):
         a, s = special(f"sp{i}", sp)
         steps.append(dict(id=f"picture-{i + 1}", title=sp["title"], alt=sp["title"] + ". " + " ".join(t for t, c in s), says=s, actions=a))
     # 6. mistakes
-    for c in range(0, len(d["mistakes"]), 3):
-        part = d["mistakes"][c:c + 3]
-        a, s = mistake_board("mk" if c == 0 else f"mk{c // 3 + 1}", part)
-        steps.append(dict(id="mistakes" if c == 0 else f"mistakes-{c // 3 + 1}", title="Mistake board" if c == 0 else f"Mistake board {c // 3 + 1}",
-                          alt="Mistakes: " + " ".join(f"Wrong: {b}. Right: {g}. {y}" for b, g, y in part), says=s, actions=a))
+    per = -(-len(d["mistakes"]) // -(-len(d["mistakes"]) // 3))  # spread evenly: 4 -> 2 + 2, 5 -> 3 + 2
+    for c in range(0, len(d["mistakes"]), per):
+        part = d["mistakes"][c:c + per]
+        a, s = mistake_board("mk" if c == 0 else f"mk{c // per + 1}", part)
+        steps.append(dict(id="mistakes" if c == 0 else f"mistakes-{c // per + 1}", title="Mistake board" if c == 0 else f"Mistake board {c // per + 1}",
+                          alt="Mistakes: " + " ".join(f"Wrong: {b}. Right: {g}. " + y.replace("|", " ") for b, g, y in part), says=s, actions=a))
     # 7. second check
     q, o = d["checks"][1]
     steps.append(dict(id="check-2", title="Check", alt="The last board stays.", says=[("Your turn again.", None)], actions=[], check=check(f"{lid}-c2", q, o, d["tag"])))
