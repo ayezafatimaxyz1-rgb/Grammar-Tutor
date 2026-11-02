@@ -562,4 +562,8 @@ PLAB.misconceptions = {
     label: "SINCE = a start running up to NOW (has / have); FROM = a start with an end, or a start in the future",
     explain: "SINCE and FROM both mark a starting point. SINCE runs from that point up to now, so it goes with has / have. FROM needs an end (from 2015 to 2020), or a start that is still coming (from next Monday).",
   },
+  "y-within-during": {
+    label: "WITHIN = before a limit runs out; DURING = at some point inside a named event or period",
+    explain: "WITHIN draws a limit: the action must happen before the time runs out (within three days). DURING names a stretch with a noun, like an event or season, and says something happened inside it (during the exam).",
+  },
 };
