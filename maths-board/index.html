@@ -1609,7 +1609,8 @@ async function makePDF(scope){if(pdfBusy)return;
   prog('Getting ready',0);
   try{const r=await buildPDF(scope,prog);const file=new File([r.blob],r.name,{type:'application/pdf'}),url=URL.createObjectURL(r.blob);pdfLast={file,url};
     const canShare=!!(navigator.canShare&&navigator.canShare({files:[file]}));
-    pdfSheet(`<div class="sheet-in"><h3>Your notes are ready</h3><p class="muted">${esc(r.name)} · ${r.pages} pages · ${(r.blob.size/1048576).toFixed(1)} MB</p><div class="row" style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn primary" href="${url}" download="${esc(r.name)}">Download PDF</a>${canShare?'<button class="btn" data-act="pdf-share">Share (WhatsApp, Files…)</button>':''}<button class="btn ghost" data-act="pdf-close">Close</button></div></div>`)}
+    const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),showDl=!(ios&&canShare);
+    pdfSheet(`<div class="sheet-in"><h3>Your notes are ready</h3><p class="muted">${esc(r.name)} · ${r.pages} pages · ${(r.blob.size/1048576).toFixed(1)} MB</p><div class="row" style="display:flex;gap:10px;flex-wrap:wrap">${canShare?'<button class="btn primary" data-act="pdf-share">Share or save: WhatsApp, Files…</button>':''}${showDl?`<a class="btn ${canShare?'':'primary'}" href="${url}" download="${esc(r.name)}">Download PDF</a>`:''}<button class="btn ghost" data-act="pdf-close">Close</button></div><p class="muted" id="pdfmsg" style="font-size:.9rem">${canShare?'In the menu, pick WhatsApp to send it, or "Save to Files" to keep it.':'This browser cannot share files directly. Tap Download, then share the PDF from your Downloads or Files app.'}</p></div>`)}
   catch(e){pdfSheet(`<div class="sheet-in"><h3>Could not make the PDF</h3><p class="muted">${esc(e.message||e)}. Check your internet connection once, then try again.</p><div><button class="btn" data-act="pdf-close">Close</button></div></div>`)}
   finally{pdfBusy=false}}
 function notesCardHTML(){const ph=PHASES.filter(p=>p.lessons.some(id=>LBY[id]));
@@ -1620,7 +1621,7 @@ function notesCardHTML(){const ph=PHASES.filter(p=>p.lessons.some(id=>LBY[id]));
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
   const pd=e.target.closest('[data-pdf]');if(pd){const v=pd.dataset.pdf;makePDF(v==='book'?{kind:'book'}:{kind:v.split(':')[0],id:v.split(':')[1]});return}
-  const pa=e.target.closest('[data-act="pdf-close"],[data-act="pdf-share"]');if(pa){if(pa.dataset.act==='pdf-close')pdfSheet('');else if(pdfLast)navigator.share({files:[pdfLast.file],title:pdfLast.file.name}).catch(()=>{});return}
+  const pa=e.target.closest('[data-act="pdf-close"],[data-act="pdf-share"]');if(pa){if(pa.dataset.act==='pdf-close')pdfSheet('');else if(pdfLast)navigator.share({files:[pdfLast.file],title:pdfLast.file.name}).catch(err=>{if(err&&err.name==='AbortError')return;const m=document.getElementById('pdfmsg');if(m)m.textContent='Sharing did not work here ('+(err&&err.message||'unknown reason')+'). Try again, or close and make the PDF again.'});return}
   const op=e.target.closest('[data-open]');if(op){S.last=op.dataset.open;save();if(location.hash==='#board'){e.preventDefault();route()}return}
   const o=e.target.closest('.opt');if(o){const k=o.dataset.q,oi=+o.dataset.o;(PL.clicked[k]=PL.clicked[k]||[]);if(!PL.clicked[k].includes(oi))PL.clicked[k].push(oi);
     if(k[0]==='r'){const n=S.nb.find(x=>x.id===+k.slice(1)),L=LBY[n.lesson],ok=allQuestions(L)[n.qkey].options[oi].ok;if(PL.clicked[k].length===1){if(ok){n.stage++;if(n.stage>=5)n.mastered=true;else n.due=Date.now()+INTERVALS[n.stage]}else{n.stage=0;n.due=Date.now()+INTERVALS[0]}save()}
