@@ -755,6 +755,7 @@
               L("py-within-during", "WITHIN or DURING: a limit, or an event", { status: "tested", lessonId: "py-within-during" }),
               L("py-ago-before", "AGO or BEFORE: count back from where?", { status: "tested", lessonId: "py-ago-before" }),
               L("py-eid", "AT Eid, but ON Eid day", { status: "tested", lessonId: "py-eid" }),
+              L("py-over-time", "OVER with time, and its neighbours", { status: "tested", lessonId: "py-over-time" }),
             ],
           },
         ],

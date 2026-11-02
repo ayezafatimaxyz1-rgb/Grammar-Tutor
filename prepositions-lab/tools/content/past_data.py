@@ -53,6 +53,10 @@ PAST = {
     ("onTimeDot", "Last year, we went to Lahore at Eid.", "at", "past: still AT the festival time"),
     ("calendar", "It rained on Eid day.", "on", "one calendar day: ON, past or not"),
     ("inPeriod", "We fasted in Ramazan and visited Murree during the Eid holidays.", "in", "a month: IN; the holiday stretch: DURING")])],
+"over-time": [("In the past: OVER", [
+    ("rising", "His English improved a lot over the summer.", "over", "across the past summer, while it changed"),
+    ("calendar", "We went to Murree over the weekend.", "over", "some time during that past weekend"),
+    ("excess", "I waited for over an hour.", "over", "more than an hour")])],
 "within-during": [("In the past: WITHIN, IN, AFTER", [
     ("inTimeBefore", "The ambulance arrived within ten minutes.", "within", "past WITHIN: it came before ten minutes ran out"),
     ("inPeriod", "He finished the job in three days.", "in", "past IN: the job TOOK three days, not 'from now'"),

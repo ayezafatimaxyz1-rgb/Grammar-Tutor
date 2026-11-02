@@ -574,4 +574,8 @@ PLAB.misconceptions = {
     label: "AT a festival time, ON a day, IN a month, DURING the holidays",
     explain: "A festival as a time of year takes AT: at Eid, at Christmas. Add the word DAY (or a date) and it becomes one day on the calendar: ON Eid day, on 14 August, on Chand Raat. A month takes IN: in Ramazan. The whole holiday stretch takes DURING or OVER.",
   },
+  "y-over-time": {
+    label: "OVER with time: across a whole stretch (often while something changes), during a weekend or a meal, or more than",
+    explain: "OVER looks at a whole stretch of time from above, like a bridge across it. Over the years = across all of them, while things change. Over the weekend / over lunch = some time during it. Over an hour = more than an hour. The match is over = it has finished.",
+  },
 };
