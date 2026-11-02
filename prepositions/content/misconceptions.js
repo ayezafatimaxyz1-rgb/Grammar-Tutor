@@ -566,4 +566,8 @@ PLAB.misconceptions = {
     label: "WITHIN = before a limit runs out; DURING = at some point inside a named event or period",
     explain: "WITHIN draws a limit: the action must happen before the time runs out (within three days). DURING names a stretch with a noun, like an event or season, and says something happened inside it (during the exam).",
   },
+  "y-ago-before": {
+    label: "AGO counts back from NOW; BEFORE counts back from another past point",
+    explain: "AGO comes after a length and counts back from NOW: two years ago (past simple, never has / have). BEFORE counts back from some other point in the past: two years before the war, or two years before (that). BEFORE alone means at any time up to now: I have been here before.",
+  },
 };
