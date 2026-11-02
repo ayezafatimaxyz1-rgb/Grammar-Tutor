@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 28,
+    minutes: 30,
     summary: "Starts from the sentence: I met him two years ___. AGO: a length + ago, back from NOW. I met him two years ago. BEFORE + a past point: two years before the wedding. BEFORE alone: any time up to now. Have you been here before? Never: before two years. Always: two years ago.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -213,7 +213,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: I met him before two years.. Right: I met him two years ago.. Counting back from now: the length comes first, then AGO. Wrong: He has left two days ago.. Right: He left two days ago.. AGO is finished past: past simple, never has / have. Wrong: Two years ago the war, prices were low.. Right: Two years before the war, prices were low.. Counting back from the war, a past point: BEFORE. Wrong: Have you been to Murree ago?. Right: Have you been to Murree before?. At any time up to now: BEFORE on its own.",
+        alt: "Mistakes: Wrong: I met him before two years.. Right: I met him two years ago.. Counting back from now: the length comes first, then AGO. Wrong: He has left two days ago.. Right: He left two days ago.. AGO is finished past: past simple, never has / have. Wrong: Two years ago the war, prices were low.. Right: Two years before the war, prices were low.. Counting back from the war, a past point: BEFORE.",
         say: [
           { text: "Wrong: _I met him before two years._ Right: _I met him two years ago._ Why? Counting back from now: the length comes first, then AGO.", cue: "mk0w" },
           { text: "Wrong: _He has left two days ago._ Right: _He left two days ago._ Why? AGO is finished past: past simple, never has / have.", cue: "mk1w" },
@@ -231,6 +231,21 @@
           { do: "write", id: "mk2w", text: "✗ Two years ago the war, prices were low.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ Two years before the war, prices were low.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "Counting back from the war, a past point: BEFORE.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: Have you been to Murree ago?. Right: Have you been to Murree before?. At any time up to now: BEFORE on its own.",
+        say: [
+          { text: "Wrong: _Have you been to Murree ago?_ Right: _Have you been to Murree before?_ Why? At any time up to now: BEFORE on its own.", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ Have you been to Murree ago?", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ Have you been to Murree before?", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "At any time up to now: BEFORE on its own.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {

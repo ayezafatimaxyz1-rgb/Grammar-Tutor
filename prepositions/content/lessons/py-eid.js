@@ -6,7 +6,7 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 32,
+    minutes: 34,
     summary: "Starts from the sentence: We visit our grandparents ___ Eid. AT + a festival name: at Eid, at Christmas. ON + day / date / named night: on Eid day, on 14 August, on Chand Raat. IN + a month: in Ramazan. DURING / OVER + the holidays: during the Eid holidays.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
@@ -270,7 +270,7 @@
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: We visit our grandparents in Eid.. Right: We visit our grandparents at Eid.. Eid is a festival time, a point in the year: AT. IN is for months. Wrong: We wear new clothes at Eid day.. Right: We wear new clothes on Eid day.. With the word DAY it is one calendar day: ON. Wrong: Muslims fast on Ramazan.. Right: Muslims fast in Ramazan.. Ramazan is a month, a long stretch: IN. Wrong: Flags go up at 14 August.. Right: Flags go up on 14 August.. A date is one calendar day: ON.",
+        alt: "Mistakes: Wrong: We visit our grandparents in Eid.. Right: We visit our grandparents at Eid.. Eid is a festival time, a point in the year: AT. IN is for months. Wrong: We wear new clothes at Eid day.. Right: We wear new clothes on Eid day.. With the word DAY it is one calendar day: ON. Wrong: Muslims fast on Ramazan.. Right: Muslims fast in Ramazan.. Ramazan is a month, a long stretch: IN.",
         say: [
           { text: "Wrong: _We visit our grandparents in Eid._ Right: _We visit our grandparents at Eid._ Why? Eid is a festival time, a point in the year: AT. IN is for months.", cue: "mk0w" },
           { text: "Wrong: _We wear new clothes at Eid day._ Right: _We wear new clothes on Eid day._ Why? With the word DAY it is one calendar day: ON.", cue: "mk1w" },
@@ -288,6 +288,21 @@
           { do: "write", id: "mk2w", text: "✗ Muslims fast on Ramazan.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
           { do: "write", id: "mk2r", text: "✓ Muslims fast in Ramazan.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk2y", text: "Ramazan is a month, a long stretch: IN.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+        ],
+      },
+      {
+        id: "mistakes-2",
+        title: "Mistake board 2",
+        alt: "Mistakes: Wrong: Flags go up at 14 August.. Right: Flags go up on 14 August.. A date is one calendar day: ON.",
+        say: [
+          { text: "Wrong: _Flags go up at 14 August._ Right: _Flags go up on 14 August._ Why? A date is one calendar day: ON.", cue: "mk20w" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-mk2"),
+          { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "mk20w", text: "✗ Flags go up at 14 August.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ Flags go up on 14 August.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "A date is one calendar day: ON.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
