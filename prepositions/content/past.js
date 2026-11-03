@@ -425,6 +425,17 @@
           { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
         ],
+      },
+      {
+        id: "move-3",
+        title: "TO can also mean: made to match a pattern",
+        alt: "TO can also mean: made to match a pattern. The baker bakes cakes to order. Made to match each customer's order. The tailor made the suit to measure. Made to match your size. The map is drawn to scale. Made to match the real sizes in one ratio.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv3"),
+          { do: "write", id: "mv3-t", text: "TO can also mean: made to match a pattern", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv3r", [["fitMould", "The baker bakes cakes to order.", { hl: "to order", sub: "made to match each customer's order", size: 30 }], ["ruler", "The tailor made the suit to measure.", { hl: "to measure", sub: "made to match your size", size: 30 }], ["scale", "The map is drawn to scale.", { hl: "to scale", sub: "made to match the real sizes in one ratio", size: 30 }]], { y: 135, gap: 135 }),
+        ],
       }
   ]);
   add("p0-to", [
@@ -448,6 +459,17 @@
           PLAB.kit.clear("clear-mv2"),
           { do: "write", id: "mv2-t", text: "Moving verbs take TO, staying verbs take AT", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("mv2r", [["arrowR", "Post the parcel to my office.", { hl: "to", sub: "post, send, deliver, bring, go: something moves, so TO", size: 30 }], ["house", "I live at 15 Mall Road.", { hl: "at", sub: "live, stay, wait, meet me: no movement, so AT", size: 30 }], ["cross", "Send the letter at my home address.", { hl: "at", sub: "wrong: AT does not show the movement", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-3",
+        title: "TO can also mean: made to match a pattern",
+        alt: "TO can also mean: made to match a pattern. The baker bakes cakes to order. Made to match each customer's order. The tailor made the suit to measure. Made to match your size. The map is drawn to scale. Made to match the real sizes in one ratio.",
+        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv3"),
+          { do: "write", id: "mv3-t", text: "TO can also mean: made to match a pattern", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv3r", [["fitMould", "The baker bakes cakes to order.", { hl: "to order", sub: "made to match each customer's order", size: 30 }], ["ruler", "The tailor made the suit to measure.", { hl: "to measure", sub: "made to match your size", size: 30 }], ["scale", "The map is drawn to scale.", { hl: "to scale", sub: "made to match the real sizes in one ratio", size: 30 }]], { y: 135, gap: 135 }),
         ],
       }
   ]);
