@@ -602,4 +602,8 @@ PLAB.misconceptions = {
     label: "MARRIED TO a person (a bond that joins one to the other); WITH is for doing something together (argue with, agree with); married WITH = and has (married with two children)",
     explain: "WITH pictures two people side by side doing something together: argue with, agree with, quarrel with, dance with. Being married is not an action you do together each minute; it is a bond, a state that ties one person TO another, like engaged to, related to, attached to, devoted to. So: married TO. Married WITH means 'married and having': married with two children. The verb MARRY takes no preposition: she married a doctor.",
   },
+  "y-to-with-from": {
+    label: "FROM = a gap between two things (unlike); WITH = two people face to face (disagree, agree, argue); TO = one thing measured against another (similar to, equal to, prefer to)",
+    explain: "Words of comparing and agreeing take FROM, WITH or TO by one of three pictures. FROM: two things stand apart with a gap: different from, differ from, distinct from. WITH: two people face to face, thinking or talking together: differ with, agree with, argue with. TO: one thing is held up against another, like a ruler: similar to, equal to, superior to, prefer tea to coffee. DIFFER never takes TO.",
+  },
 };

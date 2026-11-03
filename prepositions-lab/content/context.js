@@ -1060,6 +1060,9 @@ PLAB.context = [
     ],
     "items": [
      {
+      "lesson": "py-to-with-from"
+     },
+     {
       "lesson": "p0-like"
      },
      {
@@ -2307,6 +2310,9 @@ PLAB.context = [
      },
      {
       "lesson": "py-insure"
+     },
+     {
+      "lesson": "py-to-with-from"
      },
      {
       "lesson": "depend-rely"
