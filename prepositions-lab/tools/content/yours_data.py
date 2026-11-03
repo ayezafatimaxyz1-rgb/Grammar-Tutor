@@ -887,6 +887,14 @@ dict(id="conducive-to", title="CONDUCIVE TO: the arrow towards a result", tag="y
       ("conducive to", "growTo", "conducive to higher yield", "leads to a result", "never conducive for"),
       ("good for", "giveTo", "good for higher yield", "helps a receiver", "never good to (for this meaning)")],
       lines=["The adjective chooses: conducive, harmful, prone take TO; good, suitable, famous take FOR.", "Some take both: essential to / for, beneficial to / for."]),
+    dict(kind="rows", title="DETRIMENTAL TO, but HARMFUL TO or FOR?", rows=[
+      ("directHit", "Smoking is detrimental to health.", "detrimental to", "formal word, one fixed partner: always TO"),
+      ("directHit", "Plastic is harmful to the environment.", "harmful to", "TO = the target that gets damaged"),
+      ("giveTo", "Too much screen time is harmful for children.", "harmful for", "FOR = who it is bad for (like bad for, good for)")]),
+    dict(kind="columns", title="Fixed formal words vs everyday words", cols=[
+      ("formal words", "directHit", "detrimental, injurious, conducive", "only TO", "detrimental to growth"),
+      ("everyday words", "giveTo", "harmful, bad, good, useful", "TO the target, FOR the receiver", "harmful to health / for children")],
+      lines=["Formal word? Always TO. Everyday word? TO what is damaged, FOR who it is bad for.", "Not sure with harmful? Choose harmful to: the safer answer."]),
     dict(kind="rows", title="More of the TO family, Pakistan examples", rows=[
       ("causeEffect", "Load-shedding is harmful to industry.", "harmful to", "it pushes industry towards damage"),
       ("causeEffect", "Education is the key to progress.", "key to", "a key opens the way TO the result"),
@@ -895,12 +903,15 @@ dict(id="conducive-to", title="CONDUCIVE TO: the arrow towards a result", tag="y
   mistakes=[("The climate is conducive for higher yield.", "The climate is conducive to higher yield.", "CONDUCIVE always takes TO: it leads towards a result. | FOR goes with good, suitable, useful."),
             ("Sindh is prone for floods.", "Sindh is prone to floods.", "Floods hit Sindh: an arrow coming in. | Prone, liable, vulnerable, exposed all take TO."),
             ("Hard work leads towards success.", "Hard work leads to success.", "LEAD takes TO for a result. | TOWARDS is only the direction, without reaching."),
-            ("This soil is suitable to rice.", "This soil is suitable for rice.", "Rice is the receiver: who is it suitable for? | SUITABLE takes FOR.")],
+            ("This soil is suitable to rice.", "This soil is suitable for rice.", "Rice is the receiver: who is it suitable for? | SUITABLE takes FOR."),
+            ("Smoking is detrimental for health.", "Smoking is detrimental to health.", "DETRIMENTAL is a formal word with one fixed partner: TO. | Only everyday words like harmful and bad can take FOR.")],
   checks=[("A calm mind is conducive ___ learning.", [("to", True, "Right. A calm mind leads towards learning, a result: CONDUCIVE TO."), ("for", False, "CONDUCIVE never takes FOR. FOR goes with good, suitable, useful."), ("of", False, "OF would make learning a part of the mind.")]),
           ("Coastal areas are vulnerable ___ cyclones.", [("to", True, "Right. Cyclones hit the coast: an arrow coming in, so TO."), ("for", False, "FOR names a receiver or a purpose, not a hit."), ("from", False, "FROM is a source. VULNERABLE takes TO.")])],
   practice=[("Smoking is injurious ___ health.", [("to", True, "Right. Smoking pushes health towards damage: INJURIOUS TO."), ("for", False, "BAD FOR is fine, but INJURIOUS takes TO."), ("with", False, "WITH is company or a tool.")]),
             ("Fresh fruit is good ___ children.", [("for", True, "Right. Children are the receivers of the good: GOOD FOR."), ("to", False, "GOOD TO someone means kind to them. For a benefit: GOOD FOR."), ("of", False, "OF does not name the receiver.")]),
             ("Political stability is conducive ___ foreign investment.", [("to", True, "Right. Stability leads towards investment, a result: CONDUCIVE TO."), ("for", False, "CONDUCIVE never takes FOR."), ("towards", False, "TOWARDS is only the direction; CONDUCIVE takes TO.")]),
+            ("Load-shedding is detrimental ___ industry.", [("to", True, "Right. A formal word with one fixed partner: DETRIMENTAL TO."), ("for", False, "DETRIMENTAL never takes FOR. Only everyday words like harmful and bad can."), ("with", False, "WITH is company or a tool.")]),
+            ("Junk food is harmful ___ young children.", [("for", True, "Right. Who is it bad for? young children, the receivers: HARMFUL FOR (harmful to is also accepted)."), ("of", False, "HARMFUL never takes OF."), ("with", False, "WITH is company or a tool.")]),
             ("Low-lying villages are prone ___ flooding.", [("to", True, "Right. Flooding hits the villages: PRONE TO."), ("for", False, "PRONE never takes FOR."), ("of", False, "PRONE never takes OF.")])],
-  summary=["Draw an arrow. Thing → result (conducive to, lead to, harmful to): TO.", "Something → hits you (prone to, vulnerable to, exposed to): TO.", "Who benefits, or why (good for, suitable for, famous for): FOR.", "CONDUCIVE always takes TO: conducive to higher yield."]),
+  summary=["Draw an arrow. Thing → result (conducive to, lead to, detrimental to): TO.", "Formal words (detrimental, injurious, conducive) take only TO; harmful takes TO the target or FOR the receiver.", "Something → hits you (prone to, vulnerable to, exposed to): TO.", "Who benefits, or why (good for, suitable for, famous for): FOR.", "CONDUCIVE always takes TO: conducive to higher yield."]),
 ]
