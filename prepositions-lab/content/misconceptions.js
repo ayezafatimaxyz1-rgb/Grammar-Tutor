@@ -582,4 +582,8 @@ PLAB.misconceptions = {
     label: "AGO = back from NOW; BEFORE = back from a past point; AFTER / LATER = forward from a point; IN = forward from now",
     explain: "Ask two questions. Where do I start counting: from NOW, or from another point? Which way do I go: back, or forward? Back from now = AGO. Back from another point = BEFORE. Forward from another point = AFTER (or a length + LATER). Forward from now, into the future = IN.",
   },
+  "y-to-result": {
+    label: "TO = an arrow that points at a result or a target; FOR = the receiver or the purpose",
+    explain: "Some adjectives and verbs push towards a RESULT: conducive to, lead to, contribute to, harmful to. Some are OPEN to something that hits them: prone to, vulnerable to, immune to. Both are arrows, so TO. FOR names who receives the good or bad, or the purpose: good for, suitable for, famous for.",
+  },
 };

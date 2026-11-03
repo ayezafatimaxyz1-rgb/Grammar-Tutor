@@ -615,6 +615,9 @@ PLAB.context = [
      },
      {
       "lesson": "die-of-from"
+     },
+     {
+      "lesson": "py-conducive-to"
      }
     ]
    },
@@ -4347,6 +4350,9 @@ PLAB.context = [
      },
      {
       "lesson": "formal-adjectives"
+     },
+     {
+      "lesson": "py-conducive-to"
      },
      {
       "word": "absent",
