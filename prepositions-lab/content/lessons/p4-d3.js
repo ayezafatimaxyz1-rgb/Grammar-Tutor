@@ -339,10 +339,10 @@
       {
         id: "dispense-build",
         title: "dispense: how the meaning is built",
-        alt: "How dispense gets its meanings: dispense (give out) + with (dealing with or handling) = do without",
+        alt: "How dispense gets its meanings: dispense (give out) + with (doing without what was with you) = do without",
         say: [
           { text: "Take **dispense** apart. On its own, dispense means give out. Add what each preposition conveys, and the meaning follows." },
-          { text: "**dispense** (give out) + **with** (dealing with or handling) = do without: _Let us dispense with the formalities._", cue: "e8b1v" },
+          { text: "**dispense** (give out) + **with** (doing without what was with you) = do without: _Let us dispense with the formalities._", cue: "e8b1v" },
         ],
         actions: [
           PLAB.kit.clear("clear-8c"),
@@ -352,7 +352,7 @@
           { do: "write", id: "e8b1vm", text: "give out", x: 150, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 230 },
           { do: "write", id: "e8b1p1", text: "+", x: 285, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1p", text: "with", x: 400, y: 320, size: 34, ink: "accent2", anchor: "middle", fit: 210 },
-          { do: "write", id: "e8b1pm", text: "dealing with or handling", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
+          { do: "write", id: "e8b1pm", text: "doing without what was with you", x: 400, y: 350, size: 19, ink: "muted", anchor: "middle", fit: 250 },
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "do without", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "Let us dispense with the formalities.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },

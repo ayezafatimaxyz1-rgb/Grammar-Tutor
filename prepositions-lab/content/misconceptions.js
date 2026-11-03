@@ -590,4 +590,8 @@ PLAB.misconceptions = {
     label: "TO = made to match a pattern: to order, to measure, to scale, to taste. ON order, BY order of, IN order and OUT OF order mean other things",
     explain: "TO can mean matching a pattern: the arrow reaches the pattern and fits it. A cake made TO ORDER is made to match one customer's order. ON order = ordered, still waiting to arrive. BY order of = because someone with power commanded it. IN order = tidy or correct. OUT OF order = not working. IN ORDER TO = for the purpose of.",
   },
+  "y-dispense-dispose": {
+    label: "DISPENSE WITH = manage without something you had WITH you; DISPOSE OF = take it away, get rid of it. Never dispense of, never dispose off",
+    explain: "Both mean that something goes away, so they look alike. DISPENSE WITH: something was WITH you, and you decide you can do without it; nothing is thrown away. DISPOSE OF: you take it away and get rid of it, or finish dealing with it. This OF is the taking-away OF of rid of and rob of. OFF is a different word: away from a surface (take off, get off).",
+  },
 };

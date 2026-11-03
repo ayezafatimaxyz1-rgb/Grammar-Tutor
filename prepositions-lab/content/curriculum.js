@@ -759,6 +759,7 @@
               L("py-before-ago-after", "BEFORE, AGO, AFTER: the full lesson", { status: "tested", lessonId: "py-before-ago-after" }),
               L("py-conducive-to", "CONDUCIVE TO: the arrow towards a result", { status: "tested", lessonId: "py-conducive-to" }),
               L("py-to-order", "TO ORDER: made to match a pattern", { status: "tested", lessonId: "py-to-order" }),
+              L("py-dispense-dispose", "DISPENSE WITH or DISPOSE OF (never of / off)", { status: "tested", lessonId: "py-dispense-dispose" }),
             ],
           },
         ],

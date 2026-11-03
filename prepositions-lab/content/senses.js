@@ -59,7 +59,7 @@ PLAB.senses = {
     { name: "What a feeling or knowledge is about", note: "aware of, afraid of, sure of", boards: [], words: ["aware", "conscious", "ignorant", "unaware", "knowledge", "certain", "sure", "convinced", "confident", "assure", "inform", "remind", "hear", "beware", "wary", "suspicious", "afraid", "fond", "jealous", "envious", "proud", "ashamed", "tired", "approve", "dream", "nice", "capable", "incapable", "critical", "independent"] },
     { name: "A wrong someone is accused of", note: "accused of, guilty of", boards: [], words: ["accuse", "convicted", "guilty", "suspect", "acquit"] },
     { name: "What something is made of or holds", note: "made of wood, full of water", boards: ["of/part"], words: ["composed", "consist", "full", "made", "empty", "devoid", "short", "lack"] },
-    { name: "Something taken away", note: "robbed of, rid of", boards: [], words: ["deprive", "rob", "rid", "dispose", "cure"] },
+    { name: "Something taken away", note: "robbed of, rid of, dispose of", boards: ["py-dispense-dispose/word-3", "py-dispense-dispose/word-4"], words: ["deprive", "rob", "rid", "dispose", "cure"] },
     { name: "A cause", note: "died of, on account of", boards: [], words: ["die", "complain", "account", "victim", "threat"] },
     { name: "Belonging or part of", note: "the roof of the house", boards: ["of/possessive", "of/naming"], words: ["advantage", "pride", "subject", "deserving", "worthy", "accord"] },
   ],
@@ -68,7 +68,8 @@ PLAB.senses = {
     { name: "Against a partner", note: "argue with, compete with", boards: [], words: ["argue", "quarrel", "compete", "differ", "disagree", "angry", "furious", "upset", "impatient", "patient", "inconsistent", "interfere", "disgusted"] },
     { name: "Having or filled with", note: "blessed with, covered with", boards: ["with-without/more"], words: ["blessed", "endowed", "filled", "fraught", "covered", "infected", "inspired", "provide", "charge"] },
     { name: "Feelings about what you have", note: "satisfied with, bored with", boards: [], words: ["content", "satisfied", "pleased", "happy", "disappointed", "bored", "fed up", "obsessed", "popular"] },
-    { name: "Dealing with or handling", note: "cope with, deal with", boards: ["with-without/with-by"], words: ["deal", "cope", "busy", "occupied", "concerned", "careful", "economical", "generous", "comply", "acquainted", "adept", "dispense", "part", "replace"] },
+    { name: "Doing without what was with you", note: "dispense with, part with", boards: ["py-dispense-dispose/word-2"], words: ["dispense"] },
+    { name: "Dealing with or handling", note: "cope with, deal with", boards: ["with-without/with-by"], words: ["deal", "cope", "busy", "occupied", "concerned", "careful", "economical", "generous", "comply", "acquainted", "adept", "part", "replace"] },
   ],
   from: [
     { name: "A starting point or source", note: "derived from, borrowed from", boards: ["from/start", "from/origin"], words: ["derive", "descended", "benefit", "borrow", "hear", "made", "adapt", "emerge", "suffer", "die", "tired"] },
