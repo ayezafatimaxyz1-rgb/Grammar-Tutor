@@ -6,8 +6,8 @@
     phase: 8,
     unit: "py-yours",
     level: "Basic to Intermediate",
-    minutes: 36,
-    summary: "Starts from the sentence: The climate of Pakistan is conducive ___ higher yield. Draw an arrow. Thing → result (conducive to, lead to, harmful to): TO. Something → hits you (prone to, vulnerable to, exposed to): TO. Who benefits, or why (good for, suitable for, famous for): FOR. CONDUCIVE always takes TO: conducive to higher yield.",
+    minutes: 44,
+    summary: "Starts from the sentence: The climate of Pakistan is conducive ___ higher yield. Draw an arrow. Thing → result (conducive to, lead to, detrimental to): TO. Formal words (detrimental, injurious, conducive) take only TO; harmful takes TO the target or FOR the receiver. Something → hits you (prone to, vulnerable to, exposed to): TO. Who benefits, or why (good for, suitable for, famous for): FOR. CONDUCIVE always takes TO: conducive to higher yield.",
     objectives: ["See every choice for your sentence side by side, with why each is right or wrong.", "Picture what each word means and build the rule from the picture.", "Avoid the common mistakes, and remember the summary rule."],
     steps: [
       {
@@ -234,26 +234,69 @@
       },
       {
         id: "picture-3",
-        title: "More of the TO family, Pakistan examples",
-        alt: "More of the TO family, Pakistan examples. _Load-shedding is harmful to industry._ It pushes industry towards damage. _Education is the key to progress._ A key opens the way TO the result. _Karachi is exposed to sea storms._ Storms hit it: an arrow coming in.",
+        title: "DETRIMENTAL TO, but HARMFUL TO or FOR?",
+        alt: "DETRIMENTAL TO, but HARMFUL TO or FOR?. _Smoking is detrimental to health._ Formal word, one fixed partner: always TO. _Plastic is harmful to the environment._ TO = the target that gets damaged. _Too much screen time is harmful for children._ FOR = who it is bad for (like bad for, good for).",
         say: [
-          { text: "_Load-shedding is harmful to industry._ It pushes industry towards damage.", cue: "sp2r1" },
-          { text: "_Education is the key to progress._ A key opens the way TO the result.", cue: "sp2r2" },
-          { text: "_Karachi is exposed to sea storms._ Storms hit it: an arrow coming in.", cue: "sp2r3" },
+          { text: "_Smoking is detrimental to health._ Formal word, one fixed partner: always TO.", cue: "sp2r1" },
+          { text: "_Plastic is harmful to the environment._ TO = the target that gets damaged.", cue: "sp2r2" },
+          { text: "_Too much screen time is harmful for children._ FOR = who it is bad for (like bad for, good for).", cue: "sp2r3" },
         ],
         actions: [
           PLAB.kit.clear("clear-sp2"),
-          { do: "write", id: "sp2-t", text: "More of the TO family, Pakistan examples", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.rows("sp2r", [["causeEffect", "Load-shedding is harmful to industry.", { hl: "harmful to", sub: "it pushes industry towards damage", size: 30 }], ["causeEffect", "Education is the key to progress.", { hl: "key to", sub: "a key opens the way TO the result", size: 30 }], ["directHit", "Karachi is exposed to sea storms.", { hl: "exposed to", sub: "storms hit it: an arrow coming in", size: 30 }]], { y: 135, gap: 135 }),
+          { do: "write", id: "sp2-t", text: "DETRIMENTAL TO, but HARMFUL TO or FOR?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp2r", [["directHit", "Smoking is detrimental to health.", { hl: "detrimental to", sub: "formal word, one fixed partner: always TO", size: 30 }], ["directHit", "Plastic is harmful to the environment.", { hl: "harmful to", sub: "TO = the target that gets damaged", size: 30 }], ["giveTo", "Too much screen time is harmful for children.", { hl: "harmful for", sub: "FOR = who it is bad for (like bad for, good for)", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "picture-4",
+        title: "Fixed formal words vs everyday words",
+        alt: "Fixed formal words vs everyday words. **formal words**: detrimental, injurious, conducive, only TO. Example: _detrimental to growth_. **everyday words**: harmful, bad, good, useful, TO the target, FOR the receiver. Example: _harmful to health / for children_. Formal word? Always TO. Everyday word? TO what is damaged, FOR who it is bad for. Not sure with harmful? Choose harmful to: the safer answer.",
+        say: [
+          { text: "**formal words**: detrimental, injurious, conducive, only TO. Example: _detrimental to growth_.", cue: "sp30w" },
+          { text: "**everyday words**: harmful, bad, good, useful, TO the target, FOR the receiver. Example: _harmful to health / for children_.", cue: "sp31w" },
+          { text: "Formal word? Always TO. Everyday word? TO what is damaged, FOR who it is bad for.", cue: "sp3-r0" },
+          { text: "Not sure with harmful? Choose harmful to: the safer answer.", cue: "sp3-r1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp3"),
+          { do: "write", id: "sp3-t", text: "Fixed formal words vs everyday words", x: 480, y: 42, size: 30, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("sp30p", "directHit", 145, 74, 1.5),
+          { do: "write", id: "sp30w", text: "formal words", x: 250, y: 238, size: 28, ink: "accent", anchor: "middle", fit: 414, gap: 150 },
+          { do: "write", id: "sp30a", text: "detrimental, injurious, conducive", x: 250, y: 278, size: 23, ink: "accent2", anchor: "middle", fit: 414 },
+          { do: "write", id: "sp30b", text: "only TO", x: 250, y: 310, size: 20, ink: "muted", anchor: "middle", fit: 414 },
+          { do: "write", id: "sp30c", text: "detrimental to growth", x: 250, y: 344, size: 22, anchor: "middle", fit: 414 },
+          ...PLAB.kit.pic("sp31p", "giveTo", 605, 74, 1.5),
+          { do: "write", id: "sp31w", text: "everyday words", x: 710, y: 238, size: 28, ink: "accent", anchor: "middle", fit: 414, gap: 150 },
+          { do: "write", id: "sp31a", text: "harmful, bad, good, useful", x: 710, y: 278, size: 23, ink: "accent2", anchor: "middle", fit: 414 },
+          { do: "write", id: "sp31b", text: "TO the target, FOR the receiver", x: 710, y: 310, size: 20, ink: "muted", anchor: "middle", fit: 414 },
+          { do: "write", id: "sp31c", text: "harmful to health / for children", x: 710, y: 344, size: 22, anchor: "middle", fit: 414 },
+          { do: "write", id: "sp3-r0", text: "Formal word? Always TO. Everyday word? TO what is damaged, FOR who it is bad for.", x: 480, y: 470, size: 26, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "sp3-r1", text: "Not sure with harmful? Choose harmful to: the safer answer.", x: 480, y: 518, size: 24, ink: "accent2", anchor: "middle", fit: 910, gap: 200 },
+        ],
+      },
+      {
+        id: "picture-5",
+        title: "More of the TO family, Pakistan examples",
+        alt: "More of the TO family, Pakistan examples. _Load-shedding is harmful to industry._ It pushes industry towards damage. _Education is the key to progress._ A key opens the way TO the result. _Karachi is exposed to sea storms._ Storms hit it: an arrow coming in.",
+        say: [
+          { text: "_Load-shedding is harmful to industry._ It pushes industry towards damage.", cue: "sp4r1" },
+          { text: "_Education is the key to progress._ A key opens the way TO the result.", cue: "sp4r2" },
+          { text: "_Karachi is exposed to sea storms._ Storms hit it: an arrow coming in.", cue: "sp4r3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-sp4"),
+          { do: "write", id: "sp4-t", text: "More of the TO family, Pakistan examples", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("sp4r", [["causeEffect", "Load-shedding is harmful to industry.", { hl: "harmful to", sub: "it pushes industry towards damage", size: 30 }], ["causeEffect", "Education is the key to progress.", { hl: "key to", sub: "a key opens the way TO the result", size: 30 }], ["directHit", "Karachi is exposed to sea storms.", { hl: "exposed to", sub: "storms hit it: an arrow coming in", size: 30 }]], { y: 135, gap: 135 }),
         ],
       },
       {
         id: "mistakes",
         title: "Mistake board",
-        alt: "Mistakes: Wrong: The climate is conducive for higher yield.. Right: The climate is conducive to higher yield.. CONDUCIVE always takes TO: it leads towards a result.   FOR goes with good, suitable, useful. Wrong: Sindh is prone for floods.. Right: Sindh is prone to floods.. Floods hit Sindh: an arrow coming in.   Prone, liable, vulnerable, exposed all take TO.",
+        alt: "Mistakes: Wrong: The climate is conducive for higher yield.. Right: The climate is conducive to higher yield.. CONDUCIVE always takes TO: it leads towards a result.   FOR goes with good, suitable, useful. Wrong: Sindh is prone for floods.. Right: Sindh is prone to floods.. Floods hit Sindh: an arrow coming in.   Prone, liable, vulnerable, exposed all take TO. Wrong: Hard work leads towards success.. Right: Hard work leads to success.. LEAD takes TO for a result.   TOWARDS is only the direction, without reaching.",
         say: [
           { text: "Wrong: _The climate is conducive for higher yield._ Right: _The climate is conducive to higher yield._ Why? CONDUCIVE always takes TO: it leads towards a result. FOR goes with good, suitable, useful.", cue: "mk0w" },
           { text: "Wrong: _Sindh is prone for floods._ Right: _Sindh is prone to floods._ Why? Floods hit Sindh: an arrow coming in. Prone, liable, vulnerable, exposed all take TO.", cue: "mk1w" },
+          { text: "Wrong: _Hard work leads towards success._ Right: _Hard work leads to success._ Why? LEAD takes TO for a result. TOWARDS is only the direction, without reaching.", cue: "mk2w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk"),
@@ -266,27 +309,31 @@
           { do: "write", id: "mk1r", text: "✓ Sindh is prone to floods.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
           { do: "write", id: "mk1y", text: "Floods hit Sindh: an arrow coming in.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
           { do: "write", id: "mk1y1", text: "Prone, liable, vulnerable, exposed all take TO.", x: 92, y: 373, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk2w", text: "✗ Hard work leads towards success.", x: 60, y: 415, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk2r", text: "✓ Hard work leads to success.", x: 60, y: 457, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk2y", text: "LEAD takes TO for a result.", x: 92, y: 495, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk2y1", text: "TOWARDS is only the direction, without reaching.", x: 92, y: 523, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
         id: "mistakes-2",
         title: "Mistake board 2",
-        alt: "Mistakes: Wrong: Hard work leads towards success.. Right: Hard work leads to success.. LEAD takes TO for a result.   TOWARDS is only the direction, without reaching. Wrong: This soil is suitable to rice.. Right: This soil is suitable for rice.. Rice is the receiver: who is it suitable for?   SUITABLE takes FOR.",
+        alt: "Mistakes: Wrong: This soil is suitable to rice.. Right: This soil is suitable for rice.. Rice is the receiver: who is it suitable for?   SUITABLE takes FOR. Wrong: Smoking is detrimental for health.. Right: Smoking is detrimental to health.. DETRIMENTAL is a formal word with one fixed partner: TO.   Only everyday words like harmful and bad can take FOR.",
         say: [
-          { text: "Wrong: _Hard work leads towards success._ Right: _Hard work leads to success._ Why? LEAD takes TO for a result. TOWARDS is only the direction, without reaching.", cue: "mk20w" },
-          { text: "Wrong: _This soil is suitable to rice._ Right: _This soil is suitable for rice._ Why? Rice is the receiver: who is it suitable for? SUITABLE takes FOR.", cue: "mk21w" },
+          { text: "Wrong: _This soil is suitable to rice._ Right: _This soil is suitable for rice._ Why? Rice is the receiver: who is it suitable for? SUITABLE takes FOR.", cue: "mk20w" },
+          { text: "Wrong: _Smoking is detrimental for health._ Right: _Smoking is detrimental to health._ Why? DETRIMENTAL is a formal word with one fixed partner: TO. Only everyday words like harmful and bad can take FOR.", cue: "mk21w" },
         ],
         actions: [
           PLAB.kit.clear("clear-mk2"),
           { do: "write", id: "mk2-t", text: "Mistake board", x: 480, y: 48, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "mk20w", text: "✗ Hard work leads towards success.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk20r", text: "✓ Hard work leads to success.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk20y", text: "LEAD takes TO for a result.", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk20y1", text: "TOWARDS is only the direction, without reaching.", x: 92, y: 223, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk21w", text: "✗ This soil is suitable to rice.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
-          { do: "write", id: "mk21r", text: "✓ This soil is suitable for rice.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
-          { do: "write", id: "mk21y", text: "Rice is the receiver: who is it suitable for?", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
-          { do: "write", id: "mk21y1", text: "SUITABLE takes FOR.", x: 92, y: 373, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk20w", text: "✗ This soil is suitable to rice.", x: 60, y: 115, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk20r", text: "✓ This soil is suitable for rice.", x: 60, y: 157, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk20y", text: "Rice is the receiver: who is it suitable for?", x: 92, y: 195, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk20y1", text: "SUITABLE takes FOR.", x: 92, y: 223, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk21w", text: "✗ Smoking is detrimental for health.", x: 60, y: 265, size: 29, ink: "trouble", fit: 840, gap: 400 },
+          { do: "write", id: "mk21r", text: "✓ Smoking is detrimental to health.", x: 60, y: 307, size: 29, ink: "accent2", fit: 840, gap: 300 },
+          { do: "write", id: "mk21y", text: "DETRIMENTAL is a formal word with one fixed partner: TO.", x: 92, y: 345, size: 22, ink: "muted", fit: 820, gap: 200 },
+          { do: "write", id: "mk21y1", text: "Only everyday words like harmful and bad can take FOR.", x: 92, y: 373, size: 22, ink: "muted", fit: 820, gap: 200 },
         ],
       },
       {
@@ -433,6 +480,72 @@
         check: {
           "id": "py-conducive-to-p4",
           "source": "original",
+          "skill": "Load-shedding is detrimental ___ industry.",
+          "prompt": "Load-shedding is detrimental ___ industry.",
+          "options": [
+            {
+              "text": "to",
+              "why": "Right. A formal word with one fixed partner: DETRIMENTAL TO.",
+              "correct": true
+            },
+            {
+              "text": "for",
+              "why": "DETRIMENTAL never takes FOR. Only everyday words like harmful and bad can.",
+              "misconception": "y-to-result"
+            },
+            {
+              "text": "with",
+              "why": "WITH is company or a tool.",
+              "misconception": "y-to-result"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-5",
+        title: "Practice 5",
+        alt: "The last board stays.",
+        say: [
+          { text: "Choose, then read why each choice is right or wrong." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "py-conducive-to-p5",
+          "source": "original",
+          "skill": "Junk food is harmful ___ young children.",
+          "prompt": "Junk food is harmful ___ young children.",
+          "options": [
+            {
+              "text": "for",
+              "why": "Right. Who is it bad for? young children, the receivers: HARMFUL FOR (harmful to is also accepted).",
+              "correct": true
+            },
+            {
+              "text": "of",
+              "why": "HARMFUL never takes OF.",
+              "misconception": "y-to-result"
+            },
+            {
+              "text": "with",
+              "why": "WITH is company or a tool.",
+              "misconception": "y-to-result"
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-6",
+        title: "Practice 6",
+        alt: "The last board stays.",
+        say: [
+          { text: "Choose, then read why each choice is right or wrong." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "py-conducive-to-p6",
+          "source": "original",
           "skill": "Low-lying villages are prone ___ flooding.",
           "prompt": "Low-lying villages are prone ___ flooding.",
           "options": [
@@ -457,20 +570,22 @@
       {
         id: "summary",
         title: "Summary: the rule to remember",
-        alt: "Remember: Draw an arrow. Thing → result (conducive to, lead to, harmful to): TO. Something → hits you (prone to, vulnerable to, exposed to): TO. Who benefits, or why (good for, suitable for, famous for): FOR. CONDUCIVE always takes TO: conducive to higher yield.",
+        alt: "Remember: Draw an arrow. Thing → result (conducive to, lead to, detrimental to): TO. Formal words (detrimental, injurious, conducive) take only TO; harmful takes TO the target or FOR the receiver. Something → hits you (prone to, vulnerable to, exposed to): TO. Who benefits, or why (good for, suitable for, famous for): FOR. CONDUCIVE always takes TO: conducive to higher yield.",
         say: [
-          { text: "Draw an arrow. Thing → result (conducive to, lead to, harmful to): TO.", cue: "sum0" },
-          { text: "Something → hits you (prone to, vulnerable to, exposed to): TO.", cue: "sum1" },
-          { text: "Who benefits, or why (good for, suitable for, famous for): FOR.", cue: "sum2" },
-          { text: "CONDUCIVE always takes TO: conducive to higher yield.", cue: "sum3" },
+          { text: "Draw an arrow. Thing → result (conducive to, lead to, detrimental to): TO.", cue: "sum0" },
+          { text: "Formal words (detrimental, injurious, conducive) take only TO; harmful takes TO the target or FOR the receiver.", cue: "sum1" },
+          { text: "Something → hits you (prone to, vulnerable to, exposed to): TO.", cue: "sum2" },
+          { text: "Who benefits, or why (good for, suitable for, famous for): FOR.", cue: "sum3" },
+          { text: "CONDUCIVE always takes TO: conducive to higher yield.", cue: "sum4" },
         ],
         actions: [
           PLAB.kit.clear("clear-sum"),
           { do: "write", id: "sum-t", text: "Remember", x: 480, y: 80, size: 46, ink: "accent", anchor: "middle" },
-          { do: "write", id: "sum0", text: "Draw an arrow. Thing → result (conducive to, lead to, harmful to): TO.", x: 480, y: 180, size: 30, ink: "main", anchor: "middle", fit: 900, gap: 500 },
-          { do: "write", id: "sum1", text: "Something → hits you (prone to, vulnerable to, exposed to): TO.", x: 480, y: 260, size: 30, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
-          { do: "write", id: "sum2", text: "Who benefits, or why (good for, suitable for, famous for): FOR.", x: 480, y: 340, size: 30, ink: "main", anchor: "middle", fit: 900, gap: 500 },
-          { do: "write", id: "sum3", text: "CONDUCIVE always takes TO: conducive to higher yield.", x: 480, y: 420, size: 30, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum0", text: "Draw an arrow. Thing → result (conducive to, lead to, detrimental to): TO.", x: 480, y: 180, size: 30, ink: "main", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum1", text: "Formal words (detrimental, injurious, conducive) take only TO; harmful takes TO the target or FOR the receiver.", x: 480, y: 260, size: 30, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum2", text: "Something → hits you (prone to, vulnerable to, exposed to): TO.", x: 480, y: 340, size: 30, ink: "main", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum3", text: "Who benefits, or why (good for, suitable for, famous for): FOR.", x: 480, y: 420, size: 30, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum4", text: "CONDUCIVE always takes TO: conducive to higher yield.", x: 480, y: 500, size: 30, ink: "main", anchor: "middle", fit: 900, gap: 500 },
         ],
       },
     ],
