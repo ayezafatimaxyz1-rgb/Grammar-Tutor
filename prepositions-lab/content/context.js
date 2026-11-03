@@ -5281,6 +5281,9 @@ PLAB.context = [
     ],
     "items": [
      {
+      "lesson": "py-member-of"
+     },
+     {
       "lesson": "reason-cause"
      },
      {

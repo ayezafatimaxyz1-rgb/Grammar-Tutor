@@ -183,7 +183,7 @@ SECTIONS = [
   dict(id="nouns", title="Nouns and the prepositions they take",
        intro="Many nouns keep the preposition of their verb or adjective, but some change: the reason for, the cause of, a demand for, access to, an increase in.",
        table=word_table("noun"),
-       items=L("reason-cause", "demand-need", "access-approach", "increase-decrease", "relationship") + W("noun")),
+       items=L("py-member-of", "reason-cause", "demand-need", "access-approach", "increase-decrease", "relationship") + W("noun")),
   dict(id="phrases", title="Fixed prepositional phrases and idioms",
        intro="Fixed phrases keep their preposition, and the preposition still fits its picture: in lieu of (in a place), by dint of (by a means), at the behest of (at a point).",
        table=[["in ...", "inside a state or frame", "in lieu of, in spite of, in view of, in charge of"], ["on ...", "resting on a base or edge", "on behalf of, on account of, on the verge of"],
