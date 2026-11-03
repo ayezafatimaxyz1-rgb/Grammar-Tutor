@@ -606,4 +606,8 @@ PLAB.misconceptions = {
     label: "FROM = a gap between two things (unlike); WITH = two people face to face (disagree, agree, argue); TO = one thing measured against another (similar to, equal to, prefer to)",
     explain: "Words of comparing and agreeing take FROM, WITH or TO by one of three pictures. FROM: two things stand apart with a gap: different from, differ from, distinct from. WITH: two people face to face, thinking or talking together: differ with, agree with, argue with. TO: one thing is held up against another, like a ruler: similar to, equal to, superior to, prefer tea to coffee. DIFFER never takes TO.",
   },
+  "y-member-of": {
+    label: "MEMBER OF = a part of the whole (belongs); MEMBER FROM = came out of the group to go somewhere else; MEMBER FOR = stands for, represents a place",
+    explain: "OF draws a whole with a part inside it: a member is one part OF the club. FROM draws a starting point and an arrow leaving it: members FROM the club went out to another place. FOR draws someone standing in place of others: the Member FOR Lahore speaks for Lahore. IN only says someone is inside a building.",
+  },
 };

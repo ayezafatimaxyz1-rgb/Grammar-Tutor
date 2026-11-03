@@ -61,7 +61,7 @@ PLAB.senses = {
     { name: "What something is made of or holds", note: "made of wood, full of water", boards: ["of/part"], words: ["composed", "consist", "full", "made", "empty", "devoid", "short", "lack"] },
     { name: "Something taken away", note: "robbed of, rid of, dispose of", boards: ["py-dispense-dispose/word-3", "py-dispense-dispose/word-4"], words: ["deprive", "rob", "rid", "dispose", "cure"] },
     { name: "A cause", note: "died of, on account of", boards: [], words: ["die", "complain", "account", "victim", "threat"] },
-    { name: "Belonging or part of", note: "the roof of the house", boards: ["of/possessive", "of/naming"], words: ["advantage", "pride", "subject", "deserving", "worthy", "accord"] },
+    { name: "Belonging or part of", note: "the roof of the house", boards: ["of/possessive", "of/naming", "py-member-of/word-1"], words: ["advantage", "pride", "subject", "deserving", "worthy", "accord"] },
   ],
   with: [
     { name: "Together, side by side", note: "agree with, cooperate with", boards: ["with-without/together"], words: ["agree", "cooperate", "compatible", "accord", "mix", "connected", "contact", "correspond", "exchange", "involved", "laugh", "sympathy", "compare", "accompanied", "safe"] },
@@ -72,7 +72,7 @@ PLAB.senses = {
     { name: "Dealing with or handling", note: "cope with, deal with", boards: ["with-without/with-by"], words: ["deal", "cope", "busy", "occupied", "concerned", "careful", "economical", "generous", "comply", "acquainted", "adept", "part", "replace"] },
   ],
   from: [
-    { name: "A starting point or source", note: "derived from, borrowed from", boards: ["from/start", "from/origin"], words: ["derive", "descended", "benefit", "borrow", "hear", "made", "adapt", "emerge", "suffer", "die", "tired"] },
+    { name: "A starting point or source", note: "derived from, borrowed from", boards: ["from/start", "from/origin", "py-member-of/word-2"], words: ["derive", "descended", "benefit", "borrow", "hear", "made", "adapt", "emerge", "suffer", "die", "tired"] },
     { name: "Moving away, separation", note: "absent from, different from", boards: ["from/separation", "py-to-with-from/word-1", "py-to-with-from/word-4"], words: ["absent", "abstain", "deviate", "differ", "different", "distinct", "part", "resign", "retire", "recover"] },
     { name: "Kept away: protection and prevention", note: "safe from, prevented from", boards: [], words: ["debar", "exempt", "free", "immune", "prevent", "prohibit", "protect", "safe"] },
   ],
