@@ -38,7 +38,7 @@ PLAB.senses = {
     { name: "A person who receives", note: "speak, listen, answer, apologise to", boards: [], words: ["apologise", "complain", "confide", "talk", "listen", "respond", "react", "appeal", "account", "accountable", "submit", "grateful", "thankful", "indebted", "obliged", "write"] },
     { name: "Behaviour aimed at someone", note: "kind to, rude to, loyal to", boards: ["to-towards/abstract-towards"], words: ["cruel", "kind", "nice", "polite", "rude", "generous", "faithful", "loyal", "true", "good", "hostile", "opposed", "object", "averse", "partial", "indifferent", "alien", "blind", "oblivious"] },
     { name: "Matching or compared to", note: "similar to, superior to", boards: [], words: ["similar", "identical", "equal", "superior", "inferior", "preferable", "prefer", "compare", "correspond", "conform", "contrary", "related", "relevant", "irrelevant", "applicable", "connected"] },
-    { name: "Attached or devoted to", note: "belong to, married to, used to", boards: [], words: ["belong", "adhere", "married", "engaged", "heir", "entitled", "devote", "dedicated", "committed", "accustomed", "used", "habituated", "adapt"] },
+    { name: "Attached or devoted to", note: "belong to, married to, used to", boards: ["py-married-to/word-1"], words: ["belong", "adhere", "married", "engaged", "heir", "entitled", "devote", "dedicated", "committed", "accustomed", "used", "habituated", "adapt"] },
     { name: "An effect on someone", note: "harmful to, essential to", boards: [], words: ["conducive", "detrimental", "harmful", "fatal", "essential", "critical", "threat", "benefit"] },
     { name: "Open or exposed to", note: "liable to, immune to", boards: [], words: ["exposed", "susceptible", "liable", "subject", "immune", "impervious", "sensitive", "allergic"] },
     { name: "Agreeing to a proposal", note: "consent to, accede to", boards: [], words: ["accede", "agree", "consent", "admit"] },
@@ -51,7 +51,7 @@ PLAB.senses = {
     { name: "Aimed at something you want", note: "ask for, wait for, hope for", boards: ["for/uses"], words: ["apply", "ask", "call", "search", "wait", "hope", "desire", "eager", "hungry", "greedy", "yearn", "zeal", "anxious", "impatient", "compete", "appeal", "need"] },
     { name: "Purpose or suitability", note: "fit for, ready for, useful for", boards: ["for/purpose"], words: ["adequate", "fit", "unfit", "ready", "prepared", "qualified", "eligible", "necessary", "useful", "good", "cater", "cure", "substitute", "valid", "free", "late"] },
     { name: "For someone's sake", note: "sorry for, proud for, care for", boards: [], words: ["afraid", "sorry", "sympathy", "happy", "proud", "ashamed", "grieve", "mourn", "care", "provide", "vote", "argue", "live"] },
-    { name: "Exchange or price", note: "paid for, exchanged for", boards: [], words: ["charge", "exchange", "compensate", "count", "insured", "mistake"] },
+    { name: "Exchange or price", note: "paid for, exchanged for, insured for", boards: ["py-insure/word-2"], words: ["charge", "exchange", "compensate", "count", "insured", "mistake"] },
     { name: "Reason or cause", note: "blamed for, famous for, thankful for", boards: [], words: ["blame", "punish", "sentenced", "condemn", "famous", "notorious", "account", "accountable", "apologise", "grateful", "thankful", "indebted", "obliged", "liable", "respect"] },
     { name: "Destination of a departure", note: "bound for Karachi", boards: [], words: ["bound", "destined"] },
   ],
@@ -88,7 +88,7 @@ PLAB.senses = {
   ],
   against: [
     { name: "Opposing", note: "vote against, biased against", boards: ["against/oppose"], words: ["argue", "vote", "react", "biased", "prejudiced", "discriminate", "appeal", "decide"] },
-    { name: "Protecting from a danger", note: "guard against, insured against", boards: [], words: ["guard", "insured", "warn"] },
+    { name: "Protecting from a danger", note: "guard against, insured against", boards: ["py-insure/word-1"], words: ["guard", "insured", "warn"] },
     { name: "Pressing against", note: "lean against the wall", boards: ["against/lean"], words: ["lean"] },
   ],
   over: [

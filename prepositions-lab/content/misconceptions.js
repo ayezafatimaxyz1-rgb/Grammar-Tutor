@@ -594,4 +594,12 @@ PLAB.misconceptions = {
     label: "DISPENSE WITH = manage without something you had WITH you; DISPOSE OF = take it away, get rid of it. Never dispense of, never dispose off",
     explain: "Both mean that something goes away, so they look alike. DISPENSE WITH: something was WITH you, and you decide you can do without it; nothing is thrown away. DISPOSE OF: you take it away and get rid of it, or finish dealing with it. This OF is the taking-away OF of rid of and rob of. OFF is a different word: away from a surface (take off, get off).",
   },
+  "y-insure": {
+    label: "INSURE AGAINST the danger (a shield facing it); INSURE FOR the amount (a swap: money for cover); INSURE WITH the company (your partner in the deal)",
+    explain: "Insurance is a shield you buy. AGAINST names the danger the shield faces: fire, theft, floods. FOR names the amount of cover, like a price in a swap: insured for 50 lakh. WITH names the company you made the deal with. Do not mix up insure (buy protection) and ensure (make certain).",
+  },
+  "y-married-to": {
+    label: "MARRIED TO a person (a bond that joins one to the other); WITH is for doing something together (argue with, agree with); married WITH = and has (married with two children)",
+    explain: "WITH pictures two people side by side doing something together: argue with, agree with, quarrel with, dance with. Being married is not an action you do together each minute; it is a bond, a state that ties one person TO another, like engaged to, related to, attached to, devoted to. So: married TO. Married WITH means 'married and having': married with two children. The verb MARRY takes no preposition: she married a doctor.",
+  },
 };

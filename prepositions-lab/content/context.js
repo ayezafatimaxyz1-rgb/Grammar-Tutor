@@ -2306,6 +2306,9 @@ PLAB.context = [
       "lesson": "py-dispense-dispose"
      },
      {
+      "lesson": "py-insure"
+     },
+     {
       "lesson": "depend-rely"
      },
      {
@@ -4356,6 +4359,9 @@ PLAB.context = [
      },
      {
       "lesson": "py-conducive-to"
+     },
+     {
+      "lesson": "py-married-to"
      },
      {
       "word": "absent",
