@@ -762,6 +762,7 @@
               L("py-dispense-dispose", "DISPENSE WITH or DISPOSE OF (never of / off)", { status: "tested", lessonId: "py-dispense-dispose" }),
               L("py-insure", "INSURE AGAINST a danger, FOR an amount, WITH a company", { status: "tested", lessonId: "py-insure" }),
               L("py-married-to", "MARRIED TO, not WITH: a bond, not an activity", { status: "tested", lessonId: "py-married-to" }),
+              L("py-to-with-from", "DIFFER WITH or FROM, never TO: the three pictures of FROM, WITH, TO", { status: "tested", lessonId: "py-to-with-from" }),
             ],
           },
         ],

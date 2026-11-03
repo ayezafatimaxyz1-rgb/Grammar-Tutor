@@ -37,7 +37,7 @@ PLAB.senses = {
     { name: "Movement to a destination", note: "going, sending, moving to", boards: ["to-towards/dest"], words: ["moved", "retire", "apply", "refer", "attach"] },
     { name: "A person who receives", note: "speak, listen, answer, apologise to", boards: [], words: ["apologise", "complain", "confide", "talk", "listen", "respond", "react", "appeal", "account", "accountable", "submit", "grateful", "thankful", "indebted", "obliged", "write"] },
     { name: "Behaviour aimed at someone", note: "kind to, rude to, loyal to", boards: ["to-towards/abstract-towards"], words: ["cruel", "kind", "nice", "polite", "rude", "generous", "faithful", "loyal", "true", "good", "hostile", "opposed", "object", "averse", "partial", "indifferent", "alien", "blind", "oblivious"] },
-    { name: "Matching or compared to", note: "similar to, superior to", boards: [], words: ["similar", "identical", "equal", "superior", "inferior", "preferable", "prefer", "compare", "correspond", "conform", "contrary", "related", "relevant", "irrelevant", "applicable", "connected"] },
+    { name: "Matching or compared to", note: "similar to, superior to", boards: ["py-to-with-from/word-3"], words: ["similar", "identical", "equal", "superior", "inferior", "preferable", "prefer", "compare", "correspond", "conform", "contrary", "related", "relevant", "irrelevant", "applicable", "connected"] },
     { name: "Attached or devoted to", note: "belong to, married to, used to", boards: ["py-married-to/word-1"], words: ["belong", "adhere", "married", "engaged", "heir", "entitled", "devote", "dedicated", "committed", "accustomed", "used", "habituated", "adapt"] },
     { name: "An effect on someone", note: "harmful to, essential to", boards: [], words: ["conducive", "detrimental", "harmful", "fatal", "essential", "critical", "threat", "benefit"] },
     { name: "Open or exposed to", note: "liable to, immune to", boards: [], words: ["exposed", "susceptible", "liable", "subject", "immune", "impervious", "sensitive", "allergic"] },
@@ -65,7 +65,7 @@ PLAB.senses = {
   ],
   with: [
     { name: "Together, side by side", note: "agree with, cooperate with", boards: ["with-without/together"], words: ["agree", "cooperate", "compatible", "accord", "mix", "connected", "contact", "correspond", "exchange", "involved", "laugh", "sympathy", "compare", "accompanied", "safe"] },
-    { name: "Against a partner", note: "argue with, compete with", boards: [], words: ["argue", "quarrel", "compete", "differ", "disagree", "angry", "furious", "upset", "impatient", "patient", "inconsistent", "interfere", "disgusted"] },
+    { name: "Against a partner", note: "argue with, compete with, differ with", boards: ["py-to-with-from/word-2", "py-to-with-from/word-5"], words: ["argue", "quarrel", "compete", "differ", "disagree", "angry", "furious", "upset", "impatient", "patient", "inconsistent", "interfere", "disgusted"] },
     { name: "Having or filled with", note: "blessed with, covered with", boards: ["with-without/more"], words: ["blessed", "endowed", "filled", "fraught", "covered", "infected", "inspired", "provide", "charge"] },
     { name: "Feelings about what you have", note: "satisfied with, bored with", boards: [], words: ["content", "satisfied", "pleased", "happy", "disappointed", "bored", "fed up", "obsessed", "popular"] },
     { name: "Doing without what was with you", note: "dispense with, part with", boards: ["py-dispense-dispose/word-2"], words: ["dispense"] },
@@ -73,7 +73,7 @@ PLAB.senses = {
   ],
   from: [
     { name: "A starting point or source", note: "derived from, borrowed from", boards: ["from/start", "from/origin"], words: ["derive", "descended", "benefit", "borrow", "hear", "made", "adapt", "emerge", "suffer", "die", "tired"] },
-    { name: "Moving away, separation", note: "absent from, different from", boards: ["from/separation"], words: ["absent", "abstain", "deviate", "differ", "different", "distinct", "part", "resign", "retire", "recover"] },
+    { name: "Moving away, separation", note: "absent from, different from", boards: ["from/separation", "py-to-with-from/word-1", "py-to-with-from/word-4"], words: ["absent", "abstain", "deviate", "differ", "different", "distinct", "part", "resign", "retire", "recover"] },
     { name: "Kept away: protection and prevention", note: "safe from, prevented from", boards: [], words: ["debar", "exempt", "free", "immune", "prevent", "prohibit", "protect", "safe"] },
   ],
   by: [
