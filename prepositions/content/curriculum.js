@@ -760,6 +760,8 @@
               L("py-conducive-to", "CONDUCIVE TO: the arrow towards a result", { status: "tested", lessonId: "py-conducive-to" }),
               L("py-to-order", "TO ORDER: made to match a pattern", { status: "tested", lessonId: "py-to-order" }),
               L("py-dispense-dispose", "DISPENSE WITH or DISPOSE OF (never of / off)", { status: "tested", lessonId: "py-dispense-dispose" }),
+              L("py-insure", "INSURE AGAINST a danger, FOR an amount, WITH a company", { status: "tested", lessonId: "py-insure" }),
+              L("py-married-to", "MARRIED TO, not WITH: a bond, not an activity", { status: "tested", lessonId: "py-married-to" }),
             ],
           },
         ],
