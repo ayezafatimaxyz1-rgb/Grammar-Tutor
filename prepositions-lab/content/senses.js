@@ -8,7 +8,7 @@ PLAB.senses = {
     { name: "Along a line", note: "on a coast, a river, a road", boards: ["on-core/line"], words: [] },
     { name: "On a vehicle or platform", note: "a bus, a train, a ship you step onto", boards: ["on-core/vehicles"], words: ["embark"] },
     { name: "Resting on a support", note: "it depends on what holds it up", boards: ["on-core/base"], words: ["based", "contingent", "count", "depend", "reliant", "live", "modelled"] },
-    { name: "Pressure or attention landing on one point", note: "insisting, focusing, blaming", boards: [], words: ["concentrate", "emphasis", "insist", "impose", "effect", "blame", "bent", "intent", "keen", "dwell", "congratulate"] },
+    { name: "Pressure or attention landing on one point", note: "insisting, focusing, blaming", boards: ["py-congratulate-on/word-1"], words: ["concentrate", "emphasis", "insist", "impose", "effect", "blame", "bent", "intent", "keen", "dwell", "congratulate"] },
     { name: "A point decided on", note: "both sides land on one choice", boards: [], words: ["agree", "decide", "vote"] },
     { name: "A topic", note: "a book on Iqbal, an expert on law", boards: ["about-on-topic/two"], words: ["comment", "expert"] },
     { name: "A day or date", note: "on Monday, on 14 August", boards: ["in-on-at-time/three"], words: [] },
@@ -52,7 +52,7 @@ PLAB.senses = {
     { name: "Purpose or suitability", note: "fit for, ready for, useful for", boards: ["for/purpose"], words: ["adequate", "fit", "unfit", "ready", "prepared", "qualified", "eligible", "necessary", "useful", "good", "cater", "cure", "substitute", "valid", "free", "late"] },
     { name: "For someone's sake", note: "sorry for, proud for, care for", boards: [], words: ["afraid", "sorry", "sympathy", "happy", "proud", "ashamed", "grieve", "mourn", "care", "provide", "vote", "argue", "live"] },
     { name: "Exchange or price", note: "paid for, exchanged for, insured for", boards: ["py-insure/word-2"], words: ["charge", "exchange", "compensate", "count", "insured", "mistake"] },
-    { name: "Reason or cause", note: "blamed for, famous for, thankful for", boards: [], words: ["blame", "punish", "sentenced", "condemn", "famous", "notorious", "account", "accountable", "apologise", "grateful", "thankful", "indebted", "obliged", "liable", "respect"] },
+    { name: "Reason or cause", note: "blamed for, famous for, thankful for", boards: ["py-congratulate-on/word-2"], words: ["blame", "punish", "sentenced", "condemn", "famous", "notorious", "account", "accountable", "apologise", "grateful", "thankful", "indebted", "obliged", "liable", "respect"] },
     { name: "Destination of a departure", note: "bound for Karachi", boards: [], words: ["bound", "destined"] },
   ],
   of: [

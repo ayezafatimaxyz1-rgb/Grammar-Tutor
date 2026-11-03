@@ -764,6 +764,7 @@
               L("py-married-to", "MARRIED TO, not WITH: a bond, not an activity", { status: "tested", lessonId: "py-married-to" }),
               L("py-to-with-from", "DIFFER WITH or FROM, never TO: the three pictures of FROM, WITH, TO", { status: "tested", lessonId: "py-to-with-from" }),
               L("py-member-of", "MEMBER OF, MEMBER FROM, MEMBER FOR: belongs, came out, stands for", { status: "tested", lessonId: "py-member-of" }),
+              L("py-congratulate-on", "CONGRATULATE ON, PRAISE FOR, PROUD OF: where the good wishes land", { status: "tested", lessonId: "py-congratulate-on" }),
             ],
           },
         ],

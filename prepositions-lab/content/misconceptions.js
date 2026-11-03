@@ -610,4 +610,8 @@ PLAB.misconceptions = {
     label: "MEMBER OF = a part of the whole (belongs); MEMBER FROM = came out of the group to go somewhere else; MEMBER FOR = stands for, represents a place",
     explain: "OF draws a whole with a part inside it: a member is one part OF the club. FROM draws a starting point and an arrow leaving it: members FROM the club went out to another place. FOR draws someone standing in place of others: the Member FOR Lahore speaks for Lahore. IN only says someone is inside a building.",
   },
+  "y-congratulate-on": {
+    label: "CONGRATULATE ON = the good wishes land ON one event; PRAISE / THANK / BLAME FOR = the reason why; PROUD OF = the feeling holds one thing; AT = aiming at a target",
+    explain: "Picture good wishes as arrows landing on one point: the success, the wedding, the new job. Landing on one point is ON: congratulate on, compliment on, comment on, focus on. FOR answers WHY: praise for, thank for, blame for, reward for. OF holds what a feeling is about: proud of. AT aims at a target: laugh at, shout at. Congratulate takes ON.",
+  },
 };

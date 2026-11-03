@@ -2315,6 +2315,9 @@ PLAB.context = [
       "lesson": "py-to-with-from"
      },
      {
+      "lesson": "py-congratulate-on"
+     },
+     {
       "lesson": "depend-rely"
      },
      {

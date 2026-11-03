@@ -164,7 +164,7 @@ SECTIONS = [
   dict(id="verbs", title="Verbs and the prepositions they take, A to Z",
        intro="Each verb keeps its own meaning, and the preposition adds its picture: depend (hang) + on (resting on) = rely on. Some verbs take two or three prepositions, each saying something different.",
        table=word_table("verb"),
-       items=L("py-dispense-dispose", "py-insure", "py-to-with-from", "depend-rely", "believe-in", "apply-for-to", "agree-with-on-to", "arrive-at-in", "look-family", "object-pattern", "abstain-refrain",
+       items=L("py-dispense-dispose", "py-insure", "py-to-with-from", "py-congratulate-on", "depend-rely", "believe-in", "apply-for-to", "agree-with-on-to", "arrive-at-in", "look-family", "object-pattern", "abstain-refrain",
                "die-of-from", "compare-to-with", "no-preposition", "redundant", "missing", "wrong-choice", "formal-alternatives") + W("verb")),
   dict(id="phrasal", title="Phrasal verbs and three-word verbs",
        intro="The particle carries the meaning: up = completely or more, off = away, out = into the open or gone, down = lower or onto paper. The same verb with another particle is another verb.",
