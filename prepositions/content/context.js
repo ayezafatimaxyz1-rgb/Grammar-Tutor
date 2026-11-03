@@ -2303,6 +2303,9 @@ PLAB.context = [
     ],
     "items": [
      {
+      "lesson": "py-dispense-dispose"
+     },
+     {
       "lesson": "depend-rely"
      },
      {
