@@ -757,6 +757,7 @@
               L("py-eid", "AT Eid, but ON Eid day", { status: "tested", lessonId: "py-eid" }),
               L("py-over-time", "OVER with time, and its neighbours", { status: "tested", lessonId: "py-over-time" }),
               L("py-before-ago-after", "BEFORE, AGO, AFTER: the full lesson", { status: "tested", lessonId: "py-before-ago-after" }),
+              L("py-conducive-to", "CONDUCIVE TO: the arrow towards a result", { status: "tested", lessonId: "py-conducive-to" }),
             ],
           },
         ],
