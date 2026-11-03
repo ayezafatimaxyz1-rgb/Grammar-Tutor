@@ -190,7 +190,7 @@ SECTIONS = [
               ["at ...", "a point of control, price or state", "at the behest of, at the cost of, at stake"], ["by ...", "a means or a way", "by dint of, by virtue of, by heart"],
               ["with / without ...", "joined to a topic / no link", "with regard to, without fail"], ["for ...", "aim or cause", "for the sake of, for want of"],
               ["under ...", "below a cover or process", "under the auspices of, under way"], ["out of / beyond / within", "outside / past / inside a limit", "out of order, beyond doubt, within reach"]],
-       items=L("in-idioms", "on-at-idioms", "by-out-of-idioms", "circumstance", "process", "representation") + [dict(lesson=i) for i in P5]),
+       items=L("in-idioms", "on-at-idioms", "by-out-of-idioms", "circumstance", "process", "representation", "py-to-order") + [dict(lesson=i) for i in P5]),
  ]),
 ]
 

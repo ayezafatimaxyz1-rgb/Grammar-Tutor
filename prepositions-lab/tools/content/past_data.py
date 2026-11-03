@@ -122,3 +122,11 @@ _PLACE_ADDRESS = [("AT, ON, IN with an address", [
     ("roadPass", "I live on Mall Road.", "on", "a street with no number: a line, so ON"),
     ("inCity", "I live in Lahore.", "in", "a city or area: inside its borders, so IN")])] + _ADDRESS[:1]
 MOVE.update({"in-on-at-place": _PLACE_ADDRESS, "p0-at": _PLACE_ADDRESS, "p0-in-on-at-place": _PLACE_ADDRESS})
+
+# TO as matching a pattern, in the atlas TO lesson.
+_TO_PATTERN = [("TO can also mean: made to match a pattern", [
+    ("fitMould", "The baker bakes cakes to order.", "to order", "made to match each customer's order"),
+    ("ruler", "The tailor made the suit to measure.", "to measure", "made to match your size"),
+    ("scale", "The map is drawn to scale.", "to scale", "made to match the real sizes in one ratio")])]
+MOVE["p0-to"] = MOVE["p0-to"] + _TO_PATTERN
+MOVE["to-towards"] = MOVE["to-towards"] + _TO_PATTERN

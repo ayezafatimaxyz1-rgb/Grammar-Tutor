@@ -586,4 +586,8 @@ PLAB.misconceptions = {
     label: "TO = an arrow that points at a result or a target; FOR = the receiver or the purpose",
     explain: "Some adjectives and verbs push towards a RESULT: conducive to, lead to, contribute to, harmful to. Some are OPEN to something that hits them: prone to, vulnerable to, immune to. Both are arrows, so TO. FOR names who receives the good or bad, or the purpose: good for, suitable for, famous for.",
   },
+  "y-to-order": {
+    label: "TO = made to match a pattern: to order, to measure, to scale, to taste. ON order, BY order of, IN order and OUT OF order mean other things",
+    explain: "TO can mean matching a pattern: the arrow reaches the pattern and fits it. A cake made TO ORDER is made to match one customer's order. ON order = ordered, still waiting to arrive. BY order of = because someone with power commanded it. IN order = tidy or correct. OUT OF order = not working. IN ORDER TO = for the purpose of.",
+  },
 };

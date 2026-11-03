@@ -43,6 +43,7 @@ PLAB.senses = {
     { name: "Open or exposed to", note: "liable to, immune to", boards: [], words: ["exposed", "susceptible", "liable", "subject", "immune", "impervious", "sensitive", "allergic"] },
     { name: "Agreeing to a proposal", note: "consent to, accede to", boards: [], words: ["accede", "agree", "consent", "admit"] },
     { name: "A limit or level reached", note: "reduced to ashes, sentenced to death", boards: [], words: ["limited", "reduced", "sentenced", "condemn", "amount", "resign", "add", "contribute"] },
+    { name: "Made to match a pattern", note: "to order, to measure, to scale, to taste", boards: ["py-to-order/word-1", "py-to-order/word-2"], words: [] },
     { name: "Near or next to", note: "close to, adjacent to", boards: [], words: ["adjacent", "close"] },
     { name: "Other uses", note: "according to, an alternative to", boards: [], words: ["according", "access", "alternative", "exception", "addicted", "lose", "succeed", "bound"] },
   ],
