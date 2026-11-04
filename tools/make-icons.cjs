@@ -1,4 +1,5 @@
-// Draws the Home Screen icons for the web versions: Bolo in docs/, Likho in docs/likho/ (icon-192.png, icon-512.png, apple-touch-icon.png).
+// Draws the Home Screen icons for the web versions: Bolo in docs/, Likho in docs/likho/, Speak Up in docs/speakup/
+// (icon-192.png, icon-512.png, apple-touch-icon.png).
 // Usage: node tools/make-icons.cjs   (needs Playwright; uses /opt/pw-browsers/chromium when present)
 const path = require("path");
 const fs = require("fs");
@@ -35,7 +36,19 @@ ${glass("#9db8ff", "#86e0c8", "#ffd08c")}
 ${lines}
 <g transform="rotate(40 330 330)"><rect x="312" y="190" width="36" height="170" rx="10" fill="url(#pen)" filter="url(#sh)"/><path d="M312 360h36l-18 40z" fill="#fff1d6"/><path d="M324 386h12l-6 14z" fill="#14286b"/></g>
 </svg>`;
-const SETS = [["docs", bolo], ["docs/likho", likho]];
+// Speak Up: a coral microphone with sound waves, on the same glass background.
+const speakup = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+${glass("#ffb39f", "#9cc6ff", "#ffd08c")}
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff6b4a"/><stop offset="1" stop-color="#f04a2a"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#8a2a14" flood-opacity=".35"/></filter>
+</defs>
+<rect width="512" height="512" fill="#f3f6fb"/><rect width="512" height="512" fill="url(#m)"/><rect width="512" height="512" fill="url(#b)"/><rect width="512" height="512" fill="url(#g)"/>
+<rect x="206" y="112" width="100" height="196" rx="50" fill="url(#gb)" filter="url(#sh)"/>
+<path d="M166 250a90 90 0 0 0 180 0" fill="none" stroke="#14213d" stroke-width="20" stroke-linecap="round"/>
+<path d="M256 342v44M206 396h100" stroke="#14213d" stroke-width="20" stroke-linecap="round"/>
+<path d="M126 196a150 150 0 0 0 0 108M386 196a150 150 0 0 1 0 108" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" stroke-opacity=".95"/>
+</svg>`;
+const SETS = [["docs", bolo], ["docs/likho", likho], ["docs/speakup", speakup]];
 
 (async () => {
   const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
