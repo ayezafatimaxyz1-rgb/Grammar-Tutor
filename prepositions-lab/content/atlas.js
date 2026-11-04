@@ -323,8 +323,8 @@ PLAB.atlas = [
     "kind": "lesson",
     "lesson": "p0-under",
     "title": "UNDER / BELOW / BENEATH",
-    "core": "UNDER = directly lower, often covered. BELOW = at a lower level.",
-    "child": "A cat under the table has the table over it. A town below the hill is just lower.",
+    "core": "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.",
+    "child": "A cat under the table has the table over it. A town below the hill is just lower. Lying is beneath him.",
     "senses": [
      {
       "prep": "under",
@@ -382,6 +382,53 @@ PLAB.atlas = [
        "BELOW is never used for control."
       ],
       "step": "s4-under"
+     },
+     {
+      "prep": "beneath",
+      "name": "under, in formal or literary English",
+      "caption": "right under a surface, said in a formal way",
+      "explain": "BENEATH is the same place as UNDER, but it sounds formal or literary. Writers use it for surfaces and for things far below.",
+      "examples": [
+       "The fish swam beneath the surface.",
+       "Oil and gas lie beneath the desert of Balochistan.",
+       "The village sleeps beneath the mountains."
+      ],
+      "vs": [
+       "under",
+       "UNDER is the everyday word for the same place."
+      ],
+      "step": "s5-beneath"
+     },
+     {
+      "prep": "beneath",
+      "name": "too low for someone",
+      "caption": "below the line of a person's standard or rank",
+      "explain": "BENEATH can also mean too low for a person's standard, rank or dignity. Lying is beneath him = lying is too low for a man like him.",
+      "examples": [
+       "Lying is beneath him.",
+       "She felt the job was beneath her.",
+       "His behaviour was beneath contempt."
+      ],
+      "vs": [
+       "below",
+       "BELOW is never used for dignity: never 'below him'."
+      ],
+      "step": "s6-beneath"
+     },
+     {
+      "prep": "underneath",
+      "name": "hidden right under",
+      "caption": "covered over, so you cannot see it",
+      "explain": "UNDERNEATH stresses that something is covered and hidden. It can end a sentence: look underneath.",
+      "examples": [
+       "She wore a sweater underneath her coat.",
+       "The keys were underneath the newspaper."
+      ],
+      "vs": [
+       "under",
+       "UNDER is the same place, with less stress on hidden."
+      ],
+      "step": "s7-underneath"
      }
     ]
    },

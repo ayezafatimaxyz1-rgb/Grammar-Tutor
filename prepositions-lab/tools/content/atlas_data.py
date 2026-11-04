@@ -68,7 +68,7 @@ L("over", "OVER / ABOVE", "floatAbove", "Both are higher. OVER can cover or cros
     ["Numbers are levels too.", "OVER is past the level."],
     ["He is [over] sixty.", "It cost [over] a million rupees."], ("above", "ABOVE is used for levels on a scale: above zero.")),
 ])
-L("under", "UNDER / BELOW / BENEATH", "underTable", "UNDER = directly lower, often covered. BELOW = at a lower level.", "A cat under the table has the table over it. A town below the hill is just lower.", [
+L("under", "UNDER / BELOW / BENEATH", "underTable", "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", "A cat under the table has the table over it. A town below the hill is just lower. Lying is beneath him.", [
   S("under", "directly lower, covered", "underTable", "something is right over it",
     ["UNDER is right beneath, often hidden or covered."],
     ["The cat is [under] the table.", "He hid the key [under] a stone."], ("below", "BELOW only says lower, not right beneath.")),
@@ -81,6 +81,15 @@ L("under", "UNDER / BELOW / BENEATH", "underTable", "UNDER = directly lower, oft
   S("under", "controlled or covered by", "lawRoof", "a rule or power is over you",
     ["A law, a ruler or a process is over you like a roof."],
     ["The matter is [under] discussion.", "The country was [under] British rule."], ("below", "BELOW is never used for control.")),
+  S("beneath", "under, in formal or literary English", "fish", "right under a surface, said in a formal way",
+    ["BENEATH is the same place as UNDER, but it sounds formal or literary.", "Writers use it for surfaces and for things far below."],
+    ["The fish swam [beneath] the surface.", "Oil and gas lie [beneath] the desert of Balochistan.", "The village sleeps [beneath] the mountains."], ("under", "UNDER is the everyday word for the same place.")),
+  S("beneath", "too low for someone", "belowLine", "below the line of a person's standard or rank",
+    ["BENEATH can also mean too low for a person's standard, rank or dignity.", "Lying is beneath him = lying is too low for a man like him."],
+    ["Lying is [beneath] him.", "She felt the job was [beneath] her.", "His behaviour was [beneath] contempt."], ("below", "BELOW is never used for dignity: never 'below him'.")),
+  S("underneath", "hidden right under", "underTable", "covered over, so you cannot see it",
+    ["UNDERNEATH stresses that something is covered and hidden.", "It can end a sentence: look underneath."],
+    ["She wore a sweater [underneath] her coat.", "The keys were [underneath] the newspaper."], ("under", "UNDER is the same place, with less stress on hidden.")),
 ])
 L("beside", "BESIDE / BESIDES", "sideBySide", "BESIDE = at the side of. BESIDES = in addition to.", "One letter changes everything: beside is a place, besides is adding.", [
   S("beside", "at the side of", "sideBySide", "side by side",
