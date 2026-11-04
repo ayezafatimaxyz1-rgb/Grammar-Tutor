@@ -430,7 +430,7 @@
         id: "move-3",
         title: "TO can also mean: made to match a pattern",
         alt: "TO can also mean: made to match a pattern. The baker bakes cakes to order. Made to match each customer's order. The tailor made the suit to measure. Made to match your size. The map is drawn to scale. Made to match the real sizes in one ratio.",
-        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
+        say: [{"text": "TO has one more picture: an arrow that reaches a pattern and fits it.", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
         actions: [
           PLAB.kit.clear("clear-mv3"),
           { do: "write", id: "mv3-t", text: "TO can also mean: made to match a pattern", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
@@ -465,7 +465,7 @@
         id: "move-3",
         title: "TO can also mean: made to match a pattern",
         alt: "TO can also mean: made to match a pattern. The baker bakes cakes to order. Made to match each customer's order. The tailor made the suit to measure. Made to match your size. The map is drawn to scale. Made to match the real sizes in one ratio.",
-        say: [{"text": "One more test: does something MOVE to the place, or is it just AT the spot?", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
+        say: [{"text": "TO has one more picture: an arrow that reaches a pattern and fits it.", "cue": "mv3-t"}, {"text": "_The baker bakes cakes to order._ Made to match each customer's order.", "cue": "mv3r1"}, {"text": "_The tailor made the suit to measure._ Made to match your size.", "cue": "mv3r2"}, {"text": "_The map is drawn to scale._ Made to match the real sizes in one ratio.", "cue": "mv3r3"}],
         actions: [
           PLAB.kit.clear("clear-mv3"),
           { do: "write", id: "mv3-t", text: "TO can also mean: made to match a pattern", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
@@ -590,6 +590,89 @@
           PLAB.kit.clear("clear-mv2"),
           { do: "write", id: "mv2-t", text: "Send it TO my address, or AT my address?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("mv2r", [["goHome", "Send the letter to my home address.", { hl: "to", sub: "SEND moves the letter: movement towards a place takes TO", size: 30 }], ["house", "You can contact me at my home address.", { hl: "at", sub: "no movement: the spot where I am takes AT", size: 30 }], ["goHome", "Send it to me at my home address.", { hl: "to me at", sub: "TO = where it goes · AT = where I can be found", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p6-up1", [
+      {
+        id: "move-1",
+        title: "How UP grows: higher, into view, into being",
+        alt: "How UP grows: higher, into view, into being. 1. UP: moving to a higher place The core picture: from low to high. 2. What rises comes into view: the sun comes up Higher = you can now see it: come up, turn up, show up. 3. What rises from nothing comes into being: a plant comes up It now exists: set up, draw up, make up.",
+        say: [{"text": "How does UP come to mean into being? Watch the picture grow, one step at a time.", "cue": "mv1-t"}, {"text": "_1. UP: moving to a higher place_ The core picture: from low to high.", "cue": "mv1r1"}, {"text": "_2. What rises comes into view: the sun comes up_ Higher = you can now see it: come up, turn up, show up.", "cue": "mv1r2"}, {"text": "_3. What rises from nothing comes into being: a plant comes up_ It now exists: set up, draw up, make up.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "How UP grows: higher, into view, into being", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["arrowUp", "1. UP: moving to a higher place", { hl: "UP", sub: "the core picture: from low to high", size: 30 }], ["sun", "2. What rises comes into view: the sun comes up", { hl: "into view", sub: "higher = you can now see it: come up, turn up, show up", size: 30 }], ["growTo", "3. What rises from nothing comes into being: a plant comes up", { hl: "into being", sub: "it now exists: set up, draw up, make up", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "draw up the contract: the picture step by step",
+        alt: "draw up the contract: the picture step by step. Before: no contract, only notes on a page Nothing is standing yet. The lawyer DRAWS: pulls the words and terms together Draw = pull along, pull together. UP: the contract rises into being, finished and standing Drew up = brought it into being: prepared it.",
+        say: [{"text": "Now the same steps for draw up the contract.", "cue": "mv2-t"}, {"text": "_Before: no contract, only notes on a page_ Nothing is standing yet.", "cue": "mv2r1"}, {"text": "_The lawyer DRAWS: pulls the words and terms together_ Draw = pull along, pull together.", "cue": "mv2r2"}, {"text": "_UP: the contract rises into being, finished and standing_ Drew up = brought it into being: prepared it.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "draw up the contract: the picture step by step", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["doc", "Before: no contract, only notes on a page", { hl: "no contract", sub: "nothing is standing yet", size: 30 }], ["arrowUp", "The lawyer DRAWS: pulls the words and terms together", { hl: "DRAWS", sub: "draw = pull along, pull together", size: 30 }], ["growTo", "UP: the contract rises into being, finished and standing", { hl: "UP", sub: "drew up = brought it into being: prepared it", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-3",
+        title: "Other UPs: close to, completely, more",
+        alt: "Other UPs: close to, completely, more. A car drew up at the gate. UP = close up to a point: it came near and stopped. Eat up your food. UP = up to the top, completely: nothing left. Prices have gone up. UP = more: a higher amount.",
+        say: [{"text": "UP has other senses too. The sentence tells you which one.", "cue": "mv3-t"}, {"text": "_A car drew up at the gate._ UP = close up to a point: it came near and stopped.", "cue": "mv3r1"}, {"text": "_Eat up your food._ UP = up to the top, completely: nothing left.", "cue": "mv3r2"}, {"text": "_Prices have gone up._ UP = more: a higher amount.", "cue": "mv3r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv3"),
+          { do: "write", id: "mv3-t", text: "Other UPs: close to, completely, more", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv3r", [["reachDot", "A car drew up at the gate.", { hl: "drew up", sub: "UP = close up to a point: it came near and stopped", size: 30 }], ["emptyJar", "Eat up your food.", { hl: "Eat up", sub: "UP = up to the top, completely: nothing left", size: 30 }], ["rising", "Prices have gone up.", { hl: "gone up", sub: "UP = more: a higher amount", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p6-up2", [
+      {
+        id: "move-1",
+        title: "How UP grows: higher, into view, into being",
+        alt: "How UP grows: higher, into view, into being. 1. UP: moving to a higher place The core picture: from low to high. 2. What rises comes into view: the sun comes up Higher = you can now see it: come up, turn up, show up. 3. What rises from nothing comes into being: a plant comes up It now exists: set up, draw up, make up.",
+        say: [{"text": "How does UP come to mean into being? Watch the picture grow, one step at a time.", "cue": "mv1-t"}, {"text": "_1. UP: moving to a higher place_ The core picture: from low to high.", "cue": "mv1r1"}, {"text": "_2. What rises comes into view: the sun comes up_ Higher = you can now see it: come up, turn up, show up.", "cue": "mv1r2"}, {"text": "_3. What rises from nothing comes into being: a plant comes up_ It now exists: set up, draw up, make up.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "How UP grows: higher, into view, into being", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["arrowUp", "1. UP: moving to a higher place", { hl: "UP", sub: "the core picture: from low to high", size: 30 }], ["sun", "2. What rises comes into view: the sun comes up", { hl: "into view", sub: "higher = you can now see it: come up, turn up, show up", size: 30 }], ["growTo", "3. What rises from nothing comes into being: a plant comes up", { hl: "into being", sub: "it now exists: set up, draw up, make up", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Other UPs: close to, completely, more",
+        alt: "Other UPs: close to, completely, more. A car drew up at the gate. UP = close up to a point: it came near and stopped. Eat up your food. UP = up to the top, completely: nothing left. Prices have gone up. UP = more: a higher amount.",
+        say: [{"text": "UP has other senses too. The sentence tells you which one.", "cue": "mv2-t"}, {"text": "_A car drew up at the gate._ UP = close up to a point: it came near and stopped.", "cue": "mv2r1"}, {"text": "_Eat up your food._ UP = up to the top, completely: nothing left.", "cue": "mv2r2"}, {"text": "_Prices have gone up._ UP = more: a higher amount.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Other UPs: close to, completely, more", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["reachDot", "A car drew up at the gate.", { hl: "drew up", sub: "UP = close up to a point: it came near and stopped", size: 30 }], ["emptyJar", "Eat up your food.", { hl: "Eat up", sub: "UP = up to the top, completely: nothing left", size: 30 }], ["rising", "Prices have gone up.", { hl: "gone up", sub: "UP = more: a higher amount", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      }
+  ]);
+  add("p6-up3", [
+      {
+        id: "move-1",
+        title: "How UP grows: higher, into view, into being",
+        alt: "How UP grows: higher, into view, into being. 1. UP: moving to a higher place The core picture: from low to high. 2. What rises comes into view: the sun comes up Higher = you can now see it: come up, turn up, show up. 3. What rises from nothing comes into being: a plant comes up It now exists: set up, draw up, make up.",
+        say: [{"text": "How does UP come to mean into being? Watch the picture grow, one step at a time.", "cue": "mv1-t"}, {"text": "_1. UP: moving to a higher place_ The core picture: from low to high.", "cue": "mv1r1"}, {"text": "_2. What rises comes into view: the sun comes up_ Higher = you can now see it: come up, turn up, show up.", "cue": "mv1r2"}, {"text": "_3. What rises from nothing comes into being: a plant comes up_ It now exists: set up, draw up, make up.", "cue": "mv1r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv1"),
+          { do: "write", id: "mv1-t", text: "How UP grows: higher, into view, into being", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv1r", [["arrowUp", "1. UP: moving to a higher place", { hl: "UP", sub: "the core picture: from low to high", size: 30 }], ["sun", "2. What rises comes into view: the sun comes up", { hl: "into view", sub: "higher = you can now see it: come up, turn up, show up", size: 30 }], ["growTo", "3. What rises from nothing comes into being: a plant comes up", { hl: "into being", sub: "it now exists: set up, draw up, make up", size: 30 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "move-2",
+        title: "Other UPs: close to, completely, more",
+        alt: "Other UPs: close to, completely, more. A car drew up at the gate. UP = close up to a point: it came near and stopped. Eat up your food. UP = up to the top, completely: nothing left. Prices have gone up. UP = more: a higher amount.",
+        say: [{"text": "UP has other senses too. The sentence tells you which one.", "cue": "mv2-t"}, {"text": "_A car drew up at the gate._ UP = close up to a point: it came near and stopped.", "cue": "mv2r1"}, {"text": "_Eat up your food._ UP = up to the top, completely: nothing left.", "cue": "mv2r2"}, {"text": "_Prices have gone up._ UP = more: a higher amount.", "cue": "mv2r3"}],
+        actions: [
+          PLAB.kit.clear("clear-mv2"),
+          { do: "write", id: "mv2-t", text: "Other UPs: close to, completely, more", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("mv2r", [["reachDot", "A car drew up at the gate.", { hl: "drew up", sub: "UP = close up to a point: it came near and stopped", size: 30 }], ["emptyJar", "Eat up your food.", { hl: "Eat up", sub: "UP = up to the top, completely: nothing left", size: 30 }], ["rising", "Prices have gone up.", { hl: "gone up", sub: "UP = more: a higher amount", size: 30 }]], { y: 135, gap: 135 }),
         ],
       }
   ]);
