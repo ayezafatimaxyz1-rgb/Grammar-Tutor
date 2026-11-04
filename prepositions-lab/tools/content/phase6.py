@@ -42,10 +42,13 @@ def three_step(e, n, sum_text):
     """One verb, three sentences: the same parts fitted to three situations."""
     ph = e["phrase"]
     rows = [(e["example"], e["meaning"], e["logic"].split("|")[1])] + EXTRA[ph]
+    two = len(ph.split()) == 2
+    P = e["key"].upper()
+    sense_of = lambda i: SENSE.get((ph, i + 1), e["sense"])
     acts = [f'PLAB.kit.clear("clear-{n}c")',
             f'{{ do: "write", id: "g{n}h", text: {T(ph + ": one verb, three sentences")}, x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 }}',
-            f'{{ do: "write", id: "g{n}hl", text: {T("same parts: " + sum_text)}, x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 }}']
-    says = [(f"Our logic never changes: {sum_text}. Only the situation changes. Watch the same parts fit three sentences.", f"g{n}hl")]
+            f'{{ do: "write", id: "g{n}hl", text: {T("same verb and particle: " + sum_text + "; each sentence picks the sense")}, x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 }}']
+    says = [(f"The verb and the particle stay the same: {sum_text}. But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", f"g{n}hl")]
     split = False
     for i, (ex, mean, fit) in enumerate(rows):
         sent, hls = pieces(ex)
@@ -54,10 +57,12 @@ def three_step(e, n, sum_text):
         acts.append(f'{{ do: "write", id: "{t}", text: {T(f"{i + 1}. " + sent)}, x: 50, y: {y}, size: 30, fit: 860, gap: {450 if i else 400} }}')
         for j, h in enumerate(hls):
             acts.append(f'{{ do: "highlight", id: "{t}h{j}", target: "{t}", word: {T(h)} }}')
-        acts.append(f'{{ do: "write", id: "{t}f", text: {T(fit + "  →  " + mean)}, x: 82, y: {y + 40}, size: 23, ink: "accent2", fit: 830, gap: 250 }}')
+        label = (f"{P} = {sense_of(i)}: " if two else "") + fit
+        acts.append(f'{{ do: "write", id: "{t}f", text: {T(label + "  →  " + mean)}, x: 82, y: {y + 40}, size: 23, ink: "accent2", fit: 830, gap: 250 }}')
         split = split or len(hls) > 1
-        says.append((f"{i + 1}. _{sent}_ {fit[0].upper() + fit[1:]}, so here **{ph}** means {mean}.", t))
-    acts.append(f'{{ do: "write", id: "g{n}end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 }}')
+        changed = two and i and (ph, i + 1) in SENSE
+        says.append((f"{i + 1}. _{sent}_ " + (f"Here **{e['key']}** has a different sense: {sense_of(i)}. " if changed else (f"**{e['key']}** = {sense_of(i)}. " if two else "")) + f"{fit[0].upper() + fit[1:]}, so here **{ph}** means {mean}.", t))
+    acts.append(f'{{ do: "write", id: "g{n}end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 }}')
     if split:
         says.append(("Notice: the object can sit between the verb and its particle (kept me up). The parts and the logic do not change.", None))
     return dict(id=f"{re.sub(r'[^a-z]+', '-', ph.lower()).strip('-')}-context", title=f"{ph}: three sentences",

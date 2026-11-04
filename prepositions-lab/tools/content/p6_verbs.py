@@ -24,7 +24,7 @@ V("make [up]", "I", "form, together make", "Women {make up} half the population.
   [("make out", D, "see or understand with difficulty"), ("make off", D, "run away")], "stackAdd")
 V("look [up]", "B", "search for information", "{Look up} the word in a dictionary.", "into view", "the word is brought up out of the book",
   [("look into", D, "investigate"), ("look over", D, "examine quickly")], "dictionary")
-V("take [up]", "I", "start (a hobby or job)", "She {took up} painting after she retired.", "into being", "a new activity is picked up",
+V("take [up]", "I", "start (a hobby or job)", "She {took up} painting after she retired.", "upward", "a new activity is picked up off the ground",
   [("take on", D, "accept work or hire"), ("take over", D, "take control")], "pen")
 V("break [up]", "I", "end, scatter", "The meeting {broke up} at noon.", "completely", "it breaks into pieces and is over",
   [("break down", D, "stop working, or collapse"), ("break out", D, "start suddenly (war, fire)")], "brokenBox")
@@ -32,7 +32,7 @@ V("wind [up]", "A", "close down, end", "The company was {wound up} last year.", 
   [("wind down", D, "slow down gradually"), ("wind off", N, "not used")], "endOfPath")
 V("blow [up]", "I", "destroy by explosion", "Terrorists {blew up} the bridge.", "completely", "it goes up in pieces",
   [("blow out", D, "put out a flame by blowing"), ("blow over", D, "pass without harm")], "flame")
-V("hold [up]", "I", "delay", "Heavy traffic {held up} the ambulance.", "stopped", "held up in the air, it cannot move on",
+V("hold [up]", "I", "delay", "Heavy traffic {held up} the ambulance.", "stopped, held", "it is held, stopped, and cannot move on",
   [("hold on", D, "wait"), ("hold back", D, "restrain")], "fogDelay")
 V("keep [up]", "I", "stay at the same pace", "Prices rise fast and wages cannot {keep up}.", "level", "kept up at the same height",
   [("keep on", D, "continue"), ("keep off", D, "stay away from")], "levelScale")
@@ -118,11 +118,11 @@ V("cut [off]", "I", "isolate, disconnect", "The village was {cut off} by floods.
   [("cut down", D, "fell, or reduce"), ("cut out", D, "remove, or stop")], "roadBarrier")
 V("go [off]", "I", "explode, or ring", "The bomb {went off} at noon.", "set going", "it goes off with a bang",
   [("go on", D, "continue"), ("go out", D, "stop burning")], "flame")
-V("pay [off]", "I", "bring success", "His hard work {paid off}.", "away", "the effort is paid off in full",
+V("pay [off]", "I", "bring success", "His hard work {paid off}.", "completely", "the effort is paid back in full",
   [("pay back", D, "return money"), ("pay up", D, "pay what you owe")], "workSuccess")
 V("write [off]", "A", "cancel (a debt)", "The bank {wrote off} the loan.", "removed", "the debt is taken off the books",
   [("write down", D, "record on paper"), ("write up", D, "write a full report")], "coin")
-V("show [off]", "I", "display proudly", "He likes to {show off} his new car.", "away", "he shows it off to everyone around",
+V("show [off]", "I", "display proudly", "He likes to {show off} his new car.", "standing out", "it stands out, and every eye goes to it",
   [("show up", D, "arrive"), ("show in", D, "lead a guest in")], "crown")
 V("ward [off]", "A", "keep away (danger)", "Vaccines {ward off} disease.", "away", "the danger is pushed away",
   [("keep off", D, "stay away from"), ("ward over", N, "not used")], "shield")
@@ -220,7 +220,7 @@ V("hold [back]", "I", "restrain", "She {held back} her tears.", "kept behind", "
   [("hold up", D, "delay"), ("hold on", D, "wait")], "holdBack")
 V("pay [back]", "B", "return money", "He {paid back} the loan.", "returned", "the money comes back",
   [("pay off", D, "bring success, or clear a debt"), ("pay up", D, "pay what you owe")], "coin")
-V("cut [back]", "I", "reduce", "The firm {cut back} spending.", "kept behind", "spending is cut back to less",
+V("cut [back]", "I", "reduce", "The firm {cut back} spending.", "back to less", "spending is cut back to less",
   [("cut off", D, "isolate"), ("cut out", D, "remove, or stop")], "minus")
 V("look [back]", "B", "think about the past", "{Looking back}, I made many mistakes.", "returned", "your eyes turn back to the past",
   [("look up", D, "search for information"), ("look over", D, "examine quickly")], "returnArc")
@@ -264,7 +264,7 @@ V("put up [with]", "I", "tolerate", "I cannot {put up with} this noise.", "toget
   [("put up", D, "give a guest a place to stay"), ("put up to", D, "persuade someone to do wrong")], "umbrellaRain")
 V("look forward [to]", "B", "wait for with pleasure", "We {look forward to} your reply.", "pointing at", "your eyes are ahead, on the day",
   [("look forward for", N, "to points at what is ahead"), ("look up to", D, "admire")], "lookAhead")
-V("do away [with]", "A", "abolish", "The government {did away with} the tax.", "together with", "you put it away with you, gone",
+V("do away [with]", "A", "abolish", "The government {did away with} the tax.", "naming what goes", "away = gone; WITH names the thing that goes",
   [("do without", D, "manage without"), ("do away of", N, "the fixed form is do away with")], "cross")
 V("run out [of]", "B", "have no more", "We have {run out of} petrol.", "what it is made of", "of names the supply that is used up",
   [("run short of", D, "have too little"), ("run out from", N, "of names the supply")], "emptyJar")

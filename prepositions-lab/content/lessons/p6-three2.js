@@ -44,7 +44,7 @@
         title: "face up to: three sentences",
         alt: "face up to in three sentences. 1. You must face up to the facts. (you turn your face to it: accept and deal with) 2. He must face up to his mistakes. (he turns fully to face them: admit and deal with) 3. The nation must face up to climate change. (it stands up and faces it: confront)",
         say: [
-          { text: "Our logic never changes: face (turn towards) + up (fully, standing up) + to (pointing at). Only the situation changes. Watch the same parts fit three sentences.", cue: "g1hl" },
+          { text: "The verb and the particle stay the same: face (turn towards) + up (fully, standing up) + to (pointing at). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g1hl" },
           { text: "1. _You must face up to the facts._ You turn your face to it, so here **face up to** means accept and deal with.", cue: "g1s1" },
           { text: "2. _He must face up to his mistakes._ He turns fully to face them, so here **face up to** means admit and deal with.", cue: "g1s2" },
           { text: "3. _The nation must face up to climate change._ It stands up and faces it, so here **face up to** means confront.", cue: "g1s3" },
@@ -52,7 +52,7 @@
         actions: [
           PLAB.kit.clear("clear-1c"),
           { do: "write", id: "g1h", text: "face up to: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g1hl", text: "same parts: face (turn towards) + up (fully, standing up) + to (pointing at)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g1hl", text: "same verb and particle: face (turn towards) + up (fully, standing up) + to (pointing at); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g1s1", text: "1. You must face up to the facts.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g1s1h0", target: "g1s1", word: "face up to" },
           { do: "write", id: "g1s1f", text: "you turn your face to it  \u2192  accept and deal with", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -62,7 +62,7 @@
           { do: "write", id: "g1s3", text: "3. The nation must face up to climate change.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g1s3h0", target: "g1s3", word: "face up to" },
           { do: "write", id: "g1s3f", text: "it stands up and faces it  \u2192  confront", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g1end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g1end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -112,7 +112,7 @@
         title: "look down on: three sentences",
         alt: "look down on in three sentences. 1. He looks down on the poor. (his look falls down on them: despise) 2. Don't look down on manual work. (the look falls on it from above: regard as inferior) 3. Some rich people look down on villagers. (their eyes look down on them: despise)",
         say: [
-          { text: "Our logic never changes: look (direct your eyes) + down (from above) + on (landing on). Only the situation changes. Watch the same parts fit three sentences.", cue: "g2hl" },
+          { text: "The verb and the particle stay the same: look (direct your eyes) + down (from above) + on (landing on). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g2hl" },
           { text: "1. _He looks down on the poor._ His look falls down on them, so here **look down on** means despise.", cue: "g2s1" },
           { text: "2. _Don't look down on manual work._ The look falls on it from above, so here **look down on** means regard as inferior.", cue: "g2s2" },
           { text: "3. _Some rich people look down on villagers._ Their eyes look down on them, so here **look down on** means despise.", cue: "g2s3" },
@@ -120,7 +120,7 @@
         actions: [
           PLAB.kit.clear("clear-2c"),
           { do: "write", id: "g2h", text: "look down on: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g2hl", text: "same parts: look (direct your eyes) + down (from above) + on (landing on)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g2hl", text: "same verb and particle: look (direct your eyes) + down (from above) + on (landing on); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g2s1", text: "1. He looks down on the poor.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g2s1h0", target: "g2s1", word: "looks down on" },
           { do: "write", id: "g2s1f", text: "his look falls down on them  \u2192  despise", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -130,7 +130,7 @@
           { do: "write", id: "g2s3", text: "3. Some rich people look down on villagers.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g2s3h0", target: "g2s3", word: "look down on" },
           { do: "write", id: "g2s3f", text: "their eyes look down on them  \u2192  despise", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g2end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g2end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -180,7 +180,7 @@
         title: "look up to: three sentences",
         alt: "look up to in three sentences. 1. Students look up to their teacher. (your eyes go up to someone above you: admire) 2. Children look up to their parents. (their eyes go up to them: admire) 3. Many look up to Jinnah as a leader. (they look up to someone higher: respect)",
         say: [
-          { text: "Our logic never changes: look (direct your eyes) + up (to someone higher) + to (pointing at). Only the situation changes. Watch the same parts fit three sentences.", cue: "g3hl" },
+          { text: "The verb and the particle stay the same: look (direct your eyes) + up (to someone higher) + to (pointing at). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g3hl" },
           { text: "1. _Students look up to their teacher._ Your eyes go up to someone above you, so here **look up to** means admire.", cue: "g3s1" },
           { text: "2. _Children look up to their parents._ Their eyes go up to them, so here **look up to** means admire.", cue: "g3s2" },
           { text: "3. _Many look up to Jinnah as a leader._ They look up to someone higher, so here **look up to** means respect.", cue: "g3s3" },
@@ -188,7 +188,7 @@
         actions: [
           PLAB.kit.clear("clear-3c"),
           { do: "write", id: "g3h", text: "look up to: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g3hl", text: "same parts: look (direct your eyes) + up (to someone higher) + to (pointing at)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g3hl", text: "same verb and particle: look (direct your eyes) + up (to someone higher) + to (pointing at); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g3s1", text: "1. Students look up to their teacher.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g3s1h0", target: "g3s1", word: "look up to" },
           { do: "write", id: "g3s1f", text: "your eyes go up to someone above you  \u2192  admire", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -198,7 +198,7 @@
           { do: "write", id: "g3s3", text: "3. Many look up to Jinnah as a leader.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g3s3h0", target: "g3s3", word: "look up to" },
           { do: "write", id: "g3s3f", text: "they look up to someone higher  \u2192  respect", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g3end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g3end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -248,7 +248,7 @@
         title: "get away with: three sentences",
         alt: "get away with in three sentences. 1. He got away with the crime. (he leaves, and the crime goes with him: escape punishment for) 2. You won't get away with this lie. (you get free, with the lie: escape punishment) 3. He got away with a warning. (he got free with just that: receive only a light punishment)",
         say: [
-          { text: "Our logic never changes: get (reach, obtain) + away (free, escaping) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g4hl" },
+          { text: "The verb and the particle stay the same: get (reach, obtain) + away (free, escaping) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g4hl" },
           { text: "1. _He got away with the crime._ He leaves, and the crime goes with him, so here **get away with** means escape punishment for.", cue: "g4s1" },
           { text: "2. _You won't get away with this lie._ You get free, with the lie, so here **get away with** means escape punishment.", cue: "g4s2" },
           { text: "3. _He got away with a warning._ He got free with just that, so here **get away with** means receive only a light punishment.", cue: "g4s3" },
@@ -256,7 +256,7 @@
         actions: [
           PLAB.kit.clear("clear-4c"),
           { do: "write", id: "g4h", text: "get away with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g4hl", text: "same parts: get (reach, obtain) + away (free, escaping) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g4hl", text: "same verb and particle: get (reach, obtain) + away (free, escaping) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g4s1", text: "1. He got away with the crime.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g4s1h0", target: "g4s1", word: "got away with" },
           { do: "write", id: "g4s1f", text: "he leaves, and the crime goes with him  \u2192  escape punishment for", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -266,7 +266,7 @@
           { do: "write", id: "g4s3", text: "3. He got away with a warning.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g4s3h0", target: "g4s3", word: "got away with" },
           { do: "write", id: "g4s3f", text: "he got free with just that  \u2192  receive only a light punishment", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g4end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g4end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -316,7 +316,7 @@
         title: "catch up with: three sentences",
         alt: "catch up with in three sentences. 1. I ran to catch up with them. (you come level, together with them: reach someone ahead) 2. Pakistan must catch up with the world in science. (it comes level with the others: reach the level of) 3. His past caught up with him. (it comes level with him: finally affect)",
         say: [
-          { text: "Our logic never changes: catch (seize something moving) + up (level) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g5hl" },
+          { text: "The verb and the particle stay the same: catch (seize something moving) + up (level) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g5hl" },
           { text: "1. _I ran to catch up with them._ You come level, together with them, so here **catch up with** means reach someone ahead.", cue: "g5s1" },
           { text: "2. _Pakistan must catch up with the world in science._ It comes level with the others, so here **catch up with** means reach the level of.", cue: "g5s2" },
           { text: "3. _His past caught up with him._ It comes level with him, so here **catch up with** means finally affect.", cue: "g5s3" },
@@ -324,7 +324,7 @@
         actions: [
           PLAB.kit.clear("clear-5c"),
           { do: "write", id: "g5h", text: "catch up with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g5hl", text: "same parts: catch (seize something moving) + up (level) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g5hl", text: "same verb and particle: catch (seize something moving) + up (level) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g5s1", text: "1. I ran to catch up with them.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g5s1h0", target: "g5s1", word: "catch up with" },
           { do: "write", id: "g5s1f", text: "you come level, together with them  \u2192  reach someone ahead", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -334,7 +334,7 @@
           { do: "write", id: "g5s3", text: "3. His past caught up with him.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g5s3h0", target: "g5s3", word: "caught up with" },
           { do: "write", id: "g5s3f", text: "it comes level with him  \u2192  finally affect", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g5end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g5end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -384,7 +384,7 @@
         title: "keep up with: three sentences",
         alt: "keep up with in three sentences. 1. It is hard to keep up with the news. (you stay level, together with it: stay level with) 2. Wages do not keep up with prices. (they stay level with prices: rise as fast as) 3. She reads daily to keep up with events. (she stays level with the news: stay informed about)",
         say: [
-          { text: "Our logic never changes: keep (continue to have) + up (level) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g6hl" },
+          { text: "The verb and the particle stay the same: keep (continue to have) + up (level) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g6hl" },
           { text: "1. _It is hard to keep up with the news._ You stay level, together with it, so here **keep up with** means stay level with.", cue: "g6s1" },
           { text: "2. _Wages do not keep up with prices._ They stay level with prices, so here **keep up with** means rise as fast as.", cue: "g6s2" },
           { text: "3. _She reads daily to keep up with events._ She stays level with the news, so here **keep up with** means stay informed about.", cue: "g6s3" },
@@ -392,7 +392,7 @@
         actions: [
           PLAB.kit.clear("clear-6c"),
           { do: "write", id: "g6h", text: "keep up with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g6hl", text: "same parts: keep (continue to have) + up (level) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g6hl", text: "same verb and particle: keep (continue to have) + up (level) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g6s1", text: "1. It is hard to keep up with the news.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g6s1h0", target: "g6s1", word: "keep up with" },
           { do: "write", id: "g6s1f", text: "you stay level, together with it  \u2192  stay level with", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -402,7 +402,7 @@
           { do: "write", id: "g6s3", text: "3. She reads daily to keep up with events.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g6s3h0", target: "g6s3", word: "keep up with" },
           { do: "write", id: "g6s3f", text: "she stays level with the news  \u2192  stay informed about", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g6end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g6end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

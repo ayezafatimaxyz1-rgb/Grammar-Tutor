@@ -63,7 +63,7 @@
         title: "put up with: three sentences",
         alt: "put up with in three sentences. 1. I cannot put up with this noise. (you hold up under it and live with it: tolerate) 2. She puts up with his temper. (she holds up under it and lives with it: tolerate) 3. Villagers put up with poor roads for years. (they bear the weight, living with it: accept (something bad))",
         say: [
-          { text: "Our logic never changes: put (place something) + up (holding up a weight) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g1hl" },
+          { text: "The verb and the particle stay the same: put (place something) + up (holding up a weight) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g1hl" },
           { text: "1. _I cannot put up with this noise._ You hold up under it and live with it, so here **put up with** means tolerate.", cue: "g1s1" },
           { text: "2. _She puts up with his temper._ She holds up under it and lives with it, so here **put up with** means tolerate.", cue: "g1s2" },
           { text: "3. _Villagers put up with poor roads for years._ They bear the weight, living with it, so here **put up with** means accept (something bad).", cue: "g1s3" },
@@ -71,7 +71,7 @@
         actions: [
           PLAB.kit.clear("clear-1c"),
           { do: "write", id: "g1h", text: "put up with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g1hl", text: "same parts: put (place something) + up (holding up a weight) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g1hl", text: "same verb and particle: put (place something) + up (holding up a weight) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g1s1", text: "1. I cannot put up with this noise.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g1s1h0", target: "g1s1", word: "put up with" },
           { do: "write", id: "g1s1f", text: "you hold up under it and live with it  \u2192  tolerate", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -81,7 +81,7 @@
           { do: "write", id: "g1s3", text: "3. Villagers put up with poor roads for years.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g1s3h0", target: "g1s3", word: "put up with" },
           { do: "write", id: "g1s3f", text: "they bear the weight, living with it  \u2192  accept (something bad)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g1end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g1end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -131,7 +131,7 @@
         title: "look forward to: three sentences",
         alt: "look forward to in three sentences. 1. We look forward to your reply. (your eyes are ahead, on the day: wait for with pleasure) 2. Students look forward to the holidays. (their eyes point ahead to the day: wait with pleasure) 3. I look forward to meeting you. (your eyes are ahead, on the meeting: expect happily)",
         say: [
-          { text: "Our logic never changes: look (direct your eyes) + forward (ahead) + to (pointing at). Only the situation changes. Watch the same parts fit three sentences.", cue: "g2hl" },
+          { text: "The verb and the particle stay the same: look (direct your eyes) + forward (ahead) + to (pointing at). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g2hl" },
           { text: "1. _We look forward to your reply._ Your eyes are ahead, on the day, so here **look forward to** means wait for with pleasure.", cue: "g2s1" },
           { text: "2. _Students look forward to the holidays._ Their eyes point ahead to the day, so here **look forward to** means wait with pleasure.", cue: "g2s2" },
           { text: "3. _I look forward to meeting you._ Your eyes are ahead, on the meeting, so here **look forward to** means expect happily.", cue: "g2s3" },
@@ -139,7 +139,7 @@
         actions: [
           PLAB.kit.clear("clear-2c"),
           { do: "write", id: "g2h", text: "look forward to: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g2hl", text: "same parts: look (direct your eyes) + forward (ahead) + to (pointing at)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g2hl", text: "same verb and particle: look (direct your eyes) + forward (ahead) + to (pointing at); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g2s1", text: "1. We look forward to your reply.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g2s1h0", target: "g2s1", word: "look forward to" },
           { do: "write", id: "g2s1f", text: "your eyes are ahead, on the day  \u2192  wait for with pleasure", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -149,7 +149,7 @@
           { do: "write", id: "g2s3", text: "3. I look forward to meeting you.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g2s3h0", target: "g2s3", word: "look forward to" },
           { do: "write", id: "g2s3f", text: "your eyes are ahead, on the meeting  \u2192  expect happily", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g2end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g2end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -168,11 +168,11 @@
       {
         id: "do-away-with-meaning",
         title: "do away with \u00b7 Advanced",
-        alt: "do away with (Advanced): do (perform) + away (gone) + with (together with) = do away with, abolish. Sentence: The government did away with the tax. In this sentence, you put it away with you, gone.",
+        alt: "do away with (Advanced): do (perform) + away (gone) + with (naming what goes) = do away with, abolish. Sentence: The government did away with the tax. In this sentence, away = gone; WITH names the thing that goes.",
         say: [
           { text: "**do away with** means abolish: _The government did away with the tax._", cue: "f3r1" },
-          { text: "Why **with**? Take it apart: do (perform) + away (gone) + with (together with). In this sentence, you put it away with you, gone, so do away with means abolish.", cue: "f3f1" },
-          { text: "Sense: **with** = together with.", cue: "f3f2" },
+          { text: "Why **with**? Take it apart: do (perform) + away (gone) + with (naming what goes). In this sentence, away = gone; WITH names the thing that goes, so do away with means abolish.", cue: "f3f1" },
+          { text: "Sense: **with** = naming what goes.", cue: "f3f2" },
         ],
         actions: [
           PLAB.kit.clear("clear-3a"),
@@ -185,39 +185,39 @@
           { do: "write", id: "f3q1m", text: "gone", x: 325, y: 228, size: 21, ink: "muted", anchor: "middle", fit: 190 },
           { do: "write", id: "f3q1s", text: "+", x: 432, y: 190, size: 40, ink: "muted", anchor: "middle" },
           { do: "write", id: "f3q2", text: "with", x: 540, y: 190, size: 42, ink: "accent2", anchor: "middle", gap: 350 },
-          { do: "write", id: "f3q2m", text: "together with", x: 540, y: 228, size: 21, ink: "muted", anchor: "middle", fit: 190 },
+          { do: "write", id: "f3q2m", text: "naming what goes", x: 540, y: 228, size: 21, ink: "muted", anchor: "middle", fit: 190 },
           { do: "write", id: "f3q2s", text: "=", x: 622, y: 190, size: 40, ink: "muted", anchor: "middle" },
           { do: "write", id: "f3qr", text: "do away with", x: 810, y: 190, size: 38, ink: "accent", anchor: "middle", fit: 300, gap: 300 },
           { do: "write", id: "f3qrm", text: "abolish", x: 810, y: 228, size: 21, ink: "muted", anchor: "middle", fit: 300 },
           ...PLAB.kit.rows("f3r", [["cross", "The government did away with the tax.", { hl: "did away with", size: 30 }]], { y: 330, gap: 130 }),
-          { do: "write", id: "f3f1", text: "In this sentence: you put it away with you, gone", x: 480, y: 455, size: 28, ink: "accent2", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "f3f1", text: "In this sentence: away = gone; WITH names the thing that goes", x: 480, y: 455, size: 28, ink: "accent2", anchor: "middle", fit: 910, gap: 500 },
           { do: "write", id: "f3f2", text: "so do away with = abolish", x: 480, y: 505, size: 30, ink: "accent", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
         id: "do-away-with-context",
         title: "do away with: three sentences",
-        alt: "do away with in three sentences. 1. The government did away with the tax. (you put it away with you, gone: abolish) 2. We should do away with plastic bags. (they are put away, gone: get rid of) 3. The rule was done away with in 2010. (it is put away for good: abolish)",
+        alt: "do away with in three sentences. 1. The government did away with the tax. (away = gone; WITH names the thing that goes: abolish) 2. We should do away with plastic bags. (they are put away, gone: get rid of) 3. The rule was done away with in 2010. (it is put away for good: abolish)",
         say: [
-          { text: "Our logic never changes: do (perform) + away (gone) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g3hl" },
-          { text: "1. _The government did away with the tax._ You put it away with you, gone, so here **do away with** means abolish.", cue: "g3s1" },
+          { text: "The verb and the particle stay the same: do (perform) + away (gone) + with (naming what goes). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g3hl" },
+          { text: "1. _The government did away with the tax._ Away = gone; WITH names the thing that goes, so here **do away with** means abolish.", cue: "g3s1" },
           { text: "2. _We should do away with plastic bags._ They are put away, gone, so here **do away with** means get rid of.", cue: "g3s2" },
           { text: "3. _The rule was done away with in 2010._ It is put away for good, so here **do away with** means abolish.", cue: "g3s3" },
         ],
         actions: [
           PLAB.kit.clear("clear-3c"),
           { do: "write", id: "g3h", text: "do away with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g3hl", text: "same parts: do (perform) + away (gone) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g3hl", text: "same verb and particle: do (perform) + away (gone) + with (naming what goes); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g3s1", text: "1. The government did away with the tax.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g3s1h0", target: "g3s1", word: "did away with" },
-          { do: "write", id: "g3s1f", text: "you put it away with you, gone  \u2192  abolish", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
+          { do: "write", id: "g3s1f", text: "away = gone; WITH names the thing that goes  \u2192  abolish", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
           { do: "write", id: "g3s2", text: "2. We should do away with plastic bags.", x: 50, y: 310, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g3s2h0", target: "g3s2", word: "do away with" },
           { do: "write", id: "g3s2f", text: "they are put away, gone  \u2192  get rid of", x: 82, y: 350, size: 23, ink: "accent2", fit: 830, gap: 250 },
           { do: "write", id: "g3s3", text: "3. The rule was done away with in 2010.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g3s3h0", target: "g3s3", word: "done away with" },
           { do: "write", id: "g3s3f", text: "it is put away for good  \u2192  abolish", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g3end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g3end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -230,7 +230,7 @@
         ],
         actions: [
           PLAB.kit.clear("clear-3b"),
-          ...PLAB.kit.lineup("f3w", "The government ____ the tax.", [["cross", "do away with", true, "abolish"], ["arrowR", "do without", "diff", "manage without"], ["cross", "do away of", false, "the fixed form | is do away with"]], ["do away with = abolish", "Why with? with = together with"], null, ["\u2248 do without: We can do without sugar.  = manage without"]),
+          ...PLAB.kit.lineup("f3w", "The government ____ the tax.", [["cross", "do away with", true, "abolish"], ["arrowR", "do without", "diff", "manage without"], ["cross", "do away of", false, "the fixed form | is do away with"]], ["do away with = abolish", "Why with? with = naming what goes"], null, ["\u2248 do without: We can do without sugar.  = manage without"]),
         ],
       },
       {
@@ -267,7 +267,7 @@
         title: "run out of: three sentences",
         alt: "run out of in three sentences. 1. We have run out of petrol. (of names the supply that is used up: have no more) 2. The car ran out of petrol. (the supply runs until it is used up: have none left) 3. I have run out of patience. (your patience is used up: have no more)",
         say: [
-          { text: "Our logic never changes: run (move fast) + out (used up) + of (what it is made of). Only the situation changes. Watch the same parts fit three sentences.", cue: "g4hl" },
+          { text: "The verb and the particle stay the same: run (move fast) + out (used up) + of (what it is made of). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g4hl" },
           { text: "1. _We have run out of petrol._ Of names the supply that is used up, so here **run out of** means have no more.", cue: "g4s1" },
           { text: "2. _The car ran out of petrol._ The supply runs until it is used up, so here **run out of** means have none left.", cue: "g4s2" },
           { text: "3. _I have run out of patience._ Your patience is used up, so here **run out of** means have no more.", cue: "g4s3" },
@@ -275,7 +275,7 @@
         actions: [
           PLAB.kit.clear("clear-4c"),
           { do: "write", id: "g4h", text: "run out of: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g4hl", text: "same parts: run (move fast) + out (used up) + of (what it is made of)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g4hl", text: "same verb and particle: run (move fast) + out (used up) + of (what it is made of); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g4s1", text: "1. We have run out of petrol.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g4s1h0", target: "g4s1", word: "run out of" },
           { do: "write", id: "g4s1f", text: "of names the supply that is used up  \u2192  have no more", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -285,7 +285,7 @@
           { do: "write", id: "g4s3", text: "3. I have run out of patience.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g4s3h0", target: "g4s3", word: "run out of" },
           { do: "write", id: "g4s3f", text: "your patience is used up  \u2192  have no more", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g4end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g4end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -335,7 +335,7 @@
         title: "come up with: three sentences",
         alt: "come up with in three sentences. 1. She came up with a good plan. (up into view, and she brings it along: think of (an idea)) 2. Engineers came up with a cheaper design. (it comes up into view, and they bring it: produce, invent) 3. Can you come up with the money by Monday? (it comes up and you bring it: find (money))",
         say: [
-          { text: "Our logic never changes: come (move here) + up (into view) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g5hl" },
+          { text: "The verb and the particle stay the same: come (move here) + up (into view) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g5hl" },
           { text: "1. _She came up with a good plan._ Up into view, and she brings it along, so here **come up with** means think of (an idea).", cue: "g5s1" },
           { text: "2. _Engineers came up with a cheaper design._ It comes up into view, and they bring it, so here **come up with** means produce, invent.", cue: "g5s2" },
           { text: "3. _Can you come up with the money by Monday?_ It comes up and you bring it, so here **come up with** means find (money).", cue: "g5s3" },
@@ -343,7 +343,7 @@
         actions: [
           PLAB.kit.clear("clear-5c"),
           { do: "write", id: "g5h", text: "come up with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g5hl", text: "same parts: come (move here) + up (into view) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g5hl", text: "same verb and particle: come (move here) + up (into view) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g5s1", text: "1. She came up with a good plan.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g5s1h0", target: "g5s1", word: "came up with" },
           { do: "write", id: "g5s1f", text: "up into view, and she brings it along  \u2192  think of (an idea)", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -353,7 +353,7 @@
           { do: "write", id: "g5s3", text: "3. Can you come up with the money by Monday?", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g5s3h0", target: "g5s3", word: "come up with" },
           { do: "write", id: "g5s3f", text: "it comes up and you bring it  \u2192  find (money)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g5end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g5end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -403,7 +403,7 @@
         title: "cut down on: three sentences",
         alt: "cut down on in three sentences. 1. Try to cut down on sugar. (on points at the thing you reduce: reduce) 2. Doctors told him to cut down on salt. (less, pointing at the salt: eat less of) 3. The firm will cut down on travel. (less, landing on travel: reduce)",
         say: [
-          { text: "Our logic never changes: cut (divide with a blade) + down (less) + on (landing on). Only the situation changes. Watch the same parts fit three sentences.", cue: "g6hl" },
+          { text: "The verb and the particle stay the same: cut (divide with a blade) + down (less) + on (landing on). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g6hl" },
           { text: "1. _Try to cut down on sugar._ On points at the thing you reduce, so here **cut down on** means reduce.", cue: "g6s1" },
           { text: "2. _Doctors told him to cut down on salt._ Less, pointing at the salt, so here **cut down on** means eat less of.", cue: "g6s2" },
           { text: "3. _The firm will cut down on travel._ Less, landing on travel, so here **cut down on** means reduce.", cue: "g6s3" },
@@ -411,7 +411,7 @@
         actions: [
           PLAB.kit.clear("clear-6c"),
           { do: "write", id: "g6h", text: "cut down on: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g6hl", text: "same parts: cut (divide with a blade) + down (less) + on (landing on)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g6hl", text: "same verb and particle: cut (divide with a blade) + down (less) + on (landing on); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g6s1", text: "1. Try to cut down on sugar.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g6s1h0", target: "g6s1", word: "cut down on" },
           { do: "write", id: "g6s1f", text: "on points at the thing you reduce  \u2192  reduce", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -421,7 +421,7 @@
           { do: "write", id: "g6s3", text: "3. The firm will cut down on travel.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g6s3h0", target: "g6s3", word: "cut down on" },
           { do: "write", id: "g6s3f", text: "less, landing on travel  \u2192  reduce", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g6end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g6end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -530,22 +530,22 @@
           "options": [
             {
               "text": "for",
-              "why": "do away for does not mean abolish. The verb is do away with: with = together with: you put it away with you, gone.",
+              "why": "do away for does not mean abolish. The verb is do away with: with = naming what goes: away = gone; WITH names the thing that goes.",
               "misconception": "p6-particle"
             },
             {
               "text": "of",
-              "why": "do away of does not mean abolish. The verb is do away with: with = together with: you put it away with you, gone.",
+              "why": "do away of does not mean abolish. The verb is do away with: with = naming what goes: away = gone; WITH names the thing that goes.",
               "misconception": "p6-particle"
             },
             {
               "text": "to",
-              "why": "do away to does not mean abolish. The verb is do away with: with = together with: you put it away with you, gone.",
+              "why": "do away to does not mean abolish. The verb is do away with: with = naming what goes: away = gone; WITH names the thing that goes.",
               "misconception": "p6-particle"
             },
             {
               "text": "with",
-              "why": "Correct. do away with = abolish. Here with = together with: you put it away with you, gone.",
+              "why": "Correct. do away with = abolish. Here with = naming what goes: away = gone; WITH names the thing that goes.",
               "correct": true
             }
           ]
