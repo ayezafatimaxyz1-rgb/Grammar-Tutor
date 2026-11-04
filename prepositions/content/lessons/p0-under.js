@@ -6,28 +6,28 @@
     phase: 0,
     unit: "p0-place",
     level: "Basic",
-    minutes: 16,
-    summary: "The basic senses of under / below / beneath, each drawn as its logic: under = directly lower, covered; below = at a lower level; under = less than; under = controlled or covered by.",
+    minutes: 24,
+    summary: "The basic senses of under / below / beneath, each drawn as its logic: under = directly lower, covered; below = at a lower level; under = less than; under = controlled or covered by; beneath = under, in formal or literary English; beneath = too low for someone; underneath = hidden right under.",
     objectives: ["See what the preposition pictures, and how each sense grows from that picture.", "Use each sense in a sentence, and tell it from the preposition it is most often confused with."],
     steps: [
       {
         id: "core",
         title: "UNDER / BELOW / BENEATH: the core picture",
-        alt: "UNDER / BELOW / BENEATH. UNDER = directly lower, often covered. BELOW = at a lower level. A cat under the table has the table over it. A town below the hill is just lower.",
+        alt: "UNDER / BELOW / BENEATH. UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under. A cat under the table has the table over it. A town below the hill is just lower. Lying is beneath him.",
         say: [
-          { text: "UNDER = directly lower, often covered. BELOW = at a lower level.", cue: "c-core" },
-          { text: "A cat under the table has the table over it. A town below the hill is just lower.", cue: "c-child0" },
-          { text: "It has 4 senses, and every one grows from this picture: directly lower, covered; at a lower level; less than; controlled or covered by.", cue: "c-list0" },
+          { text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", cue: "c-core" },
+          { text: "A cat under the table has the table over it. A town below the hill is just lower. Lying is beneath him.", cue: "c-child0" },
+          { text: "It has 7 senses, and every one grows from this picture: directly lower, covered; at a lower level; less than; controlled or covered by; under, in formal or literary English; too low for someone; hidden right under.", cue: "c-list0" },
         ],
         actions: [
           PLAB.kit.clear("clear-core"),
           { do: "write", id: "c-t", text: "UNDER / BELOW / BENEATH", x: 480, y: 70, size: 50, ink: "accent", anchor: "middle", style: "caps", fit: 900 },
           ...PLAB.kit.pic("c-p", "underTable", 340, 98, 2),
-          { do: "write", id: "c-core", text: "UNDER = directly lower, often covered. BELOW = at a lower level.", x: 480, y: 318, size: 31, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
-          { do: "write", id: "c-child0", text: "A cat under the table has the table over", x: 480, y: 368, size: 26, anchor: "middle", fit: 910, gap: 300 },
-          { do: "write", id: "c-child1", text: "it. A town below the hill is just lower.", x: 480, y: 408, size: 26, anchor: "middle", fit: 910, gap: 0 },
-          { do: "write", id: "c-list0", text: "1. directly lower, covered   2. at a lower level", x: 480, y: 478, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 400 },
-          { do: "write", id: "c-list1", text: "  3. less than   4. controlled or covered by", x: 480, y: 512, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 0 },
+          { do: "write", id: "c-core", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 318, size: 31, ink: "accent2", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "c-child0", text: "A cat under the table has the table over it. A town", x: 480, y: 368, size: 26, anchor: "middle", fit: 910, gap: 300 },
+          { do: "write", id: "c-child1", text: "below the hill is just lower. Lying is beneath him.", x: 480, y: 408, size: 26, anchor: "middle", fit: 910, gap: 0 },
+          { do: "write", id: "c-list0", text: "1. directly lower, covered   2. at a lower level   3. less than   4. controlled or covered by", x: 480, y: 478, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 400 },
+          { do: "write", id: "c-list1", text: "  5. under, in formal or literary English   6. too low for someone   7. hidden right under", x: 480, y: 512, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 0 },
         ],
       },
       {
@@ -50,7 +50,7 @@
           { do: "write", id: "s1x1", text: "He hid the key under a stone.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
           { do: "highlight", id: "s1x1h", target: "s1x1", word: "under" },
           { do: "write", id: "s1v", text: "≠ BELOW: BELOW only says lower, not right beneath.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
-          { do: "write", id: "s1r", text: "UNDER = directly lower, often covered. BELOW = at a lower level.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+          { do: "write", id: "s1r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
@@ -74,7 +74,7 @@
           { do: "write", id: "s2x1", text: "The temperature fell below zero.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
           { do: "highlight", id: "s2x1h", target: "s2x1", word: "below" },
           { do: "write", id: "s2v", text: "≠ UNDER: UNDER is directly beneath something.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
-          { do: "write", id: "s2r", text: "UNDER = directly lower, often covered. BELOW = at a lower level.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+          { do: "write", id: "s2r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
@@ -95,7 +95,7 @@
           { do: "highlight", id: "s3x0h", target: "s3x0", word: "under" },
           { do: "write", id: "s3x1", text: "It costs under a hundred rupees.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
           { do: "highlight", id: "s3x1h", target: "s3x1", word: "under" },
-          { do: "write", id: "s3r", text: "UNDER = directly lower, often covered. BELOW = at a lower level.", x: 480, y: 400, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+          { do: "write", id: "s3r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 400, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
@@ -118,7 +118,79 @@
           { do: "write", id: "s4x1", text: "The country was under British rule.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
           { do: "highlight", id: "s4x1h", target: "s4x1", word: "under" },
           { do: "write", id: "s4v", text: "≠ BELOW: BELOW is never used for control.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
-          { do: "write", id: "s4r", text: "UNDER = directly lower, often covered. BELOW = at a lower level.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+          { do: "write", id: "s4r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+        ],
+      },
+      {
+        id: "s5-beneath",
+        title: "beneath: under, in formal or literary English",
+        alt: "beneath: under, in formal or literary English. Picture: right under a surface, said in a formal way. BENEATH is the same place as UNDER, but it sounds formal or literary. Writers use it for surfaces and for things far below. Examples: The fish swam beneath the surface. Oil and gas lie beneath the desert of Balochistan. The village sleeps beneath the mountains.",
+        say: [
+          { text: "**beneath** here means under, in formal or literary English. BENEATH is the same place as UNDER, but it sounds formal or literary. Writers use it for surfaces and for things far below.", cue: "s5e0" },
+          { text: "Look: _The fish swam beneath the surface._ _Oil and gas lie beneath the desert of Balochistan._ _The village sleeps beneath the mountains._", cue: "s5x0" },
+          { text: "Not the same as **under**: UNDER is the everyday word for the same place.", cue: "s5v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-s5"),
+          { do: "write", id: "s5h", text: "BENEATH · under, in formal or literary English", x: 480, y: 52, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("s5p", "fish", 36, 92, 1.8, { gap: 300 }),
+          { do: "write", id: "s5c", text: "right under a surface, said in a formal way", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
+          { do: "write", id: "s5e0", text: "BENEATH is the same place as UNDER, but it sounds formal or literary.", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
+          { do: "write", id: "s5e1", text: "Writers use it for surfaces and for things far below.", x: 328, y: 162, size: 26, fit: 610, gap: 0 },
+          { do: "write", id: "s5x0", text: "The fish swam beneath the surface.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },
+          { do: "highlight", id: "s5x0h", target: "s5x0", word: "beneath" },
+          { do: "write", id: "s5x1", text: "Oil and gas lie beneath the desert of Balochistan.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
+          { do: "highlight", id: "s5x1h", target: "s5x1", word: "beneath" },
+          { do: "write", id: "s5v", text: "≠ UNDER: UNDER is the everyday word for the same place.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "s5r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+        ],
+      },
+      {
+        id: "s6-beneath",
+        title: "beneath: too low for someone",
+        alt: "beneath: too low for someone. Picture: below the line of a person's standard or rank. BENEATH can also mean too low for a person's standard, rank or dignity. Lying is beneath him = lying is too low for a man like him. Examples: Lying is beneath him. She felt the job was beneath her. His behaviour was beneath contempt.",
+        say: [
+          { text: "**beneath** here means too low for someone. BENEATH can also mean too low for a person's standard, rank or dignity. Lying is beneath him = lying is too low for a man like him.", cue: "s6e0" },
+          { text: "Look: _Lying is beneath him._ _She felt the job was beneath her._ _His behaviour was beneath contempt._", cue: "s6x0" },
+          { text: "Not the same as **below**: BELOW is never used for dignity: never 'below him'.", cue: "s6v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-s6"),
+          { do: "write", id: "s6h", text: "BENEATH · too low for someone", x: 480, y: 52, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("s6p", "belowLine", 36, 92, 1.8, { gap: 300 }),
+          { do: "write", id: "s6c", text: "below the line of a person's standard or rank", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
+          { do: "write", id: "s6e0", text: "BENEATH can also mean too low for a person's standard, rank or dignity.", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
+          { do: "write", id: "s6e1", text: "Lying is beneath him = lying is too low for a man like him.", x: 328, y: 162, size: 26, fit: 610, gap: 0 },
+          { do: "write", id: "s6x0", text: "Lying is beneath him.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },
+          { do: "highlight", id: "s6x0h", target: "s6x0", word: "beneath" },
+          { do: "write", id: "s6x1", text: "She felt the job was beneath her.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
+          { do: "highlight", id: "s6x1h", target: "s6x1", word: "beneath" },
+          { do: "write", id: "s6v", text: "≠ BELOW: BELOW is never used for dignity: never 'below him'.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "s6r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
+        ],
+      },
+      {
+        id: "s7-underneath",
+        title: "underneath: hidden right under",
+        alt: "underneath: hidden right under. Picture: covered over, so you cannot see it. UNDERNEATH stresses that something is covered and hidden. It can end a sentence: look underneath. Examples: She wore a sweater underneath her coat. The keys were underneath the newspaper.",
+        say: [
+          { text: "**underneath** here means hidden right under. UNDERNEATH stresses that something is covered and hidden. It can end a sentence: look underneath.", cue: "s7e0" },
+          { text: "Look: _She wore a sweater underneath her coat._ _The keys were underneath the newspaper._", cue: "s7x0" },
+          { text: "Not the same as **under**: UNDER is the same place, with less stress on hidden.", cue: "s7v" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-s7"),
+          { do: "write", id: "s7h", text: "UNDERNEATH · hidden right under", x: 480, y: 52, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.pic("s7p", "underTable", 36, 92, 1.8, { gap: 300 }),
+          { do: "write", id: "s7c", text: "covered over, so you cannot see it", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
+          { do: "write", id: "s7e0", text: "UNDERNEATH stresses that something is covered and hidden.", x: 328, y: 122, size: 26, fit: 610, gap: 350 },
+          { do: "write", id: "s7e1", text: "It can end a sentence: look underneath.", x: 328, y: 162, size: 26, fit: 610, gap: 0 },
+          { do: "write", id: "s7x0", text: "She wore a sweater underneath her coat.", x: 328, y: 240, size: 29, fit: 610, gap: 400 },
+          { do: "highlight", id: "s7x0h", target: "s7x0", word: "underneath" },
+          { do: "write", id: "s7x1", text: "The keys were underneath the newspaper.", x: 328, y: 294, size: 29, fit: 610, gap: 250 },
+          { do: "highlight", id: "s7x1h", target: "s7x1", word: "underneath" },
+          { do: "write", id: "s7v", text: "≠ UNDER: UNDER is the same place, with less stress on hidden.", x: 480, y: 392, size: 25, ink: "trouble", anchor: "middle", fit: 910, gap: 500 },
+          { do: "write", id: "s7r", text: "UNDER = directly lower, covered. BELOW = a lower level. BENEATH = formal under.", x: 480, y: 455, size: 22, ink: "muted", anchor: "middle", fit: 910, gap: 300 },
         ],
       },
       {
@@ -201,6 +273,34 @@
               "text": "under",
               "correct": true,
               "why": "Correct. under here means controlled or covered by: A law, a ruler or a process is over you like a roof."
+            }
+          ]
+        },
+      },
+      {
+        id: "practice-4",
+        title: "Practice: beneath, too low for someone",
+        alt: "The last board stays.",
+        say: [
+          { text: "Which one fits? Picture what each one means first." },
+        ],
+        actions: [
+        ],
+        check: {
+          "id": "p0-under-6",
+          "source": "original",
+          "skill": "beneath: too low for someone",
+          "prompt": "Lying is ___ him.",
+          "options": [
+            {
+              "text": "below",
+              "misconception": "p0-sense",
+              "why": "BELOW is never used for dignity: never 'below him'."
+            },
+            {
+              "text": "beneath",
+              "correct": true,
+              "why": "Correct. beneath here means too low for someone: BENEATH can also mean too low for a person's standard, rank or dignity. Lying is beneath him = lying is too low for a man like him."
             }
           ]
         },
