@@ -44,7 +44,7 @@
         title: "make up for: three sentences",
         alt: "make up for in three sentences. 1. Nothing can make up for the loss. (one thing is given for another: compensate for) 2. He worked late to make up for lost time. (the gap is filled in exchange: compensate) 3. Her skill makes up for her lack of height. (one thing fills the gap of another: balance)",
         say: [
-          { text: "Our logic never changes: make (create, form) + up (complete, filling a gap) + for (in exchange for). Only the situation changes. Watch the same parts fit three sentences.", cue: "g1hl" },
+          { text: "The verb and the particle stay the same: make (create, form) + up (complete, filling a gap) + for (in exchange for). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g1hl" },
           { text: "1. _Nothing can make up for the loss._ One thing is given for another, so here **make up for** means compensate for.", cue: "g1s1" },
           { text: "2. _He worked late to make up for lost time._ The gap is filled in exchange, so here **make up for** means compensate.", cue: "g1s2" },
           { text: "3. _Her skill makes up for her lack of height._ One thing fills the gap of another, so here **make up for** means balance.", cue: "g1s3" },
@@ -52,7 +52,7 @@
         actions: [
           PLAB.kit.clear("clear-1c"),
           { do: "write", id: "g1h", text: "make up for: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g1hl", text: "same parts: make (create, form) + up (complete, filling a gap) + for (in exchange for)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g1hl", text: "same verb and particle: make (create, form) + up (complete, filling a gap) + for (in exchange for); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g1s1", text: "1. Nothing can make up for the loss.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g1s1h0", target: "g1s1", word: "make up for" },
           { do: "write", id: "g1s1f", text: "one thing is given for another  \u2192  compensate for", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -62,7 +62,7 @@
           { do: "write", id: "g1s3", text: "3. Her skill makes up for her lack of height.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g1s3h0", target: "g1s3", word: "makes up for" },
           { do: "write", id: "g1s3f", text: "one thing fills the gap of another  \u2192  balance", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g1end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g1end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -112,7 +112,7 @@
         title: "stand up for: three sentences",
         alt: "stand up for in three sentences. 1. Stand up for your rights. (you stand up on its behalf: defend) 2. He stood up for his friend. (he stands up on his friend's behalf: defend) 3. We must stand up for the truth. (you stand upright for it: support firmly)",
         say: [
-          { text: "Our logic never changes: stand (be upright) + up (upright, in defence) + for (on behalf of). Only the situation changes. Watch the same parts fit three sentences.", cue: "g2hl" },
+          { text: "The verb and the particle stay the same: stand (be upright) + up (upright, in defence) + for (on behalf of). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g2hl" },
           { text: "1. _Stand up for your rights._ You stand up on its behalf, so here **stand up for** means defend.", cue: "g2s1" },
           { text: "2. _He stood up for his friend._ He stands up on his friend's behalf, so here **stand up for** means defend.", cue: "g2s2" },
           { text: "3. _We must stand up for the truth._ You stand upright for it, so here **stand up for** means support firmly.", cue: "g2s3" },
@@ -120,7 +120,7 @@
         actions: [
           PLAB.kit.clear("clear-2c"),
           { do: "write", id: "g2h", text: "stand up for: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g2hl", text: "same parts: stand (be upright) + up (upright, in defence) + for (on behalf of)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g2hl", text: "same verb and particle: stand (be upright) + up (upright, in defence) + for (on behalf of); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g2s1", text: "1. Stand up for your rights.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g2s1h0", target: "g2s1", word: "Stand up for" },
           { do: "write", id: "g2s1f", text: "you stand up on its behalf  \u2192  defend", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -130,7 +130,7 @@
           { do: "write", id: "g2s3", text: "3. We must stand up for the truth.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g2s3h0", target: "g2s3", word: "stand up for" },
           { do: "write", id: "g2s3f", text: "you stand upright for it  \u2192  support firmly", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g2end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g2end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -180,7 +180,7 @@
         title: "go in for: three sentences",
         alt: "go in for in three sentences. 1. He went in for medicine. (you go in, aiming at it: take up (a career or contest)) 2. She goes in for debating. (she goes into it, aiming at it: take part in) 3. He went in for the CSS exam. (he goes in, aiming at it: enter (a contest))",
         say: [
-          { text: "Our logic never changes: go (move) + in (into an activity) + for (aiming at). Only the situation changes. Watch the same parts fit three sentences.", cue: "g3hl" },
+          { text: "The verb and the particle stay the same: go (move) + in (into an activity) + for (aiming at). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g3hl" },
           { text: "1. _He went in for medicine._ You go in, aiming at it, so here **go in for** means take up (a career or contest).", cue: "g3s1" },
           { text: "2. _She goes in for debating._ She goes into it, aiming at it, so here **go in for** means take part in.", cue: "g3s2" },
           { text: "3. _He went in for the CSS exam._ He goes in, aiming at it, so here **go in for** means enter (a contest).", cue: "g3s3" },
@@ -188,7 +188,7 @@
         actions: [
           PLAB.kit.clear("clear-3c"),
           { do: "write", id: "g3h", text: "go in for: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g3hl", text: "same parts: go (move) + in (into an activity) + for (aiming at)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g3hl", text: "same verb and particle: go (move) + in (into an activity) + for (aiming at); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g3s1", text: "1. He went in for medicine.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g3s1h0", target: "g3s1", word: "went in for" },
           { do: "write", id: "g3s1f", text: "you go in, aiming at it  \u2192  take up (a career or contest)", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -198,7 +198,7 @@
           { do: "write", id: "g3s3", text: "3. He went in for the CSS exam.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g3s3h0", target: "g3s3", word: "went in for" },
           { do: "write", id: "g3s3f", text: "he goes in, aiming at it  \u2192  enter (a contest)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g3end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g3end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -248,7 +248,7 @@
         title: "fall back on: three sentences",
         alt: "fall back on in three sentences. 1. We fell back on our savings. (you rest on what holds you up: use when other things fail) 2. When jobs are scarce, people fall back on farming. (they go back and rest on it: turn to (as a reserve)) 3. The speaker fell back on old jokes. (he goes back to rest on them: use (when nothing else works))",
         say: [
-          { text: "Our logic never changes: fall (drop down) + back (back, to a reserve) + on (resting on). Only the situation changes. Watch the same parts fit three sentences.", cue: "g4hl" },
+          { text: "The verb and the particle stay the same: fall (drop down) + back (back, to a reserve) + on (resting on). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g4hl" },
           { text: "1. _We fell back on our savings._ You rest on what holds you up, so here **fall back on** means use when other things fail.", cue: "g4s1" },
           { text: "2. _When jobs are scarce, people fall back on farming._ They go back and rest on it, so here **fall back on** means turn to (as a reserve).", cue: "g4s2" },
           { text: "3. _The speaker fell back on old jokes._ He goes back to rest on them, so here **fall back on** means use (when nothing else works).", cue: "g4s3" },
@@ -256,7 +256,7 @@
         actions: [
           PLAB.kit.clear("clear-4c"),
           { do: "write", id: "g4h", text: "fall back on: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g4hl", text: "same parts: fall (drop down) + back (back, to a reserve) + on (resting on)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g4hl", text: "same verb and particle: fall (drop down) + back (back, to a reserve) + on (resting on); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g4s1", text: "1. We fell back on our savings.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g4s1h0", target: "g4s1", word: "fell back on" },
           { do: "write", id: "g4s1f", text: "you rest on what holds you up  \u2192  use when other things fail", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -266,7 +266,7 @@
           { do: "write", id: "g4s3", text: "3. The speaker fell back on old jokes.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g4s3h0", target: "g4s3", word: "fell back on" },
           { do: "write", id: "g4s3f", text: "he goes back to rest on them  \u2192  use (when nothing else works)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g4end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g4end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
@@ -316,7 +316,7 @@
         title: "get on with: three sentences",
         alt: "get on with in three sentences. 1. She gets on with her colleagues. (you go on together with them: have a good relationship with) 2. Stop talking and get on with your work. (you go on along with it: continue) 3. I get on well with my neighbours. (you go on together with them: be friendly with)",
         say: [
-          { text: "Our logic never changes: get (reach, obtain) + on (along, continuing) + with (together with). Only the situation changes. Watch the same parts fit three sentences.", cue: "g5hl" },
+          { text: "The verb and the particle stay the same: get (reach, obtain) + on (along, continuing) + with (together with). But a particle has more than one sense, and each sentence picks the one that fits. Watch which sense each sentence uses.", cue: "g5hl" },
           { text: "1. _She gets on with her colleagues._ You go on together with them, so here **get on with** means have a good relationship with.", cue: "g5s1" },
           { text: "2. _Stop talking and get on with your work._ You go on along with it, so here **get on with** means continue.", cue: "g5s2" },
           { text: "3. _I get on well with my neighbours._ You go on together with them, so here **get on with** means be friendly with.", cue: "g5s3" },
@@ -325,7 +325,7 @@
         actions: [
           PLAB.kit.clear("clear-5c"),
           { do: "write", id: "g5h", text: "get on with: one verb, three sentences", x: 480, y: 62, size: 38, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "g5hl", text: "same parts: get (reach, obtain) + on (along, continuing) + with (together with)", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
+          { do: "write", id: "g5hl", text: "same verb and particle: get (reach, obtain) + on (along, continuing) + with (together with); each sentence picks the sense", x: 480, y: 102, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 100 },
           { do: "write", id: "g5s1", text: "1. She gets on with her colleagues.", x: 50, y: 180, size: 30, fit: 860, gap: 400 },
           { do: "highlight", id: "g5s1h0", target: "g5s1", word: "gets on with" },
           { do: "write", id: "g5s1f", text: "you go on together with them  \u2192  have a good relationship with", x: 82, y: 220, size: 23, ink: "accent2", fit: 830, gap: 250 },
@@ -336,7 +336,7 @@
           { do: "highlight", id: "g5s3h0", target: "g5s3", word: "get on" },
           { do: "highlight", id: "g5s3h1", target: "g5s3", word: "with" },
           { do: "write", id: "g5s3f", text: "you go on together with them  \u2192  be friendly with", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
-          { do: "write", id: "g5end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "g5end", text: "Same verb and particle; each sentence picks the sense that fits.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
