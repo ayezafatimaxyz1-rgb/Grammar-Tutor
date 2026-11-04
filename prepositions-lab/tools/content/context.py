@@ -92,7 +92,7 @@ SECTIONS = [
               ["beside / besides", "at the side of / in addition to", "sit beside me; besides Urdu"], ["near / next to / by", "close / nothing between / at the edge", "near the park, next to the bank, by the sea"],
               ["between / among", "a gap of two / in a crowd", "between Ali and Sara, among friends"], ["in front of / behind / opposite", "facing side / back / across a space", "in front of the house, opposite the mosque"],
               ["around / on top of", "in a circle / on the highest part", "around the fire, on top of the pile"]],
-       items=L("p0-at", "p0-on", "p0-in", "p0-in-on-at-place", "p0-inside", "p0-over", "p0-under", "p0-over-above", "p0-beside", "p0-beside-besides",
+       items=L("p0-at", "p0-on", "p0-in", "p0-in-on-at-place", "p0-inside", "py-in-inside-out", "p0-over", "p0-under", "p0-over-above", "p0-beside", "p0-beside-besides",
                "p0-near", "p0-between", "p0-between-among", "p0-front", "p0-around", "in-core", "on-core", "at-core", "in-on-at-place", "inside-outside",
                "within-without", "over-above", "under-below", "on-top-of", "beside-besides", "near-by-next-to", "front-behind", "between-among",
                "around-round-about", "against", "upon", "beyond", "throughout", "py-address", "py-at-on-to-upon", "py-into")),

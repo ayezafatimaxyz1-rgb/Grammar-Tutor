@@ -432,3 +432,7 @@ USE["y:member-of|from"] = "Two members from this club went to the meeting in Kar
 MEAN["y:member-of|from"] = "they came out of the club to go there"
 USE["y:member-of|for"] = "She is the Member of Parliament for Lahore."
 MEAN["y:member-of|for"] = "she represents Lahore, stands for it"
+USE["y:in-inside-out|in"] = "Please wait in the exam hall; the paper starts soon."
+MEAN["y:in-inside-out|in"] = "within the hall, not outside it"
+USE["y:in-inside-out|out of"] = "Get out of the exam hall when you finish."
+MEAN["y:in-inside-out|out of"] = "move from inside to outside: leave it"

@@ -16,7 +16,7 @@ PLAB.senses = {
     { name: "Phrasal verbs", note: "the meaning changes with the verb", boards: [], words: ["call", "wait"] },
   ],
   in: [
-    { name: "Inside a boundary or container", note: "surrounded on all sides", boards: ["in-core/boundary", "in-core/room"], words: ["absorbed", "abundant", "rich", "deficient", "inherent", "present", "belong", "invest", "consist"] },
+    { name: "Inside a boundary or container", note: "surrounded on all sides", boards: ["in-core/boundary", "in-core/room", "py-in-inside-out/word-1", "py-in-inside-out/word-2"], words: ["absorbed", "abundant", "rich", "deficient", "inherent", "present", "belong", "invest", "consist"] },
     { name: "Inside an area", note: "a city, a country", boards: ["in-core/city"], words: ["arrive", "based", "dwell", "originate"] },
     { name: "Inside a field or subject", note: "skilled in law, weak in maths", boards: [], words: ["excel", "expert", "proficient", "qualified", "specialise", "weak", "interested", "negligent", "write"] },
     { name: "Inside an activity: taking part", note: "you are in it, involved", boards: [], words: ["participate", "involved", "engaged", "join", "compete", "indulge", "implicated", "interfere", "meddle", "persist", "succeed", "deal"] },

@@ -241,6 +241,9 @@ PLAB.context = [
       "lesson": "p0-inside"
      },
      {
+      "lesson": "py-in-inside-out"
+     },
+     {
       "lesson": "p0-over"
      },
      {

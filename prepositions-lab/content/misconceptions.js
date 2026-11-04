@@ -614,4 +614,8 @@ PLAB.misconceptions = {
     label: "CONGRATULATE ON = the good wishes land ON one event; PRAISE / THANK / BLAME FOR = the reason why; PROUD OF = the feeling holds one thing; AT = aiming at a target",
     explain: "Picture good wishes as arrows landing on one point: the success, the wedding, the new job. Landing on one point is ON: congratulate on, compliment on, comment on, focus on. FOR answers WHY: praise for, thank for, blame for, reward for. OF holds what a feeling is about: proud of. AT aims at a target: laugh at, shout at. Congratulate takes ON.",
   },
+  "y-in-inside-out": {
+    label: "IN = within any boundary (also cities, years, feelings); INSIDE = within walls, stressing the inner part; OUTSIDE = beside the walls, on the outer side; OUT OF = crossing from in to out, or away; OUT alone has no object",
+    explain: "IN is the general word: inside any boundary, big or small, real or not (in the box, in Lahore, in 2020, in love). INSIDE stresses the walls and the inner part of a closed space (inside the box, inside the house) and is not used for years or feelings. OUTSIDE puts something on the outer side, next to the walls (wait outside the hall). OUT OF is movement crossing from inside to outside, or being away (get out of the car, out of the country, out of money). OUT alone takes no object: go out, she is out.",
+  },
 };
