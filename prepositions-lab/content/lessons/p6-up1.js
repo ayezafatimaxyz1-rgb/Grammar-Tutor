@@ -253,12 +253,12 @@
       {
         id: "draw-up-context",
         title: "draw up: three sentences",
-        alt: "draw up in three sentences. 1. The lawyer drew up the contract. (the document is drawn into shape: prepare a document) 2. The officer drew up a list of names. (the list is pulled into shape: write out) 3. A car drew up at the gate. (the car is pulled up to a halt: stop (a vehicle))",
+        alt: "draw up in three sentences. 1. The lawyer drew up the contract. (the document is drawn into shape: prepare a document) 2. The officer drew up a list of names. (the list is pulled into shape: write out) 3. A car drew up at the gate. (a different UP: close up to a point, then stop: stop (a vehicle))",
         say: [
           { text: "Our logic never changes: draw (pull along) + up (into being). Only the situation changes. Watch the same parts fit three sentences.", cue: "g4hl" },
           { text: "1. _The lawyer drew up the contract._ The document is drawn into shape, so here **draw up** means prepare a document.", cue: "g4s1" },
           { text: "2. _The officer drew up a list of names._ The list is pulled into shape, so here **draw up** means write out.", cue: "g4s2" },
-          { text: "3. _A car drew up at the gate._ The car is pulled up to a halt, so here **draw up** means stop (a vehicle).", cue: "g4s3" },
+          { text: "3. _A car drew up at the gate._ A different UP: close up to a point, then stop, so here **draw up** means stop (a vehicle).", cue: "g4s3" },
         ],
         actions: [
           PLAB.kit.clear("clear-4c"),
@@ -272,7 +272,7 @@
           { do: "write", id: "g4s2f", text: "the list is pulled into shape  \u2192  write out", x: 82, y: 350, size: 23, ink: "accent2", fit: 830, gap: 250 },
           { do: "write", id: "g4s3", text: "3. A car drew up at the gate.", x: 50, y: 440, size: 30, fit: 860, gap: 450 },
           { do: "highlight", id: "g4s3h0", target: "g4s3", word: "drew up" },
-          { do: "write", id: "g4s3f", text: "the car is pulled up to a halt  \u2192  stop (a vehicle)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
+          { do: "write", id: "g4s3f", text: "a different UP: close up to a point, then stop  \u2192  stop (a vehicle)", x: 82, y: 480, size: 23, ink: "accent2", fit: 830, gap: 250 },
           { do: "write", id: "g4end", text: "The parts stay the same; the sentence decides how they fit.", x: 480, y: 565, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
         ],
       },

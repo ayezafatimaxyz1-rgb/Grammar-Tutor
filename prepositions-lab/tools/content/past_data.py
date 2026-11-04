@@ -127,6 +127,22 @@ MOVE.update({"in-on-at-place": _PLACE_ADDRESS, "p0-at": _PLACE_ADDRESS, "p0-in-o
 _TO_PATTERN = [("TO can also mean: made to match a pattern", [
     ("fitMould", "The baker bakes cakes to order.", "to order", "made to match each customer's order"),
     ("ruler", "The tailor made the suit to measure.", "to measure", "made to match your size"),
-    ("scale", "The map is drawn to scale.", "to scale", "made to match the real sizes in one ratio")])]
+    ("scale", "The map is drawn to scale.", "to scale", "made to match the real sizes in one ratio")], "TO has one more picture: an arrow that reaches a pattern and fits it.")]
 MOVE["p0-to"] = MOVE["p0-to"] + _TO_PATTERN
 MOVE["to-towards"] = MOVE["to-towards"] + _TO_PATTERN
+
+# Phrasal verbs with UP: how the senses of UP grow from one picture (third item = what the board says first).
+_UP_INTRO = "How does UP come to mean into being? Watch the picture grow, one step at a time."
+_UP_CHAIN = [("How UP grows: higher, into view, into being", [
+    ("arrowUp", "1. UP: moving to a higher place", "UP", "the core picture: from low to high"),
+    ("sun", "2. What rises comes into view: the sun comes up", "into view", "higher = you can now see it: come up, turn up, show up"),
+    ("growTo", "3. What rises from nothing comes into being: a plant comes up", "into being", "it now exists: set up, draw up, make up")], _UP_INTRO),
+  ("draw up the contract: the picture step by step", [
+    ("doc", "Before: no contract, only notes on a page", "no contract", "nothing is standing yet"),
+    ("arrowUp", "The lawyer DRAWS: pulls the words and terms together", "DRAWS", "draw = pull along, pull together"),
+    ("growTo", "UP: the contract rises into being, finished and standing", "UP", "drew up = brought it into being: prepared it")], "Now the same steps for draw up the contract."),
+  ("Other UPs: close to, completely, more", [
+    ("reachDot", "A car drew up at the gate.", "drew up", "UP = close up to a point: it came near and stopped"),
+    ("emptyJar", "Eat up your food.", "Eat up", "UP = up to the top, completely: nothing left"),
+    ("rising", "Prices have gone up.", "gone up", "UP = more: a higher amount")], "UP has other senses too. The sentence tells you which one.")]
+MOVE.update({"p6-up1": _UP_CHAIN, "p6-up2": _UP_CHAIN[:1] + _UP_CHAIN[2:], "p6-up3": _UP_CHAIN[:1] + _UP_CHAIN[2:]})

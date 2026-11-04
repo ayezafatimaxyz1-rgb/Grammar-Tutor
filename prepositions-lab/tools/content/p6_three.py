@@ -10,7 +10,7 @@ EXTRA = {
     "set up": [("He {set up} a shop in Lahore.", "start a business", "the shop is put in place, standing"),
                ("Police {set up} roadblocks.", "put in position", "the blocks are put in place, standing up")],
     "draw up": [("The officer {drew up} a list of names.", "write out", "the list is pulled into shape"),
-                ("A car {drew up} at the gate.", "stop (a vehicle)", "the car is pulled up to a halt")],
+                ("A car {drew up} at the gate.", "stop (a vehicle)", "a different UP: close up to a point, then stop")],
     "turn up": [("Please {turn up} the volume.", "increase", "the knob turns and the sound goes up"),
                 ("My lost keys {turned up} in the car.", "be found", "they turn up into view")],
     "speed up": [("Exercise {speeds up} recovery.", "make faster", "recovery moves fast, more and more"),
