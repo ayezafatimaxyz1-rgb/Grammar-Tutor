@@ -56,6 +56,12 @@
     } else if (hash === "words" || hash.startsWith("word-")) {
       P.vocab.renderWords(app, { esc, rich, icon, focus: hash.startsWith("word-") ? decodeURIComponent(hash.slice(5)) : null });
       $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash === "themes") {
+      P.themesPage.renderList(app, { esc, icon });
+      $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash.startsWith("theme-")) {
+      P.themesPage.renderTheme(app, hash.slice(6), { esc, icon });
+      $('[data-nav="words"]').setAttribute("aria-current", "page");
     } else if (hash === "oneword") {
       P.vocab.renderOneWord(app, { esc, rich, icon });
       $('[data-nav="oneword"]').setAttribute("aria-current", "page");
@@ -132,6 +138,13 @@
         <span class="sc-badge">Vocabulary 2</span>
         <span class="sc-title">Synonyms and antonyms, by meaning</span>
         <span class="sc-text">Type a word. See each of its meanings separately, with the real synonyms and antonyms for that meaning, and each one's tone, formality and context.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
+      <a class="start-card" href="#themes">
+        <span class="sc-badge">Vocabulary 3</span>
+        <span class="sc-title">Words by theme</span>
+        <span class="sc-text">Over 2,000 words grouped by meaning (happiness, anger, shock, honesty, power…), each split into shades with when it is the best word and an example in context.</span>
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 
