@@ -223,6 +223,13 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("Claude marks a long piece in parts too: the marks for the whole and the mistakes of each part", lp.filter((c) => /This is part \d of 2/.test(c.prompt)).length === 2 && lp.some((c) => /Single mistakes are listed separately/.test(c.prompt)), lp.map((c) => c.prompt.slice(0, 60)).join(" | "));
   check("the mistakes from both parts are found in my whole text", (await p.$$("mark.mk")).length === 2 && (await p.textContent("#fixes")).includes("I go to college by bus yesterday") && (await p.textContent("#fixes")).includes("My mother make"));
 
+  // ---- handwriting copied line by line: Mam works out the paragraphs ----
+  await kind("1. Free writing"); await p.click("text=✍️ Start writing"); await wait(300);
+  await p.fill("#draft", "Boys will be boys: this was an essay question\nin one of the CSS examinations. There was a large\ndiscussion around it after the paper appeared\nin the newspapers. Many people said the topic\nwas unfair to women and others said it was\na fair question about our society. In my opinion\nthe question was good because it made students\nthink about the roles of boys and girls in homes.");
+  await p.click("#checkBtn"); await wait(1200);
+  const wb = (await calls(/Judge how the writing is BUILT/)).pop();
+  check("text copied from handwriting line by line: its line breaks are not taken as paragraphs", wb.prompt.includes("copied from their handwriting line by line") && !wb.prompt.includes("[8] think about the roles"));
+
   // ---- settings and level ----
   await p.click('#tabbar [data-tab="write"]'); await wait(200);
   await p.click('#tabbar [data-tab="write"]'); await wait(200); // the tab first opens where I left it, a second tap goes to its first page

@@ -909,9 +909,9 @@ function geminiAI() {
       dbg("gemini_error", { status: res.status, model, body: bodyText.slice(0, 200) });
       throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
     }
-    const data = await res.json();
-    const text = (data.candidates?.[0]?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
-    if (!text) throw { code: "empty_completion" };
+    const data = await res.json(), cand = data.candidates?.[0], why = String(cand?.finishReason || data.promptFeedback?.blockReason || "");
+    const text = (cand?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
+    if (!text || why === "RECITATION") { dbg("gemini_empty", { why, model }); throw { code: why === "RECITATION" ? "recitation" : /SAFETY|PROHIBITED|BLOCK/.test(why) ? "refused" : "empty_completion" }; }
     return text;
   };
   const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
@@ -987,7 +987,7 @@ function errText(e) {
     case "timeout": return "Mam took too long to answer. Try again.";
     case "no_images": return "Photos can't be sent from this view. Type or paste the words instead.";
     case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai in Safari, or update the Claude app.";
-    case "refused": case "empty_completion": case "invalid_json": return "Mam could not do that this time. Try again.";
+    case "refused": case "empty_completion": case "invalid_json": case "recitation": return "Mam could not do that this time. Try again.";
     default: return "Mam could not answer this time (" + (e?.code || "error") + ").";
   }
 }
@@ -1028,6 +1028,7 @@ async function aiJob(statusId, msg, fn, retry) {
 }
 // If the model is slow (a busy Google server), the same job also goes to the other model, and the first answer wins.
 // ms is how long to wait first: longer for a long piece, which takes longer to mark.
+const HEDGE_STOP = new Set(["cancelled", "bad_key", "offline", "not_granted", "no_images", "session_expired", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
 function hedged(job, tier, ms, signal) {
   if (inClaude) return job(tier, signal);
   return new Promise((ok, no) => {
@@ -1037,7 +1038,12 @@ function hedged(job, tier, ms, signal) {
     const onAbort = () => { if (!done) { finish(); no({ code: "cancelled" }); } };
     const run = (t) => {
       const r = { ctl: new AbortController(), live: true }; runs.push(r);
-      job(t, r.ctl.signal).then((x) => { if (!done) { finish(); ok(x); } }, (e) => { r.live = false; if (!done && !runs.some((y) => y.live)) { finish(); no(e); } });
+      job(t, r.ctl.signal).then((x) => { if (!done) { finish(); ok(x); } }, (e) => {
+        r.live = false; if (done) return;
+        // the first model failed (its daily limit used up, a busy server, a broken answer): the other one tries at once
+        if (runs.length === 1 && !signal.aborted && !HEDGE_STOP.has(e?.code)) { stopTimer(); dbg("hedge_after_error", { tier, code: String(e?.code || "") }); run(tier === "quick" ? "default" : "quick"); return; }
+        if (!runs.some((y) => y.live)) { finish(); no(e); }
+      });
     };
     signal.addEventListener("abort", onAbort);
     stopTimer = deadline(ms, () => { if (!done) { dbg("hedge", { tier }); run(tier === "quick" ? "default" : "quick"); } });
@@ -1120,16 +1126,25 @@ Reply with ONLY JSON: {"better": "the text"}`;
 }
 // How a long piece is built: its paragraphs, each topic sentence, how each idea is developed, and what the learner could
 // have done or should not have done, quoting their own words. Grammar is marked separately.
-const paraSplit = (t) => { const s = String(t).trim(); return (/\n\s*\n/.test(s) ? s.split(/\n\s*\n/) : s.split(/\n+/)).map((x) => x.replace(/\s+/g, " ").trim()).filter(Boolean).slice(0, 12); };
+// Paragraphs are split at blank lines (or at line breaks when there are none). Nothing is dropped: past 12 paragraphs, the
+// rest join the last.
+function paraSplit(t) {
+  const s = String(t).trim(), ps = (/\n\s*\n/.test(s) ? s.split(/\n\s*\n/) : s.split(/\n+/)).map((x) => x.replace(/\s+/g, " ").trim()).filter(Boolean);
+  return ps.length > 12 ? [...ps.slice(0, 11), ps.slice(11).join(" ")] : ps;
+}
+// Text copied from handwriting line by line: no blank lines, and most lines stop in the middle of a sentence. Its line
+// breaks are the lines of the paper, so Mam works out the paragraphs herself.
+const lineWrapped = (t) => { const s = String(t).trim(), lines = s.split(/\n/).filter((x) => x.trim()); return !/\n\s*\n/.test(s) && lines.length >= 5 && lines.filter((x) => !/[.!?:"”)]\s*$/.test(x.trim())).length >= lines.length / 2; };
 const buildFor = (p, d) => !!d && !sentLike(p.kind) && p.kind !== "precis" && p.kind !== "comp" && d.words >= 70;
 function buildPrompt(p, text) {
-  const k = p.kind, L = lessonOf(p), part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, paras = paraSplit(text);
+  const k = p.kind, L = lessonOf(p), part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, paras = paraSplit(text), wrapped = lineWrapped(text);
   const needs = part ? `The learner is writing ${part.task}.` : k === "para" || k === "topic" ? `This should be ONE well developed paragraph: a topic sentence with a controlling idea, supporting sentences (reasons, explanation, examples or facts), and a concluding sentence.` : `It should be divided into paragraphs, one main idea in each, with an opening and an ending.`;
   return `You are Mam, a kind English writing teacher and a careful CSS examiner, teaching ${LEARNER()} how to build paragraphs.
 Task (${L ? L.t : KINDS[k].one}): ${p.task.prompt || p.task.title}${L?.what ? `\nWhat ${an(L.t.toLowerCase())} needs: ${L.what}` : ""}
 ${needs}
-The learner's text, with its paragraphs numbered as they wrote them (${paras.length} paragraph${paras.length === 1 ? "" : "s"}):
-${paras.map((x, i) => `[${i + 1}] ${x}`).join("\n")}
+${wrapped ? `The learner's text, copied from their handwriting line by line: here a line break is only the end of a line on the paper, not a new paragraph. Work out their paragraphs from the text (a new idea after a finished sentence, a heading or a short opening line), and number them yourself, in order:
+${String(text).trim()}` : `The learner's text, with its paragraphs numbered as they wrote them (${paras.length} paragraph${paras.length === 1 ? "" : "s"}):
+${paras.map((x, i) => `[${i + 1}] ${x}`).join("\n")}`}
 
 Judge how the writing is BUILT, not its grammar (grammar is marked separately): how the text is divided into paragraphs (one main idea in each, a new paragraph for each new idea, sensible length), and for every paragraph: the topic sentence (does it state the main idea and a controlling idea?), the support (reasons, explanation, examples, facts that develop the idea), unity (sentences that are off the point), coherence (a logical order and linking words) and the closing sentence. Also the whole piece: an opening, the body and an ending where the task needs them, and the links between paragraphs.
 Be specific to THIS text: quote the learner's own words, and never give a general rule without pointing to their writing. Judge honestly whether they can develop a good paragraph.
@@ -1147,7 +1162,7 @@ ${css ? "A good CSS outline has: a clear thesis statement; main arguments in a l
 Write in ${LEVEL_STYLE[level()]}, never Urdu.
 Reply with ONLY JSON: {"score": 1 to 10, "thesis": "one short sentence: is there a clear thesis statement (or main idea), and what is it?", "good": ["2 short things done well"], "next": ["2 or 3 short tips to make the outline better"], "missing": ["important parts or points the outline is missing, up to 3"], "better": "a better outline for this topic at level ${level()}, as short numbered lines, one per line"}`;
 }
-const handPrompt = (p, page, of) => `${page ? `This is page ${page} of ${of} of` : "These are photos of"} handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].one}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
+const handPrompt = (p, page, of) => `${page ? `This is page ${page} of ${of} of` : "These are photos of"} handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].one}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs, but join the lines of the paper: write each paragraph as one line (a line break on the page is not a new paragraph). If a word is hard to read, write your best guess.
 Reply with ONLY JSON: {"text": "exactly what they wrote", "unclear": ["words that were hard to read, up to 5"], "handwriting": "one short, kind sentence about how easy their handwriting is to read, with one tip if needed"}`;
 const qsRule = (n) => `If questions about the passage are printed with it, copy them; if there are none, write ${n} good questions that test understanding (not copying), in ${LEVEL_STYLE[level()]}.`;
 const passagePhotoPrompt = (k) => `This is a photo of a passage from a book, a newspaper or an exam paper. Copy the passage EXACTLY, word for word, leaving out page numbers, headers and anything that is not part of it.${k === "comp" ? " " + qsRule(4) : ""}
@@ -2025,7 +2040,7 @@ function correctedText(d) {
   d.check.mistakes.map((m, i) => [m, i]).filter(([m]) => m.at != null).sort((a, b) => b[0].at - a[0].at).forEach(([m, i]) => { t = t.slice(0, m.at) + fixedWords(d, i) + t.slice(m.at + m.wrong.length); });
   return t.replace(/ {2,}/g, " ");
 }
-const polishing = new Set();
+const polishing = new Set(), bgErr = new Map(); // bgErr: why the better version or the paragraph review failed, by draft
 async function polish(p, d) {
   if (!d || d.check.better || polishing.has(d.at)) return;
   polishing.add(d.at); showBetter(p, d);
@@ -2033,9 +2048,10 @@ async function polish(p, d) {
   const ctl = new AbortController(), stop = deadline(120000, () => ctl.abort());
   try {
     if (!sample) throw { code: "no_ai" };
-    const r = await hedged((t, sg) => askJson(betterPrompt(p, d.text), { modelTier: t, signal: sg }), p.kind === "precis" || d.words > 150 ? "default" : "quick", 30000 + d.words * 50, ctl.signal);
-    if (isEnglish(r?.better) && String(r.better).trim()) { d.check.better = String(r.better).trim(); putPiece(p); }
-  } catch (e) { dbg("polish_error", { code: String(e?.code || "none") }); }
+    bgErr.delete("better" + d.at);
+    const r = await hedged((t, sg) => askJson(betterPrompt(p, d.text), { modelTier: t, signal: sg }), p.kind === "precis" ? "default" : "quick", 30000 + d.words * 50, ctl.signal);
+    if (isEnglish(r?.better) && String(r.better).trim()) { d.check.better = String(r.better).trim(); putPiece(p); } else throw { code: "empty_completion" };
+  } catch (e) { dbg("polish_error", { code: String(e?.code || "none") }); bgErr.set("better" + d.at, e?.code === "cancelled" ? errText({ code: "timeout" }) : errText(e)); }
   finally { stop(); polishing.delete(d.at); showBetter(p, d); }
 }
 const building = new Set();
@@ -2046,10 +2062,11 @@ async function buildCheck(p, d) {
   const ctl = new AbortController(), stop = deadline(150000, () => ctl.abort());
   try {
     if (!sample) throw { code: "no_ai" };
+    bgErr.delete("build" + d.at);
     const r = await hedged((t, sg) => askJson(buildPrompt(p, d.text), { modelTier: t, signal: sg }), "default", 35000 + d.words * 50, ctl.signal);
     const b = cleanBuild(r);
-    if (b.verdict || b.paras.length) { d.check.build = b; putPiece(p); }
-  } catch (e) { dbg("build_error", { code: String(e?.code || "none") }); }
+    if (b.verdict || b.paras.length) { d.check.build = b; putPiece(p); } else throw { code: "empty_completion" };
+  } catch (e) { dbg("build_error", { code: String(e?.code || "none") }); bgErr.set("build" + d.at, e?.code === "cancelled" ? errText({ code: "timeout" }) : errText(e)); }
   finally { stop(); building.delete(d.at); showBuild(p, d); }
 }
 const BUILD_LV = { "well developed": "🟢", "partly developed": "🟡", underdeveloped: "🔴" }, CAN = { yes: "✓ Yes", "getting there": "Getting there", "not yet": "Not yet" };
@@ -2067,7 +2084,9 @@ function fillBuild(box, p, d) {
   const b = d.check.build;
   if (!b) {
     box.append(el("div", "lbl", "🧱 How your writing is built"));
-    box.append(building.has(d.at) ? el("p", "hint", "Mam is reading how your paragraphs are built…") : btn("🧱 Check how my paragraphs are built", () => buildCheck(p, d)));
+    const err = !building.has(d.at) && bgErr.get("build" + d.at);
+    if (err) box.append(el("p", "status", "⚠ " + err));
+    box.append(building.has(d.at) ? el("p", "hint", "Mam is reading how your paragraphs are built… (a long piece can take a minute)") : btn(err ? "↻ Try again" : "🧱 Check how my paragraphs are built", () => buildCheck(p, d)));
     return;
   }
   const top = el("div", "scorerow"); top.append(el("span", "score", b.skill + "/10"));
@@ -2098,7 +2117,7 @@ function fillBetter(b, p, d) {
   b.append(el("div", "lbl", p.kind === "precis" ? "✨ Mam's model précis" : "✨ Mam's better version"));
   if (d.check.better) b.append(el("p", "better", d.check.better));
   else if (polishing.has(d.at)) b.append(el("p", "hint", "Mam is writing it…"));
-  else b.append(btn("✨ Show Mam's version", () => polish(p, d)));
+  else { if (bgErr.has("better" + d.at)) b.append(el("p", "status", "⚠ " + bgErr.get("better" + d.at))); b.append(btn(bgErr.has("better" + d.at) ? "↻ Try again" : "✨ Show Mam's version", () => polish(p, d))); }
 }
 function betterBox(p, d) { const b = el("div"); b.id = "betterBox"; fillBetter(b, p, d); return b; }
 function showBetter(p, d) { const b = $("betterBox"); if (b && view.page === "piece" && view.id === p.id && lastDraft(p) === d) fillBetter(b, p, d); }
