@@ -885,7 +885,7 @@ function geminiAI() {
     const contents = [{ role: "user", parts: [{ text: String(input) }] }];
     const imgs = opts.images ? [].concat(opts.images) : [];
     for (const b of imgs) contents[0].parts.push({ inline_data: { mime_type: b.type || "image/jpeg", data: await b64(b) } });
-    const tm = thinkMode(cfg, model), think = (opts.modelTier === "quick" ? THINK_OFF : THINK_LOW)[tm];
+    const tm = thinkMode(cfg, model), think = (opts.modelTier === "quick" || opts.noThink ? THINK_OFF : THINK_LOW)[tm];
     const body = { contents, generationConfig: { temperature: 0.4, ...(json ? { responseMimeType: "application/json" } : {}), ...(think ? { thinkingConfig: think } : {}) } };
     let res;
     try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
@@ -900,6 +900,11 @@ function geminiAI() {
         const k = (opts.busyTries || 0) + 1, other = model === (cfg.fast || cfg.model) ? cfg.model : cfg.fast;
         await pause(1500 * k);
         return call(input, { ...opts, busyTries: k, ...(k === 3 && other && other !== model ? { model: other } : {}) }, json, retried, tries);
+      }
+      if (res.status === 429 && !/per ?day|daily|PerDay/i.test(bodyText) && (opts.rateTries || 0) < 2 && !opts.signal?.aborted) { // too many at once this minute: wait as long as Google asks, then again
+        const wait = Math.min(30, Math.max(3, Number((bodyText.match(/retryDelay\W+(\d+)/) || [])[1]) || 10));
+        await pause(wait * 1000);
+        return call(input, { ...opts, rateTries: (opts.rateTries || 0) + 1 }, json, retried, tries);
       }
       dbg("gemini_error", { status: res.status, model, body: bodyText.slice(0, 200) });
       throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
@@ -1061,7 +1066,9 @@ async function photoBlobs(files) {
 
 // ---------- what Mam is asked ----------
 const LEARNER = () => `a learner from Pakistan (first language Urdu, English level ${level()}) who is preparing for the CSS exam`;
-function checkPrompt(p, text) {
+// mode: undefined marks everything in one call; "marks" gives only the marks for the whole of a long piece; {part, of}
+// finds only the mistakes in one part of it. A long piece is marked in parts at the same time, which is much faster.
+function checkPrompt(p, text, mode) {
   const lv = level(), k = p.kind, t = p.task, part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, L = lessonOf(p);
   const max = MAX_MISTAKES[lv] + (p.part === "whole" ? 8 : 0);
   let task = `Task (${sentLike(k) && L ? "Sentences practising " + L.t : L ? L.t : KINDS[k].one}${part ? ", " + part.name.toLowerCase() : ""}): ${t.prompt}`;
@@ -1079,19 +1086,24 @@ function checkPrompt(p, text) {
   const extra = structure + (T ? `, "topic": {"facts_ok": true or false (are the facts in their writing true?), "wrong_facts": ["each wrong fact, copied exactly from their writing, then: what is true"], "used_words": ["the words from the notes that they used correctly"], "note": "one or two short sentences: how well they used what they studied"}` : "") + (k === "precis" ? `, "precis": {"ideas": 0 to 7 (are all the main ideas there, in the author's order?), "language": 0 to 4 (own words, clear and concise, third person, no opinion), "grammar": 0 to 2, "title": 0 to 5 (short, apt, about the central idea; 0 if there is no title), "central": true or false (does the précis keep the central idea?), "key_points": [{"point": "a key point of the passage, in a few words", "kept": true or false}] (every key point of the passage, 3 to 6, in order), "opinion": ["the learner's own opinions or new ideas, copied exactly, if any"], "details": ["examples or details that should have been left out, copied exactly, if any"], "voice": ["first person, direct speech or 'the author says' phrases, copied exactly, if any"], "title_note": "one short sentence about the title", "titles": ["2 good titles"]}`
     : k === "comp" ? `, "answers": [{"q": the question number, "ok": true or false (is the answer right and complete?), "note": "very short feedback", "model": "a good short answer in simple English"}]` : "");
   const taskArea = k === "topic" ? "content: correct facts and good ideas from what they studied, in the right style" : k === "precis" ? "keeping the main ideas" : k === "comp" ? "right answers in their own words" : k === "free" ? "clear, interesting ideas" : sentLike(k) && L ? "using the structure well" : "answering the task with good ideas";
+  const find = `Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${k === "skill" && L ? `Mark every mistake with ${L.t}, and only the 3 other mistakes that matter most` : lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${mode?.part ? MAX_MISTAKES[lv] : max}.
+For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one short sentence, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule, with the correct words and one more short example, in at most 25 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.`;
+  const marks = `Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".`;
+  const mJson = `"mistakes": [{"wrong": "...", "right": "...", "problem": "...", "hint": "...", "why": "...", "type": "..."}]`, sJson = `"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}`;
+  const rest = `"good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"]${extra}`;
+  const body = mode?.part ? find : mode === "marks" ? marks + " Single mistakes are listed separately, so do not list them here, but judge the grammar and vocabulary of the whole text." : find + "\n" + marks;
+  const json = mode?.part ? `{${mJson}}` : mode === "marks" ? `{${sJson}, ${rest}}` : `{${sJson}, ${mJson}, ${rest}}`;
   return `You are Mam, a kind English writing teacher and a fair CSS examiner, checking writing by ${LEARNER()}.
 ${task}${passage}${qs}
-
+${mode?.part ? `\nThis is part ${mode.part} of ${mode.of} of a longer piece; the other parts are checked separately. Find the mistakes in this part only.\n` : ""}
 The learner wrote:
 """
 ${text}
 """
 
-Find the real mistakes: grammar, verb tense, articles, prepositions, spelling, word choice, word order, missing or extra words, punctuation and capital letters. ${k === "skill" && L ? `Mark every mistake with ${L.t}, and only the 3 other mistakes that matter most` : lv === "B2" ? "Mark every real mistake" : "Mark only the mistakes that matter most at this level"}, at most ${max}.
-For each mistake: "wrong" is copied EXACTLY from the learner's text, character for character (a few words, enough to find it); "right" is the corrected words that replace "wrong"; "problem" says EXACTLY what is wrong: name the wrong, missing or extra word and the grammar rule it breaks, in one short sentence, WITHOUT giving the correct words; "hint" is one short clue on how to fix it, also without the answer; "why" explains the rule, with the correct words and one more short example, in at most 25 words; "type" is one of: ${Object.keys(TYPES).join(", ")}. Never write a vague reason like "a word is missing" or "fixed phrase": always say which word and which rule.
-Give marks from 1 to 10 for level ${lv}, kindly but honestly, as a CSS examiner would: "task" (${taskArea}), "organisation" (order of ideas, paragraphs, linking words), "grammar", "vocabulary".
+${body}
 Write all feedback in ${LEVEL_STYLE[lv]}, never Urdu.
-Reply with ONLY JSON: {"score": 1 to 10, "areas": {"task": n, "organisation": n, "grammar": n, "vocabulary": n}, "mistakes": [{"wrong": "...", "right": "...", "problem": "...", "hint": "...", "why": "...", "type": "..."}], "good": ["2 short things done well"], "next": ["2 short tips about ideas, structure or style (not single mistakes)"]${extra}}`;
+Reply with ONLY JSON: ${json}`;
 }
 // Mam's better version (or model précis) is written in a second call, after the marks: the learner sees the mistakes sooner,
 // and the version is needed only once every mistake is fixed.
@@ -1135,7 +1147,7 @@ ${css ? "A good CSS outline has: a clear thesis statement; main arguments in a l
 Write in ${LEVEL_STYLE[level()]}, never Urdu.
 Reply with ONLY JSON: {"score": 1 to 10, "thesis": "one short sentence: is there a clear thesis statement (or main idea), and what is it?", "good": ["2 short things done well"], "next": ["2 or 3 short tips to make the outline better"], "missing": ["important parts or points the outline is missing, up to 3"], "better": "a better outline for this topic at level ${level()}, as short numbered lines, one per line"}`;
 }
-const handPrompt = (p) => `These are photos of handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].one}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
+const handPrompt = (p, page, of) => `${page ? `This is page ${page} of ${of} of` : "These are photos of"} handwriting by a learner of English from Pakistan: their answer to a writing task (${KINDS[p.kind].one}: ${p.task.title}). Copy what they wrote EXACTLY, word for word, keeping their mistakes, spelling, capital letters and punctuation; never correct anything. Keep their paragraphs, with a blank line between paragraphs. If a word is hard to read, write your best guess.
 Reply with ONLY JSON: {"text": "exactly what they wrote", "unclear": ["words that were hard to read, up to 5"], "handwriting": "one short, kind sentence about how easy their handwriting is to read, with one tip if needed"}`;
 const qsRule = (n) => `If questions about the passage are printed with it, copy them; if there are none, write ${n} good questions that test understanding (not copying), in ${LEVEL_STYLE[level()]}.`;
 const passagePhotoPrompt = (k) => `This is a photo of a passage from a book, a newspaper or an exam paper. Copy the passage EXACTLY, word for word, leaving out page numbers, headers and anything that is not part of it.${k === "comp" ? " " + qsRule(4) : ""}
@@ -1708,7 +1720,14 @@ function updateCount(p) {
 async function readHandwriting(p, files) {
   const th = $("photoThumbs"); th.innerHTML = "";
   files.slice(0, 4).forEach((f) => { const im = el("img"); im.alt = "Your photo"; im.src = URL.createObjectURL(f); th.append(im); });
-  const r = await aiJob("pieceStatus", "Mam is reading your handwriting…", async (signal) => askJson(handPrompt(p), { images: await photoBlobs(files), modelTier: "default", signal }), () => readHandwriting(p, files));
+  // one page per call, all at the same time, with Flash not thinking: copying needs no thinking, and three pages in one call
+  // could take minutes
+  const r = await aiJob("pieceStatus", files.length > 1 ? `Mam is reading your ${Math.min(files.length, 4)} pages at once…` : "Mam is reading your handwriting…", async (signal) => {
+    const blobs = await photoBlobs(files);
+    const pages = await Promise.all(blobs.map((b, i) => hedged((t, sg) => askJson(handPrompt(p, blobs.length > 1 ? i + 1 : 0, blobs.length), { images: [b], modelTier: t, noThink: true, signal: sg }), "default", 45000, signal)));
+    dbg("hand_pages", { pages: pages.length });
+    return { text: pages.map((x) => String(x?.text || "").trim()).filter(Boolean).join("\n\n"), unclear: pages.flatMap((x) => arr(x?.unclear, 5)), handwriting: pages.map((x) => x?.handwriting).find(isEnglish) || "" };
+  }, () => readHandwriting(p, files));
   if (!r) return;
   const text = String(r.text || "").trim();
   if (!text) { statusIn("pieceStatus", "Mam could not read any writing in this photo. Take a clear photo in good light, from straight above.", true); return; }
@@ -1729,8 +1748,9 @@ async function checkPiece(p) {
   // short writing (sentences, a short paragraph) is marked by the fast model; a longer piece or a précis by Flash, thinking a little
   const words = wordCount(text), long = words > 300, tier = outline || p.kind === "precis" || words > 150 ? "default" : "quick";
   setPending({ kind: "check", id: p.id, text });
-  const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : "Mam is checking your writing…" + (long ? " A long piece can take a minute." : ""),
-    (signal) => hedged((t, sg) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: t, signal: sg }), tier, 25000 + words * 50, signal), () => checkPiece(p));
+  const parts = !outline && p.kind !== "precis" && p.kind !== "comp" && words > 350 ? textParts(text, 300) : null;
+  const r = await aiJob("pieceStatus", outline ? "Mam is reading your outline…" : parts ? `Mam is checking your writing in ${parts.length} parts at once…` : "Mam is checking your writing…" + (long ? " A long piece can take a minute." : ""),
+    (signal) => parts ? markInParts(p, text, parts, signal) : hedged((t, sg) => askJson(outline ? outlinePrompt(p, text) : checkPrompt(p, text), { modelTier: t, signal: sg }), tier, 25000 + words * 50, signal), () => checkPiece(p));
   if ($("checkBtn")) $("checkBtn").disabled = false;
   setPending(null);
   if (!r) return;
@@ -1748,6 +1768,29 @@ async function checkPiece(p) {
     if (p.test?.done === p.drafts[p.drafts.length - 1]?.at || (p.test && !outline && p.drafts.length === 1)) render(true); else { renderResult(p); updateCount(p); } // a test's first check also changes its banner
     $("result")?.scrollIntoView({ block: "start", behavior: "smooth" });
   }
+}
+// A long piece in parts of about n words: whole paragraphs together, and a very long paragraph cut between sentences.
+// The parts are the learner's own text, so every mistake is found again in the whole piece.
+function textParts(text, n) {
+  const units = [];
+  String(text).split(/\n\s*\n/).forEach((para) => { if (wordCount(para) <= n) units.push(para); else (para.match(/[^.!?]+[.!?]*["'”’)]*\s*/g) || [para]).forEach((x) => units.push(x)); });
+  const parts = [];
+  let cur = "";
+  units.forEach((u) => { if (cur && wordCount(cur) + wordCount(u) > n) { parts.push(cur); cur = ""; } cur += (cur ? (/\n$/.test(cur) || /^\s/.test(u) ? "" : "\n\n") : "") + u; });
+  if (cur.trim()) parts.push(cur);
+  return parts.map((x) => x.trim()).filter(Boolean);
+}
+// The marks for the whole piece and the mistakes of each part, all at the same time.
+async function markInParts(p, text, parts, signal) {
+  const ctl = new AbortController(), stop = () => ctl.abort();
+  signal.addEventListener("abort", stop);
+  const one = (prompt, ms) => hedged((t, sg) => askJson(prompt, { modelTier: t, signal: sg }), "default", ms, ctl.signal);
+  try {
+    const [marks, ...found] = await Promise.all([one(checkPrompt(p, text, "marks"), 40000), ...parts.map((x, i) => one(checkPrompt(p, x, { part: i + 1, of: parts.length }), 25000 + wordCount(x) * 50))]);
+    dbg("marked_in_parts", { parts: parts.length });
+    return { ...(marks && typeof marks === "object" ? marks : {}), mistakes: found.flatMap((r) => (Array.isArray(r?.mistakes) ? r.mistakes : [])) };
+  } catch (e) { ctl.abort(); throw e; }
+  finally { signal.removeEventListener("abort", stop); }
 }
 const cleanList = (x, n) => arr(x, n).filter(isEnglish);
 function cleanOutline(r) { return { score: num(r.score, 1, 10), thesis: isEnglish(r.thesis) ? String(r.thesis) : "", good: cleanList(r.good, 3), next: cleanList(r.next, 3), missing: cleanList(r.missing, 3), better: isEnglish(r.better) ? String(r.better) : "", at: Date.now() }; }
@@ -1768,7 +1811,7 @@ function locate(text, list) {
 function cleanCheck(r, text, p) {
   const areas = r.areas && typeof r.areas === "object" ? r.areas : {};
   const ms = (Array.isArray(r.mistakes) ? r.mistakes : []).map((m) => ({ wrong: String(m?.wrong || "").trim(), right: String(m?.right ?? "").trim(), problem: String(m?.problem || ""), hint: String(m?.hint || ""), why: String(m?.why || ""), type: typeKey(m?.type) }))
-    .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.problem + m.hint + m.why)).slice(0, 25);
+    .filter((m) => m.wrong && m.wrong !== m.right && (m.right || m.type === "extra word") && isEnglish(m.right + m.problem + m.hint + m.why)).slice(0, 45);
   const c = { score: num(r.score, 1, 10), areas: Object.fromEntries(["task", "organisation", "grammar", "vocabulary"].map((k) => [k, num(areas[k], 1, 10)])), mistakes: locate(text, ms),
     good: cleanList(r.good, 3), next: cleanList(r.next, 3), better: isEnglish(r.better) ? String(r.better).trim() : "" };
   if (p.kind === "topic" && r.topic && typeof r.topic === "object") c.topic = { factsOk: r.topic.facts_ok !== false, wrong: cleanList(r.topic.wrong_facts, 3), used: cleanList(r.topic.used_words, 10), note: isEnglish(r.topic.note) ? String(r.topic.note) : "" };

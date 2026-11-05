@@ -215,6 +215,14 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   check("the numbers in a table", (await p.$$(".tbl tbody tr")).length === 6);
   await shot("progress");
 
+  // ---- a long piece in parts (Claude) ----
+  await kind("1. Free writing"); await p.click("text=✍️ Start writing"); await wait(300);
+  const partA = "I go to college by bus yesterday. " + "The road to my college is long and busy in the morning. ".repeat(18), partB = "My mother make breakfast for me every day. " + "She works very hard for our family and I help her at home. ".repeat(16);
+  await p.fill("#draft", partA.trim() + "\n\n" + partB.trim()); await p.click("#checkBtn"); await wait(1200);
+  const lp = (await calls(/checking writing by a learner/)).slice(-3);
+  check("Claude marks a long piece in parts too: the marks for the whole and the mistakes of each part", lp.filter((c) => /This is part \d of 2/.test(c.prompt)).length === 2 && lp.some((c) => /Single mistakes are listed separately/.test(c.prompt)), lp.map((c) => c.prompt.slice(0, 60)).join(" | "));
+  check("the mistakes from both parts are found in my whole text", (await p.$$("mark.mk")).length === 2 && (await p.textContent("#fixes")).includes("I go to college by bus yesterday") && (await p.textContent("#fixes")).includes("My mother make"));
+
   // ---- settings and level ----
   await p.click('#tabbar [data-tab="write"]'); await wait(200);
   await p.click('#tabbar [data-tab="write"]'); await wait(200); // the tab first opens where I left it, a second tap goes to its first page
