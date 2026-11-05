@@ -7,6 +7,16 @@
   const shuffle = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((p) => p[1]);
   const TONE = { positive: "good feeling", neutral: "neutral feeling", negative: "bad feeling" };
   const FORM = { informal: "informal", neutral: "standard", formal: "formal", literary: "literary" };
+  const LEVEL = { core: "Everyday", S: "CSS standard", A: "CSS advanced" };
+  const levelOf = (h) => h.level || "core";
+  // The word class of a headword's first meaning, so a test's wrong options are the same kind of word.
+  const NOUNS = new Set("aberration acrimony acumen adulation alacrity anathema animosity apathy avarice brevity chicanery dearth decorum deference disdain effrontery enigma equanimity paucity plethora propensity rancour rectitude remorse sycophant trepidation veracity zenith problem".split(" "));
+  const posOf = (h) => {
+    const m = h.senses[0].sense;
+    if (/^to /.test(m)) return "verb";
+    if (NOUNS.has(h.word) || /^(a|an|the) /.test(m)) return "noun";
+    return "adj";
+  };
 
   /* ---------------------------------------------------------------- one word for many */
 
@@ -134,7 +144,7 @@
 
   function wordHtml(h, esc, icon) {
     return `<article class="word-card" id="w-${esc(norm(h.word))}">
-        <header class="word-head"><h2>${esc(h.word)}</h2>
+        <header class="word-head"><h2>${esc(h.word)} <span class="lvl lvl-${esc(levelOf(h))}">${esc(LEVEL[levelOf(h)])}</span></h2>
           <button type="button" class="pdf-mini" data-pdf="words:${esc(h.word)}">${icon("pdf")}<span>PDF</span></button></header>
         <p class="muted small">${h.senses.length} ${h.senses.length === 1 ? "meaning" : "meanings"}. Each meaning has its own synonyms: use only the ones under the meaning you need.</p>
         ${h.senses
@@ -152,6 +162,52 @@
       </article>`;
   }
 
+  // The CSS paper's wording: "most similar in meaning" / "most opposite in meaning".
+  function wordQuiz(box, pool, all, kind, esc) {
+    const items = shuffle(pool.filter((h) => h.senses[0][kind].length)).slice(0, 10);
+    const others = (pos) => all.filter((h) => posOf(h) === pos).flatMap((h) => h.senses.slice(0, 1).flatMap((s) => s.syn.map((x) => x.w)));
+    let i = 0, right = 0;
+    const show = () => {
+      if (i >= items.length) {
+        box.innerHTML = `<section class="quiz-card"><h2>${right} of ${items.length} right</h2><p class="muted">Open any word you missed to see all its meanings.</p><p class="row-buttons"><button type="button" class="button primary" data-again>Test again</button><button type="button" class="button ghost" data-close>Close</button></p></section>`;
+        box.querySelector("[data-again]").onclick = () => wordQuiz(box, pool, all, kind, esc);
+        box.querySelector("[data-close]").onclick = () => (box.innerHTML = "");
+        return;
+      }
+      const h = items[i], s = h.senses[0];
+      const answer = shuffle(s[kind])[0];
+      const own = new Set([h.word, ...h.senses.flatMap((x) => [...x.syn, ...x.ant].map((y) => y.w))].map(norm));
+      const wrong = shuffle([...new Set(others(posOf(h)))].filter((w) => !own.has(norm(w)) && !w.includes(" "))).slice(0, 3);
+      const opts = shuffle([answer.w, ...wrong]);
+      box.innerHTML = `<section class="quiz-card" aria-live="polite">
+          <p class="eyebrow">Question ${i + 1} of ${items.length} · ${esc(LEVEL[levelOf(h)])}</p>
+          <h2>Choose the word most ${kind === "syn" ? "similar" : "opposite"} in meaning to <span class="caps">${esc(h.word.toUpperCase())}</span></h2>
+          <div class="quiz-opts">${opts.map((o) => `<button type="button" class="option" data-w="${esc(o)}">${esc(o)}</button>`).join("")}</div>
+          <p class="quiz-why" hidden></p>
+        </section>`;
+      box.querySelectorAll(".option").forEach((b) =>
+        b.addEventListener("click", () => {
+          const ok = b.dataset.w === answer.w;
+          if (ok) right++;
+          box.querySelectorAll(".option").forEach((x) => {
+            x.disabled = true;
+            if (x.dataset.w === answer.w) x.classList.add("is-right");
+          });
+          if (!ok) b.classList.add("is-wrong");
+          const why = box.querySelector(".quiz-why");
+          why.hidden = false;
+          why.innerHTML = `${ok ? "<strong>Right.</strong>" : "<strong>Not quite.</strong>"} <strong>${esc(h.word)}</strong> = ${esc(s.sense)}. <em>${esc(s.ex)}</em> ${kind === "syn" ? "Most similar" : "Most opposite"}: <strong>${esc(answer.w)}</strong>${answer.note ? ` (${esc(answer.note)})` : ""}. <a href="#word-${encodeURIComponent(h.word)}">See every meaning</a> <button type="button" class="button small" data-next>Next</button>`;
+          why.querySelector("[data-next]").onclick = () => {
+            i++;
+            show();
+          };
+        })
+      );
+    };
+    show();
+    box.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   function renderWords(app, { esc, icon, focus }) {
     const words = P.words || [];
     const idx = index();
@@ -161,17 +217,40 @@
         <h1>Synonyms and antonyms, by meaning</h1>
         <p class="lede">Type a word. Each of its meanings is shown separately, with only the real synonyms and antonyms for that meaning, and each word's tone, formality and where it is used.</p>
         <p class="legend"><span class="tag tone-positive">good feeling</span><span class="tag tone-neutral">neutral feeling</span><span class="tag tone-negative">bad feeling</span> · then formality (informal, standard, formal, literary) · then where it is used</p>
-        <p class="row-buttons"><button type="button" class="button" data-pdf="words:all">${icon("pdf")} PDF of every word</button></p>
+        <p class="row-buttons">
+          <button type="button" class="button primary" id="w-test-sim">${icon("play")} Test: most similar in meaning</button>
+          <button type="button" class="button" id="w-test-opp">${icon("play")} Test: most opposite in meaning</button>
+        </p>
+        <p class="row-buttons">
+          <button type="button" class="button" data-pdf="words:all">${icon("pdf")} PDF of every word</button>
+          <button type="button" class="button" data-pdf="words:level-A">${icon("pdf")} PDF: CSS advanced only</button>
+        </p>
       </section>
+      <div class="lvl-filter" role="group" aria-label="Level">
+        ${["all", "core", "S", "A"].map((k) => `<button type="button" class="lvl-btn${k === "all" ? " is-on" : ""}" data-lvl="${k}">${k === "all" ? "All levels" : esc(LEVEL[k])} <small>${k === "all" ? words.length : words.filter((h) => levelOf(h) === k).length}</small></button>`).join("")}
+      </div>
+      <div id="w-quiz"></div>
       <label class="search">
         <span class="sr-only">Type a word</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></svg>
-        <input id="w-search" type="search" placeholder="Type a word: alone, happy, important…" autocomplete="off" value="${esc(focus || "")}">
+        <input id="w-search" type="search" placeholder="Type a word: alone, ubiquitous, pernicious…" autocomplete="off" value="${esc(focus || "")}">
       </label>
       <div id="w-found"></div>
-      <section class="word-index"><h2 class="small muted">All words (${words.length})</h2>
-        <p class="chips">${words.map((h) => `<a class="wchip" href="#word-${encodeURIComponent(h.word)}">${esc(h.word)}</a>`).join("")}</p>
+      <section class="word-index">${["core", "S", "A"].map((k) => {
+        const list = words.filter((h) => levelOf(h) === k).sort((a, b) => a.word.localeCompare(b.word));
+        return `<div class="lvl-group" data-lvlgroup="${k}"><h2 class="small">${esc(LEVEL[k])} <span class="muted">(${list.length})</span></h2>
+          <p class="chips">${list.map((h) => `<a class="wchip lvl-${k}" href="#word-${encodeURIComponent(h.word)}">${esc(h.word)}</a>`).join("")}</p></div>`;
+      }).join("")}
       </section>`;
+    let level = "all";
+    app.querySelectorAll(".lvl-btn").forEach((b) => b.addEventListener("click", () => {
+      level = b.dataset.lvl;
+      app.querySelectorAll(".lvl-btn").forEach((x) => x.classList.toggle("is-on", x === b));
+      app.querySelectorAll("[data-lvlgroup]").forEach((g) => (g.hidden = level !== "all" && g.dataset.lvlgroup !== level));
+    }));
+    const pool = () => words.filter((h) => level === "all" || levelOf(h) === level);
+    $("#w-test-sim").addEventListener("click", () => wordQuiz($("#w-quiz"), pool(), words, "syn", esc));
+    $("#w-test-opp").addEventListener("click", () => wordQuiz($("#w-quiz"), pool(), words, "ant", esc));
     const found = $("#w-found");
     const show = (q) => {
       q = norm(q);
@@ -222,17 +301,17 @@
       },
     });
     plans.words = (which) => {
-      const list = which === "all" ? P.words : P.words.filter((h) => h.word === which);
+      const list = (which === "all" ? P.words : which.startsWith("level-") ? P.words.filter((h) => levelOf(h) === which.slice(6)) : P.words.filter((h) => h.word === which)).slice().sort((a, b) => a.word.localeCompare(b.word));
       if (!list.length) return null;
       return {
-        title: which === "all" ? "Synonyms and antonyms, by meaning" : `${which}: synonyms and antonyms, by meaning`,
+        title: which === "all" ? "Synonyms and antonyms, by meaning" : which.startsWith("level-") ? `${LEVEL[which.slice(6)]} words: synonyms and antonyms` : `${which}: synonyms and antonyms, by meaning`,
         subtitle: "Vocabulary 2 from the Precis Lab: each meaning with its own synonyms and antonyms",
         file: `Precis-Lab-Words-${which === "all" ? "all" : which}.pdf`,
         items: [], textOnly: true, noImages: true,
         intro(n) {
           n.text("Each word is tagged: its feeling (good / neutral / bad), its formality (informal / standard / formal / literary), and where it is used.", { size: 9.5, gap: 3 });
           list.forEach((h) => {
-            n.text(h.word, { size: 17, bold: true, gap: 1.5 });
+            n.text(`${h.word}   (${LEVEL[levelOf(h)]})`, { size: 17, bold: true, gap: 1.5 });
             h.senses.forEach((s, i) => {
               n.rich(safe(`**Meaning ${i + 1}: ${s.sense}.** _${s.ex}_`), { gap: 1 });
               const line = (x) => safe(`${x.w}  (${TONE[x.tone] || x.tone}, ${FORM[x.formality] || x.formality}, ${x.use})${x.note ? ": " + x.note : ""}`);
