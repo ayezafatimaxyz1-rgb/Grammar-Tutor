@@ -1,0 +1,1265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-title" content="Khulasa English">
+<meta name="theme-color" content="#6a2c8f">
+<link rel="manifest" id="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<script>if (/iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)) document.getElementById("manifest").href = "manifest-ios.webmanifest";</script>
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Khulasa English</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: header on top, the page in the middle, four tabs at the bottom (Today, One Word, Explorer, My Words).
+   Look: the frosted glass of Bolo, Likho and Speak Up, in plum ink, with a word meter (long → short) as its own mark. */
+:root {
+  --bg: #f1ecf6;
+  --surface: rgb(255 255 255 / 64%);
+  --inset: rgb(255 255 255 / 62%);
+  --sunk: rgb(106 44 143 / 9%);
+  --fg: #1d1426;
+  --muted: #5b4f68;
+  --line: rgb(60 20 90 / 14%);
+  --rim: rgb(255 255 255 / 85%);
+  --shadow: 0 6px 22px rgb(60 25 90 / 10%);
+  --blob1: rgb(190 140 235 / 45%);
+  --blob2: rgb(120 205 200 / 32%);
+  --blob3: rgb(255 200 130 / 42%);
+  --accent: #6a2c8f;
+  --accent2: #8a46b5;
+  --accent-fg: #ffffff;
+  --pen: #c23b2c;
+  --penbg: rgb(194 59 44 / 11%);
+  --good: #1f8a57;
+  --goodbg: rgb(31 138 87 / 13%);
+  --sun: #c98414;
+  --sunbg: rgb(201 132 20 / 14%);
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0813; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sunk: rgb(255 255 255 / 9%);
+    --fg: #f0e9f6; --muted: #b7a9c6; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+    --blob1: rgb(120 60 170 / 36%); --blob2: rgb(30 130 125 / 22%); --blob3: rgb(170 110 30 / 20%);
+    --accent: #d1a3f2; --accent2: #b884e6; --accent-fg: #1d0b2b; --pen: #ff8a76; --penbg: rgb(255 138 118 / 14%);
+    --good: #4fd193; --goodbg: rgb(79 209 147 / 14%); --sun: #f0b450; --sunbg: rgb(240 180 80 / 15%);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d0813; --surface: rgb(255 255 255 / 7%); --inset: rgb(255 255 255 / 6%); --sunk: rgb(255 255 255 / 9%);
+  --fg: #f0e9f6; --muted: #b7a9c6; --line: rgb(255 255 255 / 12%); --rim: rgb(255 255 255 / 13%); --shadow: 0 8px 26px rgb(0 0 0 / 35%);
+  --blob1: rgb(120 60 170 / 36%); --blob2: rgb(30 130 125 / 22%); --blob3: rgb(170 110 30 / 20%);
+  --accent: #d1a3f2; --accent2: #b884e6; --accent-fg: #1d0b2b; --pen: #ff8a76; --penbg: rgb(255 138 118 / 14%);
+  --good: #4fd193; --goodbg: rgb(79 209 147 / 14%); --sun: #f0b450; --sunbg: rgb(240 180 80 / 15%);
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+[hidden] { display: none !important; }
+body { background-color: var(--bg); background-image: radial-gradient(60% 45% at 0% 0%, var(--blob1), transparent 70%), radial-gradient(55% 45% at 100% 30%, var(--blob2), transparent 70%), radial-gradient(70% 50% at 25% 100%, var(--blob3), transparent 70%); color: var(--fg); font: 17px/1.5 var(--body); margin: 0; }
+* { box-sizing: border-box; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.app { height: 100%; display: flex; flex-direction: column; max-width: 680px; margin: 0 auto; }
+.pad { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header { display: flex; align-items: center; gap: 10px; padding-block: 8px; background: var(--surface); border-bottom: 1px solid var(--rim); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+.brand { font-family: var(--display); font-weight: 800; font-size: 19px; letter-spacing: -0.02em; white-space: nowrap; }
+.brand b { color: var(--accent); }
+.ptitle { margin-left: auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 700; color: var(--muted); font-size: 15px; }
+.iconbtn { border: 1px solid var(--rim); background: var(--surface); border-radius: 50%; width: 44px; height: 44px; flex: none; font-size: 18px; }
+main { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.page { display: flex; flex-direction: column; gap: 12px; padding-block: 12px 28px; }
+nav.tabs { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--surface); border-top: 1px solid var(--rim); padding-bottom: env(safe-area-inset-bottom, 0px); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }
+nav.tabs button { border: 0; background: none; padding: 8px 2px 10px; display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 12px; font-weight: 700; color: var(--muted); position: relative; }
+nav.tabs button .ti { font-size: 21px; line-height: 1.1; }
+nav.tabs button[aria-current="page"] { color: var(--accent); }
+nav.tabs .badge { position: absolute; top: 4px; left: calc(50% + 6px); background: var(--pen); color: #fff; border-radius: 99px; font-size: 11px; min-width: 18px; padding: 0 5px; line-height: 18px; }
+.card { background: var(--surface); border: 1px solid var(--rim); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); min-width: 0; }
+.card.hero { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--accent-fg); border-color: transparent; }
+.card.hero .lbl, .card.hero .muted { color: inherit; opacity: .85; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.015em; text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: 26px; font-weight: 800; }
+h2 { font-size: 20px; font-weight: 800; }
+h3 { font-size: 17px; font-weight: 600; }
+p { margin: 0; }
+.lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 700; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.between { justify-content: space-between; }
+.grow { flex: 1; min-width: 0; }
+.btn { border: 1px solid var(--rim); background: var(--surface); border-radius: 99px; padding: 10px 16px; font-size: 15px; min-height: 44px; }
+.btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent2)); color: var(--accent-fg); border-color: transparent; font-weight: 700; }
+.card.hero .btn.primary { background: var(--accent-fg); color: var(--accent); }
+.card.hero .btn:not(.primary) { background: rgb(255 255 255 / 16%); border-color: rgb(255 255 255 / 45%); color: var(--accent-fg); }
+.btn.wide { width: 100%; }
+.btn:disabled { opacity: .5; cursor: default; }
+.mini { border: 0; background: var(--sunk); color: var(--muted); border-radius: 99px; padding: 7px 12px; min-height: 34px; font-size: 13px; font-weight: 700; }
+.chip { border: 1px solid var(--line); background: var(--inset); border-radius: 99px; padding: 7px 12px; font-size: 14px; white-space: nowrap; }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
+.chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.bar { height: 8px; border-radius: 99px; background: var(--sunk); overflow: hidden; }
+.bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; }
+.card.hero .bar { background: rgb(255 255 255 / 25%); }
+.card.hero .bar i { background: var(--accent-fg); }
+input[type="text"], input[type="search"], input[type="password"], textarea, select { width: 100%; font: inherit; color: var(--fg); background: var(--inset); border: 1px solid var(--line); border-radius: 14px; padding: 11px 13px; min-height: 46px; }
+textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+ul, ol { margin: 0; padding-left: 20px; }
+li + li { margin-top: 4px; }
+.banner { border-radius: 14px; padding: 10px 12px; background: var(--sunk); font-size: 15px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.banner.warn { background: var(--penbg); color: var(--pen); }
+.banner span { flex: 1; min-width: 0; }
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(86px + env(safe-area-inset-bottom, 0px)); background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 99px; font-weight: 700; z-index: 20; max-width: calc(100% - 32px); text-align: center; font-size: 15px; }
+/* the word meter: how many words, and how many the goal allows */
+.meter { display: flex; align-items: baseline; gap: 6px; font-family: var(--display); font-variant-numeric: tabular-nums; flex-wrap: wrap; }
+.meter b { font-size: 26px; font-weight: 800; }
+.meter .to { color: var(--accent); font-size: 20px; }
+.meter small { font-family: var(--body); color: var(--muted); font-size: 13px; }
+/* lessons */
+.idea p + p { margin-top: 6px; }
+.pair { display: grid; gap: 6px; }
+.pair div { border-radius: 12px; padding: 9px 12px; font-size: 16px; }
+.pair .long { background: var(--penbg); }
+.pair .short { background: var(--goodbg); font-weight: 700; }
+.pair small { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; }
+.wordrow { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-top: 1px solid var(--line); }
+.wordrow:first-of-type { border-top: 0; }
+.wordrow .grow b { font-family: var(--display); font-size: 17px; }
+.star { border: 0; background: none; font-size: 20px; padding: 4px; min-width: 36px; min-height: 36px; }
+.dots { display: flex; gap: 4px; }
+.dots i { flex: 1; height: 6px; border-radius: 99px; background: var(--sunk); }
+.dots i.ok { background: var(--good); }
+.dots i.no { background: var(--pen); }
+.dots i.cur { background: var(--accent); }
+.q { font-size: 18px; font-weight: 700; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { text-align: left; border: 2px solid var(--line); background: var(--inset); border-radius: 14px; padding: 12px 14px; min-height: 48px; font-size: 16px; }
+.opt.right { border-color: var(--good); background: var(--goodbg); }
+.opt.wrong { border-color: var(--pen); background: var(--penbg); }
+.order { display: flex; gap: 6px; flex-wrap: wrap; min-height: 46px; padding: 6px; border: 2px dashed var(--line); border-radius: 14px; align-items: center; }
+.fb { border-radius: 14px; padding: 10px 12px; font-size: 16px; display: flex; flex-direction: column; gap: 4px; }
+.fb.ok { background: var(--goodbg); }
+.fb.no { background: var(--penbg); }
+.fb b.t { color: var(--good); }
+.fb.no b.t { color: var(--pen); }
+.score { font-family: var(--display); font-weight: 800; font-size: 44px; line-height: 1; font-variant-numeric: tabular-nums; color: var(--accent); }
+.scorerow { display: flex; gap: 14px; align-items: center; }
+/* the course list */
+.lesson { display: flex; gap: 12px; align-items: center; border: 0; background: none; text-align: left; padding: 10px 0; border-top: 1px solid var(--line); width: 100%; }
+.lesson:first-of-type { border-top: 0; }
+.lesson .n { width: 34px; height: 34px; border-radius: 50%; flex: none; display: grid; place-items: center; font-family: var(--display); font-weight: 800; background: var(--sunk); color: var(--muted); font-size: 15px; }
+.lesson.done .n { background: var(--good); color: #fff; }
+.lesson.next .n { background: var(--accent); color: var(--accent-fg); }
+.lesson:disabled { opacity: .5; cursor: default; }
+/* the drill: what changed */
+.chg { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 12px; background: var(--inset); border-left: 4px solid var(--line); }
+.chg.ok { border-left-color: var(--good); }
+.chg.no { border-left-color: var(--pen); }
+.chg .ft { font-size: 15px; }
+.chg .ft s { color: var(--pen); }
+.chg .ft ins { color: var(--good); text-decoration: none; font-weight: 700; }
+.kind { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 700; color: var(--muted); }
+/* explorer */
+.sense { display: flex; flex-direction: column; gap: 6px; }
+.syn { display: flex; flex-direction: column; gap: 3px; padding: 9px 0; border-top: 1px solid var(--line); }
+.syn .top { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.syn .top b { font-family: var(--display); font-size: 17px; margin-right: 2px; }
+.tag { font-size: 12px; font-weight: 700; border-radius: 99px; padding: 2px 8px; background: var(--sunk); color: var(--muted); white-space: nowrap; }
+.tag.pos { background: var(--goodbg); color: var(--good); }
+.tag.neg { background: var(--penbg); color: var(--pen); }
+.tag.safe { background: var(--goodbg); color: var(--good); }
+.tag.unsafe { background: var(--sunbg); color: var(--sun); }
+.ex { font-style: italic; color: var(--muted); font-size: 15px; }
+/* sheets */
+.sheet { position: fixed; inset: 0; background: rgb(10 5 20 / 45%); z-index: 30; display: flex; align-items: flex-end; justify-content: center; }
+.sheet .in { background: var(--bg); width: 100%; max-width: 680px; max-height: 88%; overflow-y: auto; border-radius: 22px 22px 0 0; padding-block: 16px calc(20px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 12px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+details > summary { cursor: pointer; font-weight: 700; color: var(--accent); min-height: 32px; display: flex; align-items: center; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="app">
+  <header class="pad"><div class="brand">Khula<b>sa</b></div><div class="ptitle" id="pageTitle"></div><button class="iconbtn" type="button" id="setBtn" aria-label="Settings">⚙</button></header>
+  <main id="main"><div class="page pad" id="page"></div></main>
+  <nav class="tabs" id="tabbar" aria-label="Sections">
+    <button type="button" data-tab="today"><span class="ti">📅</span>Today</button>
+    <button type="button" data-tab="one"><span class="ti">🧩</span>One Word</button>
+    <button type="button" data-tab="explore"><span class="ti">🔎</span>Explorer</button>
+    <button type="button" data-tab="words"><span class="ti">⭐</span>My Words<span class="badge" id="dueBadge" hidden></span></button>
+  </nav>
+</div>
+
+<div class="sheet" id="setSheet" hidden>
+  <div class="in pad" role="dialog" aria-label="Settings">
+    <div class="row between"><h2>Settings</h2><button class="btn" type="button" data-close>Done</button></div>
+    <div class="field"><label for="lvSel"><b>Your English level</b></label>
+      <select id="lvSel"><option value="A1">Beginner (A1)</option><option value="A2">Elementary (A2)</option><option value="B1">Intermediate (B1)</option><option value="B2">Upper intermediate (B2), like the CSS exam</option></select>
+      <span class="small muted">Mam writes for this level, and the daily sentences grow with it.</span></div>
+    <div class="field" id="keyBox" hidden>
+      <b>Free AI key (Google Gemini)</b>
+      <span class="small muted">Mam needs a free key from Google, once. If you added it in Bolo, Likho or Speak Up on this phone, it is already here. Never send it to anyone: it stays only on this phone.</span>
+      <div class="row"><a class="btn" href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">1 · Get my free key ↗</a><button class="btn primary" type="button" id="keyPaste">2 · Paste my key</button></div>
+      <input type="password" id="keyIn" autocomplete="off" placeholder="…or paste it here (it starts with AIza)" aria-label="Your Gemini key">
+      <div class="row"><button class="btn" type="button" id="keySave">Save key</button></div>
+      <span class="small" id="keyStatus"></span>
+    </div>
+    <div class="field" id="homeBox" hidden><b>📲 Keep Khulasa on your Home Screen</b><ol class="small" id="installSteps"></ol></div>
+    <div class="field"><b>Your other apps</b><div class="row" id="appLinks"></div></div>
+  </div>
+</div>
+<script>
+(() => {
+"use strict";
+// ---------- Course 1: Words for Précis ----------
+// From Chapters 2 and 3 of the learner's précis book, taught in our own words with our own examples (see notes/precis-book.md).
+// Exercise kinds: "mc" (choose; `no` says exactly why each wrong choice is wrong), "w" (write; `a` are good answers,
+// `keys` words that make an answer right; anything else goes to Mam), "ord" (put the words in order, weakest first).
+const LESSONS = [
+{ id: "exact", t: "The exact word", ch: 2,
+  idea: ["A précis has few words, so every word must carry the exact meaning. Words that look alike often mean different things.",
+    "Solitude is being alone by choice, and it can be peaceful. Isolation is being cut off, usually not by choice. Loneliness is the sad feeling of being alone.",
+    "One exact word can carry a whole phrase: \"about to happen very soon\" is imminent, and \"doing very well with money\" is prosperous."],
+  ex: [["The exam that is coming very soon worries every student in the class.", "The imminent exam worries every student."]],
+  words: [["solitude", "being alone by choice, often peaceful", "He wrote his book in the solitude of the hills.", "positive"], ["isolation", "being cut off from others, usually not by choice", "The flood left the village in isolation.", "negative"], ["imminent", "about to happen very soon", "The weather office warned of an imminent storm.", "neutral"], ["prosperous", "successful and doing well with money", "Sialkot is a prosperous city of exporters.", "positive"]],
+  items: [
+    { k: "mc", q: "Ali goes to the northern hills alone every summer because he loves the quiet. He enjoys his ___.", o: ["solitude", "isolation", "loneliness"], a: 0, why: "Solitude is being alone by choice, and it can be peaceful: Ali chose it and enjoys it.", no: { 1: "Isolation means being cut off, usually not by choice. Ali chose to go.", 2: "Loneliness is a sad feeling, but Ali enjoys being alone." } },
+    { k: "mc", q: "After the flood, the village had no road and no phone signal for a week. Its ___ made help difficult.", o: ["solitude", "isolation", "privacy"], a: 1, why: "Isolation: the village was cut off, and not by choice.", no: { 0: "Solitude is chosen and peaceful. The village did not choose this.", 2: "Privacy means others cannot see your life. It is not about being cut off." } },
+    { k: "mc", q: "Since her friends moved to Karachi, Sana feels sad and alone. She feels ___.", o: ["lonely", "alone", "solitary"], a: 0, why: "Lonely is the sad feeling of being alone.", no: { 1: "Alone only says that no one is with her. It does not say she is sad.", 2: "Solitary describes a thing done alone, like \"a solitary walk\". It is not a feeling." } },
+    { k: "mc", q: "Which one word means \"about to happen very soon\"?", o: ["imminent", "eminent", "eventual"], a: 0, why: "Imminent means about to happen: an imminent storm.", no: { 1: "Eminent means famous and respected, like an eminent scholar. It sounds like imminent but means something else.", 2: "Eventual means it will happen in the end, not soon." } },
+    { k: "w", q: "Write one word for \"doing very well with money\": The country became ___ after the new trade deals.", a: ["prosperous"], keys: ["prosperous", "wealthy", "rich", "affluent"], why: "Prosperous means successful and doing well with money. Wealthy, rich and affluent are close too." },
+    { k: "mc", q: "Which shorter sentence keeps the meaning of: \"The minister gave a speech that was full of lies and things that were not true.\"", o: ["The minister gave a dishonest speech.", "The minister gave a long speech.", "The minister lied."], a: 0, why: "Dishonest carries \"full of lies and things that were not true\" in one word.", no: { 1: "Long changes the meaning: the speech was dishonest, not long.", 2: "Too short: it loses the speech, which is what the sentence is about." } },
+    { k: "mc", q: "\"He was very, very tired\" in one exact word:", o: ["exhausted", "sleepy", "bored"], a: 0, why: "Exhausted means extremely tired.", no: { 1: "Sleepy means you want to sleep. It is weaker than very, very tired.", 2: "Bored means not interested. It is a different feeling." } },
+    { k: "w", q: "Make it shorter: replace the words in brackets with one word. \"The (meeting that happens every year) of the board is in May.\"", a: ["The annual meeting of the board is in May."], keys: ["annual", "yearly"], why: "A meeting that happens every year is an annual (or yearly) meeting." },
+  ] },
+{ id: "one", t: "One word for many", ch: 2,
+  idea: ["A noun can replace a phrase about a person: \"a person who saw the crime\" is an eyewitness.",
+    "A direct verb can replace a long phrase with a noun in it: \"carry out an investigation into\" is investigate, \"come to the conclusion\" is conclude, \"make a decision\" is decide.",
+    "In a précis, look for \"a person who…\", \"the act of…\", \"make a…\" and \"give a…\", and say them in one word."],
+  ex: [["The committee made a decision to give a reply to the letter.", "The committee decided to reply to the letter."]],
+  words: [["eyewitness", "a person who saw something happen", "An eyewitness told the police about the accident.", "neutral"], ["investigate", "to find out the facts about something", "The police will investigate the theft.", "neutral"], ["conclude", "to decide after thinking about the facts", "The court concluded that he was innocent.", "neutral"], ["vegetarian", "a person who does not eat meat", "My cousin has been a vegetarian for years.", "neutral"]],
+  items: [
+    { k: "w", q: "One word for \"a person who saw a crime happen\":", a: ["eyewitness"], keys: ["eyewitness", "witness", "eye witness"], why: "An eyewitness (or witness) saw it happen." },
+    { k: "w", q: "One verb: \"The police are carrying out an investigation into the theft.\" → The police are ___ the theft.", a: ["investigating"], keys: ["investigating"], why: "\"Carrying out an investigation into\" is one verb: investigating." },
+    { k: "mc", q: "\"The court came to the conclusion that he was innocent.\" The shorter sentence:", o: ["The court concluded that he was innocent.", "The court thought that he was innocent.", "The court decided innocent."], a: 0, why: "Came to the conclusion = concluded.", no: { 1: "Thought is weaker: a court decides after the evidence, it does not just think.", 2: "Not correct English: decided needs \"that he was innocent\"." } },
+    { k: "mc", q: "\"Make an improvement in\" is:", o: ["improve", "improvise", "approve"], a: 0, why: "Make an improvement in = improve.", no: { 1: "Improvise means to make or do something without a plan.", 2: "Approve means to agree to something or say it is good." } },
+    { k: "w", q: "One word for \"a person who does not eat meat\":", a: ["vegetarian"], keys: ["vegetarian"], why: "A vegetarian does not eat meat." },
+    { k: "w", q: "Shorter: \"She gave a reply to the email.\" → She ___ the email.", a: ["replied to", "answered"], keys: ["replied to", "answered"], why: "Gave a reply to = replied to, or answered." },
+    { k: "mc", q: "One word for \"a person who lives next door\":", o: ["neighbour", "tenant", "resident"], a: 0, why: "A neighbour lives next to you.", no: { 1: "A tenant pays rent to live in someone else's house.", 2: "A resident lives in a place, but not always next door." } },
+    { k: "mc", q: "\"The government took action to put a stop to the smuggling.\" The shortest correct sentence:", o: ["The government stopped the smuggling.", "The government acted on the smuggling.", "The government stopped."], a: 0, why: "Took action to put a stop to = stopped.", no: { 1: "Acted on is vague: it does not say the smuggling ended.", 2: "Too short: it loses what was stopped." } },
+  ] },
+{ id: "cut", t: "Cut what adds nothing", ch: 2,
+  idea: ["Some words add length but no meaning. In a précis, cut them.",
+    "Empty words: very, really, actually, basically, quite. Padding: \"due to the fact that\" (because), \"at this point in time\" (now), \"in order to\" (to), \"in the final analysis\" (finally).",
+    "Inflated words are long words for simple ideas: utilize (use), commence (begin), endeavour (try), ameliorate (improve). A précis is formal through clear, correct English, not through big words."],
+  ex: [["Due to the fact that prices are really very high, people utilize less electricity.", "Because prices are high, people use less electricity."]],
+  words: [["concise", "saying a lot in few words", "A précis must be concise.", "positive"], ["redundant", "not needed, because it repeats something", "\"True facts\" is redundant: facts are true.", "negative"], ["inflated", "too big or grand for what it means", "\"Utilize\" is an inflated word for \"use\".", "negative"]],
+  items: [
+    { k: "w", q: "Cut the padding: \"due to the fact that\" in one word.", a: ["because"], keys: ["because", "since", "as"], why: "Due to the fact that = because." },
+    { k: "w", q: "\"At this point in time\" in one word.", a: ["now"], keys: ["now", "currently"], why: "At this point in time = now." },
+    { k: "mc", q: "Which word is inflated? \"We must utilize all our resources.\"", o: ["utilize", "must", "resources"], a: 0, why: "Utilize is a long way to say use.", no: { 1: "Must carries the meaning of duty. Keep it.", 2: "Resources is the main noun. Keep it." } },
+    { k: "w", q: "Rewrite without the empty words: \"It is really very important to actually save water.\"", a: ["It is important to save water."], keys: [], why: "Really, very and actually add nothing: \"It is important to save water.\"" },
+    { k: "mc", q: "\"In order to pass, he studied hard.\" The shorter correct form:", o: ["To pass, he studied hard.", "For pass, he studied hard.", "He studied hard pass."], a: 0, why: "In order to = to.", no: { 1: "\"For pass\" is not correct English: for needs a noun, like \"for the exam\".", 2: "Not a correct sentence." } },
+    { k: "mc", q: "Which phrase is redundant (it says the same thing twice)?", o: ["true facts", "hard facts", "new facts"], a: 0, why: "Facts are already true, so \"true facts\" repeats itself.", no: { 1: "\"Hard facts\" is a fixed phrase meaning definite, proven facts.", 2: "\"New\" adds information." } },
+    { k: "w", q: "\"Commence\" in plain English:", a: ["begin"], keys: ["begin", "start"], why: "Commence = begin or start." },
+    { k: "mc", q: "Shorten it and keep the meaning: \"The final outcome of the long discussion was a new plan.\"", o: ["The long discussion produced a new plan.", "The discussion was long.", "A new plan."], a: 0, why: "An outcome is already final, and \"produced\" says \"the outcome was\" in one verb.", no: { 1: "It loses the new plan, the main point.", 2: "It is not a sentence, and it loses the discussion." } },
+  ] },
+{ id: "feel", t: "Positive and negative words", ch: 2,
+  idea: ["Denotation is the dictionary meaning of a word. Connotation is the feeling it carries.",
+    "Thrifty and stingy both mean careful with money. Thrifty praises; stingy criticises. Confident praises; arrogant criticises.",
+    "In a précis, keep the author's feeling. If the author praises, never choose a word that criticises."],
+  ex: [["The author: \"She saves every rupee for her children's education.\"", "Keeps the praise: She is thrifty. Changes it: She is stingy."]],
+  words: [["thrifty", "careful with money (praise)", "A thrifty family can save even on a small salary.", "positive"], ["stingy", "not willing to spend or give (criticism)", "The stingy landlord never repaired the roof.", "negative"], ["determined", "not giving up (praise)", "She was determined to pass the CSS exam.", "positive"], ["arrogant", "too proud, thinking you are better than others", "The arrogant officer ignored the people's complaints.", "negative"]],
+  items: [
+    { k: "mc", q: "The author admires the leader, who never gave up. The leader was ___.", o: ["determined", "stubborn", "obstinate"], a: 0, why: "Determined praises someone who does not give up.", no: { 1: "Stubborn criticises: refusing to change even when you should.", 2: "Obstinate is like stubborn, and negative." } },
+    { k: "mc", q: "The author criticises the shopkeeper, who never helps anyone with money. He is ___.", o: ["stingy", "thrifty", "economical"], a: 0, why: "Stingy criticises someone who will not spend or give.", no: { 1: "Thrifty praises careful spending, but the author is criticising.", 2: "Economical is neutral or positive: using little money or fuel." } },
+    { k: "mc", q: "The negative partner of \"confident\":", o: ["arrogant", "brave", "calm"], a: 0, why: "Arrogant: too proud, thinking you are better than others.", no: { 1: "Brave is positive.", 2: "Calm is positive." } },
+    { k: "mc", q: "The author calls the poet \"slim\". Which word keeps the same feeling?", o: ["slender", "skinny", "scrawny"], a: 0, why: "Slender, like slim, is a pleasant word.", no: { 1: "Skinny is often negative: too thin.", 2: "Scrawny is negative: thin and weak." } },
+    { k: "w", q: "Write a neutral word for \"cheap\" when the author only talks about the price, not the quality: The new phones are ___.", a: ["inexpensive", "affordable"], keys: ["inexpensive", "affordable", "low priced", "low-priced", "low cost", "low-cost"], why: "Cheap can suggest low quality. Inexpensive and affordable only talk about the price." },
+    { k: "mc", q: "A newspaper calls a peaceful march \"a riot\". What went wrong?", o: ["The word is too negative and not true.", "The word is too formal.", "The word is too long."], a: 0, why: "A riot is violent. Calling a peaceful march a riot adds a negative feeling that is not true.", no: { 1: "Riot is an everyday word, not a formal one.", 2: "Riot is short. The problem is its feeling." } },
+    { k: "mc", q: "Which word praises? \"The soldiers were ___ in the face of danger.\"", o: ["courageous", "reckless", "foolhardy"], a: 0, why: "Courageous praises bravery.", no: { 1: "Reckless criticises: taking risks without care.", 2: "Foolhardy criticises: brave in a foolish way." } },
+    { k: "mc", q: "\"Curious\" or \"nosy\": which one criticises?", o: ["nosy", "curious", "both"], a: 0, why: "Nosy criticises someone who looks into other people's business. Curious praises a wish to learn.", no: { 1: "Curious is usually positive: wanting to know and learn.", 2: "Only nosy is negative." } },
+  ] },
+{ id: "context", t: "Context changes meaning", ch: 2,
+  idea: ["Many words have more than one meaning. The words around them tell you which one.",
+    "Sanction can mean a punishment (\"trade sanctions\") or an approval (\"the board sanctioned the plan\"). Cultivate can mean to grow crops or to build a habit. Novel can be a story book or mean new and original.",
+    "In a précis, choose a synonym for the meaning in that sentence, not for the word in general."],
+  ex: [["The UN placed sanctions on the country.", "sanctions = punishments, like stopping trade"], ["The board sanctioned the new budget.", "sanctioned = approved"]],
+  words: [["sanction", "a punishment, or an official approval", "The UN placed sanctions on the country.", "neutral"], ["cultivate", "to grow crops, or to build a skill or habit", "She cultivated a habit of reading.", "positive"], ["novel", "a long story book, or new and original", "It was a novel idea.", "positive"], ["address", "to speak to people, or to start dealing with a problem", "The minister addressed the problem of load shedding.", "neutral"]],
+  items: [
+    { k: "mc", q: "\"The UN placed sanctions on the country.\" Sanctions here means:", o: ["punishments", "approvals", "rules"], a: 0, why: "Placed on a country shows punishment, like stopping trade.", no: { 1: "Approval is the other meaning of sanction, but \"placed on a country\" shows punishment.", 2: "Too general: these are punishments." } },
+    { k: "mc", q: "\"The committee sanctioned the new budget.\" Sanctioned means:", o: ["approved", "punished", "rejected"], a: 0, why: "Here sanction means to approve officially.", no: { 1: "You cannot punish a budget: here it is approval.", 2: "Rejected is the opposite of approved." } },
+    { k: "mc", q: "\"She cultivated a habit of reading.\" Cultivated means:", o: ["developed", "grew crops", "stopped"], a: 0, why: "With a habit, cultivate means to develop it.", no: { 1: "That is the farming meaning; a habit is not a crop.", 2: "The opposite meaning." } },
+    { k: "mc", q: "\"It was a novel idea.\" Novel means:", o: ["new and original", "a story book", "strange"], a: 0, why: "Before a noun like idea, novel is an adjective: new and original.", no: { 1: "Here novel describes idea, so it is not the book.", 2: "Strange adds a negative feeling; novel only means new." } },
+    { k: "mc", q: "\"The army called up its reserves.\" Reserves means:", o: ["extra soldiers kept ready", "shy feelings", "protected land"], a: 0, why: "In the army, reserves are soldiers kept ready for when they are needed.", no: { 1: "That is reserve as a quiet manner, not the army meaning.", 2: "That is a nature reserve, not the army meaning." } },
+    { k: "mc", q: "\"The minister addressed the problem of load shedding.\" Addressed means:", o: ["started to deal with", "wrote an address on", "spoke to"], a: 0, why: "To address a problem is to start dealing with it.", no: { 1: "That is the postal meaning.", 2: "Spoke to fits people (\"addressed the nation\"), not a problem." } },
+    { k: "w", q: "A synonym for \"address\" in: \"The Prime Minister will address the nation tonight.\"", a: ["speak to"], keys: ["speak to", "talk to", "give a speech to", "deliver a speech to"], why: "Here address means to speak to people." },
+    { k: "mc", q: "\"He is a man of great reserve.\" Reserve means:", o: ["a quiet manner, not showing feelings", "a store kept for later", "a protected forest"], a: 0, why: "Used about a person's manner, reserve means not showing feelings.", no: { 1: "That meaning is about things kept, not a person's manner.", 2: "That is a nature reserve." } },
+  ] },
+{ id: "link", t: "Linking words for a précis", ch: 2,
+  idea: ["A précis joins many ideas in few words, so it needs exact linking words.",
+    "thus or therefore: a result. however: a contrast. namely: to name the things you mean. notwithstanding: in spite of. henceforth: from now on. in essence: the main point is."],
+  ex: [["Prices rose. Because of this, people bought less.", "Prices rose; thus, people bought less."]],
+  words: [["thus", "as a result", "Prices rose; thus, people bought less.", "neutral"], ["namely", "that is, to name them", "Two provinces suffered most, namely Sindh and Balochistan.", "neutral"], ["notwithstanding", "in spite of", "Notwithstanding the rain, the match went ahead.", "neutral"], ["henceforth", "from now on", "Henceforth, offices will close at five.", "neutral"]],
+  items: [
+    { k: "mc", q: "Prices rose; ___, people bought less.", o: ["thus", "however", "namely"], a: 0, why: "Buying less is a result of rising prices: thus.", no: { 1: "However shows a contrast, but this is a result.", 2: "Namely introduces names or a list." } },
+    { k: "mc", q: "The plan was cheap; ___, it failed.", o: ["however", "thus", "henceforth"], a: 0, why: "Cheap but failed is a contrast: however.", no: { 1: "Thus would say it failed because it was cheap.", 2: "Henceforth means from now on." } },
+    { k: "mc", q: "Two provinces suffered most, ___ Sindh and Balochistan.", o: ["namely", "thus", "however"], a: 0, why: "Namely names the things you mean.", no: { 1: "Thus shows a result.", 2: "However shows a contrast." } },
+    { k: "mc", q: "___ the rain, the match went ahead.", o: ["Notwithstanding", "Henceforth", "Namely"], a: 0, why: "Notwithstanding = in spite of.", no: { 1: "Henceforth means from now on.", 2: "Namely introduces names." } },
+    { k: "mc", q: "___, all government offices will close at five o'clock. (from now on)", o: ["Henceforth", "Notwithstanding", "Thus"], a: 0, why: "Henceforth = from now on.", no: { 1: "Notwithstanding means in spite of.", 2: "Thus shows a result." } },
+    { k: "w", q: "Join with a linking word that shows the result: \"He trained every day. He won the race.\"", a: ["He trained every day; thus, he won the race."], keys: ["thus", "therefore", "so", "as a result", "consequently", "hence"], why: "A result word joins them: \"He trained every day; thus, he won the race.\"" },
+    { k: "mc", q: "\"In essence\" means:", o: ["the main point is", "for example", "in spite of"], a: 0, why: "In essence introduces the main point.", no: { 1: "For example introduces an example.", 2: "That is notwithstanding." } },
+    { k: "mc", q: "Which sentence uses its linking word wrongly?", o: ["He was ill; namely, he came to work.", "He was ill; however, he came to work.", "He was ill; thus, he stayed at home."], a: 0, why: "Namely introduces names or details, not a contrast. It should be however.", no: { 1: "This one is right: however shows the contrast.", 2: "This one is right: thus shows the result." } },
+  ] },
+{ id: "mistakes", t: "Common word mistakes", ch: 2,
+  idea: ["A hard word helps only when you use it correctly. Many learners pick a big word that means something else.",
+    "Some mistakes come from office English and from Urdu habits: \"discuss about\" (say \"discuss\"), \"the concerned officer\" (say \"the officer concerned\"), \"revert\" for reply (say \"reply\"), \"very much intelligent\" (say \"very intelligent\")."],
+  ex: [["We discussed about the problem with the concerned officer.", "We discussed the problem with the officer concerned."]],
+  words: [["discuss", "to talk about (no \"about\" after it)", "We discussed the budget.", "neutral"], ["nefarious", "wicked and criminal", "The gang ran a nefarious smuggling business.", "negative"], ["revert", "to go back to an earlier state", "After the storm, life reverted to normal.", "neutral"]],
+  items: [
+    { k: "mc", q: "Which is correct?", o: ["We discussed the plan.", "We discussed about the plan.", "We did discussion on the plan."], a: 0, why: "Discuss takes no \"about\".", no: { 1: "Discuss already means \"talk about\", so \"about\" repeats it.", 2: "Wordy: \"did discussion on\" = discussed." } },
+    { k: "mc", q: "Which is correct formal English?", o: ["Please send it to the officer concerned.", "Please send it to the concerned officer.", "Please send it to the concerning officer."], a: 0, why: "Put concerned after the noun: the officer concerned (the officer it is about).", no: { 1: "\"The concerned officer\" can mean the worried officer.", 2: "Concerning means worrying." } },
+    { k: "mc", q: "\"Nefarious\" means:", o: ["wicked and criminal", "negative", "dangerous"], a: 0, why: "Nefarious is a strong word for wicked, criminal deeds.", no: { 1: "Too weak: nefarious is much stronger than negative.", 2: "Not exact: nefarious means evil, not only risky." } },
+    { k: "mc", q: "Which is correct? \"The new law will ___ crime.\"", o: ["reduce", "reduce down", "decrease down"], a: 0, why: "Reduce already means make less.", no: { 1: "\"Down\" repeats the meaning of reduce.", 2: "\"Down\" repeats the meaning of decrease." } },
+    { k: "mc", q: "\"He is very much intelligent\" should be:", o: ["He is very intelligent.", "He is much intelligent.", "He is very much intelligence."], a: 0, why: "Before an adjective, use very, not very much.", no: { 1: "Much is not used alone before an adjective like intelligent.", 2: "Intelligence is a noun; the sentence needs the adjective intelligent." } },
+    { k: "mc", q: "Which is correct?", o: ["I look forward to meeting you.", "I look forward to meet you.", "I am looking forward for meeting you."], a: 0, why: "After \"look forward to\", use the -ing form.", no: { 1: "After \"look forward to\", the verb needs -ing: meeting.", 2: "The word is \"to\", not \"for\"." } },
+    { k: "mc", q: "In correct English, \"revert\" means:", o: ["to go back to an earlier state", "to reply", "to send"], a: 0, why: "Revert means to go back. For a reply, say \"reply\" or \"get back to me\".", no: { 1: "Many offices use revert for reply, but in correct English it means go back.", 2: "Send is a different verb." } },
+    { k: "mc", q: "Which is correct?", o: ["He was accused of corruption.", "He was accused for corruption.", "He was accused with corruption."], a: 0, why: "The fixed pair is \"accused of\".", no: { 1: "Accuse takes of, not for.", 2: "Accuse takes of, not with." } },
+  ] },
+{ id: "near", t: "Near-synonyms", ch: 3,
+  idea: ["Synonyms are words with almost the same meaning. True synonyms are rare: most differ in tone, formality or strength.",
+    "Tone: said and exclaimed (exclaimed adds strong feeling). Formality: ask and inquire (inquire is formal). Strength: happy and elated (elated is much stronger).",
+    "In a précis, a synonym must keep all three: the same tone, the same formality and the same strength."],
+  ex: [["\"We won!\" she said.", "Keeps the excitement: she exclaimed. Loses it: she stated."]],
+  words: [["inquire", "to ask (formal)", "I am writing to inquire about the post.", "neutral"], ["exclaim", "to say suddenly with strong feeling", "\"We won!\" she exclaimed.", "neutral"], ["elated", "extremely happy", "He was elated by his result.", "positive"], ["content", "calm and satisfied", "She is content with a simple life.", "positive"]],
+  items: [
+    { k: "mc", q: "A formal word for \"ask\" in a letter: \"I am writing to ___ about the job.\"", o: ["inquire", "shout", "wonder"], a: 0, why: "Inquire is the formal word for ask.", no: { 1: "Shout means to speak loudly. It does not fit a letter.", 2: "Wonder means to think about something, not to ask it." } },
+    { k: "mc", q: "Which word is stronger than \"happy\"?", o: ["elated", "content", "pleased"], a: 0, why: "Elated means extremely happy.", no: { 1: "Content is calm and satisfied: weaker than happy.", 2: "Pleased is about the same as happy, or weaker." } },
+    { k: "mc", q: "\"We won!\" she said. Which word keeps her excitement?", o: ["exclaimed", "stated", "mentioned"], a: 0, why: "Exclaimed shows strong, sudden feeling.", no: { 1: "Stated is calm and formal: it loses the excitement.", 2: "Mentioned is too weak: it sounds like a small, passing remark." } },
+    { k: "mc", q: "Which word is the formal one?", o: ["purchase", "buy", "get"], a: 0, why: "Purchase is the formal word for buy.", no: { 1: "Buy is neutral, everyday English.", 2: "Get is informal and vague." } },
+    { k: "mc", q: "\"The report was quite good.\" A synonym with the same strength:", o: ["decent", "outstanding", "terrible"], a: 0, why: "Decent means good enough: about the same strength as quite good.", no: { 1: "Outstanding is much stronger.", 2: "Terrible is the opposite." } },
+    { k: "w", q: "Write a formal word for \"begin\": \"The meeting will ___ at ten o'clock.\"", a: ["commence"], keys: ["commence"], why: "Commence is the formal word for begin." },
+    { k: "mc", q: "Which way of looking shows anger?", o: ["glare", "glance", "peek"], a: 0, why: "To glare is to look in an angry way.", no: { 1: "A glance is a quick look.", 2: "A peek is a quick, secret look." } },
+    { k: "mc", q: "\"The child is ill.\" A synonym with the same meaning and tone:", o: ["sick", "dying", "weak"], a: 0, why: "Sick means ill, with the same strength.", no: { 1: "Dying is far stronger and changes the meaning.", 2: "Weak is only one sign of illness." } },
+  ] },
+{ id: "ladder", t: "Strength ladders", ch: 3,
+  idea: ["Many words show the same idea at different strengths. Put them on a ladder from weak to strong.",
+    "annoyed → angry → furious. like → love → adore. cool → cold → freezing. dislike → hate → detest.",
+    "In a précis, keep the author's strength: a weaker word weakens the meaning, and a stronger word exaggerates it."],
+  ex: [["The author: \"The people were angry about the price of flour.\"", "Exaggerates: furious. Weakens: annoyed. Keeps it: angry."]],
+  words: [["furious", "extremely angry", "The farmers were furious about the water shortage.", "negative"], ["adore", "to love very much", "Children adore their grandparents.", "positive"], ["detest", "to hate very much", "She detests dishonesty.", "negative"], ["catastrophe", "a very great disaster", "The 2022 floods were a catastrophe.", "negative"]],
+  items: [
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["annoyed", "angry", "furious"], why: "annoyed (a little) → angry → furious (extremely)." },
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["like", "love", "adore"], why: "like → love → adore (love very much)." },
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["cool", "cold", "freezing"], why: "cool → cold → freezing (extremely cold)." },
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["dislike", "hate", "detest"], why: "dislike → hate → detest (hate very much)." },
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["good", "great", "outstanding"], why: "good → great → outstanding (the best kind)." },
+    { k: "mc", q: "The author writes that the floods were a \"disaster\". Which word keeps the strength?", o: ["catastrophe", "problem", "issue"], a: 0, why: "Catastrophe is as strong as disaster, or a little stronger.", no: { 1: "Problem is much weaker.", 2: "Issue is much weaker." } },
+    { k: "mc", q: "\"He was angry.\" Which word exaggerates it?", o: ["furious", "annoyed", "upset"], a: 0, why: "Furious is stronger than angry, so it exaggerates.", no: { 1: "Annoyed is weaker: it weakens the meaning, it does not exaggerate.", 2: "Upset is weaker and adds sadness." } },
+    { k: "ord", q: "Put them in order, from the weakest to the strongest:", o: ["worried", "afraid", "terrified"], why: "worried → afraid → terrified (extremely afraid)." },
+  ] },
+{ id: "key", t: "Keep the key term", ch: 3,
+  idea: ["Some words must never change in a précis.",
+    "Technical terms stay: a hypothesis (an idea waiting to be tested) is not a theory (an explanation already tested). Inflation is not \"high prices\". Diabetes is not \"a sugar problem\".",
+    "The key term of the passage stays the same every time. If the passage is about climate change, write \"climate change\" every time, not \"weather\" or \"global problems\", or the examiner thinks you mean something else."],
+  ex: [["The passage: \"Renewable energy can end our dependence on imported oil.\"", "Keep \"renewable energy\" every time you write about it."]],
+  words: [["hypothesis", "an idea that still has to be tested", "The scientist tested her hypothesis.", "neutral"], ["theory", "an explanation that has been tested", "Darwin's theory of evolution.", "neutral"], ["inflation", "a general rise in prices across the economy", "Inflation hurts the poor most.", "negative"], ["amend", "to change a law or a document officially", "Parliament amended the constitution.", "neutral"]],
+  items: [
+    { k: "mc", q: "The passage says: \"The scientist tested her hypothesis.\" In your précis you write:", o: ["her hypothesis", "her theory", "her belief"], a: 0, why: "Hypothesis is the technical term: keep it.", no: { 1: "A theory is already tested and explained; a hypothesis still has to be tested.", 2: "A belief is not scientific." } },
+    { k: "mc", q: "A passage about \"inflation\" (prices rising across the whole economy). Your précis should say:", o: ["inflation", "costly things", "the price of petrol"], a: 0, why: "Inflation is the economic term: keep it.", no: { 1: "Vague, and not the economic term.", 2: "Too narrow: inflation is all prices, not only petrol." } },
+    { k: "mc", q: "The passage's key term is \"climate change\". Which sentence keeps it?", o: ["Climate change threatens Pakistan's farms.", "Bad weather threatens Pakistan's farms.", "Global problems threaten Pakistan's farms."], a: 0, why: "It keeps the key term exactly.", no: { 1: "Weather is one day's conditions; climate change is a long-term change.", 2: "Too general: it could mean any problem." } },
+    { k: "mc", q: "\"The patient has diabetes.\" Which change is WRONG in a précis?", o: ["The patient has a sugar problem.", "The patient is diabetic.", "The patient suffers from diabetes."], a: 0, why: "\"A sugar problem\" is vague and drops the medical term.", no: { 1: "Diabetic keeps the medical term, so this one is fine.", 2: "It keeps the medical term, so this one is fine." } },
+    { k: "mc", q: "The passage says \"the constitution was amended\". Keep:", o: ["amended", "changed a little", "broken"], a: 0, why: "Amended is the legal term for an official change.", no: { 1: "\"Changed a little\" guesses the size of the change; amended is the legal term.", 2: "Broken has a different, negative meaning." } },
+    { k: "w", q: "The passage uses \"renewable energy\" four times. Which words do you use for it in your précis?", a: ["renewable energy"], keys: ["renewable energy"], why: "Keep the key term the same every time: renewable energy." },
+    { k: "mc", q: "Which word can you safely change? \"The committee examined the evidence carefully.\"", o: ["carefully", "evidence", "committee"], a: 0, why: "Carefully can become thoroughly. Evidence and committee are key terms.", no: { 1: "Evidence is a key term: changing it can change the meaning.", 2: "Committee names who did it: keep it." } },
+    { k: "mc", q: "A legal passage says \"tort\". In your précis you write:", o: ["tort", "wrong", "crime"], a: 0, why: "Tort is the legal term for a civil wrong: keep it.", no: { 1: "Too general: tort is a special legal term.", 2: "A crime is a different legal idea." } },
+  ] },
+{ id: "distort", t: "Spot the distortion", ch: 3,
+  idea: ["A distortion is a word change that changes the meaning. Examiners cut marks for it.",
+    "It loses part of the meaning: arduous (long AND hard) → long. It is a different fault: ambiguous (two possible meanings) → vague (not clear). It adds a judgement: risk → gamble (sounds foolish). It weakens the feeling: adoration → liking. It is disrespectful: exotic food → distinctive food is better."],
+  ex: [["The passage: \"The climb was arduous.\"", "Distorts: The climb was long. Keeps it: The climb was difficult and tiring."]],
+  words: [["arduous", "difficult and tiring, needing a lot of effort", "Rebuilding after the floods was an arduous task.", "negative"], ["ambiguous", "with two or more possible meanings", "The law is ambiguous about this case.", "negative"], ["vague", "not clear or detailed", "His answer was vague.", "negative"], ["distort", "to change something so it is no longer true", "Do not distort the author's meaning.", "negative"]],
+  items: [
+    { k: "mc", q: "\"The climb was arduous.\" Which keeps the meaning?", o: ["difficult and tiring", "long", "interesting"], a: 0, why: "Arduous means difficult and tiring.", no: { 1: "Long loses the difficulty.", 2: "Interesting changes the meaning completely." } },
+    { k: "mc", q: "\"The law is ambiguous.\" Which keeps the meaning?", o: ["can be read in two ways", "unclear and vague", "very short"], a: 0, why: "Ambiguous: it has two possible meanings.", no: { 1: "Vague is a different fault: not clear or detailed. Ambiguous means two clear but different readings.", 2: "A different meaning." } },
+    { k: "mc", q: "\"Investing in the project is a risk.\" Which word ADDS a judgement?", o: ["gamble", "risk", "venture"], a: 0, why: "A gamble suggests a foolish bet: it adds a judgement.", no: { 1: "This is the original word.", 2: "A venture is a risky business plan, without saying it is foolish." } },
+    { k: "mc", q: "\"The fans' adoration of the singer.\" Which word WEAKENS it?", o: ["liking", "love", "devotion"], a: 0, why: "Liking is much weaker than adoration.", no: { 1: "Love is strong, close to adoration.", 2: "Devotion is strong, close to adoration." } },
+    { k: "mc", q: "\"Tourists enjoyed the exotic food of Hunza.\" A more respectful word:", o: ["distinctive", "strange", "weird"], a: 0, why: "Distinctive praises what is special, without making it sound foreign or odd.", no: { 1: "Strange can sound negative, like an outsider's view.", 2: "Weird is negative." } },
+    { k: "mc", q: "\"The minister admitted the mistake.\" Which word DISTORTS it?", o: ["claimed", "acknowledged", "accepted"], a: 0, why: "Claimed suggests doubt, and he did not claim, he admitted.", no: { 1: "Acknowledged keeps the meaning.", 2: "Accepted keeps the meaning." } },
+    { k: "mc", q: "\"Prices rose slightly.\" Which DISTORTS it?", o: ["soared", "increased a little", "rose a bit"], a: 0, why: "Soared means rose very fast: it exaggerates.", no: { 1: "This keeps the meaning.", 2: "This keeps the meaning (a little informal)." } },
+    { k: "w", q: "The passage says \"Many students failed\". A learner wrote \"All students failed.\" Write the right word for \"All\":", a: ["many"], keys: ["many"], why: "All exaggerates: the passage says many." },
+  ] },
+{ id: "tone", t: "Change the tone", ch: 3,
+  idea: ["Tone is the attitude behind the words: formal or informal, positive or negative.",
+    "\"The results were good\" can be: satisfactory (formal and neutral), excellent (positive and strong), merely adequate (negative), great (informal).",
+    "In a précis, match the passage's tone and keep it from start to end. Write formally: no slang, no short forms like don't, and no \"I think\"."],
+  ex: [["The results were good.", "Formal: The results were satisfactory. Negative: The results were merely adequate."]],
+  words: [["satisfactory", "good enough (formal)", "The results were satisfactory.", "neutral"], ["adequate", "just enough", "The hospital lacks adequate staff.", "neutral"], ["merely", "only, and no more", "The plan was merely adequate.", "negative"]],
+  items: [
+    { k: "mc", q: "The formal version of \"The results were good\":", o: ["The results were satisfactory.", "The results were great.", "The results were OK."], a: 0, why: "Satisfactory is formal and neutral.", no: { 1: "Great is informal.", 2: "OK is spoken, informal English." } },
+    { k: "mc", q: "The negative version:", o: ["The results were merely adequate.", "The results were excellent.", "The results were fine."], a: 0, why: "Merely adequate: only just enough, which criticises.", no: { 1: "Excellent is strongly positive.", 2: "Fine is neutral and informal." } },
+    { k: "mc", q: "Which is informal (avoid it in a précis)?", o: ["The plan didn't work.", "The plan failed.", "The plan was unsuccessful."], a: 0, why: "Didn't is a short form: write did not, or failed.", no: { 1: "Failed is correct, formal English.", 2: "Unsuccessful is formal." } },
+    { k: "w", q: "Rewrite it formally: \"The govt is gonna fix the roads soon.\"", a: ["The government will repair the roads soon."], keys: [], why: "Write govt in full, and say \"will\" for gonna: \"The government will repair the roads soon.\"" },
+    { k: "mc", q: "A serious, formal passage. Which word keeps the tone?", o: ["children", "kids", "little ones"], a: 0, why: "Children is the neutral, formal word.", no: { 1: "Kids is informal.", 2: "Little ones is informal and emotional." } },
+    { k: "mc", q: "The author: \"The new hospital is a blessing for the poor.\" Which sentence keeps the positive tone?", o: ["The new hospital greatly helps the poor.", "The new hospital is okay for the poor.", "The new hospital is meant for poor people."], a: 0, why: "Greatly helps keeps the strong, positive feeling.", no: { 1: "Okay is informal and much weaker.", 2: "It loses the positive feeling." } },
+    { k: "mc", q: "Which sentence does NOT belong in a précis?", o: ["In my opinion, the author is right.", "The author argues that education matters.", "Education, the author argues, matters most."], a: 0, why: "A précis reports the author. It never adds your own opinion.", no: { 1: "This reports the author: correct.", 2: "This reports the author: correct." } },
+    { k: "w", q: "Make it formal: \"Lots of people think the tax is unfair.\"", a: ["Many people consider the tax unfair."], keys: [], why: "Lots of is informal: \"Many people consider the tax unfair.\"" },
+  ] },
+{ id: "report", t: "Reporting verbs", ch: 3,
+  idea: ["A précis reports what the author does: states a fact, argues a case, warns or admits something. The right verb shows it in one word.",
+    "states, notes: neutral facts. argues, contends: makes a case with reasons. claims: says something that may not be true. admits, concedes: accepts a point against his side. warns, stresses: urgent."],
+  ex: [["The writer says again and again that we must save water, or there will be a crisis.", "The writer warns of a water crisis."]],
+  words: [["argue", "to give reasons for an opinion", "The author argues that education should be free.", "neutral"], ["contend", "to argue firmly (formal)", "The writer contends that cities need more parks.", "neutral"], ["concede", "to accept that something is true, against your side", "He concedes that the plan is costly.", "neutral"], ["stress", "to say firmly that something is important", "She stresses the need for honesty.", "neutral"]],
+  items: [
+    { k: "mc", q: "The author gives reasons why education should be free. The author ___ that education should be free.", o: ["argues", "notes", "admits"], a: 0, why: "Giving reasons for an opinion is arguing.", no: { 1: "Notes is for a simple fact, not a case with reasons.", 2: "Admits means accepting a point against his own side." } },
+    { k: "mc", q: "The author says: \"Yes, the plan is costly, but it is still needed.\" The author ___ that the plan is costly.", o: ["concedes", "claims", "warns"], a: 0, why: "He accepts a point against his side: concedes.", no: { 1: "Claims suggests it may not be true.", 2: "Warns is for a danger." } },
+    { k: "mc", q: "The author says there will be water shortages if no dams are built. The author ___ of water shortages.", o: ["warns", "admits", "notes"], a: 0, why: "Speaking of a coming danger is warning.", no: { 1: "Admits means accepting a point against his side.", 2: "Notes is too neutral for a danger." } },
+    { k: "mc", q: "A company says its product is the best, without proof. The company ___ that its product is the best.", o: ["claims", "states", "shows"], a: 0, why: "Claims: saying something that may not be true.", no: { 1: "States sounds like a plain fact.", 2: "Shows means it was proved, which it was not." } },
+    { k: "mc", q: "The author simply gives a fact: the population is about 240 million. The author ___ that the population is about 240 million.", o: ["states", "argues", "warns"], a: 0, why: "A plain fact: states.", no: { 1: "Argues needs an opinion with reasons.", 2: "Warns needs a danger." } },
+    { k: "mc", q: "Which reporting verb is neutral?", o: ["notes", "claims", "warns"], a: 0, why: "Notes simply reports.", no: { 1: "Claims adds doubt.", 2: "Warns adds urgency." } },
+    { k: "w", q: "Write a reporting verb: \"The writer says again and again that honesty matters most.\" → The writer ___ that honesty matters most.", a: ["stresses"], keys: ["stresses", "emphasizes", "emphasises", "insists", "repeats", "underlines", "underscores"], why: "Saying something firmly, again and again, is stressing (or emphasising) it." },
+    { k: "mc", q: "Which sentence is right for a précis?", o: ["The author contends that cities need more parks.", "I contend that cities need more parks.", "The author is contending cities more parks."], a: 0, why: "It reports the author in the third person, in correct English.", no: { 1: "A précis is in the third person: never I.", 2: "Not correct English." } },
+  ] },
+];
+// ---------- One word for many: a phrase, its one word, an example ----------
+const ONE_WORD = [
+  ["People", "👥", [
+    ["a person who cannot be corrected", "incorrigible", "The teacher gave up on the incorrigible student."],
+    ["a person who eats far too much", "glutton", "He ate like a glutton at the wedding."],
+    ["a person who speaks two languages well", "bilingual", "Most children in Lahore are bilingual."],
+    ["a person who loves and defends their country", "patriot", "The soldier was a true patriot."],
+    ["a person who gives money to help others", "philanthropist", "The philanthropist built a hospital in Thar."],
+    ["a person who hates or distrusts people", "misanthrope", "The old misanthrope never spoke to his neighbours."],
+    ["a person who expects good things to happen", "optimist", "An optimist sees a chance in every problem."],
+    ["a person who expects bad things to happen", "pessimist", "The pessimist was sure it would rain."],
+    ["a person who is new to a skill or job", "novice", "As a novice, she asked many questions."],
+    ["a person who leaves their country to live in another", "emigrant", "Many emigrants send money home."],
+    ["a person who comes to live in a country", "immigrant", "The immigrant opened a small shop."],
+    ["a person forced to leave their country because of war", "refugee", "Pakistan has hosted millions of Afghan refugees."],
+    ["a person who walks in the street", "pedestrian", "The car stopped for a pedestrian."],
+    ["a person who watches a match or a show", "spectator", "Thousands of spectators filled the stadium."],
+    ["a person who does something for pleasure, not for money", "amateur", "He is an amateur photographer."],
+    ["a person who knows a lot about one subject", "specialist", "She saw a heart specialist."],
+  ]],
+  ["Character", "🧭", [
+    ["able to read and write", "literate", "Only some of the village adults are literate."],
+    ["not able to read and write", "illiterate", "Illiterate voters need simple ballot papers."],
+    ["that cannot be avoided", "inevitable", "Change is inevitable."],
+    ["that cannot be believed", "incredible", "His story was incredible."],
+    ["that cannot be read (writing)", "illegible", "The doctor's note was illegible."],
+    ["that can easily be broken", "fragile", "Pack the glasses carefully: they are fragile."],
+    ["easily made angry", "irritable", "He is irritable when he is hungry."],
+    ["not willing to do something", "reluctant", "She was reluctant to speak in public."],
+    ["willing to accept other people's views", "tolerant", "A tolerant society respects every faith."],
+    ["not thinking about other people's feelings", "inconsiderate", "Playing loud music at night is inconsiderate."],
+    ["famous for something bad", "notorious", "The road is notorious for accidents."],
+    ["famous and respected", "renowned", "Lahore is renowned for its food."],
+    ["that cannot be seen", "invisible", "The virus is invisible to the eye."],
+    ["that can never be satisfied", "insatiable", "He has an insatiable hunger for power."],
+    ["easy to see or understand", "obvious", "The answer was obvious."],
+  ]],
+  ["Government and law", "🏛️", [
+    ["government by the people, through votes", "democracy", "Pakistan is a parliamentary democracy."],
+    ["rule by one person with total power", "dictatorship", "The country suffered under a dictatorship."],
+    ["government by officials who follow many rules", "bureaucracy", "Bureaucracy slows down small businesses."],
+    ["a list of things to discuss at a meeting", "agenda", "Water was first on the agenda."],
+    ["a vote by all the people on one question", "referendum", "The issue was settled by a referendum."],
+    ["the official count of all the people in a country", "census", "The census counts every household."],
+    ["a tax on goods brought into a country", "tariff", "The government raised tariffs on imported cars."],
+    ["a law passed by a parliament", "statute", "The statute protects workers' rights."],
+    ["to give up a job or position officially", "resign", "The minister resigned after the scandal."],
+    ["to charge a high official with a serious crime, to remove them", "impeach", "Parliament voted to impeach the president."],
+    ["an official ban on trade with a country", "embargo", "The UN placed an embargo on arms sales."],
+    ["the person accused in a court case", "defendant", "The defendant denied the charges."],
+    ["the person who brings a case to court", "plaintiff", "The plaintiff asked for damages."],
+    ["money paid so an accused person can leave jail until the trial", "bail", "The court granted him bail."],
+    ["a country's full power to rule itself", "sovereignty", "Every nation guards its sovereignty."],
+    ["an agreement to stop fighting for a time", "truce", "Both sides agreed to a truce."],
+  ]],
+  ["Society and economy", "📈", [
+    ["a general rise in prices", "inflation", "Inflation hurts people on fixed incomes."],
+    ["a time when the economy shrinks", "recession", "Many jobs were lost in the recession."],
+    ["money sent home by people working abroad", "remittance", "Remittances support millions of families."],
+    ["the movement of people from villages to cities", "urbanisation", "Urbanisation puts pressure on housing."],
+    ["the study of a population's numbers and changes", "demography", "Demography shows that Pakistan is young."],
+    ["having many different kinds of people", "diverse", "Karachi is a diverse city."],
+    ["money paid regularly to a person who has retired", "pension", "He lives on his pension."],
+    ["a serious lack of food in a whole area", "famine", "War often leads to famine."],
+    ["a disease that spreads across many countries", "pandemic", "The pandemic closed schools worldwide."],
+    ["a disease that spreads quickly in one area", "epidemic", "There was a dengue epidemic in the city."],
+    ["a person who offers to work without pay", "volunteer", "Volunteers helped after the floods."],
+    ["the money a country owes to others", "debt", "The national debt keeps growing."],
+    ["goods sold to other countries", "exports", "Textiles are Pakistan's main exports."],
+    ["a person who starts a business and takes the risk", "entrepreneur", "The young entrepreneur opened an IT firm."],
+  ]],
+  ["Knowledge and science", "🔬", [
+    ["the study of stars and planets", "astronomy", "Astronomy was studied in Baghdad centuries ago."],
+    ["the study of living things", "biology", "Biology explains how plants grow."],
+    ["the study of the mind and behaviour", "psychology", "Psychology helps us understand stress."],
+    ["a doctor who treats children", "paediatrician", "The paediatrician checked the baby."],
+    ["a doctor who treats skin problems", "dermatologist", "The dermatologist treated her rash."],
+    ["a book of maps", "atlas", "Find Gilgit in the atlas."],
+    ["a list of hard words and their meanings at the end of a book", "glossary", "Look up the term in the glossary."],
+    ["a word with the same meaning as another", "synonym", "Glad is a synonym of happy."],
+    ["a word with the opposite meaning", "antonym", "Sad is an antonym of happy."],
+    ["the story of a person's life written by someone else", "biography", "I read a biography of the Quaid."],
+    ["the story of a person's life written by that person", "autobiography", "He wrote his autobiography in prison."],
+    ["a word made from the first letters of other words, like NADRA", "acronym", "NADRA is an acronym."],
+    ["a short summary of a long text", "précis", "Write a précis of the passage."],
+  ]],
+  ["Time and places", "🗓️", [
+    ["happening every year", "annual", "The annual budget is presented in June."],
+    ["happening every two years", "biennial", "The biennial conference is in Islamabad."],
+    ["lasting for a short time only", "temporary", "The flood shelters were temporary."],
+    ["lasting for ever, or for a very long time", "permanent", "They need permanent homes."],
+    ["a period of ten years", "decade", "Pakistan changed a lot in a decade."],
+    ["a period of one hundred years", "century", "The fort is three centuries old."],
+    ["a place where birds are kept", "aviary", "The zoo has a large aviary."],
+    ["a place where bees are kept", "apiary", "The farmer sells honey from his apiary."],
+    ["a place where dead bodies are kept for a time", "mortuary", "The bodies were taken to the mortuary."],
+    ["a place where old records and papers are kept", "archive", "The national archive keeps old letters."],
+    ["a home for children whose parents have died", "orphanage", "She grew up in an orphanage."],
+    ["a place where weapons are stored", "armoury", "The guards locked the armoury."],
+  ]],
+];
+
+// ---------- the Explorer: two words ready on the phone, the way every answer looks ----------
+const SEEDS = {
+  alone: { word: "alone", type: "adjective and adverb", say: "uh-LOHN", senses: [
+    { meaning: "with no one else there, by choice", example: "I like to study alone.", synonyms: [
+      { word: "on my own", tone: "neutral", formality: "neutral", strength: "same", context: "the most common way to say it in speech", example: "I live on my own.", precis_safe: true },
+      { word: "by myself", tone: "neutral", formality: "informal", strength: "same", context: "everyday speech", example: "She did the work by herself.", precis_safe: false },
+      { word: "in solitude", tone: "positive", formality: "formal", strength: "same", context: "a calm, chosen time alone", example: "He wrote the book in solitude.", precis_safe: true },
+      { word: "solitary", tone: "neutral", formality: "formal", strength: "same", context: "only before a noun: a solitary walk", example: "She took a solitary walk by the river.", precis_safe: true }],
+      antonyms: ["together", "with others", "in company"] },
+    { meaning: "alone and unhappy, not by choice", example: "After his wife died, he was alone.", synonyms: [
+      { word: "lonely", tone: "negative", formality: "neutral", strength: "same", context: "a sad feeling", example: "The old man felt lonely.", precis_safe: true },
+      { word: "isolated", tone: "negative", formality: "neutral", strength: "same", context: "cut off; also for places: an isolated village", example: "Flood victims were isolated for days.", precis_safe: true },
+      { word: "lonesome", tone: "negative", formality: "informal", strength: "same", context: "mainly American English", example: "He felt lonesome in the big city.", precis_safe: false },
+      { word: "forlorn", tone: "negative", formality: "literary", strength: "stronger", context: "very sad and left alone", example: "A forlorn child waited at the gate.", precis_safe: false }],
+      antonyms: ["connected", "among friends"] },
+    { meaning: "without help", example: "She raised four children alone.", synonyms: [
+      { word: "single-handedly", tone: "positive", formality: "neutral", strength: "same", context: "admiring: someone did a big task alone", example: "She built the school single-handedly.", precis_safe: true },
+      { word: "unaided", tone: "neutral", formality: "formal", strength: "same", context: "without help or support", example: "He climbed the peak unaided.", precis_safe: true }],
+      antonyms: ["with help", "jointly"] }],
+    mistakes: ["\"I am alone\" only means no one is with you; \"I feel lonely\" means you are sad. Swapping them in a précis changes the meaning.", "You cannot say \"an alone girl\": say \"a lone girl\" or \"a girl who lives alone\"."], seed: true },
+  happy: { word: "happy", type: "adjective", say: "HAP-ee", senses: [
+    { meaning: "feeling pleasure", example: "The children were happy at the fair.", synonyms: [
+      { word: "glad", tone: "positive", formality: "neutral", strength: "same", context: "often about one thing: glad to hear it", example: "I am glad you came.", precis_safe: true },
+      { word: "content", tone: "positive", formality: "neutral", strength: "weaker", context: "calm and satisfied", example: "She is content with a simple life.", precis_safe: false },
+      { word: "delighted", tone: "positive", formality: "neutral", strength: "stronger", context: "very pleased about something", example: "We were delighted with the result.", precis_safe: false },
+      { word: "elated", tone: "positive", formality: "formal", strength: "stronger", context: "extremely happy, often after success", example: "He was elated by his CSS result.", precis_safe: false }],
+      antonyms: ["sad", "unhappy", "miserable (stronger)"] },
+    { meaning: "willing", example: "I am happy to help.", synonyms: [
+      { word: "glad", tone: "positive", formality: "neutral", strength: "same", context: "glad to help", example: "I would be glad to help.", precis_safe: true },
+      { word: "willing", tone: "neutral", formality: "neutral", strength: "same", context: "ready to do something", example: "He is willing to work late.", precis_safe: true }],
+      antonyms: ["reluctant", "unwilling"] },
+    { meaning: "lucky or suitable", example: "It was a happy coincidence.", synonyms: [
+      { word: "fortunate", tone: "positive", formality: "formal", strength: "same", context: "a lucky event", example: "It was fortunate that the rain stopped.", precis_safe: true }],
+      antonyms: ["unfortunate"] }],
+    mistakes: ["\"Elated\" and \"ecstatic\" are much stronger than happy: they exaggerate in a précis.", "\"Content\" is calm, not excited: it weakens \"happy\"."], seed: true },
+};
+// CSS topics for the daily sentence, and the kinds of sentence, so no two days are the same
+const DRILL_TOPICS = ["education", "the water crisis", "climate change", "population growth", "public health", "corruption", "the economy and inflation", "technology and jobs", "women's rights", "young people", "agriculture", "the energy crisis", "pollution in cities", "democracy", "the media", "tourism", "reading habits", "social media", "police and justice", "local government"];
+const DRILL_KINDS = ["a cause and its result", "a contrast between two things", "a list of three problems", "what an author or a report says", "a problem and its solution", "a change over time"];
+
+// ---------- basics ----------
+const $ = (id) => document.getElementById(id);
+const use = (name) => (window.claude ? window.claude.use(name) : Promise.resolve(null));
+const inClaude = !!window.claude;
+const pause = (ms) => new Promise((r) => setTimeout(r, ms));
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function btn(label, fn, cls = "btn") { const b = el("button", cls, label); b.type = "button"; b.onclick = fn; return b; }
+function toast(t) { document.querySelectorAll(".toast").forEach((x) => x.remove()); const d = el("div", "toast", t); document.body.append(d); setTimeout(() => d.remove(), 2400); }
+const dbgRows = []; const dbg = (step, extra) => { dbgRows.push({ t: Date.now(), step, ...(extra || {}) }); if (dbgRows.length > 100) dbgRows.shift(); };
+const isEnglish = (t) => t != null && !/[؀-ۿ]/.test(String(t));
+const arr = (x, n) => (Array.isArray(x) ? x : []).map((v) => String(v ?? "").trim()).filter(Boolean).slice(0, n);
+const txt = (x) => (isEnglish(x) ? String(x).trim() : "");
+const wordCount = (s) => (String(s).match(/[A-Za-z0-9][A-Za-z0-9’'-]*/g) || []).length;
+const norm = (s) => String(s).toLowerCase().replace(/[’']/g, "'").replace(/[^a-z0-9' -]+/g, " ").replace(/-/g, " ").replace(/\s+/g, " ").trim();
+const dayKey = (t = Date.now()) => new Date(t).toLocaleDateString("en-CA");
+const DAY = 86400000;
+const shuffle = (a) => a.map((x) => [Math.random(), x]).sort((p, q) => p[0] - q[0]).map((x) => x[1]);
+const plural = (n, w) => n + " " + w + (n === 1 ? "" : "s");
+
+// ---------- what the phone keeps ----------
+const LS = "khulasa.v1";
+const blank = () => ({ settings: { level: "A2" }, placed: null, lessons: {}, days: [], words: [], drill: [], tests: [], explore: {}, asks: {} });
+let state = blank();
+try { const s = JSON.parse(localStorage.getItem(LS) || "null"); if (s && typeof s === "object") state = { ...blank(), ...s, settings: { ...blank().settings, ...(s.settings || {}) } }; } catch {}
+function save() { try { localStorage.setItem(LS, JSON.stringify(state)); } catch {} }
+const LEVELS = ["A1", "A2", "B1", "B2"];
+const level = () => (LEVELS.includes(state.settings.level) ? state.settings.level : "A2");
+const LEVEL_STYLE = { A1: "very simple English (CEFR A1): short sentences and common words", A2: "simple English (CEFR A2): short sentences and common words", B1: "clear, simple English (CEFR B1)", B2: "clear English (CEFR B2)" };
+const LEARNER = () => `a learner from Pakistan (first language Urdu, English level ${level()}) who is preparing for the CSS exam`;
+function markDay() { const k = dayKey(); if (!state.days.includes(k)) state.days = [...state.days, k].slice(-400); }
+function streak() {
+  const set = new Set(state.days); let n = 0; const d = new Date();
+  if (!set.has(dayKey(d.getTime()))) d.setDate(d.getDate() - 1);
+  while (set.has(dayKey(d.getTime()))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+
+// ---------- Claude, or Gemini on the website ----------
+// The same connection as Likho English: on the website Mam runs on the learner's own free Gemini key, kept only on this
+// phone and shared by all the apps on the site. Quick jobs use Flash-Lite without thinking, careful jobs Flash with a little.
+let sample = null;
+const GKEY = "bolo.gemini";
+function gget() { try { return JSON.parse(localStorage.getItem(GKEY) || "null"); } catch { return null; } }
+const saveG = (cfg) => { try { localStorage.setItem(GKEY, JSON.stringify(cfg)); } catch {} };
+function parseLoose(t) {
+  try { return JSON.parse(t); } catch {}
+  const m = t.match(/```(?:json)?\s*([\s\S]*?)```/); if (m) { try { return JSON.parse(m[1]); } catch {} }
+  const i = t.search(/[[{]/), j = Math.max(t.lastIndexOf("}"), t.lastIndexOf("]"));
+  if (i >= 0 && j > i) { try { return JSON.parse(t.slice(i, j + 1)); } catch {} }
+  throw { code: "invalid_json", text: t };
+}
+const THINK_OFF = { level: { thinkingLevel: "minimal" }, budget: { thinkingBudget: 0 }, none: null };
+const THINK_LOW = { level: { thinkingLevel: "low" }, budget: { thinkingBudget: 1024 }, none: null };
+const thinkMode = (cfg, model) => cfg.think?.[model] || (/gemini-2\./.test(model) ? "budget" : "level");
+function geminiAI() {
+  const cfg = gget(); if (!cfg?.key) return null;
+  const call = async (input, opts = {}, json = false, retried = false, tries = 0) => {
+    const model = opts.model || (opts.modelTier === "quick" ? cfg.fast || cfg.model : cfg.model);
+    const contents = [{ role: "user", parts: [{ text: String(input) }] }];
+    const tm = thinkMode(cfg, model), think = (opts.modelTier === "quick" ? THINK_OFF : THINK_LOW)[tm];
+    const body = { contents, generationConfig: { temperature: opts.temperature ?? 0.5, ...(json ? { responseMimeType: "application/json" } : {}), ...(think ? { thinkingConfig: think } : {}) } };
+    let res;
+    try { res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": cfg.key }, body: JSON.stringify(body), signal: opts.signal }); }
+    catch (e) { throw { code: e?.name === "AbortError" ? "cancelled" : "offline" }; }
+    if (!res.ok) {
+      let bodyText = ""; try { bodyText = JSON.stringify(await res.json()); } catch {}
+      if (res.status === 400 && /think/i.test(bodyText) && tm !== "none" && tries < 2) { cfg.think = { ...cfg.think, [model]: tm === "level" ? "budget" : "none" }; saveG(cfg); return call(input, opts, json, retried, tries + 1); }
+      if (res.status === 404 && !retried && !opts.model) { // Google retired the model: pick the current ones and try once more
+        try { const m = chooseModels(await listModels(cfg.key)); if (m.model !== cfg.model || m.fast !== cfg.fast) { Object.assign(cfg, m); saveG(cfg); return call(input, opts, json, true, tries); } } catch {}
+      }
+      if (res.status >= 500 && (opts.busyTries || 0) < 3 && !opts.signal?.aborted) { // Google is busy: wait and ask again; the third time, the other model
+        const k = (opts.busyTries || 0) + 1, other = model === (cfg.fast || cfg.model) ? cfg.model : cfg.fast;
+        await pause(1500 * k);
+        return call(input, { ...opts, busyTries: k, ...(k === 3 && other && other !== model ? { model: other } : {}) }, json, retried, tries);
+      }
+      if (res.status === 429 && !/per ?day|daily|PerDay/i.test(bodyText) && (opts.rateTries || 0) < 2 && !opts.signal?.aborted) { // too many this minute: wait as long as Google asks
+        await pause(Math.min(30, Math.max(3, Number((bodyText.match(/retryDelay\W+(\d+)/) || [])[1]) || 10)) * 1000);
+        return call(input, { ...opts, rateTries: (opts.rateTries || 0) + 1 }, json, retried, tries);
+      }
+      dbg("gemini_error", { status: res.status, model });
+      throw { code: res.status === 429 ? (/per ?day|daily|PerDay/i.test(bodyText) ? "quota" : "rate_limited") : res.status === 403 || (res.status === 400 && /api[ _]?key/i.test(bodyText)) ? "bad_key" : res.status >= 500 ? "busy" : "upstream_error" };
+    }
+    const data = await res.json(), cand = data.candidates?.[0], why = String(cand?.finishReason || data.promptFeedback?.blockReason || "");
+    const text = (cand?.content?.parts || []).filter((x) => !x.thought).map((x) => x.text || "").join("");
+    if (!text || why === "RECITATION") throw { code: why === "RECITATION" ? "recitation" : /SAFETY|PROHIBITED|BLOCK/.test(why) ? "refused" : "empty_completion" };
+    return text;
+  };
+  const fn = async (input, opts) => ({ text: await call(input, opts), truncated: false });
+  fn.json = async (input, opts) => parseLoose(await call(input, opts, true));
+  return fn;
+}
+async function listModels(key) {
+  const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", { headers: { "x-goog-api-key": key } });
+  if (!r.ok) throw { code: "bad_key" };
+  return ((await r.json()).models || []).filter((m) => (m.supportedGenerationMethods || []).includes("generateContent")).map((m) => m.name.replace(/^models\//, ""));
+}
+// the newest stable Flash and Flash-Lite: a "latest" name can point to a slower, busier preview
+function chooseModels(names) {
+  const ver = (n) => parseFloat((n.match(/gemini-([\d.]+)-flash/) || [])[1] || 0);
+  const newest = (re) => names.filter((n) => re.test(n)).sort((a, b) => ver(b) - ver(a))[0];
+  const model = newest(/^gemini-[\d.]+-flash$/) || (names.includes("gemini-flash-latest") ? "gemini-flash-latest" : names.find((n) => /flash/.test(n) && !/lite|image|tts|live|audio|thinking/.test(n))) || "gemini-2.5-flash";
+  const fast = newest(/^gemini-[\d.]+-flash-lite$/) || (names.includes("gemini-flash-lite-latest") ? "gemini-flash-lite-latest" : model);
+  return { model, fast, v: 2 };
+}
+const askJson = (input, opts) => sample.json(input, opts).catch(async (e) => {
+  if (e?.code !== "capability_removed") throw e;
+  const { text } = await sample(input + "\n\nReply with only the JSON, no other text.", opts);
+  return parseLoose(text);
+});
+// Leaving the app for a moment: a call that broke while the page was hidden is asked again on return, and time away does not count.
+let hiddenAt = 0, shownAt = Date.now();
+document.addEventListener("visibilitychange", () => { if (document.hidden) hiddenAt = Date.now(); else shownAt = Date.now(); });
+const whenVisible = () => new Promise((ok) => { if (!document.hidden) { ok(); return; } const f = () => { if (!document.hidden) { document.removeEventListener("visibilitychange", f); ok(); } }; document.addEventListener("visibilitychange", f); });
+const awayFrom = (t0) => document.hidden || hiddenAt >= t0;
+function deadline(ms, fn) {
+  let t = setTimeout(function tick() { const back = Date.now() - shownAt; if (document.hidden || back < 30000) t = setTimeout(tick, document.hidden ? 5000 : 30000 - back); else fn(); }, ms);
+  return () => clearTimeout(t);
+}
+const NOT_AGAIN = new Set(["bad_key", "quota", "not_granted", "rate_limited", "queue_overflow", "session_expired", "refused", "invalid_request", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function keepGoing(s) {
+  if (!s) return s;
+  const again = (fn) => async (input, opts) => {
+    for (let i = 0; ; i++) {
+      const t0 = Date.now();
+      try { return await fn(input, opts); }
+      catch (e) { if (i >= 2 || opts?.signal?.aborted || NOT_AGAIN.has(e?.code) || !awayFrom(t0)) throw e; await whenVisible(); }
+    }
+  };
+  const w = again((i, o) => s(i, o));
+  if (s.json) w.json = again((i, o) => s.json(i, o));
+  return w;
+}
+const aiReady = use("sample").then((s) => { sample = keepGoing(s || (inClaude ? null : geminiAI())); return sample; });
+aiReady.then(async () => { const g = gget(); if (!inClaude && g?.key && (!g.fast || g.v !== 2)) { try { saveG({ ...g, ...chooseModels(await listModels(g.key)) }); sample = keepGoing(geminiAI()); } catch {} } });
+const noAI = () => (inClaude ? "Mam can't reach Claude from this view. Open this page in the Claude app or on claude.ai." : "Add your free Gemini key in Settings (⚙) first.");
+function errText(e) {
+  switch (e?.code) {
+    case "not_granted": return "Mam needs permission to use Claude. Allow it from the page's Permissions menu.";
+    case "rate_limited": case "queue_overflow": return inClaude ? "Claude's usage limit is reached for now. Wait a few minutes and try again." : "Too many requests at once. Wait a minute, then try again.";
+    case "quota": return "Google's free limit for today is used up. Try again tomorrow.";
+    case "bad_key": return "Your Gemini key did not work. Check it in Settings.";
+    case "offline": return "No internet connection. Check it and try again.";
+    case "busy": return "Google's servers are very busy right now. Wait a minute and try again.";
+    case "timeout": return "Mam took too long. Try again.";
+    case "sampling_disabled": case "not_declared": case "capability_disabled": case "capability_removed": return "Claude is not available in this view. Open the page on claude.ai, or update the Claude app.";
+    default: return "Mam could not do that this time. Try again.";
+  }
+}
+// If one model is slow or fails, the same job goes to the other, and the first answer wins.
+const HEDGE_STOP = new Set(["cancelled", "bad_key", "offline", "not_granted", "session_expired", "sampling_disabled", "not_declared", "capability_disabled", "capability_removed"]);
+function hedged(job, tier, ms, signal) {
+  if (inClaude) return job(tier, signal);
+  return new Promise((ok, no) => {
+    if (signal.aborted) { no({ code: "cancelled" }); return; }
+    const runs = []; let done = false, stopTimer = () => {};
+    const finish = () => { done = true; stopTimer(); runs.forEach((r) => r.ctl.abort()); signal.removeEventListener("abort", onAbort); };
+    const onAbort = () => { if (!done) { finish(); no({ code: "cancelled" }); } };
+    const run = (t) => {
+      const r = { ctl: new AbortController(), live: true }; runs.push(r);
+      job(t, r.ctl.signal).then((x) => { if (!done) { finish(); ok(x); } }, (e) => {
+        r.live = false; if (done) return;
+        if (runs.length === 1 && !signal.aborted && !HEDGE_STOP.has(e?.code)) { stopTimer(); run(tier === "quick" ? "default" : "quick"); return; }
+        if (!runs.some((y) => y.live)) { finish(); no(e); }
+      });
+    };
+    signal.addEventListener("abort", onAbort);
+    stopTimer = deadline(ms, () => { if (!done) run(tier === "quick" ? "default" : "quick"); });
+    run(tier);
+  });
+}
+// A message box: what Mam is doing (with the seconds and a Stop button), or what went wrong.
+function sayIn(box, msg, err, onStop) {
+  if (!box) return; box.innerHTML = ""; if (!msg) return;
+  const d = el("div", "banner" + (err ? " warn" : "")); d.append(el("span", "", msg));
+  if (onStop) d.append(btn("■ Stop", onStop, "mini"));
+  box.append(d);
+}
+let job = null;
+async function aiJob(box, msg, fn) {
+  if (job) { toast("Mam is still busy. Wait a moment."); return null; }
+  await aiReady;
+  if (!sample) { sayIn(box, noAI(), true); return null; }
+  const ctl = new AbortController(), t0 = Date.now(); job = ctl;
+  let timedOut = false; const stop = deadline(150000, () => { timedOut = true; ctl.abort(); });
+  sayIn(box, msg, false, () => ctl.abort());
+  const clock = setInterval(() => { const sp = box?.querySelector(".banner span"), n = Math.round((Date.now() - t0) / 1000); if (sp && n >= 3) sp.textContent = msg + " " + n + " s" + (awayFrom(t0) ? " · Mam goes on while you are away." : ""); }, 1000);
+  try { const r = await fn(ctl.signal); sayIn(box, ""); return r; }
+  catch (e) { dbg("ai_error", { code: String(e?.code || "") }); sayIn(box, timedOut ? errText({ code: "timeout" }) : e?.code === "cancelled" ? "Stopped." : errText(e), true); return null; }
+  finally { stop(); clearInterval(clock); if (job === ctl) job = null; }
+}
+
+// ---------- Mam's voice ----------
+let voice = null;
+function pickVoice() { const vs = (window.speechSynthesis?.getVoices() || []).filter((v) => /^en[-_]/i.test(v.lang)); voice = vs.find((v) => /en[-_]GB/i.test(v.lang)) || vs.find((v) => /en[-_]US/i.test(v.lang)) || vs[0] || null; }
+if ("speechSynthesis" in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(t, rate = 0.9) { if (!("speechSynthesis" in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = voice?.lang || "en-GB"; if (voice) u.voice = voice; u.rate = rate; speechSynthesis.speak(u); }
+const sayBtn = (t) => btn("🔊", () => speak(t), "mini");
+
+// ---------- My Words ----------
+// A word comes back after 1, 3, 7, 14 and 30 days; one the learner forgot starts again.
+const BOXES = [1, 3, 7, 14, 30];
+const findWord = (w) => state.words.find((x) => norm(x.w) === norm(w));
+function addWord(w, m, ex, tone, from, quiet) {
+  if (!w || findWord(w)) { if (!quiet) toast("Already in My Words"); return false; }
+  const now = Date.now();
+  state.words.unshift({ id: "w" + now.toString(36) + Math.random().toString(36).slice(2, 5), w: String(w), m: String(m || ""), ex: String(ex || ""), tone: String(tone || ""), from: String(from || ""), box: 0, due: now + DAY, added: now });
+  save(); renderBadge(); if (!quiet) toast("⭐ Saved to My Words");
+  return true;
+}
+const dueWords = () => state.words.filter((x) => x.due <= Date.now());
+function starBtn(w, m, ex, tone, from) {
+  const b = el("button", "star", findWord(w) ? "⭐" : "☆"); b.type = "button"; b.setAttribute("aria-label", "Save " + w + " to My Words");
+  b.onclick = () => { if (findWord(w)) { toast("Already in My Words"); return; } addWord(w, m, ex, tone, from); b.textContent = "⭐"; };
+  return b;
+}
+function renderBadge() { const n = dueWords().length, b = $("dueBadge"); b.hidden = !n; b.textContent = n; }
+
+// ---------- the course ----------
+const lessonDone = (id) => !!state.lessons[id]?.passed;
+const nextLesson = () => LESSONS.find((L) => !lessonDone(L.id)) || null;
+const lessonOpen = (i) => i === 0 || lessonDone(LESSONS[i - 1].id) || lessonDone(LESSONS[i].id);
+const passedToday = () => LESSONS.filter((L) => state.lessons[L.id]?.passed && dayKey(state.lessons[L.id].passed) === dayKey() && state.lessons[L.id].via !== "test").length;
+const testDue = () => { const n = LESSONS.filter((L) => lessonDone(L.id)).length, last = state.tests[state.tests.length - 1]; return n >= 3 && (!last || Date.now() - last.at > 6 * DAY); };
+const drillToday = () => state.drill.filter((d) => d.day === dayKey());
+
+// ---------- pages ----------
+let view = { tab: "today", page: "home" };
+function go(v) { view = v; render(); $("main").scrollTop = 0; }
+function render() {
+  document.querySelectorAll("#tabbar button").forEach((b) => { if (b.dataset.tab === view.tab) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const pg = $("page"); pg.innerHTML = ""; renderBadge();
+  const pages = { home: renderToday, lesson: renderLesson, place: renderPlace, test: renderTest, drill: renderDrill, review: renderReview, one: renderOne, explore: renderExplore, words: renderWords };
+  (pages[view.page] || renderToday)(pg);
+}
+const title = (t) => { $("pageTitle").textContent = t; };
+const back = (label, v) => { const t = el("div", "row"); t.append(btn("← " + label, () => go(v), "mini")); return t; };
+document.querySelectorAll("#tabbar button").forEach((b) => { b.onclick = () => go({ tab: b.dataset.tab, page: { today: "home", one: "one", explore: "explore", words: "words" }[b.dataset.tab] }); });
+
+// ---------- Today ----------
+function renderToday(pg) {
+  title(new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" }));
+  if (!state.placed) {
+    const c = el("div", "card hero"); c.append(el("div", "lbl", "Start here"), el("h1", "", "Find your level in 5 minutes"), el("p", "", "Ten quick questions from the course. The lessons you already know are opened, and you start where you need to."));
+    const r = el("div", "row"); r.append(btn("Take the level test", () => go({ tab: "today", page: "place" }), "btn primary"), btn("Start from Lesson 1", () => { state.placed = { at: Date.now(), score: null, start: 0 }; save(); go({ tab: "today", page: "lesson", id: LESSONS[0].id }); })); c.append(r); pg.append(c);
+  } else {
+    const L = nextLesson(), done = LESSONS.filter((x) => lessonDone(x.id)).length, c = el("div", "card hero");
+    if (!L) { c.append(el("div", "lbl", "Course 1 · Words for Précis"), el("h1", "", "✓ Course 1 is complete"), el("p", "", "The next course, writing the précis itself, comes with the next chapters of your book. Keep your words fresh with the review and the daily sentence.")); }
+    else {
+      const i = LESSONS.indexOf(L), today = passedToday();
+      c.append(el("div", "lbl", today ? "✓ Today's lesson is done · next one" : `Today's lesson · ${i + 1} of ${LESSONS.length}`), el("h1", "", L.t), el("p", "", L.idea[0]));
+      const bar = el("div", "bar"); const f = el("i"); f.style.width = Math.round(done / LESSONS.length * 100) + "%"; bar.append(f); c.append(bar, el("div", "small", `${done} of ${LESSONS.length} lessons in Course 1: Words for Précis`));
+      c.append(btn(today ? "Start the next lesson" : "Start the lesson", () => go({ tab: "today", page: "lesson", id: L.id }), "btn primary"));
+    }
+    pg.append(c);
+  }
+  // the daily drill
+  const dd = drillToday(), last = dd[dd.length - 1], dc = el("div", "card");
+  dc.append(el("div", "lbl", "✂️ Shrink the sentence · one a day"));
+  if (last?.mark) { dc.append(el("h2", "", `Today: ${last.mark.score}/10`), el("p", "muted", `${last.n} words → ${last.m} words. ${last.mark.verdict || ""}`)); const r = el("div", "row"); r.append(btn("See it again", () => go({ tab: "today", page: "drill", id: last.id })), btn("Another sentence", () => go({ tab: "today", page: "drill", fresh: true }))); dc.append(r); }
+  else { dc.append(el("p", "", "Mam gives you one long sentence. Make it shorter and keep the meaning: this is where a précis begins.")); dc.append(btn(last ? "Finish today's sentence" : "Today's sentence", () => go({ tab: "today", page: "drill", id: last?.id }), "btn primary")); }
+  pg.append(dc);
+  // review
+  const due = dueWords().length, rc = el("div", "card");
+  rc.append(el("div", "lbl", "⭐ My Words"));
+  if (due) { rc.append(el("p", "", `${plural(due, "word")} to review today.`), btn("Review now", () => go({ tab: "words", page: "review" }), "btn primary")); }
+  else { const nx = state.words.map((x) => x.due).sort((a, b) => a - b)[0]; rc.append(el("p", "muted", state.words.length ? `No words to review today. Next review: ${new Date(nx).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}.` : "Words you learn and save come back here for review, just before you would forget them.")); }
+  pg.append(rc);
+  if (testDue()) { const tc = el("div", "card"); tc.append(el("div", "lbl", "📝 Weekly test"), el("p", "", "Ten questions from the lessons you have passed. See how much you really remember."), btn("Take the test", () => go({ tab: "today", page: "test" }), "btn primary")); pg.append(tc); }
+  // all lessons
+  const lc = el("details", "card"); lc.append(el("summary", "", `📚 Course 1: Words for Précis · ${LESSONS.length} lessons`));
+  const nx = nextLesson();
+  LESSONS.forEach((L, i) => {
+    const b = el("button", "lesson" + (lessonDone(L.id) ? " done" : L === nx ? " next" : "")); b.type = "button"; b.disabled = !lessonOpen(i);
+    const tx = el("span", "grow"); tx.append(el("b", "", L.t), el("div", "small muted", (lessonDone(L.id) ? (state.lessons[L.id].via === "test" ? "✓ Known from the level test" : `✓ Passed · best ${state.lessons[L.id].best}/${L.items.length}`) : lessonOpen(i) ? "Open" : "🔒 After the lesson before") + ` · Chapter ${L.ch}`));
+    b.append(el("span", "n", lessonDone(L.id) ? "✓" : String(i + 1)), tx);
+    b.onclick = () => go({ tab: "today", page: "lesson", id: L.id }); lc.append(b);
+  });
+  pg.append(lc);
+  // progress
+  const pc = el("div", "card"), marks = state.drill.filter((d) => d.mark).slice(-7), avg = marks.length ? (marks.reduce((a, d) => a + d.mark.score, 0) / marks.length).toFixed(1) : "–", lt = state.tests[state.tests.length - 1];
+  pc.append(el("div", "lbl", "📈 Your progress"));
+  const st = el("div", "row"); [["🔥", streak(), "days in a row"], ["📚", LESSONS.filter((x) => lessonDone(x.id)).length + "/" + LESSONS.length, "lessons"], ["⭐", state.words.length, "words"], ["✂️", avg, "sentence mark"]].forEach(([e, v, l]) => { const s = el("div", "grow"); s.append(el("div", "meter", "")); s.firstChild.append(el("b", "", e + " " + v)); s.append(el("div", "small muted", l)); st.append(s); });
+  pc.append(st); if (lt) pc.append(el("p", "small muted", `Last weekly test: ${lt.score}/${lt.total}, ${new Date(lt.at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}.`));
+  pg.append(pc);
+}
+
+// ---------- the exercise engine: lessons, the level test, the weekly test and the One Word quiz ----------
+// mc: the choices are mixed, and a wrong one is answered with ITS own reason. w: checked on the phone first, then by Mam.
+// ord: tap the words from the weakest to the strongest.
+function localRight(it, ans) {
+  const n = norm(ans); if (!n) return false;
+  if ((it.a || []).some((x) => norm(x) === n)) return true;
+  return (it.keys || []).some((k) => (" " + n + " ").includes(" " + norm(k) + " "));
+}
+const judgePrompt = (it, ans) => `You are Mam, a careful English teacher checking one answer from ${LEARNER()} in the précis lesson "${it.ctx || "Words for Précis"}".
+The task: ${it.q}
+Good answers: ${(it.a || []).join(" | ")}${it.keys?.length ? ` (any answer using one of: ${it.keys.join(", ")})` : ""}
+Why: ${it.why}
+The learner wrote: "${ans}"
+Accept any answer that does the task correctly and keeps the meaning, even if it differs from the good answers; a small spelling slip is fine only when the word is clearly right. If it is wrong, say EXACTLY what is wrong with THEIR words, in one short sentence, without giving the answer.
+Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"ok": true or false, "note": "one short sentence"}`;
+function runQuiz(box, items, done) {
+  let i = 0; const res = [];
+  const step = () => {
+    box.innerHTML = "";
+    if (i >= items.length) { done(res); return; }
+    const it = items[i];
+    const dots = el("div", "dots"); items.forEach((_, j) => dots.append(el("i", j < i ? (res[j] ? "ok" : "no") : j === i ? "cur" : "")));
+    box.append(dots, el("div", "lbl", `Question ${i + 1} of ${items.length}`), el("p", "q", it.q));
+    const fb = el("div"), status = el("div"), next = btn(i + 1 < items.length ? "Next →" : "See my result", () => { i++; step(); }, "btn primary wide"); next.hidden = true;
+    const answer = (ok, lines) => {
+      res[i] = ok; fb.className = "fb " + (ok ? "ok" : "no"); fb.innerHTML = "";
+      fb.append(el("b", "t", ok ? "✓ Right" : "✗ Not quite")); lines.filter(Boolean).forEach((l) => fb.append(el("p", "", l)));
+      next.hidden = false; next.focus({ preventScroll: true }); fb.scrollIntoView({ block: "nearest" });
+    };
+    if (it.k === "mc") {
+      const order = shuffle(it.o.map((_, j) => j)), opts = el("div", "opts");
+      order.forEach((j) => { const b = el("button", "opt", it.o[j]); b.type = "button"; b.onclick = () => {
+        if (res[i] != null) return;
+        opts.querySelectorAll(".opt").forEach((x) => { x.disabled = true; }); b.classList.add(j === it.a ? "right" : "wrong");
+        if (j !== it.a) { opts.querySelectorAll(".opt")[order.indexOf(it.a)].classList.add("right"); answer(false, [it.no?.[j] ? `“${it.o[j]}”: ${it.no[j]}` : "", `The answer: “${it.o[it.a]}”. ${it.why}`]); }
+        else answer(true, [it.why]);
+      }; opts.append(b); });
+      box.append(opts);
+    } else if (it.k === "w") {
+      const inp = el("input"); inp.type = "text"; inp.id = "ans" + i; inp.autocomplete = "off"; inp.setAttribute("autocapitalize", "off"); inp.placeholder = "Your answer"; inp.setAttribute("aria-label", "Your answer");
+      const check = btn("Check", async () => {
+        const v = inp.value.trim(); if (!v || res[i] != null) return;
+        if (localRight(it, v)) { inp.disabled = true; check.disabled = true; answer(true, [it.why]); return; }
+        check.disabled = true;
+        const r = await aiJob(status, "Mam is checking…", (sg) => hedged((t, s2) => askJson(judgePrompt(it, v), { modelTier: t, signal: s2 }), "quick", 20000, sg));
+        if (r && typeof r.ok === "boolean") { inp.disabled = true; answer(r.ok, [r.ok ? txt(r.note) : txt(r.note) || "", r.ok ? it.why : `A good answer: “${it.a[0]}”. ${it.why}`]); return; }
+        check.disabled = false;
+        if (!r) { // Mam could not check: the learner sees a good answer and says honestly if theirs is the same
+          inp.disabled = true; answer(false, [`A good answer: “${it.a[0]}”. ${it.why}`]);
+          fb.append(btn("Mine means the same: count it as right", () => { res[i] = true; fb.className = "fb ok"; fb.querySelector(".t").textContent = "✓ Counted as right"; }, "mini"));
+        }
+      }, "btn primary");
+      inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); check.click(); } });
+      const r = el("div", "row"); r.append(inp, check); inp.classList.add("grow"); box.append(r, status);
+      setTimeout(() => inp.focus({ preventScroll: true }), 50);
+    } else if (it.k === "ord") {
+      const pool = el("div", "row"), line = el("div", "order"), picked = [];
+      const draw = () => {
+        pool.innerHTML = ""; line.innerHTML = "";
+        if (!picked.length) line.append(el("span", "small muted", "Tap the words, the weakest first"));
+        picked.forEach((w, j) => line.append(btn(w, () => { if (res[i] != null) return; picked.splice(j, 1); draw(); }, "chip")));
+        shuffledO.filter((w) => !picked.includes(w)).forEach((w) => pool.append(btn(w, () => { if (res[i] != null) return; picked.push(w); draw(); if (picked.length === it.o.length) judge(); }, "chip")));
+      };
+      const judge = () => {
+        const ok = picked.every((w, j) => w === it.o[j]), bad = picked.findIndex((w, j) => w !== it.o[j]);
+        answer(ok, [ok ? it.why : `“${picked[bad]}” is not in place ${bad + 1}: “${it.o[bad]}” is ${bad === 0 ? "the weakest" : "weaker than " + it.o.slice(bad + 1).map((x) => "“" + x + "”").join(" and ")}.`, ok ? "" : "The right order: " + it.o.join(" → ") + ". " + it.why]);
+      };
+      let shuffledO = shuffle(it.o); if (shuffledO.join() === it.o.join()) shuffledO = [...it.o].reverse();
+      draw(); box.append(line, pool);
+    }
+    box.append(fb, next);
+  };
+  step();
+}
+function resultCard(score, total, pass, msg) {
+  const c = el("div", "card"), top = el("div", "scorerow"); top.append(el("span", "score", `${score}/${total}`));
+  const tx = el("div"); tx.append(el("h2", "", pass ? "✓ Passed" : "Not yet"), el("p", "muted", msg)); top.append(tx); c.append(top); return c;
+}
+
+// ---------- a lesson ----------
+function renderLesson(pg) {
+  const L = LESSONS.find((x) => x.id === view.id) || LESSONS[0], i = LESSONS.indexOf(L), rec = state.lessons[L.id];
+  title(`Lesson ${i + 1} · ${L.t}`);
+  pg.append(back("Today", { tab: "today", page: "home" }));
+  const c = el("div", "card idea"); c.append(el("div", "lbl", `Course 1 · Lesson ${i + 1} of ${LESSONS.length} · from Chapter ${L.ch}`), el("h1", "", L.t));
+  L.idea.forEach((p) => c.append(el("p", "", p)));
+  const t = el("div", "row"); t.append(btn("🔊 Listen", () => speak(L.idea.join(" "), 0.85), "mini")); c.append(t);
+  pg.append(c);
+  const e = el("div", "card"); e.append(el("div", "lbl", "Example"));
+  const shrink = ["exact", "one", "cut", "link"].includes(L.id); // the lessons whose example gets shorter
+  L.ex.forEach(([a, b]) => { const p = el("div", "pair"), x = el("div", "long"), y = el("div", "short"); x.append(el("small", "", shrink ? `Wordy · ${plural(wordCount(a), "word")}` : "Example"), a); y.append(el("small", "", shrink ? `Shorter · ${plural(wordCount(b), "word")}` : "Notice"), b); p.append(x, y); e.append(p); });
+  pg.append(e);
+  const w = el("div", "card"); w.append(el("div", "lbl", `Words of this lesson · ${L.words.length}`));
+  L.words.forEach(([word, m, ex, tone]) => { const r = el("div", "wordrow"), g = el("div", "grow"); g.append(el("b", "", word), el("div", "small", m), el("div", "ex", ex)); r.append(g, sayBtn(word + ". " + ex), starBtn(word, m, ex, tone, "Lesson: " + L.t)); w.append(r); });
+  w.append(el("p", "small muted", "They go to My Words by themselves when you pass the lesson."));
+  pg.append(w);
+  const q = el("div", "card");
+  const start = () => {
+    q.innerHTML = "";
+    runQuiz(q, shuffle(L.items).map((x) => ({ ...x, ctx: L.t })), (res) => {
+      const score = res.filter(Boolean).length, total = L.items.length, pass = score >= Math.ceil(total * 0.75);
+      if (pass) { state.lessons[L.id] = { passed: rec?.passed && rec.via !== "test" ? rec.passed : Date.now(), best: Math.max(score, rec?.best || 0) }; L.words.forEach(([a, b, c2, d]) => addWord(a, b, c2, d, "Lesson: " + L.t, true)); }
+      else state.lessons[L.id] = rec ? { ...rec, tries: (rec.tries || 0) + 1 } : { tries: 1 };
+      if (!state.lessons[L.id].passed) delete state.lessons[L.id].passed;
+      markDay(); save();
+      q.innerHTML = "";
+      q.append(resultCard(score, total, pass, pass ? `You need ${Math.ceil(total * 0.75)} to pass. The lesson's words are in My Words now.` : `You need ${Math.ceil(total * 0.75)} of ${total}. Read the lesson again, then try once more: the questions come in a new order.`));
+      const r = el("div", "row"); const nx = LESSONS[i + 1];
+      if (pass && nx) r.append(btn(`Next: ${nx.t} →`, () => go({ tab: "today", page: "lesson", id: nx.id }), "btn primary"));
+      r.append(btn(pass ? "Practise again" : "Try again", start, pass ? "btn" : "btn primary"), btn("Back to Today", () => go({ tab: "today", page: "home" })));
+      q.append(r); q.scrollIntoView({ block: "start" });
+    });
+  };
+  q.append(el("div", "lbl", `Practice · ${L.items.length} questions`), el("p", "", rec?.passed ? `${rec.via === "test" ? "You knew this in the level test." : "You passed this lesson."} Practise again any time.` : `Answer at least ${Math.ceil(L.items.length * 0.75)} of ${L.items.length} correctly to pass.`), btn("Start the questions", start, "btn primary wide"));
+  pg.append(q);
+}
+
+// ---------- the level test and the weekly test ----------
+function renderPlace(pg) {
+  title("Level test"); pg.append(back("Today", { tab: "today", page: "home" }));
+  const items = LESSONS.slice(0, 10).map((L) => ({ ...L.items.find((x) => x.k === "mc"), ctx: L.t, lesson: L.id }));
+  const c = el("div", "card"); c.append(el("div", "lbl", "Level test · 10 questions"), el("p", "", "One question from each of the first ten lessons. Do not guess: if you do not know, choose the answer you think is most likely, and the lesson will teach it."));
+  const q = el("div", "card"); q.append(btn("Start", () => runQuiz(q, items, (res) => {
+    const score = res.filter(Boolean).length, first = res.findIndex((x) => !x), start = first < 0 ? 10 : first;
+    LESSONS.slice(0, start).forEach((L) => { if (!lessonDone(L.id)) state.lessons[L.id] = { passed: Date.now(), best: 0, via: "test" }; });
+    state.placed = { at: Date.now(), score, start }; markDay(); save();
+    q.innerHTML = "";
+    q.append(resultCard(score, 10, true, start ? `You already know the first ${plural(start, "lesson")}: they are open, and you can practise them any time. You start with Lesson ${start + 1}.` : "You start with Lesson 1, the base of everything else."));
+    q.append(btn(`Start Lesson ${Math.min(start, LESSONS.length - 1) + 1} →`, () => go({ tab: "today", page: "lesson", id: LESSONS[Math.min(start, LESSONS.length - 1)].id }), "btn primary"));
+  }), "btn primary wide"));
+  pg.append(c, q);
+}
+function renderTest(pg) {
+  title("Weekly test"); pg.append(back("Today", { tab: "today", page: "home" }));
+  const passed = LESSONS.filter((L) => lessonDone(L.id)), items = shuffle(passed.flatMap((L) => L.items.map((x) => ({ ...x, ctx: L.t })))).slice(0, 10);
+  const c = el("div", "card"); c.append(el("div", "lbl", `Weekly test · ${items.length} questions from ${plural(passed.length, "lesson")}`));
+  c.append(btn("Start", () => runQuiz(c, items, (res) => {
+    const score = res.filter(Boolean).length; state.tests.push({ at: Date.now(), score, total: items.length }); markDay(); save();
+    c.innerHTML = ""; c.append(resultCard(score, items.length, score >= Math.ceil(items.length * 0.7), score >= Math.ceil(items.length * 0.7) ? "Well remembered. Keep reviewing My Words." : "Some lessons need another look: practise them from Today, then try the test next week."), btn("Back to Today", () => go({ tab: "today", page: "home" }), "btn primary"));
+  }), "btn primary wide"));
+  pg.append(c);
+}
+
+// ---------- Shrink the sentence ----------
+const DRILL_LEN = { A1: [16, 20], A2: [20, 26], B1: [28, 34], B2: [36, 44] };
+function drillPrompt() {
+  const recent = state.drill.slice(-12), used = new Set(recent.map((d) => d.topic)), topic = shuffle(DRILL_TOPICS.filter((t) => !used.has(t)))[0] || shuffle(DRILL_TOPICS)[0];
+  const kind = shuffle(DRILL_KINDS.filter((k) => recent[recent.length - 1]?.kind !== k))[0], [lo, hi] = DRILL_LEN[level()];
+  return { topic, kind, prompt: `You are Mam, an English teacher preparing a précis drill for ${LEARNER()}.
+Write ONE original, wordy sentence about ${topic}, of ${lo} to ${hi} words, that shows ${kind}, in ${LEVEL_STYLE[level()]}. It must contain wordy parts that can be cut or said in fewer words (like "due to the fact that", "a large number of", "make a decision", "in the present day"), and one key term that must stay. Write it yourself: never copy a book or a newspaper.${recent.length ? ` Do not repeat these sentences: ${recent.slice(-5).map((d) => `"${d.sentence}"`).join(" ")}` : ""}
+Reply with ONLY JSON: {"sentence": "the wordy sentence", "key_terms": ["the words that must stay, 1 or 2"], "target": the number of words a good short version needs (about 55 percent of the sentence), "model": "a good short version with about that many words", "cuts": ["each wordy part and its short form, like: due to the fact that → because"]}` };
+}
+const markPrompt = (d, ans) => `You are Mam, a strict but kind English teacher and CSS examiner, checking a précis drill by ${LEARNER()}.
+The original sentence (${d.n} words): "${d.sentence}"
+Key terms that must stay: ${d.keys.join(", ") || "none"}
+The learner's shorter sentence (${wordCount(ans)} words; the goal is about ${d.target}): "${ans}"
+Compare every word the learner changed or cut with the original. Say exactly when they lost part of the meaning, added an idea, weakened or exaggerated a word, changed its feeling or its formality, replaced or switched a key term, or added an opinion. Praise a change only when it really keeps the meaning in fewer words. Then check their grammar.
+Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"score": 1 to 10, "meaning": "kept or partly kept or changed", "verdict": "one or two sentences", "changes": [{"from": "the original words", "to": "the learner's words, or empty if cut", "ok": true or false, "kind": "good cut or good word or meaning lost or added idea or weakened or exaggerated or feeling changed or formality changed or key term changed", "note": "exactly why, in one short sentence"}], "grammar": [{"wrong": "the learner's words", "right": "the correct words", "why": "one short sentence"}], "model": "your own short version", "tip": "one short tip for next time"}`;
+function cleanMark(r) {
+  return { score: Math.max(1, Math.min(10, Math.round(Number(r?.score) || 1))), meaning: txt(r?.meaning), verdict: txt(r?.verdict), model: txt(r?.model), tip: txt(r?.tip),
+    changes: (Array.isArray(r?.changes) ? r.changes : []).slice(0, 10).map((x) => ({ from: txt(x?.from), to: txt(x?.to), ok: x?.ok === true, kind: txt(x?.kind), note: txt(x?.note) })).filter((x) => x.from || x.to),
+    grammar: (Array.isArray(r?.grammar) ? r.grammar : []).slice(0, 4).map((x) => ({ wrong: txt(x?.wrong), right: txt(x?.right), why: txt(x?.why) })).filter((x) => x.wrong && x.right) };
+}
+function meter(n, m, target) { const d = el("div", "meter"); d.append(el("b", "", String(n)), el("small", "", "words"), el("span", "to", "→"), el("b", "", m == null ? "?" : String(m)), el("small", "", m == null ? `goal: about ${target}` : `yours · goal about ${target}`)); return d; }
+function renderDrill(pg) {
+  title("Shrink the sentence"); pg.append(back("Today", { tab: "today", page: "home" }));
+  const status = el("div");
+  let d = view.fresh ? null : state.drill.find((x) => x.id === view.id) || drillToday().filter((x) => !x.mark).pop() || null;
+  if (!d) {
+    const c = el("div", "card"); c.append(el("div", "lbl", "✂️ Shrink the sentence"), el("p", "", "Mam writes one long sentence on a CSS topic. You write it shorter, keep its meaning and its key terms, and Mam checks every word you changed."));
+    c.append(btn("Give me a sentence", async () => {
+      const p = drillPrompt();
+      const r = await aiJob(status, "Mam is writing your sentence…", (sg) => hedged((t, s2) => askJson(p.prompt, { modelTier: t, signal: s2, temperature: 0.9 }), "quick", 25000, sg));
+      const s = txt(r?.sentence);
+      if (!s || wordCount(s) < 10) { if (r) sayIn(status, "Mam could not write a good sentence this time. Try again.", true); return; }
+      const nd = { id: "d" + Date.now().toString(36), day: dayKey(), at: Date.now(), topic: p.topic, kind: p.kind, sentence: s, n: wordCount(s), keys: arr(r.key_terms, 3).filter(isEnglish), target: Math.max(5, Math.min(wordCount(s) - 2, Math.round(Number(r.target) || wordCount(s) * 0.55))), model: txt(r.model), cuts: arr(r.cuts, 6).filter(isEnglish) };
+      state.drill = [...state.drill, nd].slice(-60); save(); view = { tab: "today", page: "drill", id: nd.id }; render();
+    }, "btn primary"), status);
+    pg.append(c); return;
+  }
+  const c = el("div", "card"); c.append(el("div", "lbl", `✂️ ${d.topic} · ${new Date(d.at).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}`), el("p", "q", d.sentence));
+  const tools = el("div", "row"); tools.append(sayBtn(d.sentence)); c.append(tools, meter(d.n, d.mark ? d.m : null, d.target));
+  if (d.keys.length) c.append(el("p", "small", "🔒 Keep: " + d.keys.map((k) => "“" + k + "”").join(", ")));
+  pg.append(c);
+  const w = el("div", "card"), ta = el("textarea"); ta.id = "drillAns"; ta.placeholder = "Write the shorter sentence here…"; ta.setAttribute("aria-label", "Your shorter sentence"); ta.value = d.answer || "";
+  const cnt = el("div", "small muted"), upd = () => { const m = wordCount(ta.value); cnt.textContent = `${plural(m, "word")} · goal about ${d.target}` + (m && m >= d.n ? " · not shorter yet" : ""); }; ta.oninput = upd; upd();
+  let hints = 0; const hintBox = el("div", "small");
+  const r = el("div", "row");
+  const check = btn(d.mark ? "Check again" : "Check", async () => {
+    const ans = ta.value.trim(); if (wordCount(ans) < 3) { sayIn(status, "Write your shorter sentence first.", true); return; }
+    if (wordCount(ans) >= d.n) { sayIn(status, `Your sentence has ${wordCount(ans)} words, and the original has ${d.n}. Make it shorter first.`, true); return; }
+    const res = await aiJob(status, "Mam is checking every word you changed…", (sg) => hedged((t, s2) => askJson(markPrompt(d, ans), { modelTier: t, signal: s2 }), "default", 30000, sg));
+    if (!res) return;
+    d.answer = ans; d.m = wordCount(ans); d.mark = cleanMark(res); markDay(); save(); render();
+  }, "btn primary");
+  r.append(check, btn("💡 Hint", () => { if (!d.cuts.length) { hintBox.textContent = "Look for words that repeat an idea, and long phrases that one word can say."; return; } hintBox.textContent = "💡 " + d.cuts.slice(0, ++hints).join(" · "); }, "btn"));
+  w.append(el("div", "lbl", "Your shorter sentence"), ta, cnt, r, hintBox, status);
+  pg.append(w);
+  if (d.mark) {
+    const mk = d.mark, rc = el("div", "card"), top = el("div", "scorerow"); top.append(el("span", "score", mk.score + "/10"));
+    const tx = el("div"); tx.append(el("h2", "", mk.meaning === "kept" ? "Meaning kept" : mk.meaning === "changed" ? "Meaning changed" : mk.meaning ? "Meaning partly kept" : "Mam's marks"), meter(d.n, d.m, d.target)); top.append(tx); rc.append(top);
+    if (mk.verdict) rc.append(el("p", "", mk.verdict));
+    if (mk.changes.length) {
+      rc.append(el("div", "lbl", "Every change you made"));
+      mk.changes.forEach((x) => { const ch = el("div", "chg " + (x.ok ? "ok" : "no")), ft = el("div", "ft"); if (x.from) ft.append(el("s", "", x.from)); ft.append(" → "); ft.append(x.to ? el("ins", "", x.to) : el("span", "muted", "cut")); ch.append(ft, el("div", "kind", (x.ok ? "✓ " : "✗ ") + (x.kind || (x.ok ? "good" : "problem"))), el("div", "small", x.note)); rc.append(ch); });
+    }
+    if (mk.grammar.length) { rc.append(el("div", "lbl", "Grammar")); const ul = el("ul"); mk.grammar.forEach((g) => ul.append(el("li", "", `“${g.wrong}” → “${g.right}”: ${g.why}`))); rc.append(ul); }
+    if (mk.model) { rc.append(el("div", "lbl", `Mam's version · ${plural(wordCount(mk.model), "word")}`)); const p = el("div", "pair"), y = el("div", "short", mk.model); p.append(y); rc.append(p); }
+    if (mk.tip) rc.append(el("p", "small", "💡 " + mk.tip));
+    rc.append(btn("Another sentence", () => go({ tab: "today", page: "drill", fresh: true }), "btn primary"));
+    pg.append(rc);
+  }
+}
+
+// ---------- One Word for Many ----------
+let oneTopic = "all", oneMode = "learn";
+const allOne = () => ONE_WORD.flatMap(([t, em, list]) => list.map(([p, w, ex]) => ({ topic: t, em, p, w, ex })));
+const askPrompt = (phrase) => `You are Mam, a careful English teacher for ${LEARNER()}. The learner wants ONE word for this phrase: "${phrase}".
+If one real English word (or a fixed two-word term) means exactly this, give it. If no single word fits, say so honestly and give the shortest correct phrase: never invent a word.
+Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"found": true or false, "word": "the word, or empty", "type": "noun or verb or adjective or adverb", "meaning": "the simple meaning", "example": "one example sentence", "tone": "positive or neutral or negative", "formality": "formal or neutral or informal", "near": [{"word": "a close word that is not quite right", "why": "why it does not fit"}], "phrase": "the shortest correct phrase if no word fits, else empty"}`;
+function askCard(a) {
+  const c = el("div", "card");
+  if (a.found && a.word) {
+    c.append(el("div", "lbl", `“${a.q}”`)); const r = el("div", "row"); r.append(el("h1", "grow", a.word), sayBtn(a.word + ". " + a.example), starBtn(a.word, a.meaning, a.example, a.tone, "One Word")); c.append(r);
+    c.append(el("div", "small muted", [a.type, a.tone, a.formality].filter(Boolean).join(" · ")), el("p", "", a.meaning), el("p", "ex", a.example));
+  } else { c.append(el("div", "lbl", `“${a.q}”`), el("h2", "", "No single word fits this exactly"), el("p", "", a.phrase ? `The shortest correct way: “${a.phrase}”.` : "Keep it as a short phrase.")); }
+  if (a.near.length) { c.append(el("div", "lbl", "Close, but not right")); const ul = el("ul"); a.near.forEach((x) => ul.append(el("li", "", `${x.word}: ${x.why}`))); c.append(ul); }
+  return c;
+}
+function renderOne(pg) {
+  title("One Word for Many");
+  const ask = el("div", "card"), inp = el("input"), status = el("div"), out = el("div", "page"); out.style.padding = "0";
+  inp.type = "search"; inp.id = "oneAsk"; inp.placeholder = "Type a long phrase, like “a person who loves books”"; inp.setAttribute("aria-label", "A long phrase");
+  const find = async () => {
+    const q = inp.value.trim(); if (wordCount(q) < 2) { sayIn(status, "Type a phrase of two words or more.", true); return; }
+    const key = norm(q), have = state.asks[key];
+    if (have) { out.innerHTML = ""; out.append(askCard(have)); return; }
+    const r = await aiJob(status, "Mam is finding the word…", (sg) => hedged((t, s2) => askJson(askPrompt(q), { modelTier: t, signal: s2 }), "quick", 20000, sg));
+    if (!r) return;
+    const a = { q, found: r.found === true && !!txt(r.word), word: txt(r.word), type: txt(r.type), meaning: txt(r.meaning), example: txt(r.example), tone: txt(r.tone), formality: txt(r.formality), phrase: txt(r.phrase), near: (Array.isArray(r.near) ? r.near : []).slice(0, 3).map((x) => ({ word: txt(x?.word), why: txt(x?.why) })).filter((x) => x.word && x.why), at: Date.now() };
+    state.asks[key] = a; save(); out.innerHTML = ""; out.append(askCard(a));
+  };
+  inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); find(); } });
+  const r = el("div", "row"); inp.classList.add("grow"); r.append(inp, btn("Find", find, "btn primary"));
+  ask.append(el("div", "lbl", "🧩 Ask Mam"), el("p", "small muted", "Type any long phrase, and Mam gives the one word. If no word fits, she says so."), r, status);
+  pg.append(ask, out);
+  const chips = el("div", "chips"); [["all", "All"], ...ONE_WORD.map(([t, em]) => [t, em + " " + t])].forEach(([k, l]) => { const b = btn(l, () => { oneTopic = k; render(); }, "chip"); b.setAttribute("aria-pressed", String(k === oneTopic)); chips.append(b); });
+  const modes = el("div", "row"); [["learn", "📖 Learn"], ["quiz", "✏️ Test me"]].forEach(([k, l]) => { const b = btn(l, () => { oneMode = k; render(); }, "chip"); b.setAttribute("aria-pressed", String(k === oneMode)); modes.append(b); });
+  pg.append(chips, modes);
+  const list = allOne().filter((x) => oneTopic === "all" || x.topic === oneTopic);
+  if (oneMode === "learn") {
+    const c = el("div", "card"); c.append(el("div", "lbl", `${plural(list.length, "phrase")} · tap ☆ to save one to My Words`));
+    list.forEach((x) => { const row = el("div", "wordrow"), g = el("div", "grow"); g.append(el("div", "small muted", x.p), el("b", "", x.w), el("div", "ex", x.ex)); row.append(g, sayBtn(x.w + ". " + x.ex), starBtn(x.w, x.p, x.ex, "", "One Word")); c.append(row); });
+    pg.append(c);
+  } else {
+    const q = el("div", "card"), pick = shuffle(list).slice(0, 10), pool = allOne();
+    const items = pick.map((x, j) => j % 2 === 0
+      ? { k: "w", q: `One word for “${x.p}”:`, a: [x.w], keys: [x.w], why: `“${x.p}” = ${x.w}. ${x.ex}`, ctx: "One word for many" }
+      : (() => { const others = shuffle(pool.filter((y) => y.w !== x.w && y.topic === x.topic)).slice(0, 2); return { k: "mc", q: `“${x.w}” means:`, o: [x.p, ...others.map((y) => y.p)], a: 0, why: x.ex, no: Object.fromEntries(others.map((y, i2) => [i2 + 1, `that is “${y.w}”.`])) }; })());
+    q.append(el("div", "lbl", "Test me · 10 questions"));
+    runQuiz(q, items, (res) => {
+      const score = res.filter(Boolean).length; markDay(); save(); q.innerHTML = "";
+      q.append(resultCard(score, items.length, score >= 7, score >= 7 ? "Save the words you want to keep with ☆ in Learn." : "Look at the list in Learn, then test yourself again."));
+      q.append(btn("Test me again", () => render(), "btn primary"));
+    });
+    pg.append(q);
+  }
+}
+
+// ---------- Word Explorer ----------
+const explorePrompt = (w) => `You are Mam, a careful English teacher and dictionary writer for ${LEARNER()}. Explain the word "${w}" for précis writing.
+Give each meaning (sense) of the word separately, the most common first, at most 4. For each sense give ONLY real synonyms for that sense (2 to 5; fewer is better than loose ones), and for each synonym: its tone, its formality, its strength compared with "${w}", the context it is used in (with which words), one example sentence, and whether it can replace "${w}" in a précis without changing the meaning. Then the antonyms for that sense. Finally, the common mistakes learners make with this word.
+If "${w}" is not an English word, reply {"word": ""}. Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"word": "${w}", "type": "the part of speech", "say": "how to say it, in simple letters", "senses": [{"meaning": "...", "example": "...", "synonyms": [{"word": "...", "tone": "positive or neutral or negative", "formality": "formal or neutral or informal or literary", "strength": "weaker or same or stronger", "context": "...", "example": "...", "precis_safe": true or false}], "antonyms": ["..."]}], "mistakes": ["..."]}`;
+function cleanExplore(r, w) {
+  const senses = (Array.isArray(r?.senses) ? r.senses : []).slice(0, 4).map((s) => ({ meaning: txt(s?.meaning), example: txt(s?.example), antonyms: arr(s?.antonyms, 6).filter(isEnglish),
+    synonyms: (Array.isArray(s?.synonyms) ? s.synonyms : []).slice(0, 6).map((y) => ({ word: txt(y?.word), tone: txt(y?.tone).toLowerCase(), formality: txt(y?.formality).toLowerCase(), strength: txt(y?.strength).toLowerCase(), context: txt(y?.context), example: txt(y?.example), precis_safe: y?.precis_safe === true })).filter((y) => y.word) })).filter((s) => s.meaning);
+  return { word: txt(r?.word) || w, type: txt(r?.type), say: txt(r?.say), senses, mistakes: arr(r?.mistakes, 5).filter(isEnglish), at: Date.now() };
+}
+const STRENGTH = { weaker: "↓ weaker", same: "= same strength", stronger: "↑ stronger" };
+function entryView(d) {
+  const box = el("div", "page"); box.style.padding = "0";
+  const h = el("div", "card"), r = el("div", "row"); r.append(el("h1", "grow", d.word), sayBtn(d.word), starBtn(d.word, d.senses[0]?.meaning, d.senses[0]?.example, "", "Explorer")); h.append(r);
+  h.append(el("div", "small muted", [d.type, d.say && "say: " + d.say, `${plural(d.senses.length, "meaning")}`].filter(Boolean).join(" · "))); box.append(h);
+  d.senses.forEach((s, i) => {
+    const c = el("div", "card sense"); c.append(el("div", "lbl", `Meaning ${i + 1}`), el("h3", "", s.meaning)); if (s.example) c.append(el("p", "ex", s.example));
+    s.synonyms.forEach((y) => {
+      const row = el("div", "syn"), top = el("div", "top"); top.append(el("b", "", y.word));
+      if (y.tone) top.append(el("span", "tag " + (y.tone.startsWith("pos") ? "pos" : y.tone.startsWith("neg") ? "neg" : ""), y.tone.startsWith("pos") ? "positive" : y.tone.startsWith("neg") ? "negative" : "neutral tone"));
+      if (y.formality) top.append(el("span", "tag", y.formality === "neutral" ? "everyday" : y.formality));
+      if (STRENGTH[y.strength]) top.append(el("span", "tag", STRENGTH[y.strength]));
+      top.append(el("span", "tag " + (y.precis_safe ? "safe" : "unsafe"), y.precis_safe ? "✓ safe in a précis" : "⚠ changes it in a précis"));
+      const act = el("span", "row"); act.style.marginLeft = "auto"; act.append(sayBtn(y.word + ". " + y.example), starBtn(y.word, `${s.meaning} (like “${d.word}”)${y.context ? ": " + y.context : ""}`, y.example, y.tone, "Explorer: " + d.word)); top.append(act);
+      row.append(top); if (y.context) row.append(el("div", "small", y.context)); if (y.example) row.append(el("div", "ex", y.example)); c.append(row);
+    });
+    if (s.antonyms.length) c.append(el("p", "small", "↔ Opposites: " + s.antonyms.join(", ")));
+    box.append(c);
+  });
+  if (d.mistakes.length) { const c = el("div", "card"); c.append(el("div", "lbl", "⚠ Common mistakes")); const ul = el("ul"); d.mistakes.forEach((m) => ul.append(el("li", "", m))); c.append(ul); box.append(c); }
+  return box;
+}
+function renderExplore(pg) {
+  title("Word Explorer");
+  const c = el("div", "card"), inp = el("input"), status = el("div"), out = el("div");
+  inp.type = "search"; inp.id = "exploreIn"; inp.placeholder = "Type a word, like “alone”"; inp.setAttribute("aria-label", "A word"); inp.value = view.id || "";
+  const show = (d) => { out.innerHTML = ""; out.append(entryView(d)); };
+  const look = async (wIn) => {
+    const w = String(wIn || inp.value).trim().toLowerCase(); if (!/^[a-z][a-z' -]{0,40}$/i.test(w)) { sayIn(status, "Type one English word (or a short phrase).", true); return; }
+    inp.value = w; view = { ...view, id: w };
+    const have = state.explore[w] || SEEDS[w]; if (have) { sayIn(status, ""); show(have); return; }
+    const r = await aiJob(status, `Mam is exploring “${w}”…`, (sg) => hedged((t, s2) => askJson(explorePrompt(w), { modelTier: t, signal: s2 }), "default", 30000, sg));
+    if (!r) return;
+    const d = cleanExplore(r, w);
+    if (!d.senses.length) { sayIn(status, `Mam could not find “${w}” as an English word. Check the spelling.`, true); return; }
+    state.explore[w] = d; save(); show(d); renderRecent();
+  };
+  inp.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); look(); } });
+  const r = el("div", "row"); inp.classList.add("grow"); r.append(inp, btn("Explore", () => look(), "btn primary"));
+  c.append(el("div", "lbl", "🔎 Every meaning, and only the real synonyms"), el("p", "small muted", "Each synonym shows its tone, formality and strength, where it is used, and whether it is safe in a précis."), r, status);
+  const recent = el("div", "chips");
+  const renderRecent = () => { recent.innerHTML = ""; const words = [...Object.values(state.explore).sort((a, b) => b.at - a.at).map((x) => x.word), ...Object.keys(SEEDS)].filter((x, i, a) => a.indexOf(x) === i).slice(0, 12); words.forEach((w) => recent.append(btn(w, () => look(w), "chip"))); };
+  renderRecent(); c.append(recent);
+  pg.append(c, out);
+  if (view.id) look(view.id); else show(SEEDS.alone);
+}
+
+// ---------- My Words and the review ----------
+function renderWords(pg) {
+  title("My Words");
+  const due = dueWords(), c = el("div", "card" + (due.length ? " hero" : ""));
+  c.append(el("div", "lbl", "⭐ Review"));
+  if (due.length) c.append(el("h2", "", `${plural(due.length, "word")} to review`), btn("Review now", () => go({ tab: "words", page: "review" }), "btn primary"));
+  else c.append(el("p", "", state.words.length ? "Nothing to review today. Each word comes back after 1, 3, 7, 14 and 30 days." : "No words yet. Save words with ☆ in the lessons, One Word and the Explorer, and passed lessons add theirs."));
+  pg.append(c);
+  if (!state.words.length) return;
+  const f = el("input"); f.type = "search"; f.id = "wordFilter"; f.placeholder = `Search your ${plural(state.words.length, "word")}`; f.setAttribute("aria-label", "Search your words");
+  const list = el("div", "card");
+  const draw = () => {
+    list.innerHTML = ""; const q = norm(f.value);
+    const words = state.words.filter((x) => !q || norm(x.w + " " + x.m).includes(q)).sort((a, b) => (a.due <= Date.now()) - (b.due <= Date.now()) ? (b.due <= Date.now()) - (a.due <= Date.now()) : b.added - a.added);
+    words.forEach((x) => {
+      const row = el("div", "wordrow"), g = el("div", "grow"); g.append(el("b", "", x.w), el("div", "small", x.m)); if (x.ex) g.append(el("div", "ex", x.ex));
+      g.append(el("div", "small muted", [x.from, x.due <= Date.now() ? "review today" : "next review " + new Date(x.due).toLocaleDateString("en-GB", { day: "numeric", month: "short" })].filter(Boolean).join(" · ")));
+      const del = btn("✕", () => { if (del.dataset.sure) { state.words = state.words.filter((y) => y !== x); save(); renderBadge(); draw(); toast("Removed"); } else { del.dataset.sure = "1"; del.textContent = "Remove?"; } }, "mini"); del.setAttribute("aria-label", "Remove " + x.w);
+      row.append(g, sayBtn(x.w + ". " + x.ex), del); list.append(row);
+    });
+  };
+  f.oninput = draw; draw(); pg.append(f, list);
+}
+function renderReview(pg) {
+  title("Review"); pg.append(back("My Words", { tab: "words", page: "words" }));
+  const queue = shuffle(dueWords()), seen = new Set(), total = queue.length; let knew = 0;
+  const c = el("div", "card"); pg.append(c);
+  const next = () => {
+    c.innerHTML = "";
+    if (!queue.length) { c.append(el("h2", "", total ? "✓ Review done" : "Nothing to review"), el("p", "muted", total ? `You knew ${knew} of ${total} words the first time.` : "Come back tomorrow."), btn("Back to My Words", () => go({ tab: "words", page: "words" }), "btn primary")); markDay(); save(); renderBadge(); return; }
+    const x = queue[0];
+    c.append(el("div", "lbl", `Review · ${plural(queue.length, "word")} left`), el("h1", "", x.w), el("div", "small muted", x.from));
+    const show = btn("Show the meaning", () => {
+      show.remove(); c.append(el("p", "", x.m)); if (x.ex) c.append(el("p", "ex", x.ex));
+      const r = el("div", "row");
+      r.append(btn("🙂 I knew it", () => { queue.shift(); if (!seen.has(x.id)) { knew++; x.box = Math.min(BOXES.length - 1, (x.box || 0) + 1); } x.due = Date.now() + BOXES[x.box] * DAY; seen.add(x.id); save(); next(); }, "btn primary"),
+        btn("😕 I didn't know", () => { queue.shift(); x.box = 0; x.due = Date.now() + DAY; seen.add(x.id); queue.push(x); save(); next(); })); // it comes again at the end
+      c.append(r);
+    }, "btn primary wide");
+    c.append(sayBtn(x.w), show);
+  };
+  next();
+}
+
+// ---------- Settings ----------
+const sheet = $("setSheet");
+$("setBtn").onclick = () => { $("lvSel").value = level(); sheet.hidden = false; };
+sheet.addEventListener("click", (e) => { if (e.target === sheet || e.target.closest("[data-close]")) sheet.hidden = true; });
+$("lvSel").onchange = () => { state.settings.level = $("lvSel").value; save(); toast("Level: " + $("lvSel").selectedOptions[0].textContent); };
+[["🗣️ Bolo English", inClaude ? "https://claude.ai/artifact/3sSe2UPVMZVAvipKaBHikD" : "../"], ["✍️ Likho English", inClaude ? "https://claude.ai/artifact/LWTMTBXKvkTq7p9xcwrPpu" : "../likho/"], ["🎙️ Speak Up", inClaude ? "https://claude.ai/artifact/KiUgyygdEep1ZvWDnaUSLD" : "../speakup/"]].forEach(([l, h]) => { const a = el("a", "btn", l); a.href = h; a.target = "_blank"; a.rel = "noopener"; $("appLinks").append(a); });
+if (!inClaude) {
+  $("keyBox").hidden = false; $("homeBox").hidden = false;
+  $("keyStatus").textContent = gget()?.key ? "Key saved ✓ Mam is ready." : "No key yet.";
+  const KEY_RE = /AIza[\w-]{30,}/; let keyBusy = false;
+  const saveKey = async (raw) => {
+    const key = (String(raw || "").match(KEY_RE) || [])[0] || String(raw || "").trim(); if (!key || keyBusy) return;
+    keyBusy = true; $("keyStatus").textContent = "Checking your key…";
+    try { saveG({ key, ...chooseModels(await listModels(key)) }); sample = keepGoing(geminiAI()); $("keyIn").value = ""; $("keyStatus").textContent = "Key saved ✓ Mam is ready. Tap Done."; }
+    catch (e) { $("keyStatus").textContent = e?.code === "bad_key" ? "That key did not work. Copy it again from Google, then tap Paste." : "Could not check the key. Check your internet, then try again."; }
+    finally { keyBusy = false; }
+  };
+  $("keySave").onclick = () => saveKey($("keyIn").value);
+  $("keyIn").addEventListener("input", () => { if (KEY_RE.test($("keyIn").value)) saveKey($("keyIn").value); });
+  $("keyPaste").onclick = async () => { let t = ""; try { t = await navigator.clipboard.readText(); } catch {} if (KEY_RE.test(t)) { saveKey(t); return; } $("keyIn").focus(); $("keyStatus").textContent = t ? "That is not a Gemini key (a key starts with AIza). Copy the key again." : "Long-press the box above and tap Paste."; };
+  const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const steps = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true ? ["✓ Khulasa is on your Home Screen. Open it from its icon."]
+    : isIOS ? ["Open this page in Safari.", "Tap the Share button (the square with an arrow).", "Tap Add to Home Screen.", "Tap Add. Khulasa gets its own icon, next to Bolo and Likho."]
+    : ["Open this page in Chrome.", "Tap ⋮ at the top right.", "Tap Add to Home screen, then Install.", "Khulasa gets its own icon, next to Bolo and Likho."];
+  steps.forEach((s) => $("installSteps").append(el("li", "", s)));
+}
+window.addEventListener("pagehide", save);
+render();
+aiReady.then(() => { if (!sample && view.page === "home" && state.placed) { const b = el("div", "banner warn"); b.append(el("span", "", noAI())); if (!inClaude) b.append(btn("Open Settings", () => $("setBtn").click(), "mini")); $("page").prepend(b); } });
+})();
+</script>
+
+</body>
+</html>
