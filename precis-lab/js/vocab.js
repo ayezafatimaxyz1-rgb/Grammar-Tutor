@@ -142,10 +142,18 @@
       ${x.note ? `<span class="syn-note">${esc(x.note)}</span>` : ""}
     </li>`;
 
+  const dictOf = (h) => (P.dict && P.dict[h.word]) || { pos: "", labels: [], coll: [], usage: "" };
+  const LABEL_NOTE = { formal: "used in formal writing and speech", informal: "used in everyday talk, not in formal writing", literary: "used in literature and poetry",
+    approving: "shows that you like or admire something", disapproving: "shows that you do not like something", "often disapproving": "often shows dislike",
+    law: "used in law", medical: "used in medicine", "old-fashioned": "no longer common", technical: "used by specialists" };
+
   function wordHtml(h, esc, icon) {
+    const d = dictOf(h);
     return `<article class="word-card" id="w-${esc(norm(h.word))}">
         <header class="word-head"><h2>${esc(h.word)} <span class="lvl lvl-${esc(levelOf(h))}">${esc(LEVEL[levelOf(h)])}</span></h2>
           <button type="button" class="pdf-mini" data-pdf="words:${esc(h.word)}">${icon("pdf")}<span>PDF</span></button></header>
+        <p class="dict-line"><span class="pos">${esc(d.pos)}</span>${d.labels.map((l) => `<span class="dlabel" title="${esc(LABEL_NOTE[l] || "")}">${esc(l)}</span>`).join("")}</p>
+        ${d.labels.length ? `<p class="muted small">${d.labels.map((l) => `<b>${esc(l)}</b>: ${esc(LABEL_NOTE[l] || "")}`).join(" · ")}</p>` : ""}
         <p class="muted small">${h.senses.length} ${h.senses.length === 1 ? "meaning" : "meanings"}. Each meaning has its own synonyms: use only the ones under the meaning you need.</p>
         ${h.senses
           .map(
@@ -159,6 +167,8 @@
           </section>`
           )
           .join("")}
+        ${d.coll.length ? `<section class="dict-more"><h4>Goes with (collocations)</h4><p class="chips">${d.coll.map((c) => `<span class="coll">${esc(c)}</span>`).join("")}</p></section>` : ""}
+        ${d.usage ? `<section class="dict-more"><h4>Usage</h4><p>${esc(d.usage)}</p></section>` : ""}
       </article>`;
   }
 
@@ -196,7 +206,7 @@
           if (!ok) b.classList.add("is-wrong");
           const why = box.querySelector(".quiz-why");
           why.hidden = false;
-          why.innerHTML = `${ok ? "<strong>Right.</strong>" : "<strong>Not quite.</strong>"} <strong>${esc(h.word)}</strong> = ${esc(s.sense)}. <em>${esc(s.ex)}</em> ${kind === "syn" ? "Most similar" : "Most opposite"}: <strong>${esc(answer.w)}</strong>${answer.note ? ` (${esc(answer.note)})` : ""}. <a href="#word-${encodeURIComponent(h.word)}">See every meaning</a> <button type="button" class="button small" data-next>Next</button>`;
+          why.innerHTML = `${ok ? "<strong>Right.</strong>" : "<strong>Not quite.</strong>"} <strong>${esc(h.word)}</strong> <span class="pos">${esc(dictOf(h).pos)}</span> = ${esc(s.sense)}. <em>${esc(s.ex)}</em> ${kind === "syn" ? "Most similar" : "Most opposite"}: <strong>${esc(answer.w)}</strong>${answer.note ? ` (${esc(answer.note)})` : ""}. <a href="#word-${encodeURIComponent(h.word)}">See every meaning</a> <button type="button" class="button small" data-next>Next</button>`;
           why.querySelector("[data-next]").onclick = () => {
             i++;
             show();
@@ -311,7 +321,9 @@
         intro(n) {
           n.text("Each word is tagged: its feeling (good / neutral / bad), its formality (informal / standard / formal / literary), and where it is used.", { size: 9.5, gap: 3 });
           list.forEach((h) => {
-            n.text(`${h.word}   (${LEVEL[levelOf(h)]})`, { size: 17, bold: true, gap: 1.5 });
+            const d = dictOf(h);
+            n.text(`${h.word}   (${LEVEL[levelOf(h)]})`, { size: 17, bold: true, gap: 0.5 });
+            n.text(safe([d.pos, ...d.labels].filter(Boolean).join("  ·  ")), { size: 9.5, italic: true, gap: 1.2 });
             h.senses.forEach((s, i) => {
               n.rich(safe(`**Meaning ${i + 1}: ${s.sense}.** _${s.ex}_`), { gap: 1 });
               const line = (x) => safe(`${x.w}  (${TONE[x.tone] || x.tone}, ${FORM[x.formality] || x.formality}, ${x.use})${x.note ? ": " + x.note : ""}`);
@@ -321,6 +333,8 @@
               s.ant.forEach((x) => n.text("•  " + line(x), { size: 9.5, gap: 0.3, indent: 6 }));
               n.text("", { gap: 1.5 });
             });
+            if (d.coll.length) n.rich(safe(`**Goes with:** ${d.coll.join("  ·  ")}`), { gap: 0.8 });
+            if (d.usage) n.rich(safe(`**Usage:** ${d.usage}`), { gap: 1.5 });
             n.rule();
           });
         },
