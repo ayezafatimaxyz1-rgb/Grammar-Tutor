@@ -62,9 +62,18 @@
     } else if (hash.startsWith("theme-")) {
       P.themesPage.renderTheme(app, hash.slice(6), { esc, icon });
       $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash === "contexts") {
+      P.contextsPage.renderList(app, { esc, icon });
+      $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash.startsWith("context-")) {
+      P.contextsPage.renderTheme(app, hash.slice(8), { esc, icon });
+      $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash === "tests" || hash.startsWith("test-")) {
+      P.tests.render(app, hash, { esc, icon });
+      $('[data-nav="tests"]').setAttribute("aria-current", "page");
     } else if (hash === "oneword") {
       P.vocab.renderOneWord(app, { esc, rich, icon });
-      $('[data-nav="oneword"]').setAttribute("aria-current", "page");
+      $('[data-nav="tests"]').setAttribute("aria-current", "page");
     } else if (hash === "notebook") {
       renderNotebook();
       $('[data-nav="notebook"]').setAttribute("aria-current", "page");
@@ -145,6 +154,20 @@
         <span class="sc-badge">Vocabulary 3</span>
         <span class="sc-title">Words by theme</span>
         <span class="sc-text">Over 2,000 words grouped by meaning (happiness, anger, shock, honesty, power…), each split into shades with when it is the best word and an example in context.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
+      <a class="start-card" href="#contexts">
+        <span class="sc-badge">Vocabulary 4</span>
+        <span class="sc-title">Words by context</span>
+        <span class="sc-text">The vocabulary of politics, diplomacy, law, the economy, the environment, thinking, solutions and more: 20 contexts, each word with its meaning there and an example.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
+      <a class="start-card" href="#tests">
+        <span class="sc-badge">Tests</span>
+        <span class="sc-title">Test yourself</span>
+        <span class="sc-text">Write as many synonyms as you can, recall a whole shade, or pick every word that could replace one in a sentence.</span>
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 

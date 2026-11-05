@@ -1,0 +1,36 @@
+/* Dictionary detail for the words in vocab-words-css3.js. Format: see vocab-dict.js. */
+(function () {
+  const out = {};
+  const D = (word, pos, labels, coll, usage) => (out[word] = { pos, labels: labels ? labels.split(",").map((x) => x.trim()) : [], coll: coll ? coll.split("|").map((x) => x.trim()) : [], usage });
+  D("sanction", "noun, verb", "formal", "impose sanctions | lift sanctions | economic sanctions | official sanction", "A rare word with opposite meanings: approval (give sanction) and penalty (impose sanctions). The context shows which.");
+  D("stringent", "adjective", "formal", "stringent rules | stringent measures | stringent controls", "Describes rules and checks, not people.");
+  D("lenient", "adjective", "", "lenient with | lenient sentence | a lenient attitude", "lenient WITH a person. Not always positive: too lenient can mean weak.");
+  D("rampant", "adjective", "formal, disapproving", "rampant corruption | rampant inflation | rampant crime", "Only for bad things that spread.");
+  D("pervasive", "adjective", "formal", "a pervasive influence | pervasive corruption | a pervasive smell", "Noun: pervasiveness. Spreads into every part.");
+  D("prevalent", "adjective", "formal", "prevalent in | widely prevalent | prevalent among", "prevalent IN a place, AMONG a group. Noun: prevalence.");
+  D("burgeoning", "adjective", "formal", "burgeoning population | burgeoning industry | burgeoning demand", "Usually before a noun. The verb is burgeon.");
+  D("stagnant", "adjective", "disapproving", "stagnant water | stagnant economy | stagnant wages", "Noun: stagnation. Verb: stagnate.");
+  D("volatile", "adjective", "formal", "volatile market | volatile situation | volatile temper", "For markets, situations and tempers that may change or explode.");
+  D("viable", "adjective", "approving, formal", "economically viable | a viable option | commercially viable", "Noun: viability.");
+  D("feasible", "adjective", "approving, formal", "feasible to do | a feasible plan | technically feasible", "Noun: feasibility (a feasibility study).");
+  D("pivotal", "adjective", "formal, approving", "a pivotal role | pivotal moment | pivotal figure", "From pivot: everything turns on it.");
+  D("imminent", "adjective", "formal", "imminent danger | imminent collapse | an imminent threat", "Do not confuse with 'eminent' (famous) or 'immanent'.");
+  D("inevitable", "adjective", "", "all but inevitable | inevitable consequence | the inevitable result", "Noun: inevitability. 'the inevitable' can stand alone.");
+  D("detrimental", "adjective", "formal", "detrimental to | detrimental effect | detrimental impact", "detrimental TO health. Never 'detrimental for'.");
+  D("alleviate", "verb", "formal", "alleviate poverty | alleviate suffering | alleviate pressure", "Takes a problem as its object. Do not confuse with 'elevate' (raise).");
+  D("curtail", "verb", "formal", "curtail spending | curtail freedom | curtail the visit", "Often about freedoms or spending.");
+  D("bolster", "verb", "formal, approving", "bolster confidence | bolster the economy | bolster support", "Often with morale, economy or support.");
+  D("undermine", "verb", "formal, disapproving", "undermine confidence | undermine authority | undermine efforts", "Weaken from underneath, often slowly.");
+  D("foster", "verb", "formal, approving", "foster growth | foster understanding | foster talent", "Also: foster a child (care for another's child).");
+  D("hamper", "verb", "", "hamper progress | hamper efforts | hampered by", "Often passive: 'hampered BY lack of funds'.");
+  D("advocate", "verb, noun", "formal", "advocate reform | advocate for | a strong advocate of", "Verb ends 'cate'; noun 'kut'. As a verb it takes no 'for' in British use: advocate reform.");
+  D("scrutinize", "verb", "formal", "scrutinize the accounts | closely scrutinized | scrutinize every detail", "Noun: scrutiny (under scrutiny). British spelling also scrutinise.");
+  D("arbitrate", "verb", "formal, law", "arbitrate a dispute | arbitrate between | independent arbitrator", "Noun: arbitration. An arbitrator's decision is binding.");
+  D("concede", "verb", "formal", "concede defeat | concede a point | concede that", "concede defeat / a point. A concession is a thing given up.");
+  D("repeal", "verb, noun", "formal, law", "repeal a law | repeal an act | repeal of", "Only for laws and acts.");
+  D("coerce", "verb", "formal, disapproving", "coerce someone into | coerced into silence | coerced confession", "coerce someone INTO doing something. Noun: coercion.");
+  D("incite", "verb", "formal, disapproving", "incite violence | incite hatred | incite to riot", "incite someone TO violence. Noun: incitement.");
+  D("quell", "verb", "formal", "quell a riot | quell unrest | quell fears", "Used with riots, fears or rumours.");
+  D("pacify", "verb", "formal", "pacify the crowd | pacify a baby | pacify the region", "Noun: pacification. Can also mean to bring peace by force.");
+  PLAB.dict = Object.assign(PLAB.dict || {}, out);
+})();

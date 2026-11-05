@@ -664,3 +664,31 @@ h1 { letter-spacing: -0.015em; }
 .th-in { font-size: 0.8rem; color: var(--muted); }
 .th-gap { font-size: 1.1rem; margin: 0; }
 .th-pager { justify-content: space-between; margin-top: 18px; }
+/* ---------- Tests ---------- */
+.test-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+@media (min-width: 720px) { .test-grid { grid-template-columns: 1fr 1fr; } }
+.test-card { display: flex; flex-direction: column; gap: 4px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.test-card:hover { border-color: var(--accent); }
+.test-card b { color: var(--accent); font-size: 1.05rem; }
+.test-card span { color: var(--muted); font-size: 0.92rem; }
+.wt-chips { display: flex; flex-wrap: wrap; gap: 6px; min-height: 8px; }
+.wt-chip { font: inherit; border: 1px solid var(--accent); color: var(--accent); background: var(--surface); border-radius: 999px; padding: 6px 12px; cursor: pointer; min-height: 36px; }
+.wt-row { display: flex; gap: 8px; }
+.wt-row input { flex: 1; font: inherit; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--sunk); min-height: 44px; }
+.wt-row input:focus { outline: none; border-color: var(--accent); background: var(--surface); }
+.wt-clock { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.wt-list { list-style: none; margin: 6px 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.wt-list li { display: block; padding: 6px 8px; border-radius: 6px; background: var(--sunk); line-height: 1.7; }
+.wt-mark { font-weight: 700; display: inline-block; width: 1.3em; }
+.wt-ok .wt-mark { color: var(--good); }
+.wt-near .wt-mark { color: var(--accent-2); }
+.wt-no .wt-mark { color: var(--bad); }
+.wt-none .wt-mark { color: var(--muted); }
+.wt-miss { opacity: 0.85; }
+.sb-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.sb-opt { font: inherit; font-weight: 700; border: 2px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 10px 16px; cursor: pointer; min-height: 44px; }
+.sb-opt[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); }
+.sb-opt.is-right { border-color: var(--good); background: var(--good-bg); }
+.sb-opt.is-no[aria-pressed="true"] { border-color: var(--bad); background: var(--bad-bg); text-decoration: line-through; }
+.sb-opt:disabled { cursor: default; }
+mark { background: var(--hi-soft); padding: 0 4px; border-radius: 3px; }
