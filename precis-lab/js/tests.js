@@ -1,7 +1,7 @@
 /* The Tests section (#tests).
    1. Write synonyms: type as many synonyms of a word, in one meaning, as you can.
    2. Recall a shade: type as many words as you can of one theme shade or context group.
-   3. Substitute: pick every word that could replace the marked word in the sentence.
+   3. Best word: four synonyms, pick the one that fits the sentence's tone and setting.
    Answers are checked against the app's own lists, which are not complete: a word we do not list
    may still be right, so the feedback says so instead of marking it wrong. */
 (function () {
@@ -181,10 +181,24 @@
     (P.words || []).forEach((h) => {
       if (h.word.includes(" ")) return;
       h.senses.forEach((s, si) => {
-        if (re(h.word).test(s.ex) && single(s.syn).length >= 3 && single(s.ant).length >= 1) out.push({ h, s, si });
+        if (re(h.word).test(s.ex) && single(s.syn).length >= 3) out.push({ h, s, si });
       });
     });
     return out;
+  }
+
+  const modeOf = (a) => {
+    const m = {};
+    a.forEach((x) => (m[x] = (m[x] || 0) + 1));
+    return Object.entries(m).sort((x, y) => y[1] - x[1])[0][0];
+  };
+  // What tone and formality the sentence's own word has.
+  function keyProfile(h, s) {
+    const labels = (P.dict && P.dict[h.word] && P.dict[h.word].labels) || [];
+    const syn = single(s.syn);
+    const tone = labels.includes("approving") ? "positive" : labels.includes("disapproving") ? "negative" : modeOf(syn.map((x) => x.tone));
+    const form = labels.includes("informal") ? "informal" : labels.includes("literary") ? "literary" : labels.includes("formal") || h.level === "A" ? "formal" : modeOf(syn.map((x) => x.formality));
+    return { tone, form };
   }
 
   const fixArticle = (before, w) => before.replace(/\b(a|an)(\s+)$/i, (m, a, sp) => (/^[aeiou]/i.test(w) ? (a[0] === "A" ? "An" : "an") : a[0] === "A" ? "A" : "a") + sp);
@@ -194,76 +208,66 @@
     return fixArticle(ex.slice(0, m.index), lead) + lead + ex.slice(m.index + m[0].length);
   };
 
-  function subQuestion(q, all) {
-    const { h, s, si } = q;
-    const opts = [];
-    const used = new Set([clean(h.word)]);
-    const add = (x, kind, extra = {}) => {
-      if (!x || used.has(clean(x.w))) return;
-      used.add(clean(x.w));
-      opts.push({ x, kind, ...extra });
-    };
-    shuffle(single(s.syn)).slice(0, 4).forEach((x) => add(x, "ok"));
-    shuffle(single(s.ant)).slice(0, 2).forEach((x) => add(x, "opp"));
-    h.senses.forEach((t, k) => k !== si && shuffle(single(t.syn)).slice(0, 1).forEach((x) => !s.syn.some((y) => clean(y.w) === clean(x.w)) && add(x, "diff", { k })));
-    const same = shuffle(all.filter((o) => o.h !== h && posOf(o.h) === posOf(h)));
-    for (const o of same) {
-      if (opts.length >= 8) break;
-      const x = pick(single(o.s.syn));
-      if (x && !s.syn.some((y) => clean(y.w) === clean(x.w))) add(x, "rand", { from: o.h.word });
-    }
-    return shuffle(opts);
+  // Four words that all mean roughly the same; one is the word the sentence really uses.
+  function subQuestion(q) {
+    const { h, s } = q;
+    const key = keyProfile(h, s);
+    const clash = (x) => (x.tone !== key.tone ? 2 : 0) + (x.formality !== key.form ? 1 : 0);
+    const others = shuffle(single(s.syn).filter((x) => clean(x.w) !== clean(h.word)));
+    others.sort((x, y) => clash(y) - clash(x));
+    const chosen = others.slice(0, 3);
+    const opts = [{ w: h.word, tone: key.tone, formality: key.form, note: "", right: true }, ...chosen.map((x) => ({ ...x, right: false }))];
+    return { opts: shuffle(opts), key };
+  }
+
+  function whyNot(o, key, head) {
+    if (o.tone !== key.tone) return `it carries a ${o.tone} feeling, but this sentence is ${key.tone}`;
+    if (o.formality !== key.form) return `it is ${FORM[o.formality] || o.formality}, but the sentence calls for ${FORM[key.form] || key.form} wording`;
+    if (o.note) return o.note;
+    return `it has the same meaning, but ${head} is the more exact and more usual choice for this setting`;
   }
 
   function runSub(box, esc, icon, state) {
     const all = subPool();
     state = state || { items: shuffle(all).slice(0, 8), i: 0, score: 0, max: 0 };
     if (state.i >= state.items.length) {
-      box.innerHTML = `<section class="quiz-card"><p class="eyebrow">Substitute</p><h2>${state.score} of ${state.max} points</h2>
-        <p class="muted">A point for each fitting word you picked, minus one for each wrong pick.</p>
+      box.innerHTML = `<section class="quiz-card"><p class="eyebrow">Best word</p><h2>${state.score} of ${state.items.length}</h2>
+        <p class="muted">One point each time you chose the word that best matches the tone and setting.</p>
         <p class="row-buttons"><button type="button" class="button primary" id="sb-again">Another round</button><a class="button" href="#tests">Back to tests</a></p></section>`;
       $("#sb-again", box).onclick = () => runSub(box, esc, icon);
       return;
     }
     const q = state.items[state.i];
-    const opts = subQuestion(q, all);
+    const { opts, key } = subQuestion(q);
     const m = q.s.ex.match(re(q.h.word));
-    const sentence = `${esc(q.s.ex.slice(0, m.index))}<mark>${esc(m[0])}</mark>${esc(q.s.ex.slice(m.index + m[0].length))}`;
+    const sentence = `${esc(q.s.ex.slice(0, m.index))}<mark class="th-blank">______</mark>${esc(q.s.ex.slice(m.index + m[0].length))}`;
     box.innerHTML = `<section class="quiz-card" aria-live="polite">
-        <p class="eyebrow">Substitute · question ${state.i + 1} of ${state.items.length}</p>
-        <h2>Which words could replace <span class="caps">${esc(m[0].toUpperCase())}</span> here?</h2>
+        <p class="eyebrow">Best word · question ${state.i + 1} of ${state.items.length}</p>
+        <h2>Which word best fits this sentence?</h2>
         <p class="th-gap">${sentence}</p>
-        <p class="muted small">Meaning here: ${esc(q.s.sense)}. Pick every word that fits.</p>
-        <div class="sb-opts">${opts.map((o, i) => `<button type="button" class="sb-opt" data-i="${i}" aria-pressed="false">${esc(o.x.w)}</button>`).join("")}</div>
-        <p class="row-buttons"><button type="button" class="button primary" id="sb-check">Check</button></p>
+        <p class="muted small">All four words mean about: <b>${esc(q.s.sense)}</b>. Only one suits the tone, formality and setting.</p>
+        <div class="sb-opts">${opts.map((o, i) => `<button type="button" class="sb-opt" data-i="${i}">${esc(o.w)}</button>`).join("")}</div>
         <div id="sb-result"></div></section>`;
-    box.querySelectorAll(".sb-opt").forEach((b) => b.addEventListener("click", () => !b.disabled && b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true")));
-    $("#sb-check", box).onclick = () => {
-      let pts = 0;
-      const max = opts.filter((o) => o.kind === "ok").length;
-      const lines = [];
-      box.querySelectorAll(".sb-opt").forEach((b, i) => {
-        const o = opts[i], on = b.getAttribute("aria-pressed") === "true";
-        b.disabled = true;
-        b.classList.add(o.kind === "ok" ? "is-right" : "is-no");
-        if (o.kind === "ok") {
-          if (on) pts++;
-          lines.push(`<li class="${on ? "wt-ok" : "wt-miss"}"><span class="wt-mark">${on ? "✓" : "·"}</span> <b>${esc(o.x.w)}</b> ${on ? "fits" : "also fits (you did not pick it)"}: <em>${esc(withWord(q.s.ex, q.h.word, o.x.w))}</em> ${tags(o.x)}${o.x.note ? ` <span class="muted">${esc(o.x.note)}</span>` : ""}</li>`);
-        } else if (on) {
-          pts--;
-          const why = o.kind === "opp" ? "the opposite meaning" : o.kind === "diff" ? `a synonym of ${q.h.word} in a different meaning (${o.k + 1}: ${q.h.senses[o.k].sense})` : `a different word: it is not a synonym of ${q.h.word} here`;
-          lines.push(`<li class="wt-no"><span class="wt-mark">✗</span> <b>${esc(o.x.w)}</b> does not fit: ${esc(why)}.</li>`);
-        }
-      });
-      pts = Math.max(0, pts);
-      state.score += pts;
-      state.max += max;
-      $("#sb-check", box).disabled = true;
-      $("#sb-result", box).innerHTML = `<h3>${pts} of ${max}</h3><ul class="wt-list">${lines.join("")}</ul>
-        <p class="muted small">Tone and formality still matter: a word can fit the meaning but not the passage. Read the tags.</p>
-        <p class="row-buttons"><button type="button" class="button primary" id="sb-next">${state.i + 1 >= state.items.length ? "See my score" : "Next"}</button></p>`;
-      $("#sb-next", box).onclick = () => ((state.i += 1), runSub(box, esc, icon, state));
-    };
+    box.querySelectorAll(".sb-opt").forEach((b) =>
+      b.addEventListener("click", () => {
+        if (b.disabled) return;
+        const picked = opts[+b.dataset.i];
+        if (picked.right) state.score++;
+        const lines = opts.map((o) => {
+          const sent = withWord(q.s.ex, q.h.word, o.w);
+          if (o.right) return `<li class="wt-ok"><span class="wt-mark">✓</span> <b>${esc(o.w)}</b>: <em>${esc(sent)}</em> ${tags(o)} <span class="muted">This is the word that fits the tone and setting.</span></li>`;
+          return `<li class="${o === picked ? "wt-no" : "wt-miss"}"><span class="wt-mark">${o === picked ? "✗" : "·"}</span> <b>${esc(o.w)}</b>: ${tags(o)} It means nearly the same, but ${esc(whyNot(o, key, q.h.word))}.</li>`;
+        });
+        box.querySelectorAll(".sb-opt").forEach((x, i) => {
+          x.disabled = true;
+          x.classList.add(opts[i].right ? "is-right" : "is-no");
+        });
+        $("#sb-result", box).innerHTML = `<h3>${picked.right ? "Right" : "Not quite"}</h3><ul class="wt-list">${lines.join("")}</ul>
+          <p class="muted small">In a precis, near-synonyms are not equal. Match the tone and formality of the passage.</p>
+          <p class="row-buttons"><button type="button" class="button primary" id="sb-next">${state.i + 1 >= state.items.length ? "See my score" : "Next"}</button></p>`;
+        $("#sb-next", box).onclick = () => ((state.i += 1), runSub(box, esc, icon, state));
+      })
+    );
     box.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
@@ -272,11 +276,11 @@
   function render(app, hash, { esc, icon }) {
     clearInterval(timer);
     if (hash === "test-write" || hash === "test-shade" || hash === "test-sub") {
-      const title = { "test-write": "Write synonyms", "test-shade": "Recall a shade", "test-sub": "Substitute in the sentence" }[hash];
+      const title = { "test-write": "Write synonyms", "test-shade": "Recall a shade", "test-sub": "Best word for the sentence" }[hash];
       const lede = {
         "test-write": "You see a word and one meaning. Type every synonym you can think of for that meaning. Answers are checked against the Words list, and close words from the same shade count as close.",
         "test-shade": "You see one shade of a theme or context, such as \"Strong: very happy\". Type every word you can that belongs there. This builds recall, not just recognition.",
-        "test-sub": "You see a sentence with one word marked. Pick every word that could replace it without changing the meaning. Eight questions a round.",
+        "test-sub": "You see a sentence with a gap and four words that all mean nearly the same. Pick the one that best fits the tone, formality and setting. Eight questions a round.",
       }[hash];
       app.innerHTML = `<p class="crumbs"><a href="#tests">Tests</a></p><section class="page-head"><h1>${esc(title)}</h1><p class="lede">${esc(lede)}</p></section><div id="t-box"></div>`;
       const box = $("#t-box");
@@ -295,7 +299,7 @@
       <div class="test-grid">
         <a class="test-card" href="#test-write"><b>Write synonyms</b><span>See a word and one meaning. Type as many synonyms as you can. Race the clock if you like.</span></a>
         <a class="test-card" href="#test-shade"><b>Recall a shade</b><span>See "Strong: very happy" or "Court actions". Type every word you know for it. ${nShades} shades to try.</span></a>
-        <a class="test-card" href="#test-sub"><b>Substitute in the sentence</b><span>Pick every word that could replace the marked word. Wrong tone and wrong meaning are explained.</span></a>
+        <a class="test-card" href="#test-sub"><b>Best word for the sentence</b><span>Four synonyms, one gap. Choose the word that fits the tone and setting. Each wrong choice is explained.</span></a>
         <a class="test-card" href="#words"><b>Most similar or opposite</b><span>The CSS wording: choose the word most similar or most opposite in meaning. Open Words, then pick a level.</span></a>
         <a class="test-card" href="#themes"><b>Best word for the context</b><span>A sentence with a gap and four near words. Pick the exact one. Open any theme, or test them all.</span></a>
         <a class="test-card" href="#contexts"><b>Context words</b><span>The same gap test for politics, law, economy, environment and more.</span></a>
