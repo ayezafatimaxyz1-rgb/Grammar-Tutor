@@ -640,3 +640,27 @@ h1 { letter-spacing: -0.015em; }
 .dict-more h4 { margin: 0 0 6px; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .dict-more p { margin: 0; }
 .coll { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; background: var(--sunk); font-size: 0.9rem; }
+/* ---------- Words by theme ---------- */
+.th-cat h2 { font-size: 1.05rem; color: var(--accent); margin: 18px 0 8px; }
+.th-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+@media (min-width: 720px) { .th-grid { grid-template-columns: repeat(3, 1fr); } }
+.th-card { display: flex; flex-direction: column; gap: 4px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-decoration: none; color: var(--fg); }
+.th-card:hover { border-color: var(--accent); }
+.th-card b { color: var(--accent); }
+.th-card span { font-size: 0.8rem; color: var(--muted); }
+.crumbs { font-size: 0.85rem; color: var(--muted); margin: 8px 0 0; }
+.th-shades { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 8px; }
+.th-shades a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; font-size: 0.85rem; text-decoration: none; color: var(--accent); background: var(--surface); }
+.th-group h2 { font-size: 1.05rem; margin: 18px 0 8px; }
+.th-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.th-word { border: 1px solid var(--line); border-left: 4px solid var(--muted); border-radius: 8px; padding: 10px 12px; background: var(--surface); display: flex; flex-direction: column; gap: 4px; }
+.th-word.tone-positive { border-left-color: var(--good); }
+.th-word.tone-negative { border-left-color: var(--bad); }
+.th-top { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.th-w { font-weight: 700; font-size: 1.05rem; }
+.th-best { font-size: 0.95rem; }
+.th-ex { color: var(--muted); font-size: 0.92rem; }
+.th-ex strong { color: var(--fg); }
+.th-in { font-size: 0.8rem; color: var(--muted); }
+.th-gap { font-size: 1.1rem; margin: 0; }
+.th-pager { justify-content: space-between; margin-top: 18px; }

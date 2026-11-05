@@ -225,6 +225,7 @@
       <section class="page-head">
         <p class="eyebrow">Vocabulary 2</p>
         <h1>Synonyms and antonyms, by meaning</h1>
+        <p><a class="button small" href="#themes">Or learn words by theme: happiness, anger, shock… →</a></p>
         <p class="lede">Type a word. Each of its meanings is shown separately, with only the real synonyms and antonyms for that meaning, and each word's tone, formality and where it is used.</p>
         <p class="legend"><span class="tag tone-positive">good feeling</span><span class="tag tone-neutral">neutral feeling</span><span class="tag tone-negative">bad feeling</span> · then formality (informal, standard, formal, literary) · then where it is used</p>
         <p class="row-buttons">
