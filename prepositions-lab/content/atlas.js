@@ -1574,16 +1574,31 @@ PLAB.atlas = [
       "prep": "with",
       "name": "a feeling towards a person",
       "caption": "the person you feel it at",
-      "explain": "Many feelings take WITH for a person.",
+      "explain": "A feeling aimed at a PERSON often takes WITH: you face them. For a thing or an event, use AT or ABOUT instead.",
       "examples": [
        "She is angry with me.",
-       "He is pleased with his result."
+       "He is pleased with his son."
       ],
       "vs": [
        "at",
-       "AT is often for a thing or event: angry at the decision."
+       "AT is often for a thing or event: angry at the decision. (Angry at a person is also heard, mostly in American English.)"
       ],
       "step": "s4-with"
+     },
+     {
+      "prep": "with",
+      "name": "a feeling about what you got",
+      "caption": "what you have or received",
+      "explain": "WITH can mean having: you are pleased, satisfied or happy with what you HAVE or GOT. So a result you received is not 'at' you: it is what you hold. Angry about it, but pleased WITH it.",
+      "examples": [
+       "He is pleased with his result.",
+       "We are satisfied with the service."
+      ],
+      "vs": [
+       "about",
+       "ABOUT is for a topic you think over: worried about the result."
+      ],
+      "step": "s5-with"
      },
      {
       "prep": "without",
@@ -1598,7 +1613,7 @@ PLAB.atlas = [
        "with",
        "WITH is the opposite."
       ],
-      "step": "s5-without"
+      "step": "s6-without"
      }
     ]
    },

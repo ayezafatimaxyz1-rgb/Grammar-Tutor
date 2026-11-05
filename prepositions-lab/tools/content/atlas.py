@@ -20,7 +20,7 @@ from uses import use_for, use_line, use_say
 T = lambda v: json.dumps(v, ensure_ascii=False)
 UNITS = []
 # Senses whose "other" preposition is also correct English there: no test question for them.
-NOCHECK = {("beneath", "under, in formal or literary English"), ("underneath", "hidden right under"), ("about", "approximately"), ("about", "here and there"), ("in spite of", "the same, in three words"),
+NOCHECK = {("with", "a feeling towards a person"), ("with", "a feeling about what you got"), ("beneath", "under, in formal or literary English"), ("underneath", "hidden right under"), ("about", "approximately"), ("about", "here and there"), ("in spite of", "the same, in three words"),
            ("but", "except (after all, none, every)"), ("owing to", "because of (formal)"), ("thanks to", "a cause you are glad of"),
            ("inside", "within the walls"), ("next to", "right beside, nothing between"), ("near", "a short distance from"),
            ("by", "at the side of"), ("over", "more than"), ("opposite", "facing across a space"),
