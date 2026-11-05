@@ -633,3 +633,10 @@ h1 { letter-spacing: -0.015em; }
 .wchip.lvl-A { color: var(--bad); }
 .lvl-group h2 { margin: 14px 0 6px; }
 .caps { letter-spacing: 0.04em; color: var(--accent); }
+.dict-line { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 6px 0 2px; }
+.pos { font-style: italic; color: var(--muted); font-weight: 700; }
+.dlabel { font-size: 0.75rem; font-weight: 700; color: var(--accent-2); border: 1px solid var(--accent-2); border-radius: 4px; padding: 1px 6px; text-transform: lowercase; }
+.dict-more { border-top: 1px dashed var(--line); margin-top: 10px; padding-top: 8px; }
+.dict-more h4 { margin: 0 0 6px; font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.dict-more p { margin: 0; }
+.coll { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; background: var(--sunk); font-size: 0.9rem; }
