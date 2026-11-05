@@ -1,0 +1,16 @@
+{
+  "name": "Precis Lab",
+  "short_name": "Precis",
+  "description": "Master the precis for the CSS English paper on a hand-drawn teaching board: vocabulary, synonyms and the method, step by step.",
+  "start_url": "./index.html#library",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#ffffff",
+  "theme_color": "#0d6b5f",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
