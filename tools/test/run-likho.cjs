@@ -138,6 +138,22 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await kind("4. Essays");
   check("Essays open only after every paragraph lesson", (await txt()).includes("Essays open after you finish all the paragraph lessons. You have finished 0 of 12."));
 
+  // ---- a long piece: how it is built ----
+  check("short writing gets no paragraph review", (await calls(/Judge how the writing is BUILT/)).length === 0);
+  await kind("1. Free writing"); await p.click("text=✍️ Start writing"); await wait(300);
+  await p.fill("#draft", "Pakistan has many problems but education is the biggest one. Many children do not go to school because their parents are poor. Every morning i wake up at 7. Schools in villages have no teachers and no books, and many buildings have no roof.\n\nThe government should build more schools and pay teachers well. It should also give books and food to poor children so they come to school. My favourite food is biryani. If every child studies, Pakistan will become strong.");
+  await p.click("#checkBtn"); await wait(900);
+  const bc = (await calls(/Judge how the writing is BUILT/)).pop();
+  check("a long piece: Mam also reads how it is built, with its paragraphs numbered as I wrote them", !!bc && bc.tier === "default" && bc.prompt.includes("(2 paragraphs)") && bc.prompt.includes("[1] Pakistan has many problems") && bc.prompt.includes("[2] The government should build") && bc.prompt.includes("quote the learner's own words"));
+  t = await p.textContent("#buildBox");
+  check("How your writing is built: my paragraph skill, whether I can develop a paragraph, and where a new paragraph should start", t.includes("6/10") && t.includes("Can you develop a good paragraph? Getting there") && t.includes("you do not explain your ideas enough") && t.includes("Start a new paragraph at") && t.includes("“Schools in villages have no…”"), t.slice(0, 400));
+  check("paragraph by paragraph: my topic sentence quoted, what I could have done and what I should not have done", t.includes("🟡 Paragraph 1 · partly developed") && t.includes("✓ Topic sentence: “Pakistan has many problems but education is the biggest one.”") && t.includes("Off the point") && t.includes("“Every morning i wake up at 7.”") && t.includes("✅ You could have") && t.includes("how many children are out of school") && t.includes("⛔ You should not have") && t.includes("🟢 Paragraph 2 · well developed"));
+  if (process.env.SHOTS) { await p.evaluate(() => document.getElementById("buildBox").scrollIntoView()); await shot("build"); }
+  check("the first weak paragraph is open, a strong one stays folded", await p.evaluate(() => { const d = [...document.querySelectorAll("#buildBox details.bpara")]; return d.length === 2 && d[0].open && !d[1].open; }));
+  check("a better plan for the piece, and habits for next time", t.includes("🗺️ A better plan for this piece") && t.includes("Paragraph 2: Village schools have no teachers or books.") && t.includes("Next time") && t.includes("Plan your paragraphs before you write."));
+  await wait(1200);
+  check("the review is saved with my draft", Object.values(await store()).some((d) => d?.drafts?.some((x) => x.check?.build?.skill === 6 && x.check.build.paras.length === 2)));
+
   // ---- précis ----
   await kind("Précis");
   await p.click("text=✨ Write me a passage"); await wait(600);
@@ -192,11 +208,11 @@ const seed = { "data/users/u_test": { m_seed: { id: "mseed", wrong: "I am agree"
   await p.click('#tabbar [data-tab="progress"]'); await wait(300);
   t = await txt();
   check("Progress: my path, and my writing score from first drafts", (await p.textContent(".hero")).startsWith("5.8") && t.includes("first drafts") && t.includes("2. Sentences1 of 32") && t.includes("3. Paragraphs0 of 12"));
-  check("a chart of Mam's marks and of the words I wrote each day", (await p.$$("#scoreChart .pt")).length === 4 && (await p.$$("#wordChart .bar")).length >= 1);
+  check("a chart of Mam's marks and of the words I wrote each day", (await p.$$("#scoreChart .pt")).length === 5 && (await p.$$("#wordChart .bar")).length >= 1);
   check("this week: words, pieces, mistakes per 100 words, mistakes fixed alone", t.includes("words written") && t.includes("pieces checked") && t.includes("mistakes per 100 words") && t.includes("67%") && t.includes("mistakes you fixed alone"));
   check("marks by area, with what to improve", (await p.$$(".part")).length === 8 && t.includes("Task and ideas") && t.includes("To improve:"));
   await p.click(".tbl summary"); await wait(100);
-  check("the numbers in a table", (await p.$$(".tbl tbody tr")).length === 5);
+  check("the numbers in a table", (await p.$$(".tbl tbody tr")).length === 6);
   await shot("progress");
 
   // ---- settings and level ----

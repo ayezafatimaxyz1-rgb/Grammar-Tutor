@@ -177,6 +177,9 @@ details.card > summary { margin: -2px 0; }
 .drafts { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; font-size: 13px; color: var(--muted); }
 .up { color: var(--good); font-weight: 700; }
 .flag { font-size: 15px; }
+.bpara { border-top: 1px solid var(--rim); padding-top: 6px; }
+.bpara .brow { margin: 4px 0; font-size: 15px; }
+.bpara ul { margin: 2px 0 6px; padding-left: 20px; }
 .flag.bad { color: var(--pen); }
 .flag.ok { color: var(--good); }
 .marked, .corrected, .better { margin: 0; white-space: pre-wrap; font-size: 17px; line-height: 1.9; overflow-wrap: anywhere; }
@@ -1117,6 +1120,24 @@ ${text}
 ${pre ? `Write a model précis of about ${precisMeasure(p, text).about} words: a short title on the first line, then one paragraph in your own words and the third person.` : `Write the whole text again, well, in ${LEVEL_STYLE[level()]}: correct, natural and clear, keeping the learner's own ideas and order, and about the same length.${sentLike(p.kind) && L ? ` Keep using the structure "${L.t}".` : ""}`}
 Reply with ONLY JSON: {"better": "the text"}`;
 }
+// How a long piece is built: its paragraphs, each topic sentence, how each idea is developed, and what the learner could
+// have done or should not have done, quoting their own words. Grammar is marked separately.
+const paraSplit = (t) => { const s = String(t).trim(); return (/\n\s*\n/.test(s) ? s.split(/\n\s*\n/) : s.split(/\n+/)).map((x) => x.replace(/\s+/g, " ").trim()).filter(Boolean).slice(0, 12); };
+const buildFor = (p, d) => !!d && !sentLike(p.kind) && p.kind !== "precis" && p.kind !== "comp" && d.words >= 70;
+function buildPrompt(p, text) {
+  const k = p.kind, L = lessonOf(p), part = k === "essay" ? ESSAY_PARTS[p.part || "intro"] : null, paras = paraSplit(text);
+  const needs = part ? `The learner is writing ${part.task}.` : k === "para" || k === "topic" ? `This should be ONE well developed paragraph: a topic sentence with a controlling idea, supporting sentences (reasons, explanation, examples or facts), and a concluding sentence.` : `It should be divided into paragraphs, one main idea in each, with an opening and an ending.`;
+  return `You are Mam, a kind English writing teacher and a careful CSS examiner, teaching ${LEARNER()} how to build paragraphs.
+Task (${L ? L.t : KINDS[k].one}): ${p.task.prompt || p.task.title}${L?.what ? `\nWhat ${an(L.t.toLowerCase())} needs: ${L.what}` : ""}
+${needs}
+The learner's text, with its paragraphs numbered as they wrote them (${paras.length} paragraph${paras.length === 1 ? "" : "s"}):
+${paras.map((x, i) => `[${i + 1}] ${x}`).join("\n")}
+
+Judge how the writing is BUILT, not its grammar (grammar is marked separately): how the text is divided into paragraphs (one main idea in each, a new paragraph for each new idea, sensible length), and for every paragraph: the topic sentence (does it state the main idea and a controlling idea?), the support (reasons, explanation, examples, facts that develop the idea), unity (sentences that are off the point), coherence (a logical order and linking words) and the closing sentence. Also the whole piece: an opening, the body and an ending where the task needs them, and the links between paragraphs.
+Be specific to THIS text: quote the learner's own words, and never give a general rule without pointing to their writing. Judge honestly whether they can develop a good paragraph.
+Write in ${LEVEL_STYLE[level()]}, never Urdu.
+Reply with ONLY JSON: {"skill": 1 to 10 (how well they develop paragraphs), "can": "yes or getting there or not yet", "verdict": "one or two sentences: can they develop a good paragraph, and what holds them back", "paragraphing": "one or two sentences on how the text is divided into paragraphs", "breaks": ["the first 5 words of each sentence where a NEW paragraph should start but does not, copied exactly; empty if none"], "paras": [{"n": the paragraph number, "level": "well developed or partly developed or underdeveloped", "topic": "their topic sentence copied exactly, or empty if there is none", "topic_ok": true or false, "topic_note": "one short sentence on the topic sentence", "better_topic": "a stronger topic sentence for this paragraph, with their ideas", "support": "one short sentence: how well the idea is developed", "off": ["sentences that are off the point, copied exactly"], "flow": "one short sentence on the order and the linking words", "ending": "one short sentence on how the paragraph ends", "could": ["what they could have done in this paragraph, each one short specific sentence"], "avoid": ["what they should not have done, each one short sentence quoting their words"]}], "plan": ["a better plan for this text: one line per paragraph, with its topic sentence and its points"], "next": ["2 short habits for their next piece"]}`;
+}
 function outlinePrompt(p, text) {
   const L = lessonOf(p), css = !L || L.id === "css";
   return `You are Mam, a kind English writing teacher and a fair CSS examiner. ${LEARNER().replace(/^a/, "A")} is planning ${css ? "a CSS essay" : an(L.t.toLowerCase())} on: "${p.task.title}". Check their essay OUTLINE.
@@ -1736,7 +1757,7 @@ async function checkPiece(p) {
   }
   putPiece(p, true); renderTabs();
   dbg("checked", { kind: p.kind, outline, words, tier });
-  if (!outline) polish(p, lastDraft(p)); // the better version comes while the learner fixes the mistakes
+  if (!outline) { polish(p, lastDraft(p)); if (buildFor(p, lastDraft(p))) buildCheck(p, lastDraft(p)); } // both come while the learner fixes the mistakes
   if (view.page === "piece" && view.id === p.id) {
     if (p.test?.done === p.drafts[p.drafts.length - 1]?.at || (p.test && !outline && p.drafts.length === 1)) render(true); else { renderResult(p); updateCount(p); } // a test's first check also changes its banner
     $("result")?.scrollIntoView({ block: "start", behavior: "smooth" });
@@ -1790,6 +1811,7 @@ function renderResult(p) {
   if (textKey(p) === "outline") { if (p.outline?.check) box.append(outlineCard(p)); return; }
   const d = lastDraft(p); if (!d) return;
   box.append(marksCard(p, d));
+  if (buildFor(p, d)) box.append(buildBox(p, d));
   const ms = d.check.mistakes;
   if (ms.length) { box.append(markedCard(d)); box.append(fixesCard(p, d)); }
   box.append(afterCard(p, d));
@@ -1987,6 +2009,60 @@ async function polish(p, d) {
   } catch (e) { dbg("polish_error", { code: String(e?.code || "none") }); }
   finally { stop(); polishing.delete(d.at); showBetter(p, d); }
 }
+const building = new Set();
+async function buildCheck(p, d) {
+  if (!d || d.check.build || building.has(d.at)) return;
+  building.add(d.at); showBuild(p, d);
+  await aiReady;
+  const ctl = new AbortController(), stop = deadline(150000, () => ctl.abort());
+  try {
+    if (!sample) throw { code: "no_ai" };
+    const r = await hedged((t, sg) => askJson(buildPrompt(p, d.text), { modelTier: t, signal: sg }), "default", 35000 + d.words * 50, ctl.signal);
+    const b = cleanBuild(r);
+    if (b.verdict || b.paras.length) { d.check.build = b; putPiece(p); }
+  } catch (e) { dbg("build_error", { code: String(e?.code || "none") }); }
+  finally { stop(); building.delete(d.at); showBuild(p, d); }
+}
+const BUILD_LV = { "well developed": "🟢", "partly developed": "🟡", underdeveloped: "🔴" }, CAN = { yes: "✓ Yes", "getting there": "Getting there", "not yet": "Not yet" };
+function cleanBuild(r) {
+  const txt = (x) => (isEnglish(x) && x != null ? String(x).trim() : ""), low = (x) => String(x || "").toLowerCase().trim();
+  return { skill: num(r?.skill, 1, 10), can: CAN[low(r?.can)] ? low(r?.can) : "getting there", verdict: txt(r?.verdict), paragraphing: txt(r?.paragraphing), breaks: cleanList(r?.breaks, 6),
+    paras: (Array.isArray(r?.paras) ? r.paras : []).slice(0, 12).map((x, i) => ({ n: num(x?.n || i + 1, 1, 40), level: BUILD_LV[low(x?.level)] ? low(x?.level) : "partly developed", topic: txt(x?.topic), topicOk: x?.topic_ok === true, topicNote: txt(x?.topic_note), betterTopic: txt(x?.better_topic),
+      support: txt(x?.support), off: cleanList(x?.off, 4), flow: txt(x?.flow), ending: txt(x?.ending), could: cleanList(x?.could, 4), avoid: cleanList(x?.avoid, 4) })),
+    plan: cleanList(r?.plan, 10), next: cleanList(r?.next, 3), at: Date.now() };
+}
+// The paragraph skill across the learner's last long pieces, oldest first.
+const buildTrend = () => state.pieces.flatMap((q) => (q.drafts || []).filter((x) => x.check?.build).map((x) => [x.at, x.check.build.skill])).sort((a, b) => a[0] - b[0]).slice(-6).map((x) => x[1]);
+function fillBuild(box, p, d) {
+  box.innerHTML = "";
+  const b = d.check.build;
+  if (!b) {
+    box.append(el("div", "lbl", "🧱 How your writing is built"));
+    box.append(building.has(d.at) ? el("p", "hint", "Mam is reading how your paragraphs are built…") : btn("🧱 Check how my paragraphs are built", () => buildCheck(p, d)));
+    return;
+  }
+  const top = el("div", "scorerow"); top.append(el("span", "score", b.skill + "/10"));
+  const tx = el("div"); tx.append(el("strong", "", "🧱 How your writing is built"), el("div", "when", "Paragraph skill · Can you develop a good paragraph? " + CAN[b.can])); top.append(tx); box.append(top);
+  if (b.verdict) box.append(el("p", "", b.verdict));
+  if (b.paragraphing) box.append(el("p", "", "📑 " + b.paragraphing));
+  const list = (label, items, quote) => { if (!items.length) return null; const w = el("div"); w.append(el("div", "lbl", label)); const ul = el("ul"); items.forEach((x) => ul.append(el("li", "", quote ? "“" + x + "…”" : x))); w.append(ul); return w; };
+  const br = list("Start a new paragraph at", b.breaks, true); if (br) box.append(br);
+  b.paras.forEach((x, i) => {
+    const det = el("details", "bpara"); det.open = x.level !== "well developed" && i === b.paras.findIndex((y) => y.level !== "well developed");
+    det.append(el("summary", "", `${BUILD_LV[x.level]} Paragraph ${x.n} · ${x.level}`));
+    const row = (label, text) => { if (!text) return; const r = el("p", "brow"); r.append(el("b", "", label + " "), text); det.append(r); };
+    row(x.topic && x.topicOk ? "✓ Topic sentence:" : "✗ Topic sentence:", x.topic ? "“" + x.topic + "” " + x.topicNote : (x.topicNote || "There is no clear topic sentence."));
+    if (!x.topicOk && x.betterTopic) row("A stronger one:", "“" + x.betterTopic + "”");
+    row("Development:", x.support); row("Order and linking:", x.flow); row("Ending:", x.ending);
+    [["Off the point", x.off, true], ["✅ You could have", x.could], ["⛔ You should not have", x.avoid]].forEach(([l, items, q]) => { const w = list(l, items, false); if (w) { if (q) w.querySelectorAll("li").forEach((li) => { li.textContent = "“" + li.textContent + "”"; }); det.append(w); } });
+    box.append(det);
+  });
+  if (b.plan.length) { const det = el("details"); det.append(el("summary", "", "🗺️ A better plan for this piece")); const ol = el("ol"); b.plan.forEach((x) => ol.append(el("li", "", x))); det.append(ol); box.append(det); }
+  const nx = list("Next time", b.next); if (nx) box.append(nx);
+  const tr = buildTrend(); if (tr.length > 1) box.append(el("p", "hint", "Your paragraph skill in your last long pieces: " + tr.join(" → ")));
+}
+function buildBox(p, d) { const b = el("div", "card"); b.id = "buildBox"; fillBuild(b, p, d); return b; }
+function showBuild(p, d) { const b = $("buildBox"); if (b && view.page === "piece" && view.id === p.id && lastDraft(p) === d) fillBuild(b, p, d); }
 // The better version's place under the corrected writing: the text, Mam still writing it, or a button to ask again.
 function fillBetter(b, p, d) {
   b.innerHTML = "";
