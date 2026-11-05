@@ -1,5 +1,5 @@
 // Builds the standalone web versions from the Claude artifacts: Bolo English (docs/index.html), Likho English (docs/likho/index.html)
-// and Speak Up Daily (docs/speakup/index.html).
+// Speak Up Daily (docs/speakup/index.html) and Khulasa English, the précis app (docs/khulasa/index.html).
 // The Claude artifact is published without a document skeleton; the web version needs one.
 // Also writes the manifests that let each app live on the phone's Home Screen (icons: tools/make-icons.cjs).
 // The apps are on the same site, so the Gemini key saved in one is there in the others.
@@ -9,6 +9,7 @@ const APPS = [
   { src: "bolo-english.html", dir: "", name: "Bolo English", short: "Bolo", desc: "Speak English every day with Mam.", theme: "#0d7a4c", bg: "#e9f3ee" },
   { src: "likho-english.html", dir: "likho/", name: "Likho English", short: "Likho", desc: "Write English every day, and Mam checks it.", theme: "#2449a8", bg: "#e9eef8" },
   { src: "speakup-daily.html", dir: "speakup/", name: "Speak Up Daily", short: "Speak Up", desc: "A 24 week speaking course, 15 minutes a day.", theme: "#ff6b4a", bg: "#f3f6fb" },
+  { src: "khulasa-english.html", dir: "khulasa/", name: "Khulasa English", short: "Khulasa", desc: "Précis, step by step: the exact word, in fewer words.", theme: "#6a2c8f", bg: "#f1ecf6" },
 ];
 // On iPhone the Home Screen icon opens Safari ("browser"), because the microphone may not work in a standalone web app there.
 const head = (a) => `<!doctype html>

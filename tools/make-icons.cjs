@@ -48,7 +48,21 @@ ${glass("#ffb39f", "#9cc6ff", "#ffd08c")}
 <path d="M256 342v44M206 396h100" stroke="#14213d" stroke-width="20" stroke-linecap="round"/>
 <path d="M126 196a150 150 0 0 0 0 108M386 196a150 150 0 0 1 0 108" fill="none" stroke="#ffffff" stroke-width="16" stroke-linecap="round" stroke-opacity=".95"/>
 </svg>`;
-const SETS = [["docs", bolo], ["docs/likho", likho], ["docs/speakup", speakup]];
+// Khulasa: a plum card where two long lines become one short gold line (a précis: the same meaning in fewer words).
+const khulasa = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+${glass("#d2a8f0", "#86e0c8", "#ffd08c")}
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6a2c8f"/><stop offset="1" stop-color="#8a46b5"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd58f"/><stop offset="1" stop-color="#f0a83a"/></linearGradient>
+<filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#3a1456" flood-opacity=".35"/></filter>
+</defs>
+<rect width="512" height="512" fill="#f1ecf6"/><rect width="512" height="512" fill="url(#m)"/><rect width="512" height="512" fill="url(#b)"/><rect width="512" height="512" fill="url(#g)"/>
+<rect x="116" y="116" width="280" height="280" rx="44" fill="url(#gb)" filter="url(#sh)"/>
+<rect x="156" y="164" width="200" height="16" rx="8" fill="#ffffff" fill-opacity=".9"/>
+<rect x="156" y="204" width="200" height="16" rx="8" fill="#ffffff" fill-opacity=".9"/>
+<path d="M236 248l20 22 20-22" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".9"/>
+<rect x="196" y="300" width="120" height="22" rx="11" fill="url(#gold)"/>
+</svg>`;
+const SETS = [["docs", bolo], ["docs/likho", likho], ["docs/speakup", speakup], ["docs/khulasa", khulasa]];
 
 (async () => {
   const exe = fs.existsSync("/opt/pw-browsers/chromium") ? "/opt/pw-browsers/chromium" : undefined;
