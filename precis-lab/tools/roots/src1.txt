@@ -1,0 +1,114 @@
+# kind | stems | form | origin | meaning | other family words | leave out
+R | dictat,verdict,predict,dictum,dictio | dict | Latin dicere | say, speak | dictate, edict, diction, contradict, indicate | 
+R | eloqu,loquac,grandiloqu,colloqu | loqu | Latin loqui | speak | soliloquy, colloquial, elocution | 
+R | advoca,evoc,provok,provoc,revok,equivoc,vocal,vocation,vociferous | voc | Latin vocare | call, voice | vocabulary, invoke, convocation | 
+R | scribab,prescription,scriptur | scrib / script | Latin scribere | write | describe, inscription, manuscript, postscript | 
+R | graphic,calligraph | graph | Greek graphein | write, draw | autograph, biography, geography, paragraph | 
+R | spect,prospect | spect | Latin specere | look, see | inspect, retrospect, spectator, perspective | 
+R | vision,visib,revis,supervis,provision,evident,evidence,provid,advis,visual | vis / vid | Latin videre | see | video, visible, revise, supervise, provide | 
+R | audit,audib,audien | aud | Latin audire | hear | audience, audible, auditorium | 
+R | deport,export,import,purport,report,support,transport | port | Latin portare | carry | portable, porter, passport | important,imported,imports
+R | aquifer,deferen,differ,indifferen,inferen,prefer,prolifer,referendum,referral,vocifer | fer | Latin ferre | carry, bring | transfer, refer, confer, offer, suffer | inferior
+R | conduc,deduc,induc,introduc,produc,reduc,educat | duc / duct | Latin ducere | lead | educate, conduct, abduct, aqueduct | 
+R | accede,access,cede,concede,concession,excess,incessant,necessar,precedent,proceed,recession,secession,succeed,success | ced / cess / ceed | Latin cedere | go, yield | precede, recede, exceed, process, secede | 
+R | aggress,regress,progress,transgress | gress | Latin gradi | step, go | digress, congress, gradual | 
+R | admit,emission,permit,remiss,submissive,dismiss,mission,commit | mit / miss | Latin mittere | send | transmit, submit, omit, emit, compromise | 
+R | apposite,composed,composure,expose,oppose,opposition,suppose,postpone,component,deposit,position,impose,proponent | pon / pos | Latin ponere | put, place | exposition, propose, repose, juxtapose | 
+R | contend,extend,extensive,intensify,intense,tendency,pretend,attend | tend / tens | Latin tendere | stretch | tension, intend, extent, tendon | 
+R | abstain,attain,contain,maintain,obtain,retain,sustain,tenacious,tenable | tain / tin | Latin tenere | hold | tenant, tenure, continue, abstain | 
+R | accept,exceptional,conceive,deceive,deception,deceptive,inception,perceive,perceptive,receive,captiv,anticipat,participat,capable,incapab | cept / ceiv / cap | Latin capere | take, seize | capture, receive, concept, except, intercept | concept
+R | conjecture,dejected,dejection,object,reject,inject,eject,project,subject | ject | Latin jacere | throw | trajectory, interject | 
+R | attract,detract,extract,intractable,protracted,tractable,abstract,contract,distract | tract | Latin trahere | pull, drag | subtract, retract, tractor, traction | 
+R | depress,express,impress,oppress,pressure,repress,suppress,compress | press | Latin premere | push, squeeze | pressure, express, compress | 
+R | conclu,exclu,inclusiv,preclude,reclusive,seclu | clud / clus | Latin claudere | close, shut | include, exclude, seclude, recluse, cloister | 
+R | flexib,reflect,reflex | flect / flex | Latin flectere | bend | deflect, inflect, genuflect | 
+R | applicab,apply,complicat,complicit,comply,duplic,explicit,implicat,multiply,replicat,reply | plic / ply | Latin plicare | fold, twist | complicate, duplicate, display, employ | 
+R | construct,destruct,infrastruct,obstruct,reconstruct | struct | Latin struere | build | structure, instruct, instrument, industry | 
+R | effect,defect,affect,infect,perfect,facilit,factory,manufactur,efficien,efficac,magnific,munific,significan,diversific,gratific,benefic,difficult,deficit,deficien,satisf,factual,factional | fac / fact / fic / fect | Latin facere | make, do | fact, factory, manufacture, fiction, confection | 
+R | credib,credit,credentials,credulous,incredul,discredit | cred | Latin credere | believe, trust | credible, credit, creed, accredit | 
+R | confiden,diffiden,fidelity,perfid | fid | Latin fidere | trust, faith | confide, infidel, fiancé | 
+R | judg,judic,adjudic,prejudic | jud | Latin judex | judge | judge, judicial, judiciary, prejudice | 
+R | injur,jurisdiction,justif,perjur | jur / jus | Latin jus | law, right | jury, justice, injury, juror | 
+R | legal,legislat,legitim,privileg | leg | Latin lex, legis | law | legal, legislate, legitimate, privilege | 
+R | correct,rectif,rectitud,regulat,regularit,irregular | reg / rect | Latin regere | rule, straight | regulate, direct, erect, region | 
+R | arrogan | rog | Latin rogare | ask | interrogate, derogatory, prerogative | 
+R | competit,competi,impetu,incompeten,petition | pet | Latin petere | seek, go towards | compete, appetite, impetus, repeat | 
+R | acquisit,exquisit,question,require,inquir | quir / quest | Latin quaerere | ask, seek | inquire, acquire, request, conquest | 
+R | conscience,conscientious,conscious,science | sci | Latin scire | know | science, conscious, omniscient, prescient | 
+R | diagnos,ignorance,ignorant,ignore,recogni,cognit | gno / cogn | Latin/Greek gnoscere | know | cognitive, agnostic, notion, notorious | 
+R | nominal,nominat,ignominy,synonym,antonym,anonym | nom / nym | Latin nomen | name | nominate, misnomer, pseudonym, nomenclature | 
+R | commemorat,memorial,memoriz,memory,memoir | mem | Latin memor | remember | memento, memorandum, remember | 
+R | admonish,demonstrat,monitor,monstrous,remonstrat,summon | mon | Latin monere | warn, advise | monument, premonition, admonition | 
+R | assent,consensus,consent,dissent,insensitiv,resentful,resentment,sensible,sensitiv,sensation | sent / sens | Latin sentire | feel | sense, sentiment, resent, scent | 
+R | antipath,apath,compassion,empath,impassive,passion,passiv,pathetic,sympath | path / pass | Greek pathos | feeling, suffering | patient, pathology, telepathy | 
+R | animat,animosity,aspirat,dispirited,equanim,inspire,magnanim,spirited,unanim,spirit | anim / spir | Latin anima | breath, spirit, life | animal, inspire, expire, conspire | 
+R | convivial,revive,survive,survivor,vital,vivacious,vivid | vit / viv | Latin vivere | live, life | vitamin, viable, vivid, survive | 
+R | biodegrad,biodivers | bio | Greek bios | life | biology, biography, antibiotic | 
+R | immortal,mortality,mortified,mortgage | mort | Latin mors | death | mortal, mortuary, moribund | 
+R | nation,native,innate,natal,renaissance | nat | Latin nasci | be born | native, nature, natal, prenatal | 
+R | degenerat,generat,generosit,generous,genesis,genocide,genre,genuine,ingenious,congenial,progeny,regenerat | gen | Latin genus, gignere | birth, kind, produce | generate, gender, genius, general | 
+R | popular,populism,populist,republic,populat | popul | Latin populus | people | public, populace, populous | 
+R | democra,demograph,epidemic,endemic,pandemic,demagogue | dem | Greek demos | people | democracy, demography, epidemic, pandemic | 
+R | geopolit,politic,realpolitik | polit | Greek polis | city, state | politics, police, metropolis, policy | 
+R | civil,civic,civilian | civ | Latin civis | citizen | civil, civic, civilization, citizen | 
+R | suburb,urbaniz,urban | urb | Latin urbs | city | urban, urbane, suburb | 
+R | territorial,territory | terr | Latin terra | earth, land | territory, terrain, terrestrial | 
+R | geopolit | geo | Greek ge | earth | geography, geology, geometry | 
+R | hydropower,hydrat | hydr | Greek hydor | water | hydrogen, hydroelectric, dehydrate | 
+R | lucid,elucid,illuminat,luminous,illustr | luc / lum | Latin lux | light | lucid, luminous, illuminate, illustrate | 
+R | manipulat,manufactur,emancipat,manifest,command,mandate,demand,remand,manage,mismanage | man | Latin manus | hand | manual, manuscript, manage, manoeuvre | 
+R | expedien,expedit,impede,impediment | ped | Latin pes | foot | pedal, pedestrian, expedition, centipede | 
+R | accord,concord,cordial,discord | cord | Latin cor, cordis | heart | cordial, discord, courage, record | 
+R | capitulat | capit | Latin caput | head | capital, captain, decapitate, chief | 
+R | accura,curious,cybersecur,secur,insecur | cur | Latin cura | care | cure, curator, curious, security | 
+R | fragil,infring,refractory,fraction | frag / fract | Latin frangere | break | fragment, fracture, refract | 
+R | abrupt,bankrupt,corrupt,disrupt,erupt,incorruptible | rupt | Latin rumpere | break, burst | rupture, interrupt, erupt | 
+R | absolve,dissolve,insolven,irresolute,resolute,resolution,resolve,solution | solv / solu | Latin solvere | loosen, free | solve, solvent, dissolve, absolute | 
+R | collect,eclectic,elect,intellect,neglect,recollect,select,eligib,diligen,intelligen | lect / leg | Latin legere | choose, gather, read | collect, select, intellect, diligent | 
+R | obliged,alliance | lig | Latin ligare | bind | religion, oblige, ligament, rely | 
+R | injunction,subjugat | junct / jug | Latin jungere | join | junction, conjunction, adjunct | 
+R | annex | nex | Latin nectere | bind, tie | connect, annex, nexus | 
+R | assist,consist,desist,destitut,insist,institut,persist,resist,restitution,static,statute,statutory,subsisten,constitut | sist / stat / stit | Latin stare | stand | station, status, stable, exist | 
+R | constant,distant,instant,substan,circumstan,extant | stan | Latin stare | stand | stand, distance, instant, substance | 
+R | tempor | tempor | Latin tempus | time | temporary, contemporary, temporal | 
+R | chronic,chronicle,chronolog,synchron | chron | Greek chronos | time | chronic, chronicle, chronology | 
+R | advers,aversion,controvers,conversely,diverse,diversit,introvert,subvert,universal,revers,invert,convert,divert | vert / vers | Latin vertere | turn | convert, reverse, universe, version | 
+R | convolut,devolution,revolution,evolv,involv | volv / volut | Latin volvere | roll, turn | revolve, evolve, involve, volume | 
+R | recycle,cyclic | cycl | Greek kyklos | circle, wheel | cycle, bicycle, cyclone | 
+R | circulat,circumspect,circumstan,circumvent | circ | Latin circus | ring, round | circle, circuit, circumference | 
+R | adventur,conventional,convention,invent,prevent,convenien,circumvent,revenue,intervene | vent | Latin venire | come | event, venture, convene, advent | 
+R | obvious,trivial,deviat,devious,previous,obviate | via | Latin via | road, way | viaduct, voyage, deviate | 
+R | disgrace,graceful,gracious,gratif,gratitude,ingratiat,ingratitude,grateful | grat | Latin gratus | pleasing, thankful | grateful, gratitude, grace, agree | 
+R | amicab,amiab,amity | amic | Latin amicus | friend | amiable, amicable, enemy, amity | 
+R | benefic,benevol,benign,benefit | bene | Latin bene | good, well | benefit, benefactor, benediction | 
+R | maladminist,malevol,malicious,malign,malnutrit,malice,malady | mal | Latin malus | bad, badly | malice, malignant, malfunction, malady | 
+R | philanthrop,philosoph | phil | Greek philos | love | philosophy, philanthropy, bibliophile | 
+R | phobia,xenophob | phob | Greek phobos | fear | phobia, claustrophobia, hydrophobia | 
+R | philanthrop,anthropolog,misanthrop | anthrop | Greek anthropos | human | anthropology, philanthropy | 
+R | patriarch,patronage,repatriat,patriot,patron | patr | Latin pater | father | paternal, patriot, patriarch, patron | 
+R | autocra,bureaucra,democra,kleptocra,theocra,technocra,meritocra | cracy | Greek kratos | power, rule | aristocracy, plutocracy, autocrat | 
+R | anarch,monarch,oligarch,patriarch,hierarch,archaic | arch | Greek archein | rule, first | monarchy, anarchy, oligarchy, archaic | 
+R | autocra,autonom,automat,autobiograph | auto | Greek autos | self | automatic, autonomy, autograph, autobiography | 
+R | equal,equanim,equit,equival,adequa,inadequa,inequ,unequ,equilibr | equ | Latin aequus | equal | equal, equity, equation, adequate | 
+R | disparity,disparage,comparison,compare,parity | par | Latin par | equal | parity, compare, peer, nonpareil | 
+R | plurali,plurality,plentiful,replenish,complete,depletion,deplete,accomplish,compliance,compliant,compliment,surplus | plen / plur | Latin plenus, plus | full, more | plenty, plural, surplus, replete | 
+R | unilateral,unipolar,unitary,universal,unique,uniform,unanim,unite,unity | uni | Latin unus | one | unit, union, unite, unison | 
+R | dubious,duplic | du | Latin duo | two | dual, duel, duet, doubt | 
+R | quarantin | quar | Latin quadraginta | forty | quarantine, quadrant, quarter | 
+R | decimat | dec | Latin decem | ten | decade, decimal, decimate | 
+R | omnipoten,omnipresen,omniscien,omnivor | omni | Latin omnis | all | omnipotent, omniscient, omnibus | 
+R | integral,integrat,integrity,reintegrat | integr | Latin integer | whole, untouched | integer, integrate, entire | 
+R | diminish,diminutive,administ,minority,minimiz,minor,microscop,microfinanc | min / micr | Latin minor, Greek mikros | small, less | minus, minimum, microscope, administer | 
+R | magnanim,magnific,magnify,major,megacity,magnitude | magn / maj | Latin magnus | large, great | magnitude, majesty, majority, magnify | 
+R | primary,principal,principled,primitive,primordial | prim | Latin primus | first | prime, primary, prince, principle | 
+R | confined,definite,determin,exterminat,refined,terminat,ultimat,finite,infinite | fin / term | Latin finis, terminus | end, limit | final, finish, define, terminal | 
+R | extra,extraneous,extraordinary,extrapolat,extravagan,extremis,extremist,external | extra / exter | Latin extra | outside | extreme, extrovert, exterior, external | extract
+R | introduc,introvert,intrinsic | intro | Latin intro | inside, within | introduce, introvert, intrinsic | 
+R | contraband,contravene,counterfeit,counterproduct,contradict,controvers | contra / counter | Latin contra | against | contradict, contrary, contrast, counteract | 
+R | anticip,antiquat,antique | ante | Latin ante | before | anticipate, antique, ancient, antecedent | 
+R | anticlima,antipath,antithes,antibod | anti | Greek anti | against | antibody, antidote, antonym, antithesis | 
+R | subject,subsidy,substitut,suburb,subservient,subside,subdue,subordinat | sub | Latin sub | under | submarine, subway, subscribe, subtle | 
+R | sovereign,sovereignty,superior,supreme,superb,superfluous,supercilious,superficial,superlative,superpower,surplus | super | Latin super | above, over | superior, supreme, surface, surpass | 
+R | fidelity,confide | fid | Latin fidere | faith | fidelity, confide | 
+R | ethical,ethics,ethnic | ethos | Greek ethos | custom, character | ethic, ethos, ethnic | 
+R | hypocri,hypothes,hyperinflat,hyperbol | hyper / hypo | Greek | over / under | hyperbole, hypothesis, hypocrite, hypodermic | 

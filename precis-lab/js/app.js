@@ -62,6 +62,8 @@
     } else if (hash.startsWith("theme-")) {
       P.themesPage.renderTheme(app, hash.slice(6), { esc, icon });
       $('[data-nav="words"]').setAttribute("aria-current", "page");
+    } else if (hash === "roots") {
+      P.roots_ui.renderRoots(app);
     } else if (hash === "contexts") {
       P.contextsPage.renderList(app, { esc, icon });
       $('[data-nav="words"]').setAttribute("aria-current", "page");
@@ -161,6 +163,13 @@
         <span class="sc-badge">Vocabulary 4</span>
         <span class="sc-title">Words by context</span>
         <span class="sc-text">The vocabulary of politics, diplomacy, law, the economy, the environment, thinking, solutions and more, plus wars, genocide, refugees, economic crisis, corruption, climate and technology: 51 contexts, each word with its meaning there and an example.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
+      <a class="start-card" href="#roots">
+        <span class="sc-badge">Vocabulary 5</span>
+        <span class="sc-title">Roots and word families</span>
+        <span class="sc-text">Learn one root and read many words: dict, port, spect, bene, mal and hundreds more. Tap any word in the app to see its root and the words that share it.</span>
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 

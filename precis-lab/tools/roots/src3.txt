@@ -1,0 +1,352 @@
+R | jeopardiz | jeu | Old French jeu parti | even game, risk | jeopardy, jeopardize | 
+R | jubilant,jovial,joy | jov / jub | Latin Jovis, jubilare | joy, Jupiter | joy, jovial, jubilant, rejoice | 
+R | junta | jun | Latin jungere | join | junta, junction | 
+R | lament,lamentab | lament | Latin lamentum | wailing | lament, lamentable | 
+R | laud,applaud | laud | Latin laus | praise | laud, laudable, applaud | 
+R | lavish | lav | Latin lavare | wash | lavatory, lavish, laundry | 
+R | lawful,unlawful | law | Old Norse lagu | law | law, lawful, outlaw | 
+R | lenient,lessen | len | Latin lenis | soft, mild | lenient, lenity, relent | 
+R | lethal,lethargic,lethargy | leth | Latin letum, Greek lethe | death; forgetting | lethal, lethargy | 
+R | liable,litigant,litigation | lig | Latin ligare, litigare | bind; dispute | liable, liability, litigate | 
+R | liquidat,liquidity | liqu | Latin liquere | flow | liquid, liquidate, liquidity | 
+R | magistrate | magis | Latin magister | master | magistrate, master, magisterial | 
+R | marginal,marginaliz | marg | Latin margo | edge | margin, marginal, marginalize | 
+R | massacre | mass | Old French macecre | slaughter | massacre | 
+R | mature,premature | matur | Latin maturus | ripe | mature, premature, maturity | 
+R | mediate,mediator,mediocre,immediate,media | medi | Latin medius | middle | medium, mediate, mediocre, immediate, media | 
+R | meditate | medit | Latin meditari | think over | meditate, meditation | 
+R | mendacious | mend | Latin mendax | lying | mendacious, mendacity | 
+R | mention | mention | Latin mens | mind | mention, mental | 
+R | mercenary,merciful,merciless,mercurial | merc | Latin merces | wages, reward | mercenary, mercy, merchant, commerce | 
+R | merit,meritocra | merit | Latin merere | earn | merit, meritorious, demerit | 
+R | metaphor | meta | Greek meta | change, beyond | metaphor, metamorphosis | 
+R | methodical | meth | Greek hodos | way | method, methodical | 
+R | meticulous | metic | Latin metus | fear | meticulous | 
+R | migrant,migration,emigrat,immigrat | migr | Latin migrare | move | migrate, migrant, emigrate, immigrate | 
+R | milit,militia,militancy | milit | Latin miles | soldier | military, militant, militia | 
+R | mitigat | mit | Latin mitis | mild | mitigate, mitigation | 
+R | mollify | moll | Latin mollis | soft | mollify, mollusc | 
+R | momentary,momentous | mom | Latin momentum | movement, moment | moment, momentary, momentous | 
+R | monetary,moneyed | mon | Latin moneta | coin | money, monetary, mint | 
+R | monopoly,monopol | mono | Greek monos | alone, single | monopoly, monologue, monotony | 
+R | monumental | monu | Latin monere | remind | monument, monumental | 
+R | moratorium | mor | Latin mora | delay | moratorium, demur | 
+R | morose | mor | Latin mos | custom, mood | morose, moral, morale | 
+R | mundane | mund | Latin mundus | world | mundane, mundus | 
+R | multinational,multipolar,multitude | multi | Latin multus | many | multiple, multitude, multiply | 
+R | naive,naivety | nat | Latin nativus | native, natural | naive, native, nation | 
+R | narrative | narr | Latin narrare | tell | narrate, narrative, narrator | 
+R | nefarious | fa | Latin nefas | wrong | nefarious, fate | 
+R | negligen,negligible | neg / leg | Latin neglegere | not gather | neglect, negligent, negligence | 
+R | negotiat | neg | Latin neg + otium | not leisure, business | negotiate, negotiation | 
+R | neocolonial | neo | Greek neos | new | neon, neoclassical, neolithic | 
+R | nepotism | nepo | Latin nepos | nephew | nepotism, nephew | 
+R | nervous | nerv | Latin nervus | sinew | nerve, nervous | 
+R | neutral,neutrality,neutraliz | neut | Latin neuter | neither | neutral, neuter | 
+R | nobl | nobl | Latin nobilis | known, noble | noble, nobility, ignoble | 
+R | nostalgia | nost | Greek nostos | return home | nostalgia, nostalgic | 
+R | notable,noteworthy,notice,noticeable,notion,notorious,note | not | Latin notare | mark, note | note, notice, notion, notable, notorious | 
+R | novel,renovat,innovat | nov | Latin novus | new | novel, novice, innovate, renovate | 
+R | noxious | nox | Latin nocere | harm | noxious, obnoxious, innocent | 
+R | numeracy,numerous | numer | Latin numerus | number | number, numerous, numeral | 
+R | nurture,nutritious | nutr | Latin nutrire | feed | nurture, nutrition, nourish | 
+R | oblige | lig | Latin ligare | bind | oblige, obligation | 
+R | oblivion,oblivious | obli | Latin oblivisci | forget | oblivion, oblivious | 
+R | obscure | scur | Latin obscurus | covered, dark | obscure, obscurity | 
+R | obsolete | sol | Latin solere | be used to | obsolete, insolent | 
+R | obstacle | stac | Latin stare | stand | obstacle, stand | 
+R | obstinate | stin | Latin stare | stand | obstinate, destiny | 
+R | obtuse | tus | Latin tundere | beat, blunt | obtuse, contusion | 
+R | occupation,occupy | cup | Latin capere | take | occupy, occupation, preoccupy | 
+R | ombudsman | ombud | Old Norse umbod | commission | ombudsman | 
+R | ominous | omin | Latin omen | sign | omen, ominous | 
+R | onset,onslaught | on | Old English | attack | onset, onslaught | 
+R | opaque | opac | Latin opacus | shaded, dark | opaque, opacity | 
+R | optimism,optimistic | opt | Latin optimus | best | optimum, optimist, optimal | 
+R | option | opt | Latin optare | choose | option, adopt, opt | 
+R | opulen | op | Latin ops | wealth | opulent, opulence | 
+R | organiz | organ | Greek organon | tool | organ, organize, organism | 
+R | origin,original,originat | orig | Latin oriri | rise | origin, original, orient | 
+R | ornate | orn | Latin ornare | adorn | ornate, ornament, adorn | 
+R | orthodox | ortho | Greek orthos | straight, correct | orthodox, orthopaedic | 
+R | ostentatious | ostent | Latin ostendere | show | ostentatious, ostensible | 
+R | ostracize | ostrac | Greek ostrakon | potsherd | ostracize, ostracism | 
+R | outrageous,outraged | ultra | Latin ultra | beyond | outrage, ultra | 
+R | overt | overt | Latin aperire | open | overt, aperture | 
+R | palliate | pall | Latin pallium | cloak | palliate, palliative | 
+R | panacea,pandemonium,paramedic | pan | Greek pan | all | panacea, pandemonium, panorama | 
+R | pander | pand | Pandarus | go-between | pander | 
+R | panic | pan | Greek Pan | the god Pan | panic | 
+R | paramount | mount | Latin mons | mountain, above | paramount, mount, amount | 
+R | pardon | don | Latin donare | give | pardon, donate | 
+R | parody | od | Greek ode | song | parody, ode | 
+R | parsimon | pars | Latin parcere | spare | parsimonious, parsimony | 
+R | passable,passing,passé | pass | Latin passus | step | pass, passage, pace | 
+R | patent | pat | Latin patere | lie open | patent, patently | 
+R | patience,patient,penitence,penitent | pati / paen | Latin pati, paenitere | suffer; regret | patient, passion, penitent | 
+R | paucity | pauc | Latin paucus | few | paucity, pauper | 
+R | peculiar | pecul | Latin peculium | private property | peculiar | 
+R | pedagog,pedantic | ped | Greek pais | child | pedagogy, pedant | 
+R | penalize,penalty,penitence,punish,punishment | pun / pen | Latin poena | penalty | penalty, punish, penal | 
+R | penchant | pend | Latin pendere | hang | penchant, pending | 
+R | penetrating | pen | Latin penetrare | go into | penetrate, penetration | 
+R | penury,penniless | pen | Latin penuria | want | penury | 
+R | periodic,peripheral | peri | Greek peri | around | period, peripheral, perimeter | 
+R | permanent | man | Latin manere | stay | permanent, remain, mansion | 
+R | pernicious | nec | Latin nex | death | pernicious, internecine | 
+R | perpetrator,perpetual,perpetuate | pet | Latin perpetuus | continuous | perpetual, perpetuate | 
+R | perplexing | plex | Latin plectere | twist | perplex, complex | 
+R | perseverance,persevere | sever | Latin severus | serious | persevere, severe | 
+R | perspicacious | spic | Latin specere | look | perspicacious, perspective | 
+R | persuade,persuasive | suad | Latin suadere | urge | persuade, dissuade, suasion | 
+R | pertinent | tin | Latin tenere | hold | pertinent, pertain | 
+R | pessimism,pessimistic | pess | Latin pessimus | worst | pessimist, pessimism | 
+R | petrified | petr | Greek petra | rock | petrify, petrol, petroleum | 
+R | petty,petulant | pet | Latin | small; seek | petty, petulant | 
+R | picturesque | pict | Latin pingere | paint | picture, picturesque, depict | 
+R | pilgrimage | pilgr | Latin peregrinus | foreigner | pilgrim, pilgrimage | 
+R | pioneer,pioneering | pion | Old French peonier | foot soldier | pioneer | 
+R | pious | pi | Latin pius | dutiful | pious, piety, pity | 
+R | pitiful,pitiable,pity,placable | pit | Latin pietas | pity | pity, pitiful, piety | 
+R | plagiari | plagi | Latin plagium | kidnapping | plagiarism, plagiarize | 
+R | plague | plag | Latin plaga | blow | plague, plaintiff | 
+R | plaintiff,plea,plead | plain | Latin plangere | complain | plaintiff, plea | 
+R | platform | plat | Greek platys | flat | platform, plate, plateau | 
+R | pledge | pledg | Old French plege | security | pledge | 
+R | plethora | pleth | Greek plethos | fullness | plethora | 
+R | plight | pligh | Old English pliht | danger | plight | 
+R | plummet,plunge | plumb | Latin plumbum | lead | plummet, plunge, plumber | 
+R | polarization | pol | Greek polos | pivot, pole | pole, polar, polarize | 
+R | polemic | polem | Greek polemos | war | polemic, polemical | 
+R | policy | polic | Greek polis | state | policy, police, polity | 
+R | polite | polit | Latin politus | polished | polite, polish, polished | 
+R | pompous | pomp | Latin pompa | procession | pomp, pompous | 
+R | postcolonial | post | Latin post | after | post, postwar | 
+R | poverty | pauper | Latin pauper | poor | poverty, pauper | 
+R | practicable,practical,pragmatic,pragmatist | prac / prag | Greek praktikos, pragma | deed, doing | practice, practical, pragmatic | 
+R | precarious | prec | Latin precari | pray | precarious, pray, prayer | 
+R | precipitate | cap | Latin caput | head | precipitate, precipice | 
+R | precocious | coc | Latin coquere | cook, ripen | precocious, cook | 
+R | predicament | dic | Latin dicare | proclaim | predicament, predicate | 
+R | premise | mit | Latin mittere | send before | premise, promise | 
+R | prevalent | val | Latin valere | be strong | prevalent, prevail | 
+R | pristine | prist | Latin pristinus | former | pristine | 
+R | privacy | priv | Latin privus | own | private, privacy | 
+R | probe | prob | Latin probare | test | probe, prove | 
+R | proclivity | cliv | Latin clivus | slope | proclivity, decline | 
+R | prodigal | pro | Latin prodigus | wasteful | prodigal | 
+R | proficient | fic | Latin facere | make | proficient, efficient | 
+R | profligate | flig | Latin fligere | strike down | profligate, conflict | 
+R | profus | fus | Latin fundere | pour | profuse, profusion, fuse, refuse | 
+R | prolific | prol | Latin proles | offspring | prolific, proliferate | 
+R | prolix,prolixity | lix | Latin liquere | flow | prolix | 
+R | prolong,prolonged | long | Latin longus | long | long, prolong, length | 
+R | propaganda | propag | Latin propagare | spread | propaganda, propagate | 
+R | propensity | pens | Latin pendere | hang | propensity, pension | 
+R | propriety,proper | propr | Latin proprius | one's own | proper, property, appropriate | 
+R | prosaic,prose | pros | Latin prosa | straightforward | prose, prosaic | 
+R | prototype | proto | Greek protos | first | prototype, protocol | 
+R | prudent | prud | Latin prudens | foreseeing | prudent, prudence | 
+R | pugnacious | pugn | Latin pugnare | fight | pugnacious, repugnant | 
+R | punctilious | punct | Latin punctum | point | punctilious, punctual | 
+R | quagmire,quandary | quag | Old English | bog; dilemma | quagmire, quandary | 
+R | quash | quas | Latin quassare | shake | quash, squash | 
+R | quell | quell | Old English cwellan | kill | quell | 
+R | querulous | quer | Latin queri | complain | querulous | 
+R | quixotic | quixot | Don Quixote | idealist | quixotic | 
+R | quota | quot | Latin quotus | how many | quota, quote, quotient | 
+R | radiant | radi | Latin radius | ray | radiant, radiate, radius | 
+R | rampant | ramp | Old French ramper | climb | rampant | 
+R | rancour | ranc | Latin rancor | rancid, bitter | rancour | 
+R | random | rand | Old French randon | speed | random | 
+R | ransom | ranso | Latin redemptio | buying back | ransom, redeem | 
+R | rapacious | rap | Latin rapere | seize | rapacious, rapid, rapture | 
+R | rapid,rapturous | rap | Latin rapere | seize | rapid, rapture | 
+R | rapprochement | proche | French | bringing near | rapprochement, approach | 
+R | ratify | rat | Latin ratus | reckoned | ratify, rate, ratio | 
+R | ration,rational,rationale | ratio | Latin ratio | reason | ration, rational, ratio | 
+R | raucous | rauc | Latin raucus | hoarse | raucous | 
+R | raze | ras | Latin radere | scrape | raze, erase | 
+R | real,realistic,realize | re | Latin res | thing | real, reality, realize | 
+R | reason,reasonable | reas | Latin ratio | reason | reason, reasonable | 
+R | recalcitrant | calc | Latin calx | heel | recalcitrant | 
+R | recondite | cond | Latin condere | hide | recondite, abscond | 
+R | redeem,redemption | em | Latin emere | buy | redeem, ransom, exempt | 
+R | redress | dress | Latin directus | straight | redress, address | 
+R | refine | fin | Latin finis | end | refine, final | 
+R | reform,reformed | form | Latin forma | shape | reform, form, formal | 
+R | refuge,refugee | fug | Latin fugere | flee | refuge, refugee, fugitive | 
+R | refus,refute | fus / fut | Latin | pour; beat | refuse, refute | 
+R | regard | gard | Old French garder | watch | regard, guard | 
+R | regret,regrettable,regretful | gret | Old French | weep | regret | 
+R | regular | reg | Latin regula | rule | regular, regulate, ruler | 
+R | reiterate | iter | Latin iterum | again | reiterate, iterate | 
+R | rejoin | join | Latin jungere | join | rejoin, join | 
+R | rejuvenate | juven | Latin juvenis | young | rejuvenate, juvenile | 
+R | relevant | lev | Latin levare | lift | relevant, relieve | 
+R | relinquish | linqu | Latin linquere | leave | relinquish, relic, delinquent | 
+R | reluctan | luct | Latin luctari | struggle | reluctant, reluctance | 
+R | remedy | med | Latin mederi | heal | remedy, medicine, medical | 
+R | reminisce | min | Latin mens | mind | reminisce, mind | 
+R | remittance | mit | Latin mittere | send | remit, remittance | 
+R | remorse | mors | Latin mordere | bite | remorse, morsel | 
+R | renewable | new | Old English | new | renew, new | 
+R | reparation | par | Latin parare | prepare | repair, reparation, prepare | 
+R | repeal | pel | Latin appellare | call | repeal, appeal | 
+R | repent | paen | Latin paenitere | regret | repent, penitent | 
+R | repercussion | cuss | Latin quatere | shake | repercussion, percussion | 
+R | reprimand | prim | Latin premere | press | reprimand, press | 
+R | reproach | proch | Latin prope | near | reproach, approach | 
+R | repudiate | pud | Latin pudere | feel shame | repudiate | 
+R | repugnan | pugn | Latin pugnare | fight | repugnant | 
+R | rescind | scind | Latin scindere | cut | rescind, scissors | 
+R | resettle | sett | Old English | seat | settle, settlement | 
+R | resounding | son | Latin sonare | sound | resound, sonic | 
+R | resourceful | sourc | Latin surgere | rise | resource, source | 
+R | respite | spit | Latin respectus | looking back | respite | 
+R | resplendent | splend | Latin splendere | shine | resplendent, splendid | 
+R | respond,responsible | spond | Latin spondere | promise | respond, response, responsible, sponsor | 
+R | restore | stor | Latin staurare | set up | restore, store | 
+R | resurgence | surg | Latin surgere | rise | resurgence, surge | 
+R | retaliat | tali | Latin talio | like for like | retaliate, retaliation | 
+R | retard | tard | Latin tardus | slow | retard, tardy | 
+R | reticent | tic | Latin tacere | be silent | reticent, tacit | 
+R | retribution | trib | Latin tribuere | assign | retribution, tribute | 
+R | revamp | vamp | Old French avanpie | front of the foot | revamp | 
+R | reveal | vel | Latin velum | veil | reveal, revelation | 
+R | revere,reverent | ver | Latin vereri | fear, respect | revere, reverence | 
+R | revulsion | vuls | Latin vellere | pull | revulsion, convulsion | 
+R | reward | ward | Old French | watch | reward, award | 
+R | rhetoric | rhet | Greek rhetor | speaker | rhetoric, rhetorical | 
+R | righteous | right | Old English | straight | right, righteous | 
+R | rigid,rigorous | rig | Latin rigere | be stiff | rigid, rigour, rigorous | 
+R | riparian | rip | Latin ripa | bank | riparian, river | 
+R | romantic | roma | Latin Romanus | Roman | romance, romantic | 
+R | routine | rout | Latin rupta | broken way | route, routine | 
+R | ruin | ru | Latin ruere | fall | ruin, ruinous | 
+R | ruminate | rum | Latin ruminare | chew cud | ruminate, ruminant | 
+R | sabotage | sabot | French sabot | wooden shoe | sabotage | 
+R | sacred,sanctuary,sanction,sanctions | sanct | Latin sanctus | holy | sacred, sanction, sanctuary, saint | 
+R | sagacious,sagacity | sag | Latin sagax | wise | sagacious, sage | 
+R | salubrious,salutary | salu | Latin salus | health | salutary, salubrious, salute | 
+R | salvage | salv | Latin salvus | safe | salvage, save, salvation | 
+R | sangfroid,sanguine | sang | Latin sanguis | blood | sanguine, sangfroid | 
+R | sanitation | san | Latin sanus | healthy | sane, sanity, sanitation | 
+R | sarcastic | sarc | Greek sarkazein | tear flesh | sarcasm, sarcastic | 
+R | sardonic | sard | Greek sardanios | bitter laugh | sardonic | 
+R | satire | sati | Latin satura | medley | satire, satirical | 
+R | scanty,scarce,scarcity | scarc | Old French eschars | scant | scarce, scarcity, scanty | 
+R | scapegoat | scape | Old English | goat | scapegoat | 
+R | sceptical | scept | Greek skeptikos | inquiring | sceptic, sceptical | 
+R | scholarly,scholarship | schol | Greek skhole | leisure | school, scholar | 
+R | scruples,scrupulous | scrup | Latin scrupulus | sharp stone | scruple, scrupulous | 
+R | scrutinize | scrut | Latin scrutari | search | scrutinize, scrutiny | 
+R | secondary | sec | Latin sequi | follow | second, secondary | 
+R | sectarian | sect | Latin secta | party | sect, sectarian | 
+R | secular | secul | Latin saeculum | age, world | secular, secularism | 
+R | sedulous | sed | Latin sedulus | diligent | sedulous | 
+R | seizure,seize | seiz | Old French seisir | take possession | seize, seizure | 
+R | sentence | sent | Latin sentire | feel | sentence, sense | 
+R | separatist | par | Latin parare | prepare | separate, separatist | 
+R | serene,serenity | seren | Latin serenus | clear | serene, serenity | 
+R | sermon | serm | Latin sermo | speech | sermon | 
+R | servile | serv | Latin servus | slave | servile, servant, serve | 
+R | severe | sever | Latin severus | serious | severe, severity | 
+R | simple,sincere,sincerity | simpl | Latin simplex | one fold | simple, simplify, sincere | 
+R | singular | singul | Latin singulus | single | singular, single | 
+R | sinister | sinist | Latin sinister | left | sinister | 
+R | skirmish | skirm | Old French | fight | skirmish | 
+R | sociable,unsociable | soci | Latin socius | companion | social, society, associate | 
+R | solar | sol | Latin sol | sun | solar, solstice | 
+R | solemn | solem | Latin sollemnis | annual | solemn | 
+R | solid | solid | Latin solidus | solid | solid, solidarity, consolidate | 
+R | solitary | sol | Latin solus | alone | solitary, solitude, solo | 
+R | sombre | somb | Latin sub umbra | under shade | sombre | 
+R | somnolent,soporific | somn | Latin somnus | sleep | somnolent, insomnia | 
+R | sonorous | son | Latin sonus | sound | sonorous, sonic | 
+R | souvenir | souven | Latin subvenire | come to mind | souvenir | 
+R | sparse,sporadic | spar | Latin spargere | scatter | sparse, sporadic | 
+R | specialized | spec | Latin species | kind | special, species | 
+R | specious | spec | Latin speciosus | showy | specious | 
+R | speculate,speculation | spec | Latin specere | look | speculate, spy | 
+R | spiral | spir | Latin spira | coil | spiral | 
+R | spurious | spur | Latin spurius | false | spurious | 
+R | squalor | squal | Latin squalere | be filthy | squalor | 
+R | stability,stable | stab | Latin stabilis | firm | stable, stability, establish | 
+R | stagnant,stagnation,stagflation | stagn | Latin stagnum | pool | stagnant, stagnate | 
+R | standard | stand | Old French | banner | standard | 
+R | state,stateless,statesman,estate | stat | Latin status | condition | state, estate, status | 
+R | stereotype | stereo | Greek stereos | solid | stereotype, stereo | 
+R | stigma | stig | Greek stigma | mark | stigma | 
+R | stoic | stoi | Greek stoa | porch | stoic, stoical | 
+R | strategic,strategy | strateg | Greek strategos | general | strategy, strategic | 
+R | strenuous | strenu | Latin strenuus | vigorous | strenuous | 
+R | subterfuge | fug | Latin fugere | flee | subterfuge, refuge | 
+R | succinct | cinc | Latin cingere | gird | succinct, cincture | 
+R | suffrage | frag | Latin suffragium | vote | suffrage | 
+R | summit | summ | Latin summus | highest | summit, sum | 
+R | supremacy | supr | Latin supremus | highest | supreme, supremacy | 
+R | surgery | surg | Greek cheirourgia | handwork | surgery, surgeon | 
+R | surmise | mis | Latin mittere | send | surmise, promise | 
+R | surreptitious | rept | Latin rapere | seize | surreptitious | 
+R | surveillance | veill | Latin vigilare | keep watch | surveillance, vigil | 
+R | sycophan | syco | Greek sykophantes | informer | sycophant | 
+R | syllabus | syl | Greek syllabos | list | syllabus, syllable | 
+R | symptom | sym | Greek symptoma | happening together | symptom | 
+R | syndicate | synd | Greek syndikos | defender | syndicate, syndicalism | 
+R | systematic,systemic | system | Greek systema | organised whole | system, systematic | 
+R | taboo | tabu | Tongan tapu | forbidden | taboo | 
+R | taciturn | tac | Latin tacere | be silent | taciturn, tacit | 
+R | tactful | tact | Latin tangere | touch | tact, tactful | 
+R | tardy | tard | Latin tardus | slow | tardy, retard | 
+R | tariff | tarif | Arabic ta'rif | notification | tariff | 
+R | tedious | ted | Latin taedium | weariness | tedious, tedium | 
+R | tenuous | tenu | Latin tenuis | thin | tenuous, attenuate | 
+R | tertiary | terti | Latin tertius | third | tertiary, tertian | 
+R | testy | test | Latin testa | head | testy | 
+R | therapy | thera | Greek therapeia | healing | therapy, therapeutic | 
+R | timid,intimidat,intimidating | tim | Latin timere | fear | timid, intimidate | 
+R | toxic | tox | Greek toxikon | poison | toxic, toxin, intoxicate | 
+R | tragic | trag | Greek tragos | goat | tragic, tragedy | 
+R | transform,transient,transition,transboundary | trans | Latin trans | across | transform, transit, transition | 
+R | treacherous,treachery,treason | trad | Latin tradere | hand over | treason, traitor, betray | 
+R | treaty | treat | Latin tractare | handle | treaty, treat | 
+R | trepidation | trepid | Latin trepidus | alarmed | trepidation, intrepid | 
+R | tribunal,tribute | trib | Latin tribus | tribe | tribe, tribunal, tribute | 
+R | truce | trew | Old English treow | trust | truce | 
+R | truculent | truc | Latin trux | fierce | truculent | 
+R | tumult | tum | Latin tumultus | uproar | tumult, tumultuous | 
+R | turbulent | turb | Latin turba | crowd | turbulent, disturb | 
+R | tyrannical | tyran | Greek tyrannos | absolute ruler | tyrant, tyranny | 
+R | ubiquitous | ubi | Latin ubique | everywhere | ubiquitous | 
+R | undaunted | daunt | Latin domitare | tame | daunt, undaunted | 
+R | usurp | usurp | Latin usurpare | take over | usurp | 
+R | utilize | ut | Latin uti | use | use, utility, utilize | 
+R | vaccination | vacc | Latin vacca | cow | vaccine, vaccination | 
+R | vacillat | vacill | Latin vacillare | sway | vacillate | 
+R | vague | vag | Latin vagus | wandering | vague, vagrant | 
+R | valiant | vali | Latin valere | be strong | valiant, valour | 
+R | vapid | vap | Latin vapidus | flat | vapid | 
+R | varied | vari | Latin varius | different | vary, variety, variable | 
+R | venerable,venerate | vener | Latin venerari | respect | venerate, venerable | 
+R | venomous | ven | Latin venenum | poison | venom, venomous | 
+R | veracious,veracity,verify,verification,veritable | ver | Latin verus | true | verify, verdict, veracity, very | 
+R | verbose,verbosity | verb | Latin verbum | word | verb, verbal, verbose | 
+R | veto | vet | Latin veto | I forbid | veto | 
+R | vexed | vex | Latin vexare | shake | vex, vexation | 
+R | vice,vicious | vic | Latin vitium | fault | vice, vicious | 
+R | vigilan | vigil | Latin vigil | awake | vigil, vigilant | 
+R | vigorous | vig | Latin vigere | be lively | vigour, vigorous | 
+R | vilify,villainous | vil | Latin vilis | cheap | vile, vilify, villain | 
+R | vindicat,vindictive | vind | Latin vindicare | claim, avenge | vindicate, vindictive | 
+R | violate | viol | Latin violare | treat with violence | violate, violence | 
+R | virtuous | virt | Latin virtus | manliness | virtue, virtuous | 
+R | virulent | vir | Latin virus | poison | virus, virulent | 
+R | volatile | vol | Latin volare | fly | volatile | 
+R | voluble | volu | Latin volvere | roll | voluble | 
+R | voracious | vor | Latin vorare | devour | voracious, devour | 
+R | vulnerab | vuln | Latin vulnus | wound | vulnerable, vulnerability | 
+R | warfare,warlike,warlord,warhead | war | Old English | war | war, warfare | 
+R | wary,watchful | war | Old English wær | careful | wary, beware | 
+R | zeal,zealot,zealous | zeal | Greek zelos | ardour | zeal, zealot, zealous | 
+R | zenith | zen | Arabic samt | path above | zenith | 

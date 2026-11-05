@@ -65,7 +65,7 @@
   };
 
   const row = (e, esc) => `<li class="th-word tone-${FEELK[e.feel]}" data-s="${esc(norm(e.w + " " + e.best))}">
-      <div class="th-top"><span class="th-w">${esc(e.w)}</span><span class="pos">${esc(e.posLabel)}</span>
+      <div class="th-top"><button type="button" class="th-w rootlink" data-root="${esc(e.w)}">${esc(e.w)}</button><span class="pos">${esc(e.posLabel)}</span>
         <span class="tag tone-${FEELK[e.feel]}">${esc(FEEL[e.feel])}</span><span class="tag">${esc(FORM[e.form])}</span></div>
       <div class="th-best"><b>${cfg.best}</b> ${esc(e.best)}</div>
       <div class="th-ex">${exHtml(e, esc)}</div>

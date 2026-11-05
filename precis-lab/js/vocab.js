@@ -137,7 +137,7 @@
   }
 
   const chip = (x, esc) => `<li class="syn tone-${esc(x.tone)}">
-      <span class="syn-w">${esc(x.w)}</span>
+      <button type="button" class="syn-w rootlink" data-root="${esc(x.w)}">${esc(x.w)}</button>
       <span class="syn-tags"><span class="tag">${esc(TONE[x.tone] || x.tone)}</span><span class="tag">${esc(FORM[x.formality] || x.formality)}</span><span class="tag">${esc(x.use)}</span></span>
       ${x.note ? `<span class="syn-note">${esc(x.note)}</span>` : ""}
     </li>`;
@@ -150,10 +150,11 @@
   function wordHtml(h, esc, icon) {
     const d = dictOf(h);
     return `<article class="word-card" id="w-${esc(norm(h.word))}">
-        <header class="word-head"><h2>${esc(h.word)} <span class="lvl lvl-${esc(levelOf(h))}">${esc(LEVEL[levelOf(h)])}</span></h2>
+        <header class="word-head"><h2><button type="button" class="rootlink h-word" data-root="${esc(h.word)}">${esc(h.word)}</button> <span class="lvl lvl-${esc(levelOf(h))}">${esc(LEVEL[levelOf(h)])}</span></h2>
           <button type="button" class="pdf-mini" data-pdf="words:${esc(h.word)}">${icon("pdf")}<span>PDF</span></button></header>
         <p class="dict-line"><span class="pos">${esc(d.pos)}</span>${d.labels.map((l) => `<span class="dlabel" title="${esc(LABEL_NOTE[l] || "")}">${esc(l)}</span>`).join("")}</p>
         ${d.labels.length ? `<p class="muted small">${d.labels.map((l) => `<b>${esc(l)}</b>: ${esc(LABEL_NOTE[l] || "")}`).join(" · ")}</p>` : ""}
+        <p class="muted small">Tap any word with a dotted underline to see its root and family.</p>
         <p class="muted small">${h.senses.length} ${h.senses.length === 1 ? "meaning" : "meanings"}. Each meaning has its own synonyms: use only the ones under the meaning you need.</p>
         ${h.senses
           .map(
