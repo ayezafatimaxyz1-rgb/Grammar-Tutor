@@ -694,3 +694,27 @@ h1 { letter-spacing: -0.015em; }
 mark { background: var(--hi-soft); padding: 0 4px; border-radius: 3px; }
 
 .th-blank{background:var(--tint,#e6f2ef);color:inherit;border-radius:6px;padding:0 .35em;letter-spacing:.1em}
+
+/* roots and families */
+.rootlink { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; text-decoration: underline dotted var(--brand); text-underline-offset: 4px; }
+.rootlink:hover, .rootlink:focus-visible { color: var(--brand); }
+.h-word { font-weight: 700; font-size: inherit; }
+.rp-overlay { position: fixed; inset: 0; z-index: 50; background: rgba(15, 25, 35, .45); display: flex; align-items: flex-end; justify-content: center; }
+.rp-sheet { position: relative; background: var(--surface); color: var(--text, inherit); width: min(640px, 100%); max-height: 82vh; overflow-y: auto; border-radius: 16px 16px 0 0; padding: 18px 16px 26px; box-shadow: 0 -8px 30px rgba(0,0,0,.25); }
+@media (min-width: 700px) { .rp-overlay { align-items: center; } .rp-sheet { border-radius: 16px; } }
+.rp-close { position: sticky; top: 0; float: right; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); font-size: 1.4rem; line-height: 1; cursor: pointer; }
+.rp-title { margin: 0 0 8px; font-size: 1.3rem; }
+.rp-big { font-size: 1.5rem; font-weight: 800; color: var(--brand); }
+.rp-mean { font-weight: 600; }
+.rp-root { border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; margin: 10px 0; background: var(--bg, transparent); }
+.rp-root h4, .rp-fam h4, .rp-aff h4 { margin: 10px 0 4px; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+.rp-token { margin: 14px 0 0; }
+.rp-aff ul { margin: 0; padding-left: 18px; }
+.rchip { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: .92rem; cursor: pointer; margin: 0 6px 6px 0; display: inline-block; }
+.rchip:hover { border-color: var(--brand); }
+.rchip-fam { background: #e6f2ef; }
+.rchip-out { cursor: default; color: var(--muted); background: transparent; border-style: dashed; }
+.root-list { display: grid; gap: 12px; }
+.root-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--surface); }
+.root-card h3 { margin: 0 0 4px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
