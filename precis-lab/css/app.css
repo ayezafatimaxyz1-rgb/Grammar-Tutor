@@ -622,3 +622,14 @@ h1 { letter-spacing: -0.015em; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .wchip { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; text-decoration: none; color: var(--accent); background: var(--surface); font-weight: 700; }
 .wchip:hover { border-color: var(--accent); }
+.lvl-filter { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 12px; }
+.lvl-btn { font: inherit; font-weight: 700; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 999px; padding: 8px 14px; cursor: pointer; min-height: 40px; }
+.lvl-btn small { color: var(--muted); font-weight: 400; margin-left: 4px; }
+.lvl-btn.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.lvl-btn.is-on small { color: var(--accent-fg); }
+.lvl { font-size: 0.7rem; font-weight: 700; vertical-align: middle; border-radius: 999px; padding: 2px 8px; border: 1px solid var(--line); color: var(--muted); }
+.lvl-S { color: var(--accent-2); border-color: var(--accent-2); }
+.lvl-A { color: var(--bad); border-color: var(--bad); }
+.wchip.lvl-A { color: var(--bad); }
+.lvl-group h2 { margin: 14px 0 6px; }
+.caps { letter-spacing: 0.04em; color: var(--accent); }
