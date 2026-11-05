@@ -160,7 +160,7 @@
       <a class="start-card" href="#contexts">
         <span class="sc-badge">Vocabulary 4</span>
         <span class="sc-title">Words by context</span>
-        <span class="sc-text">The vocabulary of politics, diplomacy, law, the economy, the environment, thinking, solutions and more: 20 contexts, each word with its meaning there and an example.</span>
+        <span class="sc-text">The vocabulary of politics, diplomacy, law, the economy, the environment, thinking, solutions and more, plus wars, genocide, refugees, economic crisis, corruption, climate and technology: 51 contexts, each word with its meaning there and an example.</span>
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 
