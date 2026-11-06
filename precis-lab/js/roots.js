@@ -42,35 +42,144 @@
 
   const chip = (w, cls = "") => `<button type="button" class="rchip ${cls}" data-root="${esc(w)}">${esc(w)}</button>`;
 
+  /* ---------- the pencil sketch ---------- */
+  const COLORS = ["#d9480f", "#1971c2", "#2f9e44", "#9c36b5"];
+  function rng(seed) {
+    let h = 2166136261;
+    for (const ch of seed) h = Math.imul(h ^ ch.charCodeAt(0), 16777619);
+    return () => ((h = Math.imul(h ^ (h >>> 15), 2246822507) >>> 0) / 4294967296);
+  }
+  const pieces = (form) => String(form).split(/[\/,]/).map((x) => x.replace(/\(.*?\)/g, "").replace(/-/g, "").trim().toLowerCase()).filter((x) => x.length >= 2).sort((a, b) => b.length - a.length);
+  // Where the root's letters sit inside a word.
+  function locate(word, form) {
+    for (const p of pieces(form)) {
+      const i = word.indexOf(p);
+      if (i >= 0) return { i, len: p.length, piece: p };
+    }
+    return null;
+  }
+  const wrap = (t, n) => {
+    const out = [];
+    let line = "";
+    String(t).split(" ").forEach((w) => {
+      if ((line + " " + w).trim().length > n && line) { out.push(line); line = w; } else line = (line + " " + w).trim();
+    });
+    if (line) out.push(line);
+    return out;
+  };
+  function meaningOf(w) {
+    const h = (P.words || []).find((x) => norm(x.word) === w);
+    if (h && h.senses[0]) return h.senses[0].sense;
+    for (const pg of [P.themesPage, P.contextsPage]) {
+      const e = pg && pg.entries && pg.entries().find((x) => norm(x.w) === w);
+      if (e) return e.best;
+    }
+    return "";
+  }
+  function pick(list, n) {
+    if (list.length <= n) return list;
+    const a = [...list].sort();
+    return Array.from({ length: n }, (_, k) => a[Math.floor((k * a.length) / n)]);
+  }
+
+  function sketch(word, rootIdx) {
+    const W = 340, R = rng(word);
+    const j = (v, a = 1.6) => v + (R() - 0.5) * a * 2;
+    const roots = rootIdx.map((ri) => P.roots[ri]).map((r) => ({ r, loc: locate(word, r[1]) }));
+    // choose up to two roots: those found inside the word first, in letter order
+    const chosen = roots.filter((x) => x.loc).sort((a, b) => a.loc.i - b.loc.i).slice(0, 2);
+    if (!chosen.length) roots.slice(0, 1).forEach((x) => chosen.push(x));
+    let famOnly = false;
+    if (!chosen.length) {
+      const fi = build().fam.get(word);
+      if (fi == null) return "";
+      famOnly = true;
+      chosen.push({ r: ["F", "family", "same base word", "words built from one base", P.families[fi], []], loc: null });
+    }
+    const n = chosen.length, cw = W / n;
+    const fs = Math.min(34, Math.floor(300 / (word.length * 0.6))), adv = fs * 0.6;
+    const wx = (W - word.length * adv) / 2;
+    const cx = (i) => wx + adv * (i + 0.5);
+    let d = "", t = "", delay = 0.1;
+    const line = (path, color, w = 2.4, dash = false, extra = "") => {
+      const del = Math.min((delay += 0.04), 1.4).toFixed(2);
+      return `<path d="${path}" class="rp-line" style="animation-delay:${del}s" stroke="${color}" stroke-width="${w}" ${dash ? 'stroke-dasharray="4 5"' : 'pathLength="1"'} fill="none" ${extra}/>` +
+        `<path d="${path}" class="rp-line rp-line2" style="animation-delay:${del}s" stroke="${color}" stroke-width="1" fill="none" transform="translate(.8,.9)" pathLength="1"/>`;
+    };
+    const box = (x, y, w, h, color) => {
+      const p = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]].map(([a, b]) => [j(a, 1.2), j(b, 1.2)]);
+      return `M${p[0][0]} ${p[0][1] + 6} Q${p[0][0]} ${p[0][1]} ${p[0][0] + 8} ${p[0][1]} L${p[1][0] - 8} ${p[1][1]} Q${p[1][0]} ${p[1][1]} ${p[1][0]} ${p[1][1] + 6} L${p[2][0]} ${p[2][1] - 6} Q${p[2][0]} ${p[2][1]} ${p[2][0] - 8} ${p[2][1]} L${p[3][0] + 8} ${p[3][1]} Q${p[3][0]} ${p[3][1]} ${p[3][0]} ${p[3][1] - 6}Z`;
+    };
+    // the word on top, root letters coloured
+    const colorAt = Array(word.length).fill(null);
+    chosen.forEach((c, k) => c.loc && (c.color = COLORS[k], [...Array(c.loc.len)].forEach((_, q) => (colorAt[c.loc.i + q] = COLORS[k]))));
+    chosen.forEach((c, k) => (c.color = c.color || COLORS[k]));
+    if (famOnly) colorAt.fill(COLORS[0]);
+    t += `<g class="rp-word" font-size="${fs}">` + [...word].map((ch, i) => `<text x="${cx(i)}" y="40" text-anchor="middle"${colorAt[i] ? ` fill="${colorAt[i]}" font-weight="700"` : ""}>${esc(ch)}</text>`).join("") + `</g>`;
+    let bottoms = [];
+    chosen.forEach((c, k) => {
+      const col = c.color, cxk = cw * (k + 0.5), left = cw * k;
+      const [, form, origin, meaning, members, extra] = c.r;
+      const seg = c.loc ? { x1: wx + adv * c.loc.i, x2: wx + adv * (c.loc.i + c.loc.len) } : { x1: wx, x2: wx + word.length * adv };
+      const sx = (seg.x1 + seg.x2) / 2;
+      d += line(`M${seg.x1} ${j(50)} Q${sx} ${j(55, 2.4)} ${seg.x2} ${j(50)}`, col, 3);
+      d += line(`M${sx} 55 C${sx} 72 ${cxk} 72 ${cxk} 96`, col, 2.2);
+      const mLines = wrap(meaning, Math.max(12, Math.floor(cw / 7.2)));
+      const big = c.loc ? c.loc.piece : String(form).split("/")[0].trim();
+      const hb = 30 + mLines.length * 16 + 18;
+      d += line(box(left + 8, 98, cw - 16, hb, col), col, 2.2);
+      t += `<text x="${cxk}" y="122" text-anchor="middle" class="rp-form" fill="${col}">${esc(big)}</text>`;
+      mLines.forEach((ln, q) => (t += `<text x="${cxk}" y="${140 + q * 16}" text-anchor="middle" class="rp-m">${esc(ln)}</text>`));
+      t += `<text x="${cxk}" y="${98 + hb - 7}" text-anchor="middle" class="rp-o">${esc(origin)}</text>`;
+      // family words hang from a trunk, the shared letters coloured
+      const bb = 98 + hb, tx = left + 16;
+      const inApp = pick(members.filter((x) => x !== word), 7), outs = (extra || []).slice(0, 2);
+      const rows = [...inApp.map((w) => ({ w, out: false })), ...outs.map((w) => ({ w, out: true }))];
+      const y0 = bb + 30;
+      d += line(`M${cxk} ${bb} C${cxk} ${bb + 14} ${tx} ${bb + 12} ${tx} ${y0 - 5} L${tx} ${y0 + (rows.length - 1) * 25 - 5}`, col, 2);
+      const sz = Math.max(11, Math.min(15, (cw - 38) / (Math.max(...rows.map((r) => r.w.length), 6) * 0.52)));
+      rows.forEach((row, q) => {
+        const y = y0 + q * 25;
+        d += line(`M${tx} ${y - 5} Q${tx + 6} ${y - 7} ${tx + 14} ${y - 5}`, col, 1.8, row.out);
+        const loc = row.out ? null : locate(row.w.toLowerCase(), form);
+        const body = loc
+          ? `${esc(row.w.slice(0, loc.i))}<tspan fill="${col}" font-weight="700">${esc(row.w.slice(loc.i, loc.i + loc.len))}</tspan>${esc(row.w.slice(loc.i + loc.len))}`
+          : esc(row.w);
+        t += `<text x="${tx + 18}" y="${y}" font-size="${sz.toFixed(1)}" class="rp-fw${row.out ? " rp-out" : ""}"${row.out ? "" : ` data-root="${esc(row.w)}"`}>${body}</text>`;
+      });
+      bottoms.push(y0 + rows.length * 25);
+    });
+    const H = Math.max(...bottoms) + 6;
+    return `<svg class="rp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Root and family of ${esc(word)}">
+      <defs><filter id="rp-pencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.4"/></filter></defs>
+      <g filter="url(#rp-pencil)" stroke-linecap="round" stroke-linejoin="round">${d}</g>${t}</svg>`;
+  }
+
   function panelBody(word) {
     const tokens = norm(word).split(/[\s-]+/).filter(Boolean);
     const w = norm(word);
     const key = known(w) ? [w] : tokens.filter(known);
     let html = `<h2 class="rp-title">${esc(word)} <span class="pos">${esc(posOf(norm(word)))}</span></h2>`;
+    const mean = meaningOf(w);
+    if (mean) html += `<p class="rp-says">means: <b>${esc(mean)}</b></p>`;
     if (!key.length) {
       return html + `<p class="rp-none">No root is recorded for <b>${esc(word)}</b> yet.</p>
         <p class="muted small">Many everyday words come from Old English, not Latin or Greek, so they have no classical root. We also have not added every word. Roots and families are added all the time.</p>
         <p class="row-buttons"><a class="button small" href="#roots">Browse all roots</a></p>`;
     }
-    key.forEach((k) => {
+    key.slice(0, 2).forEach((k) => {
       if (key.length > 1) html += `<h3 class="rp-token">${esc(k)}</h3>`;
       const rs = build().roots.get(k) || [];
-      rs.slice(0, 3).forEach((ri) => {
-        const r = P.roots[ri];
-        const inApp = r[4].filter((x) => x !== k);
-        html += `<section class="rp-root">
-          <p class="rp-form"><span class="rp-big">${esc(r[1])}</span> <span class="rp-mean">= ${esc(r[3])}</span></p>
-          <p class="muted small">${esc(r[2])}</p>
-          ${inApp.length ? `<h4>In this app</h4><p class="chips">${inApp.slice(0, 24).map((x) => chip(x)).join("")}${inApp.length > 24 ? `<span class="muted small"> +${inApp.length - 24} more</span>` : ""}</p>` : ""}
-          ${r[5].length ? `<h4>Same root, other words</h4><p class="chips">${r[5].slice(0, 14).map((x) => `<span class="rchip rchip-out">${esc(x)}</span>`).join("")}</p>` : ""}
-        </section>`;
-      });
-      if (rs.length > 3) html += `<p class="muted small">This word has ${rs.length} possible roots. The first three are shown.</p>`;
-      const fi = build().fam.get(k);
-      if (fi != null) {
-        const f = P.families[fi].filter((x) => x !== k);
-        if (f.length) html += `<section class="rp-fam"><h4>Same word family</h4><p class="chips">${f.map((x) => chip(x, "rchip-fam")).join("")}</p></section>`;
+      html += sketch(k, rs);
+      if (rs.length) {
+        const parts = rs.map((ri) => P.roots[ri]).map((r) => ({ r, loc: locate(k, r[1]) })).filter((x) => x.loc).sort((a, b) => a.loc.i - b.loc.i).slice(0, 2).map((x) => `<b>${esc(x.loc.piece)}</b> = ${esc(x.r[3])}`);
+        if (parts.length) html += `<p class="rp-gloss">Parts: ${parts.join("  +  ")}</p>`;
       }
+      const all = [...new Set(rs.flatMap((ri) => P.roots[ri][4]))].filter((x) => x !== k);
+      const fi = build().fam.get(k);
+      const fam = fi != null ? P.families[fi].filter((x) => x !== k) : [];
+      if (fam.length) html += `<section class="rp-fam"><h4>Same word family</h4><p class="chips">${fam.map((x) => chip(x, "rchip-fam")).join("")}</p></section>`;
+      if (all.length > 7) html += `<details class="rp-more"><summary>All ${all.length} words with this root</summary><p class="chips">${all.map((x) => chip(x)).join("")}</p></details>`;
       const hints = affixHints(k);
       if (hints.length) html += `<section class="rp-aff"><h4>Parts</h4><ul>${hints.map((h) => `<li><b>${esc(h.part)}</b> ${esc(h.note)}, added to <b>${esc(h.base)}</b></li>`).join("")}</ul></section>`;
     });

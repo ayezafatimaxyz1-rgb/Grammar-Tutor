@@ -718,3 +718,21 @@ mark { background: var(--hi-soft); padding: 0 4px; border-radius: 3px; }
 .root-card { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--surface); }
 .root-card h3 { margin: 0 0 4px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* pencil sketch of a root */
+.rp-says { margin: 0 0 6px; }
+.rp-svg { width: 100%; height: auto; display: block; margin: 4px 0 8px; font-family: "Kalam", "Atkinson Hyperlegible", cursive; }
+.rp-svg .rp-form { font-size: 24px; font-weight: 700; }
+.rp-svg .rp-m { font-size: 13.5px; fill: currentColor; }
+.rp-svg .rp-o { font-size: 11px; fill: var(--muted); font-style: italic; }
+.rp-svg .rp-fw { fill: currentColor; cursor: pointer; }
+.rp-svg .rp-fw:hover { text-decoration: underline; }
+.rp-svg .rp-out { fill: var(--muted); cursor: default; font-style: italic; }
+.rp-svg .rp-word text { fill: currentColor; font-family: "Kalam", cursive; }
+.rp-svg .rp-word text[fill] { fill: unset; }
+.rp-line { opacity: .85; stroke-dasharray: 1; stroke-dashoffset: 1; animation: rp-draw .8s ease-out forwards; }
+.rp-line2 { opacity: .35; }
+@keyframes rp-draw { to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .rp-line { animation: none; stroke-dashoffset: 0; } }
+.rp-gloss { margin: 0 0 8px; font-size: .95rem; }
+.rp-more summary { cursor: pointer; font-weight: 600; margin: 8px 0; }
