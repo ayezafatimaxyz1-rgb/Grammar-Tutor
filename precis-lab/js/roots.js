@@ -96,7 +96,7 @@
       famOnly = true;
       chosen.push({ r: ["F", "family", "same base word", "words built from one base", P.families[fi], []], loc: null });
     }
-    const n = chosen.length, cw = W / n;
+    const n = chosen.length, cw = Math.min(W / n, 230), off = (W - cw * n) / 2;
     const fs = Math.min(34, Math.floor(300 / (word.length * 0.6))), adv = fs * 0.6;
     const wx = (W - word.length * adv) / 2;
     const cx = (i) => wx + adv * (i + 0.5);
@@ -118,7 +118,7 @@
     t += `<g class="rp-word" font-size="${fs}">` + [...word].map((ch, i) => `<text x="${cx(i)}" y="40" text-anchor="middle"${colorAt[i] ? ` fill="${colorAt[i]}" font-weight="700"` : ""}>${esc(ch)}</text>`).join("") + `</g>`;
     let bottoms = [];
     chosen.forEach((c, k) => {
-      const col = c.color, cxk = cw * (k + 0.5), left = cw * k;
+      const col = c.color, cxk = off + cw * (k + 0.5), left = off + cw * k;
       const [, form, origin, meaning, members, extra] = c.r;
       const seg = c.loc ? { x1: wx + adv * c.loc.i, x2: wx + adv * (c.loc.i + c.loc.len) } : { x1: wx, x2: wx + word.length * adv };
       const sx = (seg.x1 + seg.x2) / 2;
@@ -135,11 +135,15 @@
       const bb = 98 + hb, tx = left + 16;
       const inApp = pick(members.filter((x) => x !== word), 6), outs = [];
       const rows = [...inApp.map((w) => ({ w, out: false })), ...outs.map((w) => ({ w, out: true }))];
-      const y0 = bb + 30, RH = 54;
-      d += line(`M${cxk} ${bb} C${cxk} ${bb + 14} ${tx} ${bb + 12} ${tx} ${y0 - 5} L${tx} ${y0 + (rows.length - 1) * RH - 5}`, col, 2);
+      const y0 = bb + 30;
+      const maxc = Math.floor((cw - 40) / 5.4);
+      const nl = (row) => (row.out ? 0 : Math.min(2, wrap(meaningOf(row.w.toLowerCase()) || '', maxc).length));
+      const rowsY = [];
+      rows.reduce((acc, row) => (rowsY.push(acc), acc + 26 + 13 * nl(row) + 8), y0);
+      if (rows.length) d += line(`M${cxk} ${bb} C${cxk} ${bb + 14} ${tx} ${bb + 12} ${tx} ${y0 - 5} L${tx} ${rowsY[rows.length - 1] - 5}`, col, 2);
       const sz = Math.max(11, Math.min(15, (cw - 38) / (Math.max(...rows.map((r) => r.w.length), 6) * 0.52)));
       rows.forEach((row, q) => {
-        const y = y0 + q * RH;
+        const y = rowsY[q];
         d += line(`M${tx} ${y - 5} Q${tx + 6} ${y - 7} ${tx + 14} ${y - 5}`, col, 1.8, row.out);
         const loc = row.out ? null : locate(row.w.toLowerCase(), form);
         const body = loc
@@ -148,13 +152,13 @@
         t += `<text x="${tx + 18}" y="${y}" font-size="${sz.toFixed(1)}" class="rp-fw${row.out ? " rp-out" : ""}"${row.out ? "" : ` data-root="${esc(row.w)}"`}>${body}</text>`;
         const mm = row.out ? "" : meaningOf(row.w.toLowerCase());
         if (mm) {
-          const maxc = Math.floor((cw - 40) / 5.4);
           const ls = wrap(mm, maxc).slice(0, 2);
           if (wrap(mm, maxc).length > 2) ls[1] = ls[1].replace(/\s+\S*$/, "") + "…";
           ls.forEach((ln, z) => (t += `<text x="${tx + 18}" y="${y + 14 + z * 13}" class="rp-wm">${esc(ln)}</text>`));
         }
       });
-      bottoms.push(y0 + rows.length * RH);
+      bottoms.push(rows.length ? rowsY[rows.length - 1] + 26 + 13 * nl(rows[rows.length - 1]) : bb + 36);
+      if (!rows.length) t += `<text x="${cxk}" y="${bb + 28}" text-anchor="middle" class="rp-wm">no other words with this root in the app yet</text>`;
     });
     const H = Math.max(...bottoms) + 6;
     return `<svg class="rp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Root and family of ${esc(word)}">

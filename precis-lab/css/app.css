@@ -738,3 +738,9 @@ mark { background: var(--hi-soft); padding: 0 4px; border-radius: 3px; }
 .rp-more summary { cursor: pointer; font-weight: 600; margin: 8px 0; }
 .rp-svg .rp-wm { font-size: 11.5px; fill: var(--muted); }
 .rp-lit { margin: 0 0 8px; font-size: 1.02rem; } .rp-lit i { color: var(--brand); }
+
+/* readable text in the sketch: no script fallback */
+.rp-svg, .rp-svg text { font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif !important; }
+.rp-svg .rp-word text { font-weight: 600; }
+.rp-svg .rp-m { font-size: 13px; }
+.rp-svg .rp-wm { font-size: 12px; }
