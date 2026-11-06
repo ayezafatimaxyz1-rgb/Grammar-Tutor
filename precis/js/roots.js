@@ -74,7 +74,7 @@
       const e = pg && pg.entries && pg.entries().find((x) => norm(x.w) === w);
       if (e) return e.best;
     }
-    return "";
+    return (P.glosses && P.glosses[w]) || "";
   }
   function pick(list, n) {
     if (list.length <= n) return list;
@@ -133,21 +133,28 @@
       t += `<text x="${cxk}" y="${98 + hb - 7}" text-anchor="middle" class="rp-o">${esc(origin)}</text>`;
       // family words hang from a trunk, the shared letters coloured
       const bb = 98 + hb, tx = left + 16;
-      const inApp = pick(members.filter((x) => x !== word), 7), outs = (extra || []).slice(0, 2);
+      const inApp = pick(members.filter((x) => x !== word), 6), outs = [];
       const rows = [...inApp.map((w) => ({ w, out: false })), ...outs.map((w) => ({ w, out: true }))];
-      const y0 = bb + 30;
-      d += line(`M${cxk} ${bb} C${cxk} ${bb + 14} ${tx} ${bb + 12} ${tx} ${y0 - 5} L${tx} ${y0 + (rows.length - 1) * 25 - 5}`, col, 2);
+      const y0 = bb + 30, RH = 54;
+      d += line(`M${cxk} ${bb} C${cxk} ${bb + 14} ${tx} ${bb + 12} ${tx} ${y0 - 5} L${tx} ${y0 + (rows.length - 1) * RH - 5}`, col, 2);
       const sz = Math.max(11, Math.min(15, (cw - 38) / (Math.max(...rows.map((r) => r.w.length), 6) * 0.52)));
       rows.forEach((row, q) => {
-        const y = y0 + q * 25;
+        const y = y0 + q * RH;
         d += line(`M${tx} ${y - 5} Q${tx + 6} ${y - 7} ${tx + 14} ${y - 5}`, col, 1.8, row.out);
         const loc = row.out ? null : locate(row.w.toLowerCase(), form);
         const body = loc
           ? `${esc(row.w.slice(0, loc.i))}<tspan fill="${col}" font-weight="700">${esc(row.w.slice(loc.i, loc.i + loc.len))}</tspan>${esc(row.w.slice(loc.i + loc.len))}`
           : esc(row.w);
         t += `<text x="${tx + 18}" y="${y}" font-size="${sz.toFixed(1)}" class="rp-fw${row.out ? " rp-out" : ""}"${row.out ? "" : ` data-root="${esc(row.w)}"`}>${body}</text>`;
+        const mm = row.out ? "" : meaningOf(row.w.toLowerCase());
+        if (mm) {
+          const maxc = Math.floor((cw - 40) / 5.4);
+          const ls = wrap(mm, maxc).slice(0, 2);
+          if (wrap(mm, maxc).length > 2) ls[1] = ls[1].replace(/\s+\S*$/, "") + "…";
+          ls.forEach((ln, z) => (t += `<text x="${tx + 18}" y="${y + 14 + z * 13}" class="rp-wm">${esc(ln)}</text>`));
+        }
       });
-      bottoms.push(y0 + rows.length * 25);
+      bottoms.push(y0 + rows.length * RH);
     });
     const H = Math.max(...bottoms) + 6;
     return `<svg class="rp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Root and family of ${esc(word)}">
