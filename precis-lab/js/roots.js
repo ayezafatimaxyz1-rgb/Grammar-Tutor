@@ -168,7 +168,9 @@
     const key = known(w) ? [w] : tokens.filter(known);
     let html = `<h2 class="rp-title">${esc(word)} <span class="pos">${esc(posOf(norm(word)))}</span></h2>`;
     const mean = meaningOf(w);
-    if (mean) html += `<p class="rp-says">means: <b>${esc(mean)}</b></p>`;
+    const lit = P.literal && P.literal[w];
+    if (lit) html += `<p class="rp-lit">Literally <i>&ldquo;${esc(lit)}&rdquo;</i>${mean ? ` &rarr; <b>${esc(mean)}</b>` : ""}</p>`;
+    else if (mean) html += `<p class="rp-says">means: <b>${esc(mean)}</b></p>`;
     if (!key.length) {
       return html + `<p class="rp-none">No root is recorded for <b>${esc(word)}</b> yet.</p>
         <p class="muted small">Many everyday words come from Old English, not Latin or Greek, so they have no classical root. We also have not added every word. Roots and families are added all the time.</p>
