@@ -133,7 +133,11 @@
       t += `<text x="${cxk}" y="${98 + hb - 7}" text-anchor="middle" class="rp-o">${esc(origin)}</text>`;
       // family words hang from a trunk, the shared letters coloured
       const bb = 98 + hb, tx = left + 16;
-      const inApp = pick(members.filter((x) => x !== word), 6), outs = [];
+      const famGroup = new Set(build().fam.has(word) ? P.families[build().fam.get(word)] : []);
+      const same = c.loc ? members.filter((x) => x !== word && (locate(x.toLowerCase(), form) || {}).piece === c.loc.piece) : [];
+      same.sort((a, b) => (famGroup.has(b) ? 1 : 0) - (famGroup.has(a) ? 1 : 0));
+      const near = same.filter((x) => famGroup.has(x));
+      const inApp = [...near, ...pick(same.filter((x) => !famGroup.has(x)), Math.max(0, 6 - near.length))].slice(0, 6), outs = [];
       const rows = [...inApp.map((w) => ({ w, out: false })), ...outs.map((w) => ({ w, out: true }))];
       const y0 = bb + 30;
       const maxc = Math.floor((cw - 40) / 5.4);
@@ -157,8 +161,8 @@
           ls.forEach((ln, z) => (t += `<text x="${tx + 18}" y="${y + 14 + z * 13}" class="rp-wm">${esc(ln)}</text>`));
         }
       });
-      bottoms.push(rows.length ? rowsY[rows.length - 1] + 26 + 13 * nl(rows[rows.length - 1]) : bb + 36);
-      if (!rows.length) t += `<text x="${cxk}" y="${bb + 28}" text-anchor="middle" class="rp-wm">no other words with this root in the app yet</text>`;
+      bottoms.push(rows.length ? rowsY[rows.length - 1] + 26 + 13 * nl(rows[rows.length - 1]) : bb + (c.loc ? 36 : 52));
+      if (!rows.length) t += `<text x="${cxk}" y="${bb + 26}" text-anchor="middle" class="rp-wm">${c.loc ? "no look-alike words with this root yet" : "the root letters changed over time,"}</text>${c.loc ? "" : `<text x="${cxk}" y="${bb + 41}" text-anchor="middle" class="rp-wm">so no look-alike words to show</text>`}`;
     });
     const H = Math.max(...bottoms) + 6;
     return `<svg class="rp-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Root and family of ${esc(word)}">
@@ -188,11 +192,12 @@
         const parts = rs.map((ri) => P.roots[ri]).map((r) => ({ r, loc: locate(k, r[1]) })).filter((x) => x.loc).sort((a, b) => a.loc.i - b.loc.i).slice(0, 2).map((x) => `<b>${esc(x.loc.piece)}</b> = ${esc(x.r[3])}`);
         if (parts.length) html += `<p class="rp-gloss">Parts: ${parts.join("  +  ")}</p>`;
       }
-      const all = [...new Set(rs.flatMap((ri) => P.roots[ri][4]))].filter((x) => x !== k);
+      const pcs = rs.map((ri) => ({ ri, loc: locate(k, P.roots[ri][1]) })).filter((x) => x.loc);
+      const all = [...new Set(pcs.flatMap((x) => P.roots[x.ri][4].filter((m) => (locate(m.toLowerCase(), P.roots[x.ri][1]) || {}).piece === x.loc.piece)))].filter((x) => x !== k);
       const fi = build().fam.get(k);
       const fam = fi != null ? P.families[fi].filter((x) => x !== k) : [];
       if (fam.length) html += `<section class="rp-fam"><h4>Same word family</h4><p class="chips">${fam.map((x) => chip(x, "rchip-fam")).join("")}</p></section>`;
-      if (all.length > 7) html += `<details class="rp-more"><summary>All ${all.length} words with this root</summary><p class="chips">${all.map((x) => chip(x)).join("")}</p></details>`;
+      if (all.length > 7) html += `<details class="rp-more"><summary>All ${all.length} words with the same root letters</summary><p class="chips">${all.map((x) => chip(x)).join("")}</p></details>`;
       const hints = affixHints(k);
       if (hints.length) html += `<section class="rp-aff"><h4>Parts</h4><ul>${hints.map((h) => `<li><b>${esc(h.part)}</b> ${esc(h.note)}, added to <b>${esc(h.base)}</b></li>`).join("")}</ul></section>`;
     });
