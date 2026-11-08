@@ -41,12 +41,15 @@
       ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></div></article>`;
   };
   const eraBanner = (date) => { const e = eraOf(date); return `<div class="era-banner" style="--ec:${e.c}"><b>${esc(e.name)}</b><span>${e.a.slice(0, 4)} to ${e.b.startsWith("2100") ? "now" : e.b.slice(0, 4)}</span></div>`; };
+  PAK.fmt = fmt; PAK.eraOf = eraOf;
   const years = [...new Set(PAK.events.map((e) => e.y))];
 
   function home() {
     app.innerHTML = `<section><p class="eyebrow">Pakistan Story</p><h1>Pakistan from 1947, drawn so you remember it</h1>
       <p class="lede">Dates, leaders and events as timelines and sketches. Start with the timeline, or meet the people in power.</p></section>
       <div class="cards">
+        <a class="card" href="#story"><span class="badge">Start here</span><b>Story roads</b><span class="t">Seven eras, each a picture road. Learn one line, then walk the pictures and tap each one for the event and a memory trick.</span></a>
+        <a class="card" href="#quiz"><span class="badge">Practice</span><b>Quiz and flashcards</b><span class="t">Ten questions at a time. What you miss comes back until you know it.</span></a>
         <a class="card" href="#timeline"><span class="badge">Part 1</span><b>Timeline, 1947 onwards</b><span class="t">Every important date, in order, with the year. ${PAK.events.length} events so far.</span></a>
         <a class="card" href="#years"><span class="badge">Part 1</span><b>Year by year</b><span class="t">Pick a year and see what happened and who was in charge.</span></a>
         <a class="card" href="#rulers"><span class="badge">Part 2</span><b>People in power</b><span class="t">Prime Ministers, Presidents and Army chiefs, drawn as connected chains. Tap any person for their era.</span></a>
@@ -138,6 +141,8 @@
       <div class="pager">${j > 0 ? `<a class="btn" href="#leader-${same[j - 1].id}">&larr; ${esc(same[j - 1].name)}</a>` : "<span></span>"}${j < same.length - 1 ? `<a class="btn" href="#leader-${same[j + 1].id}">${esc(same[j + 1].name)} &rarr;</a>` : ""}</div>`;
   }
 
+  const eraEvents = (er) => PAK.events.filter((e) => e.date >= er.a.slice(0, 4) + "-01-01" && e.date <= (er.b.startsWith("2100") ? "9999" : er.b.slice(0, 4) + "-12-31"));
+  const trickOf = (e) => { for (const sc of PAK.scenes) for (const [t, tr] of sc.spots) if (e.title.startsWith(t)) return tr; return ""; };
   function route() {
     const h = decodeURIComponent((location.hash || "#home").slice(1));
     PAK.mountFilter();
@@ -145,6 +150,13 @@
     if (h === "timeline") { timeline(); on = "timeline"; }
     else if (h === "years") { yearsPage(); on = "years"; }
     else if (h.startsWith("year-")) { year(h.slice(5)); on = "years"; }
+    else if (h === "story") { PAK.story.index(app, ERAS); on = "story"; }
+    else if (h.startsWith("era-")) { PAK.story.page(app, +h.slice(4), ERAS); on = "story"; }
+    else if (h === "quiz") { PAK.quiz.hub(app, ERAS); on = "quiz"; }
+    else if (h === "quiz-all") { PAK.quiz.run(app, "Daily practice", PAK.events, years, "#quiz"); on = "quiz"; }
+    else if (h.startsWith("quiz-era-")) { const i = +h.slice(9), er = ERAS[i]; const es = eraEvents(er); PAK.quiz.run(app, er.name, es, [...new Set(es.map((e) => e.y))], "#quiz"); on = "quiz"; }
+    else if (h === "cards-all") { PAK.quiz.cards(app, PAK.events, "All events", "#quiz", trickOf); on = "quiz"; }
+    else if (h.startsWith("cards-")) { const i = +h.slice(6); PAK.quiz.cards(app, eraEvents(ERAS[i]), ERAS[i].name, "#quiz", trickOf); on = "quiz"; }
     else if (h === "rulers" || h.startsWith("rulers-")) { rulers(h.slice(7)); on = "rulers"; }
     else if (h.startsWith("leader-")) { leader(h.slice(7)); on = "rulers"; }
     else home();

@@ -72,4 +72,5 @@ PAK = window.PAK || {};
     return `<svg class="illus" viewBox="0 0 120 90" role="img" aria-hidden="true"><g filter="url(#pak-pencil)" stroke-linecap="round" stroke-linejoin="round">${f(accent || GREEN)}</g></svg>`;
   };
   PAK.illusKeys = Object.keys(M);
+  PAK.motif = (key, accent) => (M[key] || M.dome)(accent || GREEN);
 })();
