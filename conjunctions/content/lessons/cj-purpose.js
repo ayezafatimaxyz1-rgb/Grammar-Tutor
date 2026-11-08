@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-purpose",
     title: "Purpose and result: so that, so ... that, such ... that",
-    phase: 3,
+    phase: 4,
     unit: "u-sub",
     level: "Basic",
     minutes: 16,

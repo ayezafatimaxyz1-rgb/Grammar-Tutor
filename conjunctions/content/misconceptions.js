@@ -4,6 +4,74 @@ PLAB.misconceptions = {
     label: "What a conjunction does",
     explain: "A conjunction joins words, phrases or clauses. Choosing the wrong one changes the meaning, so learn what each one says.",
   },
+  "at-add": {
+    label: "Adding words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-contrast": {
+    label: "Contrast words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-concession": {
+    label: "Concession words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-choice": {
+    label: "Choice words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-reason": {
+    label: "Reason words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-result": {
+    label: "Result words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-time": {
+    label: "Time words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-condition": {
+    label: "Condition words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-purpose": {
+    label: "Purpose words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-comparison": {
+    label: "Comparison words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-place": {
+    label: "Place words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-manner": {
+    label: "Manner words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-noun": {
+    label: "That and whether words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-example": {
+    label: "Examples words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-emphasis": {
+    label: "Emphasis words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-sequence": {
+    label: "Order of points words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
+  "at-summary": {
+    label: "Summing up words",
+    explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
+  },
   "cj-and-but": {
     label: "And and but",
     explain: "AND adds an idea that goes the same way. BUT adds an idea that goes against the first. Do not swap them.",
@@ -55,6 +123,66 @@ PLAB.misconceptions = {
   "cj-punct": {
     label: "Punctuation with conjunctions",
     explain: "A comma separates two full sentences joined by FANBOYS. After a subordinate clause that comes first, put a comma.",
+  },
+  "cj-comma": {
+    label: "Punctuation with conjunctions",
+    explain: "A comma, a semicolon or nothing: the rule depends on what the conjunction joins.",
+  },
+  "ms-double": {
+    label: "Two conjunctions where one is enough",
+    explain: "The usual mistake: two conjunctions where one is enough.",
+  },
+  "ms-negative": {
+    label: "Double negatives",
+    explain: "The usual mistake: double negatives.",
+  },
+  "ms-order": {
+    label: "Word order after not only, hardly",
+    explain: "The usual mistake: word order after not only, hardly.",
+  },
+  "ms-pair": {
+    label: "Pairs that must match",
+    explain: "The usual mistake: pairs that must match.",
+  },
+  "ms-tense": {
+    label: "Tenses after conjunctions",
+    explain: "The usual mistake: tenses after conjunctions.",
+  },
+  "ms-noun": {
+    label: "That, whether and if",
+    explain: "The usual mistake: that, whether and if.",
+  },
+  "ms-prep": {
+    label: "Conjunction or preposition",
+    explain: "The usual mistake: conjunction or preposition.",
+  },
+  "ms-agree": {
+    label: "Agreement with both, either, neither",
+    explain: "The usual mistake: agreement with both, either, neither.",
+  },
+  "ms-compare": {
+    label: "Comparisons",
+    explain: "The usual mistake: comparisons.",
+  },
+  "ms-manner": {
+    label: "As and like",
+    explain: "The usual mistake: as and like.",
+  },
+  "ms-purpose": {
+    label: "So that",
+    explain: "The usual mistake: so that.",
+  },
+  "ms-result": {
+    label: "So and such",
+    explain: "The usual mistake: so and such.",
+  },
+  "ms-splice": {
+    label: "Comma splice and linking adverbs",
+    explain: "The usual mistake: comma splice and linking adverbs.",
+  },
+  "ms-meaning": {
+    label: "Wrong meaning",
+    explain: "The usual mistake: wrong meaning.",
   },
   "cj-top": {
     label: "Top conjunction mistakes",

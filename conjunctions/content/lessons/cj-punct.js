@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-punct",
     title: "Punctuating conjunctions: the comma rules",
-    phase: 5,
+    phase: 6,
     unit: "u-linkers",
     level: "Basic",
     minutes: 12,

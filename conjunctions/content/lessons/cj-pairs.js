@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-pairs",
     title: "Pairs: both ... and, either ... or, neither ... nor, not only ... but also",
-    phase: 4,
+    phase: 5,
     unit: "u-pairs",
     level: "Basic",
     minutes: 16,
