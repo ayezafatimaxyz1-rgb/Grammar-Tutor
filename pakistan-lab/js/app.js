@@ -12,7 +12,7 @@
     { name: "Musharraf's years", a: "1999-10-12", b: "2008-08-18", c: "#e67700" },
     { name: "Democracy returns", a: "2008-08-18", b: "2100-01-01", c: "#0b7285" },
   ];
-  const eraOf = (date) => ERAS.find((e) => date >= e.a && date < e.b) || ERAS[ERAS.length - 1];
+  const eraOf = (date) => (date < ERAS[0].a ? ERAS[0] : ERAS.find((e) => date >= e.a && date < e.b) || ERAS[ERAS.length - 1]);
   const today = new Date().toISOString().slice(0, 10);
   const fmt = (e) => (e.d ? e.d + " " : "") + MONTHS[e.m - 1] + " " + e.y;
   const fmtD = (s) => { if (!s) return "present"; const [y, m, d] = s.split("-").map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
@@ -20,7 +20,27 @@
   const LANES = { pm: "Prime Ministers", hs: "Heads of state", army: "Army chiefs" };
   const LANE_ONE = { pm: "Prime Minister", hs: "Governor-General or President", army: "Army chief" };
 
-  const evHtml = (e) => `<article class="ev k-${e.kind}"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span>${e.check ? '<span class="flag" title="Check this detail against your book">check</span>' : ""}</div><h3>${esc(e.title)}</h3><p>${esc(e.text)}</p></article>`;
+  const leadersAt = (date) => { if (date < "1947-08-15") date = "1947-08-15"; return ["pm", "hs", "army"].map((k) => PAK.leaders.filter((l) => l.lane === k && l.start <= date && (l.end || "9999") >= date).pop()).filter(Boolean); };
+  const eraIdx = (date) => ERAS.indexOf(eraOf(date));
+  // The hand-drawn rail that connects the events: one wobbly line per era colour.
+  (function () {
+    const css = ERAS.map((e, i) => {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="80" viewBox="0 0 14 80"><path d="M7 0 C3 14 11 24 7 40 C3 56 11 66 7 80" fill="none" stroke="${e.c}" stroke-width="2.6" stroke-linecap="round"/></svg>`;
+      return `.era${i}{--ec:${e.c};background:url("data:image/svg+xml,${encodeURIComponent(svg)}") repeat-y left 4px top 0;}`;
+    }).join("");
+    const st = document.createElement("style");
+    st.textContent = css;
+    document.head.appendChild(st);
+  })();
+  const evHtml = (e) => {
+    const era = eraOf(e.date), who = leadersAt(e.date);
+    return `<article class="ev k-${e.kind} era${eraIdx(e.date)}"><span class="dot"></span>
+      <div class="ev-body"><div class="ev-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
+      <div class="ev-txt"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span>${e.check ? '<span class="flag" title="Check this detail against your book">check</span>' : ""}</div>
+      <h3>${esc(e.title)}</h3><p>${esc(e.text)}</p>
+      ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></div></article>`;
+  };
+  const eraBanner = (date) => { const e = eraOf(date); return `<div class="era-banner" style="--ec:${e.c}"><b>${esc(e.name)}</b><span>${e.a.slice(0, 4)} to ${e.b.startsWith("2100") ? "now" : e.b.slice(0, 4)}</span></div>`; };
   const years = [...new Set(PAK.events.map((e) => e.y))];
 
   function home() {
@@ -49,8 +69,8 @@
     const draw = () => {
       const es = PAK.events.filter((e) => (!kind || e.kind === kind) && (!q || (e.title + " " + e.text + " " + e.y + " " + MONTHS[e.m - 1]).toLowerCase().includes(q)));
       document.getElementById("tcount").textContent = `${es.length} ${es.length === 1 ? "event" : "events"}`;
-      let h = "", cur = 0;
-      es.forEach((e) => { if (e.y !== cur) { cur = e.y; h += `<div class="year-head" id="y${cur}"><a href="#year-${cur}">${cur}</a><span>see the whole year</span></div>`; } h += evHtml(e); });
+      let h = "", cur = 0, era = -1;
+      es.forEach((e) => { const ei = eraIdx(e.date); if (ei !== era && !kind && !q) { era = ei; h += eraBanner(e.date); } if (e.y !== cur) { cur = e.y; h += `<div class="year-head" id="y${cur}"><a href="#year-${cur}">${cur}</a><span>see the whole year</span></div>`; } h += evHtml(e); });
       document.getElementById("tl").innerHTML = h || '<p class="muted">Nothing matches.</p>';
     };
     app.querySelector("#kinds").addEventListener("click", (e) => { const b = e.target.closest("[data-k]"); if (!b) return; kind = b.dataset.k; app.querySelectorAll("#kinds .chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))); draw(); });
