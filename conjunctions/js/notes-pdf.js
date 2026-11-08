@@ -735,7 +735,14 @@
   }
   const closePanel = () => panel && (panel.hidden = true);
 
-  function save(blob, name) {
+  async function save(blob, name) {
+    // Inside the Claude app the page may not download directly; its downloads capability asks the viewer instead.
+    try {
+      if (window.claude && window.claude.use) {
+        const d = await window.claude.use("downloads");
+        if (d) { await d.save({ filename: name, data: blob }); return; }
+      }
+    } catch (e) {}
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
