@@ -62,3 +62,22 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 .era-banner { margin:22px 0 6px; padding:10px 14px; border-radius:12px; background:var(--ec); color:#fff; display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
 .era-banner b { font-size:1.05rem; } .era-banner span { font-size:.85rem; opacity:.9; }
 @media (max-width:360px) { .ev-pic, .ev-pic .illus { width:78px; } .ev-pic .illus { height:60px; } }
+
+.scene { width:100%; height:auto; display:block; margin:10px 0; } .hot { cursor:pointer; } .hot:focus-visible rect { stroke-width:4; }
+.oneline { border-left:6px solid var(--ec); background:var(--sunk); border-radius:0 12px 12px 0; padding:10px 12px; margin:8px 0; }
+.sheet-overlay { position:fixed; inset:0; z-index:50; background:rgba(15,25,35,.5); display:flex; align-items:flex-end; justify-content:center; }
+.sheet { position:relative; background:#fff; width:min(640px,100%); max-height:86vh; overflow-y:auto; border-radius:18px 18px 0 0; padding:16px 16px 26px; }
+@media (min-width:700px) { .sheet-overlay { align-items:center; } .sheet { border-radius:18px; } }
+.sheet-x { position:sticky; top:0; float:right; width:40px; height:40px; border-radius:50%; border:1px solid var(--line); background:#fff; font-size:1.4rem; cursor:pointer; }
+.sheet-pic .illus { width:100%; max-width:240px; height:auto; background:var(--sunk); border-radius:12px; display:block; margin:0 0 8px; }
+.trick { background:#fff6cc; border-radius:12px; padding:10px 12px; margin:10px 0; }
+.opts { display:grid; gap:8px; margin:8px 0; } .opt { text-align:left; border:2px solid var(--line); border-radius:12px; padding:12px 14px; font:inherit; background:#fff; cursor:pointer; }
+.opt.ok { border-color:#1f7a3d; background:#e7f4eb; } .opt.no { border-color:#b23a3a; background:#fbeaea; } .opt:disabled { cursor:default; }
+.qsub { font-size:1.15rem; font-weight:700; margin:.2em 0 .6em; }
+.right { background:#e7f4eb; border-radius:12px; padding:10px 12px; } .wrong { background:#fbeaea; border-radius:12px; padding:10px 12px; }
+.btn.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+.picked { padding-left:22px; } .picked li.ok { color:#1f7a3d; font-weight:700; } .picked li.no { color:#b23a3a; font-weight:700; }
+.ev-lite { border-left:4px solid var(--line); padding:6px 10px; margin:8px 0; }
+.flash { display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; width:100%; min-height:300px; justify-content:center; border:3px solid var(--ec,#888); border-radius:20px; padding:18px; background:#fff; font:inherit; cursor:pointer; }
+.flash b { font-size:1.3rem; } .flash small { color:var(--muted); } .flash em { background:#fff6cc; padding:8px 10px; border-radius:10px; font-style:normal; text-align:left; }
+.fpic .illus { width:200px; height:150px; background:var(--sunk); border-radius:14px; }
