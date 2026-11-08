@@ -118,6 +118,8 @@
         </div>
       </section>
 
+      ${window.CJ_ARTIFACT ? `<div class="note-box"><b>In the Claude app.</b> The lessons, atlas, practice and notebook all work here. PDF buttons make the PDF here and then ask you to confirm the save. The <a href="https://ayezafatimaxyz1-rgb.github.io/Grammar-Tutor/conjunctions/" target="_blank" rel="noopener">browser version</a> can also share to WhatsApp.</div>` : ""}
+
       <a class="start-card" href="#atlas">
         <span class="sc-badge">Start here</span>
         <span class="sc-title">The conjunction atlas</span>
