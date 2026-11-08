@@ -104,3 +104,24 @@ details.ev[open] .tap { display:none; }
 .era-poster { margin:14px 0 22px; } .prow { display:flex; gap:8px; align-items:flex-start; margin:10px 0; } .plabel { flex:none; width:74px; font-size:.74rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; padding-top:6px; }
 .pfigs { display:flex; flex-wrap:wrap; gap:8px 10px; } .fig { width:72px; text-align:center; text-decoration:none; color:var(--fg); } .fig svg { width:56px; height:56px; display:block; margin:0 auto 2px; } .fig b { display:block; font-size:.74rem; line-height:1.15; } .fig small { color:var(--muted); font-size:.68rem; }
 .credit { font-size:.88rem; margin:.4em 0; }
+
+/* ===== Restyle: a dark stage, gold edges, big pictures, very little text ===== */
+:root { --bg:#0b0f12; --surface:#161c20; --sunk:#1d252a; --line:#2c373d; --fg:#f3efe4; --muted:#a9b3b8; --accent:#d4a017; --accent-soft:#2a2410; }
+body { background:var(--bg); color:var(--fg); } a { color:#e8c25a; }
+.top { background:rgba(11,15,18,.96); border-bottom:1px solid var(--line); } .brand { color:var(--fg); } .brand-mark { background:#01411c; color:#fff; } .top-sub { background:var(--sunk); color:var(--muted); }
+.tabbar { background:#0b0f12; border-top:1px solid var(--line); } .tabbar a { color:var(--muted); } .tabbar a.on { color:#0b0f12; background:var(--accent); }
+.chip, .btn, .opt, .card, .flash { background:var(--surface); color:var(--fg); border-color:var(--line); } .chip.on, .btn.primary { background:var(--accent); color:#0b0f12; border-color:var(--accent); }
+.sheet { background:#12181b; color:var(--fg); } .sheet-x { background:var(--surface); color:var(--fg); border-color:var(--line); } .sheet-pic .illus { background:var(--sunk); }
+.note, .trick { background:var(--accent-soft); color:var(--fg); } .era-banner { color:#fff; }
+.posters { display:grid; gap:14px; margin-top:6px; } .poster { display:flex; flex-direction:column; align-items:center; gap:10px; text-decoration:none; color:var(--fg); background:#0f1518; border:2px solid #d4a017; border-radius:22px; padding:18px 14px 16px; }
+.poster b { font-size:1.6rem; letter-spacing:.04em; text-transform:uppercase; color:#e8c25a; } .poster .faces { width:100%; justify-content:center; gap:6px; } .poster .faces svg { width:30%; max-width:96px; } .pyrart { width:70%; max-width:220px; } .pyrart svg { width:100%; height:auto; display:block; }
+.trow { display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 12px; margin:7px 0; color:var(--fg); font:inherit; cursor:pointer; }
+.trow:hover { border-color:var(--accent); } .tyear { flex:none; width:58px; font-weight:800; font-size:1.2rem; color:#e8c25a; line-height:1; } .tyear small { display:block; font-weight:400; font-size:.7rem; color:var(--muted); margin-top:3px; }
+.tdot { flex:none; width:12px; height:12px; border-radius:50%; background:var(--ec); } .ttitle { font-size:1.02rem; font-weight:700; }
+h2.dec { color:#e8c25a; border-bottom:2px solid #d4a017; padding-bottom:4px; margin:22px 0 8px; position:sticky; top:56px; background:var(--bg); z-index:3; }
+/* leaders poster */
+.era-poster { background:#0f1518; border:2px solid #d4a017; border-radius:18px; padding:10px 10px 14px; }
+.era-poster .era-banner { margin:0 0 6px; } .plabel { color:#e8c25a; } .fig { color:var(--fg); } .fig b { background:#b0292f; color:#fff; border-radius:3px; padding:2px 3px; margin-top:3px; font-size:.68rem; } .fig small { color:var(--muted); }
+.fig svg { width:64px; height:64px; } .fig { width:84px; }
+.incharge a { color:var(--muted); } .yeargrid a, .who a { background:var(--surface); color:var(--fg); border-color:var(--line); } .lede { color:var(--muted); }
+h1, h2, h3 { color:var(--fg); } .tl h2 { color:#e8c25a; } .legend { color:var(--muted); }

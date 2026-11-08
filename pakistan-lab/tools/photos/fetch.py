@@ -66,8 +66,10 @@ for key, v in st["img"].items():
     n = names[key]; L = st["lic"].get(n.replace(" ", "_")) or st["lic"].get(n) or {"license": ""}
     if not FREE.search(L["license"]): st["done"][key] = {"skip": L["license"] or "unknown licence"}; save(); print("skip", key, L["license"], flush=True); continue
     m = re.match(r"(https://upload.wikimedia.org/wikipedia/commons)/([0-9a-f]/[0-9a-f]{2})/(.+)", v["url"])
-    url = f"{m.group(1)}/thumb/{m.group(2)}/{m.group(3)}/400px-{m.group(3)}" if m and not n.lower().endswith((".svg", ".tif", ".tiff")) else v["url"]
-    data = get(url, True) or get(v["url"], True)
+    url = f"{m.group(1)}/thumb/{m.group(2)}/{m.group(3)}/330px-{m.group(3)}" if m and not n.lower().endswith((".svg", ".tif", ".tiff")) else v["url"]
+    try: data = get(url, True)
+    except Exception: data = None
+    data = data or get(v["url"], True)
     im = Image.open(io.BytesIO(data)).convert("RGB"); w, h = im.size
     side = min(w, h); left = (w - side) // 2; top = 0 if h > w else (h - side) // 2
     im.crop((left, top, left + side, top + side)).resize((220, 220), Image.LANCZOS).save(f"photos/{key}.jpg", quality=82, optimize=True)

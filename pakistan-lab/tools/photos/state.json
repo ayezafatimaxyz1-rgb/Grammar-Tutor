@@ -373,7 +373,69 @@
   "Fazal_E_Ch.jpg": {
    "license": "Public domain",
    "author": "Unknown authorUnknown author"
+  },
+  "Gracey_Douglas_David.jpg": {
+   "license": "Public domain",
+   "author": "R.F.H. Nalder"
+  },
+  "President_Mamnoon_Hussain.jpg": {
+   "license": "CC BY 4.0",
+   "author": "Press Service of the President of the Republic of Pakistan"
+  },
+  "Feroz_Khan_Noon.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Nurul_Amin.jpg": {
+   "license": "Public domain",
+   "author": "Government of Pakistan"
+  },
+  "Iskander_Mirza.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Field_Marshal_Asim_Munir.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Inter Services Public Relations Pakistan"
+  },
+  "Ghulam_Ishaq_Khan_(cropped).JPG": {
+   "license": "CC0",
+   "author": "pavilion7"
+  },
+  "Mohamad_Ali,_primeiro-ministro_do_Paquist\u00e3o,_sem_data.tif": {
+   "license": "Public domain",
+   "author": "UnknownUnknown"
+  },
+  "Shaukat_Aziz.jpg": {
+   "license": "CC BY-SA 2.0",
+   "author": "World Economic Forum from Cologny, Switzerland"
+  },
+  "General_Muhammad_Zia-Ul-Haq.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Pakistan Army"
   }
  },
- "done": {}
+ "done": {
+  "liaquat": {
+   "file": "Liaquat_Ali_Khan_1945.jpg",
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author - but due to age, image in public domain",
+   "title": "Liaquat_Ali_Khan",
+   "page": "https://commons.wikimedia.org/wiki/File:Liaquat_Ali_Khan_1945.jpg"
+  },
+  "nazimuddin": {
+   "file": "Khawaja_Nazimuddin.jpg",
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author - but due to age, image in public domain",
+   "title": "Khawaja_Nazimuddin",
+   "page": "https://commons.wikimedia.org/wiki/File:Khawaja_Nazimuddin.jpg"
+  },
+  "bogra": {
+   "file": "Pakistani_Prime_Minister_Bogra_with_Eisenhower_(cropped).png",
+   "license": "Public domain",
+   "author": "White House Photographic Collection",
+   "title": "Mohammad_Ali_Bogra",
+   "page": "https://commons.wikimedia.org/wiki/File:Pakistani_Prime_Minister_Bogra_with_Eisenhower_%28cropped%29.png"
+  }
+ }
 }

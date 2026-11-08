@@ -35,33 +35,36 @@
   const detailHtml = (e) => { const d = PAK.detailOf(e); return d ? `<details class="more"><summary>Why it happened and what came next</summary><p><b>Why:</b> ${esc(d.why)}</p><p><b>Next:</b> ${esc(d.next)}</p></details>` : ""; };
   PAK.detailHtml = detailHtml;
   const evHtml = (e) => {
-    const era = eraOf(e.date), who = leadersAt(e.date);
-    return `<details class="ev k-${e.kind} era${eraIdx(e.date)}"><summary><span class="dot"></span>
-      <div class="ev-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
-      <div class="ev-sum"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span></div><h3>${esc(e.title)}</h3><span class="tap">Tap to read</span></div></summary>
-      <div class="ev-open"><p>${esc(e.text)}${e.check ? ' <span class="flag" title="Check this detail against your book">check</span>' : ""}</p>${PAK.detailHtml ? PAK.detailHtml(e).replace('<details class="more">', '<div class="more">').replace("</details>", "</div>").replace(/<summary>.*?<\/summary>/, "") : ""}
-      ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></details>`;
+    const era = eraOf(e.date);
+    return `<button type="button" class="trow" data-ev="${esc(e.date + "|" + e.title)}" style="--ec:${era.c}"><span class="tyear">${e.y}<small>${e.d ? e.d + " " : ""}${MONTHS[e.m - 1].slice(0, 3)}</small></span><span class="tdot"></span><span class="ttitle">${esc(e.title)}</span></button>`;
   };
+  PAK.eventSheet = function (e) {
+    const era = eraOf(e.date), who = leadersAt(e.date), dt = PAK.detailOf(e);
+    let box = document.getElementById("sheet"); if (box) box.remove();
+    box = document.createElement("div"); box.id = "sheet"; box.className = "sheet-overlay";
+    box.innerHTML = `<div class="sheet" role="dialog" aria-modal="true"><button class="sheet-x" aria-label="Close">&times;</button>
+      <div class="sheet-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
+      <p class="eyebrow" style="color:${era.c}">${esc(fmt(e))} &middot; ${KINDS[e.kind]}</p><h2>${esc(e.title)}</h2><p>${esc(e.text)}${e.check ? ' <span class="flag">check</span>' : ""}</p>
+      ${dt ? `<p><b>Why:</b> ${esc(dt.why)}</p><p><b>Next:</b> ${esc(dt.next)}</p>` : ""}
+      ${who.length ? `<div class="incharge">${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div>`;
+    document.body.appendChild(box);
+    const close = () => { box.remove(); document.removeEventListener("keydown", key); }; const key = (ev) => ev.key === "Escape" && close();
+    document.addEventListener("keydown", key);
+    box.addEventListener("click", (ev) => { if (ev.target === box || ev.target.closest(".sheet-x") || ev.target.closest("a")) close(); });
+    box.querySelector(".sheet-x").focus();
+  };
+  document.addEventListener("click", (ev) => { const b = ev.target.closest("[data-ev]"); if (!b) return; const [d, t] = b.dataset.ev.split("|"); const e = PAK.events.find((x) => x.date === d && x.title === t); if (e) PAK.eventSheet(e); });
   const eraBanner = (date) => { const e = eraOf(date); return `<div class="era-banner" style="--ec:${e.c}"><b>${esc(e.name)}</b><span>${e.a.slice(0, 4)} to ${e.b.startsWith("2100") ? "now" : e.b.slice(0, 4)}</span></div>`; };
   PAK.fmt = fmt; PAK.eraOf = eraOf; PAK.ERAS = ERAS;
   const years = [...new Set(PAK.events.map((e) => e.y))];
 
   function home() {
-    const tile = (href, title, art, sub) => `<a class="tile" href="${href}"><span class="tile-art">${art}</span><b>${title}</b><small>${sub}</small></a>`;
     const face = (id, c) => PAK.bust(PAK.leaders.find((l) => l.id === id).look, c, id);
-    const pyr = `<svg viewBox="0 0 120 90" aria-hidden="true"><g filter="url(#pak-pencil)" stroke-linecap="round"><rect x="8" y="4" width="104" height="82" rx="10" fill="#0b0f12"/><path d="M44 20 H76 V34 H44Z M32 38 H88 V54 H32Z M18 58 H102 V78 H18Z" fill="#161c20" stroke="#d4a017" stroke-width="2"/><circle cx="60" cy="27" r="5" fill="#d4a017"/><circle cx="46" cy="46" r="4" fill="#d4a017"/><circle cx="74" cy="46" r="4" fill="#d4a017"/><circle cx="32" cy="68" r="4" fill="#d4a017"/><circle cx="60" cy="68" r="4" fill="#d4a017"/><circle cx="88" cy="68" r="4" fill="#d4a017"/></g></svg>`;
-    app.innerHTML = `<section><p class="eyebrow">Pakistan Story</p><h1>Pakistan, drawn</h1><p class="lede">Pick a picture.</p></section>
-      <div class="tiles">
-        ${tile("#rulers", "Who ruled Pakistan", `<span class="faces">${face("jinnah", "#2f9e44")}${face("zab", "#1971c2")}${face("benazir1", "#9c36b5")}</span>`, "Leaders in order, with photos")}
-        ${tile("#state", "Pyramid of power", pyr, "Who sits where in the state")}
-        ${tile("#story", "Story roads", PAK.illus("mountain", "#d9480f"), "Seven eras, seven pictures")}
-        ${tile("#timeline", "Timeline", PAK.illus("scroll", "#01411c"), `${PAK.events.length} dated events`)}
-        ${tile("#quiz", "Quiz", PAK.illus("ballot", "#1971c2"), "Practice that repeats mistakes")}
-        ${tile("#years", "Year by year", PAK.illus("book", "#9c36b5"), "Pick any year")}
-      </div>
-      <p class="note"><b>Offline:</b> open once with internet, then "Add to Home Screen". Each part has a PDF button, and Share sends it to WhatsApp.</p>
-      <p class="pdfrow"><button class="btn" data-pdf="revision">PDF: revision sheet</button> <button class="btn" data-pdf="all">PDF: full timeline</button></p>
-      <p class="muted small">Photos are from Wikipedia and Wikimedia Commons under free licences. <a href="#credits">See the credits</a>. Where there is no free photo, a sketch is used.</p>`;
+    const pyr = `<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M44 8 H76 V24 H44Z M30 28 H90 V46 H30Z M14 50 H106 V74 H14Z" fill="#161c20" stroke="#d4a017" stroke-width="2.2"/>${[[60, 16], [46, 37], [74, 37], [28, 62], [60, 62], [92, 62]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="6" fill="#d4a017"/>`).join("")}</svg>`;
+    app.innerHTML = `<div class="posters">
+      <a class="poster" href="#rulers"><span class="faces">${face("jinnah", "#d4a017")}${face("zab", "#d4a017")}${face("benazir1", "#d4a017")}</span><b>Leaders</b></a>
+      <a class="poster" href="#state"><span class="pyrart">${pyr}</span><b>Power</b></a>
+      <a class="poster" href="#timeline"><span class="pyrart">${PAK.illus("scroll", "#d4a017")}</span><b>Timeline</b></a></div>`;
   }
 
   function credits() {
@@ -72,25 +75,11 @@
 
   function timeline() {
     const decs = [...new Set(years.map((y) => Math.floor(y / 10) * 10))];
-    app.innerHTML = `<p class="eyebrow">Part 1</p><h1>Timeline, 1947 onwards</h1>
-      <p class="lede">Every important date in order. Tap a year to see that whole year.</p>
-      <p class="pdfrow"><b>Take it offline:</b> <button class="btn" data-pdf="all">PDF of everything</button> <button class="btn" data-pdf="all" data-share="1">Share</button> <button class="btn" data-pdf="revision">Revision sheet</button></p>
-      <label class="search"><span class="sr-only"></span><input type="search" id="tq" placeholder="Search: Bhutto, 1971, Kashmir, constitution" autocomplete="off"></label>
-      <div class="chips" id="kinds"><button class="chip" aria-pressed="true" data-k="">All</button>${Object.keys(KINDS).map((k) => `<button class="chip" aria-pressed="false" data-k="${k}">${KINDS[k]}</button>`).join("")}</div>
-      <div class="chips">${decs.map((d) => `<a class="chip" href="#" data-j="${d}">${d}s</a>`).join("")}</div>
-      <p class="muted small" id="tcount"></p><div id="tl"></div>`;
-    let kind = "", q = "";
-    const draw = () => {
-      const es = PAK.events.filter((e) => (!kind || e.kind === kind) && (!q || (e.title + " " + e.text + " " + e.y + " " + MONTHS[e.m - 1]).toLowerCase().includes(q)));
-      document.getElementById("tcount").textContent = `${es.length} ${es.length === 1 ? "event" : "events"}`;
-      let h = "", cur = 0, era = -1;
-      es.forEach((e) => { const ei = eraIdx(e.date); if (ei !== era && !kind && !q) { era = ei; h += eraBanner(e.date); } if (e.y !== cur) { cur = e.y; h += `<div class="year-head" id="y${cur}"><a href="#year-${cur}">${cur}</a><span>see the whole year</span></div>`; } h += evHtml(e); });
-      document.getElementById("tl").innerHTML = h || '<p class="muted">Nothing matches.</p>';
-    };
-    app.querySelector("#kinds").addEventListener("click", (e) => { const b = e.target.closest("[data-k]"); if (!b) return; kind = b.dataset.k; app.querySelectorAll("#kinds .chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))); draw(); });
-    app.querySelector("#tq").addEventListener("input", (e) => { q = e.target.value.trim().toLowerCase(); draw(); });
-    app.querySelectorAll("[data-j]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); const y = years.find((v) => Math.floor(v / 10) * 10 === +a.dataset.j); const el = document.getElementById("y" + y); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }));
-    draw();
+    let h = "", cur = 0;
+    PAK.events.forEach((e) => { const d = Math.floor(e.y / 10) * 10; if (d !== cur) { cur = d; h += `<h2 class="dec" id="d${d}">${d}s</h2>`; } h += evHtml(e); });
+    app.innerHTML = `<h1>Timeline</h1><div class="chips">${decs.map((d) => `<a class="chip" href="#" data-j="${d}">${d}s</a>`).join("")}</div><div class="tl">${h}</div>
+      <p class="pdfrow"><button class="btn" data-pdf="all">PDF</button> <button class="btn" data-pdf="all" data-share="1">Share</button></p>`;
+    app.querySelectorAll("[data-j]").forEach((a) => a.addEventListener("click", (e) => { e.preventDefault(); const el = document.getElementById("d" + a.dataset.j); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); }));
   }
 
   function yearsPage() {
@@ -122,10 +111,9 @@
   };
   function poster() {
     const fig = (l) => `<a class="fig" href="#leader-${l.id}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<b>${esc(l.name)}</b><small>${yr(l.start)} to ${yr(l.end)}</small></a>`;
-    app.innerHTML = `<p class="eyebrow">Part 2</p><h1>Who ruled Pakistan</h1><p class="lede">Era by era. Tap a face for the story.</p>
-      <div class="chips"><a class="chip on" href="#rulers">Poster</a>${Object.keys(LANES).map((k) => `<a class="chip" href="#rulers-${k}">${LANES[k]} chain</a>`).join("")}</div>
-      <p class="pdfrow"><button class="btn" data-pdf="people">PDF: people in power</button> <button class="btn" data-pdf="people" data-share="1">Share</button></p>
-      ${ERAS.map((er, i) => { const inEra = (l) => l.start < er.b && (l.end || "9999") > er.a; const row = (lane, name) => { const ls = PAK.leaders.filter((l) => l.lane === lane && inEra(l)); return ls.length ? `<div class="prow"><span class="plabel">${name}</span><div class="pfigs">${ls.map(fig).join("")}</div></div>` : ""; }; return `<section class="era-poster" style="--ec:${er.c}"><div class="era-banner" style="--ec:${er.c}"><b>${esc(er.name)}</b><span>${er.a.slice(0, 4)} to ${er.b.startsWith("2100") ? "now" : er.b.slice(0, 4)}</span></div>${row("hs", "Head of state")}${row("pm", "Prime Minister")}${row("army", "Army chief")}<a class="btn small" href="#era-${i}">Story road</a></section>`; }).join("")}`;
+    app.innerHTML = `<h1>Leaders</h1>
+      ${ERAS.map((er, i) => { const inEra = (l) => l.start < er.b && (l.end || "9999") > er.a; const row = (lane, name) => { const ls = PAK.leaders.filter((l) => l.lane === lane && inEra(l)); return ls.length ? `<div class="prow"><span class="plabel">${name}</span><div class="pfigs">${ls.map(fig).join("")}</div></div>` : ""; }; return `<section class="era-poster" style="--ec:${er.c}"><div class="era-banner" style="--ec:${er.c}"><b>${esc(er.name)}</b><span>${er.a.slice(0, 4)} to ${er.b.startsWith("2100") ? "now" : er.b.slice(0, 4)}</span></div>${row("hs", "Head of state")}${row("pm", "Prime Minister")}${row("army", "Army chief")}</section>`; }).join("")}
+      <p class="pdfrow"><button class="btn" data-pdf="people">PDF</button> <button class="btn" data-pdf="people" data-share="1">Share</button></p>`;
   }
   function rulers(lane) {
     if (!lane || !LANES[lane]) return poster();
