@@ -30,8 +30,6 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 .search input { width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:12px; font:inherit; }
 .year-head { position:sticky; top:58px; z-index:5; background:#fff; margin:18px 0 6px; padding:6px 0; border-bottom:2px solid var(--accent); display:flex; align-items:baseline; justify-content:space-between; }
 .year-head a { font-size:1.4rem; font-weight:700; text-decoration:none; } .year-head span { font-size:.85rem; color:var(--muted); }
-.ev { border-left:4px solid var(--kc,#888); padding:8px 12px; margin:10px 0; background:var(--sunk); border-radius:0 10px 10px 0; }
-.ev .d { font-weight:700; font-size:.95rem; } .ev h3 { margin:.1em 0 .2em; font-size:1.02rem; } .ev p { margin:.2em 0; }
 .kind { display:inline-block; font-size:.72rem; font-weight:700; padding:1px 8px; border-radius:999px; color:#fff; background:var(--kc,#888); margin-left:6px; vertical-align:middle; }
 .flag { font-size:.8rem; color:#8a5a00; background:#fff3d1; padding:1px 8px; border-radius:999px; margin-left:6px; }
 .k-pol{--kc:#1971c2} .k-mil{--kc:#c92a2a} .k-law{--kc:#7048e8} .k-eco{--kc:#e67700} .k-for{--kc:#0b7285} .k-soc{--kc:#2f9e44} .k-dis{--kc:#5f3dc4}
@@ -53,3 +51,14 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 .dline { stroke-dasharray:1; stroke-dashoffset:1; animation:draw .8s ease-out forwards; } @keyframes draw { to { stroke-dashoffset:0; } }
 @media (prefers-reduced-motion:reduce) { .dline { animation:none; stroke-dashoffset:0; } }
 :focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+
+.ev { position:relative; padding:4px 0 18px 30px; margin:0; background-color:transparent; }
+.ev .dot { position:absolute; left:0; top:12px; width:16px; height:16px; border-radius:50%; background:var(--ec,#888); border:3px solid #fff; box-shadow:0 0 0 2px var(--ec,#888); }
+.ev-body { display:flex; gap:12px; align-items:flex-start; border:1px solid var(--line); border-left:4px solid var(--ec,#888); border-radius:0 14px 14px 0; padding:10px; background:#fff; }
+.ev-pic { flex:none; width:96px; } .ev-pic .illus { width:96px; height:72px; display:block; background:var(--sunk); border-radius:10px; }
+.ev-txt { min-width:0; } .ev .d { font-weight:700; font-size:.92rem; } .ev h3 { margin:.1em 0 .2em; font-size:1.05rem; } .ev p { margin:.2em 0; font-size:.96rem; }
+.incharge { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.incharge a { display:flex; flex-direction:column; align-items:center; text-decoration:none; color:var(--muted); font-size:.68rem; width:42px; } .incharge svg { width:34px; height:34px; }
+.era-banner { margin:22px 0 6px; padding:10px 14px; border-radius:12px; background:var(--ec); color:#fff; display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.era-banner b { font-size:1.05rem; } .era-banner span { font-size:.85rem; opacity:.9; }
+@media (max-width:360px) { .ev-pic, .ev-pic .illus { width:78px; } .ev-pic .illus { height:60px; } }
