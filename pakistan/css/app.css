@@ -1,0 +1,55 @@
+:root { --bg:#fff; --surface:#fff; --sunk:#f3f5f9; --line:#dde3ea; --fg:#1b2330; --muted:#5a6577; --accent:#01411c; --accent-soft:#e3f1e8; --focus:#e0a800; --radius:14px; --font:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin:0; background:var(--bg); color:var(--fg); font-family:var(--font); line-height:1.5; padding-bottom:84px; }
+a { color: var(--accent); }
+.skip { position:absolute; left:-999px; } .skip:focus { left:8px; top:8px; background:#fff; padding:8px; z-index:99; }
+.top { position:sticky; top:0; z-index:20; background:rgba(255,255,255,.95); backdrop-filter:blur(6px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top); }
+.top-inner { max-width:760px; margin:0 auto; padding:10px 16px; display:flex; align-items:center; justify-content:space-between; }
+.brand { display:flex; align-items:center; gap:10px; font-weight:700; font-size:1.1rem; color:var(--fg); text-decoration:none; }
+.brand-mark { width:34px; height:34px; border-radius:10px; background:var(--accent); color:#fff; display:grid; place-items:center; font-size:1.2rem; }
+.top-sub { font-size:.8rem; color:var(--muted); background:var(--sunk); padding:4px 10px; border-radius:999px; }
+main { max-width:760px; margin:0 auto; padding:16px; outline:none; }
+.tabbar { position:fixed; left:0; right:0; bottom:0; z-index:20; background:#fff; border-top:1px solid var(--line); display:flex; justify-content:space-around; padding:6px 4px calc(6px + env(safe-area-inset-bottom)); }
+.tabbar a { flex:1; max-width:120px; display:flex; flex-direction:column; align-items:center; gap:2px; padding:6px 4px; border-radius:12px; text-decoration:none; color:var(--muted); font-size:.75rem; font-weight:700; }
+.tabbar svg { width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.tabbar a.on { color:var(--accent); background:var(--accent-soft); }
+h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2rem; margin:1.2em 0 .4em; } h3 { margin:.8em 0 .3em; }
+.eyebrow { text-transform:uppercase; letter-spacing:.08em; font-size:.75rem; font-weight:700; color:var(--muted); margin:0; }
+.lede { color:var(--muted); margin:.2em 0 1em; } .muted { color:var(--muted); } .small { font-size:.88rem; }
+.crumbs { font-size:.88rem; margin:0 0 6px; }
+.cards { display:grid; gap:12px; }
+.card { display:block; border:1px solid var(--line); border-radius:var(--radius); padding:14px; text-decoration:none; color:var(--fg); background:var(--surface); }
+.card:hover { border-color:var(--accent); }
+.card .badge { font-size:.72rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); }
+.card b { display:block; font-size:1.1rem; margin:2px 0; } .card span.t { color:var(--muted); font-size:.93rem; }
+.card.soon { opacity:.65; pointer-events:none; border-style:dashed; }
+.chips { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0; }
+.chip { border:1px solid var(--line); background:#fff; border-radius:999px; padding:6px 12px; font:inherit; font-size:.9rem; cursor:pointer; text-decoration:none; color:var(--fg); }
+.chip[aria-pressed="true"], .chip.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+.search input { width:100%; padding:11px 14px; border:1px solid var(--line); border-radius:12px; font:inherit; }
+.year-head { position:sticky; top:58px; z-index:5; background:#fff; margin:18px 0 6px; padding:6px 0; border-bottom:2px solid var(--accent); display:flex; align-items:baseline; justify-content:space-between; }
+.year-head a { font-size:1.4rem; font-weight:700; text-decoration:none; } .year-head span { font-size:.85rem; color:var(--muted); }
+.ev { border-left:4px solid var(--kc,#888); padding:8px 12px; margin:10px 0; background:var(--sunk); border-radius:0 10px 10px 0; }
+.ev .d { font-weight:700; font-size:.95rem; } .ev h3 { margin:.1em 0 .2em; font-size:1.02rem; } .ev p { margin:.2em 0; }
+.kind { display:inline-block; font-size:.72rem; font-weight:700; padding:1px 8px; border-radius:999px; color:#fff; background:var(--kc,#888); margin-left:6px; vertical-align:middle; }
+.flag { font-size:.8rem; color:#8a5a00; background:#fff3d1; padding:1px 8px; border-radius:999px; margin-left:6px; }
+.k-pol{--kc:#1971c2} .k-mil{--kc:#c92a2a} .k-law{--kc:#7048e8} .k-eco{--kc:#e67700} .k-for{--kc:#0b7285} .k-soc{--kc:#2f9e44} .k-dis{--kc:#5f3dc4}
+.yeargrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(78px,1fr)); gap:8px; }
+.yeargrid a { text-align:center; border:1px solid var(--line); border-radius:12px; padding:10px 4px; text-decoration:none; color:var(--fg); font-weight:700; }
+.yeargrid a small { display:block; font-weight:400; color:var(--muted); font-size:.72rem; }
+.yeargrid a:hover { border-color:var(--accent); }
+.who { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:10px 0; }
+.who a { border:1px solid var(--line); border-radius:12px; padding:8px 10px; text-decoration:none; color:var(--fg); background:#fff; display:flex; gap:8px; align-items:center; }
+.who svg { width:44px; height:44px; flex:none; } .who small { color:var(--muted); display:block; font-size:.75rem; }
+.diagram { width:100%; height:auto; display:block; margin:8px 0; }
+.diagram text { font-family:var(--font); } .diagram .node { cursor:pointer; }
+.legend { display:flex; flex-wrap:wrap; gap:6px 12px; font-size:.82rem; margin:6px 0 10px; } .legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+.big-avatar { width:120px; height:120px; display:block; }
+.leader-head { display:flex; gap:14px; align-items:center; }
+.pager { display:flex; justify-content:space-between; gap:8px; margin:18px 0; flex-wrap:wrap; }
+.btn { border:1px solid var(--line); border-radius:12px; padding:9px 14px; text-decoration:none; color:var(--fg); background:#fff; }
+.note { background:var(--accent-soft); border-radius:12px; padding:10px 12px; font-size:.92rem; margin:10px 0; }
+.dline { stroke-dasharray:1; stroke-dashoffset:1; animation:draw .8s ease-out forwards; } @keyframes draw { to { stroke-dashoffset:0; } }
+@media (prefers-reduced-motion:reduce) { .dline { animation:none; stroke-dashoffset:0; } }
+:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
