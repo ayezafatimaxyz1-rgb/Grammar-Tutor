@@ -85,3 +85,6 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 .more { margin:6px 0 2px; } .more summary { cursor:pointer; font-weight:700; color:var(--accent); font-size:.92rem; } .more p { margin:.4em 0; font-size:.94rem; }
 
 .pdfrow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0; } .btn { cursor:pointer; font:inherit; }
+
+.pyr { width:100%; height:auto; display:block; margin:10px 0; } .pyr .hot:focus-visible rect { stroke:#ffd84a; stroke-width:2; } .pyr text { font-family:var(--font); }
+.tabbar a { font-size:.68rem; }
