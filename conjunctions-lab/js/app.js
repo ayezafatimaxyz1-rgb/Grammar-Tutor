@@ -125,6 +125,13 @@
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 
+      <a class="start-card" href="#lesson-sn-as">
+        <span class="sc-badge">Senses and confusing pairs</span>
+        <span class="sc-title">One word, many jobs. Two words, one mix-up.</span>
+        <span class="sc-text">The senses of AS, SINCE, WHILE, IF and SO, and 24 confusing pairs such as because / because of, although / despite, so / such and as / like. Each has a test that tells them apart.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
       <a class="start-card ctx-start" href="#mistakes">
         <span class="sc-badge">Your sentences, solved</span>
         <span class="sc-title">Common mistakes</span>

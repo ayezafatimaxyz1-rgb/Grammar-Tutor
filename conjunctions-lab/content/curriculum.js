@@ -152,6 +152,34 @@
       ],
     },
     {
+      id: "ph-sense",
+      title: "Senses and confusing pairs",
+      intro: "One word with several jobs (as, since, while, if, so), and 24 pairs of words that students mix up, each with a test that tells them apart.",
+      units: [
+      {
+        id: "u-senses",
+        title: "One word, several senses",
+        lessons: [
+          L("sn-as", "The senses of AS", { status: "tested", lessonId: "sn-as" }),
+          L("sn-since", "The senses of SINCE", { status: "tested", lessonId: "sn-since" }),
+          L("sn-while", "The senses of WHILE", { status: "tested", lessonId: "sn-while" }),
+          L("sn-if", "The senses of IF", { status: "tested", lessonId: "sn-if" }),
+          L("sn-so", "The senses of SO", { status: "tested", lessonId: "sn-so" }),
+        ],
+      },
+      {
+        id: "u-confused",
+        title: "Confusing pairs",
+        lessons: [
+          L("cp-1", "Confusing pairs: because/because of, because/since, although/despite, altho", { status: "tested", lessonId: "cp-1" }),
+          L("cp-2", "Confusing pairs: as/like, than/then, if/whether, unless/if ... not, in case", { status: "tested", lessonId: "cp-2" }),
+          L("cp-3", "Confusing pairs: either/neither, besides/beside, instead/instead of, howeve", { status: "tested", lessonId: "cp-3" }),
+          L("cp-4", "Confusing pairs: though/although, even if/even though, until/by the time, s", { status: "tested", lessonId: "cp-4" }),
+        ],
+      },
+      ],
+    },
+    {
       id: "ph-coord",
       title: "Phase 1: The coordinating conjunctions",
       intro: "AND, BUT, OR, NOR, FOR, YET and SO: what each one says and the comma rule.",

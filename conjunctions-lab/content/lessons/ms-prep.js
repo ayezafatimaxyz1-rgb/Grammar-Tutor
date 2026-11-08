@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-prep",
     title: "Mistakes: Conjunction or preposition",
-    phase: 7,
+    phase: 8,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 14,

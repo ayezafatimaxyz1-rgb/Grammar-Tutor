@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-tense",
     title: "Mistakes: Tenses after conjunctions",
-    phase: 7,
+    phase: 8,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 14,

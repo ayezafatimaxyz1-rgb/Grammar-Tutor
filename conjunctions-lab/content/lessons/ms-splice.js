@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-splice",
     title: "Mistakes: Comma splice and linking adverbs",
-    phase: 7,
+    phase: 8,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 10,

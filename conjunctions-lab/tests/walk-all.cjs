@@ -15,7 +15,8 @@ if (shots) fs.mkdirSync(shots, { recursive: true });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto(url + "#library");
-  const ids = await page.evaluate(() => Object.keys(PLAB.lessons).filter((id) => !PLAB.lessons[id].generated));
+  let ids = await page.evaluate(() => Object.keys(PLAB.lessons).filter((id) => !PLAB.lessons[id].generated));
+  if (process.argv[3]) ids = ids.filter((i) => new RegExp(process.argv[3]).test(i));
   const problems = [];
 
   for (const id of ids) {

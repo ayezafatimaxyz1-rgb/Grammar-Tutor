@@ -365,6 +365,8 @@ PHASES = [
  dict(id="ph-start", title="Start here: What a conjunction is", intro="The three families of conjunctions, with the seven coordinating ones to remember.", units=P0),
  dict(id="ph-atlas", title="The conjunction atlas", intro="Every conjunction and linker drawn as a board: what it says, an example, and why this word and not its neighbours. One PDF for all of it.",
       units=[dict(id="u-at-" + g[0], title=g[1], lessons=[l for l in ATLAS_LESSONS if l["id"].startswith("at-" + g[0])]) for g in GROUPS if any(l["id"].startswith("at-" + g[0]) for l in ATLAS_LESSONS)]),
+ dict(id="ph-sense", title="Senses and confusing pairs", intro="One word with several jobs (as, since, while, if, so), and 24 pairs of words that students mix up, each with a test that tells them apart.",
+      units=[dict(id="u-senses", title="One word, several senses", lessons=SENSE_LESSONS), dict(id="u-confused", title="Confusing pairs", lessons=PAIR_LESSONS)]),
  dict(id="ph-coord", title="Phase 1: The coordinating conjunctions", intro="AND, BUT, OR, NOR, FOR, YET and SO: what each one says and the comma rule.", units=P1),
  dict(id="ph-sub", title="Phase 2: Subordinating conjunctions by meaning", intro="Time, reason, contrast, condition, purpose and result, and comparison. The tense rules and the usual traps.", units=P2),
  dict(id="ph-pairs", title="Phase 3: Pairs and fixed partners", intro="Both ... and, either ... or, neither ... nor, not only ... but also, no sooner ... than and hardly ... when.", units=P3),

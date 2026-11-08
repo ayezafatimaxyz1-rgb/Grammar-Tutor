@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-reason",
     title: "Reason: because, since, as",
-    phase: 4,
+    phase: 5,
     unit: "u-sub",
     level: "Basic",
     minutes: 16,

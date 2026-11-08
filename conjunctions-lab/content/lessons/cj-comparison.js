@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-comparison",
     title: "Comparison: than, as ... as, as if",
-    phase: 4,
+    phase: 5,
     unit: "u-sub",
     level: "Basic",
     minutes: 14,

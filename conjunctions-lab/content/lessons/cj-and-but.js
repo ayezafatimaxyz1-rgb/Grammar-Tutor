@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-and-but",
     title: "AND and BUT",
-    phase: 3,
+    phase: 4,
     unit: "u-fanboys",
     level: "Basic",
     minutes: 18,

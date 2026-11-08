@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-contrast",
     title: "Contrast: although, though, even though, whereas, while",
-    phase: 4,
+    phase: 5,
     unit: "u-sub",
     level: "Basic",
     minutes: 18,

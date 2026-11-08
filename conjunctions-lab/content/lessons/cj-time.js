@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-time",
     title: "Time: when, while, as, before, after, until, since",
-    phase: 4,
+    phase: 5,
     unit: "u-sub",
     level: "Basic",
     minutes: 20,
