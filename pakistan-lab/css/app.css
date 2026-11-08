@@ -81,3 +81,7 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 .flash { display:flex; flex-direction:column; gap:10px; align-items:center; text-align:center; width:100%; min-height:300px; justify-content:center; border:3px solid var(--ec,#888); border-radius:20px; padding:18px; background:#fff; font:inherit; cursor:pointer; }
 .flash b { font-size:1.3rem; } .flash small { color:var(--muted); } .flash em { background:#fff6cc; padding:8px 10px; border-radius:10px; font-style:normal; text-align:left; }
 .fpic .illus { width:200px; height:150px; background:var(--sunk); border-radius:14px; }
+
+.more { margin:6px 0 2px; } .more summary { cursor:pointer; font-weight:700; color:var(--accent); font-size:.92rem; } .more p { margin:.4em 0; font-size:.94rem; }
+
+.pdfrow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:8px 0; } .btn { cursor:pointer; font:inherit; }
