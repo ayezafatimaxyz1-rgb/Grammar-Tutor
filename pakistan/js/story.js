@@ -40,7 +40,7 @@
       <div class="sheet-pic">${PAK.illus(spot.key, color)}</div>
       <p class="eyebrow" style="color:${color}">${i + 1} of ${spots.length}</p><h2>${esc(e.title)}</h2>
       <p class="d"><b>${esc(PAK.fmt(e))}</b></p><p>${esc(e.text)}</p>
-      <div class="trick"><b>Remember:</b> ${esc(spot.trick)}</div>
+      ${PAK.detailOf(e) ? `<p><b>Why it happened:</b> ${esc(PAK.detailOf(e).why)}</p><p><b>What came next:</b> ${esc(PAK.detailOf(e).next)}</p>` : ""}<div class="trick"><b>Remember:</b> ${esc(spot.trick)}</div>
       <div class="pager">${prev ? `<button class="btn" data-go="${i - 1}">&larr; ${esc(prev.e.y)}</button>` : "<span></span>"}${next ? `<button class="btn" data-go="${i + 1}">${esc(next.e.y)} &rarr;</button>` : ""}</div></div>`;
     document.body.appendChild(box);
     const close = () => { box.remove(); document.removeEventListener("keydown", key); };
@@ -63,6 +63,7 @@
       <p class="lede">Follow the road from picture 1. Tap each picture to read it and see a trick to remember it.</p>
       ${road(spots, era.c)}
       <div class="pager">${eraIdx > 0 ? `<a class="btn" href="#era-${eraIdx - 1}">&larr; ${esc(ERAS[eraIdx - 1].name)}</a>` : "<span></span>"}${eraIdx < ERAS.length - 1 ? `<a class="btn" href="#era-${eraIdx + 1}">${esc(ERAS[eraIdx + 1].name)} &rarr;</a>` : ""}</div>
+      <p class="pdfrow"><button class="btn" data-pdf="era:${eraIdx}">PDF of this era</button> <button class="btn" data-pdf="era:${eraIdx}" data-share="1">Share</button></p>
       <p><a class="btn" href="#quiz-era-${eraIdx}">Test yourself on this era</a> <a class="btn" href="#cards-${eraIdx}">Flashcards</a></p>`;
     app.querySelectorAll(".hot").forEach((g) => {
       const go = () => S.open(spots[+g.dataset.i], era.c, eraIdx, +g.dataset.i, spots);

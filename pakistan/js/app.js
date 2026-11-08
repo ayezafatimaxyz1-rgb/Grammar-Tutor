@@ -32,16 +32,18 @@
     st.textContent = css;
     document.head.appendChild(st);
   })();
+  const detailHtml = (e) => { const d = PAK.detailOf(e); return d ? `<details class="more"><summary>Why it happened and what came next</summary><p><b>Why:</b> ${esc(d.why)}</p><p><b>Next:</b> ${esc(d.next)}</p></details>` : ""; };
+  PAK.detailHtml = detailHtml;
   const evHtml = (e) => {
     const era = eraOf(e.date), who = leadersAt(e.date);
     return `<article class="ev k-${e.kind} era${eraIdx(e.date)}"><span class="dot"></span>
       <div class="ev-body"><div class="ev-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
       <div class="ev-txt"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span>${e.check ? '<span class="flag" title="Check this detail against your book">check</span>' : ""}</div>
-      <h3>${esc(e.title)}</h3><p>${esc(e.text)}</p>
+      <h3>${esc(e.title)}</h3><p>${esc(e.text)}</p>${detailHtml(e)}
       ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></div></article>`;
   };
   const eraBanner = (date) => { const e = eraOf(date); return `<div class="era-banner" style="--ec:${e.c}"><b>${esc(e.name)}</b><span>${e.a.slice(0, 4)} to ${e.b.startsWith("2100") ? "now" : e.b.slice(0, 4)}</span></div>`; };
-  PAK.fmt = fmt; PAK.eraOf = eraOf;
+  PAK.fmt = fmt; PAK.eraOf = eraOf; PAK.ERAS = ERAS;
   const years = [...new Set(PAK.events.map((e) => e.y))];
 
   function home() {
@@ -57,6 +59,8 @@
         <div class="card soon"><span class="badge">Coming next</span><b>Parliament and departments</b><span class="t">How the state works, who holds which power, the police and other departments.</span></div>
         <div class="card soon"><span class="badge">Coming next</span><b>Pakistan and the world</b><span class="t">Who recognised Pakistan first, relations with each country, the OIC and other organisations.</span></div>
       </div>
+      <p class="note"><b>Offline:</b> open this page once with internet, then use "Add to Home Screen". After that it opens without internet. Each part also has a PDF button, and Share sends the PDF to WhatsApp.</p>
+      <p class="pdfrow"><button class="btn" data-pdf="revision">PDF: revision sheet</button> <button class="btn" data-pdf="all">PDF: full timeline</button></p>
       <p class="note">Dates marked <span class="flag">check</span> are ones where a small detail, such as the exact day, is worth confirming in your textbook. Drawings of people are sketches, not portraits.</p>`;
   }
 
@@ -64,6 +68,7 @@
     const decs = [...new Set(years.map((y) => Math.floor(y / 10) * 10))];
     app.innerHTML = `<p class="eyebrow">Part 1</p><h1>Timeline, 1947 onwards</h1>
       <p class="lede">Every important date in order. Tap a year to see that whole year.</p>
+      <p class="pdfrow"><b>Take it offline:</b> <button class="btn" data-pdf="all">PDF of everything</button> <button class="btn" data-pdf="all" data-share="1">Share</button> <button class="btn" data-pdf="revision">Revision sheet</button></p>
       <label class="search"><span class="sr-only"></span><input type="search" id="tq" placeholder="Search: Bhutto, 1971, Kashmir, constitution" autocomplete="off"></label>
       <div class="chips" id="kinds"><button class="chip" aria-pressed="true" data-k="">All</button>${Object.keys(KINDS).map((k) => `<button class="chip" aria-pressed="false" data-k="${k}">${KINDS[k]}</button>`).join("")}</div>
       <div class="chips">${decs.map((d) => `<a class="chip" href="#" data-j="${d}">${d}s</a>`).join("")}</div>
@@ -122,7 +127,7 @@
     app.innerHTML = `<p class="eyebrow">Part 2</p><h1>People in power</h1>
       <p class="lede">Follow the arrows from the first to the latest. The colour is the era. Tap anyone to read their story and what happened in their time.</p>
       <div class="chips">${Object.keys(LANES).map((k) => `<a class="chip${k === lane ? " on" : ""}" href="#rulers-${k}">${LANES[k]}</a>`).join("")}</div>
-      <div class="legend">${ERAS.map((e) => `<span><i style="background:${e.c}"></i>${esc(e.name)}</span>`).join("")}</div>
+      <p class="pdfrow"><button class="btn" data-pdf="people">PDF: people in power</button> <button class="btn" data-pdf="people" data-share="1">Share</button></p><div class="legend">${ERAS.map((e) => `<span><i style="background:${e.c}"></i>${esc(e.name)}</span>`).join("")}</div>
       ${PAK.chain(items)}<p class="note">These are sketches that show the idea of a person, not portraits.</p>`;
   }
 

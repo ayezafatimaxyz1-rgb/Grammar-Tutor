@@ -43,6 +43,7 @@ PAK = window.PAK || {};
     road: (a) => L("M44 84 L56 12 H68 L84 84Z", { f: "#555", fo: 0.55 }) + L("M62 80 V70 M62 58 V48 M62 36 V26", { s: "#fff", w: 3 }) + R(92, 48, 22, 16, { f: a, fo: 0.45, r: 2 }) + R(92, 64, 12, 8, { f: a, fo: 0.45, r: 2 }) + C(98, 74, 3.4, { f: "#333" }) + C(110, 74, 3.4, { f: "#333" }) + L("M10 84 H110", { w: 1.6 }) + L("M14 70 L22 50 L30 70Z", { f: "#2f9e44", fo: 0.6, w: 1.4 }),
   };
   const RULES = [
+    [/Resolution 47|UNCIP|UN Commission/i, "globe"], [/Karachi Agreement|Liaquat-Nehru|Mutual Defence/i, "treaty"],
     [/Radcliffe|3 June Plan|One Unit|Hyderabad|FATA|ended\b.*provinces/i, "partition"],
     [/Partition migration/i, "train"], [/United Nations|OIC|war on terror|Liaquat visits|Pakistan joins the UN/i, "globe"],
     [/Operation Gibraltar|Kashmir|Kargil|Article 370|Rann/i, "mountain"],

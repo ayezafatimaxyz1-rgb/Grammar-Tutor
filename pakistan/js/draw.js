@@ -42,6 +42,7 @@ PAK = window.PAK || {};
     g += `<path d="M45 58 Q50 61 55 58" fill="none" stroke="${ink}" stroke-width="1.4" stroke-linecap="round"/>`;
     return g;
   }
+  PAK.bustInner = bust;
   PAK.bust = (look, color, id, cls = "") => `<svg class="${cls}" viewBox="0 0 100 100" role="img" aria-label="Sketch of ${esc(id)}"><g filter="url(#pak-pencil)" stroke-linecap="round" stroke-linejoin="round">${bust(look, color, id)}</g></svg>`;
 
   const wrap = (t, n) => {

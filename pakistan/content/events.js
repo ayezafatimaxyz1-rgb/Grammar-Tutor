@@ -132,10 +132,11 @@ PAK.eventText = `
 2024-10-21 | law | Twenty-sixth Amendment | Parliament passed an amendment that changed how the Chief Justice and some judges are appointed. | ?
 2025-05-07 | mil | May 2025 India-Pakistan conflict | After the Pahalgam attack (22 April), India and Pakistan exchanged strikes from 7 May. A ceasefire was announced on 10 May. | ?
 `;
-(function () {
-  PAK.events = PAK.eventText.trim().split("\n").map((l) => {
+PAK.parseEvents = function (text) {
+  return text.trim().split("\n").map((l) => {
     const p = l.split("|").map((x) => x.trim());
     const [y, m, d] = p[0].split("-").map(Number);
     return { date: p[0], y, m, d, kind: p[1], title: p[2], text: p[3], check: p[4] === "?" };
   });
-})();
+};
+PAK.events = PAK.parseEvents(PAK.eventText);
