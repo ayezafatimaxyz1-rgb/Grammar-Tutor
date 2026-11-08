@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-comma-rules",
     title: "The comma rules for conjunctions",
-    phase: 6,
+    phase: 7,
     unit: "u-comma-rules",
     level: "Basic",
     minutes: 28,

@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-manner",
     title: "Mistakes: As and like",
-    phase: 7,
+    phase: 8,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 8,

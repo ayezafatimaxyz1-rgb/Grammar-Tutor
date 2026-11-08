@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-condition",
     title: "Condition: if, unless, provided that, in case",
-    phase: 4,
+    phase: 5,
     unit: "u-sub",
     level: "Basic",
     minutes: 16,

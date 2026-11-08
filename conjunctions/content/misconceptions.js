@@ -72,6 +72,42 @@ PLAB.misconceptions = {
     label: "Summing up words",
     explain: "Each of these words does a different job. Learn what it says, and why the others do not fit.",
   },
+  "sn-as": {
+    label: "The senses of as",
+    explain: "One word can do several jobs. Try because. If it fits, the sense is reason. Try while. If it fits, time. Try in the way that. If it fits, manner.",
+  },
+  "sn-since": {
+    label: "The senses of since",
+    explain: "One word can do several jobs. Does since point to a starting time? Then time. Does it give a reason the listener knows? Then reason.",
+  },
+  "sn-while": {
+    label: "The senses of while",
+    explain: "One word can do several jobs. Replace while with at the same time as. If it fits it is time. Replace it with whereas. If it fits it is contrast.",
+  },
+  "sn-if": {
+    label: "The senses of if",
+    explain: "One word can do several jobs. Can you put whether in its place? Then it is a yes or no question. If not, it is a condition.",
+  },
+  "sn-so": {
+    label: "The senses of so",
+    explain: "One word can do several jobs. So alone: what happened. So that: what someone wants. So ... that: how much, and what followed.",
+  },
+  "cp-1": {
+    label: "Confusing pairs",
+    explain: "Two words that look alike do different jobs. Learn the test that tells them apart.",
+  },
+  "cp-2": {
+    label: "Confusing pairs",
+    explain: "Two words that look alike do different jobs. Learn the test that tells them apart.",
+  },
+  "cp-3": {
+    label: "Confusing pairs",
+    explain: "Two words that look alike do different jobs. Learn the test that tells them apart.",
+  },
+  "cp-4": {
+    label: "Confusing pairs",
+    explain: "Two words that look alike do different jobs. Learn the test that tells them apart.",
+  },
   "cj-and-but": {
     label: "And and but",
     explain: "AND adds an idea that goes the same way. BUT adds an idea that goes against the first. Do not swap them.",

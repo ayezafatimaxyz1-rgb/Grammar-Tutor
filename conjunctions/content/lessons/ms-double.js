@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-double",
     title: "Mistakes: Two conjunctions where one is enough",
-    phase: 7,
+    phase: 8,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 14,
