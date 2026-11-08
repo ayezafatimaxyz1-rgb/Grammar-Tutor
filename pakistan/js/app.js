@@ -56,7 +56,7 @@
         <a class="card" href="#years"><span class="badge">Part 1</span><b>Year by year</b><span class="t">Pick a year and see what happened and who was in charge.</span></a>
         <a class="card" href="#rulers"><span class="badge">Part 2</span><b>People in power</b><span class="t">Prime Ministers, Presidents and Army chiefs, drawn as connected chains. Tap any person for their era.</span></a>
         <div class="card soon"><span class="badge">Coming next</span><b>Judiciary</b><span class="t">The court system and every Chief Justice.</span></div>
-        <div class="card soon"><span class="badge">Coming next</span><b>Parliament and departments</b><span class="t">How the state works, who holds which power, the police and other departments.</span></div>
+        <a class="card" href="#state"><span class="badge">Part 4</span><b>The pyramid of power</b><span class="t">The President, Prime Minister, courts, forces and other bodies, drawn as a pyramid. Tap any figure to see what the post does.</span></a>
         <div class="card soon"><span class="badge">Coming next</span><b>Pakistan and the world</b><span class="t">Who recognised Pakistan first, relations with each country, the OIC and other organisations.</span></div>
       </div>
       <p class="note"><b>Offline:</b> open this page once with internet, then use "Add to Home Screen". After that it opens without internet. Each part also has a PDF button, and Share sends the PDF to WhatsApp.</p>
@@ -155,6 +155,7 @@
     if (h === "timeline") { timeline(); on = "timeline"; }
     else if (h === "years") { yearsPage(); on = "years"; }
     else if (h.startsWith("year-")) { year(h.slice(5)); on = "years"; }
+    else if (h === "state" || h.startsWith("state-")) { PAK.pyramidPage(app, h.slice(6)); on = "state"; }
     else if (h === "story") { PAK.story.index(app, ERAS); on = "story"; }
     else if (h.startsWith("era-")) { PAK.story.page(app, +h.slice(4), ERAS); on = "story"; }
     else if (h === "quiz") { PAK.quiz.hub(app, ERAS); on = "quiz"; }
