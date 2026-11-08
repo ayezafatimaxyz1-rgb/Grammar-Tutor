@@ -36,32 +36,38 @@
   PAK.detailHtml = detailHtml;
   const evHtml = (e) => {
     const era = eraOf(e.date), who = leadersAt(e.date);
-    return `<article class="ev k-${e.kind} era${eraIdx(e.date)}"><span class="dot"></span>
-      <div class="ev-body"><div class="ev-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
-      <div class="ev-txt"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span>${e.check ? '<span class="flag" title="Check this detail against your book">check</span>' : ""}</div>
-      <h3>${esc(e.title)}</h3><p>${esc(e.text)}</p>${detailHtml(e)}
-      ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></div></article>`;
+    return `<details class="ev k-${e.kind} era${eraIdx(e.date)}"><summary><span class="dot"></span>
+      <div class="ev-pic">${PAK.illus(PAK.illusKey(e), era.c)}</div>
+      <div class="ev-sum"><div class="d">${esc(fmt(e))}<span class="kind k-${e.kind}">${KINDS[e.kind]}</span></div><h3>${esc(e.title)}</h3><span class="tap">Tap to read</span></div></summary>
+      <div class="ev-open"><p>${esc(e.text)}${e.check ? ' <span class="flag" title="Check this detail against your book">check</span>' : ""}</p>${PAK.detailHtml ? PAK.detailHtml(e).replace('<details class="more">', '<div class="more">').replace("</details>", "</div>").replace(/<summary>.*?<\/summary>/, "") : ""}
+      ${who.length ? `<div class="incharge"><span class="muted small">In charge then:</span>${who.map((l) => `<a href="#leader-${l.id}" title="${esc(l.name)}, ${esc(l.post)}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<small>${esc(l.name.split(" ").slice(-1)[0])}</small></a>`).join("")}</div>` : ""}</div></details>`;
   };
   const eraBanner = (date) => { const e = eraOf(date); return `<div class="era-banner" style="--ec:${e.c}"><b>${esc(e.name)}</b><span>${e.a.slice(0, 4)} to ${e.b.startsWith("2100") ? "now" : e.b.slice(0, 4)}</span></div>`; };
   PAK.fmt = fmt; PAK.eraOf = eraOf; PAK.ERAS = ERAS;
   const years = [...new Set(PAK.events.map((e) => e.y))];
 
   function home() {
-    app.innerHTML = `<section><p class="eyebrow">Pakistan Story</p><h1>Pakistan from 1947, drawn so you remember it</h1>
-      <p class="lede">Dates, leaders and events as timelines and sketches. Start with the timeline, or meet the people in power.</p></section>
-      <div class="cards">
-        <a class="card" href="#story"><span class="badge">Start here</span><b>Story roads</b><span class="t">Seven eras, each a picture road. Learn one line, then walk the pictures and tap each one for the event and a memory trick.</span></a>
-        <a class="card" href="#quiz"><span class="badge">Practice</span><b>Quiz and flashcards</b><span class="t">Ten questions at a time. What you miss comes back until you know it.</span></a>
-        <a class="card" href="#timeline"><span class="badge">Part 1</span><b>Timeline, 1947 onwards</b><span class="t">Every important date, in order, with the year. ${PAK.events.length} events so far.</span></a>
-        <a class="card" href="#years"><span class="badge">Part 1</span><b>Year by year</b><span class="t">Pick a year and see what happened and who was in charge.</span></a>
-        <a class="card" href="#rulers"><span class="badge">Part 2</span><b>People in power</b><span class="t">Prime Ministers, Presidents and Army chiefs, drawn as connected chains. Tap any person for their era.</span></a>
-        <div class="card soon"><span class="badge">Coming next</span><b>Judiciary</b><span class="t">The court system and every Chief Justice.</span></div>
-        <a class="card" href="#state"><span class="badge">Part 4</span><b>The pyramid of power</b><span class="t">The President, Prime Minister, courts, forces and other bodies, drawn as a pyramid. Tap any figure to see what the post does.</span></a>
-        <div class="card soon"><span class="badge">Coming next</span><b>Pakistan and the world</b><span class="t">Who recognised Pakistan first, relations with each country, the OIC and other organisations.</span></div>
+    const tile = (href, title, art, sub) => `<a class="tile" href="${href}"><span class="tile-art">${art}</span><b>${title}</b><small>${sub}</small></a>`;
+    const face = (id, c) => PAK.bust(PAK.leaders.find((l) => l.id === id).look, c, id);
+    const pyr = `<svg viewBox="0 0 120 90" aria-hidden="true"><g filter="url(#pak-pencil)" stroke-linecap="round"><rect x="8" y="4" width="104" height="82" rx="10" fill="#0b0f12"/><path d="M44 20 H76 V34 H44Z M32 38 H88 V54 H32Z M18 58 H102 V78 H18Z" fill="#161c20" stroke="#d4a017" stroke-width="2"/><circle cx="60" cy="27" r="5" fill="#d4a017"/><circle cx="46" cy="46" r="4" fill="#d4a017"/><circle cx="74" cy="46" r="4" fill="#d4a017"/><circle cx="32" cy="68" r="4" fill="#d4a017"/><circle cx="60" cy="68" r="4" fill="#d4a017"/><circle cx="88" cy="68" r="4" fill="#d4a017"/></g></svg>`;
+    app.innerHTML = `<section><p class="eyebrow">Pakistan Story</p><h1>Pakistan, drawn</h1><p class="lede">Pick a picture.</p></section>
+      <div class="tiles">
+        ${tile("#rulers", "Who ruled Pakistan", `<span class="faces">${face("jinnah", "#2f9e44")}${face("zab", "#1971c2")}${face("benazir1", "#9c36b5")}</span>`, "Leaders in order, with photos")}
+        ${tile("#state", "Pyramid of power", pyr, "Who sits where in the state")}
+        ${tile("#story", "Story roads", PAK.illus("mountain", "#d9480f"), "Seven eras, seven pictures")}
+        ${tile("#timeline", "Timeline", PAK.illus("scroll", "#01411c"), `${PAK.events.length} dated events`)}
+        ${tile("#quiz", "Quiz", PAK.illus("ballot", "#1971c2"), "Practice that repeats mistakes")}
+        ${tile("#years", "Year by year", PAK.illus("book", "#9c36b5"), "Pick any year")}
       </div>
-      <p class="note"><b>Offline:</b> open this page once with internet, then use "Add to Home Screen". After that it opens without internet. Each part also has a PDF button, and Share sends the PDF to WhatsApp.</p>
+      <p class="note"><b>Offline:</b> open once with internet, then "Add to Home Screen". Each part has a PDF button, and Share sends it to WhatsApp.</p>
       <p class="pdfrow"><button class="btn" data-pdf="revision">PDF: revision sheet</button> <button class="btn" data-pdf="all">PDF: full timeline</button></p>
-      <p class="note">Dates marked <span class="flag">check</span> are ones where a small detail, such as the exact day, is worth confirming in your textbook. Drawings of people are sketches, not portraits.</p>`;
+      <p class="muted small">Photos are from Wikipedia and Wikimedia Commons under free licences. <a href="#credits">See the credits</a>. Where there is no free photo, a sketch is used.</p>`;
+  }
+
+  function credits() {
+    const ph = Object.entries(PAK.photos || {});
+    app.innerHTML = `<p class="crumbs"><a href="#home">Home</a></p><h1>Photo credits</h1><p class="lede">${ph.length} photos from Wikipedia and Wikimedia Commons, each under a free licence. Tap a file name to see the original page and the photographer.</p>
+      ${ph.length ? ph.map(([k, v]) => `<p class="credit"><b>${esc(v.title.replace(/_/g, " "))}</b>: <a href="${esc(v.page)}" target="_blank" rel="noopener">${esc(decodeURIComponent(v.file).slice(0, 48))}</a>, ${esc(v.license)}${v.author ? ", " + esc(v.author) : ""}</p>`).join("") : '<p class="muted">No photos yet.</p>'}`;
   }
 
   function timeline() {
@@ -114,8 +120,15 @@
     jamali: "1999 to 2002: General Musharraf as Chief Executive. No Prime Minister.",
     nurulamin: "1958 to 1971: no Prime Minister. Presidents Ayub Khan and Yahya Khan ruled.",
   };
+  function poster() {
+    const fig = (l) => `<a class="fig" href="#leader-${l.id}">${PAK.bust(l.look, eraOf(l.start).c, l.id)}<b>${esc(l.name)}</b><small>${yr(l.start)} to ${yr(l.end)}</small></a>`;
+    app.innerHTML = `<p class="eyebrow">Part 2</p><h1>Who ruled Pakistan</h1><p class="lede">Era by era. Tap a face for the story.</p>
+      <div class="chips"><a class="chip on" href="#rulers">Poster</a>${Object.keys(LANES).map((k) => `<a class="chip" href="#rulers-${k}">${LANES[k]} chain</a>`).join("")}</div>
+      <p class="pdfrow"><button class="btn" data-pdf="people">PDF: people in power</button> <button class="btn" data-pdf="people" data-share="1">Share</button></p>
+      ${ERAS.map((er, i) => { const inEra = (l) => l.start < er.b && (l.end || "9999") > er.a; const row = (lane, name) => { const ls = PAK.leaders.filter((l) => l.lane === lane && inEra(l)); return ls.length ? `<div class="prow"><span class="plabel">${name}</span><div class="pfigs">${ls.map(fig).join("")}</div></div>` : ""; }; return `<section class="era-poster" style="--ec:${er.c}"><div class="era-banner" style="--ec:${er.c}"><b>${esc(er.name)}</b><span>${er.a.slice(0, 4)} to ${er.b.startsWith("2100") ? "now" : er.b.slice(0, 4)}</span></div>${row("hs", "Head of state")}${row("pm", "Prime Minister")}${row("army", "Army chief")}<a class="btn small" href="#era-${i}">Story road</a></section>`; }).join("")}`;
+  }
   function rulers(lane) {
-    lane = LANES[lane] ? lane : "pm";
+    if (!lane || !LANES[lane]) return poster();
     const ls = PAK.leaders.filter((l) => l.lane === lane);
     const items = [];
     ls.forEach((l, i) => {
@@ -163,6 +176,7 @@
     else if (h.startsWith("quiz-era-")) { const i = +h.slice(9), er = ERAS[i]; const es = eraEvents(er); PAK.quiz.run(app, er.name, es, [...new Set(es.map((e) => e.y))], "#quiz"); on = "quiz"; }
     else if (h === "cards-all") { PAK.quiz.cards(app, PAK.events, "All events", "#quiz", trickOf); on = "quiz"; }
     else if (h.startsWith("cards-")) { const i = +h.slice(6); PAK.quiz.cards(app, eraEvents(ERAS[i]), ERAS[i].name, "#quiz", trickOf); on = "quiz"; }
+    else if (h === "credits") { credits(); on = "home"; }
     else if (h === "rulers" || h.startsWith("rulers-")) { rulers(h.slice(7)); on = "rulers"; }
     else if (h.startsWith("leader-")) { leader(h.slice(7)); on = "rulers"; }
     else home();

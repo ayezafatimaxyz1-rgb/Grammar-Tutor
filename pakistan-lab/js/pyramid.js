@@ -21,7 +21,7 @@
         const r = PAK.roles[id]; if (!r) return;
         const cx = x0 + cell * i + cell / 2, by = y + (ti === 0 ? 30 : 8);
         const col = PLATE[ti % PLATE.length];
-        let fig = `<g filter="url(#pak-pencil)"><g transform="translate(${cx - bs / 2} ${by + (ti === 0 ? 26 : 0)}) scale(${bs / 100})">${PAK.bustInner(r.look, "#d4a017", id)}</g></g>`;
+        let fig = `<g${PAK.photoOf(id) ? "" : ' filter="url(#pak-pencil)"'}><g transform="translate(${cx - bs / 2} ${by + (ti === 0 ? 26 : 0)}) scale(${bs / 100})">${PAK.bustInner(r.look, "#d4a017", id)}</g></g>`;
         if (ti === 0) fig = `<g transform="translate(${cx} ${by + 22})">${throne()}</g>` + fig;
         const ls = wrap(r.plate, Math.max(9, Math.floor((cell - 6) / 4.9))).slice(0, 3);
         const ph = 8 + maxLines * 9.5, py = y + h - ph - 6;

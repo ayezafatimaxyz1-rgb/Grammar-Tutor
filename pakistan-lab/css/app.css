@@ -88,3 +88,19 @@ h1 { font-size:1.6rem; line-height:1.2; margin:.2em 0 .3em; } h2 { font-size:1.2
 
 .pyr { width:100%; height:auto; display:block; margin:10px 0; } .pyr .hot:focus-visible rect { stroke:#ffd84a; stroke-width:2; } .pyr text { font-family:var(--font); }
 .tabbar a { font-size:.68rem; }
+
+/* compact event cards: picture and title, text on tap */
+details.ev { padding:4px 0 14px 30px; } details.ev > summary { list-style:none; display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-left:4px solid var(--ec,#888); border-radius:0 14px 14px 0; padding:8px 10px; background:#fff; cursor:pointer; }
+details.ev > summary::-webkit-details-marker { display:none; } details.ev[open] > summary { border-radius:0 14px 0 0; }
+.ev-sum h3 { margin:.1em 0; font-size:1.02rem; } .ev-sum .tap { font-size:.78rem; color:var(--accent); font-weight:700; }
+.ev-open { border:1px solid var(--line); border-top:0; border-left:4px solid var(--ec,#888); border-radius:0 0 14px 0; padding:8px 12px 10px; background:#fff; margin-left:0; } .ev-open .more { margin:6px 0; }
+details.ev[open] .tap { display:none; }
+.ev-pic { width:84px; } .ev-pic .illus { width:84px; height:63px; }
+
+.tiles { display:grid; grid-template-columns:1fr 1fr; gap:12px; } .tile { display:flex; flex-direction:column; gap:4px; text-decoration:none; color:var(--fg); border:1px solid var(--line); border-radius:18px; padding:12px; background:#fff; }
+.tile:hover { border-color:var(--accent); } .tile b { font-size:1.05rem; } .tile small { color:var(--muted); font-size:.82rem; }
+.tile-art { display:block; background:var(--sunk); border-radius:12px; padding:6px; } .tile-art svg { width:100%; height:auto; display:block; max-height:110px; }
+.faces { display:flex; gap:2px; justify-content:center; } .faces svg { width:30%; }
+.era-poster { margin:14px 0 22px; } .prow { display:flex; gap:8px; align-items:flex-start; margin:10px 0; } .plabel { flex:none; width:74px; font-size:.74rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; padding-top:6px; }
+.pfigs { display:flex; flex-wrap:wrap; gap:8px 10px; } .fig { width:72px; text-align:center; text-decoration:none; color:var(--fg); } .fig svg { width:56px; height:56px; display:block; margin:0 auto 2px; } .fig b { display:block; font-size:.74rem; line-height:1.15; } .fig small { color:var(--muted); font-size:.68rem; }
+.credit { font-size:.88rem; margin:.4em 0; }

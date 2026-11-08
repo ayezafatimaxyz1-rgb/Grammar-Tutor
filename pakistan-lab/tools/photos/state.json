@@ -1,0 +1,379 @@
+{
+ "img": {
+  "liaquat": {
+   "title": "Liaquat_Ali_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Liaquat_Ali_Khan_1945.jpg"
+  },
+  "nazimuddin": {
+   "title": "Khawaja_Nazimuddin",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Khawaja_Nazimuddin.jpg"
+  },
+  "bogra": {
+   "title": "Mohammad_Ali_Bogra",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Pakistani_Prime_Minister_Bogra_with_Eisenhower_%28cropped%29.png"
+  },
+  "chmali": {
+   "title": "Chaudhry_Muhammad_Ali",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Mohamad_Ali%2C_primeiro-ministro_do_Paquist%C3%A3o%2C_sem_data.tif"
+  },
+  "suhrawardy": {
+   "title": "Huseyn_Shaheed_Suhrawardy",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Huseyn_Shaheed_Suhrawardy.png"
+  },
+  "chundrigar": {
+   "title": "Ismail_Ibrahim_Chundrigar",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Ibrahim_Ismail_Chundrigar.jpg"
+  },
+  "noon": {
+   "title": "Feroz_Khan_Noon",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Feroz_Khan_Noon.jpg"
+  },
+  "nurulamin": {
+   "title": "Nurul_Amin",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Nurul_Amin.jpg"
+  },
+  "zab": {
+   "title": "Zulfikar_Ali_Bhutto",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Z_A_Bhutto_%28President_of_Pakistan%29.jpg"
+  },
+  "junejo": {
+   "title": "Muhammad_Khan_Junejo",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Muhammad_Khan_Junejo.jpg"
+  },
+  "benazir": {
+   "title": "Benazir_Bhutto",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Oliver_Mark_-_Benazir_Bhutto%2C_Dubai_2006_%28cropped%29.jpg"
+  },
+  "nawaz": {
+   "title": "Nawaz_Sharif",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/PrimeMinisterNawazSharif.jpg"
+  },
+  "qureshi": {
+   "title": "Moeenuddin_Ahmad_Qureshi",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Moeenuddin_Ahmad_Qureshi.jpg"
+  },
+  "meraj": {
+   "title": "Meraj_Khalid",
+   "url": null
+  },
+  "jamali": {
+   "title": "Zafarullah_Khan_Jamali",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Zafarullah_Khan_Jamali_%28cropped%29.jpg"
+  },
+  "shujaat": {
+   "title": "Chaudhry_Shujaat_Hussain",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Pakistan_delegation_%28cropped%29.jpg"
+  },
+  "aziz": {
+   "title": "Shaukat_Aziz",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Shaukat_Aziz.jpg"
+  },
+  "soomro": {
+   "title": "Muhammad_Mian_Soomro",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Muhammad_Mian_Soomro.jpg"
+  },
+  "gilani": {
+   "title": "Yousaf_Raza_Gilani",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Delegation_from_the_Islamic_Republic_of_Pakistan_-_28_January_%2854291952937%29_%28cropped%29_%28b%29.jpg"
+  },
+  "ashraf": {
+   "title": "Raja_Pervaiz_Ashraf",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/Raja_Pervez_Ashraf.jpg"
+  },
+  "khoso": {
+   "title": "Mir_Hazar_Khan_Khoso",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Inauguration_of_District_Sohbatpur_by_the_then_caretaker_Prime_Minister_of_Pakistan_Mir_Hazar_Khan_Khoso_in_May_2013.jpg"
+  },
+  "abbasi": {
+   "title": "Shahid_Khaqan_Abbasi",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Shahid_Khaqan_Abbasi_%28cropped%29.jpg"
+  },
+  "nasirulmulk": {
+   "title": "Nasirul_Mulk",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Supreme_Court_of_Pakistan%2C_Islamabad_by_Usman_Ghani.jpg"
+  },
+  "imran": {
+   "title": "Imran_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Minister_Imran_Khan_Adresses_the_Forum_01.jpg"
+  },
+  "shehbaz": {
+   "title": "Shehbaz_Sharif",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Economic_Cooperation_Organization_July_2025_-_1751655083_%28cropped%29.jpg"
+  },
+  "kakar": {
+   "title": "Anwaar-ul-Haq_Kakar",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Ilham_Aliyev_met_with_caretaker_Prime_Minister_of_Pakistan_in_Tashkent_%281%29_%28cropped%29.jpg"
+  },
+  "jinnah": {
+   "title": "Muhammad_Ali_Jinnah",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Jinnah1945c.jpg"
+  },
+  "ghulam": {
+   "title": "Ghulam_Muhammad",
+   "url": null
+  },
+  "mirza": {
+   "title": "Iskander_Mirza",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Iskander_Mirza.jpg"
+  },
+  "ayub": {
+   "title": "Ayub_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Ayub_Khan_portrait.png"
+  },
+  "yahya": {
+   "title": "Yahya_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Yahya_Khan_portrait.png"
+  },
+  "fazal": {
+   "title": "Fazal_Ilahi_Chaudhry",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Fazal_E_Ch.jpg"
+  },
+  "zia": {
+   "title": "Muhammad_Zia-ul-Haq",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/General_Muhammad_Zia-Ul-Haq.jpg"
+  },
+  "gik": {
+   "title": "Ghulam_Ishaq_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Ghulam_Ishaq_Khan_%28cropped%29.JPG"
+  },
+  "leghari": {
+   "title": "Farooq_Leghari",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Farooq_Leghari_%28cropped%29.jpg"
+  },
+  "tarar": {
+   "title": "Muhammad_Rafiq_Tarar",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Pride_of_Performance_Award_by_President_of_Pakistan_%28cropped_head%29.jpg"
+  },
+  "musharraf": {
+   "title": "Pervez_Musharraf",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Pervez_Musharraf_2004_%28cropped%29.jpg"
+  },
+  "zardari": {
+   "title": "Asif_Ali_Zardari",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Asif_Ali_Zardari_-_2024_%283x4_cropped%29.jpg"
+  },
+  "mamnoon": {
+   "title": "Mamnoon_Hussain",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/President_Mamnoon_Hussain.jpg"
+  },
+  "alvi": {
+   "title": "Arif_Alvi",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Arif_Alvi_at_the_Enthronement_of_Naruhito_%281%29.jpg"
+  },
+  "messervy": {
+   "title": "Frank_Messervy",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/British_Generals_1939-1945_IND3143.jpg"
+  },
+  "gracey": {
+   "title": "Douglas_Gracey",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Gracey_Douglas_David.jpg"
+  },
+  "musa": {
+   "title": "Muhammad_Musa",
+   "url": null
+  },
+  "gulhassan": {
+   "title": "Gul_Hassan_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Gul_Hassan_Khan.png"
+  },
+  "tikka": {
+   "title": "Tikka_Khan",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Tikka_Khan.jpg"
+  },
+  "beg": {
+   "title": "Mirza_Aslam_Beg",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Mirza_Aslam_Beg.png"
+  },
+  "asifnawaz": {
+   "title": "Asif_Nawaz_Janjua",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Asif_Nawaz_Janjua.png"
+  },
+  "kakarw": {
+   "title": "Abdul_Waheed_Kakar",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/General_Abdul_Waheed_Kakar_Portrait_1.jpg"
+  },
+  "karamat": {
+   "title": "Jehangir_Karamat",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Jehangir_Karamata.png"
+  },
+  "kayani": {
+   "title": "Ashfaq_Parvez_Kayani",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Ashfaq_Parvez_Kayani.png"
+  },
+  "raheel": {
+   "title": "Raheel_Sharif",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/General_Raheel_Sharif.jpg"
+  },
+  "bajwa": {
+   "title": "Qamar_Javed_Bajwa",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/General_Qamar_Javed_Bajwa.jpg"
+  },
+  "munir": {
+   "title": "Asim_Munir",
+   "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Field_Marshal_Asim_Munir.jpg"
+  }
+ },
+ "lic": {
+  "Asif_Nawaz_Janjua.png": {
+   "license": "CC BY-SA 4.0",
+   "author": "Pakistan Army"
+  },
+  "Pakistan_delegation_(cropped).jpg": {
+   "license": "Public domain",
+   "author": ":commons:User:Burhan Ahmed (cropped version by Sahara4u)"
+  },
+  "PrimeMinisterNawazSharif.jpg": {
+   "license": "Public domain",
+   "author": "Z A Balti"
+  },
+  "Tikka_Khan.jpg": {
+   "license": "Public domain",
+   "author": "Pakistan Army"
+  },
+  "Jehangir_Karamata.png": {
+   "license": "CC BY-SA 4.0",
+   "author": "Pakistan Army"
+  },
+  "British_Generals_1939-1945_IND3143.jpg": {
+   "license": "Public domain",
+   "author": "No 9 Army Film &amp; Photographic Unit"
+  },
+  "Inauguration_of_District_Sohbatpur_by_the_then_caretaker_Prime_Minister_of_Pakistan_Mir_Hazar_Khan_Khoso_in_May_2013.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Khalid Hussain"
+  },
+  "Pervez_Musharraf_2004_(cropped).jpg": {
+   "license": "CC BY 3.0 br",
+   "author": "Ant\u00f4nio Cruz/ABr"
+  },
+  "Pride_of_Performance_Award_by_President_of_Pakistan_(cropped_head).jpg": {
+   "license": "CC BY-SA 3.0",
+   "author": "Pauleee1. Cropped version by Sahara4u"
+  },
+  "Pakistani_Prime_Minister_Bogra_with_Eisenhower_(cropped).png": {
+   "license": "Public domain",
+   "author": "White House Photographic Collection"
+  },
+  "Yahya_Khan_portrait.png": {
+   "license": "Public domain",
+   "author": "Office of the President of Pakistan"
+  },
+  "Zafarullah_Khan_Jamali_(cropped).jpg": {
+   "license": "Public domain",
+   "author": "Robert D. Ward, for the US Dept. of Defense. Cropped version by Sahara4u"
+  },
+  "Raja_Pervez_Ashraf.jpg": {
+   "license": "Public domain",
+   "author": "Voice of America"
+  },
+  "Arif_Alvi_at_the_Enthronement_of_Naruhito_(1).jpg": {
+   "license": "CC BY 4.0",
+   "author": "\u5185\u95a3\u5b98\u623f\u5185\u95a3\u5e83\u5831\u5ba4"
+  },
+  "Mirza_Aslam_Beg.png": {
+   "license": "CC BY-SA 4.0",
+   "author": "Pakistan Army"
+  },
+  "Jinnah1945c.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Farooq_Leghari_(cropped).jpg": {
+   "license": "CC BY-SA 3.0",
+   "author": "Samar Saeed Akhtar"
+  },
+  "Khawaja_Nazimuddin.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author - but due to age, image in public domain"
+  },
+  "Ibrahim_Ismail_Chundrigar.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Z_A_Bhutto_(President_of_Pakistan).jpg": {
+   "license": "Public domain",
+   "author": "Unknown photographer. Office of President Zulfikar Ali Bhutto."
+  },
+  "Oliver_Mark_-_Benazir_Bhutto,_Dubai_2006_(cropped).jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": ""
+  },
+  "Economic_Cooperation_Organization_July_2025_-_1751655083_(cropped).jpg": {
+   "license": "CC BY 4.0",
+   "author": "Press Service of the President of the Republic of Azerbaijan"
+  },
+  "General_Raheel_Sharif.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "ISPR"
+  },
+  "Shahid_Khaqan_Abbasi_(cropped).jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Drazen Jorgic"
+  },
+  "Ashfaq_Parvez_Kayani.png": {
+   "license": "Public domain",
+   "author": "Pakistan Army"
+  },
+  "General_Abdul_Waheed_Kakar_Portrait_1.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "The Soldier Of Allah"
+  },
+  "Moeenuddin_Ahmad_Qureshi.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Prime_Minister_Imran_Khan_Adresses_the_Forum_01.jpg": {
+   "license": "CC BY 3.0",
+   "author": "Imran Khan"
+  },
+  "Muhammad_Khan_Junejo.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Ilham_Aliyev_met_with_caretaker_Prime_Minister_of_Pakistan_in_Tashkent_(1)_(cropped).jpg": {
+   "license": "CC BY 4.0",
+   "author": "Press Service of the President of the Republic of Azerbaijan"
+  },
+  "Gul_Hassan_Khan.png": {
+   "license": "CC BY-SA 4.0",
+   "author": "Military Government of Pakistan"
+  },
+  "General_Qamar_Javed_Bajwa.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Inter Services Public Relations"
+  },
+  "Huseyn_Shaheed_Suhrawardy.png": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  },
+  "Ayub_Khan_portrait.png": {
+   "license": "Public domain",
+   "author": "Office of the President of Pakistan"
+  },
+  "Delegation_from_the_Islamic_Republic_of_Pakistan_-_28_January_(54291952937)_(cropped)_(b).jpg": {
+   "license": "CC BY 2.0",
+   "author": "Houses of the Oireachtas from Ireland"
+  },
+  "Muhammad_Mian_Soomro.jpg": {
+   "license": "CC BY-SA 4.0",
+   "author": "Jan M Soomro"
+  },
+  "Liaquat_Ali_Khan_1945.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author - but due to age, image in public domain"
+  },
+  "Supreme_Court_of_Pakistan,_Islamabad_by_Usman_Ghani.jpg": {
+   "license": "CC BY-SA 3.0",
+   "author": "Usman.pg"
+  },
+  "Asif_Ali_Zardari_-_2024_(3x4_cropped).jpg": {
+   "license": "CC BY 4.0",
+   "author": "Press Service of the President of the Republic of Azerbaijan"
+  },
+  "Fazal_E_Ch.jpg": {
+   "license": "Public domain",
+   "author": "Unknown authorUnknown author"
+  }
+ },
+ "done": {}
+}

@@ -13,12 +13,17 @@ PAK = window.PAK || {};
     if (document.getElementById("pak-defs")) return;
     const d = document.createElement("div");
     d.id = "pak-defs";
-    d.innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><filter id="pak-pencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></defs></svg>';
+    d.innerHTML = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><clipPath id="pak-circ"><circle cx="50" cy="50" r="46"/></clipPath><filter id="pak-pencil" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.2"/></filter></defs></svg>';
     document.body.appendChild(d);
   };
 
-  // A cartoon bust. Not a portrait: a few features per person so each looks different.
+  const PK = { benazir1: "benazir", benazir2: "benazir", nawaz1: "nawaz", nawaz2: "nawaz", nawaz3: "nawaz", shehbaz1: "shehbaz", shehbaz2: "shehbaz", "zab-p": "zab", nazimgg: "nazimuddin", ayubc: "ayub", yahyac: "yahya", ziac: "zia", musharrafc: "musharraf", zardari2: "zardari" };
+  PAK.photoKey = (id) => (PAK.holders && PAK.holders[id] ? PAK.holders[id].photo : PK[id] || id);
+  PAK.photoOf = (id) => { const k = PAK.photoKey(id); return PAK.photos && PAK.photos[k] ? "photos/" + k + ".jpg" : null; };
+  // A cartoon bust, or the real photo when we have one. Not a portrait: a few features per person so each looks different.
   function bust(look, color, id) {
+    const ph = PAK.photoOf(id);
+    if (ph) return `<circle cx="50" cy="50" r="48" fill="#fff"/><image href="${ph}" x="2" y="2" width="96" height="96" preserveAspectRatio="xMidYMin slice" clip-path="url(#pak-circ)"/><circle cx="50" cy="50" r="47" fill="none" stroke="${color}" stroke-width="3"/>`;
     const has = (k) => look.includes(k);
     const R = rng(id);
     const ink = "#2a2520", skin = ["#f1c9a5", "#e8b98f", "#f5d3b3", "#dcae83"][Math.floor(R() * 4)];
@@ -43,7 +48,7 @@ PAK = window.PAK || {};
     return g;
   }
   PAK.bustInner = bust;
-  PAK.bust = (look, color, id, cls = "") => `<svg class="${cls}" viewBox="0 0 100 100" role="img" aria-label="Sketch of ${esc(id)}"><g filter="url(#pak-pencil)" stroke-linecap="round" stroke-linejoin="round">${bust(look, color, id)}</g></svg>`;
+  PAK.bust = (look, color, id, cls = "") => `<svg class="${cls}" viewBox="0 0 100 100" role="img" aria-label="Sketch of ${esc(id)}"><g${PAK.photoOf(id) ? "" : ' filter="url(#pak-pencil)"'} stroke-linecap="round" stroke-linejoin="round">${bust(look, color, id)}</g></svg>`;
 
   const wrap = (t, n) => {
     const out = [];
@@ -84,7 +89,7 @@ PAK = window.PAK || {};
       if (lastBottom) d += `<path class="dline" pathLength="1" d="M${lastBottom.x} ${lastBottom.y} C${lastBottom.x} ${top - 16} ${cx} ${top - 22} ${cx} ${top}" stroke="${it.color}" stroke-width="2.4" fill="none"/><path d="M${cx - 5} ${top - 7} L${cx} ${top} L${cx + 5} ${top - 7}" stroke="${it.color}" stroke-width="2.2" fill="none"/>`;
       d += `<path d="${box(R, x, top, NW, NH)}" stroke="${it.color}" stroke-width="2.4" fill="#fff"/>`;
       const lines = wrap(it.name, 14).slice(0, 2);
-      let body = `<g filter="url(#pak-pencil)"><g transform="translate(${x + 6} ${top + 13}) scale(.48)">${bust(it.look, it.color, it.id)}</g></g>`;
+      let body = `<g${PAK.photoOf(it.id) ? "" : ' filter="url(#pak-pencil)"'}><g transform="translate(${x + 6} ${top + 13}) scale(.48)">${bust(it.look, it.color, it.id)}</g></g>`;
       lines.forEach((ln, q) => (body += `<text x="${x + 62}" y="${top + 26 + q * 14}" font-size="12.5" font-weight="700" fill="#1b2330">${esc(ln)}</text>`));
       body += `<text x="${x + 62}" y="${top + 26 + lines.length * 14 + 2}" font-size="11" fill="${it.color}" font-weight="700">${esc(it.years)}</text>`;
       if (it.tag) body += `<text x="${x + 62}" y="${top + 26 + lines.length * 14 + 15}" font-size="10" fill="#5a6577">${esc(it.tag)}</text>`;

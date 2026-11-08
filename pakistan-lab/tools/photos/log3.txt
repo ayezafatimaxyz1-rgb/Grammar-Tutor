@@ -1,0 +1,4 @@
+rate limited, waiting 13
+licences 0
+licences 20
+rate limited, waiting 50
