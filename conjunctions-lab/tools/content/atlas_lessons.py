@@ -12,6 +12,17 @@ _ns = {}
 exec(open(os.path.join(here, "atlas_short.py")).read(), _ns)
 _short = {(l.split("|")[0], l.split("|")[1]): l.split("|")[2:] for l in _ns["SHORT"].strip().split("\n")}
 
+# what each word can join: single words, a clause (subject + verb) only, or whole sentences only
+_WORDS = {"and": "rice and lentils", "but": "small but strong", "or": "tea or coffee", "nor": "not rice, nor wheat", "yet": "rich yet simple", "both ... and": "both brave and kind",
+          "either ... or": "either today or tomorrow", "neither ... nor": "neither rich nor poor", "not only ... but also": "not only clever but also kind", "not ... but": "not lazy but tired",
+          "whether ... or": "whether rich or poor", "rather ... than": "tea rather than coffee", "as ... as": "as tall as", "than": "taller than me"}
+_SHORT = {"although": "although tired", "though": "though tired", "while": "while walking", "when": "when ready", "if": "if possible", "unless": "unless told", "once": "once finished", "even though": "even though tired"}
+def joins(e):
+    w, t = e[0], e[1]
+    if t == "adv": return "sentence", "Whole sentences only: never single words"
+    if w in _WORDS: return "words", "Single words too: " + _WORDS[w]
+    return "clause", "Clauses only (subject + verb)" + (f"; short: {_SHORT[w]}" if w in _SHORT else "")
+
 TYPE_LABEL = {"coord": "coordinating", "sub": "subordinating", "corr": "pair", "adv": "linking adverb"}
 GROUPS = [
  ("add", "Adding", "plus", ["Words that add one idea to another.", "Some add a stronger point, some just another.", "Pick by how strong the extra point is."]),
@@ -57,10 +68,16 @@ def _atlas_lessons():
             for i, e in enumerate(ch):
                 sh = _short[(e[0], e[2])]
                 exs = [_mark(x.strip(), e[0]) for x in e[5].split(";;")][:2]
-                boards.append(dict(kind="word", word=e[0], name=TYPE_LABEL[e[1]], pic=e[4], caption=gname, explain=[sh[0], sh[1]], examples=exs, note=sh[2]))
+                boards.append(dict(kind="word", word=e[0], name=TYPE_LABEL[e[1]], pic=e[4], caption=gname, explain=[sh[0], sh[1], joins(e)[1]], examples=exs, note=sh[2]))
                 if i % 3 == 2 or i == len(ch) - 1:
                     grp = ch[(i // 3) * 3:(i // 3) * 3 + 3]
                     boards.append(dict(kind="rows", title="Which one? Why this, why not the others", rows=[(g[4], f"{g[0]}: {_short[(g[0], g[2])][0]}", g[0], _short[(g[0], g[2])][1]) for g in grp]))
+            jw = {k: [e[0] for e in ch if joins(e)[0] == k] for k in ("words", "clause", "sentence")}
+            jl = [("Can it join just one word?", "accent", 30)]
+            if jw["words"]: jl.append(("Yes, single words too: " + ", ".join(jw["words"]), "accent2", 25))
+            if jw["clause"]: jl.append(("Clauses only (subject + verb): " + ", ".join(jw["clause"]), "main", 24))
+            if jw["sentence"]: jl.append(("Whole sentences only: " + ", ".join(jw["sentence"]), "trouble", 24))
+            boards.append(dict(kind="text", title="What each one can join", lines=jl))
             gq = [g for g in _gaps if any(g[1].lower() == w or g[1].lower().startswith(w + " ") for w in words)][:2]
             for g in gq[:1]:
                 opts = [(g[1], True, g[5])] + [(o, False, f"{o.upper()} does not fit. " + g[5]) for o in g[2:5]]

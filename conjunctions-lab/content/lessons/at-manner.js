@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-manner",
     level: "Atlas",
-    minutes: 16,
+    minutes: 18,
     summary: "The manner words as, how: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "as: subordinating",
-        alt: "as: subordinating. in the way that not LIKE: before a clause use as Look: Do as I say. He did the work as he was told. Remember: Do as I say.",
+        alt: "as: subordinating. in the way that not LIKE: before a clause use as Clauses only (subject + verb) Look: Do as I say. He did the work as he was told. Remember: Do as I say.",
         say: [
-          { text: "in the way that not LIKE: before a clause use as", cue: "b1-e0" },
+          { text: "in the way that not LIKE: before a clause use as Clauses only (subject + verb)", cue: "b1-e0" },
           { text: "Look: _Do as I say._ _He did the work as he was told._", cue: "b1-x0" },
           { text: "Remember: Do as I say.", cue: "b1-n" },
         ],
@@ -44,9 +44,10 @@
           { do: "write", id: "b1-c", text: "Manner", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "in the way that", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not LIKE: before a clause use as", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "Do as I say.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Clauses only (subject + verb)", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "Do as I say.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "as" },
-          { do: "write", id: "b1-x1", text: "He did the work as he was told.", x: 328, y: 300, size: 28, fit: 610, gap: 250 },
+          { do: "write", id: "b1-x1", text: "He did the work as he was told.", x: 328, y: 340, size: 28, fit: 610, gap: 250 },
           { do: "highlight", id: "b1-x1h0", target: "b1-x1", word: "as" },
           { do: "write", id: "b1-n", text: "Remember: Do as I say.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -54,9 +55,9 @@
       {
         id: "board-3",
         title: "how: subordinating",
-        alt: "how: subordinating. the way in which not AS: how asks about the way Look: I do not know how he did it. Remember: I do not know how he did it.",
+        alt: "how: subordinating. the way in which not AS: how asks about the way Clauses only (subject + verb) Look: I do not know how he did it. Remember: I do not know how he did it.",
         say: [
-          { text: "the way in which not AS: how asks about the way", cue: "b2-e0" },
+          { text: "the way in which not AS: how asks about the way Clauses only (subject + verb)", cue: "b2-e0" },
           { text: "Look: _I do not know how he did it._", cue: "b2-x0" },
           { text: "Remember: I do not know how he did it.", cue: "b2-n" },
         ],
@@ -67,7 +68,8 @@
           { do: "write", id: "b2-c", text: "Manner", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "the way in which", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not AS: how asks about the way", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "I do not know how he did it.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Clauses only (subject + verb)", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "I do not know how he did it.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "how" },
           { do: "write", id: "b2-n", text: "Remember: I do not know how he did it.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -122,6 +124,21 @@
           PLAB.kit.clear("clear-b4"),
           { do: "write", id: "b4-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b4r", [["exact", "as: in the way that", { hl: "as", sub: "not LIKE: before a clause use as", size: 28 }], ["thinkSelf", "how: the way in which", { hl: "how", sub: "not AS: how asks about the way", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-6",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Clauses only (subject + verb): as, how.",
+        say: [
+          { text: "Can it join just one word?", cue: "b5-l0" },
+          { text: "Clauses only (subject + verb): as, how.", cue: "b5-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b5"),
+          { do: "write", id: "b5-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b5-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b5-l1", text: "Clauses only (subject + verb): as, how", x: 480, y: 216, size: 24, ink: "main", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

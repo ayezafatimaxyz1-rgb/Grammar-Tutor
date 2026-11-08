@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-reason",
     level: "Atlas",
-    minutes: 8,
+    minutes: 10,
     summary: "The reason words inasmuch as: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "inasmuch as: subordinating",
-        alt: "inasmuch as: subordinating. to the extent that (very formal) not BECAUSE: inasmuch as limits how far it is true Look: The treaty is unfair inasmuch as it favours one side. Remember: Rare. Use because.",
+        alt: "inasmuch as: subordinating. to the extent that (very formal) not BECAUSE: inasmuch as limits how far it is true Clauses only (subject + verb) Look: The treaty is unfair inasmuch as it favours one side. Remember: Rare. Use because.",
         say: [
-          { text: "to the extent that (very formal) not BECAUSE: inasmuch as limits how far it is true", cue: "b1-e0" },
+          { text: "to the extent that (very formal) not BECAUSE: inasmuch as limits how far it is true Clauses only (subject + verb)", cue: "b1-e0" },
           { text: "Look: _The treaty is unfair inasmuch as it favours one side._", cue: "b1-x0" },
           { text: "Remember: Rare. Use because.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Reason", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "to the extent that (very formal)", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not BECAUSE: inasmuch as limits how far it is true", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "The treaty is unfair inasmuch as it favours one side.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Clauses only (subject + verb)", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "The treaty is unfair inasmuch as it favours one side.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "inasmuch as" },
           { do: "write", id: "b1-n", text: "Remember: Rare. Use because.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -60,6 +61,21 @@
           PLAB.kit.clear("clear-b2"),
           { do: "write", id: "b2-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b2r", [["reasonFor", "inasmuch as: to the extent that (very formal)", { hl: "inasmuch as", sub: "not BECAUSE: inasmuch as limits how far it is true", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-4",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Clauses only (subject + verb): inasmuch as.",
+        say: [
+          { text: "Can it join just one word?", cue: "b3-l0" },
+          { text: "Clauses only (subject + verb): inasmuch as.", cue: "b3-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b3"),
+          { do: "write", id: "b3-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b3-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b3-l1", text: "Clauses only (subject + verb): inasmuch as", x: 480, y: 216, size: 24, ink: "main", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

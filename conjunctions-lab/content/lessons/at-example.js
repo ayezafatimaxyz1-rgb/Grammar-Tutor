@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-example",
     level: "Atlas",
-    minutes: 12,
+    minutes: 14,
     summary: "The examples words for example, for instance, namely: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "for example: linking adverb",
-        alt: "for example: linking adverb. introduces one example not SUCH AS: for example starts a sentence Look: Many crops grow here. For example, rice and wheat. Remember: For instance means the same.",
+        alt: "for example: linking adverb. introduces one example not SUCH AS: for example starts a sentence Whole sentences only: never single words Look: Many crops grow here. For example, rice and wheat. Remember: For instance means the same.",
         say: [
-          { text: "introduces one example not SUCH AS: for example starts a sentence", cue: "b1-e0" },
+          { text: "introduces one example not SUCH AS: for example starts a sentence Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _Many crops grow here. For example, rice and wheat._", cue: "b1-x0" },
           { text: "Remember: For instance means the same.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Examples", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "introduces one example", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not SUCH AS: for example starts a sentence", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "Many crops grow here. For example, rice and wheat.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "Many crops grow here. For example, rice and wheat.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "For example" },
           { do: "write", id: "b1-n", text: "Remember: For instance means the same.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "for instance: linking adverb",
-        alt: "for instance: linking adverb. introduces one example not NAMELY: for instance gives only one Look: Some countries, for instance Japan, have no oil. Remember: For instance, Japan.",
+        alt: "for instance: linking adverb. introduces one example not NAMELY: for instance gives only one Whole sentences only: never single words Look: Some countries, for instance Japan, have no oil. Remember: For instance, Japan.",
         say: [
-          { text: "introduces one example not NAMELY: for instance gives only one", cue: "b2-e0" },
+          { text: "introduces one example not NAMELY: for instance gives only one Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _Some countries, for instance Japan, have no oil._", cue: "b2-x0" },
           { text: "Remember: For instance, Japan.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Examples", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "introduces one example", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not NAMELY: for instance gives only one", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "Some countries, for instance Japan, have no oil.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "Some countries, for instance Japan, have no oil.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "for instance" },
           { do: "write", id: "b2-n", text: "Remember: For instance, Japan.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -73,9 +75,9 @@
       {
         id: "board-4",
         title: "namely: linking adverb",
-        alt: "namely: linking adverb. to name the exact items not FOR EXAMPLE: namely names all of them Look: Three provinces, namely Punjab, Sindh and Balochistan, agreed. Remember: Three provinces, namely Punjab, Sindh and Balochistan.",
+        alt: "namely: linking adverb. to name the exact items not FOR EXAMPLE: namely names all of them Whole sentences only: never single words Look: Three provinces, namely Punjab, Sindh and Balochistan, agreed. Remember: Three provinces, namely Punjab, Sindh and Balochistan.",
         say: [
-          { text: "to name the exact items not FOR EXAMPLE: namely names all of them", cue: "b3-e0" },
+          { text: "to name the exact items not FOR EXAMPLE: namely names all of them Whole sentences only: never single words", cue: "b3-e0" },
           { text: "Look: _Three provinces, namely Punjab, Sindh and Balochistan, agreed._", cue: "b3-x0" },
           { text: "Remember: Three provinces, namely Punjab, Sindh and Balochistan.", cue: "b3-n" },
         ],
@@ -86,7 +88,8 @@
           { do: "write", id: "b3-c", text: "Examples", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b3-e0", text: "to name the exact items", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b3-e1", text: "not FOR EXAMPLE: namely names all of them", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b3-x0", text: "Three provinces, namely Punjab, Sindh and Balochistan, agreed.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b3-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b3-x0", text: "Three provinces, namely Punjab, Sindh and Balochistan, agreed.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "namely" },
           { do: "write", id: "b3-n", text: "Remember: Three provinces, namely Punjab, Sindh and Balochistan.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -104,6 +107,21 @@
           PLAB.kit.clear("clear-b4"),
           { do: "write", id: "b4-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b4r", [["giveTo", "for example: introduces one example", { hl: "for example", sub: "not SUCH AS: for example starts a sentence", size: 28 }], ["giveTo", "for instance: introduces one example", { hl: "for instance", sub: "not NAMELY: for instance gives only one", size: 28 }], ["giveTo", "namely: to name the exact items", { hl: "namely", sub: "not FOR EXAMPLE: namely names all of them", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-6",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: for example, for instance, namely.",
+        say: [
+          { text: "Can it join just one word?", cue: "b5-l0" },
+          { text: "Whole sentences only: for example, for instance, namely.", cue: "b5-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b5"),
+          { do: "write", id: "b5-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b5-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b5-l1", text: "Whole sentences only: for example, for instance, namely", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

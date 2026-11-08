@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-sequence",
     level: "Atlas",
-    minutes: 16,
+    minutes: 18,
     summary: "The order of points words then, afterwards, finally, firstly: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "then: linking adverb",
-        alt: "then: linking adverb. after that, next not AND: then shows the order Look: First wash the rice. Then boil it. Remember: Then is not a conjunction.",
+        alt: "then: linking adverb. after that, next not AND: then shows the order Whole sentences only: never single words Look: First wash the rice. Then boil it. Remember: Then is not a conjunction.",
         say: [
-          { text: "after that, next not AND: then shows the order", cue: "b1-e0" },
+          { text: "after that, next not AND: then shows the order Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _First wash the rice. Then boil it._", cue: "b1-x0" },
           { text: "Remember: Then is not a conjunction.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Order of points", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "after that, next", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not AND: then shows the order", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "First wash the rice. Then boil it.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "First wash the rice. Then boil it.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "Then" },
           { do: "write", id: "b1-n", text: "Remember: Then is not a conjunction.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "afterwards: linking adverb",
-        alt: "afterwards: linking adverb. later, after that not AFTER: afterwards stands alone Look: We ate. Afterwards, we walked. Remember: We ate. Afterwards, we walked.",
+        alt: "afterwards: linking adverb. later, after that not AFTER: afterwards stands alone Whole sentences only: never single words Look: We ate. Afterwards, we walked. Remember: We ate. Afterwards, we walked.",
         say: [
-          { text: "later, after that not AFTER: afterwards stands alone", cue: "b2-e0" },
+          { text: "later, after that not AFTER: afterwards stands alone Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _We ate. Afterwards, we walked._", cue: "b2-x0" },
           { text: "Remember: We ate. Afterwards, we walked.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Order of points", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "later, after that", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not AFTER: afterwards stands alone", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "We ate. Afterwards, we walked.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "We ate. Afterwards, we walked.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "Afterwards" },
           { do: "write", id: "b2-n", text: "Remember: We ate. Afterwards, we walked.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -73,9 +75,9 @@
       {
         id: "board-4",
         title: "finally: linking adverb",
-        alt: "finally: linking adverb. at last, the last point not AT LAST: finally lists the last point Look: Finally, add the salt. Remember: Finally, add the salt.",
+        alt: "finally: linking adverb. at last, the last point not AT LAST: finally lists the last point Whole sentences only: never single words Look: Finally, add the salt. Remember: Finally, add the salt.",
         say: [
-          { text: "at last, the last point not AT LAST: finally lists the last point", cue: "b3-e0" },
+          { text: "at last, the last point not AT LAST: finally lists the last point Whole sentences only: never single words", cue: "b3-e0" },
           { text: "Look: _Finally, add the salt._", cue: "b3-x0" },
           { text: "Remember: Finally, add the salt.", cue: "b3-n" },
         ],
@@ -86,7 +88,8 @@
           { do: "write", id: "b3-c", text: "Order of points", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b3-e0", text: "at last, the last point", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b3-e1", text: "not AT LAST: finally lists the last point", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b3-x0", text: "Finally, add the salt.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b3-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b3-x0", text: "Finally, add the salt.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "Finally" },
           { do: "write", id: "b3-n", text: "Remember: Finally, add the salt.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -109,9 +112,9 @@
       {
         id: "board-6",
         title: "firstly: linking adverb",
-        alt: "firstly: linking adverb. the first point not AT FIRST: firstly opens a list Look: Firstly, the plan is cheap. Remember: Firstly, the plan is cheap.",
+        alt: "firstly: linking adverb. the first point not AT FIRST: firstly opens a list Whole sentences only: never single words Look: Firstly, the plan is cheap. Remember: Firstly, the plan is cheap.",
         say: [
-          { text: "the first point not AT FIRST: firstly opens a list", cue: "b5-e0" },
+          { text: "the first point not AT FIRST: firstly opens a list Whole sentences only: never single words", cue: "b5-e0" },
           { text: "Look: _Firstly, the plan is cheap._", cue: "b5-x0" },
           { text: "Remember: Firstly, the plan is cheap.", cue: "b5-n" },
         ],
@@ -122,7 +125,8 @@
           { do: "write", id: "b5-c", text: "Order of points", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b5-e0", text: "the first point", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b5-e1", text: "not AT FIRST: firstly opens a list", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b5-x0", text: "Firstly, the plan is cheap.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b5-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b5-x0", text: "Firstly, the plan is cheap.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b5-x0h0", target: "b5-x0", word: "Firstly" },
           { do: "write", id: "b5-n", text: "Remember: Firstly, the plan is cheap.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -138,6 +142,21 @@
           PLAB.kit.clear("clear-b6"),
           { do: "write", id: "b6-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b6r", [["timeline", "firstly: the first point", { hl: "firstly", sub: "not AT FIRST: firstly opens a list", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-8",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: then, afterwards, finally, firstly.",
+        say: [
+          { text: "Can it join just one word?", cue: "b7-l0" },
+          { text: "Whole sentences only: then, afterwards, finally, firstly.", cue: "b7-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b7"),
+          { do: "write", id: "b7-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b7-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b7-l1", text: "Whole sentences only: then, afterwards, finally, firstly", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

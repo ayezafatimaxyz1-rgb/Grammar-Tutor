@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-add",
     level: "Atlas",
-    minutes: 18,
+    minutes: 20,
     summary: "The adding words also, likewise, similarly, in addition: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "also: linking adverb",
-        alt: "also: linking adverb. too: another point not MOREOVER: also is only another point Look: He studies law. He also writes poetry. Remember: Also usually goes before the verb.",
+        alt: "also: linking adverb. too: another point not MOREOVER: also is only another point Whole sentences only: never single words Look: He studies law. He also writes poetry. Remember: Also usually goes before the verb.",
         say: [
-          { text: "too: another point not MOREOVER: also is only another point", cue: "b1-e0" },
+          { text: "too: another point not MOREOVER: also is only another point Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _He studies law. He also writes poetry._", cue: "b1-x0" },
           { text: "Remember: Also usually goes before the verb.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Adding", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "too: another point", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not MOREOVER: also is only another point", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "He studies law. He also writes poetry.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "He studies law. He also writes poetry.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "also" },
           { do: "write", id: "b1-n", text: "Remember: Also usually goes before the verb.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "likewise: linking adverb",
-        alt: "likewise: linking adverb. in the same way not SIMILARLY: likewise says the same action Look: He voted. Likewise, his brother cast his vote. Remember: He voted. Likewise, his brother.",
+        alt: "likewise: linking adverb. in the same way not SIMILARLY: likewise says the same action Whole sentences only: never single words Look: He voted. Likewise, his brother cast his vote. Remember: He voted. Likewise, his brother.",
         say: [
-          { text: "in the same way not SIMILARLY: likewise says the same action", cue: "b2-e0" },
+          { text: "in the same way not SIMILARLY: likewise says the same action Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _He voted. Likewise, his brother cast his vote._", cue: "b2-x0" },
           { text: "Remember: He voted. Likewise, his brother.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Adding", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "in the same way", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not SIMILARLY: likewise says the same action", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "He voted. Likewise, his brother cast his vote.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "He voted. Likewise, his brother cast his vote.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "Likewise" },
           { do: "write", id: "b2-n", text: "Remember: He voted. Likewise, his brother.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -73,9 +75,9 @@
       {
         id: "board-4",
         title: "similarly: linking adverb",
-        alt: "similarly: linking adverb. in a like way not LIKEWISE: similarly compares two cases Look: The north was hit by floods. Similarly, the south suffered. Remember: Similarly, the south suffered.",
+        alt: "similarly: linking adverb. in a like way not LIKEWISE: similarly compares two cases Whole sentences only: never single words Look: The north was hit by floods. Similarly, the south suffered. Remember: Similarly, the south suffered.",
         say: [
-          { text: "in a like way not LIKEWISE: similarly compares two cases", cue: "b3-e0" },
+          { text: "in a like way not LIKEWISE: similarly compares two cases Whole sentences only: never single words", cue: "b3-e0" },
           { text: "Look: _The north was hit by floods. Similarly, the south suffered._", cue: "b3-x0" },
           { text: "Remember: Similarly, the south suffered.", cue: "b3-n" },
         ],
@@ -86,7 +88,8 @@
           { do: "write", id: "b3-c", text: "Adding", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b3-e0", text: "in a like way", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b3-e1", text: "not LIKEWISE: similarly compares two cases", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b3-x0", text: "The north was hit by floods. Similarly, the south suffered.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b3-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b3-x0", text: "The north was hit by floods. Similarly, the south suffered.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "Similarly" },
           { do: "write", id: "b3-n", text: "Remember: Similarly, the south suffered.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -109,9 +112,9 @@
       {
         id: "board-6",
         title: "in addition: linking adverb",
-        alt: "in addition: linking adverb. and also: a formal extra point not MOREOVER: in addition is plainly extra Look: In addition, the school needs a library. Remember: In addition, the school needs a library.",
+        alt: "in addition: linking adverb. and also: a formal extra point not MOREOVER: in addition is plainly extra Whole sentences only: never single words Look: In addition, the school needs a library. Remember: In addition, the school needs a library.",
         say: [
-          { text: "and also: a formal extra point not MOREOVER: in addition is plainly extra", cue: "b5-e0" },
+          { text: "and also: a formal extra point not MOREOVER: in addition is plainly extra Whole sentences only: never single words", cue: "b5-e0" },
           { text: "Look: _In addition, the school needs a library._", cue: "b5-x0" },
           { text: "Remember: In addition, the school needs a library.", cue: "b5-n" },
         ],
@@ -122,7 +125,8 @@
           { do: "write", id: "b5-c", text: "Adding", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b5-e0", text: "and also: a formal extra point", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b5-e1", text: "not MOREOVER: in addition is plainly extra", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b5-x0", text: "In addition, the school needs a library.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b5-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b5-x0", text: "In addition, the school needs a library.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b5-x0h0", target: "b5-x0", word: "In addition" },
           { do: "write", id: "b5-n", text: "Remember: In addition, the school needs a library.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -138,6 +142,21 @@
           PLAB.kit.clear("clear-b6"),
           { do: "write", id: "b6-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b6r", [["addMore", "in addition: and also: a formal extra point", { hl: "in addition", sub: "not MOREOVER: in addition is plainly extra", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-8",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: also, likewise, similarly, in addition.",
+        say: [
+          { text: "Can it join just one word?", cue: "b7-l0" },
+          { text: "Whole sentences only: also, likewise, similarly, in addition.", cue: "b7-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b7"),
+          { do: "write", id: "b7-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b7-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b7-l1", text: "Whole sentences only: also, likewise, similarly, in addition", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

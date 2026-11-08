@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-emphasis",
     level: "Atlas",
-    minutes: 12,
+    minutes: 14,
     summary: "The emphasis words in fact, indeed, above all: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "in fact: linking adverb",
-        alt: "in fact: linking adverb. the truth is even stronger or different not INDEED: in fact may correct what was said Look: He is not poor. In fact, he is rich. Remember: He is not poor. In fact, he is rich.",
+        alt: "in fact: linking adverb. the truth is even stronger or different not INDEED: in fact may correct what was said Whole sentences only: never single words Look: He is not poor. In fact, he is rich. Remember: He is not poor. In fact, he is rich.",
         say: [
-          { text: "the truth is even stronger or different not INDEED: in fact may correct what was said", cue: "b1-e0" },
+          { text: "the truth is even stronger or different not INDEED: in fact may correct what was said Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _He is not poor. In fact, he is rich._", cue: "b1-x0" },
           { text: "Remember: He is not poor. In fact, he is rich.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Emphasis", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "the truth is even stronger or different", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not INDEED: in fact may correct what was said", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "He is not poor. In fact, he is rich.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "He is not poor. In fact, he is rich.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "In fact" },
           { do: "write", id: "b1-n", text: "Remember: He is not poor. In fact, he is rich.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "indeed: linking adverb",
-        alt: "indeed: linking adverb. really, truly not IN FACT: indeed only strengthens Look: It was cold; indeed, it was freezing. Remember: It was cold; indeed, freezing.",
+        alt: "indeed: linking adverb. really, truly not IN FACT: indeed only strengthens Whole sentences only: never single words Look: It was cold; indeed, it was freezing. Remember: It was cold; indeed, freezing.",
         say: [
-          { text: "really, truly not IN FACT: indeed only strengthens", cue: "b2-e0" },
+          { text: "really, truly not IN FACT: indeed only strengthens Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _It was cold; indeed, it was freezing._", cue: "b2-x0" },
           { text: "Remember: It was cold; indeed, freezing.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Emphasis", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "really, truly", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not IN FACT: indeed only strengthens", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "It was cold; indeed, it was freezing.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "It was cold; indeed, it was freezing.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "indeed" },
           { do: "write", id: "b2-n", text: "Remember: It was cold; indeed, freezing.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -73,9 +75,9 @@
       {
         id: "board-4",
         title: "above all: linking adverb",
-        alt: "above all: linking adverb. the most important point not FIRSTLY: above all ranks the point Look: Above all, be honest. Remember: Above all, be honest.",
+        alt: "above all: linking adverb. the most important point not FIRSTLY: above all ranks the point Whole sentences only: never single words Look: Above all, be honest. Remember: Above all, be honest.",
         say: [
-          { text: "the most important point not FIRSTLY: above all ranks the point", cue: "b3-e0" },
+          { text: "the most important point not FIRSTLY: above all ranks the point Whole sentences only: never single words", cue: "b3-e0" },
           { text: "Look: _Above all, be honest._", cue: "b3-x0" },
           { text: "Remember: Above all, be honest.", cue: "b3-n" },
         ],
@@ -86,7 +88,8 @@
           { do: "write", id: "b3-c", text: "Emphasis", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b3-e0", text: "the most important point", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b3-e1", text: "not FIRSTLY: above all ranks the point", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b3-x0", text: "Above all, be honest.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b3-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b3-x0", text: "Above all, be honest.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "Above all" },
           { do: "write", id: "b3-n", text: "Remember: Above all, be honest.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -104,6 +107,21 @@
           PLAB.kit.clear("clear-b4"),
           { do: "write", id: "b4-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b4r", [["exact", "in fact: the truth is even stronger or different", { hl: "in fact", sub: "not INDEED: in fact may correct what was said", size: 28 }], ["exact", "indeed: really, truly", { hl: "indeed", sub: "not IN FACT: indeed only strengthens", size: 28 }], ["star", "above all: the most important point", { hl: "above all", sub: "not FIRSTLY: above all ranks the point", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-6",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: in fact, indeed, above all.",
+        say: [
+          { text: "Can it join just one word?", cue: "b5-l0" },
+          { text: "Whole sentences only: in fact, indeed, above all.", cue: "b5-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b5"),
+          { do: "write", id: "b5-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b5-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b5-l1", text: "Whole sentences only: in fact, indeed, above all", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
