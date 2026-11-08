@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Conjunctions Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Learn every conjunction by its picture: and, but, although, unless, either...or and more, on a hand-drawn teaching board for the CSS English paper.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Kalam:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#7a2e8e">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Conjunctions">
+</head>
+<body>
+<a class="skip" href="#app">Skip to content</a>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#library"><span class="brand-mark" aria-hidden="true">&amp;</span><span>Conjunctions Lab</span></a>
+    <span class="top-sub">CSS English</span>
+  </div>
+</header>
+<nav class="tabbar" aria-label="Main">
+  <a data-nav="library" href="#library"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20h-5v-6H9v6H4z"/></svg><span>Home</span></a>
+  <a data-nav="lesson" href="#lesson-cj-what"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11.5" rx="1.5"/><path d="M8 20h8M12 16.5V20M7.5 12.5l3-3.5 2.5 2.5 3-4"/></svg><span>Board</span></a>
+  <a data-nav="atlas" href="#atlas"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c3 3 3 13 0 16M12 4c-3 3-3 13 0 16"/></svg><span>Atlas</span></a>
+  <a data-nav="tests" href="#practice"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="m8.5 9 1.5 1.5L13 7.5M8.5 15l1.5 1.5 3-3M14.5 10h2M14.5 16h2"/></svg><span>Practice</span></a>
+  <a data-nav="notebook" href="#notebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1h-11a2 2 0 0 1-2-2v-13a2 2 0 0 1 2-2zM8.5 3.5v17M11.5 8h4M11.5 12h4"/></svg><span>Notebook</span><b id="due-badge" class="badge" hidden>0</b></a>
+</nav>
+<main id="app" tabindex="-1"></main>
+<noscript><p class="noscript">The Conjunctions Lab needs JavaScript to draw on the teaching board.</p></noscript>
+
+<!-- Engine -->
+<script src="js/sketch.js"></script>
+<script src="js/board.js"></script>
+<script src="js/store.js"></script>
+<!-- Content -->
+<script src="content/curriculum.js"></script>
+<script src="content/misconceptions.js"></script>
+<script src="content/icons.js"></script>
+<script src="content/icons-p2.js"></script>
+<script src="content/icons-precis.js"></script>
+<script src="content/icons-conj.js"></script>
+<script src="content/kit.js"></script>
+<!-- LESSONS -->
+<script src="content/lessons/cj-what.js"></script>
+<script src="content/lessons/cj-and-but.js"></script>
+<script src="content/lessons/cj-or-nor.js"></script>
+<script src="content/lessons/cj-for-yet-so.js"></script>
+<script src="content/lessons/cj-time.js"></script>
+<script src="content/lessons/cj-reason.js"></script>
+<script src="content/lessons/cj-contrast.js"></script>
+<script src="content/lessons/cj-condition.js"></script>
+<script src="content/lessons/cj-purpose.js"></script>
+<script src="content/lessons/cj-comparison.js"></script>
+<script src="content/lessons/cj-pairs.js"></script>
+<script src="content/lessons/cj-nosooner.js"></script>
+<script src="content/lessons/cj-however.js"></script>
+<script src="content/lessons/cj-punct.js"></script>
+<script src="content/lessons/cj-top-mistakes.js"></script>
+<!-- /LESSONS -->
+<script src="content/conj/atlas.js"></script>
+<script src="content/conj/more.js"></script>
+<script src="content/conj/exam.js"></script>
+<script src="js/conj.js"></script>
+<script src="js/notes-pdf.js"></script>
+<script src="js/app.js"></script>
+<script>
+  // Works offline once installed on the home screen. Hosts that block service workers simply skip this.
+  try {
+    if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost")) {
+      // When a newer version takes over, reload once so the new screens appear straight away.
+      const hadController = !!navigator.serviceWorker.controller;
+      let reloaded = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (hadController && !reloaded) { reloaded = true; location.reload(); }
+      });
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then((r) => r.update()).catch(() => {});
+    }
+  } catch (e) {}
+</script>
+</body>
+</html>
