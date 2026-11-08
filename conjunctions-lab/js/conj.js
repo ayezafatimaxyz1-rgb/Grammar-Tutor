@@ -40,7 +40,7 @@
     const groups = Object.keys(GN).filter((g) => atlas.some((e) => e.group === g));
     app.innerHTML = `<section class="page-head"><p class="eyebrow">Start here</p><h1>The conjunction atlas</h1>
       <p class="lede">${atlas.length} conjunctions and linkers, grouped by what they do. Each one says its logic, shows examples and names the usual trap. Tap a group.</p>
-      <p><a class="button small" href="#lesson-sn-as">Senses: as, since, while, if, so</a> <a class="button small" href="#lesson-cp-1">Confusing pairs</a> <button type="button" class="pdf-mini" data-pdf="phase:ph-sense">${icon("pdf")}<span>PDF: senses and confusing pairs</span></button> <a class="button small" href="#pairs">Pairs</a> <a class="button small" href="#punctuation">Punctuation</a> <a class="button small" href="#mistakes">Common mistakes</a> <a class="button small" href="#linkers">Essay linkers</a> <button type="button" class="pdf-mini" data-pdf="phase:ph-atlas">${icon("pdf")}<span>PDF of the whole atlas: pictures, boards and why-not</span></button> ${which ? `<button type="button" class="pdf-mini" data-pdf="unit:u-at-${which}">${icon("pdf")}<span>PDF of this group</span></button>` : ""} <button type="button" class="pdf-mini" data-pdf="conjatlas:all">${icon("pdf")}<span>Text only</span></button></p>
+      <p><a class="button small" href="#senses">Senses and confusing pairs</a> <button type="button" class="pdf-mini" data-pdf="phase:ph-sense">${icon("pdf")}<span>PDF: senses and confusing pairs</span></button> <a class="button small" href="#pairs">Pairs</a> <a class="button small" href="#punctuation">Punctuation</a> <a class="button small" href="#mistakes">Common mistakes</a> <a class="button small" href="#linkers">Essay linkers</a> <button type="button" class="pdf-mini" data-pdf="phase:ph-atlas">${icon("pdf")}<span>PDF of the whole atlas: pictures, boards and why-not</span></button> ${which ? `<button type="button" class="pdf-mini" data-pdf="unit:u-at-${which}">${icon("pdf")}<span>PDF of this group</span></button>` : ""} <button type="button" class="pdf-mini" data-pdf="conjatlas:all">${icon("pdf")}<span>Text only</span></button></p>
       <label class="search"><span class="sr-only">Search</span><input id="cj-q" type="search" placeholder="Search: although, however, so that…" autocomplete="off"></label></section>
       <div class="cj-chips"><a class="cj-chip${which ? "" : " on"}" href="#atlas">All</a>${groups.map((g) => `<a class="cj-chip${which === g ? " on" : ""}" href="#atlas-${g}">${esc(GN[g])} (${atlas.filter((e) => e.group === g).length})</a>`).join("")}</div>
       <div id="cj-list"></div>`;
@@ -84,6 +84,17 @@
       <p><button type="button" class="pdf-mini" data-pdf="phase:ph-mist">${icon("pdf")}<span>PDF of all mistakes: boards, rules and tests</span></button> <button type="button" class="pdf-mini" data-pdf="conjmist:all">${icon("pdf")}<span>Text only</span></button></p></section>
       <div class="cj-chips"><a class="cj-chip${tag ? "" : " on"}" href="#mistakes">All</a>${tags.map((t) => `<a class="cj-chip${tag === t ? " on" : ""}" href="#mistakes-${t}">${esc(TAGS[t])}</a>`).join("")}</div>
       ${ms.map((m) => `<article class="cj-card"><p class="cj-bad">✗ ${esc(m.bad)}</p><p class="cj-ok">✓ ${esc(m.good)}</p><p class="muted">${esc(m.why)}</p></article>`).join("")}`;
+  }
+
+  function renderSenses(app, { icon }) {
+    const ids = Object.keys(P.lessons);
+    const sn = ids.filter((i) => i.startsWith("sn-")), cp = ids.filter((i) => i.startsWith("cp-"));
+    const row = (id, extra) => `<a class="start-card" href="#lesson-${id}"><span class="sc-title">${esc(P.lessons[id].title)}</span><span class="sc-text">${extra || esc(P.lessons[id].summary)}</span><span class="sc-go" aria-hidden="true">${icon("next")}</span></a>`;
+    app.innerHTML = `<section class="page-head"><p class="eyebrow">Senses and confusing pairs</p><h1>One word, many jobs. Two words, one mix-up.</h1>
+      <p class="lede">First the words that do several jobs, one lesson each. Then the pairs students mix up, each with a test.</p>
+      <p><button type="button" class="pdf-mini" data-pdf="phase:ph-sense">${icon("pdf")}<span>PDF of this whole section</span></button></p></section>
+      <h2 class="cj-h">One word, several senses (${sn.length})</h2><div class="start-cards">${sn.map((i) => row(i)).join("")}</div>
+      <h2 class="cj-h">Confusing pairs (${cp.length} lessons, 24 pairs)</h2><div class="start-cards">${cp.map((i) => row(i, esc(P.lessons[i].title.replace("Confusing pairs: ", "")))).join("")}</div>`;
   }
 
   /* ---------- practice ---------- */
@@ -161,6 +172,7 @@
 
   C.render = function (app, hash, ctx) {
     if (hash === "atlas" || hash.startsWith("atlas-")) { renderAtlas(app, hash, ctx); return "atlas"; }
+    if (hash === "senses") { renderSenses(app, ctx); return "atlas"; }
     if (hash === "pairs") { renderPairs(app, ctx); return "atlas"; }
     if (hash === "linkers") { renderLinkers(app, ctx); return "atlas"; }
     if (hash === "punctuation") { renderPunct(app, ctx); return "atlas"; }
