@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-result",
     level: "Atlas",
-    minutes: 14,
+    minutes: 16,
     summary: "The result words hence, accordingly, as a result: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "hence: linking adverb",
-        alt: "hence: linking adverb. for this reason (formal) not THEREFORE: hence is shorter and goes with a noun Look: The roads are poor, hence the delay. Remember: Short and formal.",
+        alt: "hence: linking adverb. for this reason (formal) not THEREFORE: hence is shorter and goes with a noun Whole sentences only: never single words Look: The roads are poor, hence the delay. Remember: Short and formal.",
         say: [
-          { text: "for this reason (formal) not THEREFORE: hence is shorter and goes with a noun", cue: "b1-e0" },
+          { text: "for this reason (formal) not THEREFORE: hence is shorter and goes with a noun Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _The roads are poor, hence the delay._", cue: "b1-x0" },
           { text: "Remember: Short and formal.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Result", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "for this reason (formal)", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not THEREFORE: hence is shorter and goes with a noun", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "The roads are poor, hence the delay.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "The roads are poor, hence the delay.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "hence" },
           { do: "write", id: "b1-n", text: "Remember: Short and formal.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "accordingly: linking adverb",
-        alt: "accordingly: linking adverb. in a way that suits what was said not THEREFORE: accordingly means in the suitable way Look: The rules changed, and we acted accordingly. Remember: We acted accordingly.",
+        alt: "accordingly: linking adverb. in a way that suits what was said not THEREFORE: accordingly means in the suitable way Whole sentences only: never single words Look: The rules changed, and we acted accordingly. Remember: We acted accordingly.",
         say: [
-          { text: "in a way that suits what was said not THEREFORE: accordingly means in the suitable way", cue: "b2-e0" },
+          { text: "in a way that suits what was said not THEREFORE: accordingly means in the suitable way Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _The rules changed, and we acted accordingly._", cue: "b2-x0" },
           { text: "Remember: We acted accordingly.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Result", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "in a way that suits what was said", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not THEREFORE: accordingly means in the suitable way", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "The rules changed, and we acted accordingly.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "The rules changed, and we acted accordingly.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "accordingly" },
           { do: "write", id: "b2-n", text: "Remember: We acted accordingly.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -111,9 +113,9 @@
       {
         id: "board-5",
         title: "as a result: linking adverb",
-        alt: "as a result: linking adverb. because of this not AS A RESULT OF: that one takes a noun Look: The crops failed. As a result, prices rose. Remember: The crops failed. As a result, prices rose.",
+        alt: "as a result: linking adverb. because of this not AS A RESULT OF: that one takes a noun Whole sentences only: never single words Look: The crops failed. As a result, prices rose. Remember: The crops failed. As a result, prices rose.",
         say: [
-          { text: "because of this not AS A RESULT OF: that one takes a noun", cue: "b4-e0" },
+          { text: "because of this not AS A RESULT OF: that one takes a noun Whole sentences only: never single words", cue: "b4-e0" },
           { text: "Look: _The crops failed. As a result, prices rose._", cue: "b4-x0" },
           { text: "Remember: The crops failed. As a result, prices rose.", cue: "b4-n" },
         ],
@@ -124,7 +126,8 @@
           { do: "write", id: "b4-c", text: "Result", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b4-e0", text: "because of this", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b4-e1", text: "not AS A RESULT OF: that one takes a noun", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b4-x0", text: "The crops failed. As a result, prices rose.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b4-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b4-x0", text: "The crops failed. As a result, prices rose.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b4-x0h0", target: "b4-x0", word: "As a result" },
           { do: "write", id: "b4-n", text: "Remember: The crops failed. As a result, prices rose.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -142,6 +145,21 @@
           PLAB.kit.clear("clear-b5"),
           { do: "write", id: "b5-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b5r", [["causeEffect", "hence: for this reason (formal)", { hl: "hence", sub: "not THEREFORE: hence is shorter and goes with a noun", size: 28 }], ["causeEffect", "accordingly: in a way that suits what was said", { hl: "accordingly", sub: "not THEREFORE: accordingly means in the suitable way", size: 28 }], ["causeEffect", "as a result: because of this", { hl: "as a result", sub: "not AS A RESULT OF: that one takes a noun", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-7",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: hence, accordingly, as a result.",
+        say: [
+          { text: "Can it join just one word?", cue: "b6-l0" },
+          { text: "Whole sentences only: hence, accordingly, as a result.", cue: "b6-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b6"),
+          { do: "write", id: "b6-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b6-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b6-l1", text: "Whole sentences only: hence, accordingly, as a result", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

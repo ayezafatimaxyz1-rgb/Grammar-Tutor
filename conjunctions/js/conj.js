@@ -23,9 +23,13 @@
     return out;
   };
   const lessonOf = (e) => { const es = atlas.filter((x) => x.group === e.group), i = es.indexOf(e); return `at-${e.group}` + (es.length > 6 ? `-${Math.floor(i / 6) + 1}` : ""); };
+  const WORDS = { and: "rice and lentils", but: "small but strong", or: "tea or coffee", nor: "not rice, nor wheat", yet: "rich yet simple", "both ... and": "both brave and kind", "either ... or": "either today or tomorrow", "neither ... nor": "neither rich nor poor", "not only ... but also": "not only clever but also kind", "not ... but": "not lazy but tired", "whether ... or": "whether rich or poor", "rather ... than": "tea rather than coffee", "as ... as": "as tall as", than: "taller than me" };
+  const SHORTF = { although: "although tired", though: "though tired", while: "while walking", when: "when ready", if: "if possible", unless: "unless told", once: "once finished", "even though": "even though tired" };
+  const joinsOf = (e) => (e.type === "adv" ? ["sentence", "Joins whole sentences only. It cannot join single words."] : WORDS[e.w] ? ["words", "Can join single words too: " + WORDS[e.w] + "."] : ["clause", "Needs a clause (subject + verb), not a single word." + (SHORTF[e.w] ? " Short form: " + SHORTF[e.w] + "." : "")]);
   const card = (e) => `<article class="cj-card g-${e.group}" id="c-${esc(norm(e.w).replace(/[^a-z]+/g, "-"))}-${e.group}">
       <header><h3>${esc(e.w)}</h3><span class="cj-tag t-${e.type}">${esc({ coord: "coordinating", sub: "subordinating", corr: "pair", adv: "linking adverb" }[e.type])}</span><span class="cj-tag">${esc(GN[e.group])}</span></header>
       <p class="cj-logic">${esc(e.logic)}</p>
+      <p class="cj-joins j-${joinsOf(e)[0]}">${joinsOf(e)[0] === "words" ? "✓" : "✗"} ${esc(joinsOf(e)[1])}</p>
       <ul class="cj-ex">${e.ex.map((x) => `<li>${hl(x, e.w)}</li>`).join("")}</ul>
       ${e.careful ? `<p class="cj-care"><b>Be careful.</b> ${esc(e.careful)}</p>` : ""}
       <p class="cj-board"><a class="button small" href="#lesson-${lessonOf(e)}">See it drawn: why this, why not the others</a></p></article>`;

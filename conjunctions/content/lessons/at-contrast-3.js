@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-contrast",
     level: "Atlas",
-    minutes: 12,
+    minutes: 14,
     summary: "The contrast words on the contrary, still: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "on the contrary: linking adverb",
-        alt: "on the contrary: linking adverb. the opposite is true not HOWEVER: it denies the earlier statement Look: He is not lazy. On the contrary, he works day and night. Remember: It denies what was just said.",
+        alt: "on the contrary: linking adverb. the opposite is true not HOWEVER: it denies the earlier statement Whole sentences only: never single words Look: He is not lazy. On the contrary, he works day and night. Remember: It denies what was just said.",
         say: [
-          { text: "the opposite is true not HOWEVER: it denies the earlier statement", cue: "b1-e0" },
+          { text: "the opposite is true not HOWEVER: it denies the earlier statement Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _He is not lazy. On the contrary, he works day and night._", cue: "b1-x0" },
           { text: "Remember: It denies what was just said.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Contrast", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "the opposite is true", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not HOWEVER: it denies the earlier statement", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "He is not lazy. On the contrary, he works day and night.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "He is not lazy. On the contrary, he works day and night.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "On the contrary" },
           { do: "write", id: "b1-n", text: "Remember: It denies what was just said.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "still: linking adverb",
-        alt: "still: linking adverb. in spite of that not YET: still is an adverb Look: It is late. Still, we should try. Remember: It is late. Still, we should try.",
+        alt: "still: linking adverb. in spite of that not YET: still is an adverb Whole sentences only: never single words Look: It is late. Still, we should try. Remember: It is late. Still, we should try.",
         say: [
-          { text: "in spite of that not YET: still is an adverb", cue: "b2-e0" },
+          { text: "in spite of that not YET: still is an adverb Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _It is late. Still, we should try._", cue: "b2-x0" },
           { text: "Remember: It is late. Still, we should try.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Contrast", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "in spite of that", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not YET: still is an adverb", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "It is late. Still, we should try.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "It is late. Still, we should try.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "Still" },
           { do: "write", id: "b2-n", text: "Remember: It is late. Still, we should try.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -120,6 +122,21 @@
           PLAB.kit.clear("clear-b4"),
           { do: "write", id: "b4-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b4r", [["contrast", "on the contrary: the opposite is true", { hl: "on the contrary", sub: "not HOWEVER: it denies the earlier statement", size: 28 }], ["contrast", "still: in spite of that", { hl: "still", sub: "not YET: still is an adverb", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-6",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: on the contrary, still.",
+        say: [
+          { text: "Can it join just one word?", cue: "b5-l0" },
+          { text: "Whole sentences only: on the contrary, still.", cue: "b5-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b5"),
+          { do: "write", id: "b5-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b5-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b5-l1", text: "Whole sentences only: on the contrary, still", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {

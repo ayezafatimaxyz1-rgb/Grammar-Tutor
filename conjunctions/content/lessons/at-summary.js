@@ -6,7 +6,7 @@
     phase: 2,
     unit: "u-at-summary",
     level: "Atlas",
-    minutes: 16,
+    minutes: 18,
     summary: "The summing up words in conclusion, in short, in other words, that is: the logic of each, an example, and why this one and not the others.",
     objectives: ["Say what each word does.", "Say why this word and not its neighbours.", "Spot the usual trap."],
     steps: [
@@ -31,9 +31,9 @@
       {
         id: "board-2",
         title: "in conclusion: linking adverb",
-        alt: "in conclusion: linking adverb. to end, the last word not FINALLY: in conclusion sums up everything Look: In conclusion, education is the key to progress. Remember: In conclusion, education is the key.",
+        alt: "in conclusion: linking adverb. to end, the last word not FINALLY: in conclusion sums up everything Whole sentences only: never single words Look: In conclusion, education is the key to progress. Remember: In conclusion, education is the key.",
         say: [
-          { text: "to end, the last word not FINALLY: in conclusion sums up everything", cue: "b1-e0" },
+          { text: "to end, the last word not FINALLY: in conclusion sums up everything Whole sentences only: never single words", cue: "b1-e0" },
           { text: "Look: _In conclusion, education is the key to progress._", cue: "b1-x0" },
           { text: "Remember: In conclusion, education is the key.", cue: "b1-n" },
         ],
@@ -44,7 +44,8 @@
           { do: "write", id: "b1-c", text: "Summing up", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b1-e0", text: "to end, the last word", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b1-e1", text: "not FINALLY: in conclusion sums up everything", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b1-x0", text: "In conclusion, education is the key to progress.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b1-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b1-x0", text: "In conclusion, education is the key to progress.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b1-x0h0", target: "b1-x0", word: "In conclusion" },
           { do: "write", id: "b1-n", text: "Remember: In conclusion, education is the key.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -52,9 +53,9 @@
       {
         id: "board-3",
         title: "in short: linking adverb",
-        alt: "in short: linking adverb. to say it briefly not IN CONCLUSION: in short is a quick summary Look: In short, the plan failed. Remember: In short, the plan failed.",
+        alt: "in short: linking adverb. to say it briefly not IN CONCLUSION: in short is a quick summary Whole sentences only: never single words Look: In short, the plan failed. Remember: In short, the plan failed.",
         say: [
-          { text: "to say it briefly not IN CONCLUSION: in short is a quick summary", cue: "b2-e0" },
+          { text: "to say it briefly not IN CONCLUSION: in short is a quick summary Whole sentences only: never single words", cue: "b2-e0" },
           { text: "Look: _In short, the plan failed._", cue: "b2-x0" },
           { text: "Remember: In short, the plan failed.", cue: "b2-n" },
         ],
@@ -65,7 +66,8 @@
           { do: "write", id: "b2-c", text: "Summing up", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b2-e0", text: "to say it briefly", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b2-e1", text: "not IN CONCLUSION: in short is a quick summary", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b2-x0", text: "In short, the plan failed.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b2-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b2-x0", text: "In short, the plan failed.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b2-x0h0", target: "b2-x0", word: "In short" },
           { do: "write", id: "b2-n", text: "Remember: In short, the plan failed.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -73,9 +75,9 @@
       {
         id: "board-4",
         title: "in other words: linking adverb",
-        alt: "in other words: linking adverb. to say the same thing more clearly not FOR EXAMPLE: it restates, not adds Look: He is frugal. In other words, he is careful with money. Remember: He is frugal. In other words, careful.",
+        alt: "in other words: linking adverb. to say the same thing more clearly not FOR EXAMPLE: it restates, not adds Whole sentences only: never single words Look: He is frugal. In other words, he is careful with money. Remember: He is frugal. In other words, careful.",
         say: [
-          { text: "to say the same thing more clearly not FOR EXAMPLE: it restates, not adds", cue: "b3-e0" },
+          { text: "to say the same thing more clearly not FOR EXAMPLE: it restates, not adds Whole sentences only: never single words", cue: "b3-e0" },
           { text: "Look: _He is frugal. In other words, he is careful with money._", cue: "b3-x0" },
           { text: "Remember: He is frugal. In other words, careful.", cue: "b3-n" },
         ],
@@ -86,7 +88,8 @@
           { do: "write", id: "b3-c", text: "Summing up", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b3-e0", text: "to say the same thing more clearly", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b3-e1", text: "not FOR EXAMPLE: it restates, not adds", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b3-x0", text: "He is frugal. In other words, he is careful with money.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b3-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b3-x0", text: "He is frugal. In other words, he is careful with money.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "In other words" },
           { do: "write", id: "b3-n", text: "Remember: He is frugal. In other words, careful.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -109,9 +112,9 @@
       {
         id: "board-6",
         title: "that is: linking adverb",
-        alt: "that is: linking adverb. to explain exactly not IN OTHER WORDS: that is is short Look: He is a bachelor, that is, he is unmarried. Remember: He is a bachelor, that is, unmarried.",
+        alt: "that is: linking adverb. to explain exactly not IN OTHER WORDS: that is is short Whole sentences only: never single words Look: He is a bachelor, that is, he is unmarried. Remember: He is a bachelor, that is, unmarried.",
         say: [
-          { text: "to explain exactly not IN OTHER WORDS: that is is short", cue: "b5-e0" },
+          { text: "to explain exactly not IN OTHER WORDS: that is is short Whole sentences only: never single words", cue: "b5-e0" },
           { text: "Look: _He is a bachelor, that is, he is unmarried._", cue: "b5-x0" },
           { text: "Remember: He is a bachelor, that is, unmarried.", cue: "b5-n" },
         ],
@@ -122,7 +125,8 @@
           { do: "write", id: "b5-c", text: "Summing up", x: 162, y: 282, size: 22, ink: "accent2", anchor: "middle", fit: 290, gap: 200 },
           { do: "write", id: "b5-e0", text: "to explain exactly", x: 328, y: 118, size: 25, fit: 610, gap: 350 },
           { do: "write", id: "b5-e1", text: "not IN OTHER WORDS: that is is short", x: 328, y: 158, size: 25, fit: 610, gap: 150 },
-          { do: "write", id: "b5-x0", text: "He is a bachelor, that is, he is unmarried.", x: 328, y: 250, size: 28, fit: 610, gap: 400 },
+          { do: "write", id: "b5-e2", text: "Whole sentences only: never single words", x: 328, y: 198, size: 25, fit: 610, gap: 150 },
+          { do: "write", id: "b5-x0", text: "He is a bachelor, that is, he is unmarried.", x: 328, y: 290, size: 28, fit: 610, gap: 400 },
           { do: "highlight", id: "b5-x0h0", target: "b5-x0", word: "that is" },
           { do: "write", id: "b5-n", text: "Remember: He is a bachelor, that is, unmarried.", x: 480, y: 470, size: 24, ink: "accent", anchor: "middle", fit: 910, gap: 400 },
         ],
@@ -138,6 +142,21 @@
           PLAB.kit.clear("clear-b6"),
           { do: "write", id: "b6-t", text: "Which one? Why this, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
           ...PLAB.kit.rows("b6r", [["translate", "that is: to explain exactly", { hl: "that is", sub: "not IN OTHER WORDS: that is is short", size: 28 }]], { y: 135, gap: 135 }),
+        ],
+      },
+      {
+        id: "board-8",
+        title: "What each one can join",
+        alt: "What each one can join. Can it join just one word? Whole sentences only: in conclusion, in short, in other words, that is.",
+        say: [
+          { text: "Can it join just one word?", cue: "b7-l0" },
+          { text: "Whole sentences only: in conclusion, in short, in other words, that is.", cue: "b7-l1" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-b7"),
+          { do: "write", id: "b7-t", text: "What each one can join", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b7-l0", text: "Can it join just one word?", x: 480, y: 150, size: 30, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b7-l1", text: "Whole sentences only: in conclusion, in short, in other words, that is", x: 480, y: 216, size: 24, ink: "trouble", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
