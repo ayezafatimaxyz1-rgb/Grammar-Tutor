@@ -18,6 +18,140 @@
       ],
     },
     {
+      id: "ph-atlas",
+      title: "The conjunction atlas",
+      intro: "Every conjunction and linker drawn as a board: what it says, an example, and why this word and not its neighbours. One PDF for all of it.",
+      units: [
+      {
+        id: "u-at-add",
+        title: "Adding",
+        lessons: [
+          L("at-add-1", "Adding: and, both ... and, not only ... but also, moreov", { status: "tested", lessonId: "at-add-1" }),
+          L("at-add-2", "Adding: also, likewise, similarly, in addition", { status: "tested", lessonId: "at-add-2" }),
+        ],
+      },
+      {
+        id: "u-at-contrast",
+        title: "Contrast",
+        lessons: [
+          L("at-contrast-1", "Contrast: but, yet, whereas, while, whilst, not ... but", { status: "tested", lessonId: "at-contrast-1" }),
+          L("at-contrast-2", "Contrast: however, nevertheless, nonetheless, instead, on ", { status: "tested", lessonId: "at-contrast-2" }),
+          L("at-contrast-3", "Contrast: on the contrary, still", { status: "tested", lessonId: "at-contrast-3" }),
+        ],
+      },
+      {
+        id: "u-at-concession",
+        title: "Concession",
+        lessons: [
+          L("at-concession", "Concession: although, though, even though, even if, much as", { status: "tested", lessonId: "at-concession" }),
+        ],
+      },
+      {
+        id: "u-at-choice",
+        title: "Choice",
+        lessons: [
+          L("at-choice", "Choice: or, nor, either ... or, neither ... nor, whether", { status: "tested", lessonId: "at-choice" }),
+        ],
+      },
+      {
+        id: "u-at-reason",
+        title: "Reason",
+        lessons: [
+          L("at-reason-1", "Reason: for, because, since, as, seeing that, now that", { status: "tested", lessonId: "at-reason-1" }),
+          L("at-reason-2", "Reason: inasmuch as", { status: "tested", lessonId: "at-reason-2" }),
+        ],
+      },
+      {
+        id: "u-at-result",
+        title: "Result",
+        lessons: [
+          L("at-result-1", "Result: so, so ... that, such ... that, therefore, conse", { status: "tested", lessonId: "at-result-1" }),
+          L("at-result-2", "Result: hence, accordingly, as a result", { status: "tested", lessonId: "at-result-2" }),
+        ],
+      },
+      {
+        id: "u-at-time",
+        title: "Time",
+        lessons: [
+          L("at-time-1", "Time: when, whenever, while, as, before, after", { status: "tested", lessonId: "at-time-1" }),
+          L("at-time-2", "Time: until, since, once, as soon as, by the time, the", { status: "tested", lessonId: "at-time-2" }),
+          L("at-time-3", "Time: no sooner ... than, hardly ... when, scarcely ..", { status: "tested", lessonId: "at-time-3" }),
+        ],
+      },
+      {
+        id: "u-at-condition",
+        title: "Condition",
+        lessons: [
+          L("at-condition-1", "Condition: if, unless, provided that, as long as, so long a", { status: "tested", lessonId: "at-condition-1" }),
+          L("at-condition-2", "Condition: in case, supposing, only if, otherwise", { status: "tested", lessonId: "at-condition-2" }),
+        ],
+      },
+      {
+        id: "u-at-purpose",
+        title: "Purpose",
+        lessons: [
+          L("at-purpose", "Purpose: so that, in order that, lest, for fear that", { status: "tested", lessonId: "at-purpose" }),
+        ],
+      },
+      {
+        id: "u-at-comparison",
+        title: "Comparison",
+        lessons: [
+          L("at-comparison", "Comparison: than, as ... as, as if, as though, the more ... ", { status: "tested", lessonId: "at-comparison" }),
+        ],
+      },
+      {
+        id: "u-at-place",
+        title: "Place",
+        lessons: [
+          L("at-place", "Place: where, wherever", { status: "tested", lessonId: "at-place" }),
+        ],
+      },
+      {
+        id: "u-at-manner",
+        title: "Manner",
+        lessons: [
+          L("at-manner", "Manner: as, how", { status: "tested", lessonId: "at-manner" }),
+        ],
+      },
+      {
+        id: "u-at-noun",
+        title: "That and whether",
+        lessons: [
+          L("at-noun", "That and whether: that, whether, if", { status: "tested", lessonId: "at-noun" }),
+        ],
+      },
+      {
+        id: "u-at-example",
+        title: "Examples",
+        lessons: [
+          L("at-example", "Examples: for example, for instance, namely", { status: "tested", lessonId: "at-example" }),
+        ],
+      },
+      {
+        id: "u-at-emphasis",
+        title: "Emphasis",
+        lessons: [
+          L("at-emphasis", "Emphasis: in fact, indeed, above all", { status: "tested", lessonId: "at-emphasis" }),
+        ],
+      },
+      {
+        id: "u-at-sequence",
+        title: "Order of points",
+        lessons: [
+          L("at-sequence", "Order of points: then, afterwards, finally, firstly", { status: "tested", lessonId: "at-sequence" }),
+        ],
+      },
+      {
+        id: "u-at-summary",
+        title: "Summing up",
+        lessons: [
+          L("at-summary", "Summing up: in conclusion, in short, in other words, that is", { status: "tested", lessonId: "at-summary" }),
+        ],
+      },
+      ],
+    },
+    {
       id: "ph-coord",
       title: "Phase 1: The coordinating conjunctions",
       intro: "AND, BUT, OR, NOR, FOR, YET and SO: what each one says and the comma rule.",
@@ -78,6 +212,40 @@
         lessons: [
           L("cj-however", "However, therefore, moreover and other linkers", { status: "tested", lessonId: "cj-however" }),
           L("cj-punct", "Punctuating conjunctions: the comma rules", { status: "tested", lessonId: "cj-punct" }),
+        ],
+      },
+      {
+        id: "u-comma-rules",
+        title: "The comma rules",
+        lessons: [
+          L("cj-comma-rules", "The comma rules for conjunctions", { status: "tested", lessonId: "cj-comma-rules" }),
+        ],
+      },
+      ],
+    },
+    {
+      id: "ph-mist",
+      title: "Your sentences, solved: the mistakes",
+      intro: "The 40 mistakes students make most, grouped by type, each with the right form and the rule.",
+      units: [
+      {
+        id: "u-mistakes",
+        title: "Mistakes by type",
+        lessons: [
+          L("ms-double", "Mistakes: Two conjunctions where one is enough", { status: "tested", lessonId: "ms-double" }),
+          L("ms-negative", "Mistakes: Double negatives", { status: "tested", lessonId: "ms-negative" }),
+          L("ms-order", "Mistakes: Word order after not only, hardly", { status: "tested", lessonId: "ms-order" }),
+          L("ms-pair", "Mistakes: Pairs that must match", { status: "tested", lessonId: "ms-pair" }),
+          L("ms-tense", "Mistakes: Tenses after conjunctions", { status: "tested", lessonId: "ms-tense" }),
+          L("ms-noun", "Mistakes: That, whether and if", { status: "tested", lessonId: "ms-noun" }),
+          L("ms-prep", "Mistakes: Conjunction or preposition", { status: "tested", lessonId: "ms-prep" }),
+          L("ms-agree", "Mistakes: Agreement with both, either, neither", { status: "tested", lessonId: "ms-agree" }),
+          L("ms-compare", "Mistakes: Comparisons", { status: "tested", lessonId: "ms-compare" }),
+          L("ms-manner", "Mistakes: As and like", { status: "tested", lessonId: "ms-manner" }),
+          L("ms-purpose", "Mistakes: So that", { status: "tested", lessonId: "ms-purpose" }),
+          L("ms-result", "Mistakes: So and such", { status: "tested", lessonId: "ms-result" }),
+          L("ms-splice", "Mistakes: Comma splice and linking adverbs", { status: "tested", lessonId: "ms-splice" }),
+          L("ms-meaning", "Mistakes: Wrong meaning", { status: "tested", lessonId: "ms-meaning" }),
         ],
       },
       ],

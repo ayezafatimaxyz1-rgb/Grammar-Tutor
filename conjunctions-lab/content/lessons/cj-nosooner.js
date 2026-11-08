@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-nosooner",
     title: "No sooner ... than, hardly ... when",
-    phase: 4,
+    phase: 5,
     unit: "u-pairs",
     level: "Basic",
     minutes: 14,

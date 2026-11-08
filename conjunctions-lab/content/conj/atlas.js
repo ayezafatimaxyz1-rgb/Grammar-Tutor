@@ -20,14 +20,14 @@ after | sub | time | later than another event | afterDot | After the rain stoppe
 until | sub | time | up to the moment when | notUntil | Wait here until I return. ;; He worked until the sun set. | "until" and "till" mean the same. "until" is more formal.
 since | sub | time | from a past time up to now | sincePoint | I have lived here since I was a child. ;; Much has changed since he left. | "since" for time needs the present perfect: has been, have lived. "since" can also give a reason: see the reason section.
 once | sub | time | as soon as: after a single event | afterDot | Once the water boils, add the rice. ;; Once he understood, he never forgot.
-as soon as | sub | time | at the very moment, with no delay | arrive | Call me as soon as you arrive. ;; As soon as the ceasefire began, the shelling stopped.
+as soon as | sub | time | at the very moment, with no delay | arriveDoor | Call me as soon as you arrive. ;; As soon as the ceasefire began, the shelling stopped.
 by the time | sub | time | not later than the moment when | onTimeDot | By the time we reached the station, the train had left. | Use the past perfect in the main part when the first event is in the past.
 the moment | sub | time | the exact instant that | clock | The moment she saw him, she smiled. ;; I recognised him the moment he spoke.
 because | sub | reason | gives the reason: the cause comes after the word | reasonFor | He was late because the road was closed. ;; Because it rained, the match was cancelled. | Never use "because" and "so" together. Never start a one-word answer with "because of" and then a clause.
 since | sub | reason | gives a reason that the listener already knows | reasonFor | Since you are tired, you should rest. | Because "since" has a time meaning too, use "because" if the sentence could be misread.
 as | sub | reason | gives a reason in a light way, usually at the start | reasonFor | As it was late, we went home. | Use "as" for reason only when the meaning is clear. Otherwise it may be confused with the time use.
 seeing that | sub | reason | considering the fact that | reasonFor | Seeing that the roads are flooded, the school will stay closed. | A formal and slightly old-fashioned reason word.
-now that | sub | reason | because a new situation has begun | arrive | Now that exams are over, we can relax. ;; Now that he has a car, he travels more.
+now that | sub | reason | because a new situation has begun | arriveDoor | Now that exams are over, we can relax. ;; Now that he has a car, he travels more.
 inasmuch as | sub | reason | to the extent that, because (very formal) | reasonFor | The treaty is unfair inasmuch as it favours one side. | Rare and formal. Use "because" in most writing.
 although | sub | concession | shows a contrast: the main idea is true even though the first idea is also true | umbrellaRain | Although he was tired, he kept working. ;; The match went on although it was raining. | One contrast word per sentence: never "although ... but".
 though | sub | concession | the same as "although", but also used at the end of a sentence | umbrellaRain | Though she is young, she is wise. ;; It is hard work. I like it, though. | "though" can end a sentence in speech. "although" cannot.
@@ -44,7 +44,7 @@ as long as | sub | condition | only if: and for as long as it stays true | span 
 so long as | sub | condition | the same as "as long as" | span | So long as you work, you will succeed.
 on condition that | sub | condition | formal: only if this is agreed | doc | They gave him the loan on condition that he repay it in a year. | A formal, legal word group.
 in case | sub | condition | because something may happen: to be ready for it | umbrella | Take an umbrella in case it rains. | "in case" is about preparing. It is not the same as "if": "if it rains, take an umbrella" is about doing it only then.
-supposing | sub | condition | imagine that | think | Supposing the rain continues, what shall we do? | Followed by a possibility. "suppose" is the same.
+supposing | sub | condition | imagine that | thinkSelf | Supposing the rain continues, what shall we do? | Followed by a possibility. "suppose" is the same.
 only if | sub | condition | no other condition will do | keyLock | You can win only if you practise daily. | "only if" at the start turns the order: Only if you practise can you win.
 so that | sub | purpose | in order that: the purpose of the main action | target | He studies hard so that he can pass. ;; She spoke loudly so that everyone could hear. | In the past use could or would: He left early so that he could catch the train.
 in order that | sub | purpose | a formal "so that" | target | The rules were changed in order that everyone might benefit. | Formal. "may or might" is used after it.
@@ -57,10 +57,10 @@ as ... as | corr | comparison | shows that two things are equal | compareBars | 
 as if | sub | comparison | in a way that seems like: used for appearance or an unreal idea | likeSim | He talks as if he knew everything. | When it is unreal, use the past subjunctive: as if he were rich.
 as though | sub | comparison | the same as "as if" | likeSim | She looked as though she had seen a ghost.
 the more ... the more | corr | comparison | one thing grows as the other grows | rising | The more you read, the more you learn. | Both parts use "the" and a comparative.
-where | sub | place | in or to the place in which | pin | Stay where you are. ;; This is the school where I studied.
+where | sub | place | in or to the place in which | airportDot | Stay where you are. ;; This is the school where I studied.
 wherever | sub | place | in any place | everywhere | Wherever he goes, people welcome him. | Not "where ever" as two words.
 as | sub | manner | in the way that | exact | Do as I say. ;; He did the work as he was told. | "as" gives a way. "like" is a preposition: like a doctor, not as a doctor, unless it is a real job.
-how | sub | manner | the way in which | think | I do not know how he did it. | In the noun clause "how" does not need "the way".
+how | sub | manner | the way in which | thinkSelf | I do not know how he did it. | In the noun clause "how" does not need "the way".
 that | sub | noun | introduces a statement as the object of a verb: he said that | speak | He said that he was ready. ;; It is clear that prices will rise. | "that" can be left out after many verbs: He said he was ready.
 whether | sub | noun | introduces a yes or no question that is part of a sentence | qToA | I do not know whether he will come. ;; The question is whether we can afford it. | After a preposition use "whether": the question of whether. Not "if".
 if | sub | noun | introduces an indirect yes or no question | qToA | She asked if I was ready. | "whether" is safer in formal writing and before "or not".

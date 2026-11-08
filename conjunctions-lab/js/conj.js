@@ -22,11 +22,13 @@
     w.forEach((x) => { out = out.replace(new RegExp(`\\b(${x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})\\b`, "i"), "<mark>$1</mark>"); });
     return out;
   };
+  const lessonOf = (e) => { const es = atlas.filter((x) => x.group === e.group), i = es.indexOf(e); return `at-${e.group}` + (es.length > 6 ? `-${Math.floor(i / 6) + 1}` : ""); };
   const card = (e) => `<article class="cj-card g-${e.group}" id="c-${esc(norm(e.w).replace(/[^a-z]+/g, "-"))}-${e.group}">
       <header><h3>${esc(e.w)}</h3><span class="cj-tag t-${e.type}">${esc({ coord: "coordinating", sub: "subordinating", corr: "pair", adv: "linking adverb" }[e.type])}</span><span class="cj-tag">${esc(GN[e.group])}</span></header>
       <p class="cj-logic">${esc(e.logic)}</p>
       <ul class="cj-ex">${e.ex.map((x) => `<li>${hl(x, e.w)}</li>`).join("")}</ul>
-      ${e.careful ? `<p class="cj-care"><b>Be careful.</b> ${esc(e.careful)}</p>` : ""}</article>`;
+      ${e.careful ? `<p class="cj-care"><b>Be careful.</b> ${esc(e.careful)}</p>` : ""}
+      <p class="cj-board"><a class="button small" href="#lesson-${lessonOf(e)}">See it drawn: why this, why not the others</a></p></article>`;
 
   /* ---------- the atlas ---------- */
   function renderAtlas(app, hash, { icon }) {
@@ -34,7 +36,7 @@
     const groups = Object.keys(GN).filter((g) => atlas.some((e) => e.group === g));
     app.innerHTML = `<section class="page-head"><p class="eyebrow">Start here</p><h1>The conjunction atlas</h1>
       <p class="lede">${atlas.length} conjunctions and linkers, grouped by what they do. Each one says its logic, shows examples and names the usual trap. Tap a group.</p>
-      <p><a class="button small" href="#pairs">Pairs</a> <a class="button small" href="#punctuation">Punctuation</a> <a class="button small" href="#mistakes">Common mistakes</a> <a class="button small" href="#linkers">Essay linkers</a> <button type="button" class="pdf-mini" data-pdf="conjatlas:all">${icon("pdf")}<span>PDF of the atlas</span></button></p>
+      <p><a class="button small" href="#pairs">Pairs</a> <a class="button small" href="#punctuation">Punctuation</a> <a class="button small" href="#mistakes">Common mistakes</a> <a class="button small" href="#linkers">Essay linkers</a> <button type="button" class="pdf-mini" data-pdf="phase:ph-atlas">${icon("pdf")}<span>PDF of the whole atlas: pictures, boards and why-not</span></button> ${which ? `<button type="button" class="pdf-mini" data-pdf="unit:u-at-${which}">${icon("pdf")}<span>PDF of this group</span></button>` : ""} <button type="button" class="pdf-mini" data-pdf="conjatlas:all">${icon("pdf")}<span>Text only</span></button></p>
       <label class="search"><span class="sr-only">Search</span><input id="cj-q" type="search" placeholder="Search: although, however, so that…" autocomplete="off"></label></section>
       <div class="cj-chips"><a class="cj-chip${which ? "" : " on"}" href="#atlas">All</a>${groups.map((g) => `<a class="cj-chip${which === g ? " on" : ""}" href="#atlas-${g}">${esc(GN[g])} (${atlas.filter((e) => e.group === g).length})</a>`).join("")}</div>
       <div id="cj-list"></div>`;
@@ -51,7 +53,7 @@
   function renderPairs(app, { icon }) {
     const pairs = atlas.filter((e) => e.type === "corr");
     app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Pairs that work together</h1>
-      <p class="lede">Some conjunctions come in two parts. If you use the first part, the second must follow. Keep both parts of the same grammar (parallel).</p></section>
+      <p class="lede">Some conjunctions come in two parts. If you use the first part, the second must follow. Keep both parts of the same grammar (parallel).</p><p><button type="button" class="pdf-mini" data-pdf="phase:ph-pairs">${icon("pdf")}<span>PDF: pairs, with boards</span></button></p></section>
       ${pairs.map(card).join("")}
       <div class="note-box"><b>Rule of balance.</b> After both, either, neither and not only, put the same kind of word on each side: both <em>in the village</em> and <em>in the city</em>; not only <em>clever</em> but also <em>kind</em>.</div>`;
   }
@@ -59,13 +61,13 @@
   function renderLinkers(app, { icon }) {
     const order = [["summary", "Opening and ending"], ["sequence", "Order of points"], ["add", "Adding a point"], ["contrast", "Showing contrast"], ["reason", "Giving the reason"], ["result", "Showing the result"], ["example", "Giving an example"], ["emphasis", "Stressing a point"]];
     app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Linkers for essays and the précis</h1>
-      <p class="lede">The words that hold an essay together. Use a different linker each time and keep them formal.</p></section>
+      <p class="lede">The words that hold an essay together. Use a different linker each time and keep them formal.</p><p><button type="button" class="pdf-mini" data-pdf="phase:ph-atlas">${icon("pdf")}<span>PDF: every linker drawn</span></button></p></section>
       ${order.map(([g, name]) => { const es = atlas.filter((e) => e.group === g && (e.type === "adv" || e.type === "coord")); return es.length ? `<section class="cj-link"><h2>${esc(name)}</h2><p class="chips">${es.map((e) => `<a class="wchip" href="#atlas-${g}">${esc(e.w)}</a>`).join("")}</p></section>` : ""; }).join("")}
       <div class="note-box"><b>Three habits for marks.</b> 1. Do not repeat the same linker twice in a paragraph. 2. Put a comma after a linker at the start of a sentence (However, ...). 3. Never join two sentences with only a comma and a linker; use a full stop or a semicolon.</div>`;
   }
 
   function renderPunct(app, { icon }) {
-    app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Punctuating conjunctions</h1><p class="lede">When to put a comma, a semicolon or nothing.</p></section>
+    app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Punctuating conjunctions</h1><p class="lede">When to put a comma, a semicolon or nothing.</p><p><button type="button" class="pdf-mini" data-pdf="unit:u-comma-rules">${icon("pdf")}<span>PDF: comma rules as boards</span></button></p></section>
       ${punct.map((r) => `<article class="cj-card"><h3>${esc(r.when)}</h3><p class="cj-logic">${esc(r.rule)}</p><p class="cj-ok">✓ ${esc(r.ok)}</p><p class="cj-bad">✗ ${esc(r.bad)}</p><p class="muted small">${esc(r.why)}</p></article>`).join("")}`;
   }
 
@@ -75,7 +77,7 @@
     const ms = mistakes.filter((m) => !tag || m.tag === tag);
     app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Common mistakes, solved</h1>
       <p class="lede">${mistakes.length} sentences that students get wrong, each with the right form and the rule. Read the rule, not just the answer.</p>
-      <p><button type="button" class="pdf-mini" data-pdf="conjmist:all">${icon("pdf")}<span>PDF of all mistakes</span></button></p></section>
+      <p><button type="button" class="pdf-mini" data-pdf="phase:ph-mist">${icon("pdf")}<span>PDF of all mistakes: boards, rules and tests</span></button> <button type="button" class="pdf-mini" data-pdf="conjmist:all">${icon("pdf")}<span>Text only</span></button></p></section>
       <div class="cj-chips"><a class="cj-chip${tag ? "" : " on"}" href="#mistakes">All</a>${tags.map((t) => `<a class="cj-chip${tag === t ? " on" : ""}" href="#mistakes-${t}">${esc(TAGS[t])}</a>`).join("")}</div>
       ${ms.map((m) => `<article class="cj-card"><p class="cj-bad">✗ ${esc(m.bad)}</p><p class="cj-ok">✓ ${esc(m.good)}</p><p class="muted">${esc(m.why)}</p></article>`).join("")}`;
   }

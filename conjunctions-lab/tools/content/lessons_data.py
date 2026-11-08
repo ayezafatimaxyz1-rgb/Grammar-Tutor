@@ -359,11 +359,16 @@ P5 = [
  ]),
 ]
 
+exec(open(os.path.join(here, "atlas_lessons.py")).read())
+
 PHASES = [
  dict(id="ph-start", title="Start here: What a conjunction is", intro="The three families of conjunctions, with the seven coordinating ones to remember.", units=P0),
+ dict(id="ph-atlas", title="The conjunction atlas", intro="Every conjunction and linker drawn as a board: what it says, an example, and why this word and not its neighbours. One PDF for all of it.",
+      units=[dict(id="u-at-" + g[0], title=g[1], lessons=[l for l in ATLAS_LESSONS if l["id"].startswith("at-" + g[0])]) for g in GROUPS if any(l["id"].startswith("at-" + g[0]) for l in ATLAS_LESSONS)]),
  dict(id="ph-coord", title="Phase 1: The coordinating conjunctions", intro="AND, BUT, OR, NOR, FOR, YET and SO: what each one says and the comma rule.", units=P1),
  dict(id="ph-sub", title="Phase 2: Subordinating conjunctions by meaning", intro="Time, reason, contrast, condition, purpose and result, and comparison. The tense rules and the usual traps.", units=P2),
  dict(id="ph-pairs", title="Phase 3: Pairs and fixed partners", intro="Both ... and, either ... or, neither ... nor, not only ... but also, no sooner ... than and hardly ... when.", units=P3),
- dict(id="ph-link", title="Phase 4: Linking adverbs and punctuation", intro="However, therefore and moreover, the comma splice, and when to use commas with conjunctions.", units=P4),
+ dict(id="ph-link", title="Phase 4: Linking adverbs and punctuation", intro="However, therefore and moreover, the comma splice, and when to use commas with conjunctions.", units=P4 + [dict(id="u-comma-rules", title="The comma rules", lessons=PUNCT_LESSONS)]),
+ dict(id="ph-mist", title="Your sentences, solved: the mistakes", intro="The 40 mistakes students make most, grouped by type, each with the right form and the rule.", units=[dict(id="u-mistakes", title="Mistakes by type", lessons=MIST_LESSONS)]),
  dict(id="ph-exam", title="Phase 5: The exam lab", intro="The seven mistakes that cost marks, and how to fix them quickly.", units=P5),
 ]

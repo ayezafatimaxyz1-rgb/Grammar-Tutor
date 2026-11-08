@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-for-yet-so",
     title: "FOR, YET and SO",
-    phase: 2,
+    phase: 3,
     unit: "u-fanboys",
     level: "Basic",
     minutes: 16,

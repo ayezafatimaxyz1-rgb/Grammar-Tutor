@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-or-nor",
     title: "OR and NOR",
-    phase: 2,
+    phase: 3,
     unit: "u-fanboys",
     level: "Basic",
     minutes: 16,
