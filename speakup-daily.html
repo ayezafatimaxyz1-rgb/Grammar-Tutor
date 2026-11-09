@@ -267,13 +267,8 @@ a.linkbtn.primary{background:var(--accent);color:var(--accent-ink)}
     <div><div class="eyebrow">AI coach</div><h1>Practise a real conversation</h1></div>
     <div class="card stack">
       <label class="eyebrow" for="scene">Scene</label>
-      <select id="scene">
-        <option value="cafe">Ordering at a cafe</option>
-        <option value="interview">Job interview</option>
-        <option value="smalltalk">Small talk with a new colleague</option>
-        <option value="doctor">Visiting the doctor</option>
-        <option value="free">Free chat about anything</option>
-      </select>
+      <select id="scene"></select>
+      <p class="muted small" id="sceneInfo"></p>
       <div id="freeChat"></div>
     </div>
   </section>
@@ -729,12 +724,15 @@ function askAI(input,tier,ms,signal,json){
 const aiErr=e=>{const c=e&&e.code;return c==="not_granted"?"The examiner needs your permission to ask Claude. Allow it from the page's Permissions menu.":c==="quota"?"Google's free limit for today is used up.":c==="rate_limited"?"Too many requests at once. Wait a minute.":c==="bad_key"?"Your Gemini key did not work. Check it in ⚙ Settings.":c==="offline"?"No internet connection.":"The examiner could not answer this time."};
 
 /* ---- reusable: AI chat ---- */
-function chatBox(el,{system,opening,onCount}){
+function chatBox(el,{system,opening,onCount,start}){
   el.innerHTML=`<div class="stack"><div class="bubbles" data-c></div><textarea data-m placeholder="Type your reply, or tap Speak and say it"></textarea><div class="row"><button class="rec" data-r>Speak</button><button class="primary" data-s>Send</button><button class="ghost" data-x>Start over</button></div><div class="banner hidden" data-o></div></div>`;
   const q=s=>el.querySelector(s);let chat=[],busy=false,count=0,r=null;
   const bub=(role,t)=>{const d=document.createElement("div");d.className="bub "+(role==="user"?"me":"ai");d.textContent=t;q("[data-c]").appendChild(d);return d};
-  function reset(){chat=[{role:"assistant",content:opening()}];q("[data-c]").innerHTML="";bub("assistant",chat[0].content)}
-  reset();
+  let token=0; /* start() (if given) brings a new opening line each time; a reset that comes later wins */
+  function reset(){const my=++token;chat=[];q("[data-c]").innerHTML="";
+    if(!start){chat=[{role:"assistant",content:opening()}];bub("assistant",chat[0].content);return}
+    const b=bub("assistant","…");start().then(t=>{if(my!==token)return;const op=t||opening();b.textContent=op;chat=[{role:"assistant",content:op},...chat]})}
+  if(!start)reset(); /* with start(), the first opening waits until the conversation is opened, so no request is spent before */
   async function send(){const text=q("[data-m]").value.trim();if(!text||busy)return;bub("user",text);q("[data-m]").value="";chat.push({role:"user",content:text});count++;onCount&&onCount(count);
     if(!sample){bub("assistant",(inClaude?"The AI coach works when this app is opened on claude.ai.":"To talk with the AI coach, add your free Gemini key in ⚙ Settings (the same key as Bolo and Likho).")+" For now, read your reply aloud three times, slowly, then faster.");return}
     busy=true;q("[data-s]").disabled=true;const b=bub("assistant","Thinking…");
@@ -926,10 +924,66 @@ function seg(s){document.querySelectorAll("[data-seg]").forEach(b=>b.setAttribut
 document.querySelector(".seg").onclick=e=>{const b=e.target.closest("[data-seg]");if(b)seg(b.dataset.seg)};
 
 /* ================= COACH ================= */
-const SCENES={cafe:"You are a friendly barista at a cafe. The learner is a customer.",interview:"You are a kind interviewer for an office job. Ask one interview question at a time.",smalltalk:"You are a new friendly colleague making small talk in the office kitchen.",doctor:"You are a calm doctor. The learner is a patient describing how they feel.",free:"You are a friendly English speaking partner. Chat about anything the learner likes."};
-const OPEN={cafe:"Hi there! What can I get for you today?",interview:"Thanks for coming in. Could you start by telling me a little about yourself?",smalltalk:"Hey, I don't think we've met. I'm Sam. Which team are you on?",doctor:"Hello, please have a seat. What seems to be the problem today?",free:"Hi! What would you like to talk about today?"};
-const free=chatBox($("#freeChat"),{system:()=>SCENES[$("#scene").value],opening:()=>OPEN[$("#scene").value],onCount:()=>bump("coach")});
-$("#scene").onchange=()=>free.reset();
+/* 32 scenes in six groups, and "Surprise me", where Mam invents a new scene every time. Every start brings a new opening
+   line with a new detail of the situation, never one of the last ones. */
+const SCENE_GROUPS=[
+ ["Daily life",[["cafe","Ordering at a cafe","You are a friendly barista at a busy cafe in Islamabad. The learner is a customer.","Hi there! What can I get for you today?"],
+  ["restaurant","At a restaurant","You are a waiter at a family restaurant in Lahore. Take the learner's order, suggest dishes and bring the bill at the end.","Good evening! A table for how many people?"],
+  ["grocery","At the general store","You are a shopkeeper at a general store in Rawalpindi. The learner is buying things for the week.","Hello! What do you need today?"],
+  ["pharmacy","At the pharmacy","You are a pharmacist. The learner needs medicine and advice for a small health problem.","Hello, how can I help you today?"],
+  ["ride","Taking a ride","You are a ride app driver in Karachi. Chat with the learner, ask about the route and talk about the traffic.","Hello! Are you going to the address in the app?"],
+  ["tailor","At the tailor's","You are a tailor. The learner wants a new suit stitched for a wedding next week.","Welcome! What would you like me to stitch for you?"],
+  ["phoneshop","A phone that stopped working","You are a salesperson at a mobile phone shop. The learner bought a phone last week that has a problem.","Hello again! What seems to be the problem with the phone?"],
+  ["neighbour","Meeting a new neighbour","You are a new neighbour who just moved in next door. Be friendly and ask about the area.","Hi! We just moved in next door. Have you lived here long?"]]],
+ ["Work and study",[["interview","Job interview","You are a kind interviewer for an office job. Ask one interview question at a time.","Thanks for coming in. Could you start by telling me a little about yourself?"],
+  ["smalltalk","Small talk with a colleague","You are a new friendly colleague making small talk in the office kitchen.","Hey, I don't think we've met. I'm Sam. Which team are you on?"],
+  ["meeting","A team meeting","You are a team manager running a weekly meeting. Ask the learner for an update and agree on next steps.","Okay, let's begin. Could you give us a quick update on your work?"],
+  ["admission","University admission office","You are an officer at a university admission office. The learner wants to apply for a master's programme.","Good morning. Which programme are you interested in?"],
+  ["ptm","Parent teacher meeting","You are a school teacher. The learner has come to talk about their younger brother's studies.","Thank you for coming. Shall we talk about how your brother is doing?"],
+  ["presentation","Questions after a presentation","You are an audience member. The learner has just given a presentation; ask them thoughtful questions about it.","That was interesting. Could you tell me more about your main point?"]]],
+ ["Offices and services",[["bank","Opening a bank account","You are a bank officer. The learner wants to open a new account.","Good morning! How can I help you today?"],
+  ["nadra","Renewing an ID card","You are an officer at a NADRA office. The learner needs to renew their identity card.","Next, please. What would you like to do today?"],
+  ["post","Sending a parcel","You are a clerk at a post office. The learner wants to send a parcel to another city.","Hello. Where would you like to send this?"],
+  ["police","Reporting a stolen phone","You are a polite police officer at a station. The learner's phone was stolen; ask for the details.","Please sit down. What happened?"],
+  ["doctor","Visiting the doctor","You are a calm doctor. The learner is a patient describing how they feel.","Hello, please have a seat. What seems to be the problem today?"],
+  ["complaint","A call to customer service","You are a customer service agent for an internet company. The learner calls with a problem; ask for details politely.","Thank you for calling. How can I help you today?"]]],
+ ["Travel",[["airport","Checking in at the airport","You are a check-in agent at Islamabad airport. The learner is flying abroad.","Good afternoon. May I see your passport and ticket, please?"],
+  ["hotel","At a hotel in Murree","You are a hotel receptionist in Murree. The learner is checking in for a family trip.","Welcome! Do you have a booking with us?"],
+  ["tourist","Helping a tourist in Lahore","You are a foreign tourist in Lahore who is lost. Ask the learner for directions and for advice on what to see.","Excuse me, could you help me? I'm trying to find the Badshahi Mosque."],
+  ["train","Buying a train ticket","You are a ticket clerk at a railway station. The learner wants to travel to another city.","Hello. Where would you like to go?"]]],
+ ["CSS and formal",[["board","A CSS interview board","You are a member of a CSS interview board in Pakistan. Ask one clear question at a time, and follow up on the learner's answers.","Good morning. Please introduce yourself."],
+  ["debate","A friendly debate","You are a polite debate partner. Take the opposite side of the learner's opinion on a social issue in Pakistan and ask for reasons.","Here is our topic: should every young person in Pakistan learn a skill as well as get a degree? What do you think?"],
+  ["journalist","Talking to a journalist","You are a journalist asking the learner about a problem in their city, like water, traffic or cleanliness.","Hello, I am writing a story about problems in your city. What is the biggest one, in your view?"],
+  ["seminar","A university seminar","You are a university tutor leading a seminar discussion. Ask the learner for their argument and evidence.","Welcome. Today's question: does social media do more good than harm? What is your position?"]]],
+ ["Friends and family",[["free","Free chat about anything","You are a friendly English speaking partner. Chat about anything the learner likes.","Hi! What would you like to talk about today?"],
+  ["oldfriend","Meeting an old school friend","You are an old school friend the learner has not seen for years. Catch up on each other's lives.","Is that you? I haven't seen you since school! How have you been?"],
+  ["wedding","At a family wedding","You are a friendly relative at a family wedding. Chat about the wedding, the family and the learner's plans.","What a lovely wedding! How are you related to the bride?"],
+  ["roommate","A new roommate","You are the learner's new roommate in a university hostel. Agree on the rules of the room and get to know each other.","Hi! I'm your new roommate. Shall we decide how to share the room?"]]]];
+const SCENE=Object.fromEntries(SCENE_GROUPS.flatMap(([g,l])=>l.map(([id,n,sys,op])=>[id,{n,sys,op}])));
+const TWISTS=["it is very busy right now","something has gone wrong","it is the learner's first time here","the learner seems to be in a hurry","there is a small misunderstanding","you are very friendly and chatty","you are polite but a little strict","it is late in the evening","there is a change or a special offer today","the learner needs to ask for a favour"];
+$("#scene").innerHTML=`<option value="surprise">🎲 Surprise me: a new scene every time</option>`+SCENE_GROUPS.map(([g,l])=>`<optgroup label="${esc(g)}">${l.map(([id,n])=>`<option value="${id}">${esc(n)}</option>`).join("")}</optgroup>`).join("");
+$("#scene").value=SCENE[store.get("scene","surprise")]?store.get("scene","surprise"):"surprise";
+let surprise=store.get("surprise",null),surpriseSeen=store.get("surpriseSeen",[])||[],openSeen=store.get("openSeen",[])||[];
+const sceneNow=()=>$("#scene").value==="surprise"?(surprise||SCENE.free):SCENE[$("#scene").value]||SCENE.cafe;
+const renderSceneInfo=()=>{const sc=sceneNow(),first=(sc.sys.match(/^[^.]*\./)||[sc.sys])[0];$("#sceneInfo").textContent=($("#scene").value==="surprise"&&surprise?"🎲 "+sc.n+". ":"")+"🎭 The coach is "+first.replace(/^You are /i,"").replace(/\.$/,"")+"."};
+async function startScene(){
+  await new Promise(r=>setTimeout(r,0));await aiReady;if(!sample)return null; /* the first start runs before the AI is set up below */
+  const ctl=new AbortController(),stop=deadline(30000,()=>ctl.abort()),twist=TWISTS[Math.floor(Math.random()*TWISTS.length)];
+  try{
+    if($("#scene").value==="surprise"){
+      const r=await askAI(`Invent ONE new, realistic role-play scene for an English learner from Pakistan (first language Urdu) who is preparing for the CSS exam: everyday life, work, study, travel, public offices or a formal situation, often in Pakistan. It must not be one of these: ${[...Object.values(SCENE).map(x=>x.n),...surpriseSeen].join(" | ")}. Never use dashes.
+Reply with ONLY JSON: {"name": "a short name for the scene", "role": "who you are and the situation, in one or two sentences starting with: You are", "opening": "your first line in role: one or two short sentences, ending with a question"}`,"quick",12000,ctl.signal,true);
+      if(!r||!r.role||!r.opening)throw{code:"empty_completion"};
+      surprise={n:String(r.name||"A surprise scene").trim(),sys:String(r.role).trim(),op:String(r.opening).trim()};store.set("surprise",surprise);
+      surpriseSeen=[...surpriseSeen,surprise.n].slice(-60);store.set("surpriseSeen",surpriseSeen);renderSceneInfo();return surprise.op}
+    const sc=sceneNow(),r=await askAI(`${sc.sys} You are starting a role-play with an English learner from Pakistan. Write ONLY your first line in role: one or two short sentences that open the conversation and end with a question. This time, ${twist}.${openSeen.length?` Make it different from these openings: ${openSeen.slice(-12).join(" | ")}.`:""} Never use dashes.`,"quick",12000,ctl.signal,false);
+    const t=String(r&&r.text||"").trim().replace(/^["'“]+|["'”]+$/g,"");if(!t)throw{code:"empty_completion"};
+    openSeen=[...openSeen,t].slice(-40);store.set("openSeen",openSeen);return t
+  }catch(e){return null}finally{stop()}}
+let coachOpen=false;
+const free=chatBox($("#freeChat"),{system:()=>sceneNow().sys,opening:()=>sceneNow().op,onCount:()=>bump("coach"),start:startScene});
+$("#scene").onchange=()=>{store.set("scene",$("#scene").value);renderSceneInfo();free.reset()};
+renderSceneInfo();
 
 /* ================= TESTS ================= */
 function renderTests(){const passed=Object.keys(prog.tests).filter(k=>prog.done[k+"test"]).length;
@@ -960,7 +1014,7 @@ function show(v,keep){if(!VIEWS.includes(v))v="today";if((v==="lesson"&&curLesso
   document.querySelectorAll("[data-view]").forEach(s=>s.classList.toggle("hidden",s.id!=="v-"+v));
   const tab=v==="lesson"?"course":v==="placement"?"today":v;
   document.querySelectorAll("[data-tab]").forEach(b=>{if(b.dataset.tab===tab)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
-  if(v==="course")renderCourse();if(v==="tests")renderTests();if(v==="today"){renderContinue();renderGoals()}if(v==="settings")renderSettings();
+  if(v==="course")renderCourse();if(v==="coach"&&!coachOpen){coachOpen=true;free.reset()}if(v==="tests")renderTests();if(v==="today"){renderContinue();renderGoals()}if(v==="settings")renderSettings();
   if(location.hash!=="#"+v)history.replaceState(null,"","#"+v);window.scrollTo(0,0)}
 document.querySelector("nav.tabs").onclick=e=>{const b=e.target.closest("[data-tab]");if(b){if(b.dataset.tab==="course")openWeek=null;show(b.dataset.tab)}};
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(h!=="lesson"&&h!=="placement")show(h)});

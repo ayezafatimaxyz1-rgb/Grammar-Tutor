@@ -36,7 +36,7 @@ const fakes = () => {
   const check = (name, ok, info) => { results.push(ok); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
   const gem = [];
   // how Google answers the grading: "ok", Flash slow ("hangFlash"), Flash's daily limit used up ("quotaFlash"), or no answer at all ("hangAll")
-  let examMode = "ok", release = null, phSets = 0; const hold = new Promise((r) => { release = r; });
+  let examMode = "ok", release = null, phSets = 0, scenes = 0, openings = 0; const hold = new Promise((r) => { release = r; });
   const GRADE = { fluency: 7, grammar: 6, vocabulary: 7, task: 8, good: "You gave clear facts about yourself.", fix: "I am living in Multan → I live in Multan", better: "I'm Aiza, and I live in Multan.", next: "Add one interesting fact." };
   const gemini = async (r) => {
     const u = r.request().url();
@@ -50,8 +50,12 @@ const fakes = () => {
       if (examMode === "hangAll" || (examMode === "hangFlash" && !lite)) { await hold; return r.fulfill({ json: { candidates: [{ content: { parts: [{ text: JSON.stringify(GRADE) }] } }] } }).catch(() => {}); }
     }
     if (/Write 8 NEW phrases/.test(prompt)) phSets++;
+    if (/Invent ONE new, realistic role-play scene/.test(prompt)) scenes++;
+    if (/You are starting a role-play/.test(prompt)) openings++;
     const text = /speaking examiner/.test(prompt) ? JSON.stringify(GRADE)
       : /Write 8 NEW phrases/.test(prompt) ? JSON.stringify({ phrases: Array.from({ length: 8 }, (_, k) => ({ text: `Shall we take a rickshaw to Anarkali, set ${phSets} number ${k + 1}?`, use: "Making plans", tip: "Rise at the end of a question." })) })
+      : /Invent ONE new, realistic role-play scene/.test(prompt) ? JSON.stringify({ name: `Scene ${scenes}`, role: "You are a librarian at a public library in Lahore. The learner wants a library card.", opening: `Welcome to the library, visitor ${scenes}! How can I help you?` })
+      : /You are starting a role-play/.test(prompt) ? `Opening ${openings}: Good morning, what brings you here today?`
       : /ONE new topic for a 1 minute talk/.test(prompt) ? JSON.stringify({ topic: "Describe the busiest bazaar in your city.", help: "Where it is, what people buy there, and why you like it or not." })
       : "Reply: Nice to meet you, Aiza! Where are you from?\nBetter way to say it: Hi, I'm Aiza.\nTip: Say I'm instead of I am in friendly talk.";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
@@ -114,6 +118,18 @@ const fakes = () => {
   const cc = gem.find((g) => /English speaking coach/.test(g.prompt));
   check("the coach answers with the fast Flash-Lite model on my own key", !!cc && cc.model === "gemini-2.5-flash-lite" && cc.key === KEY_TEXT && cc.think?.thinkingBudget === 0 && cc.roles.split(",").at(-1) === "user" && (await p.textContent("#freeChat [data-c]")).includes("Where are you from?"));
   check("and the coach's reply is spoken aloud", (await p.evaluate(() => window.__spoken.join("|"))).includes("Nice to meet you, Aiza! Where are you from?"));
+  // variety in the coach: 30 scenes, Surprise me, and a new opening every time
+  check("Coach: 32 scenes in six groups, and Surprise me first", (await p.$$("#scene option")).length === 33 && (await p.$$("#scene optgroup")).length === 6 && (await p.inputValue("#scene")) === "surprise");
+  check("Surprise me: Mam invents a new scene, says who the coach is, and opens it", scenes === 1 && (await p.textContent("#sceneInfo")).includes("🎲 Scene 1") && (await p.textContent("#sceneInfo")).includes("The coach is a librarian at a public library in Lahore") && (await p.textContent("#freeChat [data-c]")).includes("Welcome to the library, visitor 1!"));
+  await p.selectOption("#scene", "doctor"); await p.waitForTimeout(400);
+  let op = gem.filter((g) => /You are starting a role-play/.test(g.prompt));
+  check("a chosen scene opens with a new line from Mam, with a new detail of the situation", op.length === 1 && op[0].prompt.includes("You are a calm doctor") && op[0].prompt.includes("This time,") && op[0].model === "gemini-2.5-flash-lite" && (await p.textContent("#freeChat [data-c]")).startsWith("Opening 1") && (await p.textContent("#sceneInfo")).includes("The coach is a calm doctor"));
+  await p.click("#freeChat [data-x]"); await p.waitForTimeout(400);
+  op = gem.filter((g) => /You are starting a role-play/.test(g.prompt));
+  check("Start over: another opening, different from the ones before", op.length === 2 && op[1].prompt.includes("Make it different from these openings: Opening 1") && (await p.textContent("#freeChat [data-c]")).startsWith("Opening 2"));
+  await p.selectOption("#scene", "surprise"); await p.waitForTimeout(400);
+  const inv = gem.filter((g) => /Invent ONE new, realistic role-play scene/.test(g.prompt));
+  check("Surprise me again: a scene never given before", inv.length === 2 && inv[1].prompt.includes("Scene 1") && (await p.textContent("#sceneInfo")).includes("🎲 Scene 2"));
   // the weekly test, graded by Flash
   await p.evaluate(() => { const pr = JSON.parse(localStorage.getItem("su_prog") || "{}"); pr.done = { w1learn: 1, w1words: 1, w1sounds: 1, w1speak: 1, w1talk: 1 }; pr.placed = true; localStorage.setItem("su_prog", JSON.stringify(pr)); });
   await p.reload(); await p.waitForTimeout(500);
