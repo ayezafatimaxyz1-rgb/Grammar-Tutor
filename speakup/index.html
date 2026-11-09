@@ -686,7 +686,7 @@ function talkBox(el,secs,onDone){
     iv=setInterval(()=>{left--;q("[data-t]").textContent=fmt(Math.max(left,0));if(txt)stats(txt);if(left<=0){q("[data-t]").textContent="Done!";stop(true)}},1000)};
 }
 /* ---- AI: Claude inside claude.ai; on the website, the free Gemini key that Bolo and Likho keep on this phone (the same site) ---- */
-let sample=null;
+let sample=null,aiReady=Promise.resolve();
 const GKEY="bolo.gemini";
 const gget=()=>{try{return JSON.parse(localStorage.getItem(GKEY)||"null")}catch(e){return null}};
 const gsave=c=>{try{localStorage.setItem(GKEY,JSON.stringify(c))}catch(e){}};
@@ -702,16 +702,43 @@ function geminiAI(){const cfg=gget();if(!cfg||!cfg.key)return null;
     for(const t of turns){const role=t.role==="assistant"?"model":"user",last=contents[contents.length-1];if(last&&last.role===role)last.parts[0].text+="\n\n"+t.content;else contents.push({role,parts:[{text:t.content}]})}
     const tm=(cfg.think&&cfg.think[model])||(/gemini-2\./.test(model)?"budget":"level"),think=tm==="none"?null:(opts.modelTier==="quick"?OFF:LOW)[tm];
     const body={contents,generationConfig:{temperature:0.7,...(json?{responseMimeType:"application/json"}:{}),...(think?{thinkingConfig:think}:{})}};
-    let res;try{res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"content-type":"application/json","x-goog-api-key":cfg.key},body:JSON.stringify(body)})}catch(e){throw{code:"offline"}}
+    let res;try{res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,{method:"POST",headers:{"content-type":"application/json","x-goog-api-key":cfg.key},body:JSON.stringify(body),signal:opts.signal})}catch(e){throw{code:e&&e.name==="AbortError"?"cancelled":"offline"}}
     if(!res.ok){const bt=await res.text().catch(()=>"");
       if(res.status===400&&/think/i.test(bt)&&tm!=="none"&&tries<2){cfg.think={...cfg.think,[model]:tm==="level"?"budget":"none"};gsave(cfg);return call(input,opts,json,tries+1)} /* this model wants thinking set another way */
-      if(res.status>=500&&tries<3){await new Promise(r=>setTimeout(r,1500*(tries+1)));return call(input,opts,json,tries+1)} /* Google is busy: wait and ask again */
-      throw{code:res.status===429?"rate_limited":res.status===403||(res.status===400&&/api[ _]?key/i.test(bt))?"bad_key":"upstream_error"}}
+      if(res.status>=500&&tries<3&&!(opts.signal&&opts.signal.aborted)){await new Promise(r=>setTimeout(r,1500*(tries+1)));return call(input,opts,json,tries+1)} /* Google is busy: wait and ask again */
+      const perDay=/per ?day|daily|PerDay/i.test(bt);
+      if(res.status===429&&!perDay&&(opts.rateTries||0)<2&&!(opts.signal&&opts.signal.aborted)){await new Promise(r=>setTimeout(r,Math.min(30,Math.max(3,Number((bt.match(/retryDelay\W+(\d+)/)||[])[1])||10))*1000));return call(input,{...opts,rateTries:(opts.rateTries||0)+1},json,tries)} /* too many this minute: wait as long as Google asks */
+      throw{code:res.status===429?(perDay?"quota":"rate_limited"):res.status===403||(res.status===400&&/api[ _]?key/i.test(bt))?"bad_key":res.status>=500?"busy":"upstream_error"}}
     const data=await res.json(),c0=data.candidates&&data.candidates[0],text=((c0&&c0.content&&c0.content.parts)||[]).filter(x=>!x.thought).map(x=>x.text||"").join("");
     if(!text)throw{code:"empty_completion"};return text};
   const fn=async(input,opts={})=>{const text=await call(input,opts);try{opts.onText&&opts.onText({text})}catch(e){}return{text}};
   fn.json=async(input,opts={})=>{const t=await call(input,opts,true);try{return JSON.parse(t)}catch(e){const m=t.match(/\{[\s\S]*\}/);if(m)return JSON.parse(m[0]);throw{code:"invalid_json"}}};
   return fn}
+
+/* ---- time limits that wait while the app is in the background, and a backup model ----
+   Without them one stuck request left "Grading your answer…" on the screen for ever. */
+let hiddenAt=0,shownAt=Date.now();
+document.addEventListener("visibilitychange",()=>{if(document.hidden)hiddenAt=Date.now();else shownAt=Date.now()});
+function deadline(ms,fn){let t=setTimeout(function tick(){const back=Date.now()-shownAt;if(document.hidden||back<20000)t=setTimeout(tick,document.hidden?5000:20000-back);else fn()},ms);return()=>clearTimeout(t)}
+const whenVisible=()=>new Promise(ok=>{if(!document.hidden){ok();return}const f=()=>{if(!document.hidden){document.removeEventListener("visibilitychange",f);ok()}};document.addEventListener("visibilitychange",f)});
+/* On the website: the first model, and the other one too if the first is slow (after ms) or fails (a busy server, its free
+   daily limit used up). The first answer wins. */
+function askAI(input,tier,ms,signal,json){
+  const one=(t,sg)=>json?sample.json(input,{modelTier:t,cache:false,signal:sg}):sample(input,{modelTier:t,cache:false,signal:sg});
+  if(inClaude)return one(tier,signal);
+  return new Promise((ok,no)=>{
+    if(signal.aborted){no({code:"cancelled"});return}
+    const runs=[];let done=false,stopT=()=>{};
+    const finish=()=>{done=true;stopT();runs.forEach(r=>r.c.abort());signal.removeEventListener("abort",onAbort)};
+    const onAbort=()=>{if(!done){finish();no({code:"cancelled"})}};
+    const run=t=>{const r={c:new AbortController(),live:true};runs.push(r);
+      one(t,r.c.signal).then(x=>{if(!done){finish();ok(x)}},e=>{r.live=false;if(done)return;
+        if(runs.length===1&&!signal.aborted&&!["cancelled","bad_key","offline","not_granted"].includes(e&&e.code)){stopT();run(t==="quick"?"default":"quick");return}
+        if(!runs.some(y=>y.live)){finish();no(e)}})};
+    signal.addEventListener("abort",onAbort);
+    stopT=deadline(ms,()=>{if(!done)run(tier==="quick"?"default":"quick")});
+    run(tier)})}
+const aiErr=e=>{const c=e&&e.code;return c==="not_granted"?"The examiner needs your permission to ask Claude. Allow it from the page's Permissions menu.":c==="quota"?"Google's free limit for today is used up.":c==="rate_limited"?"Too many requests at once. Wait a minute.":c==="bad_key"?"Your Gemini key did not work. Check it in ⚙ Settings.":c==="offline"?"No internet connection.":"The examiner could not answer this time."};
 
 /* ---- reusable: AI chat ---- */
 function chatBox(el,{system,opening,onCount}){
@@ -724,9 +751,11 @@ function chatBox(el,{system,opening,onCount}){
     if(!sample){bub("assistant",(inClaude?"The AI coach works when this app is opened on claude.ai.":"To talk with the AI coach, add your free Gemini key in ⚙ Settings (the same key as Bolo and Likho).")+" For now, read your reply aloud three times, slowly, then faster.");return}
     busy=true;q("[data-s]").disabled=true;const b=bub("assistant","Thinking…");
     const sys=system()+" You are also an English speaking coach for a learner whose first language is Urdu or Hindi. Reply in this exact format:\nReply: <your natural reply in the role, 1 to 2 short sentences, ending with a question to keep the conversation going>\nBetter way to say it: <the learner's last message rewritten in natural, correct spoken English, or 'Perfect, no changes needed!'>\nTip: <one short tip about grammar, word choice or pronunciation from their message>\nUse simple words. Never use dashes.";
-    try{const res=await sample([{role:"user",content:sys+"\n\nThe conversation so far follows. Start in role."},{role:"assistant",content:"Understood."},...chat],{cache:false,modelTier:"quick",onText:({text})=>{b.textContent=text}});
+    const ctl=new AbortController(),stopT=deadline(45000,()=>ctl.abort());
+    try{const res=await askAI([{role:"user",content:sys+"\n\nThe conversation so far follows. Start in role."},{role:"assistant",content:"Understood."},...chat],"quick",15000,ctl.signal,false);
       b.textContent=res.text;chat.push({role:"assistant",content:res.text});const m=res.text.match(/Reply:\s*(.+)/);if(m)say(m[1]);
-    }catch(e){b.textContent=e&&e.code==="not_granted"?"The coach needs your permission to ask Claude. Allow it from the page's permissions menu.":e&&e.code==="rate_limited"?"Too many messages at once. Wait a minute and try again.":e&&e.code==="bad_key"?"Your Gemini key did not work. Check it in ⚙ Settings.":e&&e.code==="offline"?"No internet connection. Check it and send again.":"Something went wrong reaching the coach. Try sending again.";chat.pop()}
+    }catch(e){b.textContent=e&&e.code==="not_granted"?"The coach needs your permission to ask Claude. Allow it from the page's permissions menu.":e&&e.code==="rate_limited"?"Too many messages at once. Wait a minute and try again.":e&&e.code==="bad_key"?"Your Gemini key did not work. Check it in ⚙ Settings.":e&&e.code==="offline"?"No internet connection. Check it and send again.":e&&e.code==="cancelled"?"The coach took too long. Send your message again.":e&&e.code==="quota"?"Google's free limit for today is used up. Try again tomorrow.":"Something went wrong reaching the coach. Try sending again.";chat.pop()}
+    finally{stopT()}
     busy=false;q("[data-s]").disabled=false}
   q("[data-s]").onclick=send;q("[data-x]").onclick=reset;
   q("[data-m]").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}});
@@ -805,24 +834,53 @@ $("#lessonBack").onclick=()=>show("course");
 function renderTest(body,head,i,w){const key="w"+(SEQ[i].wi+1);const prev=prog.tests[key];
   body.innerHTML=head+`<div class="card stack"><div class="eyebrow">Speaking test · pass with 60%</div><h3>${esc(w.test)}</h3><p class="muted small">Speak your answer, or type exactly what you would say. Aim for at least ${Math.round(w.secs*1.6)} words. You'll get scores for fluency, grammar and vocabulary.</p>${prev?`<div class="note">Your best score so far: ${prev}%</div>`:""}<textarea data-ans placeholder="Your answer…" style="min-height:160px"></textarea><div class="row"><button class="rec" data-r>Speak answer</button><button class="primary" data-g>Submit for grading</button></div><div class="muted small" data-wc>0 words</div></div><div data-res></div>`;
   const q=s=>body.querySelector(s);let r=null;
-  q("[data-ans]").oninput=()=>{q("[data-wc]").textContent=norm(q("[data-ans]").value).length+" words"};
+  const dk="ans_"+key;q("[data-ans]").value=store.get(dk,"")||""; /* the answer is kept on the phone: closing the app does not lose it */
+  q("[data-ans]").oninput=()=>{q("[data-wc]").textContent=norm(q("[data-ans]").value).length+" words";store.set(dk,q("[data-ans]").value)};q("[data-ans]").oninput();
   q("[data-r]").onclick=()=>{const btn=q("[data-r]");if(r){r.stop();r=null;return}const startVal=q("[data-ans]").value;r=listen({btn,continuous:true,label:"Speak answer",onText:(t,st)=>{if(st==="nomic"){q("[data-wc]").textContent=nomic()+" You can also type your answer.";return}q("[data-ans]").value=(startVal?startVal+" ":"")+t;q("[data-ans]").oninput()},onEnd:()=>{r=null}})};
-  q("[data-g]").onclick=async()=>{const ans=q("[data-ans]").value.trim();const res=q("[data-res]");if(norm(ans).length<15){res.innerHTML=`<div class="banner">Your answer is a bit short. Write or say at least 15 words so it can be graded.</div>`;return}
-    if(!sample){selfGrade(res,i,key);return}
-    q("[data-g]").disabled=true;res.innerHTML=`<div class="card"><p class="muted">Grading your answer…</p></div>`;
-    try{const g=await sample.json(`You are a fair, encouraging English speaking examiner. The learner is at "${COURSES[courseOf(SEQ[i].wi)].sub}" level, week ${SEQ[i].wi+1}: ${w.t}. The task was: "${w.test}". Their answer (spoken or typed) is below. Score each 0 to 10 for this level: fluency (length, flow, linking words), grammar (accuracy), vocabulary (range, use of words like: ${w.v.map(v=>v[0]).join(", ")}), and task (did they answer everything). Return JSON only: {"fluency":n,"grammar":n,"vocabulary":n,"task":n,"good":"one sentence on what they did well","fix":"the 2 most important corrections, each as wrong → right","better":"a short improved version of 2 or 3 of their sentences","next":"one tip for next time"}. Use simple English and never use dashes in sentences.\n\nAnswer:\n${ans}`,{modelTier:"default",cache:false});
-      const total=Math.round(((+g.fluency||0)+(+g.grammar||0)+(+g.vocabulary||0)+(+g.task||0))/40*100);
-      showResult(res,i,key,total,`<div class="rubric"><div><b>${g.fluency}</b><span>Fluency</span></div><div><b>${g.grammar}</b><span>Grammar</span></div><div><b>${g.vocabulary}</b><span>Vocabulary</span></div></div><p><b>Well done:</b> ${esc(g.good||"")}</p><p><b>Fix:</b> ${esc(g.fix||"")}</p><div class="note"><b>Better version:</b> ${esc(g.better||"")}</div><p class="muted small"><b>Next time:</b> ${esc(g.next||"")}</p>`);
-    }catch(e){res.innerHTML="";selfGrade(res,i,key,e&&e.code==="not_granted"?"The AI examiner needs your permission. Grade yourself honestly for now:":"The AI examiner isn't reachable right now. Grade yourself honestly:")}
-    q("[data-g]").disabled=false};
+  q("[data-g]").onclick=()=>{const ans=q("[data-ans]").value.trim();const res=q("[data-res]");if(norm(ans).length<15){res.innerHTML=`<div class="banner">Your answer is a bit short. Write or say at least 15 words so it can be graded.</div>`;return}
+    gradeTest(res,i,key,w,ans,q("[data-g]"))};
+  const pend=store.get("grading",null),last=prog.grades&&prog.grades[key];
+  if(pend&&pend.key===key&&pend.ans&&Date.now()-pend.at<43200000){q("[data-ans]").value=pend.ans;q("[data-ans]").oninput();gradeTest(q("[data-res]"),i,key,w,pend.ans,q("[data-g]"))} /* the app closed while grading: it goes on */
+  else if(last)showResult(q("[data-res]"),i,key,last.total,gradeDetail(last.g)+`<p class="muted small">Graded ${new Date(last.at).toLocaleDateString("en-GB",{day:"numeric",month:"short"})}. Change your answer and submit again for a new grade.</p>`,true);
+}
+const gradeDetail=g=>`<div class="rubric"><div><b>${+g.fluency||0}</b><span>Fluency</span></div><div><b>${+g.grammar||0}</b><span>Grammar</span></div><div><b>${+g.vocabulary||0}</b><span>Vocabulary</span></div></div><p><b>Well done:</b> ${esc(g.good||"")}</p><p><b>Fix:</b> ${esc(g.fix||"")}</p><div class="note"><b>Better version:</b> ${esc(g.better||"")}</div><p class="muted small"><b>Next time:</b> ${esc(g.next||"")}</p>`;
+/* Grading: Flash first, Flash-Lite too after 20 seconds or if Flash fails; at most 75 seconds of the learner's time (time
+   in another app does not count), with Stop, Try again and Grade myself. */
+async function gradeTest(res,i,key,w,ans,gBtn){
+  await aiReady;
+  if(!sample){selfGrade(res,i,key);return}
+  store.set("grading",{i,key,ans,at:Date.now()});
+  if(gBtn)gBtn.disabled=true;
+  const ctl=new AbortController(),t0=Date.now();let timedOut=false;
+  res.innerHTML=`<div class="card stack"><p class="muted" data-gs>Grading your answer…</p><div class="row"><button class="ghost mini" data-stop>Stop</button></div></div>`;
+  res.querySelector("[data-stop]").onclick=()=>ctl.abort();
+  const clock=setInterval(()=>{const n=Math.round((Date.now()-t0)/1000),sp=res.querySelector("[data-gs]");if(sp&&n>=3)sp.textContent="Grading your answer… "+n+" s"+(document.hidden||hiddenAt>=t0?" · it goes on while you are away":"")},1000);
+  const stop=deadline(75000,()=>{timedOut=true;ctl.abort()});
+  const prompt=`You are a fair, encouraging English speaking examiner. The learner is at "${COURSES[courseOf(SEQ[i].wi)].sub}" level, week ${SEQ[i].wi+1}: ${w.t}. The task was: "${w.test}". Their answer (spoken or typed) is below. Score each 0 to 10 for this level: fluency (length, flow, linking words), grammar (accuracy), vocabulary (range, use of words like: ${w.v.map(v=>v[0]).join(", ")}), and task (did they answer everything). Return JSON only: {"fluency":n,"grammar":n,"vocabulary":n,"task":n,"good":"one sentence on what they did well","fix":"the 2 most important corrections, each as wrong → right","better":"a short improved version of 2 or 3 of their sentences","next":"one tip for next time"}. Use simple English and never use dashes in sentences.\n\nAnswer:\n${ans}`;
+  try{
+    let g;
+    for(let k=0;;k++){const t1=Date.now();try{g=await askAI(prompt,"default",20000,ctl.signal,true);break}
+      catch(e){if(k<2&&!ctl.signal.aborted&&!(e&&e.code==="cancelled")&&(document.hidden||hiddenAt>=t1)){await whenVisible();continue}throw e}} /* broken while in another app: ask again on return */
+    if(!g||typeof g!=="object")throw{code:"invalid_json"};
+    const total=Math.round(((+g.fluency||0)+(+g.grammar||0)+(+g.vocabulary||0)+(+g.task||0))/40*100);
+    prog.grades=prog.grades||{};prog.grades[key]={at:Date.now(),total,g:{fluency:+g.fluency||0,grammar:+g.grammar||0,vocabulary:+g.vocabulary||0,task:+g.task||0,good:String(g.good||""),fix:String(g.fix||""),better:String(g.better||""),next:String(g.next||"")}};
+    store.set("grading",null);save();
+    showResult(res,i,key,total,gradeDetail(prog.grades[key].g));
+  }catch(e){
+    store.set("grading",null);
+    const msg=timedOut?"Grading took too long this time.":e&&e.code==="cancelled"?"Stopped.":aiErr(e);
+    res.innerHTML=`<div class="card stack"><p>${esc(msg)} Your answer is saved on this phone.</p><div class="row"><button class="primary" data-again>Try again</button><button class="ghost" data-self>Grade myself</button></div></div>`;
+    res.querySelector("[data-again]").onclick=()=>gradeTest(res,i,key,w,ans,gBtn);
+    res.querySelector("[data-self]").onclick=()=>selfGrade(res,i,key);
+  }finally{stop();clearInterval(clock);if(gBtn)gBtn.disabled=false}
 }
 function selfGrade(res,i,key,msg){const items=["I spoke or wrote for the full task without stopping a lot","I used this week's phrases or words","My sentences were mostly correct","I answered every part of the question","I said it aloud clearly at least once"];
   res.innerHTML=`<div class="card stack"><h3>Self check</h3><p class="muted small">${esc(msg||(inClaude?"The AI examiner works when the app is opened on claude.ai. Grade yourself honestly:":"For AI grading, add your free Gemini key in ⚙ Settings. For now, grade yourself honestly:"))}</p>${items.map((t,k)=>`<label class="check"><input type="checkbox" id="sg${k}"><span>${t}</span></label>`).join("")}<button class="primary" data-sg>See my score</button></div>`;
   res.querySelector("[data-sg]").onclick=()=>{const n=res.querySelectorAll("input:checked").length;showResult(res,i,key,n*20,`<p class="muted small">Self graded. ${inClaude?"When you can, open the app on claude.ai for AI feedback.":"Add your Gemini key in ⚙ Settings for AI feedback."}</p>`)}}
-function showResult(res,i,key,total,detail){const pass=total>=60;prog.tests[key]=Math.max(prog.tests[key]||0,total);save();
+function showResult(res,i,key,total,detail,quiet){const pass=total>=60;prog.tests[key]=Math.max(prog.tests[key]||0,total);save();
   res.innerHTML=`<div class="card stack"><div class="row between"><h2>${pass?"Passed!":"Almost there"}</h2><span class="badge ${pass?"pass":"open"}">${total}%</span></div>${detail}${pass?`<button class="primary block" data-nx>Unlock next week +${XP.test} XP</button>`:`<p>You need 60% to pass. Read the better version aloud twice, then try again.</p>`}</div>`;
-  if(pass){res.querySelector("[data-nx]").onclick=()=>{finish(i,XP.test+Math.round(total/10));toast("Week passed! Next week unlocked.");openWeek=null;const n=nextIdx();if(n>=0)openLesson(n);else show("course")}}
-  res.scrollIntoView({behavior:"smooth",block:"start"})}
+  if(pass){res.querySelector("[data-nx]").onclick=()=>{store.set("ans_"+key,"");finish(i,XP.test+Math.round(total/10));toast("Week passed! Next week unlocked.");openWeek=null;const n=nextIdx();if(n>=0)openLesson(n);else show("course")}}
+  if(!quiet)res.scrollIntoView({behavior:"smooth",block:"start"})}
 
 /* ================= PRACTICE ================= */
 let cat=Object.keys(PHRASES)[0],pi=0,rec=null,phCounted="";
@@ -893,7 +951,7 @@ document.addEventListener("click",e=>{const g=e.target.closest("[data-go]");if(g
   const a=e.target.closest("[data-act]");if(a){if(a.dataset.act==="placement")placement();if(a.dataset.act==="begin"){prog.placed=true;prog.start=0;save();openLesson(0)}}});
 
 function renderAll(){renderTop();renderGoals();renderContinue();$("#placeCard").classList.toggle("hidden",prog.placed||isDone(0));if(!$("#v-course").classList.contains("hidden"))renderCourse();renderTests()}
-if(inClaude){window.claude.use("sample").then(s=>{sample=s}).catch(()=>{})}else sample=geminiAI();
+aiReady=inClaude?window.claude.use("sample").then(s=>{sample=s}).catch(()=>{}):Promise.resolve(sample=geminiAI());
 
 /* ================= SETTINGS ================= */
 $("#setBtn").onclick=()=>show("settings");
@@ -929,6 +987,7 @@ $("#installBtn").onclick=async()=>{const ev=installEv;if(!ev)return;installEv=nu
 (async()=>{const g=gget();if(!inClaude&&g&&g.key&&(!g.fast||g.v!==2)){try{gsave({...g,...chooseModels(await listModels(g.key))});sample=geminiAI()}catch(e){}}})();
 renderSwap();renderPhrase();renderTopic();renderAll();
 show(["lesson","placement"].includes(location.hash.slice(1))?"today":(location.hash.slice(1)||"today"));
+{const pend=store.get("grading",null);if(pend&&SEQ[pend.i]&&Date.now()-pend.at<43200000)openLesson(pend.i)} /* the app closed while a test was being graded: it goes on */
 })();
 </script>
 
