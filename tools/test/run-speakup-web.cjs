@@ -36,7 +36,7 @@ const fakes = () => {
   const check = (name, ok, info) => { results.push(ok); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
   const gem = [];
   // how Google answers the grading: "ok", Flash slow ("hangFlash"), Flash's daily limit used up ("quotaFlash"), or no answer at all ("hangAll")
-  let examMode = "ok", release = null; const hold = new Promise((r) => { release = r; });
+  let examMode = "ok", release = null, phSets = 0; const hold = new Promise((r) => { release = r; });
   const GRADE = { fluency: 7, grammar: 6, vocabulary: 7, task: 8, good: "You gave clear facts about yourself.", fix: "I am living in Multan → I live in Multan", better: "I'm Aiza, and I live in Multan.", next: "Add one interesting fact." };
   const gemini = async (r) => {
     const u = r.request().url();
@@ -49,7 +49,10 @@ const fakes = () => {
       if (examMode === "quotaFlash" && !lite) return r.fulfill({ status: 429, json: { error: { code: 429, message: "Quota exceeded for metric: generate_content_free_tier_requests, limit: 20. GenerateRequestsPerDayPerProjectPerModel-FreeTier", status: "RESOURCE_EXHAUSTED" } } });
       if (examMode === "hangAll" || (examMode === "hangFlash" && !lite)) { await hold; return r.fulfill({ json: { candidates: [{ content: { parts: [{ text: JSON.stringify(GRADE) }] } }] } }).catch(() => {}); }
     }
+    if (/Write 8 NEW phrases/.test(prompt)) phSets++;
     const text = /speaking examiner/.test(prompt) ? JSON.stringify(GRADE)
+      : /Write 8 NEW phrases/.test(prompt) ? JSON.stringify({ phrases: Array.from({ length: 8 }, (_, k) => ({ text: `Shall we take a rickshaw to Anarkali, set ${phSets} number ${k + 1}?`, use: "Making plans", tip: "Rise at the end of a question." })) })
+      : /ONE new topic for a 1 minute talk/.test(prompt) ? JSON.stringify({ topic: "Describe the busiest bazaar in your city.", help: "Where it is, what people buy there, and why you like it or not." })
       : "Reply: Nice to meet you, Aiza! Where are you from?\nBetter way to say it: Hi, I'm Aiza.\nTip: Say I'm instead of I am in friendly talk.";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
   };
@@ -87,6 +90,21 @@ const fakes = () => {
   await p.click("#phRec"); await p.waitForTimeout(700);
   check("a phone without Pakistani English listens with Indian English at once, and remembers it", (await p.evaluate(() => window.__langs.join())) === "en-PK,en-IN" && (await p.textContent("#phScore")) === "100%" && (await p.evaluate(() => JSON.parse(localStorage.getItem("su_set")).noPK)) === true);
   await p.evaluate(() => { window.__noPK = false; });
+  // new phrases from Mam, never the same set again
+  check("a CSS interview set of phrases too", (await p.textContent("#phraseCats")).includes("CSS interview"));
+  await p.click("#phNew"); await p.waitForFunction(() => document.getElementById("phText").textContent.includes("set 1"), null, { timeout: 5000 }).catch(() => {});
+  const np = gem.filter((g) => /Write 8 NEW phrases/.test(g.prompt));
+  check("✨ 8 new phrases: Mam writes a new set on the fast model, leaving out every phrase I have seen", np.length === 1 && np[0].model === "gemini-2.5-flash-lite" && np[0].prompt.includes("Never repeat or copy these") && np[0].prompt.includes("Could I get a coffee to go, please?") && (await p.textContent("#phText")).includes("set 1 number 1") && (await p.textContent("#phPos")) === "1 / 8 · new set");
+  for (let k = 0; k < 8; k++) { await p.click("#phNext"); await p.waitForTimeout(60); }
+  await p.waitForFunction(() => document.getElementById("phText").textContent.includes("set 2"), null, { timeout: 5000 }).catch(() => {});
+  const np2 = gem.filter((g) => /Write 8 NEW phrases/.test(g.prompt));
+  check("after the last phrase, Next brings a fresh set by itself, without the ones before", np2.length === 2 && np2[1].prompt.includes("set 1 number 8") && (await p.textContent("#phText")).includes("set 2 number 1"));
+  await p.reload(); await p.waitForTimeout(400); await p.click('nav.tabs [data-tab="practice"]'); await p.waitForTimeout(150);
+  check("the newest set is still there when I open the app again", (await p.textContent("#phText")).includes("set 2 number 1"));
+  await p.click('.seg [data-seg="talk"]'); await p.click("#topicNew"); await p.waitForTimeout(400);
+  const nt = gem.filter((g) => /ONE new topic for a 1 minute talk/.test(g.prompt));
+  check("1 min talk: New topic brings a new topic from Mam each time, never one already given", nt.length === 1 && nt[0].prompt.includes("Describe your favourite place in your city.") && (await p.textContent("#topic")) === "Describe the busiest bazaar in your city." && (await p.textContent("#topicHelp")).includes("what people buy there"));
+  await p.click('.seg [data-seg="phrases"]');
   // the coach: speak a reply, send it
   await p.click('nav.tabs [data-tab="coach"]'); await p.waitForTimeout(200);
   await p.evaluate(() => { window.__langs = []; window.__toSay.push("Hi I am Aiza"); });

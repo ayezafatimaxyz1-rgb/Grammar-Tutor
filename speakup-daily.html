@@ -244,6 +244,7 @@ a.linkbtn.primary{background:var(--accent);color:var(--accent-ink)}
         <div class="row"><button id="phListen">Listen</button><button id="phSlow" class="ghost">Slow</button><button id="phRec" class="rec">Speak</button></div>
         <div class="row between" style="align-items:flex-end"><div class="heard" id="phHeard" style="flex:1;min-width:0"><span class="muted">Tap Speak and read the sentence aloud.</span></div><div class="score" id="phScore"></div></div>
         <div class="row between"><button class="ghost" id="phPrev">Back</button><button class="primary" id="phNext">Next phrase</button></div>
+        <button class="ghost" id="phNew">✨ 8 new phrases</button>
       </div>
     </div>
     <div id="p-sounds" class="stack hidden">
@@ -545,6 +546,7 @@ const PHRASES={
  "Daily life":[["Could I get a coffee to go, please?","At a cafe","Link \"get a\" so it sounds like \"geh-tuh\"."],["I'm running a bit late, sorry.","Messaging a friend","\"Running late\" is the natural way to say you'll arrive late."],["What do you usually do on weekends?","Starting a chat","Stress \"usually\" and \"weekends\"."],["I'm not really in the mood today.","Saying no politely","\"Not really\" softens it."],["That makes sense.","Showing you understand","Say it with falling tone at the end."],["Let me think about it for a second.","Buying time","A great phrase instead of \"umm\"."],["It depends on the weather.","Giving a soft answer","\"Depends on\" sounds like one word."],["I'll be there in ten minutes.","Telling your arrival","\"I'll\" is one sound, not \"I will\"."]],
  "Work":[["Could you walk me through the process?","Asking for explanation","\"Walk me through\" means explain step by step."],["I'll get back to you by the end of the day.","Promising a reply","Use this instead of \"revert\"."],["Let's touch base next week.","Planning a follow up","\"Touch base\" means talk again briefly."],["I'm afraid I can't make it to the meeting.","Declining politely","\"I'm afraid\" makes bad news polite."],["That's a great point, and I'd add one thing.","Joining a discussion","Agree first, then add your idea."],["Could you clarify what you mean by that?","Asking to explain","Rise slightly at the end."],["I've been working on this project since March.","Talking about experience","\"Since\" plus a start point."],["Let me share my screen.","Online meetings","\"Share my\" links together."]],
  "Small talk":[["How's your week going so far?","Friendly opener","More natural than \"How are you?\" every time."],["Have you been here before?","At an event","Stress \"here\" strongly."],["What do you do for work?","Asking about jobs","Never \"What is your profession?\" in casual talk."],["Oh really? That sounds interesting.","Showing interest","Raise your voice on \"really\"."],["I know what you mean.","Agreeing warmly","Sounds friendly and natural."],["Anyway, it was nice talking to you.","Ending a chat","\"Anyway\" signals you are wrapping up."],["Are you from around here?","Getting to know someone","\"From around\" links together."],["Same here!","Saying you feel the same","Short and natural."]],
+ "CSS interview":[["Thank you for this opportunity to speak with you.","Starting the interview","Smile, and slow down on \"opportunity\"."],["That is a difficult question. Let me think for a moment.","Buying time politely","A calm pause sounds confident, not weak."],["In my view, the main reason is the lack of education.","Giving your opinion","Stress \"main reason\"."],["Let me give you an example from Pakistan.","Supporting a point","Link \"give you\" so it sounds like \"giv-yoo\"."],["With respect, I see it a little differently.","Disagreeing with the board","Keep your voice soft and steady."],["Could you please repeat the question?","When you did not hear","Rise a little at the end."],["If I may add one more point.","Adding to your answer","\"If I may\" is polite and formal."],["To sum up, I believe reform must start with our schools.","Closing an answer","Slow down on your last sentence."]],
  "Opinions":[["In my opinion, it's worth trying.","Sharing a view","Pause slightly after \"opinion\"."],["I see your point, but I'm not sure.","Polite disagreement","Better than \"You are wrong\"."],["To be honest, I prefer the first one.","Being direct","\"To be honest\" softens a strong view."],["I couldn't agree more.","Strong agreement","Means you agree completely."],["It's not my cup of tea.","Saying you don't like it","A friendly idiom for \"I don't like it\"."],["On the other hand, it's quite expensive.","Comparing ideas","Use after giving one side."],["I used to think so, but I changed my mind.","Showing growth","\"Used to\" sounds like \"yoos-tuh\"."],["That's a tough question.","Buying time","Then give your answer."]]
 };
 const PAIRS={
@@ -870,14 +872,36 @@ function showResult(res,i,key,total,detail,quiet){const pass=total>=60;prog.test
 
 /* ================= PRACTICE ================= */
 let cat=Object.keys(PHRASES)[0],pi=0,rec=null,phCounted="";
+/* Mam writes 8 new phrases for a topic on request, and when the last one is done: the newest set is kept on the phone,
+   and every phrase already seen is left out next time, so practice is never the same. */
+let phSaved=store.get("phrases",{})||{},phSeen=store.get("phSeen",[])||[],phBusy=false;
+const phList=()=>(Array.isArray(phSaved[cat])&&phSaved[cat].length?phSaved[cat]:PHRASES[cat]);
+const level=()=>{const n=nextIdx();return COURSES[courseOf(n<0?WEEKS.length-1:SEQ[n].wi)]};
+const CAT_HINT={"Daily life":"everyday situations: shops, transport, home, food, plans","Work":"the office, meetings, emails, colleagues","Small talk":"chatting with people you meet","Opinions":"agreeing, disagreeing and giving views","CSS interview":"a formal interview board in Pakistan: polite, clear and confident"};
+async function newPhrases(){
+  if(phBusy)return;await aiReady;
+  if(!sample){$("#phHeard").innerHTML=`<span class="muted">${esc(inClaude?"New phrases come from Claude: open the app on claude.ai.":"For new phrases, add your free Gemini key in ⚙ Settings.")}</span>`;return}
+  phBusy=true;$("#phNew").disabled=true;$("#phHeard").innerHTML='<span class="muted">Mam is writing 8 new phrases…</span>';
+  const ctl=new AbortController(),stop=deadline(45000,()=>ctl.abort()),c=level(),seen=[...PHRASES[cat].map(x=>x[0]),...phSeen].slice(-80);
+  try{
+    const r=await askAI(`You are an English speaking coach for a learner from Pakistan (first language Urdu), in the course "${c.name}" (${c.sub}), who is also preparing for the CSS exam. Write 8 NEW phrases that people really say in spoken English, for the topic "${cat}" (${CAT_HINT[cat]||cat}). Make them different from each other: short and longer ones, questions and statements, different situations. Use Pakistani settings where they fit (names, places, food), with natural international English. Never repeat or copy these: ${seen.join(" | ")}.
+For each phrase: where it is used, in a few words, and one tip on saying it (linking, stress, rhythm) or on why it sounds natural. Never use dashes.
+Reply with ONLY JSON: {"phrases": [{"text": "the phrase", "use": "where it is used", "tip": "one short tip"}]}`,"quick",15000,ctl.signal,true);
+    const list=(Array.isArray(r&&r.phrases)?r.phrases:[]).map(x=>[String(x&&x.text||"").trim(),String(x&&x.use||"").trim(),String(x&&x.tip||"").trim()]).filter(x=>x[0]&&!/[\u0600-\u06FF]/.test(x.join(""))&&!seen.includes(x[0])).slice(0,8);
+    if(list.length<3)throw{code:"empty_completion"};
+    phSaved[cat]=list;store.set("phrases",phSaved);phSeen=[...phSeen,...list.map(x=>x[0])].slice(-300);store.set("phSeen",phSeen);
+    pi=0;renderPhrase();toast("8 new phrases");
+  }catch(e){$("#phHeard").innerHTML=`<span class="muted">${esc(e&&e.code==="cancelled"?"That took too long. Tap ✨ again.":aiErr(e))}</span>`}
+  finally{stop();phBusy=false;$("#phNew").disabled=false}}
 $("#phraseCats").innerHTML=Object.keys(PHRASES).map(c=>`<button class="chip" data-c="${c}" aria-pressed="${c===cat}">${c}</button>`).join("");
 $("#phraseCats").onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;cat=b.dataset.c;pi=0;document.querySelectorAll("#phraseCats .chip").forEach(x=>x.setAttribute("aria-pressed",x===b));renderPhrase()};
-function renderPhrase(){const [t,u,tip]=PHRASES[cat][pi];$("#phText").textContent=t;$("#phUse").textContent=u;$("#phTip").textContent="Tip: "+tip;$("#phPos").textContent=(pi+1)+" / "+PHRASES[cat].length;$("#phScore").textContent="";$("#phHeard").innerHTML='<span class="muted">Tap Speak and read the sentence aloud.</span>'}
-$("#phListen").onclick=()=>{say(PHRASES[cat][pi][0]);if((micBlocked||!SR)&&phCounted!==cat+pi){phCounted=cat+pi;bump("phrases")}};
-$("#phSlow").onclick=()=>say(PHRASES[cat][pi][0],0.6);
-$("#phNext").onclick=()=>{pi=(pi+1)%PHRASES[cat].length;renderPhrase()};
-$("#phPrev").onclick=()=>{pi=(pi-1+PHRASES[cat].length)%PHRASES[cat].length;renderPhrase()};
-$("#phRec").onclick=()=>{const btn=$("#phRec");if(rec){rec.stop();rec=null;return}const target=PHRASES[cat][pi][0];
+function renderPhrase(){const L=phList();if(pi>=L.length)pi=0;const [t,u,tip]=L[pi];$("#phText").textContent=t;$("#phUse").textContent=u;$("#phTip").textContent="Tip: "+tip;$("#phPos").textContent=(pi+1)+" / "+L.length+(L!==PHRASES[cat]?" · new set":"");$("#phScore").textContent="";$("#phHeard").innerHTML='<span class="muted">Tap Speak and read the sentence aloud.</span>'}
+$("#phListen").onclick=()=>{say(phList()[pi][0]);if((micBlocked||!SR)&&phCounted!==cat+pi){phCounted=cat+pi;bump("phrases")}};
+$("#phSlow").onclick=()=>say(phList()[pi][0],0.6);
+$("#phNext").onclick=()=>{if(pi+1>=phList().length&&sample){newPhrases();return}pi=(pi+1)%phList().length;renderPhrase()}; /* after the last one: a new set */
+$("#phPrev").onclick=()=>{pi=(pi-1+phList().length)%phList().length;renderPhrase()};
+$("#phNew").onclick=newPhrases;
+$("#phRec").onclick=()=>{const btn=$("#phRec");if(rec){rec.stop();rec=null;return}const target=phList()[pi][0];
   rec=listen({btn,onText:(t,st)=>{if(st==="nomic"){$("#phHeard").innerHTML=`<span class="muted">${nomic()}</span>`;if(phCounted!==cat+pi){phCounted=cat+pi;bump("phrases")}return}
     const c=compare(target,t);$("#phHeard").innerHTML=c.html;$("#phScore").textContent=c.score+"%";$("#phScore").style.color=c.score>=80?"var(--good)":c.score>=50?"var(--warn)":"var(--bad)"},
     onEnd:t=>{rec=null;if(t&&phCounted!==cat+pi){phCounted=cat+pi;bump("phrases")}}})};
@@ -885,8 +909,18 @@ let pcat=Object.keys(PAIRS)[0];
 $("#pairCats").innerHTML=Object.keys(PAIRS).map(c=>`<button class="chip" data-c="${c}" aria-pressed="${c===pcat}">${c}</button>`).join("");
 $("#pairCats").onclick=e=>{const b=e.target.closest("[data-c]");if(!b)return;pcat=b.dataset.c;document.querySelectorAll("#pairCats .chip").forEach(x=>x.setAttribute("aria-pressed",x===b));soundDrill($("#pairBox"),pcat,0,()=>bump("sounds"))};
 soundDrill($("#pairBox"),pcat,0,()=>bump("sounds"));
-let ti=dayN%TOPICS.length;function renderTopic(){$("#topic").textContent=TOPICS[ti][0];$("#topicHelp").textContent=TOPICS[ti][1]}
-$("#topicNew").onclick=()=>{ti=(ti+1)%TOPICS.length;renderTopic()};
+let ti=dayN%TOPICS.length,curTopic=store.get("topicNow",null),tSeen=store.get("tSeen",[])||[];
+function renderTopic(){const T=curTopic||TOPICS[ti];$("#topic").textContent=T[0];$("#topicHelp").textContent=T[1]}
+$("#topicNew").onclick=async()=>{const b=$("#topicNew");if(b.disabled)return;await aiReady;
+  if(!sample){curTopic=null;ti=(ti+1)%TOPICS.length;renderTopic();return}
+  b.disabled=true;$("#topicHelp").textContent="Mam is choosing a new topic…";
+  const ctl=new AbortController(),stop=deadline(30000,()=>ctl.abort()),c=level(),seen=[...TOPICS.map(x=>x[0]),...tSeen].slice(-60);
+  try{const r=await askAI(`You are an English speaking coach for a learner from Pakistan (first language Urdu), in the course "${c.name}" (${c.sub}), who is also preparing for the CSS exam. Give ONE new topic for a 1 minute talk: everyday life, Pakistan, society, education, work or technology, simple enough for this course. Never repeat these: ${seen.join(" | ")}. Never use dashes.
+Reply with ONLY JSON: {"topic": "the topic as one sentence or question", "help": "three short points to talk about, as one sentence"}`,"quick",12000,ctl.signal,true);
+    const t=String(r&&r.topic||"").trim();if(!t)throw{code:"empty_completion"};
+    curTopic=[t,String(r.help||"").trim()];store.set("topicNow",curTopic);tSeen=[...tSeen,t].slice(-200);store.set("tSeen",tSeen);
+  }catch(e){curTopic=null;ti=(ti+1)%TOPICS.length}
+  finally{stop();b.disabled=false;renderTopic()}};
 talkBox($("#freeTalk"),60,()=>{bump("talk");renderTests()});
 function seg(s){document.querySelectorAll("[data-seg]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.seg===s));["phrases","sounds","talk"].forEach(k=>$("#p-"+k).classList.toggle("hidden",k!==s))}
 document.querySelector(".seg").onclick=e=>{const b=e.target.closest("[data-seg]");if(b)seg(b.dataset.seg)};
