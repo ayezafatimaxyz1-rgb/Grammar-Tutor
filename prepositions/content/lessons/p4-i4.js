@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "intrude-logic",
+        title: "intrude on: the logic",
+        alt: "The logic for intrude on: Look at the senses. **on** has the sense of touching a surface. Intrude means push in, and that fits: intrude on = come in where not wanted. So the word takes **on**.; **at** has the sense of pointing at one spot or target. At is a point; intruding presses on. So intrude does not take **at**.; **to** has the sense of moving towards, reaching. But come in where not wanted is not moving towards, reaching. So intrude does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of touching a surface. Intrude means push in, and that fits: intrude on = come in where not wanted. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. At is a point; intruding presses on. So intrude does not take **at**.", cue: "e1lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But come in where not wanted is not moving towards, reaching. So intrude does not take **to**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "intrude on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = touching a surface", { hl: "ON", sub: "come in where not wanted = touching a surface", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at is a point; intruding presses on", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but come in where not wanted is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "intrude-why",
         title: "intrude: why this one?",
         alt: "The sentence Reporters intruded with a gap their privacy., then the candidates: on (fits: come in where not wanted); at (not used: at is a point; intruding presses on); to (not used: to points; not used)",
@@ -96,6 +112,22 @@
         ],
       },
       {
+        id: "invest-logic",
+        title: "invest in: the logic",
+        alt: "The logic for invest in: Look at the senses. **in** has the sense of inside a boundary or container. Invest means put money in, and that fits: invest in = put money into. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is resting; money goes in. So invest does not take **on**.; **at** has the sense of pointing at one spot or target. But put money into is not pointing at one spot or target. So invest does not take **at**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Invest means put money in, and that fits: invest in = put money into. So the word takes **in**.", cue: "e2lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; money goes in. So invest does not take **on**.", cue: "e2lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But put money into is not pointing at one spot or target. So invest does not take **at**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "invest in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "put money into = inside a boundary or container", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; money goes in", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but put money into is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "invest-why",
         title: "invest: why this one?",
         alt: "The sentence He invested with a gap land., then the candidates: in (fits: put money into); on (not used: on is resting; money goes in); at (not used: at is a point; not used)",
@@ -125,6 +157,22 @@
         ],
       },
       {
+        id: "involved-logic",
+        title: "involved in: the logic",
+        alt: "The logic for involved in: Look at the senses. **in** has the sense of inside an activity: taking part. Involved in means taking part in, and that fits: involved in = taking part in. So the word takes **in**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: in a close relationship with the project. That is not what involved in says.; **on** has the sense of resting on, or about a topic. But taking part in is not resting on, or about a topic. So involved does not take **on**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Involved in means taking part in, and that fits: involved in = taking part in. So the word takes **in**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: in a close relationship with the project. That is not what involved in says.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But taking part in is not resting on, or about a topic. So involved does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "involved in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "taking part in = inside an activity: taking part", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: in a close relationship with the project", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but taking part in is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "involved-why",
         title: "involved: why this one?",
         alt: "The sentence Many students were involved with a gap the project., then the candidates: in (fits: taking part in); with (correct English, different meaning: in a close relationship with the project); on (not used: on is resting; not used)",
@@ -149,6 +197,22 @@
           { do: "write", id: "e4h", text: "irrelevant", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 irrelevant to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "That point is irrelevant to the case.", { hl: "to", sub: "irrelevant to = not connected with", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "irrelevant-logic",
+        title: "irrelevant to: the logic",
+        alt: "The logic for irrelevant to: Look at the senses. **to** has the sense of matching or compared to. Irrelevant to means not connected with, and that fits: irrelevant to = not connected with. So the word takes **to**.; **with** has the sense of together with, or using. But not connected with is not together with, or using. So irrelevant does not take **with**.; **for** has the sense of aimed at, or for the sake of. But not connected with is not aimed at, or for the sake of. So irrelevant does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Irrelevant to means not connected with, and that fits: irrelevant to = not connected with. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. But not connected with is not together with, or using. So irrelevant does not take **with**.", cue: "e4lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But not connected with is not aimed at, or for the sake of. So irrelevant does not take **for**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "irrelevant to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "not connected with = matching or compared to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but not connected with is not together with, or using", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but not connected with is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

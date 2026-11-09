@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "prohibit-logic",
+        title: "prohibit from: the logic",
+        alt: "The logic for prohibit from: Look at the senses. **from** has the sense of kept away: protection and prevention. Prohibit means forbid, and that fits: prohibit from = forbid by law. So the word takes **from**.; **to** has the sense of moving towards, reaching. Prohibit does not take to + verb. So prohibit does not take **to**.; **of** has the sense of belonging to, a part of, or about. But forbid by law is not belonging to, a part of, or about. So prohibit does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Prohibit means forbid, and that fits: prohibit from = forbid by law. So the word takes **from**.", cue: "e1lg1" },
+          { text: "**to** has the sense of moving towards, reaching. Prohibit does not take to + verb. So prohibit does not take **to**.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But forbid by law is not belonging to, a part of, or about. So prohibit does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "prohibit from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "forbid by law = kept away: protection and prevention", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "prohibit does not take to + verb", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but forbid by law is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "prohibit-why",
         title: "prohibit: why this one?",
         alt: "The sentence Minors are prohibited with a gap driving., then the candidates: from (fits: forbid by law); to (not used: prohibit does not take to + verb); of (not used: of = belonging; not used)",
@@ -96,6 +112,22 @@
         ],
       },
       {
+        id: "protect-logic",
+        title: "protect from: the logic",
+        alt: "The logic for protect from: Look at the senses. **from** has the sense of kept away: protection and prevention. Protect means keep safe, and that fits: protect from = keep safe from. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; protection keeps away from. So protect does not take **of**.; **to** has the sense of moving towards, reaching. But keep safe from is not moving towards, reaching. So protect does not take **to**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Protect means keep safe, and that fits: protect from = keep safe from. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; protection keeps away from. So protect does not take **of**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But keep safe from is not moving towards, reaching. So protect does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "protect from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "keep safe from = kept away: protection and prevention", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; protection keeps away from", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but keep safe from is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "protect-why",
         title: "protect: why this one?",
         alt: "The sentence Vaccines protect children with a gap disease., then the candidates: from (fits: keep safe from); of (not used: of = belonging; protection keeps away from); to (not used: to points; not used)",
@@ -122,6 +154,22 @@
           { do: "write", id: "e3h", text: "proud", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 proud of, proud for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["awareOf", "She is proud of her son.", { hl: "of", sub: "proud of = pleased with someone's achievement", size: 30 }], ["wantStar", "I am so proud for you.", { hl: "for", sub: "proud for = happy on someone's behalf", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "proud-logic",
+        title: "proud of: the logic",
+        alt: "The logic for proud of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Proud of means pleased with someone's achievement, and that fits: proud of = pleased with someone's achievement. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: happy on her son's behalf, about something he did. That is not what proud of says.; **on** has the sense of resting on, or about a topic. But pleased with someone's achievement is not resting on, or about a topic. So proud does not take **on**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Proud of means pleased with someone's achievement, and that fits: proud of = pleased with someone's achievement. So the word takes **of**.", cue: "e3lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: happy on her son's behalf, about something he did. That is not what proud of says.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But pleased with someone's achievement is not resting on, or about a topic. So proud does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "proud of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "pleased with someone's achievement = what a feeling or knowledge is about", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: happy on her son's behalf, about something he did", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but pleased with someone's achievement is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -185,6 +233,22 @@
         ],
       },
       {
+        id: "provide-logic",
+        title: "provide with: the logic",
+        alt: "The logic for provide with: Look at the senses. **with** has the sense of having or filled with. Provide means supply, and that fits: provide with = give someone something. So the word takes **with**.; **for** has the sense of aimed at, or for the sake of. For comes when the thing comes first: provide food for them. So provide does not take **for**.; **to** has the sense of moving towards, reaching. To points; with names the thing given. So provide does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Provide means supply, and that fits: provide with = give someone something. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For comes when the thing comes first: provide food for them. So provide does not take **for**.", cue: "e4lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points; with names the thing given. So provide does not take **to**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "provide with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "give someone something = having or filled with", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for comes when the thing comes first: provide food for them", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; with names the thing given", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "provide-why",
         title: "provide: why this one?",
         alt: "The sentence They provided the villagers with a gap food., then the candidates: with (fits: give someone something); for (not used: for comes when the thing comes first: provide food for them); to (not used: to points; with names the thing given)",
@@ -231,6 +295,22 @@
           { do: "write", id: "e5b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e5b1m", text: "make someone suffer for a wrong", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e5b1x", text: "He was punished for cheating.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "punish-logic",
+        title: "punish for: the logic",
+        alt: "The logic for punish for: Look at the senses. **for** has the sense of reason or cause. Punish means make suffer for a wrong, and that fits: punish for = make someone suffer for a wrong. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. But make someone suffer for a wrong is not belonging to, a part of, or about. So punish does not take **of**.; **on** has the sense of resting on, or about a topic. But make someone suffer for a wrong is not resting on, or about a topic. So punish does not take **on**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Punish means make suffer for a wrong, and that fits: punish for = make someone suffer for a wrong. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But make someone suffer for a wrong is not belonging to, a part of, or about. So punish does not take **of**.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But make someone suffer for a wrong is not resting on, or about a topic. So punish does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "punish for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "make someone suffer for a wrong = reason or cause", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but make someone suffer for a wrong is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but make someone suffer for a wrong is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "reliant-logic",
+        title: "reliant on: the logic",
+        alt: "The logic for reliant on: Look at the senses. **on** has the sense of resting on a support. Reliant on means depending on, and that fits: reliant on = depending on. So the word takes **on**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; reliance rests on. So reliant does not take **of**.; **to** has the sense of moving towards, reaching. But depending on is not moving towards, reaching. So reliant does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Reliant on means depending on, and that fits: reliant on = depending on. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; reliance rests on. So reliant does not take **of**.", cue: "e1lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But depending on is not moving towards, reaching. So reliant does not take **to**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "reliant on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "depending on = resting on a support", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; reliance rests on", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but depending on is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "reliant-why",
         title: "reliant: why this one?",
         alt: "The sentence The country is reliant with a gap imports., then the candidates: on (fits: depending on); of (not used: of = belonging; reliance rests on); to (not used: to points; not used)",
@@ -85,6 +101,22 @@
         ],
       },
       {
+        id: "remind-logic",
+        title: "remind of: the logic",
+        alt: "The logic for remind of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Remind means make remember, and that fits: remind of = bring to mind. So the word takes **of**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: tell me not to forget my childhood. That is not what remind of says.; **from** has the sense of away from a starting point or source. But bring to mind is not away from a starting point or source. So remind does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Remind means make remember, and that fits: remind of = bring to mind. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: tell me not to forget my childhood. That is not what remind of says.", cue: "e2lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But bring to mind is not away from a starting point or source. So remind does not take **from**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "remind of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "bring to mind = what a feeling or knowledge is about", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: tell me not to forget my childhood", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but bring to mind is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "remind-why",
         title: "remind: why this one?",
         alt: "The sentence This photo reminds me with a gap my childhood., then the candidates: of (fits: bring to mind); about (correct English, different meaning: tell me not to forget my childhood); from (not used: a word-for-word translation)",
@@ -131,6 +163,22 @@
           { do: "write", id: "e3b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e3b1m", text: "put something new in the place of", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e3b1x", text: "They replaced the old law with a new one.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "replace-logic",
+        title: "replace with: the logic",
+        alt: "The logic for replace with: Look at the senses. **with** has the sense of dealing with or handling. Replace means put in place of, and that fits: replace with = put something new in the place of. So the word takes **with**.; **from** has the sense of away from a starting point or source. But put something new in the place of is not away from a starting point or source. So replace does not take **from**.; **to** has the sense of moving towards, reaching. But put something new in the place of is not moving towards, reaching. So replace does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Replace means put in place of, and that fits: replace with = put something new in the place of. So the word takes **with**.", cue: "e3lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But put something new in the place of is not away from a starting point or source. So replace does not take **from**.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But put something new in the place of is not moving towards, reaching. So replace does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "replace with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "put something new in the place of = dealing with or handling", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but put something new in the place of is not away from a starting point or source", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but put something new in the place of is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -194,6 +242,22 @@
         ],
       },
       {
+        id: "resign-logic",
+        title: "resign from: the logic",
+        alt: "The logic for resign from: Look at the senses. **from** has the sense of moving away, separation. Resign means give up a post, and that fits: resign from = leave a job officially. So the word takes **from**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: accepted the cabinet calmly as her fate. That is not what resign from says.; **of** has the sense of belonging to, a part of, or about. But leave a job officially is not belonging to, a part of, or about. So resign does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Resign means give up a post, and that fits: resign from = leave a job officially. So the word takes **from**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: accepted the cabinet calmly as her fate. That is not what resign from says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But leave a job officially is not belonging to, a part of, or about. So resign does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "resign from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "leave a job officially = moving away, separation", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: accepted the cabinet calmly as her fate", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but leave a job officially is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "resign-why",
         title: "resign: why this one?",
         alt: "The sentence The minister resigned with a gap the cabinet., then the candidates: from (fits: leave a job officially); to (correct English, different meaning: accepted the cabinet calmly as her fate); of (not used: of = belonging; not used)",
@@ -218,6 +282,22 @@
           { do: "write", id: "e5h", text: "respect", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Basic \u00b7 respect for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["wantStar", "We should show respect for elders.", { hl: "for", sub: "respect for = admiration for (noun)", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "respect-logic",
+        title: "respect for: the logic",
+        alt: "The logic for respect for: Look at the senses. **for** has the sense of reason or cause. Respect for means admiration for (noun), and that fits: respect for = admiration for (noun). So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; respect reaches for. So respect does not take **of**.; **to** has the sense of moving towards, reaching. But admiration for (noun) is not moving towards, reaching. So respect does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Respect for means admiration for (noun), and that fits: respect for = admiration for (noun). So the word takes **for**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; respect reaches for. So respect does not take **of**.", cue: "e5lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But admiration for (noun) is not moving towards, reaching. So respect does not take **to**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "respect for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "admiration for (noun) = reason or cause", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; respect reaches for", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but admiration for (noun) is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -267,6 +347,22 @@
           { do: "write", id: "e6b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e6b1m", text: "answer or react to", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e6b1x", text: "Please respond to my letter.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "respond-logic",
+        title: "respond to: the logic",
+        alt: "The logic for respond to: Look at the senses. **to** has the sense of a person who receives. Respond means answer, and that fits: respond to = answer or react to. So the word takes **to**.; **(no word)** has the sense of no word is needed. Respond cannot reach its object alone. So respond does not take **(no word)**.; **on** has the sense of resting on, or about a topic. But answer or react to is not resting on, or about a topic. So respond does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Respond means answer, and that fits: respond to = answer or react to. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**(no word)** has the sense of no word is needed. Respond cannot reach its object alone. So respond does not take **(no word)**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But answer or react to is not resting on, or about a topic. So respond does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "respond to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "answer or react to = a person who receives", size: 28 }], ["cross", "\u2717 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "respond cannot reach its object alone", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but answer or react to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -330,6 +426,22 @@
         ],
       },
       {
+        id: "retire-logic",
+        title: "retire from: the logic",
+        alt: "The logic for retire from: Look at the senses. **from** has the sense of moving away, separation. Retire means withdraw, and that fits: retire from = stop working at. So the word takes **from**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: went to live in the army after retiring. That is not what retire from says.; **of** has the sense of belonging to, a part of, or about. But stop working at is not belonging to, a part of, or about. So retire does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Retire means withdraw, and that fits: retire from = stop working at. So the word takes **from**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: went to live in the army after retiring. That is not what retire from says.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But stop working at is not belonging to, a part of, or about. So retire does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "retire from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "stop working at = moving away, separation", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: went to live in the army after retiring", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but stop working at is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "retire-why",
         title: "retire: why this one?",
         alt: "The sentence He retired with a gap the army., then the candidates: from (fits: stop working at); to (correct English, different meaning: went to live in the army after retiring); of (not used: of = belonging; not used)",
@@ -354,6 +466,22 @@
           { do: "write", id: "e8h", text: "rich", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Basic \u00b7 rich in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["absorbedIn", "The soil is rich in minerals.", { hl: "in", sub: "rich in = having a lot of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "rich-logic",
+        title: "rich in: the logic",
+        alt: "The logic for rich in: Look at the senses. **in** has the sense of inside a boundary or container. Rich in means having a lot of, and that fits: rich in = having a lot of. So the word takes **in**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; richness is inside. So rich does not take **of**.; **by** has the sense of by means of, or next to. But having a lot of is not by means of, or next to. So rich does not take **by**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Rich in means having a lot of, and that fits: rich in = having a lot of. So the word takes **in**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; richness is inside. So rich does not take **of**.", cue: "e8lg2" },
+          { text: "**by** has the sense of by means of, or next to. But having a lot of is not by means of, or next to. So rich does not take **by**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "rich in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "having a lot of = inside a boundary or container", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; richness is inside", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "but having a lot of is not by means of, or next to", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

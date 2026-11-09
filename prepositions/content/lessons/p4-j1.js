@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "jealous-logic",
+        title: "jealous of: the logic",
+        alt: "The logic for jealous of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Jealous of means wanting what someone else has, and that fits: jealous of = wanting what someone else has. So the word takes **of**.; **from** has the sense of away from a starting point or source. But wanting what someone else has is not away from a starting point or source. So jealous does not take **from**.; **with** has the sense of together with, or using. But wanting what someone else has is not together with, or using. So jealous does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Jealous of means wanting what someone else has, and that fits: jealous of = wanting what someone else has. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But wanting what someone else has is not away from a starting point or source. So jealous does not take **from**.", cue: "e1lg2" },
+          { text: "**with** has the sense of together with, or using. But wanting what someone else has is not together with, or using. So jealous does not take **with**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "jealous of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "wanting what someone else has = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but wanting what someone else has is not away from a starting point or source", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but wanting what someone else has is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "jealous-why",
         title: "jealous: why this one?",
         alt: "The sentence He is jealous with a gap his brother., then the candidates: of (fits: wanting what someone else has); from (not used: a word-for-word translation); with (not used: with = together; not used)",
@@ -122,6 +138,22 @@
           { do: "write", id: "e3b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e3b1m", text: "form an opinion using", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e3b1x", text: "Do not judge a book by its cover.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "judge-logic",
+        title: "judge by: the logic",
+        alt: "The logic for judge by: Look at the senses. **by** has the sense of a rule or guide you follow. Judge means form an opinion, and that fits: judge by = form an opinion using. So the word takes **by**.; **with** has the sense of together with, or using. With is a tool; judging goes by a guide. So judge does not take **with**.; **on** has the sense of resting on, or about a topic. But form an opinion using is not resting on, or about a topic. So judge does not take **on**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of a rule or guide you follow. Judge means form an opinion, and that fits: judge by = form an opinion using. So the word takes **by**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. With is a tool; judging goes by a guide. So judge does not take **with**.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But form an opinion using is not resting on, or about a topic. So judge does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "judge by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["followRule", "\u2713 BY = a rule or guide you follow", { hl: "BY", sub: "form an opinion using = a rule or guide you follow", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with is a tool; judging goes by a guide", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but form an opinion using is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "take-logic",
+        title: "take after: the logic",
+        alt: "The logic for take after: Look at the senses. **after** has the sense of following, or caring for. Take means get hold of, and that fits: take after = look or behave like a parent. So the word takes **after**.; **over** has the sense of above, or going on about. It is correct English, but it would mean something else: took control of her mother. That is not what take after says.; **from** has the sense of away from a starting point or source. But look or behave like a parent is not away from a starting point or source. So take does not take **from**.",
+        say: [
+          { text: "Look at the senses. **after** has the sense of following, or caring for. Take means get hold of, and that fits: take after = look or behave like a parent. So the word takes **after**.", cue: "e1lg1" },
+          { text: "**over** has the sense of above, or going on about. It is correct English, but it would mean something else: took control of her mother. That is not what take after says.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But look or behave like a parent is not away from a starting point or source. So take does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "take after: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["careFor", "\u2713 AFTER = following, or caring for", { hl: "AFTER", sub: "look or behave like a parent = following, or caring for", size: 28 }], ["overRock", "\u2248 OVER = above, or going on about", { hl: "OVER", sub: "correct English, but it would mean: took control of her mother", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but look or behave like a parent is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "take-why",
         title: "take: why this one?",
         alt: "The sentence She takes with a gap her mother., then the candidates: after (fits: look or behave like a parent); over (correct English, different meaning: took control of her mother); from (not used: from is a source; not used)",
@@ -118,6 +134,22 @@
         ],
       },
       {
+        id: "talk-logic",
+        title: "talk about: the logic",
+        alt: "The logic for talk about: Look at the senses. **about** has the sense of information around a topic. Talk means speak, and that fits: talk about = discuss a topic. So the word takes **about**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: spoke to politics as if it were a person. That is not what talk about says.; **on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: gave a formal talk on politics. That is not what talk about says.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of information around a topic. Talk means speak, and that fits: talk about = discuss a topic. So the word takes **about**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: spoke to politics as if it were a person. That is not what talk about says.", cue: "e2lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: gave a formal talk on politics. That is not what talk about says.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "talk about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["aboutCircle", "\u2713 ABOUT = information around a topic", { hl: "ABOUT", sub: "discuss a topic = information around a topic", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: spoke to politics as if it were a person", size: 28 }], ["support", "\u2248 ON = resting on, or about a topic", { hl: "ON", sub: "correct English, but it would mean: gave a formal talk on politics", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "talk-why",
         title: "talk: why this one?",
         alt: "The sentence They talked with a gap politics., then the candidates: about (fits: discuss a topic); to (correct English, different meaning: spoke to politics as if it were a person); on (correct English, different meaning: gave a formal talk on politics)",
@@ -144,6 +176,22 @@
           { do: "write", id: "e3h", text: "thankful", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 thankful for, thankful to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["wantStar", "I am thankful for your help.", { hl: "for", sub: "thankful for = grateful for something", size: 30 }], ["reachDot", "I am thankful to my parents.", { hl: "to", sub: "thankful to = grateful to a person", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "thankful-logic",
+        title: "thankful for: the logic",
+        alt: "The logic for thankful for: Look at the senses. **for** has the sense of reason or cause. Thankful for means grateful for something, and that fits: thankful for = grateful for something. So the word takes **for**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: thankful to your help as if it were a person. That is not what thankful for says.; **of** has the sense of belonging to, a part of, or about. But grateful for something is not belonging to, a part of, or about. So thankful does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Thankful for means grateful for something, and that fits: thankful for = grateful for something. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: thankful to your help as if it were a person. That is not what thankful for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But grateful for something is not belonging to, a part of, or about. So thankful does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "thankful for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "grateful for something = reason or cause", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: thankful to your help as if it were a person", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but grateful for something is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -176,6 +224,22 @@
         ],
       },
       {
+        id: "threat-logic",
+        title: "threat to: the logic",
+        alt: "The logic for threat to: Look at the senses. **to** has the sense of an effect on someone. Threat to means a danger to (noun), and that fits: threat to = a danger to (noun). So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: the danger that peace will happen. That is not what threat to says.; **for** has the sense of aimed at, or for the sake of. But a danger to (noun) is not aimed at, or for the sake of. So threat does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Threat to means a danger to (noun), and that fits: threat to = a danger to (noun). So the word takes **to**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: the danger that peace will happen. That is not what threat to says.", cue: "e4lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But a danger to (noun) is not aimed at, or for the sake of. So threat does not take **for**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "threat to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "a danger to (noun) = an effect on someone", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: the danger that peace will happen", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but a danger to (noun) is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "threat-why",
         title: "threat: why this one?",
         alt: "The sentence Terrorism is a threat with a gap peace., then the candidates: to (fits: a danger to (noun)); of (correct English, different meaning: the danger that peace will happen); for (not used: a common error; a threat to)",
@@ -202,6 +266,22 @@
           { do: "write", id: "e5h", text: "tired", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Basic \u00b7 tired of, tired from", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["awareOf", "I am tired of waiting.", { hl: "of", sub: "tired of = bored or annoyed with", size: 30 }], ["holdBack", "She was tired from the journey.", { hl: "from", sub: "tired from = exhausted by", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "tired-logic",
+        title: "tired of: the logic",
+        alt: "The logic for tired of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Tired of means bored or annoyed with, and that fits: tired of = bored or annoyed with. So the word takes **of**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: physically exhausted by waiting. That is not what tired of says.; **with** has the sense of together with, or using. But bored or annoyed with is not together with, or using. So tired does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Tired of means bored or annoyed with, and that fits: tired of = bored or annoyed with. So the word takes **of**.", cue: "e5lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: physically exhausted by waiting. That is not what tired of says.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. But bored or annoyed with is not together with, or using. So tired does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "tired of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "bored or annoyed with = what a feeling or knowledge is about", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: physically exhausted by waiting", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but bored or annoyed with is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -232,6 +312,22 @@
         ],
       },
       {
+        id: "true-logic",
+        title: "true to: the logic",
+        alt: "The logic for true to: Look at the senses. **to** has the sense of behaviour aimed at someone. True to means faithful to, and that fits: true to = faithful to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; faithfulness points to. So true does not take **with**.; **for** has the sense of aimed at, or for the sake of. But faithful to is not aimed at, or for the sake of. So true does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. True to means faithful to, and that fits: true to = faithful to. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; faithfulness points to. So true does not take **with**.", cue: "e6lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But faithful to is not aimed at, or for the sake of. So true does not take **for**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "true to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "faithful to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; faithfulness points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but faithful to is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "true-why",
         title: "true: why this one?",
         alt: "The sentence He was true with a gap his word., then the candidates: to (fits: faithful to); with (not used: with = together; faithfulness points to); for (not used: for is a purpose; not used)",
@@ -256,6 +352,22 @@
           { do: "write", id: "e7h", text: "trust", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Basic \u00b7 trust in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["absorbedIn", "Put your trust in God.", { hl: "in", sub: "trust in = faith placed in (noun)", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "trust-logic",
+        title: "trust in: the logic",
+        alt: "The logic for trust in: Look at the senses. **in** has the sense of trust or feeling placed inside. Trust in means faith placed in (noun), and that fits: trust in = faith placed in (noun). So the word takes **in**.; **on** has the sense of resting on, or about a topic. But faith placed in (noun) is not resting on, or about a topic. So trust does not take **on**.; **of** has the sense of belonging to, a part of, or about. But faith placed in (noun) is not belonging to, a part of, or about. So trust does not take **of**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of trust or feeling placed inside. Trust in means faith placed in (noun), and that fits: trust in = faith placed in (noun). So the word takes **in**.", cue: "e7lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But faith placed in (noun) is not resting on, or about a topic. So trust does not take **on**.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But faith placed in (noun) is not belonging to, a part of, or about. So trust does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "trust in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["absorbedIn", "\u2713 IN = trust or feeling placed inside", { hl: "IN", sub: "faith placed in (noun) = trust or feeling placed inside", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but faith placed in (noun) is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but faith placed in (noun) is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

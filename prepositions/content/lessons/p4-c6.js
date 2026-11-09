@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "count-logic",
+        title: "count on: the logic",
+        alt: "The logic for count on: Look at the senses. **on** has the sense of resting on a support. Count means rely, matter, and that fits: count on = rely on. So the word takes **on**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: I would be worth something. That is not what count on says.; **with** has the sense of together with, or using. But rely on is not together with, or using. So count does not take **with**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Count means rely, matter, and that fits: count on = rely on. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: I would be worth something. That is not what count on says.", cue: "e1lg2" },
+          { text: "**with** has the sense of together with, or using. But rely on is not together with, or using. So count does not take **with**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "count on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "rely on = resting on a support", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: I would be worth something", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but rely on is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "count-why",
         title: "count: why this one?",
         alt: "The sentence You can count with a gap me., then the candidates: on (fits: rely on); for (correct English, different meaning: I would be worth something); with (not used: with = together; not used)",
@@ -82,6 +98,22 @@
           { do: "write", id: "e2h", text: "covered", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 covered with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["agreeWith", "The hills were covered with snow.", { hl: "with", sub: "covered with = with a layer on top", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "covered-logic",
+        title: "covered with: the logic",
+        alt: "The logic for covered with: Look at the senses. **with** has the sense of having or filled with. Covered with means with a layer on top, and that fits: covered with = with a layer on top. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. But with a layer on top is not belonging to, a part of, or about. So covered does not take **of**.; **from** has the sense of away from a starting point or source. But with a layer on top is not away from a starting point or source. So covered does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Covered with means with a layer on top, and that fits: covered with = with a layer on top. So the word takes **with**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But with a layer on top is not belonging to, a part of, or about. So covered does not take **of**.", cue: "e2lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But with a layer on top is not away from a starting point or source. So covered does not take **from**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "covered with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "with a layer on top = having or filled with", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but with a layer on top is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but with a layer on top is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -114,6 +146,22 @@
         ],
       },
       {
+        id: "critical-logic",
+        title: "critical to: the logic",
+        alt: "The logic for critical to: Look at the senses. **to** has the sense of an effect on someone. Critical to means vital to, and that fits: critical to = vital to. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: criticising survival. That is not what critical to says.; **in** has the sense of inside, within. But vital to is not inside, within. So critical does not take **in**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Critical to means vital to, and that fits: critical to = vital to. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: criticising survival. That is not what critical to says.", cue: "e3lg2" },
+          { text: "**in** has the sense of inside, within. But vital to is not inside, within. So critical does not take **in**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "critical to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "vital to = an effect on someone", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: criticising survival", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but vital to is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "critical-why",
         title: "critical: why this one?",
         alt: "The sentence Water is critical with a gap survival., then the candidates: to (fits: vital to); of (correct English, different meaning: criticising survival); in (not used: in is inside; not used)",
@@ -138,6 +186,22 @@
           { do: "write", id: "e4h", text: "cruel", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 cruel to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "Do not be cruel to animals.", { hl: "to", sub: "cruel to = unkind to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "cruel-logic",
+        title: "cruel to: the logic",
+        alt: "The logic for cruel to: Look at the senses. **to** has the sense of behaviour aimed at someone. Cruel to means unkind to, and that fits: cruel to = unkind to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; cruelty points to. So cruel does not take **with**.; **on** has the sense of resting on, or about a topic. But unkind to is not resting on, or about a topic. So cruel does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Cruel to means unkind to, and that fits: cruel to = unkind to. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; cruelty points to. So cruel does not take **with**.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But unkind to is not resting on, or about a topic. So cruel does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "cruel to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "unkind to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; cruelty points to", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but unkind to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -167,6 +231,22 @@
           { do: "write", id: "e5h", text: "cure", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Intermediate \u00b7 cure for, cure of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["wantStar", "There is no cure for cancer.", { hl: "for", sub: "cure for = a treatment for (noun)", size: 30 }], ["awareOf", "She was cured of malaria.", { hl: "of", sub: "cure of = freed from an illness (verb)", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "cure-logic",
+        title: "cure for: the logic",
+        alt: "The logic for cure for: Look at the senses. **for** has the sense of purpose or suitability. Cure for means a treatment for (noun), and that fits: cure for = a treatment for (noun). So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: the verb pattern: cured of, freed from it. That is not what cure for says.; **to** has the sense of moving towards, reaching. But a treatment for (noun) is not moving towards, reaching. So cure does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Cure for means a treatment for (noun), and that fits: cure for = a treatment for (noun). So the word takes **for**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: the verb pattern: cured of, freed from it. That is not what cure for says.", cue: "e5lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But a treatment for (noun) is not moving towards, reaching. So cure does not take **to**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "cure for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "a treatment for (noun) = purpose or suitability", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: the verb pattern: cured of, freed from it", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but a treatment for (noun) is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

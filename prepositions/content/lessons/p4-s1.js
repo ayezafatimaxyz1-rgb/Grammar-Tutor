@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "safe-logic",
+        title: "safe from: the logic",
+        alt: "The logic for safe from: Look at the senses. **from** has the sense of kept away: protection and prevention. Safe from means protected from, and that fits: safe from = protected from. So the word takes **from**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: kept safely by the floods, as if they were a guard. That is not what safe from says.; **of** has the sense of belonging to, a part of, or about. But protected from is not belonging to, a part of, or about. So safe does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Safe from means protected from, and that fits: safe from = protected from. So the word takes **from**.", cue: "e1lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: kept safely by the floods, as if they were a guard. That is not what safe from says.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But protected from is not belonging to, a part of, or about. So safe does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "safe from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "protected from = kept away: protection and prevention", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: kept safely by the floods, as if they were a guard", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but protected from is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "safe-why",
         title: "safe: why this one?",
         alt: "The sentence The village is safe with a gap floods., then the candidates: from (fits: protected from); with (correct English, different meaning: kept safely by the floods, as if they were a guard); of (not used: of = belonging; not used)",
@@ -51,6 +67,22 @@
           { do: "write", id: "e2h", text: "satisfied", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 satisfied with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["agreeWith", "She is satisfied with the result.", { hl: "with", sub: "satisfied with = pleased with", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "satisfied-logic",
+        title: "satisfied with: the logic",
+        alt: "The logic for satisfied with: Look at the senses. **with** has the sense of feelings about what you have. Satisfied with means pleased with, and that fits: satisfied with = pleased with. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. But pleased with is not belonging to, a part of, or about. So satisfied does not take **of**.; **from** has the sense of away from a starting point or source. But pleased with is not away from a starting point or source. So satisfied does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Satisfied with means pleased with, and that fits: satisfied with = pleased with. So the word takes **with**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But pleased with is not belonging to, a part of, or about. So satisfied does not take **of**.", cue: "e2lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But pleased with is not away from a starting point or source. So satisfied does not take **from**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "satisfied with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "pleased with = feelings about what you have", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but pleased with is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but pleased with is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -105,6 +137,22 @@
         ],
       },
       {
+        id: "search-logic",
+        title: "search for: the logic",
+        alt: "The logic for search for: Look at the senses. **for** has the sense of aimed at something you want. Search means look carefully, and that fits: search for = look for something lost or wanted. So the word takes **for**.; **(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: examined the boy's body and clothes. That is not what search for says.; **of** has the sense of belonging to, a part of, or about. Of goes with in search of. So search does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Search means look carefully, and that fits: search for = look for something lost or wanted. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: examined the boy's body and clothes. That is not what search for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with in search of. So search does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "search for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "look for something lost or wanted = aimed at something you want", size: 28 }], ["check", "\u2248 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "correct English, but it would mean: examined the boy's body and clothes", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with in search of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "search-why",
         title: "search: why this one?",
         alt: "The sentence The police searched with a gap the missing boy., then the candidates: for (fits: look for something lost or wanted); (no word) (correct English, different meaning: examined the boy's body and clothes); of (not used: of goes with in search of)",
@@ -131,6 +179,22 @@
           { do: "write", id: "e4h", text: "sensitive", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 sensitive to, sensitive about", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "His eyes are sensitive to light.", { hl: "to", sub: "sensitive to = easily affected by", size: 30 }], ["aboutCircle", "He is sensitive about his weight.", { hl: "about", sub: "sensitive about = easily upset about", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "sensitive-logic",
+        title: "sensitive about: the logic",
+        alt: "The logic for sensitive about: Look at the senses. **about** has the sense of a feeling around a topic. Sensitive about means easily upset about, and that fits: sensitive about = easily upset about. So the word takes **about**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: physically affected by his weight. That is not what sensitive about says.; **of** has the sense of belonging to, a part of, or about. But easily upset about is not belonging to, a part of, or about. So sensitive does not take **of**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Sensitive about means easily upset about, and that fits: sensitive about = easily upset about. So the word takes **about**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: physically affected by his weight. That is not what sensitive about says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But easily upset about is not belonging to, a part of, or about. So sensitive does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "sensitive about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "easily upset about = a feeling around a topic", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: physically affected by his weight", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but easily upset about is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -163,6 +227,22 @@
         ],
       },
       {
+        id: "sentenced-logic",
+        title: "sentenced to: the logic",
+        alt: "The logic for sentenced to: Look at the senses. **to** has the sense of a limit or level reached. Sentenced to means given a punishment, and that fits: sentenced to = given a punishment. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: five years would be his crime. That is not what sentenced to says.; **with** has the sense of together with, or using. But given a punishment is not together with, or using. So sentenced does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a limit or level reached. Sentenced to means given a punishment, and that fits: sentenced to = given a punishment. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: five years would be his crime. That is not what sentenced to says.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. But given a punishment is not together with, or using. So sentenced does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "sentenced to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = a limit or level reached", { hl: "TO", sub: "given a punishment = a limit or level reached", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: five years would be his crime", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but given a punishment is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "sentenced-why",
         title: "sentenced: why this one?",
         alt: "The sentence He was sentenced with a gap five years., then the candidates: to (fits: given a punishment); for (correct English, different meaning: five years would be his crime); with (not used: with = together; not used)",
@@ -187,6 +267,22 @@
           { do: "write", id: "e6h", text: "shocked", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Basic \u00b7 shocked at", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [[[["arrowR", -40, 0], ["target", 30, 0]], "We were shocked at the news.", { hl: "at", sub: "shocked at = very surprised and upset by", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "shocked-logic",
+        title: "shocked at: the logic",
+        alt: "The logic for shocked at: Look at the senses. **at** has the sense of a reaction to a point. Shocked at means very surprised and upset by, and that fits: shocked at = very surprised and upset by. So the word takes **at**.; **from** has the sense of away from a starting point or source. But very surprised and upset by is not away from a starting point or source. So shocked does not take **from**.; **on** has the sense of resting on, or about a topic. But very surprised and upset by is not resting on, or about a topic. So shocked does not take **on**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Shocked at means very surprised and upset by, and that fits: shocked at = very surprised and upset by. So the word takes **at**.", cue: "e6lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But very surprised and upset by is not away from a starting point or source. So shocked does not take **from**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But very surprised and upset by is not resting on, or about a topic. So shocked does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "shocked at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "very surprised and upset by = a reaction to a point", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but very surprised and upset by is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but very surprised and upset by is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -217,6 +313,22 @@
         ],
       },
       {
+        id: "short-logic",
+        title: "short of: the logic",
+        alt: "The logic for short of: Look at the senses. **of** has the sense of what something is made of or holds. Short of means not having enough, and that fits: short of = not having enough. So the word takes **of**.; **in** has the sense of inside, within. But not having enough is not inside, within. So short does not take **in**.; **with** has the sense of together with, or using. With = together; the opposite. So short does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Short of means not having enough, and that fits: short of = not having enough. So the word takes **of**.", cue: "e7lg1" },
+          { text: "**in** has the sense of inside, within. But not having enough is not inside, within. So short does not take **in**.", cue: "e7lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; the opposite. So short does not take **with**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "short of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "not having enough = what something is made of or holds", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but not having enough is not inside, within", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; the opposite", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "short-why",
         title: "short: why this one?",
         alt: "The sentence We are short with a gap money., then the candidates: of (fits: not having enough); in (not used: in is inside; not used); with (not used: with = together; the opposite)",
@@ -241,6 +353,22 @@
           { do: "write", id: "e8h", text: "similar", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Basic \u00b7 similar to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["reachDot", "Your answer is similar to mine.", { hl: "to", sub: "similar to = almost the same as", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "similar-logic",
+        title: "similar to: the logic",
+        alt: "The logic for similar to: Look at the senses. **to** has the sense of matching or compared to. Similar to means almost the same as, and that fits: similar to = almost the same as. So the word takes **to**.; **with** has the sense of together with, or using. But almost the same as is not together with, or using. So similar does not take **with**.; **than** has the sense of compared with. Similar is not a comparative; it takes to. So similar does not take **than**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Similar to means almost the same as, and that fits: similar to = almost the same as. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**with** has the sense of together with, or using. But almost the same as is not together with, or using. So similar does not take **with**.", cue: "e8lg2" },
+          { text: "**than** has the sense of compared with. Similar is not a comparative; it takes to. So similar does not take **than**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "similar to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "almost the same as = matching or compared to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but almost the same as is not together with, or using", size: 28 }], ["cross", "\u2717 THAN = compared with", { hl: "THAN", sub: "similar is not a comparative; it takes to", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

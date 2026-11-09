@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "hostile-logic",
+        title: "hostile to: the logic",
+        alt: "The logic for hostile to: Look at the senses. **to** has the sense of behaviour aimed at someone. Hostile to means strongly against, and that fits: hostile to = strongly against. So the word takes **to**.; **with** has the sense of together with, or using. With = together; the opposite. So hostile does not take **with**.; **against** has the sense of opposing, or leaning on. Hostile already means against; it takes to. So hostile does not take **against**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Hostile to means strongly against, and that fits: hostile to = strongly against. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; the opposite. So hostile does not take **with**.", cue: "e1lg2" },
+          { text: "**against** has the sense of opposing, or leaning on. Hostile already means against; it takes to. So hostile does not take **against**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "hostile to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "strongly against = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; the opposite", size: 28 }], ["cross", "\u2717 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "hostile already means against; it takes to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "hostile-why",
         title: "hostile: why this one?",
         alt: "The sentence The party is hostile with a gap change., then the candidates: to (fits: strongly against); with (not used: with = together; the opposite); against (not used: hostile already means against; it takes to)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "hungry", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 hungry for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["wantStar", "He is hungry for power.", { hl: "for", sub: "hungry for = strongly wanting", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "hungry-logic",
+        title: "hungry for: the logic",
+        alt: "The logic for hungry for: Look at the senses. **for** has the sense of aimed at something you want. Hungry for means strongly wanting, and that fits: hungry for = strongly wanting. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; hunger reaches for. So hungry does not take **of**.; **about** has the sense of around a topic. But strongly wanting is not around a topic. So hungry does not take **about**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Hungry for means strongly wanting, and that fits: hungry for = strongly wanting. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; hunger reaches for. So hungry does not take **of**.", cue: "e2lg2" },
+          { text: "**about** has the sense of around a topic. But strongly wanting is not around a topic. So hungry does not take **about**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "hungry for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "strongly wanting = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; hunger reaches for", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "but strongly wanting is not around a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

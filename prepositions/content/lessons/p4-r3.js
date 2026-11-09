@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "rid-logic",
+        title: "rid of: the logic",
+        alt: "The logic for rid of: Look at the senses. **of** has the sense of something taken away. Rid of means get rid of: remove, and that fits: rid of = get rid of: remove. So the word takes **of**.; **from** has the sense of away from a starting point or source. But get rid of: remove is not away from a starting point or source. So rid does not take **from**.; **off** has the sense of away from, removed. Off is a spelling mix-up: rid of. So rid does not take **off**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of something taken away. Rid of means get rid of: remove, and that fits: rid of = get rid of: remove. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But get rid of: remove is not away from a starting point or source. So rid does not take **from**.", cue: "e1lg2" },
+          { text: "**off** has the sense of away from, removed. Off is a spelling mix-up: rid of. So rid does not take **off**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "rid of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = something taken away", { hl: "OF", sub: "get rid of: remove = something taken away", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but get rid of: remove is not away from a starting point or source", size: 28 }], ["cross", "\u2717 OFF = away from, removed", { hl: "OFF", sub: "off is a spelling mix-up: rid of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "rid-why",
         title: "rid: why this one?",
         alt: "The sentence We must get rid with a gap the waste., then the candidates: of (fits: get rid of: remove); from (not used: a word-for-word translation); off (not used: off is a spelling mix-up: rid of)",
@@ -74,6 +90,22 @@
         ],
       },
       {
+        id: "rob-logic",
+        title: "rob of: the logic",
+        alt: "The logic for rob of: Look at the senses. **of** has the sense of something taken away. Rob means take by force, and that fits: rob of = take something from someone illegally. So the word takes **of**.; **from** has the sense of away from a starting point or source. Steal from, but rob someone of. So rob does not take **from**.; **with** has the sense of together with, or using. But take something from someone illegally is not together with, or using. So rob does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of something taken away. Rob means take by force, and that fits: rob of = take something from someone illegally. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**from** has the sense of away from a starting point or source. Steal from, but rob someone of. So rob does not take **from**.", cue: "e2lg2" },
+          { text: "**with** has the sense of together with, or using. But take something from someone illegally is not together with, or using. So rob does not take **with**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "rob of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = something taken away", { hl: "OF", sub: "take something from someone illegally = something taken away", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "steal from, but rob someone of", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but take something from someone illegally is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "rob-why",
         title: "rob: why this one?",
         alt: "The sentence They robbed him with a gap his wallet., then the candidates: of (fits: take something from someone illegally); from (not used: steal from, but rob someone of); with (not used: with = together; not used)",
@@ -98,6 +130,22 @@
           { do: "write", id: "e3h", text: "rude", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 rude to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["reachDot", "Do not be rude to guests.", { hl: "to", sub: "rude to = impolite to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "rude-logic",
+        title: "rude to: the logic",
+        alt: "The logic for rude to: Look at the senses. **to** has the sense of behaviour aimed at someone. Rude to means impolite to, and that fits: rude to = impolite to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; rudeness points to. So rude does not take **with**.; **on** has the sense of resting on, or about a topic. But impolite to is not resting on, or about a topic. So rude does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Rude to means impolite to, and that fits: rude to = impolite to. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; rudeness points to. So rude does not take **with**.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But impolite to is not resting on, or about a topic. So rude does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "rude to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "impolite to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; rudeness points to", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but impolite to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

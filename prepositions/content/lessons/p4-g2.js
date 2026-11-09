@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "guilty-logic",
+        title: "guilty of: the logic",
+        alt: "The logic for guilty of: Look at the senses. **of** has the sense of a wrong someone is accused of. Guilty of means having done a wrong, and that fits: guilty of = having done a wrong. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For goes with blame; guilty takes of. So guilty does not take **for**.; **in** has the sense of inside, within. But having done a wrong is not inside, within. So guilty does not take **in**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a wrong someone is accused of. Guilty of means having done a wrong, and that fits: guilty of = having done a wrong. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For goes with blame; guilty takes of. So guilty does not take **for**.", cue: "e1lg2" },
+          { text: "**in** has the sense of inside, within. But having done a wrong is not inside, within. So guilty does not take **in**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "guilty of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = a wrong someone is accused of", { hl: "OF", sub: "having done a wrong = a wrong someone is accused of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for goes with blame; guilty takes of", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but having done a wrong is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "guilty-why",
         title: "guilty: why this one?",
         alt: "The sentence He was found guilty with a gap fraud., then the candidates: of (fits: having done a wrong); for (not used: for goes with blame; guilty takes of); in (not used: in is inside; not used)",

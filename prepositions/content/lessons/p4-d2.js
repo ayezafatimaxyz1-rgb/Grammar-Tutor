@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "descended-logic",
+        title: "descended from: the logic",
+        alt: "The logic for descended from: Look at the senses. **from** has the sense of a starting point or source. Descended from means having as an ancestor, and that fits: descended from = having as an ancestor. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; ancestry comes from. So descended does not take **of**.; **by** has the sense of by means of, or next to. By is a means, not a source. So descended does not take **by**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Descended from means having as an ancestor, and that fits: descended from = having as an ancestor. So the word takes **from**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; ancestry comes from. So descended does not take **of**.", cue: "e1lg2" },
+          { text: "**by** has the sense of by means of, or next to. By is a means, not a source. So descended does not take **by**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "descended from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "having as an ancestor = a starting point or source", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; ancestry comes from", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by is a means, not a source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "descended-why",
         title: "descended: why this one?",
         alt: "The sentence She is descended with a gap a royal family., then the candidates: from (fits: having as an ancestor); of (not used: of = belonging; ancestry comes from); by (not used: by is a means, not a source)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "deserving", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 deserving of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["awareOf", "Such courage is deserving of praise.", { hl: "of", sub: "deserving of = worthy of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "deserving-logic",
+        title: "deserving of: the logic",
+        alt: "The logic for deserving of: Look at the senses. **of** has the sense of belonging or part of. Deserving of means worthy of, and that fits: deserving of = worthy of. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; deserving takes of. So deserving does not take **for**.; **to** has the sense of moving towards, reaching. But worthy of is not moving towards, reaching. So deserving does not take **to**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of belonging or part of. Deserving of means worthy of, and that fits: deserving of = worthy of. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; deserving takes of. So deserving does not take **for**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But worthy of is not moving towards, reaching. So deserving does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "deserving of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = belonging or part of", { hl: "OF", sub: "worthy of = belonging or part of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; deserving takes of", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but worthy of is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -79,6 +111,22 @@
         ],
       },
       {
+        id: "desire-logic",
+        title: "desire for: the logic",
+        alt: "The logic for desire for: Look at the senses. **for** has the sense of aimed at something you want. Desire for means a strong wish for (noun), and that fits: desire for = a strong wish for (noun). So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; a wish reaches for. So desire does not take **of**.; **to** has the sense of moving towards, reaching. To + a verb only: a desire to win. So desire does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Desire for means a strong wish for (noun), and that fits: desire for = a strong wish for (noun). So the word takes **for**.", cue: "e3lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; a wish reaches for. So desire does not take **of**.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To + a verb only: a desire to win. So desire does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "desire for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "a strong wish for (noun) = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; a wish reaches for", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to + a verb only: a desire to win", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "desire-why",
         title: "desire: why this one?",
         alt: "The sentence There is a deep desire with a gap peace., then the candidates: for (fits: a strong wish for (noun)); of (not used: of = belonging; a wish reaches for); to (not used: to + a verb only: a desire to win)",
@@ -106,6 +154,22 @@
         ],
       },
       {
+        id: "destined-logic",
+        title: "destined for: the logic",
+        alt: "The logic for destined for: Look at the senses. **for** has the sense of destination of a departure. Destined for means going to reach a future state, and that fits: destined for = going to reach a future state. So the word takes **for**.; **to** has the sense of moving towards, reaching. To needs a verb: destined to rule. So destined does not take **to**.; **on** has the sense of resting on, or about a topic. But going to reach a future state is not resting on, or about a topic. So destined does not take **on**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of destination of a departure. Destined for means going to reach a future state, and that fits: destined for = going to reach a future state. So the word takes **for**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: destined to rule. So destined does not take **to**.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But going to reach a future state is not resting on, or about a topic. So destined does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "destined for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["wantStar", "\u2713 FOR = destination of a departure", { hl: "FOR", sub: "going to reach a future state = destination of a departure", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: destined to rule", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but going to reach a future state is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "destined-why",
         title: "destined: why this one?",
         alt: "The sentence She seemed destined with a gap greatness., then the candidates: for (fits: going to reach a future state); to (not used: to needs a verb: destined to rule); on (not used: on is resting; not used)",
@@ -130,6 +194,22 @@
           { do: "write", id: "e5h", text: "detrimental", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Advanced \u00b7 detrimental to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["reachDot", "Smoking is detrimental to health.", { hl: "to", sub: "detrimental to = harmful to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "detrimental-logic",
+        title: "detrimental to: the logic",
+        alt: "The logic for detrimental to: Look at the senses. **to** has the sense of an effect on someone. Detrimental to means harmful to, and that fits: detrimental to = harmful to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; harm points to. So detrimental does not take **for**.; **of** has the sense of belonging to, a part of, or about. But harmful to is not belonging to, a part of, or about. So detrimental does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Detrimental to means harmful to, and that fits: detrimental to = harmful to. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; harm points to. So detrimental does not take **for**.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But harmful to is not belonging to, a part of, or about. So detrimental does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "detrimental to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "harmful to = an effect on someone", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; harm points to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but harmful to is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -182,6 +262,22 @@
         ],
       },
       {
+        id: "deviate-logic",
+        title: "deviate from: the logic",
+        alt: "The logic for deviate from: Look at the senses. **from** has the sense of moving away, separation. Deviate means turn from a path, and that fits: deviate from = move away from a course. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; moving away takes from. So deviate does not take **of**.; **to** has the sense of moving towards, reaching. To moves towards; deviating moves away. So deviate does not take **to**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Deviate means turn from a path, and that fits: deviate from = move away from a course. So the word takes **from**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; moving away takes from. So deviate does not take **of**.", cue: "e6lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To moves towards; deviating moves away. So deviate does not take **to**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "deviate from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "move away from a course = moving away, separation", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; moving away takes from", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to moves towards; deviating moves away", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "deviate-why",
         title: "deviate: why this one?",
         alt: "The sentence Do not deviate with a gap the plan., then the candidates: from (fits: move away from a course); of (not used: of = belonging; moving away takes from); to (not used: to moves towards; deviating moves away)",
@@ -206,6 +302,22 @@
           { do: "write", id: "e7h", text: "devoid", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Advanced \u00b7 devoid of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["awareOf", "The speech was devoid of meaning.", { hl: "of", sub: "devoid of = completely without", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "devoid-logic",
+        title: "devoid of: the logic",
+        alt: "The logic for devoid of: Look at the senses. **of** has the sense of what something is made of or holds. Devoid of means completely without, and that fits: devoid of = completely without. So the word takes **of**.; **from** has the sense of away from a starting point or source. From is moving away; devoid takes of. So devoid does not take **from**.; **in** has the sense of inside, within. In is inside; the opposite. So devoid does not take **in**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Devoid of means completely without, and that fits: devoid of = completely without. So the word takes **of**.", cue: "e7lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is moving away; devoid takes of. So devoid does not take **from**.", cue: "e7lg2" },
+          { text: "**in** has the sense of inside, within. In is inside; the opposite. So devoid does not take **in**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "devoid of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "completely without = what something is made of or holds", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is moving away; devoid takes of", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; the opposite", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -255,6 +367,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "give time or effort to", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "He devoted his life to teaching.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "devote-logic",
+        title: "devote to: the logic",
+        alt: "The logic for devote to: Look at the senses. **to** has the sense of attached or devoted to. Devote means give fully, and that fits: devote to = give time or effort to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; devote points to. So devote does not take **for**.; **in** has the sense of inside, within. But give time or effort to is not inside, within. So devote does not take **in**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Devote means give fully, and that fits: devote to = give time or effort to. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; devote points to. So devote does not take **for**.", cue: "e8lg2" },
+          { text: "**in** has the sense of inside, within. But give time or effort to is not inside, within. So devote does not take **in**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "devote to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "give time or effort to = attached or devoted to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; devote points to", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but give time or effort to is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

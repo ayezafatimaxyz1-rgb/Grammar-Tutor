@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "keen-logic",
+        title: "keen on: the logic",
+        alt: "The logic for keen on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Keen on means very interested in, and that fits: keen on = very interested in. So the word takes **on**.; **in** has the sense of inside, within. In is inside; keenness leans on. So keen does not take **in**.; **for** has the sense of aimed at, or for the sake of. But very interested in is not aimed at, or for the sake of. So keen does not take **for**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Keen on means very interested in, and that fits: keen on = very interested in. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**in** has the sense of inside, within. In is inside; keenness leans on. So keen does not take **in**.", cue: "e1lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But very interested in is not aimed at, or for the sake of. So keen does not take **for**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "keen on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "very interested in = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; keenness leans on", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but very interested in is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "keen-why",
         title: "keen: why this one?",
         alt: "The sentence He is keen with a gap cricket., then the candidates: on (fits: very interested in); in (not used: in is inside; keenness leans on); for (not used: for is a purpose; not used)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "kind", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 kind to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "Be kind to animals.", { hl: "to", sub: "kind to = gentle and caring towards", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "kind-logic",
+        title: "kind to: the logic",
+        alt: "The logic for kind to: Look at the senses. **to** has the sense of behaviour aimed at someone. Kind to means gentle and caring towards, and that fits: kind to = gentle and caring towards. So the word takes **to**.; **with** has the sense of together with, or using. With = together; kindness points to. So kind does not take **with**.; **for** has the sense of aimed at, or for the sake of. But gentle and caring towards is not aimed at, or for the sake of. So kind does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Kind to means gentle and caring towards, and that fits: kind to = gentle and caring towards. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; kindness points to. So kind does not take **with**.", cue: "e2lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But gentle and caring towards is not aimed at, or for the sake of. So kind does not take **for**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "kind to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "gentle and caring towards = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; kindness points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but gentle and caring towards is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -112,6 +144,22 @@
         ],
       },
       {
+        id: "knock-logic",
+        title: "knock down: the logic",
+        alt: "The logic for knock down: Look at the senses. **down** has the sense of down, or lower. Knock means strike, and that fits: knock down = hit and make fall. So the word takes **down**.; **out** has the sense of out, outward. It is correct English, but it would mean something else: made unconscious by the bus. That is not what knock down says.; **off** has the sense of away from, removed. It is correct English, but it would mean something else: knocked off a surface, like a cup off a table. That is not what knock down says.",
+        say: [
+          { text: "Look at the senses. **down** has the sense of down, or lower. Knock means strike, and that fits: knock down = hit and make fall. So the word takes **down**.", cue: "e3lg1" },
+          { text: "**out** has the sense of out, outward. It is correct English, but it would mean something else: made unconscious by the bus. That is not what knock down says.", cue: "e3lg2" },
+          { text: "**off** has the sense of away from, removed. It is correct English, but it would mean something else: knocked off a surface, like a cup off a table. That is not what knock down says.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "knock down: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["arrowDown", "\u2713 DOWN = down, or lower", { hl: "DOWN", sub: "hit and make fall = down, or lower", size: 28 }], ["arrowR", "\u2248 OUT = out, outward", { hl: "OUT", sub: "correct English, but it would mean: made unconscious by the bus", size: 28 }], ["bookTable", "\u2248 OFF = away from, removed", { hl: "OFF", sub: "correct English, but it would mean: knocked off a surface, like a cup off a table", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "knock-why",
         title: "knock: why this one?",
         alt: "The sentence He was knocked with a gap by a bus., then the candidates: down (fits: hit and make fall); out (correct English, different meaning: made unconscious by the bus); off (correct English, different meaning: knocked off a surface, like a cup off a table)",
@@ -136,6 +184,22 @@
           { do: "write", id: "e4h", text: "knowledge", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 knowledge of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["awareOf", "She has a good knowledge of history.", { hl: "of", sub: "knowledge of = knowing about a subject (noun)", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "knowledge-logic",
+        title: "knowledge of: the logic",
+        alt: "The logic for knowledge of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Knowledge of means knowing about a subject (noun), and that fits: knowledge of = knowing about a subject (noun). So the word takes **of**.; **in** has the sense of inside, within. In is inside; knowledge takes of. So knowledge does not take **in**.; **on** has the sense of resting on, or about a topic. On is a surface; not standard here. So knowledge does not take **on**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Knowledge of means knowing about a subject (noun), and that fits: knowledge of = knowing about a subject (noun). So the word takes **of**.", cue: "e4lg1" },
+          { text: "**in** has the sense of inside, within. In is inside; knowledge takes of. So knowledge does not take **in**.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface; not standard here. So knowledge does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "knowledge of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "knowing about a subject (noun) = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; knowledge takes of", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface; not standard here", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

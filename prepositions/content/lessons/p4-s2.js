@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "sorry-logic",
+        title: "sorry for: the logic",
+        alt: "The logic for sorry for: Look at the senses. **for** has the sense of for someone's sake. Sorry for means feeling pity for, and that fits: sorry for = feeling pity for. So the word takes **for**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: regretting something about the poor. That is not what sorry for says.; **on** has the sense of resting on, or about a topic. But feeling pity for is not resting on, or about a topic. So sorry does not take **on**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Sorry for means feeling pity for, and that fits: sorry for = feeling pity for. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: regretting something about the poor. That is not what sorry for says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But feeling pity for is not resting on, or about a topic. So sorry does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "sorry for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "feeling pity for = for someone's sake", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: regretting something about the poor", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but feeling pity for is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "sorry-why",
         title: "sorry: why this one?",
         alt: "The sentence I feel sorry with a gap the poor., then the candidates: for (fits: feeling pity for); about (correct English, different meaning: regretting something about the poor); on (not used: on is resting; not used)",
@@ -73,6 +89,22 @@
           { do: "write", id: "e2b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e2b1m", text: "focus on one field", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e2b1x", text: "She specialises in criminal law.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "specialise-logic",
+        title: "specialise in: the logic",
+        alt: "The logic for specialise in: Look at the senses. **in** has the sense of inside a field or subject. Specialise means focus on one thing, and that fits: specialise in = focus on one field. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is resting; a field is something you work inside. So specialise does not take **on**.; **at** has the sense of pointing at one spot or target. But focus on one field is not pointing at one spot or target. So specialise does not take **at**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a field or subject. Specialise means focus on one thing, and that fits: specialise in = focus on one field. So the word takes **in**.", cue: "e2lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; a field is something you work inside. So specialise does not take **on**.", cue: "e2lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But focus on one field is not pointing at one spot or target. So specialise does not take **at**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "specialise in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["absorbedIn", "\u2713 IN = inside a field or subject", { hl: "IN", sub: "focus on one field = inside a field or subject", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; a field is something you work inside", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but focus on one field is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -125,6 +157,22 @@
         ],
       },
       {
+        id: "stare-logic",
+        title: "stare at: the logic",
+        alt: "The logic for stare at: Look at the senses. **at** has the sense of a target you aim at. Stare means look fixedly, and that fits: stare at = look long and hard at. So the word takes **at**.; **on** has the sense of resting on, or about a topic. On is resting; eyes aim at. So stare does not take **on**.; **to** has the sense of moving towards, reaching. But look long and hard at is not moving towards, reaching. So stare does not take **to**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a target you aim at. Stare means look fixedly, and that fits: stare at = look long and hard at. So the word takes **at**.", cue: "e3lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; eyes aim at. So stare does not take **on**.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But look long and hard at is not moving towards, reaching. So stare does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "stare at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a target you aim at", { hl: "AT", sub: "look long and hard at = a target you aim at", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; eyes aim at", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but look long and hard at is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "stare-why",
         title: "stare: why this one?",
         alt: "The sentence Do not stare with a gap people., then the candidates: at (fits: look long and hard at); on (not used: on is resting; eyes aim at); to (not used: to points; not used)",
@@ -151,6 +199,22 @@
           { do: "write", id: "e4h", text: "subject", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Advanced \u00b7 subject to, subject of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "The plan is subject to approval.", { hl: "to", sub: "subject to = depending on, or open to", size: 30 }], ["awareOf", "Poverty is the subject of his essay.", { hl: "of", sub: "subject of = the subject of: the topic of (noun)", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "subject-logic",
+        title: "subject to: the logic",
+        alt: "The logic for subject to: Look at the senses. **to** has the sense of open or exposed to. Subject to means depending on, or open to, and that fits: subject to = depending on, or open to. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: approval would be the topic of the plan. That is not what subject to says.; **on** has the sense of resting on, or about a topic. But depending on, or open to is not resting on, or about a topic. So subject does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of open or exposed to. Subject to means depending on, or open to, and that fits: subject to = depending on, or open to. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: approval would be the topic of the plan. That is not what subject to says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But depending on, or open to is not resting on, or about a topic. So subject does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "subject to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = open or exposed to", { hl: "TO", sub: "depending on, or open to = open or exposed to", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: approval would be the topic of the plan", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but depending on, or open to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -203,6 +267,22 @@
         ],
       },
       {
+        id: "submit-logic",
+        title: "submit to: the logic",
+        alt: "The logic for submit to: Look at the senses. **to** has the sense of a person who receives. Submit means yield, hand in, and that fits: submit to = accept the authority of. So the word takes **to**.; **on** has the sense of resting on, or about a topic. But accept the authority of is not resting on, or about a topic. So submit does not take **on**.; **for** has the sense of aimed at, or for the sake of. But accept the authority of is not aimed at, or for the sake of. So submit does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Submit means yield, hand in, and that fits: submit to = accept the authority of. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But accept the authority of is not resting on, or about a topic. So submit does not take **on**.", cue: "e5lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But accept the authority of is not aimed at, or for the sake of. So submit does not take **for**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "submit to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "accept the authority of = a person who receives", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but accept the authority of is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but accept the authority of is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "submit-why",
         title: "submit: why this one?",
         alt: "The sentence The rebels submitted with a gap the government., then the candidates: to (fits: accept the authority of); on (not used: on is resting; not used); for (not used: for is a purpose; not used)",
@@ -227,6 +307,22 @@
           { do: "write", id: "e6h", text: "substitute", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 substitute for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["wantStar", "Honey is a good substitute for sugar.", { hl: "for", sub: "substitute for = something used in place of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "substitute-logic",
+        title: "substitute for: the logic",
+        alt: "The logic for substitute for: Look at the senses. **for** has the sense of purpose or suitability. Substitute for means something used in place of, and that fits: substitute for = something used in place of. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. But something used in place of is not belonging to, a part of, or about. So substitute does not take **of**.; **to** has the sense of moving towards, reaching. But something used in place of is not moving towards, reaching. So substitute does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Substitute for means something used in place of, and that fits: substitute for = something used in place of. So the word takes **for**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But something used in place of is not belonging to, a part of, or about. So substitute does not take **of**.", cue: "e6lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But something used in place of is not moving towards, reaching. So substitute does not take **to**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "substitute for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "something used in place of = purpose or suitability", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but something used in place of is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but something used in place of is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -290,6 +386,22 @@
         ],
       },
       {
+        id: "succeed-logic",
+        title: "succeed in: the logic",
+        alt: "The logic for succeed in: Look at the senses. **in** has the sense of inside an activity: taking part. Succeed means achieve, follow, and that fits: succeed in = achieve. So the word takes **in**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: inherited passing the exam as if it were a throne. That is not what succeed in says.; **on** has the sense of resting on, or about a topic. But achieve is not resting on, or about a topic. So succeed does not take **on**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Succeed means achieve, follow, and that fits: succeed in = achieve. So the word takes **in**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: inherited passing the exam as if it were a throne. That is not what succeed in says.", cue: "e7lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But achieve is not resting on, or about a topic. So succeed does not take **on**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "succeed in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "achieve = inside an activity: taking part", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: inherited passing the exam as if it were a throne", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but achieve is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "succeed-why",
         title: "succeed: why this one?",
         alt: "The sentence She succeeded with a gap passing the exam., then the candidates: in (fits: achieve); to (correct English, different meaning: inherited passing the exam as if it were a throne); on (not used: on is resting; not used)",
@@ -336,6 +448,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "be troubled by an illness or problem", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "She suffers from asthma.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "suffer-logic",
+        title: "suffer from: the logic",
+        alt: "The logic for suffer from: Look at the senses. **from** has the sense of a starting point or source. Suffer means feel pain, and that fits: suffer from = be troubled by an illness or problem. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. But be troubled by an illness or problem is not belonging to, a part of, or about. So suffer does not take **of**.; **with** has the sense of together with, or using. Heard in speech, but formal English says suffer from. So suffer does not take **with**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Suffer means feel pain, and that fits: suffer from = be troubled by an illness or problem. So the word takes **from**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But be troubled by an illness or problem is not belonging to, a part of, or about. So suffer does not take **of**.", cue: "e8lg2" },
+          { text: "**with** has the sense of together with, or using. Heard in speech, but formal English says suffer from. So suffer does not take **with**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "suffer from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "be troubled by an illness or problem = a starting point or source", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but be troubled by an illness or problem is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "heard in speech, but formal English says suffer from", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

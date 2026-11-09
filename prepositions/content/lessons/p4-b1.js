@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "based-logic",
+        title: "based on: the logic",
+        alt: "The logic for based on: Look at the senses. **on** has the sense of resting on a support. Based on means resting on a foundation, and that fits: based on = resting on a foundation. So the word takes **on**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: located inside the story. That is not what based on says.; **at** has the sense of pointing at one spot or target. At is a point; a foundation takes on. So based does not take **at**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Based on means resting on a foundation, and that fits: based on = resting on a foundation. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: located inside the story. That is not what based on says.", cue: "e1lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. At is a point; a foundation takes on. So based does not take **at**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "based on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "resting on a foundation = resting on a support", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: located inside the story", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at is a point; a foundation takes on", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "based-why",
         title: "based: why this one?",
         alt: "The sentence The film is based with a gap a true story., then the candidates: on (fits: resting on a foundation); in (correct English, different meaning: located inside the story); at (not used: at is a point; a foundation takes on)",
@@ -84,6 +100,22 @@
           { do: "write", id: "e2b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e2b2m", text: "have its proper place in", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e2b2x", text: "This book belongs in the library.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "belong-logic",
+        title: "belong to: the logic",
+        alt: "The logic for belong to: Look at the senses. **to** has the sense of attached or devoted to. Belong means be in its right place, and that fits: belong to = be owned by, or be a member of. So the word takes **to**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: its proper place is inside the state. That is not what belong to says.; **with** has the sense of together with, or using. With = together; ownership points to. So belong does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Belong means be in its right place, and that fits: belong to = be owned by, or be a member of. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: its proper place is inside the state. That is not what belong to says.", cue: "e2lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; ownership points to. So belong does not take **with**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "belong to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "be owned by, or be a member of = attached or devoted to", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: its proper place is inside the state", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; ownership points to", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -147,6 +179,22 @@
         ],
       },
       {
+        id: "benefit-logic",
+        title: "benefit from: the logic",
+        alt: "The logic for benefit from: Look at the senses. **from** has the sense of a starting point or source. Benefit means gain good, and that fits: benefit from = gain something good from. So the word takes **from**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: the families would be the gain to the scheme. That is not what benefit from says.; **of** has the sense of belonging to, a part of, or about. Of goes with the noun: the benefit of. So benefit does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Benefit means gain good, and that fits: benefit from = gain something good from. So the word takes **from**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: the families would be the gain to the scheme. That is not what benefit from says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with the noun: the benefit of. So benefit does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "benefit from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "gain something good from = a starting point or source", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: the families would be the gain to the scheme", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with the noun: the benefit of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "benefit-why",
         title: "benefit: why this one?",
         alt: "The sentence Poor families benefit with a gap the scheme., then the candidates: from (fits: gain something good from); to (correct English, different meaning: the families would be the gain to the scheme); of (not used: of goes with the noun: the benefit of)",
@@ -171,6 +219,22 @@
           { do: "write", id: "e4h", text: "bent", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Advanced \u00b7 bent on", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["support", "He is bent on revenge.", { hl: "on", sub: "bent on = determined to do", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "bent-logic",
+        title: "bent on: the logic",
+        alt: "The logic for bent on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Bent on means determined to do, and that fits: bent on = determined to do. So the word takes **on**.; **to** has the sense of moving towards, reaching. To points; bent on presses on one aim. So bent does not take **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose, not determination. So bent does not take **for**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Bent on means determined to do, and that fits: bent on = determined to do. So the word takes **on**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; bent on presses on one aim. So bent does not take **to**.", cue: "e4lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose, not determination. So bent does not take **for**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "bent on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "determined to do = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; bent on presses on one aim", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose, not determination", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -223,6 +287,22 @@
         ],
       },
       {
+        id: "beware-logic",
+        title: "beware of: the logic",
+        alt: "The logic for beware of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Beware means be wary, and that fits: beware of = be careful of a danger. So the word takes **of**.; **from** has the sense of away from a starting point or source. But be careful of a danger is not away from a starting point or source. So beware does not take **from**.; **against** has the sense of opposing, or leaning on. Against goes with warn, guard. So beware does not take **against**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Beware means be wary, and that fits: beware of = be careful of a danger. So the word takes **of**.", cue: "e5lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But be careful of a danger is not away from a starting point or source. So beware does not take **from**.", cue: "e5lg2" },
+          { text: "**against** has the sense of opposing, or leaning on. Against goes with warn, guard. So beware does not take **against**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "beware of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "be careful of a danger = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but be careful of a danger is not away from a starting point or source", size: 28 }], ["cross", "\u2717 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "against goes with warn, guard", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "beware-why",
         title: "beware: why this one?",
         alt: "The sentence Beware with a gap pickpockets., then the candidates: of (fits: be careful of a danger); from (not used: a word-for-word translation); against (not used: against goes with warn, guard)",
@@ -249,6 +329,22 @@
           { do: "write", id: "e6h", text: "biased", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 biased against, biased towards", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["shield", "The judge was biased against the poor.", { hl: "against", sub: "biased against = unfairly opposed to", size: 30 }], ["lookAhead", "The report is biased towards the rich.", { hl: "towards", sub: "biased towards = unfairly favouring", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "biased-logic",
+        title: "biased against: the logic",
+        alt: "The logic for biased against: Look at the senses. **against** has the sense of opposing. Biased against means unfairly opposed to, and that fits: biased against = unfairly opposed to. So the word takes **against**.; **towards** has the sense of facing in the direction of. It is correct English, but it would mean something else: favouring the poor. That is not what biased against says.; **on** has the sense of resting on, or about a topic. On is resting, not leaning. So biased does not take **on**.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of opposing. Biased against means unfairly opposed to, and that fits: biased against = unfairly opposed to. So the word takes **against**.", cue: "e6lg1" },
+          { text: "**towards** has the sense of facing in the direction of. It is correct English, but it would mean something else: favouring the poor. That is not what biased against says.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting, not leaning. So biased does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "biased against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["shield", "\u2713 AGAINST = opposing", { hl: "AGAINST", sub: "unfairly opposed to = opposing", size: 28 }], ["lookAhead", "\u2248 TOWARDS = facing in the direction of", { hl: "TOWARDS", sub: "correct English, but it would mean: favouring the poor", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting, not leaning", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -312,6 +408,22 @@
         ],
       },
       {
+        id: "blame-logic",
+        title: "blame on: the logic",
+        alt: "The logic for blame on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Blame means hold responsible, and that fits: blame on = put the fault on a person. So the word takes **on**.; **for** has the sense of aimed at, or for the sake of. For names the fault; here the fault comes first, so on the person. So blame does not take **for**.; **to** has the sense of moving towards, reaching. To points; blame lands on. So blame does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Blame means hold responsible, and that fits: blame on = put the fault on a person. So the word takes **on**.", cue: "e7lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For names the fault; here the fault comes first, so on the person. So blame does not take **for**.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points; blame lands on. So blame does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "blame on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "put the fault on a person = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for names the fault; here the fault comes first, so on the person", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; blame lands on", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "blame-why",
         title: "blame: why this one?",
         alt: "The sentence They blamed the accident with a gap the driver., then the candidates: on (fits: put the fault on a person); for (not used: for names the fault; here the fault comes first, so on the person); to (not used: to points; blame lands on)",
@@ -338,6 +450,22 @@
           { do: "write", id: "e8h", text: "blessed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 blessed with, blessed by", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["agreeWith", "She is blessed with talent.", { hl: "with", sub: "blessed with = having a gift or quality", size: 30 }], ["followRule", "The couple were blessed by the elders.", { hl: "by", sub: "blessed by = given a blessing by someone", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "blessed-logic",
+        title: "blessed with: the logic",
+        alt: "The logic for blessed with: Look at the senses. **with** has the sense of having or filled with. Blessed with means having a gift or quality, and that fits: blessed with = having a gift or quality. So the word takes **with**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: talent would be the person who blessed her. That is not what blessed with says.; **of** has the sense of belonging to, a part of, or about. But having a gift or quality is not belonging to, a part of, or about. So blessed does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Blessed with means having a gift or quality, and that fits: blessed with = having a gift or quality. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: talent would be the person who blessed her. That is not what blessed with says.", cue: "e8lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But having a gift or quality is not belonging to, a part of, or about. So blessed does not take **of**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "blessed with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "having a gift or quality = having or filled with", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: talent would be the person who blessed her", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but having a gift or quality is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

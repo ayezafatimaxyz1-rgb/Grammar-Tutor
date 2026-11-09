@@ -49,6 +49,22 @@
         ],
       },
       {
+        id: "approve-logic",
+        title: "approve of: the logic",
+        alt: "The logic for approve of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Approve means judge good, and that fits: approve of = think something is good. So the word takes **of**.; **(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: officially allowed it, like a law. That is not what approve of says.; **for** has the sense of aimed at, or for the sake of. For is a purpose, not an opinion. So approve does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Approve means judge good, and that fits: approve of = think something is good. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: officially allowed it, like a law. That is not what approve of says.", cue: "e1lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose, not an opinion. So approve does not take **for**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "approve of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "think something is good = what a feeling or knowledge is about", size: 28 }], ["check", "\u2248 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "correct English, but it would mean: officially allowed it, like a law", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose, not an opinion", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "approve-why",
         title: "approve: why this one?",
         alt: "The sentence My parents do not approve with a gap smoking., then the candidates: of (fits: think something is good); (no word) (correct English, different meaning: officially allowed it, like a law); for (not used: for is a purpose, not an opinion)",
@@ -119,6 +135,22 @@
         ],
       },
       {
+        id: "argue-logic",
+        title: "argue for: the logic",
+        alt: "The logic for argue for: Look at the senses. **for** has the sense of for someone's sake. Argue means give reasons, dispute, and that fits: argue for = speak in support of. So the word takes **for**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: quarrelled with lower taxes as a person. That is not what argue for says.; **against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: opposing lower taxes. That is not what argue for says.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Argue means give reasons, dispute, and that fits: argue for = speak in support of. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: quarrelled with lower taxes as a person. That is not what argue for says.", cue: "e2lg2" },
+          { text: "**against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: opposing lower taxes. That is not what argue for says.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "argue for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "speak in support of = for someone's sake", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: quarrelled with lower taxes as a person", size: 28 }], ["shield", "\u2248 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "correct English, but it would mean: opposing lower taxes", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "argue-why",
         title: "argue: why this one?",
         alt: "The sentence She argued with a gap lower taxes., then the candidates: for (fits: speak in support of); with (correct English, different meaning: quarrelled with lower taxes as a person); against (correct English, different meaning: opposing lower taxes)",
@@ -179,6 +211,22 @@
         ],
       },
       {
+        id: "arrive-logic",
+        title: "arrive at: the logic",
+        alt: "The logic for arrive at: Look at the senses. **at** has the sense of a point in place. Arrive means reach a place, and that fits: arrive at = reach a point or building. So the word takes **at**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: were already inside the building. That is not what arrive at says.; **to** has the sense of moving towards, reaching. To is still moving; arrive is the end. So arrive does not take **to**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a point in place. Arrive means reach a place, and that fits: arrive at = reach a point or building. So the word takes **at**.", cue: "e3lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: were already inside the building. That is not what arrive at says.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To is still moving; arrive is the end. So arrive does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "arrive at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a point in place", { hl: "AT", sub: "reach a point or building = a point in place", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: were already inside the building", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to is still moving; arrive is the end", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "arrive-why",
         title: "arrive: why this one?",
         alt: "The sentence We arrived with a gap the airport., then the candidates: at (fits: reach a point or building); in (correct English, different meaning: were already inside the building); to (not used: to is still moving; arrive is the end)",
@@ -205,6 +253,22 @@
           { do: "write", id: "e4h", text: "ashamed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 ashamed of, ashamed for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["awareOf", "He is ashamed of his behaviour.", { hl: "of", sub: "ashamed of = feeling bad about something you did", size: 30 }], ["wantStar", "I felt ashamed for him.", { hl: "for", sub: "ashamed for = embarrassed on someone else's behalf", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "ashamed-logic",
+        title: "ashamed of: the logic",
+        alt: "The logic for ashamed of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Ashamed of means feeling bad about something you did, and that fits: ashamed of = feeling bad about something you did. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: embarrassed for his behaviour, as if it were another person. That is not what ashamed of says.; **from** has the sense of away from a starting point or source. But feeling bad about something you did is not away from a starting point or source. So ashamed does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Ashamed of means feeling bad about something you did, and that fits: ashamed of = feeling bad about something you did. So the word takes **of**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: embarrassed for his behaviour, as if it were another person. That is not what ashamed of says.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But feeling bad about something you did is not away from a starting point or source. So ashamed does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "ashamed of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "feeling bad about something you did = what a feeling or knowledge is about", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: embarrassed for his behaviour, as if it were another person", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but feeling bad about something you did is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -278,6 +342,22 @@
         ],
       },
       {
+        id: "ask-logic",
+        title: "ask after: the logic",
+        alt: "The logic for ask after: Look at the senses. **after** has the sense of following, or caring for. Ask means put a question or request, and that fits: ask after = enquire about someone's health. So the word takes **after**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: wanted to see her, requesting her. That is not what ask after says.; **about** has the sense of around a topic. It is correct English, but it would mean something else: asked for facts about her. That is not what ask after says.",
+        say: [
+          { text: "Look at the senses. **after** has the sense of following, or caring for. Ask means put a question or request, and that fits: ask after = enquire about someone's health. So the word takes **after**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: wanted to see her, requesting her. That is not what ask after says.", cue: "e5lg2" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: asked for facts about her. That is not what ask after says.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "ask after: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["careFor", "\u2713 AFTER = following, or caring for", { hl: "AFTER", sub: "enquire about someone's health = following, or caring for", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: wanted to see her, requesting her", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: asked for facts about her", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "ask-why",
         title: "ask: why this one?",
         alt: "The sentence She asked with a gap her grandmother., then the candidates: after (fits: enquire about someone's health); for (correct English, different meaning: wanted to see her, requesting her); about (correct English, different meaning: asked for facts about her)",
@@ -327,6 +407,22 @@
         ],
       },
       {
+        id: "assure-logic",
+        title: "assure of: the logic",
+        alt: "The logic for assure of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Assure means make sure, and that fits: assure of = make someone sure of something. So the word takes **of**.; **about** has the sense of around a topic. Not standard after assure someone. So assure does not take **about**.; **for** has the sense of aimed at, or for the sake of. For is a purpose, not certainty. So assure does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Assure means make sure, and that fits: assure of = make someone sure of something. So the word takes **of**.", cue: "e6lg1" },
+          { text: "**about** has the sense of around a topic. Not standard after assure someone. So assure does not take **about**.", cue: "e6lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose, not certainty. So assure does not take **for**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "assure of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "make someone sure of something = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "not standard after assure someone", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose, not certainty", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "assure-why",
         title: "assure: why this one?",
         alt: "The sentence We assured him with a gap our support., then the candidates: of (fits: make someone sure of something); about (not used: not standard after assure someone); for (not used: for is a purpose, not certainty)",
@@ -351,6 +447,22 @@
           { do: "write", id: "e7h", text: "astonished", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 astonished at", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [[[["arrowR", -40, 0], ["target", 30, 0]], "I was astonished at the price.", { hl: "at", sub: "astonished at = very surprised by", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "astonished-logic",
+        title: "astonished at: the logic",
+        alt: "The logic for astonished at: Look at the senses. **at** has the sense of a reaction to a point. Astonished at means very surprised by, and that fits: astonished at = very surprised by. So the word takes **at**.; **from** has the sense of away from a starting point or source. From is a source; surprise hits a point. So astonished does not take **from**.; **on** has the sense of resting on, or about a topic. On is a surface or topic. So astonished does not take **on**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Astonished at means very surprised by, and that fits: astonished at = very surprised by. So the word takes **at**.", cue: "e7lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; surprise hits a point. So astonished does not take **from**.", cue: "e7lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface or topic. So astonished does not take **on**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "astonished at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "very surprised by = a reaction to a point", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; surprise hits a point", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface or topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -400,6 +512,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "fix one thing to another", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "Please attach the photo to the form.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "attach-logic",
+        title: "attach to: the logic",
+        alt: "The logic for attach to: Look at the senses. **to** has the sense of movement to a destination. Attach means fasten, and that fits: attach to = fix one thing to another. So the word takes **to**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: the tool used: attach it with glue. That is not what attach to says.; **on** has the sense of resting on, or about a topic. On is resting on top, not fixing to. So attach does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of movement to a destination. Attach means fasten, and that fits: attach to = fix one thing to another. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: the tool used: attach it with glue. That is not what attach to says.", cue: "e8lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting on top, not fixing to. So attach does not take **on**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "attach to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = movement to a destination", { hl: "TO", sub: "fix one thing to another = movement to a destination", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: the tool used: attach it with glue", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting on top, not fixing to", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

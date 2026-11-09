@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "object-logic",
+        title: "object to: the logic",
+        alt: "The logic for object to: Look at the senses. **to** has the sense of behaviour aimed at someone. Object means set against, and that fits: object to = disapprove of. So the word takes **to**.; **on** has the sense of resting on, or about a topic. On is resting; objection points to. So object does not take **on**.; **against** has the sense of opposing, or leaning on. Object already means oppose; it takes to. So object does not take **against**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Object means set against, and that fits: object to = disapprove of. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; objection points to. So object does not take **on**.", cue: "e1lg2" },
+          { text: "**against** has the sense of opposing, or leaning on. Object already means oppose; it takes to. So object does not take **against**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "object to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "disapprove of = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; objection points to", size: 28 }], ["cross", "\u2717 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "object already means oppose; it takes to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "object-why",
         title: "object: why this one?",
         alt: "The sentence Many people objected with a gap the plan., then the candidates: to (fits: disapprove of); on (not used: on is resting; objection points to); against (not used: object already means oppose; it takes to)",
@@ -73,6 +89,22 @@
           { do: "write", id: "e2h", text: "obliged", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 obliged to, obliged for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "I am much obliged to you.", { hl: "to", sub: "obliged to = thankful to a person", size: 30 }], ["wantStar", "I am obliged to you for your help.", { hl: "for", sub: "obliged for = thankful for something", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "obliged-logic",
+        title: "obliged to: the logic",
+        alt: "The logic for obliged to: Look at the senses. **to** has the sense of a person who receives. Obliged to means thankful to a person, and that fits: obliged to = thankful to a person. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: thankful for you, as if you were the favour. That is not what obliged to says.; **of** has the sense of belonging to, a part of, or about. But thankful to a person is not belonging to, a part of, or about. So obliged does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Obliged to means thankful to a person, and that fits: obliged to = thankful to a person. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: thankful for you, as if you were the favour. That is not what obliged to says.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But thankful to a person is not belonging to, a part of, or about. So obliged does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "obliged to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "thankful to a person = a person who receives", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: thankful for you, as if you were the favour", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but thankful to a person is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -103,6 +135,22 @@
         ],
       },
       {
+        id: "oblivious-logic",
+        title: "oblivious to: the logic",
+        alt: "The logic for oblivious to: Look at the senses. **to** has the sense of behaviour aimed at someone. Oblivious to means not noticing, and that fits: oblivious to = not noticing. So the word takes **to**.; **from** has the sense of away from a starting point or source. But not noticing is not away from a starting point or source. So oblivious does not take **from**.; **about** has the sense of around a topic. But not noticing is not around a topic. So oblivious does not take **about**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Oblivious to means not noticing, and that fits: oblivious to = not noticing. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But not noticing is not away from a starting point or source. So oblivious does not take **from**.", cue: "e3lg2" },
+          { text: "**about** has the sense of around a topic. But not noticing is not around a topic. So oblivious does not take **about**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "oblivious to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "not noticing = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but not noticing is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "but not noticing is not around a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "oblivious-why",
         title: "oblivious: why this one?",
         alt: "The sentence He was oblivious with a gap the danger., then the candidates: to (fits: not noticing); from (not used: from is a source; not used); about (not used: about is a topic; not used)",
@@ -127,6 +175,22 @@
           { do: "write", id: "e4h", text: "obsessed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 obsessed with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["agreeWith", "He is obsessed with money.", { hl: "with", sub: "obsessed with = thinking about it all the time", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "obsessed-logic",
+        title: "obsessed with: the logic",
+        alt: "The logic for obsessed with: Look at the senses. **with** has the sense of feelings about what you have. Obsessed with means thinking about it all the time, and that fits: obsessed with = thinking about it all the time. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. But thinking about it all the time is not belonging to, a part of, or about. So obsessed does not take **of**.; **about** has the sense of around a topic. Heard in speech, but formal English says obsessed with. So obsessed does not take **about**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Obsessed with means thinking about it all the time, and that fits: obsessed with = thinking about it all the time. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But thinking about it all the time is not belonging to, a part of, or about. So obsessed does not take **of**.", cue: "e4lg2" },
+          { text: "**about** has the sense of around a topic. Heard in speech, but formal English says obsessed with. So obsessed does not take **about**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "obsessed with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "thinking about it all the time = feelings about what you have", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but thinking about it all the time is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "heard in speech, but formal English says obsessed with", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -159,6 +223,22 @@
         ],
       },
       {
+        id: "occupied-logic",
+        title: "occupied with: the logic",
+        alt: "The logic for occupied with: Look at the senses. **with** has the sense of dealing with or handling. Occupied with means busy with, and that fits: occupied with = busy with. So the word takes **with**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: taken over by her work, as a seat is taken by a person. That is not what occupied with says.; **in** has the sense of inside, within. But busy with is not inside, within. So occupied does not take **in**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Occupied with means busy with, and that fits: occupied with = busy with. So the word takes **with**.", cue: "e5lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: taken over by her work, as a seat is taken by a person. That is not what occupied with says.", cue: "e5lg2" },
+          { text: "**in** has the sense of inside, within. But busy with is not inside, within. So occupied does not take **in**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "occupied with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "busy with = dealing with or handling", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: taken over by her work, as a seat is taken by a person", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but busy with is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "occupied-why",
         title: "occupied: why this one?",
         alt: "The sentence She was occupied with a gap her work., then the candidates: with (fits: busy with); by (correct English, different meaning: taken over by her work, as a seat is taken by a person); in (not used: in is inside; not used)",
@@ -186,6 +266,22 @@
         ],
       },
       {
+        id: "offended-logic",
+        title: "offended by: the logic",
+        alt: "The logic for offended by: Look at the senses. **by** has the sense of the doer (passive). Offended by means hurt or upset by, and that fits: offended by = hurt or upset by. So the word takes **by**.; **from** has the sense of away from a starting point or source. But hurt or upset by is not away from a starting point or source. So offended does not take **from**.; **on** has the sense of resting on, or about a topic. But hurt or upset by is not resting on, or about a topic. So offended does not take **on**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of the doer (passive). Offended by means hurt or upset by, and that fits: offended by = hurt or upset by. So the word takes **by**.", cue: "e6lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But hurt or upset by is not away from a starting point or source. So offended does not take **from**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But hurt or upset by is not resting on, or about a topic. So offended does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "offended by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["followRule", "\u2713 BY = the doer (passive)", { hl: "BY", sub: "hurt or upset by = the doer (passive)", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but hurt or upset by is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but hurt or upset by is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "offended-why",
         title: "offended: why this one?",
         alt: "The sentence She was offended with a gap his remarks., then the candidates: by (fits: hurt or upset by); from (not used: a word-for-word translation); on (not used: on is resting; not used)",
@@ -210,6 +306,22 @@
           { do: "write", id: "e7h", text: "opposed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 opposed to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["reachDot", "The party is opposed to the plan.", { hl: "to", sub: "opposed to = against", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "opposed-logic",
+        title: "opposed to: the logic",
+        alt: "The logic for opposed to: Look at the senses. **to** has the sense of behaviour aimed at someone. Opposed to means against, and that fits: opposed to = against. So the word takes **to**.; **against** has the sense of opposing, or leaning on. Opposed already means against; it takes to. So opposed does not take **against**.; **with** has the sense of together with, or using. With = together; the opposite. So opposed does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Opposed to means against, and that fits: opposed to = against. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**against** has the sense of opposing, or leaning on. Opposed already means against; it takes to. So opposed does not take **against**.", cue: "e7lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; the opposite. So opposed does not take **with**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "opposed to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "against = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "opposed already means against; it takes to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; the opposite", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -259,6 +371,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "begin in a place or time", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "The game originated in China.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "originate-logic",
+        title: "originate in: the logic",
+        alt: "The logic for originate in: Look at the senses. **in** has the sense of inside an area. Originate means begin, and that fits: originate in = begin in a place or time. So the word takes **in**.; **at** has the sense of pointing at one spot or target. At is a point; a country is an area. So originate does not take **at**.; **to** has the sense of moving towards, reaching. But begin in a place or time is not moving towards, reaching. So originate does not take **to**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an area. Originate means begin, and that fits: originate in = begin in a place or time. So the word takes **in**.", cue: "e8lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. At is a point; a country is an area. So originate does not take **at**.", cue: "e8lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But begin in a place or time is not moving towards, reaching. So originate does not take **to**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "originate in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["absorbedIn", "\u2713 IN = inside an area", { hl: "IN", sub: "begin in a place or time = inside an area", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at is a point; a country is an area", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but begin in a place or time is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

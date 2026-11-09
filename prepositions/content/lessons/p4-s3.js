@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "superior-logic",
+        title: "superior to: the logic",
+        alt: "The logic for superior to: Look at the senses. **to** has the sense of matching or compared to. Superior to means better than, and that fits: superior to = better than. So the word takes **to**.; **than** has the sense of compared with. Superior already means more; it takes to. So superior does not take **than**.; **from** has the sense of away from a starting point or source. But better than is not away from a starting point or source. So superior does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Superior to means better than, and that fits: superior to = better than. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**than** has the sense of compared with. Superior already means more; it takes to. So superior does not take **than**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But better than is not away from a starting point or source. So superior does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "superior to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "better than = matching or compared to", size: 28 }], ["cross", "\u2717 THAN = compared with", { hl: "THAN", sub: "superior already means more; it takes to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but better than is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "superior-why",
         title: "superior: why this one?",
         alt: "The sentence This plan is superior with a gap that one., then the candidates: to (fits: better than); than (not used: superior already means more; it takes to); from (not used: from = apart; not used)",
@@ -51,6 +67,22 @@
           { do: "write", id: "e2h", text: "sure", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 sure of, sure about", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["awareOf", "We are sure of success.", { hl: "of", sub: "sure of = certain that it is true or will happen", size: 30 }], ["aboutCircle", "I am not sure about the date.", { hl: "about", sub: "sure about = certain about details", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "sure-logic",
+        title: "sure about: the logic",
+        alt: "The logic for sure about: Look at the senses. **about** has the sense of information around a topic. Sure about means certain about details, and that fits: sure about = certain about details. So the word takes **about**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: sure of holds one fact or result; the date's details are a topic. That is not what sure about says.; **on** has the sense of resting on, or about a topic. But certain about details is not resting on, or about a topic. So sure does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of information around a topic. Sure about means certain about details, and that fits: sure about = certain about details. So the word takes **about**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: sure of holds one fact or result; the date's details are a topic. That is not what sure about says.", cue: "e2lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But certain about details is not resting on, or about a topic. So sure does not take **on**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "sure about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["aboutCircle", "\u2713 ABOUT = information around a topic", { hl: "ABOUT", sub: "certain about details = information around a topic", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: sure of holds one fact or result; the date's details are a topic", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but certain about details is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "surprised-logic",
+        title: "surprised at: the logic",
+        alt: "The logic for surprised at: Look at the senses. **at** has the sense of a reaction to a point. Surprised at means astonished by, and that fits: surprised at = astonished by. So the word takes **at**.; **from** has the sense of away from a starting point or source. But astonished by is not away from a starting point or source. So surprised does not take **from**.; **on** has the sense of resting on, or about a topic. But astonished by is not resting on, or about a topic. So surprised does not take **on**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Surprised at means astonished by, and that fits: surprised at = astonished by. So the word takes **at**.", cue: "e3lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But astonished by is not away from a starting point or source. So surprised does not take **from**.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But astonished by is not resting on, or about a topic. So surprised does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "surprised at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "astonished by = a reaction to a point", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but astonished by is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but astonished by is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "surprised-why",
         title: "surprised: why this one?",
         alt: "The sentence I was surprised with a gap the result., then the candidates: at (fits: astonished by); from (not used: a word-for-word translation); on (not used: on is resting; not used)",
@@ -105,6 +153,22 @@
           { do: "write", id: "e4h", text: "susceptible", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Advanced \u00b7 susceptible to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "Children are susceptible to infection.", { hl: "to", sub: "susceptible to = easily affected by", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "susceptible-logic",
+        title: "susceptible to: the logic",
+        alt: "The logic for susceptible to: Look at the senses. **to** has the sense of open or exposed to. Susceptible to means easily affected by, and that fits: susceptible to = easily affected by. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. But easily affected by is not belonging to, a part of, or about. So susceptible does not take **of**.; **for** has the sense of aimed at, or for the sake of. But easily affected by is not aimed at, or for the sake of. So susceptible does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of open or exposed to. Susceptible to means easily affected by, and that fits: susceptible to = easily affected by. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But easily affected by is not belonging to, a part of, or about. So susceptible does not take **of**.", cue: "e4lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But easily affected by is not aimed at, or for the sake of. So susceptible does not take **for**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "susceptible to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = open or exposed to", { hl: "TO", sub: "easily affected by = open or exposed to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but easily affected by is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but easily affected by is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -157,6 +221,22 @@
         ],
       },
       {
+        id: "suspect-logic",
+        title: "suspect of: the logic",
+        alt: "The logic for suspect of: Look at the senses. **of** has the sense of a wrong someone is accused of. Suspect means think guilty, and that fits: suspect of = think someone did a wrong. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For goes with blame; suspect takes of. So suspect does not take **for**.; **in** has the sense of inside, within. But think someone did a wrong is not inside, within. So suspect does not take **in**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a wrong someone is accused of. Suspect means think guilty, and that fits: suspect of = think someone did a wrong. So the word takes **of**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For goes with blame; suspect takes of. So suspect does not take **for**.", cue: "e5lg2" },
+          { text: "**in** has the sense of inside, within. But think someone did a wrong is not inside, within. So suspect does not take **in**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "suspect of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["awareOf", "\u2713 OF = a wrong someone is accused of", { hl: "OF", sub: "think someone did a wrong = a wrong someone is accused of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for goes with blame; suspect takes of", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but think someone did a wrong is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "suspect-why",
         title: "suspect: why this one?",
         alt: "The sentence He is suspected with a gap theft., then the candidates: of (fits: think someone did a wrong); for (not used: for goes with blame; suspect takes of); in (not used: in is inside; not used)",
@@ -181,6 +261,22 @@
           { do: "write", id: "e6h", text: "suspicious", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 suspicious of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["awareOf", "Villagers are suspicious of strangers.", { hl: "of", sub: "suspicious of = not trusting", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "suspicious-logic",
+        title: "suspicious of: the logic",
+        alt: "The logic for suspicious of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Suspicious of means not trusting, and that fits: suspicious of = not trusting. So the word takes **of**.; **on** has the sense of resting on, or about a topic. But not trusting is not resting on, or about a topic. So suspicious does not take **on**.; **with** has the sense of together with, or using. But not trusting is not together with, or using. So suspicious does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Suspicious of means not trusting, and that fits: suspicious of = not trusting. So the word takes **of**.", cue: "e6lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But not trusting is not resting on, or about a topic. So suspicious does not take **on**.", cue: "e6lg2" },
+          { text: "**with** has the sense of together with, or using. But not trusting is not together with, or using. So suspicious does not take **with**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "suspicious of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "not trusting = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but not trusting is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but not trusting is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -210,6 +306,22 @@
           { do: "write", id: "e7h", text: "sympathy", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 sympathy for, sympathy with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["wantStar", "We have sympathy for the victims.", { hl: "for", sub: "sympathy for = feeling sorry for", size: 30 }], ["agreeWith", "I have some sympathy with their views.", { hl: "with", sub: "sympathy with = agreeing with", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "sympathy-logic",
+        title: "sympathy for: the logic",
+        alt: "The logic for sympathy for: Look at the senses. **for** has the sense of for someone's sake. Sympathy for means feeling sorry for, and that fits: sympathy for = feeling sorry for. So the word takes **for**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: agreeing with the victims' views, not pity. That is not what sympathy for says.; **to** has the sense of moving towards, reaching. But feeling sorry for is not moving towards, reaching. So sympathy does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Sympathy for means feeling sorry for, and that fits: sympathy for = feeling sorry for. So the word takes **for**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: agreeing with the victims' views, not pity. That is not what sympathy for says.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But feeling sorry for is not moving towards, reaching. So sympathy does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "sympathy for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "feeling sorry for = for someone's sake", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: agreeing with the victims' views, not pity", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but feeling sorry for is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

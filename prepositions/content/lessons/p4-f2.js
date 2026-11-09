@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "fraught-logic",
+        title: "fraught with: the logic",
+        alt: "The logic for fraught with: Look at the senses. **with** has the sense of having or filled with. Fraught with means full of something bad, and that fits: fraught with = full of something bad. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. Of goes with full; fraught takes with. So fraught does not take **of**.; **by** has the sense of by means of, or next to. But full of something bad is not by means of, or next to. So fraught does not take **by**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Fraught with means full of something bad, and that fits: fraught with = full of something bad. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with full; fraught takes with. So fraught does not take **of**.", cue: "e1lg2" },
+          { text: "**by** has the sense of by means of, or next to. But full of something bad is not by means of, or next to. So fraught does not take **by**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "fraught with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "full of something bad = having or filled with", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with full; fraught takes with", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "but full of something bad is not by means of, or next to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "fraught-why",
         title: "fraught: why this one?",
         alt: "The sentence The journey was fraught with a gap danger., then the candidates: with (fits: full of something bad); of (not used: of goes with full; fraught takes with); by (not used: by is a means; not used)",
@@ -51,6 +67,22 @@
           { do: "write", id: "e2h", text: "free", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 free from, free for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["holdBack", "At last she was free from pain.", { hl: "from", sub: "free from = without something bad", size: 30 }], ["wantStar", "Entry is free for children.", { hl: "for", sub: "free for = costing nothing for", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "free-logic",
+        title: "free from: the logic",
+        alt: "The logic for free from: Look at the senses. **from** has the sense of kept away: protection and prevention. Free from means without something bad, and that fits: free from = without something bad. So the word takes **from**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: pain would cost her nothing. That is not what free from says.; **at** has the sense of pointing at one spot or target. But without something bad is not pointing at one spot or target. So free does not take **at**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Free from means without something bad, and that fits: free from = without something bad. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: pain would cost her nothing. That is not what free from says.", cue: "e2lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But without something bad is not pointing at one spot or target. So free does not take **at**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "free from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "without something bad = kept away: protection and prevention", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: pain would cost her nothing", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but without something bad is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "full-logic",
+        title: "full of: the logic",
+        alt: "The logic for full of: Look at the senses. **of** has the sense of what something is made of or holds. Full of means containing as much as possible, and that fits: full of = containing as much as possible. So the word takes **of**.; **with** has the sense of together with, or using. Filled with, but full of. So full does not take **with**.; **from** has the sense of away from a starting point or source. But containing as much as possible is not away from a starting point or source. So full does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Full of means containing as much as possible, and that fits: full of = containing as much as possible. So the word takes **of**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. Filled with, but full of. So full does not take **with**.", cue: "e3lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But containing as much as possible is not away from a starting point or source. So full does not take **from**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "full of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "containing as much as possible = what something is made of or holds", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "filled with, but full of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but containing as much as possible is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "full-why",
         title: "full: why this one?",
         alt: "The sentence The hall was full with a gap students., then the candidates: of (fits: containing as much as possible); with (not used: filled with, but full of); from (not used: from is a source; not used)",
@@ -105,6 +153,22 @@
           { do: "write", id: "e4h", text: "furious", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 furious with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["agreeWith", "He was furious with his son.", { hl: "with", sub: "furious with = very angry with a person", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "furious-logic",
+        title: "furious with: the logic",
+        alt: "The logic for furious with: Look at the senses. **with** has the sense of against a partner. Furious with means very angry with a person, and that fits: furious with = very angry with a person. So the word takes **with**.; **on** has the sense of resting on, or about a topic. But very angry with a person is not resting on, or about a topic. So furious does not take **on**.; **from** has the sense of away from a starting point or source. But very angry with a person is not away from a starting point or source. So furious does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Furious with means very angry with a person, and that fits: furious with = very angry with a person. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But very angry with a person is not resting on, or about a topic. So furious does not take **on**.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But very angry with a person is not away from a starting point or source. So furious does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "furious with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "very angry with a person = against a partner", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but very angry with a person is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but very angry with a person is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

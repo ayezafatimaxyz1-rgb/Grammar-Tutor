@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "excel-logic",
+        title: "excel in: the logic",
+        alt: "The logic for excel in: Look at the senses. **in** has the sense of inside a field or subject. Excel means be very good, and that fits: excel in = be very good in a field. So the word takes **in**.; **on** has the sense of resting on, or about a topic. But be very good in a field is not resting on, or about a topic. So excel does not take **on**.; **from** has the sense of away from a starting point or source. But be very good in a field is not away from a starting point or source. So excel does not take **from**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a field or subject. Excel means be very good, and that fits: excel in = be very good in a field. So the word takes **in**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But be very good in a field is not resting on, or about a topic. So excel does not take **on**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But be very good in a field is not away from a starting point or source. So excel does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "excel in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["absorbedIn", "\u2713 IN = inside a field or subject", { hl: "IN", sub: "be very good in a field = inside a field or subject", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but be very good in a field is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but be very good in a field is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "excel-why",
         title: "excel: why this one?",
         alt: "The sentence She excels with a gap mathematics., then the candidates: in (fits: be very good in a field); on (not used: on is resting; not used); from (not used: from is a source; not used)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "exception", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 exception to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "This is an exception to the rule.", { hl: "to", sub: "exception to = a case not following a rule", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "exception-logic",
+        title: "exception to: the logic",
+        alt: "The logic for exception to: Look at the senses. **to** has the sense of moving towards, reaching. Exception to means a case not following a rule, and that fits: exception to = a case not following a rule. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: a special allowance made for someone. That is not what exception to says.; **of** has the sense of belonging to, a part of, or about. But a case not following a rule is not belonging to, a part of, or about. So exception does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. Exception to means a case not following a rule, and that fits: exception to = a case not following a rule. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: a special allowance made for someone. That is not what exception to says.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But a case not following a rule is not belonging to, a part of, or about. So exception does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "exception to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "a case not following a rule = moving towards, reaching", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: a special allowance made for someone", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but a case not following a rule is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -134,6 +166,22 @@
         ],
       },
       {
+        id: "exchange-logic",
+        title: "exchange for: the logic",
+        alt: "The logic for exchange for: Look at the senses. **for** has the sense of exchange or price. Exchange means give and take, and that fits: exchange for = give one thing and get another. So the word takes **for**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: traded with wheat as if it were a partner. That is not what exchange for says.; **of** has the sense of belonging to, a part of, or about. But give one thing and get another is not belonging to, a part of, or about. So exchange does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of exchange or price. Exchange means give and take, and that fits: exchange for = give one thing and get another. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: traded with wheat as if it were a partner. That is not what exchange for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But give one thing and get another is not belonging to, a part of, or about. So exchange does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "exchange for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = exchange or price", { hl: "FOR", sub: "give one thing and get another = exchange or price", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: traded with wheat as if it were a partner", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but give one thing and get another is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "exchange-why",
         title: "exchange: why this one?",
         alt: "The sentence They exchanged rice with a gap wheat., then the candidates: for (fits: give one thing and get another); with (correct English, different meaning: traded with wheat as if it were a partner); of (not used: of = belonging; not used)",
@@ -158,6 +206,22 @@
           { do: "write", id: "e4h", text: "exempt", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 exempt from", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["holdBack", "Charities are exempt from tax.", { hl: "from", sub: "exempt from = freed from a duty or tax", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "exempt-logic",
+        title: "exempt from: the logic",
+        alt: "The logic for exempt from: Look at the senses. **from** has the sense of kept away: protection and prevention. Exempt from means freed from a duty or tax, and that fits: exempt from = freed from a duty or tax. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; freedom moves away from. So exempt does not take **of**.; **to** has the sense of moving towards, reaching. But freed from a duty or tax is not moving towards, reaching. So exempt does not take **to**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Exempt from means freed from a duty or tax, and that fits: exempt from = freed from a duty or tax. So the word takes **from**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; freedom moves away from. So exempt does not take **of**.", cue: "e4lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But freed from a duty or tax is not moving towards, reaching. So exempt does not take **to**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "exempt from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "freed from a duty or tax = kept away: protection and prevention", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; freedom moves away from", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but freed from a duty or tax is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -190,6 +254,22 @@
         ],
       },
       {
+        id: "expert-logic",
+        title: "expert on: the logic",
+        alt: "The logic for expert on: Look at the senses. **on** has the sense of a topic. Expert on means knowing a lot about a topic or person, and that fits: expert on = knowing a lot about a topic or person. So the word takes **on**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: skilled inside Iqbal as if he were a field. That is not what expert on says.; **of** has the sense of belonging to, a part of, or about. But knowing a lot about a topic or person is not belonging to, a part of, or about. So expert does not take **of**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of a topic. Expert on means knowing a lot about a topic or person, and that fits: expert on = knowing a lot about a topic or person. So the word takes **on**.", cue: "e5lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: skilled inside Iqbal as if he were a field. That is not what expert on says.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But knowing a lot about a topic or person is not belonging to, a part of, or about. So expert does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "expert on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["support", "\u2713 ON = a topic", { hl: "ON", sub: "knowing a lot about a topic or person = a topic", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: skilled inside Iqbal as if he were a field", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but knowing a lot about a topic or person is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "expert-why",
         title: "expert: why this one?",
         alt: "The sentence He is an expert with a gap Iqbal., then the candidates: on (fits: knowing a lot about a topic or person); in (correct English, different meaning: skilled inside Iqbal as if he were a field); of (not used: of = belonging; not used)",
@@ -214,6 +294,22 @@
           { do: "write", id: "e6h", text: "exposed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 exposed to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["reachDot", "The workers were exposed to danger.", { hl: "to", sub: "exposed to = open to something harmful", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "exposed-logic",
+        title: "exposed to: the logic",
+        alt: "The logic for exposed to: Look at the senses. **to** has the sense of open or exposed to. Exposed to means open to something harmful, and that fits: exposed to = open to something harmful. So the word takes **to**.; **with** has the sense of together with, or using. With = together; exposure points to. So exposed does not take **with**.; **for** has the sense of aimed at, or for the sake of. But open to something harmful is not aimed at, or for the sake of. So exposed does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of open or exposed to. Exposed to means open to something harmful, and that fits: exposed to = open to something harmful. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; exposure points to. So exposed does not take **with**.", cue: "e6lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But open to something harmful is not aimed at, or for the sake of. So exposed does not take **for**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "exposed to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = open or exposed to", { hl: "TO", sub: "open to something harmful = open or exposed to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; exposure points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but open to something harmful is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

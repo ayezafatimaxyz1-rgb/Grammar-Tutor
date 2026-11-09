@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "mad-logic",
+        title: "mad about: the logic",
+        alt: "The logic for mad about: Look at the senses. **about** has the sense of a feeling around a topic. Mad about means very keen on, and that fits: mad about = very keen on. So the word takes **about**.; **at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: angry with cricket. That is not what mad about says.; **on** has the sense of resting on, or about a topic. But very keen on is not resting on, or about a topic. So mad does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Mad about means very keen on, and that fits: mad about = very keen on. So the word takes **about**.", cue: "e1lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: angry with cricket. That is not what mad about says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But very keen on is not resting on, or about a topic. So mad does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "mad about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "very keen on = a feeling around a topic", size: 28 }], [[["arrowR", -40, 0], ["target", 30, 0]], "\u2248 AT = pointing at one spot or target", { hl: "AT", sub: "correct English, but it would mean: angry with cricket", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but very keen on is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "mad-why",
         title: "mad: why this one?",
         alt: "The sentence He is mad with a gap cricket., then the candidates: about (fits: very keen on); at (correct English, different meaning: angry with cricket); on (not used: on is resting; not used)",
@@ -57,6 +73,22 @@
         ],
       },
       {
+        id: "made-logic",
+        title: "made of: the logic",
+        alt: "The logic for made of: Look at the senses. **of** has the sense of what something is made of or holds. Made of means built from a material you can still see, and that fits: made of = built from a material you can still see. So the word takes **of**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: the wood would have changed beyond seeing. That is not what made of says.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: wood would be the maker. That is not what made of says.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Made of means built from a material you can still see, and that fits: made of = built from a material you can still see. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: the wood would have changed beyond seeing. That is not what made of says.", cue: "e2lg2" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: wood would be the maker. That is not what made of says.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "made of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "built from a material you can still see = what something is made of or holds", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: the wood would have changed beyond seeing", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: wood would be the maker", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "made-why",
         title: "made: why this one?",
         alt: "The sentence The table is made with a gap wood., then the candidates: of (fits: built from a material you can still see); from (correct English, different meaning: the wood would have changed beyond seeing); by (correct English, different meaning: wood would be the maker)",
@@ -81,6 +113,22 @@
           { do: "write", id: "e3h", text: "married", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 married to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["reachDot", "She is married to a doctor.", { hl: "to", sub: "married to = in marriage with", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "married-logic",
+        title: "married to: the logic",
+        alt: "The logic for married to: Look at the senses. **to** has the sense of attached or devoted to. Married to means in marriage with, and that fits: married to = in marriage with. So the word takes **to**.; **with** has the sense of together with, or using. But in marriage with is not together with, or using. So married does not take **with**.; **by** has the sense of by means of, or next to. By is who performed it. So married does not take **by**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Married to means in marriage with, and that fits: married to = in marriage with. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. But in marriage with is not together with, or using. So married does not take **with**.", cue: "e3lg2" },
+          { text: "**by** has the sense of by means of, or next to. By is who performed it. So married does not take **by**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "married to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "in marriage with = attached or devoted to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but in marriage with is not together with, or using", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by is who performed it", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -133,6 +181,22 @@
         ],
       },
       {
+        id: "marvel-logic",
+        title: "marvel at: the logic",
+        alt: "The logic for marvel at: Look at the senses. **at** has the sense of a reaction to a point. Marvel means wonder greatly, and that fits: marvel at = be amazed by. So the word takes **at**.; **on** has the sense of resting on, or about a topic. But be amazed by is not resting on, or about a topic. So marvel does not take **on**.; **about** has the sense of around a topic. About is a topic; wonder hits at. So marvel does not take **about**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Marvel means wonder greatly, and that fits: marvel at = be amazed by. So the word takes **at**.", cue: "e4lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But be amazed by is not resting on, or about a topic. So marvel does not take **on**.", cue: "e4lg2" },
+          { text: "**about** has the sense of around a topic. About is a topic; wonder hits at. So marvel does not take **about**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "marvel at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "be amazed by = a reaction to a point", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but be amazed by is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about is a topic; wonder hits at", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "marvel-why",
         title: "marvel: why this one?",
         alt: "The sentence We marvelled with a gap the view., then the candidates: at (fits: be amazed by); on (not used: on is resting; not used); about (not used: about is a topic; wonder hits at)",
@@ -182,6 +246,22 @@
         ],
       },
       {
+        id: "meddle-logic",
+        title: "meddle in: the logic",
+        alt: "The logic for meddle in: Look at the senses. **in** has the sense of inside an activity: taking part. Meddle means busy yourself, and that fits: meddle in = interfere in. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is resting; meddling gets inside. So meddle does not take **on**.; **at** has the sense of pointing at one spot or target. But interfere in is not pointing at one spot or target. So meddle does not take **at**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Meddle means busy yourself, and that fits: meddle in = interfere in. So the word takes **in**.", cue: "e5lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; meddling gets inside. So meddle does not take **on**.", cue: "e5lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But interfere in is not pointing at one spot or target. So meddle does not take **at**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "meddle in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "interfere in = inside an activity: taking part", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; meddling gets inside", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but interfere in is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "meddle-why",
         title: "meddle: why this one?",
         alt: "The sentence Do not meddle with a gap my affairs., then the candidates: in (fits: interfere in); on (not used: on is resting; meddling gets inside); at (not used: at is a point; not used)",
@@ -228,6 +308,22 @@
           { do: "write", id: "e6b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e6b1m", text: "wrongly think one is another", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e6b1x", text: "I mistook him for his brother.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "mistake-logic",
+        title: "mistake for: the logic",
+        alt: "The logic for mistake for: Look at the senses. **for** has the sense of exchange or price. Mistake means take wrongly, and that fits: mistake for = wrongly think one is another. So the word takes **for**.; **as** has the sense of in the role of. Not standard: mistake him for. So mistake does not take **as**.; **with** has the sense of together with, or using. But wrongly think one is another is not together with, or using. So mistake does not take **with**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of exchange or price. Mistake means take wrongly, and that fits: mistake for = wrongly think one is another. So the word takes **for**.", cue: "e6lg1" },
+          { text: "**as** has the sense of in the role of. Not standard: mistake him for. So mistake does not take **as**.", cue: "e6lg2" },
+          { text: "**with** has the sense of together with, or using. But wrongly think one is another is not together with, or using. So mistake does not take **with**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "mistake for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["wantStar", "\u2713 FOR = exchange or price", { hl: "FOR", sub: "wrongly think one is another = exchange or price", size: 28 }], ["cross", "\u2717 AS = in the role of", { hl: "AS", sub: "not standard: mistake him for", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but wrongly think one is another is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -291,6 +387,22 @@
         ],
       },
       {
+        id: "mix-logic",
+        title: "mix with: the logic",
+        alt: "The logic for mix with: Look at the senses. **with** has the sense of together, side by side. Mix means blend, and that fits: mix with = combine with. So the word takes **with**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: stir something into the water. That is not what mix with says.; **to** has the sense of moving towards, reaching. But combine with is not moving towards, reaching. So mix does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of together, side by side. Mix means blend, and that fits: mix with = combine with. So the word takes **with**.", cue: "e7lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: stir something into the water. That is not what mix with says.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But combine with is not moving towards, reaching. So mix does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "mix with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["agreeWith", "\u2713 WITH = together, side by side", { hl: "WITH", sub: "combine with = together, side by side", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: stir something into the water", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but combine with is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "mix-why",
         title: "mix: why this one?",
         alt: "The sentence Oil does not mix with a gap water., then the candidates: with (fits: combine with); in (correct English, different meaning: stir something into the water); to (not used: to points; not used)",
@@ -315,6 +427,22 @@
           { do: "write", id: "e8h", text: "modelled", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Advanced \u00b7 modelled on", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["support", "The law is modelled on the British system.", { hl: "on", sub: "modelled on = built using something as a pattern", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "modelled-logic",
+        title: "modelled on: the logic",
+        alt: "The logic for modelled on: Look at the senses. **on** has the sense of resting on a support. Modelled on means built using something as a pattern, and that fits: modelled on = built using something as a pattern. So the word takes **on**.; **from** has the sense of away from a starting point or source. From is a source; a pattern takes on. So modelled does not take **from**.; **with** has the sense of together with, or using. But built using something as a pattern is not together with, or using. So modelled does not take **with**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Modelled on means built using something as a pattern, and that fits: modelled on = built using something as a pattern. So the word takes **on**.", cue: "e8lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; a pattern takes on. So modelled does not take **from**.", cue: "e8lg2" },
+          { text: "**with** has the sense of together with, or using. But built using something as a pattern is not together with, or using. So modelled does not take **with**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "modelled on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "built using something as a pattern = resting on a support", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; a pattern takes on", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but built using something as a pattern is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

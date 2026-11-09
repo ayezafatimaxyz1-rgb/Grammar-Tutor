@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "unaware-logic",
+        title: "unaware of: the logic",
+        alt: "The logic for unaware of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Unaware of means not knowing about, and that fits: unaware of = not knowing about. So the word takes **of**.; **about** has the sense of around a topic. Heard in speech, but formal English says unaware of. So unaware does not take **about**.; **from** has the sense of away from a starting point or source. But not knowing about is not away from a starting point or source. So unaware does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Unaware of means not knowing about, and that fits: unaware of = not knowing about. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**about** has the sense of around a topic. Heard in speech, but formal English says unaware of. So unaware does not take **about**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But not knowing about is not away from a starting point or source. So unaware does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "unaware of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "not knowing about = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "heard in speech, but formal English says unaware of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but not knowing about is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "unaware-why",
         title: "unaware: why this one?",
         alt: "The sentence He was unaware with a gap the danger., then the candidates: of (fits: not knowing about); about (not used: heard in speech, but formal English says unaware of); from (not used: from is a source; not used)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "unfit", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 unfit for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["wantStar", "He is unfit for duty.", { hl: "for", sub: "unfit for = not suitable for", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "unfit-logic",
+        title: "unfit for: the logic",
+        alt: "The logic for unfit for: Look at the senses. **for** has the sense of purpose or suitability. Unfit for means not suitable for, and that fits: unfit for = not suitable for. So the word takes **for**.; **to** has the sense of moving towards, reaching. To needs a verb: unfit to drive. So unfit does not take **to**.; **of** has the sense of belonging to, a part of, or about. But not suitable for is not belonging to, a part of, or about. So unfit does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Unfit for means not suitable for, and that fits: unfit for = not suitable for. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: unfit to drive. So unfit does not take **to**.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But not suitable for is not belonging to, a part of, or about. So unfit does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "unfit for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "not suitable for = purpose or suitability", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: unfit to drive", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but not suitable for is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "upset-logic",
+        title: "upset about: the logic",
+        alt: "The logic for upset about: Look at the senses. **about** has the sense of a feeling around a topic. Upset about means unhappy about a situation, and that fits: upset about = unhappy about a situation. So the word takes **about**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: angry at the result as if it were a person. That is not what upset about says.; **on** has the sense of resting on, or about a topic. But unhappy about a situation is not resting on, or about a topic. So upset does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Upset about means unhappy about a situation, and that fits: upset about = unhappy about a situation. So the word takes **about**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: angry at the result as if it were a person. That is not what upset about says.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But unhappy about a situation is not resting on, or about a topic. So upset does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "upset about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "unhappy about a situation = a feeling around a topic", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: angry at the result as if it were a person", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but unhappy about a situation is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "upset-why",
         title: "upset: why this one?",
         alt: "The sentence She was upset with a gap the result., then the candidates: about (fits: unhappy about a situation); with (correct English, different meaning: angry at the result as if it were a person); on (not used: on is resting; not used)",
@@ -108,6 +156,22 @@
         ],
       },
       {
+        id: "used-logic",
+        title: "used to: the logic",
+        alt: "The logic for used to: Look at the senses. **to** has the sense of attached or devoted to. Used to means familiar with, so it is normal, and that fits: used to = familiar with, so it is normal. So the word takes **to**.; **with** has the sense of together with, or using. But familiar with, so it is normal is not together with, or using. So used does not take **with**.; **of** has the sense of belonging to, a part of, or about. But familiar with, so it is normal is not belonging to, a part of, or about. So used does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Used to means familiar with, so it is normal, and that fits: used to = familiar with, so it is normal. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. But familiar with, so it is normal is not together with, or using. So used does not take **with**.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But familiar with, so it is normal is not belonging to, a part of, or about. So used does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "used to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "familiar with, so it is normal = attached or devoted to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but familiar with, so it is normal is not together with, or using", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but familiar with, so it is normal is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "used-why",
         title: "used: why this one?",
         alt: "The sentence She is used with a gap living alone., then the candidates: to (fits: familiar with, so it is normal); with (not used: with = together; not used); of (not used: of = belonging; not used)",
@@ -132,6 +196,22 @@
           { do: "write", id: "e5h", text: "useful", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Basic \u00b7 useful for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["wantStar", "A knife is useful for cutting.", { hl: "for", sub: "useful for = helpful for a purpose", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "useful-logic",
+        title: "useful for: the logic",
+        alt: "The logic for useful for: Look at the senses. **for** has the sense of purpose or suitability. Useful for means helpful for a purpose, and that fits: useful for = helpful for a purpose. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. But helpful for a purpose is not belonging to, a part of, or about. So useful does not take **of**.; **in** has the sense of inside, within. But helpful for a purpose is not inside, within. So useful does not take **in**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Useful for means helpful for a purpose, and that fits: useful for = helpful for a purpose. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But helpful for a purpose is not belonging to, a part of, or about. So useful does not take **of**.", cue: "e5lg2" },
+          { text: "**in** has the sense of inside, within. But helpful for a purpose is not inside, within. So useful does not take **in**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "useful for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "helpful for a purpose = purpose or suitability", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but helpful for a purpose is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but helpful for a purpose is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

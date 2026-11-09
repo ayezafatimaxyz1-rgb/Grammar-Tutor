@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "qualified-logic",
+        title: "qualified for: the logic",
+        alt: "The logic for qualified for: Look at the senses. **for** has the sense of purpose or suitability. Qualified for means having what a post needs, and that fits: qualified for = having what a post needs. So the word takes **for**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: trained in the post as if it were a subject. That is not what qualified for says.; **of** has the sense of belonging to, a part of, or about. But having what a post needs is not belonging to, a part of, or about. So qualified does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Qualified for means having what a post needs, and that fits: qualified for = having what a post needs. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: trained in the post as if it were a subject. That is not what qualified for says.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But having what a post needs is not belonging to, a part of, or about. So qualified does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "qualified for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "having what a post needs = purpose or suitability", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: trained in the post as if it were a subject", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but having what a post needs is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "qualified-why",
         title: "qualified: why this one?",
         alt: "The sentence She is qualified with a gap the post., then the candidates: for (fits: having what a post needs); in (correct English, different meaning: trained in the post as if it were a subject); of (not used: of = belonging; not used)",
@@ -84,6 +100,22 @@
           { do: "write", id: "e2b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e2b2m", text: "argue about a thing", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e2b2x", text: "They quarrelled over the land.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "quarrel-logic",
+        title: "quarrel over: the logic",
+        alt: "The logic for quarrel over: Look at the senses. **over** has the sense of thinking or fighting over. Quarrel means argue angrily, and that fits: quarrel over = argue about a thing. So the word takes **over**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: fought with the land as if it were a person. That is not what quarrel over says.; **on** has the sense of resting on, or about a topic. But argue about a thing is not resting on, or about a topic. So quarrel does not take **on**.",
+        say: [
+          { text: "Look at the senses. **over** has the sense of thinking or fighting over. Quarrel means argue angrily, and that fits: quarrel over = argue about a thing. So the word takes **over**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: fought with the land as if it were a person. That is not what quarrel over says.", cue: "e2lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But argue about a thing is not resting on, or about a topic. So quarrel does not take **on**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "quarrel over: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["overRock", "\u2713 OVER = thinking or fighting over", { hl: "OVER", sub: "argue about a thing = thinking or fighting over", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: fought with the land as if it were a person", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but argue about a thing is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -68,6 +68,22 @@
         ],
       },
       {
+        id: "call-logic",
+        title: "call for: the logic",
+        alt: "The logic for call for: Look at the senses. **for** has the sense of aimed at something you want. Call means speak out, name, and that fits: call for = demand publicly. So the word takes **for**.; **on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: urged the elections, as if they were people. That is not what call for says.; **off** has the sense of away from, removed. It is correct English, but it would mean something else: cancelled new elections. That is not what call for says.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Call means speak out, name, and that fits: call for = demand publicly. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: urged the elections, as if they were people. That is not what call for says.", cue: "e1lg2" },
+          { text: "**off** has the sense of away from, removed. It is correct English, but it would mean something else: cancelled new elections. That is not what call for says.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "call for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "demand publicly = aimed at something you want", size: 28 }], ["support", "\u2248 ON = resting on, or about a topic", { hl: "ON", sub: "correct English, but it would mean: urged the elections, as if they were people", size: 28 }], ["bookTable", "\u2248 OFF = away from, removed", { hl: "OFF", sub: "correct English, but it would mean: cancelled new elections", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "call-why",
         title: "call: why this one?",
         alt: "The sentence The opposition called with a gap new elections., then the candidates: for (fits: demand publicly); on (correct English, different meaning: urged the elections, as if they were people); off (correct English, different meaning: cancelled new elections)",
@@ -92,6 +108,22 @@
           { do: "write", id: "e2h", text: "capable", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 capable of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["awareOf", "She is capable of leading the team.", { hl: "of", sub: "capable of = able to do", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "capable-logic",
+        title: "capable of: the logic",
+        alt: "The logic for capable of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Capable of means able to do, and that fits: capable of = able to do. So the word takes **of**.; **to** has the sense of moving towards, reaching. Able to + verb; capable of + -ing. So capable does not take **to**.; **for** has the sense of aimed at, or for the sake of. But able to do is not aimed at, or for the sake of. So capable does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Capable of means able to do, and that fits: capable of = able to do. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. Able to + verb; capable of + -ing. So capable does not take **to**.", cue: "e2lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But able to do is not aimed at, or for the sake of. So capable does not take **for**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "capable of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "able to do = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "able to + verb; capable of + -ing", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but able to do is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -155,6 +187,22 @@
         ],
       },
       {
+        id: "care-logic",
+        title: "care for: the logic",
+        alt: "The logic for care for: Look at the senses. **for** has the sense of for someone's sake. Care means feel concern, and that fits: care for = look after, or like. So the word takes **for**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: feel concern about them, without looking after them. That is not what care for says.; **of** has the sense of belonging to, a part of, or about. Of is only in an address: care of. So care does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Care means feel concern, and that fits: care for = look after, or like. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: feel concern about them, without looking after them. That is not what care for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of is only in an address: care of. So care does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "care for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "look after, or like = for someone's sake", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: feel concern about them, without looking after them", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of is only in an address: care of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "care-why",
         title: "care: why this one?",
         alt: "The sentence Nurses care with a gap the sick., then the candidates: for (fits: look after, or like); about (correct English, different meaning: feel concern about them, without looking after them); of (not used: of is only in an address: care of)",
@@ -179,6 +227,22 @@
           { do: "write", id: "e4h", text: "careful", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 careful with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["agreeWith", "Be careful with that knife.", { hl: "with", sub: "careful with = handle with care", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "careful-logic",
+        title: "careful with: the logic",
+        alt: "The logic for careful with: Look at the senses. **with** has the sense of dealing with or handling. Careful with means handle with care, and that fits: careful with = handle with care. So the word takes **with**.; **on** has the sense of resting on, or about a topic. But handle with care is not resting on, or about a topic. So careful does not take **on**.; **at** has the sense of pointing at one spot or target. But handle with care is not pointing at one spot or target. So careful does not take **at**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Careful with means handle with care, and that fits: careful with = handle with care. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But handle with care is not resting on, or about a topic. So careful does not take **on**.", cue: "e4lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But handle with care is not pointing at one spot or target. So careful does not take **at**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "careful with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "handle with care = dealing with or handling", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but handle with care is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but handle with care is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -231,6 +295,22 @@
         ],
       },
       {
+        id: "cater-logic",
+        title: "cater for: the logic",
+        alt: "The logic for cater for: Look at the senses. **for** has the sense of purpose or suitability. Cater means supply food or needs, and that fits: cater for = provide what is needed for. So the word takes **for**.; **on** has the sense of resting on, or about a topic. But provide what is needed for is not resting on, or about a topic. So cater does not take **on**.; **with** has the sense of together with, or using. But provide what is needed for is not together with, or using. So cater does not take **with**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Cater means supply food or needs, and that fits: cater for = provide what is needed for. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But provide what is needed for is not resting on, or about a topic. So cater does not take **on**.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. But provide what is needed for is not together with, or using. So cater does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "cater for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "provide what is needed for = purpose or suitability", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but provide what is needed for is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but provide what is needed for is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "cater-why",
         title: "cater: why this one?",
         alt: "The sentence The hotel caters with a gap tourists., then the candidates: for (fits: provide what is needed for); on (not used: on is resting; not used); with (not used: with = together; not used)",
@@ -260,6 +340,22 @@
         ],
       },
       {
+        id: "certain-logic",
+        title: "certain about: the logic",
+        alt: "The logic for certain about: Look at the senses. **about** has the sense of information around a topic. Certain about means sure about a topic with many sides: details, what it holds, and that fits: certain about = sure about a topic with many sides: details, what it holds. So the word takes **about**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: certain of holds one fact or result; the future is a topic with many sides. That is not what certain about says.; **on** has the sense of resting on, or about a topic. On is a surface or topic, not certainty. So certain does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of information around a topic. Certain about means sure about a topic with many sides: details, what it holds, and that fits: certain about = sure about a topic with many sides: details, what it holds. So the word takes **about**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: certain of holds one fact or result; the future is a topic with many sides. That is not what certain about says.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface or topic, not certainty. So certain does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "certain about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["aboutCircle", "\u2713 ABOUT = information around a topic", { hl: "ABOUT", sub: "sure about a topic with many sides: details, what it holds = information around a topic", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: certain of holds one fact or result; the future is a topic with many sides", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface or topic, not certainty", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "certain-why",
         title: "certain: why this one?",
         alt: "The sentence Nobody is certain with a gap the future., then the candidates: about (fits: sure about a topic with many sides: details, what it holds); of (correct English, different meaning: certain of holds one fact or result; the future is a topic with many sides); on (not used: on is a surface or topic, not certainty)",
@@ -284,6 +380,22 @@
           { do: "write", id: "e7h", text: "characterised", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Advanced \u00b7 characterised by", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["followRule", "His work is characterised by honesty.", { hl: "by", sub: "characterised by = marked by a quality", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "characterised-logic",
+        title: "characterised by: the logic",
+        alt: "The logic for characterised by: Look at the senses. **by** has the sense of the doer (passive). Characterised by means marked by a quality, and that fits: characterised by = marked by a quality. So the word takes **by**.; **with** has the sense of together with, or using. With = a tool or company; the quality marks it. So characterised does not take **with**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; passive takes by. So characterised does not take **of**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of the doer (passive). Characterised by means marked by a quality, and that fits: characterised by = marked by a quality. So the word takes **by**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. With = a tool or company; the quality marks it. So characterised does not take **with**.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; passive takes by. So characterised does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "characterised by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["followRule", "\u2713 BY = the doer (passive)", { hl: "BY", sub: "marked by a quality = the doer (passive)", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = a tool or company; the quality marks it", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; passive takes by", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -344,6 +456,22 @@
           { do: "write", id: "e8b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b2m", text: "ask a price for", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b2x", text: "They charged Rs 500 for the ticket.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "charge-logic",
+        title: "charge with: the logic",
+        alt: "The logic for charge with: Look at the senses. **with** has the sense of having or filled with. Charge means lay a duty or a price, and that fits: charge with = accuse formally of a crime. So the word takes **with**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: made him pay a price for murder. That is not what charge with says.; **of** has the sense of belonging to, a part of, or about. Of belongs to in charge of, a different phrase. So charge does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Charge means lay a duty or a price, and that fits: charge with = accuse formally of a crime. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: made him pay a price for murder. That is not what charge with says.", cue: "e8lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of belongs to in charge of, a different phrase. So charge does not take **of**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "charge with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "accuse formally of a crime = having or filled with", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: made him pay a price for murder", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of belongs to in charge of, a different phrase", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

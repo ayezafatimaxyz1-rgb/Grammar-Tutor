@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "mourn-logic",
+        title: "mourn for: the logic",
+        alt: "The logic for mourn for: Look at the senses. **for** has the sense of for someone's sake. Mourn means feel grief, and that fits: mourn for = feel sorrow for someone who died. So the word takes **for**.; **on** has the sense of resting on, or about a topic. But feel sorrow for someone who died is not resting on, or about a topic. So mourn does not take **on**.; **about** has the sense of around a topic. About is a topic; grief reaches for. So mourn does not take **about**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Mourn means feel grief, and that fits: mourn for = feel sorrow for someone who died. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But feel sorrow for someone who died is not resting on, or about a topic. So mourn does not take **on**.", cue: "e1lg2" },
+          { text: "**about** has the sense of around a topic. About is a topic; grief reaches for. So mourn does not take **about**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "mourn for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "feel sorrow for someone who died = for someone's sake", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but feel sorrow for someone who died is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about is a topic; grief reaches for", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "mourn-why",
         title: "mourn: why this one?",
         alt: "The sentence The nation mourned with a gap its heroes., then the candidates: for (fits: feel sorrow for someone who died); on (not used: on is resting; not used); about (not used: about is a topic; grief reaches for)",
@@ -73,6 +89,22 @@
           { do: "write", id: "e2h", text: "moved", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 moved by, moved to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["followRule", "We were moved by the speech.", { hl: "by", sub: "moved by = touched emotionally by", size: 30 }], ["reachDot", "The office moved to Lahore.", { hl: "to", sub: "moved to = relocated to", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "moved-logic",
+        title: "moved by: the logic",
+        alt: "The logic for moved by: Look at the senses. **by** has the sense of the doer (passive). Moved by means touched emotionally by, and that fits: moved by = touched emotionally by. So the word takes **by**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: relocated to the speech. That is not what moved by says.; **with** has the sense of together with, or using. But touched emotionally by is not together with, or using. So moved does not take **with**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of the doer (passive). Moved by means touched emotionally by, and that fits: moved by = touched emotionally by. So the word takes **by**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: relocated to the speech. That is not what moved by says.", cue: "e2lg2" },
+          { text: "**with** has the sense of together with, or using. But touched emotionally by is not together with, or using. So moved does not take **with**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "moved by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["followRule", "\u2713 BY = the doer (passive)", { hl: "BY", sub: "touched emotionally by = the doer (passive)", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: relocated to the speech", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but touched emotionally by is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
