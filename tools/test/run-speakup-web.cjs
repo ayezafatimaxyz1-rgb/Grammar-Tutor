@@ -35,13 +35,21 @@ const fakes = () => {
   const results = [], errs = [];
   const check = (name, ok, info) => { results.push(ok); console.log((ok ? "PASS " : "FAIL ") + name + (info && !ok ? " · " + info : "")); };
   const gem = [];
+  // how Google answers the grading: "ok", Flash slow ("hangFlash"), Flash's daily limit used up ("quotaFlash"), or no answer at all ("hangAll")
+  let examMode = "ok", release = null; const hold = new Promise((r) => { release = r; });
+  const GRADE = { fluency: 7, grammar: 6, vocabulary: 7, task: 8, good: "You gave clear facts about yourself.", fix: "I am living in Multan → I live in Multan", better: "I'm Aiza, and I live in Multan.", next: "Add one interesting fact." };
   const gemini = async (r) => {
     const u = r.request().url();
     if (u.includes("/models?")) return r.fulfill({ json: { models: ["gemini-flash-latest", "gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-3-flash-preview"].map((n) => ({ name: "models/" + n, supportedGenerationMethods: ["generateContent"] })) } });
     const body = JSON.parse(r.request().postData());
     const prompt = body.contents.map((c) => c.parts.map((x) => x.text || "").join("")).join("\n");
     gem.push({ prompt, model: u.match(/models\/([^:]+):/)?.[1], mime: body.generationConfig.responseMimeType || "", think: body.generationConfig.thinkingConfig || null, roles: body.contents.map((c) => c.role).join(","), key: r.request().headers()["x-goog-api-key"] });
-    const text = /speaking examiner/.test(prompt) ? JSON.stringify({ fluency: 7, grammar: 6, vocabulary: 7, task: 8, good: "You gave clear facts about yourself.", fix: "I am living in Multan → I live in Multan", better: "I'm Aiza, and I live in Multan.", next: "Add one interesting fact." })
+    if (/speaking examiner/.test(prompt)) {
+      const lite = /flash-lite/.test(u);
+      if (examMode === "quotaFlash" && !lite) return r.fulfill({ status: 429, json: { error: { code: 429, message: "Quota exceeded for metric: generate_content_free_tier_requests, limit: 20. GenerateRequestsPerDayPerProjectPerModel-FreeTier", status: "RESOURCE_EXHAUSTED" } } });
+      if (examMode === "hangAll" || (examMode === "hangFlash" && !lite)) { await hold; return r.fulfill({ json: { candidates: [{ content: { parts: [{ text: JSON.stringify(GRADE) }] } }] } }).catch(() => {}); }
+    }
+    const text = /speaking examiner/.test(prompt) ? JSON.stringify(GRADE)
       : "Reply: Nice to meet you, Aiza! Where are you from?\nBetter way to say it: Hi, I'm Aiza.\nTip: Say I'm instead of I am in friendly talk.";
     r.fulfill({ json: { candidates: [{ content: { parts: [{ text }] } }] } });
   };
@@ -97,6 +105,33 @@ const fakes = () => {
   await p.click("[data-g]"); await p.waitForTimeout(700);
   const gr = gem.find((g) => /speaking examiner/.test(g.prompt));
   check("the weekly test is graded by Flash, thinking a little, with JSON", !!gr && gr.model === "gemini-2.5-flash" && gr.mime === "application/json" && gr.think?.thinkingBudget === 1024 && (await p.textContent("#lessonBody")).includes("Passed!") && (await p.textContent("#lessonBody")).includes("I live in Multan"));
+  // closing the app keeps the answer and the last result
+  await p.reload(); await p.waitForTimeout(500);
+  await p.click('nav.tabs [data-tab="tests"]'); await p.waitForTimeout(150); await p.click('#testList [data-start="5"]'); await p.waitForTimeout(300);
+  check("closing the app does not lose my answer, and my last result is still there", (await p.inputValue("[data-ans]")).startsWith("Hello everyone, my name is Aiza") && (await p.textContent("#lessonBody")).includes("Graded") && (await p.textContent("#lessonBody")).includes("I live in Multan"));
+  const examModels = (from) => gem.slice(from).filter((g) => /speaking examiner/.test(g.prompt)).map((g) => g.model).join();
+  // Flash is slow: after 20 seconds Flash-Lite grades it too
+  examMode = "hangFlash"; let nb = gem.length;
+  await p.click("[data-g]"); await p.waitForTimeout(3500);
+  check("while grading: the seconds and a Stop button", /Grading your answer… \d+ s/.test(await p.textContent("#lessonBody")) && !!(await p.$("[data-stop]")));
+  await p.waitForTimeout(19500);
+  check("a slow grading: after 20 seconds Flash-Lite grades it too, and the first answer wins", examModels(nb) === "gemini-2.5-flash,gemini-2.5-flash-lite" && (await p.textContent("#lessonBody")).includes("Passed!"), examModels(nb));
+  // Flash's free limit for today is used up: Flash-Lite at once
+  examMode = "quotaFlash"; nb = gem.length;
+  await p.click("[data-g]"); await p.waitForTimeout(800);
+  check("Flash's free limit for today used up: Flash-Lite grades it at once", examModels(nb) === "gemini-2.5-flash,gemini-2.5-flash-lite" && (await p.textContent("#lessonBody")).includes("Passed!"), examModels(nb));
+  // Stop
+  examMode = "hangAll";
+  await p.click("[data-g]"); await p.waitForTimeout(600); await p.click("[data-stop]"); await p.waitForTimeout(300);
+  check("Stop: my answer stays saved, with Try again and Grade myself", (await p.textContent("#lessonBody")).includes("Stopped. Your answer is saved on this phone.") && !!(await p.$("[data-again]")) && !!(await p.$("[data-self]")));
+  // the app is closed while grading: it opens the test again and finishes
+  await p.click("[data-again]"); await p.waitForTimeout(500);
+  check("a grading under way is remembered", (await p.evaluate(() => JSON.parse(localStorage.getItem("su_grading") || "null")?.key)) === "w1");
+  await p.close(); examMode = "ok"; release();
+  p = await ctx.newPage(); p.on("pageerror", (e) => errs.push(e.message));
+  await p.addInitScript(fakes); await p.route("https://fonts.googleapis.com/**", (r) => r.abort()); await p.route("https://generativelanguage.googleapis.com/**", gemini);
+  await p.goto(url); await p.waitForTimeout(1500);
+  check("opening the app again: the test opens by itself, and the grading finishes", (await p.textContent("#lessonBody")).includes("Passed!") && (await p.inputValue("[data-ans]")).startsWith("Hello everyone") && (await p.evaluate(() => localStorage.getItem("su_grading"))) === "null");
   // settings
   await p.click("#setBtn"); await p.waitForTimeout(200);
   const st = await p.textContent("#v-settings");
