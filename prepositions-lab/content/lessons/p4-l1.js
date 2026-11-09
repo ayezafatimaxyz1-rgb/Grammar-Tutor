@@ -76,6 +76,22 @@
         ],
       },
       {
+        id: "late-logic",
+        title: "late for: the logic",
+        alt: "The logic for late for: Look at the senses. **for** has the sense of purpose or suitability. Late for means not on time for, and that fits: late for = not on time for. So the word takes **for**.; **to** has the sense of moving towards, reaching. But not on time for is not moving towards, reaching. So late does not take **to**.; **in** has the sense of inside, within. But not on time for is not inside, within. So late does not take **in**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Late for means not on time for, and that fits: late for = not on time for. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. But not on time for is not moving towards, reaching. So late does not take **to**.", cue: "e2lg2" },
+          { text: "**in** has the sense of inside, within. But not on time for is not inside, within. So late does not take **in**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "late for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "not on time for = purpose or suitability", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but not on time for is not moving towards, reaching", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but not on time for is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "late-why",
         title: "late: why this one?",
         alt: "The sentence He was late with a gap school., then the candidates: for (fits: not on time for); to (not used: a word-for-word translation); in (not used: in is inside; not used)",
@@ -146,6 +162,22 @@
         ],
       },
       {
+        id: "laugh-logic",
+        title: "laugh at: the logic",
+        alt: "The logic for laugh at: Look at the senses. **at** has the sense of a target you aim at. Laugh means show amusement, and that fits: laugh at = mock, or find funny. So the word takes **at**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: laugh together with him, in friendship. That is not what laugh at says.; **about** has the sense of around a topic. It is correct English, but it would mean something else: joke about him as a topic. That is not what laugh at says.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a target you aim at. Laugh means show amusement, and that fits: laugh at = mock, or find funny. So the word takes **at**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: laugh together with him, in friendship. That is not what laugh at says.", cue: "e3lg2" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: joke about him as a topic. That is not what laugh at says.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "laugh at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a target you aim at", { hl: "AT", sub: "mock, or find funny = a target you aim at", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: laugh together with him, in friendship", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: joke about him as a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "laugh-why",
         title: "laugh: why this one?",
         alt: "The sentence Do not laugh with a gap him., then the candidates: at (fits: mock, or find funny); with (correct English, different meaning: laugh together with him, in friendship); about (correct English, different meaning: joke about him as a topic)",
@@ -206,6 +238,22 @@
         ],
       },
       {
+        id: "lean-logic",
+        title: "lean against: the logic",
+        alt: "The logic for lean against: Look at the senses. **against** has the sense of pressing against. Lean means rest at an angle, and that fits: lean against = rest your weight on something upright. So the word takes **against**.; **on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: lean on = put your weight on it; against = pressed on its side. That is not what lean against says.; **to** has the sense of moving towards, reaching. To points; leaning rests against. So lean does not take **to**.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of pressing against. Lean means rest at an angle, and that fits: lean against = rest your weight on something upright. So the word takes **against**.", cue: "e4lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: lean on = put your weight on it; against = pressed on its side. That is not what lean against says.", cue: "e4lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points; leaning rests against. So lean does not take **to**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "lean against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["shield", "\u2713 AGAINST = pressing against", { hl: "AGAINST", sub: "rest your weight on something upright = pressing against", size: 28 }], ["support", "\u2248 ON = resting on, or about a topic", { hl: "ON", sub: "correct English, but it would mean: lean on = put your weight on it; against = pressed on its side", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; leaning rests against", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "lean-why",
         title: "lean: why this one?",
         alt: "The sentence She leaned with a gap the wall., then the candidates: against (fits: rest your weight on something upright); on (correct English, different meaning: lean on = put your weight on it; against = pressed on its side); to (not used: to points; leaning rests against)",
@@ -235,6 +283,22 @@
         ],
       },
       {
+        id: "liable-logic",
+        title: "liable for: the logic",
+        alt: "The logic for liable for: Look at the senses. **for** has the sense of reason or cause. Liable for means legally responsible for, and that fits: liable for = legally responsible for. So the word takes **for**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: likely to suffer the damage itself. That is not what liable for says.; **of** has the sense of belonging to, a part of, or about. But legally responsible for is not belonging to, a part of, or about. So liable does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Liable for means legally responsible for, and that fits: liable for = legally responsible for. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: likely to suffer the damage itself. That is not what liable for says.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But legally responsible for is not belonging to, a part of, or about. So liable does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "liable for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "legally responsible for = reason or cause", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: likely to suffer the damage itself", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but legally responsible for is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "liable-why",
         title: "liable: why this one?",
         alt: "The sentence The company is liable with a gap the damage., then the candidates: for (fits: legally responsible for); to (correct English, different meaning: likely to suffer the damage itself); of (not used: of = belonging; not used)",
@@ -261,6 +325,22 @@
           { do: "write", id: "e6h", text: "limited", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 limited to, limited by", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["reachDot", "Entry is limited to ten people.", { hl: "to", sub: "limited to = kept within", size: 30 }], ["followRule", "The project was limited by money.", { hl: "by", sub: "limited by = held back by", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "limited-logic",
+        title: "limited to: the logic",
+        alt: "The logic for limited to: Look at the senses. **to** has the sense of a limit or level reached. Limited to means kept within, and that fits: limited to = kept within. So the word takes **to**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: held back by ten people. That is not what limited to says.; **in** has the sense of inside, within. But kept within is not inside, within. So limited does not take **in**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a limit or level reached. Limited to means kept within, and that fits: limited to = kept within. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: held back by ten people. That is not what limited to says.", cue: "e6lg2" },
+          { text: "**in** has the sense of inside, within. But kept within is not inside, within. So limited does not take **in**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "limited to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = a limit or level reached", { hl: "TO", sub: "kept within = a limit or level reached", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: held back by ten people", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but kept within is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -310,6 +390,22 @@
           { do: "write", id: "e7b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e7b1m", text: "pay attention to sound", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e7b1x", text: "Please listen to me.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "listen-logic",
+        title: "listen to: the logic",
+        alt: "The logic for listen to: Look at the senses. **to** has the sense of a person who receives. Listen means give attention by ear, and that fits: listen to = pay attention to sound. So the word takes **to**.; **(no word)** has the sense of no word is needed. Listen cannot reach its object alone. So listen does not take **(no word)**.; **at** has the sense of pointing at one spot or target. But pay attention to sound is not pointing at one spot or target. So listen does not take **at**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Listen means give attention by ear, and that fits: listen to = pay attention to sound. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**(no word)** has the sense of no word is needed. Listen cannot reach its object alone. So listen does not take **(no word)**.", cue: "e7lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But pay attention to sound is not pointing at one spot or target. So listen does not take **at**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "listen to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "pay attention to sound = a person who receives", size: 28 }], ["cross", "\u2717 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "listen cannot reach its object alone", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but pay attention to sound is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -380,6 +476,22 @@
           { do: "write", id: "e8b3p2", text: "=", x: 520, y: 470, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b3m", text: "have as your whole purpose", x: 555, y: 470, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b3x", text: "She lives for her children.", x: 480, y: 542, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "live-logic",
+        title: "live on: the logic",
+        alt: "The logic for live on: Look at the senses. **on** has the sense of resting on a support. Live means be alive, survive, and that fits: live on = survive by eating or using. So the word takes **on**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: rice would be his rule of life. That is not what live on says.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: rice would be his whole purpose. That is not what live on says.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Live means be alive, survive, and that fits: live on = survive by eating or using. So the word takes **on**.", cue: "e8lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: rice would be his rule of life. That is not what live on says.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: rice would be his whole purpose. That is not what live on says.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "live on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "survive by eating or using = resting on a support", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: rice would be his rule of life", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: rice would be his whole purpose", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

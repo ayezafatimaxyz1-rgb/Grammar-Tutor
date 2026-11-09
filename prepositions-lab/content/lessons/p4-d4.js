@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "dispose-logic",
+        title: "dispose of: the logic",
+        alt: "The logic for dispose of: Look at the senses. **of** has the sense of something taken away. Dispose means put in place, get rid, and that fits: dispose of = get rid of. So the word takes **of**.; **with** has the sense of together with, or using. With goes with dispense: dispense with. So dispose does not take **with**.; **from** has the sense of away from a starting point or source. But get rid of is not away from a starting point or source. So dispose does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of something taken away. Dispose means put in place, get rid, and that fits: dispose of = get rid of. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**with** has the sense of together with, or using. With goes with dispense: dispense with. So dispose does not take **with**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But get rid of is not away from a starting point or source. So dispose does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "dispose of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = something taken away", { hl: "OF", sub: "get rid of = something taken away", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with goes with dispense: dispense with", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but get rid of is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "dispose-why",
         title: "dispose: why this one?",
         alt: "The sentence How do we dispose with a gap the waste?, then the candidates: of (fits: get rid of); with (not used: with goes with dispense: dispense with); from (not used: from is a source; not used)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "distinct", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 distinct from", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["holdBack", "The two problems are distinct from each other.", { hl: "from", sub: "distinct from = clearly separate from", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "distinct-logic",
+        title: "distinct from: the logic",
+        alt: "The logic for distinct from: Look at the senses. **from** has the sense of moving away, separation. Distinct from means clearly separate from, and that fits: distinct from = clearly separate from. So the word takes **from**.; **with** has the sense of together with, or using. With = together; distinct means apart. So distinct does not take **with**.; **of** has the sense of belonging to, a part of, or about. But clearly separate from is not belonging to, a part of, or about. So distinct does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Distinct from means clearly separate from, and that fits: distinct from = clearly separate from. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; distinct means apart. So distinct does not take **with**.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But clearly separate from is not belonging to, a part of, or about. So distinct does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "distinct from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "clearly separate from = moving away, separation", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; distinct means apart", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but clearly separate from is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -134,6 +166,22 @@
         ],
       },
       {
+        id: "divide-logic",
+        title: "divide into: the logic",
+        alt: "The logic for divide into: Look at the senses. **into** has the sense of going inside. Divide means split into parts, and that fits: divide into = split into parts. So the word takes **into**.; **among** has the sense of one of many. Among is for people who share, not for the parts. So divide does not take **among**.; **to** has the sense of moving towards, reaching. To points; splitting goes into. So divide does not take **to**.",
+        say: [
+          { text: "Look at the senses. **into** has the sense of going inside. Divide means split into parts, and that fits: divide into = split into parts. So the word takes **into**.", cue: "e3lg1" },
+          { text: "**among** has the sense of one of many. Among is for people who share, not for the parts. So divide does not take **among**.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points; splitting goes into. So divide does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "divide into: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["intoBag", "\u2713 INTO = going inside", { hl: "INTO", sub: "split into parts = going inside", size: 28 }], ["cross", "\u2717 AMONG = one of many", { hl: "AMONG", sub: "among is for people who share, not for the parts", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; splitting goes into", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "divide-why",
         title: "divide: why this one?",
         alt: "The sentence The land was divided with a gap four parts., then the candidates: into (fits: split into parts); among (not used: among is for people who share, not for the parts); to (not used: to points; splitting goes into)",
@@ -180,6 +228,22 @@
           { do: "write", id: "e4b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e4b1m", text: "hope for", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e4b1x", text: "She dreams of becoming a doctor.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "dream-logic",
+        title: "dream of: the logic",
+        alt: "The logic for dream of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Dream means picture in the mind, and that fits: dream of = hope for. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; dreams take of or about. So dream does not take **for**.; **on** has the sense of resting on, or about a topic. But hope for is not resting on, or about a topic. So dream does not take **on**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Dream means picture in the mind, and that fits: dream of = hope for. So the word takes **of**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; dreams take of or about. So dream does not take **for**.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But hope for is not resting on, or about a topic. So dream does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "dream of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "hope for = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; dreams take of or about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but hope for is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -240,6 +304,22 @@
           { do: "write", id: "e5b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e5b2m", text: "live in", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e5b2x", text: "They dwell in the mountains.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "dwell-logic",
+        title: "dwell on: the logic",
+        alt: "The logic for dwell on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Dwell means stay, live, and that fits: dwell on = think or talk too long about. So the word takes **on**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: live inside the past. That is not what dwell on says.; **at** has the sense of pointing at one spot or target. But think or talk too long about is not pointing at one spot or target. So dwell does not take **at**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Dwell means stay, live, and that fits: dwell on = think or talk too long about. So the word takes **on**.", cue: "e5lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: live inside the past. That is not what dwell on says.", cue: "e5lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But think or talk too long about is not pointing at one spot or target. So dwell does not take **at**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "dwell on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "think or talk too long about = pressure or attention landing on one point", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: live inside the past", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but think or talk too long about is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

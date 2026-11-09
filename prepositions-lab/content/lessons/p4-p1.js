@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "part-logic",
+        title: "part with: the logic",
+        alt: "The logic for part with: Look at the senses. **with** has the sense of dealing with or handling. Part means separate, and that fits: part with = give up a thing. So the word takes **with**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: said goodbye to her books as if they were people. That is not what part with says.; **of** has the sense of belonging to, a part of, or about. Of goes with the noun: part of. So part does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Part means separate, and that fits: part with = give up a thing. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: said goodbye to her books as if they were people. That is not what part with says.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with the noun: part of. So part does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "part with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "give up a thing = dealing with or handling", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: said goodbye to her books as if they were people", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with the noun: part of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "part-why",
         title: "part: why this one?",
         alt: "The sentence She hated to part with a gap her books., then the candidates: with (fits: give up a thing); from (correct English, different meaning: said goodbye to her books as if they were people); of (not used: of goes with the noun: part of)",
@@ -84,6 +100,22 @@
           { do: "write", id: "e2h", text: "partial", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 partial to, partial towards", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "He is partial to sweets.", { hl: "to", sub: "partial to = fond of", size: 30 }], ["lookAhead", "The referee was partial towards the home team.", { hl: "towards", sub: "partial towards = unfairly favouring", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "partial-logic",
+        title: "partial to: the logic",
+        alt: "The logic for partial to: Look at the senses. **to** has the sense of behaviour aimed at someone. Partial to means fond of, and that fits: partial to = fond of. So the word takes **to**.; **towards** has the sense of facing in the direction of. It is correct English, but it would mean something else: unfairly favouring sweets in a contest. That is not what partial to says.; **of** has the sense of belonging to, a part of, or about. But fond of is not belonging to, a part of, or about. So partial does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Partial to means fond of, and that fits: partial to = fond of. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**towards** has the sense of facing in the direction of. It is correct English, but it would mean something else: unfairly favouring sweets in a contest. That is not what partial to says.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But fond of is not belonging to, a part of, or about. So partial does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "partial to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "fond of = behaviour aimed at someone", size: 28 }], ["lookAhead", "\u2248 TOWARDS = facing in the direction of", { hl: "TOWARDS", sub: "correct English, but it would mean: unfairly favouring sweets in a contest", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but fond of is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -136,6 +168,22 @@
         ],
       },
       {
+        id: "participate-logic",
+        title: "participate in: the logic",
+        alt: "The logic for participate in: Look at the senses. **in** has the sense of inside an activity: taking part. Participate means take part, and that fits: participate in = take part in. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is resting; taking part goes inside. So participate does not take **on**.; **at** has the sense of pointing at one spot or target. But take part in is not pointing at one spot or target. So participate does not take **at**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Participate means take part, and that fits: participate in = take part in. So the word takes **in**.", cue: "e3lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; taking part goes inside. So participate does not take **on**.", cue: "e3lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But take part in is not pointing at one spot or target. So participate does not take **at**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "participate in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "take part in = inside an activity: taking part", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; taking part goes inside", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but take part in is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "participate-why",
         title: "participate: why this one?",
         alt: "The sentence Everyone should participate with a gap the debate., then the candidates: in (fits: take part in); on (not used: on is resting; taking part goes inside); at (not used: at is a point; not used)",
@@ -160,6 +208,22 @@
           { do: "write", id: "e4h", text: "patient", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 patient with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["agreeWith", "Be patient with children.", { hl: "with", sub: "patient with = calm with", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "patient-logic",
+        title: "patient with: the logic",
+        alt: "The logic for patient with: Look at the senses. **with** has the sense of against a partner. Patient with means calm with, and that fits: patient with = calm with. So the word takes **with**.; **for** has the sense of aimed at, or for the sake of. But calm with is not aimed at, or for the sake of. So patient does not take **for**.; **to** has the sense of moving towards, reaching. But calm with is not moving towards, reaching. So patient does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Patient with means calm with, and that fits: patient with = calm with. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But calm with is not aimed at, or for the sake of. So patient does not take **for**.", cue: "e4lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But calm with is not moving towards, reaching. So patient does not take **to**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "patient with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "calm with = against a partner", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but calm with is not aimed at, or for the sake of", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but calm with is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -212,6 +276,22 @@
         ],
       },
       {
+        id: "persist-logic",
+        title: "persist in: the logic",
+        alt: "The logic for persist in: Look at the senses. **in** has the sense of inside an activity: taking part. Persist means keep going, and that fits: persist in = continue firmly in. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is resting; persisting goes round inside. So persist does not take **on**.; **at** has the sense of pointing at one spot or target. But continue firmly in is not pointing at one spot or target. So persist does not take **at**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Persist means keep going, and that fits: persist in = continue firmly in. So the word takes **in**.", cue: "e5lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; persisting goes round inside. So persist does not take **on**.", cue: "e5lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But continue firmly in is not pointing at one spot or target. So persist does not take **at**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "persist in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "continue firmly in = inside an activity: taking part", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; persisting goes round inside", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but continue firmly in is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "persist-why",
         title: "persist: why this one?",
         alt: "The sentence He persisted with a gap asking questions., then the candidates: in (fits: continue firmly in); on (not used: on is resting; persisting goes round inside); at (not used: at is a point; not used)",
@@ -238,6 +318,22 @@
           { do: "write", id: "e6h", text: "pleased", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Basic \u00b7 pleased with, pleased about", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["agreeWith", "The teacher was pleased with the result.", { hl: "with", sub: "pleased with = satisfied with", size: 30 }], ["aboutCircle", "We are pleased about the decision.", { hl: "about", sub: "pleased about = glad about a situation", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "pleased-logic",
+        title: "pleased with: the logic",
+        alt: "The logic for pleased with: Look at the senses. **with** has the sense of feelings about what you have. Pleased with means satisfied with, and that fits: pleased with = satisfied with. So the word takes **with**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: glad about the result as a piece of news. That is not what pleased with says.; **from** has the sense of away from a starting point or source. But satisfied with is not away from a starting point or source. So pleased does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Pleased with means satisfied with, and that fits: pleased with = satisfied with. So the word takes **with**.", cue: "e6lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: glad about the result as a piece of news. That is not what pleased with says.", cue: "e6lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But satisfied with is not away from a starting point or source. So pleased does not take **from**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "pleased with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "satisfied with = feelings about what you have", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: glad about the result as a piece of news", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but satisfied with is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -268,6 +364,22 @@
         ],
       },
       {
+        id: "polite-logic",
+        title: "polite to: the logic",
+        alt: "The logic for polite to: Look at the senses. **to** has the sense of behaviour aimed at someone. Polite to means courteous to, and that fits: polite to = courteous to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; courtesy points to. So polite does not take **with**.; **for** has the sense of aimed at, or for the sake of. But courteous to is not aimed at, or for the sake of. So polite does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Polite to means courteous to, and that fits: polite to = courteous to. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; courtesy points to. So polite does not take **with**.", cue: "e7lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But courteous to is not aimed at, or for the sake of. So polite does not take **for**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "polite to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "courteous to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; courtesy points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but courteous to is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "polite-why",
         title: "polite: why this one?",
         alt: "The sentence Be polite with a gap guests., then the candidates: to (fits: courteous to); with (not used: with = together; courtesy points to); for (not used: for is a purpose; not used)",
@@ -292,6 +404,22 @@
           { do: "write", id: "e8h", text: "popular", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Basic \u00b7 popular with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["agreeWith", "The teacher is popular with students.", { hl: "with", sub: "popular with = liked by", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "popular-logic",
+        title: "popular with: the logic",
+        alt: "The logic for popular with: Look at the senses. **with** has the sense of feelings about what you have. Popular with means liked by, and that fits: popular with = liked by. So the word takes **with**.; **for** has the sense of aimed at, or for the sake of. For is a reason: popular for its beaches. So popular does not take **for**.; **to** has the sense of moving towards, reaching. But liked by is not moving towards, reaching. So popular does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Popular with means liked by, and that fits: popular with = liked by. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a reason: popular for its beaches. So popular does not take **for**.", cue: "e8lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But liked by is not moving towards, reaching. So popular does not take **to**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "popular with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "liked by = feelings about what you have", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a reason: popular for its beaches", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but liked by is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

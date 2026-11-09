@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "inform-logic",
+        title: "inform of: the logic",
+        alt: "The logic for inform of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Inform means give knowledge, and that fits: inform of = tell someone a fact. So the word takes **of**.; **to** has the sense of moving towards, reaching. Inform takes the person directly: inform them. So inform does not take **to**.; **with** has the sense of together with, or using. But tell someone a fact is not together with, or using. So inform does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Inform means give knowledge, and that fits: inform of = tell someone a fact. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**to** has the sense of moving towards, reaching. Inform takes the person directly: inform them. So inform does not take **to**.", cue: "e1lg2" },
+          { text: "**with** has the sense of together with, or using. But tell someone a fact is not together with, or using. So inform does not take **with**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "inform of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "tell someone a fact = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "inform takes the person directly: inform them", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but tell someone a fact is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "inform-why",
         title: "inform: why this one?",
         alt: "The sentence Please inform them with a gap the decision., then the candidates: of (fits: tell someone a fact); to (not used: inform takes the person directly: inform them); with (not used: with = together; not used)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "inherent", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 inherent in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["absorbedIn", "Risk is inherent in every investment.", { hl: "in", sub: "inherent in = a natural part of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "inherent-logic",
+        title: "inherent in: the logic",
+        alt: "The logic for inherent in: Look at the senses. **in** has the sense of inside a boundary or container. Inherent in means a natural part of, and that fits: inherent in = a natural part of. So the word takes **in**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; inherent takes in. So inherent does not take **of**.; **with** has the sense of together with, or using. But a natural part of is not together with, or using. So inherent does not take **with**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Inherent in means a natural part of, and that fits: inherent in = a natural part of. So the word takes **in**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; inherent takes in. So inherent does not take **of**.", cue: "e2lg2" },
+          { text: "**with** has the sense of together with, or using. But a natural part of is not together with, or using. So inherent does not take **with**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "inherent in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "a natural part of = inside a boundary or container", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; inherent takes in", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but a natural part of is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -123,6 +155,22 @@
         ],
       },
       {
+        id: "insist-logic",
+        title: "insist on: the logic",
+        alt: "The logic for insist on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Insist means stand firm, and that fits: insist on = demand firmly. So the word takes **on**.; **to** has the sense of moving towards, reaching. Insist does not take to + verb. So insist does not take **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; insist presses on. So insist does not take **for**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Insist means stand firm, and that fits: insist on = demand firmly. So the word takes **on**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. Insist does not take to + verb. So insist does not take **to**.", cue: "e3lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; insist presses on. So insist does not take **for**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "insist on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "demand firmly = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "insist does not take to + verb", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; insist presses on", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "insist-why",
         title: "insist: why this one?",
         alt: "The sentence He insisted with a gap paying the bill., then the candidates: on (fits: demand firmly); to (not used: insist does not take to + verb); for (not used: for is a purpose; insist presses on)",
@@ -149,6 +197,22 @@
           { do: "write", id: "e4h", text: "inspired", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 inspired by, inspired with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["followRule", "The poem was inspired by Iqbal.", { hl: "by", sub: "inspired by = given ideas or feeling by", size: 30 }], ["agreeWith", "The speech inspired them with courage.", { hl: "with", sub: "inspired with = filled with a feeling", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "inspired-logic",
+        title: "inspired by: the logic",
+        alt: "The logic for inspired by: Look at the senses. **by** has the sense of the doer (passive). Inspired by means given ideas or feeling by, and that fits: inspired by = given ideas or feeling by. So the word takes **by**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: filled with Iqbal as a feeling. That is not what inspired by says.; **from** has the sense of away from a starting point or source. From is a source; inspired takes by. So inspired does not take **from**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of the doer (passive). Inspired by means given ideas or feeling by, and that fits: inspired by = given ideas or feeling by. So the word takes **by**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: filled with Iqbal as a feeling. That is not what inspired by says.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; inspired takes by. So inspired does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "inspired by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["followRule", "\u2713 BY = the doer (passive)", { hl: "BY", sub: "given ideas or feeling by = the doer (passive)", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: filled with Iqbal as a feeling", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; inspired takes by", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -181,6 +245,22 @@
         ],
       },
       {
+        id: "insured-logic",
+        title: "insured against: the logic",
+        alt: "The logic for insured against: Look at the senses. **against** has the sense of protecting from a danger. Insured against means protected by insurance from a risk, and that fits: insured against = protected by insurance from a risk. So the word takes **against**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: fire would be the amount it is insured for. That is not what insured against says.; **from** has the sense of away from a starting point or source. But protected by insurance from a risk is not away from a starting point or source. So insured does not take **from**.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of protecting from a danger. Insured against means protected by insurance from a risk, and that fits: insured against = protected by insurance from a risk. So the word takes **against**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: fire would be the amount it is insured for. That is not what insured against says.", cue: "e5lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But protected by insurance from a risk is not away from a starting point or source. So insured does not take **from**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "insured against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["shield", "\u2713 AGAINST = protecting from a danger", { hl: "AGAINST", sub: "protected by insurance from a risk = protecting from a danger", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: fire would be the amount it is insured for", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but protected by insurance from a risk is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "insured-why",
         title: "insured: why this one?",
         alt: "The sentence The house is insured with a gap fire., then the candidates: against (fits: protected by insurance from a risk); for (correct English, different meaning: fire would be the amount it is insured for); from (not used: from is a source; not used)",
@@ -208,6 +288,22 @@
         ],
       },
       {
+        id: "intent-logic",
+        title: "intent on: the logic",
+        alt: "The logic for intent on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Intent on means determined to do, and that fits: intent on = determined to do. So the word takes **on**.; **to** has the sense of moving towards, reaching. To points; intent presses on one aim. So intent does not take **to**.; **in** has the sense of inside, within. But determined to do is not inside, within. So intent does not take **in**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Intent on means determined to do, and that fits: intent on = determined to do. So the word takes **on**.", cue: "e6lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; intent presses on one aim. So intent does not take **to**.", cue: "e6lg2" },
+          { text: "**in** has the sense of inside, within. But determined to do is not inside, within. So intent does not take **in**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "intent on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "determined to do = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; intent presses on one aim", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but determined to do is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "intent-why",
         title: "intent: why this one?",
         alt: "The sentence She is intent with a gap winning., then the candidates: on (fits: determined to do); to (not used: to points; intent presses on one aim); in (not used: in is inside; not used)",
@@ -232,6 +328,22 @@
           { do: "write", id: "e7h", text: "interested", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Basic \u00b7 interested in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["absorbedIn", "She is interested in history.", { hl: "in", sub: "interested in = wanting to know about", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "interested-logic",
+        title: "interested in: the logic",
+        alt: "The logic for interested in: Look at the senses. **in** has the sense of inside a field or subject. Interested in means wanting to know about, and that fits: interested in = wanting to know about. So the word takes **in**.; **on** has the sense of resting on, or about a topic. On is a surface or topic: a book on history. So interested does not take **on**.; **about** has the sense of around a topic. About goes with worried, angry. So interested does not take **about**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a field or subject. Interested in means wanting to know about, and that fits: interested in = wanting to know about. So the word takes **in**.", cue: "e7lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface or topic: a book on history. So interested does not take **on**.", cue: "e7lg2" },
+          { text: "**about** has the sense of around a topic. About goes with worried, angry. So interested does not take **about**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "interested in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["absorbedIn", "\u2713 IN = inside a field or subject", { hl: "IN", sub: "wanting to know about = inside a field or subject", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface or topic: a book on history", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about goes with worried, angry", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -292,6 +404,22 @@
           { do: "write", id: "e8b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b2m", text: "disturb or hinder", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b2x", text: "The noise interferes with my work.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "interfere-logic",
+        title: "interfere with: the logic",
+        alt: "The logic for interfere with: Look at the senses. **with** has the sense of against a partner. Interfere means come between, and that fits: interfere with = disturb or hinder. So the word takes **with**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: meddle in my work as if it were a private matter. That is not what interfere with says.; **on** has the sense of resting on, or about a topic. But disturb or hinder is not resting on, or about a topic. So interfere does not take **on**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Interfere means come between, and that fits: interfere with = disturb or hinder. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: meddle in my work as if it were a private matter. That is not what interfere with says.", cue: "e8lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But disturb or hinder is not resting on, or about a topic. So interfere does not take **on**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "interfere with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "disturb or hinder = against a partner", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: meddle in my work as if it were a private matter", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but disturb or hinder is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

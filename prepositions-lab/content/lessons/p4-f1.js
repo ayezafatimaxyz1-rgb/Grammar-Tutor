@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "faith-logic",
+        title: "faith in: the logic",
+        alt: "The logic for faith in: Look at the senses. **in** has the sense of trust or feeling placed inside. Faith in means trust placed inside someone or something, and that fits: faith in = trust placed inside someone or something. So the word takes **in**.; **on** has the sense of resting on, or about a topic. But trust placed inside someone or something is not resting on, or about a topic. So faith does not take **on**.; **of** has the sense of belonging to, a part of, or about. But trust placed inside someone or something is not belonging to, a part of, or about. So faith does not take **of**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of trust or feeling placed inside. Faith in means trust placed inside someone or something, and that fits: faith in = trust placed inside someone or something. So the word takes **in**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But trust placed inside someone or something is not resting on, or about a topic. So faith does not take **on**.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But trust placed inside someone or something is not belonging to, a part of, or about. So faith does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "faith in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["absorbedIn", "\u2713 IN = trust or feeling placed inside", { hl: "IN", sub: "trust placed inside someone or something = trust or feeling placed inside", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but trust placed inside someone or something is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but trust placed inside someone or something is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "faith-why",
         title: "faith: why this one?",
         alt: "The sentence We have faith with a gap God., then the candidates: in (fits: trust placed inside someone or something); on (not used: a word-for-word translation; faith in); of (not used: of = belonging; not used)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "faithful", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 faithful to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "She was faithful to her promise.", { hl: "to", sub: "faithful to = loyal to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "faithful-logic",
+        title: "faithful to: the logic",
+        alt: "The logic for faithful to: Look at the senses. **to** has the sense of behaviour aimed at someone. Faithful to means loyal to, and that fits: faithful to = loyal to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; loyalty points to. So faithful does not take **with**.; **for** has the sense of aimed at, or for the sake of. But loyal to is not aimed at, or for the sake of. So faithful does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Faithful to means loyal to, and that fits: faithful to = loyal to. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; loyalty points to. So faithful does not take **with**.", cue: "e2lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But loyal to is not aimed at, or for the sake of. So faithful does not take **for**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "faithful to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "loyal to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; loyalty points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but loyal to is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "famous-logic",
+        title: "famous for: the logic",
+        alt: "The logic for famous for: Look at the senses. **for** has the sense of reason or cause. Famous for means known because of, and that fits: famous for = known because of. So the word takes **for**.; **as** has the sense of in the role of. It is correct English, but it would mean something else: Multan would be known in the role of its mangoes. That is not what famous for says.; **of** has the sense of belonging to, a part of, or about. But known because of is not belonging to, a part of, or about. So famous does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Famous for means known because of, and that fits: famous for = known because of. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**as** has the sense of in the role of. It is correct English, but it would mean something else: Multan would be known in the role of its mangoes. That is not what famous for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But known because of is not belonging to, a part of, or about. So famous does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "famous for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "known because of = reason or cause", size: 28 }], ["arrowR", "\u2248 AS = in the role of", { hl: "AS", sub: "correct English, but it would mean: Multan would be known in the role of its mangoes", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but known because of is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "famous-why",
         title: "famous: why this one?",
         alt: "The sentence Multan is famous with a gap its mangoes., then the candidates: for (fits: known because of); as (correct English, different meaning: Multan would be known in the role of its mangoes); of (not used: of = belonging; not used)",
@@ -105,6 +153,22 @@
           { do: "write", id: "e4h", text: "fatal", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 fatal to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "The disease is fatal to cattle.", { hl: "to", sub: "fatal to = causing death or ruin to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "fatal-logic",
+        title: "fatal to: the logic",
+        alt: "The logic for fatal to: Look at the senses. **to** has the sense of an effect on someone. Fatal to means causing death or ruin to, and that fits: fatal to = causing death or ruin to. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. But causing death or ruin to is not belonging to, a part of, or about. So fatal does not take **of**.; **on** has the sense of resting on, or about a topic. But causing death or ruin to is not resting on, or about a topic. So fatal does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Fatal to means causing death or ruin to, and that fits: fatal to = causing death or ruin to. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But causing death or ruin to is not belonging to, a part of, or about. So fatal does not take **of**.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But causing death or ruin to is not resting on, or about a topic. So fatal does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "fatal to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "causing death or ruin to = an effect on someone", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but causing death or ruin to is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but causing death or ruin to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -135,6 +199,22 @@
         ],
       },
       {
+        id: "fed-up-logic",
+        title: "fed up with: the logic",
+        alt: "The logic for fed up with: Look at the senses. **with** has the sense of feelings about what you have. Fed up with means tired and annoyed with, and that fits: fed up with = tired and annoyed with. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. Heard in speech, but not in formal writing. So fed up does not take **of**.; **from** has the sense of away from a starting point or source. But tired and annoyed with is not away from a starting point or source. So fed up does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Fed up with means tired and annoyed with, and that fits: fed up with = tired and annoyed with. So the word takes **with**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Heard in speech, but not in formal writing. So fed up does not take **of**.", cue: "e5lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But tired and annoyed with is not away from a starting point or source. So fed up does not take **from**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "fed up with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "tired and annoyed with = feelings about what you have", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "heard in speech, but not in formal writing", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but tired and annoyed with is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "fed-up-why",
         title: "fed up: why this one?",
         alt: "The sentence We are fed up with a gap the delays., then the candidates: with (fits: tired and annoyed with); of (not used: heard in speech, but not in formal writing); from (not used: a word-for-word translation)",
@@ -159,6 +239,22 @@
           { do: "write", id: "e6h", text: "filled", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Basic \u00b7 filled with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["agreeWith", "The jar was filled with water.", { hl: "with", sub: "filled with = made full of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "filled-logic",
+        title: "filled with: the logic",
+        alt: "The logic for filled with: Look at the senses. **with** has the sense of having or filled with. Filled with means made full of, and that fits: filled with = made full of. So the word takes **with**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: the person who did the filling. That is not what filled with says.; **of** has the sense of belonging to, a part of, or about. Of goes with full: full of. So filled does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Filled with means made full of, and that fits: filled with = made full of. So the word takes **with**.", cue: "e6lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: the person who did the filling. That is not what filled with says.", cue: "e6lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with full: full of. So filled does not take **of**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "filled with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "made full of = having or filled with", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: the person who did the filling", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with full: full of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -191,6 +287,22 @@
         ],
       },
       {
+        id: "fit-logic",
+        title: "fit for: the logic",
+        alt: "The logic for fit for: Look at the senses. **for** has the sense of purpose or suitability. Fit for means suitable for, and that fits: fit for = suitable for. So the word takes **for**.; **into** has the sense of going inside. It is correct English, but it would mean something else: squeezes inside the job. That is not what fit for says.; **to** has the sense of moving towards, reaching. To needs a verb: fit to work. So fit does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Fit for means suitable for, and that fits: fit for = suitable for. So the word takes **for**.", cue: "e7lg1" },
+          { text: "**into** has the sense of going inside. It is correct English, but it would mean something else: squeezes inside the job. That is not what fit for says.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: fit to work. So fit does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "fit for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "suitable for = purpose or suitability", size: 28 }], ["intoBag", "\u2248 INTO = going inside", { hl: "INTO", sub: "correct English, but it would mean: squeezes inside the job", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: fit to work", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "fit-why",
         title: "fit: why this one?",
         alt: "The sentence He is fit with a gap the job., then the candidates: for (fits: suitable for); into (correct English, different meaning: squeezes inside the job); to (not used: to needs a verb: fit to work)",
@@ -215,6 +327,22 @@
           { do: "write", id: "e8h", text: "fond", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Basic \u00b7 fond of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["awareOf", "She is fond of music.", { hl: "of", sub: "fond of = liking", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "fond-logic",
+        title: "fond of: the logic",
+        alt: "The logic for fond of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Fond of means liking, and that fits: fond of = liking. So the word takes **of**.; **with** has the sense of together with, or using. But liking is not together with, or using. So fond does not take **with**.; **for** has the sense of aimed at, or for the sake of. But liking is not aimed at, or for the sake of. So fond does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Fond of means liking, and that fits: fond of = liking. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**with** has the sense of together with, or using. But liking is not together with, or using. So fond does not take **with**.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But liking is not aimed at, or for the sake of. So fond does not take **for**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "fond of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "liking = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but liking is not together with, or using", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but liking is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

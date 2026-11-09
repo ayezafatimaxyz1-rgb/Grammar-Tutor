@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "deal-logic",
+        title: "deal with: the logic",
+        alt: "The logic for deal with: Look at the senses. **with** has the sense of dealing with or handling. Deal means handle, trade, and that fits: deal with = handle or take action on. So the word takes **with**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: traded in the crisis as goods for sale. That is not what deal with says.; **on** has the sense of resting on, or about a topic. On is resting; dealing handles with. So deal does not take **on**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Deal means handle, trade, and that fits: deal with = handle or take action on. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: traded in the crisis as goods for sale. That is not what deal with says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting; dealing handles with. So deal does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "deal with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "handle or take action on = dealing with or handling", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: traded in the crisis as goods for sale", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting; dealing handles with", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "deal-why",
         title: "deal: why this one?",
         alt: "The sentence The police dealt with a gap the crisis., then the candidates: with (fits: handle or take action on); in (correct English, different meaning: traded in the crisis as goods for sale); on (not used: on is resting; dealing handles with)",
@@ -104,6 +120,22 @@
           { do: "write", id: "e2b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e2b1m", text: "officially keep out of", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e2b1x", text: "He was debarred from the examination.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "debar-logic",
+        title: "debar from: the logic",
+        alt: "The logic for debar from: Look at the senses. **from** has the sense of kept away: protection and prevention. Debar means shut out by a bar, and that fits: debar from = officially keep out of. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; debar keeps away from. So debar does not take **of**.; **to** has the sense of moving towards, reaching. To moves towards; debar keeps away. So debar does not take **to**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of kept away: protection and prevention. Debar means shut out by a bar, and that fits: debar from = officially keep out of. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; debar keeps away from. So debar does not take **of**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To moves towards; debar keeps away. So debar does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "debar from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = kept away: protection and prevention", { hl: "FROM", sub: "officially keep out of = kept away: protection and prevention", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; debar keeps away from", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to moves towards; debar keeps away", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -167,6 +199,22 @@
         ],
       },
       {
+        id: "decide-logic",
+        title: "decide on: the logic",
+        alt: "The logic for decide on: Look at the senses. **on** has the sense of a point decided on. Decide means settle a choice, and that fits: decide on = choose after thinking. So the word takes **on**.; **against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: chose not to buy the blue car. That is not what decide on says.; **of** has the sense of belonging to, a part of, or about. But choose after thinking is not belonging to, a part of, or about. So decide does not take **of**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of a point decided on. Decide means settle a choice, and that fits: decide on = choose after thinking. So the word takes **on**.", cue: "e3lg1" },
+          { text: "**against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: chose not to buy the blue car. That is not what decide on says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But choose after thinking is not belonging to, a part of, or about. So decide does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "decide on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["support", "\u2713 ON = a point decided on", { hl: "ON", sub: "choose after thinking = a point decided on", size: 28 }], ["shield", "\u2248 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "correct English, but it would mean: chose not to buy the blue car", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but choose after thinking is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "decide-why",
         title: "decide: why this one?",
         alt: "The sentence We decided with a gap the blue car., then the candidates: on (fits: choose after thinking); against (correct English, different meaning: chose not to buy the blue car); of (not used: of = belonging; not used)",
@@ -194,6 +242,22 @@
         ],
       },
       {
+        id: "dedicated-logic",
+        title: "dedicated to: the logic",
+        alt: "The logic for dedicated to: Look at the senses. **to** has the sense of attached or devoted to. Dedicated to means giving all your effort to, and that fits: dedicated to = giving all your effort to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; dedication points to. So dedicated does not take **for**.; **with** has the sense of together with, or using. But giving all your effort to is not together with, or using. So dedicated does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Dedicated to means giving all your effort to, and that fits: dedicated to = giving all your effort to. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; dedication points to. So dedicated does not take **for**.", cue: "e4lg2" },
+          { text: "**with** has the sense of together with, or using. But giving all your effort to is not together with, or using. So dedicated does not take **with**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "dedicated to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "giving all your effort to = attached or devoted to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; dedication points to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but giving all your effort to is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "dedicated-why",
         title: "dedicated: why this one?",
         alt: "The sentence She is dedicated with a gap her work., then the candidates: to (fits: giving all your effort to); for (not used: for is a purpose; dedication points to); with (not used: with = together; not used)",
@@ -218,6 +282,22 @@
           { do: "write", id: "e5h", text: "deficient", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Advanced \u00b7 deficient in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["absorbedIn", "The diet is deficient in iron.", { hl: "in", sub: "deficient in = lacking something it should contain", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "deficient-logic",
+        title: "deficient in: the logic",
+        alt: "The logic for deficient in: Look at the senses. **in** has the sense of inside a boundary or container. Deficient in means lacking something it should contain, and that fits: deficient in = lacking something it should contain. So the word takes **in**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; lack inside takes in. So deficient does not take **of**.; **from** has the sense of away from a starting point or source. But lacking something it should contain is not away from a starting point or source. So deficient does not take **from**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Deficient in means lacking something it should contain, and that fits: deficient in = lacking something it should contain. So the word takes **in**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; lack inside takes in. So deficient does not take **of**.", cue: "e5lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But lacking something it should contain is not away from a starting point or source. So deficient does not take **from**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "deficient in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "lacking something it should contain = inside a boundary or container", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; lack inside takes in", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but lacking something it should contain is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -270,6 +350,22 @@
         ],
       },
       {
+        id: "depend-logic",
+        title: "depend on: the logic",
+        alt: "The logic for depend on: Look at the senses. **on** has the sense of resting on a support. Depend means hang, be held up, and that fits: depend on = rest on as a support. So the word takes **on**.; **of** has the sense of belonging to, a part of, or about. But rest on as a support is not belonging to, a part of, or about. So depend does not take **of**.; **from** has the sense of away from a starting point or source. From is a starting point, not a support. So depend does not take **from**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of resting on a support. Depend means hang, be held up, and that fits: depend on = rest on as a support. So the word takes **on**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But rest on as a support is not belonging to, a part of, or about. So depend does not take **of**.", cue: "e6lg2" },
+          { text: "**from** has the sense of away from a starting point or source. From is a starting point, not a support. So depend does not take **from**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "depend on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["support", "\u2713 ON = resting on a support", { hl: "ON", sub: "rest on as a support = resting on a support", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but rest on as a support is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a starting point, not a support", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "depend-why",
         title: "depend: why this one?",
         alt: "The sentence It all depends with a gap the weather., then the candidates: on (fits: rest on as a support); of (not used: a word-for-word translation; depend on); from (not used: from is a starting point, not a support)",
@@ -319,6 +415,22 @@
         ],
       },
       {
+        id: "deprive-logic",
+        title: "deprive of: the logic",
+        alt: "The logic for deprive of: Look at the senses. **of** has the sense of something taken away. Deprive means take away, and that fits: deprive of = take something away from someone. So the word takes **of**.; **from** has the sense of away from a starting point or source. But take something away from someone is not away from a starting point or source. So deprive does not take **from**.; **with** has the sense of together with, or using. With = together; the opposite. So deprive does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of something taken away. Deprive means take away, and that fits: deprive of = take something away from someone. So the word takes **of**.", cue: "e7lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But take something away from someone is not away from a starting point or source. So deprive does not take **from**.", cue: "e7lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; the opposite. So deprive does not take **with**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "deprive of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["awareOf", "\u2713 OF = something taken away", { hl: "OF", sub: "take something away from someone = something taken away", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but take something away from someone is not away from a starting point or source", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; the opposite", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "deprive-why",
         title: "deprive: why this one?",
         alt: "The sentence The war deprived them with a gap food., then the candidates: of (fits: take something away from someone); from (not used: a common error; deprive someone of); with (not used: with = together; the opposite)",
@@ -365,6 +477,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "come from a source", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "The word is derived from Latin.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "derive-logic",
+        title: "derive from: the logic",
+        alt: "The logic for derive from: Look at the senses. **from** has the sense of a starting point or source. Derive means draw from a source, and that fits: derive from = come from a source. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; a source takes from. So derive does not take **of**.; **by** has the sense of by means of, or next to. By is a means, not a source. So derive does not take **by**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Derive means draw from a source, and that fits: derive from = come from a source. So the word takes **from**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; a source takes from. So derive does not take **of**.", cue: "e8lg2" },
+          { text: "**by** has the sense of by means of, or next to. By is a means, not a source. So derive does not take **by**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "derive from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "come from a source = a starting point or source", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; a source takes from", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by is a means, not a source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "identical-logic",
+        title: "identical to: the logic",
+        alt: "The logic for identical to: Look at the senses. **to** has the sense of matching or compared to. Identical to means exactly the same as, and that fits: identical to = exactly the same as. So the word takes **to**.; **from** has the sense of away from a starting point or source. From = apart; identical means the same. So identical does not take **from**.; **of** has the sense of belonging to, a part of, or about. But exactly the same as is not belonging to, a part of, or about. So identical does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Identical to means exactly the same as, and that fits: identical to = exactly the same as. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From = apart; identical means the same. So identical does not take **from**.", cue: "e1lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But exactly the same as is not belonging to, a part of, or about. So identical does not take **of**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "identical to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "exactly the same as = matching or compared to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from = apart; identical means the same", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but exactly the same as is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "identical-why",
         title: "identical: why this one?",
         alt: "The sentence This copy is identical with a gap the original., then the candidates: to (fits: exactly the same as); from (not used: from = apart; identical means the same); of (not used: of = belonging; not used)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "ignorant", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 ignorant of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["awareOf", "Many people are ignorant of the law.", { hl: "of", sub: "ignorant of = not knowing about", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "ignorant-logic",
+        title: "ignorant of: the logic",
+        alt: "The logic for ignorant of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Ignorant of means not knowing about, and that fits: ignorant of = not knowing about. So the word takes **of**.; **about** has the sense of around a topic. Heard in speech, but formal English says ignorant of. So ignorant does not take **about**.; **from** has the sense of away from a starting point or source. But not knowing about is not away from a starting point or source. So ignorant does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Ignorant of means not knowing about, and that fits: ignorant of = not knowing about. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**about** has the sense of around a topic. Heard in speech, but formal English says ignorant of. So ignorant does not take **about**.", cue: "e2lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But not knowing about is not away from a starting point or source. So ignorant does not take **from**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "ignorant of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "not knowing about = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "heard in speech, but formal English says ignorant of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but not knowing about is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "immune-logic",
+        title: "immune to: the logic",
+        alt: "The logic for immune to: Look at the senses. **to** has the sense of open or exposed to. Immune to means not affected by, and that fits: immune to = not affected by. So the word takes **to**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: legally protected from the virus, like a law. That is not what immune to says.; **with** has the sense of together with, or using. But not affected by is not together with, or using. So immune does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of open or exposed to. Immune to means not affected by, and that fits: immune to = not affected by. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: legally protected from the virus, like a law. That is not what immune to says.", cue: "e3lg2" },
+          { text: "**with** has the sense of together with, or using. But not affected by is not together with, or using. So immune does not take **with**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "immune to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = open or exposed to", { hl: "TO", sub: "not affected by = open or exposed to", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: legally protected from the virus, like a law", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but not affected by is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "immune-why",
         title: "immune: why this one?",
         alt: "The sentence She is immune with a gap the virus., then the candidates: to (fits: not affected by); from (correct English, different meaning: legally protected from the virus, like a law); with (not used: with = together; not used)",
@@ -107,6 +155,22 @@
           { do: "write", id: "e4h", text: "impatient", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 impatient with, impatient for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["agreeWith", "The teacher was impatient with the slow student.", { hl: "with", sub: "impatient with = irritated by a person", size: 30 }], ["wantStar", "The people are impatient for change.", { hl: "for", sub: "impatient for = eager to get", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "impatient-logic",
+        title: "impatient for: the logic",
+        alt: "The logic for impatient for: Look at the senses. **for** has the sense of aimed at something you want. Impatient for means eager to get, and that fits: impatient for = eager to get. So the word takes **for**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: irritated by change as if it were a person. That is not what impatient for says.; **of** has the sense of belonging to, a part of, or about. But eager to get is not belonging to, a part of, or about. So impatient does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Impatient for means eager to get, and that fits: impatient for = eager to get. So the word takes **for**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: irritated by change as if it were a person. That is not what impatient for says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But eager to get is not belonging to, a part of, or about. So impatient does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "impatient for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "eager to get = aimed at something you want", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: irritated by change as if it were a person", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but eager to get is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -137,6 +201,22 @@
         ],
       },
       {
+        id: "impervious-logic",
+        title: "impervious to: the logic",
+        alt: "The logic for impervious to: Look at the senses. **to** has the sense of open or exposed to. Impervious to means not affected by, and that fits: impervious to = not affected by. So the word takes **to**.; **from** has the sense of away from a starting point or source. From is moving away; impervious takes to. So impervious does not take **from**.; **of** has the sense of belonging to, a part of, or about. But not affected by is not belonging to, a part of, or about. So impervious does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of open or exposed to. Impervious to means not affected by, and that fits: impervious to = not affected by. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is moving away; impervious takes to. So impervious does not take **from**.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But not affected by is not belonging to, a part of, or about. So impervious does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "impervious to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = open or exposed to", { hl: "TO", sub: "not affected by = open or exposed to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is moving away; impervious takes to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but not affected by is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "impervious-why",
         title: "impervious: why this one?",
         alt: "The sentence He seemed impervious with a gap criticism., then the candidates: to (fits: not affected by); from (not used: from is moving away; impervious takes to); of (not used: of = belonging; not used)",
@@ -161,6 +241,22 @@
           { do: "write", id: "e6h", text: "implicated", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Advanced \u00b7 implicated in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["absorbedIn", "Two officials were implicated in the scandal.", { hl: "in", sub: "implicated in = shown to be involved in a crime", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "implicated-logic",
+        title: "implicated in: the logic",
+        alt: "The logic for implicated in: Look at the senses. **in** has the sense of inside an activity: taking part. Implicated in means shown to be involved in a crime, and that fits: implicated in = shown to be involved in a crime. So the word takes **in**.; **with** has the sense of together with, or using. With = together; involvement goes inside. So implicated does not take **with**.; **of** has the sense of belonging to, a part of, or about. But shown to be involved in a crime is not belonging to, a part of, or about. So implicated does not take **of**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Implicated in means shown to be involved in a crime, and that fits: implicated in = shown to be involved in a crime. So the word takes **in**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; involvement goes inside. So implicated does not take **with**.", cue: "e6lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But shown to be involved in a crime is not belonging to, a part of, or about. So implicated does not take **of**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "implicated in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "shown to be involved in a crime = inside an activity: taking part", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; involvement goes inside", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but shown to be involved in a crime is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -213,6 +309,22 @@
         ],
       },
       {
+        id: "impose-logic",
+        title: "impose on: the logic",
+        alt: "The logic for impose on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Impose means lay on by force, and that fits: impose on = force something on someone. So the word takes **on**.; **to** has the sense of moving towards, reaching. To points; a burden presses on. So impose does not take **to**.; **over** has the sense of above, or going on about. Over covers; a tax lands on. So impose does not take **over**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Impose means lay on by force, and that fits: impose on = force something on someone. So the word takes **on**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; a burden presses on. So impose does not take **to**.", cue: "e7lg2" },
+          { text: "**over** has the sense of above, or going on about. Over covers; a tax lands on. So impose does not take **over**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "impose on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "force something on someone = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; a burden presses on", size: 28 }], ["cross", "\u2717 OVER = above, or going on about", { hl: "OVER", sub: "over covers; a tax lands on", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "impose-why",
         title: "impose: why this one?",
         alt: "The sentence The government imposed a tax with a gap imports., then the candidates: on (fits: force something on someone); to (not used: to points; a burden presses on); over (not used: over covers; a tax lands on)",
@@ -237,6 +349,22 @@
           { do: "write", id: "e8h", text: "incapable", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 incapable of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["awareOf", "He is incapable of lying.", { hl: "of", sub: "incapable of = not able to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "incapable-logic",
+        title: "incapable of: the logic",
+        alt: "The logic for incapable of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Incapable of means not able to, and that fits: incapable of = not able to. So the word takes **of**.; **to** has the sense of moving towards, reaching. Unable to + verb; incapable of + -ing. So incapable does not take **to**.; **for** has the sense of aimed at, or for the sake of. But not able to is not aimed at, or for the sake of. So incapable does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Incapable of means not able to, and that fits: incapable of = not able to. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**to** has the sense of moving towards, reaching. Unable to + verb; incapable of + -ing. So incapable does not take **to**.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But not able to is not aimed at, or for the sake of. So incapable does not take **for**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "incapable of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "not able to = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "unable to + verb; incapable of + -ing", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but not able to is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

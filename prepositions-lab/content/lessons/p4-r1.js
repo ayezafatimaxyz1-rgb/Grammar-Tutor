@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "react-logic",
+        title: "react to: the logic",
+        alt: "The logic for react to: Look at the senses. **to** has the sense of a person who receives. React means act in return, and that fits: react to = respond to. So the word takes **to**.; **against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: rebelled against the news. That is not what react to says.; **on** has the sense of resting on, or about a topic. But respond to is not resting on, or about a topic. So react does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. React means act in return, and that fits: react to = respond to. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: rebelled against the news. That is not what react to says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But respond to is not resting on, or about a topic. So react does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "react to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "respond to = a person who receives", size: 28 }], ["shield", "\u2248 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "correct English, but it would mean: rebelled against the news", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but respond to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "react-why",
         title: "react: why this one?",
         alt: "The sentence How did he react with a gap the news?, then the candidates: to (fits: respond to); against (correct English, different meaning: rebelled against the news); on (not used: on is resting; not used)",
@@ -82,6 +98,22 @@
           { do: "write", id: "e2h", text: "ready", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 ready for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["wantStar", "Are you ready for the exam?", { hl: "for", sub: "ready for = prepared for", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "ready-logic",
+        title: "ready for: the logic",
+        alt: "The logic for ready for: Look at the senses. **for** has the sense of purpose or suitability. Ready for means prepared for, and that fits: ready for = prepared for. So the word takes **for**.; **to** has the sense of moving towards, reaching. To needs a verb: ready to go. So ready does not take **to**.; **of** has the sense of belonging to, a part of, or about. But prepared for is not belonging to, a part of, or about. So ready does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Ready for means prepared for, and that fits: ready for = prepared for. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: ready to go. So ready does not take **to**.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But prepared for is not belonging to, a part of, or about. So ready does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "ready for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "prepared for = purpose or suitability", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: ready to go", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but prepared for is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -134,6 +166,22 @@
         ],
       },
       {
+        id: "recover-logic",
+        title: "recover from: the logic",
+        alt: "The logic for recover from: Look at the senses. **from** has the sense of moving away, separation. Recover means get back, and that fits: recover from = get well after. So the word takes **from**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; recovery moves away from. So recover does not take **of**.; **out** has the sense of out, outward. Out alone is not enough. So recover does not take **out**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Recover means get back, and that fits: recover from = get well after. So the word takes **from**.", cue: "e3lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; recovery moves away from. So recover does not take **of**.", cue: "e3lg2" },
+          { text: "**out** has the sense of out, outward. Out alone is not enough. So recover does not take **out**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "recover from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "get well after = moving away, separation", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; recovery moves away from", size: 28 }], ["cross", "\u2717 OUT = out, outward", { hl: "OUT", sub: "out alone is not enough", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "recover-why",
         title: "recover: why this one?",
         alt: "The sentence She recovered with a gap the illness., then the candidates: from (fits: get well after); of (not used: of = belonging; recovery moves away from); out (not used: out alone is not enough)",
@@ -160,6 +208,22 @@
           { do: "write", id: "e4h", text: "reduced", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 reduced by, reduced to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["followRule", "Prices were reduced by 10 per cent.", { hl: "by", sub: "reduced by = made smaller by an amount", size: 30 }], ["reachDot", "The house was reduced to ashes.", { hl: "to", sub: "reduced to = brought down to a level or state", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "reduced-logic",
+        title: "reduced by: the logic",
+        alt: "The logic for reduced by: Look at the senses. **by** has the sense of an amount or margin. Reduced by means made smaller by an amount, and that fits: reduced by = made smaller by an amount. So the word takes **by**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: brought down to 10 per cent of the old price. That is not what reduced by says.; **of** has the sense of belonging to, a part of, or about. But made smaller by an amount is not belonging to, a part of, or about. So reduced does not take **of**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of an amount or margin. Reduced by means made smaller by an amount, and that fits: reduced by = made smaller by an amount. So the word takes **by**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: brought down to 10 per cent of the old price. That is not what reduced by says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But made smaller by an amount is not belonging to, a part of, or about. So reduced does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "reduced by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["followRule", "\u2713 BY = an amount or margin", { hl: "BY", sub: "made smaller by an amount = an amount or margin", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: brought down to 10 per cent of the old price", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but made smaller by an amount is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -212,6 +276,22 @@
         ],
       },
       {
+        id: "refer-logic",
+        title: "refer to: the logic",
+        alt: "The logic for refer to: Look at the senses. **to** has the sense of movement to a destination. Refer means send, point, and that fits: refer to = look at for information, or mention. So the word takes **to**.; **(no word)** has the sense of no word is needed. Refer cannot reach its object alone. So refer does not take **(no word)**.; **on** has the sense of resting on, or about a topic. But look at for information, or mention is not resting on, or about a topic. So refer does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of movement to a destination. Refer means send, point, and that fits: refer to = look at for information, or mention. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**(no word)** has the sense of no word is needed. Refer cannot reach its object alone. So refer does not take **(no word)**.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But look at for information, or mention is not resting on, or about a topic. So refer does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "refer to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = movement to a destination", { hl: "TO", sub: "look at for information, or mention = movement to a destination", size: 28 }], ["cross", "\u2717 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "refer cannot reach its object alone", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but look at for information, or mention is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "refer-why",
         title: "refer: why this one?",
         alt: "The sentence Refer with a gap the dictionary., then the candidates: to (fits: look at for information, or mention); (no word) (not used: refer cannot reach its object alone); on (not used: on is resting; not used)",
@@ -261,6 +341,22 @@
         ],
       },
       {
+        id: "regard-logic",
+        title: "regard as: the logic",
+        alt: "The logic for regard as: Look at the senses. **as** has the sense of in the role of. Regard means look at, consider, and that fits: regard as = consider to be. So the word takes **as**.; **like** has the sense of similar to. But consider to be is not similar to. So regard does not take **like**.; **for** has the sense of aimed at, or for the sake of. For goes with the noun: regard for others. So regard does not take **for**.",
+        say: [
+          { text: "Look at the senses. **as** has the sense of in the role of. Regard means look at, consider, and that fits: regard as = consider to be. So the word takes **as**.", cue: "e6lg1" },
+          { text: "**like** has the sense of similar to. But consider to be is not similar to. So regard does not take **like**.", cue: "e6lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For goes with the noun: regard for others. So regard does not take **for**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "regard as: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["arrowR", "\u2713 AS = in the role of", { hl: "AS", sub: "consider to be = in the role of", size: 28 }], ["cross", "\u2717 LIKE = similar to", { hl: "LIKE", sub: "but consider to be is not similar to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for goes with the noun: regard for others", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "regard-why",
         title: "regard: why this one?",
         alt: "The sentence Everyone regarded him with a gap a hero., then the candidates: as (fits: consider to be); like (not used: regard takes as); for (not used: for goes with the noun: regard for others)",
@@ -288,6 +384,22 @@
         ],
       },
       {
+        id: "related-logic",
+        title: "related to: the logic",
+        alt: "The logic for related to: Look at the senses. **to** has the sense of matching or compared to. Related to means connected with, and that fits: related to = connected with. So the word takes **to**.; **with** has the sense of together with, or using. But connected with is not together with, or using. So related does not take **with**.; **from** has the sense of away from a starting point or source. But connected with is not away from a starting point or source. So related does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Related to means connected with, and that fits: related to = connected with. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. But connected with is not together with, or using. So related does not take **with**.", cue: "e7lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But connected with is not away from a starting point or source. So related does not take **from**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "related to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "connected with = matching or compared to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but connected with is not together with, or using", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but connected with is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "related-why",
         title: "related: why this one?",
         alt: "The sentence His illness is related with a gap stress., then the candidates: to (fits: connected with); with (not used: a common error; related to); from (not used: from is a source; not used)",
@@ -312,6 +424,22 @@
           { do: "write", id: "e8h", text: "relevant", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 relevant to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["reachDot", "This point is relevant to the case.", { hl: "to", sub: "relevant to = connected to the matter", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "relevant-logic",
+        title: "relevant to: the logic",
+        alt: "The logic for relevant to: Look at the senses. **to** has the sense of matching or compared to. Relevant to means connected to the matter, and that fits: relevant to = connected to the matter. So the word takes **to**.; **with** has the sense of together with, or using. But connected to the matter is not together with, or using. So relevant does not take **with**.; **for** has the sense of aimed at, or for the sake of. But connected to the matter is not aimed at, or for the sake of. So relevant does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Relevant to means connected to the matter, and that fits: relevant to = connected to the matter. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**with** has the sense of together with, or using. But connected to the matter is not together with, or using. So relevant does not take **with**.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But connected to the matter is not aimed at, or for the sake of. So relevant does not take **for**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "relevant to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "connected to the matter = matching or compared to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but connected to the matter is not together with, or using", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but connected to the matter is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

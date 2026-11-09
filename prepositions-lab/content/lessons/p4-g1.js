@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "generous-logic",
+        title: "generous with: the logic",
+        alt: "The logic for generous with: Look at the senses. **with** has the sense of dealing with or handling. Generous with means giving freely of something, and that fits: generous with = giving freely of something. So the word takes **with**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to his money as if it were a person. That is not what generous with says.; **on** has the sense of resting on, or about a topic. But giving freely of something is not resting on, or about a topic. So generous does not take **on**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Generous with means giving freely of something, and that fits: generous with = giving freely of something. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to his money as if it were a person. That is not what generous with says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But giving freely of something is not resting on, or about a topic. So generous does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "generous with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "giving freely of something = dealing with or handling", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: kind to his money as if it were a person", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but giving freely of something is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "generous-why",
         title: "generous: why this one?",
         alt: "The sentence He is generous with a gap his money., then the candidates: with (fits: giving freely of something); to (correct English, different meaning: kind to his money as if it were a person); on (not used: on is resting; not used)",
@@ -84,6 +100,22 @@
           { do: "write", id: "e2b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e2b2m", text: "survive to the end of", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e2b2x", text: "We got through the exam week.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "get-logic",
+        title: "get over: the logic",
+        alt: "The logic for get over: Look at the senses. **over** has the sense of getting past. Get means reach, obtain, and that fits: get over = recover from. So the word takes **over**.; **through** has the sense of from one side to the other. It is correct English, but it would mean something else: lasted until the illness ended, not recovered. That is not what get over says.; **off** has the sense of away from, removed. Get off is for vehicles. So get does not take **off**.",
+        say: [
+          { text: "Look at the senses. **over** has the sense of getting past. Get means reach, obtain, and that fits: get over = recover from. So the word takes **over**.", cue: "e2lg1" },
+          { text: "**through** has the sense of from one side to the other. It is correct English, but it would mean something else: lasted until the illness ended, not recovered. That is not what get over says.", cue: "e2lg2" },
+          { text: "**off** has the sense of away from, removed. Get off is for vehicles. So get does not take **off**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "get over: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["overRock", "\u2713 OVER = getting past", { hl: "OVER", sub: "recover from = getting past", size: 28 }], ["passThrough", "\u2248 THROUGH = from one side to the other", { hl: "THROUGH", sub: "correct English, but it would mean: lasted until the illness ended, not recovered", size: 28 }], ["cross", "\u2717 OFF = away from, removed", { hl: "OFF", sub: "get off is for vehicles", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -147,6 +179,22 @@
         ],
       },
       {
+        id: "give-logic",
+        title: "give up: the logic",
+        alt: "The logic for give up: Look at the senses. **up** has the sense of up, or completely. Give means hand over, and that fits: give up = stop doing. So the word takes **up**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: surrendered to smoking (give in to). That is not what give up says.; **off** has the sense of away from, removed. Give off = send out a smell or heat. So give does not take **off**.",
+        say: [
+          { text: "Look at the senses. **up** has the sense of up, or completely. Give means hand over, and that fits: give up = stop doing. So the word takes **up**.", cue: "e3lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: surrendered to smoking (give in to). That is not what give up says.", cue: "e3lg2" },
+          { text: "**off** has the sense of away from, removed. Give off = send out a smell or heat. So give does not take **off**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "give up: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["arrowUp", "\u2713 UP = up, or completely", { hl: "UP", sub: "stop doing = up, or completely", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: surrendered to smoking (give in to)", size: 28 }], ["cross", "\u2717 OFF = away from, removed", { hl: "OFF", sub: "give off = send out a smell or heat", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "give-why",
         title: "give: why this one?",
         alt: "The sentence He gave with a gap smoking., then the candidates: up (fits: stop doing); in (correct English, different meaning: surrendered to smoking (give in to)); off (not used: give off = send out a smell or heat)",
@@ -174,6 +222,22 @@
           { do: "write", id: "e4h", text: "good", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 good at, good for, good to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [[[["arrowR", -40, 0], ["target", 30, 0]], "She is good at mathematics.", { hl: "at", sub: "good at = skilled at", size: 30 }], ["wantStar", "Exercise is good for your health.", { hl: "for", sub: "good for = helpful for", size: 30 }], ["reachDot", "He is good to his parents.", { hl: "to", sub: "good to = kind to", size: 30 }]], { y: 190, gap: 140 }),
+        ],
+      },
+      {
+        id: "good-logic",
+        title: "good for: the logic",
+        alt: "The logic for good for: Look at the senses. **for** has the sense of purpose or suitability. Good for means helpful for, and that fits: good for = helpful for. So the word takes **for**.; **at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: skilled at your health. That is not what good for says.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to your health as if it were a person. That is not what good for says.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Good for means helpful for, and that fits: good for = helpful for. So the word takes **for**.", cue: "e4lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: skilled at your health. That is not what good for says.", cue: "e4lg2" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to your health as if it were a person. That is not what good for says.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "good for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "helpful for = purpose or suitability", size: 28 }], [[["arrowR", -40, 0], ["target", 30, 0]], "\u2248 AT = pointing at one spot or target", { hl: "AT", sub: "correct English, but it would mean: skilled at your health", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: kind to your health as if it were a person", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -206,6 +270,22 @@
         ],
       },
       {
+        id: "grateful-logic",
+        title: "grateful for: the logic",
+        alt: "The logic for grateful for: Look at the senses. **for** has the sense of reason or cause. Grateful for means thankful for something, and that fits: grateful for = thankful for something. So the word takes **for**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: thankful to your help as if it were a person. That is not what grateful for says.; **of** has the sense of belonging to, a part of, or about. But thankful for something is not belonging to, a part of, or about. So grateful does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Grateful for means thankful for something, and that fits: grateful for = thankful for something. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: thankful to your help as if it were a person. That is not what grateful for says.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But thankful for something is not belonging to, a part of, or about. So grateful does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "grateful for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "thankful for something = reason or cause", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: thankful to your help as if it were a person", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but thankful for something is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "grateful-why",
         title: "grateful: why this one?",
         alt: "The sentence I am grateful with a gap your help., then the candidates: for (fits: thankful for something); to (correct English, different meaning: thankful to your help as if it were a person); of (not used: of = belonging; not used)",
@@ -230,6 +310,22 @@
           { do: "write", id: "e6h", text: "greedy", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 greedy for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["wantStar", "He is greedy for power.", { hl: "for", sub: "greedy for = wanting too much of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "greedy-logic",
+        title: "greedy for: the logic",
+        alt: "The logic for greedy for: Look at the senses. **for** has the sense of aimed at something you want. Greedy for means wanting too much of, and that fits: greedy for = wanting too much of. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; greed reaches for. So greedy does not take **of**.; **about** has the sense of around a topic. But wanting too much of is not around a topic. So greedy does not take **about**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Greedy for means wanting too much of, and that fits: greedy for = wanting too much of. So the word takes **for**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; greed reaches for. So greedy does not take **of**.", cue: "e6lg2" },
+          { text: "**about** has the sense of around a topic. But wanting too much of is not around a topic. So greedy does not take **about**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "greedy for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "wanting too much of = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; greed reaches for", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "but wanting too much of is not around a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -282,6 +378,22 @@
         ],
       },
       {
+        id: "grieve-logic",
+        title: "grieve for: the logic",
+        alt: "The logic for grieve for: Look at the senses. **for** has the sense of for someone's sake. Grieve means feel deep sorrow, and that fits: grieve for = feel deep sorrow for. So the word takes **for**.; **on** has the sense of resting on, or about a topic. But feel deep sorrow for is not resting on, or about a topic. So grieve does not take **on**.; **at** has the sense of pointing at one spot or target. But feel deep sorrow for is not pointing at one spot or target. So grieve does not take **at**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Grieve means feel deep sorrow, and that fits: grieve for = feel deep sorrow for. So the word takes **for**.", cue: "e7lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But feel deep sorrow for is not resting on, or about a topic. So grieve does not take **on**.", cue: "e7lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But feel deep sorrow for is not pointing at one spot or target. So grieve does not take **at**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "grieve for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "feel deep sorrow for = for someone's sake", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but feel deep sorrow for is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but feel deep sorrow for is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "grieve-why",
         title: "grieve: why this one?",
         alt: "The sentence She grieved with a gap her mother., then the candidates: for (fits: feel deep sorrow for); on (not used: on is resting; not used); at (not used: at is a point; not used)",
@@ -328,6 +440,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "protect from a danger", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "Wash your hands to guard against infection.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "guard-logic",
+        title: "guard against: the logic",
+        alt: "The logic for guard against: Look at the senses. **against** has the sense of protecting from a danger. Guard means protect, and that fits: guard against = protect from a danger. So the word takes **against**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; protection pushes against. So guard does not take **for**.; **to** has the sense of moving towards, reaching. But protect from a danger is not moving towards, reaching. So guard does not take **to**.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of protecting from a danger. Guard means protect, and that fits: guard against = protect from a danger. So the word takes **against**.", cue: "e8lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; protection pushes against. So guard does not take **for**.", cue: "e8lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But protect from a danger is not moving towards, reaching. So guard does not take **to**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "guard against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["shield", "\u2713 AGAINST = protecting from a danger", { hl: "AGAINST", sub: "protect from a danger = protecting from a danger", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; protection pushes against", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but protect from a danger is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

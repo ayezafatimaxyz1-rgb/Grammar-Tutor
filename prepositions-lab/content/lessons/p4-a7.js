@@ -49,6 +49,22 @@
         ],
       },
       {
+        id: "attend-logic",
+        title: "attend to: the logic",
+        alt: "The logic for attend to: Look at the senses. **to** has the sense of moving towards, reaching. Attend means be present, give care, and that fits: attend to = deal with, take care of. So the word takes **to**.; **(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: be present at your complaint. That is not what attend to says.; **on** has the sense of resting on, or about a topic. On is resting, not dealing with. So attend does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. Attend means be present, give care, and that fits: attend to = deal with, take care of. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**(no word)** has the sense of no word is needed. It is correct English, but it would mean something else: be present at your complaint. That is not what attend to says.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting, not dealing with. So attend does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "attend to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "deal with, take care of = moving towards, reaching", size: 28 }], ["check", "\u2248 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "correct English, but it would mean: be present at your complaint", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting, not dealing with", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "attend-why",
         title: "attend: why this one?",
         alt: "The sentence The manager will attend with a gap your complaint., then the candidates: to (fits: deal with, take care of); (no word) (correct English, different meaning: be present at your complaint); on (not used: on is resting, not dealing with)",
@@ -76,6 +92,22 @@
         ],
       },
       {
+        id: "averse-logic",
+        title: "averse to: the logic",
+        alt: "The logic for averse to: Look at the senses. **to** has the sense of behaviour aimed at someone. Averse to means strongly disliking, and that fits: averse to = strongly disliking. So the word takes **to**.; **from** has the sense of away from a starting point or source. From is moving away; averse takes to. So averse does not take **from**.; **of** has the sense of belonging to, a part of, or about. But strongly disliking is not belonging to, a part of, or about. So averse does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Averse to means strongly disliking, and that fits: averse to = strongly disliking. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is moving away; averse takes to. So averse does not take **from**.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But strongly disliking is not belonging to, a part of, or about. So averse does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "averse to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "strongly disliking = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is moving away; averse takes to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but strongly disliking is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "averse-why",
         title: "averse: why this one?",
         alt: "The sentence The bank is averse with a gap risk., then the candidates: to (fits: strongly disliking); from (not used: from is moving away; averse takes to); of (not used: of = belonging; not used)",
@@ -100,6 +132,22 @@
           { do: "write", id: "e3h", text: "aware", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 aware of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["awareOf", "She is aware of the risks.", { hl: "of", sub: "aware of = knowing about something", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "aware-logic",
+        title: "aware of: the logic",
+        alt: "The logic for aware of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Aware of means knowing about something, and that fits: aware of = knowing about something. So the word takes **of**.; **about** has the sense of around a topic. Common in speech; formal English uses of. So aware does not take **about**.; **from** has the sense of away from a starting point or source. From is a source, not knowledge. So aware does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Aware of means knowing about something, and that fits: aware of = knowing about something. So the word takes **of**.", cue: "e3lg1" },
+          { text: "**about** has the sense of around a topic. Common in speech; formal English uses of. So aware does not take **about**.", cue: "e3lg2" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source, not knowledge. So aware does not take **from**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "aware of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "knowing about something = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "common in speech; formal English uses of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source, not knowledge", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

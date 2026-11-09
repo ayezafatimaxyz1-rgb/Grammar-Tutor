@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "conform-logic",
+        title: "conform to: the logic",
+        alt: "The logic for conform to: Look at the senses. **to** has the sense of matching or compared to. Conform means take the same form, and that fits: conform to = fit a rule or standard. So the word takes **to**.; **on** has the sense of resting on, or about a topic. But fit a rule or standard is not resting on, or about a topic. So conform does not take **on**.; **for** has the sense of aimed at, or for the sake of. But fit a rule or standard is not aimed at, or for the sake of. So conform does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Conform means take the same form, and that fits: conform to = fit a rule or standard. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But fit a rule or standard is not resting on, or about a topic. So conform does not take **on**.", cue: "e1lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But fit a rule or standard is not aimed at, or for the sake of. So conform does not take **for**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "conform to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "fit a rule or standard = matching or compared to", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but fit a rule or standard is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but fit a rule or standard is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "conform-why",
         title: "conform: why this one?",
         alt: "The sentence The building does not conform with a gap safety standards., then the candidates: to (fits: fit a rule or standard); on (not used: on is resting; not used); for (not used: for is a purpose; not used)",
@@ -96,6 +112,22 @@
         ],
       },
       {
+        id: "congratulate-logic",
+        title: "congratulate on: the logic",
+        alt: "The logic for congratulate on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Congratulate means share joy, and that fits: congratulate on = praise someone for an achievement. So the word takes **on**.; **for** has the sense of aimed at, or for the sake of. But praise someone for an achievement is not aimed at, or for the sake of. So congratulate does not take **for**.; **at** has the sense of pointing at one spot or target. But praise someone for an achievement is not pointing at one spot or target. So congratulate does not take **at**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Congratulate means share joy, and that fits: congratulate on = praise someone for an achievement. So the word takes **on**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But praise someone for an achievement is not aimed at, or for the sake of. So congratulate does not take **for**.", cue: "e2lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But praise someone for an achievement is not pointing at one spot or target. So congratulate does not take **at**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "congratulate on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "praise someone for an achievement = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but praise someone for an achievement is not aimed at, or for the sake of", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but praise someone for an achievement is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "congratulate-why",
         title: "congratulate: why this one?",
         alt: "The sentence We congratulated her with a gap her success., then the candidates: on (fits: praise someone for an achievement); for (not used: for goes with thank); at (not used: at is a point; not used)",
@@ -125,6 +157,22 @@
         ],
       },
       {
+        id: "connected-logic",
+        title: "connected with: the logic",
+        alt: "The logic for connected with: Look at the senses. **with** has the sense of together, side by side. Connected with means related to, and that fits: connected with = related to. So the word takes **with**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: physically joined to the scandal. That is not what connected with says.; **from** has the sense of away from a starting point or source. But related to is not away from a starting point or source. So connected does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of together, side by side. Connected with means related to, and that fits: connected with = related to. So the word takes **with**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: physically joined to the scandal. That is not what connected with says.", cue: "e3lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But related to is not away from a starting point or source. So connected does not take **from**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "connected with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["agreeWith", "\u2713 WITH = together, side by side", { hl: "WITH", sub: "related to = together, side by side", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: physically joined to the scandal", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but related to is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "connected-why",
         title: "connected: why this one?",
         alt: "The sentence He is connected with a gap the scandal., then the candidates: with (fits: related to); to (correct English, different meaning: physically joined to the scandal); from (not used: from is a source; not used)",
@@ -149,6 +197,22 @@
           { do: "write", id: "e4h", text: "conscious", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 conscious of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["awareOf", "He is conscious of his duties.", { hl: "of", sub: "conscious of = aware of", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "conscious-logic",
+        title: "conscious of: the logic",
+        alt: "The logic for conscious of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Conscious of means aware of, and that fits: conscious of = aware of. So the word takes **of**.; **about** has the sense of around a topic. Self-conscious about is different; conscious of. So conscious does not take **about**.; **from** has the sense of away from a starting point or source. But aware of is not away from a starting point or source. So conscious does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Conscious of means aware of, and that fits: conscious of = aware of. So the word takes **of**.", cue: "e4lg1" },
+          { text: "**about** has the sense of around a topic. Self-conscious about is different; conscious of. So conscious does not take **about**.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But aware of is not away from a starting point or source. So conscious does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "conscious of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "aware of = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "self-conscious about is different; conscious of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but aware of is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -198,6 +262,22 @@
           { do: "write", id: "e5b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e5b1m", text: "agree to", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e5b1x", text: "She consented to the marriage.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "consent-logic",
+        title: "consent to: the logic",
+        alt: "The logic for consent to: Look at the senses. **to** has the sense of agreeing to a proposal. Consent means agree, allow, and that fits: consent to = agree to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; consent points to. So consent does not take **for**.; **on** has the sense of resting on, or about a topic. But agree to is not resting on, or about a topic. So consent does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of agreeing to a proposal. Consent means agree, allow, and that fits: consent to = agree to. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; consent points to. So consent does not take **for**.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But agree to is not resting on, or about a topic. So consent does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "consent to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = agreeing to a proposal", { hl: "TO", sub: "agree to = agreeing to a proposal", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; consent points to", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but agree to is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -261,6 +341,22 @@
         ],
       },
       {
+        id: "consist-logic",
+        title: "consist in: the logic",
+        alt: "The logic for consist in: Look at the senses. **in** has the sense of inside a boundary or container. Consist means be made, stand, and that fits: consist in = have as its essence. So the word takes **in**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: contentment would be one part happiness is made of. That is not what consist in says.; **from** has the sense of away from a starting point or source. But have as its essence is not away from a starting point or source. So consist does not take **from**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Consist means be made, stand, and that fits: consist in = have as its essence. So the word takes **in**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: contentment would be one part happiness is made of. That is not what consist in says.", cue: "e6lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But have as its essence is not away from a starting point or source. So consist does not take **from**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "consist in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "have as its essence = inside a boundary or container", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: contentment would be one part happiness is made of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but have as its essence is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "consist-why",
         title: "consist: why this one?",
         alt: "The sentence Happiness consists with a gap contentment., then the candidates: in (fits: have as its essence); of (correct English, different meaning: contentment would be one part happiness is made of); from (not used: a word-for-word translation)",
@@ -288,6 +384,22 @@
         ],
       },
       {
+        id: "contact-logic",
+        title: "contact with: the logic",
+        alt: "The logic for contact with: Look at the senses. **with** has the sense of together, side by side. Contact with means in contact with: in touch with, and that fits: contact with = in contact with: in touch with. So the word takes **with**.; **to** has the sense of moving towards, reaching. To points; contact is being with. So contact does not take **to**.; **(no word)** has the sense of no word is needed. The verb takes none: contact them; the noun takes with. So contact does not take **(no word)**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of together, side by side. Contact with means in contact with: in touch with, and that fits: contact with = in contact with: in touch with. So the word takes **with**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; contact is being with. So contact does not take **to**.", cue: "e7lg2" },
+          { text: "**(no word)** has the sense of no word is needed. The verb takes none: contact them; the noun takes with. So contact does not take **(no word)**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "contact with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["agreeWith", "\u2713 WITH = together, side by side", { hl: "WITH", sub: "in contact with: in touch with = together, side by side", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; contact is being with", size: 28 }], ["cross", "\u2717 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "the verb takes none: contact them; the noun takes with", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "contact-why",
         title: "contact: why this one?",
         alt: "The sentence We are in contact with a gap the embassy., then the candidates: with (fits: in contact with: in touch with); to (not used: to points; contact is being with); (no word) (not used: the verb takes none: contact them; the noun takes with)",
@@ -312,6 +424,22 @@
           { do: "write", id: "e8h", text: "content", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 content with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["agreeWith", "He is content with his salary.", { hl: "with", sub: "content with = satisfied with", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "content-logic",
+        title: "content with: the logic",
+        alt: "The logic for content with: Look at the senses. **with** has the sense of feelings about what you have. Content with means satisfied with, and that fits: content with = satisfied with. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. But satisfied with is not belonging to, a part of, or about. So content does not take **of**.; **on** has the sense of resting on, or about a topic. But satisfied with is not resting on, or about a topic. So content does not take **on**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Content with means satisfied with, and that fits: content with = satisfied with. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But satisfied with is not belonging to, a part of, or about. So content does not take **of**.", cue: "e8lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But satisfied with is not resting on, or about a topic. So content does not take **on**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "content with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "satisfied with = feelings about what you have", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but satisfied with is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but satisfied with is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

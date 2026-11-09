@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "comply-logic",
+        title: "comply with: the logic",
+        alt: "The logic for comply with: Look at the senses. **with** has the sense of dealing with or handling. Comply means obey, and that fits: comply with = act according to a rule. So the word takes **with**.; **to** has the sense of moving towards, reaching. But act according to a rule is not moving towards, reaching. So comply does not take **to**.; **by** has the sense of by means of, or next to. But act according to a rule is not by means of, or next to. So comply does not take **by**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Comply means obey, and that fits: comply with = act according to a rule. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**to** has the sense of moving towards, reaching. But act according to a rule is not moving towards, reaching. So comply does not take **to**.", cue: "e1lg2" },
+          { text: "**by** has the sense of by means of, or next to. But act according to a rule is not by means of, or next to. So comply does not take **by**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "comply with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "act according to a rule = dealing with or handling", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but act according to a rule is not moving towards, reaching", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "but act according to a rule is not by means of, or next to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "comply-why",
         title: "comply: why this one?",
         alt: "The sentence Banks must comply with a gap the regulations., then the candidates: with (fits: act according to a rule); to (not used: a common error; comply with); by (not used: by goes with abide)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "composed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 composed of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["awareOf", "The committee is composed of five members.", { hl: "of", sub: "composed of = made up of parts", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "composed-logic",
+        title: "composed of: the logic",
+        alt: "The logic for composed of: Look at the senses. **of** has the sense of what something is made of or holds. Composed of means made up of parts, and that fits: composed of = made up of parts. So the word takes **of**.; **from** has the sense of away from a starting point or source. From is a source; parts take of. So composed does not take **from**.; **with** has the sense of together with, or using. But made up of parts is not together with, or using. So composed does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Composed of means made up of parts, and that fits: composed of = made up of parts. So the word takes **of**.", cue: "e2lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; parts take of. So composed does not take **from**.", cue: "e2lg2" },
+          { text: "**with** has the sense of together with, or using. But made up of parts is not together with, or using. So composed does not take **with**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "composed of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "made up of parts = what something is made of or holds", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; parts take of", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but made up of parts is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -123,6 +155,22 @@
         ],
       },
       {
+        id: "concentrate-logic",
+        title: "concentrate on: the logic",
+        alt: "The logic for concentrate on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Concentrate means bring to one centre, and that fits: concentrate on = fix attention on. So the word takes **on**.; **in** has the sense of inside, within. In is inside; attention rests on. So concentrate does not take **in**.; **at** has the sense of pointing at one spot or target. But fix attention on is not pointing at one spot or target. So concentrate does not take **at**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Concentrate means bring to one centre, and that fits: concentrate on = fix attention on. So the word takes **on**.", cue: "e3lg1" },
+          { text: "**in** has the sense of inside, within. In is inside; attention rests on. So concentrate does not take **in**.", cue: "e3lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But fix attention on is not pointing at one spot or target. So concentrate does not take **at**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "concentrate on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "fix attention on = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; attention rests on", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but fix attention on is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "concentrate-why",
         title: "concentrate: why this one?",
         alt: "The sentence Concentrate with a gap your work., then the candidates: on (fits: fix attention on); in (not used: in is inside; attention rests on); at (not used: at is a point; not used)",
@@ -149,6 +197,22 @@
           { do: "write", id: "e4h", text: "concerned", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 concerned about, concerned with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["aboutCircle", "Parents are concerned about safety.", { hl: "about", sub: "concerned about = worried about", size: 30 }], ["agreeWith", "The report is concerned with rural health.", { hl: "with", sub: "concerned with = dealing with, about a subject", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "concerned-logic",
+        title: "concerned with: the logic",
+        alt: "The logic for concerned with: Look at the senses. **with** has the sense of dealing with or handling. Concerned with means dealing with, about a subject, and that fits: concerned with = dealing with, about a subject. So the word takes **with**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: the report is worried about rural health. That is not what concerned with says.; **of** has the sense of belonging to, a part of, or about. But dealing with, about a subject is not belonging to, a part of, or about. So concerned does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Concerned with means dealing with, about a subject, and that fits: concerned with = dealing with, about a subject. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: the report is worried about rural health. That is not what concerned with says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But dealing with, about a subject is not belonging to, a part of, or about. So concerned does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "concerned with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "dealing with, about a subject = dealing with or handling", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: the report is worried about rural health", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but dealing with, about a subject is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -212,6 +276,22 @@
         ],
       },
       {
+        id: "condemn-logic",
+        title: "condemn to: the logic",
+        alt: "The logic for condemn to: Look at the senses. **to** has the sense of a limit or level reached. Condemn means declare wrong, sentence, and that fits: condemn to = sentence to a punishment. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: blamed because of death. That is not what condemn to says.; **with** has the sense of together with, or using. But sentence to a punishment is not together with, or using. So condemn does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a limit or level reached. Condemn means declare wrong, sentence, and that fits: condemn to = sentence to a punishment. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: blamed because of death. That is not what condemn to says.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. But sentence to a punishment is not together with, or using. So condemn does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "condemn to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = a limit or level reached", { hl: "TO", sub: "sentence to a punishment = a limit or level reached", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: blamed because of death", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but sentence to a punishment is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "condemn-why",
         title: "condemn: why this one?",
         alt: "The sentence He was condemned with a gap death., then the candidates: to (fits: sentence to a punishment); for (correct English, different meaning: blamed because of death); with (not used: with = together; not used)",
@@ -236,6 +316,22 @@
           { do: "write", id: "e6h", text: "conducive", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Advanced \u00b7 conducive to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["reachDot", "Peace is conducive to growth.", { hl: "to", sub: "conducive to = leading towards a result", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "conducive-logic",
+        title: "conducive to: the logic",
+        alt: "The logic for conducive to: Look at the senses. **to** has the sense of an effect on someone. Conducive to means leading towards a result, and that fits: conducive to = leading towards a result. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. But leading towards a result is not aimed at, or for the sake of. So conducive does not take **for**.; **with** has the sense of together with, or using. With goes with commensurate. So conducive does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Conducive to means leading towards a result, and that fits: conducive to = leading towards a result. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But leading towards a result is not aimed at, or for the sake of. So conducive does not take **for**.", cue: "e6lg2" },
+          { text: "**with** has the sense of together with, or using. With goes with commensurate. So conducive does not take **with**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "conducive to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "leading towards a result = an effect on someone", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but leading towards a result is not aimed at, or for the sake of", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with goes with commensurate", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -299,6 +395,22 @@
         ],
       },
       {
+        id: "confide-logic",
+        title: "confide in: the logic",
+        alt: "The logic for confide in: Look at the senses. **in** has the sense of trust or feeling placed inside. Confide means trust with a secret, and that fits: confide in = trust someone with secrets. So the word takes **in**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: told something to her sister (needs an object first). That is not what confide in says.; **with** has the sense of together with, or using. But trust someone with secrets is not together with, or using. So confide does not take **with**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of trust or feeling placed inside. Confide means trust with a secret, and that fits: confide in = trust someone with secrets. So the word takes **in**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: told something to her sister (needs an object first). That is not what confide in says.", cue: "e7lg2" },
+          { text: "**with** has the sense of together with, or using. But trust someone with secrets is not together with, or using. So confide does not take **with**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "confide in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["absorbedIn", "\u2713 IN = trust or feeling placed inside", { hl: "IN", sub: "trust someone with secrets = trust or feeling placed inside", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: told something to her sister (needs an object first)", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but trust someone with secrets is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "confide-why",
         title: "confide: why this one?",
         alt: "The sentence She confided with a gap her sister., then the candidates: in (fits: trust someone with secrets); to (correct English, different meaning: told something to her sister (needs an object first)); with (not used: with = together; not used)",
@@ -325,6 +437,22 @@
           { do: "write", id: "e8h", text: "confident", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 confident of, confident in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["awareOf", "We are confident of success.", { hl: "of", sub: "confident of = sure of a result", size: 30 }], ["absorbedIn", "We are confident in our team.", { hl: "in", sub: "confident in = trusting someone's ability", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "confident-logic",
+        title: "confident of: the logic",
+        alt: "The logic for confident of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Confident of means sure of a result, and that fits: confident of = sure of a result. So the word takes **of**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: trusting success as if it were a person. That is not what confident of says.; **on** has the sense of resting on, or about a topic. But sure of a result is not resting on, or about a topic. So confident does not take **on**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Confident of means sure of a result, and that fits: confident of = sure of a result. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: trusting success as if it were a person. That is not what confident of says.", cue: "e8lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But sure of a result is not resting on, or about a topic. So confident does not take **on**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "confident of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "sure of a result = what a feeling or knowledge is about", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: trusting success as if it were a person", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but sure of a result is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

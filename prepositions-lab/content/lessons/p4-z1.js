@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "zeal-logic",
+        title: "zeal for: the logic",
+        alt: "The logic for zeal for: Look at the senses. **for** has the sense of aimed at something you want. Zeal for means great energy for, and that fits: zeal for = great energy for. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; zeal reaches for. So zeal does not take **of**.; **in** has the sense of inside, within. But great energy for is not inside, within. So zeal does not take **in**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Zeal for means great energy for, and that fits: zeal for = great energy for. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; zeal reaches for. So zeal does not take **of**.", cue: "e1lg2" },
+          { text: "**in** has the sense of inside, within. But great energy for is not inside, within. So zeal does not take **in**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "zeal for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "great energy for = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; zeal reaches for", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but great energy for is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "zeal-why",
         title: "zeal: why this one?",
         alt: "The sentence He showed great zeal with a gap reform., then the candidates: for (fits: great energy for); of (not used: of = belonging; zeal reaches for); in (not used: in is inside; not used)",

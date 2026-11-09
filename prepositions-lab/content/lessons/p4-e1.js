@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "eager-logic",
+        title: "eager for: the logic",
+        alt: "The logic for eager for: Look at the senses. **for** has the sense of aimed at something you want. Eager for means wanting something very much, and that fits: eager for = wanting something very much. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; eagerness reaches for. So eager does not take **of**.; **about** has the sense of around a topic. About is a topic; eagerness reaches for. So eager does not take **about**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Eager for means wanting something very much, and that fits: eager for = wanting something very much. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; eagerness reaches for. So eager does not take **of**.", cue: "e1lg2" },
+          { text: "**about** has the sense of around a topic. About is a topic; eagerness reaches for. So eager does not take **about**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "eager for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "wanting something very much = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; eagerness reaches for", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about is a topic; eagerness reaches for", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "eager-why",
         title: "eager: why this one?",
         alt: "The sentence The crowd was eager with a gap news., then the candidates: for (fits: wanting something very much); of (not used: of = belonging; eagerness reaches for); about (not used: about is a topic; eagerness reaches for)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "economical", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Intermediate \u00b7 economical with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["agreeWith", "Be economical with water.", { hl: "with", sub: "economical with = careful not to waste", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "economical-logic",
+        title: "economical with: the logic",
+        alt: "The logic for economical with: Look at the senses. **with** has the sense of dealing with or handling. Economical with means careful not to waste, and that fits: economical with = careful not to waste. So the word takes **with**.; **on** has the sense of resting on, or about a topic. But careful not to waste is not resting on, or about a topic. So economical does not take **on**.; **to** has the sense of moving towards, reaching. But careful not to waste is not moving towards, reaching. So economical does not take **to**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Economical with means careful not to waste, and that fits: economical with = careful not to waste. So the word takes **with**.", cue: "e2lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But careful not to waste is not resting on, or about a topic. So economical does not take **on**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But careful not to waste is not moving towards, reaching. So economical does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "economical with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "careful not to waste = dealing with or handling", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but careful not to waste is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but careful not to waste is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -79,6 +111,22 @@
         ],
       },
       {
+        id: "effect-logic",
+        title: "effect on: the logic",
+        alt: "The logic for effect on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Effect on means a result landing on something (noun), and that fits: effect on = a result landing on something (noun). So the word takes **on**.; **to** has the sense of moving towards, reaching. To points; an effect lands on. So effect does not take **to**.; **at** has the sense of pointing at one spot or target. But a result landing on something (noun) is not pointing at one spot or target. So effect does not take **at**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Effect on means a result landing on something (noun), and that fits: effect on = a result landing on something (noun). So the word takes **on**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; an effect lands on. So effect does not take **to**.", cue: "e3lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But a result landing on something (noun) is not pointing at one spot or target. So effect does not take **at**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "effect on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "a result landing on something (noun) = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; an effect lands on", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but a result landing on something (noun) is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "effect-why",
         title: "effect: why this one?",
         alt: "The sentence Smoking has a bad effect with a gap health., then the candidates: on (fits: a result landing on something (noun)); to (not used: to points; an effect lands on); at (not used: at is a point; not used)",
@@ -103,6 +151,22 @@
           { do: "write", id: "e4h", text: "eligible", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 eligible for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["wantStar", "She is eligible for the post.", { hl: "for", sub: "eligible for = allowed to have or apply for", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "eligible-logic",
+        title: "eligible for: the logic",
+        alt: "The logic for eligible for: Look at the senses. **for** has the sense of purpose or suitability. Eligible for means allowed to have or apply for, and that fits: eligible for = allowed to have or apply for. So the word takes **for**.; **to** has the sense of moving towards, reaching. To needs a verb: eligible to vote. So eligible does not take **to**.; **of** has the sense of belonging to, a part of, or about. But allowed to have or apply for is not belonging to, a part of, or about. So eligible does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Eligible for means allowed to have or apply for, and that fits: eligible for = allowed to have or apply for. So the word takes **for**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: eligible to vote. So eligible does not take **to**.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But allowed to have or apply for is not belonging to, a part of, or about. So eligible does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "eligible for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "allowed to have or apply for = purpose or suitability", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: eligible to vote", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but allowed to have or apply for is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -155,6 +219,22 @@
         ],
       },
       {
+        id: "embark-logic",
+        title: "embark on: the logic",
+        alt: "The logic for embark on: Look at the senses. **on** has the sense of on a vehicle or platform. Embark means go on board, and that fits: embark on = start something new. So the word takes **on**.; **in** has the sense of inside, within. In is inside; embark takes on (upon). So embark does not take **in**.; **to** has the sense of moving towards, reaching. But start something new is not moving towards, reaching. So embark does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of on a vehicle or platform. Embark means go on board, and that fits: embark on = start something new. So the word takes **on**.", cue: "e5lg1" },
+          { text: "**in** has the sense of inside, within. In is inside; embark takes on (upon). So embark does not take **in**.", cue: "e5lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But start something new is not moving towards, reaching. So embark does not take **to**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "embark on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["support", "\u2713 ON = on a vehicle or platform", { hl: "ON", sub: "start something new = on a vehicle or platform", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; embark takes on (upon)", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but start something new is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "embark-why",
         title: "embark: why this one?",
         alt: "The sentence The country embarked with a gap reforms., then the candidates: on (fits: start something new); in (not used: in is inside; embark takes on (upon)); to (not used: to points; not used)",
@@ -204,6 +284,22 @@
         ],
       },
       {
+        id: "emerge-logic",
+        title: "emerge from: the logic",
+        alt: "The logic for emerge from: Look at the senses. **from** has the sense of a starting point or source. Emerge means come up out, and that fits: emerge from = come out of. So the word takes **from**.; **out** has the sense of out, outward. Out alone is not enough; emerge from. So emerge does not take **out**.; **of** has the sense of belonging to, a part of, or about. But come out of is not belonging to, a part of, or about. So emerge does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Emerge means come up out, and that fits: emerge from = come out of. So the word takes **from**.", cue: "e6lg1" },
+          { text: "**out** has the sense of out, outward. Out alone is not enough; emerge from. So emerge does not take **out**.", cue: "e6lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But come out of is not belonging to, a part of, or about. So emerge does not take **of**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "emerge from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "come out of = a starting point or source", size: 28 }], ["cross", "\u2717 OUT = out, outward", { hl: "OUT", sub: "out alone is not enough; emerge from", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but come out of is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "emerge-why",
         title: "emerge: why this one?",
         alt: "The sentence The country emerged with a gap the crisis., then the candidates: from (fits: come out of); out (not used: out alone is not enough; emerge from); of (not used: of = belonging; not used)",
@@ -231,6 +327,22 @@
         ],
       },
       {
+        id: "emphasis-logic",
+        title: "emphasis on: the logic",
+        alt: "The logic for emphasis on: Look at the senses. **on** has the sense of pressure or attention landing on one point. Emphasis on means special importance on (noun), and that fits: emphasis on = special importance on (noun). So the word takes **on**.; **about** has the sense of around a topic. About is a topic; emphasis presses on. So emphasis does not take **about**.; **to** has the sense of moving towards, reaching. But special importance on (noun) is not moving towards, reaching. So emphasis does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of pressure or attention landing on one point. Emphasis on means special importance on (noun), and that fits: emphasis on = special importance on (noun). So the word takes **on**.", cue: "e7lg1" },
+          { text: "**about** has the sense of around a topic. About is a topic; emphasis presses on. So emphasis does not take **about**.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But special importance on (noun) is not moving towards, reaching. So emphasis does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "emphasis on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["support", "\u2713 ON = pressure or attention landing on one point", { hl: "ON", sub: "special importance on (noun) = pressure or attention landing on one point", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about is a topic; emphasis presses on", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but special importance on (noun) is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "emphasis-why",
         title: "emphasis: why this one?",
         alt: "The sentence The plan puts emphasis with a gap education., then the candidates: on (fits: special importance on (noun)); about (not used: about is a topic; emphasis presses on); to (not used: to points; not used)",
@@ -255,6 +367,22 @@
           { do: "write", id: "e8h", text: "empty", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 empty of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["awareOf", "His words were empty of meaning.", { hl: "of", sub: "empty of = with nothing inside", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "empty-logic",
+        title: "empty of: the logic",
+        alt: "The logic for empty of: Look at the senses. **of** has the sense of what something is made of or holds. Empty of means with nothing inside, and that fits: empty of = with nothing inside. So the word takes **of**.; **from** has the sense of away from a starting point or source. From is a source; empty takes of. So empty does not take **from**.; **with** has the sense of together with, or using. With = together; the opposite. So empty does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what something is made of or holds. Empty of means with nothing inside, and that fits: empty of = with nothing inside. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; empty takes of. So empty does not take **from**.", cue: "e8lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; the opposite. So empty does not take **with**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "empty of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = what something is made of or holds", { hl: "OF", sub: "with nothing inside = what something is made of or holds", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; empty takes of", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; the opposite", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "abide-logic",
+        title: "abide by: the logic",
+        alt: "The logic for abide by: Look at the senses. **by** has the sense of a rule or guide you follow. Abide means stay, remain, and that fits: abide by = accept and obey a rule or decision. So the word takes **by**.; **with** has the sense of together with, or using. With = together; a rule is obeyed, not accompanied. So abide does not take **with**.; **to** has the sense of moving towards, reaching. To points to a goal; abide takes by. So abide does not take **to**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of a rule or guide you follow. Abide means stay, remain, and that fits: abide by = accept and obey a rule or decision. So the word takes **by**.", cue: "e1lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; a rule is obeyed, not accompanied. So abide does not take **with**.", cue: "e1lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points to a goal; abide takes by. So abide does not take **to**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "abide by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["followRule", "\u2713 BY = a rule or guide you follow", { hl: "BY", sub: "accept and obey a rule or decision = a rule or guide you follow", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; a rule is obeyed, not accompanied", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points to a goal; abide takes by", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "abide-why",
         title: "abide: why this one?",
         alt: "The sentence Every member must abide with a gap the rules., then the candidates: by (fits: accept and obey a rule or decision); with (not used: with = together; a rule is obeyed, not accompanied); to (not used: to points to a goal; abide takes by)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "absent", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 absent from", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["holdBack", "He was absent from the meeting.", { hl: "from", sub: "absent from = not present at a place or event", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "absent-logic",
+        title: "absent from: the logic",
+        alt: "The logic for absent from: Look at the senses. **from** has the sense of moving away, separation. Absent from means not present at a place or event, and that fits: absent from = not present at a place or event. So the word takes **from**.; **at** has the sense of pointing at one spot or target. At says where you are, not where you are missing from. So absent does not take **at**.; **in** has the sense of inside, within. In a place means you are there. So absent does not take **in**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Absent from means not present at a place or event, and that fits: absent from = not present at a place or event. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. At says where you are, not where you are missing from. So absent does not take **at**.", cue: "e2lg2" },
+          { text: "**in** has the sense of inside, within. In a place means you are there. So absent does not take **in**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "absent from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "not present at a place or event = moving away, separation", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at says where you are, not where you are missing from", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in a place means you are there", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -100,6 +132,22 @@
           { do: "write", id: "e3h", text: "absorbed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Intermediate \u00b7 absorbed in, absorbed into", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["absorbedIn", "She was absorbed in her book.", { hl: "in", sub: "absorbed in = with attention deep inside something", size: 30 }], ["intoBag", "The village was absorbed into the city.", { hl: "into", sub: "absorbed into = taken in and made part of something", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "absorbed-logic",
+        title: "absorbed in: the logic",
+        alt: "The logic for absorbed in: Look at the senses. **in** has the sense of inside a boundary or container. Absorbed in means with attention deep inside something, and that fits: absorbed in = with attention deep inside something. So the word takes **in**.; **into** has the sense of going inside. It is correct English, but it would mean something else: made part of the book, swallowed up. That is not what absorbed in says.; **with** has the sense of together with, or using. With = together; attention goes inside. So absorbed does not take **with**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Absorbed in means with attention deep inside something, and that fits: absorbed in = with attention deep inside something. So the word takes **in**.", cue: "e3lg1" },
+          { text: "**into** has the sense of going inside. It is correct English, but it would mean something else: made part of the book, swallowed up. That is not what absorbed in says.", cue: "e3lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; attention goes inside. So absorbed does not take **with**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "absorbed in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "with attention deep inside something = inside a boundary or container", size: 28 }], ["intoBag", "\u2248 INTO = going inside", { hl: "INTO", sub: "correct English, but it would mean: made part of the book, swallowed up", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; attention goes inside", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -152,6 +200,22 @@
         ],
       },
       {
+        id: "abstain-logic",
+        title: "abstain from: the logic",
+        alt: "The logic for abstain from: Look at the senses. **from** has the sense of moving away, separation. Abstain means hold yourself back, and that fits: abstain from = keep away from doing something. So the word takes **from**.; **to** has the sense of moving towards, reaching. To moves towards; abstain moves away. So abstain does not take **to**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; nothing belongs here. So abstain does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Abstain means hold yourself back, and that fits: abstain from = keep away from doing something. So the word takes **from**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To moves towards; abstain moves away. So abstain does not take **to**.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; nothing belongs here. So abstain does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "abstain from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "keep away from doing something = moving away, separation", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to moves towards; abstain moves away", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; nothing belongs here", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "abstain-why",
         title: "abstain: why this one?",
         alt: "The sentence Three members abstained with a gap voting., then the candidates: from (fits: keep away from doing something); to (not used: to moves towards; abstain moves away); of (not used: of = belonging; nothing belongs here)",
@@ -176,6 +240,22 @@
           { do: "write", id: "e5h", text: "abundant", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Advanced \u00b7 abundant in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["absorbedIn", "The region is abundant in minerals.", { hl: "in", sub: "abundant in = having a great deal of something inside it", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "abundant-logic",
+        title: "abundant in: the logic",
+        alt: "The logic for abundant in: Look at the senses. **in** has the sense of inside a boundary or container. Abundant in means having a great deal of something inside it, and that fits: abundant in = having a great deal of something inside it. So the word takes **in**.; **of** has the sense of belonging to, a part of, or about. Of names a part; abundant takes in. So abundant does not take **of**.; **on** has the sense of resting on, or about a topic. On is a surface, not what a place contains. So abundant does not take **on**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a boundary or container. Abundant in means having a great deal of something inside it, and that fits: abundant in = having a great deal of something inside it. So the word takes **in**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of names a part; abundant takes in. So abundant does not take **of**.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface, not what a place contains. So abundant does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "abundant in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["absorbedIn", "\u2713 IN = inside a boundary or container", { hl: "IN", sub: "having a great deal of something inside it = inside a boundary or container", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of names a part; abundant takes in", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface, not what a place contains", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -228,6 +308,22 @@
         ],
       },
       {
+        id: "accede-logic",
+        title: "accede to: the logic",
+        alt: "The logic for accede to: Look at the senses. **to** has the sense of agreeing to a proposal. Accede means step forward, agree, and that fits: accede to = agree to a demand, or take up an office. So the word takes **to**.; **with** has the sense of together with, or using. With = together; acceding moves towards a demand. So accede does not take **with**.; **on** has the sense of resting on, or about a topic. On is resting on, not agreeing. So accede does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of agreeing to a proposal. Accede means step forward, agree, and that fits: accede to = agree to a demand, or take up an office. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; acceding moves towards a demand. So accede does not take **with**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting on, not agreeing. So accede does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "accede to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = agreeing to a proposal", { hl: "TO", sub: "agree to a demand, or take up an office = agreeing to a proposal", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; acceding moves towards a demand", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting on, not agreeing", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "accede-why",
         title: "accede: why this one?",
         alt: "The sentence The government acceded with a gap their demands., then the candidates: to (fits: agree to a demand, or take up an office); with (not used: with = together; acceding moves towards a demand); on (not used: on is resting on, not agreeing)",
@@ -252,6 +348,22 @@
           { do: "write", id: "e7h", text: "access", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Basic \u00b7 access to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["reachDot", "Millions lack access to clean water.", { hl: "to", sub: "access to = a way in to something", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "access-logic",
+        title: "access to: the logic",
+        alt: "The logic for access to: Look at the senses. **to** has the sense of moving towards, reaching. Access to means a way in to something, and that fits: access to = a way in to something. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. Of = a part of; access is a way in. So access does not take **of**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: who it is meant for: access for disabled people. That is not what access to says.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. Access to means a way in to something, and that fits: access to = a way in to something. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = a part of; access is a way in. So access does not take **of**.", cue: "e7lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: who it is meant for: access for disabled people. That is not what access to says.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "access to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "a way in to something = moving towards, reaching", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = a part of; access is a way in", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: who it is meant for: access for disabled people", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -281,6 +393,22 @@
           { do: "write", id: "e8h", text: "accompanied", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 accompanied by, accompanied with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["followRule", "The minister was accompanied by his aides.", { hl: "by", sub: "accompanied by = a person or thing that goes along", size: 30 }], ["agreeWith", "The meal was accompanied with salad.", { hl: "with", sub: "accompanied with = something added to it", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "accompanied-logic",
+        title: "accompanied by: the logic",
+        alt: "The logic for accompanied by: Look at the senses. **by** has the sense of the doer (passive). Accompanied by means a person or thing that goes along, and that fits: accompanied by = a person or thing that goes along. So the word takes **by**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: added on to the minister, like a side dish. That is not what accompanied by says.; **from** has the sense of away from a starting point or source. From is a source, not a companion. So accompanied does not take **from**.",
+        say: [
+          { text: "Look at the senses. **by** has the sense of the doer (passive). Accompanied by means a person or thing that goes along, and that fits: accompanied by = a person or thing that goes along. So the word takes **by**.", cue: "e8lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: added on to the minister, like a side dish. That is not what accompanied by says.", cue: "e8lg2" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source, not a companion. So accompanied does not take **from**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "accompanied by: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["followRule", "\u2713 BY = the doer (passive)", { hl: "BY", sub: "a person or thing that goes along = the doer (passive)", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: added on to the minister, like a side dish", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source, not a companion", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

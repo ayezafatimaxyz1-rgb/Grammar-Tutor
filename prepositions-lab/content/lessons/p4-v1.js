@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "vain-logic",
+        title: "vain about: the logic",
+        alt: "The logic for vain about: Look at the senses. **about** has the sense of a feeling around a topic. Vain about means too proud of, and that fits: vain about = too proud of. So the word takes **about**.; **of** has the sense of belonging to, a part of, or about. But too proud of is not belonging to, a part of, or about. So vain does not take **of**.; **for** has the sense of aimed at, or for the sake of. But too proud of is not aimed at, or for the sake of. So vain does not take **for**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Vain about means too proud of, and that fits: vain about = too proud of. So the word takes **about**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But too proud of is not belonging to, a part of, or about. So vain does not take **of**.", cue: "e1lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But too proud of is not aimed at, or for the sake of. So vain does not take **for**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "vain about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "too proud of = a feeling around a topic", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but too proud of is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but too proud of is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "vain-why",
         title: "vain: why this one?",
         alt: "The sentence She is vain with a gap her looks., then the candidates: about (fits: too proud of); of (not used: of = belonging; not used); for (not used: for is a purpose; not used)",
@@ -52,6 +68,22 @@
         ],
       },
       {
+        id: "valid-logic",
+        title: "valid for: the logic",
+        alt: "The logic for valid for: Look at the senses. **for** has the sense of purpose or suitability. Valid for means acceptable for a length of time or a use, and that fits: valid for = acceptable for a length of time or a use. So the word takes **for**.; **till** has the sense of till. Till needs a point in time: valid till March. So valid does not take **till**.; **of** has the sense of belonging to, a part of, or about. But acceptable for a length of time or a use is not belonging to, a part of, or about. So valid does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Valid for means acceptable for a length of time or a use, and that fits: valid for = acceptable for a length of time or a use. So the word takes **for**.", cue: "e2lg1" },
+          { text: "**till** has the sense of till. Till needs a point in time: valid till March. So valid does not take **till**.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But acceptable for a length of time or a use is not belonging to, a part of, or about. So valid does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "valid for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "acceptable for a length of time or a use = purpose or suitability", size: 28 }], ["cross", "\u2717 TILL = till", { hl: "TILL", sub: "till needs a point in time: valid till March", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but acceptable for a length of time or a use is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "valid-why",
         title: "valid: why this one?",
         alt: "The sentence The ticket is valid with a gap one year., then the candidates: for (fits: acceptable for a length of time or a use); till (not used: till needs a point in time: valid till March); of (not used: of = belonging; not used)",
@@ -76,6 +108,22 @@
           { do: "write", id: "e3h", text: "victim", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Intermediate \u00b7 victim of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["awareOf", "He was a victim of fraud.", { hl: "of", sub: "victim of = someone harmed by (noun)", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "victim-logic",
+        title: "victim of: the logic",
+        alt: "The logic for victim of: Look at the senses. **of** has the sense of a cause. Victim of means someone harmed by (noun), and that fits: victim of = someone harmed by (noun). So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. But someone harmed by (noun) is not aimed at, or for the sake of. So victim does not take **for**.; **from** has the sense of away from a starting point or source. But someone harmed by (noun) is not away from a starting point or source. So victim does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a cause. Victim of means someone harmed by (noun), and that fits: victim of = someone harmed by (noun). So the word takes **of**.", cue: "e3lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But someone harmed by (noun) is not aimed at, or for the sake of. So victim does not take **for**.", cue: "e3lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But someone harmed by (noun) is not away from a starting point or source. So victim does not take **from**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "victim of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = a cause", { hl: "OF", sub: "someone harmed by (noun) = a cause", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but someone harmed by (noun) is not aimed at, or for the sake of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but someone harmed by (noun) is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -146,6 +194,22 @@
           { do: "write", id: "e4b3p2", text: "=", x: 520, y: 470, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e4b3m", text: "decide by voting", x: 555, y: 470, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e4b3x", text: "Parliament will vote on the bill tomorrow.", x: 480, y: 542, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "vote-logic",
+        title: "vote for: the logic",
+        alt: "The logic for vote for: Look at the senses. **for** has the sense of for someone's sake. Vote means choose formally, and that fits: vote for = support with your vote. So the word takes **for**.; **against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: opposing the bill. That is not what vote for says.; **on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: deciding about the bill by a vote, without saying which way. That is not what vote for says.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of for someone's sake. Vote means choose formally, and that fits: vote for = support with your vote. So the word takes **for**.", cue: "e4lg1" },
+          { text: "**against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: opposing the bill. That is not what vote for says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: deciding about the bill by a vote, without saying which way. That is not what vote for says.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "vote for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["wantStar", "\u2713 FOR = for someone's sake", { hl: "FOR", sub: "support with your vote = for someone's sake", size: 28 }], ["shield", "\u2248 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "correct English, but it would mean: opposing the bill", size: 28 }], ["support", "\u2248 ON = resting on, or about a topic", { hl: "ON", sub: "correct English, but it would mean: deciding about the bill by a vote, without saying which way", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

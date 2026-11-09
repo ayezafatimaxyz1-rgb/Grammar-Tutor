@@ -27,6 +27,22 @@
         ],
       },
       {
+        id: "accord-logic",
+        title: "accord of: the logic",
+        alt: "The logic for accord of: Look at the senses. **of** has the sense of belonging or part of. Accord of means of one's own accord: by one's own choice, and that fits: accord of = of one's own accord: by one's own choice. So the word takes **of**.; **on** has the sense of resting on, or about a topic. On her own means alone; with accord it is of. So accord does not take **on**.; **by** has the sense of by means of, or next to. By is a means, not a choice. So accord does not take **by**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of belonging or part of. Accord of means of one's own accord: by one's own choice, and that fits: accord of = of one's own accord: by one's own choice. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On her own means alone; with accord it is of. So accord does not take **on**.", cue: "e1lg2" },
+          { text: "**by** has the sense of by means of, or next to. By is a means, not a choice. So accord does not take **by**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "accord of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = belonging or part of", { hl: "OF", sub: "of one's own accord: by one's own choice = belonging or part of", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on her own means alone; with accord it is of", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by is a means, not a choice", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "accord-why",
         title: "accord: why this one?",
         alt: "The sentence She resigned with a gap her own accord., then the candidates: of (fits: of one's own accord: by one's own choice); on (not used: on her own means alone; with accord it is of); by (not used: by is a means, not a choice)",
@@ -51,6 +67,22 @@
           { do: "write", id: "e2h", text: "according", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 according to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "According to the report, poverty has fallen.", { hl: "to", sub: "according to = as stated by a source", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "according-logic",
+        title: "according to: the logic",
+        alt: "The logic for according to: Look at the senses. **to** has the sense of moving towards, reaching. According to means as stated by a source, and that fits: according to = as stated by a source. So the word takes **to**.; **with** has the sense of together with, or using. With is for in accordance with a rule. So according does not take **with**.; **by** has the sense of by means of, or next to. By names a doer, not a source. So according does not take **by**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. According to means as stated by a source, and that fits: according to = as stated by a source. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. With is for in accordance with a rule. So according does not take **with**.", cue: "e2lg2" },
+          { text: "**by** has the sense of by means of, or next to. By names a doer, not a source. So according does not take **by**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "according to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "as stated by a source = moving towards, reaching", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with is for in accordance with a rule", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by names a doer, not a source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -124,6 +156,22 @@
         ],
       },
       {
+        id: "account-logic",
+        title: "account for: the logic",
+        alt: "The logic for account for: Look at the senses. **for** has the sense of reason or cause. Account means give a reckoning, and that fits: account for = explain the reason, or make up a part. So the word takes **for**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: answering to the loss, as if it were a boss. That is not what account for says.; **of** has the sense of belonging to, a part of, or about. Of needs on account: on account of. So account does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Account means give a reckoning, and that fits: account for = explain the reason, or make up a part. So the word takes **for**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: answering to the loss, as if it were a boss. That is not what account for says.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of needs on account: on account of. So account does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "account for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "explain the reason, or make up a part = reason or cause", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: answering to the loss, as if it were a boss", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of needs on account: on account of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "account-why",
         title: "account: why this one?",
         alt: "The sentence How do you account with a gap the loss?, then the candidates: for (fits: explain the reason, or make up a part); to (correct English, different meaning: answering to the loss, as if it were a boss); of (not used: of needs on account: on account of)",
@@ -150,6 +198,22 @@
           { do: "write", id: "e4h", text: "accountable", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 accountable to, accountable for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["reachDot", "Ministers are accountable to Parliament.", { hl: "to", sub: "accountable to = answering to an authority", size: 30 }], ["wantStar", "They are accountable for public money.", { hl: "for", sub: "accountable for = answering for a task", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "accountable-logic",
+        title: "accountable to: the logic",
+        alt: "The logic for accountable to: Look at the senses. **to** has the sense of a person who receives. Accountable to means answering to an authority, and that fits: accountable to = answering to an authority. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: Parliament would be the task they run. That is not what accountable to says.; **of** has the sense of belonging to, a part of, or about. Of = belonging; nothing belongs here. So accountable does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Accountable to means answering to an authority, and that fits: accountable to = answering to an authority. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: Parliament would be the task they run. That is not what accountable to says.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; nothing belongs here. So accountable does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "accountable to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "answering to an authority = a person who receives", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: Parliament would be the task they run", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; nothing belongs here", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -202,6 +266,22 @@
         ],
       },
       {
+        id: "accuse-logic",
+        title: "accuse of: the logic",
+        alt: "The logic for accuse of: Look at the senses. **of** has the sense of a wrong someone is accused of. Accuse means charge with a fault, and that fits: accuse of = say someone did a wrong. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For goes with blame: blame him for. So accuse does not take **for**.; **with** has the sense of together with, or using. With goes with charge: charged with. So accuse does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a wrong someone is accused of. Accuse means charge with a fault, and that fits: accuse of = say someone did a wrong. So the word takes **of**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For goes with blame: blame him for. So accuse does not take **for**.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. With goes with charge: charged with. So accuse does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "accuse of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["awareOf", "\u2713 OF = a wrong someone is accused of", { hl: "OF", sub: "say someone did a wrong = a wrong someone is accused of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for goes with blame: blame him for", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with goes with charge: charged with", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "accuse-why",
         title: "accuse: why this one?",
         alt: "The sentence They accused him with a gap theft., then the candidates: of (fits: say someone did a wrong); for (not used: for goes with blame: blame him for); with (not used: with goes with charge: charged with)",
@@ -229,6 +309,22 @@
         ],
       },
       {
+        id: "accustomed-logic",
+        title: "accustomed to: the logic",
+        alt: "The logic for accustomed to: Look at the senses. **to** has the sense of attached or devoted to. Accustomed to means used to something, so it feels normal, and that fits: accustomed to = used to something, so it feels normal. So the word takes **to**.; **with** has the sense of together with, or using. With = together; you are used to it. So accustomed does not take **with**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; accustomed takes to + -ing. So accustomed does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Accustomed to means used to something, so it feels normal, and that fits: accustomed to = used to something, so it feels normal. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; you are used to it. So accustomed does not take **with**.", cue: "e6lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; accustomed takes to + -ing. So accustomed does not take **of**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "accustomed to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "used to something, so it feels normal = attached or devoted to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; you are used to it", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; accustomed takes to + -ing", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "accustomed-why",
         title: "accustomed: why this one?",
         alt: "The sentence She is accustomed with a gap working late., then the candidates: to (fits: used to something, so it feels normal); with (not used: with = together; you are used to it); of (not used: of = belonging; accustomed takes to + -ing)",
@@ -253,6 +349,22 @@
           { do: "write", id: "e7h", text: "acquainted", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 acquainted with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["agreeWith", "Are you acquainted with the new rules?", { hl: "with", sub: "acquainted with = knowing someone or something", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "acquainted-logic",
+        title: "acquainted with: the logic",
+        alt: "The logic for acquainted with: Look at the senses. **with** has the sense of dealing with or handling. Acquainted with means knowing someone or something, and that fits: acquainted with = knowing someone or something. So the word takes **with**.; **to** has the sense of moving towards, reaching. To points away; knowing is being with. So acquainted does not take **to**.; **of** has the sense of belonging to, a part of, or about. But knowing someone or something is not belonging to, a part of, or about. So acquainted does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Acquainted with means knowing someone or something, and that fits: acquainted with = knowing someone or something. So the word takes **with**.", cue: "e7lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points away; knowing is being with. So acquainted does not take **to**.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But knowing someone or something is not belonging to, a part of, or about. So acquainted does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "acquainted with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "knowing someone or something = dealing with or handling", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points away; knowing is being with", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but knowing someone or something is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -302,6 +414,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "declare someone not guilty of a charge", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "The court acquitted him of murder.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "acquit-logic",
+        title: "acquit of: the logic",
+        alt: "The logic for acquit of: Look at the senses. **of** has the sense of a wrong someone is accused of. Acquit means set free, and that fits: acquit of = declare someone not guilty of a charge. So the word takes **of**.; **from** has the sense of away from a starting point or source. From is separation; the charge takes of. So acquit does not take **from**.; **for** has the sense of aimed at, or for the sake of. For names a reason, not the charge. So acquit does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a wrong someone is accused of. Acquit means set free, and that fits: acquit of = declare someone not guilty of a charge. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is separation; the charge takes of. So acquit does not take **from**.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For names a reason, not the charge. So acquit does not take **for**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "acquit of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = a wrong someone is accused of", { hl: "OF", sub: "declare someone not guilty of a charge = a wrong someone is accused of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is separation; the charge takes of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for names a reason, not the charge", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

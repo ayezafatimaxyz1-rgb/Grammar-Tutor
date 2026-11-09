@@ -55,6 +55,56 @@ def lines(text):
     return text if cut < 0 else text[:cut] + " | " + text[cut + 1:]
 
 BASE4, CORE, SENSE_OF = {}, {}, {}
+# What each preposition says in its main senses, in plain words. Used on the "the logic" board.
+PSENSE = {
+    "of": "belonging to, a part of, or about", "on": "resting on, or about a topic", "upon": "resting on, or about a topic", "with": "together with, or using",
+    "to": "moving towards, reaching", "towards": "facing in the direction of", "for": "aimed at, or for the sake of", "in": "inside, within",
+    "into": "going inside", "at": "pointing at one spot or target", "from": "away from a starting point or source", "about": "around a topic",
+    "over": "above, or going on about", "against": "opposing, or leaning on", "between": "linking two", "among": "one of many",
+    "by": "by means of, or next to", "under": "below, or governed by", "through": "from one side to the other", "after": "following, or caring for",
+    "off": "away from, removed", "out of": "from inside to outside", "up": "up, or completely", "down": "down, or lower", "as": "in the role of",
+    "like": "similar to", "than": "compared with", "(no word)": "no word is needed",
+}
+WEAK = re.compile(r"(word-for-word|not used|common error|a mistake|incorrect)")
+sent = lambda t: t[0].upper() + t[1:] if t else t
+
+def psense(w, prep):
+    """The sense this word takes from its preposition: the course's own sense name when known, else the general one."""
+    return SENSE_OF.get((w, prep)) or PSENSE.get(prep) or CORE.get(prep, prep)
+
+def logic_step(e, n):
+    """Two or three senses side by side, then why this word picks one: the word's meaning decides."""
+    w, senses = e["word"], e["senses"]
+    prep, meaning, ex = senses[e["ask"]][:3]
+    if prep == "(no word)":
+        return None
+    ph = phrase(w, prep)
+    base = BASE4.get(w)
+    rows, says = [], []
+    why_ok = f"{w} means {base}" if base else f"{ph} means {meaning}"
+    sub_ok = f"{meaning} = {psense(w, prep)}"
+    rows.append(f'[{pic(prep)}, {T("✓ " + prep.upper() + " = " + psense(w, prep))}, {{ hl: {T(prep.upper())}, sub: {T(sub_ok)}, size: 28 }}]')
+    says.append((f"Look at the senses. **{prep}** has the sense of {psense(w, prep)}. {sent(why_ok)}, and that fits: {ph} = {meaning}. So the word takes **{prep}**.", f"e{n}lg1"))
+    for i, (p, v, r) in enumerate(e["others"][:2]):
+        clean = " ".join(x.strip() for x in r.split("|"))
+        if v == D:
+            mark, sub = "≈", f"correct English, but it would mean: {clean}"
+        elif WEAK.search(r) or len(r) < 22:
+            mark, sub = "✗", f"but {meaning} is not {PSENSE.get(p, CORE.get(p, p))}"
+        else:
+            mark, sub = "✗", clean
+        rows.append(f'[{pic(p) if v == D else T("cross")}, {T(mark + " " + p.upper() + " = " + psense(w, p) if (w, p) not in SENSE_OF else mark + " " + p.upper() + " = " + PSENSE.get(p, CORE.get(p, p)))}, {{ hl: {T(p.upper())}, sub: {T(sub)}, size: 28 }}]')
+        if v == D:
+            says.append((f"**{p}** has the sense of {PSENSE.get(p, CORE.get(p, p))}. It is correct English, but it would mean something else: {clean}. That is not what {ph} says.", f"e{n}lg{i + 2}"))
+        else:
+            says.append((f"**{p}** has the sense of {PSENSE.get(p, CORE.get(p, p))}. {sent(sub)}. So {w} does not take **{p}**.", f"e{n}lg{i + 2}"))
+    top = 150
+    acts = [f'PLAB.kit.clear("clear-{n}lg")',
+            f'{{ do: "write", id: "e{n}lgt", text: {T(ph + ": the logic")}, x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 }}',
+            f'{{ do: "write", id: "e{n}lgs", text: {T("each preposition has a sense; the word's meaning picks one".replace("word's", "word" + chr(39) + "s"))}, x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 }}',
+            f'...PLAB.kit.rows("e{n}lg", [{", ".join(rows)}], {{ y: {top}, gap: 135 }})']
+    alt = f"The logic for {ph}: " + "; ".join(t for t, c in says)
+    return dict(id=f"{w}-logic".replace(" ", "-"), title=f"{ph}: the logic", alt=alt, says=says, actions=acts)
 
 def load_logic():
     """Verb meanings (p4_base.py) and, from content/senses.js, which sense of each preposition a word uses."""
@@ -123,6 +173,9 @@ def entry_steps(e, n, lid):
     b = build_step(e, n)
     if b:
         steps.append(b)
+    lg = logic_step(e, n)
+    if lg:
+        steps.append(lg)
     # 2. Why this one and not the others.
     prep, meaning, ex = senses[e["ask"]][:3]
     sentence = blank(ex)

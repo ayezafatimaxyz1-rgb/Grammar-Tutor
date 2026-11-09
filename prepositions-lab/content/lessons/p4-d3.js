@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "die-logic",
+        title: "die of: the logic",
+        alt: "The logic for die of: Look at the senses. **of** has the sense of a cause. Die means stop living, and that fits: die of = die because of an illness or condition. So the word takes **of**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: an outside cause, like an injury (a tendency, not a strict rule). That is not what die of says.; **with** has the sense of together with, or using. But die because of an illness or condition is not together with, or using. So die does not take **with**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a cause. Die means stop living, and that fits: die of = die because of an illness or condition. So the word takes **of**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: an outside cause, like an injury (a tendency, not a strict rule). That is not what die of says.", cue: "e1lg2" },
+          { text: "**with** has the sense of together with, or using. But die because of an illness or condition is not together with, or using. So die does not take **with**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "die of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["awareOf", "\u2713 OF = a cause", { hl: "OF", sub: "die because of an illness or condition = a cause", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: an outside cause, like an injury (a tendency, not a strict rule)", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but die because of an illness or condition is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "die-why",
         title: "die: why this one?",
         alt: "The sentence He died with a gap cancer., then the candidates: of (fits: die because of an illness or condition); from (correct English, different meaning: an outside cause, like an injury (a tendency, not a strict rule)); with (not used: with = together; not used)",
@@ -118,6 +134,22 @@
         ],
       },
       {
+        id: "differ-logic",
+        title: "differ from: the logic",
+        alt: "The logic for differ from: Look at the senses. **from** has the sense of moving away, separation. Differ means be unlike, and that fits: differ from = be unlike. So the word takes **from**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: disagree with Arabic as if it were a person. That is not what differ from says.; **to** has the sense of moving towards, reaching. To points; differing moves apart. So differ does not take **to**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Differ means be unlike, and that fits: differ from = be unlike. So the word takes **from**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: disagree with Arabic as if it were a person. That is not what differ from says.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To points; differing moves apart. So differ does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "differ from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "be unlike = moving away, separation", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: disagree with Arabic as if it were a person", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; differing moves apart", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "differ-why",
         title: "differ: why this one?",
         alt: "The sentence Urdu differs with a gap Arabic in its grammar., then the candidates: from (fits: be unlike); with (correct English, different meaning: disagree with Arabic as if it were a person); to (not used: to points; differing moves apart)",
@@ -142,6 +174,22 @@
           { do: "write", id: "e3h", text: "different", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 different from", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["holdBack", "City life is different from village life.", { hl: "from", sub: "different from = not the same as", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "different-logic",
+        title: "different from: the logic",
+        alt: "The logic for different from: Look at the senses. **from** has the sense of moving away, separation. Different from means not the same as, and that fits: different from = not the same as. So the word takes **from**.; **with** has the sense of together with, or using. With = together; difference moves apart. So different does not take **with**.; **of** has the sense of belonging to, a part of, or about. But not the same as is not belonging to, a part of, or about. So different does not take **of**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of moving away, separation. Different from means not the same as, and that fits: different from = not the same as. So the word takes **from**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; difference moves apart. So different does not take **with**.", cue: "e3lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But not the same as is not belonging to, a part of, or about. So different does not take **of**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "different from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["holdBack", "\u2713 FROM = moving away, separation", { hl: "FROM", sub: "not the same as = moving away, separation", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; difference moves apart", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but not the same as is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -194,6 +242,22 @@
         ],
       },
       {
+        id: "disagree-logic",
+        title: "disagree with: the logic",
+        alt: "The logic for disagree with: Look at the senses. **with** has the sense of against a partner. Disagree means be of different minds, and that fits: disagree with = have a different opinion from. So the word takes **with**.; **to** has the sense of moving towards, reaching. To points; disagreeing is with. So disagree does not take **to**.; **from** has the sense of away from a starting point or source. But have a different opinion from is not away from a starting point or source. So disagree does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Disagree means be of different minds, and that fits: disagree with = have a different opinion from. So the word takes **with**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; disagreeing is with. So disagree does not take **to**.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But have a different opinion from is not away from a starting point or source. So disagree does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "disagree with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "have a different opinion from = against a partner", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; disagreeing is with", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but have a different opinion from is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "disagree-why",
         title: "disagree: why this one?",
         alt: "The sentence I disagree with a gap you., then the candidates: with (fits: have a different opinion from); to (not used: to points; disagreeing is with); from (not used: from is a source; not used)",
@@ -220,6 +284,22 @@
           { do: "write", id: "e5h", text: "disappointed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Basic \u00b7 disappointed with, disappointed in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["agreeWith", "We were disappointed with the results.", { hl: "with", sub: "disappointed with = unhappy with a result", size: 30 }], ["absorbedIn", "I am disappointed in you.", { hl: "in", sub: "disappointed in = let down by a person", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "disappointed-logic",
+        title: "disappointed with: the logic",
+        alt: "The logic for disappointed with: Look at the senses. **with** has the sense of feelings about what you have. Disappointed with means unhappy with a result, and that fits: disappointed with = unhappy with a result. So the word takes **with**.; **in** has the sense of inside, within. It is correct English, but it would mean something else: let down by the results as if they were a person. That is not what disappointed with says.; **from** has the sense of away from a starting point or source. But unhappy with a result is not away from a starting point or source. So disappointed does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Disappointed with means unhappy with a result, and that fits: disappointed with = unhappy with a result. So the word takes **with**.", cue: "e5lg1" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: let down by the results as if they were a person. That is not what disappointed with says.", cue: "e5lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But unhappy with a result is not away from a starting point or source. So disappointed does not take **from**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "disappointed with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "unhappy with a result = feelings about what you have", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: let down by the results as if they were a person", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but unhappy with a result is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -283,6 +363,22 @@
         ],
       },
       {
+        id: "discriminate-logic",
+        title: "discriminate against: the logic",
+        alt: "The logic for discriminate against: Look at the senses. **against** has the sense of opposing. Discriminate means treat as different, and that fits: discriminate against = treat unfairly. So the word takes **against**.; **between** has the sense of linking two. It is correct English, but it would mean something else: tell women apart from something. That is not what discriminate against says.; **from** has the sense of away from a starting point or source. But treat unfairly is not away from a starting point or source. So discriminate does not take **from**.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of opposing. Discriminate means treat as different, and that fits: discriminate against = treat unfairly. So the word takes **against**.", cue: "e6lg1" },
+          { text: "**between** has the sense of linking two. It is correct English, but it would mean something else: tell women apart from something. That is not what discriminate against says.", cue: "e6lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But treat unfairly is not away from a starting point or source. So discriminate does not take **from**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "discriminate against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["shield", "\u2713 AGAINST = opposing", { hl: "AGAINST", sub: "treat unfairly = opposing", size: 28 }], ["linkBetween", "\u2248 BETWEEN = linking two", { hl: "BETWEEN", sub: "correct English, but it would mean: tell women apart from something", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but treat unfairly is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "discriminate-why",
         title: "discriminate: why this one?",
         alt: "The sentence Employers must not discriminate with a gap women., then the candidates: against (fits: treat unfairly); between (correct English, different meaning: tell women apart from something); from (not used: from is a source; not used)",
@@ -307,6 +403,22 @@
           { do: "write", id: "e7h", text: "disgusted", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 disgusted with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["agreeWith", "She was disgusted with his behaviour.", { hl: "with", sub: "disgusted with = strongly disliking someone or something", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "disgusted-logic",
+        title: "disgusted with: the logic",
+        alt: "The logic for disgusted with: Look at the senses. **with** has the sense of against a partner. Disgusted with means strongly disliking someone or something, and that fits: disgusted with = strongly disliking someone or something. So the word takes **with**.; **from** has the sense of away from a starting point or source. But strongly disliking someone or something is not away from a starting point or source. So disgusted does not take **from**.; **on** has the sense of resting on, or about a topic. But strongly disliking someone or something is not resting on, or about a topic. So disgusted does not take **on**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Disgusted with means strongly disliking someone or something, and that fits: disgusted with = strongly disliking someone or something. So the word takes **with**.", cue: "e7lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But strongly disliking someone or something is not away from a starting point or source. So disgusted does not take **from**.", cue: "e7lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But strongly disliking someone or something is not resting on, or about a topic. So disgusted does not take **on**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "disgusted with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "strongly disliking someone or something = against a partner", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but strongly disliking someone or something is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but strongly disliking someone or something is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -356,6 +468,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "do without", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "Let us dispense with the formalities.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "dispense-logic",
+        title: "dispense with: the logic",
+        alt: "The logic for dispense with: Look at the senses. **with** has the sense of doing without what was with you. Dispense means give out, and that fits: dispense with = do without. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. Of goes with dispose: dispose of. So dispense does not take **of**.; **from** has the sense of away from a starting point or source. But do without is not away from a starting point or source. So dispense does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of doing without what was with you. Dispense means give out, and that fits: dispense with = do without. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with dispose: dispose of. So dispense does not take **of**.", cue: "e8lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But do without is not away from a starting point or source. So dispense does not take **from**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "dispense with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = doing without what was with you", { hl: "WITH", sub: "do without = doing without what was with you", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with dispose: dispose of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but do without is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

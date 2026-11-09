@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "amazed-logic",
+        title: "amazed at: the logic",
+        alt: "The logic for amazed at: Look at the senses. **at** has the sense of a reaction to a point. Amazed at means very surprised by, and that fits: amazed at = very surprised by. So the word takes **at**.; **from** has the sense of away from a starting point or source. From is a source; surprise hits a point. So amazed does not take **from**.; **on** has the sense of resting on, or about a topic. On is a surface or topic. So amazed does not take **on**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Amazed at means very surprised by, and that fits: amazed at = very surprised by. So the word takes **at**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; surprise hits a point. So amazed does not take **from**.", cue: "e1lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface or topic. So amazed does not take **on**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "amazed at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "very surprised by = a reaction to a point", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; surprise hits a point", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface or topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "amazed-why",
         title: "amazed: why this one?",
         alt: "The sentence We were amazed with a gap her courage., then the candidates: at (fits: very surprised by); from (not used: from is a source; surprise hits a point); on (not used: on is a surface or topic)",
@@ -74,6 +90,22 @@
         ],
       },
       {
+        id: "amount-logic",
+        title: "amount to: the logic",
+        alt: "The logic for amount to: Look at the senses. **to** has the sense of a limit or level reached. Amount means add up, and that fits: amount to = add up to, or be the same as. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. Of goes with the noun: an amount of. So amount does not take **of**.; **in** has the sense of inside, within. In is inside, not adding up. So amount does not take **in**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a limit or level reached. Amount means add up, and that fits: amount to = add up to, or be the same as. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with the noun: an amount of. So amount does not take **of**.", cue: "e2lg2" },
+          { text: "**in** has the sense of inside, within. In is inside, not adding up. So amount does not take **in**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "amount to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = a limit or level reached", { hl: "TO", sub: "add up to, or be the same as = a limit or level reached", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with the noun: an amount of", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside, not adding up", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "amount-why",
         title: "amount: why this one?",
         alt: "The sentence His words amount with a gap treason., then the candidates: to (fits: add up to, or be the same as); of (not used: of goes with the noun: an amount of); in (not used: in is inside, not adding up)",
@@ -103,6 +135,22 @@
         ],
       },
       {
+        id: "angry-logic",
+        title: "angry about: the logic",
+        alt: "The logic for angry about: Look at the senses. **about** has the sense of a feeling around a topic. Angry about means angry over a situation, and that fits: angry about = angry over a situation. So the word takes **about**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: angry at the delay as if it were a person. That is not what angry about says.; **on** has the sense of resting on, or about a topic. But angry over a situation is not resting on, or about a topic. So angry does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Angry about means angry over a situation, and that fits: angry about = angry over a situation. So the word takes **about**.", cue: "e3lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: angry at the delay as if it were a person. That is not what angry about says.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But angry over a situation is not resting on, or about a topic. So angry does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "angry about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "angry over a situation = a feeling around a topic", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: angry at the delay as if it were a person", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but angry over a situation is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "angry-why",
         title: "angry: why this one?",
         alt: "The sentence He was angry with a gap the delay., then the candidates: about (fits: angry over a situation); with (correct English, different meaning: angry at the delay as if it were a person); on (not used: a word-for-word translation; never angry on)",
@@ -129,6 +177,22 @@
           { do: "write", id: "e4h", text: "anxious", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Intermediate \u00b7 anxious about, anxious for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["aboutCircle", "Students are anxious about the results.", { hl: "about", sub: "anxious about = worried about", size: 30 }], ["wantStar", "The people are anxious for peace.", { hl: "for", sub: "anxious for = eager to have", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "anxious-logic",
+        title: "anxious about: the logic",
+        alt: "The logic for anxious about: Look at the senses. **about** has the sense of a feeling around a topic. Anxious about means worried about, and that fits: anxious about = worried about. So the word takes **about**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: eager to have the results. That is not what anxious about says.; **on** has the sense of resting on, or about a topic. On is a surface, not worry. So anxious does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Anxious about means worried about, and that fits: anxious about = worried about. So the word takes **about**.", cue: "e4lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: eager to have the results. That is not what anxious about says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface, not worry. So anxious does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "anxious about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "worried about = a feeling around a topic", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: eager to have the results", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface, not worry", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -189,6 +253,22 @@
           { do: "write", id: "e5b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e5b2m", text: "say sorry for a reason", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e5b2x", text: "He apologised for the delay.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "apologise-logic",
+        title: "apologise to: the logic",
+        alt: "The logic for apologise to: Look at the senses. **to** has the sense of a person who receives. Apologise means say sorry, and that fits: apologise to = say sorry to a person. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: the court would be the mistake he is sorry for. That is not what apologise to says.; **with** has the sense of together with, or using. But say sorry to a person is not together with, or using. So apologise does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Apologise means say sorry, and that fits: apologise to = say sorry to a person. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: the court would be the mistake he is sorry for. That is not what apologise to says.", cue: "e5lg2" },
+          { text: "**with** has the sense of together with, or using. But say sorry to a person is not together with, or using. So apologise does not take **with**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "apologise to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "say sorry to a person = a person who receives", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: the court would be the mistake he is sorry for", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but say sorry to a person is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -262,6 +342,22 @@
         ],
       },
       {
+        id: "appeal-logic",
+        title: "appeal against: the logic",
+        alt: "The logic for appeal against: Look at the senses. **against** has the sense of opposing. Appeal means make an earnest request, and that fits: appeal against = ask a higher court to change a decision. So the word takes **against**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: asked the verdict itself, or the verdict attracted him. That is not what appeal against says.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: asked for the verdict, wanting it. That is not what appeal against says.",
+        say: [
+          { text: "Look at the senses. **against** has the sense of opposing. Appeal means make an earnest request, and that fits: appeal against = ask a higher court to change a decision. So the word takes **against**.", cue: "e6lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: asked the verdict itself, or the verdict attracted him. That is not what appeal against says.", cue: "e6lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: asked for the verdict, wanting it. That is not what appeal against says.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "appeal against: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["shield", "\u2713 AGAINST = opposing", { hl: "AGAINST", sub: "ask a higher court to change a decision = opposing", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: asked the verdict itself, or the verdict attracted him", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: asked for the verdict, wanting it", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "appeal-why",
         title: "appeal: why this one?",
         alt: "The sentence He appealed with a gap the verdict., then the candidates: against (fits: ask a higher court to change a decision); to (correct English, different meaning: asked the verdict itself, or the verdict attracted him); for (correct English, different meaning: asked for the verdict, wanting it)",
@@ -286,6 +382,22 @@
           { do: "write", id: "e7h", text: "applicable", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 applicable to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["reachDot", "The rule is applicable to all staff.", { hl: "to", sub: "applicable to = relevant to, covering", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "applicable-logic",
+        title: "applicable to: the logic",
+        alt: "The logic for applicable to: Look at the senses. **to** has the sense of matching or compared to. Applicable to means relevant to, covering, and that fits: applicable to = relevant to, covering. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; a rule covers to. So applicable does not take **for**.; **on** has the sense of resting on, or about a topic. On is resting, not covering. So applicable does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Applicable to means relevant to, covering, and that fits: applicable to = relevant to, covering. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; a rule covers to. So applicable does not take **for**.", cue: "e7lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting, not covering. So applicable does not take **on**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "applicable to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "relevant to, covering = matching or compared to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; a rule covers to", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting, not covering", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -346,6 +458,22 @@
           { do: "write", id: "e8b2p2", text: "=", x: 520, y: 395, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b2m", text: "send to a place, or be relevant to", x: 555, y: 395, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b2x", text: "This rule applies to everyone.", x: 480, y: 467, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "apply-logic",
+        title: "apply to: the logic",
+        alt: "The logic for apply to: Look at the senses. **to** has the sense of movement to a destination. Apply means put forward, put on, and that fits: apply to = send to a place, or be relevant to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: asked to get everyone. That is not what apply to says.; **on** has the sense of resting on, or about a topic. On is resting, not reaching. So apply does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of movement to a destination. Apply means put forward, put on, and that fits: apply to = send to a place, or be relevant to. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: asked to get everyone. That is not what apply to says.", cue: "e8lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting, not reaching. So apply does not take **on**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "apply to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = movement to a destination", { hl: "TO", sub: "send to a place, or be relevant to = movement to a destination", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: asked to get everyone", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting, not reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

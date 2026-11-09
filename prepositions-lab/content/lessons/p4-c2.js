@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "close-logic",
+        title: "close to: the logic",
+        alt: "The logic for close to: Look at the senses. **to** has the sense of near or next to. Close to means near, and that fits: close to = near. So the word takes **to**.; **from** has the sense of away from a starting point or source. From is a source; nearness points to. So close does not take **from**.; **at** has the sense of pointing at one spot or target. But near is not pointing at one spot or target. So close does not take **at**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of near or next to. Close to means near, and that fits: close to = near. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; nearness points to. So close does not take **from**.", cue: "e1lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But near is not pointing at one spot or target. So close does not take **at**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "close to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = near or next to", { hl: "TO", sub: "near = near or next to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; nearness points to", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but near is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "close-why",
         title: "close: why this one?",
         alt: "The sentence The hotel is close with a gap the station., then the candidates: to (fits: near); from (not used: from is a source; nearness points to); at (not used: at is a point; not used)",
@@ -74,6 +90,22 @@
         ],
       },
       {
+        id: "comment-logic",
+        title: "comment on: the logic",
+        alt: "The logic for comment on: Look at the senses. **on** has the sense of a topic. Comment means give a remark, and that fits: comment on = say something about a topic. So the word takes **on**.; **about** has the sense of around a topic. Used in speech, but formal English says comment on. So comment does not take **about**.; **to** has the sense of moving towards, reaching. To is a person you speak to. So comment does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of a topic. Comment means give a remark, and that fits: comment on = say something about a topic. So the word takes **on**.", cue: "e2lg1" },
+          { text: "**about** has the sense of around a topic. Used in speech, but formal English says comment on. So comment does not take **about**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To is a person you speak to. So comment does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "comment on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["support", "\u2713 ON = a topic", { hl: "ON", sub: "say something about a topic = a topic", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "used in speech, but formal English says comment on", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to is a person you speak to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "comment-why",
         title: "comment: why this one?",
         alt: "The sentence The minister commented with a gap the report., then the candidates: on (fits: say something about a topic); about (not used: used in speech, but formal English says comment on); to (not used: to is a person you speak to)",
@@ -98,6 +130,22 @@
           { do: "write", id: "e3h", text: "committed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Intermediate \u00b7 committed to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["reachDot", "We are committed to improving schools.", { hl: "to", sub: "committed to = devoted to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "committed-logic",
+        title: "committed to: the logic",
+        alt: "The logic for committed to: Look at the senses. **to** has the sense of attached or devoted to. Committed to means devoted to, and that fits: committed to = devoted to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; commitment points to. So committed does not take **for**.; **with** has the sense of together with, or using. But devoted to is not together with, or using. So committed does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Committed to means devoted to, and that fits: committed to = devoted to. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; commitment points to. So committed does not take **for**.", cue: "e3lg2" },
+          { text: "**with** has the sense of together with, or using. But devoted to is not together with, or using. So committed does not take **with**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "committed to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "devoted to = attached or devoted to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; commitment points to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but devoted to is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -161,6 +209,22 @@
         ],
       },
       {
+        id: "compare-logic",
+        title: "compare to: the logic",
+        alt: "The logic for compare to: Look at the senses. **to** has the sense of matching or compared to. Compare means set side by side, and that fits: compare to = say one thing is like another. So the word takes **to**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: examining both, like an analyst. That is not what compare to says.; **from** has the sense of away from a starting point or source. But say one thing is like another is not away from a starting point or source. So compare does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Compare means set side by side, and that fits: compare to = say one thing is like another. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: examining both, like an analyst. That is not what compare to says.", cue: "e4lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But say one thing is like another is not away from a starting point or source. So compare does not take **from**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "compare to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "say one thing is like another = matching or compared to", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: examining both, like an analyst", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but say one thing is like another is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "compare-why",
         title: "compare: why this one?",
         alt: "The sentence The poet compared her smile with a gap the sun., then the candidates: to (fits: say one thing is like another); with (correct English, different meaning: examining both, like an analyst); from (not used: from = apart; not used)",
@@ -185,6 +249,22 @@
           { do: "write", id: "e5h", text: "compatible", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Advanced \u00b7 compatible with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["agreeWith", "The software is compatible with the system.", { hl: "with", sub: "compatible with = able to exist or work together", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "compatible-logic",
+        title: "compatible with: the logic",
+        alt: "The logic for compatible with: Look at the senses. **with** has the sense of together, side by side. Compatible with means able to exist or work together, and that fits: compatible with = able to exist or work together. So the word takes **with**.; **to** has the sense of moving towards, reaching. To points; working together takes with. So compatible does not take **to**.; **for** has the sense of aimed at, or for the sake of. But able to exist or work together is not aimed at, or for the sake of. So compatible does not take **for**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of together, side by side. Compatible with means able to exist or work together, and that fits: compatible with = able to exist or work together. So the word takes **with**.", cue: "e5lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; working together takes with. So compatible does not take **to**.", cue: "e5lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But able to exist or work together is not aimed at, or for the sake of. So compatible does not take **for**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "compatible with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["agreeWith", "\u2713 WITH = together, side by side", { hl: "WITH", sub: "able to exist or work together = together, side by side", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; working together takes with", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but able to exist or work together is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -234,6 +314,22 @@
           { do: "write", id: "e6b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e6b1m", text: "make up for a loss", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e6b1x", text: "The firm compensated them for the loss.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "compensate-logic",
+        title: "compensate for: the logic",
+        alt: "The logic for compensate for: Look at the senses. **for** has the sense of exchange or price. Compensate means balance a loss, and that fits: compensate for = make up for a loss. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. But make up for a loss is not belonging to, a part of, or about. So compensate does not take **of**.; **against** has the sense of opposing, or leaning on. But make up for a loss is not opposing, or leaning on. So compensate does not take **against**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of exchange or price. Compensate means balance a loss, and that fits: compensate for = make up for a loss. So the word takes **for**.", cue: "e6lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But make up for a loss is not belonging to, a part of, or about. So compensate does not take **of**.", cue: "e6lg2" },
+          { text: "**against** has the sense of opposing, or leaning on. But make up for a loss is not opposing, or leaning on. So compensate does not take **against**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "compensate for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["wantStar", "\u2713 FOR = exchange or price", { hl: "FOR", sub: "make up for a loss = exchange or price", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but make up for a loss is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "but make up for a loss is not opposing, or leaning on", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -307,6 +403,22 @@
         ],
       },
       {
+        id: "compete-logic",
+        title: "compete for: the logic",
+        alt: "The logic for compete for: Look at the senses. **for** has the sense of aimed at something you want. Compete means strive against others, and that fits: compete for = try to win a prize. So the word takes **for**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: the trophy would be a rival team. That is not what compete for says.; **in** has the sense of inside, within. It is correct English, but it would mean something else: the trophy would be the contest itself. That is not what compete for says.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Compete means strive against others, and that fits: compete for = try to win a prize. So the word takes **for**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: the trophy would be a rival team. That is not what compete for says.", cue: "e7lg2" },
+          { text: "**in** has the sense of inside, within. It is correct English, but it would mean something else: the trophy would be the contest itself. That is not what compete for says.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "compete for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "try to win a prize = aimed at something you want", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: the trophy would be a rival team", size: 28 }], ["absorbedIn", "\u2248 IN = inside, within", { hl: "IN", sub: "correct English, but it would mean: the trophy would be the contest itself", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "compete-why",
         title: "compete: why this one?",
         alt: "The sentence Ten teams competed with a gap the trophy., then the candidates: for (fits: try to win a prize); with (correct English, different meaning: the trophy would be a rival team); in (correct English, different meaning: the trophy would be the contest itself)",
@@ -374,6 +486,22 @@
           { do: "write", id: "e8b3p2", text: "=", x: 520, y: 470, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b3m", text: "report a pain or illness", x: 555, y: 470, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b3x", text: "He complained of a headache.", x: 480, y: 542, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "complain-logic",
+        title: "complain of: the logic",
+        alt: "The logic for complain of: Look at the senses. **of** has the sense of a cause. Complain means say you are unhappy, and that fits: complain of = report a pain or illness. So the word takes **of**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: grumbled about the headache as a problem, not reported it as a symptom. That is not what complain of says.; **from** has the sense of away from a starting point or source. But report a pain or illness is not away from a starting point or source. So complain does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of a cause. Complain means say you are unhappy, and that fits: complain of = report a pain or illness. So the word takes **of**.", cue: "e8lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: grumbled about the headache as a problem, not reported it as a symptom. That is not what complain of says.", cue: "e8lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But report a pain or illness is not away from a starting point or source. So complain does not take **from**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "complain of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["awareOf", "\u2713 OF = a cause", { hl: "OF", sub: "report a pain or illness = a cause", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: grumbled about the headache as a problem, not reported it as a symptom", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but report a pain or illness is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

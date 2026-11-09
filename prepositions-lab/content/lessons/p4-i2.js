@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "inconsistent-logic",
+        title: "inconsistent with: the logic",
+        alt: "The logic for inconsistent with: Look at the senses. **with** has the sense of against a partner. Inconsistent with means not agreeing with, and that fits: inconsistent with = not agreeing with. So the word takes **with**.; **to** has the sense of moving towards, reaching. To points; agreement takes with. So inconsistent does not take **to**.; **from** has the sense of away from a starting point or source. But not agreeing with is not away from a starting point or source. So inconsistent does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of against a partner. Inconsistent with means not agreeing with, and that fits: inconsistent with = not agreeing with. So the word takes **with**.", cue: "e1lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To points; agreement takes with. So inconsistent does not take **to**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But not agreeing with is not away from a starting point or source. So inconsistent does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "inconsistent with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["agreeWith", "\u2713 WITH = against a partner", { hl: "WITH", sub: "not agreeing with = against a partner", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to points; agreement takes with", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but not agreeing with is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "inconsistent-why",
         title: "inconsistent: why this one?",
         alt: "The sentence His statement is inconsistent with a gap the facts., then the candidates: with (fits: not agreeing with); to (not used: to points; agreement takes with); from (not used: from is a source; not used)",
@@ -51,6 +67,22 @@
           { do: "write", id: "e2h", text: "indebted", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 indebted to, indebted for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "I am indebted to my teacher.", { hl: "to", sub: "indebted to = owing thanks to a person", size: 30 }], ["wantStar", "I am indebted to her for her help.", { hl: "for", sub: "indebted for = owing thanks for something", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "indebted-logic",
+        title: "indebted to: the logic",
+        alt: "The logic for indebted to: Look at the senses. **to** has the sense of a person who receives. Indebted to means owing thanks to a person, and that fits: indebted to = owing thanks to a person. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: owing thanks for my teacher, as if she were a favour. That is not what indebted to says.; **of** has the sense of belonging to, a part of, or about. But owing thanks to a person is not belonging to, a part of, or about. So indebted does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Indebted to means owing thanks to a person, and that fits: indebted to = owing thanks to a person. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: owing thanks for my teacher, as if she were a favour. That is not what indebted to says.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But owing thanks to a person is not belonging to, a part of, or about. So indebted does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "indebted to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "owing thanks to a person = a person who receives", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: owing thanks for my teacher, as if she were a favour", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but owing thanks to a person is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -81,6 +113,22 @@
         ],
       },
       {
+        id: "independent-logic",
+        title: "independent of: the logic",
+        alt: "The logic for independent of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Independent of means not depending on, and that fits: independent of = not depending on. So the word takes **of**.; **on** has the sense of resting on, or about a topic. On belongs to dependent; independent takes of. So independent does not take **on**.; **to** has the sense of moving towards, reaching. But not depending on is not moving towards, reaching. So independent does not take **to**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Independent of means not depending on, and that fits: independent of = not depending on. So the word takes **of**.", cue: "e3lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. On belongs to dependent; independent takes of. So independent does not take **on**.", cue: "e3lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But not depending on is not moving towards, reaching. So independent does not take **to**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "independent of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "not depending on = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on belongs to dependent; independent takes of", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but not depending on is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "independent-why",
         title: "independent: why this one?",
         alt: "The sentence She is independent with a gap her parents., then the candidates: of (fits: not depending on); on (not used: on belongs to dependent; independent takes of); to (not used: to points; not used)",
@@ -108,6 +156,22 @@
         ],
       },
       {
+        id: "indifferent-logic",
+        title: "indifferent to: the logic",
+        alt: "The logic for indifferent to: Look at the senses. **to** has the sense of behaviour aimed at someone. Indifferent to means not caring about, and that fits: indifferent to = not caring about. So the word takes **to**.; **with** has the sense of together with, or using. But not caring about is not together with, or using. So indifferent does not take **with**.; **of** has the sense of belonging to, a part of, or about. But not caring about is not belonging to, a part of, or about. So indifferent does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Indifferent to means not caring about, and that fits: indifferent to = not caring about. So the word takes **to**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. But not caring about is not together with, or using. So indifferent does not take **with**.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But not caring about is not belonging to, a part of, or about. So indifferent does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "indifferent to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "not caring about = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but not caring about is not together with, or using", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but not caring about is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "indifferent-why",
         title: "indifferent: why this one?",
         alt: "The sentence He is indifferent with a gap their suffering., then the candidates: to (fits: not caring about); with (not used: with = together; not used); of (not used: of = belonging; not used)",
@@ -132,6 +196,22 @@
           { do: "write", id: "e5h", text: "indignant", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Advanced \u00b7 indignant at", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [[[["arrowR", -40, 0], ["target", 30, 0]], "She was indignant at the insult.", { hl: "at", sub: "indignant at = angry about something unfair", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "indignant-logic",
+        title: "indignant at: the logic",
+        alt: "The logic for indignant at: Look at the senses. **at** has the sense of a reaction to a point. Indignant at means angry about something unfair, and that fits: indignant at = angry about something unfair. So the word takes **at**.; **on** has the sense of resting on, or about a topic. But angry about something unfair is not resting on, or about a topic. So indignant does not take **on**.; **from** has the sense of away from a starting point or source. But angry about something unfair is not away from a starting point or source. So indignant does not take **from**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a reaction to a point. Indignant at means angry about something unfair, and that fits: indignant at = angry about something unfair. So the word takes **at**.", cue: "e5lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But angry about something unfair is not resting on, or about a topic. So indignant does not take **on**.", cue: "e5lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But angry about something unfair is not away from a starting point or source. So indignant does not take **from**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "indignant at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a reaction to a point", { hl: "AT", sub: "angry about something unfair = a reaction to a point", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but angry about something unfair is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but angry about something unfair is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -184,6 +264,22 @@
         ],
       },
       {
+        id: "indulge-logic",
+        title: "indulge in: the logic",
+        alt: "The logic for indulge in: Look at the senses. **in** has the sense of inside an activity: taking part. Indulge means give way to a wish, and that fits: indulge in = allow yourself to enjoy. So the word takes **in**.; **with** has the sense of together with, or using. With = together; indulging goes inside. So indulge does not take **with**.; **on** has the sense of resting on, or about a topic. But allow yourself to enjoy is not resting on, or about a topic. So indulge does not take **on**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Indulge means give way to a wish, and that fits: indulge in = allow yourself to enjoy. So the word takes **in**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; indulging goes inside. So indulge does not take **with**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But allow yourself to enjoy is not resting on, or about a topic. So indulge does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "indulge in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "allow yourself to enjoy = inside an activity: taking part", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; indulging goes inside", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but allow yourself to enjoy is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "indulge-why",
         title: "indulge: why this one?",
         alt: "The sentence Do not indulge with a gap gossip., then the candidates: in (fits: allow yourself to enjoy); with (not used: with = together; indulging goes inside); on (not used: on is resting; not used)",
@@ -213,6 +309,22 @@
         ],
       },
       {
+        id: "infected-logic",
+        title: "infected with: the logic",
+        alt: "The logic for infected with: Look at the senses. **with** has the sense of having or filled with. Infected with means carrying a disease, and that fits: infected with = carrying a disease. So the word takes **with**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: malaria would be the carrier that gave it. That is not what infected with says.; **from** has the sense of away from a starting point or source. From is a source; infected takes with. So infected does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Infected with means carrying a disease, and that fits: infected with = carrying a disease. So the word takes **with**.", cue: "e7lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: malaria would be the carrier that gave it. That is not what infected with says.", cue: "e7lg2" },
+          { text: "**from** has the sense of away from a starting point or source. From is a source; infected takes with. So infected does not take **from**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "infected with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "carrying a disease = having or filled with", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: malaria would be the carrier that gave it", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "from is a source; infected takes with", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "infected-why",
         title: "infected: why this one?",
         alt: "The sentence He was infected with a gap malaria., then the candidates: with (fits: carrying a disease); by (correct English, different meaning: malaria would be the carrier that gave it); from (not used: from is a source; infected takes with)",
@@ -237,6 +349,22 @@
           { do: "write", id: "e8h", text: "inferior", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 inferior to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["reachDot", "This copy is inferior to the original.", { hl: "to", sub: "inferior to = lower in quality than", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "inferior-logic",
+        title: "inferior to: the logic",
+        alt: "The logic for inferior to: Look at the senses. **to** has the sense of matching or compared to. Inferior to means lower in quality than, and that fits: inferior to = lower in quality than. So the word takes **to**.; **than** has the sense of compared with. Inferior already means lower; it takes to. So inferior does not take **than**.; **from** has the sense of away from a starting point or source. But lower in quality than is not away from a starting point or source. So inferior does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Inferior to means lower in quality than, and that fits: inferior to = lower in quality than. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**than** has the sense of compared with. Inferior already means lower; it takes to. So inferior does not take **than**.", cue: "e8lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But lower in quality than is not away from a starting point or source. So inferior does not take **from**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "inferior to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "lower in quality than = matching or compared to", size: 28 }], ["cross", "\u2717 THAN = compared with", { hl: "THAN", sub: "inferior already means lower; it takes to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but lower in quality than is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

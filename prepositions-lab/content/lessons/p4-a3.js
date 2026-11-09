@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "adapt-logic",
+        title: "adapt to: the logic",
+        alt: "The logic for adapt to: Look at the senses. **to** has the sense of attached or devoted to. Adapt means fit, adjust, and that fits: adapt to = change to fit new conditions. So the word takes **to**.; **from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: the climate would be the source it came from. That is not what adapt to says.; **with** has the sense of together with, or using. With = together; adapting fits to. So adapt does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Adapt means fit, adjust, and that fits: adapt to = change to fit new conditions. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**from** has the sense of away from a starting point or source. It is correct English, but it would mean something else: the climate would be the source it came from. That is not what adapt to says.", cue: "e1lg2" },
+          { text: "**with** has the sense of together with, or using. With = together; adapting fits to. So adapt does not take **with**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "adapt to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "change to fit new conditions = attached or devoted to", size: 28 }], ["holdBack", "\u2248 FROM = away from a starting point or source", { hl: "FROM", sub: "correct English, but it would mean: the climate would be the source it came from", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; adapting fits to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "adapt-why",
         title: "adapt: why this one?",
         alt: "The sentence We must adapt with a gap the new climate., then the candidates: to (fits: change to fit new conditions); from (correct English, different meaning: the climate would be the source it came from); with (not used: with = together; adapting fits to)",
@@ -107,6 +123,22 @@
         ],
       },
       {
+        id: "add-logic",
+        title: "add to: the logic",
+        alt: "The logic for add to: Look at the senses. **to** has the sense of a limit or level reached. Add means put one more, and that fits: add to = increase or make bigger. So the word takes **to**.; **in** has the sense of inside, within. But increase or make bigger is not inside, within. So add does not take **in**.; **on** has the sense of resting on, or about a topic. On is a surface; adding increases to. So add does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a limit or level reached. Add means put one more, and that fits: add to = increase or make bigger. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**in** has the sense of inside, within. But increase or make bigger is not inside, within. So add does not take **in**.", cue: "e2lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface; adding increases to. So add does not take **on**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "add to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = a limit or level reached", { hl: "TO", sub: "increase or make bigger = a limit or level reached", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but increase or make bigger is not inside, within", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface; adding increases to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "add-why",
         title: "add: why this one?",
         alt: "The sentence The rain added with a gap our problems., then the candidates: to (fits: increase or make bigger); in (not used: a word-for-word translation; add to); on (not used: on is a surface; adding increases to)",
@@ -131,6 +163,22 @@
           { do: "write", id: "e3h", text: "addicted", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 addicted to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["reachDot", "He is addicted to his phone.", { hl: "to", sub: "addicted to = unable to stop using something", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "addicted-logic",
+        title: "addicted to: the logic",
+        alt: "The logic for addicted to: Look at the senses. **to** has the sense of moving towards, reaching. Addicted to means unable to stop using something, and that fits: addicted to = unable to stop using something. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; addiction pulls to. So addicted does not take **of**.; **with** has the sense of together with, or using. But unable to stop using something is not together with, or using. So addicted does not take **with**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. Addicted to means unable to stop using something, and that fits: addicted to = unable to stop using something. So the word takes **to**.", cue: "e3lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; addiction pulls to. So addicted does not take **of**.", cue: "e3lg2" },
+          { text: "**with** has the sense of together with, or using. But unable to stop using something is not together with, or using. So addicted does not take **with**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "addicted to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "unable to stop using something = moving towards, reaching", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; addiction pulls to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but unable to stop using something is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -163,6 +211,22 @@
         ],
       },
       {
+        id: "adept-logic",
+        title: "adept at: the logic",
+        alt: "The logic for adept at: Look at the senses. **at** has the sense of a skill that hits its mark. Adept at means skilled at an activity, and that fits: adept at = skilled at an activity. So the word takes **at**.; **with** has the sense of together with, or using. It is correct English, but it would mean something else: skilled with negotiating as a tool. That is not what adept at says.; **on** has the sense of resting on, or about a topic. On is a topic or surface. So adept does not take **on**.",
+        say: [
+          { text: "Look at the senses. **at** has the sense of a skill that hits its mark. Adept at means skilled at an activity, and that fits: adept at = skilled at an activity. So the word takes **at**.", cue: "e4lg1" },
+          { text: "**with** has the sense of together with, or using. It is correct English, but it would mean something else: skilled with negotiating as a tool. That is not what adept at says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a topic or surface. So adept does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "adept at: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [[[["arrowR", -40, 0], ["target", 30, 0]], "\u2713 AT = a skill that hits its mark", { hl: "AT", sub: "skilled at an activity = a skill that hits its mark", size: 28 }], ["agreeWith", "\u2248 WITH = together with, or using", { hl: "WITH", sub: "correct English, but it would mean: skilled with negotiating as a tool", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a topic or surface", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "adept-why",
         title: "adept: why this one?",
         alt: "The sentence She is adept with a gap negotiating., then the candidates: at (fits: skilled at an activity); with (correct English, different meaning: skilled with negotiating as a tool); on (not used: on is a topic or surface)",
@@ -187,6 +251,22 @@
           { do: "write", id: "e5h", text: "adequate", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Intermediate \u00b7 adequate for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["wantStar", "The supply is adequate for our needs.", { hl: "for", sub: "adequate for = enough for a need", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "adequate-logic",
+        title: "adequate for: the logic",
+        alt: "The logic for adequate for: Look at the senses. **for** has the sense of purpose or suitability. Adequate for means enough for a need, and that fits: adequate for = enough for a need. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; enough is for a need. So adequate does not take **of**.; **on** has the sense of resting on, or about a topic. On is a surface, not a need. So adequate does not take **on**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Adequate for means enough for a need, and that fits: adequate for = enough for a need. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; enough is for a need. So adequate does not take **of**.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is a surface, not a need. So adequate does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "adequate for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "enough for a need = purpose or suitability", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; enough is for a need", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is a surface, not a need", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -239,6 +319,22 @@
         ],
       },
       {
+        id: "adhere-logic",
+        title: "adhere to: the logic",
+        alt: "The logic for adhere to: Look at the senses. **to** has the sense of attached or devoted to. Adhere means stick, and that fits: adhere to = stick to a rule or a line. So the word takes **to**.; **with** has the sense of together with, or using. But stick to a rule or a line is not together with, or using. So adhere does not take **with**.; **on** has the sense of resting on, or about a topic. On is resting, not sticking to. So adhere does not take **on**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Adhere means stick, and that fits: adhere to = stick to a rule or a line. So the word takes **to**.", cue: "e6lg1" },
+          { text: "**with** has the sense of together with, or using. But stick to a rule or a line is not together with, or using. So adhere does not take **with**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. On is resting, not sticking to. So adhere does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "adhere to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "stick to a rule or a line = attached or devoted to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but stick to a rule or a line is not together with, or using", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "on is resting, not sticking to", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "adhere-why",
         title: "adhere: why this one?",
         alt: "The sentence We adhere with a gap the principles of the Constitution., then the candidates: to (fits: stick to a rule or a line); with (not used: with goes with comply); on (not used: on is resting, not sticking to)",
@@ -263,6 +359,22 @@
           { do: "write", id: "e7h", text: "adjacent", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Advanced \u00b7 adjacent to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["reachDot", "The school is adjacent to the park.", { hl: "to", sub: "adjacent to = next to, touching", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "adjacent-logic",
+        title: "adjacent to: the logic",
+        alt: "The logic for adjacent to: Look at the senses. **to** has the sense of near or next to. Adjacent to means next to, touching, and that fits: adjacent to = next to, touching. So the word takes **to**.; **with** has the sense of together with, or using. But next to, touching is not together with, or using. So adjacent does not take **with**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; adjacent takes to. So adjacent does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of near or next to. Adjacent to means next to, touching, and that fits: adjacent to = next to, touching. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**with** has the sense of together with, or using. But next to, touching is not together with, or using. So adjacent does not take **with**.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; adjacent takes to. So adjacent does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "adjacent to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = near or next to", { hl: "TO", sub: "next to, touching = near or next to", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but next to, touching is not together with, or using", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; adjacent takes to", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -312,6 +424,22 @@
           { do: "write", id: "e8b1p2", text: "=", x: 520, y: 320, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b1m", text: "confess, or allow in", x: 555, y: 320, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b1x", text: "He admitted to cheating.", x: 480, y: 392, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "admit-logic",
+        title: "admit to: the logic",
+        alt: "The logic for admit to: Look at the senses. **to** has the sense of agreeing to a proposal. Admit means let in, and that fits: admit to = confess, or allow in. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; confessing points to the act. So admit does not take **of**.; **for** has the sense of aimed at, or for the sake of. For names a reason, not the act. So admit does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of agreeing to a proposal. Admit means let in, and that fits: admit to = confess, or allow in. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; confessing points to the act. So admit does not take **of**.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For names a reason, not the act. So admit does not take **for**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "admit to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = agreeing to a proposal", { hl: "TO", sub: "confess, or allow in = agreeing to a proposal", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; confessing points to the act", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for names a reason, not the act", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

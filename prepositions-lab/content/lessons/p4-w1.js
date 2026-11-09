@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "wait-logic",
+        title: "wait for: the logic",
+        alt: "The logic for wait for: Look at the senses. **for** has the sense of aimed at something you want. Wait means stay until, and that fits: wait for = stay until someone or something comes. So the word takes **for**.; **on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: served the bus like a waiter. That is not what wait for says.; **(no word)** has the sense of no word is needed. Wait cannot reach its object alone. So wait does not take **(no word)**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Wait means stay until, and that fits: wait for = stay until someone or something comes. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. It is correct English, but it would mean something else: served the bus like a waiter. That is not what wait for says.", cue: "e1lg2" },
+          { text: "**(no word)** has the sense of no word is needed. Wait cannot reach its object alone. So wait does not take **(no word)**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "wait for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "stay until someone or something comes = aimed at something you want", size: 28 }], ["support", "\u2248 ON = resting on, or about a topic", { hl: "ON", sub: "correct English, but it would mean: served the bus like a waiter", size: 28 }], ["cross", "\u2717 (NO WORD) = no word is needed", { hl: "(NO WORD)", sub: "wait cannot reach its object alone", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "wait-why",
         title: "wait: why this one?",
         alt: "The sentence We waited with a gap the bus., then the candidates: for (fits: stay until someone or something comes); on (correct English, different meaning: served the bus like a waiter); (no word) (not used: wait cannot reach its object alone)",
@@ -118,6 +134,22 @@
         ],
       },
       {
+        id: "warn-logic",
+        title: "warn about: the logic",
+        alt: "The logic for warn about: Look at the senses. **about** has the sense of information around a topic. Warn means tell of danger, and that fits: warn about = tell someone of a danger. So the word takes **about**.; **against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: advised us not to do the storm. That is not what warn about says.; **from** has the sense of away from a starting point or source. But tell someone of a danger is not away from a starting point or source. So warn does not take **from**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of information around a topic. Warn means tell of danger, and that fits: warn about = tell someone of a danger. So the word takes **about**.", cue: "e2lg1" },
+          { text: "**against** has the sense of opposing, or leaning on. It is correct English, but it would mean something else: advised us not to do the storm. That is not what warn about says.", cue: "e2lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But tell someone of a danger is not away from a starting point or source. So warn does not take **from**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "warn about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["aboutCircle", "\u2713 ABOUT = information around a topic", { hl: "ABOUT", sub: "tell someone of a danger = information around a topic", size: 28 }], ["shield", "\u2248 AGAINST = opposing, or leaning on", { hl: "AGAINST", sub: "correct English, but it would mean: advised us not to do the storm", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but tell someone of a danger is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "warn-why",
         title: "warn: why this one?",
         alt: "The sentence They warned us with a gap the storm., then the candidates: about (fits: tell someone of a danger); against (correct English, different meaning: advised us not to do the storm); from (not used: a word-for-word translation)",
@@ -145,6 +177,22 @@
         ],
       },
       {
+        id: "wary-logic",
+        title: "wary of: the logic",
+        alt: "The logic for wary of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Wary of means careful and not trusting, and that fits: wary of = careful and not trusting. So the word takes **of**.; **from** has the sense of away from a starting point or source. But careful and not trusting is not away from a starting point or source. So wary does not take **from**.; **about** has the sense of around a topic. About is a topic; wariness takes of. So wary does not take **about**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Wary of means careful and not trusting, and that fits: wary of = careful and not trusting. So the word takes **of**.", cue: "e3lg1" },
+          { text: "**from** has the sense of away from a starting point or source. But careful and not trusting is not away from a starting point or source. So wary does not take **from**.", cue: "e3lg2" },
+          { text: "**about** has the sense of around a topic. About is a topic; wariness takes of. So wary does not take **about**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "wary of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "careful and not trusting = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but careful and not trusting is not away from a starting point or source", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "about is a topic; wariness takes of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "wary-why",
         title: "wary: why this one?",
         alt: "The sentence Be wary with a gap strangers., then the candidates: of (fits: careful and not trusting); from (not used: a word-for-word translation); about (not used: about is a topic; wariness takes of)",
@@ -169,6 +217,22 @@
           { do: "write", id: "e4h", text: "weak", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 weak in", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["absorbedIn", "He is weak in mathematics.", { hl: "in", sub: "weak in = not good in a subject", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "weak-logic",
+        title: "weak in: the logic",
+        alt: "The logic for weak in: Look at the senses. **in** has the sense of inside a field or subject. Weak in means not good in a subject, and that fits: weak in = not good in a subject. So the word takes **in**.; **on** has the sense of resting on, or about a topic. But not good in a subject is not resting on, or about a topic. So weak does not take **on**.; **of** has the sense of belonging to, a part of, or about. But not good in a subject is not belonging to, a part of, or about. So weak does not take **of**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a field or subject. Weak in means not good in a subject, and that fits: weak in = not good in a subject. So the word takes **in**.", cue: "e4lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But not good in a subject is not resting on, or about a topic. So weak does not take **on**.", cue: "e4lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But not good in a subject is not belonging to, a part of, or about. So weak does not take **of**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "weak in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["absorbedIn", "\u2713 IN = inside a field or subject", { hl: "IN", sub: "not good in a subject = inside a field or subject", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but not good in a subject is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but not good in a subject is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -232,6 +296,22 @@
         ],
       },
       {
+        id: "wonder-logic",
+        title: "wonder about: the logic",
+        alt: "The logic for wonder about: Look at the senses. **about** has the sense of information around a topic. Wonder means think with curiosity, and that fits: wonder about = think about with curiosity. So the word takes **about**.; **at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: marvelled at my future as a sight. That is not what wonder about says.; **on** has the sense of resting on, or about a topic. But think about with curiosity is not resting on, or about a topic. So wonder does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of information around a topic. Wonder means think with curiosity, and that fits: wonder about = think about with curiosity. So the word takes **about**.", cue: "e5lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. It is correct English, but it would mean something else: marvelled at my future as a sight. That is not what wonder about says.", cue: "e5lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But think about with curiosity is not resting on, or about a topic. So wonder does not take **on**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "wonder about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["aboutCircle", "\u2713 ABOUT = information around a topic", { hl: "ABOUT", sub: "think about with curiosity = information around a topic", size: 28 }], [[["arrowR", -40, 0], ["target", 30, 0]], "\u2248 AT = pointing at one spot or target", { hl: "AT", sub: "correct English, but it would mean: marvelled at my future as a sight", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but think about with curiosity is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "wonder-why",
         title: "wonder: why this one?",
         alt: "The sentence I often wonder with a gap my future., then the candidates: about (fits: think about with curiosity); at (correct English, different meaning: marvelled at my future as a sight); on (not used: on is resting; not used)",
@@ -259,6 +339,22 @@
         ],
       },
       {
+        id: "worried-logic",
+        title: "worried about: the logic",
+        alt: "The logic for worried about: Look at the senses. **about** has the sense of a feeling around a topic. Worried about means anxious about, and that fits: worried about = anxious about. So the word takes **about**.; **for** has the sense of aimed at, or for the sake of. For goes with afraid for someone; worried about a thing. So worried does not take **for**.; **on** has the sense of resting on, or about a topic. But anxious about is not resting on, or about a topic. So worried does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Worried about means anxious about, and that fits: worried about = anxious about. So the word takes **about**.", cue: "e6lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For goes with afraid for someone; worried about a thing. So worried does not take **for**.", cue: "e6lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But anxious about is not resting on, or about a topic. So worried does not take **on**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "worried about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "anxious about = a feeling around a topic", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for goes with afraid for someone; worried about a thing", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but anxious about is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "worried-why",
         title: "worried: why this one?",
         alt: "The sentence She is worried with a gap her exams., then the candidates: about (fits: anxious about); for (not used: for goes with afraid for someone; worried about a thing); on (not used: on is resting; not used)",
@@ -283,6 +379,22 @@
           { do: "write", id: "e7h", text: "worthy", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e7hl", text: "Intermediate \u00b7 worthy of", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e7s", [["awareOf", "Such courage is worthy of praise.", { hl: "of", sub: "worthy of = deserving", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "worthy-logic",
+        title: "worthy of: the logic",
+        alt: "The logic for worthy of: Look at the senses. **of** has the sense of belonging or part of. Worthy of means deserving, and that fits: worthy of = deserving. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; worthy takes of. So worthy does not take **for**.; **to** has the sense of moving towards, reaching. But deserving is not moving towards, reaching. So worthy does not take **to**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of belonging or part of. Worthy of means deserving, and that fits: worthy of = deserving. So the word takes **of**.", cue: "e7lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; worthy takes of. So worthy does not take **for**.", cue: "e7lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But deserving is not moving towards, reaching. So worthy does not take **to**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "worthy of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["awareOf", "\u2713 OF = belonging or part of", { hl: "OF", sub: "deserving = belonging or part of", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; worthy takes of", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but deserving is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -353,6 +465,22 @@
           { do: "write", id: "e8b3p2", text: "=", x: 520, y: 470, size: 34, ink: "muted", anchor: "middle" },
           { do: "write", id: "e8b3m", text: "use a language or ink", x: 555, y: 470, size: 30, ink: "accent", fit: 390 },
           { do: "write", id: "e8b3x", text: "Please write in English.", x: 480, y: 542, size: 25, ink: "muted", anchor: "middle", fit: 900 },
+        ],
+      },
+      {
+        id: "write-logic",
+        title: "write to: the logic",
+        alt: "The logic for write to: Look at the senses. **to** has the sense of a person who receives. Write means put words on paper, and that fits: write to = send a letter to. So the word takes **to**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: wrote about her mother as a topic. That is not what write to says.; **for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: wrote on her mother's behalf. That is not what write to says.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of a person who receives. Write means put words on paper, and that fits: write to = send a letter to. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: wrote about her mother as a topic. That is not what write to says.", cue: "e8lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. It is correct English, but it would mean something else: wrote on her mother's behalf. That is not what write to says.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "write to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = a person who receives", { hl: "TO", sub: "send a letter to = a person who receives", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: wrote about her mother as a topic", size: 28 }], ["wantStar", "\u2248 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "correct English, but it would mean: wrote on her mother's behalf", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

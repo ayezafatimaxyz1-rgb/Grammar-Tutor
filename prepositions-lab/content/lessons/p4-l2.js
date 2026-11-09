@@ -58,6 +58,22 @@
         ],
       },
       {
+        id: "lose-logic",
+        title: "lose to: the logic",
+        alt: "The logic for lose to: Look at the senses. **to** has the sense of moving towards, reaching. Lose means be beaten, miss, and that fits: lose to = be beaten by. So the word takes **to**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: Australia would be the margin. That is not what lose to says.; **from** has the sense of away from a starting point or source. But be beaten by is not away from a starting point or source. So lose does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of moving towards, reaching. Lose means be beaten, miss, and that fits: lose to = be beaten by. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: Australia would be the margin. That is not what lose to says.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But be beaten by is not away from a starting point or source. So lose does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "lose to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = moving towards, reaching", { hl: "TO", sub: "be beaten by = moving towards, reaching", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: Australia would be the margin", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but be beaten by is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "lose-why",
         title: "lose: why this one?",
         alt: "The sentence Pakistan lost with a gap Australia., then the candidates: to (fits: be beaten by); by (correct English, different meaning: Australia would be the margin); from (not used: a word-for-word translation)",
@@ -82,6 +98,22 @@
           { do: "write", id: "e2h", text: "loyal", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 loyal to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["reachDot", "He is loyal to his country.", { hl: "to", sub: "loyal to = faithful to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "loyal-logic",
+        title: "loyal to: the logic",
+        alt: "The logic for loyal to: Look at the senses. **to** has the sense of behaviour aimed at someone. Loyal to means faithful to, and that fits: loyal to = faithful to. So the word takes **to**.; **with** has the sense of together with, or using. With = together; loyalty points to. So loyal does not take **with**.; **for** has the sense of aimed at, or for the sake of. But faithful to is not aimed at, or for the sake of. So loyal does not take **for**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Loyal to means faithful to, and that fits: loyal to = faithful to. So the word takes **to**.", cue: "e2lg1" },
+          { text: "**with** has the sense of together with, or using. With = together; loyalty points to. So loyal does not take **with**.", cue: "e2lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But faithful to is not aimed at, or for the sake of. So loyal does not take **for**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "loyal to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "faithful to = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "with = together; loyalty points to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but faithful to is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

@@ -47,6 +47,22 @@
         ],
       },
       {
+        id: "encroach-logic",
+        title: "encroach on: the logic",
+        alt: "The logic for encroach on: Look at the senses. **on** has the sense of touching a surface. Encroach means move in on, and that fits: encroach on = intrude onto someone's rights or land. So the word takes **on**.; **in** has the sense of inside, within. In is inside; encroach takes on (upon). So encroach does not take **in**.; **to** has the sense of moving towards, reaching. But intrude onto someone's rights or land is not moving towards, reaching. So encroach does not take **to**.",
+        say: [
+          { text: "Look at the senses. **on** has the sense of touching a surface. Encroach means move in on, and that fits: encroach on = intrude onto someone's rights or land. So the word takes **on**.", cue: "e1lg1" },
+          { text: "**in** has the sense of inside, within. In is inside; encroach takes on (upon). So encroach does not take **in**.", cue: "e1lg2" },
+          { text: "**to** has the sense of moving towards, reaching. But intrude onto someone's rights or land is not moving towards, reaching. So encroach does not take **to**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "encroach on: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["support", "\u2713 ON = touching a surface", { hl: "ON", sub: "intrude onto someone's rights or land = touching a surface", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "in is inside; encroach takes on (upon)", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "but intrude onto someone's rights or land is not moving towards, reaching", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "encroach-why",
         title: "encroach: why this one?",
         alt: "The sentence The factory encroached with a gap public land., then the candidates: on (fits: intrude onto someone's rights or land); in (not used: in is inside; encroach takes on (upon)); to (not used: to points; not used)",
@@ -71,6 +87,22 @@
           { do: "write", id: "e2h", text: "endowed", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Advanced \u00b7 endowed with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["agreeWith", "She is endowed with great talent.", { hl: "with", sub: "endowed with = naturally having a quality", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "endowed-logic",
+        title: "endowed with: the logic",
+        alt: "The logic for endowed with: Look at the senses. **with** has the sense of having or filled with. Endowed with means naturally having a quality, and that fits: endowed with = naturally having a quality. So the word takes **with**.; **by** has the sense of by means of, or next to. It is correct English, but it would mean something else: the founder who gave it: a college endowed by a donor. That is not what endowed with says.; **of** has the sense of belonging to, a part of, or about. But naturally having a quality is not belonging to, a part of, or about. So endowed does not take **of**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of having or filled with. Endowed with means naturally having a quality, and that fits: endowed with = naturally having a quality. So the word takes **with**.", cue: "e2lg1" },
+          { text: "**by** has the sense of by means of, or next to. It is correct English, but it would mean something else: the founder who gave it: a college endowed by a donor. That is not what endowed with says.", cue: "e2lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But naturally having a quality is not belonging to, a part of, or about. So endowed does not take **of**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "endowed with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["agreeWith", "\u2713 WITH = having or filled with", { hl: "WITH", sub: "naturally having a quality = having or filled with", size: 28 }], ["followRule", "\u2248 BY = by means of, or next to", { hl: "BY", sub: "correct English, but it would mean: the founder who gave it: a college endowed by a donor", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but naturally having a quality is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -100,6 +132,22 @@
           { do: "write", id: "e3h", text: "engaged", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Intermediate \u00b7 engaged in, engaged to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["absorbedIn", "She is engaged in research.", { hl: "in", sub: "engaged in = busy doing", size: 30 }], ["reachDot", "He is engaged to her cousin.", { hl: "to", sub: "engaged to = promised to marry", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "engaged-logic",
+        title: "engaged in: the logic",
+        alt: "The logic for engaged in: Look at the senses. **in** has the sense of inside an activity: taking part. Engaged in means busy doing, and that fits: engaged in = busy doing. So the word takes **in**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: promised to marry research. That is not what engaged in says.; **on** has the sense of resting on, or about a topic. But busy doing is not resting on, or about a topic. So engaged does not take **on**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside an activity: taking part. Engaged in means busy doing, and that fits: engaged in = busy doing. So the word takes **in**.", cue: "e3lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: promised to marry research. That is not what engaged in says.", cue: "e3lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But busy doing is not resting on, or about a topic. So engaged does not take **on**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "engaged in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["absorbedIn", "\u2713 IN = inside an activity: taking part", { hl: "IN", sub: "busy doing = inside an activity: taking part", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: promised to marry research", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but busy doing is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -163,6 +211,22 @@
         ],
       },
       {
+        id: "enquire-logic",
+        title: "enquire into: the logic",
+        alt: "The logic for enquire into: Look at the senses. **into** has the sense of going inside. Enquire means ask, and that fits: enquire into = investigate. So the word takes **into**.; **about** has the sense of around a topic. It is correct English, but it would mean something else: only ask a few questions about it. That is not what enquire into says.; **on** has the sense of resting on, or about a topic. But investigate is not resting on, or about a topic. So enquire does not take **on**.",
+        say: [
+          { text: "Look at the senses. **into** has the sense of going inside. Enquire means ask, and that fits: enquire into = investigate. So the word takes **into**.", cue: "e4lg1" },
+          { text: "**about** has the sense of around a topic. It is correct English, but it would mean something else: only ask a few questions about it. That is not what enquire into says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But investigate is not resting on, or about a topic. So enquire does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "enquire into: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["intoBag", "\u2713 INTO = going inside", { hl: "INTO", sub: "investigate = going inside", size: 28 }], ["aboutCircle", "\u2248 ABOUT = around a topic", { hl: "ABOUT", sub: "correct English, but it would mean: only ask a few questions about it", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but investigate is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "enquire-why",
         title: "enquire: why this one?",
         alt: "The sentence The committee will enquire with a gap the matter., then the candidates: into (fits: investigate); about (correct English, different meaning: only ask a few questions about it); on (not used: on is resting; not used)",
@@ -187,6 +251,22 @@
           { do: "write", id: "e5h", text: "entitled", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Intermediate \u00b7 entitled to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["reachDot", "Every worker is entitled to a pension.", { hl: "to", sub: "entitled to = having the right to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "entitled-logic",
+        title: "entitled to: the logic",
+        alt: "The logic for entitled to: Look at the senses. **to** has the sense of attached or devoted to. Entitled to means having the right to, and that fits: entitled to = having the right to. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; a right points to. So entitled does not take **for**.; **of** has the sense of belonging to, a part of, or about. But having the right to is not belonging to, a part of, or about. So entitled does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of attached or devoted to. Entitled to means having the right to, and that fits: entitled to = having the right to. So the word takes **to**.", cue: "e5lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; a right points to. So entitled does not take **for**.", cue: "e5lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But having the right to is not belonging to, a part of, or about. So entitled does not take **of**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "entitled to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["reachDot", "\u2713 TO = attached or devoted to", { hl: "TO", sub: "having the right to = attached or devoted to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; a right points to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but having the right to is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -217,6 +297,22 @@
         ],
       },
       {
+        id: "envious-logic",
+        title: "envious of: the logic",
+        alt: "The logic for envious of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Envious of means wanting what someone else has, and that fits: envious of = wanting what someone else has. So the word takes **of**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; envy takes of. So envious does not take **for**.; **from** has the sense of away from a starting point or source. But wanting what someone else has is not away from a starting point or source. So envious does not take **from**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Envious of means wanting what someone else has, and that fits: envious of = wanting what someone else has. So the word takes **of**.", cue: "e6lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; envy takes of. So envious does not take **for**.", cue: "e6lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But wanting what someone else has is not away from a starting point or source. So envious does not take **from**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "envious of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "wanting what someone else has = what a feeling or knowledge is about", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; envy takes of", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but wanting what someone else has is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "envious-why",
         title: "envious: why this one?",
         alt: "The sentence He is envious with a gap her success., then the candidates: of (fits: wanting what someone else has); for (not used: for is a purpose; envy takes of); from (not used: a word-for-word translation)",
@@ -244,6 +340,22 @@
         ],
       },
       {
+        id: "equal-logic",
+        title: "equal to: the logic",
+        alt: "The logic for equal to: Look at the senses. **to** has the sense of matching or compared to. Equal to means the same as, or able to do, and that fits: equal to = the same as, or able to do. So the word takes **to**.; **for** has the sense of aimed at, or for the sake of. For is a purpose; equal points to. So equal does not take **for**.; **of** has the sense of belonging to, a part of, or about. But the same as, or able to do is not belonging to, a part of, or about. So equal does not take **of**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of matching or compared to. Equal to means the same as, or able to do, and that fits: equal to = the same as, or able to do. So the word takes **to**.", cue: "e7lg1" },
+          { text: "**for** has the sense of aimed at, or for the sake of. For is a purpose; equal points to. So equal does not take **for**.", cue: "e7lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But the same as, or able to do is not belonging to, a part of, or about. So equal does not take **of**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "equal to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["reachDot", "\u2713 TO = matching or compared to", { hl: "TO", sub: "the same as, or able to do = matching or compared to", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "for is a purpose; equal points to", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but the same as, or able to do is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "equal-why",
         title: "equal: why this one?",
         alt: "The sentence She proved equal with a gap the task., then the candidates: to (fits: the same as, or able to do); for (not used: for is a purpose; equal points to); of (not used: of = belonging; not used)",
@@ -268,6 +380,22 @@
           { do: "write", id: "e8h", text: "essential", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Intermediate \u00b7 essential to", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["reachDot", "Water is essential to life.", { hl: "to", sub: "essential to = absolutely necessary to", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "essential-logic",
+        title: "essential to: the logic",
+        alt: "The logic for essential to: Look at the senses. **to** has the sense of an effect on someone. Essential to means absolutely necessary to, and that fits: essential to = absolutely necessary to. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. But absolutely necessary to is not belonging to, a part of, or about. So essential does not take **of**.; **in** has the sense of inside, within. But absolutely necessary to is not inside, within. So essential does not take **in**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of an effect on someone. Essential to means absolutely necessary to, and that fits: essential to = absolutely necessary to. So the word takes **to**.", cue: "e8lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But absolutely necessary to is not belonging to, a part of, or about. So essential does not take **of**.", cue: "e8lg2" },
+          { text: "**in** has the sense of inside, within. But absolutely necessary to is not inside, within. So essential does not take **in**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "essential to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["reachDot", "\u2713 TO = an effect on someone", { hl: "TO", sub: "absolutely necessary to = an effect on someone", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but absolutely necessary to is not belonging to, a part of, or about", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but absolutely necessary to is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

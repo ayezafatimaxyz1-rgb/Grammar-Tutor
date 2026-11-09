@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "necessary-logic",
+        title: "necessary for: the logic",
+        alt: "The logic for necessary for: Look at the senses. **for** has the sense of purpose or suitability. Necessary for means needed for, and that fits: necessary for = needed for. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; need reaches for. So necessary does not take **of**.; **in** has the sense of inside, within. But needed for is not inside, within. So necessary does not take **in**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of purpose or suitability. Necessary for means needed for, and that fits: necessary for = needed for. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; need reaches for. So necessary does not take **of**.", cue: "e1lg2" },
+          { text: "**in** has the sense of inside, within. But needed for is not inside, within. So necessary does not take **in**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "necessary for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = purpose or suitability", { hl: "FOR", sub: "needed for = purpose or suitability", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; need reaches for", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but needed for is not inside, within", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "necessary-why",
         title: "necessary: why this one?",
         alt: "The sentence Water is necessary with a gap life., then the candidates: for (fits: needed for); of (not used: of = belonging; need reaches for); in (not used: in is inside; not used)",
@@ -49,6 +65,22 @@
           { do: "write", id: "e2h", text: "need", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e2hl", text: "Basic \u00b7 need for", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e2s", [["wantStar", "There is an urgent need for reform.", { hl: "for", sub: "need for = a lack that must be filled (noun)", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "need-logic",
+        title: "need for: the logic",
+        alt: "The logic for need for: Look at the senses. **for** has the sense of aimed at something you want. Need for means a lack that must be filled (noun), and that fits: need for = a lack that must be filled (noun). So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of goes with in need of: a person in need of help. So need does not take **of**.; **to** has the sense of moving towards, reaching. To + a verb only: no need to worry. So need does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Need for means a lack that must be filled (noun), and that fits: need for = a lack that must be filled (noun). So the word takes **for**.", cue: "e2lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of goes with in need of: a person in need of help. So need does not take **of**.", cue: "e2lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To + a verb only: no need to worry. So need does not take **to**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "need for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "a lack that must be filled (noun) = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of goes with in need of: a person in need of help", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to + a verb only: no need to worry", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -79,6 +111,22 @@
         ],
       },
       {
+        id: "negligent-logic",
+        title: "negligent in: the logic",
+        alt: "The logic for negligent in: Look at the senses. **in** has the sense of inside a field or subject. Negligent in means careless in doing, and that fits: negligent in = careless in doing. So the word takes **in**.; **on** has the sense of resting on, or about a topic. But careless in doing is not resting on, or about a topic. So negligent does not take **on**.; **about** has the sense of around a topic. But careless in doing is not around a topic. So negligent does not take **about**.",
+        say: [
+          { text: "Look at the senses. **in** has the sense of inside a field or subject. Negligent in means careless in doing, and that fits: negligent in = careless in doing. So the word takes **in**.", cue: "e3lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But careless in doing is not resting on, or about a topic. So negligent does not take **on**.", cue: "e3lg2" },
+          { text: "**about** has the sense of around a topic. But careless in doing is not around a topic. So negligent does not take **about**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "negligent in: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["absorbedIn", "\u2713 IN = inside a field or subject", { hl: "IN", sub: "careless in doing = inside a field or subject", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but careless in doing is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 ABOUT = around a topic", { hl: "ABOUT", sub: "but careless in doing is not around a topic", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "negligent-why",
         title: "negligent: why this one?",
         alt: "The sentence The officer was negligent with a gap his duties., then the candidates: in (fits: careless in doing); on (not used: on is resting; not used); about (not used: about is a topic; not used)",
@@ -103,6 +151,22 @@
           { do: "write", id: "e4h", text: "nervous", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e4hl", text: "Basic \u00b7 nervous about", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e4s", [["aboutCircle", "She is nervous about the interview.", { hl: "about", sub: "nervous about = worried about", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "nervous-logic",
+        title: "nervous about: the logic",
+        alt: "The logic for nervous about: Look at the senses. **about** has the sense of a feeling around a topic. Nervous about means worried about, and that fits: nervous about = worried about. So the word takes **about**.; **of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: nervous of = afraid of a thing (BrE): nervous of dogs. That is not what nervous about says.; **on** has the sense of resting on, or about a topic. But worried about is not resting on, or about a topic. So nervous does not take **on**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Nervous about means worried about, and that fits: nervous about = worried about. So the word takes **about**.", cue: "e4lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. It is correct English, but it would mean something else: nervous of = afraid of a thing (BrE): nervous of dogs. That is not what nervous about says.", cue: "e4lg2" },
+          { text: "**on** has the sense of resting on, or about a topic. But worried about is not resting on, or about a topic. So nervous does not take **on**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "nervous about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "worried about = a feeling around a topic", size: 28 }], ["awareOf", "\u2248 OF = belonging to, a part of, or about", { hl: "OF", sub: "correct English, but it would mean: nervous of = afraid of a thing (BrE): nervous of dogs", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but worried about is not resting on, or about a topic", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -135,6 +199,22 @@
         ],
       },
       {
+        id: "nice-logic",
+        title: "nice of: the logic",
+        alt: "The logic for nice of: Look at the senses. **of** has the sense of what a feeling or knowledge is about. Nice of means kind of someone (judging an act), and that fits: nice of = kind of someone (judging an act). So the word takes **of**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to you, said of how someone treats you. That is not what nice of says.; **for** has the sense of aimed at, or for the sake of. But kind of someone (judging an act) is not aimed at, or for the sake of. So nice does not take **for**.",
+        say: [
+          { text: "Look at the senses. **of** has the sense of what a feeling or knowledge is about. Nice of means kind of someone (judging an act), and that fits: nice of = kind of someone (judging an act). So the word takes **of**.", cue: "e5lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: kind to you, said of how someone treats you. That is not what nice of says.", cue: "e5lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But kind of someone (judging an act) is not aimed at, or for the sake of. So nice does not take **for**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "nice of: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["awareOf", "\u2713 OF = what a feeling or knowledge is about", { hl: "OF", sub: "kind of someone (judging an act) = what a feeling or knowledge is about", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: kind to you, said of how someone treats you", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but kind of someone (judging an act) is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "nice-why",
         title: "nice: why this one?",
         alt: "The sentence It was nice with a gap you to help., then the candidates: of (fits: kind of someone (judging an act)); to (correct English, different meaning: kind to you, said of how someone treats you); for (not used: for is a purpose; not used)",
@@ -161,6 +241,22 @@
           { do: "write", id: "e6h", text: "notorious", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e6hl", text: "Intermediate \u00b7 notorious for, notorious as", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e6s", [["wantStar", "The area is notorious for crime.", { hl: "for", sub: "notorious for = well known for something bad", size: 30 }], ["arrowR", "He is notorious as a liar.", { hl: "as", sub: "notorious as = known in a bad role", size: 30 }]], { y: 260, gap: 140 }),
+        ],
+      },
+      {
+        id: "notorious-logic",
+        title: "notorious for: the logic",
+        alt: "The logic for notorious for: Look at the senses. **for** has the sense of reason or cause. Notorious for means well known for something bad, and that fits: notorious for = well known for something bad. So the word takes **for**.; **as** has the sense of in the role of. It is correct English, but it would mean something else: the area itself would be crime, in a role. That is not what notorious for says.; **of** has the sense of belonging to, a part of, or about. But well known for something bad is not belonging to, a part of, or about. So notorious does not take **of**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of reason or cause. Notorious for means well known for something bad, and that fits: notorious for = well known for something bad. So the word takes **for**.", cue: "e6lg1" },
+          { text: "**as** has the sense of in the role of. It is correct English, but it would mean something else: the area itself would be crime, in a role. That is not what notorious for says.", cue: "e6lg2" },
+          { text: "**of** has the sense of belonging to, a part of, or about. But well known for something bad is not belonging to, a part of, or about. So notorious does not take **of**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "notorious for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["wantStar", "\u2713 FOR = reason or cause", { hl: "FOR", sub: "well known for something bad = reason or cause", size: 28 }], ["arrowR", "\u2248 AS = in the role of", { hl: "AS", sub: "correct English, but it would mean: the area itself would be crime, in a role", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "but well known for something bad is not belonging to, a part of, or about", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {

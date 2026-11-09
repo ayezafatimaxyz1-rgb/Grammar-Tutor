@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "yearn-logic",
+        title: "yearn for: the logic",
+        alt: "The logic for yearn for: Look at the senses. **for** has the sense of aimed at something you want. Yearn for means long for, and that fits: yearn for = long for. So the word takes **for**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; longing reaches for. So yearn does not take **of**.; **to** has the sense of moving towards, reaching. To needs a verb: yearn to return. So yearn does not take **to**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of aimed at something you want. Yearn for means long for, and that fits: yearn for = long for. So the word takes **for**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; longing reaches for. So yearn does not take **of**.", cue: "e1lg2" },
+          { text: "**to** has the sense of moving towards, reaching. To needs a verb: yearn to return. So yearn does not take **to**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "yearn for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["wantStar", "\u2713 FOR = aimed at something you want", { hl: "FOR", sub: "long for = aimed at something you want", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; longing reaches for", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to needs a verb: yearn to return", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "yearn-why",
         title: "yearn: why this one?",
         alt: "The sentence The people yearn with a gap peace., then the candidates: for (fits: long for); of (not used: of = belonging; longing reaches for); to (not used: to needs a verb: yearn to return)",

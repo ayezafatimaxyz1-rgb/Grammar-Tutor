@@ -25,6 +25,22 @@
         ],
       },
       {
+        id: "blind-logic",
+        title: "blind to: the logic",
+        alt: "The logic for blind to: Look at the senses. **to** has the sense of behaviour aimed at someone. Blind to means unable to see a fault or fact, and that fits: blind to = unable to see a fault or fact. So the word takes **to**.; **of** has the sense of belonging to, a part of, or about. Of = belonging; blindness points to. So blind does not take **of**.; **from** has the sense of away from a starting point or source. But unable to see a fault or fact is not away from a starting point or source. So blind does not take **from**.",
+        say: [
+          { text: "Look at the senses. **to** has the sense of behaviour aimed at someone. Blind to means unable to see a fault or fact, and that fits: blind to = unable to see a fault or fact. So the word takes **to**.", cue: "e1lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Of = belonging; blindness points to. So blind does not take **of**.", cue: "e1lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But unable to see a fault or fact is not away from a starting point or source. So blind does not take **from**.", cue: "e1lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-1lg"),
+          { do: "write", id: "e1lgt", text: "blind to: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e1lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e1lg", [["reachDot", "\u2713 TO = behaviour aimed at someone", { hl: "TO", sub: "unable to see a fault or fact = behaviour aimed at someone", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "of = belonging; blindness points to", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but unable to see a fault or fact is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "blind-why",
         title: "blind: why this one?",
         alt: "The sentence He is blind with a gap his own faults., then the candidates: to (fits: unable to see a fault or fact); of (not used: of = belonging; blindness points to); from (not used: from is a source; not used)",
@@ -74,6 +90,22 @@
         ],
       },
       {
+        id: "boast-logic",
+        title: "boast about: the logic",
+        alt: "The logic for boast about: Look at the senses. **about** has the sense of a feeling around a topic. Boast means talk proudly, and that fits: boast about = talk proudly about. So the word takes **about**.; **on** has the sense of resting on, or about a topic. But talk proudly about is not resting on, or about a topic. So boast does not take **on**.; **for** has the sense of aimed at, or for the sake of. But talk proudly about is not aimed at, or for the sake of. So boast does not take **for**.",
+        say: [
+          { text: "Look at the senses. **about** has the sense of a feeling around a topic. Boast means talk proudly, and that fits: boast about = talk proudly about. So the word takes **about**.", cue: "e2lg1" },
+          { text: "**on** has the sense of resting on, or about a topic. But talk proudly about is not resting on, or about a topic. So boast does not take **on**.", cue: "e2lg2" },
+          { text: "**for** has the sense of aimed at, or for the sake of. But talk proudly about is not aimed at, or for the sake of. So boast does not take **for**.", cue: "e2lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-2lg"),
+          { do: "write", id: "e2lgt", text: "boast about: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e2lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e2lg", [["aboutCircle", "\u2713 ABOUT = a feeling around a topic", { hl: "ABOUT", sub: "talk proudly about = a feeling around a topic", size: 28 }], ["cross", "\u2717 ON = resting on, or about a topic", { hl: "ON", sub: "but talk proudly about is not resting on, or about a topic", size: 28 }], ["cross", "\u2717 FOR = aimed at, or for the sake of", { hl: "FOR", sub: "but talk proudly about is not aimed at, or for the sake of", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "boast-why",
         title: "boast: why this one?",
         alt: "The sentence He boasted with a gap his wealth., then the candidates: about (fits: talk proudly about); on (not used: on is a surface; not used); for (not used: for is a purpose; not used)",
@@ -98,6 +130,22 @@
           { do: "write", id: "e3h", text: "bored", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e3hl", text: "Basic \u00b7 bored with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e3s", [["agreeWith", "She was bored with the routine.", { hl: "with", sub: "bored with = tired of something dull", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "bored-logic",
+        title: "bored with: the logic",
+        alt: "The logic for bored with: Look at the senses. **with** has the sense of feelings about what you have. Bored with means tired of something dull, and that fits: bored with = tired of something dull. So the word takes **with**.; **of** has the sense of belonging to, a part of, or about. Common in speech, but not in formal writing. So bored does not take **of**.; **from** has the sense of away from a starting point or source. But tired of something dull is not away from a starting point or source. So bored does not take **from**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of feelings about what you have. Bored with means tired of something dull, and that fits: bored with = tired of something dull. So the word takes **with**.", cue: "e3lg1" },
+          { text: "**of** has the sense of belonging to, a part of, or about. Common in speech, but not in formal writing. So bored does not take **of**.", cue: "e3lg2" },
+          { text: "**from** has the sense of away from a starting point or source. But tired of something dull is not away from a starting point or source. So bored does not take **from**.", cue: "e3lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-3lg"),
+          { do: "write", id: "e3lgt", text: "bored with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e3lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e3lg", [["agreeWith", "\u2713 WITH = feelings about what you have", { hl: "WITH", sub: "tired of something dull = feelings about what you have", size: 28 }], ["cross", "\u2717 OF = belonging to, a part of, or about", { hl: "OF", sub: "common in speech, but not in formal writing", size: 28 }], ["cross", "\u2717 FROM = away from a starting point or source", { hl: "FROM", sub: "but tired of something dull is not away from a starting point or source", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -150,6 +198,22 @@
         ],
       },
       {
+        id: "borrow-logic",
+        title: "borrow from: the logic",
+        alt: "The logic for borrow from: Look at the senses. **from** has the sense of a starting point or source. Borrow means take for a time, and that fits: borrow from = take for a time from someone. So the word takes **from**.; **to** has the sense of moving towards, reaching. To goes with lend: lend to. So borrow does not take **to**.; **by** has the sense of by means of, or next to. By names a means, not a source. So borrow does not take **by**.",
+        say: [
+          { text: "Look at the senses. **from** has the sense of a starting point or source. Borrow means take for a time, and that fits: borrow from = take for a time from someone. So the word takes **from**.", cue: "e4lg1" },
+          { text: "**to** has the sense of moving towards, reaching. To goes with lend: lend to. So borrow does not take **to**.", cue: "e4lg2" },
+          { text: "**by** has the sense of by means of, or next to. By names a means, not a source. So borrow does not take **by**.", cue: "e4lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-4lg"),
+          { do: "write", id: "e4lgt", text: "borrow from: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e4lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e4lg", [["holdBack", "\u2713 FROM = a starting point or source", { hl: "FROM", sub: "take for a time from someone = a starting point or source", size: 28 }], ["cross", "\u2717 TO = moving towards, reaching", { hl: "TO", sub: "to goes with lend: lend to", size: 28 }], ["cross", "\u2717 BY = by means of, or next to", { hl: "BY", sub: "by names a means, not a source", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "borrow-why",
         title: "borrow: why this one?",
         alt: "The sentence He borrowed money with a gap a bank., then the candidates: from (fits: take for a time from someone); to (not used: to goes with lend: lend to); by (not used: by names a means, not a source)",
@@ -177,6 +241,22 @@
           { do: "write", id: "e5h", text: "bound", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e5hl", text: "Intermediate \u00b7 bound for, bound to, bound by", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e5s", [["wantStar", "The ship is bound for Karachi.", { hl: "for", sub: "bound for = travelling towards", size: 30 }], ["reachDot", "He is bound to win.", { hl: "to", sub: "bound to = certain to, or tied to", size: 30 }], ["followRule", "We are bound by the treaty.", { hl: "by", sub: "bound by = obliged by", size: 30 }]], { y: 190, gap: 140 }),
+        ],
+      },
+      {
+        id: "bound-logic",
+        title: "bound for: the logic",
+        alt: "The logic for bound for: Look at the senses. **for** has the sense of destination of a departure. Bound for means travelling towards, and that fits: bound for = travelling towards. So the word takes **for**.; **to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: tied to Karachi, or certain to. That is not what bound for says.; **at** has the sense of pointing at one spot or target. At is a point, not a destination. So bound does not take **at**.",
+        say: [
+          { text: "Look at the senses. **for** has the sense of destination of a departure. Bound for means travelling towards, and that fits: bound for = travelling towards. So the word takes **for**.", cue: "e5lg1" },
+          { text: "**to** has the sense of moving towards, reaching. It is correct English, but it would mean something else: tied to Karachi, or certain to. That is not what bound for says.", cue: "e5lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. At is a point, not a destination. So bound does not take **at**.", cue: "e5lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-5lg"),
+          { do: "write", id: "e5lgt", text: "bound for: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e5lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e5lg", [["wantStar", "\u2713 FOR = destination of a departure", { hl: "FOR", sub: "travelling towards = destination of a departure", size: 28 }], ["reachDot", "\u2248 TO = moving towards, reaching", { hl: "TO", sub: "correct English, but it would mean: tied to Karachi, or certain to", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at is a point, not a destination", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
@@ -240,6 +320,22 @@
         ],
       },
       {
+        id: "break-logic",
+        title: "break into: the logic",
+        alt: "The logic for break into: Look at the senses. **into** has the sense of going inside. Break means split into pieces, and that fits: break into = enter by force. So the word takes **into**.; **out of** has the sense of from inside to outside. It is correct English, but it would mean something else: escaped from inside the house. That is not what break into says.; **in** has the sense of inside, within. Broke in takes no object; with an object, into. So break does not take **in**.",
+        say: [
+          { text: "Look at the senses. **into** has the sense of going inside. Break means split into pieces, and that fits: break into = enter by force. So the word takes **into**.", cue: "e6lg1" },
+          { text: "**out of** has the sense of from inside to outside. It is correct English, but it would mean something else: escaped from inside the house. That is not what break into says.", cue: "e6lg2" },
+          { text: "**in** has the sense of inside, within. Broke in takes no object; with an object, into. So break does not take **in**.", cue: "e6lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-6lg"),
+          { do: "write", id: "e6lgt", text: "break into: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e6lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e6lg", [["intoBag", "\u2713 INTO = going inside", { hl: "INTO", sub: "enter by force = going inside", size: 28 }], ["goOut", "\u2248 OUT OF = from inside to outside", { hl: "OUT OF", sub: "correct English, but it would mean: escaped from inside the house", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "broke in takes no object; with an object, into", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "break-why",
         title: "break: why this one?",
         alt: "The sentence Thieves broke with a gap the house., then the candidates: into (fits: enter by force); out of (correct English, different meaning: escaped from inside the house); in (not used: broke in takes no object; with an object, into)",
@@ -289,6 +385,22 @@
         ],
       },
       {
+        id: "brood-logic",
+        title: "brood over: the logic",
+        alt: "The logic for brood over: Look at the senses. **over** has the sense of thinking or fighting over. Brood means think darkly, sit on eggs, and that fits: brood over = think long and unhappily about. So the word takes **over**.; **at** has the sense of pointing at one spot or target. At is a point; brooding hangs over. So brood does not take **at**.; **with** has the sense of together with, or using. But think long and unhappily about is not together with, or using. So brood does not take **with**.",
+        say: [
+          { text: "Look at the senses. **over** has the sense of thinking or fighting over. Brood means think darkly, sit on eggs, and that fits: brood over = think long and unhappily about. So the word takes **over**.", cue: "e7lg1" },
+          { text: "**at** has the sense of pointing at one spot or target. At is a point; brooding hangs over. So brood does not take **at**.", cue: "e7lg2" },
+          { text: "**with** has the sense of together with, or using. But think long and unhappily about is not together with, or using. So brood does not take **with**.", cue: "e7lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-7lg"),
+          { do: "write", id: "e7lgt", text: "brood over: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e7lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e7lg", [["overRock", "\u2713 OVER = thinking or fighting over", { hl: "OVER", sub: "think long and unhappily about = thinking or fighting over", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "at is a point; brooding hangs over", size: 28 }], ["cross", "\u2717 WITH = together with, or using", { hl: "WITH", sub: "but think long and unhappily about is not together with, or using", size: 28 }]], { y: 150, gap: 135 }),
+        ],
+      },
+      {
         id: "brood-why",
         title: "brood: why this one?",
         alt: "The sentence He brooded with a gap his failure., then the candidates: over (fits: think long and unhappily about); at (not used: at is a point; brooding hangs over); with (not used: with = together; not used)",
@@ -313,6 +425,22 @@
           { do: "write", id: "e8h", text: "busy", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle" },
           { do: "write", id: "e8hl", text: "Basic \u00b7 busy with", x: 480, y: 112, size: 24, ink: "muted", anchor: "middle", gap: 100 },
           ...PLAB.kit.rows("e8s", [["agreeWith", "She is busy with her studies.", { hl: "with", sub: "busy with = occupied with a task", size: 30 }]], { y: 330, gap: 140 }),
+        ],
+      },
+      {
+        id: "busy-logic",
+        title: "busy with: the logic",
+        alt: "The logic for busy with: Look at the senses. **with** has the sense of dealing with or handling. Busy with means occupied with a task, and that fits: busy with = occupied with a task. So the word takes **with**.; **in** has the sense of inside, within. But occupied with a task is not inside, within. So busy does not take **in**.; **at** has the sense of pointing at one spot or target. But occupied with a task is not pointing at one spot or target. So busy does not take **at**.",
+        say: [
+          { text: "Look at the senses. **with** has the sense of dealing with or handling. Busy with means occupied with a task, and that fits: busy with = occupied with a task. So the word takes **with**.", cue: "e8lg1" },
+          { text: "**in** has the sense of inside, within. But occupied with a task is not inside, within. So busy does not take **in**.", cue: "e8lg2" },
+          { text: "**at** has the sense of pointing at one spot or target. But occupied with a task is not pointing at one spot or target. So busy does not take **at**.", cue: "e8lg3" },
+        ],
+        actions: [
+          PLAB.kit.clear("clear-8lg"),
+          { do: "write", id: "e8lgt", text: "busy with: the logic", x: 480, y: 56, size: 38, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "e8lgs", text: "each preposition has a sense; the word's meaning picks one", x: 480, y: 98, size: 22, ink: "muted", anchor: "middle", gap: 100 },
+          ...PLAB.kit.rows("e8lg", [["agreeWith", "\u2713 WITH = dealing with or handling", { hl: "WITH", sub: "occupied with a task = dealing with or handling", size: 28 }], ["cross", "\u2717 IN = inside, within", { hl: "IN", sub: "but occupied with a task is not inside, within", size: 28 }], ["cross", "\u2717 AT = pointing at one spot or target", { hl: "AT", sub: "but occupied with a task is not pointing at one spot or target", size: 28 }]], { y: 150, gap: 135 }),
         ],
       },
       {
