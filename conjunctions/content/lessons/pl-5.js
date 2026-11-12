@@ -6,56 +6,44 @@
     phase: 6,
     unit: "u-pair-logic",
     level: "Atlas",
-    minutes: 16,
-    summary: "For each pair, what the first word demands, why one partner fits, and why each other option fails.",
-    objectives: ["Say what the first word demands.", "Say why the partner fits.", "Say why the others fail."],
+    minutes: 14,
+    summary: "For each pair: its plain meaning, an example, and why one partner fits while the others fail.",
+    objectives: ["Read what the pair means.", "Try each partner in the sentence.", "Say why the others fail."],
     steps: [
       {
         id: "board-1",
-        title: "Why this partner? (5)",
-        alt: "Why this partner? (5). The first word of a pair demands a meaning. Only one partner gives that meaning. Each other option has a different sense, so it fails.",
+        title: "no sooner ... than: what it means",
+        alt: "no sooner ... than: what it means. No sooner means the second event came right after the first. Example. No sooner had he sat down than the phone rang. Use it when: One event follows another at once.",
         say: [
-          { text: "The first word of a pair demands a meaning.", cue: "b0-l0" },
-          { text: "Only one partner gives that meaning.", cue: "b0-l1" },
-          { text: "Each other option has a different sense, so it fails.", cue: "b0-l2" },
+          { text: "No sooner means the second event came right after the first.", cue: "b0-l0" },
+          { text: "Example.", cue: "b0-l1" },
+          { text: "No sooner had he sat down than the phone rang.", cue: "b0-l2" },
+          { text: "Use it when:", cue: "b0-l3" },
+          { text: "One event follows another at once.", cue: "b0-l4" },
         ],
         actions: [
           PLAB.kit.clear("clear-b0"),
-          { do: "write", id: "b0-t", text: "Why this partner? (5)", x: 480, y: 70, size: 46, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.pic("b0-p", "twoPaths", 340, 110, 2.0),
-          { do: "write", id: "b0-l0", text: "The first word of a pair demands a meaning.", x: 480, y: 330, size: 30, ink: "accent2", anchor: "middle", fit: 900, gap: 400 },
-          { do: "write", id: "b0-l1", text: "Only one partner gives that meaning.", x: 480, y: 388, size: 26, ink: "main", anchor: "middle", fit: 900, gap: 400 },
-          { do: "write", id: "b0-l2", text: "Each other option has a different sense, so it fails.", x: 480, y: 446, size: 26, ink: "main", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b0-t", text: "no sooner ... than: what it means", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b0-l0", text: "No sooner means the second event came right after the first", x: 480, y: 150, size: 28, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b0-l1", text: "Example", x: 480, y: 216, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b0-l2", text: "No sooner had he sat down than the phone rang.", x: 480, y: 282, size: 28, ink: "ink", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b0-l3", text: "Use it when:", x: 480, y: 348, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b0-l4", text: "One event follows another at once", x: 480, y: 414, size: 26, ink: "ink", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
         id: "board-2",
-        title: "no sooner ... than: what the first word demands",
-        alt: "no sooner ... than: what the first word demands. NO SOONER is a comparison of time (sooner than). So the partner must fit that meaning.",
+        title: "no sooner ... than: which partner fits?",
+        alt: "no sooner ... than: which partner fits?. No sooner had he sat down than the phone rang. THAN completes a comparison. No sooner had he sat down when the phone rang. WHEN belongs to hardly and scarcely, not to a comparison. No sooner had he sat down that the phone rang. THAT does not complete a comparison.",
         say: [
-          { text: "NO SOONER is a comparison of time (sooner than).", cue: "b1-l0" },
-          { text: "So the partner must fit that meaning.", cue: "b1-l1" },
+          { text: "No sooner had he sat down than the phone rang. THAN completes a comparison.", cue: "b1r1" },
+          { text: "No sooner had he sat down when the phone rang. WHEN belongs to hardly and scarcely, not to a comparison.", cue: "b1r2" },
+          { text: "No sooner had he sat down that the phone rang. THAT does not complete a comparison.", cue: "b1r3" },
         ],
         actions: [
           PLAB.kit.clear("clear-b1"),
-          { do: "write", id: "b1-t", text: "no sooner ... than: what the first word demands", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "b1-l0", text: "NO SOONER is a comparison of time (sooner than)", x: 480, y: 150, size: 27, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
-          { do: "write", id: "b1-l1", text: "So the partner must fit that meaning.", x: 480, y: 216, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
-        ],
-      },
-      {
-        id: "board-3",
-        title: "no sooner ... than: why this partner, why not the others",
-        alt: "no sooner ... than: why this partner, why not the others. ✓ no sooner A than B. THAN completes a comparison. ✗ no sooner A when B. WHEN belongs to hardly and scarcely, not to a comparison. ✗ no sooner A that B. THAT does not complete a comparison.",
-        say: [
-          { text: "✓ no sooner A than B. THAN completes a comparison.", cue: "b2r1" },
-          { text: "✗ no sooner A when B. WHEN belongs to hardly and scarcely, not to a comparison.", cue: "b2r2" },
-          { text: "✗ no sooner A that B. THAT does not complete a comparison.", cue: "b2r3" },
-        ],
-        actions: [
-          PLAB.kit.clear("clear-b2"),
-          { do: "write", id: "b2-t", text: "no sooner ... than: why this partner, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.rows("b2r", [["check", "✓ no sooner A than B", { hl: "than", sub: "THAN completes a comparison", size: 28 }], ["cross", "✗ no sooner A when B", { hl: "when", sub: "WHEN belongs to hardly and scarcely, not to a comparison", size: 28 }], ["cross", "✗ no sooner A that B", { hl: "that", sub: "THAT does not complete a comparison", size: 28 }]], { y: 135, gap: 135 }),
+          { do: "write", id: "b1-t", text: "no sooner ... than: which partner fits?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("b1r", [["check", "No sooner had he sat down than the phone rang.", { hl: "than", sub: "THAN completes a comparison", size: 28 }], ["cross", "No sooner had he sat down when the phone rang.", { hl: "when", sub: "WHEN belongs to hardly and scarcely, not to a comparison", size: 28 }], ["cross", "No sooner had he sat down that the phone rang.", { hl: "that", sub: "THAT does not complete a comparison", size: 28 }]], { y: 135, gap: 135 }),
         ],
       },
       {
@@ -80,45 +68,51 @@
             },
             {
               "text": "when",
-              "why": "WHEN does not fit: WHEN belongs to hardly and scarcely, not to a comparison.",
+              "why": "WHEN belongs to hardly and scarcely, not to a comparison",
               "misconception": "pl-5"
             },
             {
               "text": "that",
-              "why": "THAT does not fit: THAT does not complete a comparison.",
+              "why": "THAT does not complete a comparison",
               "misconception": "pl-5"
             }
           ]
         },
       },
       {
-        id: "board-5",
-        title: "hardly ... when: what the first word demands",
-        alt: "hardly ... when: what the first word demands. HARDLY means almost not: the second event came at once. So the partner must fit that meaning.",
+        id: "board-4",
+        title: "hardly ... when: what it means",
+        alt: "hardly ... when: what it means. Hardly means almost not yet, then the next event came. Example. Hardly had she left when it began to rain. Use it when: One event had barely finished when another began.",
         say: [
-          { text: "HARDLY means almost not: the second event came at once.", cue: "b4-l0" },
-          { text: "So the partner must fit that meaning.", cue: "b4-l1" },
+          { text: "Hardly means almost not yet, then the next event came.", cue: "b3-l0" },
+          { text: "Example.", cue: "b3-l1" },
+          { text: "Hardly had she left when it began to rain.", cue: "b3-l2" },
+          { text: "Use it when:", cue: "b3-l3" },
+          { text: "One event had barely finished when another began.", cue: "b3-l4" },
         ],
         actions: [
-          PLAB.kit.clear("clear-b4"),
-          { do: "write", id: "b4-t", text: "hardly ... when: what the first word demands", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
-          { do: "write", id: "b4-l0", text: "HARDLY means almost not: the second event came at once", x: 480, y: 150, size: 27, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
-          { do: "write", id: "b4-l1", text: "So the partner must fit that meaning.", x: 480, y: 216, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          PLAB.kit.clear("clear-b3"),
+          { do: "write", id: "b3-t", text: "hardly ... when: what it means", x: 480, y: 60, size: 34, ink: "accent", anchor: "middle", fit: 900 },
+          { do: "write", id: "b3-l0", text: "Hardly means almost not yet, then the next event came", x: 480, y: 150, size: 28, ink: "accent", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b3-l1", text: "Example", x: 480, y: 216, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b3-l2", text: "Hardly had she left when it began to rain.", x: 480, y: 282, size: 28, ink: "ink", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b3-l3", text: "Use it when:", x: 480, y: 348, size: 22, ink: "muted", anchor: "middle", fit: 900, gap: 400 },
+          { do: "write", id: "b3-l4", text: "One event had barely finished when another began", x: 480, y: 414, size: 26, ink: "ink", anchor: "middle", fit: 900, gap: 400 },
         ],
       },
       {
-        id: "board-6",
-        title: "hardly ... when: why this partner, why not the others",
-        alt: "hardly ... when: why this partner, why not the others. ✓ hardly A when B. WHEN links the two moments in time. ✗ hardly A than B. THAN completes a comparison, and hardly is not one. ✗ hardly A that B. THAT does not link two moments.",
+        id: "board-5",
+        title: "hardly ... when: which partner fits?",
+        alt: "hardly ... when: which partner fits?. Hardly had she left when it began to rain. WHEN links the two moments in time. Hardly had she left than it began to rain. THAN completes a comparison, and hardly is not one. Hardly had she left that it began to rain. THAT does not link two moments.",
         say: [
-          { text: "✓ hardly A when B. WHEN links the two moments in time.", cue: "b5r1" },
-          { text: "✗ hardly A than B. THAN completes a comparison, and hardly is not one.", cue: "b5r2" },
-          { text: "✗ hardly A that B. THAT does not link two moments.", cue: "b5r3" },
+          { text: "Hardly had she left when it began to rain. WHEN links the two moments in time.", cue: "b4r1" },
+          { text: "Hardly had she left than it began to rain. THAN completes a comparison, and hardly is not one.", cue: "b4r2" },
+          { text: "Hardly had she left that it began to rain. THAT does not link two moments.", cue: "b4r3" },
         ],
         actions: [
-          PLAB.kit.clear("clear-b5"),
-          { do: "write", id: "b5-t", text: "hardly ... when: why this partner, why not the others", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
-          ...PLAB.kit.rows("b5r", [["check", "✓ hardly A when B", { hl: "when", sub: "WHEN links the two moments in time", size: 28 }], ["cross", "✗ hardly A than B", { hl: "than", sub: "THAN completes a comparison, and hardly is not one", size: 28 }], ["cross", "✗ hardly A that B", { hl: "that", sub: "THAT does not link two moments", size: 28 }]], { y: 135, gap: 135 }),
+          PLAB.kit.clear("clear-b4"),
+          { do: "write", id: "b4-t", text: "hardly ... when: which partner fits?", x: 480, y: 50, size: 32, ink: "accent", anchor: "middle", fit: 900 },
+          ...PLAB.kit.rows("b4r", [["check", "Hardly had she left when it began to rain.", { hl: "when", sub: "WHEN links the two moments in time", size: 28 }], ["cross", "Hardly had she left than it began to rain.", { hl: "than", sub: "THAN completes a comparison, and hardly is not one", size: 28 }], ["cross", "Hardly had she left that it began to rain.", { hl: "that", sub: "THAT does not link two moments", size: 28 }]], { y: 135, gap: 135 }),
         ],
       },
       {
@@ -143,12 +137,12 @@
             },
             {
               "text": "than",
-              "why": "THAN does not fit: THAN completes a comparison, and hardly is not one.",
+              "why": "THAN completes a comparison, and hardly is not one",
               "misconception": "pl-5"
             },
             {
               "text": "that",
-              "why": "THAT does not fit: THAT does not link two moments.",
+              "why": "THAT does not link two moments",
               "misconception": "pl-5"
             }
           ]
@@ -157,16 +151,16 @@
       {
         id: "summary",
         title: "Summary: what to remember",
-        alt: "Remember: no sooner ... than: NO SOONER is a comparison of time (sooner than). hardly ... when: HARDLY means almost not: the second event came at once.",
+        alt: "Remember: no sooner ... than: No sooner means the second event came right after the first. hardly ... when: Hardly means almost not yet, then the next event came.",
         say: [
-          { text: "no sooner ... than: NO SOONER is a comparison of time (sooner than).", cue: "sum0" },
-          { text: "hardly ... when: HARDLY means almost not: the second event came at once.", cue: "sum1" },
+          { text: "no sooner ... than: No sooner means the second event came right after the first.", cue: "sum0" },
+          { text: "hardly ... when: Hardly means almost not yet, then the next event came.", cue: "sum1" },
         ],
         actions: [
           PLAB.kit.clear("clear-sum"),
           { do: "write", id: "sum-t", text: "Remember", x: 480, y: 80, size: 46, ink: "accent", anchor: "middle" },
-          { do: "write", id: "sum0", text: "no sooner ... than: NO SOONER is a comparison of time (sooner than).", x: 480, y: 180, size: 29, ink: "main", anchor: "middle", fit: 900, gap: 500 },
-          { do: "write", id: "sum1", text: "hardly ... when: HARDLY means almost not: the second event came at once.", x: 480, y: 260, size: 29, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum0", text: "no sooner ... than: No sooner means the second event came right after the first.", x: 480, y: 180, size: 29, ink: "main", anchor: "middle", fit: 900, gap: 500 },
+          { do: "write", id: "sum1", text: "hardly ... when: Hardly means almost not yet, then the next event came.", x: 480, y: 260, size: 29, ink: "accent2", anchor: "middle", fit: 900, gap: 500 },
         ],
       },
     ],

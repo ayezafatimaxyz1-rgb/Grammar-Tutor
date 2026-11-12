@@ -154,23 +154,23 @@ PLAB.misconceptions = {
   },
   "pl-1": {
     label: "Why this partner",
-    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+    explain: "Know what the pair means, then pick the partner that gives that meaning.",
   },
   "pl-2": {
     label: "Why this partner",
-    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+    explain: "Know what the pair means, then pick the partner that gives that meaning.",
   },
   "pl-3": {
     label: "Why this partner",
-    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+    explain: "Know what the pair means, then pick the partner that gives that meaning.",
   },
   "pl-4": {
     label: "Why this partner",
-    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+    explain: "Know what the pair means, then pick the partner that gives that meaning.",
   },
   "pl-5": {
     label: "Why this partner",
-    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+    explain: "Know what the pair means, then pick the partner that gives that meaning.",
   },
   "cj-however": {
     label: "Linking adverbs",
