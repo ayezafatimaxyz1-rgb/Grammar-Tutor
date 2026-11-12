@@ -12,6 +12,8 @@
   const mistakes = split(C.mistakeText, 4).map(([bad, good, why, tag]) => ({ bad, good, why, tag }));
   const gaps = split(C.gapText, 6).map(([s, c, a, b, d, why]) => ({ s, c, o: [c, a, b, d], why }));
   const joins = split(C.joinText, 6).map(([s, c, a, b, d, why]) => ({ s, c, o: [c, a, b, d], why }));
+  const pairLogic = {};
+  if (C.pairLogicText) split(C.pairLogicText, 12).forEach(([k, rule, ok, okw, x1, x1w, x2, x2w]) => (pairLogic[k] = { rule, ok, okw, bad: [[x1, x1w], [x2, x2w]] }));
   Object.assign(C, { atlas, punct, mistakes, gaps, joins });
 
   const GN = C.groupNames, TN = C.typeNames;
@@ -58,7 +60,7 @@
     const pairs = atlas.filter((e) => e.type === "corr");
     app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Pairs that work together</h1>
       <p class="lede">Some conjunctions come in two parts. If you use the first part, the second must follow. Keep both parts of the same grammar (parallel).</p><p><button type="button" class="pdf-mini" data-pdf="phase:ph-pairs">${icon("pdf")}<span>PDF: pairs, with boards</span></button></p></section>
-      ${pairs.map(card).join("")}
+      ${pairs.map((e) => card(e) + (pairLogic[e.w] ? `<div class="cj-why"><b>Why this partner?</b> ${esc(pairLogic[e.w].rule)}.<p class="cj-ok">✓ ${esc(pairLogic[e.w].ok)}: ${esc(pairLogic[e.w].okw)}</p>${pairLogic[e.w].bad.map(([a, b]) => `<p class="cj-bad">✗ ${esc(a)}: ${esc(b)}</p>`).join("")}</div>` : "")).join("")}
       <div class="note-box"><b>Rule of balance.</b> After both, either, neither and not only, put the same kind of word on each side: both <em>in the village</em> and <em>in the city</em>; not only <em>clever</em> but also <em>kind</em>.</div>`;
   }
 
