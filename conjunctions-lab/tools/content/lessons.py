@@ -82,18 +82,30 @@ def b_columns(tag, b):
     return acts, says
 
 def b_word(tag, d):
-    acts = [f'PLAB.kit.clear("clear-{tag}")', w(f"{tag}-t", f"{d['word']}: {d['name']}", 480, 50, 34, "accent", "middle", 900),
-            pic(d["pic"], f"{tag}-p", 36, 92, 1.8), w(f"{tag}-c", d["caption"], 162, 282, 22, "accent2", "middle", 290, gap=200)]
+    labs = d.get("labels") or []
+    acts = [f'PLAB.kit.clear("clear-{tag}")', w(f"{tag}-t", f"{d['word']}: {d['name']}", 480, 46, 34, "accent", "middle", 900),
+            pic(d["pic"], f"{tag}-p", 30, 86, 1.35), w(f"{tag}-c", d["caption"], 125, 250, 21, "accent2", "middle", 200, gap=200)]
+    X, MW, y = 260, 680, 96
+    step = 78 if labs else 46
     for j, e in enumerate(d["explain"][:3]):
-        acts.append(w(f"{tag}-e{j}", e, 328, 118 + j * 40, 25, None, None, 610, gap=350 if j == 0 else 150))
-    y0 = 118 + len(d["explain"][:3]) * 40 + 52
+        if labs and j < len(labs):
+            acts.append(w(f"{tag}-l{j}", labs[j].upper(), X, y, 17, "muted", None, MW, gap=300 if j == 0 else 150))
+            acts.append(w(f"{tag}-e{j}", e, X, y + 32, 26, None, None, MW, gap=200))
+        else:
+            acts.append(w(f"{tag}-e{j}", e, X, y + 28, 26, None, None, MW, gap=300 if j == 0 else 150))
+        y += step
+    y += 14
+    if labs:
+        acts.append(w(f"{tag}-xl", "EXAMPLES", X, y, 17, "muted", None, MW, gap=300)); y += 32
+    else:
+        y += 8
     for j, ex in enumerate(d["examples"][:3]):
-        acts.append(w(f"{tag}-x{j}", plain(ex), 328, y0 + j * 50, 28, None, None, 610, gap=400 if j == 0 else 250))
+        acts.append(w(f"{tag}-x{j}", plain(ex), X, y + j * 46, 27, None, None, MW, gap=400 if j == 0 else 250))
         for q, m in enumerate(marks(ex)):
             acts.append(hl(f"{tag}-x{j}h{q}", f"{tag}-x{j}", m))
     says = [(" ".join(d["explain"]), f"{tag}-e0"), ("Look: " + " ".join(f"_{plain(e)}_" for e in d["examples"]), f"{tag}-x0")]
     if d.get("note"):
-        acts.append(w(f"{tag}-n", "Remember: " + d["note"], 480, 470, 24, "accent", "middle", 910, gap=400))
+        acts.append(w(f"{tag}-n", "Remember: " + d["note"], 480, 492, 23, "accent", "middle", 920, gap=400))
         says.append(("Remember: " + dot(d["note"]), f"{tag}-n"))
     return acts, says
 

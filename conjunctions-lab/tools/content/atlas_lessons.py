@@ -68,7 +68,7 @@ def _atlas_lessons():
             for i, e in enumerate(ch):
                 sh = _short[(e[0], e[2])]
                 exs = [_mark(x.strip(), e[0]) for x in e[5].split(";;")][:2]
-                boards.append(dict(kind="word", word=e[0], name=TYPE_LABEL[e[1]], pic=e[4], caption=gname, explain=[sh[0], sh[1], joins(e)[1]], examples=exs, note=sh[2]))
+                boards.append(dict(kind="word", word=e[0], name=TYPE_LABEL[e[1]], pic=e[4], caption=gname, explain=[sh[0], sh[1], joins(e)[1]], labels=["It means", "Why not the others", "What it can join"], examples=exs, note=sh[2]))
                 if i % 3 == 2 or i == len(ch) - 1:
                     grp = ch[(i // 3) * 3:(i // 3) * 3 + 3]
                     boards.append(dict(kind="rows", title="Which one? Why this, why not the others", rows=[(g[4], f"{g[0]}: {_short[(g[0], g[2])][0]}", g[0], _short[(g[0], g[2])][1]) for g in grp]))
