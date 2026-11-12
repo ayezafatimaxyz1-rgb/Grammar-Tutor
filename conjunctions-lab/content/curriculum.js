@@ -26,8 +26,8 @@
         id: "u-at-add",
         title: "Adding",
         lessons: [
-          L("at-add-1", "Adding: and, both ... and, not only ... but also, moreov", { status: "tested", lessonId: "at-add-1" }),
-          L("at-add-2", "Adding: also, likewise, similarly, in addition", { status: "tested", lessonId: "at-add-2" }),
+          L("at-add-1", "Adding: and, both ... and, between ... and, not only ...", { status: "tested", lessonId: "at-add-1" }),
+          L("at-add-2", "Adding: besides, also, likewise, similarly, in addition", { status: "tested", lessonId: "at-add-2" }),
         ],
       },
       {
@@ -231,11 +231,11 @@
         id: "u-pair-logic",
         title: "Why this partner, why not the others",
         lessons: [
-          L("pl-1", "Why this partner: both ... and, either ... or, neither ... nor", { status: "tested", lessonId: "pl-1" }),
-          L("pl-2", "Why this partner: not only ... but also, whether ... or, not ... but", { status: "tested", lessonId: "pl-2" }),
-          L("pl-3", "Why this partner: rather ... than, so ... that, such ... that", { status: "tested", lessonId: "pl-3" }),
-          L("pl-4", "Why this partner: as ... as, the more ... the more, no sooner ... th", { status: "tested", lessonId: "pl-4" }),
-          L("pl-5", "Why this partner: hardly ... when", { status: "tested", lessonId: "pl-5" }),
+          L("pl-1", "Why this partner: both ... and, between ... and, either ... or", { status: "tested", lessonId: "pl-1" }),
+          L("pl-2", "Why this partner: neither ... nor, not only ... but also, whether ..", { status: "tested", lessonId: "pl-2" }),
+          L("pl-3", "Why this partner: not ... but, rather ... than, so ... that", { status: "tested", lessonId: "pl-3" }),
+          L("pl-4", "Why this partner: such ... that, as ... as, the more ... the more", { status: "tested", lessonId: "pl-4" }),
+          L("pl-5", "Why this partner: no sooner ... than, hardly ... when", { status: "tested", lessonId: "pl-5" }),
         ],
       },
       ],

@@ -61,6 +61,7 @@ that|noun|introduces a statement|not WHETHER: that is for a statement, whether a
 whether|noun|introduces a yes or no question inside a sentence|not THAT: whether means yes or no|Use whether with or not.
 if|noun|introduces an indirect yes or no question|not WHETHER before or not: use whether|Whether is safer in formal writing.
 both ... and|add|two things together, of equal weight|not EITHER: both means all of them|Keep both sides parallel.
+between ... and|add|exactly two things, joined as a pair|not OR or TO: between needs AND|After between use me, him, her, never I, he, she.
 either ... or|choice|one of two|not NEITHER: either affirms one|The verb agrees with the nearer subject.
 neither ... nor|choice|not one and not the other|not EITHER: neither is negative|Add no other not.
 not only ... but also|add|one thing, then a stronger one|not BOTH: not only adds with stress|Start with not only: the helper verb comes first.

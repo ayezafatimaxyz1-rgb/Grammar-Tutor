@@ -65,6 +65,7 @@ that | sub | noun | introduces a statement as the object of a verb: he said that
 whether | sub | noun | introduces a yes or no question that is part of a sentence | qToA | I do not know whether he will come. ;; The question is whether we can afford it. | After a preposition use "whether": the question of whether. Not "if".
 if | sub | noun | introduces an indirect yes or no question | qToA | She asked if I was ready. | "whether" is safer in formal writing and before "or not".
 both ... and | corr | add | joins two things as the same weight, emphasising both | plus | He is both brave and kind. | Both parts must be of the same grammar: both in the village and in the city.
+between ... and | corr | add | BETWEEN names exactly two things, so AND joins them | plus | The match was between Pakistan and India. | BETWEEN is a preposition, so use me, him, her: between you and me, never between you and I.
 either ... or | corr | choice | one of two | spokes | You can either walk or take a bus. | The verb agrees with the nearer subject: Either he or his friends are coming.
 neither ... nor | corr | choice | not one and not the other | minus | He neither smiled nor spoke. | The verb agrees with the nearer subject. Do not add another not.
 not only ... but also | corr | add | one thing and then a stronger one as well | stackAdd | She is not only clever but also hard-working. | Keep the pairs parallel. After "not only" at the start of a sentence, the order flips.
