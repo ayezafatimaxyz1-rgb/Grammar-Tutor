@@ -152,6 +152,26 @@ PLAB.misconceptions = {
     label: "No sooner and hardly",
     explain: "No sooner goes with than. Hardly and scarcely go with when. The helper verb comes before the subject.",
   },
+  "pl-1": {
+    label: "Why this partner",
+    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+  },
+  "pl-2": {
+    label: "Why this partner",
+    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+  },
+  "pl-3": {
+    label: "Why this partner",
+    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+  },
+  "pl-4": {
+    label: "Why this partner",
+    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+  },
+  "pl-5": {
+    label: "Why this partner",
+    explain: "The first word of a pair demands a meaning. Only one partner gives it.",
+  },
   "cj-however": {
     label: "Linking adverbs",
     explain: "However, therefore and moreover link two sentences, but they are not conjunctions. A comma alone cannot join sentences with them.",

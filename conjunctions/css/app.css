@@ -766,3 +766,5 @@ mark { background: var(--hi-soft); padding: 0 4px; border-radius: 3px; }
 .cj-chip.on { background: var(--accent); color: #fff; border-color: var(--accent); }
 
 .cj-joins { margin: .35em 0; padding: 4px 10px; border-radius: 8px; font-size: .93rem; font-weight: 700; } .cj-joins.j-words { background: #e7f4eb; color: #1f7a3d; } .cj-joins.j-clause { background: #fff1db; color: #8a5200; } .cj-joins.j-sentence { background: #fbeaea; color: #b23a3a; }
+
+.cj-why { margin: -4px 0 14px; padding: 10px 14px; background: #f3e8ff; border-radius: 0 0 12px 12px; } .cj-why p { margin: .25em 0; }
