@@ -17,3 +17,21 @@ the more ... the more | THE ... THE: two comparatives that grow together | the m
 no sooner ... than | NO SOONER is a comparison of time (sooner than) | no sooner A than B | THAN completes a comparison | no sooner A when B | WHEN belongs to hardly and scarcely, not to a comparison | no sooner A that B | THAT does not complete a comparison | No sooner had he sat down ___ the phone rang. | than | when | that
 hardly ... when | HARDLY means almost not: the second event came at once | hardly A when B | WHEN links the two moments in time | hardly A than B | THAN completes a comparison, and hardly is not one | hardly A that B | THAT does not link two moments | Hardly had she left ___ it began to rain. | when | than | that
 `;
+
+/* pair | plain meaning | example | use it when */
+PLAB.conj.pairMeaning = `
+both ... and | Both means two things, and each one is true | He is both brave and kind. | You add two things together
+between ... and | Between points to two sides of one relation | The match was between Pakistan and India. | There are exactly two sides
+either ... or | Either means you pick one of two, only one is true | You can either walk or take a bus. | You offer a choice of two
+neither ... nor | Neither means not the first and not the second, both are false | He neither smiled nor spoke. | You say no to both things
+not only ... but also | Not only means this is true, and one more thing is true too | She is not only clever but also kind. | You add a second thing that is a bonus
+whether ... or | Whether means it is not known which of two cases is true | Whether you agree or not, the plan stands. | Two possibilities, and the result does not change
+not ... but | Not says what is false, but says what is true instead | He is not lazy but tired. | You correct a wrong idea with the right one
+rather ... than | Rather says you prefer the first thing to the second | I would rather walk than wait. | You compare two choices and pick one
+so ... that | So means very much, that tells the result | The tea was so hot that I could not drink it. | A quality is so strong that a result follows
+such ... that | Such means a noun is so strong, that tells the result | It was such a hard paper that many failed. | A noun with a quality causes a result
+as ... as | As ... as means two things are equal in a quality | She is as tall as her brother. | You say two things are equal
+the more ... the more | The more says two things grow together | The more you read, the more you learn. | One increase brings another increase
+no sooner ... than | No sooner means the second event came right after the first | No sooner had he sat down than the phone rang. | One event follows another at once
+hardly ... when | Hardly means almost not yet, then the next event came | Hardly had she left when it began to rain. | One event had barely finished when another began
+`;

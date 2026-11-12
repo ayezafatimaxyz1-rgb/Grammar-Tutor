@@ -215,22 +215,23 @@ PAIR_LESSONS = _pair_lessons()
 # ---------------------------------------------------------------- why each pair takes its partner
 _pl = [[x.strip() for x in l.split("|")] for l in _block(os.path.join(_conj, "pairlogic.js"), "PLAB.conj.pairLogicText")]
 
+_pm = {l[0]: l[1:] for l in ([x.strip() for x in ln.split("|")] for ln in _block(os.path.join(_conj, "pairlogic.js"), "PLAB.conj.pairMeaning"))}
+
 def _pair_logic_lessons():
     out = []
     for ci in range(0, len(_pl), 3):
         ch = _pl[ci:ci + 3]; n = ci // 3 + 1
-        boards = [dict(kind="intro", title=f"Why this partner? ({n})", pic="twoPaths", lines=["The first word of a pair demands a meaning.", "Only one partner gives that meaning.", "Each other option has a different sense, so it fails."])]
+        boards = []
         for k, rule, ok, okw, x1, x1w, x2, x2w, gap, ans, w1, w2 in ch:
-            boards.append(dict(kind="text", title=f"{k}: what the first word demands", lines=[(rule, "accent", 27), ("So the partner must fit that meaning.", "muted", 22)]))
-            boards.append(dict(kind="rows", title=f"{k}: why this partner, why not the others", rows=[("check", "✓ " + ok, ok.split()[-1] if ok.split()[-1] != "B" else ok.split()[-2], okw), ("cross", "✗ " + x1, x1.split()[-1] if x1.split()[-1] != "B" else x1.split()[-2], x1w), ("cross", "✗ " + x2, x2.split()[-1] if x2.split()[-1] != "B" else x2.split()[-2], x2w)]))
-            why = {}
-            for w_, lab, reason in ((w1, x1, x1w), (w2, x2, x2w)):
-                why[w_] = reason
-            opts = [(ans, True, okw)] + [(w_, False, f"{w_.upper()} does not fit: {why.get(w_, 'it does not give the meaning the pair needs')}.") for w_ in (w1, w2)]
+            mean, ex, use = _pm[k]
+            boards.append(dict(kind="text", title=f"{k}: what it means", lines=[(mean, "accent", 28), ("Example", "muted", 22), (ex, "ink", 28), ("Use it when:", "muted", 22), (use, "ink", 26)]))
+            full = lambda w: gap.replace("___", w)
+            boards.append(dict(kind="rows", title=f"{k}: which partner fits?", rows=[("check", full(ans), ans, okw), ("cross", full(w1), w1, x1w), ("cross", full(w2), w2, x2w)]))
+            opts = [(ans, True, okw), (w1, False, x1w), (w2, False, x2w)]
             boards.append(chk(gap.replace("___", "______"), *opts))
-        out.append(lesson(f"pl-{n}", "Why this partner: " + ", ".join(c[0] for c in ch)[:50], "pl-" + str(n), "Why this partner", "The first word of a pair demands a meaning. Only one partner gives it.",
-            "For each pair, what the first word demands, why one partner fits, and why each other option fails.", ["Say what the first word demands.", "Say why the partner fits.", "Say why the others fail."],
-            boards, [], [], [f"{c[0]}: {c[1]}." for c in ch], level="Atlas"))
+        out.append(lesson(f"pl-{n}", "Why this partner: " + ", ".join(c[0] for c in ch)[:50], "pl-" + str(n), "Why this partner", "Know what the pair means, then pick the partner that gives that meaning.",
+            "For each pair: its plain meaning, an example, and why one partner fits while the others fail.", ["Read what the pair means.", "Try each partner in the sentence.", "Say why the others fail."],
+            boards, [], [], [f"{c[0]}: {_pm[c[0]][0]}." for c in ch], level="Atlas"))
     return out
 
 PAIR_LOGIC_LESSONS = _pair_logic_lessons()
