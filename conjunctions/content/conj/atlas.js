@@ -50,7 +50,8 @@ so that | sub | purpose | in order that: the purpose of the main action | target
 in order that | sub | purpose | a formal "so that" | target | The rules were changed in order that everyone might benefit. | Formal. "may or might" is used after it.
 lest | sub | purpose | for fear that: so that something bad will not happen | shield | He ran lest he should be late. | Old-fashioned and literary. It already has a negative meaning, so never add "not".
 for fear that | sub | purpose | because of a fear that | shield | They hid the books for fear that thieves might come. | Formal. After it use "should" or "might".
-so ... that | corr | result | so much of a quality that a result follows | causeEffect | The tea was so hot that I could not drink it. | The result part uses "that". Do not forget it.
+too ... to | corr | result | more than enough, so something cannot happen | causeEffect | She is too weak to run. | TOO takes to + a base verb. Never "too weak that" and never "so weak to run".
+so ... that | corr | result | so much of a quality that a result follows | causeEffect | She is so weak that she cannot run. | SO needs THAT and a full clause with a subject and a verb. Never "so weak to run".
 such ... that | corr | result | so strong a thing that a result follows | causeEffect | It was such a hard paper that many students failed. | "such" goes with a noun. "so" goes with an adjective or adverb.
 than | sub | comparison | shows the thing compared with: after a comparative | scaleTip | Lahore is bigger than Multan. ;; He ran faster than I did. | Use "than" after a comparative, never "then". The comparison must be fair: "than that of".
 as ... as | corr | comparison | shows that two things are equal | compareBars | She is as tall as her brother. | In a negative the first "as" may become "so": not so tall as.
