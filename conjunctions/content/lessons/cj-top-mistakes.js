@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-top-mistakes",
     title: "The seven mistakes students make most",
-    phase: 9,
+    phase: 10,
     unit: "u-exam",
     level: "Exam",
     minutes: 18,

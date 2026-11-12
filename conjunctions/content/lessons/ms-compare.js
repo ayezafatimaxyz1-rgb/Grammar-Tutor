@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-compare",
     title: "Mistakes: Comparisons",
-    phase: 8,
+    phase: 9,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 10,

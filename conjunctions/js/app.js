@@ -134,6 +134,13 @@
         <span class="sc-go" aria-hidden="true">${icon("next")}</span>
       </a>
 
+      <a class="start-card" href="#pairlogic">
+        <span class="sc-badge">Pair logic</span>
+        <span class="sc-title">Why each pair takes its partner</span>
+        <span class="sc-text">Both ... and, between ... and, either ... or, neither ... nor and more: what the first word means, which partner fits, and why the others fail.</span>
+        <span class="sc-go" aria-hidden="true">${icon("next")}</span>
+      </a>
+
       <a class="start-card ctx-start" href="#mistakes">
         <span class="sc-badge">Your sentences, solved</span>
         <span class="sc-title">Common mistakes</span>

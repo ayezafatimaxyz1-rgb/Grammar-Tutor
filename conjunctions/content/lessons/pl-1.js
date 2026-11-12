@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "pl-1",
     title: "Why this partner: both ... and, between ... and, either ... or",
-    phase: 6,
+    phase: 7,
     unit: "u-pair-logic",
     level: "Atlas",
     minutes: 20,

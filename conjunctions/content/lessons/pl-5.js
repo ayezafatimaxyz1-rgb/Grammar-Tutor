@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "pl-5",
     title: "Why this partner: no sooner ... than, hardly ... when",
-    phase: 6,
+    phase: 7,
     unit: "u-pair-logic",
     level: "Atlas",
     minutes: 14,
