@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "pl-2",
     title: "Why this partner: neither ... nor, not only ... but also, whether ..",
-    phase: 6,
+    phase: 7,
     unit: "u-pair-logic",
     level: "Atlas",
     minutes: 20,

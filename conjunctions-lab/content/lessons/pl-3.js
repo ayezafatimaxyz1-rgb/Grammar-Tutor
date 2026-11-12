@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "pl-3",
     title: "Why this partner: not ... but, rather ... than, so ... that",
-    phase: 6,
+    phase: 7,
     unit: "u-pair-logic",
     level: "Atlas",
     minutes: 20,

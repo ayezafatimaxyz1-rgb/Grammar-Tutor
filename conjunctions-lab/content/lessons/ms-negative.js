@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-negative",
     title: "Mistakes: Double negatives",
-    phase: 8,
+    phase: 9,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 10,

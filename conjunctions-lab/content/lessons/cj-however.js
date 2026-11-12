@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "cj-however",
     title: "However, therefore, moreover and other linkers",
-    phase: 7,
+    phase: 8,
     unit: "u-linkers",
     level: "Basic",
     minutes: 14,

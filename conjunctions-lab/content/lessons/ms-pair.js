@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-pair",
     title: "Mistakes: Pairs that must match",
-    phase: 8,
+    phase: 9,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 12,

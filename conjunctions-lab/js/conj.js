@@ -61,7 +61,7 @@
     const pairs = atlas.filter((e) => e.type === "corr");
     app.innerHTML = `<p class="crumbs"><a href="#atlas">Atlas</a></p><section class="page-head"><h1>Pairs that work together</h1>
       <p class="lede">Some conjunctions come in two parts. If you use the first part, the second must follow. Keep both parts of the same grammar (parallel).</p><p><button type="button" class="pdf-mini" data-pdf="phase:ph-pairs">${icon("pdf")}<span>PDF: pairs, with boards</span></button></p></section>
-      ${pairs.map((e) => card(e) + (pairLogic[e.w] ? `<div class="cj-why">${pairMean[e.w] ? `<p><b>Meaning:</b> ${esc(pairMean[e.w].m)}.</p><p><b>Example:</b> ${esc(pairMean[e.w].ex)}</p><p><b>Use it when:</b> ${esc(pairMean[e.w].use)}.</p>` : ""}<b>Which partner fits?</b><p class="cj-ok">✓ ${esc(pairLogic[e.w].ok)}: ${esc(pairLogic[e.w].okw)}</p>${pairLogic[e.w].bad.map(([a, b]) => `<p class="cj-bad">✗ ${esc(a)}: ${esc(b)}</p>`).join("")}</div>` : "")).join("")}
+      ${pairs.map(card).join("")}
       <div class="note-box"><b>Rule of balance.</b> After both, either, neither and not only, put the same kind of word on each side: both <em>in the village</em> and <em>in the city</em>; not only <em>clever</em> but also <em>kind</em>.</div>`;
   }
 
@@ -87,6 +87,19 @@
       <p><button type="button" class="pdf-mini" data-pdf="phase:ph-mist">${icon("pdf")}<span>PDF of all mistakes: boards, rules and tests</span></button> <button type="button" class="pdf-mini" data-pdf="conjmist:all">${icon("pdf")}<span>Text only</span></button></p></section>
       <div class="cj-chips"><a class="cj-chip${tag ? "" : " on"}" href="#mistakes">All</a>${tags.map((t) => `<a class="cj-chip${tag === t ? " on" : ""}" href="#mistakes-${t}">${esc(TAGS[t])}</a>`).join("")}</div>
       ${ms.map((m) => `<article class="cj-card"><p class="cj-bad">✗ ${esc(m.bad)}</p><p class="cj-ok">✓ ${esc(m.good)}</p><p class="muted">${esc(m.why)}</p></article>`).join("")}`;
+  }
+
+  function renderPairLogic(app, { icon }) {
+    const ids = Object.keys(P.lessons).filter((i) => i.startsWith("pl-"));
+    const ks = Object.keys(pairLogic);
+    const box = (k) => { const L = pairLogic[k], M = pairMean[k] || {}; return `<article class="cj-card"><h3>${esc(k)}</h3>
+      <p><b>Meaning:</b> ${esc(M.m || L.rule)}.</p><p><b>Example:</b> ${esc(M.ex || "")}</p><p><b>Use it when:</b> ${esc(M.use || "")}.</p>
+      <div class="cj-why"><b>Which partner fits?</b><p class="cj-ok">✓ ${esc(L.ok)}: ${esc(L.okw)}</p>${L.bad.map(([a, b]) => `<p class="cj-bad">✗ ${esc(a)}: ${esc(b)}</p>`).join("")}</div></article>`; };
+    app.innerHTML = `<section class="page-head"><p class="eyebrow">Pair logic</p><h1>Why each pair takes its partner</h1>
+      <p class="lede">For every pair: what it means, an example, the partner that fits, and why each other option fails.</p>
+      <p><button type="button" class="pdf-mini" data-pdf="phase:ph-pairlogic">${icon("pdf")}<span>PDF with boards</span></button></p></section>
+      <h2 class="cj-h">Drawn on the board (${ids.length} lessons)</h2><div class="start-cards">${ids.map((i) => `<a class="start-card" href="#lesson-${i}"><span class="sc-title">${esc(P.lessons[i].title.replace("Why this partner: ", ""))}</span><span class="sc-go" aria-hidden="true">${icon("next")}</span></a>`).join("")}</div>
+      <h2 class="cj-h">All ${ks.length} pairs</h2>${ks.map(box).join("")}`;
   }
 
   function renderSenses(app, { icon }) {
@@ -176,6 +189,7 @@
   C.render = function (app, hash, ctx) {
     if (hash === "atlas" || hash.startsWith("atlas-")) { renderAtlas(app, hash, ctx); return "atlas"; }
     if (hash === "senses") { renderSenses(app, ctx); return "atlas"; }
+    if (hash === "pairlogic") { renderPairLogic(app, ctx); return "atlas"; }
     if (hash === "pairs") { renderPairs(app, ctx); return "atlas"; }
     if (hash === "linkers") { renderLinkers(app, ctx); return "atlas"; }
     if (hash === "punctuation") { renderPunct(app, ctx); return "atlas"; }

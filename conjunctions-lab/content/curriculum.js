@@ -217,7 +217,7 @@
     {
       id: "ph-pairs",
       title: "Phase 3: Pairs and fixed partners",
-      intro: "Both ... and, either ... or, neither ... nor, not only ... but also, no sooner ... than and hardly ... when, and why each pair takes its partner.",
+      intro: "Both ... and, either ... or, neither ... nor, not only ... but also, no sooner ... than and hardly ... when.",
       units: [
       {
         id: "u-pairs",
@@ -227,6 +227,13 @@
           L("cj-nosooner", "No sooner ... than, hardly ... when", { status: "tested", lessonId: "cj-nosooner" }),
         ],
       },
+      ],
+    },
+    {
+      id: "ph-pairlogic",
+      title: "Pair logic: why this partner",
+      intro: "For each pair: what it means, an example, and why one partner fits while the others fail.",
+      units: [
       {
         id: "u-pair-logic",
         title: "Why this partner, why not the others",

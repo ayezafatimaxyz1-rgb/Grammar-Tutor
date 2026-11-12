@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "pl-4",
     title: "Why this partner: such ... that, as ... as, the more ... the more",
-    phase: 6,
+    phase: 7,
     unit: "u-pair-logic",
     level: "Atlas",
     minutes: 20,

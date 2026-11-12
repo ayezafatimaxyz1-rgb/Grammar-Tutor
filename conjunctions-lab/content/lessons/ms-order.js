@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-order",
     title: "Mistakes: Word order after not only, hardly",
-    phase: 8,
+    phase: 9,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 12,

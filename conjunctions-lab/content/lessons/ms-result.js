@@ -3,7 +3,7 @@
   PLAB.registerLesson({
     id: "ms-result",
     title: "Mistakes: So and such",
-    phase: 8,
+    phase: 9,
     unit: "u-mistakes",
     level: "Exam",
     minutes: 10,
