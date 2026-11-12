@@ -46,6 +46,7 @@ so that|purpose|the purpose of the main action|not BECAUSE: so that looks forwar
 in order that|purpose|a formal so that|not SO THAT in formal writing|Formal; may or might follows.
 lest|purpose|so that something bad will not happen|not SO THAT: lest already holds a negative|Never add not after lest.
 for fear that|purpose|because of a fear that|not SO THAT: for fear that shows worry|After it use should or might.
+too ... to|result|more than enough, so something cannot happen|not SO: too takes to + a verb, with no subject|She is too weak to run.
 so ... that|result|so much of a quality that a result follows|not SUCH: so goes with an adjective alone|It was so hot that I fainted.
 such ... that|result|so strong a thing that a result follows|not SO: such goes with a noun|It was such a hot day that we stayed in.
 than|comparison|the thing compared, after a comparative|not THEN: than compares, then is time|Taller than, never taller then.

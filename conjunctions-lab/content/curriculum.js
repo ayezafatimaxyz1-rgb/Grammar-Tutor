@@ -65,8 +65,8 @@
         id: "u-at-result",
         title: "Result",
         lessons: [
-          L("at-result-1", "Result: so, so ... that, such ... that, therefore, conse", { status: "tested", lessonId: "at-result-1" }),
-          L("at-result-2", "Result: hence, accordingly, as a result", { status: "tested", lessonId: "at-result-2" }),
+          L("at-result-1", "Result: so, too ... to, so ... that, such ... that, ther", { status: "tested", lessonId: "at-result-1" }),
+          L("at-result-2", "Result: thus, hence, accordingly, as a result", { status: "tested", lessonId: "at-result-2" }),
         ],
       },
       {
@@ -240,9 +240,9 @@
         lessons: [
           L("pl-1", "Why this partner: both ... and, between ... and, either ... or", { status: "tested", lessonId: "pl-1" }),
           L("pl-2", "Why this partner: neither ... nor, not only ... but also, whether ..", { status: "tested", lessonId: "pl-2" }),
-          L("pl-3", "Why this partner: not ... but, rather ... than, so ... that", { status: "tested", lessonId: "pl-3" }),
-          L("pl-4", "Why this partner: such ... that, as ... as, the more ... the more", { status: "tested", lessonId: "pl-4" }),
-          L("pl-5", "Why this partner: no sooner ... than, hardly ... when", { status: "tested", lessonId: "pl-5" }),
+          L("pl-3", "Why this partner: not ... but, rather ... than, too ... to", { status: "tested", lessonId: "pl-3" }),
+          L("pl-4", "Why this partner: so ... that, such ... that, as ... as", { status: "tested", lessonId: "pl-4" }),
+          L("pl-5", "Why this partner: the more ... the more, no sooner ... than, hardly ", { status: "tested", lessonId: "pl-5" }),
         ],
       },
       ],

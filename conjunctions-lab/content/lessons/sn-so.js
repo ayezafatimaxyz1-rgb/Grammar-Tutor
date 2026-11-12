@@ -77,10 +77,10 @@
       {
         id: "board-4",
         title: "so ... that: Result",
-        alt: "so ... that: Result. so much of a quality that a result follows not SUCH: so goes with an adjective alone Look: The tea was so hot that I could not drink it. Remember: It was so hot that I fainted.",
+        alt: "so ... that: Result. so much of a quality that a result follows not SUCH: so goes with an adjective alone Look: She is so weak that she cannot run. Remember: It was so hot that I fainted.",
         say: [
           { text: "so much of a quality that a result follows not SUCH: so goes with an adjective alone", cue: "b3-e0" },
-          { text: "Look: _The tea was so hot that I could not drink it._", cue: "b3-x0" },
+          { text: "Look: _She is so weak that she cannot run._", cue: "b3-x0" },
           { text: "Remember: It was so hot that I fainted.", cue: "b3-n" },
         ],
         actions: [
@@ -90,8 +90,8 @@
           { do: "write", id: "b3-c", text: "Result", x: 125, y: 250, size: 21, ink: "accent2", anchor: "middle", fit: 200, gap: 200 },
           { do: "write", id: "b3-e0", text: "so much of a quality that a result follows", x: 260, y: 124, size: 26, fit: 680, gap: 300 },
           { do: "write", id: "b3-e1", text: "not SUCH: so goes with an adjective alone", x: 260, y: 170, size: 26, fit: 680, gap: 150 },
-          { do: "write", id: "b3-x0", text: "The tea was so hot that I could not drink it.", x: 260, y: 210, size: 27, fit: 680, gap: 400 },
-          { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "so hot that" },
+          { do: "write", id: "b3-x0", text: "She is so weak that she cannot run.", x: 260, y: 210, size: 27, fit: 680, gap: 400 },
+          { do: "highlight", id: "b3-x0h0", target: "b3-x0", word: "so weak that" },
           { do: "write", id: "b3-n", text: "Remember: It was so hot that I fainted.", x: 480, y: 492, size: 23, ink: "accent", anchor: "middle", fit: 920, gap: 400 },
         ],
       },
